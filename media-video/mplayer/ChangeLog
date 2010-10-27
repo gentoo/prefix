@@ -1,6 +1,92 @@
 # ChangeLog for media-video/mplayer
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.741 2010/05/20 14:39:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.763 2010/10/10 19:43:25 scarabeus Exp $
+
+  10 Oct 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild,
+  metadata.xml:
+  Replace rtmpdump with rtmp useflag. As is done in ffmpeg and xbmc.
+
+  10 Oct 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  EAPI3fy for prefix support.
+
+  10 Oct 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Introduce gsm useflag. Adds support for the gsm lossy speech compression
+  codec.
+
+  10 Oct 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Always disable internal libmpeg2.
+
+  10 Oct 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild,
+  metadata.xml:
+  Ebuild cleanup. Drop gmplayer useflag. Introduce rtmpdump useflag. Thanks
+  to Andrew Savchenko. Fixes bug #336021 and bug #337284.
+
+  01 Oct 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  fix configure options for external ffmpeg
+
+  18 Jul 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  network configure option has been renamed to networking
+
+  17 Jul 2010; Steve Dibb <beandog@gentoo.org> mplayer-9999.ebuild:
+  Revert libass change; Always use external versions where possible
+
+  17 Jul 2010; Steve Dibb <beandog@gentoo.org> mplayer-9999.ebuild,
+  metadata.xml:
+  Add support for external libass libraries, bug 327733
+
+  17 Jul 2010; Steve Dibb <beandog@gentoo.org> mplayer-9999.ebuild:
+  Add bluray use flag for playback through libbluray
+
+  30 Jun 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Drop svga useflag.
+
+  30 Jun 2010; Fabio Erculiani <lxnay@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild, mplayer-1.0_rc4_p20100506.ebuild,
+  mplayer-1.0_rc4_p20100612.ebuild, mplayer-9999.ebuild:
+  fix automagic dependency against svgalib, add --disable-svgalib
+  --disable-svgalib_helper
+
+  27 Jun 2010; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0_rc4_p20100612.ebuild:
+  Re-add ~alpha/~arm/~ia64/~sparc
+
+  25 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20100612.ebuild, mplayer-9999.ebuild:
+  Missing gcc-specs-pie check wrt #325517 by Toralf Förster and Magnus
+  Granberg.
+
+  25 Jun 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  propagate enca useflag to libass, by Alexey Shildyakov
+  <ashl1future@gmail.com>, bug #321863
+
+  25 Jun 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  disable faac with use bindist, by Nikoli <nikoli@lavabit.com>, bug #323353
+
+  13 Jun 2010; Dror Levin <spatz@gentoo.org>
+  mplayer-1.0_rc4_p20100612.ebuild:
+  Dropping keywords pending keywording of media-libs/libvpx, bug 323727.
+
+*mplayer-1.0_rc4_p20100612 (12 Jun 2010)
+
+  12 Jun 2010; Dror Levin <spatz@gentoo.org>
+  +mplayer-1.0_rc4_p20100612.ebuild:
+  Roll new snapshot with VP8 support.
+
+  12 Jun 2010; Dror Levin <spatz@gentoo.org> mplayer-9999.ebuild,
+  metadata.xml:
+  Add vpx support via media-libs/libvpx.
+
+  11 Jun 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  fix the configure options building with mencoder disabled, bug #323097
+
+  02 Jun 2010; Luca Barbato <lu_zero@gentoo.org> mplayer-9999.ebuild:
+  Ebuild improvements from Nikoli <nikoli@lavabit.com> see bug #322377
+
+  01 Jun 2010; Luca Barbato <lu_zero@gentoo.org> mplayer-9999.ebuild:
+  Change doc deps as reported in bug #317559
+
+  31 May 2010; Luca Barbato <lu_zero@gentoo.org> mplayer-9999.ebuild:
+  make sure sed line is safe as suggested by Nikoli on #gentoo-media
 
   20 May 2010; Jeroen Roovers <jer@gentoo.org>
   mplayer-1.0_rc4_p20100506.ebuild:

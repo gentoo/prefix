@@ -1,13 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20100506.ebuild,v 1.5 2010/06/30 17:10:21 lxnay Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20100612.ebuild,v 1.6 2010/06/30 17:10:21 lxnay Exp $
 
 EAPI="2"
 
 ESVN_REPO_URI="svn://svn.mplayerhq.hu/mplayer/trunk"
 [[ ${PV} = *9999* ]] && SVN_ECLASS="subversion" || SVN_ECLASS=""
 
-inherit eutils flag-o-matic multilib base ${SVN_ECLASS}
+inherit toolchain-funcs eutils flag-o-matic multilib base ${SVN_ECLASS}
 
 [[ ${PV} != *9999* ]] && MPLAYER_REVISION=SVN-r30554
 
@@ -18,8 +18,8 @@ gif ggi -gmplayer +iconv ipv6 jack joystick jpeg jpeg2k kernel_linux ladspa
 libcaca lirc +live lzo mad md5sum +mmx mmxext mng +mp3 nas +network nut openal
 amr +opengl +osdmenu oss png pnm pulseaudio pvr +quicktime radio +rar +real +rtc
 samba +shm +schroedinger sdl +speex sse sse2 ssse3 svga tga +theora +tremor
-+truetype +toolame +twolame +unicode v4l v4l2 vdpau vidix +vorbis win32codecs
-+X +x264 xanim xinerama +xscreensaver +xv +xvid xvmc zoran"
++truetype +toolame +twolame +unicode v4l v4l2 vdpau vidix +vorbis vpx
+win32codecs +X +x264 xanim xinerama +xscreensaver +xv +xvid xvmc zoran"
 [[ ${PV} == *9999* ]] && IUSE+=" external-ffmpeg"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
@@ -38,7 +38,7 @@ FONT_URI="
 if [[ ${PV} == *9999* ]]; then
 	RELEASE_URI=""
 else
-	RELEASE_URI="mirror://gentoo/${P}.tar.bz2"
+	RELEASE_URI="mirror://gentoo/${P}.tbz2"
 fi
 SRC_URI="${RELEASE_URI}
 	!truetype? ( ${FONT_URI} )
@@ -62,6 +62,8 @@ X_RDEPS="
 #	nemesi? ( net-libs/libnemesi )
 RDEPEND+="
 	sys-libs/ncurses
+	app-arch/bzip2
+	sys-libs/zlib
 	!bindist? (
 		x86? (
 			win32codecs? ( media-libs/win32codecs )
@@ -88,6 +90,7 @@ RDEPEND+="
 			xvmc? ( x11-libs/libXvMC )
 		)
 	)
+	a52? ( media-libs/a52dec )
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
 	amr? ( !bindist? ( media-libs/opencore-amr ) )
@@ -113,6 +116,7 @@ RDEPEND+="
 	enca? ( app-i18n/enca )
 	faad? ( media-libs/faad2 )
 	gif? ( media-libs/giflib )
+	iconv? ( virtual/libiconv )
 	jack? ( media-sound/jack-audio-connection-kit )
 	jpeg? ( media-libs/jpeg )
 	jpeg2k? ( media-libs/openjpeg )
@@ -140,9 +144,10 @@ RDEPEND+="
 	sdl? ( media-libs/libsdl )
 	speex? ( media-libs/speex )
 	svga? ( media-libs/svgalib )
-	theora? ( media-libs/libtheora )
+	theora? ( media-libs/libtheora[encode?] )
 	truetype? ( ${FONT_RDEPS} )
 	vorbis? ( media-libs/libvorbis )
+	vpx? ( media-libs/libvpx )
 	xanim? ( media-video/xanim )
 "
 
@@ -162,8 +167,10 @@ DEPEND="${RDEPEND}
 		xscreensaver? ( x11-proto/scrnsaverproto )
 	)
 	amd64? ( ${ASM_DEP} )
-	doc? ( dev-libs/libxslt )
-	iconv? ( virtual/libiconv )
+	doc? (
+		dev-libs/libxslt app-text/docbook-xml-dtd
+		app-text/docbook-xsl-stylesheets
+	)
 	x86? ( ${ASM_DEP} )
 	x86-fbsd? ( ${ASM_DEP} )
 "
@@ -226,7 +233,13 @@ pkg_setup() {
 }
 
 src_unpack() {
-	[[ ${PV} = *9999* ]] && subversion_src_unpack || unpack ${A}
+	if [[ ${PV} = *9999* ]]; then
+		subversion_src_unpack
+
+		cd "${WORKDIR}"
+	else
+		unpack ${A}
+	fi
 
 	if ! use truetype; then
 		unpack font-arial-iso-8859-1.tar.bz2 \
@@ -242,10 +255,10 @@ src_prepare() {
 	if [[ ${PV} = *9999* ]]; then
 		# Set SVN version manually
 		subversion_wc_info
-		sed -i s/UNKNOWN/${ESVN_WC_REVISION}/ "${S}/version.sh"
+		sed -i -e "s/UNKNOWN/${ESVN_WC_REVISION}/" "${S}/version.sh" || die
 	else
 		# Set version #
-		sed -i s/UNKNOWN/${MPLAYER_REVISION}/ "${S}/version.sh"
+		sed -i -e "s/UNKNOWN/${MPLAYER_REVISION}/" "${S}/version.sh" || die
 	fi
 
 	if use svga; then
@@ -294,7 +307,6 @@ src_configure() {
 		use ${i} || myconf+=" --disable-${i}"
 	done
 	use bidi || myconf+=" --disable-fribidi"
-	use encode || myconf+=" --disable-mencoder"
 	use ipv6 || myconf+=" --disable-inet6"
 	use nut || myconf+=" --disable-libnut"
 	use rar || myconf+=" --disable-unrarexec"
@@ -398,17 +410,10 @@ src_configure() {
 	##########
 	# Codecs #
 	##########
-	# Won't work with external liba52
-	myconf+=" --disable-liba52"
-	use a52 && myconf+=" --enable-liba52-internal"
-	# Use internal musepack codecs for SV7 and SV8 support
-	myconf+=" --disable-musepack"
-
+	myconf+=" --disable-musepack" # Use internal musepack codecs for SV7 and SV8 support
 	myconf+=" --disable-faad-internal" # always use system media-libs/faad2
 	use dirac || myconf+=" --disable-libdirac-lavc"
 	use dts || myconf+=" --disable-libdca"
-	use dv || myconf+=" --disable-libdv"
-	use lzo || myconf+=" --disable-liblzo"
 	if ! use mp3; then
 		myconf+="
 			--disable-mp3lame
@@ -416,7 +421,10 @@ src_configure() {
 			--disable-mp3lib
 		"
 	fi
-	use bs2b || myconf+=" --disable-libbs2b"
+	uses="a52 bs2b dv lzo"
+	for i in ${uses}; do
+		use ${i} || myconf+=" --disable-lib${i}"
+	done
 	use schroedinger || myconf+=" --disable-libschroedinger-lavc"
 	# Disable opencore-amr with bindist
 	# https://bugs.gentoo.org/show_bug.cgi?id=299405#c6
@@ -440,26 +448,19 @@ src_configure() {
 			--disable-libvorbis
 		"
 	fi
+	use vpx || myconf+=" --disable-libvpx-lavc"
 	# Encoding
+	uses="faac x264 xvid toolame twolame"
 	if use encode; then
-		uses="faac x264 xvid toolame twolame"
 		for i in ${uses}; do
 			use ${i} || myconf+=" --disable-${i}"
 		done
 		use faac || myconf+=" --disable-faac-lavc"
 	else
-		myconf+="
-			--disable-faac-lavc
-			--disable-faac
-			--disable-x264
-			--disable-xvid
-			--disable-x264-lavc
-			--disable-xvid-lavc
-			--disable-twolame
-			--disable-toolame
-		"
-		uses="faac x264 xvid toolame twolame"
+		myconf+=" --disable-mencoder"
+		myconf+=" --disable-faac-lavc"
 		for i in ${uses}; do
+			myconf+=" --disable-${i}"
 			use ${i} && elog "Useflag \"${i}\" require \"encode\" useflag enabled to work."
 		done
 	fi
@@ -559,7 +560,7 @@ src_configure() {
 
 	use debug && myconf+=" --enable-debug=3"
 
-	if use x86; then
+	if use x86 && gcc-specs-pie; then
 		filter-flags -fPIC -fPIE
 		append-ldflags -nopie
 	fi
@@ -623,6 +624,7 @@ src_configure() {
 		--disable-xss
 		--disable-xv
 		--disable-xvmc
+		--disable-x11
 		"
 		uses="dga dxr3 ggi opengl osdmenu vdpau vidix xinerama xscreensaver xv"
 		for i in ${uses}; do
@@ -667,14 +669,14 @@ src_compile() {
 		local ALLOWED_LINGUAS="cs de en es fr hu it pl ru zh_CN"
 		local BUILT_DOCS=""
 		for i in ${LINGUAS} ; do
-			hasq $i ${ALLOWED_LINGUAS} && BUILT_DOCS+=" $i"
+			hasq ${i} ${ALLOWED_LINGUAS} && BUILT_DOCS+=" ${i}"
 		done
 		if [[ -z $BUILT_DOCS ]]
 		then
 			emake -j1 -C DOCS/xml html-chunked || die "Failed to generate html docs"
 		else
 			for i in ${BUILT_DOCS} ; do
-				emake -j1 -C DOCS/xml html-chunked-$i || die "Failed to generate html docs for $i"
+				emake -j1 -C DOCS/xml html-chunked-${i} || die "Failed to generate html docs for ${i}"
 			done
 		fi
 	fi
