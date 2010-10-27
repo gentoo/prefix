@@ -1,0 +1,117 @@
+already pushed upstream!
+
+From 107af5aa0cd8cb6551e12c3ed0c21066f0fbd19f Mon Sep 17 00:00:00 2001
+From: James Youngman <jay@gnu.org>
+Date: Sat, 23 Oct 2010 12:49:37 +0100
+Subject: [PATCH] Savannah bug #31424: Work around Interix bug in _SC_ARG_MAX, in which execve will fail with ENOMEM if we use a command line somewhere between ARG_MAX and _SC_ARG_MAX.
+To: findutils-patches@gnu.org
+
+* lib/arg-max.h: New file: undefine _SC_ARG_MAX if we cannot rely
+on the value that sysconf produces.
+* lib/Makefile.am (libfind_a_SOURCES): Add arg-max.h.
+* lib/buildcmd.c: #include arg-max.h.
+* xargs/xargs.c: Likewise.
+---
+ ChangeLog       |   11 +++++++++++
+ lib/Makefile.am |    2 +-
+ lib/arg-max.h   |   49 +++++++++++++++++++++++++++++++++++++++++++++++++
+ lib/buildcmd.c  |    1 +
+ xargs/xargs.c   |    1 +
+ 5 files changed, 63 insertions(+), 1 deletions(-)
+ create mode 100644 lib/arg-max.h
+
+diff --git a/lib/Makefile.am b/lib/Makefile.am
+index 029037e..79c431a 100644
+--- a/lib/Makefile.am
++++ b/lib/Makefile.am
+@@ -34,7 +34,7 @@ INCLUDES = -I../gnulib/lib -I$(top_srcdir)/gnulib/lib
+ LDADD = ../gnulib/lib/libgnulib.a $(LIBINTL)
+ 
+ libfind_a_SOURCES += nextelem.h printquoted.h listfile.h \
+-	regextype.h dircallback.h safe-atoi.h
++	regextype.h dircallback.h safe-atoi.h arg-max.h
+ libfind_a_SOURCES += listfile.c nextelem.c extendbuf.c buildcmd.c savedirinfo.c \
+ 	forcefindlib.c qmark.c printquoted.c regextype.c dircallback.c fdleak.c \
+ 	safe-atoi.c
+diff --git a/lib/arg-max.h b/lib/arg-max.h
+new file mode 100644
+index 0000000..1d4d412
+--- /dev/null
++++ b/lib/arg-max.h
+@@ -0,0 +1,49 @@
++/* arg-max.h -- ARG_MAX and _SC_ARG_MAX checks and manipulations
++
++   Copyright (C) 2010 Free Software Foundation, Inc.
++
++   This program is free software: you can redistribute it and/or modify
++   it under the terms of the GNU General Public License as published by
++   the Free Software Foundation, either version 3 of the License, or
++   (at your option) any later version.
++
++   This program is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++   GNU General Public License for more details.
++
++   You should have received a copy of the GNU General Public License
++   along with this program.  If not, see <http://www.gnu.org/licenses/>.
++
++   Written by James Youngman.
++*/
++#ifndef INC_ARG_MAX_H
++#define INC_ARG_MAX_H 1
++
++#include <unistd.h>		/* for sysconf() */
++
++#ifdef __INTERIX
++/* On Interix, _SC_ARG_MAX yields a value that (according to
++ * http://lists.gnu.org/archive/html/bug-findutils/2010-10/msg00047.html)
++ * actually does not work (i.e. it is larger than the real limit).
++ * The value of ARG_MAX is reportedly smaller than the real limit.
++ *
++ * I considered a configure test for this which allocates an argument
++ * list longer than ARG_MAX but shorter than _SC_ARG_MAX and then
++ * tries to exec something, but this will not work for us when
++ * cross-compiling if the target is Interix.
++ *
++ * Although buildcmd has heuristics for dealing with the possibility
++ * that execve fails due to length limits in the implementation, it
++ * assumed that changes are only necessary if execve fails with errno
++ * set to E2BIG.  On Interix, this failure mode of execve appears to
++ * set errno to ENOMEM.
++ *
++ * Since we may undefine _SC_ARG_MAX, we must include this header after
++ * unistd.h.
++ */
++# undef _SC_ARG_MAX
++# define BC_SC_ARG_MAX_IS_UNRELIABLE 1
++#endif
++
++#endif
+diff --git a/lib/buildcmd.c b/lib/buildcmd.c
+index 81839ad..7e9571d 100644
+--- a/lib/buildcmd.c
++++ b/lib/buildcmd.c
+@@ -71,6 +71,7 @@
+ 
+ #include "xstrtol.h"
+ #include "buildcmd.h"
++#include "arg-max.h"		/* must include after unistd.h. */
+ 
+ 
+ extern char **environ;
+diff --git a/xargs/xargs.c b/xargs/xargs.c
+index 22668d3..3cc1832 100644
+--- a/xargs/xargs.c
++++ b/xargs/xargs.c
+@@ -85,6 +85,7 @@
+ #endif
+ 
+ #include "buildcmd.h"
++#include "arg-max.h"		/* must include after unistd.h. */
+ 
+ 
+ /* Return nonzero if S is the EOF string.  */
+-- 
+1.7.1
+

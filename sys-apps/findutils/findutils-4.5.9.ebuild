@@ -26,6 +26,7 @@ src_prepare() {
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
 
 	epatch "${FILESDIR}"/${P}-interix-mntlist.patch
+	epatch "${FILESDIR}"/${P}-interix-arg_max.patch
 
 	( cd gnulib && epatch "${FILESDIR}"/${P}-without-selinux.patch )
 
