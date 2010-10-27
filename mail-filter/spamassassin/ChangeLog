@@ -1,6 +1,41 @@
 # ChangeLog for mail-filter/spamassassin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/ChangeLog,v 1.181 2010/07/06 21:01:14 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/ChangeLog,v 1.190 2010/10/23 19:09:58 ranger Exp $
+
+  23 Oct 2010; Brent Baude <ranger@gentoo.org> spamassassin-3.3.1-r3.ebuild:
+  Marking spamassassin-3.3.1-r3 ppc for bug 338233
+
+  22 Oct 2010; Samuli Suominen <ssuominen@gentoo.org>
+  spamassassin-3.3.1-r3.ebuild:
+  ppc64 stable wrt #338233
+
+  21 Oct 2010; Jeroen Roovers <jer@gentoo.org> spamassassin-3.3.1-r3.ebuild:
+  Stable for HPPA (bug #338233).
+
+  14 Oct 2010; Brent Baude <ranger@gentoo.org> spamassassin-3.3.1-r3.ebuild:
+  Marking spamassassin-3.3.1-r3 ~ppc for bug 313321
+
+  10 Oct 2010; Raúl Porcel <armin76@gentoo.org>
+  spamassassin-3.3.1-r3.ebuild:
+  alpha/ia64/sparc stable wrt #338233
+
+  30 Sep 2010; Markus Meier <maekke@gentoo.org>
+  spamassassin-3.3.1-r3.ebuild:
+  x86 stable, bug #338233
+
+  27 Sep 2010; Markos Chandras <hwoarang@gentoo.org>
+  spamassassin-3.3.1-r3.ebuild:
+  Stable on amd64 wrt bug #338233
+
+  27 Sep 2010; Torsten Veller <tove@gentoo.org>
+  spamassassin-3.3.1-r3.ebuild:
+  Pass LDFLAGS to spamc (#325301). Patch from David Abbott in #338233
+
+*spamassassin-3.3.1-r3 (15 Aug 2010)
+
+  15 Aug 2010; Torsten Veller <tove@gentoo.org>
+  +spamassassin-3.3.1-r3.ebuild, +files/spamassassin-3.3.1-PERL-5-12.patch:
+  Remove the perl-5.12 warnings (#328939). Thanks to David Abbott
 
   06 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
   spamassassin-3.3.1-r2.ebuild:
