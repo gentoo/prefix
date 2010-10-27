@@ -1,8 +1,8 @@
-reported upstream: http://marc.info/?l=openssh-unix-dev&m=128775465904341&w=2
+reported upstream: http://marc.info/?l=openssh-unix-dev&m=128817130100314&w=2
 
 diff -ru openssh-5.5p1.orig/auth-passwd.c openssh-5.5p1/auth-passwd.c
---- openssh-5.5p1.orig/auth-passwd.c	2010-10-22 14:14:13 +0200
-+++ openssh-5.5p1/auth-passwd.c	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/auth-passwd.c	2010-10-27 11:07:37 +0200
++++ openssh-5.5p1/auth-passwd.c	2010-10-27 10:43:28 +0200
 @@ -53,6 +53,12 @@
  #include "hostfile.h"
  #include "auth.h"
@@ -32,19 +32,20 @@ diff -ru openssh-5.5p1.orig/auth-passwd.c openssh-5.5p1/auth-passwd.c
  	if (options.use_pam)
  		return (sshpam_auth_passwd(authctxt, password) && ok);
 diff -ru openssh-5.5p1.orig/auth.c openssh-5.5p1/auth.c
---- openssh-5.5p1.orig/auth.c	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/auth.c	2010-10-22 14:11:48 +0200
-@@ -541,6 +541,25 @@
+--- openssh-5.5p1.orig/auth.c	2010-10-27 11:07:37 +0200
++++ openssh-5.5p1/auth.c	2010-10-27 10:43:28 +0200
+@@ -541,6 +541,28 @@
  
  	pw = getpwnam(user);
  
 +#ifdef __INTERIX
-+    /* on windows, is there is no such user in the principal domain
++    /* on windows, if there is no such user in the principal domain
 +	 * (which is checked by default), we also have a look at the
 +	 * local accounts by prefixing the username with the hostname
 +	 */
 +	if (pw == NULL) {
-+		char tmp[MAXHOSTNAMELEN];
++		char *tmp = xmalloc(MAXHOSTNAMELEN + strlen(user) + 2);
++
 +		if(gethostname(tmp, MAXHOSTNAMELEN) == 0) {
 +			strcat(tmp, "+");
 +			strcat(tmp, user);
@@ -54,6 +55,8 @@ diff -ru openssh-5.5p1.orig/auth.c openssh-5.5p1/auth.c
 +			if(pw)
 +				debug2("found local %s as fallback for principal domain", tmp);
 +		}
++
++        xfree(tmp);
 +	}
 +#endif /* __INTERIX */
 +
@@ -61,15 +64,14 @@ diff -ru openssh-5.5p1.orig/auth.c openssh-5.5p1/auth.c
  	aix_restoreauthdb();
  #endif
 diff -ru openssh-5.5p1.orig/configure.ac openssh-5.5p1/configure.ac
---- openssh-5.5p1.orig/configure.ac	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/configure.ac	2010-10-22 14:11:48 +0200
-@@ -448,6 +448,25 @@
+--- openssh-5.5p1.orig/configure.ac	2010-10-27 11:07:37 +0200
++++ openssh-5.5p1/configure.ac	2010-10-27 10:43:28 +0200
+@@ -448,6 +448,24 @@
  		file descriptor passing])
  	AC_DEFINE(SSH_IOBUFSZ, 65535, [Windows is sensitive to read buffer size])
  	;;
 +*-*-interix*)
 +	AC_DEFINE(MISSING_HOWMANY, 1, [howmany macro is missing])
-+	#AC_DEFINE(USE_PIPES, 1, [Use PIPES instead of a socketpair()])
 +	AC_DEFINE(DISABLE_LOGIN, 1,
 +		[Define if you don't want to use your system's login() call])
 +	AC_DEFINE(DISABLE_SHADOW, 1,
@@ -89,15 +91,29 @@ diff -ru openssh-5.5p1.orig/configure.ac openssh-5.5p1/configure.ac
  *-*-dgux*)
  	AC_DEFINE(IP_TOS_IS_BROKEN, 1,
  		[Define if your system choked on IP TOS setting])
+@@ -1562,6 +1580,13 @@
+ dnl    Checks for lastlog functions
+ AC_CHECK_FUNCS(getlastlogxbyname)
+ 
++dnl    Checks for res_query function
++AC_CHECK_FUNC(res_query,
++    [AC_DEFINE(HAVE_RES_QUERY, 1, [Define if your system has res_query()])],
++    [AC_CHECK_LIB(resolv, res_query,
++        [LIBS="$LIBS -lresolv"; AC_DEFINE(HAVE_RES_QUERY)])]
++)
++
+ AC_CHECK_FUNC(daemon,
+ 	[AC_DEFINE(HAVE_DAEMON, 1, [Define if your libraries define daemon()])],
+ 	[AC_CHECK_LIB(bsd, daemon,
 diff -ru openssh-5.5p1.orig/defines.h openssh-5.5p1/defines.h
---- openssh-5.5p1.orig/defines.h	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/defines.h	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/defines.h	2010-10-27 11:07:37 +0200
++++ openssh-5.5p1/defines.h	2010-10-27 10:43:28 +0200
 @@ -732,7 +732,11 @@
  #endif
  
  #ifndef IOV_MAX
 -# if defined(_XOPEN_IOV_MAX)
-+# if defined(__INTERIX)
++# ifdef __INTERIX
 +   // Interix: has _XOPEN_IOV_MAX = INT_MAX which breaks
 +   // the compilation, since an iovec array of INT_MAX is too large
 +#  define	IOV_MAX		_SC_IOV_MAX
@@ -106,8 +122,8 @@ diff -ru openssh-5.5p1.orig/defines.h openssh-5.5p1/defines.h
  # elif defined(DEF_IOV_MAX)
  #  define	IOV_MAX		DEF_IOV_MAX
 diff -ru openssh-5.5p1.orig/hostfile.c openssh-5.5p1/hostfile.c
---- openssh-5.5p1.orig/hostfile.c	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/hostfile.c	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/hostfile.c	2010-10-27 11:07:37 +0200
++++ openssh-5.5p1/hostfile.c	2010-10-27 10:43:28 +0200
 @@ -45,7 +45,9 @@
  #include <openssl/hmac.h>
  #include <openssl/sha.h>
@@ -120,8 +136,8 @@ diff -ru openssh-5.5p1.orig/hostfile.c openssh-5.5p1/hostfile.c
  #include <stdio.h>
  #include <stdlib.h>
 diff -ru openssh-5.5p1.orig/openbsd-compat/bsd-misc.h openssh-5.5p1/openbsd-compat/bsd-misc.h
---- openssh-5.5p1.orig/openbsd-compat/bsd-misc.h	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/openbsd-compat/bsd-misc.h	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/openbsd-compat/bsd-misc.h	2010-10-27 11:07:37 +0200
++++ openssh-5.5p1/openbsd-compat/bsd-misc.h	2010-10-27 10:43:28 +0200
 @@ -68,12 +68,14 @@
  #endif /* HAVE_TRUNCATE */
  
@@ -138,15 +154,15 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/bsd-misc.h openssh-5.5p1/openbsd-comp
  #endif
  
 diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c openssh-5.5p1/openbsd-compat/getrrsetbyname.c
---- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/openbsd-compat/getrrsetbyname.c	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c	2010-10-27 11:07:37 +0200
++++ openssh-5.5p1/openbsd-compat/getrrsetbyname.c	2010-10-27 10:43:28 +0200
 @@ -61,6 +61,10 @@
  extern int h_errno;
  #endif
  
 +/* on interix, all this stuff won't work that easy
 + * so we skip it for now. */
-+#if !defined(__INTERIX)
++#ifndef __INTERIX
 +
  /* We don't need multithread support here */
  #ifdef _THREAD_PRIVATE
@@ -162,7 +178,7 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c openssh-5.5p1/openbs
      unsigned int rdtype, unsigned int flags,
      struct rrsetinfo **res)
  {
-+#if defined(__INTERIX)
++#ifndef HAVE_RES_QUERY
 +	return (ERRSET_FAIL);
 +#else
  	struct __res_state *_resp = _THREAD_PRIVATE(_res, _res, &_res);
@@ -172,7 +188,7 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c openssh-5.5p1/openbs
  	if (response != NULL)
  		free_dns_response(response);
  	return (result);
-+#endif
++#endif /* HAVE_RES_QUERY */
  }
  
  void
@@ -180,7 +196,7 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c openssh-5.5p1/openbs
  	free(rrset);
  }
  
-+#if !defined(__INTERIX)
++#ifndef __INTERIX
 +
  /*
   * DNS response parsing routines
@@ -193,8 +209,8 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c openssh-5.5p1/openbs
 +
  #endif /* !defined(HAVE_GETRRSETBYNAME) */
 diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h openssh-5.5p1/openbsd-compat/getrrsetbyname.h
---- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/openbsd-compat/getrrsetbyname.h	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h	2010-10-27 11:07:38 +0200
++++ openssh-5.5p1/openbsd-compat/getrrsetbyname.h	2010-10-27 10:43:28 +0200
 @@ -54,9 +54,11 @@
  
  #include <sys/types.h>
@@ -210,8 +226,8 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h openssh-5.5p1/openbs
  #ifndef HFIXEDSZ
  #define HFIXEDSZ 12
 diff -ru openssh-5.5p1.orig/openbsd-compat/inet_ntop.c openssh-5.5p1/openbsd-compat/inet_ntop.c
---- openssh-5.5p1.orig/openbsd-compat/inet_ntop.c	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/openbsd-compat/inet_ntop.c	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/openbsd-compat/inet_ntop.c	2010-10-27 11:07:38 +0200
++++ openssh-5.5p1/openbsd-compat/inet_ntop.c	2010-10-27 10:43:28 +0200
 @@ -27,7 +27,9 @@
  #include <sys/socket.h>
  #include <netinet/in.h>
@@ -224,8 +240,8 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/inet_ntop.c openssh-5.5p1/openbsd-com
  #include <errno.h>
  #include <stdio.h>
 diff -ru openssh-5.5p1.orig/session.c openssh-5.5p1/session.c
---- openssh-5.5p1.orig/session.c	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/session.c	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/session.c	2010-10-27 11:07:38 +0200
++++ openssh-5.5p1/session.c	2010-10-27 11:04:45 +0200
 @@ -91,6 +91,27 @@
  #include "monitor_wrap.h"
  #include "sftp.h"
@@ -236,19 +252,19 @@ diff -ru openssh-5.5p1.orig/session.c openssh-5.5p1/session.c
 +char* InterixPwdToken = NULL;
 +
 +#define INTERIX_PWD_WARNING \
-+		fprintf(stderr,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n" \
-+					   "@ WARNING: Due to limitations in the POSIX Subsystem and Win32  @\n" \
-+					   "@     a Password is required to acquire a full authentication.  @\n" \
-+					   "@     Without such an authentication token, certain things will @\n" \
-+					   "@     only be available in a very limited way (Visual Studio's  @\n" \
-+					   "@     link.exe can only link without debug information, network @\n" \
-+					   "@     shares that require user authentication don't fully work, @\n" \
-+					   "@     etc.). However if you don't require those things to work, @\n" \
-+					   "@     you may be just fine without password (public-key, etc.). @\n" \
-+					   "@ To obtain a full authentication you need to use password      @\n" \
-+					   "@ authentication at the moment. To do so, remove your public    @\n" \
-+					   "@ key from your ~/.ssh/authorized_keys[2] file(s).              @\n" \
-+					   "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
++    "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n" \
++    "@ WARNING: Due to limitations in the POSIX Subsystem and Win32  @\n" \
++    "@     a Password is required to acquire a full authentication.  @\n" \
++    "@     Without such an authentication token, certain things will @\n" \
++    "@     only be available in a very limited way (Visual Studio's  @\n" \
++    "@     link.exe can only link without debug information, network @\n" \
++    "@     shares that require user authentication don't fully work, @\n" \
++    "@     etc.). However if you don't require those things to work, @\n" \
++    "@     you may be just fine without password (public-key, etc.). @\n" \
++    "@ To obtain a full authentication you need to use password      @\n" \
++    "@ authentication at the moment. To do so, remove your public    @\n" \
++    "@ key from your ~/.ssh/authorized_keys[2] file(s).              @\n" \
++    "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
 +#endif
 +
  #if defined(KRB5) && defined(USE_AFS)
@@ -297,7 +313,7 @@ diff -ru openssh-5.5p1.orig/session.c openssh-5.5p1/session.c
 +			debug2("re-setting user password");
 +			strcpy(pw->pw_passwd, InterixPwdToken);
 +		} else {
-+			INTERIX_PWD_WARNING
++			fprintf(stderr, INTERIX_PWD_WARNING);
 +		}
 +#endif
  		/* Permanently switch to the desired uid. */
@@ -323,7 +339,7 @@ diff -ru openssh-5.5p1.orig/session.c openssh-5.5p1/session.c
 +	#ifdef __INTERIX
 +	/* -f only works if the user is already autheticated as the requested user */
 +	if (!InterixPwdToken)
-+		INTERIX_PWD_WARNING
++		fprintf(stderr, INTERIX_PWD_WARNING);
 +	if (setuser(pw->pw_name, InterixPwdToken, SU_COMPLETE))
 +		fatal("setuser %.100s: %.100s", pw->pw_name, strerror(errno));
 +	#endif
@@ -331,8 +347,8 @@ diff -ru openssh-5.5p1.orig/session.c openssh-5.5p1/session.c
  	execl(LOGIN_PROGRAM, "login", "-h", hostname,
  #ifdef xxxLOGIN_NEEDS_TERM
 diff -ru openssh-5.5p1.orig/sshd.c openssh-5.5p1/sshd.c
---- openssh-5.5p1.orig/sshd.c	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/sshd.c	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/sshd.c	2010-10-27 11:07:38 +0200
++++ openssh-5.5p1/sshd.c	2010-10-27 10:43:28 +0200
 @@ -137,6 +137,10 @@
  #define REEXEC_CONFIG_PASS_FD		(STDERR_FILENO + 3)
  #define REEXEC_MIN_FREE_FD		(STDERR_FILENO + 4)
@@ -378,7 +394,7 @@ diff -ru openssh-5.5p1.orig/sshd.c openssh-5.5p1/sshd.c
  
  	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
  	sanitise_stdfd();
-@@ -1532,6 +1544,31 @@
+@@ -1532,6 +1544,29 @@
  
  	debug("sshd version %.100s", SSH_RELEASE);
  
@@ -394,15 +410,13 @@ diff -ru openssh-5.5p1.orig/sshd.c openssh-5.5p1/sshd.c
 +		struct passwd* _admin = getpwuid(getuid());
 +
 +		if(!_admin) {
-+			fprintf(stderr, "Cannot retrieve user information for current user!\n");
-+			exit(2);
++			fatal("Cannot retrieve user information for current user!\n");
 +		}
 +
 +		debug3("impersonating %s to upgrade authentication token\n", _admin->pw_name);
 +
 +		if(setuser(_admin->pw_name, NULL, SU_COMPLETE) != 0) {
-+			fprintf(stderr, "Cannot obtain full authentication for current user: %s\n", strerror(errno));
-+			exit(2);
++			fatal("Cannot obtain full authentication for current user: %s\n", strerror(errno));
 +		}
 +	}
 +#endif
@@ -410,7 +424,7 @@ diff -ru openssh-5.5p1.orig/sshd.c openssh-5.5p1/sshd.c
  	/* Store privilege separation user for later use if required. */
  	if ((privsep_pw = getpwnam(SSH_PRIVSEP_USER)) == NULL) {
  		if (use_privsep || options.kerberos_authentication)
-@@ -1688,8 +1725,10 @@
+@@ -1688,8 +1723,10 @@
  	 * to create a file, and we can't control the code in every
  	 * module which might be used).
  	 */
@@ -422,8 +436,8 @@ diff -ru openssh-5.5p1.orig/sshd.c openssh-5.5p1/sshd.c
  	if (rexec_flag) {
  		rexec_argv = xcalloc(rexec_argc + 2, sizeof(char *));
 diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
---- openssh-5.5p1.orig/uidswap.c	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/uidswap.c	2010-10-22 14:13:47 +0200
+--- openssh-5.5p1.orig/uidswap.c	2010-10-27 11:07:38 +0200
++++ openssh-5.5p1/uidswap.c	2010-10-27 10:43:28 +0200
 @@ -14,6 +14,10 @@
  
  #include "includes.h"
@@ -471,16 +485,11 @@ diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
  	temporarily_use_uid_effective = 0;
  }
  
-@@ -220,6 +228,20 @@
+@@ -220,6 +228,15 @@
  	debug("permanently_set_uid: %u/%u", (u_int)pw->pw_uid,
  	    (u_int)pw->pw_gid);
  
 +#ifdef __INTERIX
-+	if (0) {
-+		fprintf(stderr, "WARNING: Your password will expire soon. This will make remote\n"
-+						"logins via ssh impossible without notice of the occured error!\n");
-+	}
-+
 +	if (strcmp(pw->pw_passwd, "*") == 0) {
 +		if (setuser(pw->pw_name, NULL, SU_COMPLETE))
 +			fatal("setuser %.100s: %.100s", pw->pw_name, strerror(errno));
@@ -492,7 +501,7 @@ diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
  #if defined(HAVE_SETRESGID) && !defined(BROKEN_SETRESGID)
  	if (setresgid(pw->pw_gid, pw->pw_gid, pw->pw_gid) < 0)
  		fatal("setresgid %u: %.100s", (u_int)pw->pw_gid, strerror(errno));
-@@ -257,8 +279,9 @@
+@@ -257,8 +274,9 @@
  	if (setuid(pw->pw_uid) < 0)
  		fatal("setuid %u: %.100s", (u_int)pw->pw_uid, strerror(errno));
  #endif
@@ -503,7 +512,7 @@ diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
  	/* Try restoration of GID if changed (test clearing of saved gid) */
  	if (old_gid != pw->pw_gid && pw->pw_uid != 0 &&
  	    (setgid(old_gid) != -1 || setegid(old_gid) != -1))
-@@ -272,7 +295,7 @@
+@@ -272,7 +290,7 @@
  		    (u_int)pw->pw_gid);
  	}
  
@@ -513,8 +522,8 @@ diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
  	if (old_uid != pw->pw_uid &&
  	    (setuid(old_uid) != -1 || seteuid(old_uid) != -1))
 diff -ru openssh-5.5p1.orig/uuencode.c openssh-5.5p1/uuencode.c
---- openssh-5.5p1.orig/uuencode.c	2010-10-22 14:14:14 +0200
-+++ openssh-5.5p1/uuencode.c	2010-10-22 14:11:48 +0200
+--- openssh-5.5p1.orig/uuencode.c	2010-10-27 11:07:38 +0200
++++ openssh-5.5p1/uuencode.c	2010-10-27 10:43:28 +0200
 @@ -27,7 +27,9 @@
  
  #include <sys/types.h>
