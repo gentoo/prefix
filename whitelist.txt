@@ -100,6 +100,7 @@ app-crypt/qca
 app-crypt/qca-ossl
 app-crypt/shash
 app-crypt/sign
+app-crypt/signing-party
 app-crypt/steghide
 app-editors/bvi
 app-editors/cooledit
