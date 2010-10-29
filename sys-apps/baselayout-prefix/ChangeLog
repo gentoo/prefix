@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*baselayout-prefix-1.12.5-r8 (29 Oct 2010)
+
+  29 Oct 2010; Markus Duft <mduft@gentoo.org>
+  -baselayout-prefix-1.12.5-r7.ebuild, +baselayout-prefix-1.12.5-r8.ebuild,
+  +files/baselayout-1.12.5-prefix-chaining-bash.patch:
+  enable chained prefixes to find and use parent bash, revbump
+
   11 Jun 2010; Fabian Groffen <grobian@gentoo.org>
   baselayout-prefix-1.12.5-r7.ebuild:
   Create portage group and user for root installs, bug #321623
