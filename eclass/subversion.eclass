@@ -197,7 +197,8 @@ subversion_fetch() {
 
 	case "${protocol}" in
 		http|https)
-			if ! built_with_use -o dev-vcs/subversion webdav-neon webdav-serf; then
+			# don't user built_with_use - destroys prefix-chaining.
+			if [[ $(svn --version) != *"'${protocol}'"* ]]; then
 				echo
 				eerror "In order to emerge this package, you need to"
 				eerror "reinstall Subversion with support for WebDAV."
