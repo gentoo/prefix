@@ -400,7 +400,6 @@ dev-lisp/cl-puri
 dev-lisp/ecls
 dev-ml/extlib
 dev-ml/lablgtk
-dev-tex/algorithms
 dev-tex/chktex
 dev-tex/currvita
 dev-tex/detex
