@@ -111,7 +111,7 @@ src_prepare() {
 	# for prefix darwin (-arch x86_64 -> -m64)
 	sed -i -e 's/"-arch" "x86_64"/"-m64"/g' contrib/sb-grovel/def-to-lisp.lisp
 	for i in src/runtime/Config.x86-64-darwin* tests/foreign.test.sh; do
- 		sed -i -e 's/-arch x86_64 */-m64 /g' $i;
+		sed -i -e 's/-arch x86_64 */-m64 /g' $i;
 	done
 	for i in tests/*.impure.lisp; do
 		sed -i -e 's/"-arch" #\+.* "x86_64"/"-m64"/g' $i;
