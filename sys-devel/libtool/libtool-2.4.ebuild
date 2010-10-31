@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.10.ebuild,v 1.9 2010/10/14 14:59:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.4.ebuild,v 1.1 2010/09/23 21:49:54 vapier Exp $
 
 EAPI="3"
 
@@ -9,11 +9,11 @@ inherit eutils autotools multilib prefix
 
 DESCRIPTION="A shared library tool for developers"
 HOMEPAGE="http://www.gnu.org/software/libtool/"
-SRC_URI="mirror://gnu/${PN}/${P}.tar.lzma"
+SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+#KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
 IUSE="vanilla"
 
 RDEPEND="sys-devel/gnuconfig

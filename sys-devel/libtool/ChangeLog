@@ -1,6 +1,29 @@
 # ChangeLog for sys-devel/libtool
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.172 2010/07/06 12:43:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.179 2010/10/14 14:59:05 ranger Exp $
+
+  14 Oct 2010; Brent Baude <ranger@gentoo.org> libtool-2.2.10.ebuild:
+  Marking libtool-2.2.10 ppc for bug 338092
+
+  13 Oct 2010; Markus Meier <maekke@gentoo.org> libtool-2.2.10.ebuild:
+  arm stable, bug #338092
+
+  06 Oct 2010; Jeroen Roovers <jer@gentoo.org> libtool-2.2.10.ebuild:
+  Stable for HPPA (bug #338092).
+
+  05 Oct 2010; Markus Meier <maekke@gentoo.org> libtool-2.2.10.ebuild:
+  x86 stable, bug #338092
+
+  26 Sep 2010; Samuli Suominen <ssuominen@gentoo.org> libtool-2.2.10.ebuild:
+  ppc64 stable wrt #338092
+
+  24 Sep 2010; Markos Chandras <hwoarang@gentoo.org> libtool-2.2.10.ebuild:
+  Stable on amd64 wrt bug #338092
+
+*libtool-2.4 (23 Sep 2010)
+
+  23 Sep 2010; Mike Frysinger <vapier@gentoo.org> +libtool-2.4.ebuild:
+  Version bump #338448 by Samuli Suominen.
 
   06 Jul 2010; Mike Frysinger <vapier@gentoo.org> libtool-2.2.10.ebuild:
   Force newer version of autoconf #327079 by Matt Turner.
