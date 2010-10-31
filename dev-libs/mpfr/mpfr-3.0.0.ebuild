@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-3.0.0.ebuild,v 1.2 2010/06/20 09:13:43 vapier Exp $
 
 # NOTE: we cannot depend on autotools here starting with gcc-4.3.x
-inherit eutils libtool
+inherit eutils libtool multilib
 
 MY_PV=${PV/_p*}
 MY_P=${PN}-${MY_PV}
@@ -43,6 +43,13 @@ src_unpack() {
 
 	# needed for FreeMiNT
 	elibtoolize
+}
+
+src_compile() {
+	econf \
+		--with-gmp-lib="${EPREFIX}"/usr/$(get_libdir) \
+		--with-gmp-include="${EPREFIX}"/usr/include || die
+	emake || die
 }
 
 src_install() {
