@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r4.ebuild,v 1.13 2010/03/20 21:03:23 vapier Exp $
 
-inherit eutils libtool flag-o-matic
+inherit eutils libtool flag-o-matic multilib
 
 DESCRIPTION="Standard GNU database libraries"
 HOMEPAGE="http://www.gnu.org/software/gdbm/gdbm.html"
@@ -19,9 +19,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-fix-install-ownership.patch #24178
-# compat patch yields in loads of trouble, e.g. bug #165263 and #223865
-#	epatch "${FILESDIR}"/${P}-compat-linking.patch #165263
-	epatch "${FILESDIR}"/${P}-build-prefix.patch #209730
+	epatch "${FILESDIR}"/${P}-compat-linking.patch #165263, #223865
+	epatch "${FILESDIR}"/${P}-build.patch #209730
 	elibtoolize
 	append-lfs-flags
 }
@@ -43,11 +42,11 @@ src_install() {
 }
 
 pkg_preinst() {
-	preserve_old_lib libgdbm.so.2 #32510
+	preserve_old_lib libgdbm$(get_libname 2) #32510
 }
 
 pkg_postinst() {
-	preserve_old_lib_notify libgdbm.so.2 #32510
+	preserve_old_lib_notify libgdbm$(get_libname 2) #32510
 
 	ewarn "32bit systems might have to rebuild all gdbm databases due to"
 	ewarn "LFS changes in the gdbm format.  You can either delete the db"
