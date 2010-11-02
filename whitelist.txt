@@ -157,6 +157,7 @@ app-misc/realpath
 app-misc/rlwrap
 app-misc/screen
 app-misc/sl
+app-misc/sphinx
 app-misc/strigi
 app-misc/supercat
 app-misc/tmux
