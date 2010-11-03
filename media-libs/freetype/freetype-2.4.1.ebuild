@@ -84,7 +84,8 @@ src_compile() {
 
 	if use utils; then
 		cd "${WORKDIR}/ft2demos-${PV}"
-		emake || die "ft2demos emake failed"
+		# fix for Prefix, bug #339334
+		emake X11_PATH="${EPREFIX}/usr/$(get_libdir)" || die "ft2demos emake failed"
 	fi
 }
 
