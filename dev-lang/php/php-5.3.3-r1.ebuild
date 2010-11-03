@@ -331,6 +331,8 @@ src_prepare() {
 	if use mysqli && [[ ${CHOST} == *apple* && ${PV} == 5.3.3 ]] ; then
 		# Fix mysqli build failure on OS X caused by ulong (php-bug: 52413)
 		epatch "${FILESDIR}/php-5.3.3-ulong-osx.patch"
+	fi
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		# http://bugs.php.net/bug.php?id=48795, bug #343481
 		sed -i -e '/BUILD_CGI="\\$(CC)/s/CC/CXX/' configure || die
 	fi
