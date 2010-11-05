@@ -76,6 +76,15 @@ src_prepare() {
 src_configure() {
 	append-flags -fno-strict-aliasing
 	type -P gmake &> /dev/null && export GNUMAKE=gmake
+
+	# argl... ebuild.sh automatically sed's the correct configure shell into
+	# configure, but freetype has 2 configures - one hand-hacked that gets
+	# updated correctly, and one autoconf'd, that does not get updated... so we
+	# need to do it manually here.
+	[[ -n ${CONFIG_SHELL} ]] && \
+		sed -i -e "1s:^#![[:space:]]*/bin/sh:#!$CONFIG_SHELL:" \
+			"${S}"/builds/unix/configure
+
 	econf
 }
 
