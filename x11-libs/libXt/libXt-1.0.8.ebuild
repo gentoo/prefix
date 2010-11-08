@@ -28,8 +28,3 @@ pkg_setup() {
 		export CFLAGS_FOR_BUILD="${BUILD_CFLAGS}"
 	fi
 }
-
-src_compile() {
-	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
-	x-modular_src_compile
-}
