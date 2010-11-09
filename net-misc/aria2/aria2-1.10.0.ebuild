@@ -10,7 +10,7 @@ DESCRIPTION="A download utility with resuming and segmented downloading with HTT
 HOMEPAGE="http://aria2.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 SLOT="0"
 IUSE="ares bittorrent expat gnutls metalink nls scripts sqlite ssl test xmlrpc"
 
