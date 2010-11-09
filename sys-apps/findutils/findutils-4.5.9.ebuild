@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.5.9.ebuild,v 1.1 2010/08/15 05:33:52 vapier Exp $
 
-EAPI=3
 inherit eutils flag-o-matic toolchain-funcs multilib autotools
 
 DESCRIPTION="GNU utilities for finding files"
@@ -20,7 +19,10 @@ RDEPEND="selinux? ( sys-libs/libselinux )
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
-src_prepare() {
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
@@ -34,13 +36,13 @@ src_prepare() {
 	eautoreconf # for the interix and selinux patches. remove if both are gone.
 }
 
-src_configure() {
+src_compile() {
 	use static && append-ldflags -static
 
 	local myconf
 	use userland_GNU || myconf=" --program-prefix=g"
 
-	if echo "#include <regex.h>" | $(tc-getCPP) | grep re_set_syntax > /dev/null ; then
+	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null ; then
 		myconf="${myconf} --without-included-regex"
 	fi
 	use selinux || myconf="${myconf} --without-selinux" # no --with-selinux
@@ -50,14 +52,10 @@ src_configure() {
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/find \
 		${myconf} \
 		|| die "configure failed"
-}
-
-src_compile() {
 	emake AR="$(tc-getAR)" || die "make failed"
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die
-	rm -f "${ED}"/usr/$(get_libdir)/charset.alias
 	dodoc NEWS README TODO ChangeLog
 }
