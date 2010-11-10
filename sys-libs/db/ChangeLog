@@ -1,6 +1,33 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.310 2010/08/01 21:47:48 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.315 2010/10/18 17:40:52 robbat2 Exp $
+
+*db-5.1.19-r2 (18 Oct 2010)
+
+  18 Oct 2010; Robin H. Johnson <robbat2@gentoo.org> -db-5.1.19-r1.ebuild,
+  +db-5.1.19-r2.ebuild:
+  Revbump for bug #341559 to fix naming of libdb_sql* on 5.1.
+
+*db-5.1.19-r1 (17 Oct 2010)
+
+  17 Oct 2010; Robin H. Johnson <robbat2@gentoo.org> -db-5.1.19.ebuild,
+  +db-5.1.19-r1.ebuild:
+  hardmasked 51 build had the wrong slot, fix it now.
+
+*db-5.1.19 (08 Oct 2010)
+
+  08 Oct 2010; Robin H. Johnson <robbat2@gentoo.org> +db-5.1.19.ebuild:
+  Bug #339634: version bump. Package.masked.
+
+*db-5.0.26 (04 Oct 2010)
+
+  04 Oct 2010; Robin H. Johnson <robbat2@gentoo.org> +db-5.0.26.ebuild:
+  Version bump.
+
+  12 Sep 2010; Robin H. Johnson <robbat2@gentoo.org> -db-3.2.9-r11.ebuild,
+  -db-4.2.52_p4-r2.ebuild, -db-4.3.29-r2.ebuild, -files/patch.3.2.9.1,
+  -files/patch.3.2.9.2:
+  Bug #160192: Trim old gnuconfig_update versions.
 
   01 Aug 2010; Markos Chandras <hwoarang@gentoo.org> db-4.8.30.ebuild:
   Stable on amd64 wrt bug #328609
