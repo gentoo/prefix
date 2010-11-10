@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/unzip-6.0-r1.ebuild,v 1.12 2010/08/02 20:31:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/unzip-6.0-r1.ebuild,v 1.13 2010/08/14 20:10:09 truedfx Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
@@ -29,9 +29,9 @@ src_unpack() {
 		-e '/^CFLAGS/d' \
 		-e '/CFLAGS/s:-O[0-9]\?:$(CFLAGS) $(CPPFLAGS):' \
 		-e '/^STRIP/s:=.*:=true:' \
-		-e "s:\<CC=gcc\>:CC=$(tc-getCC):" \
-		-e "s:\<LD=gcc\>:LD=$(tc-getCC):" \
-		-e "s:\<AS=gcc\>:AS=$(tc-getCC):" \
+		-e "s:\<CC=gcc\>:CC=\"$(tc-getCC)\":" \
+		-e "s:\<LD=gcc\>:LD=\"$(tc-getCC)\":" \
+		-e "s:\<AS=gcc\>:AS=\"$(tc-getCC)\":" \
 		-e 's:LF2 = -s:LF2 = :' \
 		-e 's:LF = :LF = $(LDFLAGS) :' \
 		-e 's:SL = :SL = $(LDFLAGS) :' \
