@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.3.ebuild,v 1.6 2010/08/03 17:19:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.3.ebuild,v 1.7 2010/09/28 20:33:31 vapier Exp $
 
 inherit flag-o-matic
 
@@ -27,6 +27,11 @@ src_compile() {
 	econf || die "econf failed"
 	emake || die "emake failed"
 }
+
+# the code attempts to set up a fnmatch replacement, but then fails to code
+# it properly leading to undefined references to rpl_fnmatch().  This may be
+# removed in the future if building still works by setting "yes" to "no".
+export ac_cv_func_fnmatch_works=yes
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake failed"

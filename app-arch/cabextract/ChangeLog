@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/cabextract
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.63 2010/08/03 17:19:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.64 2010/09/28 20:33:31 vapier Exp $
+
+  28 Sep 2010; Mike Frysinger <vapier@gentoo.org> cabextract-1.3.ebuild:
+  Fix building for systems with crappy fnmatch and/or cross-compiling.
 
   03 Aug 2010; Brent Baude <ranger@gentoo.org> cabextract-1.3.ebuild:
   Marking cabextract-1.3 ppc64 for bug 329891
