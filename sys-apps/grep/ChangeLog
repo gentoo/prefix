@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/grep
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.96 2010/04/02 20:06:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.97 2010/09/20 17:03:56 vapier Exp $
+
+*grep-2.7 (20 Sep 2010)
+
+  20 Sep 2010; Mike Frysinger <vapier@gentoo.org> +grep-2.7.ebuild:
+  Version bump.
 
 *grep-2.6.3 (02 Apr 2010)
 
