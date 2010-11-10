@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/slocate
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.87 2010/04/11 19:57:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.88 2010/10/08 02:19:11 leio Exp $
+
+  08 Oct 2010; Mart Raudsepp <leio@gentoo.org> slocate-2.7-r8.ebuild:
+  Drop to ~mips
 
   11 Apr 2010; Mike Frysinger <vapier@gentoo.org>
   files/slocate-3.1-cron2.patch:
