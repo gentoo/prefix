@@ -1,6 +1,38 @@
 # ChangeLog for sys-apps/sandbox
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.132 2009/11/21 14:02:47 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.141 2010/10/16 14:08:46 ranger Exp $
+
+  16 Oct 2010; Brent Baude <ranger@gentoo.org> sandbox-2.3-r1.ebuild:
+  stable ppc, bug 338113
+
+  10 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> sandbox-2.3-r1.ebuild:
+  ppc64 stable wrt #338113
+
+  10 Oct 2010; Raúl Porcel <armin76@gentoo.org> sandbox-2.3-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh stable wrt #338113
+
+  05 Oct 2010; Markus Meier <maekke@gentoo.org> sandbox-2.3-r1.ebuild:
+  x86 stable, bug #338113
+
+  29 Sep 2010; Jeroen Roovers <jer@gentoo.org> sandbox-2.3-r1.ebuild:
+  Stable for HPPA (bug #338113).
+
+  24 Sep 2010; Markos Chandras <hwoarang@gentoo.org> sandbox-2.3-r1.ebuild:
+  Stable on amd64 wrt bug #338113
+
+*sandbox-2.3-r1 (17 Aug 2010)
+
+  17 Aug 2010; Mike Frysinger <vapier@gentoo.org> +sandbox-2.3-r1.ebuild:
+  Fix sandbox.d config install #333131 by Hans Nieser.
+
+*sandbox-2.3 (17 Aug 2010)
+
+  17 Aug 2010; Mike Frysinger <vapier@gentoo.org> +sandbox-2.3.ebuild:
+  Version bump. Lots o fixes.
+
+  15 Aug 2010; Mike Frysinger <vapier@gentoo.org> sandbox-1.6-r2.ebuild,
+  sandbox-2.2.ebuild:
+  Manually decompress the lzma archive if host PM cannot #271543.
 
   21 Nov 2009; Raúl Porcel <armin76@gentoo.org> sandbox-2.2.ebuild:
   Mark 2.2 -sparc as it doesn't work very well, bug #293632

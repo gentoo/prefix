@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-2.2.ebuild,v 1.2 2009/11/21 14:02:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-2.2.ebuild,v 1.3 2010/08/15 05:22:23 vapier Exp $
 
 #
 # don't monkey with this ebuild unless contacting portage devs.
@@ -19,7 +19,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="multilib"
 
-DEPEND="|| ( app-arch/xz-utils app-arch/lzma-utils )
+DEPEND="app-arch/xz-utils
 	>=app-misc/pax-utils-0.1.19" #265376
 RDEPEND=""
 
@@ -39,6 +39,14 @@ src_unpack() {
 }
 
 sb_get_install_abis() { use multilib && get_install_abis || echo ${ABI:-default} ; }
+
+src_unpack() {
+	unpack ${A}
+	if [[ ! -d ${S} ]] ; then
+		# When upgrading from older version, lzma unpack may not work #271543
+		lzma -dc "${DISTDIR}/${A}" | tar xf - || die
+	fi
+}
 
 src_compile() {
 	filter-lfs-flags #90228
