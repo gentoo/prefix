@@ -1,6 +1,19 @@
 # ChangeLog for app-arch/rpm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.115 2010/07/18 23:57:33 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.117 2010/10/18 19:38:54 sochotnicky Exp $
+
+  18 Oct 2010; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  rpm-4.8.1.ebuild:
+  Fix #326665 (build with lua flag enabled failing)
+
+*rpm-4.8.1 (24 Sep 2010)
+
+  24 Sep 2010; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -rpm-4.8.0.ebuild, -files/rpm-4.8.0-autotools.patch,
+  -files/rpm-4.8.0-db-path.patch, +rpm-4.8.1.ebuild,
+  +files/rpm-4.8.1-autotools.patch, +files/rpm-4.8.1-db-path.patch:
+  Version bump to fix several CVEs(bz#335880)
+  Added dev-libs/nss to dependencies
 
 *rpm-4.4.7-r6 (18 Jul 2010)
 
