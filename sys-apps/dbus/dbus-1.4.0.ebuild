@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.0.ebuild,v 1.7 2010/09/28 21:00:55 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.0.ebuild,v 1.8 2010/10/30 13:08:24 ssuominen Exp $
 
 EAPI="2"
 
