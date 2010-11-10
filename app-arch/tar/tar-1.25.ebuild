@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit flag-o-matic prefix
+inherit flag-o-matic
 
 DESCRIPTION="Use this to make tarballs :)"
 HOMEPAGE="http://www.gnu.org/software/tar/"
@@ -28,10 +28,6 @@ src_prepare() {
 			scripts/{backup,dump-remind,restore}.in \
 			|| die "sed non-GNU"
 	fi
-	cd "${T}"
-	cp "${FILESDIR}"/rmt "${T}"
-	epatch "${FILESDIR}"/rmt-prefix.patch
-	eprefixify rmt
 }
 
 src_configure() {
@@ -58,7 +54,7 @@ src_install() {
 	if [[ -z ${p} ]] ; then
 		# a nasty yet required piece of baggage
 		exeinto /etc
-		doexe "${T}"/rmt || die
+		doexe "${FILESDIR}"/rmt || die
 	fi
 
 	# autoconf looks for gtar before tar (in configure scripts), hence
