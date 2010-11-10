@@ -1,6 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.14-r1.ebuild,v 1.1 2010/03/31 11:51:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.14-r1.ebuild,v 1.9 2010/09/06 20:26:45 ranger Exp $
+
+EAPI="2"
 
 inherit eutils
 
@@ -14,18 +16,17 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 IUSE="examples"
 
 # remember: cannot dep on autoconf since it needs us
-DEPEND="|| ( app-arch/xz-utils app-arch/lzma-utils )"
+DEPEND="app-arch/xz-utils"
 RDEPEND=""
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	# patch breaks Darwin 9+, bug #320131
-	[[ ${CHOST} == *-darwin* ]] || epatch "${FILESDIR}"/${PN}-1.4.14-gnulib_spawn.patch # 310335
+	[[ ${CHOST} == *-darwin* ]] || epatch "${FILESDIR}"/${P}-gnulib_spawn.patch #310335
+	epatch "${FILESDIR}"/${P}-glibc-2.12.patch #332839
 	epatch "${FILESDIR}"/${PN}-1.4.12-interix.patch
 }
 
-src_compile() {
+src_configure() {
 	# Disable automagic dependency over libsigsegv; see bug #278026
 	export ac_cv_libsigsegv=no
 
@@ -34,9 +35,7 @@ src_compile() {
 	econf \
 		$(use_enable nls) \
 		--enable-changeword \
-		${myconf} \
-		|| die
-	emake || die
+		${myconf}
 }
 
 src_test() {

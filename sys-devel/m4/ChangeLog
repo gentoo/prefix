@@ -1,6 +1,36 @@
 # ChangeLog for sys-devel/m4
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.131 2010/03/31 11:51:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.140 2010/09/06 20:26:45 ranger Exp $
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> m4-1.4.14-r1.ebuild:
+  Marking m4-1.4.14-r1 ppc64 for bug 307633
+
+*m4-1.4.15 (31 Aug 2010)
+
+  31 Aug 2010; Mike Frysinger <vapier@gentoo.org> +m4-1.4.15.ebuild:
+  Version bump.
+
+  27 Aug 2010; Raúl Porcel <armin76@gentoo.org> m4-1.4.14-r1.ebuild:
+  sparc stable wrt #307633
+
+  16 Aug 2010; Mike Frysinger <vapier@gentoo.org> m4-1.4.14-r1.ebuild:
+  Mark alpha/arm/ia64/s390/sh stable #307633.
+
+  16 Aug 2010; Jeroen Roovers <jer@gentoo.org> m4-1.4.14-r1.ebuild:
+  Stable for PPC (bug #307633).
+
+  15 Aug 2010; Jeroen Roovers <jer@gentoo.org> m4-1.4.14-r1.ebuild:
+  Stable for HPPA (bug #307633).
+
+  15 Aug 2010; Christian Faulhammer <fauli@gentoo.org> m4-1.4.14-r1.ebuild:
+  stable x86, security bug 307633
+
+  15 Aug 2010; Markos Chandras <hwoarang@gentoo.org> m4-1.4.14-r1.ebuild:
+  Stable on amd64 wrt bug #307633
+
+  15 Aug 2010; Mike Frysinger <vapier@gentoo.org> m4-1.4.14-r1.ebuild,
+  +files/m4-1.4.14-glibc-2.12.patch:
+  Add fix from upstrem for building with glibc-2.12 #332839 by Darren Smith.
 
 *m4-1.4.14-r1 (31 Mar 2010)
 

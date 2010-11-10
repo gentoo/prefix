@@ -1,12 +1,12 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.13.ebuild,v 1.2 2009/09/08 17:49:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.15.ebuild,v 1.1 2010/08/31 17:50:17 vapier Exp $
 
-inherit eutils
+EAPI="3"
 
 DESCRIPTION="GNU macro processor"
 HOMEPAGE="http://www.gnu.org/software/m4/m4.html"
-SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
+SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -14,26 +14,19 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 IUSE="examples"
 
 # remember: cannot dep on autoconf since it needs us
-DEPEND="|| ( app-arch/xz-utils app-arch/lzma-utils )"
+DEPEND="app-arch/xz-utils"
 RDEPEND=""
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_configure() {
+	# Disable automagic dependency over libsigsegv; see bug #278026
+	export ac_cv_libsigsegv=no
 
-	epatch "${FILESDIR}"/${PN}-1.4.12-interix.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
-}
-
-src_compile() {
 	local myconf=""
 	[[ ${USERLAND} != "GNU" ]] && myconf="--program-prefix=g"
 	econf \
 		$(use_enable nls) \
 		--enable-changeword \
-		${myconf} \
-		|| die
-	emake || die
+		${myconf}
 }
 
 src_test() {
