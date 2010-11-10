@@ -1,6 +1,13 @@
 # ChangeLog for sys-fs/dd-rescue
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/dd-rescue/ChangeLog,v 1.14 2009/09/19 04:35:09 robbat2 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/dd-rescue/ChangeLog,v 1.15 2010/10/17 14:28:41 chainsaw Exp $
+
+*dd-rescue-1.14-r1 (17 Oct 2010)
+
+  17 Oct 2010; <chainsaw@gentoo.org> +dd-rescue-1.14-r1.ebuild,
+  +files/dd-rescue-1.14-ldflags.patch:
+  Instill LDFLAGS respect into build system. Closes bug #337475 by Diego
+  Elio "Flameeyes" Pettenò.
 
   19 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> dd-rescue-1.14.ebuild:
   Adding ~arm support. Tested on mv78100.arm.dev.gentoo.org thanks to
