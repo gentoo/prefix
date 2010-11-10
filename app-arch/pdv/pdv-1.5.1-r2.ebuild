@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/pdv-1.5.1-r2.ebuild,v 1.8 2008/12/07 07:31:51 wormo Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/pdv-1.5.1-r2.ebuild,v 1.9 2010/10/10 17:02:53 ulm Exp $
 
+EAPI=1
 WANT_AUTOCONF=2.5
 WANT_AUTOMAKE=1.4
 
@@ -16,11 +17,12 @@ SLOT="0"
 KEYWORDS="~x86-interix ~x86-linux ~ppc-macos"
 IUSE="X"
 
-DEPEND="X? ( x11-libs/openmotif
+DEPEND="X? ( >=x11-libs/openmotif-2.3:0
 	>=x11-libs/libX11-1.0.0
 	>=x11-libs/libXt-1.0.0
 	>=x11-libs/libXext-1.0.0
 	>=x11-libs/libXp-1.0.0 )"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}

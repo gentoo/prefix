@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/pdv
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.18 2008/12/07 07:31:51 wormo Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/ChangeLog,v 1.19 2010/10/10 17:02:53 ulm Exp $
+
+  10 Oct 2010; Ulrich Mueller <ulm@gentoo.org> pdv-1.5.1-r2.ebuild:
+  Fix openmotif dependency. Change EAPI to 1 to allow for slot dependency.
+  Explicitly assign RDEPEND.
 
   07 Dec 2008; Stephanie Lockwood-Childs <wormo@gentoo.org>
   +files/pdv-1.5.1-no-strip.patch, pdv-1.5.1-r2.ebuild:
