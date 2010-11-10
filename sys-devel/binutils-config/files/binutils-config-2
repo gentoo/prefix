@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-2,v 1.1 2009/12/20 19:56:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-2,v 1.2 2010/08/15 05:14:35 vapier Exp $
 
 # Format of /etc/env.d/binutils/:
 #  config-TARGET:	CURRENT=version for TARGET
@@ -185,8 +185,8 @@ switch_profile() {
 				ln -sf "${EPREFIX}/${INCPATH}/${x}" "${EROOT}/usr/include/${x}"
 			done
 		else
-			# Clean out old path
-			find . -type f -exec rm -f "${EROOT}/usr/${TARGET}/usr/include/{}" +
+			# Clean out old path -- cannot use '-exec {} +' syntax here
+			find . -type f -exec rm -f "${EROOT}/usr/${TARGET}/usr/include/{}" \;
 			rmdir "${EROOT}/usr/${TARGET}/usr/include" >& /dev/null
 			rmdir "${EROOT}/usr/${TARGET}/usr" >& /dev/null
 			rmdir "${EROOT}/usr/${TARGET}" >& /dev/null
@@ -421,7 +421,7 @@ while [[ $# -gt 0 ]] ; do
 			;;
 		-V|--version)
 			unset Header
-			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-2,v 1.1 2009/12/20 19:56:57 vapier Exp $"
+			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-2,v 1.2 2010/08/15 05:14:35 vapier Exp $"
 			cvsver=${cvsver##*binutils-config-}
 			bver=${cvsver%%,v *}
 			cvsver=${cvsver#* }
