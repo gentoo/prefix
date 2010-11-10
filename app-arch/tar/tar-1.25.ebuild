@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.25.ebuild,v 1.1 2010/11/08 20:57:35 ssuominen Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit flag-o-matic prefix
 
@@ -61,7 +61,10 @@ src_install() {
 		doexe "${T}"/rmt || die
 	fi
 
-	# autoconf looks for this, so in prefix, make sure it is there
+	# autoconf looks for gtar before tar (in configure scripts), hence
+	# in Prefix it is important that it is there, otherwise, a gtar from
+	# the host system (FreeBSD, Solaris, Darwin) will be found instead
+	# of the Prefix provided (GNU) tar
 	if use prefix ; then
 		dodir /usr/bin
 		dosym /bin/tar /usr/bin/gtar
