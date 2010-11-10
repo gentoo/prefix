@@ -1,6 +1,30 @@
 # ChangeLog for sys-apps/smartmontools
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.86 2010/03/06 23:00:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.92 2010/10/27 14:37:56 xmw Exp $
+
+  27 Oct 2010; Michael Weber <xmw@gentoo.org> smartmontools-5.38.ebuild,
+  smartmontools-5.39.1.ebuild, smartmontools-5.40.ebuild:
+  Added ~arm keyword (bug #302981).
+
+  26 Oct 2010; Christian Faulhammer <fauli@gentoo.org>
+  smartmontools-5.39.1.ebuild:
+  stable x86, bug 341827
+
+  24 Oct 2010; Jeroen Roovers <jer@gentoo.org> smartmontools-5.39.1.ebuild:
+  Stable for HPPA (bug #341827).
+
+  21 Oct 2010; Brent Baude <ranger@gentoo.org> smartmontools-5.39.1.ebuild:
+  stable ppc, bug 341827
+
+  20 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  smartmontools-5.39.1.ebuild:
+  Stable on amd64 wrt bug #341827
+
+*smartmontools-5.40 (19 Oct 2010)
+
+  19 Oct 2010; Mike Frysinger <vapier@gentoo.org>
+  +smartmontools-5.40.ebuild:
+  Version bump #341701.
 
 *smartmontools-5.39.1 (06 Mar 2010)
 
