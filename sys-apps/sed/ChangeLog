@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/sed
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.108 2010/10/16 14:29:38 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.110 2010/10/31 17:28:23 armin76 Exp $
+
+  31 Oct 2010; Raúl Porcel <armin76@gentoo.org> sed-4.2.1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #340919
+
+  18 Oct 2010; Jeroen Roovers <jer@gentoo.org> sed-4.2.1.ebuild:
+  Stable for HPPA (bug #340919).
 
   16 Oct 2010; Markus Meier <maekke@gentoo.org> sed-4.2.1.ebuild:
   arm stable, bug #340919
