@@ -983,6 +983,7 @@ dev-python/fpconst
 dev-python/gconf-python
 dev-python/gdmodule
 dev-python/genshi
+dev-python/gmpy
 dev-python/gnome-python
 dev-python/gnome-python-base
 dev-python/gnome-python-desktop-base
