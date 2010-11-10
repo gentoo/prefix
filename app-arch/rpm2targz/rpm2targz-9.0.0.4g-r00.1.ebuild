@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.4g.ebuild,v 1.1 2009/11/06 13:10:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.4g.ebuild,v 1.2 2010/10/14 01:41:16 vapier Exp $
 
 inherit toolchain-funcs eutils
 
@@ -14,8 +14,7 @@ KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~s
 IUSE=""
 
 RDEPEND="app-arch/cpio"
-DEPEND="${DEPEND}
-	|| ( app-arch/xz-utils app-arch/lzma-utils )"
+DEPEND="app-arch/xz-utils"
 
 src_unpack() {
 	unpack ${A}
