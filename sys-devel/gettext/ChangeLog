@@ -1,6 +1,30 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.182 2010/08/07 21:58:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.189 2010/10/12 20:57:52 jer Exp $
+
+  12 Oct 2010; Jeroen Roovers <jer@gentoo.org> gettext-0.18.1.1-r1.ebuild:
+  Stable for PPC (bug #338654).
+
+  12 Oct 2010; Jeroen Roovers <jer@gentoo.org> gettext-0.18.1.1-r1.ebuild:
+  Stable for HPPA (bug #338654).
+
+  11 Oct 2010; Markus Meier <maekke@gentoo.org> gettext-0.18.1.1-r1.ebuild:
+  arm stable, bug #338654
+
+  07 Oct 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  gettext-0.18.1.1-r1.ebuild:
+  x86 stable wrt bug #338654
+
+  30 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  gettext-0.18.1.1-r1.ebuild:
+  amd64 stable wrt #338654
+
+  29 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  gettext-0.18.1.1-r1.ebuild:
+  ppc64 stable wrt #338654
+
+  12 Sep 2010; Mike Frysinger <vapier@gentoo.org> gettext-0.18.1.1-r1.ebuild:
+  Disable lispdir checking by Ulrich Müller #335902 by Fernando V.
 
 *gettext-0.18.1.1-r1 (07 Aug 2010)
 

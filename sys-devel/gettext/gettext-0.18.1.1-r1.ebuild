@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.18.1.1-r1.ebuild,v 1.1 2010/08/07 21:58:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.18.1.1-r1.ebuild,v 1.8 2010/10/12 20:57:52 jer Exp $
 
 EAPI="2"
 
@@ -59,6 +59,7 @@ src_configure() {
 	econf \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--without-emacs \
+		--without-lispdir \
 		--disable-java \
 		--with-included-glib \
 		--with-included-libcroco \
