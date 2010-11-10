@@ -6,4 +6,7 @@
 		<email>spatz@gentoo.org</email>
 		<name>Dror Levin</name>
 	</maintainer>
+	<use>
+		<flag name="symlink">Install symlinks which override <pkg>app-arch/bzip2</pkg> implementation</flag>
+	</use>
 </pkgmetadata>

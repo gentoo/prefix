@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/pbzip2
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.91 2010/07/25 14:55:57 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.93 2010/10/28 20:39:35 slyfox Exp $
+
+  28 Oct 2010; Sergei Trofimovich <slyfox@gentoo.org> metadata.xml:
+  Added local 'symlink' use description. Discovered when explored bug
+  #341955 by tormen@gmx.net
+
+  20 Sep 2010; Raúl Porcel <armin76@gentoo.org> pbzip2-1.1.1.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #322531
 
   25 Jul 2010; Tobias Klausmann <klausman@gentoo.org> pbzip2-1.1.1.ebuild:
   Stable on alpha, bug #322531
