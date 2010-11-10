@@ -1,13 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/pcsc-lite-1.6.1.ebuild,v 1.2 2010/07/31 23:23:45 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/pcsc-lite-1.6.1.ebuild,v 1.9 2010/10/24 20:43:57 c1pher Exp $
 
 EAPI="3"
 
 inherit multilib
 
 DESCRIPTION="PC/SC Architecture smartcard middleware library"
-HOMEPAGE="http://www.linuxnet.com/middle.html"
+HOMEPAGE="http://pcsclite.alioth.debian.org/"
 
 if [[ "${PV}" = "9999" ]]; then
 	inherit autotools subversion

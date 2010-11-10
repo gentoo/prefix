@@ -1,6 +1,38 @@
 # ChangeLog for sys-apps/pcsc-lite
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/ChangeLog,v 1.83 2010/07/31 23:23:45 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/ChangeLog,v 1.91 2010/10/24 20:43:57 c1pher Exp $
+
+  24 Oct 2010; Dane Smith <c1pher@gentoo.org> pcsc-lite-1.5.5.ebuild,
+  pcsc-lite-1.6.1.ebuild:
+  Updated homepage for 1.5.5 and 1.6.1 wrt bug 333689.
+
+  14 Oct 2010; Brent Baude <ranger@gentoo.org> pcsc-lite-1.6.1.ebuild:
+  stable ppc, bug 330601
+
+  30 Sep 2010; Brent Baude <ranger@gentoo.org> pcsc-lite-1.6.1.ebuild:
+  stable ppc64, bug 330601
+
+  29 Sep 2010; Jeroen Roovers <jer@gentoo.org> pcsc-lite-1.6.1.ebuild:
+  Stable for HPPA (bug #330601).
+
+*pcsc-lite-1.6.4 (28 Sep 2010)
+
+  28 Sep 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +pcsc-lite-1.6.4.ebuild, +files/pcscd-init.2:
+  Version bump; the new version has an improved init script that takes less
+  time to start (no process creation for depend calculation), and properly
+  uses s-s-d to respect system limits; also upstream moved to libusb-1
+  rather than the previous libusb-0.
+
+  05 Sep 2010; Raúl Porcel <armin76@gentoo.org> pcsc-lite-1.6.1.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #330601
+
+  22 Aug 2010; Markus Meier <maekke@gentoo.org> pcsc-lite-1.6.1.ebuild:
+  arm stable, bug #330601
+
+  12 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
+  pcsc-lite-1.6.1.ebuild:
+  stable x86, bug 330601
 
   31 Jul 2010; Markos Chandras <hwoarang@gentoo.org> pcsc-lite-1.6.1.ebuild:
   Stable on amd64 wrt bug #330601

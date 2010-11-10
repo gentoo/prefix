@@ -1,0 +1,29 @@
+#!/sbin/runscript
+# Copyright 1999-2010 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/files/pcscd-init.2,v 1.1 2010/09/28 23:37:16 flameeyes Exp $
+
+depend() {
+	# ensure there is at least one dependency or if the following
+	# is removed we're stuck with a broken init
+	need localmount
+
+	need hald
+}
+
+start() {
+	ebegin "Starting pcscd"
+	start-stop-daemon --start \
+            --exec /usr/sbin/pcscd \
+            --pidfile /var/run/pcscd/pcscd.pid \
+            -- ${PCSCD_OPTS}
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping pcscd"
+	start-stop-daemon --stop \
+            --exec /usr/sbin/pcscd \
+            --pidfile /var/run/pcscd/pcscd.pid
+	eend $?
+}

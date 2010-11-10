@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/pcsc-lite-1.5.5.ebuild,v 1.7 2010/10/24 20:43:57 c1pher Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/pcsc-lite-1.6.4.ebuild,v 1.1 2010/09/28 23:37:15 flameeyes Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit multilib
 
@@ -10,11 +10,11 @@ DESCRIPTION="PC/SC Architecture smartcard middleware library"
 HOMEPAGE="http://pcsclite.alioth.debian.org/"
 
 if [[ "${PV}" = "9999" ]]; then
-	inherit subversion autotools
+	inherit autotools subversion
 	ESVN_REPO_URI="svn://svn.debian.org/pcsclite/trunk"
 	S="${WORKDIR}/trunk"
 else
-	STUPID_NUM="3082"
+	STUPID_NUM="3337"
 	MY_P="${PN}-${PV/_/-}"
 	SRC_URI="http://alioth.debian.org/download.php/${STUPID_NUM}/${MY_P}.tar.bz2"
 	S="${WORKDIR}/${MY_P}"
@@ -25,7 +25,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE="hal static usb"
 
-RDEPEND="usb? ( virtual/libusb:0 )
+RDEPEND="usb? ( virtual/libusb:1 )
 	hal? ( sys-apps/hal )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
@@ -63,10 +63,12 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	prepalldocs
+	dodoc AUTHORS DRIVERS HELP README SECURITY ChangeLog || die
 
-	dodoc AUTHORS DRIVERS HELP README SECURITY ChangeLog
+	newinitd "${FILESDIR}/pcscd-init.2" pcscd || die
+	newconfd "${FILESDIR}/pcscd-confd" pcscd || die
 
-	newinitd "${FILESDIR}/pcscd-init" pcscd
-	newconfd "${FILESDIR}/pcscd-confd" pcscd
+	if ! use hal; then
+		sed -i -e '/need hald/d' "${ED}"/etc/init.d/pcscd || die
+	fi
 }
