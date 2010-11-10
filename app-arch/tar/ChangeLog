@@ -1,6 +1,32 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.154 2010/07/19 21:52:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.159 2010/11/08 20:57:35 ssuominen Exp $
+
+*tar-1.25 (08 Nov 2010)
+
+  08 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> +tar-1.25.ebuild:
+  Version bump wrt #344751 by Jeroen Roovers.
+
+*tar-1.24-r2 (01 Nov 2010)
+
+  01 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> +tar-1.24-r2.ebuild,
+  +files/tar-1.24-device-node.patch:
+  Fix extraction of device nodes wrt #343245 by Albert W. Hopkins.
+
+*tar-1.24-r1 (27 Oct 2010)
+
+  27 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> +tar-1.24-r1.ebuild,
+  +files/tar-1.24-mkdirat.patch, +files/tar-1.24-transform.patch,
+  +files/tar-1.24-transform-2.patch:
+  Fix -C switch wrt #342735 by "ferret". Fix --transform switch wrt #342785.
+
+  26 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> tar-1.24.ebuild:
+  Fix ./configure with FEATURES="-userpriv" wrt #342593.
+
+*tar-1.24 (25 Oct 2010)
+
+  25 Oct 2010; Mike Frysinger <vapier@gentoo.org> +tar-1.24.ebuild:
+  Version bump #342571 by Jeroen Roovers.
 
 *tar-1.23-r4 (19 Jul 2010)
 

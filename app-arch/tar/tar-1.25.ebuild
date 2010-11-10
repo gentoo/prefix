@@ -1,8 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.21-r1.ebuild,v 1.2 2009/02/02 19:00:01 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.25.ebuild,v 1.1 2010/11/08 20:57:35 ssuominen Exp $
 
-inherit flag-o-matic eutils prefix
+EAPI="2"
+
+inherit flag-o-matic prefix
 
 DESCRIPTION="Use this to make tarballs :)"
 HOMEPAGE="http://www.gnu.org/software/tar/"
@@ -12,24 +14,14 @@ SRC_URI="http://ftp.gnu.org/gnu/tar/${P}.tar.bz2
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="nls static"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="nls static userland_GNU"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
 	nls? ( >=sys-devel/gettext-0.10.35 )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/${PN}-1.16-darwin.patch
-	epatch "${FILESDIR}"/${PN}-1.19-hpux.patch
-	epatch "${FILESDIR}"/${PN}-1.20-mint.patch
-
-	epatch "${FILESDIR}"/${P}-revert-pipe.patch #252680
-	epatch "${FILESDIR}"/${P}-testsuite.patch   #253122
-
+src_prepare() {
 	if ! use userland_GNU ; then
 		sed -i \
 			-e 's:/backup\.sh:/gbackup.sh:' \
@@ -42,28 +34,28 @@ src_unpack() {
 	eprefixify rmt
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 	# hack around ld: duplicate symbol _argp_fmtstream_putc problem
-	[[ ${CHOST} == *-darwin* ]] && append-flags -U__OPTIMIZE__
+	#[[ ${CHOST} == *-darwin* ]] && append-flags -U__OPTIMIZE__
 	use static && append-ldflags -static
 	use userland_GNU || myconf="--program-prefix=g"
 	# Work around bug in sandbox #67051
 	gl_cv_func_chown_follows_symlink=yes \
+	FORCE_UNSAFE_CONFIGURE=1 \
 	econf \
 		--enable-backup-scripts \
 		--bindir="${EPREFIX}"/bin \
 		--libexecdir="${EPREFIX}"/usr/sbin \
 		$(use_enable nls) \
-		${myconf} || die
-	emake || die "emake failed"
+		${myconf}
 }
 
 src_install() {
 	local p=""
 	use userland_GNU || p=g
 
-	emake DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die
 
 	if [[ -z ${p} ]] ; then
 		# a nasty yet required piece of baggage
@@ -77,10 +69,8 @@ src_install() {
 		dosym /bin/tar /usr/bin/gtar
 	fi
 
-	dodoc AUTHORS ChangeLog* NEWS README* PORTS THANKS
+	dodoc AUTHORS ChangeLog* NEWS README* THANKS
 	newman "${FILESDIR}"/tar.1 ${p}tar.1
 	mv "${ED}"/usr/sbin/${p}backup{,-tar}
 	mv "${ED}"/usr/sbin/${p}restore{,-tar}
-
-	rm -f "${ED}"/usr/$(get_libdir)/charset.alias
 }
