@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.20.51.0.8.ebuild,v 1.1 2010/04/14 00:47:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.20.51.0.11.ebuild,v 1.1 2010/08/14 06:35:48 vapier Exp $
 
 PATCHVER="1.0"
 ELF2FLT_VER=""
@@ -12,7 +12,7 @@ src_unpack() {
 	toolchain-binutils_src_unpack
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.20.51.0.1-linux-x86-on-amd64.patch
-	epatch "${FILESDIR}"/${PN}-2.20.51.0.3-mint.patch
+	epatch "${FILESDIR}"/${PN}-2.20.51.0.10-mint.patch
 	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
 }
 
@@ -25,7 +25,7 @@ src_compile() {
 	fi
 
 	case "${CTARGET}" in
-	*-interix*) EXTRA_ECONF="--without-gnu-ld --without-gnu-as" ;;
+	*-interix*) EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as" ;;
 	esac
 
 	toolchain-binutils_src_compile
