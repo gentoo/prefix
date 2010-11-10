@@ -1,6 +1,46 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.146 2010/08/02 20:11:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.157 2010/10/12 11:33:55 armin76 Exp $
+
+  12 Oct 2010; Raúl Porcel <armin76@gentoo.org> autoconf-2.65-r1.ebuild:
+  sparc stable wrt #336381
+
+  02 Oct 2010; Mike Frysinger <vapier@gentoo.org> autoconf-2.68.ebuild:
+  Move into unstable.
+
+*autoconf-2.68 (22 Sep 2010)
+
+  22 Sep 2010; Mike Frysinger <vapier@gentoo.org> +autoconf-2.68.ebuild,
+  autoconf-9999.ebuild:
+  Version bump.
+
+  22 Sep 2010; Mike Frysinger <vapier@gentoo.org> autoconf-2.65-r1.ebuild:
+  Mark alpha/arm/ia64/s390/sh stable #336381.
+
+  19 Sep 2010; Mike Frysinger <vapier@gentoo.org> autoconf-2.67.ebuild,
+  autoconf-9999.ebuild:
+  Unify autoconf-2.67 and autoconf-9999 versions.
+
+  15 Sep 2010; Jeroen Roovers <jer@gentoo.org> autoconf-2.65-r1.ebuild:
+  Stable for HPPA (bug #336381).
+
+  14 Sep 2010; Markos Chandras <hwoarang@gentoo.org>
+  autoconf-2.65-r1.ebuild:
+  Stable on amd64 wrt bug #336381
+
+  12 Sep 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  autoconf-2.65-r1.ebuild:
+  x86 stable wrt bug #336381
+
+  12 Sep 2010; Joseph Jezak <josejx@gentoo.org> autoconf-2.65-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #336381.
+
+  07 Sep 2010; Mike Frysinger <vapier@gentoo.org> autoconf-2.67.ebuild:
+  Move into unstable.
+
+  06 Aug 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  autoconf-2.67.ebuild:
+  Depend on a supporting autoconf-wrapper.
 
 *autoconf-2.67 (02 Aug 2010)
 
