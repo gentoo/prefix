@@ -1,6 +1,31 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.157 2010/01/28 06:21:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.164 2010/10/30 16:17:51 armin76 Exp $
+
+  30 Oct 2010; Raúl Porcel <armin76@gentoo.org> man-1.6f-r4.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #338088
+
+  12 Oct 2010; Jeroen Roovers <jer@gentoo.org> man-1.6f-r4.ebuild:
+  Stable for HPPA (bug #338088).
+
+  10 Oct 2010; Markus Meier <maekke@gentoo.org> man-1.6f-r4.ebuild:
+  arm stable, bug #338088
+
+  30 Sep 2010; Brent Baude <ranger@gentoo.org> man-1.6f-r4.ebuild:
+  stable ppc64, bug 338088
+
+  27 Sep 2010; Brent Baude <ranger@gentoo.org> man-1.6f-r4.ebuild:
+  Marking man-1.6f-r4 ppc for bug 38088
+
+  25 Sep 2010; Markus Meier <maekke@gentoo.org> man-1.6f-r4.ebuild:
+  amd64/x86 stable, bug #338088
+
+*man-1.6f-r5 (19 Sep 2010)
+
+  19 Sep 2010; Mike Frysinger <vapier@gentoo.org> +man-1.6f-r5.ebuild,
+  +files/man-1.6f-makewhatis-compression-cleanup.patch:
+  Add fix by William Throwe with misdetecting package names of compressed man
+  pages #331979.
 
   28 Jan 2010; Mike Frysinger <vapier@gentoo.org>
   files/man-1.6f-parallel-build.patch:

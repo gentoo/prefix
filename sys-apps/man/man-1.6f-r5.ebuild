@@ -1,8 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6f-r4.ebuild,v 1.8 2010/10/30 16:17:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6f-r5.ebuild,v 1.1 2010/09/19 23:52:08 vapier Exp $
 
 EAPI="2"
+
 inherit eutils toolchain-funcs flag-o-matic prefix
 
 DESCRIPTION="Standard commands to read man pages"
@@ -12,7 +13,7 @@ SRC_URI="http://primates.ximian.com/~flucifredi/man/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="lzma nls"
+IUSE="+lzma nls"
 
 DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND="|| ( >=sys-apps/groff-1.19.2-r1 app-doc/heirloom-doctools )
@@ -41,6 +42,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/man-1.6f-compress.patch
 	epatch "${FILESDIR}"/man-1.6f-parallel-build.patch #207148 #258916
 	epatch "${FILESDIR}"/man-1.6f-xz.patch #302380
+	epatch "${FILESDIR}"/man-1.6f-makewhatis-compression-cleanup.patch #331979
 	# make sure `less` handles escape sequences #287183
 	sed -i -e '/^DEFAULTLESSOPT=/s:"$:R":' configure
 
