@@ -617,6 +617,7 @@ media-libs/sdl-image
 media-libs/sdl-mixer
 media-libs/sdl-net
 media-libs/sdl-ttf
+media-libs/sg
 media-libs/silgraphite
 media-libs/swfdec
 media-libs/taglib
@@ -798,6 +799,7 @@ x11-libs/fltk
 x11-libs/gl2ps
 x11-libs/goffice
 x11-libs/gtk+
+x11-libs/gtkglarea
 x11-libs/ige-mac-integration
 x11-libs/libICE
 x11-libs/libXScrnSaver
