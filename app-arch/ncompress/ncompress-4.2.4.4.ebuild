@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ncompress-4.2.4.2.ebuild,v 1.11 2008/09/13 18:23:55 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ncompress-4.2.4.4.ebuild,v 1.1 2010/09/10 03:49:02 vapier Exp $
 
 inherit toolchain-funcs
 
@@ -13,17 +13,11 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	sed \
-		-e 's:options= :options= $(CFLAGS) -DNOFUNCDEF -DUTIME_H $(LDFLAGS) :' \
-		Makefile.def > Makefile
-}
 src_compile() {
 	tc-export CC
-	emake || die "compiled failed"
+	emake || die
 }
+
 src_install() {
 	dobin compress || die
 	dosym compress /usr/bin/uncompress

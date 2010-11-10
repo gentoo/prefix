@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/ncompress
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ChangeLog,v 1.46 2010/02/11 19:27:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ChangeLog,v 1.47 2010/09/10 03:49:02 vapier Exp $
+
+*ncompress-4.2.4.4 (10 Sep 2010)
+
+  10 Sep 2010; Mike Frysinger <vapier@gentoo.org> +ncompress-4.2.4.4.ebuild:
+  Version bump.
 
   11 Feb 2010; Raúl Porcel <armin76@gentoo.org> ncompress-4.2.4.3.ebuild:
   alpha/ia64/m68k/s390/sh stable wrt #300943
