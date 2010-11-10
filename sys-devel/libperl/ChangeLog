@@ -1,6 +1,28 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.153 2010/03/31 18:48:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.160 2010/10/24 21:23:21 maekke Exp $
+
+  24 Oct 2010; Markus Meier <maekke@gentoo.org> libperl-5.10.1.ebuild:
+  arm stable, bug #340023
+
+  24 Oct 2010; Jeroen Roovers <jer@gentoo.org> libperl-5.10.1.ebuild:
+  Stable for HPPA (bug #340023).
+
+  24 Oct 2010; Brent Baude <ranger@gentoo.org> libperl-5.10.1.ebuild:
+  Marking libperl-5.10.1 ppc for bug 340023
+
+  22 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> libperl-5.10.1.ebuild:
+  ppc64 stable wrt #340023
+
+  22 Oct 2010; Markos Chandras <hwoarang@gentoo.org> libperl-5.10.1.ebuild:
+  Stable on amd64 wrt bug #340023
+
+  22 Oct 2010; Christian Faulhammer <fauli@gentoo.org>
+  libperl-5.10.1.ebuild:
+  stable x86, bug 340023
+
+  20 Sep 2010; Mart Raudsepp <leio@gentoo.org> libperl-5.10.1.ebuild:
+  Add ~mips wrt #288028
 
   31 Mar 2010; Raúl Porcel <armin76@gentoo.org> libperl-5.8.8-r2.ebuild:
   Drop -O1 on arm/ia64 as it works fine
