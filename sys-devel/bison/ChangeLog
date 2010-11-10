@@ -1,6 +1,33 @@
 # ChangeLog for sys-devel/bison
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.87 2010/05/24 13:53:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.95 2010/09/12 17:40:52 armin76 Exp $
+
+  12 Sep 2010; Raúl Porcel <armin76@gentoo.org> bison-2.4.2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #331577
+
+  23 Aug 2010; Markus Meier <maekke@gentoo.org> bison-2.4.2.ebuild:
+  arm stable, bug #331577
+
+  13 Aug 2010; Joseph Jezak <josejx@gentoo.org> bison-2.4.2.ebuild:
+  Marked ppc/ppc64 stable for bug #331577.
+
+  12 Aug 2010; Markos Chandras <hwoarang@gentoo.org> bison-2.4.2.ebuild:
+  Stable on amd64 wrt bug #331577
+
+  12 Aug 2010; Mike Frysinger <vapier@gentoo.org>
+  files/bison-2.4.2-gcc45_testsuite.patch:
+  Add patch to generated testsuite to avoid autotools #331577.
+
+  10 Aug 2010; Jeroen Roovers <jer@gentoo.org> bison-2.4.2.ebuild:
+  Stable for HPPA (bug #331577).
+
+  10 Aug 2010; Christian Faulhammer <fauli@gentoo.org> bison-2.4.2.ebuild:
+  stable x86, bug 331577
+
+*bison-2.4.3 (07 Aug 2010)
+
+  07 Aug 2010; Mike Frysinger <vapier@gentoo.org> +bison-2.4.3.ebuild:
+  Version bump #331549 by Arfrever Frehtes Taifersar Arahesis.
 
   24 May 2010; Raúl Porcel <armin76@gentoo.org> bison-2.4.1.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #311867
