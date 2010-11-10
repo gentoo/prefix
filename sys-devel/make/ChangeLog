@@ -1,6 +1,41 @@
 # ChangeLog for sys-devel/make
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.64 2010/07/25 14:36:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.74 2010/10/18 00:59:13 vapier Exp $
+
+  18 Oct 2010; Mike Frysinger <vapier@gentoo.org> make-3.82.ebuild:
+  Move into unstable.
+
+  18 Sep 2010; Raúl Porcel <armin76@gentoo.org> make-3.81-r2.ebuild:
+  sparc stable wrt #331717
+
+  29 Aug 2010; Mike Frysinger <vapier@gentoo.org> make-3.82.ebuild,
+  +files/make-3.82-archives-many-objs.patch:
+  Add fix from upstream for archive targets with multiple objects #334889 by
+  Diego E. Pettenò.
+
+  18 Aug 2010; Jeroen Roovers <jer@gentoo.org> make-3.81-r2.ebuild:
+  Stable for HPPA (bug #331717).
+
+  11 Aug 2010; Mike Frysinger <vapier@gentoo.org> make-3.81-r2.ebuild:
+  Stabilize for alpha/arm/ia64/s390/sh #331717.
+
+  11 Aug 2010; Joseph Jezak <josejx@gentoo.org> make-3.81-r2.ebuild:
+  Marked ppc/ppc64 stable for bug #331717.
+
+  10 Aug 2010; Markos Chandras <hwoarang@gentoo.org> make-3.81-r2.ebuild:
+  Stable on amd64 wrt bug #331717
+
+  10 Aug 2010; Christian Faulhammer <fauli@gentoo.org> make-3.81-r2.ebuild:
+  stable x86, bug 331717
+
+  10 Aug 2010; Mike Frysinger <vapier@gentoo.org> make-3.82.ebuild,
+  +files/make-3.82-MAKEFLAGS-reexec.patch:
+  Add fix from upstream for MAKEFLAGS expansion when re-execing #331975.
+
+*make-3.82 (09 Aug 2010)
+
+  09 Aug 2010; Mike Frysinger <vapier@gentoo.org> +make-3.82.ebuild:
+  Version bump #331593.
 
   25 Jul 2010; Mike Frysinger <vapier@gentoo.org> make-3.81-r2.ebuild,
   +files/make-3.81-tests-recursion.patch:
