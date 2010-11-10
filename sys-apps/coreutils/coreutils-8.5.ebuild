@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.5.ebuild,v 1.7 2010/07/19 20:15:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.5.ebuild,v 1.9 2010/09/18 18:13:32 armin76 Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 

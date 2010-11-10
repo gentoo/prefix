@@ -1,17 +1,19 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.5-r1.ebuild,v 1.1 2010/07/19 20:42:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.6.ebuild,v 1.1 2010/10/26 01:58:31 vapier Exp $
+
+EAPI="3"
 
 inherit eutils flag-o-matic toolchain-funcs
 
-PATCH_VER="2"
+PATCH_VER="1"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
-SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.gz
-	mirror://gnu/${PN}/${P}.tar.gz
-	mirror://gentoo/${P}.tar.gz
-	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.lzma
-	http://dev.gentoo.org/~vapier/dist/${P}-patches-${PATCH_VER}.tar.lzma"
+SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.xz
+	mirror://gnu/${PN}/${P}.tar.xz
+	mirror://gentoo/${P}.tar.xz
+	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.xz
+	http://dev.gentoo.org/~vapier/dist/${P}-patches-${PATCH_VER}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -35,10 +37,7 @@ RDEPEND="caps? ( sys-libs/libcap )
 DEPEND="${RDEPEND}
 	app-arch/xz-utils"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	if ! use vanilla ; then
 		use unicode || rm -f "${WORKDIR}"/patch/000_all_coreutils-i18n.patch
 		EPATCH_SUFFIX="patch" \
@@ -56,6 +55,12 @@ src_unpack() {
 	# interix has no method to determine mounted filesystems
 	epatch "${FILESDIR}"/${PN}-8.5-interix-warn-mount.patch
 
+	# interix has very very very broken long double support in libc :(
+	# this patch should not do much harm on other platforms, still it changes
+	# the behaviour of the 'seq' program, so it's conditional here.
+	[[ ${CHOST} == *-interix* ]] &&
+		epatch "${FILESDIR}"/${PN}-8.5-interix-double.patch
+
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
@@ -65,7 +70,7 @@ src_unpack() {
 	tc-is-cross-compiler && touch ${@/%x/1}
 }
 
-src_compile() {
+src_configure() {
 	if [[ ${CHOST} == *-interix* ]]; then
 		append-flags "-Dgetgrgid=getgrgid_nomembers"
 		append-flags "-Dgetgrent=getgrent_nomembers"
@@ -86,8 +91,6 @@ src_compile() {
 		myconf="${myconf} --enable-install-program=arch"
 		myconf="${myconf} --enable-no-install-program=groups,hostname,kill,su,uptime"
 	fi
-	# bug 278837
-	[[ ${CHOST} == *-aix6* ]] && export ac_cv_func_getppriv=no
 
 	econf \
 		--with-packager="Gentoo" \
@@ -99,9 +102,7 @@ src_compile() {
 		$(use_enable nls) \
 		$(use_enable acl) \
 		$(use_enable xattr) \
-		$(use_with gmp) \
-		|| die "econf"
-	emake || die "emake"
+		$(use_with gmp)
 }
 
 src_test() {
