@@ -1,6 +1,36 @@
 # ChangeLog for sys-apps/usbutils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.99 2010/04/25 18:02:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.107 2010/10/26 14:47:41 fauli Exp $
+
+  26 Oct 2010; Christian Faulhammer <fauli@gentoo.org> usbutils-0.90.ebuild:
+  stable x86, bug 342525
+
+  26 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> usbutils-0.90.ebuild:
+  ppc64 stable wrt #342525
+
+  26 Oct 2010; Michael Weber <xmw@gentoo.org> usbutils-0.90.ebuild:
+  Stable on arm wrt bug #342525
+
+  25 Oct 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  usbutils-0.91.ebuild:
+  QA: while waiting for Mike to update this to use libusb-1 exclusively,
+  avoid breaking on new installs.
+
+  25 Oct 2010; Markos Chandras <hwoarang@gentoo.org> usbutils-0.90.ebuild:
+  Stable on amd64 wrt bug #342525
+
+  24 Oct 2010; Jeroen Roovers <jer@gentoo.org> usbutils-0.90.ebuild:
+  Stable for HPPA PPC (bug #342525).
+
+*usbutils-0.91 (24 Oct 2010)
+
+  24 Oct 2010; Mike Frysinger <vapier@gentoo.org> +usbutils-0.91.ebuild:
+  Version bump.
+
+*usbutils-0.90 (14 Aug 2010)
+
+  14 Aug 2010; Mike Frysinger <vapier@gentoo.org> +usbutils-0.90.ebuild:
+  Version bump #332583 by Samuli Suominen.
 
   25 Apr 2010; Alexis Ballier <aballier@gentoo.org> usbutils-0.87.ebuild,
   +files/usbutils-0.87-fbsd.patch:

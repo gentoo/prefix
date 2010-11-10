@@ -1,3 +1,5 @@
+http://thread.gmane.org/gmane.linux.usb.general/34989
+
 --- usbutils-0.87/configure.ac
 +++ usbutils-0.87/configure.ac
 @@ -34,6 +34,8 @@
