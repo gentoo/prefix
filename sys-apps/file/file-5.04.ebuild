@@ -1,9 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.04.ebuild,v 1.2 2010/02/04 18:25:47 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.04.ebuild,v 1.8 2010/10/12 17:38:37 jer Exp $
 
 PYTHON_DEPEND="python? 2"
 SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
 
 inherit eutils distutils autotools flag-o-matic
 
@@ -17,10 +18,6 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 IUSE="python"
-
-DEPEND=""
-RDEPEND=""
-RESTRICT_PYTHON_ABIS="3.*"
 
 src_unpack() {
 	unpack ${P}.tar.gz
@@ -41,9 +38,6 @@ src_unpack() {
 	sed -i "/library_dirs/s:'\.\./src':'../src/.libs':" python/setup.py
 	# dont let python README kill main README #60043
 	mv python/README{,.python}
-
-	# only one data file, so put it into /usr/share/misc/
-#	sed -i '/^pkgdatadir/s:/@PACKAGE@::' $(find -name Makefile.in)
 }
 
 src_compile() {
