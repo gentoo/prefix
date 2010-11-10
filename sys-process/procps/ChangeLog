@@ -1,6 +1,11 @@
 # ChangeLog for sys-process/procps
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.39 2010/01/25 03:06:08 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.40 2010/09/22 15:24:08 flameeyes Exp $
+
+  22 Sep 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  procps-3.2.8-r1.ebuild, +files/procps-3.2.8+gmake-3.82.patch:
+  Add patch that should fix bug #333299 (procps failing to build with gmake
+  3.82).
 
 *procps-3.2.8-r1 (25 Jan 2010)
 

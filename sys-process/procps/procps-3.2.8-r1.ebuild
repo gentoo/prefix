@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.8-r1.ebuild,v 1.1 2010/01/25 03:06:08 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.8-r1.ebuild,v 1.2 2010/09/22 15:24:08 flameeyes Exp $
 
 inherit flag-o-matic eutils toolchain-funcs multilib
 
@@ -23,6 +23,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/procps-3.2.7-proc-mount.patch
 	epatch "${FILESDIR}"/procps-3.2.3-noproc.patch
 	epatch "${FILESDIR}"/procps-3.2.8-toprc-fixup.patch
+	epatch "${FILESDIR}"/procps-3.2.8+gmake-3.82.patch
 
 	# Clean up the makefile
 	#  - we do stripping ourselves
