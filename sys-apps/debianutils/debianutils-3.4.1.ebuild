@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-3.1.3.ebuild,v 1.7 2009/07/13 18:22:10 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-3.4.1.ebuild,v 1.1 2010/09/20 00:04:19 jer Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://debian/pool/main/d/${PN}/${PN}_${PV}.tar.gz"
 
 LICENSE="BSD GPL-2 SMAIL"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="kernel_linux static"
 
 PDEPEND="|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp sys-freebsd/freebsd-ubin )"
@@ -18,7 +18,7 @@ PDEPEND="|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp sys-freebsd/freebsd-u
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.31-no-bs-namespace.patch
+	epatch "${FILESDIR}"/${PN}-3.2.1-no-bs-namespace.patch
 	epatch "${FILESDIR}"/${PN}-2.17.5-nongnu.patch
 }
 
