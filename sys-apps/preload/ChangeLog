@@ -1,6 +1,25 @@
 # ChangeLog for sys-apps/preload
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.14 2010/03/29 16:03:49 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.17 2010/09/17 10:59:47 pacho Exp $
+
+  17 Sep 2010; Pacho Ramos <pacho@gentoo.org>
+  files/preload-0.6.4-use-help2man-as-usual.patch:
+  Fix help2man patch (bug #337771 by Flameeyes).
+
+*preload-0.6.4-r2 (07 Sep 2010)
+
+  07 Sep 2010; Pacho Ramos <pacho@gentoo.org> +preload-0.6.4-r2.ebuild,
+  +files/preload-0.6.4.init.in-r1:
+  Revision bump to fix race condition (bug #299140 by Ambroz Bizjak) and
+  make it POSIX compliant (bug #310511 by Michał Górny), thanks a lot to
+  Michał for providing the new init.d script.
+
+  06 Sep 2010; Pacho Ramos <pacho@gentoo.org> preload-0.6.4-r1.ebuild,
+  +files/preload-0.6.4-use-help2man-as-usual.patch,
+  +files/preload-0.6.4-use-make-dependencies.patch:
+  Apply Flameeyes' patches to fix parallel compilation (bug #244966 by
+  Jeremy Olexa). Also use 'elog' instead of 'einfo' and drop old 'eerror'
+  message. Move to EAPI 2.
 
   29 Mar 2010; Pacho Ramos <pacho@gentoo.org> files/00-patch-configure.diff:
   00-patch-configure.diff modified to install docs under /usr/share/doc/,

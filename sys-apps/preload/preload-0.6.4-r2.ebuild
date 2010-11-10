@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/preload-0.6.4-r1.ebuild,v 1.3 2010/09/06 15:36:10 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/preload-0.6.4-r2.ebuild,v 1.1 2010/09/07 12:11:05 pacho Exp $
 
 EAPI="2"
 
@@ -27,7 +27,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.6.4-use-help2man-as-usual.patch
 	epatch "${FILESDIR}"/${PN}-0.6.4-use-make-dependencies.patch
 	use vanilla || epatch "${FILESDIR}"/000{1,2,3}-*.patch
-	cat "${FILESDIR}"/preload-0.6.4.init.in > preload.init.in || die
+	cat "${FILESDIR}"/preload-0.6.4.init.in-r1 > preload.init.in || die
 
 	# Prefix patch
 	epatch "${FILESDIR}/${PN}-0.6.3-prefix.patch"
