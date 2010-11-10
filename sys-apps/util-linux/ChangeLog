@@ -1,6 +1,27 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.316 2010/07/24 16:03:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.322 2010/10/08 17:29:03 vapier Exp $
+
+  08 Oct 2010; Mike Frysinger <vapier@gentoo.org>
+  files/util-linux-2.18-slang.patch:
+  Remove unused Makefile.am hunk #340140 by Diego E. Pettenò.
+
+  03 Oct 2010; Mike Frysinger <vapier@gentoo.org> util-linux-2.18-r1.ebuild,
+  +files/util-linux-2.18-falloc.patch:
+  Fix building with older linux/falloc.h #339432 by Andrew Randrianasulu.
+
+  18 Sep 2010; Raúl Porcel <armin76@gentoo.org> util-linux-2.17.2.ebuild:
+  ia64/s390/sh/sparc stable wrt #326339
+
+  12 Sep 2010; Tobias Klausmann <klausman@gentoo.org>
+  util-linux-2.17.2.ebuild:
+  Stable on alpha, bug #326339
+
+  12 Sep 2010; Raúl Porcel <armin76@gentoo.org> util-linux-2.17.2.ebuild:
+  m68k stable wrt #326339 thanks to kolla for testing
+
+  13 Aug 2010; Joseph Jezak <josejx@gentoo.org> util-linux-2.17.2.ebuild:
+  Marked ppc stable for bug #326339.
 
   24 Jul 2010; Markus Meier <maekke@gentoo.org> util-linux-2.17.2.ebuild:
   arm stable, bug #326339

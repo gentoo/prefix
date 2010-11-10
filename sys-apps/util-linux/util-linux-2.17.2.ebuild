@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.2.ebuild,v 1.6 2010/07/24 16:03:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.2.ebuild,v 1.10 2010/09/18 16:29:29 armin76 Exp $
 
 EAPI="2"
 
