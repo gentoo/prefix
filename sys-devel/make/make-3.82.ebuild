@@ -23,14 +23,14 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-MAKEFLAGS-reexec.patch #31975
 
 	# breaks build on other interix systems.
-	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-3.81-interix3.patch
 
 	# this disables make abortion on write errors, which
 	# seem to be reported wrongly sporadically on interix.
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-3.81-interix.patch
 
 	# enable library_search() to look for lib%.dylib on darwin
-	epatch "${FILESDIR}"/${P}-darwin-library_search-dylib.patch
+	epatch "${FILESDIR}"/${PN}-3.81-darwin-library_search-dylib.patch
 }
 
 src_configure() {
