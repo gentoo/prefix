@@ -1,7 +1,7 @@
 * lazy dylib building
 
---- gsm-1.0-pl12/Makefile
-+++ gsm-1.0-pl12/Makefile
+--- gsm-1.0-pl13/Makefile
++++ gsm-1.0-pl13/Makefile
 @@ -140,7 +140,7 @@
  # Targets
  
@@ -15,12 +15,12 @@
  # The basic API: libgsm
  
  $(LIBGSMSO):	$(LIB) $(SHARED_GSM_OBJECTS)
--		$(LD) -o $@.1.0.12 -shared -Xlinker -soname -Xlinker libgsm.so.1 $(SHARED_GSM_OBJECTS) -lc
--		ln -fs libgsm.so.1.0.12 lib/libgsm.so.1
--		ln -fs libgsm.so.1.0.12 lib/libgsm.so
-+		$(LD) -o $(LIB)/$@.1.0.12.dylib -dynamiclib -install_name $(GSM_INSTALL_LIB)/$@.1.dylib $(SHARED_GSM_OBJECTS) -lc
-+		ln -fs libgsm.1.0.12.dylib lib/libgsm.1.dylib
-+		ln -fs libgsm.1.0.12.dylib lib/libgsm.dylib
+-		$(LD) -o $@.1.0.13 -shared -Xlinker -soname -Xlinker libgsm.so.1 $(SHARED_GSM_OBJECTS) -lc
+-		ln -fs libgsm.so.1.0.13 lib/libgsm.so.1
+-		ln -fs libgsm.so.1.0.13 lib/libgsm.so
++		$(LD) -o $(LIB)/$@.1.0.13.dylib -dynamiclib -install_name $(GSM_INSTALL_LIB)/$@.1.dylib $(SHARED_GSM_OBJECTS) -lc
++		ln -fs libgsm.1.0.13.dylib lib/libgsm.1.dylib
++		ln -fs libgsm.1.0.13.dylib lib/libgsm.dylib
  
  $(LIBGSM):	$(LIB) $(STATIC_GSM_OBJECTS)
  		-rm $(RMFLAGS) $(LIBGSM)
@@ -37,9 +37,9 @@
  
  clean:	semi-clean
  		-rm $(RMFLAGS) $(LIBGSM) $(ADDTST)/add		\
--			$(LIBGSMSO) $(LIB)/libgsm.so.1.0.12	\
+-			$(LIBGSMSO) $(LIB)/libgsm.so.1.0.13	\
 -			$(LIB)libgsm.so.1			\
-+			$(LIB)/$(LIBGSMSO).dylib $(LIB)/libgsm.1.0.12.dylib	\
++			$(LIB)/$(LIBGSMSO).dylib $(LIB)/libgsm.1.0.13.dylib	\
 +			$(LIB)libgsm.1.dylib			\
  			$(TOAST) $(TCAT) $(UNTOAST)		\
  			$(ROOT)/gsm-1.0.tar.Z

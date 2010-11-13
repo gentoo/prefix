@@ -20,7 +20,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-shared.patch \
 		"${FILESDIR}"/${PN}-1.0.12-memcpy.patch \
 		"${FILESDIR}"/${PN}-1.0.12-64bit.patch
-	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${PN}-1.0.12-darwin.patch
+	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 src_compile() {
