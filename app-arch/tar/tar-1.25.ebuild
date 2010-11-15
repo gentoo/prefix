@@ -62,8 +62,7 @@ src_install() {
 	# the host system (FreeBSD, Solaris, Darwin) will be found instead
 	# of the Prefix provided (GNU) tar
 	if use prefix ; then
-		dodir /usr/bin
-		dosym ../../bin/tar /usr/bin/gtar
+		dosym tar /bin/gtar
 	fi
 
 	dodoc AUTHORS ChangeLog* NEWS README* THANKS
