@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.23-r4.ebuild,v 1.1 2010/07/19 21:52:44 vapier Exp $
 
-EAPI="2"
+EAPI="3"
 
-inherit flag-o-matic eutils prefix
+inherit flag-o-matic
 
 DESCRIPTION="Use this to make tarballs :)"
 HOMEPAGE="http://www.gnu.org/software/tar/"
@@ -39,10 +39,6 @@ src_prepare() {
 			scripts/{backup,dump-remind,restore}.in \
 			|| die "sed non-GNU"
 	fi
-	cd "${T}"
-	cp "${FILESDIR}"/rmt "${T}"
-	epatch "${FILESDIR}"/rmt-prefix.patch
-	eprefixify rmt
 }
 
 src_configure() {
@@ -70,10 +66,13 @@ src_install() {
 	if [[ -z ${p} ]] ; then
 		# a nasty yet required piece of baggage
 		exeinto /etc
-		doexe "${T}"/rmt || die
+		doexe "${FILESDIR}"/rmt || die
 	fi
 
-	# autoconf looks for this, so in prefix, make sure it is there
+	# autoconf looks for gtar before tar (in configure scripts), hence
+	# in Prefix it is important that it is there, otherwise, a gtar from
+	# the host system (FreeBSD, Solaris, Darwin) will be found instead
+	# of the Prefix provided (GNU) tar
 	if use prefix ; then
 		dodir /usr/bin
 		dosym /bin/tar /usr/bin/gtar
@@ -83,6 +82,4 @@ src_install() {
 	newman "${FILESDIR}"/tar.1 ${p}tar.1
 	mv "${ED}"/usr/sbin/${p}backup{,-tar}
 	mv "${ED}"/usr/sbin/${p}restore{,-tar}
-
-	rm -f "${ED}"/usr/$(get_libdir)/charset.alias
 }
