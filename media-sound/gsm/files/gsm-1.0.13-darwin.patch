@@ -15,10 +15,10 @@
  # The basic API: libgsm
  
  $(LIBGSMSO):	$(LIB) $(SHARED_GSM_OBJECTS)
--		$(LD) -o $@.1.0.13 -shared -Xlinker -soname -Xlinker libgsm.so.1 $(SHARED_GSM_OBJECTS) -lc
+-		$(LD) $(LFLAGS) -o $@.1.0.13 -shared -Xlinker -soname -Xlinker libgsm.so.1 $(SHARED_GSM_OBJECTS) -lc
 -		ln -fs libgsm.so.1.0.13 lib/libgsm.so.1
 -		ln -fs libgsm.so.1.0.13 lib/libgsm.so
-+		$(LD) -o $(LIB)/$@.1.0.13.dylib -dynamiclib -install_name $(GSM_INSTALL_LIB)/$@.1.dylib $(SHARED_GSM_OBJECTS) -lc
++		$(LD) $(LFLAGS) -o $(LIB)/$@.1.0.13.dylib -dynamiclib -install_name $(GSM_INSTALL_LIB)/$@.1.dylib $(SHARED_GSM_OBJECTS) -lc
 +		ln -fs libgsm.1.0.13.dylib lib/libgsm.1.dylib
 +		ln -fs libgsm.1.0.13.dylib lib/libgsm.dylib
  
