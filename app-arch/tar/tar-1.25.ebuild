@@ -63,7 +63,7 @@ src_install() {
 	# of the Prefix provided (GNU) tar
 	if use prefix ; then
 		dodir /usr/bin
-		dosym /bin/tar /usr/bin/gtar
+		dosym ../../bin/tar /usr/bin/gtar
 	fi
 
 	dodoc AUTHORS ChangeLog* NEWS README* THANKS
