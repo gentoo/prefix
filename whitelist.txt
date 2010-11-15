@@ -800,6 +800,8 @@ x11-libs/gl2ps
 x11-libs/goffice
 x11-libs/gtk+
 x11-libs/gtkglarea
+x11-libs/gtkglext
+x11-libs/guile-gtk
 x11-libs/ige-mac-integration
 x11-libs/libICE
 x11-libs/libXScrnSaver
@@ -898,6 +900,7 @@ dev-cpp
 dev-dotnet
 dev-games
 dev-php5
+dev-scheme
 dev-tcltk
 dev-texlive
 kde-base
@@ -1034,6 +1037,7 @@ dev-python/pycrypto
 dev-python/pycurl
 dev-python/pycxx
 dev-python/pyflakes
+dev-python/pyglet
 dev-python/pygments
 dev-python/pygobject
 dev-python/pygraphviz
