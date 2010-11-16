@@ -1,6 +1,38 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.287 2010/07/08 22:20:52 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.294 2010/10/13 12:55:34 caster Exp $
+
+  13 Oct 2010; Vlastimil Babka <caster@gentoo.org> -sun-jdk-1.6.0.20.ebuild,
+  -sun-jdk-1.6.0.21.ebuild:
+  Remove old.
+
+  13 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  sun-jdk-1.6.0.22.ebuild:
+  Stable on amd64 wrt bug #340421
+
+  13 Oct 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  sun-jdk-1.6.0.22.ebuild:
+  x86 stable wrt security bug #340421
+
+*sun-jdk-1.6.0.22 (12 Oct 2010)
+
+  12 Oct 2010; Vlastimil Babka <caster@gentoo.org> +sun-jdk-1.6.0.22.ebuild:
+  Version bump, security bug #340421.
+
+  11 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  sun-jdk-1.6.0.21.ebuild:
+  Stable on amd64 wrt bug #331635
+
+  11 Oct 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  sun-jdk-1.6.0.21.ebuild:
+  x86 stable wrt bug #331635
+
+  16 Sep 2010; Vlastimil Babka <caster@gentoo.org>
+  -sun-jdk-1.5.0.22-r1.ebuild, -files/sun-jdk-1.5.env:
+  Removal due to EOL and security, bug #292001. Do this to avoid pulling
+  other 1.5 JDK 'emerge -av --depclean sun-jdk:1.5 jdk:1.5 jre:1.5'. No
+  package in main gentoo tree on relevant arches depends on 1.5 JDK. If you
+  need 1.5 java, 'layman -a java-overlay'.
 
 *sun-jdk-1.6.0.21 (08 Jul 2010)
 

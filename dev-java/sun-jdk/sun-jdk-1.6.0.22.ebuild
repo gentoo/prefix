@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.20.ebuild,v 1.3 2010/04/26 19:10:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.22.ebuild,v 1.3 2010/10/13 11:23:53 hwoarang Exp $
 
 inherit versionator java-vm-2 eutils pax-utils
 
@@ -38,7 +38,7 @@ QA_DT_HASH="opt/${P}/.*"
 DEPEND="jce? ( =dev-java/sun-jce-bin-1.6.0* )"
 RDEPEND="${DEPEND}
 	doc? ( =dev-java/java-sdk-docs-1.6.0* )
-	kernel_linux? ( !prefix? ( sys-libs/glibc ) )
+	!prefix? ( sys-libs/glibc )
 	kernel_Solaris? ( app-arch/unzip )
 	alsa? ( media-libs/alsa-lib )
 	X? (
