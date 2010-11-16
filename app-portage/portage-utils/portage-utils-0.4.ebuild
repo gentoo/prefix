@@ -10,7 +10,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static"
 
 DEPEND="
@@ -72,7 +72,7 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	elog "/etc/portage/postsync.d/q-reinitialize has been installed for convenience"
+	elog "${EPREFIX}/etc/portage/postsync.d/q-reinitialize has been installed for convenience"
 	elog "If you wish for it to be automatically run at the end of every --sync:"
 	elog "   # chmod +x /etc/portage/postsync.d/q-reinitialize"
 	elog "Normally this should only take a few seconds to run but file systems"
