@@ -172,6 +172,7 @@ app-office/texmacs
 app-portage/eclass-manpages
 app-portage/eix
 app-portage/elogv
+app-portage/gentoolkit
 app-portage/gentoolkit-dev
 app-portage/prefix-chain-setup
 app-shells/bash-completion
