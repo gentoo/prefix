@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/libtool
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.179 2010/10/14 14:59:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.181 2010/11/13 12:02:17 armin76 Exp $
+
+  13 Nov 2010; Raúl Porcel <armin76@gentoo.org> libtool-2.2.10.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #338092
+
+  10 Nov 2010; Mike Frysinger <vapier@gentoo.org> libtool-2.4.ebuild:
+  Move into ~arch.
 
   14 Oct 2010; Brent Baude <ranger@gentoo.org> libtool-2.2.10.ebuild:
   Marking libtool-2.2.10 ppc for bug 338092
