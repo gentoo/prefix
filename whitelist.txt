@@ -933,6 +933,7 @@ sci-physics
 sci-visualization
 sys-auth
 sys-cluster
+sys-fs
 sys-kernel
 sys-power
 virtual
