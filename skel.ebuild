@@ -15,8 +15,6 @@
 # Defaults to 0 if not specified. The current PMS draft contains details on
 # a proposed EAPI=0 definition but is not finalized yet.
 # Eclasses will test for this variable if they need to use EAPI > 0 features.
-# Ebuilds should not define EAPI > 0 unless they absolutely need to use
-# features added in that version.
 #EAPI=0
 
 # inherit lists eclasses to inherit functions from. Almost all ebuilds should
