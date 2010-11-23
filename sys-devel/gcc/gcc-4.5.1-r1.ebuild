@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.5.0.ebuild,v 1.10 2010/07/26 05:06:55 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.5.1-r1.ebuild,v 1.1 2010/11/21 19:03:55 dirtyepic Exp $
 
-PATCH_VER="1.4"
+PATCH_VER="1.3"
 UCLIBC_VER="1.0"
 
 ETYPE="gcc-compiler"
@@ -21,7 +21,7 @@ SSP_UCLIBC_STABLE=""
 
 inherit toolchain flag-o-matic prefix
 
-DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
+DESCRIPTION="The GNU Compiler Collection."
 
 LICENSE="GPL-3 LGPL-3 || ( GPL-3 libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
@@ -88,16 +88,18 @@ src_unpack() {
 #	epatch "${FILESDIR}"/4.3.0/treelang-nomakeinfo.patch
 
 	# add support for 64-bits native target on Solaris
-	epatch "${FILESDIR}"/4.4.0/gcc-4.4.1-solaris-x86_64.patch
+	epatch "${FILESDIR}"/4.5.1/solaris-x86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
-	epatch "${FILESDIR}"/solaris-searchpath.patch
+# doesn't apply
+#	epatch "${FILESDIR}"/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
 	if use prefix; then
 		# replace nasty multilib dirs like ../lib64 that occur on
 		# --disable-multilib
-		epatch "${FILESDIR}"/4.3.3/prefix-search-dirs.patch
-		eprefixify "${S}"/gcc/gcc.c
+# maybe not needed anymore
+#		epatch "${FILESDIR}"/4.5.1/prefix-search-dirs.patch
+#		eprefixify "${S}"/gcc/gcc.c
 		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
 		# --enable-multilib), but this does make sense in prefix only
 		epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
@@ -114,11 +116,11 @@ src_unpack() {
 	fi
 
 	# Always behave as if -pthread were passed on AIX (#266548)
-	epatch "${FILESDIR}"/4.3.3/aix-force-pthread.patch
+	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
 
 	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
 
-	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
+	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
 
 	# libgcc's Makefiles reuses $T, work around that :(
 	[[ ${CHOST} == *-solaris* ]] && \

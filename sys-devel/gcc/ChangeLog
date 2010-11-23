@@ -1,6 +1,36 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.785 2010/10/19 14:25:37 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.793 2010/11/23 19:37:54 jer Exp $
+
+  23 Nov 2010; Jeroen Roovers <jer@gentoo.org> gcc-4.4.4-r2.ebuild:
+  Stable for PPC (bug #331531).
+
+*gcc-4.5.1-r1 (21 Nov 2010)
+
+  21 Nov 2010; Ryan Hill <dirtyepic@gentoo.org> -gcc-4.5.1.ebuild,
+  +gcc-4.5.1-r1.ebuild:
+  Revbump to push out patchset. No functional changes.
+
+  20 Nov 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.4-r2.ebuild:
+  alpha/ia64/sh/sparc stable wrt #331531
+
+  19 Nov 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.5.1.ebuild:
+  Patchset 1.3 fixes the following bugs:
+    #345219 - ICE with graphite flags
+    #341743 - wrong code with -fno-strict-overflow
+    PR45314 - miscompilation of i8k kernel driver
+
+  12 Nov 2010; <mattst88@gentoo.org> gcc-4.5.1.ebuild:
+  Added ~mips keyword.
+
+  03 Nov 2010; Markus Meier <maekke@gentoo.org> gcc-4.4.4-r2.ebuild:
+  arm stable, bug #331531
+
+  22 Oct 2010; Christian Faulhammer <fauli@gentoo.org> gcc-4.4.4-r2.ebuild:
+  stable x86, bug 331531
+
+  22 Oct 2010; Jeroen Roovers <jer@gentoo.org> gcc-4.4.4-r2.ebuild:
+  Stable for HPPA (bug #331531).
 
   19 Oct 2010; Markos Chandras <hwoarang@gentoo.org> gcc-4.4.4-r2.ebuild:
   Stable on amd64 wrt bug #331531
