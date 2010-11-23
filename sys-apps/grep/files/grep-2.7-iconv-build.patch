@@ -1,0 +1,35 @@
+From 0fdedfb32dda12320e10df7973b9f5e72d2ac66b Mon Sep 17 00:00:00 2001
+From: Bruno Haible <bruno@clisp.org>
+Date: Thu, 23 Sep 2010 11:18:22 +0000
+Subject: build: fix link error on systems that have libiconv but not libintl
+
+* src/Makefile.am (LDADD): Add $(LIBICONV).
+---
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 991c3b5..689ccab 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -36,7 +36,9 @@ libgrep_a_SOURCES = kwset.c dfa.c searchutils.c dfasearch.c kwsearch.c \
+ # must precede $(LIBINTL) in order to ensure we use GNU getopt.
+ # But libgreputils.a must also follow $(LIBINTL), since libintl uses
+ # replacement functions defined in libgreputils.a.
+-LDADD = libgrep.a ../lib/libgreputils.a $(LIBINTL) ../lib/libgreputils.a
++LDADD = \
++  libgrep.a \
++  ../lib/libgreputils.a $(LIBINTL) ../lib/libgreputils.a $(LIBICONV)
+ 
+ grep_LDADD = $(LDADD) $(LIB_PCRE)
+ localedir = $(datadir)/locale
+--
+cgit v0.8.3.2
+--- a/src/Makefile.in
++++ b/src/Makefile.in
+@@ -882,7 +882,7 @@
+ # must precede $(LIBINTL) in order to ensure we use GNU getopt.
+ # But libgreputils.a must also follow $(LIBINTL), since libintl uses
+ # replacement functions defined in libgreputils.a.
+-LDADD = libgrep.a ../lib/libgreputils.a $(LIBINTL) ../lib/libgreputils.a
++LDADD = libgrep.a ../lib/libgreputils.a $(LIBINTL) ../lib/libgreputils.a $(LIBICONV)
+ grep_LDADD = $(LDADD) $(LIB_PCRE)
+ AM_CPPFLAGS = -I$(top_builddir)/lib -I$(top_srcdir)/lib
+ EXTRA_DIST = dosbuf.c

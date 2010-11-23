@@ -4,6 +4,8 @@
 
 EAPI="3"
 
+inherit eutils
+
 DESCRIPTION="GNU regular expression matcher"
 HOMEPAGE="http://www.gnu.org/software/grep/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.xz
@@ -18,6 +20,10 @@ RDEPEND="nls? ( virtual/libintl )
 	pcre? ( >=dev-libs/libpcre-7.8-r1 )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-iconv-build.patch
+}
 
 src_configure() {
 	econf \
