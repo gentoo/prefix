@@ -31,13 +31,6 @@ sandbox_death_notice() {
 	ewarn "FEATURES=-sandbox emerge sandbox"
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.0-prefix.patch
-	eprefixify etc/sandbox.d/00default
-}
-
 sb_get_install_abis() { use multilib && get_install_abis || echo ${ABI:-default} ; }
 
 src_unpack() {
@@ -46,6 +39,8 @@ src_unpack() {
 		# When upgrading from older version, xz unpack may not work #271543
 		xz -dc "${DISTDIR}/${A}" | tar xf - || die
 	fi
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-2.2-prefix.patch
 }
 
 src_compile() {

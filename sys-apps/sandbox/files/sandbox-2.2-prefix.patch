@@ -1,0 +1,26 @@
+* heiko's way of getting this thing going
+http://repo.or.cz/w/heikos-i-prolly-break-your-prefix-overlay.git?a=blob;f=sys-apps/sandbox/files/sandbox-2.0-prefix.patch;h=7b4f568679522682ba784853829a0f2b1272b21d;hb=HEAD
+
+diff --git a/libsbutil/get_sandbox_lib.c b/libsbutil/get_sandbox_lib.c
+index b64a5ac..1cf4832 100644
+--- a/libsbutil/get_sandbox_lib.c
++++ b/libsbutil/get_sandbox_lib.c
+@@ -22,6 +22,7 @@
+ void get_sandbox_lib(char *path)
+ {
+ 	save_errno();
++#ifndef GENTOO_PREFIX
+ 	strcpy(path, LIB_NAME);
+ 	if (strncmp("/usr/lib", LIBSANDBOX_PATH, 8)) {
+ 		void *hndl = dlopen(path, RTLD_LAZY);
+@@ -30,5 +31,10 @@ void get_sandbox_lib(char *path)
+ 		else
+ 			dlclose(hndl);
+ 	}
++#else
++	/* Gentoo Prefix always needs the absolute path due to DT_R*PATH usage
++	 * within dlopen(). */
++	snprintf(path, SB_PATH_MAX, "%s/%s", LIBSANDBOX_PATH, LIB_NAME);
++#endif
+ 	restore_errno();
+ }
