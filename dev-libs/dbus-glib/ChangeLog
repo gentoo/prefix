@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/dbus-glib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.67 2010/07/18 10:59:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.70 2010/11/10 16:49:58 ssuominen Exp $
+
+*dbus-glib-0.92 (10 Nov 2010)
+
+  10 Nov 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +dbus-glib-0.92.ebuild:
+  Version bump.
+
+  30 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> dbus-glib-0.88.ebuild:
+  ppc64 stable wrt #343323
+
+*dbus-glib-0.88 (10 Oct 2010)
+
+  10 Oct 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +dbus-glib-0.88.ebuild:
+  Version bump wrt #340409 by "teidakankan".
 
   18 Jul 2010; Raúl Porcel <armin76@gentoo.org> dbus-glib-0.86.ebuild:
   alpha/ia64/s390/sh/sparc stable wrt #319965
