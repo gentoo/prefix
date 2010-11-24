@@ -1,6 +1,51 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.229 2010/08/01 11:09:51 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.239 2010/10/29 20:05:13 eva Exp $
+
+  29 Oct 2010; Gilles Dartiguelongue <eva@gentoo.org> libsoup-2.24.3.ebuild,
+  -libsoup-2.26.3-r3.ebuild,
+  -files/libsoup-2.26.3-fix-build-without-gnome-with-doc.patch,
+  -files/libsoup-2.26.3-gnutls-strict.patch, -libsoup-2.28.2.ebuild,
+  -libsoup-2.28.2-r1.ebuild:
+  Clean up old revisions.
+
+  24 Oct 2010; Pacho Ramos <pacho@gentoo.org> libsoup-2.32.0.ebuild:
+  Drop PDEPEND on libsoup-gnome, it shouldn't be needed now (see bug #340293
+  for reference).
+
+  17 Oct 2010; Raúl Porcel <armin76@gentoo.org> libsoup-2.30.2-r1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #324077
+
+  14 Oct 2010; Markus Meier <maekke@gentoo.org> libsoup-2.30.2-r1.ebuild:
+  arm stable, bug #324077
+
+*libsoup-2.32.0 (09 Oct 2010)
+
+  09 Oct 2010; Pacho Ramos <pacho@gentoo.org> +libsoup-2.32.0.ebuild:
+  Version bump for Gnome 2.32: Fixed support for more recent
+  gobject-introspection, disabled TLS 1.2 in addition to the
+  already-disabled 1.1 and 1.0 making libsoup usable with gnutls 2.10, other
+  bugfixes and translation updates. 'Fix test to follow POSIX' looks to be
+  no longer needed, gir patches neither since they were pushed upstream,
+  system-lib patch taken from overlay, eautoreconf is only needed with USE
+  'doc' and don't waste time building tests (bug #226271).
+
+  07 Oct 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libsoup-2.30.2-r1.ebuild:
+  ppc64 stable wrt #324077
+
+  11 Sep 2010; Joseph Jezak <josejx@gentoo.org> libsoup-2.30.2-r1.ebuild:
+  Marked ppc for bug #324077.
+
+  09 Sep 2010; Brent Baude <ranger@gentoo.org> libsoup-2.28.2-r1.ebuild:
+  Marking libsoup-2.28.2-r1 ppc64 for bug 326589
+
+  13 Aug 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  libsoup-2.30.2-r1.ebuild:
+  Raise gtk-doc dependency according to configure.
+
+  05 Aug 2010; Jeroen Roovers <jer@gentoo.org> libsoup-2.30.2-r1.ebuild:
+  Stable for HPPA (bug #324077).
 
   01 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
   libsoup-2.30.2-r1.ebuild:

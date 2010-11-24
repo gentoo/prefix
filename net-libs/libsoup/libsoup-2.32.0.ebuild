@@ -1,25 +1,23 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.30.2-r1.ebuild,v 1.11 2010/10/17 14:49:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.32.0.ebuild,v 1.2 2010/10/24 13:43:42 pacho Exp $
 
-EAPI="2"
+EAPI="3"
+GCONF_DEBUG="yes"
 
 inherit autotools eutils gnome2
 
 DESCRIPTION="An HTTP library implementation in C"
 HOMEPAGE="http://www.gnome.org/"
-SRC_URI="${SRC_URI}
-	mirror://gentoo/${PN}-2.30.1-build-gir-patches.tar.bz2"
 
 LICENSE="LGPL-2"
 SLOT="2.4"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-# Do NOT build with --disable-debug/--enable-debug=no - gnome2.eclass takes care of that
-IUSE="debug doc +introspection gnome ssl"
+IUSE="debug doc +introspection ssl test"
 
 RDEPEND=">=dev-libs/glib-2.21.3
 	>=dev-libs/libxml2-2
-	introspection? ( >=dev-libs/gobject-introspection-0.6.7 )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.5 )
 	ssl? ( >=net-libs/gnutls-2.1.7 )"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9
@@ -29,7 +27,6 @@ DEPEND="${RDEPEND}
 #		www-servers/apache
 #		dev-lang/php
 #		net-misc/curl )
-PDEPEND="gnome? ( ~net-libs/${PN}-gnome-${PV} )"
 
 DOCS="AUTHORS NEWS README"
 
@@ -51,29 +48,22 @@ src_configure() {
 src_prepare() {
 	gnome2_src_prepare
 
-	# Fix test to follow POSIX (for x86-fbsd)
-	# No patch to prevent having to eautoreconf
-	sed -e 's/\(test.*\)==/\1=/g' -i configure.ac configure || die "sed failed"
+	if ! use test; then
+		# don't waste time building tests (bug #226271)
+		sed 's/^\(SUBDIRS =.*\)tests\(.*\)$/\1\2/' -i Makefile.am Makefile.in \
+			|| die "sed failed"
+	fi
 
 	# Patch *must* be applied conditionally (see patch for details)
 	if use doc; then
-		# Fix bug 268592 (build fails !gnome && doc)
+		# Fix bug 268592 (build fails without gnome && doc)
 		epatch "${FILESDIR}/${PN}-2.30.1-fix-build-without-gnome-with-doc.patch"
-	fi
-
-	if use introspection; then
-		epatch "${WORKDIR}/${PN}-2.30.1-build-gir-1.patch"
-		epatch "${WORKDIR}/${PN}-2.30.1-build-gir-2.patch"
+		eautoreconf
 	fi
 
 	# should not do any harm on other platforms, but who knows!
 	# WARNING: libsoup may misbehave on interix3 regarding timeouts
 	# on sockets :)
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-2.4.1-interix3.patch
-	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
-
-	# Fix for new versions of gnutls (bug #307343, GNOME bug #22857)
-	epatch "${FILESDIR}/${P}-disable-tls1.2.patch"
-
-	eautoreconf
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-2.30.2-interix5.patch
 }
