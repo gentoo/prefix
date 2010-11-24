@@ -1,0 +1,24 @@
+http://developer.pidgin.im/ticket/12638
+
+--- libpurple/plugins/perl/common/Makefile.PL.in	2010-08-31 07:25:25 +0000
++++ libpurple/plugins/perl/common/Makefile.PL.in	2010-08-31 07:25:52 +0000
+@@ -10,6 +10,7 @@
+       (ABSTRACT_FROM    => '@srcdir@/Purple.pm', # finds $ABSTRACT
+        AUTHOR           => 'Purple <http://pidgin.im/>') : ()),
+     'DEFINE'            => '@DEBUG_CFLAGS@',
++    'dynamic_lib'       => { 'OTHERLDFLAGS' => '@LDFLAGS@' },
+     'INC'               => '-I. -I@srcdir@ -I@top_srcdir@ -I@top_srcdir@/libpurple @GLIB_CFLAGS@',
+     'OBJECT'            => '$(O_FILES)', # link all the C files too
+ #    'OPTIMIZE'          => '-g', # For debugging
+
+--- pidgin/plugins/perl/common/Makefile.PL.in	2010-08-31 07:25:25 +0000
++++ pidgin/plugins/perl/common/Makefile.PL.in	2010-08-31 07:26:10 +0000
+@@ -9,6 +9,7 @@
+       ('ABSTRACT_FROM' => '@srcdir@/Pidgin.pm', # finds $ABSTRACT
+        'AUTHOR'        => 'Pidgin <http://pidgin.im/>') :  ()),
+     'DEFINE'        => '@DEBUG_CFLAGS@',
++    'dynamic_lib'       => { 'OTHERLDFLAGS' => '@LDFLAGS@' },
+     'INC'           => '-I. -I@srcdir@ -I@top_srcdir@ -I@top_srcdir@/libpurple -I@top_srcdir@/pidgin @GTK_CFLAGS@',
+     'OBJECT'        => '$(O_FILES)', # link all the C files too
+     'TYPEMAPS'      => ["@top_srcdir@/libpurple/plugins/perl/common/typemap"],
+

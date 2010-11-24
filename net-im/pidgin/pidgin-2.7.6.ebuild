@@ -1,11 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.7.2.ebuild,v 1.5 2010/07/24 16:48:39 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.7.6.ebuild,v 1.1 2010/11/22 16:29:07 tester Exp $
 
 EAPI=2
 
 GENTOO_DEPEND_ON_PERL=no
-inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 python
+inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 python autotools
 
 DESCRIPTION="GTK Instant Messenger client"
 HOMEPAGE="http://pidgin.im/"
@@ -14,10 +14,9 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="dbus debug doc eds gadu gnutls +gstreamer +gtk idn krb4 meanwhile"
+IUSE="dbus debug doc eds gadu gnutls +gstreamer +gtk idn meanwhile"
 IUSE+=" networkmanager nls perl silc tcl tk spell qq sasl +startup-notification"
 IUSE+=" ncurses groupwise prediction python +xscreensaver zephyr zeroconf" # mono"
-
 IUSE+=" aqua"
 
 # dbus requires python to generate C code for dbus bindings (thus DEPEND only).
@@ -52,7 +51,6 @@ RDEPEND="
 	!gnutls? ( >=dev-libs/nss-3.11 )
 	meanwhile? ( net-libs/meanwhile )
 	silc? ( >=net-im/silc-toolkit-1.0.1 )
-	zephyr? ( >=app-crypt/mit-krb5-1.3.6-r1[krb4?] )
 	tcl? ( dev-lang/tcl )
 	tk? ( dev-lang/tk )
 	sasl? ( dev-libs/cyrus-sasl:2 )
@@ -61,15 +59,18 @@ RDEPEND="
 	# Mono support crashes pidgin
 	#mono? ( dev-lang/mono )"
 
+# We want nls in case gtk is enabled, bug #
+NLS_DEPEND=">=dev-util/intltool-0.41.1 sys-devel/gettext"
+
 DEPEND="$RDEPEND
 	dev-lang/perl
 	dev-perl/XML-Parser
 	dev-util/pkgconfig
-	gtk? ( x11-proto/scrnsaverproto )
+	gtk? ( x11-proto/scrnsaverproto
+		${NLS_DEPEND} )
 	dbus? ( <dev-lang/python-3 )
 	doc? ( app-doc/doxygen )
-	nls? ( >=dev-util/intltool-0.41.1
-		sys-devel/gettext )"
+	!gtk? ( nls? ( ${NLS_DEPEND} ) )"
 
 DOCS="AUTHORS HACKING NEWS README ChangeLog"
 
@@ -103,18 +104,25 @@ DYNAMIC_PRPLS="irc,jabber,oscar,yahoo,simple,msn,myspace"
 
 pkg_setup() {
 	if ! use gtk && ! use ncurses ; then
-		einfo
 		elog "You did not pick the ncurses or gtk use flags, only libpurple"
 		elog "will be built."
-		einfo
+	fi
+	if use gtk && ! use nls; then
+		ewarn "gtk build => nls is enabled!"
 	fi
 	if use dbus && ! use python; then
-		elog "It's impossible to disable linkage with python in case dbus is enabled."
+		elog "dbus is enabled, no way to disable linkage with python => python is enabled"
 	fi
 	if use dbus || { use ncurses && use python; }; then
 		python_set_active_version 2
 		python_pkg_setup
 	fi
+}
+
+src_prepare() {
+	gnome2_src_prepare
+	epatch "${FILESDIR}"/${PN}-2.7.3-ldflags.patch
+	eautoreconf
 }
 
 src_configure() {
@@ -154,10 +162,12 @@ src_configure() {
 	fi
 
 	econf \
+		--disable-silent-rules \
 		$(use_enable ncurses consoleui) \
-		$(use_enable nls) \
 		$(use_enable gtk gtkui) \
 		$(use_enable gtk sm) \
+		$(use gtk || use_enable nls) \
+		$(use gtk && echo "--enable-nls") \
 		$(use gtk && use_enable startup-notification) \
 		$(use gtk && use_enable xscreensaver screensaver) \
 		$(use gtk && use_enable prediction cap) \
@@ -175,14 +185,10 @@ src_configure() {
 		$(use_enable sasl cyrus-sasl ) \
 		$(use_enable doc doxygen) \
 		$(use_enable networkmanager nm) \
-		$(use zephyr && use_with krb4) \
 		$(use_enable zeroconf avahi) \
 		$(use_enable idn) \
-		$(use_enable aqua gtkstatusicon) \
-		$(use_enable !aqua gestures) \
-		$(use_enable !aqua startup-notification) \
-		$(use_with !aqua x) \
-		"--with-dynamic-prpls=${DYNAMIC_PRPLS}" \
+		--with-system-ssl-certs="${EPREFIX}/etc/ssl/certs/" \
+		--with-dynamic-prpls="${DYNAMIC_PRPLS}" \
 		--disable-mono \
 		--x-includes="${EPREFIX}"/usr/include/X11 \
 		${myconf}
@@ -206,4 +212,6 @@ src_install() {
 		done
 	fi
 	use perl && fixlocalpod
+
+	find "${ED}" -type f -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
 }

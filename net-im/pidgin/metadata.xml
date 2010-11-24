@@ -10,7 +10,6 @@ Pidgin is an instant messaging program for Windows, Linux, BSD, and other Unixes
 	<flag name='groupwise'>Enable Novell Groupwise protocol support</flag>
 	<flag name='gstreamer'>Enables voice and video sessions</flag>
 	<flag name='gtk'>Builds Pidgin, the GTK+ interface</flag>
-	<flag name='krb4'>Compile Zephyr plugin with Kerberos 4 support</flag>
 	<flag name='meanwhile'>Enable meanwhile support for Sametime protocol</flag>
 	<flag name='ncurses'>Build finch, console interface</flag>
 	<flag name='prediction'>Enable Contact Availability Prediction plugin</flag>

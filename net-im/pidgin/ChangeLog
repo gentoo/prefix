@@ -1,6 +1,113 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.182 2010/07/24 16:48:39 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.207 2010/11/22 16:29:07 tester Exp $
+
+*pidgin-2.7.6 (22 Nov 2010)
+
+  22 Nov 2010; Olivier Crête <tester@gentoo.org> -pidgin-2.7.3.ebuild,
+  +pidgin-2.7.6.ebuild:
+  Version bump, bug #346407
+
+  21 Nov 2010; Michael Weber <xmw@gentoo.org> pidgin-2.7.5.ebuild:
+  Added ~arm keyword (bug 343505)
+
+  14 Nov 2010; Raúl Porcel <armin76@gentoo.org> pidgin-2.7.5.ebuild:
+  alpha/ia64/sparc stable wrt #343653
+
+  09 Nov 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.5.ebuild:
+  Stable for HPPA PPC (bug #343653).
+
+  04 Nov 2010; Christian Faulhammer <fauli@gentoo.org> pidgin-2.7.5.ebuild:
+  stable x86, bug 343653
+
+  03 Nov 2010; Markos Chandras <hwoarang@gentoo.org> pidgin-2.7.5.ebuild:
+  Stable on amd64 wrt bug #343653
+
+*pidgin-2.7.5 (02 Nov 2010)
+
+  02 Nov 2010; Peter Volkov <pva@gentoo.org> -pidgin-2.7.4-r1.ebuild,
+  -files/pidgin-2.7.4-bonjour-crash.patch,
+  -files/pidgin-2.7.4-icq-authorization-empty-nick.patch,
+  -files/pidgin-2.7.4-icq-html-regression.patch,
+  -files/pidgin-2.7.4-missing-break-bug-12810.patch, +pidgin-2.7.5.ebuild:
+  Version bump, bug #343653, thank tman for report.
+
+  30 Oct 2010; Raúl Porcel <armin76@gentoo.org> pidgin-2.7.4.ebuild:
+  alpha/ia64/sparc stable wrt #342059
+
+  29 Oct 2010; Mark Loeser <halcy0n@gentoo.org> pidgin-2.7.4.ebuild:
+  Stable for ppc64; bug #342059
+
+*pidgin-2.7.4-r1 (29 Oct 2010)
+
+  29 Oct 2010; Peter Volkov <pva@gentoo.org> +pidgin-2.7.4-r1.ebuild,
+  +files/pidgin-2.7.4-bonjour-crash.patch,
+  +files/pidgin-2.7.4-icq-authorization-empty-nick.patch,
+  +files/pidgin-2.7.4-icq-html-regression.patch,
+  +files/pidgin-2.7.4-missing-break-bug-12810.patch:
+  Backport upstream patches to fix ICQ regressions (e.g. bug #342779 thank
+  Phil Stracchino for report) and crashes.
+
+  26 Oct 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.4.ebuild:
+  Stable for PPC (bug #342059).
+
+  26 Oct 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.4.ebuild:
+  Stable for HPPA (bug #342059).
+
+  25 Oct 2010; Markos Chandras <hwoarang@gentoo.org> pidgin-2.7.4.ebuild:
+  Stable on amd64 wrt bug #342059
+
+  25 Oct 2010; Christian Faulhammer <fauli@gentoo.org> pidgin-2.7.4.ebuild:
+  stable x86, security bug 342059
+
+*pidgin-2.7.4 (25 Oct 2010)
+
+  25 Oct 2010; Peter Volkov <pva@gentoo.org>
+  -files/pidgin-2.7.0-icq-fix.patch, -pidgin-2.7.1-r1.ebuild,
+  -pidgin-2.7.2.ebuild, -pidgin-2.7.2-r1.ebuild,
+  +files/pidgin-2.7.3-ldflags.patch, +pidgin-2.7.4.ebuild:
+  Version bump, bug #342017 by tman. Fixes remote crash, security bug
+  #342059 by Tim Sammut. Respect LDFLAGS in perl bindings, bug #331851,
+  thank Diego E. 'Flameeyes' Pettenò for report and Markos Chandras for
+  initial patch. Should fix crash reported in bug #339938 by Wu, Shanliang.
+  Force nls if gtk enabled to have desktop entry, bug #322717, thank Marcin
+  Deranek for report. Remove .la files. Drop old.
+
+  15 Oct 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.3.ebuild:
+  Stable for HPPA (bug #338022).
+
+  09 Oct 2010; Raúl Porcel <armin76@gentoo.org> pidgin-2.7.3.ebuild:
+  alpha/ia64/sparc stable wrt #338022
+
+  30 Sep 2010; Brent Baude <ranger@gentoo.org> pidgin-2.7.3.ebuild:
+  stable ppc64, bug 338022
+
+  28 Sep 2010; Brent Baude <ranger@gentoo.org> pidgin-2.7.3.ebuild:
+  Marking pidgin-2.7.3 ppc for bug 338022
+
+  25 Sep 2010; Markus Meier <maekke@gentoo.org> pidgin-2.7.3.ebuild:
+  amd64/x86 stable, bug #338022
+
+*pidgin-2.7.3 (12 Aug 2010)
+
+  12 Aug 2010; Peter Volkov <pva@gentoo.org> +pidgin-2.7.3.ebuild:
+  Version bump. Thank Jeroen Roovers for report, bug #332275.
+
+  10 Aug 2010; Brent Baude <ranger@gentoo.org> pidgin-2.7.2.ebuild:
+  Marking pidgin-2.7.2 ppc64 for bug 328667
+
+  06 Aug 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.2.ebuild:
+  Stable for PPC (bug #328667).
+
+*pidgin-2.7.2-r1 (05 Aug 2010)
+
+  05 Aug 2010; Markos Chandras <hwoarang@gentoo.org>
+  +pidgin-2.7.2-r1.ebuild, +files/pidgin-2.7.2-ldflags.patch:
+  Respect LDFLAGS wrt bug #329557
+
+  05 Aug 2010; Samuli Suominen <ssuominen@gentoo.org>
+  pidgin-2.7.1-r1.ebuild, pidgin-2.7.2.ebuild:
+  Remove USE="krb4" because app-crypt/mit-krb5 doesn't have krb4 support anymore.
 
   24 Jul 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.2.ebuild:
   Stable for HPPA (bug #328667).
