@@ -69,6 +69,7 @@ app-arch/ppmd
 app-arch/rzip
 app-arch/sharutils
 app-arch/star
+app-arch/tar
 app-arch/unace
 app-arch/unadf
 app-arch/unarj
