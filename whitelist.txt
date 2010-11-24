@@ -310,6 +310,7 @@ dev-haskell/zlib
 dev-lang/blassic
 dev-lang/cfortran
 dev-lang/cll1h
+dev-lang/clojure
 dev-lang/erlang
 dev-lang/ferite
 dev-lang/gforth
