@@ -1,6 +1,87 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.320 2010/07/28 06:12:23 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.342 2010/11/15 18:57:06 tove Exp $
+
+  15 Nov 2010; Torsten Veller <tove@gentoo.org> -perl-5.12.1-r1.ebuild,
+  -perl-5.12.1-r2.ebuild, -perl-5.12.2.ebuild:
+  Cleanup
+
+  13 Nov 2010; Raúl Porcel <armin76@gentoo.org> perl-5.12.2-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #340023
+
+*perl-5.12.2-r3 (08 Nov 2010)
+
+  08 Nov 2010; Torsten Veller <tove@gentoo.org> +perl-5.12.2-r3.ebuild:
+  Remove the unneeded autoload section from Compress::Zlib (#344553)
+
+  06 Nov 2010; Markus Meier <maekke@gentoo.org> perl-5.12.2-r2.ebuild:
+  arm stable, bug #343795
+
+  05 Nov 2010; Markos Chandras <hwoarang@gentoo.org> perl-5.12.2-r2.ebuild:
+  Stable on amd64 wrt bug #343795
+
+  05 Nov 2010; Jeroen Roovers <jer@gentoo.org> perl-5.12.2-r2.ebuild:
+  Stable for HPPA PPC (bug #343795).
+
+  04 Nov 2010; Christian Faulhammer <fauli@gentoo.org>
+  perl-5.12.2-r2.ebuild:
+  stable x86, bug 343795
+
+*perl-5.12.2-r2 (31 Oct 2010)
+
+  31 Oct 2010; Torsten Veller <tove@gentoo.org> +perl-5.12.2-r2.ebuild:
+  Fix regression: Add /usr/local/lib/site_perl and /etc/perl to INC
+  (#343225). enc2xs ignores missing @INC directories (#338802). Cleanup
+  MINIMAL_PERL_INSTALL. Backport patch for deprecated use of "goto" to jump
+  into a construct in h2ph
+
+  28 Oct 2010; Torsten Veller <tove@gentoo.org> perl-5.12.2-r1.ebuild:
+  Add Tie::Hash to MINIMAL_PERL_INSTALL
+
+  24 Oct 2010; Markus Meier <maekke@gentoo.org> perl-5.12.2-r1.ebuild:
+  arm stable, bug #340023
+
+  24 Oct 2010; Jeroen Roovers <jer@gentoo.org> perl-5.12.2-r1.ebuild:
+  Stable for HPPA (bug #340023).
+
+  24 Oct 2010; Brent Baude <ranger@gentoo.org> perl-5.12.2-r1.ebuild:
+  Marking perl-5.12.2-r1 ppc for bug 340023
+
+  22 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> perl-5.12.2-r1.ebuild:
+  ppc64 stable wrt #340023
+
+  22 Oct 2010; Markos Chandras <hwoarang@gentoo.org> perl-5.12.2-r1.ebuild:
+  Stable on amd64 wrt bug #340023
+
+  22 Oct 2010; Christian Faulhammer <fauli@gentoo.org>
+  perl-5.12.2-r1.ebuild:
+  stable x86, bug 340023
+
+  07 Oct 2010; Torsten Veller <tove@gentoo.org> perl-5.12.2-r1.ebuild:
+  Create VENDOR_ARCH to shut up a enc2xs file not found warning (#338802).
+  Raise perl-cleaner version
+
+  24 Sep 2010; Torsten Veller <tove@gentoo.org> perl-5.12.2-r1.ebuild:
+  Disable tests if run as root until there is a solution (#328793). Don't
+  try to create a link for missing cpan-run-perl manpage (#307179)
+
+*perl-5.12.2-r1 (21 Sep 2010)
+
+  21 Sep 2010; Torsten Veller <tove@gentoo.org> +perl-5.12.2-r1.ebuild:
+  Add LDFLAGS to ldflags and to lddlflags via config.over. Fixes bug #181435
+
+  20 Sep 2010; Mart Raudsepp <leio@gentoo.org> perl-5.12.2.ebuild:
+  Add back ~mips wrt #288028
+
+*perl-5.12.2 (07 Sep 2010)
+
+  07 Sep 2010; Torsten Veller <tove@gentoo.org> +perl-5.12.2.ebuild:
+  Version bump
+
+*perl-5.12.1-r2 (30 Aug 2010)
+
+  30 Aug 2010; Torsten Veller <tove@gentoo.org> +perl-5.12.1-r2.ebuild:
+  Only add debugging code if USE=debug is set. See bug 335213
 
   28 Jul 2010; Torsten Veller <tove@gentoo.org> -perl-5.12.1.ebuild,
   perl-5.12.1-r1.ebuild:
