@@ -42,7 +42,9 @@ src_compile() {
 	local myconf
 	use userland_GNU || myconf=" --program-prefix=g"
 
-	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null ; then
+	# grep for re_set_syntax is to make sure we have sufficient support in
+	# regex.h, see fex. bug #346731
+	if echo "#include <regex.h>" | $(tc-getCPP) | grep re_set_syntax > /dev/null ; then
 		myconf="${myconf} --without-included-regex"
 	fi
 	use selinux || myconf="${myconf} --without-selinux" # no --with-selinux
