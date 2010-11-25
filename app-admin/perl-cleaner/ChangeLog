@@ -1,6 +1,51 @@
 # ChangeLog for app-admin/perl-cleaner
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.61 2010/08/02 14:16:46 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.72 2010/11/13 15:54:32 armin76 Exp $
+
+  13 Nov 2010; Raúl Porcel <armin76@gentoo.org> perl-cleaner-2.7.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #340023
+
+  24 Oct 2010; Markus Meier <maekke@gentoo.org> perl-cleaner-2.7.ebuild:
+  arm stable, bug #340023
+
+  24 Oct 2010; Jeroen Roovers <jer@gentoo.org> perl-cleaner-2.7.ebuild:
+  Stable for HPPA (bug #340023).
+
+  24 Oct 2010; Brent Baude <ranger@gentoo.org> perl-cleaner-2.7.ebuild:
+  Marking perl-cleaner-2.7 ppc for bug 340023
+
+  22 Oct 2010; Samuli Suominen <ssuominen@gentoo.org>
+  perl-cleaner-2.7.ebuild:
+  ppc64 stable wrt #340023
+
+  22 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  perl-cleaner-2.7.ebuild:
+  Stable on amd64 wrt bug #340023
+
+  22 Oct 2010; Christian Faulhammer <fauli@gentoo.org>
+  perl-cleaner-2.7.ebuild:
+  stable x86, bug 340023
+
+*perl-cleaner-2.7 (22 Oct 2010)
+
+  22 Oct 2010; Torsten Veller <tove@gentoo.org> +perl-cleaner-2.7.ebuild:
+  Version bump. Let leftovers search for old files not only in current INC
+
+*perl-cleaner-2.6 (07 Oct 2010)
+
+  07 Oct 2010; Torsten Veller <tove@gentoo.org> +perl-cleaner-2.6.ebuild:
+  More quoting fixes
+
+*perl-cleaner-2.5 (24 Sep 2010)
+
+  24 Sep 2010; Torsten Veller <tove@gentoo.org> +perl-cleaner-2.5.ebuild:
+  Removes all .ph files which are not up to date
+
+*perl-cleaner-2.4 (30 Aug 2010)
+
+  30 Aug 2010; Torsten Veller <tove@gentoo.org> +perl-cleaner-2.4.ebuild:
+  Always reinstall the virtuals, cause it fails if a perl-core is updated
+  while cleaning
 
 *perl-cleaner-2.3 (02 Aug 2010)
 
