@@ -43,7 +43,7 @@ src_configure() {
 		$(use_enable doc doxygen-docs)
 		$(use_enable static-libs static)
 		$(use_enable doc gtk-doc)
-		--with-html-dir=/usr/share/doc/${PF}/html"
+		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF}/html"
 
 	mkdir "${BD}"
 	cd "${BD}"
