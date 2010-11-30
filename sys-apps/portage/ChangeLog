@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.17304 (30 Nov 2010)
+
+  30 Nov 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.17294.ebuild, +portage-2.2.01.17304.ebuild:
+  Bump, fixes for bugs #344307 (numeric group ids), #345633 (unmerge out of
+  prefix) and permission denied errors during merging on directories before
+  the prefix
+
 *portage-2.2.01.17294 (29 Nov 2010)
 
   29 Nov 2010; Fabian Groffen <grobian@gentoo.org>
