@@ -1,0 +1,18 @@
+We always need the Prefix search path, because we got our deps straight.
+
+--- setup.py
++++ setup.py
+@@ -397,12 +397,7 @@
+                     for directory in reversed(options.dirs):
+                         add_dir_to_list(dir_list, directory)
+ 
+-        if os.path.normpath(sys.prefix) != '/usr' \
+-                and not sysconfig.get_config_var('PYTHONFRAMEWORK'):
+-            # OSX note: Don't add LIBDIR and INCLUDEDIR to building a framework
+-            # (PYTHONFRAMEWORK is set) to avoid # linking problems when
+-            # building a framework with different architectures than
+-            # the one that is currently installed (issue #7473)
++        if os.path.normpath(sys.prefix) != '/usr':
+             add_dir_to_list(self.compiler.library_dirs,
+                             sys.prefix + "/lib")
+             add_dir_to_list(self.compiler.include_dirs,

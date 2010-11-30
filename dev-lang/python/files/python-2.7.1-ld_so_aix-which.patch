@@ -1,0 +1,31 @@
+do not use 'which' to find binaries, but go through the PATH.
+http://bugs.python.org/issue7742
+
+--- Python-2.7.1/Modules/ld_so_aix.in
++++ Python-2.7.1/Modules/ld_so_aix.in
+@@ -73,7 +73,24 @@
+ 
+ # Check for existence of compiler.
+ CC=$1; shift
+-whichcc=`which $CC`
++
++pywhich() {
++	save_IFS=${IFS}
++	IFS=:
++	for p in ${PATH}
++	do
++		if test -x "${p}/$1"
++		then
++			echo "${p}/$1"
++			IFS=${save_IFS}
++			return 0
++		fi
++	done
++	IFS=${save_IFS}
++	return 1
++}
++
++whichcc=`pywhich $CC`
+ 
+ if test ! -x "$whichcc"; then
+   echo "ld_so_aix: Compiler '$CC' not found; exiting."
