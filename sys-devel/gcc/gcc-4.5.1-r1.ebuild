@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.5.1-r1.ebuild,v 1.2 2010/11/29 20:40:15 dirtyepic Exp $
 
-
 PATCH_VER="1.4"
 UCLIBC_VER="1.0"
 
