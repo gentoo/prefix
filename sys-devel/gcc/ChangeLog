@@ -1,6 +1,19 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.793 2010/11/23 19:37:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.797 2010/11/29 20:52:13 dirtyepic Exp $
+
+  29 Nov 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.4.4-r2.ebuild,
+  gcc-4.4.5.ebuild:
+  Bump patchsets for parallel build error (bug #337715).
+
+  29 Nov 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.5.1-r1.ebuild:
+  Bump patchset to fix graphite ICEs (bug #346445).
+
+  29 Nov 2010; Brent Baude <ranger@gentoo.org> gcc-4.4.4-r2.ebuild:
+  Marking gcc-4.4.4-r2 ppc64 for bug 331531
+
+  27 Nov 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.4-r2.ebuild:
+  s390 stable
 
   23 Nov 2010; Jeroen Roovers <jer@gentoo.org> gcc-4.4.4-r2.ebuild:
   Stable for PPC (bug #331531).
