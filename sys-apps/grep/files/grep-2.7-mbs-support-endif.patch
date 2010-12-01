@@ -1,0 +1,23 @@
+http://bugs.gentoo.org/show_bug.cgi?id=347341
+http://thread.gmane.org/gmane.comp.gnu.grep.bugs/3404
+
+--- src/dfa.c
++++ src/dfa.c
+@@ -3122,8 +3122,6 @@
+   return s1;
+ }
+ 
+-#endif /* MBS_SUPPORT */
+-
+ /* Initialize mblen_buf and inputwcs with data from the next line.  */
+ 
+ static void
+@@ -3171,6 +3169,8 @@
+   inputwcs[i] = 0; /* sentinel */
+ }
+ 
++#endif /* MBS_SUPPORT */
++
+ /* Search through a buffer looking for a match to the given struct dfa.
+    Find the first occurrence of a string matching the regexp in the
+    buffer, and the shortest possible version thereof.  Return a pointer to

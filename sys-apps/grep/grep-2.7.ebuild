@@ -23,6 +23,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-iconv-build.patch
+	epatch "${FILESDIR}"/${P}-mbs-support-endif.patch
 }
 
 src_configure() {
