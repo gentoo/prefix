@@ -272,7 +272,6 @@ app-text/wdiff
 app-text/wgetpaste
 app-text/wpd2sxw
 app-text/xdvik
-app-text/xdvipdfmx
 app-text/xhtml1
 app-text/xlhtml
 app-text/xml2
