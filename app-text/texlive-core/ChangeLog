@@ -1,6 +1,18 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.126 2010/06/20 12:15:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.128 2010/10/30 18:46:04 aballier Exp $
+
+  30 Oct 2010; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2010.ebuild:
+  Import icu patch to fix building on arm, bug #343351
+
+*texlive-core-2010 (24 Oct 2010)
+
+  24 Oct 2010; Alexis Ballier <aballier@gentoo.org> +files/texmf-update2010,
+  +texlive-core-2010.ebuild:
+  Bump to the 2010 version; with a reworked texmf-update script by Markus
+  Oehme <veelai@jonglieren-jena.de> not to regenerate the formats or font
+  maps when it is not needed.
 
 *texlive-core-2009-r2 (20 Jun 2010)
 

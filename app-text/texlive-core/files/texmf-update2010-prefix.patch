@@ -1,0 +1,110 @@
+--- texmf-update2010
++++ texmf-update2010
+@@ -1,11 +1,11 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ #
+ # Utility to update Gentoo TeXLive distribution configuration files
+ #
+ 
+ echo "Configuring TeXLive ..."
+ 
+-PATH=/bin:/usr/bin
++PATH="@GENTOO_PORTAGE_EPREFIX@"/bin:"@GENTOO_PORTAGE_EPREFIX@"/usr/bin
+ 
+ # Fix for all those with altered umask for root
+ umask 022
+@@ -29,10 +29,10 @@
+ done
+ 
+ if [ "$TEXINPUTS" ]; then
+-	if $(echo ${TEXINPUTS} | grep '/usr/share/texmf' &>/dev/null) ; then
+-		export TEXINPUTS=$(echo ${TEXINPUTS} | sed -e 's|/usr/share/texmf/*:\?||g')
+-	elif $(echo ${TEXINPUTS} | grep '/var/lib/texmf' &>/dev/null) ; then
+-		export TEXINPUTS=$(echo ${TEXINPUTS} | sed -e 's|/var/lib/texmf/*:\?||g')
++	if $(echo ${TEXINPUTS} | grep '@GENTOO_PORTAGE_EPREFIX@/usr/share/texmf' &>/dev/null) ; then
++		export TEXINPUTS=$(echo ${TEXINPUTS} | sed -e 's|@GENTOO_PORTAGE_EPREFIX@/usr/share/texmf/*:\?||g')
++	elif $(echo ${TEXINPUTS} | grep '@GENTOO_PORTAGE_EPREFIX@/var/lib/texmf' &>/dev/null) ; then
++		export TEXINPUTS=$(echo ${TEXINPUTS} | sed -e 's|@GENTOO_PORTAGE_EPREFIX@/var/lib/texmf/*:\?||g')
+ 	fi
+ fi
+ 
+@@ -48,20 +48,20 @@
+ STATUS_FMTUTIL="0"
+ STATUS_UPDMAP="0"
+ 
+-if [ -d /etc/texmf/texmf.d ]; then
+-    echo "Generating /etc/texmf/web2c/texmf.cnf from /etc/texmf/texmf.d ..."
+-    cat /etc/texmf/texmf.d/*.cnf > "/etc/texmf/web2c/texmf.cnf"
++if [ -d "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/texmf.d ]; then
++    echo "Generating @GENTOO_PORTAGE_EPREFIX@/etc/texmf/web2c/texmf.cnf from @GENTOO_PORTAGE_EPREFIX@/etc/texmf/texmf.d ..."
++    cat "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/texmf.d/*.cnf > "@GENTOO_PORTAGE_EPREFIX@/etc/texmf/web2c/texmf.cnf"
+ fi
+ 
+-if [ -d /etc/texmf/fmtutil.d ]; then
+-    echo "Generating /etc/texmf/web2c/fmtutil.cnf from /etc/texmf/fmtutil.d ..."
+-    if [ -f /etc/texmf/web2c/fmtutil.cnf ]; then
+-	cp -f /etc/texmf/web2c/fmtutil.cnf ${TEMP_FILE}
++if [ -d "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/fmtutil.d ]; then
++    echo "Generating @GENTOO_PORTAGE_EPREFIX@/etc/texmf/web2c/fmtutil.cnf from @GENTOO_PORTAGE_EPREFIX@/etc/texmf/fmtutil.d ..."
++    if [ -f "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/web2c/fmtutil.cnf ]; then
++	cp -f "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/web2c/fmtutil.cnf ${TEMP_FILE}
+     else
+ 	touch ${TEMP_FILE}
+     fi
+-    cat /etc/texmf/fmtutil.d/*.cnf > "/etc/texmf/web2c/fmtutil.cnf"
+-    ${DIFF_COMMAND} /etc/texmf/web2c/fmtutil.cnf ${TEMP_FILE}
++    cat "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/fmtutil.d/*.cnf > "@GENTOO_PORTAGE_EPREFIX@/etc/texmf/web2c/fmtutil.cnf"
++    ${DIFF_COMMAND} "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/web2c/fmtutil.cnf ${TEMP_FILE}
+     STATUS_FMTUTIL="${STATUS_FMTUTIL}$?"
+ else
+ # if no regeneration took place:
+@@ -69,15 +69,15 @@
+     STATUS_FMTUTIL="${STATUS_FMTUTIL}3"
+ fi
+ 
+-if [ -d /etc/texmf/updmap.d ]; then
+-    if [ -f /etc/texmf/web2c/updmap.cfg ]; then
+-	cp -f /etc/texmf/web2c/updmap.cfg ${TEMP_FILE}
++if [ -d "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/updmap.d ]; then
++    if [ -f "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/web2c/updmap.cfg ]; then
++	cp -f "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/web2c/updmap.cfg ${TEMP_FILE}
+     else
+ 	touch ${TEMP_FILE}
+     fi
+-    echo "Generating /etc/texmf/web2c/updmap.cfg from /etc/texmf/updmap.d ..."
+-    cat /etc/texmf/updmap.d/*.cfg > "/etc/texmf/web2c/updmap.cfg"
+-    ${DIFF_COMMAND} /etc/texmf/web2c/updmap.cfg ${TEMP_FILE}
++    echo "Generating @GENTOO_PORTAGE_EPREFIX@/etc/texmf/web2c/updmap.cfg from @GENTOO_PORTAGE_EPREFIX@/etc/texmf/updmap.d ..."
++    cat "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/updmap.d/*.cfg > "@GENTOO_PORTAGE_EPREFIX@/etc/texmf/web2c/updmap.cfg"
++    ${DIFF_COMMAND} "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/web2c/updmap.cfg ${TEMP_FILE}
+     STATUS_UPDMAP="${STATUS_UPDMAP}$?"
+ else
+ # if no regeneration could be done:
+@@ -98,7 +98,7 @@
+     cp -f "$Z/language.dat" "${TEMP_FILE}"
+ 
+     cat "$Z/language.us" > "$Z/language.dat"
+-    for i in /etc/texmf/language.dat.d/language.*.dat; do
++    for i in "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/language.dat.d/language.*.dat; do
+             [ -f "$i" ] && cat "$i" >> "$Z/language.dat"
+     done
+ 
+@@ -114,7 +114,7 @@
+     cp -f "$Z/language.def" "${TEMP_FILE}"
+ 
+     cat "$Z/language.us.def" > "$Z/language.def"
+-    for i in /etc/texmf/language.def.d/language.*.def; do
++    for i in "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/language.def.d/language.*.def; do
+             [ -f "$i" ] && cat "$i" >> "$Z/language.def"
+     done
+     cat << EOF >> "$Z/language.def"
+@@ -135,7 +135,7 @@
+     cp -f "$Z/language.dat.lua" "${TEMP_FILE}"
+ 
+     cat "$Z/language.us.lua" > "$Z/language.dat.lua"
+-    for i in /etc/texmf/language.dat.lua.d/language.*.dat.lua; do
++    for i in "@GENTOO_PORTAGE_EPREFIX@"/etc/texmf/language.dat.lua.d/language.*.dat.lua; do
+             [ -f "$i" ] && cat "$i" >> "$Z/language.dat.lua"
+     done
+     printf "}\n" >> "$Z/language.dat.lua"
