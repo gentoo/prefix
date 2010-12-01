@@ -1,0 +1,20 @@
+If $EPREFIX contains symlinks, kpsewhich will return a resolved path,
+which results in out of prefix errors for packages which use it.
+Hence, don't resolve paths that are absolute, to avoid this problem.
+
+
+--- texlive-20100722-source/texk/kpathsea/progname.c
++++ texlive-20100722-source/texk/kpathsea/progname.c
+@@ -396,7 +396,11 @@
+   if (!self)
+     self = concat3 (".", DIR_SEP_STRING, argv0);
+ 
+-  ret = xdirname (remove_dots (kpse, expand_symlinks (kpse, self)));
++  if (kpathsea_absolute_p (kpse, self, true)) {
++     ret = xdirname (remove_dots (kpse, self));
++  } else {
++     ret = xdirname (remove_dots (kpse, expand_symlinks (kpse, self)));
++  }
+ 
+   free (self);
+ 
