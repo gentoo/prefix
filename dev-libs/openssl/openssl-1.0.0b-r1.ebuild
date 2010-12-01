@@ -1,37 +1,46 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8n.ebuild,v 1.8 2010/04/11 20:05:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.0b-r1.ebuild,v 1.7 2010/11/28 14:34:36 ranger Exp $
 
-inherit eutils flag-o-matic toolchain-funcs
+EAPI="2"
 
-DESCRIPTION="Toolkit for SSL v2/v3 and TLS v1"
+inherit eutils flag-o-matic toolchain-funcs multilib
+
+REV="1.7"
+DESCRIPTION="full-strength general purpose cryptography library (including SSL v2/v3 and TLS v1)"
 HOMEPAGE="http://www.openssl.org/"
-SRC_URI="mirror://openssl/source/${P}.tar.gz"
+SRC_URI="mirror://openssl/source/${P}.tar.gz
+	http://cvs.pld-linux.org/cgi-bin/cvsweb.cgi/~checkout~/packages/${PN}/${PN}-c_rehash.sh?rev=${REV} -> ${PN}-c_rehash.sh.${REV}"
 
 LICENSE="openssl"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="bindist gmp kerberos sse2 test zlib"
+IUSE="bindist gmp kerberos rfc3779 sse2 test zlib"
 
 RDEPEND="gmp? ( dev-libs/gmp )
 	zlib? ( sys-libs/zlib )
 	kerberos? ( app-crypt/mit-krb5 )"
+# portage depend is just to help people not break their systems (preserve-libs
+# feature is broken in prior versions)
 DEPEND="${RDEPEND}
 	sys-apps/diffutils
 	>=dev-lang/perl-5
 	test? ( sys-devel/bc )"
+
 PDEPEND="app-misc/ca-certificates"
 
 src_unpack() {
-	unpack ${A}
-	cd "${S}"
+	unpack ${P}.tar.gz
+	cp "${DISTDIR}"/${PN}-c_rehash.sh.${REV} "${WORKDIR}"/c_rehash || die
+}
 
+src_prepare() {
 # this patch kills Darwin, but seems not necessary on Solaris and Linux
 #	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8b-doc-updates.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
-	epatch "${FILESDIR}"/${PN}-0.9.8m-binutils.patch #289130
+	epatch "${FILESDIR}"/${PN}-0.9.8l-binutils.patch #289130
+	epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
+	epatch "${FILESDIR}"/${PN}-1.0.0b-rev19998.patch # test failure on 1.0.0b-r0
+	epatch_user #332661
 
 	# disable fips in the build
 	# make sure the man pages are suffixed #302165
@@ -49,9 +58,10 @@ src_unpack() {
 	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
 
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8n-interix.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8n-mint.patch
+	epatch "${FILESDIR}"/${PN}-1.0.0a-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.0.0a-mint.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8l-aixso.patch #213277: with import files now
+	epatch "${FILESDIR}"/${PN}-1.0.0b-darwin-bundle-compile-fix.patch
 	if [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
 	fi
@@ -64,7 +74,7 @@ src_unpack() {
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
 
 	# allow openssl to be cross-compiled
-	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
+	cp "${FILESDIR}"/gentoo.config-1.0.0 gentoo.config || die "cp cross-compile failed"
 	chmod a+rx gentoo.config
 
 	append-flags -fno-strict-aliasing
@@ -74,11 +84,9 @@ src_unpack() {
 		;;
 	esac
 
-
 	# type -P required on platforms where perl is not installed
 	# in the same prefix (prefix-chaining).
 	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure #141906
-	sed -i '/^"debug-steve/d' Configure # 0.9.8k shipped broken
 	sed -i '1s/perl5/perl/' tools/c_rehash #308455
 
 	# avoid waiting on terminal input forever when spitting
@@ -92,14 +100,10 @@ src_unpack() {
 		sed -i -e "s:/usr/ccs/bin/::" crypto/bn/Makefile || die "sed failed"
 	fi
 
-	if use gmp && [[ ${CHOST} == *-apple-darwin* ]] ; then
-		append-ldflags -lgmp
-	fi
-
 	./config --test-sanity || die "I AM NOT SANE"
 }
 
-src_compile() {
+src_configure() {
 	unset APPS #197996
 	unset SCRIPTS #312551
 
@@ -107,7 +111,7 @@ src_compile() {
 
 	# Clean out patent-or-otherwise-encumbered code
 	# Camellia: Royalty Free            http://en.wikipedia.org/wiki/Camellia_(cipher)
-	# IDEA:     5,214,703 25/05/2010    http://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm
+	# IDEA:     5,214,703 07/01/2012    http://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm
 	# EC:       ????????? ??/??/2015    http://en.wikipedia.org/wiki/Elliptic_Curve_Cryptography
 	# MDC2:     Expired                 http://en.wikipedia.org/wiki/MDC-2
 	# RC5:      5,724,428 03/03/2015    http://en.wikipedia.org/wiki/RC5
@@ -141,9 +145,11 @@ src_compile() {
 		enable-tlsext \
 		$(use_ssl gmp gmp -lgmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
+		$(use_ssl rfc3779) \
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
 		--openssldir="${EPREFIX}"/etc/ssl \
+		--libdir=$(get_libdir) \
 		shared threads ${confopts} \
 		|| die "Configure failed"
 
@@ -164,11 +170,12 @@ src_compile() {
 	)
 	# CFLAGS can contain : with e.g. MIPSpro
 	sed -i \
-		-e "/^LIBDIR=/s:=.*:=$(get_libdir):" \
 		-e "/^CFLAG/s|=.*|=${CFLAG} ${CFLAGS}|" \
 		-e "/^SHARED_LDFLAGS=/s|$| ${LDFLAGS}|" \
 		Makefile || die
+}
 
+src_compile() {
 	if [[ ${CHOST} == *-winnt* ]]; then
 		( cd fips && emake -j1 links PERL=$(type -P perl) ) || die "make links in fips failed"
 	fi
@@ -185,6 +192,7 @@ src_test() {
 
 src_install() {
 	emake -j1 INSTALL_PREFIX="${D}" install || die
+	dobin "${WORKDIR}"/c_rehash || die #333117
 	dodoc CHANGES* FAQ NEWS README doc/*.txt doc/c-indentation.el
 	dohtml -r doc/*
 
@@ -198,11 +206,11 @@ src_install() {
 	local m d s
 	for m in $(find . -type f | xargs grep -L '#include') ; do
 		d=${m%/*} ; d=${d#./} ; m=${m##*/}
-		# fix up references to renamed man pages
-		sed -i '/^[.]SH "SEE ALSO"/,/^[.][^I]/s:\([^(, I]*([15])\):ssl-\1:g' ${d}/${m}
 		[[ ${m} == openssl.1* ]] && continue
 		[[ -n $(find -L ${d} -type l) ]] && die "erp, broken links already!"
 		mv ${d}/{,ssl-}${m}
+		# fix up references to renamed man pages
+		sed -i '/^[.]SH "SEE ALSO"/,/^[.]/s:\([^(, ]*(1)\):ssl-\1:g' ${d}/ssl-${m}
 		ln -s ssl-${m} ${d}/openssl-${m}
 		# locate any symlinks that point to this man page ... we assume
 		# that any broken links are due to the above renaming
@@ -223,11 +231,15 @@ src_install() {
 }
 
 pkg_preinst() {
-	preserve_old_lib /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.6)
-	preserve_old_lib /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.7)
+	has_version ${CATEGORY}/${PN}:0.9.8 && return 0
+	preserve_old_lib /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.8)
 }
 
 pkg_postinst() {
-	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.6)
-	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.7)
+	ebegin "Running 'c_rehash ${EROOT}etc/ssl/certs/' to rebuild hashes #333069"
+	c_rehash "${EROOT}etc/ssl/certs" >/dev/null
+	eend $?
+
+	has_version ${CATEGORY}/${PN}:0.9.8 && return 0
+	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.8)
 }

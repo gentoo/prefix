@@ -1,0 +1,52 @@
+--- Makefile.shared
++++ Makefile.shared
+@@ -226,7 +226,7 @@
+ link_o.darwin:
+ 	@ $(CALC_VERSIONS); \
+ 	SHLIB=lib$(LIBNAME); \
+-	SHLIB_SUFFIX=.dylib; \
++	SHLIB_SUFFIX=.bundle; \
+ 	ALLSYMSFLAGS='-all_load'; \
+ 	NOALLSYMSFLAGS=''; \
+ 	SHAREDFLAGS="$(CFLAGS) `echo $(SHARED_LDFLAGS) | sed s/dynamiclib/bundle/`"; \
+@@ -236,7 +236,7 @@
+ 	if [ -n "$$SHLIB_SOVER_NODOT" ]; then \
+ 		SHAREDFLAGS="$$SHAREDFLAGS -compatibility_version $$SHLIB_SOVER_NODOT"; \
+ 	fi; \
+-	SHAREDFLAGS="$$SHAREDFLAGS -install_name ${INSTALLTOP}/lib/engines/$$SHLIB$$SHLIB_SUFFIX"; \
++	SHAREDFLAGS="$$SHAREDFLAGS"; \
+ 	$(LINK_SO_O)
+ link_a.darwin:
+ 	@ $(CALC_VERSIONS); \
+--- engines/Makefile
++++ engines/Makefile
+@@ -114,7 +114,12 @@
+ 			  if [ "$(PLATFORM)" != "Cygwin" ]; then \
+ 				case "$(CFLAGS)" in \
+ 				*DSO_BEOS*)	sfx=".so";;	\
+-				*DSO_DLFCN*)	sfx=`expr "$(SHLIB_EXT)" : '.*\(\.[a-z][a-z]*\)' \| ".so"`;;	\
++				*DSO_DLFCN*) \
++					case "$(PLATFORM)" in \
++						darwin-*) sfx=".bundle";; \
++						*) sfx=`expr "$(SHLIB_EXT)" : '.*\(\.[a-z][a-z]*\)' \| ".so"`;; \
++					esac; \
++				;;	\
+ 				*DSO_DL*)	sfx=".sl";;	\
+ 				*DSO_WIN32*)	sfx="eay32.dll"; pfx=;;	\
+ 				*)		sfx=".bad";;	\
+--- engines/ccgost/Makefile
++++ engines/ccgost/Makefile
+@@ -48,7 +48,12 @@
+ 		if [ "$(PLATFORM)" != "Cygwin" ]; then \
+ 			case "$(CFLAGS)" in \
+ 			*DSO_BEOS*) sfx=".so";; \
+-			*DSO_DLFCN*) sfx=`expr "$(SHLIB_EXT)" : '.*\(\.[a-z][a-z]*\)' \| ".so"`;; \
++			*DSO_DLFCN*) \
++				case "$(PLATFORM)" in \
++					darwin-*) sfx=".bundle";; \
++					*) sfx=`expr "$(SHLIB_EXT)" : '.*\(\.[a-z][a-z]*\)' \| ".so"`;; \
++				esac; \
++			;;	\
+ 			*DSO_DL*) sfx=".sl";; \
+ 			*DSO_WIN32*) sfx="eay32.dll"; pfx=;; \
+ 			*) sfx=".bad";; \

@@ -1,6 +1,71 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.356 2010/10/02 03:09:23 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.372 2010/11/28 14:34:36 ranger Exp $
+
+  28 Nov 2010; Brent Baude <ranger@gentoo.org> openssl-0.9.8p.ebuild,
+  openssl-1.0.0b-r1.ebuild:
+  Marking -0.9.8p and -1.0.0b-r1 ppc64 for bug 345767
+
+  21 Nov 2010; Raúl Porcel <armin76@gentoo.org> openssl-0.9.8p.ebuild,
+  openssl-1.0.0b-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #345767
+
+  19 Nov 2010; Markus Meier <maekke@gentoo.org> openssl-1.0.0b-r1.ebuild:
+  arm stable, bug #345767
+
+  17 Nov 2010; Markos Chandras <hwoarang@gentoo.org> openssl-0.9.8p.ebuild,
+  openssl-1.0.0b-r1.ebuild:
+  Stable on amd64 wrt bug #345767
+
+  17 Nov 2010; Thomas Kahle <tomka@gentoo.org> openssl-0.9.8p.ebuild,
+  openssl-1.0.0b-r1.ebuild:
+  x86 stable per bug 345767
+
+  17 Nov 2010; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0b-r1.ebuild:
+  Stable for HPPA PPC (bug #345767).
+
+*openssl-1.0.0b-r1 (17 Nov 2010)
+
+  17 Nov 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +openssl-1.0.0b-r1.ebuild, +files/openssl-1.0.0b-rev19998.patch:
+  Add patch to fix a bug slipped by upstream but caught by testsuite; thanks to
+  Brant Gurganus in bug #345767 for reporting and providing a link to the
+  upstream patch.
+
+*openssl-0.9.8p (16 Nov 2010)
+
+  16 Nov 2010; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8p.ebuild:
+  Version bump.
+
+*openssl-1.0.0b (16 Nov 2010)
+
+  16 Nov 2010; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.0b.ebuild:
+  Version bump.
+
+  11 Oct 2010; Christian Faulhammer <fauli@gentoo.org>
+  openssl-1.0.0a-r3.ebuild:
+  stable x86, bug 330437
+
+  11 Oct 2010; Christian Faulhammer <fauli@gentoo.org>
+  openssl-0.9.8o-r2.ebuild:
+  stable x86, bug 330437
+
+  10 Oct 2010; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0a-r3.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #330437
+
+  08 Oct 2010; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8o-r2.ebuild:
+  Only remove libs when installing this SLOT for the first time, and warn
+  about it #340033 by Marcin Mirosław.
+
+  07 Oct 2010; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0a-r3.ebuild:
+  Stable for HPPA PPC (bug #332027).
+
+  03 Oct 2010; Mike Frysinger <vapier@gentoo.org> openssl-1.0.0a-r3.ebuild:
+  Convert by Samuli Suominen to EAPI 2 #339027 by Marco Leogrande.
+
+  03 Oct 2010; Tobias Klausmann <klausman@gentoo.org>
+  openssl-1.0.0a-r3.ebuild:
+  Stable on alpha, bug #330437
 
   02 Oct 2010; Jeremy Olexa <darkside@gentoo.org> openssl-1.0.0a-r3.ebuild:
   Silly issue, revert to original SRC_URI so users can fetch the file. bug
