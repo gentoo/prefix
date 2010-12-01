@@ -1,0 +1,32 @@
+http://bugs.gentoo.org/show_bug.cgi?id=347319
+
+--- libiberty/configure.old	2010-11-26 18:13:54.000000000 +0000
++++ libiberty/configure	2010-11-26 18:15:21.000000000 +0000
+@@ -4844,6 +4844,7 @@
+ if [ "${shared}" = "yes" ]; then
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)	;;
+     alpha*-*-linux*)	PICFLAG=-fPIC ;;
+     arm*-*-*)		PICFLAG=-fPIC ;;
+     hppa*-*-*)		PICFLAG=-fPIC ;;
+--- libiberty/configure.ac.old	2010-11-26 18:15:27.000000000 +0000
++++ libiberty/configure.ac	2010-11-26 18:15:38.000000000 +0000
+@@ -201,6 +201,7 @@
+ if [[ "${shared}" = "yes" ]]; then
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)	;;
+     alpha*-*-linux*)	PICFLAG=-fPIC ;;
+     arm*-*-*)		PICFLAG=-fPIC ;;
+     hppa*-*-*)		PICFLAG=-fPIC ;;
+--- gcc/Makefile.in.old	2010-11-26 18:16:31.000000000 +0000
++++ gcc/Makefile.in	2010-11-26 18:17:13.000000000 +0000
+@@ -1819,6 +1819,7 @@
+ cc1$(exeext): $(C_OBJS) cc1-checksum.o $(BACKEND) $(LIBDEPS)
+ 	$(LINKER) $(ALL_LINKERFLAGS) $(LDFLAGS) -o $@ $(C_OBJS) \
+ 	  cc1-checksum.o $(BACKEND) $(LIBS) $(BACKENDLIBS)
++	stack -S 3 $@
+ 
+ #
+ # Build libgcc.a.
