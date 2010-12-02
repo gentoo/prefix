@@ -438,6 +438,7 @@ dev-util/cocom
 dev-util/confix
 dev-util/confix-wrapper
 dev-util/cproto
+dev-util/cucumber
 dev-util/dejagnu
 dev-util/desktop-file-utils
 dev-util/diffball
