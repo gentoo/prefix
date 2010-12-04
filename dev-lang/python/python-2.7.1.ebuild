@@ -442,6 +442,8 @@ src_install() {
 		ln -s ../lib/Python.framework/Versions/${SLOT}/bin/pythonw${SLOT} || die
 		# copy the scripts to we can fix their shebangs
 		for f in 2to3 pydoc${SLOT} idle${SLOT} python${SLOT}-config ; do
+			# for some reason sometimes they already exist, bug #347321
+			rm -f ${f}
 			cp "${D}${fwdir}"/Versions/${SLOT}/bin/${f} . || die
 			sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python'"${SLOT}" \
 				${f} || die
@@ -463,9 +465,6 @@ src_install() {
 		pushd "${D}${fwdir}"/Versions/${SLOT}/include > /dev/null
 		ln -s ../../../../../include/python${SLOT} || die
 		popd > /dev/null
-		# remove now dead symlinks
-		rm "${ED}"/usr/lib/python${SLOT}/config/libpython${SLOT}.a
-		rm "${ED}"/usr/lib/python${SLOT}/config/libpython${SLOT}.dylib
 
 		# same for libs
 		# NOTE: can't symlink the entire dir, because a real dir already exists
@@ -477,6 +476,9 @@ src_install() {
 		pushd "${D}${fwdir}"/Versions/${SLOT}/lib > /dev/null
 		ln -s ../../../../python${SLOT} || die
 		popd > /dev/null
+		# remove now dead symlinks
+		rm "${ED}"/usr/lib/python${SLOT}/config/libpython${SLOT}.a
+		rm "${ED}"/usr/lib/python${SLOT}/config/libpython${SLOT}.dylib
 
 		# fix up Makefile
 		sed -i \
