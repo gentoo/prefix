@@ -58,8 +58,6 @@ src_configure() {
 }
 
 src_install() {
-	# somehow this libdir isn't created on Darwin
-#	dodir /usr/$(get_libdir)
-	emake -j1 STRIP=: DESTDIR="${D}" install || die
+	emake STRIP=: DESTDIR="${D}" install || die
 	gen_usr_ldscript -a com_err ss
 }
