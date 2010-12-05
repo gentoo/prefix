@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.12.ebuild,v 1.9 2010/10/09 17:07:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.12.ebuild,v 1.10 2010/12/04 21:51:20 vapier Exp $
 
 EAPI=2
 
-inherit toolchain-funcs eutils
+inherit toolchain-funcs eutils multilib
 
 DESCRIPTION="e2fsprogs libraries (common error and subsystem)"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
@@ -20,14 +20,11 @@ RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
 	!sys-libs/ss
 	!<sys-fs/e2fsprogs-1.41.8"
 DEPEND="nls? ( sys-devel/gettext )
-	dev-util/pkgconfig
-	sys-devel/bc"
+	dev-util/pkgconfig"
 
 src_prepare() {
 	echo 'all %:' > doc/Makefile.in # don't bother with docs #305613
-}
-
-src_prepare() {
+	epatch "${FILESDIR}"/${PN}-1.41.12-darwin-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.41.9-irix.patch
 	if [[ ${CHOST} == *-mint* ]]; then
 		sed -i -e 's/_SVID_SOURCE/_GNU_SOURCE/' lib/uuid/gen_uuid.c || die
@@ -61,6 +58,8 @@ src_configure() {
 }
 
 src_install() {
-	emake STRIP=: DESTDIR="${D}" install || die
+	# somehow this libdir isn't created on Darwin
+#	dodir /usr/$(get_libdir)
+	emake -j1 STRIP=: DESTDIR="${D}" install || die
 	gen_usr_ldscript -a com_err ss
 }

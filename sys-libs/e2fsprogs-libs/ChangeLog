@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/e2fsprogs-libs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.62 2010/10/09 17:07:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.63 2010/12/04 21:51:20 vapier Exp $
+
+  04 Dec 2010; Mike Frysinger <vapier@gentoo.org>
+  e2fsprogs-libs-1.41.7.ebuild, e2fsprogs-libs-1.41.11.ebuild,
+  e2fsprogs-libs-1.41.12.ebuild:
+  Drop no longer needed bc dep #347708 by mehrunes.
 
   09 Oct 2010; Raúl Porcel <armin76@gentoo.org>
   e2fsprogs-libs-1.41.12.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.7.ebuild,v 1.3 2010/03/31 17:59:11 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.7.ebuild,v 1.4 2010/12/04 21:51:20 vapier Exp $
 
 EAPI=2
 
@@ -20,8 +20,7 @@ RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
 	!sys-libs/ss
 	!<sys-fs/e2fsprogs-1.41"
 DEPEND="nls? ( sys-devel/gettext )
-	dev-util/pkgconfig
-	sys-devel/bc"
+	dev-util/pkgconfig"
 
 src_prepare() {
 	# stupid configure script clobbers CC for us
