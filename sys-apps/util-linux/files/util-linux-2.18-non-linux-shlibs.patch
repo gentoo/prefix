@@ -1,0 +1,27 @@
+--- shlibs/mount/src/Makefile.am
++++ shlibs/mount/src/Makefile.am
+@@ -23,8 +23,11 @@
+ 
+ libmount_la_DEPENDENCIES = $(libmount_la_LIBADD) mount.sym mount.h.in
+ 
+-libmount_la_LDFLAGS = -Wl,--version-script=$(ul_libmount_srcdir)/mount.sym \
+-                      -version-info $(LIBMOUNT_VERSION_INFO)
++libmount_la_LDFLAGS =
++if GNU_LD
++libmount_la_LDFLAGS += -Wl,--version-script=$(ul_libmount_srcdir)/mount.sym
++endif
++libmount_la_LDFLAGS += -version-info $(LIBMOUNT_VERSION_INFO)
+ 
+ EXTRA_DIST = mount.sym mount.h.in
+ CLEANFILES = $(tests)
+--- shlibs/mount/src/test.c
++++ shlibs/mount/src/test.c
+@@ -48,7 +48,7 @@
+ 	return rc == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
+ usage:
+ 	printf("\nUsage:\n\t%s <test> [testoptions]\nTests:\n",
+-			program_invocation_short_name);
++			argv[0]);
+ 	for (ts = tests; ts->name; ts++) {
+ 		printf("\t%-15s", ts->name);
+ 		if (ts->usage)

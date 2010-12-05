@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.18-r1.ebuild,v 1.2 2010/10/03 20:09:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.18-r1.ebuild,v 1.4 2010/12/01 22:31:35 vapier Exp $
 
 EAPI="2"
 
-EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux-ng/util-linux-ng.git"
+EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux/util-linux.git"
 inherit eutils toolchain-funcs libtool flag-o-matic autotools
 [[ ${PV} == "9999" ]] && inherit git autotools
 
@@ -13,26 +13,27 @@ MY_P=${PN}-ng-${MY_PV}
 S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="Various useful Linux utilities"
-HOMEPAGE="http://www.kernel.org/pub/linux/utils/util-linux-ng/"
+HOMEPAGE="http://www.kernel.org/pub/linux/utils/util-linux/"
 if [[ ${PV} == "9999" ]] ; then
 	SRC_URI=""
 	#KEYWORDS=""
 else
-	SRC_URI="mirror://kernel/linux/utils/util-linux-ng/v${PV:0:4}/${MY_P}.tar.bz2
+	SRC_URI="mirror://kernel/linux/utils/util-linux/v${PV:0:4}/${MY_P}.tar.bz2
 		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-ng-2.18-20100706.diff.bz2 )"
-# this works on OSX, but cannot be right at this moment
 #	KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~ppc-macos"
 fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="crypt loop-aes nls old-linux perl selinux slang uclibc unicode"
+IUSE="+cramfs crypt loop-aes nls old-linux perl selinux slang uclibc unicode"
 
 RDEPEND="!sys-process/schedutils
 	!sys-apps/setarch
 	>=sys-libs/ncurses-5.2-r2
 	!<sys-libs/e2fsprogs-libs-1.41.8
 	!<sys-fs/e2fsprogs-1.41.8
+	cramfs? ( sys-libs/zlib )
 	perl? ( dev-lang/perl )
 	selinux? ( sys-libs/libselinux )
 	slang? ( sys-libs/slang )"
@@ -54,6 +55,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-falloc.patch #339432
 	if use prefix ; then
 		epatch "${FILESDIR}"/${PN}-2.17.1-non-linux-shlibs.patch
+		epatch "${FILESDIR}"/${PN}-2.18-non-linux-shlibs.patch
+		epatch "${FILESDIR}"/${PN}-2.18-no-loff_t.patch
 		eautoreconf
 	fi
 	elibtoolize
@@ -112,7 +115,7 @@ src_configure() {
 	else
 		myconf="
 			--enable-agetty
-			--enable-cramfs
+			$(use_enable cramfs)
 			$(use_enable old-linux elvtune)
 			--disable-init
 			--disable-kill
@@ -133,7 +136,7 @@ src_configure() {
 
 	#	--with-fsprobe=blkid \
 	econf \
-		--enable-fs-paths-extra=/usr/sbin \
+		--enable-fs-paths-extra="${EPREFIX}"/usr/sbin \
 		$(use_enable nls) \
 		$(use unicode || echo --with-ncurses) \
 		$(use_with slang) \

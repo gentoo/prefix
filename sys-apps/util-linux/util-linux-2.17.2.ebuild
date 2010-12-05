@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.2.ebuild,v 1.10 2010/09/18 16:29:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.2.ebuild,v 1.11 2010/12/01 22:31:35 vapier Exp $
 
 EAPI="2"
 
-EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux-ng/util-linux-ng.git"
+EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux/util-linux.git"
 inherit eutils toolchain-funcs libtool flag-o-matic autotools
 [[ ${PV} == "9999" ]] && inherit git autotools
 
@@ -13,12 +13,12 @@ MY_P=${PN}-ng-${MY_PV}
 S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="Various useful Linux utilities"
-HOMEPAGE="http://www.kernel.org/pub/linux/utils/util-linux-ng/"
+HOMEPAGE="http://www.kernel.org/pub/linux/utils/util-linux/"
 if [[ ${PV} == "9999" ]] ; then
 	SRC_URI=""
 	#KEYWORDS=""
 else
-	SRC_URI="mirror://kernel/linux/utils/util-linux-ng/v${PV:0:4}/${MY_P}.tar.bz2
+	SRC_URI="mirror://kernel/linux/utils/util-linux/v${PV:0:4}/${MY_P}.tar.bz2
 		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-ng-2.17.1-20100308.diff.bz2 )"
 # this works on OSX, but cannot be right at this moment
 #	KEYWORDS="~amd64-linux ~x86-linux"

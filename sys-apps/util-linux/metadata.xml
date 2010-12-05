@@ -3,6 +3,7 @@
 <pkgmetadata>
 <herd>base-system</herd>
 <use>
+	<flag name='cramfs'>build mkfs/fsck helpers for cramfs filesystems</flag>
 	<flag name='loop-aes'>include support for Loop AES encryption</flag>
 	<flag name='perl'>install the chkdupexe helper script</flag>
 </use>

@@ -1,0 +1,34 @@
+--- configure.ac
++++ configure.ac
+@@ -529,6 +529,7 @@
+ AC_CHECK_TYPES([union semun], [], [], [[
+ #include <sys/sem.h>
+ ]])
++AC_CHECK_TYPES(loff_t)
+ 
+ 
+ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+--- shlibs/blkid/src/blkid.h.in
++++ shlibs/blkid/src/blkid.h.in
+@@ -23,6 +23,10 @@
+ #ifndef _BLKID_BLKID_H
+ #define _BLKID_BLKID_H
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ #include <stdint.h>
+ #include <sys/types.h>
+ 
+@@ -89,6 +93,10 @@
+  */
+ typedef int64_t blkid_loff_t;
+ 
++#ifndef HAVE_LOFF_T
++typedef int64_t loff_t;
++#endif
++
+ /**
+  * blkid_tag_iterate:
+  *
