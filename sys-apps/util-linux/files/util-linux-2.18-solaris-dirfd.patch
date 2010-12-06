@@ -1,0 +1,47 @@
+dirfd is not available on Solaris 10, it is available on latest
+OpenSolaris releases though.  Do some autoconf trickery to provide an
+alternative for Solaris if no dirfd function is available.
+
+--- configure.ac
++++ configure.ac
+@@ -215,6 +215,25 @@
+ AC_SEARCH_LIBS([socket], [socket], [SOCKET_LIBS="$SOCKET_LIBS -lsocket"])
+ AC_SUBST(SOCKET_LIBS)
+ 
++have_dirfd=
++AC_CHECK_FUNCS([dirfd], [have_dirfd=yes], [have_dirfd=no])
++have_ddfd=
++if test x"$have_dirfd" = xno ; then
++	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
++#include <dirent.h>
++]],[[
++	DIR *dir = 0;
++	if (dir->dd_fd) ;
++	]])], [have_ddfd=yes], [have_ddfd=no])
++fi
++if test x"$have_dirfd" = xno && test x"$have_ddfd" = xno ; then
++	AC_MSG_ERROR([cannot find a method to get filedescriptor of directory])
++fi
++if test x"$have_ddfd" = xyes ; then
++	AC_DEFINE(HAVE_DDFD, 1, [Define if struct DIR has a member dd_fd])
++fi
++
++
+ dnl Static compilation
+ m4_define([UTIL_STATIC_PROGRAMS], [losetup, mount, umount, fdisk, sfdisk, blkid])
+ 
+--- shlibs/blkid/src/devno.c
++++ shlibs/blkid/src/devno.c
+@@ -35,6 +35,12 @@
+ #include "blkidP.h"
+ #include "pathnames.h"
+ 
++#if !defined(HAVE_DIRFD) && defined(HAVE_DDFD)
++static inline int dirfd(DIR *dir) {
++	return dir->dd_fd;
++}
++#endif
++
+ char *blkid_strndup(const char *s, int length)
+ {
+ 	char *ret;

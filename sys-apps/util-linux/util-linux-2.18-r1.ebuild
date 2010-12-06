@@ -57,6 +57,14 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-2.17.1-non-linux-shlibs.patch
 		epatch "${FILESDIR}"/${PN}-2.18-non-linux-shlibs.patch
 		epatch "${FILESDIR}"/${PN}-2.18-no-loff_t.patch
+		epatch "${FILESDIR}"/${PN}-2.18-solaris-crypt.patch
+		epatch "${FILESDIR}"/${PN}-2.18-solaris-socket-link.patch
+		epatch "${FILESDIR}"/${PN}-2.18-solaris-mkdev.patch
+		epatch "${FILESDIR}"/${PN}-2.18-solaris-io.patch
+		epatch "${FILESDIR}"/${PN}-2.18-solaris-paths.patch
+		epatch "${FILESDIR}"/${PN}-2.18-solaris-uint32t.patch
+		epatch "${FILESDIR}"/${PN}-2.18-solaris-err.patch
+		epatch "${FILESDIR}"/${PN}-2.18-solaris-dirfd.patch
 		eautoreconf
 	fi
 	elibtoolize

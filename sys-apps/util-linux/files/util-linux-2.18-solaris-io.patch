@@ -1,0 +1,43 @@
+The _IO macro is defined in sys/ioccom.h on various platforms.  However,
+on Solaris it isn't included by ioctl.h.
+
+--- configure.ac
++++ configure.ac
+@@ -132,6 +132,7 @@
+ 	sys/disk.h \
+ 	sys/disklabel.h \
+ 	sys/ioctl.h \
++	sys/ioccom.h \
+ 	sys/io.h \
+ 	sys/time.h \
+ 	sys/mkdev.h \
+--- include/blkdev.h
++++ include/blkdev.h
+@@ -1,8 +1,15 @@
+ #ifndef BLKDEV_H
+ #define BLKDEV_H
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ #include <sys/types.h>
+ #include <sys/ioctl.h>
++#ifdef HAVE_SYS_IOCCOM_H
++#include <sys/ioccom.h> /* for _IO macro on e.g. Solaris */
++#endif
+ #include <fcntl.h>
+ #include <unistd.h>
+ 
+--- shlibs/blkid/src/topology/md.c
++++ shlibs/blkid/src/topology/md.c
+@@ -16,6 +20,9 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/ioctl.h>
++#ifdef HAVE_SYS_IOCCOM_H
++#include <sys/ioccom.h>
++#endif
+ #include <sys/stat.h>
+ #include <sys/types.h>
+ #ifdef HAVE_SYS_MKDEV_H

@@ -1,0 +1,220 @@
+err, errx, and the like are not available on Solaris (and other platforms)
+
+--- shlibs/blkid/samples/topology.c
++++ shlibs/blkid/samples/topology.c
+@@ -10,8 +10,8 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+-#include <err.h>
+ #include <errno.h>
++#include <string.h>
+ 
+ #include <blkid.h>
+ 
+@@ -33,9 +33,11 @@
+ 
+ 	devname = argv[1];
+ 	pr = blkid_new_probe_from_filename(devname);
+-	if (!pr)
+-		err(EXIT_FAILURE, "%s: faild to create a new libblkid probe",
+-				devname);
++	if (!pr) {
++		fprintf(stderr, "%s: %s: faild to create a new libblkid probe: %s\n",
++				argv[0], devname, strerror(errno));
++		exit(EXIT_FAILURE);
++	}
+ 	/*
+ 	 * Binary interface
+ 	 */
+@@ -65,10 +67,15 @@
+ 	blkid_probe_enable_superblocks(pr, FALSE);
+ 
+ 	rc = blkid_do_fullprobe(pr);
+-	if (rc == -1)
+-		errx(EXIT_FAILURE, "%s: blkid_do_fullprobe() failed", devname);
+-	else if (rc == 1)
+-		warnx("%s: missing topology information", devname);
++	if (rc == -1) {
++		fprintf(stderr, "%s: %s: blkid_do_fullprobe() failed\n",
++				argv[0], devname);
++		exit(EXIT_FAILURE);
++	}
++	else if (rc == 1) {
++		fprintf(stderr, "%s: %s: missing topology information\n",
++				argv[0], devname);
++	}
+ 	else {
+ 		int i, nvals = blkid_probe_numof_values(pr);
+ 
+--- shlibs/blkid/samples/superblocks.c
++++ shlibs/blkid/samples/superblocks.c
+@@ -10,8 +10,8 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+-#include <err.h>
+ #include <errno.h>
++#include <string.h>
+ 
+ #include <blkid.h>
+ 
+@@ -32,9 +32,11 @@
+ 
+ 	devname = argv[1];
+ 	pr = blkid_new_probe_from_filename(devname);
+-	if (!pr)
+-		err(EXIT_FAILURE, "%s: faild to create a new libblkid probe",
+-				devname);
++	if (!pr) {
++		fprintf(stderr, "%s: %s: faild to create a new libblkid probe: %s\n",
++				argv[0], devname, strerror(errno));
++		exit(EXIT_FAILURE);
++	}
+ 
+ 	/* enable topology probing */
+ 	blkid_probe_enable_superblocks(pr, TRUE);
+@@ -48,10 +50,15 @@
+ 			BLKID_SUBLKS_MAGIC);
+ 
+ 	rc = blkid_do_safeprobe(pr);
+-	if (rc == -1)
+-		errx(EXIT_FAILURE, "%s: blkid_do_safeprobe() failed", devname);
+-	else if (rc == 1)
+-		warnx("%s: cannot gather information about superblocks", devname);
++	if (rc == -1) {
++		fprintf(stderr, "%s: %s: blkid_do_safeprobe() failed\n",
++				argv[0], devname);
++		exit(EXIT_FAILURE);
++	}
++	else if (rc == 1) {
++		fprintf(stderr, "%s: %s: cannot gather information about superblocks\n",
++				argv[0], devname);
++	}
+ 	else {
+ 		int i, nvals = blkid_probe_numof_values(pr);
+ 
+--- shlibs/blkid/samples/partitions.c
++++ shlibs/blkid/samples/partitions.c
+@@ -10,8 +10,8 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+-#include <err.h>
+ #include <errno.h>
++#include <string.h>
+ 
+ #include <blkid.h>
+ 
+@@ -32,21 +32,28 @@
+ 
+ 	devname = argv[1];
+ 	pr = blkid_new_probe_from_filename(devname);
+-	if (!pr)
+-		err(EXIT_FAILURE, "%s: faild to create a new libblkid probe",
+-				devname);
++	if (!pr) {
++		fprintf(stderr, "%s: %s: faild to create a new libblkid probe: %s\n",
++				argv[0], devname, strerror(errno));
++		exit(EXIT_FAILURE);
++	}
+ 	/* Binary interface */
+ 	ls = blkid_probe_get_partitions(pr);
+-	if (!ls)
+-		errx(EXIT_FAILURE, "%s: failed to read partitions\n", devname);
++	if (!ls) {
++		fprintf(stderr, "%s: %s: failed to read partitions\n",
++				argv[0], devname);
++		exit(EXIT_FAILURE);
++	}
+ 
+ 	/*
+ 	 * Print info about the primary (root) partition table
+ 	 */
+ 	root_tab = blkid_partlist_get_table(ls);
+-	if (!root_tab)
+-		errx(EXIT_FAILURE, "%s: does not contains any "
+-				 "known partition table\n", devname);
++	if (!root_tab) {
++		fprintf(stderr, "%s: %s: does not contains any "
++				"known partition table\n", argv[0], devname);
++		exit(EXIT_FAILURE);
++	}
+ 
+ 	printf("size: %jd, sector size: %u, PT: %s, offset: %jd\n---\n",
+ 		blkid_probe_get_size(pr),
+--- shlibs/blkid/samples/mkfs.c
++++ shlibs/blkid/samples/mkfs.c
+@@ -10,8 +10,8 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+-#include <err.h>
+ #include <errno.h>
++#include <string.h>
+ 
+ #include <blkid.h>
+ 
+@@ -33,9 +33,11 @@
+ 
+ 	devname = argv[1];
+ 	pr = blkid_new_probe_from_filename(devname);
+-	if (!pr)
+-		err(EXIT_FAILURE, "%s: faild to create a new libblkid probe",
+-				devname);
++	if (!pr) {
++		fprintf(stderr, "%s: %s: faild to create a new libblkid probe: %s\n",
++				argv[0], devname, strerror(errno));
++		exit(EXIT_FAILURE);
++	}
+ 
+ 	/*
+ 	 * check Filesystems / Partitions overwrite
+@@ -45,26 +47,36 @@
+ 	blkid_probe_enable_partitions(pr, TRUE);
+ 
+ 	rc = blkid_do_fullprobe(pr);
+-	if (rc == -1)
+-		errx(EXIT_FAILURE, "%s: blkid_do_fullprobe() failed", devname);
++	if (rc == -1) {
++		fprintf(stderr, "%s: %s: blkid_do_fullprobe() failed\n",
++				argv[0], devname);
++		exit(EXIT_FAILURE);
++	}
+ 	else if (rc == 0) {
+ 		const char *type;
+ 
+-		if (!blkid_probe_lookup_value(pr, "TYPE", &type, NULL))
+-			errx(EXIT_FAILURE, "%s: appears to contain an existing "
+-					"%s superblock", devname, type);
+-
+-		if (!blkid_probe_lookup_value(pr, "PTTYPE", &type, NULL))
+-			errx(EXIT_FAILURE, "%s: appears to contain an partition "
+-					"table (%s)", devname, type);
++		if (!blkid_probe_lookup_value(pr, "TYPE", &type, NULL)) {
++			fprintf(stderr, "%s: %s: appears to contain an existing "
++					"%s superblock\n", argv[0], devname, type);
++			exit(EXIT_FAILURE);
++		}
++
++		if (!blkid_probe_lookup_value(pr, "PTTYPE", &type, NULL)) {
++			fprintf(stderr, "%s: %s: appears to contain an partition "
++					"table (%s)\n", argv[0], devname, type);
++			exit(EXIT_FAILURE);
++		}
+ 	}
+ 
+ 	/*
+ 	 * get topology details
+ 	 */
+ 	tp = blkid_probe_get_topology(pr);
+-	if (!tp)
+-		errx(EXIT_FAILURE, "%s: failed to read topology", devname);
++	if (!tp) {
++		fprintf(stderr, "%s: %s: failed to read topology\n",
++				argv[0], devname);
++		exit(EXIT_FAILURE);
++	}
+ 
+ 
+ 	/* ... your mkfs.<type> code or so ...

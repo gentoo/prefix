@@ -1,0 +1,28 @@
+To link an object which references the socket function, you need to link
+with -lsocket -lnsl on Solaris.
+
+--- configure.ac
++++ configure.ac
+@@ -208,6 +208,11 @@
+ 	[#include <sys/types.h>
+ 	 #include <sys/socket.h>])
+ 
++SOCKET_LIBS=
++AC_SEARCH_LIBS([gethostbyname], [nsl], [SOCKET_LIBS="$SOCKET_LIBS -lnsl"])
++AC_SEARCH_LIBS([socket], [socket], [SOCKET_LIBS="$SOCKET_LIBS -lsocket"])
++AC_SUBST(SOCKET_LIBS)
++
+ dnl Static compilation
+ m4_define([UTIL_STATIC_PROGRAMS], [losetup, mount, umount, fdisk, sfdisk, blkid])
+ 
+--- shlibs/uuid/src/Makefile.am
++++ shlibs/uuid/src/Makefile.am
+@@ -16,7 +16,7 @@
+ 
+ libuuid_la_DEPENDENCIES = uuid.sym
+ 
+-libuuid_la_LDFLAGS =
++libuuid_la_LDFLAGS = @SOCKET_LIBS@
+ if GNU_LD
+ libuuid_la_LDFLAGS += -Wl,--version-script=$(ul_libuuid_srcdir)/uuid.sym
+ endif
