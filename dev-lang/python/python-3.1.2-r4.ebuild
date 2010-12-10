@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.2-r4.ebuild,v 1.10 2010/11/27 12:50:14 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.2-r4.ebuild,v 1.12 2010/12/06 02:56:40 jmbsvicetto Exp $
 
 EAPI="3"
 
@@ -493,7 +493,19 @@ pkg_preinst() {
 	fi
 }
 
+eselect_python_update() {
+	local eselect_python_options
+	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
+
+	# Create python3 symlink.
+	eselect python update --python3 > /dev/null
+
+	eselect python update ${eselect_python_options}
+}
+
 pkg_postinst() {
+	eselect_python_update
+
 	python_mod_optimize -f -x "/(site-packages|test|tests)/" $(python_get_libdir)
 
 	if [[ "$(eselect python show)" == "python2."* ]]; then
@@ -526,5 +538,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
+	eselect_python_update
+
 	python_mod_cleanup $(python_get_libdir)
 }

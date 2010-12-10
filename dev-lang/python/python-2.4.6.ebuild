@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.42 2010/11/27 12:50:14 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.43 2010/12/01 19:53:20 sping Exp $
 
 EAPI="1"
 
@@ -298,13 +298,49 @@ src_install() {
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 }
 
+save_active_python_version() {
+	active_python_2=$(eselect python show --python2)
+	active_python_3=$(eselect python show --python3)
+	active_python_main=$(eselect python show)
+}
+
+restore_active_python_version() {
+	if [[ -n "${active_python_2}" &&
+			"${active_python_2}" != $(eselect python show --python2) ]] ; then
+		einfo "Restoring active Python 2.x interpreter: ${active_python_2}"
+		eselect python set --python2 "${active_python_2}"
+	fi
+	if [[ -n "${active_python_3}" &&
+			"${active_python_3}" != $(eselect python show --python3) ]] ; then
+		einfo "Restoring active Python 3.x interpreter: ${active_python_3}"
+		eselect python set --python3 "${active_python_3}"
+	fi
+
+	if [[ -n "${active_python_main}" &&
+			"${active_python_main}" != $(eselect python show) ]] ; then
+		einfo "Restoring main active Python interpreter: ${active_python_main}"
+		eselect python set "${active_python_main}"
+	fi
+}
+
+ensure_python_symlink() {
+	if [[ -z "$(eselect python show --python${PV%%.*})" ]]; then
+		eselect python update --python${PV%%.*}
+	fi
+}
+
 pkg_preinst() {
+	save_active_python_version
+
 	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.4" && ! has_version "${CATEGORY}/${PN}:2.5" && ! has_version "${CATEGORY}/${PN}:2.6" && ! has_version "${CATEGORY}/${PN}:2.7"; then
 		python_updater_warning="1"
 	fi
 }
 
 pkg_postinst() {
+	restore_active_python_version
+	ensure_python_symlink
+
 	# Python 2.4 partially doesn't respect $(get_libdir).
 	python_mod_optimize -f -x "/(site-packages|test|tests)/" /usr/lib/python${SLOT}
 
@@ -322,6 +358,8 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
+	ensure_python_symlink
+
 	# Python 2.4 partially doesn't respect $(get_libdir).
 	python_mod_cleanup /usr/lib/python${SLOT}
 }
