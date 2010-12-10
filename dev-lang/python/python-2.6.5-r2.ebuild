@@ -164,6 +164,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.2-aix-shared.patch
 	# hpux before 11.31
 	epatch "${FILESDIR}"/${PN}-2.6.2-missing-SEM_FAILED.patch
+	# http://bugs.python.org/issue4026
+	epatch "${FILESDIR}"/${P}-aix-fcntl.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.

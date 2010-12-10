@@ -1,0 +1,17 @@
+http://bugs.python.org/issue4026
+
+--- Modules/ld_so_aix.orig	2010-04-07 14:49:05 +0200
++++ Modules/ld_so_aix	2010-04-07 14:50:31 +0200
+@@ -184,10 +184,10 @@
+ #echo "  -> CC arguments: $args"
+ 
+ CCOPT="-Wl,-e$entry -Wl,-bE:$expfile -Wl,-bI:$impfile -Wl,-bhalt:4"
+-CCOPT="$CCOPT -Wl,-bM:SRE -Wl,-T512 -Wl,-H512 -lm -o $objfile"
++CCOPT="$CCOPT -Wl,-bM:SRE -Wl,-T512 -Wl,-H512 -lm -lbsd -o $objfile"
+ # Note: to use dynamic libraries like libtcl8.4.so and libtk8.4.so 
+ # you may need to replace the second CCOPT line above with the following:
+-# CCOPT="$CCOPT -Wl,-bM:SRE -Wl,-T512 -Wl,-H512 -brtl -bnortllib -lm -o $objfile"
++# CCOPT="$CCOPT -Wl,-bM:SRE -Wl,-T512 -Wl,-H512 -brtl -bnortllib -lm -lbsd -o $objfile"
+ 
+ CCARGS="$args"
+ 
