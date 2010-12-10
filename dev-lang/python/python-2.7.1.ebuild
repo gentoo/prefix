@@ -138,7 +138,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7.1-prefix-search-path.patch
 
 	# build static for mint
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.6.5-mint.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-mint.patch
 
 	# Darwin/OSX Framework related patches and tweaks
 	epatch "${FILESDIR}"/${PN}-2.7-darwin-bundle.patch
