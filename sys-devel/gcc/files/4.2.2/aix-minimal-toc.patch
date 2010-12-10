@@ -1,0 +1,76 @@
+Default to '-mminimal-toc' to avoid the need for '-bbigtoc' linker flag
+in some cases, gdb does not like it.
+http://bugs.gentoo.org/show_bug.cgi?id=266483
+
+diff -ru gcc-4.2.4.orig/gcc/config/rs6000/aix41.h gcc-4.2.4/gcc/config/rs6000/aix41.h
+--- gcc-4.2.4.orig/gcc/config/rs6000/aix41.h	2008-11-21 16:46:57.000000000 +0100
++++ gcc-4.2.4/gcc/config/rs6000/aix41.h	2008-11-21 17:04:09.000000000 +0100
+@@ -42,7 +42,7 @@
+    %{pthread:} -D_THREAD_SAFE %{pthreads:%einvalid argument -pthreads}"
+ 
+ #undef TARGET_DEFAULT
+-#define TARGET_DEFAULT MASK_NEW_MNEMONICS
++#define TARGET_DEFAULT (MASK_NEW_MNEMONICS | MASK_MINIMAL_TOC)
+ 
+ #undef PROCESSOR_DEFAULT
+ #define PROCESSOR_DEFAULT PROCESSOR_PPC601
+diff -ru gcc-4.2.4.orig/gcc/config/rs6000/aix43.h gcc-4.2.4/gcc/config/rs6000/aix43.h
+--- gcc-4.2.4.orig/gcc/config/rs6000/aix43.h	2008-11-21 16:50:01.000000000 +0100
++++ gcc-4.2.4/gcc/config/rs6000/aix43.h	2008-11-21 17:04:25.000000000 +0100
+@@ -117,7 +117,7 @@
+    %{pthread:} -D_THREAD_SAFE %{pthreads:%einvalid argument -pthreads}"
+ 
+ #undef TARGET_DEFAULT
+-#define TARGET_DEFAULT MASK_NEW_MNEMONICS
++#define TARGET_DEFAULT (MASK_NEW_MNEMONICS | MASK_MINIMAL_TOC)
+ 
+ #undef PROCESSOR_DEFAULT
+ #define PROCESSOR_DEFAULT PROCESSOR_PPC604e
+diff -ru gcc-4.2.4.orig/gcc/config/rs6000/aix51.h gcc-4.2.4/gcc/config/rs6000/aix51.h
+--- gcc-4.2.4.orig/gcc/config/rs6000/aix51.h	2008-11-21 16:50:01.000000000 +0100
++++ gcc-4.2.4/gcc/config/rs6000/aix51.h	2008-11-21 17:04:34.000000000 +0100
+@@ -113,7 +113,7 @@
+    %{pthread:} -D_THREAD_SAFE %{pthreads:%einvalid argument -pthreads}"
+ 
+ #undef TARGET_DEFAULT
+-#define TARGET_DEFAULT MASK_NEW_MNEMONICS
++#define TARGET_DEFAULT (MASK_NEW_MNEMONICS | MASK_MINIMAL_TOC)
+ 
+ #undef PROCESSOR_DEFAULT
+ #define PROCESSOR_DEFAULT PROCESSOR_PPC604e
+diff -ru gcc-4.2.4.orig/gcc/config/rs6000/aix52.h gcc-4.2.4/gcc/config/rs6000/aix52.h
+--- gcc-4.2.4.orig/gcc/config/rs6000/aix52.h	2008-11-21 16:50:01.000000000 +0100
++++ gcc-4.2.4/gcc/config/rs6000/aix52.h	2008-11-21 17:04:40.000000000 +0100
+@@ -111,7 +111,7 @@
+    %{pthread:} -D_THREAD_SAFE %{pthreads:%einvalid argument -pthreads}"
+ 
+ #undef  TARGET_DEFAULT
+-#define TARGET_DEFAULT (MASK_POWERPC | MASK_NEW_MNEMONICS)
++#define TARGET_DEFAULT (MASK_POWERPC | MASK_NEW_MNEMONICS | MASK_MINIMAL_TOC)
+ 
+ #undef  PROCESSOR_DEFAULT
+ #define PROCESSOR_DEFAULT PROCESSOR_POWER4
+diff -ru gcc-4.2.4.orig/gcc/config/rs6000/aix61.h gcc-4.2.4/gcc/config/rs6000/aix61.h
+--- gcc-4.2.4.orig/gcc/config/rs6000/aix61.h	2008-11-21 16:50:01.000000000 +0100
++++ gcc-4.2.4/gcc/config/rs6000/aix61.h	2008-11-21 17:04:47.000000000 +0100
+@@ -114,7 +114,7 @@
+    %{pthread:} -D_THREAD_SAFE %{pthreads:%einvalid argument -pthreads}"
+ 
+ #undef  TARGET_DEFAULT
+-#define TARGET_DEFAULT (MASK_POWERPC | MASK_NEW_MNEMONICS)
++#define TARGET_DEFAULT (MASK_POWERPC | MASK_NEW_MNEMONICS | MASK_MINIMAL_TOC)
+ 
+ #undef  PROCESSOR_DEFAULT
+ #define PROCESSOR_DEFAULT PROCESSOR_POWER5
+diff -ru gcc-4.2.4.orig/gcc/config/rs6000/rs6000.h gcc-4.2.4/gcc/config/rs6000/rs6000.h
+--- gcc-4.2.4.orig/gcc/config/rs6000/rs6000.h	2008-11-21 16:28:23.000000000 +0100
++++ gcc-4.2.4/gcc/config/rs6000/rs6000.h	2008-11-21 17:04:51.000000000 +0100
+@@ -188,7 +188,7 @@
+     /* The option machinery will define this.  */
+ #endif
+ 
+-#define TARGET_DEFAULT (MASK_POWER | MASK_MULTIPLE | MASK_STRING)
++#define TARGET_DEFAULT (MASK_POWER | MASK_MULTIPLE | MASK_STRING | MASK_MINIMAL_TOC)
+ 
+ /* Processor type.  Order must match cpu attribute in MD file.  */
+ enum processor_type

@@ -131,6 +131,8 @@ src_unpack() {
 
 	#epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
 	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
+	epatch "${FILESDIR}"/4.4.4/aix-bnoerok.patch
+	epatch "${FILESDIR}"/4.2.2/aix-lineno.patch
 
 	# libgcc's Makefiles reuses $T, work around that :(
 	[[ ${CHOST} == *-solaris* ]] && \
@@ -147,6 +149,9 @@ src_unpack() {
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.4.0/gcc-4.4.0-softfloat.patch
+
+	epatch "${FILESDIR}"/4.2.2/aix-minimal-toc.patch
+	epatch "${FILESDIR}"/4.2.2/aix61-longdouble64.patch
 }
 
 src_compile() {

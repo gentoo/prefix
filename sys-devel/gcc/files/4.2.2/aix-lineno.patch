@@ -1,0 +1,29 @@
+2010-11-30  Olivier Hainque  <hainque@adacore.com>
+            Michael Haubenwallner <michael.haubenwallner@salomon.at>
+
+	PR target/46655
+	* xcoffout.c (ASM_OUTPUT_LINE): Output line as unsigned,
+	when line > 0, and line <= USHRT_MAX in 32bit mode.
+
+--- gcc/xcoffout.c.orig	2010-11-30 14:46:44 +0100
++++ gcc/xcoffout.c	2010-11-30 15:04:21 +0100
+@@ -80,8 +80,18 @@
+ #define ASM_OUTPUT_LINE(FILE,LINENUM)					   \
+   do									   \
+     {									   \
++      /* Make sure we're in a function and prevent output of .line 0, as   \
++	 line # 0 is meant for symbol addresses in Xcoff.  We could get    \
++	 this for insns which inherited BUILTINS_LOCATION or the function  \
++	 decl location somehow, typically created post-gimplification for  \
++	 statements inserted by some optimizers.			   \
++	 Additionally, line numbers are 'unsigned short' in 32bit mode. */ \
+       if (xcoff_begin_function_line >= 0)				   \
+-	fprintf (FILE, "\t.line\t%d\n", ABS_OR_RELATIVE_LINENO (LINENUM)); \
++	{								   \
++	  unsigned int lno = ABS_OR_RELATIVE_LINENO (LINENUM);		   \
++	  if (lno > 0 && (TARGET_64BIT || lno <= USHRT_MAX))		   \
++	    fprintf (FILE, "\t.line\t%u\n", lno);			   \
++	}								   \
+     }									   \
+   while (0)
+ 

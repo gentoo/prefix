@@ -1,0 +1,14 @@
+Switching long double from 64 to 128 bit with aix6.1 was based on an old bug
+in AIX libc, which can not really be fixed due to backwards compatibility,
+just worked around in math.h. The default for long double still is 64bit.
+http://gcc.gnu.org/PR46481
+
+--- gcc/config/rs6000/aix61.h.orig	2010-11-15 12:59:04.008438153 +0100
++++ gcc/config/rs6000/aix61.h	2010-11-15 12:59:43.801763387 +0100
+@@ -193,4 +193,5 @@
+ /* This target uses the aix64.opt file.  */
+ #define TARGET_USES_AIX64_OPT 1
+ 
+-#define RS6000_DEFAULT_LONG_DOUBLE_SIZE 128
++/* keep default 64bit for 'long double': PR46481 */
++#define RS6000_DEFAULT_LONG_DOUBLE_SIZE 64

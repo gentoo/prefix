@@ -1,0 +1,24 @@
+http://gcc.gnu.org/PR26198 applies for hppa-hpux too, not just ia64-hpux.
+--- gcc-4.2.4/fixincludes/inclhack.def.orig	2009-12-15 14:55:53.768807045 +0100
++++ gcc-4.2.4/fixincludes/inclhack.def	2009-12-15 14:56:07.565551263 +0100
+@@ -1770,7 +1770,8 @@
+ fix = {
+     hackname = hpux_spu_info;
+     mach     = "*-hp-hpux*";
+-    files    = ia64/sys/getppdp.h;
++    files    = "ia64/sys/getppdp.h";
++    files    = "pa/sys/getppdp.h";
+     select   = "^.*extern.*spu_info.*";
+ 
+     c_fix     = format;
+--- gcc-4.2.4/fixincludes/fixincl.x.orig	2009-12-15 14:55:50.232151517 +0100
++++ gcc-4.2.4/fixincludes/fixincl.x	2009-12-15 14:56:09.000000000 +0100
+@@ -3002,7 +3002,7 @@
+  *  File name selection pattern
+  */
+ tSCC zHpux_Spu_InfoList[] =
+-  "|ia64/sys/getppdp.h|";
++  "|ia64/sys/getppdp.h|pa/sys/getppdp.h|";
+ /*
+  *  Machine/OS name selection pattern
+  */

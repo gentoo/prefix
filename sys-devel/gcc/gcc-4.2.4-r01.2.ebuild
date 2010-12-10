@@ -113,6 +113,9 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
 	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
+	epatch "${FILESDIR}"/4.2.2/pr26189-pa.patch
+	epatch "${FILESDIR}"/4.2.2/aix-bnoerok.patch
+	epatch "${FILESDIR}"/4.2.2/aix-lineno.patch
 
 	# try /usr/lib32 in 32bit profile on x86_64-linux (needs --enable-multilib)
 	# but this does make sense in prefix only.
@@ -123,6 +126,9 @@ src_unpack() {
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.0.2/gcc-4.0.2-softfloat.patch
+
+	epatch "${FILESDIR}"/4.2.2/aix-minimal-toc.patch
+	epatch "${FILESDIR}"/4.2.2/aix61-longdouble64.patch
 }
 
 src_compile() {

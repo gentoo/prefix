@@ -1,0 +1,15 @@
+http://gcc.gnu.org/PR46887
+Fix a typo in gcc-local copy of libtool files.
+This is triggered in Prefix only, as elibtoolize enables aix_runtime_linking.
+
+--- libjava/classpath/ltcf-cxx.sh.orig	2010-04-24 15:32:46.967555111 +0200
++++ libjava/classpath/ltcf-cxx.sh	2010-04-24 15:33:12.627573175 +0200
+@@ -204,7 +204,7 @@
+         hardcode_libdir_flag_spec='${wl}-blibpath:$libdir:/usr/lib:/lib'
+         # Warning - without using the other run time loading flags, -berok will
+         #           link without error, but may produce a broken library.
+-        no_undefined_flag=' ${wl}-bnoerok'
++        no_undefined_flag=' ${wl}-bernotok'
+         allow_undefined_flag=' ${wl}-berok'
+         # -bexpall does not export symbols beginning with underscore (_)
+         always_export_symbols=yes
