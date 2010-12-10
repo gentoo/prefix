@@ -130,6 +130,10 @@ src_compile() {
 			# the architecture wrong, just disable asm for now
 			confopts="${confopts} no-asm"
 		;;
+		*-*-aix*)
+			# ppccpuid.s doesn't export any symbol on aix for unknown reason
+			confopts="${confopts} no-asm"
+		;;
 	esac
 
 	local sslout=$(./gentoo.config)
