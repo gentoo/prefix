@@ -22,9 +22,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0.2-progress.patch
 	epatch "${FILESDIR}"/${PN}-1.0.3-no-test.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
-#	epatch "${FILESDIR}"/${PN}-1.0.5-soldflags.patch # for AIX, HP-UX
 	epatch "${FILESDIR}"/${PN}-1.0.5-checkenv.patch # for AIX, Darwin?
 	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0.6-aix.patch
 	eprefixify bz{diff,grep,more}
 	# this a makefile for Darwin, which already "includes" saneso
 	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
@@ -67,9 +67,7 @@ src_compile() {
 			:
 		;;
 		*-aix*)
-			# AIX has shared object libbz2.so.1 inside libbz2.a.
-			# We build libbz2.a here to avoid static-only libbz2.a below.
-			bemake SOLDFLAGS=-shared -f Makefile-libbz2_so all || die
+			bemake -f Makefile-libbz2_so all-aix || die
 			checkopts="TESTENV=LIBPATH=."
 		;;
 		*)

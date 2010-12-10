@@ -1,0 +1,18 @@
+--- Makefile-libbz2_so.orig	2010-12-03 21:40:03.000000000 +0100
++++ Makefile-libbz2_so	2010-12-03 21:50:20.000000000 +0100
+@@ -40,6 +40,15 @@
+ 	rm -f libbz2.so.1.0
+ 	ln -s libbz2.so.1.0.6 libbz2.so.1.0
+ 
++# without libtool, create file layout identical to linux (variant C of bug#213277)
++all-aix: $(OBJS)
++	$(CC) -shared -Wl,-G -Wl,-bernotok -o bz2.so $(OBJS)
++	strip -e bz2.so
++	( echo '#!libbz2.so.1(bz2.so)'; dump -Tv bz2.so | grep -E '\<(EXP|ImpExp)\>' | awk '{print $$8}' ) > bz2.imp
++	ar cru libbz2.so.1.0.6 bz2.imp bz2.so
++	rm -f bz2.imp bz2.so
++	$(CC) $(LDFLAGS) $(CFLAGS) -o bzip2-shared bzip2.c libbz2.so.1.0.6
++
+ clean: 
+ 	rm -f $(OBJS) bzip2.o libbz2.so.1.0.6 libbz2.so.1.0 bzip2-shared
+ 
