@@ -89,16 +89,13 @@ src_prepare() {
 		sed -i s/UNKNOWN/SVN-r${FFMPEG_REVISION}/ "${S}/version.sh"
 	fi
 
-	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris.patch
-	[[ ${CHOST} == *-freebsd7* ]] && \
-		epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-freebsd7.patch
 	# -g causes the assembler to segfault on Darwin
 	sed -i -e '/^host_cflags=/s/-g//' configure || die
 	# /bin/sh on at least Solaris can't cope very will with these scripts
-	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
+	sed -i -e '1c\#!/usr/bin/env bash' configure version.sh || die
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		# the version script on Solaris causes invalid symbol version problems
-		sed -i -e '/--version-script/d' configure || die
+		sed -i -e '/test_ldflags .*--version-script/s/version-script/no-XXX-version-script/' configure || die
 	fi
 }
 
