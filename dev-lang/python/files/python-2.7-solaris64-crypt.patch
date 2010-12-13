@@ -14,7 +14,7 @@ http://bugs.python.org/issue1471934
 +            # if normal libcrypt symlink is available, in theory the
 +            # general check below could overwrite this hack, however,
 +            # python just looks only at the 32-bits libs here :(
-+            if self.compiler_obj.find_library_file(lib_dirs, 'crypt_i'):
++            if self.compiler.find_library_file(lib_dirs, 'crypt_i'):
 +                libs = ['crypt_i']
 +        elif self.compiler.find_library_file(lib_dirs, 'crypt'):
              libs = ['crypt']
