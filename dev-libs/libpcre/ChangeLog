@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.164 2010/05/03 20:15:39 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.167 2010/12/12 18:59:47 hwoarang Exp $
+
+  12 Dec 2010; Markos Chandras <hwoarang@gentoo.org> libpcre-8.02.ebuild:
+  Stable on amd64 wrt bug #348487
+
+  12 Dec 2010; Thomas Kahle <tomka@gentoo.org> libpcre-8.02.ebuild:
+  x86 stable per bug 348487
+
+*libpcre-8.10 (12 Dec 2010)
+
+  12 Dec 2010; Diego E. Pettenò <flameeyes@gentoo.org> -libpcre-8.00.ebuild,
+  +libpcre-8.10.ebuild, metadata.xml:
+  Version bump, thanks to Arseny Solokha and Sebastian Pipping in bug #333355.
+  Take over the package for base-system herd as Peter has been away for quite a
+  long time. Avoid adding -L/lib(64) to the ldflags when using pkg-config; run
+  elibtoolize. Drop old version.
 
 *libpcre-8.02 (03 May 2010)
 
