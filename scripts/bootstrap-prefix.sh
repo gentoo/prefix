@@ -701,6 +701,10 @@ bootstrap_findutils() {
 		"http://dev.gentoo.org/~grobian/distfiles/findutils-4.4.0-patched.tar.gz"
 }
 
+bootstrap_findutils5() {
+	bootstrap_gnu findutils 4.5.9
+}
+
 bootstrap_wget() {
 	bootstrap_gnu wget 1.10.2
 }
