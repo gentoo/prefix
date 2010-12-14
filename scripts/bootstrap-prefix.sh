@@ -922,6 +922,9 @@ if [[ -z ${CHOST} ]]; then
 					amd64)
 						CHOST="x86_64-pc-freebsd`uname -r | sed 's|-.*$||'`"
 					;;
+					sparc64)
+						CHOST="sparc64-unknown-freebsd`uname -r | sed 's|-.*$||'`"
+					;;
 					*)
 						eerror "Sorry, don't know about FreeBSD on `uname -p` yet"
 						exit 1
