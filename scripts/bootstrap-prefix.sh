@@ -368,6 +368,10 @@ bootstrap_startscript() {
 		einfo "sh is a prehistoric shell not available in Gentoo, switching to bash instead."
 		theshell="bash"
 	fi
+	if [[ ${theshell} == "csh" ]] ; then
+		einfo "csh is a prehistoric shell not available in Gentoo, switching to tcsh instead."
+		theshell="tcsh"
+	fi
 	einfo "Trying to emerge the shell you use, if necessary by running:"
 	einfo "emerge -u ${theshell}"
 	if ! emerge -u ${theshell} ; then
