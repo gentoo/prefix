@@ -50,7 +50,7 @@ http://bugs.python.org/issue7713
          # Check for MacOS X, which doesn't need libm.a at all
          math_libs = ['m']
          if platform in ['darwin', 'beos']:
-@@ -631,40 +600,12 @@
+@@ -631,40 +600,13 @@
          elif self.compiler.find_library_file(lib_dirs, 'curses'):
              curses_library = 'curses'
  
@@ -65,7 +65,7 @@ http://bugs.python.org/issue7713
 -                # readline package
 -                if find_file('readline/rlconf.h', inc_dirs, []) is None:
 -                    do_readline = False
--        if do_readline:
+         if do_readline:
 -            if platform == 'darwin' and os_release < 9:
 -                # In every directory on the search path search for a dynamic
 -                # library and then a static library, instead of first looking
