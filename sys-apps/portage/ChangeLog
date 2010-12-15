@@ -2,11 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
-*portage-2.2.01.17389 (15 Dec 2010)
+*portage-2.2.01.17390 (15 Dec 2010)
 
   15 Dec 2010; Fabian Groffen <grobian@gentoo.org>
-  -portage-2.2.01.17380.ebuild, +portage-2.2.01.17389.ebuild:
-  Bump for fix for bug #348790
+  -portage-2.2.01.17380.ebuild, +portage-2.2.01.17390.ebuild:
+  Bump for fix for bug #348790, fixup fix for detection of python.
 
 *portage-2.2.01.17380 (13 Dec 2010)
 
