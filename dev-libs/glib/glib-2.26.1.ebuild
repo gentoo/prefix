@@ -80,10 +80,7 @@ src_prepare() {
 			|| die "sed failed"
 	fi
 
-#	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 #	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
-	# configure script lets itself being fooled by bind 8 stuff
-#	[[ ${CHOST} == *-darwin[678] ]] && append-libs -lresolv
 
 	# make default sane for us
 	if use prefix ; then
