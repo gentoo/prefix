@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.24.1-r1.ebuild,v 1.5 2010/08/01 11:04:08 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.24.1-r1.ebuild,v 1.12 2010/10/17 14:43:05 armin76 Exp $
 
 EAPI="2"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gtk.org/"
 LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="debug doc fam hardened selinux xattr"
+IUSE="debug doc fam selinux xattr"
 
 RDEPEND="virtual/libiconv
 	>=sys-devel/gettext-0.11
@@ -21,21 +21,16 @@ RDEPEND="virtual/libiconv
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
 	>=sys-devel/gettext-0.11
-	>=dev-util/gtk-doc-am-1.11
+	>=dev-util/gtk-doc-am-1.13
 	x86-interix? ( sys-libs/itx-bind )
 	doc? (
 		>=dev-libs/libxslt-1.0
-		>=dev-util/gtk-doc-1.11
+		>=dev-util/gtk-doc-1.13
 		~app-text/docbook-xml-dtd-4.1.2 )"
 # eautoreconf needs gtk-doc-am
 # XXX: Consider adding test? ( sys-devel/gdb ); assert-msg-test tries to use it
 
 src_prepare() {
-	if use ppc64 && use hardened ; then
-		replace-flags -O[2-3] -O1
-		epatch "${FILESDIR}/glib-2.6.3-testglib-ssp.patch"
-	fi
-
 	if use ia64 ; then
 		# Only apply for < 4.1
 		local major=$(gcc-major-version)
