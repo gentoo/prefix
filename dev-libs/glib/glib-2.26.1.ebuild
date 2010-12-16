@@ -44,7 +44,7 @@ src_prepare() {
 	fi
 
 	# patch avoids autoreconf necessity
-	epatch "${FILESDIR}"/${PN}-2.12.11-solaris-thread.patch
+#	epatch "${FILESDIR}"/${PN}-2.12.11-solaris-thread.patch
 
 	# Don't fail gio tests when ran without userpriv, upstream bug 552912
 	# This is only a temporary workaround, remove as soon as possible
@@ -81,7 +81,7 @@ src_prepare() {
 	fi
 
 #	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
-	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
+#	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
 	# configure script lets itself being fooled by bind 8 stuff
 #	[[ ${CHOST} == *-darwin[678] ]] && append-libs -lresolv
 
