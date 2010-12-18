@@ -27,7 +27,7 @@
 -				*DSO_DLFCN*)	sfx=`expr "$(SHLIB_EXT)" : '.*\(\.[a-z][a-z]*\)' \| ".so"`;;	\
 +				*DSO_DLFCN*) \
 +					case "$(PLATFORM)" in \
-+						darwin-*) sfx=".bundle";; \
++						darwin64-*|darwin-*) sfx=".bundle";; \
 +						*) sfx=`expr "$(SHLIB_EXT)" : '.*\(\.[a-z][a-z]*\)' \| ".so"`;; \
 +					esac; \
 +				;;	\
@@ -43,7 +43,7 @@
 -			*DSO_DLFCN*) sfx=`expr "$(SHLIB_EXT)" : '.*\(\.[a-z][a-z]*\)' \| ".so"`;; \
 +			*DSO_DLFCN*) \
 +				case "$(PLATFORM)" in \
-+					darwin-*) sfx=".bundle";; \
++					darwin64-*|darwin-*) sfx=".bundle";; \
 +					*) sfx=`expr "$(SHLIB_EXT)" : '.*\(\.[a-z][a-z]*\)' \| ".so"`;; \
 +				esac; \
 +			;;	\
