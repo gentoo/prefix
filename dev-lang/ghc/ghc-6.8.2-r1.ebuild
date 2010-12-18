@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.8.2-r1.ebuild,v 1.2 2009/09/10 09:01:21 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.8.2-r1.ebuild,v 1.5 2010/07/21 21:49:33 slyfox Exp $
 
 # Brief explanation of the bootstrap logic:
 #
@@ -28,7 +28,7 @@
 # re-emerge ghc (or ghc-bin). People using vanilla gcc can switch between
 # gcc-3.x and 4.x with no problems.
 
-inherit base bash-completion eutils flag-o-matic toolchain-funcs ghc-package versionator autotools prefix
+inherit base bash-completion eutils flag-o-matic multilib toolchain-funcs ghc-package versionator prefix
 
 DESCRIPTION="The Glasgow Haskell Compiler"
 HOMEPAGE="http://www.haskell.org/ghc/"
@@ -148,6 +148,8 @@ pkg_setup() {
 
 src_unpack() {
 	base_src_unpack
+	source "${FILESDIR}/ghc-apply-gmp-hack" "$(get_libdir)"
+
 	ghc_setup_cflags
 
 	# Modify the ghc driver script to use GHC_CFLAGS
@@ -228,9 +230,9 @@ src_compile() {
 	# portage logging) reported as bug #111183
 	echo "SRC_HC_OPTS+=-w" >> mk/build.mk
 
-	# GHC build system knows to build unregisterised on alpha and hppa,
+	# GHC build system knows to build unregisterised on alpha,
 	# but we have to tell it to build unregisterised on some arches
-	if use alpha || use hppa || use ia64 || use ppc64 || use sparc; then
+	if use alpha || use ia64 || use ppc64 || use sparc; then
 		echo "GhcUnregisterised=YES" >> mk/build.mk
 		echo "GhcWithInterpreter=NO" >> mk/build.mk
 		echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
@@ -250,7 +252,9 @@ src_compile() {
 
 	econf || die "econf failed"
 
-	emake all || die "make failed"
+	# LC_ALL needs to workaround ghc's ParseCmm failure on some (es) locales
+	# bug #202212 / http://hackage.haskell.org/trac/ghc/ticket/4207
+	LC_ALL=C emake all || die "make failed"
 }
 
 src_install() {

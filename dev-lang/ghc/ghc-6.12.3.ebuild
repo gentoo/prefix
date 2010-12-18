@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.10.4-r1.ebuild,v 1.12 2010/11/06 20:28:25 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.12.3.ebuild,v 1.19 2010/11/14 18:10:55 slyfox Exp $
 
 # Brief explanation of the bootstrap logic:
 #
@@ -33,30 +33,26 @@ inherit base autotools bash-completion eutils flag-o-matic multilib toolchain-fu
 DESCRIPTION="The Glasgow Haskell Compiler"
 HOMEPAGE="http://www.haskell.org/ghc/"
 
-# discover if this is a snapshot release
-IS_SNAPSHOT="$(get_version_component_range 4)" # non-empty if snapshot
-EXTRA_SRC_URI="${PV}"
-[[ "${IS_SNAPSHOT}" ]] && EXTRA_SRC_URI="stable/dist"
-
 arch_binaries=""
 
-arch_binaries="$arch_binaries alpha? ( http://code.haskell.org/~ivanm/ghc-bin-${PV}-alpha.tbz2 )"
-arch_binaries="$arch_binaries x86?   ( http://code.haskell.org/~ivanm/ghc-bin-${PV}-x86.tbz2 )"
-arch_binaries="$arch_binaries amd64? ( http://haskell.org/~kolmodin/ghc-bin-${PV}-amd64.tbz2 )"
-arch_binaries="$arch_binaries ia64?  ( http://code.haskell.org/~slyfox/ghc-ia64/ghc-bin-${PV}-ia64.tbz2 )"
-arch_binaries="$arch_binaries sparc? ( http://haskell.org/~duncan/ghc/ghc-bin-${PV}-sparc.tbz2 )"
-arch_binaries="$arch_binaries ppc64? ( http://code.haskell.org/~slyfox/ghc-ppc64/ghc-bin-${PV}-ppc64.tbz2 )"
-arch_binaries="$arch_binaries ppc?   ( mirror://gentoo/ghc-bin-${PV}-ppc.tbz2 )"
+arch_binaries="$arch_binaries alpha? ( http://code.haskell.org/~slyfox/ghc-alpha/ghc-bin-${PV}-alpha-haddock.tbz2 )"
+arch_binaries="$arch_binaries x86?   ( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )"
+arch_binaries="$arch_binaries amd64? ( mirror://gentoo/ghc-bin-${PV}-amd64.tbz2 )"
+arch_binaries="$arch_binaries ia64?  ( http://code.haskell.org/~slyfox/ghc-ia64/ghc-bin-${PV}-ia64-haddock.tbz2 )"
+arch_binaries="$arch_binaries sparc? ( http://code.haskell.org/~slyfox/ghc-sparc/ghc-bin-${PV}-sparc.tbz2 )"
+arch_binaries="$arch_binaries ppc64? ( mirror://gentoo/ghc-bin-${PV}-ppc64.tbz2 )"
+arch_binaries="$arch_binaries ppc? ( mirror://gentoo/ghc-bin-${PV}-ppc.tbz2 )"
 
-arch_binaries="$arch_binaries x86-macos? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-i386-apple-darwin.tar.bz2 )"
-# 6.10.4 binary bus errors on Tiger (it's for Leopard only)
-arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/6.10.1/maeder/ghc-6.10.1-powerpc-apple-darwin.tar.bz2 )"
-arch_binaries="$arch_binaries x86-solaris? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-i386-unknown-solaris2.tar.bz2 )"
-arch_binaries="$arch_binaries sparc-solaris? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-sparc-sun-solaris2.tar.bz2 )"
+# various ports:
+arch_binaries="$arch_binaries x86-fbsd? ( http://code.haskell.org/~slyfox/ghc-x86-fbsd/ghc-bin-${PV}-x86-fbsd.tbz2 )"
 
-SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz2 )
+arch_binaries="$arch_binaries x86-macos? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-i386-apple-darwin.tar.bz2 )"
+arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-powerpc-apple-darwin.tar.bz2 )"
+arch_binaries="$arch_binaries x86-solaris? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-i386-unknown-solaris2.tar.bz2 )"
+arch_binaries="$arch_binaries sparc-solaris? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-sparc-sun-solaris2.tar.bz2 )"
+
+SRC_URI="!binary? ( http://darcs.haskell.org/download/dist/${PV}/${P}-src.tar.bz2 )
 	!ghcbootstrap? ( $arch_binaries )"
-
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
@@ -79,7 +75,11 @@ DEPEND="${RDEPEND}
 # In the ghcbootstrap case we rely on the developer having
 # >=ghc-5.04.3 on their $PATH already
 
-PDEPEND="!ghcbootstrap? ( =app-admin/haskell-updater-0.9* )"
+PDEPEND="!ghcbootstrap? ( =app-admin/haskell-updater-1.1* )"
+
+# use undocumented feature STRIP_MASK to fix this issue:
+# http://hackage.haskell.org/trac/ghc/ticket/3580
+STRIP_MASK="*/HSffi.o"
 
 append-ghc-cflags() {
 	local flag compile assemble link
@@ -132,14 +132,10 @@ ghc_setup_cflags() {
 	# prevent from failind building unregisterised ghc:
 	# http://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg171602.html
 	use ppc64 && append-ghc-cflags compile -mminimal-toc
-
-	# We also add -Wa,--noexecstack to get ghc to generate .o files with
-	# non-exectable stack. This it a hack until ghc does it itself properly.
-	case $($(tc-getAS) -v 2>&1 </dev/null) in
-		*"GNU Binutils"*) # GNU ld
-			append-ghc-cflags assemble "-Wa,--noexecstack"
-		;;
-	esac
+	# fix the similar issue as ppc64 TOC on ia64. ia64 has limited size of small data
+	# currently ghc fails to build haddock
+	# http://osdir.com/ml/gnu.binutils.bugs/2004-10/msg00050.html
+	use ia64 && append-ghc-cflags compile -G0
 }
 
 pkg_setup() {
@@ -170,7 +166,7 @@ src_unpack() {
 	if ! use ghcbootstrap; then
 		# Modify the wrapper script from the binary tarball to use GHC_CFLAGS.
 		# See bug #313635.
-		sed -i -e "s|wrapped|wrapped ${GHC_CFLAGS}|" \
+		sed -i -e "s|\"\$topdir\"|\"\$topdir\" ${GHC_CFLAGS}|" \
 			"${WORKDIR}/usr/bin/ghc-${PV}"
 
 		# allow hardened users use vanilla biary to bootstrap ghc
@@ -192,91 +188,109 @@ src_unpack() {
 				"${WORKDIR}/usr/bin/ghci-${PV}" \
 				"${WORKDIR}/usr/bin/ghc-pkg-${PV}" \
 				"${WORKDIR}/usr/bin/hsc2hs" \
-				"${WORKDIR}"/usr/lib*/${P}/package.conf \
+				"${WORKDIR}/usr/$(get_libdir)/${P}/package.conf.d/"* \
 				|| die "Relocating ghc from /usr to workdir failed"
+
+			# regenerate the binary package cache
+			"${WORKDIR}/usr/bin/ghc-pkg" recache
 			else
 				mkdir "${WORKDIR}"/ghc-bin-installer || die
 				pushd "${WORKDIR}"/ghc-bin-installer > /dev/null || die
 				use sparc-solaris && unpack ghc-${PV}-sparc-sun-solaris2.tar.bz2
 				use x86-solaris && unpack ghc-${PV}-i386-unknown-solaris2.tar.bz2
-				use ppc-macos && unpack ghc-6.10.1-powerpc-apple-darwin.tar.bz2
+				use ppc-macos && unpack ghc-${PV}-powerpc-apple-darwin.tar.bz2
 				use x86-macos && unpack ghc-${PV}-i386-apple-darwin.tar.bz2
 
-				# fix the binaries so they run, on Solaris we need an
-				# LD_LIBRARY_PATH which has our prefix libdirs, on Darwin we
-				# need to replace the install_names with our libs from the
-				# prefix
-				if [[ ${CHOST} == powerpc-*-darwin* ]] ; then
-					# this is necessary at least for PPC/Tiger ghc-6.10.1
-					# http://www.haskell.org/ghc/download_ghc_6_10_1.html#macosxppc
-					local line
-					scanmacho -yR -EMH_EXECUTE -F'%n' . | while read line ; do
-						if [[ ,${line} == *,/opt/local/lib/* ]] ; then
-							einfo "fixing ${line#* }"
-							install_name_tool -change \
-								/opt/local/lib/libncurses.5.dylib \
-								"${EPREFIX}"/lib/libncurses.5.dylib \
-								${line#* }
-							install_name_tool -change \
-								/opt/local/lib/libgmp.3.dylib \
-								"${EPREFIX}"/usr/lib/libgmp.3.dylib \
-								${line#* }
-						fi
-					done
-				elif [[ ${CHOST} == *-solaris* ]] ; then
-					export LD_LIBRARY_PATH="${EPREFIX}/$(get_libdir):${EPREFIX}/usr/$(get_libdir):${LD_LIBRARY_PATH}"
-				fi
-				pushd ${PN}-* > /dev/null || die
 				# it is autoconf, but we really don't want to give it too
 				# much arguments, in fact we do the make in-place anyway
+				pushd "${P}" > /dev/null || die
 				./configure --prefix="${WORKDIR}"/usr || die
 				make install || die
 				popd > /dev/null
 				popd > /dev/null
+				# fix the binaries so they run, on Solaris we need an
+				# LD_LIBRARY_PATH which has our prefix libdirs, on Darwin we
+				# need to replace the frameworks with our libs from the prefix
 				pushd "${WORKDIR}"/usr > /dev/null || die
-				if [[ ${CHOST} == *-darwin* ]] ; then
+				if [[ ${CHOST} == *-solaris* ]] ; then
+					export LD_LIBRARY_PATH="${EPREFIX}/$(get_libdir):${EPREFIX}/usr/$(get_libdir):${LD_LIBRARY_PATH}"
+				elif [[ ${CHOST} == *-darwin* ]] ; then
+					local readline_framework
+					if [[ ${CHOST} == powerpc-*-darwin* ]]; then
+						readline_framework=GNUreadline.framework/GNUreadline
+					else
+						readline_framework=GNUreadline.framework/Versions/A/GNUreadline
+					fi
+					for binary in lib/*-apple-darwin/ghc-{${PV},pkg.bin}; do
+						install_name_tool -change \
+							${readline_framework} \
+							"${EPREFIX}"/lib/libreadline.dylib \
+							${binary} || die
+						install_name_tool -change \
+							GMP.framework/Versions/A/GMP \
+							"${EPREFIX}"/usr/lib/libgmp.dylib \
+							${binary} || die
+					done
 					# we don't do frameworks!
 					sed -i \
 						-e 's/\(frameworks = \)\["GMP"\]/\1[]/g' \
 						-e 's/\(extraLibraries = \)\["m"\]/\1["m","gmp"]/g' \
-						lib/${PN}-*/package.conf || die
-					# if this fails over versions, we can switch to find
+						lib/*-apple-darwin/package.conf || die
 				fi
 				popd > /dev/null
 			fi
 		fi
 
-		# Hack to prevent haddock being installed, remove when ./configure
-		# supports something better to not build docs or haddock.
-		sed -i -e 's/DO_NOT_INSTALL =/DO_NOT_INSTALL = haddock/' \
-			"${S}/utils/Makefile"
+		sed -i -e "s|\"\$topdir\"|\"\$topdir\" ${GHC_CFLAGS}|" \
+			"${S}/ghc/ghc.wrapper"
 
-		# Modify the ghc driver script to use GHC_CFLAGS
-		sed -i -e "s|wrapped|wrapped ${GHC_CFLAGS}|" \
-	                "${S}/ghc/ghc.wrapper"
+		# Since GHC 6.12.2 the GHC wrappers store which GCC version GHC was
+		# compiled with, by saving the path to it. The purpose is to make sure
+		# that GHC will use the very same gcc version when it compiles haskell
+		# sources, as the extra-gcc-opts files contains extra gcc options which
+		# match only this GCC version.
+		# However, this is not required in Gentoo, as only modern GCCs are used
+		# (>4).
+		# Instead, this causes trouble when for example ccache is used during
+		# compilation, but we don't want the wrappers to point to ccache.
+		# Due to the above, we simply remove GCC from the wrappers, which forces
+		# GHC to use GCC from the users path, like previous GHC versions did.
 
-		cd "${S}"
+		# Remove path to gcc
+		sed -i -e '/pgmgcc/d' \
+			"${S}/rules/shell-wrapper.mk"
 
-		# disable cabal built binary stripping (solves bug #299492)
-		# as installPackage strips them by default
-		epatch "${FILESDIR}/ghc-6.10.4-disable-strip.patch"
+		# Remove usage of the path to gcc
+		sed -i -e 's/-pgmc "$pgmgcc"//' \
+		    "${S}/ghc/ghc.wrapper"
 
-		# patch aclocal.m4 and configure.ac to work with >=autoconf-2.64
-		epatch "${FILESDIR}/${P}-autoconf.patch"
+		cd "${S}" # otherwise epatch will break
 
-		# >=autoconf-2.66 compatibility
-		epatch "${FILESDIR}/ghc-6.12.3-autoconf-2.66-4252.patch"
-
-		# fix configure.ac to detect libm need
-		#    http://bugs.gentoo.org/show_bug.cgi?id=293208
-		#    http://hackage.haskell.org/trac/ghc/ticket/3730
-		epatch "${FILESDIR}/ghc-6.10.4-libm-detection.patch"
+		epatch "${FILESDIR}/ghc-6.12.1-configure-CHOST.patch"
+		epatch "${FILESDIR}/ghc-6.12.2-configure-CHOST-part2.patch"
+		epatch "${FILESDIR}/ghc-6.12.3-configure-CHOST-freebsd.patch"
 
 		# -r and --relax are incompatible
-		epatch "${FILESDIR}/ghc-6.10.4-ia64-fixed-relax.patch"
+		epatch "${FILESDIR}/ghc-6.12.3-ia64-fixed-relax.patch"
 
 		# prevent from wiping upper address bits used in cache lookup
-		epatch "${FILESDIR}/ghc-6.10.4-ia64-storage-manager-fix.patch"
+		epatch "${FILESDIR}/ghc-6.12.3-ia64-storage-manager-fix.patch"
+
+		# fixes build failure of adjustor code
+		epatch "${FILESDIR}/ghc-6.12.3-alpha-use-libffi-for-foreign-import-wrapper.patch"
+
+		# native adjustor (NA) code is broken: interactive darcs-2.4 coredumps on NA
+		epatch "${FILESDIR}/ghc-6.12.3-ia64-use-libffi-for-foreign-import-wrapper.patch"
+
+		# same with NA on ppc
+		epatch "${FILESDIR}/ghc-6.12.3-ppc-use-libffi-for-foreign-import-wrapper.patch"
+
+		# substitute outdated macros
+		epatch "${FILESDIR}/ghc-6.12.3-autoconf-2.66-4252.patch"
+
+		# export typechecker internals even if ghci is disabled
+		# http://hackage.haskell.org/trac/ghc/ticket/3558
+		epatch "${FILESDIR}/ghc-6.12.3-ghciless-haddock-3558.patch"
 
 		# as we have changed the build system
 # see below		eautoreconf
@@ -314,6 +328,9 @@ src_compile() {
 			echo XMLDocWays="" >> mk/build.mk
 			echo HADDOCK_DOCS=NO >> mk/build.mk
 		fi
+
+		sed -e "s|utils/haddock_dist_INSTALL_SHELL_WRAPPER = YES|utils/haddock_dist_INSTALL_SHELL_WRAPPER = NO|" \
+		    -i utils/haddock/ghc.mk
 
 		# circumvent a very strange bug that seems related with ghc producing
 		# too much output while being filtered through tee (e.g. due to
@@ -375,9 +392,7 @@ src_install() {
 		# We only built docs if we were bootstrapping, otherwise
 		# we copy them out of the unpacked binary .tbz2
 		if use doc; then
-			if use ghcbootstrap; then
-				insttarget="${insttarget} install-docs"
-			else
+			if ! use ghcbootstrap; then
 				mkdir -p "${ED}/usr/share/doc"
 				mv "${WORKDIR}/usr/share/doc/${P}" "${ED}/usr/share/doc" \
 					|| die "failed to copy docs"
@@ -397,26 +412,47 @@ src_install() {
 
 		dobashcompletion "${FILESDIR}/ghc-bash-completion"
 
-		cp -p "${ED}/usr/$(get_libdir)/${P}/package.conf"{,.shipped} \
-			|| die "failed to copy package.conf"
+	fi
+
+	# path to the package.cache
+	PKGCACHE="${ED}/usr/$(get_libdir)/${P}/package.conf.d/package.cache"
+
+	# copy the package.conf, including timestamp, save it so we later can put it
+	# back before uninstalling, or when upgrading.
+	cp -p "${PKGCACHE}"{,.shipped} \
+		|| die "failed to copy package.conf.d/package.cache"
+}
+
+pkg_preinst() {
+	# have we got an earlier version of ghc installed?
+	if has_version "<${CATEGORY}/${PF}"; then
+		haskell_updater_warn="1"
 	fi
 }
 
 pkg_postinst() {
-	# 'ghc-pkg check' fails in ghc 6.10.2, with the error message:
-	# There are problems in package rts-1.0:
-	#    include-dirs: PAPI_INCLUDE_DIR doesn't exist or isn't a directory
-	# Upstream suggests this solution to fix it:
-	export PATH="${EPREFIX}/usr/bin:${PATH}"
-	$(ghc-getghcpkg) describe rts | sed 's/PAPI_INCLUDE_DIR//' | $(ghc-getghcpkg) update -
-
 	ghc-reregister
 
-	ewarn "IMPORTANT:"
-	ewarn "If you have upgraded from another version of ghc,"
-	ewarn "once app-admin/haskell-updater has installed please run:"
-	ewarn "      /usr/sbin/haskell-updater --upgrade"
-	ewarn "to re-build all ghc-based Haskell libraries."
+	# path to the package.cache
+	PKGCACHE="${EROOT}/usr/$(get_libdir)/${P}/package.conf.d/package.cache"
+
+	# give the cache a new timestamp, it must be as recent as
+	# the package.conf.d directory.
+	touch "${PKGCACHE}"
+
+	if [[ "${haskell_updater_warn}" == "1" ]]; then
+		ewarn
+		ewarn "\e[1;31m************************************************************************\e[0m"
+		ewarn
+		ewarn "You have just upgraded from an older version of GHC."
+		ewarn "You may have to run"
+		ewarn "      'haskell-updater --upgrade'"
+		ewarn "to rebuild all ghc-based Haskell libraries."
+		ewarn
+		ewarn "\e[1;31m************************************************************************\e[0m"
+		ewarn
+		ebeep 12
+	fi
 
 	bash-completion_pkg_postinst
 }
@@ -439,12 +475,11 @@ pkg_prerm() {
 	# * pkg_postrm for the package being replaced
 	# * pkg_postinst
 
-	# Overwrite the (potentially) modified package.conf with a copy of the
+	# Overwrite the modified package.cache with a copy of the
 	# original one, so that it will be removed during uninstall.
 
-	PKG="${EROOT}/usr/$(get_libdir)/${P}/package.conf"
+	PKGCACHE="${EROOT}/usr/$(get_libdir)/${P}/package.conf.d/package.cache"
+	rm -rf "${PKGCACHE}"
 
-	cp -p "${PKG}"{.shipped,}
-
-	[[ -f ${PKG}.old ]] && rm "${PKG}.old"
+	cp -p "${PKGCACHE}"{.shipped,}
 }

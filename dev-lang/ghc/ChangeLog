@@ -1,6 +1,133 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.174 2010/03/25 21:00:52 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.200 2010/11/27 12:43:55 kolmodin Exp $
+
+  27 Nov 2010; Lennart Kolmodin <kolmodin@gentoo.org> -ghc-6.12.1.ebuild:
+  Remove masked GHC 6.12.1.
+
+  14 Nov 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.12.3.ebuild:
+  alpha/ia64 stable (bug #338652)
+
+  06 Nov 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.10.4-r1.ebuild:
+  Fixed failure when building against autoconf-2.66+ (bug #343111 by
+  Jean-Francis Roy <jeanfrancisroy@gmail.com>)
+
+  01 Nov 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.12.3.ebuild:
+  sparc stable (bug #338652)
+
+  19 Oct 2010; Thomas Kahle <tomka@gentoo.org> ghc-6.12.3.ebuild:
+  x86 stable per bug 338652
+
+  09 Oct 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.12.3.ebuild:
+  Updated binaries for alpha and ia64 (export typechecker API for haddock)
+
+  04 Oct 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.12.3.ebuild,
+  +files/ghc-6.12.3-ghciless-haddock-3558.patch:
+  Export typechecker internals for haddock (alpha, ia64, ppc64). Allow
+  ghc-ia64 to link very large applications (haddock).
+
+  26 Sep 2010; Markos Chandras <hwoarang@gentoo.org> ghc-6.12.3.ebuild:
+  Stable on amd64 wrt bug #338652
+
+  19 Sep 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.10.4-r1.ebuild,
+  ghc-6.12.3.ebuild:
+  Make ghc usable on hardened. Disabled enforced memory protection (bug
+  #299709). Thanks to Hongjiu Zhang for the report and proposed solution.
+
+  16 Sep 2010; Tomáš Chvátal <scarabeus@gentoo.org> ghc-6.2.2.ebuild,
+  ghc-6.4.2.ebuild:
+  virtual/glut -> media-libs/glut
+
+  13 Sep 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.12.3.ebuild,
+  +files/ghc-6.12.3-autoconf-2.66-4252.patch:
+  Fixed configure regeneration failure (bug #337025). Thanks to Andrew
+  Savchenko for the report and found solution.
+
+  09 Sep 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.12.3.ebuild:
+  Added sparc build for 6.12.3. Marked ~sparc (bug #283531)
+
+  21 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.2.2.ebuild,
+  ghc-6.4.2.ebuild, ghc-6.6.ebuild, ghc-6.6.1.ebuild, ghc-6.8.2.ebuild,
+  ghc-6.8.2-r1.ebuild, ghc-6.10.4-r1.ebuild, ghc-6.12.1.ebuild,
+  ghc-6.12.3.ebuild,
+  +files/ghc-6.12.3-ppc-use-libffi-for-foreign-import-wrapper.patch:
+  Fixed build faiures on 'es' locale (bug #202212). Thanks to Jesús
+  Guerrero <i92guboj@gentoo.org> and Francisco Lloret <fcolloret@terra.es>
+  for the report. Fixed f.i.w on ppc this time. Thanks to Joseph Jezak
+  <josejx@gentoo.org> for the failure report.
+
+  20 Jul 2010; Joseph Jezak <josejx@gentoo.org> ghc-6.12.3.ebuild:
+  Added ppc build for 6.12.3. Marked ~ppc.
+
+  16 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.10.4-r1.ebuild,
+  +files/ghc-6.10.4-disable-strip.patch:
+  Disable stripping of compiled ghc (and related) binary. Fixes bug #299492.
+  Thanks to Davide Pesavento <davidepesa@gmail.com> for the report.
+
+  15 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.12.3.ebuild,
+  +files/ghc-6.12.3-configure-CHOST-freebsd.patch:
+  Restored ~x86-fbsd (bug #283531). Built and tested by Naohiro Aota (naota
+  at freenode://#gentoo-haskell) on i686-gentoo-freebsd8.
+
+  14 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.2.2.ebuild,
+  ghc-6.4.2.ebuild, ghc-6.6.ebuild, ghc-6.6.1.ebuild, ghc-6.8.2.ebuild,
+  ghc-6.8.2-r1.ebuild, ghc-6.10.4-r1.ebuild, ghc-6.12.1.ebuild,
+  ghc-6.12.3.ebuild, +files/ghc-apply-gmp-hack:
+  Added ability to bootstrap ghc on systems with gmp-5. Thanks to David
+  Brown (davidbCaf at freenode://#gentoo-haskell) for the report.
+
+  10 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.12.3.ebuild,
+  +files/ghc-6.12.3-ia64-use-libffi-for-foreign-import-wrapper.patch:
+  Fixed darcs-2.4.4 miscompilation on ia64. Rebuilt ia64 binary with the
+  patch.
+
+  09 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.10.4-r1.ebuild,
+  +files/ghc-6.10.4-ia64-fixed-relax.patch,
+  +files/ghc-6.10.4-ia64-storage-manager-fix.patch, ghc-6.12.3.ebuild,
+  +files/ghc-6.12.3-ia64-fixed-relax.patch,
+  +files/ghc-6.12.3-ia64-storage-manager-fix.patch:
+  Added binaries for ia64 so readded ~ia64 keywords for 6.10.4 and 6.12.3
+
+  07 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org> -ghc-6.10.4.ebuild,
+  ghc-6.10.4-r1.ebuild, ghc-6.12.3.ebuild,
+  +files/ghc-6.12.3-alpha-use-libffi-for-foreign-import-wrapper.patch:
+  Added alpha binary for ghc-6.10.4-r1 (thanks to Martin Rosenberg
+  <mjrosenb@andrew.cmu.edu>);
+  added alpha binary for ghc-6.12.3, removed old ghc-6.10.4 in favour of
+  -r1.
+
+  01 Jul 2010; Jeroen Roovers <jer@gentoo.org> ghc-6.4.2.ebuild,
+  ghc-6.6.ebuild, ghc-6.6.1.ebuild, ghc-6.8.2.ebuild, ghc-6.8.2-r1.ebuild,
+  ghc-6.10.4.ebuild, ghc-6.10.4-r1.ebuild, ghc-6.12.1.ebuild,
+  ghc-6.12.3.ebuild:
+  Drop support for ghc and darcs.
+
+  17 Jun 2010; Lennart Kolmodin <kolmodin@gentoo.org> ghc-6.12.3.ebuild:
+  Change SRC_URI to use ghc-bins from the mirroring system for ghc 6.12.3.
+
+  17 Jun 2010; Lennart Kolmodin <kolmodin@gentoo.org> ghc-6.6.1.ebuild:
+  Remove the post dependency on dev-haskell/filepath, as this package is
+  actually already part of ghc since version 6.6.1.
+  See bug #324411.
+
+*ghc-6.12.3 (16 Jun 2010)
+
+  16 Jun 2010; Lennart Kolmodin <kolmodin@gentoo.org> ghc-6.12.1.ebuild,
+  +files/ghc-6.12.2-configure-CHOST-part2.patch, +ghc-6.12.3.ebuild:
+  Version bump to 6.12.3.
+  So far we've got binaries for amd64, ppc64 and x86.
+  Also changed so that the masked ghc 6.12.1 ebuild uses haskell-updater-1*.
+
+  12 Jun 2010; Lennart Kolmodin <kolmodin@gentoo.org> ghc-6.10.4-r1.ebuild:
+  Edit the ghc-wrapper installed by USE=binary to include GHC_CFLAGS from
+  the user's compilation.
+  This solves problems for hardend users, as the ghc binaries are not build
+  on hardend systems. See bug #313635 for details.
+  Patch by xake@rymdraket.net.
+
+  31 May 2010; Joseph Jezak <josejx@gentoo.org> ghc-6.10.4-r1.ebuild,
+  ghc-6.12.1.ebuild:
+  Added ghc 6.10.4 and 6.12.1 binaries for ppc, marked ~ppc.
 
   25 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org>
   files/ghc-6.12.1-configure-CHOST.patch:

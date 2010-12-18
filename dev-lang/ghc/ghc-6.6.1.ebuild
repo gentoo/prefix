@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.6.1.ebuild,v 1.17 2008/03/01 11:43:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.6.1.ebuild,v 1.21 2010/07/21 21:49:33 slyfox Exp $
 
 # Brief explanation of the bootstrap logic:
 #
@@ -25,7 +25,7 @@
 # re-emerge ghc (or ghc-bin). People using vanilla gcc can switch between
 # gcc-3.x and 4.x with no problems.
 
-inherit base bash-completion eutils flag-o-matic toolchain-funcs ghc-package versionator autotools prefix
+inherit base bash-completion eutils flag-o-matic multilib toolchain-funcs ghc-package versionator prefix
 
 DESCRIPTION="The Glasgow Haskell Compiler"
 HOMEPAGE="http://www.haskell.org/ghc/"
@@ -40,7 +40,6 @@ EXTRA_SRC_URI="${MY_PV}"
 SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${MY_P}-src.tar.bz2 )
 		 alpha? ( mirror://gentoo/ghc-bin-${PV}-alpha.tbz2 )
 		 amd64?	( mirror://gentoo/ghc-bin-${PV}-amd64.tbz2 )
-		 hppa?	( mirror://gentoo/ghc-bin-${PV}-hppa.tbz2 )
 		 ia64?	( mirror://gentoo/ghc-bin-${PV}-ia64.tbz2 )
 		 ppc?	( mirror://gentoo/ghc-bin-${PV}-ppc.tbz2 )
 		 sparc?	( mirror://gentoo/ghc-bin-${PV}-sparc.tbz2 )
@@ -78,7 +77,6 @@ DEPEND="${RDEPEND}
 # >=ghc-5.04.3 on their $PATH already
 
 PDEPEND=">=dev-haskell/cabal-1.1.6.2
-		 >=dev-haskell/filepath-1.0
 		 >=dev-haskell/regex-base-0.72
 		 >=dev-haskell/regex-posix-0.71
 		 >=dev-haskell/regex-compat-0.71"
@@ -177,6 +175,8 @@ src_unpack() {
 
 	[[ ${CHOST} != *-linux-gnu ]] && ONLYA=${MY_P}-src.tar.bz2
 	base_src_unpack
+	source "${FILESDIR}/ghc-apply-gmp-hack" "$(get_libdir)"
+
 	ghc_setup_cflags
 
 	if use binary; then
@@ -321,13 +321,13 @@ src_compile() {
 		# reported as bug #111183
 		echo "SRC_HC_OPTS+=-fno-warn-deprecations" >> mk/build.mk
 
-		# GHC build system knows to build unregisterised on alpha and hppa,
+		# GHC build system knows to build unregisterised on alpha,
 		# but we have to tell it to build unregisterised on some arches
-		if use alpha || use hppa || use ppc64 || use sparc; then
+		if use alpha || use ppc64 || use sparc; then
 			echo "GhcUnregisterised=YES" >> mk/build.mk
 			echo "GhcWithInterpreter=NO" >> mk/build.mk
 		fi
-		if use alpha || use hppa || use ppc64 || use sparc; then
+		if use alpha || use ppc64 || use sparc; then
 			echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
 			echo "SplitObjs=NO" >> mk/build.mk
 			echo "GhcRTSWays := debug" >> mk/build.mk
@@ -346,7 +346,9 @@ src_compile() {
 
 		econf || die "econf failed"
 
-		emake all datadir="${EPREFIX}/usr/share/doc/${P}" || die "make failed"
+		# LC_ALL needs to workaround ghc's ParseCmm failure on some (es) locales
+		# bug #202212 / http://hackage.haskell.org/trac/ghc/ticket/4207
+		LC_ALL=C emake all datadir="${EPREFIX}/usr/share/doc/${P}" || die "make failed"
 		# the explicit datadir is required to make the haddock entries
 		# in the package.conf file point to the right place ...
 
