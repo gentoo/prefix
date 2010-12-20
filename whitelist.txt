@@ -342,7 +342,6 @@ dev-libs/elfutils
 dev-libs/fribidi
 dev-libs/gf2x
 dev-libs/gnulib
-dev-libs/kpathsea
 dev-libs/libaio
 dev-libs/libatomic_ops
 dev-libs/libattica
