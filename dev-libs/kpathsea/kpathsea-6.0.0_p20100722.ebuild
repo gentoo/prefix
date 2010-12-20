@@ -1,12 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/kpathsea/kpathsea-6.0.0_p20100722.ebuild,v 1.5 2010/11/01 22:10:25 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/kpathsea/kpathsea-6.0.0_p20100722.ebuild,v 1.7 2010/12/15 18:38:42 aballier Exp $
 
 EAPI=3
 
 inherit texlive-common eutils
 
-TEXMFD_VERSION="1"
+TEXMFD_VERSION="2"
 
 DESCRIPTION="Library implementing generic path searching, configuration, and TeX-specific file searching"
 HOMEPAGE="http://tug.org/texlive/"
@@ -40,11 +40,14 @@ SRC_URI="${SRC_URI} ) "
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-no-symlink-expand.patch
-	cd "${WORKDIR}" || die
-	epatch "${FILESDIR}"/${P}-prefix-config-paths.patch
 }
 
 src_configure() {
+	# Too many regexps use A-Z a-z constructs, what causes problems with locales
+	# that don't have the same alphabetical order than ascii. Bug #347798
+	# So we set LC_ALL to C in order to avoid problems.
+	export LC_ALL=C
+
 	econf \
 		$(use_enable static-libs static)
 }
