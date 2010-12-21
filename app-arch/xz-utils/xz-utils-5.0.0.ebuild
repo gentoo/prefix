@@ -40,6 +40,13 @@ src_prepare() {
 	eautopoint
 	eautoreconf
 }
+else
+src_prepare() {
+	#epatch "${FILESDIR}"/${P}-interix.patch
+	#epatch "${FILESDIR}"/${P}-darwin.patch
+	#epatch "${FILESDIR}"/${P}-hpux.patch
+	elibtoolize
+}
 fi
 
 src_configure() {
