@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils flag-o-matic versionator
+inherit eutils flag-o-matic versionator multilib
 
 MAJOR_MINOR_VERSION="$(get_version_component_range 1-2)"
 MICRO_VERSION="$(get_version_component_range 3)"
@@ -30,7 +30,7 @@ RDEPEND=""
 
 S="${WORKDIR}/${PN}/source"
 
-QA_DT_NEEDED="/usr/lib.*/libicudata.so.${MAJOR_MINOR_VERSION/./}.${MICRO_VERSION:-0}"
+QA_DT_NEEDED="/usr/lib.*/libicudata$(get_libname ${MAJOR_MINOR_VERSION/./}.${MICRO_VERSION:-0})"
 
 src_unpack() {
 	unpack "${SRC_ARCHIVE}"
