@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r5.ebuild,v 1.1 2010/07/07 19:25:28 vapier Exp $
 
 EAPI="1"
-inherit eutils flag-o-matic toolchain-funcs multilib
+inherit eutils flag-o-matic toolchain-funcs multilib autotools
 
 MY_PV=${PV:0:3}
 PV_SNAP=${PV:4}
@@ -24,8 +24,6 @@ RDEPEND="!<x11-terms/rxvt-unicode-9.06-r3"
 S=${WORKDIR}/${MY_P}
 
 src_unpack() {
-	need-libtool && ! type libtool >&/dev/null &&
-		die "Please make some working libtool available manually before emerging ncurses"
 	unpack ${A}
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
@@ -48,9 +46,29 @@ src_unpack() {
 
 	# irix /bin/sh is no good
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
+
+	if need-libtool; then
+		mkdir "${WORKDIR}"/local-libtool || die
+		cd "${WORKDIR}"/local-libtool || die
+		cat >configure.ac<<-EOF
+			AC_INIT(local-libtool, 0)
+			AC_PROG_CC
+			AC_PROG_CXX
+			AC_PROG_LIBTOOL
+			AC_OUTPUT
+		EOF
+		eautoreconf
+	fi
 }
 
 src_compile() {
+	if need-libtool; then
+		cd "${WORKDIR}"/local-libtool || die
+		econf
+		export PATH="${WORKDIR}"/local-libtool:${PATH}
+		cd "${S}" || die
+	fi
+
 	unset TERMINFO #115036
 	tc-export BUILD_CC
 	export BUILD_CPPFLAGS+=" -D_GNU_SOURCE" #214642
