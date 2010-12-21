@@ -126,6 +126,10 @@ src_configure() {
 			# the architecture wrong, just disable asm for now
 			confopts="${confopts} no-asm"
 		;;
+		*-aix*)
+			# symbols in asm file aren't exported for yet unknown reason
+			confopts="${confopts} no-asm"
+		;;
 	esac
 
 	local sslout=$(./gentoo.config)
