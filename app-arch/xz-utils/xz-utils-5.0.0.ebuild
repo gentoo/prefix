@@ -42,8 +42,6 @@ src_prepare() {
 }
 else
 src_prepare() {
-	#epatch "${FILESDIR}"/${P}-interix.patch
-	#epatch "${FILESDIR}"/${P}-hpux.patch
 	elibtoolize
 }
 fi
