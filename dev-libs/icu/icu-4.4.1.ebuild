@@ -88,6 +88,9 @@ src_configure() {
 		unset  LD_LIBRARY64_PATH
 	fi
 
+	# make sure we configure with the same shell as we run icu-config
+	# with, or ECHO_N, ECHO_T and ECHO_C will be wrongly defined
+	export CONFIG_SHELL=${EPREFIX}/bin/sh
 	econf \
 		$(use_enable debug) \
 		$(use_enable examples samples) \
