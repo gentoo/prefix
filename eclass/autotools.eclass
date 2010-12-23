@@ -285,7 +285,11 @@ autotools_run_tool() {
 
 	# We do the “latest” → version switch here because it solves
 	# possible order problems, see bug #270010 as an example.
-	if [[ ${WANT_AUTOMAKE} == "latest" ]]; then
+	# During bootstrap in prefix there might be no automake merged yet
+	# due to --nodeps, but still available somewhere in PATH.
+	# For example, ncurses needs local libtool on aix and hpux.
+	if [[ ${WANT_AUTOMAKE} == "latest" ]] &&
+		ROOT=/ has_version "sys-devel/automake"; then
 		local pv
 		for pv in ${_LATEST_AUTOMAKE} ; do
 			# has_version respects ROOT, but in this case, we don't want it to,
