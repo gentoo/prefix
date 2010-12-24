@@ -1,6 +1,107 @@
 # ChangeLog for dev-db/postgresql-base
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.66 2010/07/14 18:40:22 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.81 2010/12/18 17:09:26 jer Exp $
+
+  18 Dec 2010; Jeroen Roovers <jer@gentoo.org> postgresql-base-8.1.22.ebuild,
+  postgresql-base-8.2.18.ebuild, postgresql-base-8.3.12.ebuild,
+  postgresql-base-8.4.5.ebuild:
+  Stable for HPPA PPC (bug #339935).
+
+  02 Dec 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-base-8.1.22.ebuild, postgresql-base-8.2.18.ebuild,
+  postgresql-base-8.3.12.ebuild, postgresql-base-8.4.5.ebuild:
+  stable x86, security bug 339935
+
+  29 Nov 2010; Jeroen Roovers <jer@gentoo.org> postgresql-base-8.1.22.ebuild,
+  postgresql-base-8.2.18.ebuild, postgresql-base-8.3.12.ebuild,
+  postgresql-base-8.4.5.ebuild:
+  Revert HPPA stabilisation (bug #339935).
+
+  29 Nov 2010; Jeroen Roovers <jer@gentoo.org> postgresql-base-8.1.22.ebuild,
+  postgresql-base-8.2.18.ebuild, postgresql-base-8.3.12.ebuild,
+  postgresql-base-8.4.5.ebuild:
+  Stable for HPPA (bug #339935).
+
+*postgresql-base-9.0.1 (06 Oct 2010)
+*postgresql-base-8.4.5 (06 Oct 2010)
+*postgresql-base-8.3.12 (06 Oct 2010)
+*postgresql-base-8.2.18 (06 Oct 2010)
+*postgresql-base-8.1.22 (06 Oct 2010)
+
+  06 Oct 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-8.1.22.ebuild, +postgresql-base-8.2.18.ebuild,
+  +postgresql-base-8.3.12.ebuild, +postgresql-base-8.4.5.ebuild,
+  +postgresql-base-9.0.1.ebuild:
+  Bump
+
+  05 Oct 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  postgresql-base-9.0.0.ebuild:
+  Sort IUSE alphabeticaly.
+
+  01 Oct 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  postgresql-base-9.0.0.ebuild:
+  QA: Cleanup, remove useless patch. Actualy install manpages.
+
+  21 Sep 2010; Patrick Lauer <patrick@gentoo.org>
+  -postgresql-base-9.0_beta4.ebuild, -postgresql-base-9.0_rc1.ebuild:
+  Remove old
+
+  20 Sep 2010; Patrick Lauer <patrick@gentoo.org>
+  postgresql-base-9.0.0.ebuild:
+  Fixing elog messages
+
+*postgresql-base-9.0.0 (19 Sep 2010)
+
+  19 Sep 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-9.0.0.ebuild:
+  Bump to 9.0.0 final
+
+*postgresql-base-9.0_rc1 (02 Sep 2010)
+
+  02 Sep 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-9.0_rc1.ebuild:
+  Bump to 9.0_rc1
+
+  02 Sep 2010; Patrick Lauer <patrick@gentoo.org>
+  -postgresql-base-8.1.11.ebuild, -postgresql-base-8.1.18.ebuild,
+  -postgresql-base-8.1.19.ebuild, -postgresql-base-8.1.20.ebuild,
+  -postgresql-base-8.1.21.ebuild, -postgresql-base-8.2.14.ebuild,
+  -postgresql-base-8.2.15.ebuild, -postgresql-base-8.2.16.ebuild,
+  -postgresql-base-8.2.17.ebuild, -postgresql-base-8.3.8.ebuild,
+  -postgresql-base-8.3.9.ebuild, -postgresql-base-8.3.10.ebuild,
+  -postgresql-base-8.3.11.ebuild, -postgresql-base-8.4.1.ebuild,
+  -postgresql-base-8.4.2.ebuild, -postgresql-base-8.4.2-r1.ebuild,
+  -postgresql-base-8.4.3.ebuild, -postgresql-base-8.4.4.ebuild,
+  -postgresql-base-8.4.4-r1.ebuild, -postgresql-base-9.0_beta3.ebuild:
+  Remove old
+
+  02 Sep 2010; Patrick Lauer <patrick@gentoo.org>
+  -files/postgresql-7.4.19-autoconf.patch,
+  -files/postgresql-7.4.21-autoconf.patch, -postgresql-base-7.4.26.ebuild,
+  -files/postgresql-7.4.26-autoconf.patch, -postgresql-base-7.4.27.ebuild,
+  -files/postgresql-7.4.27-autoconf.patch, -postgresql-base-7.4.28.ebuild,
+  -files/postgresql-7.4.28-autoconf.patch, -postgresql-base-7.4.29.ebuild,
+  -postgresql-base-7.4.29-r1.ebuild,
+  -files/postgresql-7.4.29-autoconf.patch, -files/postgresql-7.4-base.patch,
+  -files/postgresql-7.4-com_err.patch, -files/postgresql-7.4-common.patch,
+  -files/postgresql-7.4-hppa.patch, -files/postgresql-8.0.15-common.patch,
+  -postgresql-base-8.0.22.ebuild, -postgresql-base-8.0.23.ebuild,
+  -postgresql-base-8.0.24.ebuild, -postgresql-base-8.0.25.ebuild,
+  -postgresql-base-8.0.25-r1.ebuild, -files/postgresql-8.0-base.patch,
+  -files/postgresql-8.0-common.patch:
+  Remove 7.4 and 8.0
+
+  11 Aug 2010; Joseph Jezak <josejx@gentoo.org>
+  postgresql-base-8.1.21-r1.ebuild, postgresql-base-8.2.17-r1.ebuild,
+  postgresql-base-8.3.11-r1.ebuild, postgresql-base-8.4.4-r2.ebuild:
+  Marked ppc/ppc64 stable for bug #320967.
+
+*postgresql-base-9.0_beta4 (09 Aug 2010)
+
+  09 Aug 2010; Patrick Lauer <patrick@gentoo.org>
+  -postgresql-base-9.0_beta2.ebuild, -postgresql-base-9.0_beta2-r1.ebuild,
+  +postgresql-base-9.0_beta4.ebuild:
+  Bump
 
 *postgresql-base-9.0_beta3 (14 Jul 2010)
 
