@@ -1127,6 +1127,7 @@ dev-python/twisted
 dev-python/twisted-mail
 dev-python/twisted-names
 dev-python/twisted-web
+dev-python/unittest2
 dev-python/urwid
 dev-python/virtualenv
 dev-python/vobject
