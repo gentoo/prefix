@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r5.ebuild,v 1.1 2010/07/07 19:25:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r6.ebuild,v 1.1 2010/11/15 11:55:07 wired Exp $
 
 EAPI="1"
 AUTOTOOLS_AUTO_DEPEND="no"
@@ -43,7 +43,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.7-emacs.patch #270527
 	epatch "${FILESDIR}"/${PN}-5.7-nongnu.patch
 	epatch "${FILESDIR}"/${PN}-5.7-tic-cross-detection.patch #288881
-	epatch "${FILESDIR}"/${PN}-5.7-rxvt-unicode.patch #192083
+	epatch "${FILESDIR}"/${PN}-5.7-rxvt-unicode-9.09.patch #192083
 	epatch "${FILESDIR}"/${P}-hashdb-open.patch #245370
 	sed -i '/with_no_leaks=yes/s:=.*:=$enableval:' configure #305889
 
@@ -159,7 +159,7 @@ do_compile() {
 		--enable-echo \
 		$(use_enable !ada warnings) \
 		$(use_with debug assertions) \
-		$(use_enable !debug leaks) \
+		$(use_enable debug leaks) \
 		$(use_with debug expanded) \
 		$(use_with !debug macros) \
 		$(use_with trace) \
