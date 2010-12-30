@@ -582,10 +582,18 @@ bootstrap_gnu() {
 
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
-	$MAKE ${MAKEOPTS} || exit 1
+	if [[ ${A%-*} == "make" && $(type -t $MAKE) != "file" ]]; then
+		./build.sh || exit 1
+	else
+		$MAKE ${MAKEOPTS} || exit 1
+	fi
 
 	einfo "Installing ${A%-*}"
-	$MAKE install || exit 1
+	if [[ ${A%-*} == "make" && $(type -t $MAKE) != "file" ]]; then
+		./make install || exit 1
+	else
+		$MAKE install || exit 1
+	fi
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
