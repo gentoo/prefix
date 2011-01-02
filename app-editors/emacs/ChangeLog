@@ -1,6 +1,96 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.381 2010/06/25 17:44:18 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.405 2010/12/29 13:09:01 ulm Exp $
+
+  29 Dec 2010; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r6.ebuild,
+  emacs-23.2-r2.ebuild:
+  Don't hardcode user for game score files.
+
+  14 Nov 2010; Ulrich Mueller <ulm@gentoo.org> -emacs-21.4-r20.ebuild,
+  -emacs-22.3-r4.ebuild, -emacs-23.1-r3.ebuild:
+  Remove old.
+
+  14 Nov 2010; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r22.ebuild,
+  emacs-22.3-r6.ebuild, emacs-23.2-r2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #344295
+
+  09 Nov 2010; Markus Meier <maekke@gentoo.org> emacs-21.4-r22.ebuild,
+  emacs-22.3-r6.ebuild, emacs-23.2-r2.ebuild:
+  arm stable, bug #344295
+
+  09 Nov 2010; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r22.ebuild,
+  emacs-22.3-r6.ebuild, emacs-23.2-r2.ebuild:
+  Stable for HPPA PPC (bug #344295).
+
+  07 Nov 2010; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r22.ebuild,
+  emacs-22.3-r6.ebuild, -emacs-23.2.ebuild, emacs-23.2-r2.ebuild:
+  Depend on virtual/jpeg wrt bug 327487. Remove intermediate version.
+
+  06 Nov 2010; Christian Faulhammer <fauli@gentoo.org>
+  emacs-21.4-r22.ebuild, emacs-22.3-r6.ebuild, emacs-23.2-r2.ebuild:
+  stable x86, bug 344295
+
+  06 Nov 2010; Markos Chandras <hwoarang@gentoo.org> emacs-21.4-r22.ebuild,
+  emacs-22.3-r6.ebuild, emacs-23.2-r2.ebuild:
+  Stable on amd64 wrt bug #344295
+
+  05 Nov 2010; Ulrich Mueller <ulm@gentoo.org> -emacs-21.4-r19.ebuild,
+  -emacs-22.3-r3.ebuild, -emacs-23.1-r2.ebuild:
+  Remove old.
+
+  05 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> emacs-21.4-r22.ebuild,
+  emacs-22.3-r6.ebuild, emacs-23.2-r2.ebuild:
+  ppc64 stable wrt #344295
+
+  25 Oct 2010; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r6.ebuild,
+  emacs-23.2-r2.ebuild:
+  Filter -fstack-protector and -fstack-protector-all flags that cause
+  segmentation faults in hardened profiles. Bug 285778.
+
+  13 Oct 2010; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r22.ebuild,
+  emacs-22.3-r6.ebuild, emacs-23.2-r2.ebuild:
+  Create .keepinfodir file to prevent portage from rebuilding the Info dir,
+  bug 257260.
+
+*emacs-23.2-r2 (12 Oct 2010)
+*emacs-22.3-r6 (12 Oct 2010)
+*emacs-21.4-r22 (12 Oct 2010)
+
+  12 Oct 2010; Ulrich Mueller <ulm@gentoo.org> -emacs-21.4-r21.ebuild,
+  +emacs-21.4-r22.ebuild, -emacs-22.3-r5.ebuild, +emacs-22.3-r6.ebuild,
+  -emacs-23.2-r1.ebuild, +emacs-23.2-r2.ebuild:
+  Don't rename GNU Info files, bug 306445.
+
+  11 Oct 2010; Christian Faulhammer <fauli@gentoo.org> emacs-23.2.ebuild,
+  emacs-23.2-r1.ebuild:
+  Update to new Bazaar smartserver repository URIs
+
+  10 Oct 2010; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r19.ebuild,
+  emacs-21.4-r20.ebuild, emacs-21.4-r21.ebuild, emacs-22.3-r3.ebuild,
+  emacs-22.3-r4.ebuild, emacs-22.3-r5.ebuild, emacs-23.1-r2.ebuild,
+  emacs-23.1-r3.ebuild, emacs-23.2.ebuild, emacs-23.2-r1.ebuild:
+  Fix openmotif dependency.
+
+  10 Oct 2010; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r21.ebuild:
+  Fix path for installation of Info dir.
+
+*emacs-23.2-r1 (25 Sep 2010)
+*emacs-22.3-r5 (25 Sep 2010)
+*emacs-21.4-r21 (25 Sep 2010)
+
+  25 Sep 2010; Ulrich Mueller <ulm@gentoo.org> +emacs-21.4-r21.ebuild,
+  +emacs-22.3-r5.ebuild, +emacs-23.2-r1.ebuild:
+  Move regeneration of Info dir to pkg_preinst.
+
+  22 Sep 2010; Markos Chandras <hwoarang@gentoo.org> emacs-23.2.ebuild:
+  Stable on amd64 wrt bug #337417
+
+  19 Sep 2010; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r20.ebuild,
+  emacs-22.3-r4.ebuild, emacs-23.1-r3.ebuild:
+  s390 stable wrt #313861
+
+  15 Sep 2010; Christian Faulhammer <fauli@gentoo.org> emacs-23.2.ebuild:
+  stable x86, bug 337417
 
   25 Jun 2010; Ulrich Mueller <ulm@gentoo.org> emacs-23.1-r3.ebuild,
   emacs-23.2.ebuild:
@@ -82,10 +172,8 @@
   emacs-22.3-r3.ebuild, emacs-23.1-r2.ebuild:
   Restore note in pkg_postinst that Emacs needs fonts, bug 137598.
 
-  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> emacs-23.1-r2.ebuild:
-  Stable on alpha, bug #296159
-
-  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> emacs-22.3-r3.ebuild:
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> emacs-22.3-r3.ebuild,
+  emacs-23.1-r2.ebuild:
   Stable on alpha, bug #296159
 
   30 Dec 2009; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r6.ebuild:
