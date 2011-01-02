@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.3-r3.ebuild,v 1.7 2010/10/08 19:10:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.4-r2.ebuild,v 1.10 2010/11/29 20:52:13 dirtyepic Exp $
 
-PATCH_VER="1.4"
+PATCH_VER="1.3"
 UCLIBC_VER="1.0"
 
 ETYPE="gcc-compiler"
@@ -10,20 +10,23 @@ ETYPE="gcc-compiler"
 # Hardened gcc 4 stuff
 PIE_VER="0.4.5"
 SPECS_VER="0.2.0"
+SPECS_GCC_VER="4.4.3"
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
 PIE_GLIBC_STABLE="x86 amd64 ppc ppc64 arm ia64"
-PIE_UCLIBC_STABLE="x86 amd64 arm ppc ppc64"
-SSP_STABLE="amd64 x86 amd64 ppc ppc64 arm"
+PIE_UCLIBC_STABLE="x86 arm amd64 ppc ppc64"
+SSP_STABLE="amd64 x86 ppc ppc64 arm"
 # uclibc need tls and nptl support for SSP support
 SSP_UCLIBC_STABLE=""
 #end Hardened stuff
 
 inherit toolchain flag-o-matic prefix
 
-DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
+DESCRIPTION="The GNU Compiler Collection"
 
 LICENSE="GPL-3 LGPL-3 || ( GPL-3 libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+
+IUSE=""
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	>=sys-devel/gcc-config-1.4
@@ -133,7 +136,7 @@ src_unpack() {
 
 	# libgcc's Makefiles reuses $T, work around that :(
 	[[ ${CHOST} == *-solaris* ]] && \
-		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-T-namespace.patch
+		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
 
 	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
 	# but this does make sense in prefix only.
