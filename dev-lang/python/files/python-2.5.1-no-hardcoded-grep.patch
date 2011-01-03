@@ -3,6 +3,7 @@
   available.  For Prefix we prefer to use our own grep anyway.
 
 http://bugs.python.org/issue7716
+committed in r87698 (3.2), r87699 (3.1) and r87700 (2.7)
 
 --- configure.in
 +++ configure.in
