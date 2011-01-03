@@ -92,6 +92,8 @@ src_prepare() {
 		EPATCH_SUFFIX=patch epatch
 	fi
 
+	epatch "${FILESDIR}/${P}-ns_appdirs.patch" || die
+
 	sed -i \
 		-e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
@@ -139,11 +141,16 @@ src_configure() {
 		myconf="${myconf} $(use_with sound)"
 	fi
 
-	if use X && use aqua; then
-		die "the X and aqua USE-flags cannot be used together, please use one"
-	fi
-
-	if use X; then
+	if use aqua; then
+		einfo "Configuring to build with Cocoa support"
+		if use X; then
+			ewarn "aqua USE-flag disables X."
+			ewarn "If you want to enable X, please set -aqua."
+		fi
+		myconf="${myconf} --without-x"
+		myconf="${myconf} --with-ns"
+		myconf="${myconf} --disable-ns-self-contained"
+	elif use X; then
 		myconf="${myconf} --with-x"
 		myconf="${myconf} $(use_with gconf)"
 		myconf="${myconf} $(use_with toolkit-scroll-bars)"
@@ -185,14 +192,8 @@ src_configure() {
 				&& ewarn "USE flag \"${f}\" ignored (superseded by \"${tk}\")"
 			tk="${tk}${tk:+ }${f}"
 		done
-	elif use aqua; then
-		einfo "Configuring to build with Carbon support"
-		myconf="${myconf} --without-x"
-		myconf="${myconf} --with-carbon"
-		myconf="${myconf} --enable-carbon-app=${EPREFIX}/Applications/Gentoo"
 	else
 		myconf="${myconf} --without-x"
-		myconf="${myconf} --without-carbon"
 	fi
 
 	myconf="${myconf} $(use_with hesiod)"
@@ -201,13 +202,15 @@ src_configure() {
 
 	# According to configure, this option is only used for GNU/Linux (x86_64 and
 	# s390). For Gentoo Prefix we have to explicitly spell out the location
-	# because $(get_libdir) returns a 32bit location on eg. RHEL.
-	use prefix && myconf="${myconf} --with-crt-dir=/usr/lib64"
+	# because $(get_libdir) does not necessarily return something that matches
+	# the host OS's libdir naming (e.g. RHEL)
+	crtdir=$($(tc-getCC) -print-file-name=crt1.o)
+	crtdir=${crtdir%crt1.o}
 
 	econf \
 		--program-suffix=-${EMACS_SUFFIX} \
 		--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
-		--with-crt-dir="${EPREFIX}"/usr/$(get_libdir) \
+		--with-crt-dir="${crtdir}" \
 		--with-gameuser="${GAMES_USER_DED:-games}" \
 		${myconf} || die "econf emacs failed"
 }
@@ -280,7 +283,12 @@ src_install () {
 	dodoc README BUGS || die "dodoc failed"
 
 	if use aqua; then
-		einfo "Emacs.app is in $EPREFIX/Applications/Gentoo."
+		if [[ ! -e ${ED}/Applications/Gentoo ]]; then
+			mkdir -p "${ED}"/Applications/Gentoo
+		fi
+		mv "${S}"/nextstep/Emacs.app \
+			"${ED}"/Applications/Gentoo/Emacs-${FULL_VERSION}.app
+		einfo "Emacs-${FULL_VERSION}.app is in $EPREFIX/Applications/Gentoo."
 		einfo "You may want to copy or symlink it into /Applications by yourself."
 	fi
 }
