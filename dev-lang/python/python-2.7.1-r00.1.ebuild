@@ -129,11 +129,6 @@ src_prepare() {
 
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" epatch "${patchset_dir}"
 
-	if ! use wininst; then
-		# Remove Microsoft Windows executables.
-		rm Lib/distutils/command/wininst-*.exe
-	fi
-
 	epatch "${FILESDIR}"/${PN}-2.7-no-path-invention.patch
 	epatch "${FILESDIR}"/${PN}-2.7.1-prefix-search-path.patch
 
@@ -170,6 +165,11 @@ src_prepare() {
 		Modules/Setup.dist \
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
+
+	if ! use wininst; then
+		# Remove Microsoft Windows executables.
+		rm Lib/distutils/command/wininst-*.exe
+	fi
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.7.1-ld_so_aix-which.patch
@@ -573,9 +573,13 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	if [[ -z "$(eselect python show --python${PV%%.*})" ]]; then
-		eselect python update --python${PV%%.*}
-	fi
+	local eselect_python_options
+	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
+
+	# Create python2 symlink.
+	eselect python update --python2 > /dev/null
+
+	eselect python update ${eselect_python_options}
 }
 
 pkg_postinst() {

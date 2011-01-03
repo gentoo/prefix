@@ -1,19 +1,33 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.2-r4.ebuild,v 1.12 2010/12/06 02:56:40 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.3.ebuild,v 1.4 2010/12/16 16:14:40 neurogeek Exp $
 
 EAPI="3"
+WANT_AUTOMAKE="none"
 
 inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 
-MY_P="Python-${PV}"
+if [[ "${PV}" == *_pre* ]]; then
+	inherit subversion
 
-PATCHSET_REVISION="6"
+	ESVN_PROJECT="python"
+	ESVN_REPO_URI="http://svn.python.org/projects/python/branches/release31-maint"
+	ESVN_REVISION=""
+else
+	MY_PV="${PV%_p*}"
+	MY_P="Python-${MY_PV}"
+fi
+
+PATCHSET_REVISION="0"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
-SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
+if [[ "${PV}" == *_pre* ]]; then
+	SRC_URI=""
+else
+	SRC_URI="http://www.python.org/ftp/python/${MY_PV}/${MY_P}.tar.bz2
+		mirror://gentoo/python-gentoo-patches-${MY_PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
+fi
 
 LICENSE="PSF-2.2"
 SLOT="3.1"
@@ -32,25 +46,29 @@ RDEPEND=">=app-admin/eselect-python-20091230
 				>=sys-libs/ncurses-5.2
 				readline? ( >=sys-libs/readline-4.1 )
 			)
-			sqlite? ( >=dev-db/sqlite-3 )
+			sqlite? ( >=dev-db/sqlite-3.3.3:3 )
 			ssl? ( dev-libs/openssl )
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
-		)
-		doc? ( dev-python/python-docs:${SLOT} )"
+		)"
 DEPEND="${RDEPEND}
+		$([[ "${PV}" == *_pre* ]] && echo "=${CATEGORY}/${PN}-${PV%%.*}*")
 		dev-util/pkgconfig
+		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] && echo "doc? ( dev-python/sphinx )")
 		!sys-devel/gcc[libffi]"
-RDEPEND+=" !build? ( app-misc/mime-types )"
+RDEPEND+=" !build? ( app-misc/mime-types )
+		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] || echo "doc? ( dev-python/python-docs:${SLOT} )")"
 PDEPEND=">=app-admin/python-updater-0.8
 		|| (
-			dev-lang/python:2.7[gdbm?,ipv6?,ncurses?,readline?,sqlite?,ssl?,threads?,tk?,xml?]
-			dev-lang/python:2.6[gdbm?,ipv6?,ncurses?,readline?,sqlite?,ssl?,threads?,tk?,xml?]
+			${CATEGORY}/${PN}:2.7[gdbm?,ipv6?,ncurses?,readline?,sqlite?,ssl?,threads?,tk?,xml?]
+			${CATEGORY}/${PN}:2.6[gdbm?,ipv6?,ncurses?,readline?,sqlite?,ssl?,threads?,tk?,xml?]
 		)"
 
 PROVIDE="virtual/python"
 
-S="${WORKDIR}/${MY_P}"
+if [[ "${PV}" != *_pre* ]]; then
+	S="${WORKDIR}/${MY_P}"
+fi
 
 pkg_setup() {
 	python_pkg_setup
@@ -63,17 +81,37 @@ src_prepare() {
 	rm -fr Modules/_ctypes/libffi*
 	rm -fr Modules/zlib
 
+	if [[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+_pre ]]; then
+		if grep -Eq '#define PY_RELEASE_LEVEL[[:space:]]+PY_RELEASE_LEVEL_FINAL' Include/patchlevel.h; then
+			# Update micro version, release level and version string.
+			local micro_version="${PV%_pre*}"
+			micro_version="${micro_version##*.}"
+			local version_string="${PV%.*}.$((${micro_version} - 1))+"
+			sed \
+				-e "s/\(#define PY_MICRO_VERSION[[:space:]]\+\)[^[:space:]]\+/\1${micro_version}/" \
+				-e "s/\(#define PY_RELEASE_LEVEL[[:space:]]\+\)[^[:space:]]\+/\1PY_RELEASE_LEVEL_ALPHA/" \
+				-e "s/\(#define PY_VERSION[[:space:]]\+\"\)[^\"]\+\(\"\)/\1${version_string}\2/" \
+				-i Include/patchlevel.h || die "sed failed"
+		fi
+	fi
+
+	local excluded_patches
 	if ! tc-is-cross-compiler; then
-		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
+		excluded_patches="*_all_crosscompile.patch"
 	fi
 
 	# stupidos hardcoding GNU specifics
 	[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* || ${CHOST} == *bsd* ]] || \
-		EPATCH_EXCLUDE=21_all_ctypes-execstack.patch
-	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+		excluded_patches+=" 21_all_ctypes-execstack.patch"
 
-	# Avoid regeneration, which would not change contents of files.
-	touch Include/Python-ast.h Python/Python-ast.c
+	local patchset_dir
+	if [[ "${PV}" == *_pre* ]]; then
+		patchset_dir="${FILESDIR}/${SLOT}-${PATCHSET_REVISION}"
+	else
+		patchset_dir="${WORKDIR}/${MY_PV}"
+	fi
+
+	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" epatch "${patchset_dir}"
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -83,10 +121,6 @@ src_prepare() {
 		Modules/Setup.dist \
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
-
-	# Fix os.utime() on hppa. utimes it not supported but unfortunately reported as working - gmsoft (22 May 04)
-	# PLEASE LEAVE THIS FIX FOR NEXT VERSIONS AS IT'S A CRITICAL FIX !!!
-	[[ "${ARCH}" == "hppa" ]] && sed -e "s/utimes //" -i "${S}/configure"
 
 	if ! use wininst; then
 		# Remove Microsoft Windows executables.
@@ -164,15 +198,16 @@ src_prepare() {
 	# that stdin is a tty for bug #248081.
 	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
 
-	# Fix parallel installation (bug #328009).
-	sed -e "s/^sharedinstall:/& sharedmods/" -i Makefile.pre.in || die "sed failed"
+	if [[ "${PV}" == *_pre* ]]; then
+		sed -e "s/\(-DSVNVERSION=\).*\( -o\)/\1\\\\\"${ESVN_REVISION}\\\\\"\2/" -i Makefile.pre.in || die "sed failed"
+	fi
 
 	eautoreconf
 }
 
 src_configure() {
-	# Disable extraneous modules with extra dependencies.
 	if use build; then
+		# Disable extraneous modules with extra dependencies.
 		export PYTHON_DISABLE_MODULES="gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
 		export PYTHON_DISABLE_SSL="1"
 	else
@@ -273,7 +308,7 @@ src_configure() {
 }
 
 src_compile() {
-	LC_ALL="C" default
+	emake EPYTHON="python${PV%%.*}" || die "emake failed"
 }
 
 src_test() {
@@ -494,13 +529,9 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local eselect_python_options
-	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
-
-	# Create python3 symlink.
-	eselect python update --python3 > /dev/null
-
-	eselect python update ${eselect_python_options}
+	if [[ -z "$(eselect python show --python${PV%%.*})" ]]; then
+		eselect python update --python${PV%%.*}
+	fi
 }
 
 pkg_postinst() {
