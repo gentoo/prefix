@@ -70,7 +70,7 @@ src_prepare() {
 	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-0.9.8k-winnt.patch
 
 	# remove -arch for darwin
-	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
+	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure || die
 
 	# allow openssl to be cross-compiled
 	cp "${FILESDIR}"/gentoo.config-1.0.0 gentoo.config || die "cp cross-compile failed"
@@ -85,8 +85,14 @@ src_prepare() {
 
 	# type -P required on platforms where perl is not installed
 	# in the same prefix (prefix-chaining).
-	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure #141906
-	sed -i '1s/perl5/perl/' tools/c_rehash #308455
+	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure || die #141906
+	sed -i '1s/perl5/perl/' tools/c_rehash || die #308455
+
+	# fixup c_rehash script, bug #350601
+	sed -i \
+		-e "s:DIR=/etc:DIR=${EPREFIX}/etc:" \
+		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
+		"${WORKDIR}"/c_rehash || die
 
 	# avoid waiting on terminal input forever when spitting
 	# 64bit warning message.
