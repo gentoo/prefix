@@ -121,6 +121,15 @@ HOSTCC='gcc -m64'
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/ppc"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
+		powerpc64-apple-darwin9)
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/ppc64"
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
+			extra_make_globals="
+CC='gcc -m64'
+CXX='g++ -m64'
+HOSTCC='gcc -m64'
+"
+			;;
 		i*86-apple-darwin9)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x86"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
