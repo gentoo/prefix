@@ -422,6 +422,11 @@ bootstrap_portage() {
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
+	# disable ipc
+	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
+		-i pym/_emerge/AbstractEbuildProcess.py || \
+		exit 1
+
 	einfo "Compiling ${A%-*}"
 	econf \
 		--with-offset-prefix="${ROOT}" \
