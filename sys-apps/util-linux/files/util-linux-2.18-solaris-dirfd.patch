@@ -4,20 +4,29 @@ alternative for Solaris if no dirfd function is available.
 
 --- configure.ac
 +++ configure.ac
-@@ -215,6 +215,25 @@
+@@ -215,6 +215,34 @@
  AC_SEARCH_LIBS([socket], [socket], [SOCKET_LIBS="$SOCKET_LIBS -lsocket"])
  AC_SUBST(SOCKET_LIBS)
  
 +have_dirfd=
-+AC_CHECK_FUNCS([dirfd], [have_dirfd=yes], [have_dirfd=no])
++AC_MSG_CHECKING([for dirfd])
++AC_LINK_IFELSE([AC_LANG_PROGRAM([[
++#include <dirent.h>
++]],[[
++	DIR *dir = 0;
++	if (dirfd(dir)) ;
++]])], [have_dirfd=yes], [have_dirfd=no])
++AC_MSG_RESULT([$have_dirfd])
 +have_ddfd=
 +if test x"$have_dirfd" = xno ; then
++	AC_MSG_CHECKING([for dd_fd member in struct dirent])
 +	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 +#include <dirent.h>
 +]],[[
 +	DIR *dir = 0;
 +	if (dir->dd_fd) ;
 +	]])], [have_ddfd=yes], [have_ddfd=no])
++	AC_MSG_RESULT([$have_ddfd])
 +fi
 +if test x"$have_dirfd" = xno && test x"$have_ddfd" = xno ; then
 +	AC_MSG_ERROR([cannot find a method to get filedescriptor of directory])
