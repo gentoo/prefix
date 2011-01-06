@@ -268,7 +268,8 @@ src_configure() {
 
 	# http://bugs.gentoo.org/show_bug.cgi?id=302137
 	if [[ ${CHOST} == powerpc-*-darwin* ]] && \
-		( is-flag "-mtune=*" || is-flag "-mcpu=*" ) ;
+		( is-flag "-mtune=*" || is-flag "-mcpu=*" ) || \
+		[[ ${CHOST} == powerpc64-*-darwin* ]];
 	then
 		replace-flags -O2 -O3
 		replace-flags -Os -O3  # comment #14
