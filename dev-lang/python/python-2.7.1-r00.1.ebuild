@@ -131,6 +131,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.7-no-path-invention.patch
 	epatch "${FILESDIR}"/${PN}-2.7.1-prefix-search-path.patch
+	epatch "${FILESDIR}"/${PN}-2.7.1-tkinter-no-x11.patch
 
 	# build static for mint
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-mint.patch
