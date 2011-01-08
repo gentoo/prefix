@@ -1,0 +1,18 @@
+common_ldadd may contain -L... -luuid, which make doesn't understand as
+dependency.  It shouldn't be necessary to add uuid.la as dependency,
+since it was built in another directory.
+
+--- shlibs/blkid/src/Makefile.am
++++ shlibs/blkid/src/Makefile.am
+@@ -41,7 +41,10 @@
+ 		     partitions/libblkid_partitions.la \
+ 		     $(common_ldadd)
+ 
+-libblkid_la_DEPENDENCIES = $(libblkid_la_LIBADD) blkid.sym blkid.h.in
++libblkid_la_DEPENDENCIES = superblocks/libblkid_superblocks.la \
++						   topology/libblkid_topology.la \
++						   partitions/libblkid_partitions.la \
++						   blkid.sym blkid.h.in
+ 
+ libblkid_la_LDFLAGS =
+ if GNU_LD

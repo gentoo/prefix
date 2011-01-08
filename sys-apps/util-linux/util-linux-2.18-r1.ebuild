@@ -56,6 +56,7 @@ src_prepare() {
 	if use prefix ; then
 		epatch "${FILESDIR}"/${PN}-2.17.1-non-linux-shlibs.patch
 		epatch "${FILESDIR}"/${PN}-2.18-non-linux-shlibs.patch
+		epatch "${FILESDIR}"/${PN}-2.18-external-uuid-dep.patch
 		epatch "${FILESDIR}"/${PN}-2.18-no-loff_t.patch
 		epatch "${FILESDIR}"/${PN}-2.18-solaris-crypt.patch
 		epatch "${FILESDIR}"/${PN}-2.18-solaris-socket-link.patch
@@ -83,6 +84,11 @@ lfs_fallocate_test() {
 	rm -f "${T}"/fallocate.c
 }
 
+want_libuuid() {
+	# bug #350841, currently only not on OS X Snow Leopard
+	[[ ${CHOST} != *-darwin10 ]]
+}
+
 src_configure() {
 	lfs_fallocate_test
 	local myconf=
@@ -90,7 +96,7 @@ src_configure() {
 		myconf="
 			--disable-mount
 			--disable-fsck
-			--enable-libuuid
+			--$($(want_libuuid) && echo enable || echo disable)-libuuid
 			--disable-uuidd
 			--enable-libblkid
 			--disable-arch
@@ -179,7 +185,9 @@ src_install() {
 	dodoc AUTHORS NEWS README* TODO docs/*
 
 	# need the libs in /
-	gen_usr_ldscript -a blkid uuid
+	local libuuid=
+	$(want_libuuid) && libuuid=uuid
+	gen_usr_ldscript -a blkid ${libuuid}
 	# e2fsprogs-libs didnt install .la files, and .pc work fine
 	rm -f "${ED}"/usr/$(get_libdir)/*.la
 }
