@@ -383,6 +383,7 @@ dev-libs/nspr
 dev-libs/nss
 dev-libs/ntl
 dev-libs/oniguruma
+dev-libs/ppl
 dev-libs/protobuf
 dev-libs/ptexenc
 dev-libs/quazip
