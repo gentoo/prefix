@@ -334,6 +334,7 @@ dev-libs/beecrypt
 dev-libs/blitz
 dev-libs/botan
 dev-libs/cdk
+dev-libs/cloog-ppl
 dev-libs/cvector
 dev-libs/darts
 dev-libs/dotconf
