@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p7-r1.ebuild,v 1.2 2009/12/11 14:41:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p7-r1.ebuild,v 1.3 2011/01/06 21:19:02 vapier Exp $
 
 EAPI="2"
 
@@ -42,6 +42,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.2.4_p7-nano.patch #270483
 	epatch "${FILESDIR}"/${PN}-4.2.4_p7-CVE-2009-3563.patch #290881
 	append-cppflags -D_GNU_SOURCE #264109
+	# upstream has fixed these issues in newer versions; just ignore
+	# it for older since the changes are invasive
+	append-flags -fno-strict-aliasing
 }
 
 src_configure() {

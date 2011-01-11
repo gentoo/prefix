@@ -1,6 +1,16 @@
 # ChangeLog for net-misc/ntp
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.162 2010/07/27 13:06:37 flameeyes Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.164 2011/01/06 21:19:02 vapier Exp $
+
+  06 Jan 2011; Mike Frysinger <vapier@gentoo.org> ntp-4.2.4_p7-r1.ebuild,
+  ntp-4.2.6_p2-r1.ebuild:
+  Add -fno-strict-aliasing for older versions since the issue has been fixed
+  in newer releases.
+
+*ntp-4.2.6_p3 (04 Jan 2011)
+
+  04 Jan 2011; Mike Frysinger <vapier@gentoo.org> +ntp-4.2.6_p3.ebuild:
+  Version bump #350585.
 
 *ntp-4.2.6_p2-r1 (27 Jul 2010)
 
