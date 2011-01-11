@@ -73,11 +73,12 @@ src_prepare() {
 	# don't use built-in versions of bcopy and bzero if _ALL_SOURCE is deinfed
 	# on interix, since they have conflicting definitions with system headers.
 	epatch "${FILESDIR}"/${P}-interix-all_source.patch
-}
 
-echoit() { echo "$@" ; "$@" ; }
-src_configure() {
-	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
+	# fix man.conf file, bug #351245
+	sed -i \
+		-e "/^MANPATH\t/s:\t/:\t${EPREFIX}/:" \
+		-e "/^MANPATH_MAP\t/s:\t/:\t${EPREFIX}/:g" \
+		src/man.conf.in || die
 
 	if use prefix ; then
 		ebegin "Allowing unpriviliged install"
@@ -86,6 +87,12 @@ src_configure() {
 			"${S}"/src/Makefile.in
 		eend $?
 	fi
+
+}
+
+echoit() { echo "$@" ; "$@" ; }
+src_configure() {
+	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
 
 	unset NLSPATH #175258
 
