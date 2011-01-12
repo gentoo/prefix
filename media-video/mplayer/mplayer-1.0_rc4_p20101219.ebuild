@@ -1,25 +1,27 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20100612.ebuild,v 1.6 2010/06/30 17:10:21 lxnay Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20101219.ebuild,v 1.1 2010/12/19 10:54:52 scarabeus Exp $
 
-EAPI="2"
+EAPI=3
 
 ESVN_REPO_URI="svn://svn.mplayerhq.hu/mplayer/trunk"
 [[ ${PV} = *9999* ]] && SVN_ECLASS="subversion" || SVN_ECLASS=""
 
 inherit toolchain-funcs eutils flag-o-matic multilib base ${SVN_ECLASS}
 
-[[ ${PV} != *9999* ]] && MPLAYER_REVISION=SVN-r30554
+# BUMP ME PLZ, NO COOKIES OTHERWISE
+[[ ${PV} != *9999* ]] && MPLAYER_REVISION=SVN-r32719
 
-IUSE="aqua 3dnow 3dnowext +a52 aalib +alsa altivec +ass bidi bindist bl bs2b
-+cddb +cdio cdparanoia cpudetection custom-cpuopts debug dga +dirac directfb
-doc +dts +dv dvb +dvd +dvdnav dxr3 +enca +encode esd +faac +faad fbcon ftp
-gif ggi -gmplayer +iconv ipv6 jack joystick jpeg jpeg2k kernel_linux ladspa
-libcaca lirc +live lzo mad md5sum +mmx mmxext mng +mp3 nas +network nut openal
-amr +opengl +osdmenu oss png pnm pulseaudio pvr +quicktime radio +rar +real +rtc
-samba +shm +schroedinger sdl +speex sse sse2 ssse3 svga tga +theora +tremor
-+truetype +toolame +twolame +unicode v4l v4l2 vdpau vidix +vorbis vpx
-win32codecs +X +x264 xanim xinerama +xscreensaver +xv +xvid xvmc zoran"
+IUSE="3dnow 3dnowext +a52 aalib +alsa altivec aqua +ass bidi bindist bl bluray
+bs2b +cddb +cdio cdparanoia cpudetection custom-cpuopts debug dga +dirac
+directfb doc +dts +dv dvb +dvd +dvdnav dxr3 +enca +encode esd +faac +faad fbcon
+ftp gif ggi gsm +iconv ipv6 jack joystick jpeg jpeg2k kernel_linux ladspa
+libcaca libmpeg2 lirc +live lzo mad md5sum +mmx mmxext mng +mp3 mpg123 nas
++network nut openal amr +opengl +osdmenu oss png pnm pulseaudio pvr +quicktime
+radio +rar +real +rtc rtmp samba +shm +schroedinger sdl +speex sse sse2 ssse3
+tga +theora +tremor +truetype +toolame +twolame +unicode v4l v4l2 vdpau vidix
++vorbis vpx win32codecs +X +x264 xanim xinerama +xscreensaver +xv +xvid xvmc
+zoran"
 [[ ${PV} == *9999* ]] && IUSE+=" external-ffmpeg"
 
 VIDEO_CARDS="s3virge mga tdfx vesa"
@@ -27,9 +29,6 @@ for x in ${VIDEO_CARDS}; do
 	IUSE+=" video_cards_${x}"
 done
 
-BLUV="1.7"
-SVGV="1.9.17"
-AMR_URI="http://www.3gpp.org/ftp/Specs/archive"
 FONT_URI="
 	mirror://mplayer/releases/fonts/font-arial-iso-8859-1.tar.bz2
 	mirror://mplayer/releases/fonts/font-arial-iso-8859-2.tar.bz2
@@ -38,12 +37,10 @@ FONT_URI="
 if [[ ${PV} == *9999* ]]; then
 	RELEASE_URI=""
 else
-	RELEASE_URI="mirror://gentoo/${P}.tbz2"
+	RELEASE_URI="mirror://gentoo/${P}.tar.xz"
 fi
 SRC_URI="${RELEASE_URI}
-	!truetype? ( ${FONT_URI} )
-	gmplayer? ( mirror://mplayer/skins/Blue-${BLUV}.tar.bz2 )
-	svga? ( mirror://gentoo/svgalib_helper-${SVGV}-mplayer.tar.gz )"
+	!truetype? ( ${FONT_URI} )"
 
 DESCRIPTION="Media Player for Linux"
 HOMEPAGE="http://www.mplayerhq.hu/"
@@ -76,11 +73,6 @@ RDEPEND+="
 			media-libs/libggi
 			media-libs/libggiwmh
 		)
-		gmplayer? (
-			media-libs/libpng
-			x11-libs/gtk+:2
-			x11-libs/libXi
-		)
 		opengl? ( virtual/opengl )
 		vdpau? ( || ( x11-libs/libvdpau >=x11-drivers/nvidia-drivers-180.51 ) )
 		xinerama? ( x11-libs/libXinerama )
@@ -94,8 +86,9 @@ RDEPEND+="
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
 	amr? ( !bindist? ( media-libs/opencore-amr ) )
-	ass? ( ${FONT_RDEPS} media-libs/libass )
+	ass? ( ${FONT_RDEPS} >=media-libs/libass-0.9.10[enca?] )
 	bidi? ( dev-libs/fribidi )
+	bluray? ( media-libs/libbluray )
 	bs2b? ( media-libs/libbs2b )
 	cdio? ( dev-libs/libcdio )
 	cdparanoia? ( !cdio? ( media-sound/cdparanoia ) )
@@ -104,10 +97,14 @@ RDEPEND+="
 	dts? ( media-libs/libdca )
 	dv? ( media-libs/libdv )
 	dvb? ( media-tv/linuxtv-dvb-headers )
+	dvd? (
+		>=media-libs/libdvdread-4.1.3
+		dvdnav? ( >=media-libs/libdvdnav-4.1.3 )
+	)
 	encode? (
 		!twolame? ( toolame? ( media-sound/toolame ) )
 		twolame? ( media-sound/twolame )
-		faac? ( media-libs/faac )
+		faac? ( !bindist? ( media-libs/faac ) )
 		mp3? ( media-sound/lame )
 		x264? ( >=media-libs/x264-0.0.20100423 )
 		xvid? ( media-libs/xvid )
@@ -116,17 +113,20 @@ RDEPEND+="
 	enca? ( app-i18n/enca )
 	faad? ( media-libs/faad2 )
 	gif? ( media-libs/giflib )
+	gsm? ( media-sound/gsm )
 	iconv? ( virtual/libiconv )
 	jack? ( media-sound/jack-audio-connection-kit )
-	jpeg? ( media-libs/jpeg )
+	jpeg? ( virtual/jpeg )
 	jpeg2k? ( media-libs/openjpeg )
 	ladspa? ( media-libs/ladspa-sdk )
 	libcaca? ( media-libs/libcaca )
+	libmpeg2? ( media-libs/libmpeg2 )
 	lirc? ( app-misc/lirc )
 	live? ( media-plugins/live )
 	lzo? ( >=dev-libs/lzo-2 )
 	mad? ( media-libs/libmad )
 	mng? ( media-libs/libmng )
+	mpg123? ( media-sound/mpg123 )
 	nas? ( media-libs/nas )
 	nut? ( >=media-libs/libnut-661 )
 	openal? ( media-libs/openal )
@@ -139,11 +139,11 @@ RDEPEND+="
 			app-arch/rar
 		)
 	)
+	rtmp? ( media-video/rtmpdump )
 	samba? ( net-fs/samba )
 	schroedinger? ( media-libs/schroedinger )
 	sdl? ( media-libs/libsdl )
 	speex? ( media-libs/speex )
-	svga? ( media-libs/svgalib )
 	theora? ( media-libs/libtheora[encode?] )
 	truetype? ( ${FONT_RDEPS} )
 	vorbis? ( media-libs/libvorbis )
@@ -162,7 +162,6 @@ DEPEND="${RDEPEND}
 		${X_DEPS}
 		dga? ( x11-proto/xf86dgaproto )
 		dxr3? ( media-video/em8300-libraries )
-		gmplayer? ( x11-proto/xextproto )
 		xinerama? ( x11-proto/xineramaproto )
 		xscreensaver? ( x11-proto/scrnsaverproto )
 	)
@@ -178,7 +177,7 @@ DEPEND="${RDEPEND}
 SLOT="0"
 LICENSE="GPL-2"
 if [[ ${PV} != *9999* ]]; then
-	KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris ~x64-macos"
+	KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 else
 	KEYWORDS=""
 fi
@@ -188,44 +187,37 @@ PATCHES=(
 
 pkg_setup() {
 	if [[ ${PV} == *9999* ]]; then
-		elog ""
+		elog
 		elog "This is a live ebuild which installs the latest from upstream's"
 		elog "subversion repository, and is unsupported by Gentoo."
 		elog "Everything but bugs in the ebuild itself will be ignored."
-		elog ""
-	fi
-
-	if use gmplayer; then
-		ewarn ""
-		ewarn "GMPlayer is no longer actively developed upstream"
-		ewarn "and is not supported by Gentoo.  There are alternatives"
-		ewarn "for a GUI frontend: smplayer, gnome-mplayer or kmplayer."
+		elog
 	fi
 
 	if use cpudetection; then
-		ewarn ""
-		ewarn "You've enabled the cpudetection flag.  This feature is"
+		ewarn
+		ewarn "You've enabled the cpudetection flag. This feature is"
 		ewarn "included mainly for people who want to use the same"
 		ewarn "binary on another system with a different CPU architecture."
 		ewarn "MPlayer will already detect your CPU settings by default at"
 		ewarn "buildtime; this flag is used for runtime detection."
 		ewarn "You won't need this turned on if you are only building"
-		ewarn "mplayer for this system.  Also, if your compile fails, try"
+		ewarn "mplayer for this system. Also, if your compile fails, try"
 		ewarn "disabling this use flag."
 	fi
 
 	if use custom-cpuopts; then
-		ewarn ""
+		ewarn
 		ewarn "You are using the custom-cpuopts flag which will"
 		ewarn "specifically allow you to enable / disable certain"
 		ewarn "CPU optimizations."
-		ewarn ""
+		ewarn
 		ewarn "Most desktop users won't need this functionality, but it"
 		ewarn "is included for corner cases like cross-compiling and"
-		ewarn "certain profiles.  If unsure, disable this flag and MPlayer"
+		ewarn "certain profiles. If unsure, disable this flag and MPlayer"
 		ewarn "will automatically detect and use your available CPU"
 		ewarn "optimizations."
-		ewarn ""
+		ewarn
 		ewarn "Using this flag means your build is unsupported, so"
 		ewarn "please make sure your CPU optimization use flags (3dnow"
 		ewarn "3dnowext mmx mmxext sse sse2 ssse3) are properly set."
@@ -246,9 +238,6 @@ src_unpack() {
 			font-arial-iso-8859-2.tar.bz2 \
 			font-arial-cp1250.tar.bz2
 	fi
-
-	use gmplayer && unpack "Blue-${BLUV}.tar.bz2"
-	use svga && unpack "svgalib_helper-${SVGV}-mplayer.tar.gz"
 }
 
 src_prepare() {
@@ -261,20 +250,22 @@ src_prepare() {
 		sed -i -e "s/UNKNOWN/${MPLAYER_REVISION}/" "${S}/version.sh" || die
 	fi
 
-	if use svga; then
-		echo
-		einfo "Enabling vidix non-root mode."
-		einfo "(You need a proper svgalib_helper.o module for your kernel"
-		einfo "to actually use this)"
-		echo
-
-		mv "${WORKDIR}/svgalib_helper" "${S}/libdha"
-	fi
-
-	epatch "${FILESDIR}"/${PN}-1.0_rc4_p20100612-prefix.patch
-	epatch "${FILESDIR}"/${PN}-1.0_rc2_p28058-nocona.patch
-	epatch "${FILESDIR}"/${PN}-20090226.28734-solaris.patch
+	# fix path to bash executable in configure scripts
 	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure version.sh || die
+
+	# disable all "cleverness" of looking into hardwired paths
+	sed -i \
+		-e "s:/usr/\(local\|pkg\|openwin\|X11\(R[67]\)\?\)/:$EPREFIX/usr/:g" \
+		-e "s:/usr/lib32:$EPREFIX/usr/$(get_libname):g" \
+		-e "s:-I\(/usr/include/\(cdda\|bs2b\)\):-I${EPREFIX}\1:" \
+		-e "s:-I\(/usr/include/\(liveMedia\|groupsock\)\):-I${EPREFIX}\1:" \
+		-e "s:-I\(/usr/include/\(Basic\)\?UsageEnvironment\):-I${EPREFIX}\1:" \
+		-e "s:-I/usr/lib\(64\)\?/live:-I$EPREFIX/usr/$(get_libname)/live:g" \
+		configure || die
+	
+	# Solaris issue, should be fixed for next snapshot:
+	# http://comments.gmane.org/gmane.comp.video.mplayer.user/65258
+	sed -i -e "s/_XOPEN_SOURCE 500/_XOPEN_SOURCE 600/" configure || die
 
 	base_src_prepare
 }
@@ -287,22 +278,26 @@ src_configure() {
 	[[ -n $LINGUAS ]] && LINGUAS="${LINGUAS/da/dk}"
 
 	# mplayer ebuild uses "use foo || --disable-foo" to forcibly disable
-	# compilation in almost every situation.  The reason for this is
+	# compilation in almost every situation. The reason for this is
 	# because if --enable is used, it will force the build of that option,
 	# regardless of whether the dependency is available or not.
 
 	###################
 	#Optional features#
 	###################
+	# disable svga since we don't want it
+	# disable arts since we don't have kde3
+	# always disable internal ass
 	myconf+="
+		--disable-svga --disable-svgalib_helper
+		--disable-ass-internal
 		--disable-arts
 		--disable-kai
-		$(use_enable network)
+		$(use_enable network networking)
 		$(use_enable joystick)
 	"
-	uses="ass bl enca ftp rtc" # nemesi <- not working with in-tree ebuild
+	uses="ass bl bluray enca ftp rtc" # nemesi <- not working with in-tree ebuild
 	myconf+=" --disable-nemesi" # nemesi automagic disable
-	myconf+=" --disable-ass-internal" # always use system libass
 	for i in ${uses}; do
 		use ${i} || myconf+=" --disable-${i}"
 	done
@@ -311,7 +306,6 @@ src_configure() {
 	use nut || myconf+=" --disable-libnut"
 	use rar || myconf+=" --disable-unrarexec"
 	use samba || myconf+=" --disable-smb"
-	use svga || myconf+=" --disable-svga --disable-svgalib_helper"
 	if ! use lirc; then
 		myconf+="
 			--disable-lirc
@@ -337,8 +331,8 @@ src_configure() {
 	# dvdread - accessing a DVD
 	# dvdnav - navigation of menus
 	#
-	# internal dvdread and dvdnav use flags enable internal
-	# versions of the libraries, which are snapshots of the fork.
+	# use external libdvdcss, dvdread and dvdnav
+	myconf+=" --disable-dvdread-internal --disable-libdvdcss-internal"
 
 	if use dvd; then
 		use dvdnav || myconf+=" --disable-dvdnav"
@@ -346,8 +340,6 @@ src_configure() {
 		myconf+="
 			--disable-dvdnav
 			--disable-dvdread
-			--disable-dvdread-internal
-			--disable-libdvdcss-internal
 		"
 	fi
 
@@ -358,16 +350,13 @@ src_configure() {
 	# SRT/ASS/SSA (subtitles) requires freetype support
 	# freetype support requires iconv
 	# iconv optionally can use unicode
-
-	if ! use ass; then
-		if ! use truetype; then
-			myconf+=" --disable-freetype"
-			if ! use iconv; then
-				myconf+="
-					--disable-iconv
-					--charset=noconv
-				"
-			fi
+	if ! use ass && ! use truetype; then
+		myconf+=" --disable-freetype"
+		if ! use iconv; then
+			myconf+="
+				--disable-iconv
+				--charset=noconv
+			"
 		fi
 	fi
 	use iconv && use unicode && myconf+=" --charset=UTF-8"
@@ -381,7 +370,7 @@ src_configure() {
 	if { use dvb || use v4l || use v4l2 || use pvr || use radio; }; then
 		use dvb || myconf+=" --disable-dvb"
 		use pvr || myconf+=" --disable-pvr"
-		use v4l	|| myconf+=" --disable-tv-v4l1"
+		use v4l || myconf+=" --disable-tv-v4l1"
 		use v4l2 || myconf+=" --disable-tv-v4l2"
 		if use radio && { use dvb || use v4l || use v4l2; }; then
 			myconf+="
@@ -412,6 +401,7 @@ src_configure() {
 	##########
 	myconf+=" --disable-musepack" # Use internal musepack codecs for SV7 and SV8 support
 	myconf+=" --disable-faad-internal" # always use system media-libs/faad2
+	myconf+=" --disable-libmpeg2-internal" # always use system media-libs/libmpeg2
 	use dirac || myconf+=" --disable-libdirac-lavc"
 	use dts || myconf+=" --disable-libdca"
 	if ! use mp3; then
@@ -421,7 +411,7 @@ src_configure() {
 			--disable-mp3lib
 		"
 	fi
-	uses="a52 bs2b dv lzo"
+	uses="a52 bs2b dv gsm lzo rtmp"
 	for i in ${uses}; do
 		use ${i} || myconf+=" --disable-lib${i}"
 	done
@@ -429,11 +419,8 @@ src_configure() {
 	# Disable opencore-amr with bindist
 	# https://bugs.gentoo.org/show_bug.cgi?id=299405#c6
 	{ use amr && use !bindist ; } || myconf+=" --disable-libopencore_amrnb --disable-libopencore_amrwb"
-	if ! use png && ! use gmplayer; then
-		myconf+=" --disable-png"
-	fi
 
-	uses="faad gif jpeg live mad mng pnm speex tga theora xanim"
+	uses="faad gif jpeg libmpeg2 live mad mng mpg123 png pnm speex tga theora xanim"
 	for i in ${uses}; do
 		use ${i} || myconf+=" --disable-${i}"
 	done
@@ -456,6 +443,10 @@ src_configure() {
 			use ${i} || myconf+=" --disable-${i}"
 		done
 		use faac || myconf+=" --disable-faac-lavc"
+		if use bindist && use faac; then
+			ewarn "faac is nonfree and cannot be distributed; disabling faac support."
+			myconf+=" --disable-faac --disable-faac-lavc"
+		fi
 	else
 		myconf+=" --disable-mencoder"
 		myconf+=" --disable-faac-lavc"
@@ -490,7 +481,7 @@ src_configure() {
 		use x86 && myconf+=" --codecsdir=/opt/RealPlayer/codecs"
 		use amd64 && myconf+=" --codecsdir=/usr/$(get_libdir)/codecs"
 	elif ! use bindist; then
-			myconf+=" $(use_enable win32codecs win32dll)"
+		myconf+=" $(use_enable win32codecs win32dll)"
 	fi
 
 	################
@@ -506,7 +497,7 @@ src_configure() {
 	use libcaca || myconf+=" --disable-caca"
 	use zoran || myconf+=" --disable-zr"
 
-	if ! use kernel_linux && ! use video_cards_mga; then
+	if ! use kernel_linux || ! use video_cards_mga; then
 		 myconf+=" --disable-mga --disable-xmga"
 	fi
 
@@ -523,9 +514,8 @@ src_configure() {
 		"
 	fi
 
-	# too bizarre to be true, assuming all solaris installations have a Sun
-	# videocard is insane, #258729
-	myconf="${myconf} --disable-xvr100"
+	# sun card, disable by default, see bug #258729
+	myconf+=" --disable-xvr100"
 
 	################
 	# Audio Output #
@@ -549,7 +539,7 @@ src_configure() {
 
 	# Turning off CPU optimizations usually will break the build.
 	# However, this use flag, if enabled, will allow users to completely
-	# specify which ones to use.  If disabled, mplayer will automatically
+	# specify which ones to use. If disabled, mplayer will automatically
 	# enable all CPU optimizations that the host build supports.
 	if use custom-cpuopts; then
 		uses="3dnow 3dnowext altivec mmx mmxext shm sse sse2 ssse3"
@@ -566,20 +556,17 @@ src_configure() {
 	fi
 
 	is-flag -O? || append-flags -O2
-	if use x86 || use x86-fbsd; then
-		use debug || append-flags -fomit-frame-pointer
-	fi
-
 	# workaround bug, x86 just has too few registers, see c.f.
 	# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=402950#44
-	[[ ${CHOST} == i?86-*solaris* ]] && append-flags -fomit-frame-pointer
-	# and 32b osx, bug 329861
-	[[ ${CHOST} == i?86-*darwin* ]] && append-flags -fomit-frame-pointer
-
+	# and 32bits OSX, bug 329861
+	if [[ ${CHOST} == i?86-* ]] ; then
+		use debug || append-flags -fomit-frame-pointer
+	fi
 
 	###########################
 	# X enabled configuration #
 	###########################
+	myconf+=" --disable-gui"
 	if use X; then
 		uses="dxr3 ggi xinerama"
 		for i in ${uses}; do
@@ -592,10 +579,6 @@ src_configure() {
 		use video_cards_vesa || myconf+=" --disable-vesa"
 		use vidix || myconf+=" --disable-vidix --disable-vidix-pcidb"
 		use xscreensaver || myconf+=" --disable-xss"
-
-		# GTK gmplayer gui
-		# Unsupported by Gentoo, upstream has dropped development
-		myconf+=" $(use_enable gmplayer gui)"
 
 		if use xv; then
 			if use xvmc; then
@@ -612,49 +595,49 @@ src_configure() {
 		fi
 	else
 		myconf+="
-		--disable-dga1
-		--disable-dga2
-		--disable-dxr3
-		--disable-ggi
-		--disable-gl
-		--disable-vdpau
-		--disable-vidix
-		--disable-vidix-pcidb
-		--disable-xinerama
-		--disable-xss
-		--disable-xv
-		--disable-xvmc
-		--disable-x11
+			--disable-dga1
+			--disable-dga2
+			--disable-dxr3
+			--disable-ggi
+			--disable-gl
+			--disable-vdpau
+			--disable-vidix
+			--disable-vidix-pcidb
+			--disable-xinerama
+			--disable-xss
+			--disable-xv
+			--disable-xvmc
+			--disable-x11
 		"
 		uses="dga dxr3 ggi opengl osdmenu vdpau vidix xinerama xscreensaver xv"
 		for i in ${uses}; do
 			use ${i} && elog "Useflag \"${i}\" require \"X\" useflag enabled to work."
 		done
 	fi
+
 	############################
 	# OSX (aqua) configuration #
 	############################
-	if use aqua ; then
+	if use aqua; then
 		myconf+="
-		--enable-macosx-finder
-		--enable-macosx-bundle
-		--enable-libdvdcss-internal
+			--enable-macosx-finder
+			--enable-macosx-bundle
 		"
 	fi
 
+	###################
+	# External FFmpeg #
+	###################
 	if [[ ${PV} == *9999* ]]; then
-		###################
-		# External FFmpeg #
-		###################
-		use external-ffmpeg && myconf+=" --disable-libavutil_a --disable-libavcodec_a --disable-libavformat_a --disable-libpostproc_a --disable-libswscale_a"
+		use external-ffmpeg && myconf+=" --disable-ffmpeg_a"
 	fi
 
-	myconf="--cc=$(tc-getCC) \
-		--host-cc=$(tc-getBUILD_CC) \
-		--prefix=${EPREFIX}/usr \
-		--confdir=${EPREFIX}/etc/mplayer \
-		--datadir=${EPREFIX}/usr/share/mplayer \
-		--libdir=${EPREFIX}/usr/$(get_libdir) \
+	myconf="--cc=$(tc-getCC)
+		--host-cc=$(tc-getBUILD_CC)
+		--prefix=${EPREFIX}/usr
+		--confdir=${EPREFIX}/etc/mplayer
+		--datadir=${EPREFIX}/usr/share/mplayer
+		--libdir=${EPREFIX}/usr/$(get_libdir)
 		${myconf}"
 
 	CFLAGS="${CFLAGS}" ./configure ${myconf} || die "configure died"
@@ -671,11 +654,10 @@ src_compile() {
 		for i in ${LINGUAS} ; do
 			hasq ${i} ${ALLOWED_LINGUAS} && BUILT_DOCS+=" ${i}"
 		done
-		if [[ -z $BUILT_DOCS ]]
-		then
+		if [[ -z $BUILT_DOCS ]]; then
 			emake -j1 -C DOCS/xml html-chunked || die "Failed to generate html docs"
 		else
-			for i in ${BUILT_DOCS} ; do
+			for i in ${BUILT_DOCS}; do
 				emake -j1 -C DOCS/xml html-chunked-${i} || die "Failed to generate html docs for ${i}"
 			done
 		fi
@@ -714,17 +696,6 @@ src_install() {
 		dohtml -r "${S}"/DOCS/HTML/* || die
 	fi
 
-	# Install the default Skin and Gnome menu entry
-	if use gmplayer; then
-		dodir /usr/share/mplayer/skins
-		cp -r "${WORKDIR}/Blue" \
-			"${ED}/usr/share/mplayer/skins/default" || die "cp skins died"
-
-		# Fix the symlink
-		rm -rf "${ED}/usr/bin/gmplayer"
-		dosym mplayer /usr/bin/gmplayer
-	fi
-
 	if ! use ass && ! use truetype; then
 		dodir /usr/share/mplayer/fonts
 		# Do this generic, as the mplayer people like to change the structure
@@ -744,7 +715,7 @@ src_install() {
 		doins "${S}/etc/menu.conf" || die
 	fi
 
-	if use ass || use truetype;	then
+	if use ass || use truetype; then
 		cat >> "${ED}/etc/mplayer/mplayer.conf" << _EOF_
 fontconfig=1
 subfont-osd-scale=4

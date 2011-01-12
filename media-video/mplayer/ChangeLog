@@ -1,6 +1,49 @@
 # ChangeLog for media-video/mplayer
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.763 2010/10/10 19:43:25 scarabeus Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.771 2011/01/02 19:57:12 klausman Exp $
+
+  02 Jan 2011; Tobias Klausmann <klausman@gentoo.org>
+  mplayer-1.0_rc4_p20101114.ebuild:
+  Stable on alpha, bug #343977
+
+  02 Jan 2011; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  The internal copy of faad2 is gone, bug #350316
+
+*mplayer-1.0_rc4_p20101219 (19 Dec 2010)
+
+  19 Dec 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -mplayer-1.0_rc4_p20100506.ebuild, -mplayer-1.0_rc4_p20100612.ebuild,
+  -mplayer-1.0_rc4_p20101107.ebuild, +mplayer-1.0_rc4_p20101219.ebuild,
+  mplayer-9999.ebuild:
+  Version bump (add new snapshot that should fix vorbis failiture). Drop old.
+  Sort keywords in live ebuild.
+
+*mplayer-1.0_rc4_p20101114 (14 Nov 2010)
+
+  14 Nov 2010; Lars Wendler <polynomial-c@gentoo.org>
+  +mplayer-1.0_rc4_p20101114.ebuild:
+  non-maintainer commit: New snapshot to fix bug #345155. Permission kindly
+  granted by scarabeus.
+
+  07 Nov 2010; Alexis Ballier <aballier@gentoo.org> metadata.xml:
+  update description of the vpx useflag, bug #337690
+
+  07 Nov 2010; Jory A. Pratt <anarchy@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild, mplayer-1.0_rc4_p20100506.ebuild,
+  mplayer-1.0_rc4_p20100612.ebuild, mplayer-1.0_rc4_p20101107.ebuild,
+  mplayer-9999.ebuild:
+  Convert media-libs/jpeg to virtual/jpeg
+
+*mplayer-1.0_rc4_p20101107 (07 Nov 2010)
+
+  07 Nov 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  +mplayer-1.0_rc4_p20101107.ebuild, mplayer-9999.ebuild,
+  +files/prepare_mplayer.sh:
+  Add new snapshot and add tool that create them to files/
+
+  01 Nov 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild,
+  metadata.xml:
+  Fix mga videocard check per bug #341171. Add missing options per bug #334793.
 
   10 Oct 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild,
   metadata.xml:

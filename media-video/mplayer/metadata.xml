@@ -23,10 +23,12 @@
 	<flag name="faac">Use external faac library for AAC encoding</flag>
 	<flag name="faad">Use external faad library for AAC decoding</flag>
 	<flag name="gmplayer">Build gmplayer, a GTK+ MPlayer gui (UNSUPPORTED)</flag>
+	<flag name="libmpeg2">Build support for mpeg2 over media-libs/libmpeg2 rather than using ffmpeg.</flag>
 	<flag name="live">Enables live.com streaming media support</flag>
 	<flag name="md5sum">Enables md5sum video output</flag>
 	<flag name="mmxext">Enables mmx2 support</flag>
 	<flag name="mng">MNG input support</flag>
+	<flag name="mpg123">Enable support for mp3 decoding over media-sound/mpg123.</flag>
 	<flag name="network">Enables network streaming support</flag>
 	<flag name="nut">Enables support for the NUT container format</flag>
 	<flag name="osdmenu">Enables support for on-screen display (OSD) menus</flag>
@@ -46,7 +48,7 @@
 	<flag name="tremor">Enable internal support for Vorbis</flag>
 	<flag name="twolame">Enable twolame MPEG-2 encoding</flag>
 	<flag name="vdpau">Enables experimental VDPAU support (requires nVidia video cards) to offload MPEG2/MPEG4/VC1/WMV CPU processing to video card</flag>
-	<flag name="vpx">Enables vp8 codec support using libvpx</flag>
+	<flag name="vpx">Enables vp8 codec support using libvpx: Decoding vp8 does not require this to be enabled but libvpx can also be used for decoding; encoding vp8 requires this useflag to be enabled though.</flag>
 	<flag name="vidix">Support for vidix video output</flag>
 	<flag name="xanim">Enables support for xanim based codecs</flag>
 	<flag name="xvmc">Enables X-Video Motion Compensation support</flag>
