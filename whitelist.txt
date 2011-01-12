@@ -626,6 +626,7 @@ media-libs/libcuefile
 media-libs/libdca
 media-libs/libdiscid
 media-libs/libdvdcss
+media-libs/libdvdnav
 media-libs/libdvdplay
 media-libs/libdvdread
 media-libs/libemf
