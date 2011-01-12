@@ -262,10 +262,13 @@ src_prepare() {
 		-e "s:-I\(/usr/include/\(Basic\)\?UsageEnvironment\):-I${EPREFIX}\1:" \
 		-e "s:-I/usr/lib\(64\)\?/live:-I$EPREFIX/usr/$(get_libname)/live:g" \
 		configure || die
-	
+
 	# Solaris issue, should be fixed for next snapshot:
 	# http://comments.gmane.org/gmane.comp.video.mplayer.user/65258
 	sed -i -e "s/_XOPEN_SOURCE 500/_XOPEN_SOURCE 600/" configure || die
+
+	[[ ${CHOST} == *-darwin8 ]] && \
+		epatch "${FILESDIR}"/${PN}-1.0_rc4_p20101219-coreaudio-darwin8.patch
 
 	base_src_prepare
 }
