@@ -189,6 +189,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7-solaris64-crypt.patch
 	# http://bugs.python.org/issue6308
 	epatch "${FILESDIR}"/${PN}-2.6.2-termios-noqnx.patch
+	# http://bugs.python.org/issue10898
+	epatch "${FILESDIR}"/${PN}-2.7.1-fstat-mint.patch
 	# build shared library on aix #278845
 	# needs fixing, doesn't not apply cleanly any more
 #	epatch "${FILESDIR}"/${PN}-2.6.2-aix-shared.patch
