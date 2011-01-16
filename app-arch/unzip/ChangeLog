@@ -1,6 +1,28 @@
 # ChangeLog for app-arch/unzip
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.71 2010/08/14 20:10:09 truedfx Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.77 2011/01/13 15:03:00 jer Exp $
+
+  13 Jan 2011; Jeroen Roovers <jer@gentoo.org> unzip-6.0-r2.ebuild:
+  Marked ~hppa (bug #349393).
+
+  09 Jan 2011; Brent Baude <ranger@gentoo.org> unzip-6.0-r2.ebuild:
+  Marking unzip-6.0-r2 ~ppc for bug 349393
+
+  02 Jan 2011; Markus Meier <maekke@gentoo.org> unzip-6.0-r2.ebuild:
+  add ~arm, bug #349393
+
+  27 Dec 2010; Brent Baude <ranger@gentoo.org> unzip-6.0-r2.ebuild:
+  Marking unzip-6.0-r2 ~ppc64 for bug 349393
+
+  26 Dec 2010; Matt Turner <mattst88@gentoo.org> unzip-6.0-r2.ebuild:
+  Added ~mips, bug 349393
+
+*unzip-6.0-r2 (22 Dec 2010)
+
+  22 Dec 2010; Peter Volkov <pva@gentoo.org> +unzip-6.0-r2.ebuild,
+  +files/unzip-6.0-natspec.patch, metadata.xml:
+  Added patch to use libnatspec to fix interoperability with Windows, bug
+  #275244.
 
   14 Aug 2010; Harald van Dĳk <truedfx@gentoo.org> unzip-6.0-r1.ebuild:
   Fix quoting
