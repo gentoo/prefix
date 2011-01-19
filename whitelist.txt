@@ -781,6 +781,7 @@ net-misc/keychain
 net-misc/mDNSResponder
 net-misc/memcached
 net-misc/mico
+net-misc/pssh
 net-misc/puf
 net-misc/sitecopy
 net-misc/socat
@@ -932,7 +933,6 @@ x11-misc/xsel
 x11-terms/aterm
 x11-terms/clusterssh
 x11-terms/gnome-terminal
-x11-terms/pssh
 x11-terms/terminal
 x11-terms/tilda
 
