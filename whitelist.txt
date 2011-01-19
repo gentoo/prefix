@@ -772,6 +772,7 @@ net-mail/offlineimap
 net-misc/aget
 net-misc/autossh
 net-misc/axel
+net-misc/clusterssh
 net-misc/curl
 net-misc/gsasl
 net-misc/ipcalc
@@ -931,7 +932,6 @@ x11-misc/xdg-utils
 x11-misc/xkeyboard-config
 x11-misc/xsel
 x11-terms/aterm
-x11-terms/clusterssh
 x11-terms/gnome-terminal
 x11-terms/terminal
 x11-terms/tilda
