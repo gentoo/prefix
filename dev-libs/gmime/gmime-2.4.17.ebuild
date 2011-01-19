@@ -56,7 +56,7 @@ src_compile() {
 
 src_install() {
 	emake GACUTIL_FLAGS="/root '${ED}/usr/$(get_libdir)' /gacdir ${EPREFIX}/usr/$(get_libdir) /package ${PN}" \
-		DESTDIR="${ED}" install || die "installation failed"
+		DESTDIR="${D}" install || die "installation failed"
 
 	if use doc ; then
 		# we don't use docinto/dodoc, because we don't want html doc gzipped
