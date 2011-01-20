@@ -29,6 +29,9 @@ src_prepare() {
 	# seem to be reported wrongly sporadically on interix.
 	epatch "${FILESDIR}"/${PN}-3.81-interix.patch
 
+	# fixes the build on interix (need stdint.h for uintmax_t).
+	epatch "${FILESDIR}"/${PN}-3.82-interix.patch
+
 	# enable library_search() to look for lib%.dylib on darwin
 	epatch "${FILESDIR}"/${PN}-3.81-darwin-library_search-dylib.patch
 }
