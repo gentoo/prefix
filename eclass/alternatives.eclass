@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.15 2008/09/10 08:10:31 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.16 2010/11/24 06:49:41 ulm Exp $
 
 # @ECLASS: alternatives.eclass
 # @MAINTAINER:
@@ -41,10 +41,12 @@
 # consider using this unless you are want to do something special.
 
 # @ECLASS-VARIABLE: SOURCE
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # The symlink to be created
 
 # @ECLASS-VARIABLE: ALTERNATIVES
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # The list of alternatives
 

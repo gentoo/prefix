@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.17 2010/07/28 05:17:58 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.18 2010/08/12 10:53:57 pva Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -16,6 +16,13 @@
 
 inherit eutils gst-plugins10
 
+GST_EXPF="src_unpack src_compile src_install"
+case ${EAPI:-0} in                                                                  
+	2|3) GST_EXPF="${GST_EXPF} src_prepare src_configure" ;;                
+	1|0) ;;                                                                     
+	*) die "Unknown EAPI" ;;                                                   
+esac                                                                                
+EXPORT_FUNCTIONS ${GST_EXPF}
 
 ###
 # variable declarations
@@ -70,7 +77,7 @@ gst-plugins-base_src_configure() {
 	# -g to be injected in CFLAGS, which in turn causes gcc to generate code
 	# that the assembler segfaults on (yay) on Darwin, so disable it using
 	# --disable-debug
-	econf ${@} --disable-debug --with-package-name="Gentoo GStreamer Ebuild" --with-package-origin="http://www.gentoo.org" ${gst_conf} || die "./configure failure"
+	econf ${@} --disable-debug --with-package-name="Gentoo GStreamer Ebuild" --with-package-origin="http://www.gentoo.org" ${gst_conf}
 
 }
 
@@ -80,9 +87,14 @@ gst-plugins-base_src_configure() {
 
 gst-plugins-base_src_unpack() {
 
-#	local makefiles
-
 	unpack ${A}
+
+	cd "${S}"
+	has src_prepare ${GST_EXPF} || gst-plugins-base_src_prepare
+
+}
+
+gst-plugins-base_src_prepare() {
 
 	# Link with the syswide installed gst-libs if needed
 	gst-plugins10_find_plugin_dir
@@ -116,10 +128,11 @@ gst-plugins-base_src_unpack() {
 
 }
 
+
+
 gst-plugins-base_src_compile() {
 
-	gst-plugins-base_src_configure ${@}
-
+	has src_configure ${GST_EXPF} || gst-plugins-base_src_configure ${@}
 	gst-plugins10_find_plugin_dir
 	emake || die "compile failure"
 
@@ -132,6 +145,3 @@ gst-plugins-base_src_install() {
 
 	[[ -e README ]] && dodoc README
 }
-
-
-EXPORT_FUNCTIONS src_unpack src_compile src_install

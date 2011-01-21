@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.437 2010/08/01 03:00:36 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.444 2010/12/29 07:31:43 dirtyepic Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -139,31 +139,35 @@ if [[ ${ETYPE} == "gcc-library" ]] ; then
 else
 	IUSE="multislot nptl test"
 
+	if tc_version_is_at_least 3 ; then
+		IUSE+=" vanilla"
+	fi
+
 	if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
-		IUSE="${IUSE} altivec build fortran nls nocxx"
-		[[ -n ${PIE_VER} ]] && IUSE="${IUSE} nopie"
-		[[ -n ${PP_VER}	 ]] && IUSE="${IUSE} nossp"
-		[[ -n ${SPECS_VER} ]] && IUSE="${IUSE} nossp"
-		[[ -n ${HTB_VER} ]] && IUSE="${IUSE} boundschecking"
-		[[ -n ${D_VER}	 ]] && IUSE="${IUSE} d"
+		IUSE+=" altivec build fortran nls nocxx"
+		[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
+		[[ -n ${PP_VER}	 ]] && IUSE+=" nossp"
+		[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
+		[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
+		[[ -n ${D_VER}	 ]] && IUSE+=" d"
 
 		if tc_version_is_at_least 3 ; then
-			IUSE="${IUSE} bootstrap doc gcj gtk hardened libffi multilib objc vanilla"
+			IUSE+=" bootstrap doc gcj gtk hardened libffi multilib objc"
 
 			# gcc-{nios2,bfin} don't accept these
 			if [[ ${PN} == "gcc" ]] ; then
-				IUSE="${IUSE} n32 n64"
+				IUSE+=" n32 n64"
 			fi
 
-			tc_version_is_at_least "4.0" && IUSE="${IUSE} objc-gc mudflap"
-			tc_version_is_at_least "4.1" && IUSE="${IUSE} objc++"
-			tc_version_is_at_least "4.2" && IUSE="${IUSE} openmp"
-			tc_version_is_at_least "4.3" && IUSE="${IUSE} fixed-point"
+			tc_version_is_at_least "4.0" && IUSE+=" objc-gc mudflap"
+			tc_version_is_at_least "4.1" && IUSE+=" objc++"
+			tc_version_is_at_least "4.2" && IUSE+=" openmp"
+			tc_version_is_at_least "4.3" && IUSE+=" fixed-point"
 			if tc_version_is_at_least "4.4" ; then
-				IUSE="${IUSE} graphite"
-				[[ -n ${SPECS_VER} ]] && IUSE="${IUSE} nossp"
+				IUSE+=" graphite"
+				[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
 			fi
-			tc_version_is_at_least "4.5" && IUSE="${IUSE} lto"
+			tc_version_is_at_least "4.5" && IUSE+=" lto"
 		fi
 	fi
 
@@ -367,9 +371,13 @@ get_gcc_src_uri() {
 	# >= gcc-4.3 uses ecj.jar and we only add gcj as a use flag under certain
 	# conditions
 	if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
-		tc_version_is_at_least "4.3" && \
+		if tc_version_is_at_least "4.5" ; then
+			GCC_SRC_URI="${GCC_SRC_URI}
+			gcj? ( ftp://sourceware.org/pub/java/ecj-4.5.jar )"
+		elif tc_version_is_at_least "4.3" ; then
 			GCC_SRC_URI="${GCC_SRC_URI}
 			gcj? ( ftp://sourceware.org/pub/java/ecj-4.3.jar )"
+		fi
 	fi
 
 	echo "${GCC_SRC_URI}"
@@ -854,6 +862,10 @@ gcc-compiler_pkg_postinst() {
 		ewarn "If you have issues with packages unable to locate libstdc++.la,"
 		ewarn "then try running 'fix_libtool_files.sh' on the old gcc versions."
 		echo
+		ewarn "You might want to review the GCC upgrade guide when moving between"
+		ewarn "major versions (like 4.2 to 4.3):"
+		ewarn "http://www.gentoo.org/doc/en/gcc-upgrading.xml"
+		echo
 	fi
 
 	# If our gcc-config version doesn't like '-' in it's version string,
@@ -870,10 +882,6 @@ gcc-compiler_pkg_postinst() {
 		ewarn "upgrading between different versions of gcc.	 For example,"
 		ewarn "when moving to gcc-3.4 from gcc-3.3, emerge gentoolkit and run:"
 		ewarn "	 # revdep-rebuild --library libstdc++.so.5"
-		echo
-		ewarn "For more information on the steps to take when upgrading "
-		ewarn "from gcc-3.3 please refer to: "
-		ewarn "http://www.gentoo.org/doc/en/gcc-upgrading.xml"
 		echo
 	fi
 
@@ -1086,9 +1094,14 @@ gcc_src_unpack() {
 	fi
 
 	# >= gcc-4.3 doesn't bundle ecj.jar, so copy it
-	if [[ ${GCCMAJOR}.${GCCMINOR} > 4.2 ]] &&
-		use gcj ; then
-		cp -pPR "${DISTDIR}/ecj-4.3.jar" "${S}/ecj.jar" || die
+	if [[ ${GCCMAJOR}.${GCCMINOR} > 4.2 ]] && use gcj ; then
+		if tc_version_is_at_least "4.5" ; then
+			einfo "Copying ecj-4.5.jar"
+			cp -pPR "${DISTDIR}/ecj-4.5.jar" "${S}/ecj.jar" || die
+		elif tc_version_is_at_least "4.3" ; then
+			einfo "Copying ecj-4.3.jar"
+			cp -pPR "${DISTDIR}/ecj-4.3.jar" "${S}/ecj.jar" || die
+		fi
 	fi
 
 	# disable --as-needed from being compiled into gcc specs
@@ -1170,7 +1183,19 @@ gcc-compiler-configure() {
 		fi
 
 		if tc_version_is_at_least "4.2" ; then
-			confgcc="${confgcc} $(use_enable openmp libgomp)"
+			if has openmp ${IUSE} ; then
+				# Make sure target has pthreads support. #326757 #335883
+				# There shouldn't be a chicken&egg problem here as openmp won't
+				# build without a C library, and you can't build that w/out
+				# already having a compiler ...
+				if ! is_crosscompile || \
+				   $(tc-getCPP ${CTARGET}) -E - <<<"#include <pthread.h>" >& /dev/null
+				then
+					confgcc="${confgcc} $(use_enable openmp libgomp)"
+				fi
+			else
+				confgcc="${confgcc} --disable-libgomp"
+			fi
 		fi
 
 		# enable the cld workaround until we move things to stable.
@@ -1340,9 +1365,12 @@ gcc_do_configure() {
 
 	# graphite support was added in 4.4, which depends upon external libraries
 	# for optimizations.  This option allows users to determine if they want
-	# these optimizations and libraries pulled in
+	# these optimizations and libraries pulled in.  We disable the version check
+	# so we can use >=ppl-0.11
 	tc_version_is_at_least "4.4" && \
-		confgcc="${confgcc} $(use_with graphite ppl) $(use_with graphite cloog)"
+		confgcc="${confgcc} $(use_with graphite ppl)
+			$(use_with graphite cloog)
+			--disable-ppl-version-check"
 
 	# lto support was added in 4.5, which depends upon elfutils.  This allows
 	# users to enable that option, and pull in the additional library
@@ -1382,7 +1410,7 @@ gcc_do_configure() {
 		case ${CTARGET} in
 			*-linux)		 needed_libc=no-fucking-clue;;
 			*-dietlibc)		 needed_libc=dietlibc;;
-			*-elf)			 needed_libc=newlib;;
+			*-elf|*-eabi)	 needed_libc=newlib;;
 			*-gentoo-freebsd*) needed_libc=freebsd-lib;;
 			*-gnu*)			 needed_libc=glibc;;
 			*-klibc)		 needed_libc=klibc;;
@@ -1428,23 +1456,30 @@ gcc_do_configure() {
 			confgcc="${confgcc} --with-local-prefix=${TPREFIX}/usr"
 		fi
 	fi
-	[[ ${CTARGET} == *-elf ]] && confgcc="${confgcc} --with-newlib"
 	# __cxa_atexit is "essential for fully standards-compliant handling of
 	# destructors", but apparently requires glibc.
-	if [[ ${CTARGET} == *-uclibc* ]] ; then
+	case ${CTARGET} in
+	*-uclibc*)
 		confgcc="${confgcc} --disable-__cxa_atexit --enable-target-optspace $(use_enable nptl tls)"
 		[[ ${GCCMAJOR}.${GCCMINOR} == 3.3 ]] && confgcc="${confgcc} --enable-sjlj-exceptions"
 		if tc_version_is_at_least 3.4 && [[ ${GCCMAJOR}.${GCCMINOR} < 4.3 ]] ; then
 			confgcc="${confgcc} --enable-clocale=uclibc"
 		fi
-	elif [[ ${CTARGET} == *-gnu* ]] ; then
+		;;
+	*-elf|*-eabi)
+		confgcc="${confgcc} --with-newlib"
+		;;
+	*-gnu*)
 		confgcc="${confgcc} --enable-__cxa_atexit"
 		confgcc="${confgcc} --enable-clocale=gnu"
-	elif [[ ${CTARGET} == *-freebsd* ]]; then
+		;;
+	*-freebsd*)
 		confgcc="${confgcc} --enable-__cxa_atexit"
-	elif [[ ${CTARGET} == *-solaris* ]]; then
+		;;
+	*-solaris*)
 		confgcc="${confgcc} --enable-__cxa_atexit"
-	fi
+		;;
+	esac
 	[[ ${GCCMAJOR}.${GCCMINOR} < 3.4 ]] && confgcc="${confgcc} --disable-libunwind-exceptions"
 
 	# create a sparc*linux*-{gcc,g++} that can handle -m32 and -m64 (biarch)

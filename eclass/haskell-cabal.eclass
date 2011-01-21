@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.20 2010/03/30 22:18:37 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.22 2010/09/12 07:37:09 slyfox Exp $
 #
 # Original authors: Andres Loeh <kosmikus@gentoo.org>
 #                   Duncan Coutts <dcoutts@gentoo.org>
@@ -18,6 +18,7 @@
 #
 # Currently supported features:
 #   haddock    --  for documentation generation
+#   hscolour   --  generation of colourised sources
 #   alex       --  lexer/scanner generator
 #   happy      --  parser generator
 #   c2hs       --  C interface generator
@@ -57,6 +58,7 @@ EXPORT_FUNCTIONS ${HASKELL_CABAL_EXPF}
 for feature in ${CABAL_FEATURES}; do
 	case ${feature} in
 		haddock)    CABAL_USE_HADDOCK=yes;;
+		hscolour)   CABAL_USE_HSCOLOUR=yes;;
 		alex)       CABAL_USE_ALEX=yes;;
 		happy)      CABAL_USE_HAPPY=yes;;
 		c2hs)       CABAL_USE_C2HS=yes;;
@@ -76,6 +78,11 @@ has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 if [[ -n "${CABAL_USE_HADDOCK}" ]]; then
 	IUSE="${IUSE} doc"
 	DEPEND="${DEPEND} doc? ( dev-haskell/haddock )"
+fi
+
+if [[ -n "${CABAL_USE_HSCOLOUR}" ]]; then
+	IUSE="${IUSE} hscolour"
+	DEPEND="${DEPEND} hscolour? ( dev-haskell/hscolour )"
 fi
 
 if [[ -n "${CABAL_USE_ALEX}" ]]; then
@@ -190,8 +197,17 @@ cabal-mksetup() {
 		> $setupdir/Setup.hs
 }
 
+cabal-hscolour() {
+	./setup hscolour || die "setup hscolour failed"
+}
+
 cabal-haddock() {
 	./setup haddock || die "setup haddock failed"
+}
+
+cabal-hscolour-haddock() {
+	# --hyperlink-source implies calling 'setup hscolour'
+	./setup haddock --hyperlink-source || die "setup haddock failed"
 }
 
 cabal-configure() {
@@ -337,7 +353,13 @@ haskell-cabal_src_configure() {
 	pushd "${S}" > /dev/null
 
 	cabal-bootstrap
-	cabal-configure "$@"
+
+	ghc_flags=""
+	# currently cabal does not respect CFLAGS and LDFLAGS on it's own (bug #333217)
+	# so translate LDFLAGS to ghc parameters (without filtering)
+	for flag in $LDFLAGS; do ghc_flags="${ghc_flags} --ghc-option=-optl$flag"; done
+
+	cabal-configure $ghc_flags "$@"
 
 	popd > /dev/null
 }
@@ -354,7 +376,18 @@ cabal_src_compile() {
 		cabal-build
 
 		if [[ -n "${CABAL_USE_HADDOCK}" ]] && use doc; then
-			cabal-haddock
+			if [[ -n "${CABAL_USE_HSCOLOUR}" ]] && use hscolour; then
+				# hscolour and haddock
+				cabal-hscolour-haddock
+			else
+				# just haddock
+				cabal-haddock
+			fi
+		else
+			if [[ -n "${CABAL_USE_HSCOLOUR}" ]] && use hscolour; then
+				# just hscolour
+				cabal-hscolour
+			fi
 		fi
 	fi
 }

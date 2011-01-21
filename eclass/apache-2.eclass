@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.21 2010/07/11 08:22:40 lxnay Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.24 2010/12/22 10:02:05 hollow Exp $
 
 EAPI="2"
 
@@ -459,7 +459,7 @@ apache-2_src_prepare() {
 
 	# patched-in MPMs need the build environment rebuilt
 	sed -i -e '/sinclude/d' configure.in
-	AT_GNUCONF_UPDATE=yes AT_M4DIR=build eautoreconf
+	AT_M4DIR=build eautoreconf
 }
 
 # @FUNCTION: apache-2_src_configure
@@ -604,9 +604,8 @@ apache-2_pkg_postinst() {
 
 	echo
 	elog "Attention: cgi and cgid modules are now handled via APACHE2_MODULES flags"
-	elog "make sure to enable those in order to compile them. In general, you should"
-	elog "use 'cgi' with non-multithreaded MPMs (such as prefork) and 'cgid' with"
-	elog "multithreaded ones (such as worker)"
+	elog "in /etc/make.conf. Make sure to enable those in order to compile them."
+	elog "In general, you should use 'cgid' with threaded MPMs and 'cgi' otherwise."
 	echo
 
 }

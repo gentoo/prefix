@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.91 2010/04/19 23:02:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.94 2010/12/09 01:32:33 dirtyepic Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -198,25 +198,32 @@ toolchain-binutils_src_compile() {
 	echo
 
 	cd "${MY_BUILDDIR}"
-	local myconf=""
-	# new versions allow gold and ld; screw older versions
-	if grep -q 'enable-gold=both/ld' "${S}"/configure ; then
-		myconf="${myconf} --enable-gold=both/ld"
+	set --
+	# enable gold if available (installed as ld.gold)
+	if grep -q 'enable-gold=default' "${S}"/configure ; then
+		set -- "$@" --enable-gold
+	# old ways - remove when 2.21 is stable
+	elif grep -q 'enable-gold=both/ld' "${S}"/configure ; then
+		set -- "$@" --enable-gold=both/ld
 	elif grep -q 'enable-gold=both/bfd' "${S}"/configure ; then
-		myconf="${myconf} --enable-gold=both/bfd"
+		set -- "$@" --enable-gold=both/bfd
+	fi
+	if grep -q -e '--enable-plugins' "${S}"/ld/configure ; then
+		set -- "$@" --enable-plugins
 	fi
 	use nls \
-		&& myconf="${myconf} --without-included-gettext" \
-		|| myconf="${myconf} --disable-nls"
+		&& set -- "$@" --without-included-gettext \
+		|| set -- "$@" --disable-nls
 	[[ ${CHOST} == *"-solaris"* ]] && use nls && append-libs -lintl
-	use multitarget && myconf="${myconf} --enable-targets=all"
-	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
-	is_cross && myconf="${myconf} --with-sysroot=${EPREFIX}/usr/${CTARGET}"
+	use multitarget && set -- "$@" --enable-targets=all
+	[[ -n ${CBUILD} ]] && set -- "$@" --build=${CBUILD}
+	is_cross && set -- "$@" --with-sysroot=${EPREFIX}/usr/${CTARGET}
 	# glibc-2.3.6 lacks support for this ... so rather than force glibc-2.5+
 	# on everyone in alpha (for now), we'll just enable it when possible
-	has_version ">=${CATEGORY}/glibc-2.5" && myconf="${myconf} --enable-secureplt"
-	has_version ">=sys-libs/glibc-2.5" && myconf="${myconf} --enable-secureplt"
-	myconf="--prefix=${EPREFIX}/usr \
+	has_version ">=${CATEGORY}/glibc-2.5" && set -- "$@" --enable-secureplt
+	has_version ">=sys-libs/glibc-2.5" && set -- "$@" --enable-secureplt
+	set -- "$@" \
+		--prefix=${EPREFIX}/usr \
 		--host=${CHOST} \
 		--target=${CTARGET} \
 		--datadir=${EPREFIX}${DATAPATH} \
@@ -229,9 +236,9 @@ toolchain-binutils_src_compile() {
 		--enable-64-bit-bfd \
 		--enable-shared \
 		--disable-werror \
-		${myconf} ${EXTRA_ECONF}"
-	echo ./configure ${myconf}
-	"${S}"/configure ${myconf} || die "configure failed"
+		${EXTRA_ECONF}
+	echo ./configure "$@"
+	"${S}"/configure "$@" || die
 
 	emake all || die "emake failed"
 
@@ -255,13 +262,13 @@ toolchain-binutils_src_compile() {
 
 		if [[ ${x} != "UNSUPPORTED" ]] ; then
 			append-flags -I"${S}"/include
-			myconf="--with-bfd-include-dir=${MY_BUILDDIR}/bfd \
+			set -- "$@" \
+				--with-bfd-include-dir=${MY_BUILDDIR}/bfd \
 				--with-libbfd=${MY_BUILDDIR}/bfd/libbfd.a \
 				--with-libiberty=${MY_BUILDDIR}/libiberty/libiberty.a \
-				--with-binutils-ldscript-dir=${EPREFIX}/${LIBPATH}/ldscripts \
-				${myconf}"
-			echo ./configure ${myconf}
-			./configure ${myconf} || die "configure elf2flt failed"
+				--with-binutils-ldscript-dir=${EPREFIX}/${LIBPATH}/ldscripts
+			echo ./configure "$@"
+			./configure "$@" || die
 			emake || die "make elf2flt failed"
 		fi
 	fi

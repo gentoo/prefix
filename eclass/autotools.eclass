@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.99 2010/07/06 18:55:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.101 2010/08/21 19:39:52 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -25,6 +25,7 @@ inherit eutils libtool
 : ${WANT_AUTOMAKE:=latest}
 
 # @ECLASS-VARIABLE: _LATEST_AUTOMAKE
+# @INTERNAL
 # @DESCRIPTION:
 # CONSTANT!
 # The latest major version/slot of automake available on each arch.
@@ -74,11 +75,13 @@ fi
 unset _automake_atom _autoconf_atom
 
 # @ECLASS-VARIABLE: AM_OPTS
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # Additional options to pass to automake during
 # eautoreconf call.
 
 # @ECLASS-VARIABLE: AT_NOELIBTOOLIZE
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # Don't run elibtoolize command if set to 'yes',
 # useful when elibtoolize needs to be ran with
@@ -89,8 +92,6 @@ unset _automake_atom _autoconf_atom
 # @DESCRIPTION:
 # Additional director(y|ies) aclocal should search
 : ${AT_M4DIR:=${M4DIR}}
-AT_GNUCONF_UPDATE="no"
-
 
 # @FUNCTION: eautoreconf
 # @DESCRIPTION:

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.16 2010/06/26 17:18:11 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.17 2010/12/29 03:57:24 anarchy Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
@@ -123,7 +123,7 @@ mozconfig_init() {
 		append-flags -fPIC -mieee
 		;;
 
-	amd64|ia64)
+	ia64)
 		# Historically we have needed to add this manually for 64-bit
 		append-flags -fPIC
 		;;

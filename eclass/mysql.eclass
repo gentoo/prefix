@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.152 2010/10/06 00:13:11 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.156 2010/11/28 21:55:54 robbat2 Exp $
 
 # @ECLASS: mysql.eclass
 # @MAINTAINER:
@@ -578,7 +578,10 @@ configure_51() {
 	myconf="${myconf} --without-pstack"
 	myconf="${myconf} --with-plugindir=${EPREFIX}/usr/$(get_libdir)/mysql/plugin"
 
-	use max-idx-128 && myconf="${myconf} --with-max-indexes=128"
+	# This is an explict die here, because if we just forcibly disable it, then the
+	# user's data is not accessible.
+	use max-idx-128 && die "Bug #336027: upstream has a corruption issue with max-idx-128 presently"
+	#use max-idx-128 && myconf="${myconf} --with-max-indexes=128"
 	if [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
 		myconf="${myconf} $(use_enable community community-features)"
 		if use community; then
@@ -756,6 +759,13 @@ mysql_pkg_setup() {
 		M="MySQL does not support being built statically with SSL support enabled!"
 		eerror "${M}"
 		die "${M}"
+	fi
+
+	if mysql_version_is_at_least "5.1.51" \
+	   && ! mysql_version_is_at_least "5.2" \
+	   && use debug ; then
+	   # Also in package.use.mask
+	   die "Bug #344885: Upstream has broken USE=debug for 5.1 series >=5.1.51"
 	fi
 
 	if ! mysql_version_is_at_least "5.0" \
@@ -985,6 +995,15 @@ mysql_src_configure() {
 
 	# bug #283926, with GCC4.4, this is required to get correct behavior.
 	append-flags -fno-strict-aliasing
+	
+	# bug #335185, #335995, with >= GCC4.3.3 on x86 only, omit-frame-pointer
+	# causes a mis-compile.
+	# Upstream bugs:
+	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=38562
+	# http://bugs.mysql.com/bug.php?id=45205
+	use x86 && version_is_at_least "4.3.3" "$(gcc-fullversion)" && \
+		append-flags -fno-omit-frame-pointer && \
+		filter-flags -fomit-frame-pointer
 
 	econf \
 		--libexecdir="${EPREFIX}"/usr/sbin \

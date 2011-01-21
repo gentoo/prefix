@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.26 2010/01/03 19:10:49 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.27 2010/11/18 09:06:18 pacho Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -110,6 +110,9 @@ case ${GTK_SHARP_MODULE} in
 				EAUTORECONF="YES"
 				add_bdepend "=sys-devel/automake-1.10*"
 				add_bdepend ">=sys-devel/autoconf-2.61"
+				;;
+			2.24.2*)
+				add_depend ">=dev-lang/mono-2.7"
 				;;
 		esac
 		;;

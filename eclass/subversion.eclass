@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.68 2010/06/22 18:34:29 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.69 2010/12/19 14:51:46 jlec Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -222,7 +222,7 @@ subversion_fetch() {
 		mkdir -p "${ESVN_STORE_DIR}" || die "${ESVN}: can't mkdir ${ESVN_STORE_DIR}."
 	fi
 
-	cd "${ESVN_STORE_DIR}" || die "${ESVN}: can't chdir to ${ESVN_STORE_DIR}"
+	pushd "${ESVN_STORE_DIR}" > /dev/null || die "${ESVN}: can't chdir to ${ESVN_STORE_DIR}"
 
 	local wc_path="$(subversion__get_wc_path "${repo_uri}")"
 	local options="${ESVN_OPTIONS} --config-dir ${ESVN_STORE_DIR}/.subversion"
@@ -328,6 +328,8 @@ subversion_fetch() {
 		#* svn export . "${S}" || die "${ESVN}: can't export to ${S}."
 		rsync -rlpgo --exclude=".svn/" . "${S}" || die "${ESVN}: can't export to ${S}."
 	fi
+
+	popd > /dev/null
 
 	echo
 }

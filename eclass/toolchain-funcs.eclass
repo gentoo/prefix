@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.100 2010/05/23 02:00:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.103 2010/10/28 04:16:27 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -80,7 +80,7 @@ tc-getOBJCOPY() { tc-getPROG OBJCOPY objcopy "$@"; }
 # @FUNCTION: tc-getF77
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the Fortran 77 compiler
-tc-getF77() { tc-getPROG F77 f77 "$@"; }
+tc-getF77() { tc-getPROG F77 gfortran "$@"; }
 # @FUNCTION: tc-getFC
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the Fortran 90 compiler
@@ -301,25 +301,25 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 		nios2*)		echo nios2;;
 		nios*)		echo nios;;
 		powerpc*)
-					# Starting with linux-2.6.15, the 'ppc' and 'ppc64' trees
-					# have been unified into simply 'powerpc', but until 2.6.16,
-					# ppc32 is still using ARCH="ppc" as default
-					if [[ $(KV_to_int ${KV}) -ge $(KV_to_int 2.6.16) ]] && [[ ${type} == "kern" ]] ; then
-						echo powerpc
-					elif [[ $(KV_to_int ${KV}) -eq $(KV_to_int 2.6.15) ]] && [[ ${type} == "kern" ]] ; then
-						if [[ ${host} == powerpc64* ]] || [[ ${PROFILE_ARCH} == "ppc64" ]] ; then
-							echo powerpc
-						else
-							echo ppc
-						fi
-					elif [[ ${host} == powerpc64* ]] ; then
-						echo ppc64
-					elif [[ ${PROFILE_ARCH} == "ppc64" ]] ; then
-						ninj ppc64 ppc
-					else
-						echo ppc
-					fi
-					;;
+			# Starting with linux-2.6.15, the 'ppc' and 'ppc64' trees
+			# have been unified into simply 'powerpc', but until 2.6.16,
+			# ppc32 is still using ARCH="ppc" as default
+			if [[ ${type} == "kern" ]] && [[ $(KV_to_int ${KV}) -ge $(KV_to_int 2.6.16) ]] ; then
+				echo powerpc
+			elif [[ ${type} == "kern" ]] && [[ $(KV_to_int ${KV}) -eq $(KV_to_int 2.6.15) ]] ; then
+				if [[ ${host} == powerpc64* ]] || [[ ${PROFILE_ARCH} == "ppc64" ]] ; then
+					echo powerpc
+				else
+					echo ppc
+				fi
+			elif [[ ${host} == powerpc64* ]] ; then
+				echo ppc64
+			elif [[ ${PROFILE_ARCH} == "ppc64" ]] ; then
+				ninj ppc64 ppc
+			else
+				echo ppc
+			fi
+			;;
 		s390*)		echo s390;;
 		sh64*)		ninj sh64 sh;;
 		sh*)		echo sh;;
@@ -384,30 +384,39 @@ tc-endian() {
 	esac
 }
 
+# Internal func.  The first argument is the version info to expand.
+# Query the preprocessor to improve compatibility across different
+# compilers rather than maintaining a --version flag matrix. #335943
+_gcc_fullversion() {
+	local ver="$1"; shift
+	set -- `$(tc-getCPP "$@") -E -P - <<<"__GNUC__ __GNUC_MINOR__ __GNUC_PATCHLEVEL__"`
+	eval echo "$ver"
+}
+
 # @FUNCTION: gcc-fullversion
 # @RETURN: compiler version (major.minor.micro: [3.4.6])
 gcc-fullversion() {
-	$(tc-getCC "$@") -dumpversion
+	_gcc_fullversion '$1.$2.$3' "$@"
 }
 # @FUNCTION: gcc-version
 # @RETURN: compiler version (major.minor: [3.4].6)
 gcc-version() {
-	gcc-fullversion "$@" | cut -f1,2 -d.
+	_gcc_fullversion '$1.$2' "$@"
 }
 # @FUNCTION: gcc-major-version
 # @RETURN: major compiler version (major: [3].4.6)
 gcc-major-version() {
-	gcc-version "$@" | cut -f1 -d.
+	_gcc_fullversion '$1' "$@"
 }
 # @FUNCTION: gcc-minor-version
 # @RETURN: minor compiler version (minor: 3.[4].6)
 gcc-minor-version() {
-	gcc-version "$@" | cut -f2 -d.
+	_gcc_fullversion '$2' "$@"
 }
 # @FUNCTION: gcc-micro-version
 # @RETURN: micro compiler version (micro: 3.4.[6])
 gcc-micro-version() {
-	gcc-fullversion "$@" | cut -f3 -d. | cut -f1 -d-
+	_gcc_fullversion '$3' "$@"
 }
 
 # Returns the installation directory - internal toolchain

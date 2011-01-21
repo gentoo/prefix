@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/check-reqs.eclass,v 1.6 2008/04/11 13:52:55 zlin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/check-reqs.eclass,v 1.7 2010/08/22 21:18:03 halcy0n Exp $
 
 # @ECLASS: check-reqs.eclass
 # @MAINTAINER:
@@ -91,11 +91,11 @@ check_reqs() {
 	if [[ "$CHECKREQS_ACTION" != "ignore" ]] ; then
 		[[ -n "$CHECKREQS_MEMORY" ]] && check_build_memory
 		[[ -n "$CHECKREQS_DISK_BUILD" ]] && check_build_disk \
-			"${T}" "\${T}" "${CHECKREQS_DISK_BUILD}"
+			"${T}" "${CHECKREQS_DISK_BUILD}"
 		[[ -n "$CHECKREQS_DISK_USR" ]] && check_build_disk \
-			"${EROOT}/usr"  "\${EROOT}/usr" "${CHECKREQS_DISK_USR}"
+			"${EROOT}/usr" "${CHECKREQS_DISK_USR}"
 		[[ -n "$CHECKREQS_DISK_VAR" ]] && check_build_disk \
-			"${EROOT}/var"  "\${EROOT}/var" "${CHECKREQS_DISK_VAR}"
+			"${EROOT}/var" "${CHECKREQS_DISK_VAR}"
 	fi
 
 	if [[ -n "${CHECKREQS_NEED_SLEEP}" ]] ; then
@@ -126,11 +126,11 @@ check_reqs_conditional() {
 	if [[ "$CHECKREQS_ACTION" != "ignore" ]] ; then
 		[[ -n "$CHECKREQS_MEMORY" ]] && check_build_memory
 		[[ -n "$CHECKREQS_DISK_BUILD" ]] && check_build_disk \
-			"${T}" "\${T}" "${CHECKREQS_DISK_BUILD}"
+			"${T}" "${CHECKREQS_DISK_BUILD}"
 		[[ -n "$CHECKREQS_DISK_USR" ]] && check_build_disk \
-			"${EROOT}/usr"  "\${EROOT}/usr" "${CHECKREQS_DISK_USR}"
+			"${EROOT}/usr" "${CHECKREQS_DISK_USR}"
 		[[ -n "$CHECKREQS_DISK_VAR" ]] && check_build_disk \
-			"${EROOT}/var"  "\${EROOT}/var" "${CHECKREQS_DISK_VAR}"
+			"${EROOT}/var" "${CHECKREQS_DISK_VAR}"
 	fi
 
 	[[ -z "${CHECKREQS_NEED_SLEEP}" && -z "${CHECKREQS_NEED_DIE}" ]]
@@ -163,16 +163,16 @@ check_build_memory() {
 
 # internal use only!
 check_build_disk() {
-	[[ -z "${3}" ]] && die "Usage: check_build_disk where name needed"
-	check_build_msg_begin "${3}" "MBytes" \
-			"disk space at ${2}"
+	[[ -z "${2}" ]] && die "Usage: check_build_disk where name needed"
+	check_build_msg_begin "${2}" "MBytes" \
+			"disk space at ${1}"
 	actual_space=$(df -Pm ${1} 2>/dev/null | sed -n \
 			'$s/\(\S\+\s\+\)\{3\}\([0-9]\+\).*/\2/p' 2>/dev/null )
 	if [[ "$?" == "0" && -n "${actual_space}" ]] ; then
-		if [[ ${actual_space} -lt ${3} ]] ; then
+		if [[ ${actual_space} -lt ${2} ]] ; then
 			eend 1
-			check_build_msg_ick "${3}" "MBytes" \
-					"disk space at ${2}"
+			check_build_msg_ick "${2}" "MBytes" \
+					"disk space at ${1}"
 		else
 			eend 0
 		fi

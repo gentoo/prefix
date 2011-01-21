@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/db.eclass,v 1.39 2010/05/11 08:19:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/db.eclass,v 1.41 2010/10/18 17:39:02 robbat2 Exp $
 # This is a common location for functions used in the sys-libs/db ebuilds
 #
 # Bugs: pauldv@gentoo.org
@@ -31,7 +31,7 @@ db_fix_so() {
 
 	# now rebuild all the correct ones
 	for ext in so a dylib sl; do
-		for name in libdb libdb_{cxx,tcl,java,stl}; do
+		for name in libdb libdb_{cxx,tcl,java,sql,stl}; do
 			target=`find . -maxdepth 1 -type f -name "${name}-*.${ext}" |sort -n |tail -n 1`
 			[ -n "${target}" ] || continue;
 			case ${CHOST} in 
@@ -56,7 +56,7 @@ db_fix_so() {
 		ln -sf libdb1$(get_libname 2) libdb-1$(get_libame)
 	fi
 	# what do we do if we ever get 3.3 ?
-	for i in libdb libdb_{cxx,tcl,java,stl}; do
+	for i in libdb libdb_{cxx,tcl,java,sql,stl}; do
 		if [ -f $i-3$(get_libname 2) ]; then
 			ln -sf $i-3$(get_libname 2) $i-3$(get_libname)
 			ln -sf $i-3$(get_libname 2) $i$(get_libname 3)
@@ -159,7 +159,7 @@ db_src_install_usrlibcleanup() {
 
 	rm -f \
 		"${ED}"/usr/include/{db,db_185}.h \
-		"${LIB}"/libdb{,_{cxx,stl,java,tcl}}.a
+		"${LIB}"/libdb{,_{cxx,sql,stl,java,tcl}}.a
 }
 
 db_src_test() {
@@ -171,11 +171,15 @@ db_src_test() {
 	fi
 
 	if useq tcl; then
-		# Fix stuff that fails with relative paths
+		# Fix stuff that fails with relative paths, and upstream moving files
+		# around...
 		local test_parallel=''
 		for t in \
 			"${S}"/test/parallel.tcl \
-			"${S}"/../test/parallel.tcl ; do
+			"${S}"/../test/parallel.tcl \
+			"${S}"/test/tcl/parallel.tcl \
+			"${S}"/../test/tcl/parallel.tcl \
+			; do
 			[[ -f "${t}" ]] && test_parallel="${t}" && break
 		done
 
@@ -184,7 +188,13 @@ db_src_test() {
 			-e '/regsub .src_root ./s,(regsub),#\1,g' \
 			"${test_parallel}"
 		cd "${S}"
-		echo 'source ../test/test.tcl' > testrunner.tcl
+		for t in \
+			../test/test.tcl \
+			../test/tcl/test.tcl \
+			; do 
+			[[ -f "${t}" ]] && testbase="${t}" && break
+		done
+		echo "source ${t}" > testrunner.tcl
 		testJobs=`echo "${MAKEOPTS}" | \
 				sed -e "s/.*-j\([0-9]\+\).*/\1/"`
 		if [[ ${testJobs} =~ [[:digit:]]+ ]]; then
