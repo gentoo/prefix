@@ -79,27 +79,13 @@ src_unpack() {
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
 	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
 
-	# http://bugs.gentoo.org/show_bug.cgi?id=201490
-# should be fixed
-#	epatch "${FILESDIR}"/4.2.2/gentoo-fixincludes.patch
-
-	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=27516
-# should no longer exist
-#	epatch "${FILESDIR}"/4.3.0/treelang-nomakeinfo.patch
-
 	# add support for 64-bits native target on Solaris
 	epatch "${FILESDIR}"/4.5.1/solaris-x86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
-# doesn't apply
-#	epatch "${FILESDIR}"/solaris-searchpath.patch
+	epatch "${FILESDIR}"/${PV}/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
 	if use prefix; then
-		# replace nasty multilib dirs like ../lib64 that occur on
-		# --disable-multilib
-# maybe not needed anymore
-#		epatch "${FILESDIR}"/4.5.1/prefix-search-dirs.patch
-#		eprefixify "${S}"/gcc/gcc.c
 		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
 		# --enable-multilib), but this does make sense in prefix only
 		epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
@@ -116,16 +102,15 @@ src_unpack() {
 		epatch "${FILESDIR}"/4.5.2/${PN}-4.5.2-mint1.patch
 	fi
 
-	# Always behave as if -pthread were passed on AIX (#266548)
+	# Always behave as if -pthread were passed on AIX and HPUX (#266548)
 	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
+	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
 
 	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
 
-	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
-
 	# libgcc's Makefiles reuses $T, work around that :(
 	[[ ${CHOST} == *-solaris* ]] && \
-		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-T-namespace.patch
+		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
 
 	use vanilla && return 0
 

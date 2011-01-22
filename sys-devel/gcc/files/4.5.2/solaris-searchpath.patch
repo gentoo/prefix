@@ -1,0 +1,89 @@
+* don't inject /usr/lib{/64,} and /lib{/64,} before any other thing in the
+  call to the linker, that breaks the entire idea of Prefix
+* -rpath-link overrides the entire search path, so don't use it
+
+--- gcc/config/i386/sol2-10.h
++++ gcc/config/i386/sol2-10.h
+@@ -109,12 +109,12 @@
+    %{YP,*} \
+    %{R*} \
+    %{compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,/usr/ucblib/64:/usr/lib/libp/64:/lib/64:/usr/lib/64} \
+-             %{!p:%{!pg:-Y P,/usr/ucblib/64:/lib:/usr/lib/64}}} \
++     %{!YP,*:%{p|pg:-Y P,/usr/ucblib/64:/usr/lib/libp/64} \
++             %{!p:%{!pg:-Y P,/usr/ucblib/64}}} \
+              -R /usr/ucblib/64} \
+    %{!compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,/usr/lib/libp/64:/lib/64:/usr/lib/64} \
+-             %{!p:%{!pg:-Y P,/lib/64:/usr/lib/64}}}}"
++     %{!YP,*:%{p|pg:-Y P,/usr/lib/libp/64} \
++             }}"
+ 
+ #undef LINK_ARCH64_SPEC
+ #define LINK_ARCH64_SPEC LINK_ARCH64_SPEC_BASE
+--- gcc/config/sol2.h
++++ gcc/config/sol2.h
+@@ -156,12 +156,12 @@
+    %{YP,*} \
+    %{R*} \
+    %{compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,%R/usr/ucblib:%R/usr/ccs/lib/libp:%R/usr/lib/libp:%R/usr/ccs/lib:%R/usr/lib} \
+-             %{!p:%{!pg:-Y P,%R/usr/ucblib:%R/usr/ccs/lib:%R/usr/lib}}} \
++     %{!YP,*:%{p|pg:-Y P,%R/usr/ucblib:%R/usr/lib/libp} \
++             %{!p:%{!pg:-Y P,%R/usr/ucblib}}} \
+              -R %R/usr/ucblib} \
+    %{!compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,%R/usr/ccs/lib/libp:%R/usr/lib/libp:%R/usr/ccs/lib:%R/usr/lib} \
+-             %{!p:%{!pg:-Y P,%R/usr/ccs/lib:%R/usr/lib}}}}"
++     %{!YP,*:%{p|pg:-Y P,%R/usr/lib/libp} \
++             }}"
+ 
+ #undef LINK_ARCH32_SPEC
+ #define LINK_ARCH32_SPEC LINK_ARCH32_SPEC_BASE
+--- gcc/config/sparc/sol2-bi.h
++++ gcc/config/sparc/sol2-bi.h
+@@ -195,12 +195,12 @@
+    %{YP,*} \
+    %{R*} \
+    %{compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,%R/usr/ucblib/sparcv9:%R/usr/lib/libp/sparcv9:%R/usr/lib/sparcv9} \
+-       %{!p:%{!pg:-Y P,%R/usr/ucblib/sparcv9:%R/usr/lib/sparcv9}}} \
++     %{!YP,*:%{p|pg:-Y P,%R/usr/ucblib/sparcv9:%R/usr/lib/libp/sparcv9} \
++       %{!p:%{!pg:-Y P,%R/usr/ucblib/sparcv9}}} \
+      -R %R/usr/ucblib/sparcv9} \
+    %{!compat-bsd: \
+-     %{!YP,*:%{p|pg:-Y P,%R/usr/lib/libp/sparcv9:%R/usr/lib/sparcv9} \
+-       %{!p:%{!pg:-Y P,%R/usr/lib/sparcv9}}}}"
++     %{!YP,*:%{p|pg:-Y P,%R/usr/lib/libp/sparcv9} \
++       }}"
+ 
+ #define LINK_ARCH64_SPEC LINK_ARCH64_SPEC_BASE
+ 
+--- gcc/config/sparc/sol2-gld-bi.h
++++ gcc/config/sparc/sol2-gld-bi.h
+@@ -26,11 +26,11 @@
+ 
+ #undef LINK_ARCH32_SPEC
+ #define LINK_ARCH32_SPEC \
+-  LINK_ARCH32_SPEC_BASE "%{!static: -rpath-link %R/usr/lib}"
++  LINK_ARCH32_SPEC_BASE ""
+ 
+ #undef LINK_ARCH64_SPEC
+ #define LINK_ARCH64_SPEC \
+-  LINK_ARCH64_SPEC_BASE "%{!static: -rpath-link %R/usr/lib/sparcv9}"
++  LINK_ARCH64_SPEC_BASE ""
+ 
+ /* Since binutils 2.21, GNU ld supports new *_sol2 emulations to strictly
+    follow the Solaris 2 ABI.  Prefer them if present.  */
+--- gcc/config/sparc/sol2.h
++++ gcc/config/sparc/sol2.h
+@@ -60,6 +60,9 @@
+ %{!mcpu*:%(asm_cpu_default)} \
+ "
+ 
++/* We do not need to search a special directory for startup files.  */
++#undef MD_STARTFILE_PREFIX
++
+ #undef SUBTARGET_EXTRA_SPECS
+ #define SUBTARGET_EXTRA_SPECS \
+   { "startfile_arch",	STARTFILE_ARCH_SPEC },	\
