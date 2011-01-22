@@ -13,8 +13,8 @@ Multiple reports for these, but unfortunately all ignored/unfixed, e.g.:
 http://mail-index.netbsd.org/pkgsrc-users/2010/12/02/msg013239.html
 http://mail.gnome.org/archives/gtk-devel-list/2007-July/msg00060.html
 
---- configure.in
-+++ configure.in
+--- configure.ac
++++ configure.ac
 @@ -1785,7 +1785,7 @@
        *-*-cygwin*|*-*-darwin*)
           # skip cygwin and darwin -pthread or -pthreads test

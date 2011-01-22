@@ -1,6 +1,33 @@
 # ChangeLog for dev-libs/glib
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.432 2010/12/07 18:03:17 eva Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.437 2011/01/19 21:20:55 hwoarang Exp $
+
+  19 Jan 2011; Markos Chandras <hwoarang@gentoo.org> glib-2.24.2.ebuild:
+  Stable on amd64 wrt bug #348987
+
+  18 Jan 2011; Christian Faulhammer <fauli@gentoo.org> glib-2.24.2.ebuild:
+  stable x86, bug 348987
+
+*glib-2.26.1-r1 (17 Jan 2011)
+
+  17 Jan 2011; Pacho Ramos <pacho@gentoo.org> -glib-2.26.0-r1.ebuild,
+  -files/glib-2.26.0-error-pileup.patch, -files/glib-2.26.0-not-close.patch,
+  -files/glib-2.26.0-unref-null.patch, +glib-2.26.1-r1.ebuild,
+  +files/glib-2.26.1-deprecation-tests.patch,
+  +files/glib-2.26.1-gdbus-flushes.patch,
+  +files/glib-2.26.1-gsettings-read.patch,
+  +files/glib-2.26.1-gsettings-rules.patch,
+  +files/glib-2.26.1-locked-message.patch:
+  Revision bump to include upstream patches from 2.32 branch and fix
+  gsettings.m4 rules to work when there are no schemas, bug #350020. Remove old
+  testing.
+
+  11 Jan 2011; Pacho Ramos <pacho@gentoo.org> glib-2.26.1.ebuild:
+  Inform users about possible breakage when updating glib and not dbus-glib,
+  bug #297483.
+
+  16 Dec 2010; Fabian Groffen <grobian@gentoo.org> glib-2.26.1.ebuild:
+  Do not use ED with DESTDIR
 
   07 Dec 2010; Gilles Dartiguelongue <eva@gentoo.org>
   -files/glib-2.6.3-testglib-ssp.patch, -glib-2.20.5-r1.ebuild,

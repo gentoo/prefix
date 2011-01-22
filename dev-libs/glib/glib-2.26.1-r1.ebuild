@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.26.1.ebuild,v 1.3 2011/01/11 16:23:49 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.26.1-r1.ebuild,v 1.1 2011/01/17 17:58:59 pacho Exp $
 
 EAPI="3"
 
@@ -45,6 +45,24 @@ src_prepare() {
 
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.26.1-solaris-thread.patch
+
+	# Fix compiling on Solaris
+	epatch "${FILESDIR}"/${PN}-2.26.1-solaris.patch
+
+	# gsettings.m4: Fix rules to work when there are no schemas, bug #350020
+	epatch "${FILESDIR}/${PN}-2.26.1-gsettings-rules.patch"
+
+	# Deprecation check in tests/testglib.c, upstream bug #635093
+	epatch "${FILESDIR}/${P}-deprecation-tests.patch"
+
+	# Can't read GSettings:backend property, upstream bug #636100
+	epatch "${FILESDIR}/${P}-gsettings-read.patch"
+
+	# Cannot send a locked message with PRESERVE_SERIAL flag, upstream bug #632544
+	epatch "${FILESDIR}/${P}-locked-message.patch"
+
+	# GDBus message idle can execute while flushes are pending, upstream bug #635626
+	epatch "${FILESDIR}/${P}-gdbus-flushes.patch"
 
 	# Don't fail gio tests when ran without userpriv, upstream bug 552912
 	# This is only a temporary workaround, remove as soon as possible
