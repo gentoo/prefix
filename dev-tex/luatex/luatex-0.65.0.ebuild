@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.63.0.ebuild,v 1.8 2010/11/27 17:51:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.65.0.ebuild,v 1.1 2010/12/16 12:43:39 aballier Exp $
 
 EAPI="2"
 
@@ -8,7 +8,8 @@ inherit libtool
 
 DESCRIPTION="An extended version of pdfTeX using Lua as an embedded scripting language."
 HOMEPAGE="http://www.luatex.org/"
-SRC_URI="http://foundry.supelec.fr/gf/download/frsrelease/382/1568/${PN}-beta-${PV}.tar.bz2"
+SRC_URI="http://foundry.supelec.fr/gf/download/frsrelease/386/1704/${PN}-beta-${PV}-source.tar.bz2
+	http://foundry.supelec.fr/gf/download/frsrelease/386/1705/${PN}-beta-${PV}-doc.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -19,13 +20,14 @@ RDEPEND="dev-libs/zziplib
 	media-libs/libpng
 	>=app-text/poppler-0.12.3-r3[xpdf-headers]
 	sys-libs/zlib
-	virtual/tex-base"
+	dev-libs/kpathsea"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 S="${WORKDIR}/${PN}-beta-${PV}/source"
-PRELIBS="libs/obsdcompat texk/kpathsea"
-kpathsea_extraconf="--disable-shared --disable-largefile"
+PRELIBS="libs/obsdcompat"
+#texk/kpathsea"
+#kpathsea_extraconf="--disable-shared --disable-largefile"
 
 src_prepare() {
 	elibtoolize
@@ -44,62 +46,17 @@ src_configure() {
 	cd "${S}/texk/web2c"
 	econf \
 		--disable-cxx-runtime-hack \
-		--disable-afm2pl    \
-		--disable-aleph		\
-		--disable-bibtex	\
-		--disable-bibtex8	\
-		--disable-cfftot1	\
-		--disable-cjkutils	\
-		--disable-detex		\
-		--disable-devnag	\
-		--disable-dialog	\
-		--disable-dtl		\
-		--enable-dump-share	\
-		--disable-dvi2tty	\
-		--disable-dvidvi	\
-		--without-dviljk    \
-	    --disable-dvipdfm	\
-	    --disable-dvipdfmx	\
-	    --disable-dvipos	\
-	    --disable-dvipsk	\
-		--disable-gsftopk	\
-		--disable-ipc		\
-	    --disable-lacheck	\
-	    --disable-lcdf-typetools \
-		--disable-makeindexk \
-	    --disable-mf		\
-	    --disable-mmafm		\
-	    --disable-mmpfb		\
-	    --disable-mp		\
-	    --disable-musixflx	\
-	    --disable-otfinfo	\
-	    --disable-otftotfm	\
-	    --disable-pdfopen	\
-	    --disable-pdftex	\
-	    --disable-ps2eps	\
-	    --disable-ps2pkm	\
-	    --disable-psutils	\
+		--disable-all-pkgs	\
+		--disable-mp		\
 		--disable-ptex		\
-	    --disable-seetexk	\
-	    --disable-t1dotlessj  \
-	    --disable-t1lint	\
-	    --disable-t1rawafm	\
-	    --disable-t1reencode	\
-	    --disable-t1testpage \
-		--disable-t1utils	\
-	    --disable-tex		\
-	    --disable-tex4htk	\
-	    --disable-tpic2pdftex	\
-	    --disable-ttf2pk	\
-	    --disable-ttfdump	\
-	    --disable-ttftotype42	\
-	    --disable-vlna		\
-	    --disable-web-progs \
-	    --disable-xdv2pdf	\
-	    --disable-xdvipdfmx \
-		--disable-xetex		\
+	    --disable-largefile \
+		--disable-ipc		\
+		--disable-shared	\
+		--enable-luatex		\
+		--enable-dump-share	\
+		--without-mf-x-toolkit \
 		--without-x			\
-	    --without-system-kpathsea	\
+	    --with-system-kpathsea	\
 	    --with-system-gd	\
 	    --with-system-libpng	\
 	    --with-system-teckit \
@@ -108,10 +65,7 @@ src_configure() {
 		--with-system-xpdf \
 		--with-system-poppler \
 		--with-system-zziplib \
-	    --disable-largefile \
 	    --disable-multiplatform \
-		--disable-shared \
-		${myconf}
 
 	for i in ${PRELIBS} ; do
 		einfo "Configuring $i"
@@ -137,10 +91,11 @@ src_install() {
 	emake DESTDIR="${D}" bin_PROGRAMS="luatex" SUBDIRS="" nodist_man_MANS="" \
 		install-exec-am || die
 
-	dodoc "${WORKDIR}/${PN}-beta-${PV}/README"
+	dodoc "${WORKDIR}/${PN}-beta-${PV}/README" || die
+	newman "${WORKDIR}/${PN}-beta-${PV}/manual/${PN}.man" "${PN}.1" || die
 	if use doc ; then
 		insinto /usr/share/doc/${PF}
-		doins "${WORKDIR}/${PN}-beta-${PV}/manual/"*.pdf
+		doins "${WORKDIR}/${PN}-beta-${PV}/manual/"*.pdf || die
 	fi
 }
 

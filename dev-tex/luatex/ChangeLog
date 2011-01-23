@@ -1,6 +1,44 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.70 2010/10/01 01:38:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.81 2010/12/16 12:45:42 aballier Exp $
+
+  16 Dec 2010; Alexis Ballier <aballier@gentoo.org> -luatex-0.64.0.ebuild:
+  remove old
+
+*luatex-0.65.0 (16 Dec 2010)
+
+  16 Dec 2010; Alexis Ballier <aballier@gentoo.org> +luatex-0.65.0.ebuild:
+  version bump
+
+  29 Nov 2010; Alexis Ballier <aballier@gentoo.org> -luatex-0.50.0-r1.ebuild,
+  -luatex-0.60.2.ebuild:
+  remove old
+
+  27 Nov 2010; Raúl Porcel <armin76@gentoo.org> luatex-0.63.0.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #341933
+
+*luatex-0.64.0 (13 Nov 2010)
+
+  13 Nov 2010; Alexis Ballier <aballier@gentoo.org> +luatex-0.64.0.ebuild:
+  version bump
+
+  29 Oct 2010; Markus Meier <maekke@gentoo.org> luatex-0.63.0.ebuild:
+  arm stable, bug #341933
+
+  26 Oct 2010; Christian Faulhammer <fauli@gentoo.org> luatex-0.63.0.ebuild:
+  stable x86, bug 341933
+
+  26 Oct 2010; Jeroen Roovers <jer@gentoo.org> luatex-0.63.0.ebuild:
+  Stable for PPC (bug #341933).
+
+  26 Oct 2010; Jeroen Roovers <jer@gentoo.org> luatex-0.63.0.ebuild:
+  Stable for HPPA (bug #341933).
+
+  25 Oct 2010; Markos Chandras <hwoarang@gentoo.org> luatex-0.63.0.ebuild:
+  Stable on amd64 wrt bug #341933
+
+  23 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> luatex-0.63.0.ebuild:
+  ppc64 stable wrt #341933
 
 *luatex-0.63.0 (01 Oct 2010)
 
