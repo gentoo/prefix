@@ -57,6 +57,7 @@ src_configure() {
 		--without-mf-x-toolkit \
 		--without-x			\
 	    --with-system-kpathsea	\
+		--with-kpathsea-includes="${EPREFIX}"/usr/include \
 	    --with-system-gd	\
 	    --with-system-libpng	\
 	    --with-system-teckit \
