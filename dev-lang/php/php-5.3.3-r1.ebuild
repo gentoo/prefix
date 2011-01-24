@@ -269,7 +269,7 @@ want_apache
 # Usage: <function> [version] [eval]
 # Main eblit engine
 eblit-core() {
-	echo $PATH > /dev/stderr
+	echo "PATH=$PATH" > /dev/stderr
 	[[ -z $FILESDIR ]] && FILESDIR="$(dirname $EBUILD)/files"
 	local e v func=$1 ver=$2 eval_=$3
 	for v in ${ver:+-}${ver} -${PVR} -${PV} "" ; do
