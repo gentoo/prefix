@@ -60,6 +60,8 @@ src_install() {
 	doexe "${FILESDIR}"/post_sync || die
 	insinto /etc/portage/postsync.d
 	doins "${FILESDIR}"/q-reinitialize || die
+	eprefixify ${ED}/etc/portage/bin/post_sync \
+		${ED}/etc/portage/postsync.d/q-reinitialize
 }
 
 pkg_preinst() {
