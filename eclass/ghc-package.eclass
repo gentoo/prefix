@@ -224,11 +224,11 @@ ghc-register-pkg() {
 # package conf file, to be used on a ghc reinstallation
 ghc-reregister() {
 	einfo "Re-adding packages (may cause several harmless warnings) ..."
-	PATH="/usr/bin:${PATH}" CONFDIR="$(ghc-confdir)"
+	PATH="${EPREFIX}/usr/bin:${PATH}" CONFDIR="$(ghc-confdir)"
 	if [ -d "${CONFDIR}" ]; then
 		pushd "${CONFDIR}" > /dev/null
 		for conf in *.conf; do
-			PATH="/usr/bin:${PATH}" ghc-register-pkg "${conf}"
+			PATH="${EPREFIX}/usr/bin:${PATH}" ghc-register-pkg "${conf}"
 		done
 		popd > /dev/null
 	fi
