@@ -842,9 +842,11 @@ www-apps/scgi
 www-client/chromium
 www-client/conkeror
 www-client/firefox
+www-client/htmlview
 www-client/httrack
 www-client/links
 www-client/pybugz
+www-client/surfraw
 www-misc/htdig
 www-servers/mongrel
 x11-libs/cairo
