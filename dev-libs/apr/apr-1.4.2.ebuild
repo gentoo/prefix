@@ -20,7 +20,7 @@ DEPEND="doc? ( app-doc/doxygen )"
 RDEPEND=""
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.4.2-mint.patch
+	epatch "${FILESDIR}"/${PN}-1.2.11-mint.patch
 	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${PN}-1.3.5-irix.patch
 
 	# Ensure that system libtool is used.
