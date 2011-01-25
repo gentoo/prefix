@@ -354,6 +354,7 @@ dev-libs/libev
 dev-libs/libevent
 dev-libs/libf2c
 dev-libs/libffi
+dev-libs/libgpg-error
 dev-libs/libjwc_c
 dev-libs/libjwc_f
 dev-libs/libksba
