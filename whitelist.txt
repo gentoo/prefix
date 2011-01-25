@@ -839,6 +839,7 @@ sys-process/psmisc
 sys-process/time
 sys-process/unixtop
 www-apps/scgi
+www-client/chromium
 www-client/conkeror
 www-client/firefox
 www-client/httrack
