@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.437 2011/01/19 21:20:55 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.438 2011/01/24 13:55:17 pacho Exp $
+
+  24 Jan 2011; Pacho Ramos <pacho@gentoo.org> glib-2.26.1-r1.ebuild,
+  +files/glib-2.26.1-gatomic-header.patch,
+  +files/glib-2.26.1-gdatetime-test.patch:
+  Add openbsd patch to fix build on several arches (bug #351387 by Alan
+  Hourihane and Raúl Porcel) once I confirmed it doesn't cause any test
+  failure regression. Remove test that seems to fail depending on time of day
+  as done by upstream (was causing one of the failures in bug #352451) and
+  unset GSETTINGS_BACKEND (bug #352451) until upstream takes care (upstream bug
+  #640412).
 
   19 Jan 2011; Markos Chandras <hwoarang@gentoo.org> glib-2.24.2.ebuild:
   Stable on amd64 wrt bug #348987
