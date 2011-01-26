@@ -1,0 +1,27 @@
+fixed upstream for 5.0.1:
+
+    <Larhzu> mduft: It was fixed on 2010-12-12 and will be in 5.0.1.
+    <Larhzu> mduft: It's not an Interix-specific bug.
+    <mduft> Larhzu, ah, ok - may i ask what the fix was?
+    <Larhzu> Pretty much what you did, just in different file and with different #ifdefs. :)
+    <mduft> ok, fine :)
+    <mduft> is there a patch somewhere i can apply to 5.0.0 in the meantime?
+    <mduft> otherwise i'll take mine for now...
+    <Larhzu> Yours is OK too. You can git clone http://git.tukaani.org/xz.git, see the branch v5.0.
+    <mduft> ok, thanks.
+
+diff -ru xz-5.0.0.orig/src/xz/list.c xz-5.0.0/src/xz/list.c
+--- xz-5.0.0.orig/src/xz/list.c	2011-01-26 10:16:45 +0100
++++ xz-5.0.0/src/xz/list.c	2011-01-26 10:26:35 +0100
+@@ -13,6 +13,11 @@
+ #include "private.h"
+ #include "tuklib_integer.h"
+ 
++#ifdef __INTERIX
++/* incomplete system headers, missing some defines we need here. */
++# define PRIx32 "x"
++# define PRIx64 "llx"
++#endif
+ 
+ /// Information about a .xz file
+ typedef struct {
