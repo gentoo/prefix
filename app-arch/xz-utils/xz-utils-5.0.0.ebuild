@@ -51,12 +51,9 @@ fi
 src_configure() {
 	local myconf=
 	if [[ ${CHOST} == *-interix* ]]; then
-		# assume 1024 MB of ram on all interix boxes. on interix there is no
-		# means of actually detecting the amout of available ram as on other
-		# platforms.
 		# assembler code contains a reference to _GLOBAL_OFFSET_TABLE_, which 
 		# does not exist when building with interix GCC (all code is PIC here).
-		myconf="${myconf} --disable-assembler --enable-assume-ram=1024"
+		myconf="${myconf} --disable-assembler"
 
 		# actually a gcc bug: it complains about not supporting visibility
 		# and ignoring it, but generates different code somehow, which doesn't
