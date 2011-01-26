@@ -1,0 +1,18 @@
+already fixed in gnulib (mountlist support added), should hit coreutils soon.
+see also: http://www.mail-archive.com/bug-gnulib@gnu.org/msg21257.html
+
+diff -ru -x '*.Po' -x '*.Plo' coreutils-8.8.orig/src/stat.c coreutils-8.8/src/stat.c
+--- coreutils-8.8.orig/src/stat.c	2011-01-26 11:51:08 +0100
++++ coreutils-8.8/src/stat.c	2011-01-26 11:59:21 +0100
+@@ -762,7 +762,11 @@
+   static bool tried_mount_list = false;
+   if (!tried_mount_list) /* attempt/warn once per process.  */
+     {
++      #ifndef __INTERIX
+       if (!(mount_list = read_file_system_list (false)))
++      #else
++      mount_list = NULL;
++      #endif
+         error (0, errno, "%s", _("cannot read table of mounted file systems"));
+       tried_mount_list = true;
+     }

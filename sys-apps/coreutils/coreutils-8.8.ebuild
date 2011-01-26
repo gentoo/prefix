@@ -34,7 +34,8 @@ RDEPEND="caps? ( sys-libs/libcap )
 	!<net-fs/netatalk-2.0.3-r4
 	!<sci-chemistry/ccp4-6.1.1"
 DEPEND="${RDEPEND}
-	app-arch/xz-utils"
+	app-arch/xz-utils
+	dev-util/gperf"
 
 src_prepare() {
 	if ! use vanilla ; then
@@ -52,7 +53,11 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-7.5-interix-setgroups.patch
 
 	# interix has no method to determine mounted filesystems
+	# recently, support was added to gnulib, so the following
+	# two patches can be removed in the next version containing
+	# a new gnulib.
 	epatch "${FILESDIR}"/${PN}-8.5-interix-warn-mount.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	# interix has very very very broken long double support in libc :(
 	# this patch should not do much harm on other platforms, still it changes
@@ -89,6 +94,9 @@ src_configure() {
 	if [[ ${CHOST} == *-mint* ]]; then
 		myconf="${myconf} --enable-install-program=arch,hostname,kill,uptime"
 		myconf="${myconf} --enable-no-install-program=groups,su"
+	elif [[ ${CHOST} == *-interix* ]]; then
+		myconf="${myconf} --enable-install-program=arch,hostname,kill,uptime,groups"
+		myconf="${myconf} --enable-no-install-program=su"
 	else
 		myconf="${myconf} --enable-install-program=arch"
 		myconf="${myconf} --enable-no-install-program=groups,hostname,kill,su,uptime"
