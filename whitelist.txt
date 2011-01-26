@@ -38,6 +38,7 @@ app-admin/eselect-fontconfig
 app-admin/eselect-lapack
 app-admin/eselect-maven
 app-admin/eselect-oodict
+app-admin/eselect-opengl
 app-admin/eselect-pinentry
 app-admin/eselect-unison
 app-admin/eselect-vi
