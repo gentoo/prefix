@@ -848,6 +848,8 @@ www-client/httrack
 www-client/links
 www-client/pybugz
 www-client/surfraw
+www-client/arora
+www-client/w3m
 www-misc/htdig
 www-servers/mongrel
 x11-libs/cairo
