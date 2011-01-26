@@ -411,6 +411,8 @@ dev-tex/bibtexu
 dev-tex/chktex
 dev-tex/currvita
 dev-tex/detex
+dev-tex/dot2tex
+dev-tex/dot2texi
 dev-tex/dvi2tty
 dev-tex/envlab
 dev-tex/europecv
@@ -603,6 +605,7 @@ media-gfx/pngrewrite
 media-gfx/pngtoico
 media-gfx/potrace
 media-gfx/povray
+media-gfx/pydot
 media-gfx/tachyon
 media-gfx/tgif
 media-gfx/ufraw
