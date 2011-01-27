@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2010l.ebuild,v 1.2 2010/09/27 19:02:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2011a.ebuild,v 1.1 2011/01/25 21:01:24 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
