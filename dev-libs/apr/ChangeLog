@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/apr
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.165 2010/08/01 10:54:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.166 2010/09/19 09:01:59 hollow Exp $
+
+  19 Sep 2010; Benedikt Böhm <hollow@gentoo.org> apr-1.4.2.ebuild:
+  fix CONFIG_SHELL wrt #335944
 
   01 Aug 2010; Raúl Porcel <armin76@gentoo.org> apr-1.4.2.ebuild:
   ia64/s390/sh/sparc stable wrt #322681
