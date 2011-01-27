@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.121 2010/07/18 13:50:36 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.124 2010/08/30 17:32:52 vapier Exp $
+
+*mpfr-3.0.0_p3 (30 Aug 2010)
+
+  30 Aug 2010; Mike Frysinger <vapier@gentoo.org> +files/3.0.0/patch01,
+  +files/3.0.0/patch02, +files/3.0.0/patch03, +mpfr-3.0.0_p3.ebuild:
+  Version bump.
+
+  30 Aug 2010; Mike Frysinger <vapier@gentoo.org> mpfr-2.4.2_p3.ebuild:
+  Mark sparc stable #324747.
+
+  20 Aug 2010; Samuli Suominen <ssuominen@gentoo.org> mpfr-2.4.2_p3.ebuild:
+  ppc64 stable wrt #324747
 
   18 Jul 2010; <nixnut@gentoo.org> mpfr-2.4.2_p3.ebuild:
   ppc stable #324747

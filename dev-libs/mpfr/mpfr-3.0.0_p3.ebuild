@@ -1,9 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.4.2_p3.ebuild,v 1.8 2010/08/30 17:32:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-3.0.0_p3.ebuild,v 1.1 2010/08/30 17:32:52 vapier Exp $
 
 # NOTE: we cannot depend on autotools here starting with gcc-4.3.x
-inherit eutils libtool
+inherit eutils libtool multilib
 
 MY_PV=${PV/_p*}
 MY_P=${PN}-${MY_PV}
@@ -45,6 +45,13 @@ src_unpack() {
 	elibtoolize
 }
 
+src_compile() {
+	econf \
+		--with-gmp-lib="${EPREFIX}"/usr/$(get_libdir) \
+		--with-gmp-include="${EPREFIX}"/usr/include || die
+	emake || die
+}
+
 src_install() {
 	emake install DESTDIR="${D}" || die
 	rm "${ED}"/usr/share/doc/${PN}/*.html || die
@@ -52,4 +59,12 @@ src_install() {
 	dodoc AUTHORS BUGS ChangeLog NEWS README TODO
 	dohtml *.html
 	prepalldocs
+}
+
+pkg_preinst() {
+	preserve_old_lib /usr/$(get_libdir)/libmpfr.so.1
+}
+
+pkg_postinst() {
+	preserve_old_lib_notify /usr/$(get_libdir)/libmpfr.so.1
 }
