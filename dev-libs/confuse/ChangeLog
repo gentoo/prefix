@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/confuse
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.45 2010/07/26 11:32:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.48 2010/10/14 19:16:09 ranger Exp $
+
+  14 Oct 2010; Brent Baude <ranger@gentoo.org> confuse-2.7.ebuild:
+  stable ppc, bug 327597
+
+  30 Sep 2010; Brent Baude <ranger@gentoo.org> confuse-2.7.ebuild:
+  stable ppc64, bug 327597
+
+  28 Aug 2010; Raúl Porcel <armin76@gentoo.org> confuse-2.7.ebuild:
+  alpha/ia64/sparc stable wrt #327597
 
   26 Jul 2010; Jeroen Roovers <jer@gentoo.org> confuse-2.7.ebuild:
   Stable for HPPA (bug #327597).
