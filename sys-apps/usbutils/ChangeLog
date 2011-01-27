@@ -1,6 +1,26 @@
 # ChangeLog for sys-apps/usbutils
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.107 2010/10/26 14:47:41 fauli Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.112 2011/01/09 16:16:50 armin76 Exp $
+
+  09 Jan 2011; Raúl Porcel <armin76@gentoo.org> usbutils-0.90.ebuild:
+  ia64/m68k/s390/sh stable wrt #342525
+
+  22 Dec 2010; Tobias Klausmann <klausman@gentoo.org> usbutils-0.90.ebuild:
+  Stable on alpha, bug #342525
+
+*usbutils-001 (15 Dec 2010)
+
+  15 Dec 2010; Mike Frysinger <vapier@gentoo.org> +usbutils-001.ebuild:
+  Version bump.
+
+  13 Dec 2010; Michael Weber <xmw@gentoo.org> usbutils-0.90.ebuild:
+  sparc stable (bug 342525)
+
+*usbutils-0.91-r1 (19 Nov 2010)
+
+  19 Nov 2010; Mike Frysinger <vapier@gentoo.org> +usbutils-0.91-r1.ebuild:
+  Rewrite usbutils to use libusb-1 #342553 by Chris Coleman. Move lsusb to
+  /usr/bin #342529 by Samuli Suominen.
 
   26 Oct 2010; Christian Faulhammer <fauli@gentoo.org> usbutils-0.90.ebuild:
   stable x86, bug 342525
