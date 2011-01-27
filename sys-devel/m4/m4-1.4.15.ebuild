@@ -1,8 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.15.ebuild,v 1.1 2010/08/31 17:50:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.15.ebuild,v 1.10 2011/01/09 17:37:52 armin76 Exp $
 
 EAPI="3"
+
+inherit eutils
 
 DESCRIPTION="GNU macro processor"
 HOMEPAGE="http://www.gnu.org/software/m4/m4.html"
@@ -16,6 +18,10 @@ IUSE="examples"
 # remember: cannot dep on autoconf since it needs us
 DEPEND="app-arch/xz-utils"
 RDEPEND=""
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-uclibc-sched_param-def.patch #336484
+}
 
 src_configure() {
 	# Disable automagic dependency over libsigsegv; see bug #278026
@@ -45,5 +51,4 @@ src_install() {
 		dodoc examples/*
 		rm -f "${ED}"/usr/share/doc/${PF}/examples/Makefile*
 	fi
-	rm -f "${ED}"/usr/lib/charset.alias #172864
 }
