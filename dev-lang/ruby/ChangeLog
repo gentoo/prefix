@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.476 2010/09/07 17:01:33 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.478 2010/12/31 15:02:50 graaff Exp $
+
+  31 Dec 2010; Hans de Graaff <graaff@gentoo.org> ruby-1.9.2_rc2-r1.ebuild,
+  ruby-1.9.2.ebuild:
+  Remove PROVIDE for old-style virtual/ruby per bug 265054.
+
+  31 Dec 2010; Hans de Graaff <graaff@gentoo.org> -ruby-1.8.6_p399.ebuild:
+  Remove masked ruby 1.8.6 per bug 332597.
 
   07 Sep 2010; Alex Legler <a3li@gentoo.org> -ruby-1.8.7_p249.ebuild,
   -ruby-1.9.2_rc2.ebuild:
