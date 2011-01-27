@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/jikes
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jikes/ChangeLog,v 1.51 2009/02/13 18:51:51 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jikes/ChangeLog,v 1.52 2011/01/23 14:33:14 armin76 Exp $
+
+  23 Jan 2011; Raúl Porcel <armin76@gentoo.org> jikes-1.22-r1.ebuild,
+  jikes-1.22-r13.ebuild:
+  Drop alpha/ia64 keywords
 
   13 Feb 2009; Raúl Porcel <armin76@gentoo.org> jikes-1.22-r13.ebuild:
   Add ~alpha
