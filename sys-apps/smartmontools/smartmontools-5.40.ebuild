@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/smartmontools-5.40.ebuild,v 1.2 2010/10/27 14:37:56 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/smartmontools-5.40.ebuild,v 1.7 2011/01/26 14:21:54 phajdan.jr Exp $
 
 EAPI="2"
 
@@ -15,14 +15,17 @@ else
 	KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 fi
 
-DESCRIPTION="control and monitor storage systems using the Self-Monitoring, Analysis and Reporting Technology System (S.M.A.R.T.)"
+DESCRIPTION="Self-Monitoring, Analysis and Reporting Technology System (S.M.A.R.T.) monitoring tools"
 HOMEPAGE="http://smartmontools.sourceforge.net/"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="static minimal"
+IUSE="static minimal caps"
 
-RDEPEND="!minimal? ( virtual/mailx )"
+RDEPEND="!minimal? (
+		virtual/mailx
+		caps? ( sys-libs/libcap-ng )
+	)"
 DEPEND=""
 
 src_unpack() {
@@ -41,11 +44,21 @@ src_prepare() {
 }
 
 src_configure() {
+	local myconf
 	use minimal && einfo "Skipping the monitoring daemon for minimal build."
 	use static && append-ldflags -static
+
+	if ! use minimal; then
+		myconf="${myconf} $(use_with caps libcap-ng)"
+	else
+		# disable it so that we stay safe
+		myconf="${myconf} --without-libcap-ng"
+	fi
+
 	econf \
 		--with-docdir="/usr/share/doc/${PF}" \
 		--with-initscriptdir="/toss-it-away" \
+		${myconf} \
 		|| die
 }
 

@@ -1,6 +1,30 @@
 # ChangeLog for sys-apps/smartmontools
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.92 2010/10/27 14:37:56 xmw Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.98 2011/01/26 14:21:54 phajdan.jr Exp $
+
+  26 Jan 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  smartmontools-5.40.ebuild:
+  x86 stable wrt bug #352599
+
+  26 Jan 2011; Jeroen Roovers <jer@gentoo.org> smartmontools-5.40.ebuild:
+  Stable for HPPA (bug #352599).
+
+  25 Jan 2011; Markos Chandras <hwoarang@gentoo.org> smartmontools-5.40.ebuild:
+  Stable on amd64 wrt bug #352599
+
+  17 Dec 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  smartmontools-5.38.ebuild, smartmontools-5.39.1.ebuild,
+  smartmontools-5.40.ebuild, smartmontools-9999.ebuild:
+  Shorten the description to make repoman happy.
+
+  17 Dec 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  smartmontools-5.40.ebuild, smartmontools-9999.ebuild:
+  Add a caps USE flag to avoid automagic dependency over libcap-ng. Thanks to
+  Joost Ruis and Rafał Mużyło in bug #348951.
+
+  13 Nov 2010; Raúl Porcel <armin76@gentoo.org>
+  smartmontools-5.39.1.ebuild:
+  alpha/ia64/sparc stable wrt #341827
 
   27 Oct 2010; Michael Weber <xmw@gentoo.org> smartmontools-5.38.ebuild,
   smartmontools-5.39.1.ebuild, smartmontools-5.40.ebuild:
