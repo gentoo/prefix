@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/hsqldb
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.60 2010/06/30 20:36:28 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.62 2010/10/17 12:23:18 caster Exp $
+
+  17 Oct 2010; Vlastimil Babka <caster@gentoo.org> -hsqldb-1.8.0.10.ebuild,
+  -files/bundle-all-tools.patch:
+  Remove old.
+
+  14 Oct 2010; Brent Baude <ranger@gentoo.org> hsqldb-1.8.1.2-r1.ebuild:
+  stable ppc, bug 314091
 
   30 Jun 2010; Vlastimil Babka <caster@gentoo.org> hsqldb-1.8.0.10.ebuild,
   -hsqldb-1.8.1.2.ebuild:
