@@ -1,6 +1,56 @@
 # ChangeLog for dev-php/PEAR-PEAR
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/ChangeLog,v 1.115 2010/07/18 12:17:59 nixnut Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/ChangeLog,v 1.127 2011/01/10 18:07:33 xarthisius Exp $
+
+  10 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  PEAR-PEAR-1.9.1-r3.ebuild:
+  ppc stable wrt #294256
+
+  28 Dec 2010; Brent Baude <ranger@gentoo.org> PEAR-PEAR-1.9.1-r3.ebuild:
+  Marking PEAR-PEAR-1.9.1-r3 ppc64 for bug 340807
+
+  25 Dec 2010; Jeroen Roovers <jer@gentoo.org> PEAR-PEAR-1.9.1-r3.ebuild:
+  Stable for HPPA (bug #340807).
+
+  20 Dec 2010; Markos Chandras <hwoarang@gentoo.org> PEAR-PEAR-1.9.1-r3.ebuild:
+  Stable on amd64 wrt bug #340807
+
+  19 Dec 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  PEAR-PEAR-1.9.1-r3.ebuild:
+  x86 stable wrt security bug #340807
+
+  05 Nov 2010; Jeroen Roovers <jer@gentoo.org> PEAR-PEAR-1.9.1-r1.ebuild:
+  Stable for HPPA (bug #336869).
+
+*PEAR-PEAR-1.9.1-r3 (30 Oct 2010)
+
+  30 Oct 2010; <olemarkus@gentoo.org> +PEAR-PEAR-1.9.1-r3.ebuild,
+  +files/pear.conf-r2:
+  Makes scripts installed into /usr/bin use /usr/bin/php as interpreter
+
+  24 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  PEAR-PEAR-1.9.1-r1.ebuild:
+  Stable on amd64 wrt bug #336869
+
+*PEAR-PEAR-1.9.1-r2 (22 Oct 2010)
+
+  22 Oct 2010; <olemarkus@gentoo.org> +PEAR-PEAR-1.9.1-r2.ebuild:
+  Added revbump with prefix support. Also removed sed'ing @php_bin@ as it
+  will always be in path
+
+  14 Oct 2010; Christian Faulhammer <fauli@gentoo.org>
+  PEAR-PEAR-1.9.1-r1.ebuild:
+  x86 stable, bug 336869
+
+  01 Oct 2010; Brent Baude <ranger@gentoo.org> PEAR-PEAR-1.9.0.ebuild:
+  Marking PEAR-PEAR-1.9.0 ppc64 for bug 311633
+
+*PEAR-PEAR-1.9.1-r1 (11 Sep 2010)
+
+  11 Sep 2010; Matti Bickel <mabi@gentoo.org> -PEAR-PEAR-1.6.1.ebuild,
+  -PEAR-PEAR-1.7.1.ebuild, -PEAR-PEAR-1.8.1.ebuild,
+  -PEAR-PEAR-1.9.0-r1.ebuild, +PEAR-PEAR-1.9.1-r1.ebuild:
+  cleanup, version bump
 
   18 Jul 2010; <nixnut@gentoo.org> PEAR-PEAR-1.9.0.ebuild:
   ppc stable #311633

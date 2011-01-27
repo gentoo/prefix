@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.9.0.ebuild,v 1.6 2010/07/18 12:17:59 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.9.0.ebuild,v 1.7 2010/10/01 01:01:28 ranger Exp $
 
 inherit depend.php
 

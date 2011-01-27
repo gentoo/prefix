@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.9.0-r1.ebuild,v 1.1 2010/06/14 23:20:45 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.9.1-r3.ebuild,v 1.6 2011/01/10 18:07:33 xarthisius Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit depend.php
 
@@ -19,6 +19,8 @@ IUSE=""
 
 DEPEND="|| ( <dev-lang/php-5.3[pcre] >=dev-lang/php-5.3 )
 		dev-lang/php[cli,xml,zlib]"
+
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}"
 
@@ -65,7 +67,6 @@ src_install() {
 	done
 
 	for i in pear peardev pecl ; do
-		dosed "s:@php_bin@:${PHPCLI}:g" /usr/bin/${i}
 		dosed "s:@bin_dir@:${EPREFIX}/usr/bin:g" /usr/bin/${i}
 		dosed "s:@php_dir@:${EPREFIX}/usr/share/php:g" /usr/bin/${i}
 	done
@@ -78,18 +79,18 @@ src_install() {
 
 	# finalize install
 	insinto /etc
-	newins "${FILESDIR}"/pear.conf-r1 pear.conf
+	newins "${FILESDIR}"/pear.conf-r2 pear.conf
 	dosed "s|s:PHPCLILEN:\"PHPCLI\"|s:${#PHPCLI}:\"${PHPCLI}\"|g" /etc/pear.conf
 	dosed "s|s:CACHEDIRLEN:\"CACHEDIR\"|s:${#PEAR_CACHEDIR}:\"${PEAR_CACHEDIR}\"|g" /etc/pear.conf
 	dosed "s|s:DOWNLOADDIRLEN:\"DOWNLOADDIR\"|s:${#PEAR_DOWNLOADDIR}:\"${PEAR_DOWNLOADDIR}\"|g" /etc/pear.conf
 	dosed "s|s:TEMPDIRLEN:\"TEMPDIR\"|s:${#PEAR_TEMPDIR}:\"${PEAR_TEMPDIR}\"|g" /etc/pear.conf
 
-    # Change the paths for eprefix!
-    dosed "s|s:19:\"/usr/share/php/docs\"|s:$(( ${#EPREFIX}+19 )):\"${EPREFIX}/usr/share/php/docs\"|g" /etc/pear.conf
-    dosed "s|s:19:\"/usr/share/php/data\"|s:$(( ${#EPREFIX}+19 )):\"${EPREFIX}/usr/share/php/data\"|g" /etc/pear.conf
-    dosed "s|s:20:\"/usr/share/php/tests\"|s:$(( ${#EPREFIX}+20 )):\"${EPREFIX}/usr/share/php/tests\"|g" /etc/pear.conf
-    dosed "s|s:14:\"/usr/share/php\"|s:$(( ${#EPREFIX}+14 )):\"${EPREFIX}/usr/share/php\"|g" /etc/pear.conf
-    dosed "s|s:8:\"/usr/bin\"|s:$(( ${#EPREFIX}+8 )):\"${EPREFIX}/usr/bin\"|g" /etc/pear.conf
+	# Change the paths for eprefix!
+	dosed "s|s:19:\"/usr/share/php/docs\"|s:$(( ${#EPREFIX}+19 )):\"${EPREFIX}/usr/share/php/docs\"|g" /etc/pear.conf
+	dosed "s|s:19:\"/usr/share/php/data\"|s:$(( ${#EPREFIX}+19 )):\"${EPREFIX}/usr/share/php/data\"|g" /etc/pear.conf
+	dosed "s|s:20:\"/usr/share/php/tests\"|s:$(( ${#EPREFIX}+20 )):\"${EPREFIX}/usr/share/php/tests\"|g" /etc/pear.conf
+	dosed "s|s:14:\"/usr/share/php\"|s:$(( ${#EPREFIX}+14 )):\"${EPREFIX}/usr/share/php\"|g" /etc/pear.conf
+	dosed "s|s:8:\"/usr/bin\"|s:$(( ${#EPREFIX}+8 )):\"${EPREFIX}/usr/bin\"|g" /etc/pear.conf
 
 	[[ "${PEAR_TEMPDIR}" != "/tmp" ]] && keepdir "${PEAR_TEMPDIR#${EPREFIX}}"
 	keepdir "${PEAR_CACHEDIR#${EPREFIX}}"
