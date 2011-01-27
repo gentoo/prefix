@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.3.0.1.ebuild,v 1.1 2010/07/14 21:15:15 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.3.0.1.ebuild,v 1.3 2010/12/20 12:38:15 hwoarang Exp $
 
 EAPI=2
 inherit flag-o-matic eutils games toolchain-funcs
