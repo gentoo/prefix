@@ -1,6 +1,45 @@
 # ChangeLog for dev-db/phpmyadmin
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/phpmyadmin/ChangeLog,v 1.404 2010/09/14 20:59:16 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/phpmyadmin/ChangeLog,v 1.413 2011/01/05 15:25:36 a3li Exp $
+
+*phpmyadmin-3.3.9 (05 Jan 2011)
+
+  05 Jan 2011; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.3.7.ebuild,
+  +phpmyadmin-3.3.9.ebuild:
+  Version bump, closes bug 350673. Removing vulnerable version.
+
+  27 Dec 2010; Brent Baude <ranger@gentoo.org> phpmyadmin-3.3.8.1.ebuild:
+  Marking phpmyadmin-3.3.8.1 ppc64 for bug 347327
+
+  04 Dec 2010; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.3.8.1.ebuild:
+  Stable for HPPA PPC (bug #347327).
+
+  04 Dec 2010; Raúl Porcel <armin76@gentoo.org> phpmyadmin-3.3.8.1.ebuild:
+  alpha/sparc stable wrt #347327
+
+  02 Dec 2010; Christian Faulhammer <fauli@gentoo.org>
+  phpmyadmin-3.3.8.1.ebuild:
+  stable x86, security bug 347327
+
+  01 Dec 2010; Richard Freeman <rich0@gentoo.org> phpmyadmin-3.3.8.1.ebuild:
+  amd64 stable - 347327
+
+*phpmyadmin-3.3.8.1 (30 Nov 2010)
+
+  30 Nov 2010; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.3.8.ebuild,
+  +phpmyadmin-3.3.8.1.ebuild:
+  Version bump, fixes XSS (bug 347327); remove unneeded vulnerable version
+
+*phpmyadmin-3.3.8 (26 Oct 2010)
+
+  26 Oct 2010; Alex Legler <a3li@gentoo.org> +phpmyadmin-3.3.8.ebuild:
+  Version bump. 3.3.8 is a bugfix release.
+
+  22 Oct 2010; Alex Legler <a3li@gentoo.org> -files/reconfig-2.8,
+  -files/postinstall-en-2.8.0.txt,
+  -files/phpmyadmin-2.11.5-custom-cert.patch, -phpmyadmin-2.11.10.ebuild,
+  -phpmyadmin-3.3.5.1.ebuild, -phpmyadmin-3.3.6.ebuild:
+  Removing vulnerable older versions (bug #336462 et. al.)
 
   14 Sep 2010; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.3.7.ebuild:
   Stable for HPPA (bug #336462).
