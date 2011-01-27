@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/libtasn1-2.6.ebuild,v 1.6 2010/06/20 18:10:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/libtasn1-2.9-r1.ebuild,v 1.7 2011/01/15 15:24:59 maekke Exp $
 
 EAPI="3"
 
@@ -22,9 +22,15 @@ src_compile() {
 	emake || die
 }
 
+src_configure(){
+	local myconf
+	[[ "${VALGRIND_TESTS}" == "0" ]] && myconf+=" --disable-valgrind-tests"
+	econf ${myconf}
+}
+
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc AUTHORS ChangeLog NEWS README THANKS
+	dodoc AUTHORS ChangeLog NEWS README THANKS || die "dodoc failed"
 
 	if use doc; then
 		dodoc doc/libtasn1.ps || die "dodoc failed"

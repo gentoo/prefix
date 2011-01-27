@@ -1,6 +1,72 @@
 # ChangeLog for dev-libs/libtasn1
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.123 2010/07/11 18:02:11 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.141 2011/01/15 15:24:59 maekke Exp $
+
+  15 Jan 2011; Markus Meier <maekke@gentoo.org> libtasn1-2.9-r1.ebuild:
+  x86 stable, bug #350866
+
+  15 Jan 2011; Markus Meier <maekke@gentoo.org> libtasn1-2.9-r1.ebuild:
+  arm stable, bug #350866
+
+  13 Jan 2011; Jeroen Roovers <jer@gentoo.org> libtasn1-2.9-r1.ebuild:
+  Stable for HPPA (bug #350866).
+
+  10 Jan 2011; Brent Baude <ranger@gentoo.org> libtasn1-2.9-r1.ebuild:
+  stable ppc, bug 350866
+
+  07 Jan 2011; Markos Chandras <hwoarang@gentoo.org> libtasn1-2.9-r1.ebuild:
+  Stable on amd64 wrt bug #350866
+
+*libtasn1-2.9-r1 (10 Dec 2010)
+
+  10 Dec 2010; Dane Smith <c1pher@gentoo.org> -libtasn1-2.9.ebuild,
+  +libtasn1-2.9-r1.ebuild:
+  Revision bump. Removes automagic dependency on valgrind wrt bug 331951 by
+  disabiling it unconditionally.
+
+*libtasn1-2.9 (07 Dec 2010)
+
+  07 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +libtasn1-2.9.ebuild:
+  Version bump.
+
+  14 Nov 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -libtasn1-2.7.ebuild:
+  Delete.
+
+  13 Nov 2010; Raúl Porcel <armin76@gentoo.org> libtasn1-2.8.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #342495
+
+  05 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> libtasn1-2.8.ebuild:
+  ppc64 stable wrt #342495
+
+  31 Oct 2010; nixnut <nixnut@gentoo.org> libtasn1-2.8.ebuild:
+  ppc stable #342495
+
+  29 Oct 2010; Markus Meier <maekke@gentoo.org> libtasn1-2.8.ebuild:
+  arm stable, bug #342495
+
+  27 Oct 2010; Dane Smith <c1pher@gentoo.org> libtasn1-2.8.ebuild:
+  Stable x86 wrt bug 342495.
+
+  25 Oct 2010; Markos Chandras <hwoarang@gentoo.org> libtasn1-2.8.ebuild:
+  Stable on amd64 wrt bug #342495
+
+  24 Oct 2010; Jeroen Roovers <jer@gentoo.org> libtasn1-2.8.ebuild:
+  Stable for HPPA (bug #342495).
+
+*libtasn1-2.8 (25 Sep 2010)
+
+  25 Sep 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +libtasn1-2.8.ebuild:
+  Version bump.
+
+  13 Sep 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -libtasn1-2.6.ebuild:
+  Delete.
+
+  13 Sep 2010; Joseph Jezak <josejx@gentoo.org> libtasn1-2.7.ebuild:
+  Marked ppc stable for bug #325897.
 
   11 Jul 2010; Raúl Porcel <armin76@gentoo.org> libtasn1-2.7.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #325897
