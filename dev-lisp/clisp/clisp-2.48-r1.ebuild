@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.48-r1.ebuild,v 1.5 2010/06/26 13:03:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.48-r1.ebuild,v 1.6 2010/12/17 20:17:25 ulm Exp $
 
 EAPI="2"
 
@@ -36,8 +36,6 @@ DEPEND="${RDEPEND}
 	X? ( new-clx? ( x11-misc/imake x11-proto/xextproto ) )"
 
 PDEPEND="dev-lisp/gentoo-init"
-
-PROVIDE="virtual/commonlisp"
 
 enable_modules() {
 	[[ $# = 0 ]] && die "${FUNCNAME[0]} must receive at least one argument"
