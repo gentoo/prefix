@@ -1,14 +1,14 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.5.1.ebuild,v 1.1 2010/03/05 21:18:48 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.5.1-r2.ebuild,v 1.1 2010/12/13 14:11:43 arfrever Exp $
 
 JAVA_PKG_IUSE="source doc examples oracle"
 #informix missing.  This is a jdbc driver, similar to oracle use flag
 #functionality.
 
-EAPI="2"
+EAPI="3"
 
-inherit base java-pkg-2 java-ant-2
+inherit base java-pkg-2 java-ant-2 python
 
 DESCRIPTION="An implementation of Python written in Java"
 HOMEPAGE="http://www.jython.org"
@@ -20,8 +20,9 @@ SRC_URI="http://www.python.org/ftp/python/${PYVER%_*}/Python-${PYVER}.tgz
 
 LICENSE="PSF-2.2"
 SLOT="2.5"
+PYTHON_ABI="${SLOT}-jython"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
-IUSE=""
+IUSE="+readline +ssl +threads +xml"
 
 #>=dev-java/jdbc-mysql-3.1
 #dev-java/jdbc-postgresql
@@ -39,16 +40,25 @@ CDEPEND="=dev-java/jakarta-oro-2.0*
 	dev-java/antlr:3
 	dev-java/stringtemplate:0
 	dev-java/xerces:2
-	dev-java/jsr223:0"
+	dev-java/jsr223:0
+	>=dev-java/java-config-2.1.11-r3"
 RDEPEND=">=virtual/jre-1.5
 	${CDEPEND}"
 DEPEND=">=virtual/jdk-1.5
-		dev-java/ant-core:0
-		dev-java/junit:0
-		${CDEPEND}"
+	dev-java/ant-core:0
+	dev-java/junit:0
+	${CDEPEND}"
+
+pkg_setup() {
+	java-pkg-2_pkg_setup
+	python_pkg_setup
+}
 
 java_prepare() {
 	epatch "${FILESDIR}/${P}-build.patch"
+	epatch "${FILESDIR}/${P}-distutils_byte_compilation.patch"
+	epatch "${FILESDIR}/${P}-distutils_scripts_location.patch"
+	epatch "${FILESDIR}/${P}-respect_PYTHONPATH.patch"
 
 	rm -Rfv org || die "Unable to remove class files."
 	find extlibs -iname '*.jar' | xargs rm -fv || die "Unable to remove bundled jars"
@@ -84,6 +94,10 @@ java_prepare() {
 		"oracle.jar=$(java-pkg-getjar jdbc-oracle-bin-10.2 ojdbc14.jar)" \
 		>> ant.properties
 	fi
+
+	pushd "${WORKDIR}/Python-${PYVER}" > /dev/null
+	epatch "${FILESDIR}/python-${PYVER}-distutils_byte_compilation.patch"
+	popd > /dev/null
 }
 
 src_compile() {
@@ -104,10 +118,10 @@ src_test() {
 #[exec] 2 fails unexpected:
 #[exec]     test_pbcvm test_pkgimport
 	local antflags=""
-	antflags="${antflags} -Dgentoo.library.path=$(java-config -di jna-posix)"
-	antflags="${antflags} -Dpython.home=dist"
+	antflags+=" -Dgentoo.library.path=$(java-config -di jna-posix)"
+	antflags+=" -Dpython.home=dist"
 	local pylib="../Python-${PYVER}/Lib"
-	antflags="${antflags} -Dpython.lib=${pylib}"
+	antflags+=" -Dpython.lib=${pylib}"
 	ANT_TASKS="ant-junit" eant ${antflags} test
 }
 
@@ -117,9 +131,10 @@ src_install() {
 	java-pkg_newjar "${PN}-dev.jar"
 
 	local java_args="-Dpython.home=${EPREFIX}/usr/share/${PN}-${SLOT}"
-	java_args="${java_args} -Dpython.cachedir=\${HOME}/.jythoncachedir"
+	java_args+=" -Dpython.cachedir=\$([[ -n \"\${JYTHON_SYSTEM_CACHEDIR}\" ]] && echo ${EPREFIX}/var/cache/${PN}/${SLOT}-\${EUID} || echo \${HOME}/.jythoncachedir)"
+	java_args+=" -Dpython.executable=${EPREFIX}/usr/bin/jython${SLOT}"
 
-	java-pkg_dolauncher jython-${SLOT} \
+	java-pkg_dolauncher jython${SLOT} \
 						--main "org.python.util.jython" \
 						--pkg_args "${java_args}"
 
@@ -128,27 +143,36 @@ src_install() {
 
 	insinto /usr/share/${PN}-${SLOT}
 	doins -r Lib registry
+	python_clean_installation_image -q
 
 	use doc && java-pkg_dojavadoc Doc/javadoc
 	use source && java-pkg_dosrc ../src
 	cd "${S}"
 	use examples && java-pkg_doexamples Demo/*
+
+	if use readline; then
+		sed \
+			-e "s/#\(python.console=org.python.util.ReadlineConsole\)/\1/" \
+			-e "/#python.console.readlinelib=JavaReadline/a python.console.readlinelib=GnuReadline" \
+			-i "${ED}usr/share/${PN}-${SLOT}/registry" || die "sed failed"
+	fi
 }
 
 pkg_postinst() {
-	einfo "Version of jython > 2.2* no longer has jythonc. Please see"
-	einfo "http://www.jython.org/Project/jythonc.html for details"
+	python_mod_optimize -f -x "/(site-packages|test|tests)/" $(python_get_libdir)
 
-	if use readline; then
-		elog
-		elog "To use readline you need to add the following to your registry"
-		elog
-		elog "python.console=org.python.util.ReadlineConsole"
-		elog "python.console.readlinelib=GnuReadline"
-		elog
-		elog "The global registry can be found in /usr/share/${PN}/registry"
-		elog "User registry in \$HOME/.jython"
-		elog "See http://www.jython.org/docs/registry.html for more information"
-		elog ""
-	fi
+	elog
+	elog "readline can be configured in the registry:"
+	elog
+	elog "python.console=org.python.util.ReadlineConsole"
+	elog "python.console.readlinelib=GnuReadline"
+	elog
+	elog "Global registry: '${EROOT}usr/share/${PN}-${SLOT}/registry'"
+	elog "User registry: '~/.jython'"
+	elog "See http://www.jython.org/docs/registry.html for more information."
+	elog
+}
+
+pkg_postrm() {
+	python_mod_cleanup $(python_get_libdir)
 }
