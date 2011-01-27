@@ -1,12 +1,12 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.12.2-r3.ebuild,v 1.1 2010/11/08 19:07:31 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.12.2-r6.ebuild,v 1.6 2011/01/22 11:19:07 armin76 Exp $
 
 EAPI=3
 
 inherit eutils alternatives flag-o-matic toolchain-funcs multilib
 
-PATCH_VER=6
+PATCH_VER=9
 
 PERL_OLDVERSEN="5.12.1 5.12.0"
 
@@ -131,6 +131,7 @@ src_prepare() {
 	EPATCH_SOURCE="${WORKDIR}/perl-patch" \
 	EPATCH_SUFFIX="diff" \
 	EPATCH_FORCE="yes" \
+	EPATCH_OPTS+=-p1 \
 	epatch
 
 	src_prepare_update_patchlevel_h

@@ -1,14 +1,14 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.12.1-r1.ebuild,v 1.2 2010/07/28 06:12:23 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.12.3.ebuild,v 1.1 2011/01/22 09:41:54 tove Exp $
 
 EAPI=3
 
 inherit eutils alternatives flag-o-matic toolchain-funcs multilib
 
-PATCH_VER=5
+PATCH_VER=1
 
-PERL_OLDVERSEN="5.12.0"
+PERL_OLDVERSEN="5.12.2 5.12.1 5.12.0"
 
 SHORT_PV="${PV%.*}"
 MY_P="perl-${PV/_rc/-RC}"
@@ -19,7 +19,7 @@ DESCRIPTION="Larry Wall's Practical Extraction and Report Language"
 S="${WORKDIR}/${MY_P}"
 SRC_URI="
 	mirror://cpan/src/${MY_P}.tar.bz2
-	mirror://cpan/authors/id/J/JE/JESSE/${MY_P}.tar.bz2
+	mirror://cpan/authors/id/R/RJ/RJBS/${MY_P}.tar.bz2
 	mirror://gentoo/${MY_P}-${PATCH_VER}.tar.bz2
 	http://dev.gentoo.org/~tove/files/${MY_P}-${PATCH_VER}.tar.bz2"
 #	mirror://cpan/src/${MY_P}.tar.bz2
@@ -40,7 +40,7 @@ COMMON_DEPEND="berkdb? ( sys-libs/db )
 DEPEND="${COMMON_DEPEND}
 	!prefix? ( elibc_FreeBSD? ( sys-freebsd/freebsd-mk-defs ) )"
 RDEPEND="${COMMON_DEPEND}"
-PDEPEND=">=app-admin/perl-cleaner-2.2"
+PDEPEND=">=app-admin/perl-cleaner-2.5"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -52,7 +52,7 @@ dual_scripts() {
 	src_remove_dual_scripts perl-core/Encode             2.39    enc2xs piconv
 	src_remove_dual_scripts perl-core/ExtUtils-MakeMaker 6.56    instmodsh
 	src_remove_dual_scripts perl-core/Module-Build       0.3603  config_data
-	src_remove_dual_scripts perl-core/Module-CoreList    2.32    corelist
+	src_remove_dual_scripts perl-core/Module-CoreList    2.43    corelist
 	src_remove_dual_scripts perl-core/PodParser          1.37    pod2usage podchecker podselect
 	src_remove_dual_scripts perl-core/Test-Harness       3.17    prove
 	src_remove_dual_scripts perl-core/podlators          2.3.1   pod2man pod2text
@@ -87,33 +87,33 @@ pkg_setup() {
 	VENDOR_ARCH="/usr/$(get_libdir)/perl5/vendor_perl/${MY_PV}/${myarch}${mythreading}"
 
 	if use ithreads ; then
+		echo ""
 		ewarn "THREADS WARNING:"
 		ewarn "PLEASE NOTE: You are compiling ${MY_P} with"
 		ewarn "interpreter-level threading enabled."
 		ewarn "Threading is not supported by all applications "
 		ewarn "that compile against perl. You use threading at "
 		ewarn "your own discretion. "
-		echo
 	fi
 	if has_version "<dev-lang/perl-${SHORT_PV}" ; then
+		echo ""
 		ewarn "UPDATE THE PERL MODULES:"
 		ewarn "After updating dev-lang/perl you must reinstall"
 		ewarn "the installed perl modules."
 		ewarn "Use: perl-cleaner --all"
-		echo
 	elif has_version dev-lang/perl ; then
 		# doesnot work
 		#if ! has_version dev-lang/perl[ithreads=,debug=] ; then
 		#if ! has_version dev-lang/perl[ithreads=] || ! has_version dev-lang/perl[debug=] ; then
-		if (   use ithreads && ! has_version dev-lang/perl[ithreads]   ) || \
-		   ( ! use ithreads &&   has_version dev-lang/perl[ithreads]   ) || \
-		   (   use debug    && ! has_version dev-lang/perl[debug]      ) || \
-		   ( ! use debug    &&   has_version dev-lang/perl[debug]      ) ; then
+		if (   use ithreads && ! has_version dev-lang/perl[ithreads] ) || \
+		   ( ! use ithreads &&   has_version dev-lang/perl[ithreads] ) || \
+		   (   use debug    && ! has_version dev-lang/perl[debug]    ) || \
+		   ( ! use debug    &&   has_version dev-lang/perl[debug]    ) ; then
+			echo ""
 			ewarn "TOGGLED USE-FLAGS WARNING:"
 			ewarn "You changed one of the use-flags ithreads or debug."
 			ewarn "You must rebuild all perl-modules installed."
 			ewarn "Use: perl-cleaner --modules ; perl-cleaner --force --libperl"
-			echo
 		fi
 	fi
 	dual_scripts
@@ -122,15 +122,16 @@ pkg_setup() {
 src_prepare_update_patchlevel_h() {
 	[[ -f ${WORKDIR}/perl-patch/series ]] || return 0
 
-	cat "${WORKDIR}/perl-patch/series" | while read patch level ; do
-		sed -i -e "s/^\t,NULL$/	,\"$patch\"\n&/" "${S}"/patchlevel.h || die
-	done
+	while read patch level ; do
+		sed -i -e "s/^\t,NULL$/	,\"${patch//__/_}\"\n&/" "${S}"/patchlevel.h || die
+	done < "${WORKDIR}"/perl-patch/series
 }
 
 src_prepare() {
 	EPATCH_SOURCE="${WORKDIR}/perl-patch" \
 	EPATCH_SUFFIX="diff" \
 	EPATCH_FORCE="yes" \
+	EPATCH_OPTS="-p1" \
 	epatch
 
 	src_prepare_update_patchlevel_h
@@ -249,10 +250,14 @@ src_configure() {
 	if use debug ; then
 		append-cflags "-g"
 		myconf -DDEBUGGING
+	elif [[ ${CFLAGS} == *-g* ]] ; then
+		myconf -DDEBUGGING=-g
+	else
+		myconf -DDEBUGGING=none
 	fi
 
 	if [[ -n ${PERL_OLDVERSEN} ]] ; then
-		local inclist=$(for v in ${PERL_OLDVERSEN}; do echo -n "${v} ${v}/${myarch}${mythreading}"; done )
+		local inclist=$(for v in ${PERL_OLDVERSEN}; do echo -n "${v}/${myarch}${mythreading} ${v} "; done )
 		myconf -Dinc_version_list="$inclist"
 	fi
 	[[ -n "${ABI}" ]] && myconf "-Dusrinc=$(get_ml_incdir)"
@@ -275,6 +280,7 @@ src_configure() {
 		-Darchname="${myarch}" \
 		-Dcc="$(tc-getCC)" \
 		-Doptimize="${CFLAGS}" \
+		-Dldflags="${LDFLAGS}" \
 		-Dprefix="${EPREFIX}"'/usr' \
 		-Dinstallprefix="${EPREFIX}"'/usr' \
 		-Dsiteprefix="${EPREFIX}"'/usr' \
@@ -308,8 +314,17 @@ src_configure() {
 		"${myconf[@]}" || die "Unable to configure"
 }
 
+src_compile() {
+	# bug 331113
+	emake -j1 || die "emake failed"
+}
+
 src_test() {
-	use elibc_uclibc && export MAKEOPTS="${MAKEOPTS} -j1"
+	if [[ ${EUID} == 0 ]] ; then
+		ewarn "Test fails with a sandbox error (#328793) if run as root. Skipping tests..."
+		return 0
+	fi
+	use elibc_uclibc && export MAKEOPTS+=" -j1"
 	TEST_JOBS=$(echo -j1 ${MAKEOPTS} | sed -r 's/.*(-j[[:space:]]*|--jobs=)([[:digit:]]+).*/\2/' ) \
 		make test_harness || die "test failed"
 }
@@ -320,6 +335,7 @@ src_install() {
 
 #	# Fix for "stupid" modules and programs
 #	dodir ${SITE_ARCH} ${SITE_LIB}
+#	keepdir "${VENDOR_ARCH}" #338802 for enc2xs
 
 	local installtarget=install
 	if use build ; then
@@ -373,11 +389,11 @@ src_install() {
 			--libpods='perlfunc:perlguts:perlvar:perlrun:perlop'
 	fi
 
-	dual_scripts
-
 	if use build ; then
 		src_remove_extra_files
 	fi
+
+	dual_scripts
 }
 
 pkg_postinst() {
@@ -386,7 +402,7 @@ pkg_postinst() {
 	if [[ "${ROOT}" = "/" ]] ; then
 		local INC DIR file
 		INC=$(perl -e 'for $line (@INC) { next if $line eq "."; next if $line =~ m/'${MY_PV}'|etc|local|perl$/; print "$line\n" }')
-		ebegin "Removing old .ph files"
+		einfo "Removing old .ph files"
 		for DIR in ${INC} ; do
 			if [[ -d "${DIR}" ]] ; then
 				for file in $(find "${DIR}" -name "*.ph" -type f ) ; do
@@ -401,9 +417,12 @@ pkg_postinst() {
 				find "${DIR}" -depth -type d -print0 | xargs -0 -r rmdir &> /dev/null
 			fi
 		done
-		ebegin "Generating ConfigLocal.pm (ignore any error)"
-		enc2xs -C
-		ebegin "Converting C header files to the corresponding Perl format"
+		if ! use build ; then
+			ebegin "Generating ConfigLocal.pm (ignore any error)"
+			enc2xs -C
+		fi
+
+		einfo "Converting C header files to the corresponding Perl format (ignore any error)"
 		# unprefixed as this is all kernel/libc stuff that we never provide
 		pushd /usr/include >/dev/null
 			h2ph -Q -a -d ${ARCH_LIB} \
@@ -415,14 +434,19 @@ pkg_postinst() {
 # of portage will allow us to check what version was just removed - which means
 # we will be able to invoke this only as needed :)
 		# Tried doing this via  -z, but $INC is too big...
-		if [[ "${INC}x" != "x" ]]; then
-			cleaner_msg
-		fi
+		#if [[ "${INC}x" != "x" ]]; then
+		#	cleaner_msg
+		#fi
 	fi
 }
 
 pkg_postrm(){
 	dual_scripts
+
+#	if [[ -e ${ARCH_LIB}/Encode/ConfigLocal.pm ]] ; then
+#		ebegin "Removing ConfigLocal.pm"
+#		rm "${ARCH_LIB}/Encode/ConfigLocal.pm"
+#	fi
 }
 
 cleaner_msg() {
@@ -448,18 +472,18 @@ cleaner_msg() {
 
 src_remove_dual_scripts() {
 
-	use build && return
-
 	local i pkg ver ff
 	pkg="$1"
 	ver="$2"
 	shift 2
 	if has "${EBUILD_PHASE:-none}" "postinst" "postrm" ;then
 		for i in "$@" ; do
-			ff=`echo ${EROOT}/usr/share/man/man1/${i}-${ver}-${P}.1*`
-			ff=${ff##*.1}
 			alternatives_auto_makesym "/usr/bin/${i}" "/usr/bin/${i}-[0-9]*"
-			alternatives_auto_makesym "/usr/share/man/man1/${i}.1${ff}" "/usr/share/man/man1/${i}-[0-9]*"
+			if [[ ${i} != cpanp-run-perl ]] ; then
+				ff=`echo ${EROOT}/usr/share/man/man1/${i}-${ver}-${P}.1*`
+				ff=${ff##*.1}
+				alternatives_auto_makesym "/usr/share/man/man1/${i}.1${ff}" "/usr/share/man/man1/${i}-[0-9]*"
+			fi
 		done
 	elif has "${EBUILD_PHASE:-none}" "setup" ; then
 		for i in "$@" ; do
@@ -470,6 +494,10 @@ src_remove_dual_scripts() {
 		done
 	else
 		for i in "$@" ; do
+			if ! [[ -f "${ED}"/usr/bin/${i} ]] ; then
+				use build || ewarn "/usr/bin/${i} does not exist!"
+				continue
+			fi
 			mv "${ED}"/usr/bin/${i}{,-${ver}-${P}} || die
 			if [[ -f ${ED}/usr/share/man/man1/${i}.1 ]] ; then
 				mv "${ED}"/usr/share/man/man1/${i}{.1,-${ver}-${P}.1} || die
@@ -497,66 +525,48 @@ src_remove_extra_files() {
 	${libdir}/libperl$(get_libname)
 	${libdir}/libperl$(get_libname ${SHORT_PV})
 	.${PRIV_LIB}/AutoLoader.pm
-	.${PRIV_LIB}/autouse.pm
 	.${PRIV_LIB}/B/Deparse.pm
-	.${PRIV_LIB}/base.pm
-	.${PRIV_LIB}/bigint.pm
-	.${PRIV_LIB}/bignum.pm
-	.${PRIV_LIB}/bigrat.pm
-	.${PRIV_LIB}/blib.pm
-	.${PRIV_LIB}/bytes_heavy.pl
-	.${PRIV_LIB}/bytes.pm
-	.${PRIV_LIB}/Carp/Heavy.pm
 	.${PRIV_LIB}/Carp.pm
-	.${PRIV_LIB}/charnames.pm
+	.${PRIV_LIB}/Carp/Heavy.pm
 	.${PRIV_LIB}/Class/Struct.pm
-	.${PRIV_LIB}/constant.pm
-	.${PRIV_LIB}/diagnostics.pm
 	.${PRIV_LIB}/DirHandle.pm
-	.${PRIV_LIB}/Exporter/Heavy.pm
 	.${PRIV_LIB}/Exporter.pm
+	.${PRIV_LIB}/Exporter/Heavy.pm
 	.${PRIV_LIB}/ExtUtils/Command.pm
-	.${PRIV_LIB}/ExtUtils/Constant.pm
-	.${PRIV_LIB}/ExtUtils/Embed.pm
-	.${PRIV_LIB}/ExtUtils/Installed.pm
-	.${PRIV_LIB}/ExtUtils/Install.pm
-	.${PRIV_LIB}/ExtUtils/Liblist.pm
-	.${PRIV_LIB}/ExtUtils/MakeMaker.pm
-	.${PRIV_LIB}/ExtUtils/Manifest.pm
-	.${PRIV_LIB}/ExtUtils/Mkbootstrap.pm
-	.${PRIV_LIB}/ExtUtils/Mksymlists.pm
-	.${PRIV_LIB}/ExtUtils/MM_Any.pm
-	.${PRIV_LIB}/ExtUtils/MM_MacOS.pm
-	.${PRIV_LIB}/ExtUtils/MM.pm
-	.${PRIV_LIB}/ExtUtils/MM_Unix.pm
-	.${PRIV_LIB}/ExtUtils/MY.pm
-	.${PRIV_LIB}/ExtUtils/Packlist.pm
-	.${PRIV_LIB}/ExtUtils/testlib.pm
-	.${PRIV_LIB}/ExtUtils/Miniperl.pm
 	.${PRIV_LIB}/ExtUtils/Command/MM.pm
+	.${PRIV_LIB}/ExtUtils/Constant.pm
 	.${PRIV_LIB}/ExtUtils/Constant/Base.pm
 	.${PRIV_LIB}/ExtUtils/Constant/Utils.pm
 	.${PRIV_LIB}/ExtUtils/Constant/XS.pm
+	.${PRIV_LIB}/ExtUtils/Embed.pm
+	.${PRIV_LIB}/ExtUtils/Install.pm
+	.${PRIV_LIB}/ExtUtils/Installed.pm
+	.${PRIV_LIB}/ExtUtils/Liblist.pm
 	.${PRIV_LIB}/ExtUtils/Liblist/Kid.pm
-	.${PRIV_LIB}/fields.pm
+	.${PRIV_LIB}/ExtUtils/MM.pm
+	.${PRIV_LIB}/ExtUtils/MM_Any.pm
+	.${PRIV_LIB}/ExtUtils/MM_MacOS.pm
+	.${PRIV_LIB}/ExtUtils/MM_Unix.pm
+	.${PRIV_LIB}/ExtUtils/MY.pm
+	.${PRIV_LIB}/ExtUtils/MakeMaker.pm
+	.${PRIV_LIB}/ExtUtils/Manifest.pm
+	.${PRIV_LIB}/ExtUtils/Miniperl.pm
+	.${PRIV_LIB}/ExtUtils/Mkbootstrap.pm
+	.${PRIV_LIB}/ExtUtils/Mksymlists.pm
+	.${PRIV_LIB}/ExtUtils/Packlist.pm
+	.${PRIV_LIB}/ExtUtils/testlib.pm
 	.${PRIV_LIB}/File/Basename.pm
 	.${PRIV_LIB}/File/Compare.pm
 	.${PRIV_LIB}/File/Copy.pm
 	.${PRIV_LIB}/File/Find.pm
-	.${PRIV_LIB}/FileHandle.pm
 	.${PRIV_LIB}/File/Path.pm
 	.${PRIV_LIB}/File/stat.pm
-	.${PRIV_LIB}/filetest.pm
+	.${PRIV_LIB}/FileHandle.pm
 	.${PRIV_LIB}/Getopt/Long.pm
 	.${PRIV_LIB}/Getopt/Std.pm
-	.${PRIV_LIB}/if.pm
-	.${PRIV_LIB}/integer.pm
 	.${PRIV_LIB}/IPC/Open2.pm
 	.${PRIV_LIB}/IPC/Open3.pm
-	.${PRIV_LIB}/less.pm
-	.${PRIV_LIB}/locale.pm
-	.${PRIV_LIB}/open.pm
-	.${PRIV_LIB}/overload.pm
+	.${PRIV_LIB}/PerlIO.pm
 	.${PRIV_LIB}/Pod/InputObjects.pm
 	.${PRIV_LIB}/Pod/Man.pm
 	.${PRIV_LIB}/Pod/ParseLink.pm
@@ -564,34 +574,75 @@ src_remove_extra_files() {
 	.${PRIV_LIB}/Pod/Select.pm
 	.${PRIV_LIB}/Pod/Text.pm
 	.${PRIV_LIB}/Pod/Usage.pm
-	.${PRIV_LIB}/PerlIO.pm
 	.${PRIV_LIB}/SelectSaver.pm
+	.${PRIV_LIB}/Symbol.pm
+	.${PRIV_LIB}/Text/ParseWords.pm
+	.${PRIV_LIB}/Text/Tabs.pm
+	.${PRIV_LIB}/Text/Wrap.pm
+	.${PRIV_LIB}/Tie/Hash.pm
+	.${PRIV_LIB}/Time/Local.pm
+	.${PRIV_LIB}/XSLoader.pm
+	.${PRIV_LIB}/autouse.pm
+	.${PRIV_LIB}/base.pm
+	.${PRIV_LIB}/bigint.pm
+	.${PRIV_LIB}/bignum.pm
+	.${PRIV_LIB}/bigrat.pm
+	.${PRIV_LIB}/blib.pm
+	.${PRIV_LIB}/bytes.pm
+	.${PRIV_LIB}/bytes_heavy.pl
+	.${PRIV_LIB}/charnames.pm
+	.${PRIV_LIB}/constant.pm
+	.${PRIV_LIB}/diagnostics.pm
+	.${PRIV_LIB}/fields.pm
+	.${PRIV_LIB}/filetest.pm
+	.${PRIV_LIB}/if.pm
+	.${PRIV_LIB}/integer.pm
+	.${PRIV_LIB}/less.pm
+	.${PRIV_LIB}/locale.pm
+	.${PRIV_LIB}/open.pm
+	.${PRIV_LIB}/overload.pm
 	.${PRIV_LIB}/sigtrap.pm
 	.${PRIV_LIB}/sort.pm
 	.${PRIV_LIB}/stat.pl
 	.${PRIV_LIB}/strict.pm
 	.${PRIV_LIB}/subs.pm
-	.${PRIV_LIB}/Symbol.pm
-	.${PRIV_LIB}/Text/ParseWords.pm
-	.${PRIV_LIB}/Text/Tabs.pm
-	.${PRIV_LIB}/Text/Wrap.pm
-	.${PRIV_LIB}/Time/Local.pm
-	.${PRIV_LIB}/unicore/Canonical.pl
-	.${PRIV_LIB}/unicore/Exact.pl
-	.${PRIV_LIB}/unicore/lib/gc_sc/Digit.pl
-	.${PRIV_LIB}/unicore/lib/gc_sc/Word.pl
-	.${PRIV_LIB}/unicore/PVA.pl
 	.${PRIV_LIB}/unicore/To/Fold.pl
 	.${PRIV_LIB}/unicore/To/Lower.pl
 	.${PRIV_LIB}/unicore/To/Upper.pl
-	.${PRIV_LIB}/utf8_heavy.pl
 	.${PRIV_LIB}/utf8.pm
+	.${PRIV_LIB}/utf8_heavy.pl
 	.${PRIV_LIB}/vars.pm
 	.${PRIV_LIB}/vmsish.pm
 	.${PRIV_LIB}/warnings
 	.${PRIV_LIB}/warnings.pm
 	.${PRIV_LIB}/warnings/register.pm
-	.${PRIV_LIB}/XSLoader.pm
+	.${ARCH_LIB}/B.pm
+	.${ARCH_LIB}/CORE/libperl$(get_libname)
+	.${ARCH_LIB}/Config.pm
+	.${ARCH_LIB}/Config_heavy.pl
+	.${ARCH_LIB}/Cwd.pm
+	.${ARCH_LIB}/Data/Dumper.pm
+	.${ARCH_LIB}/DynaLoader.pm
+	.${ARCH_LIB}/Errno.pm
+	.${ARCH_LIB}/Fcntl.pm
+	.${ARCH_LIB}/File/Glob.pm
+	.${ARCH_LIB}/File/Spec.pm
+	.${ARCH_LIB}/File/Spec/Unix.pm
+	.${ARCH_LIB}/IO.pm
+	.${ARCH_LIB}/IO/File.pm
+	.${ARCH_LIB}/IO/Handle.pm
+	.${ARCH_LIB}/IO/Pipe.pm
+	.${ARCH_LIB}/IO/Seekable.pm
+	.${ARCH_LIB}/IO/Select.pm
+	.${ARCH_LIB}/IO/Socket.pm
+	.${ARCH_LIB}/IO/Socket/INET.pm
+	.${ARCH_LIB}/IO/Socket/UNIX.pm
+	.${ARCH_LIB}/List/Util.pm
+	.${ARCH_LIB}/NDBM_File.pm
+	.${ARCH_LIB}/POSIX.pm
+	.${ARCH_LIB}/Scalar/Util.pm
+	.${ARCH_LIB}/Socket.pm
+	.${ARCH_LIB}/Storable.pm
 	.${ARCH_LIB}/attributes.pm
 	.${ARCH_LIB}/auto/Cwd/Cwd$(get_libname)
 	.${ARCH_LIB}/auto/Data/Dumper/Dumper$(get_libname)
@@ -599,54 +650,26 @@ src_remove_extra_files() {
 	.${ARCH_LIB}/auto/Fcntl/Fcntl$(get_libname)
 	.${ARCH_LIB}/auto/File/Glob/Glob$(get_libname)
 	.${ARCH_LIB}/auto/IO/IO$(get_libname)
+	.${ARCH_LIB}/auto/POSIX/POSIX$(get_libname)
 	.${ARCH_LIB}/auto/POSIX/autosplit.ix
 	.${ARCH_LIB}/auto/POSIX/fstat.al
 	.${ARCH_LIB}/auto/POSIX/load_imports.al
-	.${ARCH_LIB}/auto/POSIX/POSIX$(get_libname)
 	.${ARCH_LIB}/auto/POSIX/stat.al
 	.${ARCH_LIB}/auto/POSIX/tmpfile.al
-	.${ARCH_LIB}/auto/re/re$(get_libname)
 	.${ARCH_LIB}/auto/Socket/Socket$(get_libname)
-	.${ARCH_LIB}/auto/Storable/autosplit.ix
-	.${ARCH_LIB}/auto/Storable/_retrieve.al
-	.${ARCH_LIB}/auto/Storable/retrieve.al
 	.${ARCH_LIB}/auto/Storable/Storable$(get_libname)
+	.${ARCH_LIB}/auto/Storable/_retrieve.al
 	.${ARCH_LIB}/auto/Storable/_store.al
+	.${ARCH_LIB}/auto/Storable/autosplit.ix
+	.${ARCH_LIB}/auto/Storable/retrieve.al
 	.${ARCH_LIB}/auto/Storable/store.al
-	.${ARCH_LIB}/B.pm
-	.${ARCH_LIB}/Config.pm
-	.${ARCH_LIB}/Config_heavy.pl
-	.${ARCH_LIB}/CORE/libperl$(get_libname)
-	.${ARCH_LIB}/Cwd.pm
-	.${ARCH_LIB}/Data/Dumper.pm
-	.${ARCH_LIB}/DynaLoader.pm
+	.${ARCH_LIB}/auto/re/re$(get_libname)
 	.${ARCH_LIB}/encoding.pm
-	.${ARCH_LIB}/Errno.pm
-	.${ARCH_LIB}/Fcntl.pm
-	.${ARCH_LIB}/File/Glob.pm
-	.${ARCH_LIB}/File/Spec.pm
-	.${ARCH_LIB}/File/Spec/Unix.pm
-	.${ARCH_LIB}/_h2ph_pre.ph
-	.${ARCH_LIB}/IO/File.pm
-	.${ARCH_LIB}/IO/Handle.pm
-	.${ARCH_LIB}/IO/Pipe.pm
-	.${ARCH_LIB}/IO.pm
-	.${ARCH_LIB}/IO/Seekable.pm
-	.${ARCH_LIB}/IO/Select.pm
-	.${ARCH_LIB}/IO/Socket.pm
-	.${ARCH_LIB}/IO/Socket/INET.pm
-	.${ARCH_LIB}/IO/Socket/UNIX.pm
 	.${ARCH_LIB}/lib.pm
-	.${ARCH_LIB}/List/Util.pm
-	.${ARCH_LIB}/NDBM_File.pm
 	.${ARCH_LIB}/ops.pm
-	.${ARCH_LIB}/POSIX.pm
 	.${ARCH_LIB}/re.pm
-	.${ARCH_LIB}/Scalar/Util.pm
-	.${ARCH_LIB}/Socket.pm
-	.${ARCH_LIB}/Storable.pm
-	.${ARCH_LIB}/threads
-	.${ARCH_LIB}/threads.pm"
+	.${ARCH_LIB}/threads.pm
+"
 
 	pushd "${ED}" > /dev/null
 	# Remove cruft
@@ -657,5 +680,8 @@ src_remove_extra_files() {
 	done
 	# Remove empty directories
 	find . -depth -type d -print0 | xargs -0 -r rmdir &> /dev/null
+	#for f in ${MINIMAL_PERL_INSTALL} ; do
+	#	[[ -e $f ]] || ewarn "$f unused in MINIMAL_PERL_INSTALL"
+	#done
 	popd > /dev/null
 }

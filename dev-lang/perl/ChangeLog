@@ -1,6 +1,56 @@
 # ChangeLog for dev-lang/perl
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.345 2010/11/29 12:17:52 hwoarang Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.359 2011/01/22 11:19:07 armin76 Exp $
+
+  22 Jan 2011; Raúl Porcel <armin76@gentoo.org> perl-5.12.2-r6.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #351699
+
+*perl-5.12.3 (22 Jan 2011)
+
+  22 Jan 2011; Torsten Veller <tove@gentoo.org> +perl-5.12.3.ebuild:
+  Version bump
+
+  18 Jan 2011; Jeroen Roovers <jer@gentoo.org> perl-5.12.2-r6.ebuild:
+  Stable for HPPA (bug #351699).
+
+  18 Jan 2011; Christian Faulhammer <fauli@gentoo.org>
+  perl-5.12.2-r6.ebuild:
+  stable x86, security bug 351699
+
+  15 Jan 2011; Markos Chandras <hwoarang@gentoo.org> perl-5.12.2-r6.ebuild:
+  Stable on amd64 wrt bug #351699
+
+  15 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> perl-5.12.2-r6.ebuild:
+  ppc/ppc64 stable wrt #351699
+
+*perl-5.12.2-r6 (15 Jan 2011)
+
+  15 Jan 2011; Torsten Veller <tove@gentoo.org> +perl-5.12.2-r6.ebuild:
+  Bump core CGI-3.51 (#351699)
+
+  13 Dec 2010; Torsten Veller <tove@gentoo.org> -perl-5.12.2-r1.ebuild,
+  -perl-5.12.2-r2.ebuild, -perl-5.12.2-r3.ebuild:
+  Cleanup
+
+*perl-5.12.2-r5 (13 Dec 2010)
+
+  13 Dec 2010; Torsten Veller <tove@gentoo.org> +perl-5.12.2-r5.ebuild:
+  Don't force -fstack-protector on everyone (#348557)
+
+  10 Dec 2010; Brent Baude <ranger@gentoo.org> perl-5.12.2-r4.ebuild:
+  Marking perl-5.12.2-r4 ppc64 for bug 345845
+
+  04 Dec 2010; Raúl Porcel <armin76@gentoo.org> perl-5.12.2-r4.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #345845
+
+  01 Dec 2010; Markus Meier <maekke@gentoo.org> perl-5.12.2-r4.ebuild:
+  arm stable, bug #345845
+
+  29 Nov 2010; Jeroen Roovers <jer@gentoo.org> perl-5.12.2-r4.ebuild:
+  Stable for HPPA (bug #345845).
+
+  29 Nov 2010; Jeroen Roovers <jer@gentoo.org> perl-5.12.2-r4.ebuild:
+  Stable for PPC (bug #345845).
 
   29 Nov 2010; Markos Chandras <hwoarang@gentoo.org> perl-5.12.2-r4.ebuild:
   Stable on amd64 wrt bug #345845
