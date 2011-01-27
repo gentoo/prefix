@@ -36,6 +36,11 @@ do
   tobuildstr="\">=$category/$pkg:$slot\" $tobuildstr"
 done
 
+if [ "$tobuild" = "" ] ; then
+	echo "Nothing to do!"
+	exit 0
+fi
+
 echo Building $tobuildstr
 
 if [ $pretend -eq 1 ]
