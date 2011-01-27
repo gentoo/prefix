@@ -1,6 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6f-r3.ebuild,v 1.14 2010/01/27 02:31:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6g.ebuild,v 1.2 2011/01/06 02:52:03 vapier Exp $
+
+EAPI="2"
 
 inherit eutils toolchain-funcs flag-o-matic prefix
 
@@ -11,13 +13,13 @@ SRC_URI="http://primates.ximian.com/~flucifredi/man/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="lzma nls"
+IUSE="+lzma nls"
 
 DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND="|| ( >=sys-apps/groff-1.19.2-r1 app-doc/heirloom-doctools )
 	!sys-apps/man-db
-	!app-arch/lzma
-	lzma? ( || ( app-arch/xz-utils app-arch/lzma-utils ) )"
+	!<app-arch/lzma-4.63
+	lzma? ( app-arch/xz-utils )"
 PROVIDE="virtual/man"
 
 pkg_setup() {
@@ -25,37 +27,32 @@ pkg_setup() {
 	enewuser man 13 -1 ${EPREFIX}/usr/share/man man
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/man-1.6f-man2html-compression.patch
+src_prepare() {
+	epatch "${FILESDIR}"/man-1.6f-man2html-compression-2.patch
 	epatch "${FILESDIR}"/man-1.6-cross-compile.patch
-	epatch "${FILESDIR}"/man-1.5p-search-order.patch
 	epatch "${FILESDIR}"/man-1.6f-unicode.patch #146315
-	epatch "${FILESDIR}"/man-1.5p-defmanpath-symlinks.patch
-	epatch "${FILESDIR}"/man-1.6b-more-sections.patch
 	epatch "${FILESDIR}"/man-1.6c-cut-duplicate-manpaths.patch
 	epatch "${FILESDIR}"/man-1.5m2-apropos.patch
-	epatch "${FILESDIR}"/man-1.6d-fbsd.patch
+	epatch "${FILESDIR}"/man-1.6g-fbsd.patch #138123
 	epatch "${FILESDIR}"/man-1.6e-headers.patch
-	epatch "${FILESDIR}"/man-1.6f-so-search.patch
-	epatch "${FILESDIR}"/man-1.6f-compress.patch
+	epatch "${FILESDIR}"/man-1.6f-so-search-2.patch
+	epatch "${FILESDIR}"/man-1.6g-compress.patch #205147
+	epatch "${FILESDIR}"/man-1.6f-parallel-build.patch #207148 #258916
+	epatch "${FILESDIR}"/man-1.6g-xz.patch #302380
+	epatch "${FILESDIR}"/man-1.6f-makewhatis-compression-cleanup.patch #331979
+	# make sure `less` handles escape sequences #287183
+	sed -i -e '/^DEFAULTLESSOPT=/s:"$:R":' configure
 
 	# This patch could be easily merged with the FreeBSD one, but we don't
 	# because the files have no CVS header and then auto syncing overwrites the
 	# local difference we make.  <grobian@gentoo.org>
 	epatch "${FILESDIR}"/man-1.6e-bsdish.patch
-
 	# Solaris needs fcntl.h included for O_CREAT etc, like SYSV
 	epatch "${FILESDIR}"/man-1.6e-solaris.patch
-
 	# hpux does not have setenv()
 	epatch "${FILESDIR}"/man-1.6e-hpux.patch
-
 	# irix support is a bit messed up in defines
 	epatch "${FILESDIR}"/man-1.6f-irix.patch
-
 	# Results in grabbing as much tools from the prefix, instead of main
 	# system in a prefixed environment
 	epatch "${FILESDIR}"/man-1.6e-prefix-path.patch
@@ -66,17 +63,19 @@ src_unpack() {
 	epatch "${FILESDIR}"/makewhatis.cron-prefix.patch
 	popd > /dev/null
 	eprefixify "${T}"/makewhatis.cron
-
 	# Hardcode path to echo(1), to keep some shells (e.g. zsh, mksh) from
 	# expanding "\n".
 	epatch "${FILESDIR}"/man-1.6f-echo.patch
 	eprefixify "${S}"/src/man.c
-
 	# don't use built-in versions of bcopy and bzero if _ALL_SOURCE is deinfed
 	# on interix, since they have conflicting definitions with system headers.
-	epatch "${FILESDIR}"/${P}-interix-all_source.patch
+	epatch "${FILESDIR}"/${PN}-1.6f-interix-all_source.patch
 
-	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
+	# fix man.conf file, bug #351245
+	sed -i \
+		-e "/^MANPATH\t/s:\t/:\t${EPREFIX}/:" \
+		-e "/^MANPATH_MAP\t/s:\t/:\t${EPREFIX}/:g" \
+		src/man.conf.in || die
 
 	if use prefix ; then
 		ebegin "Allowing unpriviliged install"
@@ -85,9 +84,13 @@ src_unpack() {
 			"${S}"/src/Makefile.in
 		eend $?
 	fi
+
 }
 
-src_compile() {
+echoit() { echo "$@" ; "$@" ; }
+src_configure() {
+	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
+
 	unset NLSPATH #175258
 
 	tc-export CC BUILD_CC
@@ -108,12 +111,13 @@ src_compile() {
 
 	[[ ${CHOST} == *-interix* ]] && append-flags "-D_POSIX_SOURCE"
 
-	if use lzma; then
-		mycompress="${EPREFIX}"/usr/bin/lzma
+	export COMPRESS
+	if use lzma ; then
+		COMPRESS="${EPREFIX}"/usr/bin/xz
 	else
-		mycompress="${EPREFIX}"/bin/bzip2
+		COMPRESS="${EPREFIX}"/bin/bzip2
 	fi
-	COMPRESS=$mycompress \
+	echoit \
 	./configure \
 		-prefix="${EPREFIX}/usr" \
 		-confdir="${EPREFIX}"/etc \
@@ -121,8 +125,6 @@ src_compile() {
 		+fhs \
 		+lang ${mylang} \
 		|| die "configure failed"
-
-	emake || die "emake failed"
 }
 
 src_install() {
