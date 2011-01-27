@@ -1,6 +1,22 @@
 # ChangeLog for dev-lang/pike
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/pike/ChangeLog,v 1.35 2009/09/18 21:44:28 patrick Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/pike/ChangeLog,v 1.38 2010/12/15 04:23:57 araujo Exp $
+
+*pike-7.8.352-r1 (15 Dec 2010)
+
+  15 Dec 2010; Luis F. Araujo <araujo@gentoo.org> -pike-7.8.352.ebuild,
+  +pike-7.8.352-r1.ebuild:
+  Remove modules to avoid sandbox errors
+
+*pike-7.8.352 (14 Dec 2010)
+
+  14 Dec 2010; Luis F. Araujo <araujo@gentoo.org> +pike-7.8.352.ebuild:
+  Updating to new version. Bug #337492
+
+  16 Sep 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  pike-7.6.86-r1.ebuild, pike-7.6.112.ebuild, pike-7.6.112-r1.ebuild,
+  pike-7.8.316.ebuild:
+  virtual/glut -> media-libs/glut
 
   18 Sep 2009; Patrick Lauer <patrick@gentoo.org> pike-7.6.86-r1.ebuild:
   Fixing nettle dep for stable pike too

@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/pike/pike-7.8.316.ebuild,v 1.2 2009/09/09 21:21:35 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/pike/pike-7.8.316.ebuild,v 1.3 2010/09/16 16:41:26 scarabeus Exp $
 
 EAPI="2"
 DESCRIPTION="Pike programming language and runtime"
@@ -26,7 +26,7 @@ DEPEND="<dev-libs/nettle-2
 	kerberos? ( virtual/krb5 net-libs/libgssglue )
 	mysql? ( virtual/mysql )
 	odbc? ( dev-db/libiodbc )
-	opengl? ( virtual/opengl glut? ( virtual/glut ) )
+	opengl? ( virtual/opengl glut? ( media-libs/freeglut ) )
 	pcre? ( dev-libs/libpcre )
 	pdf? ( media-libs/pdflib )
 	!x86-fbsd? ( scanner? ( media-gfx/sane-backends ) )
