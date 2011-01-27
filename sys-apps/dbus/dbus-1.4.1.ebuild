@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.0.ebuild,v 1.8 2010/10/30 13:08:24 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.1.ebuild,v 1.9 2011/01/11 11:34:07 xarthisius Exp $
 
 EAPI="2"
 
-inherit autotools eutils multilib flag-o-matic prefix
+inherit autotools eutils multilib flag-o-matic virtualx prefix
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
@@ -85,7 +85,7 @@ src_prepare() {
 		epatch "${T}"/itx.patch
 	fi
 
-	epatch "${FILESDIR}"/${P}-asneeded.patch
+	epatch "${FILESDIR}"/${PN}-1.4.0-asneeded.patch
 
 	# Doesn't build with PIE support
 	if [[ ${CHOST} == *-freebsd7.1 ]]; then
@@ -200,7 +200,7 @@ src_compile() {
 
 src_test() {
 	cd "${TBD}"
-	DBUS_VERBOSE=1 make check || die "make check failed"
+	DBUS_VERBOSE=1 Xmake check || die "make check failed"
 }
 
 src_install() {

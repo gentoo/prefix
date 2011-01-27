@@ -1,6 +1,35 @@
 # ChangeLog for sys-apps/dbus
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.266 2010/10/30 13:08:24 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.275 2011/01/11 11:34:07 xarthisius Exp $
+
+  11 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> dbus-1.4.1.ebuild:
+  ppc stable wrt #348766
+
+  04 Jan 2011; Raúl Porcel <armin76@gentoo.org> dbus-1.4.1.ebuild:
+  ia64/s390/sh/sparc stable wrt #348766
+
+  02 Jan 2011; Tobias Klausmann <klausman@gentoo.org> dbus-1.4.1.ebuild:
+  Stable on alpha, bug #348766
+
+  27 Dec 2010; Markus Meier <maekke@gentoo.org> dbus-1.4.1.ebuild:
+  arm stable, bug #348766
+
+  24 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> dbus-1.4.1.ebuild:
+  Use virtualx.eclass for testsuite wrt #349403 by "Nikoli".
+
+  23 Dec 2010; Jeroen Roovers <jer@gentoo.org> dbus-1.4.1.ebuild:
+  Stable for HPPA (bug #348766).
+
+  22 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> dbus-1.4.1.ebuild:
+  amd64/ppc64 stable wrt security #348766
+
+  22 Dec 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> dbus-1.4.1.ebuild:
+  x86 stable wrt security bug #348766
+
+*dbus-1.4.1 (21 Dec 2010)
+
+  21 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> +dbus-1.4.1.ebuild:
+  Version bump wrt #348766 by Tim Sammut.
 
   30 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> dbus-1.4.0.ebuild:
   ppc64 stable wrt #343323
