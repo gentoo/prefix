@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/boehm-gc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.75 2010/01/11 03:25:55 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.76 2010/09/26 22:13:45 xmw Exp $
+
+  26 Sep 2010; Michael Weber <xmw@gentoo.org> boehm-gc-7.1.ebuild,
+  boehm-gc-7.2_alpha4.ebuild:
+  Added ~arm keyword
 
 *boehm-gc-7.2_alpha4 (11 Jan 2010)
 
