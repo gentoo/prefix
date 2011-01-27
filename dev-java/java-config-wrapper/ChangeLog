@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/java-config-wrapper
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.52 2009/08/09 22:04:04 caster Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.53 2010/11/27 02:01:11 xmw Exp $
+
+  27 Nov 2010; Michael Weber <xmw@gentoo.org> java-config-wrapper-0.16.ebuild:
+  Add ~sparc (bug 344659).
 
   09 Aug 2009; Vlastimil Babka <caster@gentoo.org>
   -java-config-wrapper-0.15.ebuild:
