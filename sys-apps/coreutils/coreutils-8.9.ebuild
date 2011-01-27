@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.6.ebuild,v 1.1 2010/10/26 01:58:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.9.ebuild,v 1.1 2011/01/04 19:19:38 vapier Exp $
 
 EAPI="3"
 
@@ -32,10 +32,10 @@ RDEPEND="caps? ( sys-libs/libcap )
 	!sys-apps/mktemp
 	!<app-forensics/tct-1.18-r1
 	!<net-fs/netatalk-2.0.3-r4
-	!<sci-chemistry/ccp4-6.1.1
-	>=sys-libs/ncurses-5.3-r5"
+	!<sci-chemistry/ccp4-6.1.1"
 DEPEND="${RDEPEND}
-	app-arch/xz-utils"
+	app-arch/xz-utils
+	dev-util/gperf"
 
 src_prepare() {
 	if ! use vanilla ; then
@@ -47,19 +47,26 @@ src_prepare() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
-	epatch "${FILESDIR}"/${PN}-7.4-hppa-hpux.patch
+	epatch "${FILESDIR}"/${PN}-8.8-hppa-hpux.patch
 
 	# interix has no setgroups, so this won't work.
 	epatch "${FILESDIR}"/${PN}-7.5-interix-setgroups.patch
 
 	# interix has no method to determine mounted filesystems
+	# recently, support was added to gnulib, so the following
+	# two patches can be removed in the next version containing
+	# a new gnulib.
 	epatch "${FILESDIR}"/${PN}-8.5-interix-warn-mount.patch
+	epatch "${FILESDIR}"/${PN}-8.8-interix.patch
 
 	# interix has very very very broken long double support in libc :(
 	# this patch should not do much harm on other platforms, still it changes
 	# the behaviour of the 'seq' program, so it's conditional here.
 	[[ ${CHOST} == *-interix* ]] &&
 		epatch "${FILESDIR}"/${PN}-8.5-interix-double.patch
+
+	# Avoid perl dep for compiled in dircolors default #348642
+	has_version dev-lang/perl || touch src/dircolors.h
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
@@ -87,6 +94,9 @@ src_configure() {
 	if [[ ${CHOST} == *-mint* ]]; then
 		myconf="${myconf} --enable-install-program=arch,hostname,kill,uptime"
 		myconf="${myconf} --enable-no-install-program=groups,su"
+	elif [[ ${CHOST} == *-interix* ]]; then
+		myconf="${myconf} --enable-install-program=arch,hostname,kill,uptime,groups"
+		myconf="${myconf} --enable-no-install-program=su"
 	else
 		myconf="${myconf} --enable-install-program=arch"
 		myconf="${myconf} --enable-no-install-program=groups,hostname,kill,su,uptime"
