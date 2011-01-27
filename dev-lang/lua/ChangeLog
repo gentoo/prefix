@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/lua
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.148 2010/06/19 17:04:05 mabi Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.150 2011/01/09 17:33:55 mabi Exp $
+
+*lua-5.1.4-r7 (09 Jan 2011)
+
+  09 Jan 2011; Matti Bickel <mabi@gentoo.org> +lua-5.1.4-r7.ebuild:
+  eapi bump to 3, fixes path annoyances (bug #347717)
+
+  11 Nov 2010; Rafael G. Martins <rafaelmartins@gentoo.org> metadata.xml:
+  Added myself to metadata.xml
 
 *lua-5.1.4-r6 (19 Jun 2010)
 

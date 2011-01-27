@@ -6,5 +6,9 @@
 	<email>mabi@gentoo.org</email>
 	<name>Matti Bickel</name>
 </maintainer>
+<maintainer>
+	<email>rafaelmartins@gentoo.org</email>
+	<name>Rafael G. Martins</name>
+</maintainer>
 <use><flag name='deprecated'>make deprecated data structures/routines available</flag></use>
 </pkgmetadata>
