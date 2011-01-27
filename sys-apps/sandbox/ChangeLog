@@ -1,6 +1,39 @@
 # ChangeLog for sys-apps/sandbox
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.141 2010/10/16 14:08:46 ranger Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.151 2011/01/02 02:47:51 vapier Exp $
+
+  02 Jan 2011; Mike Frysinger <vapier@gentoo.org> sandbox-2.4.ebuild:
+  Mark alpha/ia64/s390/sh stable #348549.
+
+  21 Dec 2010; Markus Meier <maekke@gentoo.org> sandbox-2.4.ebuild:
+  arm stable, bug #348549
+
+  19 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> sandbox-2.4.ebuild:
+  ppc64 stable wrt #348549
+
+  14 Dec 2010; Markos Chandras <hwoarang@gentoo.org> sandbox-2.4.ebuild:
+  Stable on amd64 wrt bug #348549
+
+  13 Dec 2010; Jeroen Roovers <jer@gentoo.org> sandbox-2.4.ebuild:
+  Stable for HPPA PPC (bug #348549).
+
+  13 Dec 2010; Jeroen Roovers <jer@gentoo.org> sandbox-2.4.ebuild:
+  Stable for HPPA (bug #348549).
+
+  12 Dec 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> sandbox-2.4.ebuild:
+  x86 stable wrt bug #348549
+
+  30 Nov 2010; Michael Weber <xmw@gentoo.org> sandbox-2.3-r1.ebuild:
+  sparc stable (bug 338113)
+
+*sandbox-2.4 (24 Nov 2010)
+
+  24 Nov 2010; Mike Frysinger <vapier@gentoo.org> +sandbox-2.4.ebuild:
+  Fix hardened issues #339157 and flesh out *at func handling some more
+  #342983.
+
+  23 Nov 2010; Mike Frysinger <vapier@gentoo.org> sandbox-2.3-r1.ebuild:
+  Add back ~sparc since it has its ptrace disabled.
 
   16 Oct 2010; Brent Baude <ranger@gentoo.org> sandbox-2.3-r1.ebuild:
   stable ppc, bug 338113

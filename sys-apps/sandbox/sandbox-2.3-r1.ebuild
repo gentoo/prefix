@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-2.3-r1.ebuild,v 1.7 2010/10/16 14:08:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-2.3-r1.ebuild,v 1.9 2010/11/30 16:27:28 xmw Exp $
 
 #
 # don't monkey with this ebuild unless contacting portage devs.

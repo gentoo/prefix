@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-2.2.ebuild,v 1.3 2010/08/15 05:22:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-2.4.ebuild,v 1.8 2011/01/02 02:47:51 vapier Exp $
 
 #
 # don't monkey with this ebuild unless contacting portage devs.
@@ -11,8 +11,8 @@ inherit eutils flag-o-matic toolchain-funcs multilib prefix
 
 DESCRIPTION="sandbox'd LD_PRELOAD hack"
 HOMEPAGE="http://www.gentoo.org/"
-SRC_URI="mirror://gentoo/${P}.tar.lzma
-	http://dev.gentoo.org/~vapier/dist/${P}.tar.lzma"
+SRC_URI="mirror://gentoo/${P}.tar.xz
+	http://dev.gentoo.org/~vapier/dist/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -31,21 +31,16 @@ sandbox_death_notice() {
 	ewarn "FEATURES=-sandbox emerge sandbox"
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.0-prefix.patch
-	eprefixify etc/sandbox.d/00default
-}
-
 sb_get_install_abis() { use multilib && get_install_abis || echo ${ABI:-default} ; }
 
 src_unpack() {
 	unpack ${A}
 	if [[ ! -d ${S} ]] ; then
-		# When upgrading from older version, lzma unpack may not work #271543
-		lzma -dc "${DISTDIR}/${A}" | tar xf - || die
+		# When upgrading from older version, xz unpack may not work #271543
+		xz -dc "${DISTDIR}/${A}" | tar xf - || die
 	fi
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-2.2-prefix.patch
 }
 
 src_compile() {
@@ -86,6 +81,8 @@ src_install() {
 		cd "${WORKDIR}/build-${ABI}"
 		einfo "Installing sandbox for ABI=${ABI}..."
 		emake DESTDIR="${D}" install || die "make install failed for ${ABI}"
+		insinto /etc/sandbox.d #333131
+		doins etc/sandbox.d/00default || die
 	done
 	ABI=${OABI}
 
