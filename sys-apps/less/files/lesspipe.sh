@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Preprocessor for 'less'. Used when this environment variable is set:
-# LESSOPEN="|lesspipe.sh %s"
+# LESSOPEN="|lesspipe %s"
 
 # TODO: handle compressed files better
 
@@ -158,7 +158,7 @@ lesspipe() {
 	*.mp3)        mp3info "$1" || id3info "$1" ;;
 	*.ogg)        ogginfo "$1" ;;
 	*.flac)       metaflac --list "$1" ;;
-	*.torrent)    torrentinfo-console "$1" || ctorrent -x "$1" ;;
+	*.torrent)    torrentinfo "$1" || torrentinfo-console "$1" || ctorrent -x "$1" ;;
 	*.bin|*.cue|*.raw)
 		# not all .bin/.raw files are cd images, so fall back to hexdump
 		cd-info --no-header --no-device-info "$1" || lesspipe_file "$1"
@@ -175,6 +175,10 @@ lesspipe() {
 		isoinfo -l ${iso_opts} -i "$1"
 		;;
 
+	### Encryption stuff ###
+	*.crl) openssl crl -hash -text -noout -in "$1" ;;
+	*.pem) openssl x509 -hash -text -noout -in "$1" ;;
+
 # May not be such a good idea :)
 #	### Device nodes ###
 #	/dev/[hs]d[a-z]*)
@@ -184,19 +188,13 @@ lesspipe() {
 
 	### Everything else ###
 	*)
-		# Sanity check
-		[[ ${recur} == 2 ]] && exit 0
+		case $(( recur++ )) in
+			# Maybe we didn't match due to case issues ...
+			0) lesspipe "$1" "$(echo $1 | LC_ALL=C tr '[:upper:]' '[:lower:]')" ;;
 
-		# Maybe we didn't match due to case issues ...
-		if [[ ${recur} == 0 ]] ; then
-			recur=1
-			lesspipe "$1" "$(echo $1 | LC_ALL=C tr '[:upper:]' '[:lower:]')"
-
-		# Maybe we didn't match because the file is named weird ...
-		else
-			recur=2
-			lesspipe_file "$1"
-		fi
+			# Maybe we didn't match because the file is named weird ...
+			1) lesspipe_file "$1" ;;
+		esac
 
 		# So no matches from above ... finally fall back to an external
 		# coloring package.  No matching here so we don't have to worry
@@ -227,11 +225,11 @@ lesspipe() {
 }
 
 if [[ -z $1 ]] ; then
-	echo "Usage: lesspipe.sh <file>"
+	echo "Usage: lesspipe <file>"
 elif [[ $1 == "-V" || $1 == "--version" ]] ; then
 	Id="cvsid"
 	cat <<-EOF
-		$Id: lesspipe.sh,v 1.41 2010/08/24 01:01:25 vapier Exp $
+		$Id: lesspipe.sh,v 1.45 2011/01/20 03:26:14 vapier Exp $
 		Copyright 2001-2010 Gentoo Foundation
 		Mike Frysinger <vapier@gentoo.org>
 		     (with plenty of ideas stolen from other projects/distros)
@@ -241,11 +239,11 @@ elif [[ $1 == "-V" || $1 == "--version" ]] ; then
 	less -V
 elif [[ $1 == "-h" || $1 == "--help" ]] ; then
 	cat <<-EOF
-		lesspipe.sh: preproccess files before sending them to less
+		lesspipe: preproccess files before sending them to less
 
-		Usage: lesspipe.sh <file>
+		Usage: lesspipe <file>
 
-		lesspipe.sh specific settings:
+		lesspipe specific settings:
 		  LESSCOLOR env     - toggle colorizing of output (no/yes/always)
 		  LESSCOLORIZER env - program used to colorize output (default: code2color)
 		  LESSIGNORE        - list of extensions to ignore (don't do anything fancy)
@@ -254,8 +252,8 @@ elif [[ $1 == "-h" || $1 == "--help" ]] ; then
 		  ~/.lessfilter
 		One argument is passed to it: the file to display.
 
-		To use lesspipe.sh, simply add to your environment:
-		  export LESSOPEN="|lesspipe.sh %s"
+		To use lesspipe, simply add to your environment:
+		  export LESSOPEN="|lesspipe %s"
 
 		Run 'less --help' or 'man less' for more info
 	EOF
