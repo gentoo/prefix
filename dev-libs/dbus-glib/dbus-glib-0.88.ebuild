@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.88.ebuild,v 1.2 2010/10/30 13:09:04 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.88.ebuild,v 1.10 2011/01/11 11:37:02 xarthisius Exp $
 
 EAPI="2"
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="bash-completion debug doc static-libs test"
 
-RDEPEND=">=sys-apps/dbus-1.1
+RDEPEND=">=sys-apps/dbus-1.4.1
 	>=dev-libs/glib-2.24
 	>=dev-libs/expat-1.95.8"
 DEPEND="${RDEPEND}

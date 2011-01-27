@@ -1,0 +1,47 @@
+From 2d987890c3ba2fd8efc92f8b75da88904ce425f9 Mon Sep 17 00:00:00 2001
+From: Simon McVittie <simon.mcvittie@collabora.co.uk>
+Date: Tue, 04 Jan 2011 18:04:11 +0000
+Subject: Run run-with-tmp-session-bus.sh directly rather than via ${SHELL}
+
+It has a correct #!/bin/sh line and is executable, so just running it is
+fine. This avoids running it under a user's chosen interactive shell,
+which might be non-POSIX (zsh, csh). Gentoo Portage apparently sets
+SHELL to /bin/false, presumably to trap this sort of thing.
+
+(I've tested this on Debian unstable with /bin/sh -> /bin/dash, to check
+that weren't accidentally relying on $SHELL being bash or similar.)
+
+Based on a workaround from Myckel Habets on the Gentoo bug.
+
+Bug: https://bugs.freedesktop.org/show_bug.cgi?id=27193
+Bug-Gentoo: https://bugs.gentoo.org/show_bug.cgi?id=254192
+Reviewed-by: Colin Walters <walters@verbum.org>
+---
+diff --git a/test/core/run-test.sh b/test/core/run-test.sh
+index 0351472..216c2a3 100755
+--- a/test/core/run-test.sh
++++ b/test/core/run-test.sh
+@@ -18,7 +18,7 @@ export DBUS_TOP_SRCDIR
+ if test -z "$DBUS_TEST_GLIB_IN_RUN_TEST"; then
+   DBUS_TEST_GLIB_IN_RUN_TEST=1
+   export DBUS_TEST_GLIB_IN_RUN_TEST
+-  exec ${SHELL} $DBUS_TOP_SRCDIR/tools/run-with-tmp-session-bus.sh $SCRIPTNAME $MODE
++  exec $DBUS_TOP_SRCDIR/tools/run-with-tmp-session-bus.sh $SCRIPTNAME $MODE
+ fi  
+ 
+ if test x$MODE = xprofile ; then
+diff --git a/test/interfaces/run-test.sh b/test/interfaces/run-test.sh
+index 385efdc..5c57c80 100755
+--- a/test/interfaces/run-test.sh
++++ b/test/interfaces/run-test.sh
+@@ -12,7 +12,7 @@ export DBUS_TOP_SRCDIR
+ if test -z "$DBUS_TEST_GLIB_IN_RUN_TEST"; then
+   DBUS_TEST_GLIB_IN_RUN_TEST=1
+   export DBUS_TEST_GLIB_IN_RUN_TEST
+-  exec ${SHELL} $DBUS_TOP_SRCDIR/tools/run-with-tmp-session-bus.sh $SCRIPTNAME $MODE
++  exec $DBUS_TOP_SRCDIR/tools/run-with-tmp-session-bus.sh $SCRIPTNAME $MODE
+ fi  
+ 
+ echo "running test-client"
+--
+cgit v0.8.3-6-g21f6

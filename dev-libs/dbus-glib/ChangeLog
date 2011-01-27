@@ -1,6 +1,32 @@
 # ChangeLog for dev-libs/dbus-glib
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.70 2010/11/10 16:49:58 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.78 2011/01/19 20:20:59 eva Exp $
+
+  19 Jan 2011; Gilles Dartiguelongue <eva@gentoo.org> dbus-glib-0.92.ebuild,
+  +files/dbus-glib-0.92-userpriv-fix.patch:
+  Fix running tests with userpriv, using upstream patch, bug #254192.
+
+  11 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> dbus-glib-0.88.ebuild:
+  ppc stable wrt #348766
+
+  04 Jan 2011; Raúl Porcel <armin76@gentoo.org> dbus-glib-0.88.ebuild:
+  ia64/s390/sh/sparc stable wrt #348766
+
+  02 Jan 2011; Tobias Klausmann <klausman@gentoo.org> dbus-glib-0.88.ebuild:
+  Stable on alpha, bug #348766
+
+  27 Dec 2010; Markus Meier <maekke@gentoo.org> dbus-glib-0.88.ebuild:
+  arm stable, bug #348766
+
+  23 Dec 2010; Jeroen Roovers <jer@gentoo.org> dbus-glib-0.88.ebuild:
+  Stable for HPPA (bug #348766).
+
+  22 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> dbus-glib-0.88.ebuild:
+  amd64 stable wrt #348766
+
+  22 Dec 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  dbus-glib-0.88.ebuild:
+  x86 stable wrt security bug #348766
 
 *dbus-glib-0.92 (10 Nov 2010)
 

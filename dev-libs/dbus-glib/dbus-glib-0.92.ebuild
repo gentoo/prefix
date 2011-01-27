@@ -1,9 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.92.ebuild,v 1.1 2010/11/10 16:49:58 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.92.ebuild,v 1.5 2011/01/19 20:20:59 eva Exp $
 
 EAPI=2
-inherit bash-completion
+
+inherit eutils bash-completion
 
 DESCRIPTION="D-Bus bindings for glib"
 HOMEPAGE="http://dbus.freedesktop.org/"
@@ -14,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="bash-completion debug doc static-libs test"
 
-RDEPEND=">=sys-apps/dbus-1.1
+RDEPEND=">=sys-apps/dbus-1.4.1
 	>=dev-libs/glib-2.26
 	>=dev-libs/expat-1.95.8"
 DEPEND="${RDEPEND}
@@ -31,6 +32,11 @@ BD=${WORKDIR}/${P}-build
 TBD=${WORKDIR}/${P}-tests-build
 
 BASHCOMPLETION_NAME="dbus"
+
+src_prepare() {
+	# Apply upstream patch to fix build with FEATURES="userpriv", bug #
+	epatch "${FILESDIR}/${P}-userpriv-fix.patch"
+}
 
 src_configure() {
 	local my_conf
