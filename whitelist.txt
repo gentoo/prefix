@@ -408,7 +408,6 @@ dev-lisp/cl-ppcre
 dev-lisp/ecls
 dev-ml/extlib
 dev-ml/lablgtk
-dev-php/PEAR-PEAR
 dev-tex/bibtexu
 dev-tex/chktex
 dev-tex/currvita
@@ -969,6 +968,7 @@ app-vim
 dev-cpp
 dev-dotnet
 dev-games
+dev-php
 dev-php5
 dev-scheme
 dev-tcltk
