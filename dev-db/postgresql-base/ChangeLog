@@ -1,6 +1,56 @@
 # ChangeLog for dev-db/postgresql-base
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.81 2010/12/18 17:09:26 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.91 2011/01/25 15:06:34 hwoarang Exp $
+
+  25 Jan 2011; Markos Chandras <hwoarang@gentoo.org>
+  postgresql-base-9.0.1.ebuild:
+  Stable on amd64 wrt bug #343883
+
+  10 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  postgresql-base-8.3.12.ebuild, postgresql-base-8.4.5.ebuild:
+  ppc64 stable wrt #339935
+
+  08 Jan 2011; Raúl Porcel <armin76@gentoo.org> postgresql-base-8.1.22.ebuild,
+  postgresql-base-8.2.18.ebuild, postgresql-base-8.3.12.ebuild,
+  postgresql-base-8.4.5.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #339935
+
+*postgresql-base-8.1.23 (06 Jan 2011)
+
+  06 Jan 2011; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-8.1.23.ebuild:
+  Bump 8.1 too
+
+*postgresql-base-9.0.2 (04 Jan 2011)
+*postgresql-base-8.4.6 (04 Jan 2011)
+*postgresql-base-8.3.13 (04 Jan 2011)
+*postgresql-base-8.2.19 (04 Jan 2011)
+
+  04 Jan 2011; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-8.2.19.ebuild, +postgresql-base-8.3.13.ebuild,
+  +postgresql-base-8.4.6.ebuild, +postgresql-base-9.0.2.ebuild:
+  Bump
+
+  02 Jan 2011; Tobias Klausmann <klausman@gentoo.org>
+  postgresql-base-8.4.5.ebuild:
+  Stable on alpha, bug #347223
+
+  02 Jan 2011; Tobias Klausmann <klausman@gentoo.org>
+  postgresql-base-8.3.12.ebuild:
+  Stable on alpha, bug #347223
+
+  02 Jan 2011; Tobias Klausmann <klausman@gentoo.org>
+  postgresql-base-8.2.18.ebuild:
+  Stable on alpha, bug #347223
+
+  02 Jan 2011; Tobias Klausmann <klausman@gentoo.org>
+  postgresql-base-8.1.22.ebuild:
+  Stable on alpha, bug #347223
+
+  31 Dec 2010; Markos Chandras <hwoarang@gentoo.org>
+  postgresql-base-8.1.22.ebuild, postgresql-base-8.2.18.ebuild,
+  postgresql-base-8.3.12.ebuild, postgresql-base-8.4.5.ebuild:
+  Stable on amd64 wrt bug #339935
 
   18 Dec 2010; Jeroen Roovers <jer@gentoo.org> postgresql-base-8.1.22.ebuild,
   postgresql-base-8.2.18.ebuild, postgresql-base-8.3.12.ebuild,

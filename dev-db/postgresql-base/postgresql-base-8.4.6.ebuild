@@ -1,20 +1,22 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/postgresql-base-8.4.2-r1.ebuild,v 1.7 2010/06/15 20:51:21 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/postgresql-base-8.4.6.ebuild,v 1.1 2011/01/04 19:22:51 patrick Exp $
 
-EAPI=1
+EAPI="2"
 
 WANT_AUTOMAKE="none"
 
-inherit eutils multilib toolchain-funcs versionator autotools prefix flag-o-matic
+inherit eutils multilib versionator autotools prefix flag-o-matic
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~x86-solaris"
 
 DESCRIPTION="PostgreSQL libraries and clients"
 HOMEPAGE="http://www.postgresql.org/"
+
 SRC_URI="mirror://postgresql/source/v${PV}/postgresql-${PV}.tar.bz2"
 LICENSE="POSTGRESQL"
 SLOT="$(get_version_component_range 1-2)"
+
 IUSE_LINGUAS="
 	linguas_af linguas_cs linguas_de linguas_es linguas_fa linguas_fr
 	linguas_hr linguas_hu linguas_it linguas_ko linguas_nb linguas_pl
@@ -36,27 +38,29 @@ RDEPEND="kerberos? ( virtual/krb5 )
 	zlib? ( >=sys-libs/zlib-1.1.3 )
 	>=app-admin/eselect-postgresql-0.3
 	virtual/libintl
-	!dev-db/postgresql-libs
-	!dev-db/postgresql-client
-	!dev-db/libpq
-	!dev-db/postgresql
+	!!dev-db/postgresql-libs
+	!!dev-db/postgresql-client
+	!!dev-db/libpq
+	!!dev-db/postgresql
 	ldap? ( net-nds/openldap )"
 DEPEND="${RDEPEND}
 	sys-devel/flex
 	>=sys-devel/bison-1.875
 	nls? ( sys-devel/gettext )"
-PDEPEND="doc? ( dev-db/postgresql-docs:${SLOT} )"
+PDEPEND="doc? ( ~dev-db/postgresql-docs-${PV} )"
 
 S="${WORKDIR}/postgresql-${PV}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 
 	epatch "${FILESDIR}/postgresql-${SLOT}-common.patch" \
-		"${FILESDIR}/postgresql-${SLOT}-base.patch" \
-		"${FILESDIR}/postgresql-8.3-prefix.patch"
-	
+		"${FILESDIR}/postgresql-${SLOT}-base.patch"
+
+	if use kerberos && has_version "<app-crypt/heimdal-1.3.2-r1" ; then
+		epatch "${FILESDIR}/postgresql-base-8.4-9.0-heimdal_strlcpy.patch"
+	fi
+
+	epatch "${FILESDIR}/postgresql-8.3-prefix.patch"
 	eprefixify "${S}/src/include/pg_config_manual.h"
 
 	# to avoid collision - it only should be installed by server
@@ -68,9 +72,10 @@ src_unpack() {
 	eautoconf
 }
 
-src_compile() {
+src_configure() {
 	[[ ${CHOST} != *-linux-gnu ]] && append-libs -lintl
-	econf --prefix="${EPREFIX}"/usr/$(get_libdir)/postgresql-${SLOT} \
+	export LDFLAGS_SL="${LDFLAGS}"
+	econf --prefix=/usr/$(get_libdir)/postgresql-${SLOT} \
 		--datadir="${EPREFIX}"/usr/share/postgresql-${SLOT} \
 		--docdir="${EPREFIX}"/usr/share/doc/postgresql-${SLOT} \
 		--sysconfdir="${EPREFIX}"/etc/postgresql-${SLOT} \
@@ -88,16 +93,16 @@ src_compile() {
 		$(use_enable !pg_legacytimestamp integer-datetimes ) \
 		$(use_with ssl openssl) \
 		$(use_enable threads thread-safety) \
-		$(use_enable threads thread-safety-force) \
 		$(use_with zlib) \
 		$(use_with ldap) \
-		${myconf} \
 		|| die "configure failed"
+}
 
-	emake LD="$(tc-getLD) $(get_abi_LDFLAGS)" || die "emake failed"
+src_compile() {
+	emake || die "emake failed"
 
 	cd "${S}/contrib"
-	emake LD="$(tc-getLD) $(get_abi_LDFLAGS)" || die "emake failed"
+	emake || die "emake failed"
 }
 
 src_install() {
@@ -126,14 +131,15 @@ postgres_bindir="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin"
 postgres_symlinks=(
 	${IDIR} "${EPREFIX}/usr/include/postgresql"
 	${IDIR}/libpq-fe.h "${EPREFIX}/usr/include/libpq-fe.h"
+	${IDIR}/pg_config_manual.h /usr/include/pg_config_manual.h
 	${IDIR}/libpq "${EPREFIX}/usr/include/libpq"
 	${IDIR}/postgres_ext.h "${EPREFIX}/usr/include/postgres_ext.h"
 )
 __EOF__
 
 	cat >"${T}/50postgresql-94-${SLOT}" <<-__EOF__
-		LDPATH="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)"
-		MANPATH="${EPREFIX}/usr/share/postgresql-${SLOT}/man"
+		LDPATH=/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)
+		MANPATH=/usr/share/postgresql-${SLOT}/man
 	__EOF__
 	doenvd "${T}/50postgresql-94-${SLOT}"
 
