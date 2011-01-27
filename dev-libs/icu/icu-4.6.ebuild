@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.4.1.ebuild,v 1.13 2010/09/30 20:35:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.6.ebuild,v 1.7 2011/01/15 14:41:58 maekke Exp $
 
 EAPI="3"
 
-inherit eutils flag-o-matic versionator multilib
+inherit versionator multilib
 
 MAJOR_MINOR_VERSION="$(get_version_component_range 1-2)"
 MICRO_VERSION="$(get_version_component_range 3)"
@@ -43,24 +43,18 @@ src_unpack() {
 }
 
 src_prepare() {
-	# Do not hardcode used CFLAGS, LDFLAGS etc. into icu-config
-	# Bug 202059
-	# https://bugs.icu-project.org/trac/ticket/6102
-	for x in ARFLAGS CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
-		sed -i -e "/^${x} =.*/s:@${x}@::" "config/Makefile.inc.in" || die "sed failed"
+	# Do not hardcode flags into icu-config.
+	# https://ssl.icu-project.org/trac/ticket/6102
+	local variable
+	for variable in ARFLAGS CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
+		sed -i -e "/^${variable} =.*/s:@${variable}@::" config/Makefile.inc.in || die "sed failed"
 	done
-
-	epatch "${FILESDIR}/${P}-pkgdata.patch"
-	epatch "${FILESDIR}/${P}-et_EE.patch"
-	epatch "${FILESDIR}/${P}-arm.patch"
 
 	# for correct install_names
 	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
 }
 
 src_configure() {
-	append-flags -fno-strict-aliasing
-
 	if [[ ${CHOST} == *-irix* ]]; then
 		if [[ -n "${LD_LIBRARYN32_PATH}" || -n "${LD_LIBRARY64_PATH}" ]]; then
 			case "${ABI:-$DEFAULT_ABI}" in
@@ -103,16 +97,26 @@ src_compile() {
 }
 
 src_test() {
+	# INTLTEST_OPTS: intltest options
+	#   -e: Exhaustive testing
+	#   -l: Reporting of memory leaks
+	#   -v: Increased verbosity
+	# IOTEST_OPTS: iotest options
+	#   -e: Exhaustive testing
+	#   -v: Increased verbosity
+	# CINTLTST_OPTS: cintltst options
+	#   -e: Exhaustive testing
+	#   -v: Increased verbosity
 	emake -j1 check || die "emake check failed"
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install || die "emake install failed"
+	emake DESTDIR="${D}" install || die "emake install failed"
 
 	dohtml ../readme.html
 	dodoc ../unicode-license.txt
 	if use doc; then
 		insinto /usr/share/doc/${PF}/html/api
-		doins -r "${WORKDIR}/docs/"*
+		doins -r "${WORKDIR}/docs/"* || die "doins failed"
 	fi
 }

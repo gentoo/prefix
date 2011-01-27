@@ -1,6 +1,79 @@
 # ChangeLog for dev-libs/icu
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.119 2010/08/19 16:57:23 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.138 2011/01/15 14:41:58 maekke Exp $
+
+  15 Jan 2011; Markus Meier <maekke@gentoo.org> icu-4.6.ebuild:
+  x86 stable, bug #350861
+
+  15 Jan 2011; Markus Meier <maekke@gentoo.org> icu-4.6.ebuild:
+  arm stable, bug #350861
+
+  13 Jan 2011; Jeroen Roovers <jer@gentoo.org> icu-4.6.ebuild:
+  Stable for HPPA (bug #350861).
+
+  12 Jan 2011; Markos Chandras <hwoarang@gentoo.org> icu-4.6.ebuild:
+  Stable on amd64 wrt bug #350861
+
+  12 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> icu-4.6.ebuild:
+  ppc64 stable wrt #350861
+
+  09 Jan 2011; Brent Baude <ranger@gentoo.org> icu-4.6.ebuild:
+  Marking icu-4.6 ppc for bug 350861
+
+  27 Dec 2010; Brent Baude <ranger@gentoo.org> icu-4.4.2.ebuild:
+  stable ppc64, bug 343759
+
+  13 Dec 2010; Brent Baude <ranger@gentoo.org> icu-4.4.2.ebuild:
+  stable ppc, bug 343759
+
+*icu-4.6 (06 Dec 2010)
+
+  06 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -icu-4.6_rc2.ebuild, +icu-4.6.ebuild:
+  Version bump.
+
+*icu-4.6_rc2 (28 Nov 2010)
+
+  28 Nov 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +icu-4.6_rc2.ebuild:
+  Version bump.
+
+  27 Nov 2010; Raúl Porcel <armin76@gentoo.org> icu-4.4.2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #343759
+
+  06 Nov 2010; Markus Meier <maekke@gentoo.org> icu-4.4.2.ebuild:
+  arm stable, bug #343759
+
+  05 Nov 2010; Christian Faulhammer <fauli@gentoo.org> icu-4.4.2.ebuild:
+  stable x86, bug 343759
+
+  04 Nov 2010; Jeroen Roovers <jer@gentoo.org> icu-4.4.2.ebuild:
+  Stable for HPPA (bug #343759).
+
+  04 Nov 2010; Markos Chandras <hwoarang@gentoo.org> icu-4.4.2.ebuild:
+  Stable on amd64 wrt bug #343759
+
+  02 Nov 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  icu-4.4.2.ebuild, +files/icu-4.4.2-gcc-4.5.patch:
+  Fix tests with GCC 4.5 (bugs #318393, #339844).
+
+*icu-4.4.2 (02 Oct 2010)
+
+  02 Oct 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -icu-4.0.1.ebuild, -files/icu-4.0.1-TestDisplayNamesMeta.patch,
+  -files/icu-4.0.1-fix_parallel_building.patch, -icu-4.2.1.ebuild,
+  -files/icu-4.2.1-fix_misoptimizations.patch,
+  -files/icu-4.2.1-pkgdata.patch,
+  -files/icu-4.2.1-pkgdata-build_data_without_assembly.patch,
+  +icu-4.4.2.ebuild:
+  Version bump.
+
+  30 Sep 2010; Brent Baude <ranger@gentoo.org> icu-4.4.1.ebuild:
+  stable ppc64, bug 322297
+
+  10 Sep 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  metadata.xml:
+  Restore previous maintainer.
 
   19 Aug 2010; Jeroen Roovers <jer@gentoo.org> metadata.xml:
   Remove arfrever.
