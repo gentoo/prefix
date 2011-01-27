@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.4.1-r1.ebuild,v 1.1 2010/06/26 12:06:07 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.5.3.ebuild,v 1.1 2010/10/28 10:19:51 ali_bush Exp $
 
 EAPI="2"
 JAVA_PKG_IUSE="doc source test"
@@ -10,48 +10,50 @@ MY_PV="${PV/_rc1/RC1}"
 
 DESCRIPTION="Java-based Ruby interpreter implementation"
 HOMEPAGE="http://jruby.codehaus.org/"
-#SRC_URI="http://jruby.kenai.com/downloads/${PV}/${PN}-src-${MY_PV}.tar.gz"
-SRC_URI="http://jruby.org.s3.amazonaws.com/downloads/${PV}/${PN}-src-${MY_PV}.tar.gz"
+SRC_URI="http://jruby.org.s3.amazonaws.com/downloads/${PV}/${PN}-src-${PV}.tar.gz"
 LICENSE="|| ( CPL-1.0 GPL-2 LGPL-2.1 )"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="bsf ssl"
 
-CDEPEND=">=dev-java/bytelist-1.0.2:0
+CDEPEND=">=dev-java/bytelist-1.0.6:0
 	>=dev-java/constantine-0.6:0
 	>=dev-java/jline-0.9.94:0
 	>=dev-java/joni-1.1.3:0
-	>=dev-java/jna-posix-1.0.1:0
+	>=dev-java/jnr-posix-1.1.3:0
+	>=dev-java/jnr-netdb-1.0:0
 	>=dev-java/jvyamlb-0.2.5:0
 	>=dev-java/asm-3.2:3
-	>=dev-java/jcodings-1.0.4:0
+	dev-java/jcodings:0
 	>=dev-java/jffi-0.7_pre:0.4
-	dev-java/jna:0
 	dev-java/joda-time:0
 	dev-util/jay:0[java]
 	dev-java/nailgun:0
 	dev-java/jaffl:0
-	dev-java/jgrapht:0"
+	dev-java/jgrapht:0
+	dev-java/ant-core:0
+	dev-java/bsf:2.3"
 
 RDEPEND="${CDEPEND}
 	>=virtual/jre-1.6"
 
 DEPEND="${CDEPEND}
 	>=virtual/jdk-1.6
-	bsf? ( dev-java/bsf:2.3 )
 	test? (
-		=dev-java/junit-3*
-		dev-java/ant-junit
-		dev-java/ant-trax
+		dev-java/ant-junit4:0
+		dev-java/ant-trax:0
+		dev-java/junit:4
+		java-virtuals/jdk-with-com-sun
+		dev-java/commons-logging:0
+		dev-java/xalan:0
+		>=dev-java/jna-posix-1.0.1:0
 	)
 	!!<dev-ruby/jruby-1.3.1-r1"
 
 PDEPEND="ssl? ( dev-ruby/jruby-openssl )"
 
-# Tests work for ali_bush.  But fail for flameeyes see #282439.
-# Tests work for ali_bush inside the ebuild env
-# but fail when using vanilla src tarball.
-# Restrict tests so we can stablise this package.
+# Tests fail.
+# Need to stop injecting jar's into classpath.
 RESTRICT="test"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
@@ -62,8 +64,9 @@ GEMS=${RUBY_HOME}/gems
 
 JAVA_ANT_REWRITE_CLASSPATH="true"
 JAVA_ANT_IGNORE_SYSTEM_CLASSES="true"
-EANT_GENTOO_CLASSPATH="asm-3 bytelist constantine jay jcodings jffi-0.4 jline \
-joda-time joni jna jna-posix jvyamlb nailgun jaffl jgrapht"
+EANT_GENTOO_CLASSPATH="ant-core asm-3 bsf-2.3 bytelist constantine jay \
+jcodings jffi-0.4 jline constantine \
+joda-time joni jnr-posix jnr-netdb jvyamlb nailgun jaffl jgrapht"
 EANT_NEEDS_TOOLS="true"
 
 pkg_setup() {
@@ -92,10 +95,9 @@ pkg_setup() {
 }
 
 java_prepare() {
-	epatch "${FILESDIR}/ftype-test-fixes.patch"
-	epatch "${FILESDIR}/user-test-fixes.patch"
-	epatch "${FILESDIR}"/${PN}-1.4.0-system-jars-r2.patch
-	epatch "${FILESDIR}"/${PN}-1.4.0-bindir.patch
+	epatch "${FILESDIR}"/${PN}-1.5.0-system-jars.patch
+	epatch "${FILESDIR}/1.5.1/build.xml.patch"
+	epatch "${FILESDIR}/1.5.1/testfixes.patch"
 
 	# We don't need to use Retroweaver. There is a jarjar and a regular jar
 	# target but even with jarjarclean, both are a pain. The latter target
@@ -113,22 +115,17 @@ java_prepare() {
 	find build_lib -name "*.jar" ! -name "jsr292-mock.jar" -delete || die
 	rm lib/profile.jar || die
 
-	use bsf && java-pkg_jar-from --into build_lib \
-		--build-only bsf-2.3
-
-	if ! use bsf; then
-		# Remove BSF test cases.
-		cd "${S}/test/org/jruby"
-		rm -f test/TestAdoptedThreading.java || die
-		rm -f javasupport/test/TestBSF.java || die
-		sed -i '/TestBSF.class/d' javasupport/test/JavaSupportTestSuite.java || die
-		sed -i '/TestAdoptedThreading.class/d' test/MainTestSuite.java || die
-	fi
+	# change some defaults for Gentoo to work properly
+	cat - >> src/org/jruby/jruby.properties <<EOF
+jruby.bindir = /usr/bin
+EOF
 }
 
 src_compile() {
-	eant jar $(use_doc apidocs) $(use bsf && echo "-Dbsf.present") \
-		-Djdk1.5+=true
+	local flags=""
+	use bsf && flags="-Dbsf.present=true"
+
+	eant jar $(use_doc apidocs) -Djdk1.5+=true ${flags}
 }
 
 src_test() {
@@ -137,20 +134,29 @@ src_test() {
 		ewarn 'Enable FEATURES="userpriv" if you want to run them.'
 		return
 	fi
-
-	# ali_bush was getting crashes while attempting to run a test.
-	# No info about why it crashed seemed to be produced.
-	# remove it as temp fix.
-	#sed -i -e '/MRI/d' build.xml || die "Failed to sed build.xml"
-
-	# BSF is a compile-time only dependency because it's just the adapter
-	# classes and they won't be used unless invoked from BSF itself.
-	use bsf && java-pkg_jar-from --into build_lib --with-dependencies bsf-2.3
-
 	# Our jruby.jar is unbundled so we need to add the classpath to this test.
 	sed -i "s:java -jar:java -Xbootclasspath/a\:#{ENV['JRUBY_CP']} -jar:g" test/test_load_compiled_ruby_class_from_classpath.rb || die
+	sed -i "s@:refid => 'build.classpath'@:path =>\"#{ENV['JRUBY_CP']}:lib/jruby.jar\"@g" \
+		rakelib/commands.rake || die
+	#sed -i "s@:refid => 'test.class.path'@:path => \"#{ENV['JRUBY_CP']}@g" \
+	#	rakelib/commands.rake || die
 
-	ANT_TASKS="ant-junit ant-trax" JRUBY_CP=`java-pkg_getjars ${EANT_GENTOO_CLASSPATH// /,}` JRUBY_OPTS="" eant test -Djdk1.5+=true
+	#bsf optionally depends on jruby, which means that the previously
+	#installed jruby will be added to classpath, nasty things will happen.
+	local cpath=`java-pkg_getjars ${EANT_GENTOO_CLASSPATH// /,},junit-4`
+	cpath="$(echo ${cpath} | sed -e "s_${EROOT}/usr/share/jruby/lib/jruby.jar:__g")"
+	cpath="${cpath}:$(java-pkg_getjars --build-only commons-logging,xalan)"
+	EANT_GENTOO_CLASSPATH=""
+
+	local flags=""
+	use bsf && flags="-Dbsf.present=true"
+
+	#Clear RUBYOPT
+	export RUBYOPT=""
+	export JRUBY_CP="${cpath}"
+	ANT_TASKS="ant-junit4 ant-trax" \
+		JRUBY_OPTS="" eant test -Djdk1.5+=true -Djruby.bindir=bin \
+		-Dgentoo.classpath="${cpath}" ${flags}
 }
 
 src_install() {
@@ -187,4 +193,8 @@ pkg_postinst() {
 	ewarn "This is due to a stray definition of JRUBY_OPTS variable from the previous ebuilds."
 	ewarn "To solve the problem, either login in a new shell, use 'env -i ${SHELL} --login'"
 	ewarn "or explicitly unset the variable before running jruby."
+	ewarn ""
+	ewarn "Currently this package introduces issues/bugs that are not present within upstream"
+	ewarn "releases.  Therefore if you are wanting a stable build of jruby please do not"
+	ewarn "use this package."
 }

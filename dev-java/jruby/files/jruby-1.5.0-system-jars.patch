@@ -209,7 +209,7 @@ diff -Naur jruby-1.5.1.bak/bin/jruby.sh jruby-1.5.1/bin/jruby.sh
 -  fi
 -
 -fi
-+JFFI_OPTS="-Djffi.boot.library.path=$(java-config -dp jffi-0.4)"
++JFFI_OPTS="-Djffi.boot.library.path=$(java-config -di jffi-0.4)"
  
  if [ "$nailgun_client" != "" ]; then
 -  if [ -f $JRUBY_HOME/tool/nailgun/ng ]; then

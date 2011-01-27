@@ -1,6 +1,33 @@
 # ChangeLog for dev-java/jruby
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.67 2010/06/30 20:53:35 caster Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.73 2011/01/23 21:05:27 xarthisius Exp $
+
+  23 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> jruby-1.4.1.ebuild:
+  Mark ~ppc wrt #301239
+
+*jruby-1.5.3 (28 Oct 2010)
+
+  28 Oct 2010; Alistair Bush <ali_bush@gentoo.org> +jruby-1.5.3.ebuild:
+  Version Bump.
+
+*jruby-1.5.2-r1 (05 Sep 2010)
+
+  05 Sep 2010; Alistair Bush <ali_bush@gentoo.org>
+  files/jruby-1.5.0-system-jars.patch, +jruby-1.5.2-r1.ebuild:
+  Rev bump to force rebuild after fixing an existing patch.
+
+  23 Aug 2010; Markos Chandras <hwoarang@gentoo.org> jruby-1.5.2.ebuild:
+  Stable on amd64 wrt bug #332957
+
+  23 Aug 2010; Christian Faulhammer <fauli@gentoo.org> jruby-1.5.2.ebuild:
+  stable x86, security bug 332957
+
+*jruby-1.5.2 (22 Aug 2010)
+
+  22 Aug 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  -jruby-1.4.1-r1.ebuild, -jruby-1.5.1-r2.ebuild, +jruby-1.5.2.ebuild:
+  Version bump to fix the Webrick security issue; remove
+  non-stable-candidate vulnerable ebuilds.
 
   30 Jun 2010; Vlastimil Babka <caster@gentoo.org> jruby-1.3.1-r1.ebuild,
   -jruby-1.4.0-r6.ebuild:
