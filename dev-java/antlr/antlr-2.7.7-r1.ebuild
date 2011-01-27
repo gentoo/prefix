@@ -1,8 +1,9 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-2.7.7.ebuild,v 1.16 2009/03/29 23:29:15 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-2.7.7-r1.ebuild,v 1.2 2011/01/16 18:22:16 arfrever Exp $
 
-EAPI=1
+EAPI="3"
+PYTHON_DEPEND="python? 2"
 
 inherit base java-pkg-2 mono distutils multilib
 
@@ -17,19 +18,27 @@ IUSE="doc debug examples mono +cxx +java python script source"
 
 # TODO do we actually need jdk at runtime?
 RDEPEND=">=virtual/jdk-1.3
-	mono? ( dev-lang/mono )
-	python? ( dev-lang/python )"
+	mono? ( dev-lang/mono )"
 DEPEND="${RDEPEND}
 	script? ( !dev-util/pccts )
 	source? ( app-arch/zip )"
 
 PATCHES=( "${FILESDIR}/2.7.7-gcc-4.3.patch" "${FILESDIR}/2.7.7-gcc-4.4.patch" "${FILESDIR}/2.7.7-makefixes.patch" )
 
-src_unpack() {
-	base_src_unpack
+pkg_setup() {
+	java-pkg-2_pkg_setup
+
+	if use python; then
+		python_set_active_version 2
+		python_pkg_setup
+	fi
 }
 
-src_compile() {
+src_prepare() {
+	base_src_prepare
+}
+
+src_configure() {
 	# don't ask why, but this is needed for stuff to get built properly
 	# across the various JDKs
 	JAVACFLAGS="+ ${JAVACFLAGS}"
@@ -41,8 +50,10 @@ src_compile() {
 		$(use_enable debug) \
 		$(use_enable examples) \
 		$(use_enable cxx) \
-		--enable-verbose || die "configure failed"
+		--enable-verbose
+}
 
+src_compile() {
 	emake || die "compile failed"
 
 	sed -e "s|@prefix@|${EPREFIX}/usr/|" \
@@ -68,7 +79,7 @@ src_install() {
 		use script && java-pkg_dolauncher antlr --main antlr.Tool
 
 		use source && java-pkg_dosrc "${S}"/antlr
-		use doc && java-pkg_dohtml -r doc/*
+		use doc && java-pkg_dohtml -r "${S}"/doc/*
 	fi
 
 	if use mono ; then
@@ -102,4 +113,12 @@ src_install() {
 	fi
 
 	newdoc "${S}"/README.txt README || die
+}
+
+pkg_postinst() {
+	use python && distutils_pkg_postinst
+}
+
+pkg_postrm() {
+	use python && distutils_pkg_postrm
 }
