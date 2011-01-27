@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_configure-v1.eblit,v 1.7 2010/09/19 15:15:08 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_configure-v1.eblit,v 1.8 2010/10/24 11:48:42 mabi Exp $
 
 eblit-php-src_configure() {
 	PHP_DESTDIR="${EPREFIX}/usr/$(get_libdir)/php${PHP_MV}"
@@ -185,7 +185,7 @@ eblit-php-src_configure() {
 			phpconfutils_extension_with "pdo-mysql"  "mysql"    1 "${EPREFIX}/usr"
 		fi
 		phpconfutils_extension_with "pdo-pgsql"  "postgres"	1 "${EPREFIX}/usr"
-		phpconfutils_extension_with "pdo-sqlite" "sqlite"   1 "${EPREFIX}/usr"
+		phpconfutils_extension_with "pdo-sqlite" "sqlite3"   1 "${EPREFIX}/usr"
 		phpconfutils_extension_with "pdo-odbc"   "odbc"     1 "unixODBC,${EPREFIX}/usr"
 		if use oci8 ; then
 			phpconfutils_extension_with "pdo-oci" "oci8" 1

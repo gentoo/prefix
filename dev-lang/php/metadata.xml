@@ -8,7 +8,6 @@
 		<flag name='discard-path'>Switch on common security setting for CGI SAPI</flag>
 		<flag name='embed'>Enable embed SAPI</flag>
 		<flag name='enchant'>Add supports Enchant spelling library.</flag>
-		<flag name='fastbuild'>Build PHP quicker (experimental)</flag>
 		<flag name='fdftk'>Add supports for Adobe's FDF toolkit.</flag>
 		<flag name='fileinfo'>Add fileinfo extension support</flag>
 		<flag name='filter'>Add filter extension support</flag>
@@ -16,7 +15,6 @@
 		<flag name='fpm'>Enable the FastCGI Process Manager SAPI</flag>
 		<flag name='hash'>Enable the hash extension</flag>
 		<flag name='intl'>Enables the intl extension for extended internalization support</flag>
-		<flag name='java-external'>Use the external java extension rather than the bundled one</flag>
 		<flag name='json'>Enable JSON support</flag>
 		<flag name='ldap-sasl'>Add SASL support for the PHP LDAP extension</flag>
 		<flag name='mysqlnd'>Use native driver for mysql, mysqli, PDO_Mysql</flag>

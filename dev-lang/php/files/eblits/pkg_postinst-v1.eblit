@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/pkg_postinst-v1.eblit,v 1.1 2010/05/27 23:05:04 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/pkg_postinst-v1.eblit,v 1.3 2010/11/22 11:53:15 olemarkus Exp $
 
 eblit-php-pkg_postinst() {
 	# Output some general info to the user
@@ -66,6 +66,10 @@ eblit-php-pkg_postinst() {
 
 	ewarn "You may have to recompile third-party extensions now"
 	ewarn "(includes every dev-php5/pecl-* package and probably others in that category)"
+	ewarn "Also make sure that you merge in the correct extension_dir ini setting for all your"
+	ewarn "php.ini files."
+	ewarn 
+	ewarn "Please read the upgrade guide: http://www.gentoo.org/proj/en/php/php-guide.xml"
 	ewarn
 }
 

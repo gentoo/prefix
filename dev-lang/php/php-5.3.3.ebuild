@@ -1,14 +1,14 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.3-r1.ebuild,v 1.8 2010/11/05 04:14:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.3.ebuild,v 1.2 2010/07/28 20:20:51 maekke Exp $
 
 EAPI=2
 
 PHPCONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob interbase oci8 sapdb solid"
 
-inherit eutils autotools flag-o-matic versionator depend.apache apache-module db-use phpconfutils php-common-r1 libtool prefix
+inherit eutils autotools flag-o-matic versionator depend.apache apache-module db-use phpconfutils php-common-r1 libtool
 
-PHP_PATCHSET="2"
+PHP_PATCHSET="1"
 SUHOSIN_VERSION="${PV}-0.9.10"
 FPM_VERSION="builtin"
 EXPECTED_TEST_FAILURES=""
@@ -27,9 +27,6 @@ function php_get_uri ()
 		"suhosin")
 			echo "http://download.suhosin.org/${2}"
 		;;
-		"ntnu")
-			echo "http://folk.ntnu.no/olemarku/gentoo/${2}"
-		;;
 		"gentoo")
 			echo "mirror://gentoo/${2}"
 		;;
@@ -43,7 +40,7 @@ PHP_MV="$(get_major_version)"
 
 # alias, so we can handle different types of releases (finals, rcs, alphas,
 # betas, ...) w/o changing the whole ebuild
-PHP_PV="${PV/_rc/RC}"
+PHP_PV="${PV}"
 PHP_RELEASE="php"
 PHP_P="${PN}-${PHP_PV}"
 
@@ -102,7 +99,7 @@ IUSE="${IUSE} adabas bcmath berkdb birdstep bzip2 calendar cdb cjk
 	readline recode sapdb +session sharedext sharedmem
 	+simplexml snmp soap sockets solid spell sqlite sqlite3 ssl suhosin
 	sybase-ct sysvipc tidy +tokenizer truetype unicode wddx
-	+xml +xmlreader +xmlwriter xmlrpc xpm xsl zip zlib"
+	xml xmlreader xmlwriter xmlrpc xpm xsl zip zlib"
 
 DEPEND="app-admin/php-toolkit
 	>=dev-libs/libpcre-7.9[unicode]
@@ -245,6 +242,7 @@ RDEPEND="${DEPEND}
 	zip? ( !dev-php${PHP_MV}/pecl-zip )"
 
 DEPEND="${DEPEND}
+	sys-devel/flex
 	>=sys-devel/m4-1.4.3
 	>=sys-devel/libtool-1.5.18"
 
@@ -255,6 +253,7 @@ PDEPEND="doc? ( app-doc/php-docs )
 # Portage doesn't support setting PROVIDE based on the USE flags that
 # have been enabled, so we have to PROVIDE everything for now and hope
 # for the best
+# see bug #319623 and new style virtual/httpd-php
 PROVIDE="virtual/php"
 
 SLOT="${PHP_MV}"
@@ -327,19 +326,7 @@ eblit-pkg() {
 
 eblit-pkg pkg_setup v1
 
-src_prepare() { 
-	if use mysqli && [[ ${CHOST} == *apple* && ${PV} == 5.3.3 ]] ; then
-		# Fix mysqli build failure on OS X caused by ulong (php-bug: 52413)
-		epatch "${FILESDIR}/php-5.3.3-ulong-osx.patch"
-	fi
-
-	eblit-run src_prepare v1 ; 
-
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		# http://bugs.php.net/bug.php?id=48795, bug #343481
-		sed -i -e '/BUILD_CGI="\\$(CC)/s/CC/CXX/' configure || die
-	fi
-}
+src_prepare() { eblit-run src_prepare v1 ; }
 src_configure() { eblit-run src_configure v1 ; }
 src_compile() { eblit-run src_compile v1 ; }
 src_install() { eblit-run src_install v1 ; }
