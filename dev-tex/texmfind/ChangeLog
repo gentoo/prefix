@@ -1,6 +1,16 @@
 # ChangeLog for dev-tex/texmfind
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/texmfind/ChangeLog,v 1.13 2010/01/21 09:45:17 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/texmfind/ChangeLog,v 1.15 2010/11/14 23:53:35 fauli Exp $
+
+  14 Nov 2010; Christian Faulhammer <fauli@gentoo.org>
+  texmfind-2008.1.ebuild, texmfind-2009.1.ebuild, texmfind-2010.1.ebuild:
+  Update description field
+
+*texmfind-2010.1 (14 Nov 2010)
+
+  14 Nov 2010; Christian Faulhammer <fauli@gentoo.org>
+  +texmfind-2010.1.ebuild:
+  version bump for TeXLive 2010
 
 *texmfind-2009.1 (21 Jan 2010)
 
