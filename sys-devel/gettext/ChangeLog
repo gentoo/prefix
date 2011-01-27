@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.189 2010/10/12 20:57:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.190 2010/12/04 15:35:26 armin76 Exp $
+
+  04 Dec 2010; Raúl Porcel <armin76@gentoo.org> gettext-0.18.1.1-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #338654
 
   12 Oct 2010; Jeroen Roovers <jer@gentoo.org> gettext-0.18.1.1-r1.ebuild:
   Stable for PPC (bug #338654).

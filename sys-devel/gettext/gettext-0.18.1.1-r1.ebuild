@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.18.1.1-r1.ebuild,v 1.8 2010/10/12 20:57:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.18.1.1-r1.ebuild,v 1.9 2010/12/04 15:35:26 armin76 Exp $
 
 EAPI="2"
 
