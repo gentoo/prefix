@@ -1,6 +1,48 @@
 # ChangeLog for sys-devel/binutils
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.400 2010/08/30 04:16:59 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.407 2011/01/20 04:42:56 vapier Exp $
+
+*binutils-2.21.51.0.6 (20 Jan 2011)
+
+  20 Jan 2011; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.21.51.0.6.ebuild:
+  Version bump.
+
+*binutils-2.21.51.0.5 (12 Jan 2011)
+
+  12 Jan 2011; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.21.51.0.5.ebuild:
+  Version bump.
+
+*binutils-2.21.51.0.4 (17 Dec 2010)
+
+  17 Dec 2010; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.21.51.0.4.ebuild:
+  Version bump.
+
+*binutils-2.21.51.0.3 (16 Dec 2010)
+
+  16 Dec 2010; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.21.51.0.3.ebuild:
+  Version bump.
+
+*binutils-2.21 (09 Dec 2010)
+
+  09 Dec 2010; Mike Frysinger <vapier@gentoo.org> +binutils-2.21.ebuild:
+  Version bump.
+
+*binutils-2.21.51.0.2 (07 Dec 2010)
+
+  07 Dec 2010; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.21.51.0.2.ebuild:
+  Version bump.
+
+*binutils-2.21.51.0.1 (13 Nov 2010)
+*binutils-2.20.51.0.12 (13 Nov 2010)
+
+  13 Nov 2010; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.20.51.0.12.ebuild, +binutils-2.21.51.0.1.ebuild:
+  Version bumps.
 
   30 Aug 2010; Mike Frysinger <vapier@gentoo.org> binutils-2.20.1-r1.ebuild:
   Mark s390 stable #298571.
