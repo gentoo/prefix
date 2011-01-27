@@ -1,6 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.11.0.ebuild,v 1.3 2010/08/03 14:31:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.11.13.ebuild,v 1.1 2011/01/24 17:53:03 keri Exp $
+
+EAPI=2
 
 inherit eutils flag-o-matic java-pkg-opt-2
 
@@ -14,18 +16,17 @@ SRC_URI="http://www.swi-prolog.org/download/devel/src/pl-${PV}.tar.gz
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
-IUSE="berkdb debug doc gmp hardened java minimal odbc readline ssl static test zlib X"
+IUSE="debug doc gmp hardened java minimal odbc readline ssl static test zlib X"
 
 RDEPEND="sys-libs/ncurses
 	zlib? ( sys-libs/zlib )
 	odbc? ( dev-db/unixODBC )
-	berkdb? ( sys-libs/db )
 	readline? ( sys-libs/readline )
 	gmp? ( dev-libs/gmp )
 	ssl? ( dev-libs/openssl )
 	java? ( >=virtual/jdk-1.4 )
 	X? (
-		media-libs/jpeg
+		virtual/jpeg
 		x11-libs/libX11
 		x11-libs/libXft
 		x11-libs/libXpm
@@ -39,10 +40,7 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/pl-${PV}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	EPATCH_FORCE=yes
 	EPATCH_SUFFIX=patch
 	epatch "${WORKDIR}"/${PV}
@@ -51,8 +49,9 @@ src_unpack() {
 	sed -i -e 's/-cru/-scru/' packages/nlp/libstemmer_c/Makefile.pl || die
 }
 
-src_compile() {
+src_configure() {
 	append-flags -fno-strict-aliasing
+	use ppc && append-flags -mno-altivec
 	use hardened && append-flags -fno-unit-at-a-time
 	use debug && append-flags -DO_DEBUG
 
@@ -66,8 +65,11 @@ src_compile() {
 		$(use_enable gmp) \
 		$(use_enable readline) \
 		$(use_enable !static shared) \
-		--enable-custom-flags COFLAGS="${CFLAGS}" \
-		|| die "econf failed"
+		--enable-custom-flags COFLAGS="${CFLAGS}"
+}
+
+src_compile() {
+	cd "${S}"/src
 	emake || die "emake failed"
 
 	if ! use minimal ; then
@@ -79,15 +81,11 @@ src_compile() {
 		cd "${S}/packages"
 		econf \
 			--libdir="${EPREFIX}"/usr/$(get_libdir) \
-			--without-C-sicstus \
 			--with-chr \
 			--with-clib \
 			--with-clpqr \
 			--with-cpp \
-			--with-cppproxy \
-			$(use_with berkdb db) \
 			--with-http \
-			--without-jasmine \
 			$(use_with java jpl) \
 			${jpltestconf} \
 			--with-nlp \
@@ -104,25 +102,10 @@ src_compile() {
 			--with-tipc \
 			$(use_with X xpce) \
 			$(use_with zlib) \
-			COFLAGS='"${CFLAGS}"' \
-			|| die "packages econf failed"
+			COFLAGS='"${CFLAGS}"'
 
 		emake || die "packages emake failed"
 	fi
-}
-
-src_install() {
-	emake -C src DESTDIR="${D}" install || die "install src failed"
-
-	if ! use minimal ; then
-		emake -C packages DESTDIR="${D}" install || die "install packages failed"
-		if use doc ; then
-			emake -C packages DESTDIR="${D}" html-install || die "html-install failed"
-			emake -C packages/cppproxy DESTDIR="${D}" install-examples || die "install-examples failed"
-		fi
-	fi
-
-	dodoc ChangeLog INSTALL PORTING README VERSION
 }
 
 src_test() {
@@ -135,11 +118,15 @@ src_test() {
 	fi
 }
 
-pkg_postinst() {
-	einfo "Please note that the following binaries have been renamed"
-	einfo "from earlier versions:"
-	einfo "    pl    ->  swipl"
-	einfo "    plld  ->  swipl-ld"
-	einfo "    plrc  ->  swipl-rc"
-	einfo "    xpce  ->  <deleted>"
+src_install() {
+	emake -C src DESTDIR="${D}" install || die "install src failed"
+
+	if ! use minimal ; then
+		emake -C packages DESTDIR="${D}" install || die "install packages failed"
+		if use doc ; then
+			emake -C packages DESTDIR="${D}" html-install || die "html-install failed"
+		fi
+	fi
+
+	dodoc ReleaseNotes/relnotes-5.10 INSTALL PORTING README VERSION || die
 }
