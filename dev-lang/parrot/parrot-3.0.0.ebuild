@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/parrot-2.6.0.ebuild,v 1.3 2010/09/16 16:40:21 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/parrot-3.0.0.ebuild,v 1.1 2011/01/19 12:59:31 patrick Exp $
 
 EAPI=3
 
@@ -8,7 +8,8 @@ inherit eutils multilib
 
 DESCRIPTION="Virtual machine designed to efficiently compile and execute bytecode for dynamic languages"
 HOMEPAGE="http://www.parrot.org/"
-SRC_URI="ftp://ftp.parrot.org/pub/parrot/releases/supported/${PV}/${P}.tar.bz2"
+#SRC_URI="ftp://ftp.parrot.org/pub/parrot/releases/supported/${PV}/${P}.tar.bz2"
+SRC_URI="ftp://ftp.parrot.org/pub/parrot/releases/stable/${PV}/${P}.tar.bz2"
 
 LICENSE="Artistic-2"
 SLOT="0"
