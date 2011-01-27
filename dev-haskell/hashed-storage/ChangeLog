@@ -1,6 +1,21 @@
 # ChangeLog for dev-haskell/hashed-storage
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/ChangeLog,v 1.6 2010/07/20 13:46:00 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/ChangeLog,v 1.10 2010/11/20 23:32:57 slyfox Exp $
+
+  20 Nov 2010; Sergei Trofimovich <slyfox@gentoo.org>
+  hashed-storage-0.4.13.ebuild:
+  alpha/ia64/sparc stable (bug #339580). Marked ~x86-fbsd (bug #227677).
+
+  19 Oct 2010; Thomas Kahle <tomka@gentoo.org> hashed-storage-0.4.13.ebuild:
+  x86 stable per bug 339580
+
+  16 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  hashed-storage-0.4.13.ebuild:
+  Stable on amd64 wrt bug #339580
+
+  09 Sep 2010; Sergei Trofimovich <slyfox@gentoo.org>
+  hashed-storage-0.4.13.ebuild:
+  Marked ~sparc
 
   20 Jul 2010; Joseph Jezak <josejx@gentoo.org>
   hashed-storage-0.4.13.ebuild:

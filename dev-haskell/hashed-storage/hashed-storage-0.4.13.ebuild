@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/hashed-storage-0.4.13.ebuild,v 1.4 2010/07/20 13:46:00 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/hashed-storage-0.4.13.ebuild,v 1.8 2010/11/20 23:32:57 slyfox Exp $
 
 EAPI=2
 
