@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/gnu-classpath
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.113 2010/07/07 09:36:44 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.115 2010/11/06 17:17:53 halcy0n Exp $
+
+  06 Nov 2010; Mark Loeser <halcy0n@gentoo.org>
+  gnu-classpath-0.98-r3.ebuild:
+  Stable for ppc64; bug #321953
+
+  15 Oct 2010; Brent Baude <ranger@gentoo.org> gnu-classpath-0.98-r3.ebuild:
+  Marking gnu-classpath-0.98-r3 ppc for bug 321953
 
   07 Jul 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
   gnu-classpath-0.98-r3.ebuild:
