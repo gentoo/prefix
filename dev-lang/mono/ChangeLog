@@ -1,6 +1,95 @@
 # ChangeLog for dev-lang/mono
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.194 2010/07/21 17:13:14 pacho Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.208 2011/01/26 23:31:52 pacho Exp $
+
+*mono-2.8.2-r1 (26 Jan 2011)
+
+  26 Jan 2011; Pacho Ramos <pacho@gentoo.org> -mono-2.8.2.ebuild,
+  +mono-2.8.2-r1.ebuild:
+  Remove files not respecting LDFLAGS and that we are not supposed to provide.
+
+*mono-2.8.2 (25 Jan 2011)
+
+  25 Jan 2011; Pacho Ramos <pacho@gentoo.org> -mono-2.8.1-r1.ebuild,
+  +mono-2.8.2.ebuild, -mono-9999.ebuild, -files/mono-9999-libdir.patch:
+  Version bump, remove old testing and 9999 version since it's not really
+  maintained downstream.
+
+  17 Dec 2010; Alistair Bush <ali_bush@gentoo.org>
+  files/mono-9999-libdir.patch:
+  Fix -9999 patch.
+
+*mono-2.8.1-r1 (27 Nov 2010)
+
+  27 Nov 2010; Pacho Ramos <pacho@gentoo.org> -mono-2.8.1.ebuild,
+  +mono-2.8.1-r1.ebuild, +files/mono-2.8.1-radegast-crash.patch:
+  Backport upstream patch to fix radegast crash (bug #341435 by tman).
+
+*mono-2.8.1 (26 Nov 2010)
+
+  26 Nov 2010; Pacho Ramos <pacho@gentoo.org> -mono-2.8-r1.ebuild,
+  +mono-2.8.1.ebuild:
+  Version bump, remove old.
+
+  28 Oct 2010; Pacho Ramos <pacho@gentoo.org> mono-2.8-r1.ebuild:
+  Mono.Data.SqliteClient was dropped by upstream in 2.8, thanks to Bernard
+  Cafarelli for reporting.
+
+*mono-2.8-r1 (15 Oct 2010)
+
+  15 Oct 2010; Pacho Ramos <pacho@gentoo.org> -mono-2.8.ebuild,
+  +mono-2.8-r1.ebuild:
+  Force building with profile4 support (as it's used by default and
+  disabling it causes problems like reported in bug #340641 by Kamen Dokov
+  and tman) and building without moonlight configure option since it simply
+  strips mono from anything not used by www-plugins/moonlight (that is not
+  suitable for us since we need to support many other mono apps, thanks to
+  Miguel de Icaza for the explanation and Alistair Bush for tracking this
+  upstream and giving me a heads up when needed).
+
+*mono-2.8 (08 Oct 2010)
+
+  08 Oct 2010; Alistair Bush <ali_bush@gentoo.org> +mono-2.8.ebuild,
+  +files/mono-2.8-libdir.patch:
+  Version Bump to mono-2.8
+
+  07 Oct 2010; Pacho Ramos <pacho@gentoo.org> -files/mono-1.2-glibc28.patch,
+  -files/mono-1.2.4-pic.patch, -mono-1.2.5.1-r1.ebuild,
+  -mono-1.2.6-r3.ebuild, -files/mono-1.2.6-bug-347359.patch,
+  -files/mono-1.2.6-threads-types-private-prototypes.patch,
+  -mono-2.0.1-r1.ebuild,
+  -files/mono-2.0.1-fix-wsdl-troubles-with-muine.patch,
+  -files/mono-2.0.1-fix_implicit_pointer_conversions.patch,
+  -mono-2.0.9999.ebuild, -files/mono-2.0-fix-headless.patch,
+  -files/mono-2.0-mimeicon.patch, -files/mono-2.0-ppc-threading.patch,
+  -files/mono-2.2-freebsd-elf_common.patch,
+  -files/mono-2.2-r121596-work-around-runtime-crash.patch,
+  -files/mono-2.2-r123987-bless-crash.patch, -mono-2.4.2.3.ebuild,
+  -mono-2.4.3.1.ebuild, -mono-2.4.9999.ebuild,
+  -files/mono-2.4-openoffice.patch, -files/mono-2.4-ppcbuild-fix.patch,
+  -mono-2.6.4-r1.ebuild, -files/mono-biginteger_overflow.diff:
+  Remove old.
+
+  05 Oct 2010; Pacho Ramos <pacho@gentoo.org> mono-9999.ebuild,
+  +files/mono-9999-libdir.patch:
+  Update 9999 ebuild for using git (bug #339230), thanks a lot to Alistair
+  Bush for his help.
+
+  23 Sep 2010; Markos Chandras <hwoarang@gentoo.org> mono-2.6.7.ebuild:
+  Stable on amd64 wrt bug #336851
+
+  12 Sep 2010; Joseph Jezak <josejx@gentoo.org> mono-2.6.7.ebuild:
+  Marked ppc for bug #336851.
+
+  12 Sep 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> mono-2.6.7.ebuild:
+  x86 stable wrt bug #336851
+
+  07 Sep 2010; Pacho Ramos <pacho@gentoo.org> mono-2.6.7.ebuild,
+  metadata.xml:
+  Drop PDEPEND on pe-format (bug #333907 by Michał Górny), fix build on
+  hardened (bug #286280 by Jason Mattax and fix by Magnus Granberg) and
+  allow people to enable .NET 4.0 profile if they want (bug #326497 by Ron
+  MacNeil).
 
 *mono-2.6.7 (21 Jul 2010)
 

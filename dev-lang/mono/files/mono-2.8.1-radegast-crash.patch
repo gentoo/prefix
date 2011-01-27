@@ -1,0 +1,15 @@
+--- /home/pacho/mono-2.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/TextBoxBase.cs.orig	2010-11-27 15:46:31.000000000 +0100
++++ /home/pacho/mono-2.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/TextBoxBase.cs	2010-11-27 15:47:02.000000000 +0100
+@@ -667,9 +667,10 @@
+ 				} else {
+ 					document.Empty();
+ 
+-					document.SetSelectionToCaret (true);
+-					if (IsHandleCreated)
++					if (IsHandleCreated) {
++						document.SetSelectionToCaret (true);
+ 						CalculateDocument ();
++					}
+ 				}
+ 
+ 				OnTextChanged(EventArgs.Empty);

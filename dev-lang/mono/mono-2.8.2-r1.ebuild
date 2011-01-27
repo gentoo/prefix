@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.6.7.ebuild,v 1.5 2010/09/23 22:14:59 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.8.2-r1.ebuild,v 1.1 2011/01/26 23:31:52 pacho Exp $
 
-EAPI=2
+EAPI="2"
 
 inherit linux-info mono eutils flag-o-matic multilib go-mono pax-utils
 
@@ -13,12 +13,11 @@ LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDP
 SLOT="0"
 KEYWORDS=""
 
-IUSE="hardened minimal moonlight profile4 xen"
+IUSE="hardened minimal xen"
 
 #Bash requirement is for += operator
 COMMONDEPEND="!<dev-dotnet/pnet-0.6.12
 	!dev-util/monodoc
-	>=dev-libs/glib-2.4:2
 	!minimal? ( =dev-dotnet/libgdiplus-${GO_MONO_REL_PV}* )
 	ia64? (	sys-libs/libunwind )"
 RDEPEND="${COMMONDEPEND}
@@ -34,10 +33,10 @@ MAKEOPTS="${MAKEOPTS} -j1"
 RESTRICT="test"
 
 PATCHES=(
-	"${WORKDIR}/mono-2.2-libdir126.patch"
-	"${FILESDIR}/mono-2.2-ppc-threading.patch"
-	"${FILESDIR}/mono-2.2-uselibdir.patch"
-	"${FILESDIR}/mono-2.6.4-require-glib.patch"
+	"${WORKDIR}/${PN}-2.8-libdir.patch"
+	"${FILESDIR}/${PN}-2.2-ppc-threading.patch"
+	"${FILESDIR}/${PN}-2.2-uselibdir.patch"
+	"${FILESDIR}/${PN}-2.8.1-radegast-crash.patch"
 )
 
 pkg_setup() {
@@ -64,8 +63,8 @@ pkg_setup() {
 
 src_prepare() {
 	sed -e "s:@MONOLIBDIR@:$(get_libdir):" \
-		< "${FILESDIR}"/mono-2.2-libdir126.patch \
-		> "${WORKDIR}"/mono-2.2-libdir126.patch ||
+		< "${FILESDIR}"/${PN}-2.8-libdir.patch \
+		> "${WORKDIR}"/${PN}-2.8-libdir.patch ||
 		die "Sedding patch file failed"
 	go-mono_src_prepare
 
@@ -84,20 +83,25 @@ src_configure() {
 	#Remove this at your own peril. Mono will barf in unexpected ways.
 	append-flags -fno-strict-aliasing
 
-	#NOTE: We need the static libs for now so mono-debugger works.
-	#See http://bugs.gentoo.org/show_bug.cgi?id=256264 for details
+	# NOTE: We need the static libs for now so mono-debugger works.
+	# See http://bugs.gentoo.org/show_bug.cgi?id=256264 for details
+	#
+	# --without-moonlight since www-plugins/moonlight is not the only one
+	# using mono: https://bugzilla.novell.com/show_bug.cgi?id=641005#c3
+	#
+	# --with-profile4 needs to be always enabled since it's used by default
+	# and, otherwise, problems like bug #340641 appear.
+
 	go-mono_src_configure \
 		--enable-static \
 		--disable-quiet-build \
-		--with-preview \
-		--with-glib=system \
-		$(use_with moonlight) \
+		--without-moonlight \
 		--with-libgdiplus=$(use minimal && printf "no" || printf "installed" ) \
 		$(use_with xen xen_opt) \
 		--without-ikvm-native \
 		--with-jit \
 		--disable-dtrace \
-		$(use_with profile4)
+		--with-profile4
 }
 
 src_test() {
@@ -124,6 +128,14 @@ src_install() {
 	# Remove Jay to avoid colliding with dev-util/jay, the internal
 	# version is only used to build mcs.
 	rm -r "${ED}"/usr/share/jay "${ED}"/usr/bin/jay "${ED}"/usr/share/man/man1/jay.1*
+
+	# Remove files not respecting LDFLAGS and that we are not supposed to provide, see Fedora 
+	# mono.spec and http://www.mail-archive.com/mono-devel-list@lists.ximian.com/msg24870.html
+	# for reference.
+	rm -f "${ED}"/usr/$(get_libdir)/mono/4.0/mscorlib.dll.so
+	rm -f "${ED}"/usr/$(get_libdir)/mono/4.0/dmcs.exe.so
+	rm -f "${ED}"/usr/$(get_libdir)/mono/2.0/mscorlib.dll.so
+	rm -f "${ED}"/usr/$(get_libdir)/mono/2.0/gmcs.exe.so
 }
 
 #THINK!!!! Before touching postrm and postinst
@@ -194,7 +206,6 @@ pkg_postinst() {
 	elog ""
 	elog "dev-db/sqlite:3"
 	elog "	Mono.Data.Sqlite"
-	elog "	Mono.Data.SqliteClient"
 	elog "Also read:"
 	elog "http://www.mono-project.com/SQLite"
 	elog ""
