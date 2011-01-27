@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.38.2.ebuild,v 1.1 2010/06/22 19:18:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.38.2.ebuild,v 1.6 2011/01/13 17:24:03 jer Exp $
 
 EAPI="2"
 

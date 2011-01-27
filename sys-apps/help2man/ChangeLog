@@ -1,6 +1,28 @@
 # ChangeLog for sys-apps/help2man
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/ChangeLog,v 1.49 2010/07/11 18:00:55 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/ChangeLog,v 1.55 2011/01/13 17:24:03 jer Exp $
+
+  13 Jan 2011; Jeroen Roovers <jer@gentoo.org> help2man-1.38.2.ebuild:
+  Stable for HPPA (bug #350091).
+
+  07 Jan 2011; Brent Baude <ranger@gentoo.org> help2man-1.38.2.ebuild:
+  stable ppc, bug 350091
+
+  02 Jan 2011; Michael Weber <xmw@gentoo.org> help2man-1.38.2.ebuild:
+  arm/sparc stable (bug 350091)
+
+  01 Jan 2011; Markos Chandras <hwoarang@gentoo.org> help2man-1.38.2.ebuild:
+  Stable on amd64 wrt bug #350091
+
+  01 Jan 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  help2man-1.38.2.ebuild:
+  x86 stable wrt bug #350091
+
+*help2man-1.38.4 (29 Dec 2010)
+
+  29 Dec 2010; Mike Frysinger <vapier@gentoo.org> +help2man-1.38.4.ebuild,
+  +files/help2man-1.38.4-linguas.patch:
+  Version bump #350062 by Panagiotis Christopoulos.
 
   11 Jul 2010; Raúl Porcel <armin76@gentoo.org> help2man-1.37.1.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #325089
