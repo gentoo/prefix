@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.11.1.ebuild,v 1.2 2010/06/16 15:36:14 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.12.1.ebuild,v 1.2 2011/01/04 20:51:10 bicatali Exp $
 
 EAPI=2
 inherit eutils flag-o-matic bash-completion versionator
@@ -14,7 +14,7 @@ LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
-IUSE="doc java jpeg lapack minimal nls perl png readline threads tk X cairo"
+IUSE="doc java jpeg lapack minimal nls perl png profile readline static-libs threads tk X cairo"
 
 # common depends
 CDEPEND="dev-libs/libpcre
@@ -23,7 +23,7 @@ CDEPEND="dev-libs/libpcre
 	app-text/ghostscript-gpl
 	cairo? ( x11-libs/cairo[X]
 		|| ( >=x11-libs/pango-1.20[X] <x11-libs/pango-1.20 ) )
-	jpeg? ( media-libs/jpeg )
+	jpeg? ( virtual/jpeg )
 	lapack? ( virtual/lapack )
 	perl? ( dev-lang/perl )
 	png? ( media-libs/libpng )
@@ -54,7 +54,9 @@ pkg_setup() {
 
 src_prepare() {
 	# fix ocasional failure with parallel install (bug #322965)
-	epatch "${FILESDIR}"/${P}-parallel.patch
+	epatch "${FILESDIR}"/${PN}-2.11.1-parallel.patch
+	# respect ldflags on rscript
+	epatch "${FILESDIR}"/${PN}-2.12.1-ldflags.patch
 
 	# fix packages.html for doc (bug #205103)
 	# check in later versions if fixed
@@ -85,8 +87,6 @@ src_prepare() {
 
 src_configure() {
 	econf \
-		--enable-R-profiling \
-		--enable-memory-profiling \
 		--enable-R-shlib \
 		--with-system-zlib \
 		--with-system-bzlib \
@@ -95,6 +95,10 @@ src_configure() {
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		rdocdir="${EPREFIX}"/usr/share/doc/${PF} \
 		$(use_enable nls) \
+		$(use_enable profile R-profiling) \
+		$(use_enable profile memory-profiling) \
+		$(use_enable static-libs static) \
+		$(use_enable static-libs R-static-lib) \
 		$(use_enable threads) \
 		$(use_with lapack) \
 		$(use_with tk tcltk) \
@@ -107,13 +111,13 @@ src_configure() {
 }
 
 src_compile(){
+	export VARTEXFONTS="${T}/fonts"
 	emake || die "emake failed"
 	RMATH_V=0.0.0
 	emake -C src/nmath/standalone \
 		libRmath_la_LDFLAGS=-Wl,-soname,libRmath.so.${RMATH_V} \
 		|| die "emake math library failed"
 	if use doc; then
-		export VARTEXFONTS="${T}/fonts"
 		emake info pdf || die "emake docs failed"
 	fi
 }

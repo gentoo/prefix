@@ -1,6 +1,24 @@
 # ChangeLog for dev-lang/R
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.178 2010/06/16 15:36:14 bicatali Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.182 2011/01/04 20:51:10 bicatali Exp $
+
+  04 Jan 2011; Sébastien Fabbro <bicatali@gentoo.org> R-2.12.1.ebuild:
+  Profiling is now turn on with a use flag
+
+*R-2.12.1 (22 Dec 2010)
+
+  22 Dec 2010; Sébastien Fabbro <bicatali@gentoo.org> -R-2.12.0.ebuild,
+  +R-2.12.1.ebuild, +files/R-2.12.1-ldflags.patch:
+  Version bump. This fix some test failures as well
+
+  08 Nov 2010; Kacper Kowalik <xarthisius@gentoo.org> R-2.10.1.ebuild,
+  -R-2.11.1.ebuild, R-2.12.0.ebuild:
+  media-libs/jpeg -> virtual/jpeg. Drop old.
+
+*R-2.12.0 (25 Oct 2010)
+
+  25 Oct 2010; Sébastien Fabbro <bicatali@gentoo.org> +R-2.12.0.ebuild:
+  Version bump
 
   16 Jun 2010; Sébastien Fabbro <bicatali@gentoo.org> -R-2.11.0.ebuild,
   R-2.11.1.ebuild, +files/R-2.11.1-parallel.patch:

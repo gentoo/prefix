@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.10.1.ebuild,v 1.9 2010/05/23 17:52:16 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.10.1.ebuild,v 1.10 2010/11/08 18:44:41 xarthisius Exp $
 
 EAPI=2
 inherit eutils flag-o-matic bash-completion versionator
@@ -23,7 +23,7 @@ CDEPEND="dev-libs/libpcre
 	app-text/ghostscript-gpl
 	cairo? ( x11-libs/cairo[X]
 		|| ( >=x11-libs/pango-1.20[X] <x11-libs/pango-1.20 ) )
-	jpeg? ( media-libs/jpeg )
+	jpeg? ( virtual/jpeg )
 	lapack? ( virtual/lapack )
 	perl? ( dev-lang/perl )
 	png? ( media-libs/libpng )
