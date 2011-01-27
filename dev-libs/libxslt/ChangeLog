@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.203 2010/01/25 19:29:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.205 2010/12/31 23:53:28 arfrever Exp $
+
+  31 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libxslt-1.1.26.ebuild:
+  Restrict Jython ABIs.
+
+  14 Nov 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libxslt-1.1.26.ebuild:
+  Fix dependencies. Support installation for multiple Python ABIs (bug
+  #312195).
 
   18 Aug 2010; Fabian Groffen <grobian@gentoo.org> libxslt-1.1.26.ebuild:
   Marked ~m68k-mint, bug #333209
