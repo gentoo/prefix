@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-2.6.1.ebuild,v 1.4 2010/08/01 09:40:44 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-2.6.1.ebuild,v 1.11 2010/11/14 18:15:12 slyfox Exp $
 
 CABAL_FEATURES="bin lib"
 # don't enable profiling as the 'ghc' package is not built with profiling
-inherit haskell-cabal autotools eutils prefix
+inherit haskell-cabal autotools pax-utils eutils prefix
 
 DESCRIPTION="A documentation-generation tool for Haskell libraries"
 HOMEPAGE="http://www.haskell.org/haddock/"
@@ -72,6 +72,10 @@ src_compile () {
 
 src_install () {
 	cabal_src_install
+	# haddock uses GHC-api to process TH source.
+	# TH requires GHCi which needs mmap('rwx') (bug #299709)
+	pax-mark -m "${ED}/usr/bin/${PN}"
+
 	if use doc; then
 		dohtml -r "${S}/doc/haddock/"*
 	fi

@@ -1,6 +1,27 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.75 2010/08/01 09:40:44 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.81 2010/11/01 22:15:50 slyfox Exp $
+
+  01 Nov 2010; Sergei Trofimovich <slyfox@gentoo.org> haddock-2.6.1.ebuild:
+  sparc stable (bug #338652)
+
+  19 Oct 2010; Thomas Kahle <tomka@gentoo.org> haddock-2.6.1.ebuild:
+  x86 stable per bug 338652
+
+  09 Oct 2010; Sergei Trofimovich <slyfox@gentoo.org> haddock-2.6.1.ebuild:
+  Restored ~alpha and ~ia64 keywords (now we have ghc-6.12.3 with exported
+  API).
+
+  26 Sep 2010; Markos Chandras <hwoarang@gentoo.org> haddock-2.6.1.ebuild:
+  Stable on amd64 wrt bug #338652
+
+  19 Sep 2010; Sergei Trofimovich <slyfox@gentoo.org> haddock-2.6.1.ebuild:
+  Restored ~sparc keyword.
+
+  19 Sep 2010; Sergei Trofimovich <slyfox@gentoo.org> haddock-2.4.1.ebuild,
+  haddock-2.4.2.ebuild, haddock-2.6.1.ebuild:
+  Make haddock usable on hardened. Disabled enforced memory protection (bug
+  #299709).
 
   01 Aug 2010; Sergei Trofimovich <slyfox@gentoo.org> haddock-2.6.1.ebuild:
   Marked ~ppc. Thanks to Michael Mounteney (monty) for testing.
