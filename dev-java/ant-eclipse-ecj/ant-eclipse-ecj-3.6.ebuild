@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.5.1.ebuild,v 1.6 2010/03/20 17:58:39 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.6.ebuild,v 1.1 2010/12/21 07:39:29 ali_bush Exp $
 
 inherit java-pkg-2
 
-DMF="R-${PV}-200909170800"
+DMF="R-${PV}-201006080911"
 S="${WORKDIR}"
 
 DESCRIPTION="Ant Compiler Adapter for Eclipse Java Compiler"
@@ -13,7 +13,7 @@ SRC_URI="http://download.eclipse.org/eclipse/downloads/drops/${DMF/.0}/ecjsrc-${
 
 LICENSE="EPL-1.0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
-SLOT="3.5"
+SLOT="3.6"
 IUSE=""
 
 RDEPEND=">=virtual/jre-1.4
@@ -35,6 +35,7 @@ src_unpack() {
 
 src_compile() {
 	cd src
+	java-pkg_filter-compiler jikes
 	ejavac -classpath "$(java-pkg_getjars ant-core,eclipse-ecj-${SLOT})" \
 		$(find org/ -name '*.java') || die "ejavac failed!"
 	find org/ -name '*.class' -o -name '*.properties' | \
