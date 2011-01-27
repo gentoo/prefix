@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/distcc
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.206 2009/10/19 21:09:13 aballier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.207 2010/12/22 21:16:55 arfrever Exp $
+
+*distcc-3.1-r5 (22 Dec 2010)
+
+  22 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +distcc-3.1-r5.ebuild:
+  Use Python 2, call python_mod_optimize() and python_mod_cleanup() (bug #316943).
 
   19 Oct 2009; Alexis Ballier <aballier@gentoo.org> distcc-3.1-r4.ebuild:
   keyword ~sparc-fbsd

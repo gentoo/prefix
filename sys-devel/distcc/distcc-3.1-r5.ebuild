@@ -1,8 +1,11 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r3.ebuild,v 1.1 2009/03/19 17:56:10 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r5.ebuild,v 1.1 2010/12/22 21:16:55 arfrever Exp $
 
-inherit eutils flag-o-matic toolchain-funcs fdo-mime prefix
+EAPI="3"
+PYTHON_DEPEND="2"
+
+inherit eutils fdo-mime flag-o-matic multilib python toolchain-funcs prefix
 
 DESCRIPTION="a program to distribute compilation of C code across several machines on a network"
 HOMEPAGE="http://distcc.org/"
@@ -15,9 +18,8 @@ IUSE="avahi gnome gtk hardened ipv6 selinux xinetd"
 
 RESTRICT="test"
 
-RDEPEND=">=dev-lang/python-2.4
-	dev-libs/popt
-	avahi? ( >=net-dns/avahi-0.6 )
+RDEPEND="dev-libs/popt
+	avahi? ( >=net-dns/avahi-0.6[dbus] )
 	gnome? (
 		>=gnome-base/libgnome-2
 		>=gnome-base/libgnomeui-2
@@ -41,11 +43,11 @@ DISTCC_VERBOSE="0"
 
 pkg_setup() {
 	enewuser distcc 240 -1 -1 daemon
+	python_set_active_version 2
+	python_pkg_setup
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}/${PN}-3.0-xinetd.patch"
 	# bug #253786
 	epatch "${FILESDIR}/${PN}-3.0-fix-fortify.patch"
@@ -65,7 +67,7 @@ src_unpack() {
 	eprefixify distcc-config
 }
 
-src_compile() {
+src_configure() {
 	local myconf="--disable-Werror --with-docdir=${EPREFIX}/usr/share/doc/${PF}"
 	# More legacy stuff?
 	[ "$(gcc-major-version)" = "2" ] && filter-lfs-flags
@@ -78,7 +80,6 @@ src_compile() {
 		$(use_with gtk) \
 		$(use_with gnome) \
 		${myconf} || die "econf failed"
-	emake || die "emake failed"
 }
 
 src_install() {
@@ -135,10 +136,13 @@ src_install() {
 	rm -rf "${ED}/etc/default"
 	rm -f "${ED}/etc/distcc/clients.allow"
 	rm -f "${ED}/etc/distcc/commands.allow.sh"
-	prepalldocs
+
+	python_convert_shebangs -r $(python_get_version) "${ED}"
+	sed -e "s:${EPREFIX}/usr/bin/python:$(PYTHON -a):" -i "${ED}usr/bin/pump" || die "sed failed"
 }
 
 pkg_postinst() {
+	python_mod_optimize include_server
 	use gnome && fdo-mime_desktop_database_update
 
 	if use ipv6; then
@@ -170,5 +174,6 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
+	python_mod_cleanup include_server
 	use gnome && fdo-mime_desktop_database_update
 }
