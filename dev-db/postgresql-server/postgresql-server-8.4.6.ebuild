@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-9.0_beta2.ebuild,v 1.2 2010/06/20 13:28:47 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-8.4.6.ebuild,v 1.1 2011/01/04 19:24:14 patrick Exp $
 
 EAPI="2"
 PYTHON_DEPEND="python? 2"
@@ -15,11 +15,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
 DESCRIPTION="PostgreSQL server"
 HOMEPAGE="http://www.postgresql.org/"
-
-MY_PV=${PV/_/}
-SRC_URI="mirror://postgresql/source/v${MY_PV}/postgresql-${MY_PV}.tar.bz2"
-S=${WORKDIR}/postgresql-${MY_PV}
-
+SRC_URI="mirror://postgresql/source/v${PV}/postgresql-${PV}.tar.bz2"
 LICENSE="POSTGRESQL"
 SLOT="$(get_version_component_range 1-2)"
 IUSE_LINGUAS="
@@ -35,7 +31,7 @@ wanted_languages() {
 	done
 }
 
-RDEPEND="~dev-db/postgresql-base-${PV}:${SLOT}[pg_legacytimestamp=]
+RDEPEND="~dev-db/postgresql-base-${PV}:${SLOT}[pg_legacytimestamp=,nls=]
 	perl? ( >=dev-lang/perl-5.6.1-r2 )
 	python? ( dev-python/egenix-mx-base )
 	selinux? ( sec-policy/selinux-postgresql )
@@ -46,6 +42,8 @@ DEPEND="${RDEPEND}
 	sys-devel/flex
 	xml? ( dev-util/pkgconfig )"
 PDEPEND="doc? ( ~dev-db/postgresql-docs-${PV} )"
+
+S="${WORKDIR}/postgresql-${PV}"
 
 pkg_setup() {
 	enewgroup postgres 70
@@ -58,7 +56,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/postgresql-${SLOT}-common.patch" \
-		"${FILESDIR}/postgresql-${SLOT}-server.2.patch"
+		"${FILESDIR}/postgresql-${SLOT}-server.patch" \
 		"${FILESDIR}/postgresql-8.3-prefix.patch"
 
 	eprefixify "${S}/src/include/pg_config_manual.h"
@@ -78,7 +76,6 @@ src_configure() {
 
 	# eval is needed to get along with pg_config quotation of space-rich entities.
 	eval econf "$(${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin/pg_config --configure)" \
-		--disable-thread-safety \
 		$(use_with perl) \
 		$(use_with python) \
 		$(use_with tcl) \
@@ -146,14 +143,6 @@ pkg_postinst() {
 	ewarn "original location."
 	ewarn
 
-	elog "The PostgreSQL community has called for more testers of the upcoming 9.0"
-	elog "release. This beta version of the PostgreSQL server, while moved to ~arch, will"
-	elog "never be marked stable. As such, you may not want to use this package in an"
-	elog "environment where incompatible changes are unacceptable. Bear in mind, though,"
-	elog "that these packages are slotted and that you may run multiple server instances"
-	elog "simultaneously without conflict."
-	elog
-
 	elog "Before initializing the database, you may want to edit PG_INITDB_OPTS so that it"
 	elog "contains your preferred locale and character encoding in:"
 	elog
@@ -207,11 +196,10 @@ pkg_config() {
 	einfo "More information can be found here:"
 	einfo "    http://www.postgresql.org/docs/${SLOT}/static/creating-cluster.html"
 	einfo "    http://www.postgresql.org/docs/${SLOT}/static/app-initdb.html"
-	einfo "Simply add the options you would have added to initdb to the PG_INITDB_OPTS"
-	einfo "variable."
+	einfo "Simply add the options you would have added to initdb to the PG_INITDB_OPTS variable."
 	einfo
-	einfo "You can change the directory where the database cluster is being created by"
-	einfo "setting the PGDATA variable."
+	einfo "You can change the directory where the database cluster is being created by setting"
+	einfo "the PGDATA variable."
 	einfo
 	einfo "PG_INITDB_OPTS is currently set to:"
 	einfo "    \"${PG_INITDB_OPTS}\""

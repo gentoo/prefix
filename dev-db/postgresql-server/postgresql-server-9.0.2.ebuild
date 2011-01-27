@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-9.0_beta3.ebuild,v 1.1 2010/07/14 18:41:30 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-9.0.2.ebuild,v 1.1 2011/01/04 19:24:14 patrick Exp $
 
 EAPI="2"
 PYTHON_DEPEND="python? 2"
@@ -22,20 +22,24 @@ S=${WORKDIR}/postgresql-${MY_PV}
 
 LICENSE="POSTGRESQL"
 SLOT="$(get_version_component_range 1-2)"
-IUSE_LINGUAS="
-	linguas_af linguas_cs linguas_de linguas_es linguas_fa linguas_fr
-	linguas_hr linguas_hu linguas_it linguas_ko linguas_nb linguas_pl
-	linguas_pt_BR linguas_ro linguas_ru linguas_sk linguas_sl linguas_sv
-	linguas_tr linguas_zh_CN linguas_zh_TW"
-IUSE="pg_legacytimestamp doc perl python selinux tcl uuid xml nls kernel_linux ${IUSE_LINGUAS}"
+LINGUAS="af cs de es fa fr hr hu it ko nb pl pt_BR ro ru sk sl sv tr zh_CN zh_TW"
+IUSE="doc kernel_linux nls perl pg_legacytimestamp python selinux tcl uuid xml"
+
+for lingua in ${LINGUAS}; do
+	IUSE+=" linguas_${lingua}"
+done
 
 wanted_languages() {
-	for u in ${IUSE_LINGUAS} ; do
-		use $u && echo -n "${u#linguas_} "
+	local enable_langs
+
+	for lingua in ${LINGUAS} ; do
+		use linguas_${lingua} && enable_langs+="${lingua} "
 	done
+
+	echo -n ${enable_langs}
 }
 
-RDEPEND="~dev-db/postgresql-base-${PV}:${SLOT}[pg_legacytimestamp=]
+RDEPEND="~dev-db/postgresql-base-${PV}:${SLOT}[pg_legacytimestamp=,nls=]
 	perl? ( >=dev-lang/perl-5.6.1-r2 )
 	python? ( dev-python/egenix-mx-base )
 	selinux? ( sec-policy/selinux-postgresql )
@@ -73,9 +77,6 @@ src_prepare() {
 }
 
 src_configure() {
-	# TODO: test if PPC really cannot work with other CFLAGS settings
-	# use ppc && CFLAGS="-pipe -fsigned-char"
-
 	# eval is needed to get along with pg_config quotation of space-rich entities.
 	eval econf "$(${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin/pg_config --configure)" \
 		--disable-thread-safety \
@@ -88,12 +89,12 @@ src_configure() {
 		--with-system-tzdata="${EPREFIX}/usr/share/zoneinfo" \
 		--with-includes="${EPREFIX}/usr/include/postgresql-${SLOT}/" \
 		--with-libraries="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)" \
-		"$(has_version ~dev-db/postgresql-base-${PV}[nls] && use_enable nls nls "$(wanted_languages)")"
+		"$(use_enable nls nls "$(wanted_languages)")"
 }
 
 src_compile() {
 	local bd
-	for bd in .  contrib $(use xml && echo contrib/xml2); do
+	for bd in . contrib $(use xml && echo contrib/xml2); do
 		PATH="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin:${PATH}" \
 			emake -C $bd -j1 || die "emake in $bd failed"
 	done
@@ -117,7 +118,7 @@ src_install() {
 	dodoc README HISTORY doc/{README.*,TODO,bug.template}
 
 	dodir /etc/eselect/postgresql/slots/${SLOT}
-	cat >"${ED}/etc/eselect/postgresql/slots/${SLOT}/service" <<-__EOF__
+	cat > "${ED}/etc/eselect/postgresql/slots/${SLOT}/service" <<-__EOF__
 		postgres_ebuilds="\${postgres_ebuilds} ${PF}"
 		postgres_service="postgresql-${SLOT}"
 	__EOF__
@@ -145,14 +146,6 @@ pkg_postinst() {
 	ewarn "You can set PGOPTS='-k /tmp' in /etc/conf.d/postgresql-${SLOT} to restore the"
 	ewarn "original location."
 	ewarn
-
-	elog "The PostgreSQL community has called for more testers of the upcoming 9.0"
-	elog "release. This beta version of the PostgreSQL server, while moved to ~arch, will"
-	elog "never be marked stable. As such, you may not want to use this package in an"
-	elog "environment where incompatible changes are unacceptable. Bear in mind, though,"
-	elog "that these packages are slotted and that you may run multiple server instances"
-	elog "simultaneously without conflict."
-	elog
 
 	elog "Before initializing the database, you may want to edit PG_INITDB_OPTS so that it"
 	elog "contains your preferred locale and character encoding in:"
