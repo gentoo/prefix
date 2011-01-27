@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/file
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.184 2010/10/12 17:38:37 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.187 2011/01/18 21:36:39 arfrever Exp $
+
+  18 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  file-5.05.ebuild:
+  Support Python 3, fix PYTHON_MODNAME (bug #352045).
+
+*file-5.05 (18 Jan 2011)
+
+  18 Jan 2011; Mike Frysinger <vapier@gentoo.org> +file-5.05.ebuild:
+  Version bump.
+
+  28 Nov 2010; Brent Baude <ranger@gentoo.org> file-5.04.ebuild:
+  stable ppc64, bug 340225
 
   12 Oct 2010; Jeroen Roovers <jer@gentoo.org> file-5.04.ebuild:
   Stable for PPC (bug #340225).
