@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.4.ebuild,v 1.2 2010/02/11 15:07:16 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.6.ebuild,v 1.7 2011/01/22 23:01:40 xarthisius Exp $
 
 EAPI=2
 
@@ -21,7 +21,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 DEPEND=">=dev-lang/ocaml-3.10[ocamlopt?,tk?]"
 RDEPEND="${DEPEND}"
 
-ocamlfind_destdir="${EPREFIX}/usr/$(get_libdir)/ocaml/site-packages"
+ocamlfind_destdir="${EPREFIX}/usr/$(get_libdir)/ocaml"
 stublibs="${ocamlfind_destdir}/stublibs"
 
 src_configure() {

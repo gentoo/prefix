@@ -1,6 +1,51 @@
 # ChangeLog for dev-ml/findlib
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.59 2010/05/25 11:04:59 aballier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.73 2011/01/24 09:15:55 aballier Exp $
+
+  24 Jan 2011; Alexis Ballier <aballier@gentoo.org> -findlib-1.2.3.ebuild,
+  -findlib-1.2.5.ebuild:
+  remove old
+
+  22 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> findlib-1.2.6.ebuild:
+  ppc64 stable wrt #349633
+
+  21 Jan 2011; Jeroen Roovers <jer@gentoo.org> findlib-1.2.6.ebuild:
+  Stable for HPPA (bug #349633).
+
+  13 Jan 2011; Brent Baude <ranger@gentoo.org> findlib-1.2.6.ebuild:
+  stable ppc, bug 349633
+
+  09 Jan 2011; Raúl Porcel <armin76@gentoo.org> findlib-1.2.6.ebuild:
+  alpha/ia64/sparc stable wrt #349633
+
+  05 Jan 2011; Markos Chandras <hwoarang@gentoo.org> findlib-1.2.6.ebuild:
+  Stable on amd64 wrt bug #349633
+
+  29 Dec 2010; Thomas Kahle <tomka@gentoo.org> findlib-1.2.6.ebuild:
+  x86 stable per bug 349633
+
+  04 Dec 2010; Raúl Porcel <armin76@gentoo.org> findlib-1.2.5.ebuild:
+  alpha/ia64/sparc stable wrt #343751
+
+  15 Nov 2010; Thomas Kahle <tomka@gentoo.org> findlib-1.2.5.ebuild:
+  x86 stable per bug 343751
+
+*findlib-1.2.6 (07 Nov 2010)
+
+  07 Nov 2010; Alexis Ballier <aballier@gentoo.org> +findlib-1.2.6.ebuild:
+  version bump
+
+  05 Nov 2010; Markos Chandras <hwoarang@gentoo.org> findlib-1.2.5.ebuild:
+  Stable on amd64 wrt bug #343751
+
+  05 Nov 2010; Jeroen Roovers <jer@gentoo.org> findlib-1.2.5.ebuild:
+  Stable for HPPA (bug #343751).
+
+  02 Nov 2010; Markos Chandras <hwoarang@gentoo.org> findlib-1.2.5.ebuild:
+  Revert my last commit and bring ~amd64 back
+
+  01 Nov 2010; Markos Chandras <hwoarang@gentoo.org> findlib-1.2.5.ebuild:
+  Stable on amd64 wrt bug #343751
 
   25 May 2010; Alexis Ballier <aballier@gentoo.org> -findlib-1.2.4.ebuild,
   -findlib-1.2.4-r1.ebuild:
