@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r1.ebuild,v 1.2 2008/01/15 00:05:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r2.ebuild,v 1.2 2011/01/12 21:56:34 arfrever Exp $
 
 inherit eutils fixheadtails autotools libtool
 
@@ -14,6 +14,7 @@ KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-maco
 IUSE="debug"
 
 DEPEND=""
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
@@ -21,6 +22,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.0.5-parallelfix.patch
 	epatch "${FILESDIR}"/${PN}-2.0.6-ldflags.patch
 	epatch "${FILESDIR}"/${PN}-2.0.6-sigstack.patch
+	epatch "${FILESDIR}"/${PN}-2.0.7-parallel-install.patch
 	epatch "${FILESDIR}"/${PN}-2.0.7-mint.patch
 	epatch "${FILESDIR}"/${P}-libs.patch
 
@@ -42,7 +44,8 @@ src_compile() {
 }
 
 src_install() {
-	# install is not parallel safe (last checked 2.0.7-r1)
-	emake -j1 DESTDIR="${D}" install || die
-	dodoc ANNOUNCE AUTHORS ChangeLog NEWS README THANKS USERS
+	#Parallel install issuse fixed with parallel-install.patch.
+	#Submitted upstream on 12-13-2010.
+	emake DESTDIR="${D}" install || die
+	dodoc ANNOUNCE AUTHORS ChangeLog NEWS README THANKS USERS || die
 }

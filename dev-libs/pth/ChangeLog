@@ -1,6 +1,26 @@
 # ChangeLog for dev-libs/pth
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.60 2008/01/15 00:05:10 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.63 2011/01/25 19:11:15 arfrever Exp $
+
+  25 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -pth-2.0.7.ebuild, -pth-2.0.7-r1.ebuild:
+  Delete.
+
+  12 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pth-2.0.7-r2.ebuild:
+  Copy stable keywords from 2.0.7-r1. Changes introduced in 2.0.7-r2 don't
+  affect installed files and there shouldn't have been revision bump.
+
+*pth-2.0.7-r2 (13 Dec 2010)
+
+  13 Dec 2010; Dane Smith <c1pher@gentoo.org> +pth-2.0.7-r2.ebuild,
+  +files/pth-2.0.7-parallel-install.patch:
+  New patch pth-2.0.7-parallel-install.patch addresses the parallel install
+  problem starting in 2.0.7.
+  Revbump to -r2 applies patch and removes the need to emake -j1 for
+  install. 
+  Also fixes the implicit RDEPEND="${DEPEND}" warning in repoman.
+  Fixed the headers for 2.0.7 ad 2.0.7-r1.
 
   15 Jan 2008; Mike Frysinger <vapier@gentoo.org> pth-2.0.7-r1.ebuild:
   Use `emake -j1` when installing rather than `make`.
