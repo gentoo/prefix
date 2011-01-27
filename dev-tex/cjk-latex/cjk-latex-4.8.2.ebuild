@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/cjk-latex/cjk-latex-4.8.2.ebuild,v 1.7 2009/05/28 16:12:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/cjk-latex/cjk-latex-4.8.2.ebuild,v 1.8 2010/10/10 16:42:18 aballier Exp $
 
-inherit latex-package elisp-common toolchain-funcs multilib
+inherit latex-package elisp-common toolchain-funcs multilib eutils autotools
 
 MY_P="${P/-latex/}"
 
@@ -36,6 +36,9 @@ src_unpack() {
 	sed -i -e "/^pk_files/s/no/yes/" \
 		-e "/^dpi_x/s/300/500/" \
 		texmf/hbf2gf/*.cfg || die
+	epatch "${FILESDIR}/${P}-kpathsea_version.patch"
+	cd "${S}/utils/hbf2gf"
+	eautoreconf
 }
 
 src_compile() {
