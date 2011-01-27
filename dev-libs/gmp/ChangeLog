@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.136 2010/07/27 02:33:18 zorry Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.140 2010/11/17 16:27:04 jer Exp $
+
+  17 Nov 2010; Jeroen Roovers <jer@gentoo.org> gmp-4.3.2.ebuild:
+  Simply set GMPABI and remove other hackery (bug #344613).
+
+  16 Nov 2010; Jeroen Roovers <jer@gentoo.org> gmp-5.0.1.ebuild:
+  Simply set GMPABI and remove other hackery (bug #344613).
+
+  11 Nov 2010; Jeroen Roovers <jer@gentoo.org> gmp-5.0.1.ebuild:
+  Remove HPPA hack (bug #344613 by Christian Franke).
+
+  30 Aug 2010; Mike Frysinger <vapier@gentoo.org> gmp-5.0.1.ebuild,
+  +files/gmp-5.0.1-perfpow-test.patch:
+  Add test fix from upstream.
 
   27 Jul 2010; Magnus Granberg <zorry@gentoo.org> gmp-5.0.1.ebuild,
   +files/gmp-5.0.1-x86-nopie-tests.patch:
