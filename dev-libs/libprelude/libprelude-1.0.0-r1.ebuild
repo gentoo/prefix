@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/libprelude-1.0.0-r1.ebuild,v 1.1 2010/05/27 15:57:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/libprelude-1.0.0-r1.ebuild,v 1.2 2011/01/06 23:45:29 jer Exp $
 
 EAPI=2
 
-inherit perl-module flag-o-matic eutils
+inherit libtool perl-module flag-o-matic eutils
 
 DESCRIPTION="Prelude-IDS Framework Library"
 HOMEPAGE="http://www.prelude-technologies.com"
@@ -20,6 +20,10 @@ RDEPEND=">=net-libs/gnutls-1.0.17
 
 DEPEND="${RDEPEND}
 	sys-devel/flex"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-libtool.patch
+}
 
 src_configure() {
 	filter-lfs-flags
