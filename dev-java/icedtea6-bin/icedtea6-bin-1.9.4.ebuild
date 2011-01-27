@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.8.1.ebuild,v 1.3 2010/07/31 14:41:26 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.9.4.ebuild,v 1.3 2011/01/22 17:56:54 hwoarang Exp $
 
 EAPI="1"
 
@@ -8,7 +8,7 @@ inherit java-vm-2
 
 dist="mirror://gentoo/"
 DESCRIPTION="A Gentoo-made binary build of the icedtea6 JDK"
-TARBALL_VERSION="${PV}"
+TARBALL_VERSION="${PVR}"
 SRC_URI="amd64? ( ${dist}/${PN}-core-${TARBALL_VERSION}-amd64.tar.bz2 )
 	x86? ( ${dist}/${PN}-core-${TARBALL_VERSION}-x86.tar.bz2 )
 	doc? ( ${dist}/${PN}-doc-${TARBALL_VERSION}.tar.bz2 )
@@ -33,27 +33,27 @@ KEYWORDS="~amd64-linux ~x86-linux"
 S="${WORKDIR}/${PN}-${TARBALL_VERSION}"
 
 RDEPEND=">=sys-devel/gcc-4.3
-	!prefix? ( >=sys-libs/glibc-2.9 )
+	!prefix? ( >=sys-libs/glibc-2.11.2 )
 	>=media-libs/giflib-4.1.6-r1
-	>=media-libs/jpeg-8
+	virtual/jpeg
 	>=media-libs/libpng-1.4:0
 	>=sys-libs/zlib-1.2.3-r1
 	alsa? ( >=media-libs/alsa-lib-1.0.20 )
 	X? (
 		>=media-libs/freetype-2.3.9:2
 		>=media-libs/fontconfig-2.6.0-r2:1.0
-		>=x11-libs/libXext-1.0.5
-		>=x11-libs/libXi-1.2.1
-		>=x11-libs/libXtst-1.0.3
-		>=x11-libs/libX11-1.2.2
+		>=x11-libs/libXext-1.1
+		>=x11-libs/libXi-1.3
+		>=x11-libs/libXtst-1.1
+		>=x11-libs/libX11-1.3
 		x11-libs/libXt
 	)
 	nsplugin? (
-		>=dev-libs/atk-1.26.0
+		>=dev-libs/atk-1.30.0
 		>=dev-libs/glib-2.20.5:2
 		>=dev-libs/nspr-4.8
 		>=x11-libs/cairo-1.8.8
-		>=x11-libs/gtk+-2.16.6:2
+		>=x11-libs/gtk+-2.20.1:2
 		>=x11-libs/pango-1.24.5
 	)"
 DEPEND=""
