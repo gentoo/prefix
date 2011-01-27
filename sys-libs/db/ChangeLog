@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/db
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.315 2010/10/18 17:40:52 robbat2 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.316 2011/01/07 19:30:39 robbat2 Exp $
+
+*db-5.0.32 (07 Jan 2011)
+
+  07 Jan 2011; Robin H. Johnson <robbat2@gentoo.org> +db-5.0.32.ebuild:
+  Bump 5.0 series as upstream backported the 5.1 fixes.
 
 *db-5.1.19-r2 (18 Oct 2010)
 
