@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/popt
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.90 2010/07/25 16:18:08 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.92 2010/12/24 22:41:58 mattst88 Exp $
+
+*popt-1.16-r1 (24 Dec 2010)
+
+  24 Dec 2010; Matt Turner <mattst88@gentoo.org> +popt-1.16-r1.ebuild,
+  +files/fix-popt-pkgconfig-libdir.patch:
+  Fix pkgconfigdir definition, bug 349558
+
+  03 Oct 2010; Raúl Porcel <armin76@gentoo.org> popt-1.16.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #324619
 
   25 Jul 2010; Tobias Klausmann <klausman@gentoo.org> popt-1.16.ebuild:
   Stable on alpha, bug #324619

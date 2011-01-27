@@ -1,10 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.16.ebuild,v 1.10 2010/10/03 13:18:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.16-r1.ebuild,v 1.1 2010/12/24 22:41:58 mattst88 Exp $
 
 EAPI=3
 
 inherit eutils libtool
+
+# For bug 349558, epatch
+inherit eutils
 
 DESCRIPTION="Parse Options - Command line parser"
 HOMEPAGE="http://rpm5.org/"
@@ -19,6 +22,9 @@ RDEPEND="nls? ( virtual/libintl )"
 DEPEND="nls? ( sys-devel/gettext )"
 
 src_prepare() {
+	# For bug 349558
+	epatch "${FILESDIR}"/fix-popt-pkgconfig-libdir.patch
+
 	sed -i \
 		-e 's:lt-test1:test1:' \
 		testit.sh || die
