@@ -1,6 +1,14 @@
 # ChangeLog for sys-process/procps
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.40 2010/09/22 15:24:08 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.41 2010/11/21 20:16:28 vapier Exp $
+
+*procps-3.2.8-r2 (21 Nov 2010)
+
+  21 Nov 2010; Mike Frysinger <vapier@gentoo.org> +procps-3.2.8-r2.ebuild,
+  +files/procps-3.2.8-forest-prefix.patch,
+  +files/procps-3.2.8-linux-ver-init.patch:
+  Fix some build warnings and apply fix by Chris Coleman for HZ warning
+  #303120 by Alexander Holler.
 
   22 Sep 2010; Diego E. Pettenò <flameeyes@gentoo.org>
   procps-3.2.8-r1.ebuild, +files/procps-3.2.8+gmake-3.82.patch:
