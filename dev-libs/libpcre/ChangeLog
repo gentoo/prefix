@@ -1,6 +1,23 @@
 # ChangeLog for dev-libs/libpcre
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.167 2010/12/12 18:59:47 hwoarang Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.172 2011/01/18 05:44:15 xarthisius Exp $
+
+  18 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> libpcre-8.02.ebuild:
+  ppc64 stable wrt #348487
+
+  07 Jan 2011; Brent Baude <ranger@gentoo.org> libpcre-8.02.ebuild:
+  stable ppc, bug 348487
+
+  21 Dec 2010; Markus Meier <maekke@gentoo.org> libpcre-8.02.ebuild:
+  arm stable, bug #348487
+
+*libpcre-8.11 (14 Dec 2010)
+
+  14 Dec 2010; Diego E. Pettenò <flameeyes@gentoo.org> +libpcre-8.11.ebuild:
+  Version bump; thanks to Arseny Solokha for reporting (bug #348743).
+
+  13 Dec 2010; Jeroen Roovers <jer@gentoo.org> libpcre-8.02.ebuild:
+  Stable for HPPA (bug #348487).
 
   12 Dec 2010; Markos Chandras <hwoarang@gentoo.org> libpcre-8.02.ebuild:
   Stable on amd64 wrt bug #348487

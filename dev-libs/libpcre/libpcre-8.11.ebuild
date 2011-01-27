@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-8.02.ebuild,v 1.7 2011/01/18 05:44:15 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-8.11.ebuild,v 1.1 2010/12/14 23:23:14 flameeyes Exp $
 
 EAPI=2
 
@@ -19,7 +19,7 @@ fi
 LICENSE="BSD"
 SLOT="3"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bzip2 +cxx unicode zlib static-libs"
+IUSE="bzip2 +cxx unicode zlib static-libs +recursion-limit"
 
 RDEPEND="bzip2? ( app-arch/bzip2 )
 	zlib? ( sys-libs/zlib )"
@@ -30,8 +30,8 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	sed -i -e "s:libdir=@libdir@:libdir=${EPREFIX}/$(get_libdir):" libpcre.pc.in || die "Fixing libpcre pkgconfig files failed"
 	sed -i -e "s:-lpcre ::" libpcrecpp.pc.in || die "Fixing libpcrecpp pkgconfig files failed"
+	elibtoolize
 }
 
 src_configure() {
@@ -46,9 +46,7 @@ src_configure() {
 
 	[[ ${CHOST} == *-mint* ]] && CXXFLAGS="${CXXFLAGS} -D_GNU_SOURCE"
 
-	# Enable building of static libs too - grep and others
-	# depend on them being built: bug 164099
-	econf --with-match-limit-recursion=8192 \
+	econf --with-match-limit-recursion=$(use recursion-limit && echo 8192 || echo MATCH_LIMIT) \
 		$(use_enable unicode utf8) $(use_enable unicode unicode-properties) \
 		$(use_enable cxx cpp) \
 		$(use_enable zlib pcregrep-libz) \
