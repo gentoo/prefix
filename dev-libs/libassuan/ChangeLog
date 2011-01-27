@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/libassuan
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.70 2010/07/21 16:54:55 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.73 2011/01/12 17:50:23 c1pher Exp $
+
+*libassuan-2.0.1 (12 Jan 2011)
+
+  12 Jan 2011; Dane Smith <c1pher@gentoo.org> +libassuan-2.0.1.ebuild:
+  Version bump. Thanks Sebastian Pipping bug 351442.
+
+  12 Jan 2011; Diego E. Pettenò <flameeyes@gentoo.org> libassuan-1.0.5.ebuild,
+  libassuan-2.0.0.ebuild:
+  Fix HOMEPAGE. Thanks to Sebastian Pipping in bug #351440.
+
+  30 Aug 2010; Raúl Porcel <armin76@gentoo.org> libassuan-2.0.0.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #320037
 
   21 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
   libassuan-2.0.0.ebuild:
