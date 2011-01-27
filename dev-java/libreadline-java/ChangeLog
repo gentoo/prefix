@@ -1,6 +1,30 @@
 # ChangeLog for dev-java/libreadline-java
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/libreadline-java/ChangeLog,v 1.30 2007/05/17 21:45:09 betelgeuse Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/libreadline-java/ChangeLog,v 1.35 2011/01/20 18:34:11 xarthisius Exp $
+
+  20 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  libreadline-java-0.8.0-r3.ebuild:
+  ppc64 stable wrt #340799
+
+  15 Oct 2010; Brent Baude <ranger@gentoo.org>
+  libreadline-java-0.8.0-r3.ebuild:
+  stable ppc, bug 340799
+
+  15 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  libreadline-java-0.8.0-r3.ebuild:
+  Stable on amd64 wrt bug #340799
+
+  14 Oct 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libreadline-java-0.8.0-r3.ebuild:
+  x86 stable wrt bug #340799
+
+*libreadline-java-0.8.0-r3 (13 Sep 2010)
+
+  13 Sep 2010; Serkan Kaba <serkan@gentoo.org>
+  +libreadline-java-0.8.0-r3.ebuild,
+  +files/libreadline-java-0.8.0-ldflags.patch:
+  Revbump to respect LDFLAGS. Reported by Diego E. Pettenò
+  <flameeyes@gentoo.org> in bug #336302.
 
   17 May 2007; Petteri Räty <betelgeuse@gentoo.org>
   -libreadline-java-0.8.0-r1.ebuild, libreadline-java-0.8.0-r2.ebuild:
