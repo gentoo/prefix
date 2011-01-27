@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.4.2.ebuild,v 1.9 2010/09/12 17:40:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.4.2.ebuild,v 1.10 2010/12/12 19:02:14 vapier Exp $
 
 inherit toolchain-funcs flag-o-matic
 
@@ -21,6 +21,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.4.2-gnulib_spawn.patch # 312697
 	epatch "${FILESDIR}"/${PN}-2.4.2-gcc45_testsuite.patch
+	epatch "${FILESDIR}"/${PN}-2.4.3-uclibc-sched_param-def.patch
 }
 
 src_compile() {

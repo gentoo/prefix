@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/bison
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.95 2010/09/12 17:40:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.96 2010/12/12 19:02:14 vapier Exp $
+
+  12 Dec 2010; Mike Frysinger <vapier@gentoo.org> bison-2.4.2.ebuild,
+  bison-2.4.3.ebuild, +files/bison-2.4.3-uclibc-sched_param-def.patch:
+  Add fix from upstream gnulib for uClibc.
 
   12 Sep 2010; Raúl Porcel <armin76@gentoo.org> bison-2.4.2.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #331577
