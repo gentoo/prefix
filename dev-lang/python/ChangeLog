@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.514 2011/01/01 18:24:05 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.515 2011/01/06 19:11:25 ranger Exp $
+
+  06 Jan 2011; Brent Baude <ranger@gentoo.org> python-2.6.6-r1.ebuild:
+  Marking python-2.6.6-r1 ppc for bug 342927
 
   01 Jan 2011; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   python-2.6.6-r1.ebuild:

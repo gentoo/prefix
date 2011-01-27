@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r2.ebuild,v 1.17 2010/07/31 19:14:08 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r3.ebuild,v 1.11 2010/12/06 02:56:40 jmbsvicetto Exp $
 
 EAPI="2"
 
@@ -8,7 +8,7 @@ inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 
 MY_P="Python-${PV}"
 
-PATCHSET_REVISION="4"
+PATCHSET_REVISION="5"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -20,9 +20,6 @@ SLOT="2.6"
 PYTHON_ABI="${SLOT}"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
-
-# NOTE: dev-python/{elementtree,celementtree,pysqlite}
-#       do not conflict with the ones in python proper. - liquidx
 
 RDEPEND=">=app-admin/eselect-python-20091230
 		>=sys-libs/zlib-1.1.3
@@ -117,6 +114,9 @@ src_prepare() {
 	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}/usr"':' \
 		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}/usr"':' \
 		Makefile.pre.in || die
+
+	# Avoid regeneration, which would not change contents of files.
+	touch Include/Python-ast.h Python/Python-ast.c
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
