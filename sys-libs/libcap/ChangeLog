@@ -1,6 +1,17 @@
 # ChangeLog for sys-libs/libcap
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.104 2010/03/07 00:12:48 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.106 2011/01/26 03:31:49 vapier Exp $
+
+  26 Jan 2011; Mike Frysinger <vapier@gentoo.org>
+  files/libcap-2.20-build-system-fixes.patch:
+  Also build pam module with -fPIC #352758 by Seemant Kulleen.
+
+*libcap-2.20 (25 Jan 2011)
+
+  25 Jan 2011; Mike Frysinger <vapier@gentoo.org> +libcap-2.20.ebuild,
+  +files/libcap-2.20-build-system-fixes.patch,
+  +files/libcap-2.20-ignore-RAISE_SETFCAP-install-failures.patch:
+  Version bump #352680 by Marc Koschewski.
 
 *libcap-2.19 (07 Mar 2010)
 
