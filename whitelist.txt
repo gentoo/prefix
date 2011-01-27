@@ -408,6 +408,7 @@ dev-lisp/cl-ppcre
 dev-lisp/ecls
 dev-ml/extlib
 dev-ml/lablgtk
+dev-php/PEAR-PEAR
 dev-tex/bibtexu
 dev-tex/chktex
 dev-tex/currvita
