@@ -1,6 +1,52 @@
 # ChangeLog for dev-java/maven-bin
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.62 2010/06/25 11:25:47 angelos Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.72 2011/01/20 20:40:48 fordfrog Exp $
+
+  20 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> maven-bin-1.1-r1.ebuild:
+  Marking maven 1.1 back stable
+
+*maven-bin-1.0.2-r1 (20 Jan 2011)
+
+  20 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> -maven-bin-1.0.2.ebuild,
+  +maven-bin-1.0.2-r1.ebuild, -maven-bin-1.1.ebuild, +maven-bin-1.1-r1.ebuild:
+  Fixed slotting issue I caused with adding maven 1.0.2, bug #352211
+
+  19 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> maven-bin-1.0.2.ebuild:
+  Removed not needed post install message
+
+  19 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> maven-bin-1.1.ebuild:
+  Marked 1.1 stable again
+
+  19 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> +maven-bin-1.1.ebuild,
+  -maven-bin-1.1-r1.ebuild:
+  Changed 1.1-r1 back to 1.1
+
+  19 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> maven-bin-1.1-r1.ebuild:
+  Marked version 1.1 back stable as it was just reslotted from slot 1.0 to slot
+  1.1
+
+*maven-bin-1.1-r1 (19 Jan 2011)
+
+  19 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> +maven-bin-1.0.2.ebuild,
+  -maven-bin-1.1.ebuild, +maven-bin-1.1-r1.ebuild:
+  Resurrected version 1.0.2, reslotted version 1.1 to slot 1.1, removed version
+  1.1 that was in slot 1.0 and added information about reslotting to 1.0.2
+  ebuild
+
+*maven-bin-3.0.2 (15 Jan 2011)
+
+  15 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> +maven-bin-3.0.2.ebuild:
+  version bump
+
+  29 Oct 2010; Vlastimil Babka <caster@gentoo.org> -maven-bin-2.0.8.ebuild,
+  -maven-bin-2.0.9.ebuild, -maven-bin-2.0.10-r1.ebuild,
+  maven-bin-2.0.11.ebuild, maven-bin-2.1.0.ebuild, maven-bin-2.2.1.ebuild:
+  Add the configuration to CONFIG_PROTECT, bug #342901.
+
+*maven-bin-3.0 (29 Oct 2010)
+
+  29 Oct 2010; Vlastimil Babka <caster@gentoo.org> +maven-bin-3.0.ebuild:
+  Version bump, thanks to jieryn in java-experimental overlay.
 
   25 Jun 2010; Christoph Mende <angelos@gentoo.org> maven-bin-2.0.11.ebuild,
   maven-bin-2.1.0.ebuild, maven-bin-2.2.1.ebuild:

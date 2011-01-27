@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-2.2.1.ebuild,v 1.4 2010/06/25 11:25:47 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-2.2.1.ebuild,v 1.5 2010/10/29 18:47:08 caster Exp $
 
 inherit java-pkg-2 prefix
 
@@ -45,4 +45,8 @@ src_install() {
 
 	dodir /usr/bin
 	dosym "${MAVEN_SHARE}/bin/mvn" /usr/bin/mvn-${SLOT}
+
+	# bug #342901
+	echo "CONFIG_PROTECT=\"${MAVEN_SHARE}/conf\"" > "${T}/25${MAVEN}" || die
+	doenvd "${T}/25${MAVEN}"
 }

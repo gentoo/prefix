@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-2.0.10-r1.ebuild,v 1.2 2009/10/26 08:01:29 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-3.0.2.ebuild,v 1.1 2011/01/15 12:25:40 fordfrog Exp $
 
 inherit java-pkg-2 prefix
 
@@ -8,13 +8,13 @@ MY_PN=apache-${PN%%-bin}
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Project Management and Comprehension Tool for Java"
-SRC_URI="mirror://apache/maven/binaries/${MY_P}-bin.tar.bz2"
+SRC_URI="mirror://apache/maven/binaries/${MY_P}-bin.tar.gz"
 HOMEPAGE="http://maven.apache.org/"
 LICENSE="Apache-2.0"
-SLOT="2.0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+SLOT="3.0"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 
-RDEPEND=">=virtual/jdk-1.4
+RDEPEND=">=virtual/jdk-1.5
 	app-admin/eselect-maven"
 
 IUSE=""
@@ -28,6 +28,7 @@ src_unpack() {
 	unpack ${A}
 
 	rm -v "${S}"/bin/*.bat || die
+	chmod 644 "${S}"/boot/*.jar "${S}"/lib/*.jar "${S}"/conf/settings.xml || die
 
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.0.8-prefix.patch
@@ -45,4 +46,8 @@ src_install() {
 
 	dodir /usr/bin
 	dosym "${MAVEN_SHARE}/bin/mvn" /usr/bin/mvn-${SLOT}
+
+	# bug #342901
+	echo "CONFIG_PROTECT=\"${MAVEN_SHARE}/conf\"" > "${T}/25${MAVEN}" || die
+	doenvd "${T}/25${MAVEN}"
 }
