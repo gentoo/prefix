@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.27-r10.ebuild,v 1.6 2010/03/26 01:54:24 pchrist Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.27-r10.ebuild,v 1.7 2010/12/17 20:19:14 ulm Exp $
 
 EAPI=2
 
@@ -46,8 +46,6 @@ IUSE="ldb source +threads +unicode doc cobalt"
 DEPEND="doc? ( sys-apps/texinfo >=media-gfx/graphviz-2.26.0 )"
 RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.3 || ( <sys-libs/glibc-2.6[nptl] >=sys-libs/glibc-2.6 ) ) )"
 PDEPEND="dev-lisp/gentoo-init"
-
-PROVIDE="virtual/commonlisp"
 
 #Disable warnings about executable stacks, as this won't be fixed soon, by
 #upstream
