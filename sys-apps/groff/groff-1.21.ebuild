@@ -1,13 +1,13 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.20.1-r3.ebuild,v 1.8 2011/01/13 17:16:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.21.ebuild,v 1.2 2011/01/05 14:38:41 matsuu Exp $
 
 inherit autotools eutils toolchain-funcs
 
 DESCRIPTION="Text formatter used for man pages"
 HOMEPAGE="http://www.gnu.org/software/groff/groff.html"
 SRC_URI="mirror://gnu/groff/${P}.tar.gz
-	linguas_ja? ( mirror://gentoo/${P}-r2-japanese.patch.bz2 )"
+	linguas_ja? ( mirror://gentoo/${P}-japanese.patch.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -29,15 +29,6 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.19.2-man-unicode-dashes.patch #16108 #17580 #121502
-	epatch "${FILESDIR}"/${P}-tmac-ec.patch #263524
-	epatch "${FILESDIR}"/${P}-Thtml-mem-leak.patch #294045
-	epatch "${FILESDIR}"/${P}-double-frees-mem-leaks.patch #294045
-
-	# put the docs in the Gentoo-specific spot
-	sed -i \
-		-e '/^docdir=/s/=.*/=@docdir@/' \
-		Makefile.in \
-		|| die "sed failed"
 
 	# Make sure we can cross-compile this puppy
 	if tc-is-cross-compiler ; then
@@ -58,7 +49,7 @@ src_unpack() {
 	EOF
 
 	if use linguas_ja ; then
-		epatch "${WORKDIR}"/${P}-r2-japanese.patch #255292
+		epatch "${WORKDIR}"/${P}-japanese.patch #255292 #350534
 		eautoconf
 		eautoheader
 	fi
@@ -66,15 +57,13 @@ src_unpack() {
 	# Darwin gcc has a bug? http://www.mail-archive.com/groff@gnu.org/msg04756.html
 	# Bigger problem than just darwin http://www.mail-archive.com/groff@gnu.org/msg05057.html
 	# Gentoo bug 332017
-	sed -i -e 's/inline node/node/' src/roff/troff/node.cpp || die
+#	sed -i -e 's/inline node/node/' src/roff/troff/node.cpp || die
 	# make sure we don't get a crappy `g' nameprefix
 	epatch "${FILESDIR}"/groff-1.19.2-no-g-nameprefix.patch
 	AT_M4DIR=m4 eautoreconf
 }
 
 src_compile() {
-	# Fix problems with not finding g++
-#	tc-export CC CXX
 	econf \
 		--with-appresdir="${EPREFIX}"/usr/share/X11/app-defaults \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
@@ -93,7 +82,5 @@ src_install() {
 	dodoc BUG-REPORT ChangeLog MORE.STUFF NEWS \
 		PROBLEMS PROJECTS README REVISION TODO VERSION
 
-	if ! use examples ; then
-		rm -rf "${ED}"/usr/share/doc/${PF}/examples
-	fi
+	use examples || rm -rf "${ED}"/usr/share/doc/${PF}/examples
 }

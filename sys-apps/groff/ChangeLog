@@ -1,6 +1,34 @@
 # ChangeLog for sys-apps/groff
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.105 2010/07/25 21:29:44 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.113 2011/01/13 17:16:22 jer Exp $
+
+  13 Jan 2011; Jeroen Roovers <jer@gentoo.org> groff-1.20.1-r3.ebuild:
+  Stable for HPPA (bug #350491).
+
+  09 Jan 2011; Raúl Porcel <armin76@gentoo.org> groff-1.20.1-r3.ebuild:
+  alpha/arm/ia64/m68k/s390/sh stable wrt #350491
+
+  08 Jan 2011; Christian Faulhammer <fauli@gentoo.org>
+  groff-1.20.1-r3.ebuild:
+  stable x86, bug 350491
+
+  07 Jan 2011; Brent Baude <ranger@gentoo.org> groff-1.20.1-r3.ebuild:
+  stable ppc, bug 350491
+
+  05 Jan 2011; MATSUU Takuto <matsuu@gentoo.org> groff-1.21.ebuild:
+  Fixed to work with linguas_ja USE flag, bug #350534. The patch is submitted
+  by TANABE Ken-ichi.
+
+  04 Jan 2011; Markos Chandras <hwoarang@gentoo.org> groff-1.20.1-r3.ebuild:
+  Stable on amd64 wrt bug #350491
+
+  04 Jan 2011; Michael Weber <xmw@gentoo.org> groff-1.20.1-r3.ebuild:
+  sparc stable (bug 350491)
+
+*groff-1.21 (03 Jan 2011)
+
+  03 Jan 2011; Mike Frysinger <vapier@gentoo.org> +groff-1.21.ebuild:
+  Version bump #350443 by Panagiotis Christopoulos.
 
   25 Jul 2010; Jeroen Roovers <jer@gentoo.org> groff-1.20.1-r3.ebuild:
   Fix patch name thanks to Bobby Bingham (bug #329819).
