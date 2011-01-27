@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/icon
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.45 2010/05/19 20:05:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.46 2010/09/19 17:42:20 armin76 Exp $
+
+  19 Sep 2010; Raúl Porcel <armin76@gentoo.org> icon-9.5.0.ebuild:
+  Add ~s390 wrt #316195
 
   19 May 2010; Raúl Porcel <armin76@gentoo.org> icon-9.4.3-r5.ebuild:
   alpha/ia64/sparc stable wrt #274174

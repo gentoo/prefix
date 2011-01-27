@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/icon-9.5.0.ebuild,v 1.1 2010/04/18 20:33:15 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/icon-9.5.0.ebuild,v 1.2 2010/09/19 17:42:20 armin76 Exp $
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
