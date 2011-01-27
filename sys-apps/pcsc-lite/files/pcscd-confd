@@ -1,4 +1,0 @@
-# /etc/conf.d/pcscd
-
-# Options to pass to pcscd, see pcscd(8) manpage
-PCSCD_OPTS=""
