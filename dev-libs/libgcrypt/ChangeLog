@@ -1,6 +1,40 @@
 # ChangeLog for dev-libs/libgcrypt
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.134 2010/07/15 22:26:17 arfrever Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.144 2011/01/21 02:12:03 robbat2 Exp $
+
+  21 Jan 2011; Robin H. Johnson <robbat2@gentoo.org> libgcrypt-1.4.6.ebuild:
+  Bug #352302: Make static-libs IUSE default so that the installcd stage1
+  builds correctly again.
+
+  16 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libgcrypt-1.4.6.ebuild:
+  Add "static-libs" USE flag.
+
+  16 Oct 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -libgcrypt-1.4.5.ebuild:
+  Delete.
+
+  16 Oct 2010; Jeroen Roovers <jer@gentoo.org> libgcrypt-1.4.6.ebuild:
+  Stable for PPC (bug #337121).
+
+  15 Oct 2010; Jeroen Roovers <jer@gentoo.org> libgcrypt-1.4.6.ebuild:
+  Stable for HPPA (bug #337121).
+
+  30 Sep 2010; Brent Baude <ranger@gentoo.org> libgcrypt-1.4.6.ebuild:
+  stable ppc64, bug 337121
+
+  18 Sep 2010; Raúl Porcel <armin76@gentoo.org> libgcrypt-1.4.6.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #337121
+
+  14 Sep 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libgcrypt-1.4.6.ebuild:
+  x86 stable wrt bug #337121
+
+  13 Sep 2010; Markos Chandras <hwoarang@gentoo.org> libgcrypt-1.4.6.ebuild:
+  Stable on amd64 wrt bug #337121
+
+  30 Aug 2010; Patrick Lauer <patrick@gentoo.org> libgcrypt-1.4.6.ebuild:
+  Fixing for non-bash shells #331907
 
 *libgcrypt-1.4.6 (15 Jul 2010)
 
