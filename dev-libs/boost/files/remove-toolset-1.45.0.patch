@@ -1,0 +1,11 @@
+--- Jamroot	2010-11-17 11:51:56.000000000 +0200
++++ Jamroot.gentoo	2011-01-06 15:07:17.893270002 +0200
+@@ -377,7 +377,7 @@
+         if $(layout) = versioned
+         {
+             result = [ common.format-name
+-                <base> <toolset> <threading> <runtime> -$(BOOST_VERSION_TAG)
++                <base> <threading> <runtime> -$(BOOST_VERSION_TAG)
+                 -$(BUILD_ID)
+                 : $(name) : $(type) : $(property-set) ] ;
+         }        

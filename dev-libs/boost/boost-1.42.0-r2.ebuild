@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.41.0-r3.ebuild,v 1.12 2010/09/19 17:46:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.42.0-r2.ebuild,v 1.5 2011/01/10 12:31:04 hwoarang Exp $
 
 EAPI="2"
 
@@ -13,12 +13,11 @@ HOMEPAGE="http://www.boost.org/"
 SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
 LICENSE="Boost-1.0"
 SLOT="$(get_version_component_range 1-2)"
-IUSE="debug doc +eselect expat icu mpi python test tools"
+IUSE="debug doc +eselect icu mpi python static-libs test tools"
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="icu? ( >=dev-libs/icu-3.3 )
-	expat? ( dev-libs/expat )
 	mpi? ( || ( sys-cluster/openmpi[cxx] sys-cluster/mpich2[cxx,threads] ) )
 	sys-libs/zlib
 	python? ( virtual/python )
@@ -90,30 +89,20 @@ src_prepare() {
 	# right now, so ...
 	if [[ ${CHOST} == *-winnt* ]]; then
 		epatch "${FILESDIR}"/${PN}-1.35.0-winnt.patch
-		epatch "${FILESDIR}"/${PN}-1.40.0-winnt.patch
+		epatch "${FILESDIR}"/${PN}-1.39.0-winnt.patch
 	fi
 
 	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
-	epatch "${FILESDIR}"/${P}-solaris-namespace-clash.patch
+
+# Doesn't apply and no clue if it is needed. --darkside
+	#epatch "${FILESDIR}"/${PN}-1.41.0-solaris-namespace-clash.patch
 
 	epatch "${FILESDIR}/remove-toolset-${PV}.patch"
 
 	 # bug 291660
 	epatch "${FILESDIR}/boost-${PV}-parameter-needs-python.patch"
-
-	# http://thread.gmane.org/gmane.comp.lib.boost.devel/196471
-	epatch "${FILESDIR}/boost-${PV}-mpi_process_group-missing-include.patch"
-
-	# https://svn.boost.org/trac/boost/ticket/3010
-	epatch "${FILESDIR}/boost-${PV}-iostreams-missing-include-guard.patch"
-
-	# bug 297163
-	# https://svn.boost.org/trac/boost/ticket/3352
-	epatch "${FILESDIR}/boost-${PV}-fix-CRC-on-x64-during-gzip-decompression.patch"
-
-	# bug 297500
-	# https://svn.boost.org/trac/boost/ticket/3724
-	epatch "${FILESDIR}/boost-${PV}-spirit-fixed-include-guard-conflict.patch"
+	epatch "${FILESDIR}"/${P}-template_arity-gcc45.patch
+	epatch "${FILESDIR}"/${P}-gcc45-python.patch
 
 	# This enables building the boost.random library with /dev/urandom support
 	if [[ -e /dev/urandom ]] ; then
@@ -162,7 +151,7 @@ src_configure() {
 	use mpi && mpi="using mpi ;"
 
 	if use python ; then
-		pystring="using python : $(python_get_version) : ${EPREFIX}/usr :	$(python_get_includedir) : $(python_get_libdir) ;"
+		pystring="using python : $(python_get_version) : ${EPREFIX}/usr : ${EPREFIX}$(python_get_includedir) : ${EPREFIX}$(python_get_libdir) ;"
 	fi
 
 	cat > "${S}/user-config.jam" << __EOF__
@@ -189,7 +178,6 @@ __EOF__
 	# for more infomration.
 
 	use icu && OPTIONS="-sICU_PATH=${EPREFIX}/usr"
-	use expat && OPTIONS="${OPTIONS} -sEXPAT_INCLUDE=${EPREFIX}/usr/include -sEXPAT_LIBPATH=${EPREFIX}/usr/$(get_libdir)"
 	use mpi || OPTIONS="${OPTIONS} --without-mpi"
 	use python || OPTIONS="${OPTIONS} --without-python"
 
@@ -200,8 +188,18 @@ __EOF__
 
 	[[ ${CHOST} == *-winnt* ]] && OPTIONS="${OPTIONS} -sNO_BZIP2=1"
 
-	OPTIONS="${OPTIONS} pch=off --user-config=\"${S}/user-config.jam\" --boost-build=${EPREFIX}/usr/share/boost-build-${MAJOR_PV} --prefix=\"${ED}/usr\" --layout=versioned"
+	local boost_build=$(type -P ${BJAM})
+	boost_build=${boost_build%/*/*}/share/boost-build-${MAJOR_PV}
+	OPTIONS="${OPTIONS} --user-config=\"${S}/user-config.jam\" --boost-build=${boost_build} --prefix=\"${ED}/usr\" --layout=versioned"
 
+	if use static-libs ; then
+		LINK_OPTS="link=shared,static"
+		LIBRARY_TARGETS="*.a *$(get_libname)"
+	else
+		LINK_OPTS="link=shared"
+		#there is no dynamicly linked version of libboost_test_exec_monitor
+		LIBRARY_TARGETS="libboost_test_exec_monitor*.a *$(get_libname)"
+	fi
 }
 
 src_compile() {
@@ -221,23 +219,23 @@ src_compile() {
 	fi
 
 	einfo "Using the following command to build: "
-	einfo "${BJAM} ${NUMJOBS} -q -d+2 gentoorelease ${OPTIONS} threading=${mythreading} link=shared,static runtime-link=shared"
+	einfo "${BJAM} ${NUMJOBS} -q -d+2 gentoorelease ${OPTIONS} threading=${mythreading} ${LINK_OPTS} runtime-link=shared"
 
 	${BJAM} ${NUMJOBS} -q -d+2 \
 		gentoorelease \
 		${OPTIONS} \
-		threading=${mythreading} link=shared,static runtime-link=shared \
+		threading=${mythreading} ${LINK_OPTS} runtime-link=shared \
 		|| die "building boost failed"
 
 	# ... and do the whole thing one more time to get the debug libs
 	if use debug ; then
 		einfo "Using the following command to build: "
-		einfo "${BJAM} ${NUMJOBS} -q -d+2 gentoodebug ${OPTIONS} threading=${mythreading} link=shared,static runtime-link=shared --buildid=debug"
+		einfo "${BJAM} ${NUMJOBS} -q -d+2 gentoodebug ${OPTIONS} threading=${mythreading} ${LINK_OPTS} runtime-link=shared --buildid=debug"
 
 		${BJAM} ${NUMJOBS} -q -d+2 \
 			gentoodebug \
 			${OPTIONS} \
-			threading=${mythreading} link=shared,static runtime-link=shared \
+			threading=${mythreading} ${LINK_OPTS} runtime-link=shared \
 			--buildid=debug \
 			|| die "building boost failed"
 	fi
@@ -265,41 +263,43 @@ src_install () {
 	fi
 
 	einfo "Using the following command to install: "
-	einfo "${BJAM} -q -d+2 gentoorelease ${OPTIONS} threading=${mythreading} link=shared,static runtime-link=shared --includedir=\"${ED}/usr/include\" --libdir=\"${ED}/usr/$(get_libdir)\" install"
+	einfo "${BJAM} -q -d+2 gentoorelease ${OPTIONS} threading=${mythreading} ${LINK_OPTS} runtime-link=shared --includedir=\"${ED}/usr/include\" --libdir=\"${ED}/usr/$(get_libdir)\" install"
 
 	${BJAM} -q -d+2 \
 		gentoorelease \
 		${OPTIONS} \
-		threading=${mythreading} link=shared,static runtime-link=shared \
+		threading=${mythreading} ${LINK_OPTS} runtime-link=shared \
 		--includedir="${ED}/usr/include" \
 		--libdir="${ED}/usr/$(get_libdir)" \
 		install || die "install failed for options '${OPTIONS}'"
 
 	if use debug ; then
 		einfo "Using the following command to install: "
-		einfo "${BJAM} -q -d+2 gentoodebug ${OPTIONS} threading=${mythreading} link=shared,static runtime-link=shared --includedir=\"${ED}/usr/include\" --libdir=\"${ED}/usr/$(get_libdir)\" --buildid=debug"
+		einfo "${BJAM} -q -d+2 gentoodebug ${OPTIONS} threading=${mythreading} ${LINK_OPTS} runtime-link=shared --includedir=\"${ED}/usr/include\" --libdir=\"${ED}/usr/$(get_libdir)\" --buildid=debug"
 
 		${BJAM} -q -d+2 \
 			gentoodebug \
 			${OPTIONS} \
-			threading=${mythreading} link=shared,static runtime-link=shared \
+			threading=${mythreading} ${LINK_OPTS} runtime-link=shared \
 			--includedir="${ED}/usr/include" \
 			--libdir="${ED}/usr/$(get_libdir)" \
 			--buildid=debug \
 			install || die "install failed for options '${OPTIONS}'"
 	fi
 
-	use python || rm -rf "${ED}/usr/include/boost-${MAJOR_PV}/boost"/python*
+	use python || rm -rf "${ED}/usr/include/boost-${MAJOR_PV}/boost"/python* || die
 
-	dodir /usr/share/boost-eselect/profiles/${SLOT}
-	touch "${ED}/usr/share/boost-eselect/profiles/${SLOT}/default"
-	use debug && touch "${ED}/usr/share/boost-eselect/profiles/${SLOT}/debug"
+	dodir /usr/share/boost-eselect/profiles/${SLOT} || die
+	touch "${ED}/usr/share/boost-eselect/profiles/${SLOT}/default" || die
+	if use debug ; then
+		 touch "${ED}/usr/share/boost-eselect/profiles/${SLOT}/debug" || die
+	fi
 
 	# Move the mpi.so to the right place and make sure it's slotted
 	if use mpi && use python; then
-		mkdir -p "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}"
-		mv "${ED}/usr/$(get_libdir)/mpi.so" "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}/"
-		touch "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}/__init__.py"
+		mkdir -p "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}" || die
+		mv "${ED}/usr/$(get_libdir)/mpi.so" "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}/" || die
+		touch "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}/__init__.py" || die
 		_add_line "python=\"${EPREFIX}$(python_get_sitedir)/boost_${MAJOR_PV}/mpi.so\""
 	fi
 
@@ -308,74 +308,97 @@ src_install () {
 		dohtml \
 			-A pdf,txt,cpp,hpp \
 			*.{htm,html,png,css} \
-			-r doc more people wiki
+			-r doc more people wiki || die
 		dohtml \
 			-A pdf,txt \
-			-r tools
+			-r tools || die
 		insinto /usr/share/doc/${PF}/html
-		doins -r libs
+		doins -r libs || die
 
 		# To avoid broken links
 		insinto /usr/share/doc/${PF}/html
-		doins LICENSE_1_0.txt
+		doins LICENSE_1_0.txt || die
 
-		dosym /usr/include/boost-${MAJOR_PV}/boost /usr/share/doc/${PF}/html/boost
+		dosym /usr/include/boost-${MAJOR_PV}/boost /usr/share/doc/${PF}/html/boost || die
 	fi
 
-	cd "${ED}/usr/$(get_libdir)"
+	cd "${ED}/usr/$(get_libdir)" || die
 
 	# Remove (unversioned) symlinks
 	# And check for what we remove to catch bugs
 	# got a better idea how to do it? tell me!
-	for f in $(ls -1 *{.a,$(get_libname)} | grep -v "${MAJOR_PV}") ; do
+	for f in $(ls -1 ${LIBRARY_TARGETS} | grep -v "${MAJOR_PV}") ; do
 		if [ ! -h "${f}" ] ; then
 			eerror "Ups, tried to remove '${f}' which is a a real file instead of a symlink"
 			die "slotting/naming of the libs broken!"
 		fi
-		rm "${f}"
+		rm "${f}" || die
 	done
 
 	# The threading libs obviously always gets the "-mt" (multithreading) tag
 	# some packages seem to have a problem with it. Creating symlinks...
-	for lib in libboost_thread-mt-${MAJOR_PV}{.a,$(get_libname)} ; do
-		dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})"
+
+	if use static-libs ; then
+		THREAD_LIBS="libboost_thread-mt-${MAJOR_PV}.a libboost_thread-mt-${MAJOR_PV}$(get_libname)"
+	else
+		THREAD_LIBS="libboost_thread-mt-${MAJOR_PV}$(get_libname)"
+	fi
+	for lib in ${THREAD_LIBS} ; do
+		dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})" || die
 	done
 
 	# The same goes for the mpi libs
 	if use mpi ; then
-		for lib in libboost_mpi-mt-${MAJOR_PV}{.a,$(get_libname)} ; do
-			dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})"
+		if use static-libs ; then
+			MPI_LIBS="libboost_mpi-mt-${MAJOR_PV}.a libboost_mpi-mt-${MAJOR_PV}$(get_libname)"
+	        else
+			MPI_LIBS="libboost_mpi-mt-${MAJOR_PV}$(get_libname)"
+	        fi
+		for lib in ${MPI_LIBS} ; do
+			dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})" || die
 		done
 	fi
 
 	if use debug ; then
-		for lib in libboost_thread-mt-${MAJOR_PV}-debug{.a,$(get_libname)} ; do
-			dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})"
+		if use static-libs ; then
+			THREAD_DEBUG_LIBS="libboost_thread-mt-${MAJOR_PV}-debug$(get_libname) libboost_thread-mt-${MAJOR_PV}-debug.a"
+	        else
+			THREAD_DEBUG_LIBS="libboost_thread-mt-${MAJOR_PV}-debug$(get_libname)"
+	        fi
+
+		for lib in ${THREAD_DEBUG_LIBS} ; do
+			dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})" || die
 		done
 
 		if use mpi ; then
-			for lib in libboost_mpi-mt-${MAJOR_PV}-debug{.a,$(get_libname)} ; do
-				dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})"
+			if use static-libs ; then
+				MPI_DEBUG_LIBS="libboost_mpi-mt-${MAJOR_PV}-debug.a libboost_mpi-mt-${MAJOR_PV}-debug$(get_libname)"
+	                else
+				MPI_DEBUG_LIBS="libboost_mpi-mt-${MAJOR_PV}-debug$(get_libname)"
+			fi
+
+			for lib in ${MPI_DEBUG_LIBS} ; do
+				dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})" || die
 			done
 		fi
 	fi
 
 	# Create a subdirectory with completely unversioned symlinks
 	# and store the names in the profiles-file for eselect
-	dodir /usr/$(get_libdir)/boost-${MAJOR_PV}
+	dodir /usr/$(get_libdir)/boost-${MAJOR_PV} || die
 
 	_add_line "libs=\"" default
-	for f in $(ls -1 *{.a,$(get_libname)} | grep -v debug) ; do
-		dosym ../${f} /usr/$(get_libdir)/boost-${MAJOR_PV}/${f/-${MAJOR_PV}}
+	for f in $(ls -1 ${LIBRARY_TARGETS} | grep -v debug) ; do
+		dosym ../${f} /usr/$(get_libdir)/boost-${MAJOR_PV}/${f/-${MAJOR_PV}} || die
 		_add_line "${EPREFIX}/usr/$(get_libdir)/${f}" default
 	done
 	_add_line "\"" default
 
 	if use debug ; then
 		_add_line "libs=\"" debug
-		dodir /usr/$(get_libdir)/boost-${MAJOR_PV}-debug
-		for f in $(ls -1 *{.a,$(get_libname)} | grep debug) ; do
-			dosym ../${f} /usr/$(get_libdir)/boost-${MAJOR_PV}-debug/${f/-${MAJOR_PV}-debug}
+		dodir /usr/$(get_libdir)/boost-${MAJOR_PV}-debug || die
+		for f in $(ls -1 ${LIBRARY_TARGETS} | grep debug) ; do
+			dosym ../${f} /usr/$(get_libdir)/boost-${MAJOR_PV}-debug/${f/-${MAJOR_PV}-debug} || die
 			_add_line "${EPREFIX}/usr/$(get_libdir)/${f}" debug
 		done
 		_add_line "\"" debug
@@ -387,28 +410,28 @@ src_install () {
 	_add_line "includes=\"${EPREFIX}/usr/include/boost-${MAJOR_PV}/boost\"" default
 
 	if use tools; then
-		cd "${S}/dist/bin"
+		cd "${S}/dist/bin" || die
 		# Append version postfix to binaries for slotting
 		_add_line "bins=\""
 		for b in * ; do
-			newbin "${b}" "${b}-${MAJOR_PV}"
+			newbin "${b}" "${b}-${MAJOR_PV}" || die
 			_add_line "${EPREFIX}/usr/bin/${b}-${MAJOR_PV}"
 		done
 		_add_line "\""
 
-		cd "${S}/dist"
-		insinto /usr/share
-		doins -r share/boostbook
+		cd "${S}/dist" || die
+		insinto /usr/share || die
+		doins -r share/boostbook || die
 		# Append version postfix for slotting
-		mv "${ED}/usr/share/boostbook" "${ED}/usr/share/boostbook-${MAJOR_PV}"
+		mv "${ED}/usr/share/boostbook" "${ED}/usr/share/boostbook-${MAJOR_PV}" || die
 		_add_line "dirs=\"${EPREFIX}/usr/share/boostbook-${MAJOR_PV}\""
 	fi
 
-	cd "${S}/status"
+	cd "${S}/status" || die
 	if [ -f regress.log ] ; then
-		docinto status
-		dohtml *.html ../boost.png
-		dodoc regress.log
+		docinto status || die
+		dohtml *.html ../boost.png || die
+		dodoc regress.log || die
 	fi
 
 	use python && python_need_rebuild
@@ -455,7 +478,7 @@ src_install () {
 			fi
 
 			test -z "${includes}" -o -z "${libs}" && die "oops. something went wrong - boost profile damaged!"
-			
+
 			dodir /usr/include
 			cp -r "${D}"${includes} "${ED}/usr/include/"
 
@@ -471,7 +494,7 @@ src_install () {
 src_test() {
 	export BOOST_ROOT=${S}
 
-	cd "${S}/tools/regression/build"
+	cd "${S}/tools/regression/build" || die
 	einfo "Using the following command to build test helpers: "
 	einfo "${BJAM} -q -d+2 gentoorelease ${OPTIONS} process_jam_log compiler_status"
 
@@ -481,7 +504,7 @@ src_test() {
 		process_jam_log compiler_status \
 		|| die "building regression test helpers failed"
 
-	cd "${S}/status"
+	cd "${S}/status" || die
 
 	# Some of the test-checks seem to rely on regexps
 	export LC_ALL="C"
@@ -495,7 +518,7 @@ src_test() {
 
 	${BJAM} \
 		${OPTIONS} \
-		--dump-tests 2>&1 | tee regress.log
+		--dump-tests 2>&1 | tee regress.log || die
 
 	# Postprocessing
 	cat regress.log | "${S}/tools/regression/build/bin/gcc-$(gcc-version)/gentoorelease/pch-off/process_jam_log" --v2
@@ -516,7 +539,7 @@ __EOF__
 	fi
 
 	# And do some cosmetic fixes :)
-	sed -i -e 's|http://www.boost.org/boost.png|boost.png|' *.html
+	sed -i -e 's|http://www.boost.org/boost.png|boost.png|' *.html || die
 }
 
 pkg_postinst() {
@@ -524,13 +547,10 @@ pkg_postinst() {
 	# to the # "old" behaviour -> install files where they belong ;)
 	# (done above in src_install, so portage knows the files.)
 	if [[ ${CHOST} != *-winnt* ]]; then
-	if use eselect ; then
-		eselect boost update || ewarn "eselect boost update failed."
-	fi
-
+	use eselect && eselect boost update
 	if [ ! -h "${EROOT}/etc/eselect/boost/active" ] ; then
 		elog "No active boost version found. Calling eselect to select one..."
-		eselect boost update
+		eselect boost update || ewarn "eselect boost update failed."
 	fi
 	fi
 }

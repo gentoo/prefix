@@ -1,6 +1,57 @@
 # ChangeLog for dev-libs/boost
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.198 2010/06/17 14:39:18 jsbronder Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.211 2011/01/21 12:04:30 hwoarang Exp $
+
+  21 Jan 2011; Markos Chandras <hwoarang@gentoo.org> boost-1.45.0.ebuild:
+  In fact, more than 15GB are needed for test suite to complete successfully
+
+  21 Jan 2011; Markos Chandras <hwoarang@gentoo.org> boost-1.45.0.ebuild,
+  +files/boost-1.45.0-lambda_bind.patch:
+  Apply lambda-bind patch. Bug #351998. Upstream:
+  https://svn.boost.org/trac/boost/ticket/4566. Thanks to Sebastian Luther
+  (few) <SebastianLuther@gmx.de>
+
+  10 Jan 2011; Markos Chandras <hwoarang@gentoo.org>
+  +files/random-Jamfile-1.45.0, boost-1.45.0.ebuild:
+  Sync with boost-1.42.0-r2 ebuild. New random-Jamfile patch.
+
+  10 Jan 2011; Markos Chandras <hwoarang@gentoo.org> boost-1.45.0.ebuild:
+  Tests require more than 5GB free space on /var/tmp/portage
+
+  10 Jan 2011; Markos Chandras <hwoarang@gentoo.org> boost-1.42.0-r2.ebuild:
+  Stable on amd64 wrt bug 344677
+
+  08 Jan 2011; Brent Baude <ranger@gentoo.org> boost-1.42.0-r2.ebuild:
+  Marking boost-1.42.0-r2 ppc for bug 344677
+
+*boost-1.45.0 (06 Jan 2011)
+
+  06 Jan 2011; Markos Chandras <hwoarang@gentoo.org> +boost-1.45.0.ebuild,
+  +files/remove-toolset-1.45.0.patch:
+  Version bump. Thanks to Duncan Exon Smith, Simone Scanzoni and Sebastian
+  Luther for the ebuild. Bug #320039
+
+  01 Jan 2011; Thomas Kahle <tomka@gentoo.org> boost-1.42.0-r2.ebuild:
+  x86 stable per bug 344677
+
+  12 Dec 2010; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  add myself on metadata
+
+  09 Dec 2010; Dirkjan Ochtman <djc@gentoo.org> metadata.xml:
+  Remove myself as a maintainer.
+
+  24 Nov 2010; Jeroen Roovers <jer@gentoo.org> boost-1.42.0-r2.ebuild:
+  Stable for HPPA (bug #344677).
+
+  19 Sep 2010; Raúl Porcel <armin76@gentoo.org> boost-1.41.0-r3.ebuild:
+  s390 stable wrt #306335
+
+*boost-1.42.0-r2 (14 Aug 2010)
+
+  14 Aug 2010; Ryan Hill <dirtyepic@gentoo.org> +boost-1.42.0-r2.ebuild,
+  +files/boost-1.42.0-gcc45-python.patch:
+  Revision bump to fix python headers w/ gcc-4.5. Fixes paludis
+  python-bindings (bug #317997 by uzytkownik).
 
   17 Jun 2010; Justin Bronder <jsbronder@gentoo.org> boost-1.35.0-r5.ebuild,
   boost-1.37.0-r1.ebuild, boost-1.39.0.ebuild, boost-1.41.0-r3.ebuild,
