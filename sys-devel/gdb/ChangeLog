@@ -1,6 +1,21 @@
 # ChangeLog for sys-devel/gdb
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.174 2010/09/14 00:35:34 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.178 2011/01/08 21:40:38 maekke Exp $
+
+  08 Jan 2011; Markus Meier <maekke@gentoo.org> gdb-7.2.ebuild:
+  arm stable, bug #350259
+
+  04 Jan 2011; Markos Chandras <hwoarang@gentoo.org> gdb-7.2.ebuild:
+  Stable on amd64 wrt bug #350259
+
+  03 Jan 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> gdb-7.2.ebuild:
+  x86 stable wrt bug #350259
+
+*gdb-7.2.50.20101117.4.15 (31 Dec 2010)
+
+  31 Dec 2010; Mike Frysinger <vapier@gentoo.org> gdb-7.2.ebuild,
+  +gdb-7.2.50.20101117.4.15.ebuild:
+  Merge rpm and non-rpm ebuilds, and version bump the rpm one.
 
   14 Sep 2010; Mike Frysinger <vapier@gentoo.org> gdb-7.2.ebuild:
   Fix EAPI=3 porting and force usage of python-2 by Arfrever Frehtes Taifersar

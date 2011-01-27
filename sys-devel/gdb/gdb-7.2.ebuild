@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-7.2.ebuild,v 1.3 2010/09/14 00:35:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-7.2.ebuild,v 1.7 2011/01/08 21:40:38 maekke Exp $
 
 EAPI="3"
 
@@ -14,12 +14,27 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 fi
 is_cross() { [[ ${CHOST} != ${CTARGET} ]] ; }
 
+if [[ ${PV} == *.*.*.*.*.* ]] ; then
+	inherit versionator rpm
+	# fedora version: gdb-6.8.50.20090302-8.fc11.src.rpm
+	gvcr() { get_version_component_range "$@"; }
+	MY_PV=$(gvcr 1-4)
+	RPM="${PN}-${MY_PV}-$(gvcr 5).fc$(gvcr 6).src.rpm"
+else
+	MY_PV=${PV}
+	RPM=
+fi
+
 PATCH_VER="1"
 DESCRIPTION="GNU debugger"
 HOMEPAGE="http://sources.redhat.com/gdb/"
-SRC_URI="http://ftp.gnu.org/gnu/gdb/${P}.tar.bz2
-	ftp://sources.redhat.com/pub/gdb/releases/${P}.tar.bz2
-	${PATCH_VER:+mirror://gentoo/${P}-patches-${PATCH_VER}.tar.xz}"
+if [[ -n ${RPM} ]] ; then
+	SRC_URI="http://mirrors.kernel.org/fedora/development/source/SRPMS/${RPM}"
+else
+	SRC_URI="http://ftp.gnu.org/gnu/gdb/${P}.tar.bz2
+		ftp://sources.redhat.com/pub/gdb/releases/${P}.tar.bz2"
+fi
+SRC_URI="${SRC_URI} ${PATCH_VER:+mirror://gentoo/${P}-patches-${PATCH_VER}.tar.xz}"
 
 LICENSE="GPL-2 LGPL-2"
 is_cross \
@@ -37,7 +52,10 @@ DEPEND="${RDEPEND}
 	test? ( dev-util/dejagnu )
 	nls? ( sys-devel/gettext )"
 
+S=${WORKDIR}/${PN}-${MY_PV}
+
 src_prepare() {
+	[[ -n ${RPM} ]] && rpm_spec_epatch "${WORKDIR}"/gdb.spec
 	use vanilla || [[ -n ${PATCH_VER} ]] && EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
 	strip-linguas -u bfd/po opcodes/po
 }

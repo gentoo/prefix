@@ -1,6 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8.50.20090811.2.12.ebuild,v 1.3 2009/10/10 21:34:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-7.2.50.20101117.4.15.ebuild,v 1.1 2010/12/31 21:06:28 vapier Exp $
+
+EAPI="3"
 
 inherit flag-o-matic eutils
 
@@ -10,6 +12,7 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 		export CTARGET=${CATEGORY/cross-}
 	fi
 fi
+is_cross() { [[ ${CHOST} != ${CTARGET} ]] ; }
 
 if [[ ${PV} == *.*.*.*.*.* ]] ; then
 	inherit versionator rpm
@@ -31,10 +34,10 @@ else
 	SRC_URI="http://ftp.gnu.org/gnu/gdb/${P}.tar.bz2
 		ftp://sources.redhat.com/pub/gdb/releases/${P}.tar.bz2"
 fi
-SRC_URI="${SRC_URI} ${PATCH_VER:+mirror://gentoo/${P}-patches-${PATCH_VER}.tar.lzma}"
+SRC_URI="${SRC_URI} ${PATCH_VER:+mirror://gentoo/${P}-patches-${PATCH_VER}.tar.xz}"
 
 LICENSE="GPL-2 LGPL-2"
-[[ ${CTARGET} != ${CHOST} ]] \
+is_cross \
 	&& SLOT="${CTARGET}" \
 	|| SLOT="0"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
@@ -42,45 +45,43 @@ IUSE="expat multitarget nls python test vanilla"
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2
 	sys-libs/readline
-	expat? ( dev-libs/expat )"
+	expat? ( dev-libs/expat )
+	python? ( =dev-lang/python-2* )"
 DEPEND="${RDEPEND}
-	|| ( app-arch/xz-utils app-arch/lzma-utils )
+	app-arch/xz-utils
 	test? ( dev-util/dejagnu )
 	nls? ( sys-devel/gettext )"
 
 S=${WORKDIR}/${PN}-${MY_PV}
 
-src_unpack() {
-	if [[ -n ${RPM} ]] ; then
-		rpm_src_unpack
-		cd "${S}"
-		rpm_spec_epatch "${WORKDIR}"/gdb.spec
-	else
-		unpack ${A}
-	fi
-	cd "${S}"
-	if [[ -n ${PATCH_VER} ]] ; then
-		use vanilla || EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
-	fi
-	epatch "${FILESDIR}"/${PN}-6.7.1-solaris.patch
-	epatch "${FILESDIR}"/${PN}-6.8-solaris64.patch
-	# avoid using internal readline symbols, they are not exported on aix.
-	# patch is platform independent, but might reduce performance.
-	[[ ${CHOST} == *-aix* ]] && epatch "${FILESDIR}"/${PN}-6.8-tui-rlapi.patch
+src_prepare() {
+	[[ -n ${RPM} ]] && rpm_spec_epatch "${WORKDIR}"/gdb.spec
+	use vanilla || [[ -n ${PATCH_VER} ]] && EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
 	strip-linguas -u bfd/po opcodes/po
 }
 
-src_compile() {
+gdb_branding() {
+	printf "Gentoo ${PV} "
+	if [[ -n ${PATCH_VER} ]] ; then
+		printf "p${PATCH_VER}"
+	else
+		printf "vanilla"
+	fi
+}
+
+src_configure() {
 	strip-unsupported-flags
 	econf \
+		--with-pkgversion="$(gdb_branding)" \
+		--with-bugurl='http://bugs.gentoo.org/' \
 		--disable-werror \
+		--enable-64-bit-bfd \
 		$(has_version '=sys-libs/readline-5*:0' && echo --with-system-readline) \
+		$(is_cross && echo --with-sysroot="${EPREFIX}"/usr/${CTARGET}) \
+		$(use_with expat) \
 		$(use_enable nls) \
 		$(use multitarget && echo --enable-targets=all) \
-		$(use_with expat) \
-		$(use_with python) \
-		|| die
-	emake || die
+		$(use_with python python "${EPREFIX}/usr/bin/python2")
 }
 
 src_test() {
