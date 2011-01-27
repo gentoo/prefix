@@ -1,55 +1,55 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.2.0.ebuild,v 1.9 2009/12/17 18:32:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.2.3.ebuild,v 1.1 2010/12/27 12:51:44 ssuominen Exp $
 
 EAPI=2
-inherit eutils multilib
+inherit eutils
 
-DESCRIPTION="a portable programmer's library designed to allow a developer to create robust portable software."
-HOMEPAGE="http://www.s-lang.org"
-SRC_URI="ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v${PV%.*}/${P}.tar.bz2"
+DESCRIPTION="A multi-platform programmer's library designed to allow a developer to create robust software"
+HOMEPAGE="http://www.jedsoft.org/slang/"
+SRC_URI="mirror://slang/v${PV%.*}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="cjk pcre png readline zlib"
 
+# ncurses for ncurses5-config to get terminfo directory
 RDEPEND="sys-libs/ncurses
 	pcre? ( dev-libs/libpcre )
-	png? ( media-libs/libpng )
+	png? ( >=media-libs/libpng-1.4 )
 	cjk? ( dev-libs/oniguruma )
 	readline? ( sys-libs/readline )
 	zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}"
 
+MAKEOPTS="${MAKEOPTS} -j1"
+
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.1.2-slsh-libs.patch \
-		"${FILESDIR}"/${PN}-2.1.3-uclibc.patch
+	epatch "${FILESDIR}"/${PN}-2.2.3-slsh-libs.patch
 	epatch "${FILESDIR}"/${PN}-2.1.3-interix.patch
+
+	# avoid linking to -ltermcap race with some systems
+	sed -i -e '/^TERMCAP=/s:=.*:=:' configure || die
 }
 
 src_configure() {
-	local myconf
-
-	if use readline; then
-		myconf+=" --with-readline=gnu"
-	else
-		myconf+=" --with-readline=slang"
-	fi
+	local myconf=slang
+	use readline && myconf=gnu
 
 	econf \
-		$(use_with cjk onig) \
+		--with-readline=${myconf} \
 		$(use_with pcre) \
+		$(use_with cjk onig) \
 		$(use_with png) \
-		$(use_with zlib z) \
-		${myconf}
+		$(use_with zlib z)
 }
 
 src_compile() {
-	emake -j1 elf static || die "emake elf static failed."
+	emake elf static || die
 
 	cd slsh
-	emake -j1 slsh || die "emake slsh failed."
+	emake slsh || die
 }
 
 src_install() {

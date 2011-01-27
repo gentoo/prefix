@@ -1,13 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.2.2.ebuild,v 1.8 2010/05/24 18:51:07 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.2.2.ebuild,v 1.9 2010/12/27 12:51:44 ssuominen Exp $
 
 EAPI=2
-inherit eutils multilib
+inherit eutils
 
-DESCRIPTION="a portable programmer's library designed to allow a developer to create robust portable software."
-HOMEPAGE="http://www.s-lang.org"
-SRC_URI="ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v${PV%.*}/${P}.tar.bz2"
+DESCRIPTION="A portable programmer's library designed to allow a developer to create robust portable software"
+HOMEPAGE="http://www.jedsoft.org/slang/"
+SRC_URI="mirror://slang/v${PV%.*}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
