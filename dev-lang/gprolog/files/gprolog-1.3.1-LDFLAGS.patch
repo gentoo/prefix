@@ -1,0 +1,63 @@
+diff -ur gprolog-1.3.1.orig/src/Ma2Asm/Makefile.in gprolog-1.3.1/src/Ma2Asm/Makefile.in
+--- gprolog-1.3.1.orig/src/Ma2Asm/Makefile.in	2009-01-24 00:15:03.000000000 +1300
++++ gprolog-1.3.1/src/Ma2Asm/Makefile.in	2010-08-21 11:58:52.000000000 +1200
+@@ -1,6 +1,7 @@
+ GPLC   = @GPLC@
+ CC     = @CC@ @CFLAGS_MACHINE@
+ CFLAGS = @CFLAGS@
++LDFLAGS = @LDFLAGS@
+ 
+ 
+ all: ma2asm@EXE_SUFFIX@
+@@ -19,7 +20,7 @@
+ 
+ ma2asm@EXE_SUFFIX@: ma2asm@OBJ_SUFFIX@ ma_parser@OBJ_SUFFIX@ \
+                     ma2asm_inst@OBJ_SUFFIX@ ma2asm_inst.c
+-	$(CC) $(CFLAGS) @CC_EXE_NAME_OPT@ma2asm@EXE_SUFFIX@ ma2asm@OBJ_SUFFIX@ ma2asm_inst@OBJ_SUFFIX@ ma_parser@OBJ_SUFFIX@
++	$(CC) $(LDFLAGS) @CC_EXE_NAME_OPT@ma2asm@EXE_SUFFIX@ ma2asm@OBJ_SUFFIX@ ma2asm_inst@OBJ_SUFFIX@ ma_parser@OBJ_SUFFIX@
+ 
+ 
+ clean:
+diff -ur gprolog-1.3.1.orig/src/TopComp/Makefile.in gprolog-1.3.1/src/TopComp/Makefile.in
+--- gprolog-1.3.1.orig/src/TopComp/Makefile.in	2009-01-24 00:15:03.000000000 +1300
++++ gprolog-1.3.1/src/TopComp/Makefile.in	2010-08-21 12:01:58.000000000 +1200
+@@ -4,6 +4,7 @@
+ HEXGPLC         = @HEXGPLC@
+ CC              = @CC@ @CFLAGS_MACHINE@
+ CFLAGS          = @CFLAGS@
++LDFLAGS         = @LDFLAGS@
+ LDLIBS          = @LDLIBS@
+ 
+ EXECS     = $(GPLC)@EXE_SUFFIX@ $(HEXGPLC)@EXE_SUFFIX@
+@@ -14,10 +15,10 @@
+ 
+ $(GPLC)@EXE_SUFFIX@: top_comp.c ../EnginePl/wam_regs.h \
+          ../EnginePl/gp_config.h decode_hexa.c copying.c prolog_path.c
+-	$(CC) $(CFLAGS) @CC_EXE_NAME_OPT@$(GPLC)@EXE_SUFFIX@ top_comp.c $(LDLIBS)
++	$(CC) $(LDFLAGS) $(CFLAGS) @CC_EXE_NAME_OPT@$(GPLC)@EXE_SUFFIX@ top_comp.c $(LDLIBS)
+ 
+ $(HEXGPLC)@EXE_SUFFIX@: hexfilter.c decode_hexa.c 
+-	$(CC) $(CFLAGS) @CC_EXE_NAME_OPT@$(HEXGPLC)@EXE_SUFFIX@ hexfilter.c
++	$(CC) $(LDFLAGS) $(CFLAGS) @CC_EXE_NAME_OPT@$(HEXGPLC)@EXE_SUFFIX@ hexfilter.c
+ 
+ 
+ 
+diff -ur gprolog-1.3.1.orig/src/Wam2Ma/Makefile.in gprolog-1.3.1/src/Wam2Ma/Makefile.in
+--- gprolog-1.3.1.orig/src/Wam2Ma/Makefile.in	2009-01-24 00:15:05.000000000 +1300
++++ gprolog-1.3.1/src/Wam2Ma/Makefile.in	2010-08-21 11:53:51.000000000 +1200
+@@ -1,5 +1,6 @@
+ CC     = @CC@ @CFLAGS_MACHINE@
+ CFLAGS = @CFLAGS@
++LDFLAGS = @LDFLAGS@
+ 
+ 
+ all: wam2ma@EXE_SUFFIX@
+@@ -12,7 +13,7 @@
+ 	$(CC) $(CFLAGS) -c wam2ma.c
+ 
+ wam2ma@EXE_SUFFIX@: wam2ma@OBJ_SUFFIX@ wam_parser@OBJ_SUFFIX@
+-	$(CC) $(CFLAGS) @CC_EXE_NAME_OPT@wam2ma@EXE_SUFFIX@ wam2ma@OBJ_SUFFIX@ wam_parser@OBJ_SUFFIX@
++	$(CC) $(LDFLAGS) @CC_EXE_NAME_OPT@wam2ma@EXE_SUFFIX@ wam2ma@OBJ_SUFFIX@ wam_parser@OBJ_SUFFIX@
+ 
+ 
+ clean:
