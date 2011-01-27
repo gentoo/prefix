@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/wxpython-2.8.11.0.ebuild,v 1.3 2010/12/12 07:30:02 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/wxpython-2.9.1.1.ebuild,v 1.1 2011/01/23 01:12:36 dirtyepic Exp $
 
-EAPI="2"
+EAPI="3"
 PYTHON_DEPEND="2"
-WX_GTK_VER="2.8"
+WX_GTK_VER="2.9"
 SUPPORT_PYTHON_ABIS="1"
 
 inherit alternatives eutils fdo-mime flag-o-matic multilib python wxwidgets
@@ -14,19 +14,17 @@ MY_P="${P/wxpython-/wxPython-src-}"
 DESCRIPTION="A blending of the wxWindows C++ class library with Python"
 HOMEPAGE="http://www.wxpython.org/"
 SRC_URI="mirror://sourceforge/wxpython/${MY_P}.tar.bz2
-	doc? ( mirror://sourceforge/wxpython/wxPython-docs-${PV}.tar.bz2
-		   mirror://sourceforge/wxpython/wxPython-newdocs-2.8.9.2.tar.bz2 )
 	examples? ( mirror://sourceforge/wxpython/wxPython-demo-${PV}.tar.bz2 )"
 
 LICENSE="wxWinLL-3"
-SLOT="2.8"
+SLOT="2.9"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="aqua cairo doc examples opengl"
+IUSE="aqua cairo examples opengl"
 
 RDEPEND="
 	dev-python/setuptools
-	aqua? ( >=x11-libs/wxGTK-${PV}:2.8[opengl?,tiff,aqua=] )
-	!aqua? ( >=x11-libs/wxGTK-${PV}:2.8[opengl?,tiff,X] )
+	aqua? ( >=x11-libs/wxGTK-${PV}:${WX_GTK_VER}[opengl?,tiff,aqua=] )
+	!aqua? ( >=x11-libs/wxGTK-${PV}:${WX_GTK_VER}[opengl?,tiff,X] )
 	>=x11-libs/gtk+-2.4[aqua=]
 	>=x11-libs/pango-1.2
 	>=dev-libs/glib-2.0
@@ -48,14 +46,9 @@ DOC_S="${WORKDIR}/wxPython-${PV}"
 src_prepare() {
 	sed -i "s:cflags.append('-O3'):pass:" config.py || die "sed failed"
 
-	epatch "${FILESDIR}"/${PN}-2.8.9-wxversion-scripts.patch
+	epatch "${FILESDIR}"/${PN}-${SLOT}-wxversion-scripts.patch
 	# drop editra - we have it as a separate package now
 	epatch "${FILESDIR}"/${PN}-2.8.11-drop-editra.patch
-
-	if use doc; then
-		cd "${DOC_S}"
-		epatch "${FILESDIR}"/${PN}-${SLOT}-cache-writable.patch
-	fi
 
 	if use examples; then
 		cd "${DOC_S}"
@@ -108,9 +101,13 @@ src_install() {
 	}
 	python_execute_function -s installation
 
+	# this should be temporary
+	dobin "${S}"/scripts/pyslices || die
+	dobin "${S}"/scripts/pysliceshell || die
+
 	# Collision protection.
 	for file in "${ED}"/usr/bin/*; do
-		mv "${file}" "${file}-${SLOT}"
+		mv "${file}" "${file}-${SLOT}" || die
 	done
 	rename_files() {
 		for file in "${ED}$(python_get_sitedir)/"wx{version.*,.pth}; do
@@ -122,23 +119,19 @@ src_install() {
 	dodoc "${S}"/docs/{CHANGES,PyManual,README,wxPackage,wxPythonManual}.txt
 
 	insinto /usr/share/applications
-	doins "${S}"/distrib/{Py{AlaMode,Crust,Shell},XRCed}.desktop
+	for x in {Py{AlaMode,Crust,Shell,Slices{,Shell}},XRCed}; do
+		newins "${S}"/distrib/${x}.desktop ${x}-${SLOT}.desktop || die
+	done
 	insinto /usr/share/pixmaps
-	newins "${S}"/wx/py/PyCrust_32.png PyCrust.png
-	newins "${S}"/wx/tools/XRCed/XRCed_32.png XRCed.png
-
-	if use doc; then
-		dodir /usr/share/doc/${PF}/docs
-		cp -R "${DOC_S}"/docs/* "${ED}"usr/share/doc/${PF}/docs/
-		# For some reason newer API docs aren't available so use 2.8.9.2's
-		cp -R "${WORKDIR}"/wxPython-2.8.9.2/docs/* "${ED}"usr/share/doc/${PF}/docs/
-	fi
+	newins "${S}"/wx/py/PyCrust_32.png PyCrust-${SLOT}.png || die
+	newins "${S}"/wx/py/PySlices_32.png PySlices-${SLOT}.png || die
+	newins "${S}"/wx/tools/XRCed/XRCed_32.png XRCed-${SLOT}.png || die
 
 	if use examples; then
-		dodir /usr/share/doc/${PF}/demo
-		dodir /usr/share/doc/${PF}/samples
-		cp -R "${DOC_S}"/demo/* "${ED}"/usr/share/doc/${PF}/demo/
-		cp -R "${DOC_S}"/samples/* "${ED}"/usr/share/doc/${PF}/samples/
+		dodir /usr/share/doc/${PF}/demo || die
+		dodir /usr/share/doc/${PF}/samples || die
+		cp -R "${DOC_S}"/demo/* "${ED}"/usr/share/doc/${PF}/demo/ || die
+		cp -R "${DOC_S}"/samples/* "${ED}"/usr/share/doc/${PF}/samples/ || die
 	fi
 }
 
@@ -151,7 +144,7 @@ pkg_postinst() {
 	}
 	python_execute_function -q create_symlinks
 
-	python_mod_optimize wx-${SLOT}-gtk2-unicode wxversion.py
+	python_mod_optimize wx-2.9.1-gtk2 wxversion.py
 
 	echo
 	elog "Gentoo uses the Multi-version method for SLOT'ing."
@@ -159,14 +152,6 @@ pkg_postinst() {
 	elog "2.6 or 2.8 with your apps:"
 	elog "http://wiki.wxpython.org/index.cgi/MultiVersionInstalls"
 	elog
-	if use doc; then
-		elog "To access the general wxWidgets documentation, run"
-		elog "/usr/share/doc/${PF}/docs/viewdocs.py"
-		elog
-		elog "wxPython documentation is available by pointing a browser"
-		elog "at /usr/share/doc/${PF}/docs/api/index.html"
-		elog
-	fi
 	if use examples; then
 		elog "The demo.py app which contains hundreds of demo modules"
 		elog "with documentation and source code has been installed at"
@@ -176,13 +161,13 @@ pkg_postinst() {
 		elog "/usr/share/doc/${PF}/samples/"
 	fi
 	echo
-	ewarn "Editra is no longer packaged with wxpython in Gentoo."
-	ewarn "You can find it in the tree as app-editors/editra"
+	elog "Editra is no longer packaged with wxpython in Gentoo."
+	elog "You can find it in the tree as app-editors/editra"
 	echo
 }
 
 pkg_postrm() {
-	python_mod_cleanup wx-${SLOT}-gtk2-unicode wxversion.py
+	python_mod_cleanup wx-2.9.1-gtk2 wxversion.py
 	fdo-mime_desktop_database_update
 
 	create_symlinks() {
