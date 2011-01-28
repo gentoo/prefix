@@ -46,7 +46,7 @@ src_prepare() {
 	# This patch could be easily merged with the FreeBSD one, but we don't
 	# because the files have no CVS header and then auto syncing overwrites the
 	# local difference we make.  <grobian@gentoo.org>
-	epatch "${FILESDIR}"/man-1.6e-bsdish.patch
+	epatch "${FILESDIR}"/man-1.6g-bsdish.patch
 	# Solaris needs fcntl.h included for O_CREAT etc, like SYSV
 	epatch "${FILESDIR}"/man-1.6e-solaris.patch
 	# hpux does not have setenv()
@@ -55,7 +55,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/man-1.6f-irix.patch
 	# Results in grabbing as much tools from the prefix, instead of main
 	# system in a prefixed environment
-	epatch "${FILESDIR}"/man-1.6e-prefix-path.patch
+	epatch "${FILESDIR}"/man-1.6g-prefix-path.patch
 
 	# Fix the makewhatis script for prefix.
 	cp "${FILESDIR}"/makewhatis.cron "${T}"/
@@ -67,9 +67,6 @@ src_prepare() {
 	# expanding "\n".
 	epatch "${FILESDIR}"/man-1.6f-echo.patch
 	eprefixify "${S}"/src/man.c
-	# don't use built-in versions of bcopy and bzero if _ALL_SOURCE is deinfed
-	# on interix, since they have conflicting definitions with system headers.
-	epatch "${FILESDIR}"/${PN}-1.6f-interix-all_source.patch
 
 	# fix man.conf file, bug #351245
 	sed -i \

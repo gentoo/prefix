@@ -1,0 +1,41 @@
+--- configure
++++ configure
+@@ -360,7 +360,8 @@
+ #   for i in /bin:/usr/bin:$PATH
+ # does not work everywhere.)
+ # Some people might prefer having $PATH first in PREPATH
+-PREPATH=/bin:/usr/bin:/usr/ucb:/usr/local/bin:$PATH
++# => Yes we do in prefix
++PREPATH=$PATH:/bin:/usr/bin:/usr/ucb:/usr/local/bin
+ IFS0="$IFS"
+ IFS=":$IFS"
+ for i in $PREPATH
+@@ -824,7 +824,7 @@
+ 
+ if [ "x$languages" != x -a "x$languages" != xen ]
+ then
+-  DEF_NLSPATH="/usr/share/locale/%L/%N:/usr/lib/locale/%N/%L"
++  DEF_NLSPATH="${prefix}/share/locale/%L/%N:${prefix}/lib/locale/%N/%L"
+   deflocalepath=`echo $NLSPATH:$DEF_NLSPATH | sed 's/:/ /g'`
+   for i in $deflocalepath; do
+     if [ x$deflocale = x ]; then
+@@ -840,7 +840,7 @@
+     fi
+   done
+   if [ x$deflocale = x ]; then
+-    deflocale="/usr/lib/locale/%N/%L"
++    deflocale="${prefix}/lib/locale/%N/%L"
+   fi
+   if [ x$default = x ]; then
+     echo ""
+--- man2html/Makefile.in
++++ man2html/Makefile.in
+@@ -1,7 +1,7 @@
+ CFLAGS += -Wall -Wstrict-prototypes -Wmissing-prototypes
+ OBJECTS = man2html.o cgibase.o abbrev.o strdefs.o
+ EXEEXT = @EXEEXT@
+-bindir = $(DESTDIR)$(PREFIX)/usr/bin
++bindir = $(DESTDIR)$(PREFIX)@bindir@
+ mandir = $(DESTDIR)$(PREFIX)@mandir@
+ vardir = $(DESTDIR)$(PREFIX)/var
+ httpdir = $(DESTDIR)$(PREFIX)/home/httpd
