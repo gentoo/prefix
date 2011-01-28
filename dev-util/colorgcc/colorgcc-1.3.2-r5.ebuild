@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/colorgcc/colorgcc-1.3.2-r5.ebuild,v 1.1 2009/12/25 03:19:56 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/colorgcc/colorgcc-1.3.2-r5.ebuild,v 1.3 2011/01/06 16:48:22 jlec Exp $
 
 inherit eutils
 
@@ -14,11 +14,13 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE=""
 
 DEPEND="dev-lang/perl"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-gentoo-one.patch \
+	epatch \
+		"${FILESDIR}"/${P}-gentoo-one.patch \
 		"${FILESDIR}"/${P}-gentoo-two.patch \
 		"${FILESDIR}"/${P}-note.patch
 }
