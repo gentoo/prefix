@@ -1,51 +1,35 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r8.ebuild,v 1.2 2010/12/16 20:42:34 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-3.1.4.ebuild,v 1.1 2011/01/10 05:22:59 vapier Exp $
 
-WANT_AUTOMAKE=none # not using automake
-
-inherit eutils autotools multilib
+inherit multilib
 
 DESCRIPTION="fast compiler cache"
 HOMEPAGE="http://ccache.samba.org/"
 SRC_URI="http://samba.org/ftp/ccache/${P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
-# Note: this version is designed to be auto-detected and used if
-# you happen to have Portage 2.0.X+ installed.
+RDEPEND="sys-libs/zlib"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/ccache-2.4-profile.patch
-	epatch "${FILESDIR}"/ccache-2.4-respectflags.patch
-	epatch "${FILESDIR}"/ccache-2.4-utimes.patch
 	epatch "${FILESDIR}"/ccache-2.4-mint.patch
-	eautoconf
-}
-
-do_links() {
-	insinto /usr/$(get_libdir)/ccache/bin
-	for a in ${CHOST}-{gcc,g++,c++} gcc c++ g++; do
-	    dosym /usr/bin/ccache /usr/$(get_libdir)/ccache/bin/${a}
-	done
+	# make sure we always use system zlib
+	rm -rf zlib
 }
 
 src_install() {
-	dobin ccache || die
-	doman ccache.1
-	dodoc README
-	dohtml web/*.html
-
-	diropts -m0755
-	dodir /usr/$(get_libdir)/ccache/bin
-	keepdir /usr/$(get_libdir)/ccache/bin
+	emake install DESTDIR="${D}" || die
+	dodoc AUTHORS.txt MANUAL.txt NEWS.txt README.txt
 
 	dobin "${FILESDIR}"/ccache-config || die
+	dosed "/^LIBDIR=/s:lib:$(get_libdir):" /usr/bin/ccache-config
 
 	if use !prefix ; then
 		diropts -m0700
@@ -57,19 +41,14 @@ src_install() {
 	fi
 }
 
-pkg_preinst() {
-	einfo "Scanning for compiler front-ends..."
-	do_links
-}
-
 pkg_postinst() {
+	"${EROOT}"/usr/bin/ccache-config --install-links
+	"${EROOT}"/usr/bin/ccache-config --install-links ${CHOST}
+
 	# nuke broken symlinks from previous versions that shouldn't exist
-	for i in cc ${CHOST}-cc ; do
-	    [[ -L "${EROOT}/usr/$(get_libdir)/ccache/bin/${i}" ]] && \
-			rm -rf "${EROOT}/usr/$(get_libdir)/ccache/bin/${i}"
-	done
+	rm -f "${EROOT}/usr/$(get_libdir)/ccache/bin/${CHOST}-cc"
 	[[ -d "${EROOT}/usr/$(get_libdir)/ccache.backup" ]] && \
-		rm -fr "${EROOT}/usr/$(get_libdir)/ccache.backup"
+		rm -rf "${EROOT}/usr/$(get_libdir)/ccache.backup"
 
 	elog "To use ccache with **non-Portage** C compiling, add"
 	elog "/usr/$(get_libdir)/ccache/bin to the beginning of your path, before /usr/bin."
@@ -77,4 +56,8 @@ pkg_postinst() {
 	elog "no additional steps.  If this is your first install of ccache, type"
 	elog "something like this to set a maximum cache size of 2GB:"
 	elog "# ccache -M 2G"
+	elog
+	elog "If you are upgrading from an older version than 3.x you should clear"
+	elog "all of your caches like so:"
+	elog "# CCACHE_DIR='${CCACHE_DIR:-${PORTAGE_TMPDIR}/ccache}' ccache -C"
 }

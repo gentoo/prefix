@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r7.ebuild,v 1.3 2008/01/12 21:09:48 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r9.ebuild,v 1.8 2011/01/21 15:40:16 jer Exp $
+
+WANT_AUTOMAKE=none # not using automake
 
 inherit eutils autotools multilib
 
@@ -10,7 +12,7 @@ SRC_URI="http://samba.org/ftp/ccache/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 # Note: this version is designed to be auto-detected and used if
@@ -19,8 +21,11 @@ IUSE=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/ccache-2.4-profile.patch
 	epatch "${FILESDIR}"/ccache-2.4-respectflags.patch
 	epatch "${FILESDIR}"/ccache-2.4-utimes.patch
+	epatch "${FILESDIR}"/ccache-2.4-xrealloc.patch #338137
+	epatch "${FILESDIR}"/ccache-2.4-mint.patch
 	eautoconf
 }
 
