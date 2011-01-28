@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.48.ebuild,v 1.6 2010/07/22 09:12:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.48.ebuild,v 1.7 2011/01/04 01:29:30 xmw Exp $
 
 inherit bash-completion eutils
 

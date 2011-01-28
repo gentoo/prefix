@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/quilt
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.48 2010/07/22 09:12:49 maekke Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.49 2011/01/04 01:29:30 xmw Exp $
+
+  04 Jan 2011; Michael Weber <xmw@gentoo.org> quilt-0.48.ebuild:
+  arm stable (bug 327625)
 
   22 Jul 2010; Markus Meier <maekke@gentoo.org> quilt-0.48.ebuild:
   add ~arm, bug #327625
