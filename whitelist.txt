@@ -434,6 +434,7 @@ dev-tex/translator
 dev-tex/xcolor
 dev-tex/xmltex
 dev-util/argouml
+dev-util/astyle
 dev-util/automoc
 dev-util/autoproject
 dev-util/bcpp
