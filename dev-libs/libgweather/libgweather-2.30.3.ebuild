@@ -1,27 +1,29 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.28.0.ebuild,v 1.5 2010/07/16 17:45:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.30.3.ebuild,v 1.6 2011/01/19 21:21:12 hwoarang Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
+PYTHON_DEPEND="python? 2"
 
-inherit autotools gnome2
+inherit autotools gnome2 python
 
 DESCRIPTION="Library to access weather information from online services"
 HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="python doc"
 
-# FIXME: Technically we could use just libsoup too conditionally instead of libsoup-gnome,
-# but the detection of libsoup-gnome vs libgnome is currently automagic
-RDEPEND=">=x11-libs/gtk+-2.11
+# libsoup-gnome is to be used because libsoup[gnome] might not
+# get libsoup-gnome installed by the time ${P} is built
+RDEPEND=">=x11-libs/gtk+-2.11:2
 	>=dev-libs/glib-2.13
 	>=gnome-base/gconf-2.8
 	>=net-libs/libsoup-gnome-2.25.1:2.4
 	>=dev-libs/libxml2-2.6.0
+	>=sys-libs/timezone-data-2010k
 	python? (
 		>=dev-python/pygobject-2
 		>=dev-python/pygtk-2 )
@@ -29,7 +31,7 @@ RDEPEND=">=x11-libs/gtk+-2.11
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40.3
 	>=dev-util/pkgconfig-0.19
-	dev-util/gtk-doc-am
+	>=dev-util/gtk-doc-am-1.9
 	doc? ( >=dev-util/gtk-doc-1.9 )"
 
 DOCS="AUTHORS ChangeLog MAINTAINERS NEWS"
@@ -40,23 +42,20 @@ pkg_setup() {
 		--disable-all-translations-in-one-xml
 		--disable-static
 		$(use_enable python)"
+	use python && python_set_active_version 2
 }
 
 src_prepare() {
 	gnome2_src_prepare
 
-	# FIXME: tarball generated with broken gtk-doc, revisit me.
-	if use doc; then
-		sed "/^TARGET_DIR/i \GTKDOC_REBASE=${EPREFIX}/usr/bin/gtkdoc-rebase" \
-			-i gtk-doc.make || die "sed 1 failed"
-	else
-		sed "/^TARGET_DIR/i \GTKDOC_REBASE=/$(type -P true)" \
-			-i gtk-doc.make || die "sed 2 failed"
-	fi
-
-	# Make it libtool-1 compatible, bug #278516
-	rm -v m4/lt* m4/libtool.m4 || die "removing libtool macros failed"
+	# Fix building -python, Gnome bug #596660.
+	epatch "${FILESDIR}/${PN}-2.30.0-fix-automagic-python-support.patch"
 
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
+}
+
+src_install() {
+	gnome2_src_install
+	python_clean_installation_image
 }

@@ -1,6 +1,61 @@
 # ChangeLog for dev-libs/libgweather
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.59 2010/08/01 11:32:32 fauli Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.73 2011/01/19 21:21:12 hwoarang Exp $
+
+  19 Jan 2011; Markos Chandras <hwoarang@gentoo.org> libgweather-2.30.3.ebuild:
+  Stable on amd64 wrt bug #348987
+
+  18 Jan 2011; Christian Faulhammer <fauli@gentoo.org>
+  libgweather-2.30.3.ebuild:
+  x86 stable, bug 348987
+
+  15 Jan 2011; <nirbheek@gentoo.org> libgweather-2.30.2.ebuild,
+  libgweather-2.30.3.ebuild:
+  libgweather slotmove 0 -> 2, new gtk+:3 version coming up
+
+  14 Nov 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  libgweather-2.30.3.ebuild:
+  Make sure timezone data is at least 2010k, bug #333667.
+
+  01 Nov 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  libgweather-2.30.3.ebuild:
+  Clarify GTK+ dep as being gtk+:2
+
+  24 Oct 2010; Pacho Ramos <pacho@gentoo.org> -libgweather-2.26.2.1.ebuild,
+  -files/libgweather-2.26.2.1-automagic-python.patch,
+  -libgweather-2.28.0.ebuild:
+  Remove old.
+
+  17 Oct 2010; Raúl Porcel <armin76@gentoo.org> libgweather-2.30.2.ebuild:
+  alpha/ia64/sh/sparc stable wrt #324077
+
+  14 Oct 2010; Markus Meier <maekke@gentoo.org> libgweather-2.30.2.ebuild:
+  arm stable, bug #324077
+
+  08 Oct 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libgweather-2.30.2.ebuild:
+  ppc64 stable wrt #324077
+
+*libgweather-2.30.3 (27 Sep 2010)
+
+  27 Sep 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  +libgweather-2.30.3.ebuild:
+  Version bump. Update for tzdata 2010k. Translation updates. Set python:2
+  in pkg_setup, bug #322993.
+
+  11 Sep 2010; Joseph Jezak <josejx@gentoo.org> libgweather-2.30.2.ebuild:
+  Marked ppc for bug #324077.
+
+  19 Aug 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  libgweather-2.30.2.ebuild:
+  Use libsoup-gnome dependency instead of libsoup[gnome] and drop deprecated
+  gtk-doc fix.
+
+  18 Aug 2010; Markus Meier <maekke@gentoo.org> libgweather-2.28.0.ebuild:
+  arm stable, bug #314899
+
+  14 Aug 2010; Raúl Porcel <armin76@gentoo.org> libgweather-2.28.0.ebuild:
+  alpha/ia64/sh/sparc stable wrt #314899
 
   01 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
   libgweather-2.30.2.ebuild:
