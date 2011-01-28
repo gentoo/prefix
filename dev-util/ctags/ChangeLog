@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/ctags
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.73 2009/11/16 21:59:58 spatz Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.74 2010/10/19 05:23:53 leio Exp $
+
+  19 Oct 2010; Mart Raudsepp <leio@gentoo.org> ctags-5.5.4-r2.ebuild:
+  Drop to ~mips
 
 *ctags-5.8 (16 Nov 2009)
 
