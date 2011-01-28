@@ -152,7 +152,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.10.1-hpux.patch
 	#epatch "${FILESDIR}"/${PN}-5.8.8-hpux1131.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-darwin-cc-ld.patch
-	epatch "${FILESDIR}"/${PN}-5.10.1-stack-protector-check.patch
 
 	# rest of usr-local patch
 	sed -i \
