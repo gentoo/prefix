@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.17.ebuild,v 1.4 2010/07/31 13:29:11 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.17.ebuild,v 1.9 2010/09/05 15:48:20 armin76 Exp $
 
 inherit gnome2 eutils mono libtool
 
@@ -10,7 +10,7 @@ HOMEPAGE="http://spruce.sourceforge.net/gmime/"
 SLOT="2.4"
 LICENSE="LGPL-2.1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="crypt doc mono"
+IUSE="doc mono"
 
 RDEPEND=">=dev-libs/glib-2.12
 	sys-libs/zlib
@@ -20,11 +20,11 @@ RDEPEND=">=dev-libs/glib-2.12
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? (
-		>=dev-util/gtk-doc-1.0
+		>=dev-util/gtk-doc-1.8
 		app-text/docbook-sgml-utils )
 	mono? ( dev-dotnet/gtk-sharp-gapi )"
 
-DOCS="AUTHORS ChangeLog COPYING INSTALL NEWS PORTING README TODO doc/html/"
+DOCS="AUTHORS ChangeLog NEWS PORTING README TODO doc/html/"
 
 src_unpack() {
 	unpack ${A}
@@ -50,7 +50,7 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $(use_enable mono) $(use_enable doc gtk-doc) $(use_enable crypt cryptography)
+	econf $(use_enable mono) $(use_enable doc gtk-doc) --enable-cryptography
 	MONO_PATH="${S}" emake || die "emake failed"
 }
 

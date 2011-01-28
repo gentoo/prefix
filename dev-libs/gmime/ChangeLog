@@ -1,6 +1,74 @@
 # ChangeLog for dev-libs/gmime
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.116 2010/07/31 13:29:11 pacho Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.134 2011/01/25 21:35:17 hwoarang Exp $
+
+  25 Jan 2011; Markos Chandras <hwoarang@gentoo.org> gmime-2.4.21.ebuild:
+  Stable on amd64 wrt bug #352318
+
+  25 Jan 2011; Jeroen Roovers <jer@gentoo.org> gmime-2.4.21.ebuild:
+  Stable for HPPA (bug #352318).
+
+  20 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> gmime-2.4.19.ebuild:
+  ppc64 stable wrt #340198
+
+  16 Dec 2010; Jeroen Roovers <jer@gentoo.org> gmime-2.4.19.ebuild:
+  Stable for PPC (bug #340198).
+
+*gmime-2.4.21 (10 Dec 2010)
+
+  10 Dec 2010; Pacho Ramos <pacho@gentoo.org> -gmime-2.4.18.ebuild,
+  +gmime-2.4.21.ebuild:
+  Version bump with upstream fixes, remove old testing.
+
+  30 Oct 2010; Raúl Porcel <armin76@gentoo.org> gmime-2.4.19.ebuild:
+  alpha/ia64/sparc stable wrt #340198
+
+  29 Oct 2010; Markus Meier <maekke@gentoo.org> gmime-2.4.19.ebuild:
+  arm/x86 stable, bug #340198
+
+  29 Oct 2010; Jeroen Roovers <jer@gentoo.org> gmime-2.4.19.ebuild:
+  Stable for HPPA (bug #340198).
+
+  29 Oct 2010; Markos Chandras <hwoarang@gentoo.org> gmime-2.4.19.ebuild:
+  Stable on amd64 wrt bug #340198
+
+*gmime-2.4.20 (28 Oct 2010)
+
+  28 Oct 2010; Gilles Dartiguelongue <eva@gentoo.org> gmime-2.4.19.ebuild,
+  +gmime-2.4.20.ebuild:
+  Version bump. Fix various ebuild issues and most notably html tutorial
+  generation, bug #340198.
+
+*gmime-2.4.19 (13 Sep 2010)
+
+  13 Sep 2010; Pacho Ramos <pacho@gentoo.org> +gmime-2.4.19.ebuild:
+  Version bump: improve support for old glib versions (<2.18), don't crash
+  if the group name is unset and minor fixes.
+
+  05 Sep 2010; Raúl Porcel <armin76@gentoo.org> gmime-2.4.17.ebuild:
+  alpha/ia64/sparc stable wrt #329961
+
+*gmime-2.4.18 (29 Aug 2010)
+
+  29 Aug 2010; Gilles Dartiguelongue <eva@gentoo.org> -gmime-2.2.24.ebuild,
+  -gmime-2.4.9.ebuild, +gmime-2.4.18.ebuild:
+  Version bump.
+
+  21 Aug 2010; Markus Meier <maekke@gentoo.org> gmime-2.4.17.ebuild:
+  arm stable, bug #329961
+
+  20 Aug 2010; Samuli Suominen <ssuominen@gentoo.org> gmime-2.4.17.ebuild:
+  ppc64 stable wrt #329961
+
+  20 Aug 2010; Samuli Suominen <ssuominen@gentoo.org> gmime-2.2.26.ebuild:
+  ppc64 stable wrt #324157
+
+  10 Aug 2010; Diego E. Pettenò <flameeyes@gentoo.org> gmime-2.4.17.ebuild:
+  Fix typo.
+
+  09 Aug 2010; Gilles Dartiguelongue <eva@gentoo.org> gmime-2.4.17.ebuild:
+  Enable crypto by default, no external dependencies required. Raise gtk-doc
+  dependency according to configure.
 
   31 Jul 2010; Pacho Ramos <pacho@gentoo.org> gmime-2.4.17.ebuild:
   amd64 stable, bug 329961
