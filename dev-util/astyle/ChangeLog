@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/astyle
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.37 2009/09/12 01:35:36 patrick Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.38 2010/09/24 15:13:42 scarabeus Exp $
+
+*astyle-1.24 (24 Sep 2010)
+
+  24 Sep 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -astyle-1.15.3.ebuild, -astyle-1.15.3-r1.ebuild, -astyle-1.21.ebuild,
+  -files/astyle-1.21-strip.patch, -files/astyle-gcc34.patch,
+  -astyle-1.23.ebuild, +astyle-1.24.ebuild, -files/cmd-line-fix.diff:
+  Version bump. Drop older.
 
 *astyle-1.23 (12 Sep 2009)
 
@@ -74,7 +82,7 @@
   Dropped ppc-macos keyword, see you in prefix
 
   14 Nov 2007; Robin H. Johnson <robbat2@gentoo.org> astyle-1.21.ebuild:
-  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.37 2009/09/12 01:35:36 patrick Exp $ string.
+  Fix $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/ChangeLog,v 1.38 2010/09/24 15:13:42 scarabeus Exp $ string.
 
 *astyle-1.21 (07 Oct 2007)
 
