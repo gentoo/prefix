@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.1.0.ebuild,v 1.5 2011/01/12 14:53:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.1.1.ebuild,v 1.1 2010/08/28 06:25:10 dev-zero Exp $
 
 EAPI=2
 
@@ -31,6 +31,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	use threads || epatch "${FILESDIR}/${PV}-disable-thread-tests.patch"
+
 	sed -i \
 		-e 's|$(prefix)/msg|$(DESTDIR)/$(prefix)/share/xerces-c/msg|' \
 		src/xercesc/util/MsgLoaders/MsgCatalog/Makefile.in || die "sed failed"

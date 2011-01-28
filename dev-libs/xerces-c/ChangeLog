@@ -1,6 +1,25 @@
 # ChangeLog for dev-libs/xerces-c
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.87 2010/06/18 18:54:58 pacho Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.92 2011/01/12 14:53:58 jer Exp $
+
+  12 Jan 2011; Jeroen Roovers <jer@gentoo.org> xerces-c-3.1.0.ebuild:
+  Stable for HPPA (bug #308009).
+
+  12 Jan 2011; Markos Chandras <hwoarang@gentoo.org> xerces-c-3.1.0.ebuild:
+  Stable on amd64 wrt bug #308009
+
+  11 Jan 2011; Markus Meier <maekke@gentoo.org> xerces-c-3.1.0.ebuild:
+  x86 stable, bug #308009
+
+  11 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> xerces-c-3.1.0.ebuild:
+  ppc/ppc64 stable wrt #308009
+
+*xerces-c-3.1.1 (28 Aug 2010)
+
+  28 Aug 2010; Tiziano Müller <dev-zero@gentoo.org>
+  +files/3.1.1-disable-thread-tests.patch, +xerces-c-3.1.1.ebuild:
+  Version bump (bug #328643), readded dropped disable-thread-tests patchs
+  (bug #307303).
 
   18 Jun 2010; Pacho Ramos <pacho@gentoo.org> xerces-c-3.0.1-r1.ebuild:
   stable amd64, security bug 280613
