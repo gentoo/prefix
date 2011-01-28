@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/fhist
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/fhist/ChangeLog,v 1.20 2009/12/04 21:57:41 flameeyes Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/fhist/ChangeLog,v 1.21 2011/01/06 21:06:29 jlec Exp $
+
+*fhist-1.19 (06 Jan 2011)
+
+  06 Jan 2011; Justin Lecher <jlec@gentoo.org> +files/1.19-ldflags.patch,
+  +fhist-1.19.ebuild:
+  Version Bump, Dropped arches because of missing dep, added amd64
 
   04 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org> fhist-1.16.ebuild:
   Use -j1 for test and install as well as build, bug #295744.
