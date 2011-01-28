@@ -1,10 +1,11 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.15.ebuild,v 1.4 2010/08/01 11:13:59 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.16.ebuild,v 1.2 2011/01/25 18:40:31 jer Exp $
 
-EAPI="2"
+EAPI="3"
+PYTHON_DEPEND="2"
 
-inherit eutils elisp-common gnome2
+inherit eutils elisp-common gnome2 python
 
 DESCRIPTION="GTK+ Documentation Generator"
 HOMEPAGE="http://www.gtk.org/gtk-doc/"
@@ -12,7 +13,7 @@ HOMEPAGE="http://www.gtk.org/gtk-doc/"
 LICENSE="GPL-2 FDL-1.1"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris"
-IUSE="debug doc emacs test"
+IUSE="debug doc emacs highlight vim test"
 
 # dev-tex/tex4ht blocker needed due bug #315287
 RDEPEND=">=dev-libs/glib-2.6
@@ -25,6 +26,10 @@ RDEPEND=">=dev-libs/glib-2.6
 	~app-text/docbook-sgml-dtd-3.0
 	>=app-text/docbook-dsssl-stylesheets-1.40
 	emacs? ( virtual/emacs )
+	highlight? (
+		vim? ( app-editors/vim )
+		!vim? ( dev-util/source-highlight )
+	)
 	!!<dev-tex/tex4ht-20090611_p1038-r1"
 
 DEPEND="${RDEPEND}
@@ -36,10 +41,15 @@ DEPEND="${RDEPEND}
 
 SITEFILE=61${PN}-gentoo.el
 
-DOCS="AUTHORS ChangeLog MAINTAINERS NEWS README TODO"
-
 pkg_setup() {
-	G2CONF="--with-xml-catalog=${EPREFIX}/etc/xml/catalog"
+	DOCS="AUTHORS ChangeLog MAINTAINERS NEWS README TODO"
+	if use vim; then
+		G2CONF="${G2CONF} $(use_with highlight highlight vim)"
+	else
+		G2CONF="${G2CONF} $(use_with highlight highlight source-highlight)"
+	fi
+	G2CONF+=" --with-xml-catalog=${EPREFIX}/etc/xml/catalog"
+	python_set_active_version 2
 }
 
 src_prepare() {
@@ -47,14 +57,12 @@ src_prepare() {
 
 	# Remove global Emacs keybindings.
 	epatch "${FILESDIR}/${PN}-1.8-emacs-keybindings.patch"
-
-	# Fix bug 306569 by not loading vim plugins while calling vim in
-	# gtkdoc-fixxref for fixing vim syntax highlighting
-	epatch "${FILESDIR}/${PN}-1.13-fixxref-vim-u-NONE.patch"
 }
 
 src_install() {
 	gnome2_src_install
+
+	python_convert_shebangs 2 "${ED}"/usr/bin/gtkdoc-depscan
 
 	# Don't install those files, they are in gtk-doc-am now
 	rm "${ED}"/usr/share/aclocal/gtk-doc.m4 || die "failed to remove gtk-doc.m4"
@@ -62,9 +70,9 @@ src_install() {
 
 	if use doc; then
 		docinto doc
-		dodoc doc/*
+		dodoc doc/* || die
 		docinto examples
-		dodoc examples/*
+		dodoc examples/* || die
 	fi
 
 	if use emacs; then
