@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.37.0.ebuild,v 1.4 2010/08/14 06:35:54 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.45.0.ebuild,v 1.1 2011/01/06 14:00:10 dev-zero Exp $
 
-EAPI=2
+EAPI="2"
 
-inherit flag-o-matic toolchain-funcs versionator
+inherit eutils flag-o-matic toolchain-funcs versionator
 
 MY_PV=$(replace_all_version_separators _)
 MAJOR_PV="$(replace_all_version_separators _ $(get_version_component_range 1-2))"
@@ -13,8 +13,8 @@ DESCRIPTION="A system for large project software construction, which is simple t
 HOMEPAGE="http://www.boost.org/doc/tools/build/index.html"
 SRC_URI="mirror://sourceforge/boost/boost_${MY_PV}.tar.bz2"
 LICENSE="Boost-1.0"
-SLOT="1.37"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+SLOT="$(get_version_component_range 1-2)"
+KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="examples python"
 
 DEPEND="!<dev-libs/boost-1.34.0
@@ -22,21 +22,32 @@ DEPEND="!<dev-libs/boost-1.34.0
 	python? ( dev-lang/python )"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/boost_${MY_PV}/tools"
+S="${WORKDIR}/boost_${MY_PV}/tools/build/v2"
 
 src_unpack() {
-	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/{jam,build/v2} || die
+	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/build/v2 || die "unpacking tar failed"
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PV}-darwin-sanitise.patch
+	# TODO:
+	#	epatch "${FILESDIR}/boost-1.42-fix-mpich2-detection.patch"
+
+	cd "${S}/engine"
+	epatch "${FILESDIR}/${PN}-1.42-env-whitespace.patch" # 293652
+
+	epatch "${FILESDIR}"/boost-1.41-darwin-sanitise.patch
 
 	# adds support for boosting with parity ...
-# doesn't apply
-#	epatch "${FILESDIR}"/1.35.0-winnt.patch
+#fails
+#	epatch "${FILESDIR}"/1.39.0-winnt.patch
+
+	# needed by multiple platforms - how can this work anywhere?
+	# the symptom is "${CHOST}-gcc: not found", however this
+	# can be caused by quoting of _arguments_ ... ?
+	epatch "${FILESDIR}"/1.39.0-build_jam-quoting.patch
 
 	# Remove stripping option
-	cd "${S}/jam/src"
+	cd "${S}/engine/src"
 	sed -i -e 's|-s\b||' \
 		build.jam || die "sed failed"
 
@@ -47,7 +58,7 @@ src_prepare() {
 	# and stripping flags when bjam is used as build-system
 	# We simply extend the optimization and debug-symbols feature
 	# with empty dummies called 'none'
-	cd "${S}/build/v2"
+	cd "${S}"
 	sed -i \
 		-e 's/\(off speed space\)/\1 none/' \
 		-e 's/\(debug-symbols      : on off\)/\1 none/' \
@@ -55,7 +66,7 @@ src_prepare() {
 }
 
 src_compile() {
-	cd jam/src
+	cd engine/src
 	local toolset
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
@@ -89,14 +100,14 @@ src_compile() {
 }
 
 src_install() {
-	newbin jam/src/bin.*/bjam bjam-${MAJOR_PV}
+	newbin engine/src/bin.*/bjam bjam-${MAJOR_PV}
 
-	cd "${S}/build/v2"
+	cd "${S}"
 	insinto /usr/share/boost-build-${MAJOR_PV}
 	doins -r boost-build.jam bootstrap.jam build-system.jam site-config.jam user-config.jam \
 		build kernel options tools util || die
 
-	dodoc doc/userman.pdf changes.txt hacking.txt release_procedure.txt \
+	dodoc changes.txt hacking.txt release_procedure.txt \
 		notes/build_dir_option.txt notes/relative_source_paths.txt
 
 	if use examples ; then
@@ -106,6 +117,6 @@ src_install() {
 }
 
 src_test() {
-	cd jam/test
+	cd engine/test
 	./test.sh || die "tests failed"
 }

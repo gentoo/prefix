@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.41.0.ebuild,v 1.8 2010/04/17 23:51:26 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.41.0.ebuild,v 1.10 2010/09/19 17:52:31 armin76 Exp $
 
-EAPI=2
+EAPI="2"
 
-inherit flag-o-matic toolchain-funcs versionator
+inherit eutils flag-o-matic toolchain-funcs versionator
 
 MY_PV=$(replace_all_version_separators _)
 MAJOR_PV="$(replace_all_version_separators _ $(get_version_component_range 1-2))"
@@ -24,17 +24,13 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/boost_${MY_PV}/tools"
 
-pkg_setup() {
-	ewarn "Compilation of boost-build is known to break if {C,LD}FLAGS contain"
-	ewarn "extra white space (bug 293652)"
-}
-
 src_unpack() {
 	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/{jam,build/v2} || die
 }
 
 src_prepare() {
 	epatch "${FILESDIR}/boost-1.41-fix-mpich2-detection.patch"
+	epatch "${FILESDIR}/${PN}-1.42-env-whitespace.patch" # 293652
 
 	epatch "${FILESDIR}"/boost-1.41-darwin-sanitise.patch
 
@@ -94,6 +90,7 @@ src_compile() {
 		CC=$(tc-getCC) ./build.sh ${toolset} $(use_with python) \
 			|| die "building bjam failed"
 	else
+		LDFLAGS=$(echo ${LDFLAGS}) # 293652
 		LIBS=${LDFLAGS} CC=$(tc-getCC) ./build.sh ${toolset} \
 			$(use_with python) || die "building bjam failed"
 	fi

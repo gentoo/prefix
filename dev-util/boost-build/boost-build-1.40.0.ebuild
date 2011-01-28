@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.40.0.ebuild,v 1.2 2009/10/24 09:20:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.40.0.ebuild,v 1.3 2010/08/14 06:35:53 dirtyepic Exp $
 
-EAPI=2
+EAPI="2"
 
-inherit flag-o-matic toolchain-funcs versionator
+inherit eutils flag-o-matic toolchain-funcs versionator
 
 MY_PV=$(replace_all_version_separators _)
 MAJOR_PV="$(replace_all_version_separators _ $(get_version_component_range 1-2))"
@@ -29,6 +29,8 @@ src_unpack() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}/${PN}-1.42-env-whitespace.patch" # 293652
+
 	epatch "${FILESDIR}"/1.39.0-darwin-sanitise.patch
 
 	# adds support for boosting with parity ...
@@ -87,6 +89,7 @@ src_compile() {
 		CC=$(tc-getCC) ./build.sh ${toolset} $(use_with python) \
 			|| die "building bjam failed"
 	else
+		LDFLAGS=$(echo ${LDFLAGS}) # 293652
 		LIBS=${LDFLAGS} CC=$(tc-getCC) ./build.sh ${toolset} \
 			$(use_with python) || die "building bjam failed"
 	fi
