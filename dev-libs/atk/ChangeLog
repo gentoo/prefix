@@ -1,6 +1,31 @@
 # ChangeLog for dev-libs/atk
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.201 2010/08/01 11:11:53 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.208 2010/10/17 14:51:43 armin76 Exp $
+
+  17 Oct 2010; Raúl Porcel <armin76@gentoo.org> atk-1.30.0.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #324077
+
+  14 Oct 2010; Markus Meier <maekke@gentoo.org> atk-1.30.0.ebuild:
+  arm stable, bug #324077
+
+*atk-1.32.0 (09 Oct 2010)
+
+  09 Oct 2010; Pacho Ramos <pacho@gentoo.org> +atk-1.32.0.ebuild:
+  Version bump for Gnome 2.32: upstream bugfixes and translation updates.
+  Update HOMEPAGE, don't waste time building tests (bug #226353) and remove
+  DISABLE_DEPRECATED flags.
+
+  07 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> atk-1.30.0.ebuild:
+  ppc64 stable wrt #324077
+
+  11 Sep 2010; Joseph Jezak <josejx@gentoo.org> atk-1.30.0.ebuild:
+  Marked ppc for bug #324077.
+
+  22 Aug 2010; Gilles Dartiguelongue <eva@gentoo.org> -atk-1.26.0.ebuild:
+  Clean up old revision.
+
+  05 Aug 2010; Jeroen Roovers <jer@gentoo.org> atk-1.30.0.ebuild:
+  Stable for HPPA (bug #324077).
 
   01 Aug 2010; Christian Faulhammer <fauli@gentoo.org> atk-1.30.0.ebuild:
   x86 stable, bug 324077
