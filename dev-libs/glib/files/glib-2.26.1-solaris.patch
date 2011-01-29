@@ -3,7 +3,7 @@ Major and minor are defined in sys/mkdev.h on Solaris
 Without this include, linking will fail with an underfined reference to
 major (and minor)
 
-https://bugzilla.gnome.org/show_bug.cgi?id=637013
+https://bugzilla.gnome.org/show_bug.cgi?id=637013 (APPLIED)
 
 --- configure.ac
 +++ configure.ac

@@ -46,7 +46,7 @@ src_prepare() {
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.26.1-solaris-thread.patch
 
-	# Fix compiling on Solaris
+	# Fix compiling on Solaris -- applied upstream
 	epatch "${FILESDIR}"/${PN}-2.26.1-solaris.patch
 
 	# gsettings.m4: Fix rules to work when there are no schemas, bug #350020
