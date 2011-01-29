@@ -649,6 +649,7 @@ media-libs/libfpx
 media-libs/liblo
 media-libs/liblrdf
 media-libs/libmikmod
+media-libs/libmms
 media-libs/libmng
 media-libs/libmodplug
 media-libs/libmp4v2
