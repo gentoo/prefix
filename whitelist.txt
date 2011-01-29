@@ -462,6 +462,7 @@ dev-util/ftjam
 dev-util/global
 dev-util/gob
 dev-util/gperf
+dev-util/gtk-doc
 dev-util/gtk-doc-am
 dev-util/httpup
 dev-util/huc
