@@ -132,6 +132,7 @@ app-editors/vim-core
 app-editors/zile
 app-i18n/enca
 app-i18n/kakasi
+app-i18n/libguess
 app-i18n/man-pages-zh_CN
 app-i18n/skk-jisyo
 app-misc/abook
