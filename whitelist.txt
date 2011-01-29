@@ -345,6 +345,7 @@ dev-libs/eggdbus
 dev-libs/elfutils
 dev-libs/fribidi
 dev-libs/gf2x
+dev-libs/gmime
 dev-libs/gnulib
 dev-libs/libaio
 dev-libs/libatomic_ops
