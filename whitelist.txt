@@ -481,6 +481,7 @@ dev-util/qgit
 dev-util/qt-creator
 dev-util/ragel
 dev-util/re2c
+dev-util/scons
 dev-util/strace
 dev-util/tailor
 dev-util/tkdiff
