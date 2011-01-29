@@ -332,6 +332,7 @@ dev-lang/tcl
 dev-lang/tk
 dev-lang/ucblogo
 dev-lang/yasm
+dev-libs/atk
 dev-libs/beecrypt
 dev-libs/blitz
 dev-libs/botan
