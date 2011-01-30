@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.17721 (30 Jan 2011)
+
+  30 Jan 2011; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.17680.ebuild, +portage-2.2.01.17721.ebuild:
+  Bump, updated 'no offset with helpers' check
+
   27 Jan 2011; Fabian Groffen <grobian@gentoo.org>
   -portage-2.2.01.17649.ebuild:
   Drop old
