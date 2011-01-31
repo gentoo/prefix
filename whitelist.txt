@@ -334,6 +334,7 @@ dev-lang/swig
 dev-lang/tcl
 dev-lang/tk
 dev-lang/ucblogo
+dev-lang/v8
 dev-lang/yasm
 dev-libs/atk
 dev-libs/beecrypt
@@ -448,6 +449,7 @@ dev-util/bsdiff
 dev-util/btyacc
 dev-util/byacc
 dev-util/checkstyle
+dev-util/chromium-tools
 dev-util/cmake
 dev-util/cocom
 dev-util/confix
@@ -665,6 +667,7 @@ media-libs/libreplaygain
 media-libs/libsamplerate
 media-libs/libsvg
 media-libs/libuninameslist
+media-libs/libvpx
 media-libs/libwmf
 media-libs/libwpg
 media-libs/mediastreamer
