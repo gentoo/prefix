@@ -1,6 +1,41 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.267 2010/08/03 21:32:46 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.276 2010/12/24 09:04:05 ford_prefect Exp $
+
+*gstreamer-0.10.31 (24 Dec 2010)
+
+  24 Dec 2010; Arun Raghavan <ford_prefect@gentoo.org>
+  +gstreamer-0.10.31.ebuild:
+  Bump to 0.10.31. Bunch of fixes, new APIs for date/time and faster, unchecked
+  bitreader/bytewriter.
+
+  29 Sep 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  gstreamer-0.10.30.ebuild:
+  Fix obvious mistake.
+
+  28 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  gstreamer-0.10.30.ebuild, +files/gstreamer-0.10.30-make-382.patch:
+  Fix building with make >= 3.82 wrt #338866 by Diego E. Pettenò.
+
+  11 Sep 2010; <nixnut@gentoo.org> gstreamer-0.10.29.ebuild:
+  ppc stable #329703
+
+  05 Sep 2010; Tobias Klausmann <klausman@gentoo.org>
+  gstreamer-0.10.29.ebuild:
+  Stable on alpha, bug #329703
+
+  05 Sep 2010; Raúl Porcel <armin76@gentoo.org> gstreamer-0.10.29.ebuild:
+  ia64/sh/sparc stable wrt #329703
+
+  04 Sep 2010; Raúl Porcel <armin76@gentoo.org> gstreamer-0.10.28.ebuild:
+  alpha/ia64/sh/sparc stable wrt #324691
+
+  10 Aug 2010; Jeroen Roovers <jer@gentoo.org> gstreamer-0.10.29.ebuild:
+  Stable for HPPA (bug #329703).
+
+  05 Aug 2010; Samuli Suominen <ssuominen@gentoo.org>
+  gstreamer-0.10.29.ebuild:
+  ppc64 stable wrt #324691
 
   03 Aug 2010; Markus Meier <maekke@gentoo.org> gstreamer-0.10.29.ebuild:
   arm stable, bug #329703
