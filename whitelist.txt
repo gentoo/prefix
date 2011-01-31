@@ -856,17 +856,6 @@ sys-process/psmisc
 sys-process/time
 sys-process/unixtop
 www-apps/scgi
-www-client/chromium
-www-client/conkeror
-www-client/firefox
-www-client/htmlview
-www-client/httrack
-www-client/links
-www-client/pybugz
-www-client/surfraw
-www-client/arora
-www-client/w3m
-www-misc/htdig
 www-servers/mongrel
 x11-libs/cairo
 x11-libs/fltk
@@ -1018,6 +1007,8 @@ sys-fs
 sys-kernel
 sys-power
 virtual
+www-client
+www-misc
 www-plugins
 x11-apps
 x11-plugins
