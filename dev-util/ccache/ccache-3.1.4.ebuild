@@ -19,7 +19,6 @@ DEPEND="${RDEPEND}"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/ccache-2.4-mint.patch
 	# make sure we always use system zlib
 	rm -rf zlib
 }
