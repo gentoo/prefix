@@ -970,6 +970,7 @@ x11-terms/tilda
 # entire categories
 app-accessibility
 app-backup
+app-benchmarks
 app-dicts
 app-doc
 app-emacs
