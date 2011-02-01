@@ -27,7 +27,7 @@ MAKEOPTS="${MAKEOPTS} -j1"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.2.3-slsh-libs.patch
-	epatch "${FILESDIR}"/${PN}-2.1.3-interix.patch
+	#epatch "${FILESDIR}"/${PN}-2.1.3-interix.patch
 
 	# avoid linking to -ltermcap race with some systems
 	sed -i -e '/^TERMCAP=/s:=.*:=:' configure || die
