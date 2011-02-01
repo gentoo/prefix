@@ -12,8 +12,8 @@ src_unpack() {
 	toolchain-binutils_src_unpack
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.20.51.0.1-linux-x86-on-amd64.patch
-	epatch "${FILESDIR}"/${PN}-2.20.51.0.10-mint.patch
-	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
+	#epatch "${FILESDIR}"/${PN}-2.20.51.0.10-mint.patch
+	#epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
 }
 
 src_compile() {
