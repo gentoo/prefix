@@ -1,9 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.2.0.ebuild,v 1.27 2010/06/22 20:00:18 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.2.0.ebuild,v 1.29 2010/11/07 19:45:55 anarchy Exp $
 
 WANT_AUTOMAKE="1.9"
-EAPI="2"
+EAPI="3"
 KDE_REQUIRED="optional"
 CMAKE_REQUIRED="never"
 PYTHON_DEPEND="2"
@@ -63,7 +63,7 @@ HOMEPAGE="http://go-oo.org"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="amd64 ppc ~sparc x86 ~amd64-linux ~x86-linux"
 
 COMMON_DEPEND="!app-office/openoffice-bin
 	x11-libs/libXaw
@@ -90,14 +90,13 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	nsplugin? ( net-libs/xulrunner:1.9
 		>=dev-libs/nspr-4.6.6
 		>=dev-libs/nss-3.11-r1 )
-	opengl? ( virtual/opengl
-		virtual/glu )
+	opengl? ( virtual/opengl )
 	>=net-libs/neon-0.24.7
 	>=dev-libs/openssl-0.9.8g
 	>=media-libs/freetype-2.1.10-r2
 	>=media-libs/fontconfig-2.3.0
 	cups? ( net-print/cups )
-	media-libs/jpeg
+	virtual/jpeg
 	media-libs/libpng
 	app-arch/zip
 	app-arch/unzip
@@ -391,17 +390,10 @@ pkg_postinst() {
 	fdo-mime_mime_database_update
 	BASHCOMPLETION_NAME=ooffice && bash-completion_pkg_postinst
 
-	# does this make sense for Prefix?
 	( [[ -x /sbin/chpax ]] || [[ -x /sbin/paxctl ]] ) && [[ -e "${EPREFIX}"/usr/$(get_libdir)/openoffice/program/soffice.bin ]] && scanelf -Xzm "${EPREFIX}"/usr/$(get_libdir)/openoffice/program/soffice.bin
 
 	# Add available & useful jars to openoffice classpath
 	use java && ${EPREFIX}/usr/$(get_libdir)/openoffice/${BASIS}/program/java-set-classpath $(java-config --classpath=jdbc-mysql 2>/dev/null) >/dev/null
-
-	elog
-	elog " Spell checking is provided through our own myspell-ebuilds, "
-	elog " if you want to use it, please install the correct myspell package "
-	elog " according to your language needs. "
-	elog
 
 	elog " Some aditional functionality can be installed via Extension Manager: "
 	elog " *) PDF Import "
