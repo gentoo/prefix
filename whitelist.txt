@@ -910,6 +910,7 @@ x11-libs/libxcb
 x11-libs/libxdl_view
 x11-libs/libxkbfile
 x11-libs/libxkbui
+x11-libs/libxklavier
 x11-libs/neXtaw
 x11-libs/openmotif
 x11-libs/pixman
