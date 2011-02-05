@@ -169,6 +169,7 @@ app-misc/tmux
 app-misc/ttyrec
 app-misc/when
 app-misc/zisofs-tools
+app-office/abiword
 app-office/akonadi-server
 app-office/calcurse
 app-office/ledger
