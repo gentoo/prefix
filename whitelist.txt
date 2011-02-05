@@ -172,6 +172,8 @@ app-misc/zisofs-tools
 app-office/akonadi-server
 app-office/calcurse
 app-office/ledger
+app-office/openoffice
+app-office/openoffice-bin
 app-office/orage
 app-office/texmacs
 app-portage/eclass-manpages
