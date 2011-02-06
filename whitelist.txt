@@ -871,6 +871,7 @@ x11-libs/goffice
 x11-libs/gtk+
 x11-libs/gtkglarea
 x11-libs/gtkglext
+x11-libs/gtksourceview
 x11-libs/guile-gtk
 x11-libs/ige-mac-integration
 x11-libs/libICE
