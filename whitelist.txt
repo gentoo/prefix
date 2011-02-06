@@ -132,6 +132,7 @@ app-editors/teco
 app-editors/vim
 app-editors/vim-core
 app-editors/zile
+app-i18n/anthy
 app-i18n/enca
 app-i18n/kakasi
 app-i18n/libguess
