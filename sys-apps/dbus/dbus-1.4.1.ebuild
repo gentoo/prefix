@@ -92,15 +92,6 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-1.2.3-freebsd71.patch
 	fi
 
-	# Enable launchd support on Darwin
-	if [[ ${CHOST} == *-darwin* ]]; then
-		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_p2.patch
-		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_p3.patch
-		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_p4.patch
-		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_p5.patch
-		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_px_ported.patch
-	fi
-
 	# required for asneeded patch but also for bug 263909, cross-compile so
 	# don't remove eautoreconf
 	eautoreconf
