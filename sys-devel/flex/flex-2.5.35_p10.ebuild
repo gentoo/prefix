@@ -30,7 +30,7 @@ S=${WORKDIR}/${MY_P}
 src_prepare() {
 	[[ -n ${DEB_DIFF} ]] && epatch "${WORKDIR}"/${DEB_DIFF}.diff
 #	[[ ${CHOST} != *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.5.33-pic.patch
-#	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.5.35-mint.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.5.35-mint.patch
 	epatch "${FILESDIR}"/${PN}-2.5.35-gcc44.patch
 	epatch "${FILESDIR}"/${PN}-2.5.35-saneautotools.patch
 
