@@ -52,6 +52,8 @@ src_prepare() {
 
 	# for correct install_names
 	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
+	# fix part 1 for echo_{t,c,n}
+	epatch "${FILESDIR}"/${P}-echo_t.patch
 }
 
 src_configure() {
@@ -84,6 +86,7 @@ src_configure() {
 
 	# make sure we configure with the same shell as we run icu-config
 	# with, or ECHO_N, ECHO_T and ECHO_C will be wrongly defined
+	# (this is part 2 from the echo_{t,c,n} fix)
 	export CONFIG_SHELL=${EPREFIX}/bin/sh
 	econf \
 		$(use_enable debug) \

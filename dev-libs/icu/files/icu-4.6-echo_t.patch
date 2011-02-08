@@ -1,0 +1,28 @@
+--- a/source/configure.in
++++ b/source/configure.in
+@@ -20,9 +20,9 @@
+ # for icu-config
+ # This may be removed later - mow (June 17, 2010)
+ ICU_ECHO_C= ICU_ECHO_N= ICU_ECHO_T=
+-case `/bin/sh -c "echo -n x"` in
++case `${CONFIG_SHELL} -c "echo -n x"` in
+ -n*)
+-  case `/bin/sh -c "echo 'x\c'"` in
++  case `${CONFIG_SHELL} -c "echo 'x\c'"` in
+   *c*) ICU_ECHO_T=' ';;     # ECHO_T is single tab character.
+   *)   ICU_ECHO_C='\c';;
+   esac;;
+--- a/source/configure
++++ b/source/configure
+@@ -20,9 +20,9 @@
+ # for icu-config
+ # This may be removed later - mow (June 17, 2010)
+ ICU_ECHO_C= ICU_ECHO_N= ICU_ECHO_T=
+-case `/bin/sh -c "echo -n x"` in
++case `${CONFIG_SHELL} -c "echo -n x"` in
+ -n*)
+-  case `/bin/sh -c "echo 'x\c'"` in
++  case `${CONFIG_SHELL} -c "echo 'x\c'"` in
+   *c*) ICU_ECHO_T=' ';;     # ECHO_T is single tab character.
+   *)   ICU_ECHO_C='\c';;
+   esac;;
