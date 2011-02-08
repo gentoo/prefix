@@ -54,8 +54,9 @@ src_unpack() {
 		eautoheader
 	fi
 
-	# from upstream, #353287
+	# from upstream, #353287, #353377
 	epatch "${FILESDIR}"/groff-1.21-makefile.patch
+	epatch "${FILESDIR}"/groff-1.21-gnulib.patch
 	# make sure we don't get a crappy `g' nameprefix
 	epatch "${FILESDIR}"/groff-1.19.2-no-g-nameprefix.patch
 	AT_M4DIR=m4 eautoreconf
