@@ -1,0 +1,20 @@
+assign freopen output to a dummy, to fix compilation on platforms where
+stderr is not something that can be assigned to
+
+Index: main.c
+===================================================================
+RCS file: /var/cvsroot/gentoo-projects/portage-utils/main.c,v
+retrieving revision 1.178
+retrieving revision 1.179
+diff -u -r1.178 -r1.179
+--- main.c	7 Dec 2010 01:13:04 -0000	1.178
++++ main.c	19 Dec 2010 13:15:31 -0000	1.179
+@@ -118,7 +118,7 @@
+ 	NULL
+ #define COMMON_GETOPTS_CASES(applet) \
+ 	case 'v': ++verbose; break; \
+-	case 'q': ++quiet; stderr = freopen("/dev/null", "w", stderr); break; \
++	case 'q': { FILE *dummy; ++quiet; dummy = freopen("/dev/null", "w", stderr); break; } \
+ 	case 'V': version_barf( applet ## _rcsid ); break; \
+ 	case 'h': applet ## _usage(EXIT_SUCCESS); break; \
+ 	case 'C': no_colors(); break; \

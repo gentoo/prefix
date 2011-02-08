@@ -30,6 +30,7 @@ src_unpack() {
 	# used in /usr/include/regex.h on hpux11.31.
 	[[ ${CHOST} == *-hpux11.31 ]] && \
 		sed -i -e 's/std=gnu99/std=gnu89/g' Makefile
+	epatch "${FILESDIR}"/${P}-darwin8.patch
 }
 
 src_compile() {
