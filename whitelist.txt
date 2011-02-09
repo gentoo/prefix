@@ -760,6 +760,7 @@ net-ftp/tnftp
 net-im/pork
 net-irc/quassel
 net-irc/supybot
+net-irc/weechat
 net-libs/farsight2
 net-libs/gnet
 net-libs/ldns
