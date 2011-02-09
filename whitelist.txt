@@ -856,6 +856,7 @@ sys-devel/gdb-apple
 sys-devel/gnuconfig
 sys-devel/llvm
 sys-devel/llvm-gcc
+sys-devel/native-cctools
 sys-libs/pam
 sys-libs/suacomp
 sys-process/htop
