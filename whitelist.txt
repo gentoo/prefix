@@ -384,6 +384,7 @@ dev-libs/libpthread-stubs
 dev-libs/libsigc++
 dev-libs/libsigsegv
 dev-libs/libstrl
+dev-libs/libtar
 dev-libs/libtommath
 dev-libs/libunique
 dev-libs/libusb
