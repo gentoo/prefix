@@ -116,6 +116,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.2.2/pr26189-pa.patch
 	epatch "${FILESDIR}"/4.2.2/aix-bnoerok.patch
 	epatch "${FILESDIR}"/4.2.2/aix-lineno.patch
+	epatch "${FILESDIR}"/4.2.2/aix-pr46072.patch
 
 	# try /usr/lib32 in 32bit profile on x86_64-linux (needs --enable-multilib)
 	# but this does make sense in prefix only.

@@ -1,0 +1,25 @@
+http://gcc.gnu.org/PR46072 is necessary to support AIX5.3 TL12
+
+*** gcc-4.2.4/gcc/xcoffout.h.orig	Tue Jan 25 21:17:54 2011
+--- gcc-4.2.4/gcc/xcoffout.h	Tue Jan 25 21:18:16 2011
+***************
+*** 42,51 ****
+  
+  #define DBX_STATIC_BLOCK_START(ASMFILE,CODE)				\
+  {									\
+!   if ((CODE) == N_STSYM)						\
+      fprintf ((ASMFILE), "\t.bs\t%s[RW]\n", xcoff_private_data_section_name);\
+-   else if ((CODE) == N_LCSYM)						\
+-     fprintf ((ASMFILE), "\t.bs\t%s\n", xcoff_bss_section_name);	\
+  }
+  
+  /* For static variables, output code to define the end of a static block.  */
+--- 42,49 ----
+  
+  #define DBX_STATIC_BLOCK_START(ASMFILE,CODE)				\
+  {									\
+!   if ((CODE) == N_STSYM || (CODE) == N_LCSYM)				\
+      fprintf ((ASMFILE), "\t.bs\t%s[RW]\n", xcoff_private_data_section_name);\
+  }
+  
+  /* For static variables, output code to define the end of a static block.  */
