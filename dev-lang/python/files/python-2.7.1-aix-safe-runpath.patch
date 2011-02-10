@@ -1,0 +1,15 @@
+On AIX, linking against libpython*.so is not done with '-lpython', so '-L$(srcdir)'
+is not needed either, which just is recorded as insecure runpath then.
+http://bugs.python.org/issue11172
+
+--- configure.in.orig	2011-02-09 15:03:43 +0100
++++ configure.in	2011-02-09 15:04:57 +0100
+@@ -1764,7 +1764,7 @@
+ then
+ 	case $ac_sys_system/$ac_sys_release in
+ 	AIX*)
+-		BLDSHARED="\$(srcdir)/Modules/ld_so_aix \$(CC) -bI:Modules/python.exp -L\$(srcdir)"
++		BLDSHARED="\$(srcdir)/Modules/ld_so_aix \$(CC) -bI:Modules/python.exp"
+ 		LDSHARED="\$(BINLIBDEST)/config/ld_so_aix \$(CC) -bI:\$(BINLIBDEST)/config/python.exp"
+ 		;;
+ 	BeOS*)

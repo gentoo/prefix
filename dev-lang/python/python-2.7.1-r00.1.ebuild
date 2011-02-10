@@ -191,11 +191,12 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.2-termios-noqnx.patch
 	# http://bugs.python.org/issue10898
 	epatch "${FILESDIR}"/${PN}-2.7.1-fstat-mint.patch
-	# build shared library on aix #278845
-	# needs fixing, doesn't not apply cleanly any more
-#	epatch "${FILESDIR}"/${PN}-2.6.2-aix-shared.patch
 	# hpux before 11.31
 	epatch "${FILESDIR}"/${PN}-2.6.2-missing-SEM_FAILED.patch
+	# http://bugs.python.org/issue11172
+	epatch "${FILESDIR}"/${PN}-2.7.1-aix-safe-runpath.patch
+	# needs native-cctools
+	epatch "${FILESDIR}"/${PN}-2.7.1-aix-soname.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
@@ -284,6 +285,9 @@ src_configure() {
 		append-flags -I${EPREFIX}/usr/include
 		append-flags -L${EPREFIX}/$(get_libdir)
 		append-flags -L${EPREFIX}/usr/$(get_libdir)
+		# Have to move $(CPPFLAGS) to before $(CFLAGS) to ensure that
+		# local include paths - set in $(CPPFLAGS) - are searched first.
+		sed -i -e "/^PY_CFLAGS[ \\t]*=/s,\\\$(CFLAGS)[ \\t]*\\\$(CPPFLAGS),\$(CPPFLAGS) \$(CFLAGS)," Makefile.pre.in || die
 	fi
 
 	if tc-is-cross-compiler; then
@@ -305,6 +309,8 @@ src_configure() {
 	# Set LDFLAGS so we link modules with -lpython2.7 correctly.
 	# Needed on FreeBSD unless Python 2.7 is already installed.
 	# Please query BSD team before removing this!
+	# On AIX this is not needed, but would record '.' as runpath.
+	[[ ${CHOST} == *-aix* ]] ||
 	append-ldflags "-L."
 
 	local dbmliborder
