@@ -24,7 +24,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
 	epatch "${FILESDIR}"/${PN}-1.0.5-checkenv.patch # for AIX, Darwin?
 	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
-	epatch "${FILESDIR}"/${PN}-1.0.6-aix.patch
 	eprefixify bz{diff,grep,more}
 	# this a makefile for Darwin, which already "includes" saneso
 	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
@@ -65,10 +64,6 @@ src_compile() {
 		*-mint*)
 			# do nothing, no shared libraries
 			:
-		;;
-		*-aix*)
-			bemake -f Makefile-libbz2_so all-aix || die
-			checkopts="TESTENV=LIBPATH=."
 		;;
 		*)
 			bemake -f Makefile-libbz2_so all || die
