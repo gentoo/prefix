@@ -27,6 +27,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-ldflags.patch #319661
 	epatch "${FILESDIR}"/${P}-lfs-decls.patch #316377
 	epatch "${FILESDIR}"/${P}-fbsd_chosts.patch #316841
+	epatch "${FILESDIR}"/${P}-aix-soname.patch #213277
 
 	# also set soname and stuff on Solaris (with CHOST compensation fix as below)
 	sed -i -e 's:Linux\* | linux\*:Linux\* | linux\* | SunOS\* | solaris\*:' configure || die

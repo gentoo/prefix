@@ -1,0 +1,15 @@
+With a little help from my friend, the native-cctools wrapping ld to support
+'-soname' flag on AIX, we can provide full soname support there (#213277).
+However, this patch is not for upstream, as they cannot rely on that ld wrapper:
+They would have to do the aix-soname magic themself instead.
+
+--- configure.orig	2011-02-03 16:47:00.000000000 +0100
++++ configure	2011-02-03 16:47:51.000000000 +0100
+@@ -118,6 +118,7 @@
+   fi
+   case "$uname" in
+   Linux* | linux* | GNU | GNU/* | *BSD | DragonFly | freebsd* ) LDSHARED=${LDSHARED-"$cc -shared -Wl,-soname,libz.so.1,--version-script,zlib.map"} ;;
++  AIX* | aix* ) LDSHARED=${LDSHARED-"$cc -shared -Wl,-soname,libz.so.1"} ;;
+   CYGWIN* | Cygwin* | cygwin* | OS/2*)
+         EXE='.exe' ;;
+   MINGW*|mingw*)
