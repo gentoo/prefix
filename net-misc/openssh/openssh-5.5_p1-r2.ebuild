@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.5_p1-r2.ebuild,v 1.1 2010/06/20 22:29:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.5_p1-r2.ebuild,v 1.8 2011/02/10 03:10:55 robbat2 Exp $
 
 EAPI="2"
 inherit eutils flag-o-matic multilib autotools pam
@@ -106,10 +106,16 @@ src_prepare() {
 		# version.h patch conflict avoidence
 		mv version.h version.h.hpn
 		cp -f version.h.pristine version.h
-		# The AES-CTR multithreaded variant is temporarily broken, and
-		# causes random hangs when combined with the -f switch of ssh.
-		# To avoid this, we change the internal table to use the non-multithread
-		# version for the meantime.
+		# The AES-CTR multithreaded variant is broken, and causes random hangs
+		# when combined background threading and control sockets. To avoid
+		# this, we change the internal table to use the non-multithread version
+		# for the meantime. Do NOT remove this in new versions. See bug #354113,
+		# comment #6 for testcase.
+		# Upstream reference: http://www.psc.edu/networking/projects/hpn-ssh/
+		## Additionally, the MT-AES-CTR mode cipher replaces the default ST-AES-CTR mode
+		## cipher. Be aware that if the client process is forked using the -f command line
+		## option the process will hang as the parent thread gets 'divorced' from the key
+		## generation threads. This issue will be resolved as soon as possible
 		sed -i \
 			-e '/aes...-ctr.*SSH_CIPHER_SSH2/s,evp_aes_ctr_mt,evp_aes_128_ctr,' \
 			cipher.c || die

@@ -1,6 +1,125 @@
 # ChangeLog for net-misc/openssh
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.382 2010/06/20 22:29:39 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.410 2011/02/10 03:10:55 robbat2 Exp $
+
+  10 Feb 2011; Robin H. Johnson <robbat2@gentoo.org> openssh-5.5_p1-r2.ebuild,
+  openssh-5.6_p1-r2.ebuild, openssh-5.7_p1-r1.ebuild, openssh-5.8_p1.ebuild,
+  openssh-5.8_p1-r1.ebuild:
+  Revamp AES-CTR-MT disable comment, with explicit reference to upstream
+  documentation and testcase reference (bug #354113, comment 6).
+
+  10 Feb 2011; Mike Frysinger <vapier@gentoo.org> openssh-5.8_p1-r1.ebuild,
+  +files/openssh-5.8_p1-selinux.patch:
+  Drop openssl build patch since it doesn't seem to be needed anymore, and
+  apply simple build fix for selinux from upstream #354247 by MarisN.
+
+  10 Feb 2011; Robin H. Johnson <robbat2@gentoo.org> openssh-5.8_p1.ebuild:
+  Also add AES-CTR fix to 5.8_p1 presently under stabilization.
+  alpha/hppa/ppc64 are the only stable arches with the broken HPN version at
+  present.
+
+*openssh-5.8_p1-r1 (10 Feb 2011)
+
+  10 Feb 2011; Robin H. Johnson <robbat2@gentoo.org> openssh-5.6_p1-r2.ebuild,
+  openssh-5.7_p1-r1.ebuild, +openssh-5.8_p1-r1.ebuild:
+  Bug #354113: AES-CTR workaround was dropped from 5.7 and 5.8 when it is still
+  required.
+
+  08 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> openssh-5.8_p1.ebuild:
+  ppc64 stable wrt #353673
+
+  08 Feb 2011; Tobias Klausmann <klausman@gentoo.org> openssh-5.8_p1.ebuild:
+  Stable on alpha, bug #353673
+
+  08 Feb 2011; Jeroen Roovers <jer@gentoo.org> openssh-5.8_p1.ebuild:
+  Stable for HPPA (bug #353673).
+
+*openssh-5.8_p1 (05 Feb 2011)
+
+  05 Feb 2011; Mike Frysinger <vapier@gentoo.org> +openssh-5.8_p1.ebuild,
+  +files/openssh-5.8_p1-x509-hpn-glue.patch:
+  Version bump #353673. Default HPN to on when available #347193 by Jeremy
+  Olexa.
+
+*openssh-5.7_p1-r1 (25 Jan 2011)
+
+  25 Jan 2011; Mike Frysinger <vapier@gentoo.org> +openssh-5.7_p1-r1.ebuild,
+  +files/openssh-5.7_p1-x509-hpn-glue.patch:
+  Add x509/ldap/hpn support back in. Auto-remove ecdsa support from init.d if
+  openssl lacks support #352645 by William Throwe.
+
+*openssh-5.7_p1 (24 Jan 2011)
+
+  24 Jan 2011; Mike Frysinger <vapier@gentoo.org> +openssh-5.7_p1.ebuild,
+  +files/sshd.rc6.2:
+  Version bump.
+
+  10 Dec 2010; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  Update restrict in metadata per mgorny's request to use DEPEND syntax.
+
+  04 Dec 2010; Raúl Porcel <armin76@gentoo.org> openssh-5.6_p1-r2.ebuild:
+  alpha/ia64/m68k/s390/sh stable wrt #346395
+
+  29 Nov 2010; Brent Baude <ranger@gentoo.org> openssh-5.6_p1-r2.ebuild:
+  stable ppc64, bug 346395
+
+  27 Nov 2010; Michael Weber <xmw@gentoo.org> openssh-5.6_p1-r2.ebuild:
+  arm/sparc stable (bug 346395)
+
+  24 Nov 2010; Jeroen Roovers <jer@gentoo.org> openssh-5.6_p1-r2.ebuild:
+  Stable for HPPA PPC (bug #346395).
+
+  22 Nov 2010; Markos Chandras <hwoarang@gentoo.org> openssh-5.6_p1-r2.ebuild:
+  Stable on amd64 wrt bug #346395
+
+  22 Nov 2010; Thomas Kahle <tomka@gentoo.org> openssh-5.6_p1-r2.ebuild:
+  x86 stable per bug 346395
+
+  11 Oct 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  openssh-5.6_p1-r2.ebuild, +files/sshd.rc6.1:
+  Update init script to not regenerate the RSA1 host key (for SSH Protocol
+  1) unless Protocol 1 is enabled. Modern OpenSSH versions disable Protocol
+  1 in the daemon by default.
+
+*openssh-5.6_p1-r2 (30 Sep 2010)
+
+  30 Sep 2010; Mike Frysinger <vapier@gentoo.org> +openssh-5.6_p1-r2.ebuild,
+  +files/openssh-5.6_p1-hpn-progressmeter.patch:
+  Switch to latest upstream hpn patch, and fix a pointer error in it.
+
+  24 Sep 2010; Raúl Porcel <armin76@gentoo.org> openssh-5.5_p1-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #334165
+
+  23 Sep 2010; Markus Meier <maekke@gentoo.org> openssh-5.5_p1-r2.ebuild:
+  arm stable, bug #334165
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> openssh-5.5_p1-r2.ebuild:
+  Marking openssh-5.5_p1-r2 ppc64 for bug 334165
+
+  28 Aug 2010; Markos Chandras <hwoarang@gentoo.org>
+  openssh-5.5_p1-r2.ebuild:
+  Stable on amd64 wrt bug #334165
+
+  28 Aug 2010; Jeroen Roovers <jer@gentoo.org> openssh-5.5_p1-r2.ebuild:
+  Stable for HPPA PPC (bug #334165).
+
+*openssh-5.6_p1-r1 (26 Aug 2010)
+
+  26 Aug 2010; Mike Frysinger <vapier@gentoo.org> +openssh-5.6_p1-r1.ebuild,
+  +files/openssh-5.6_p1-x509-hpn-glue.patch:
+  Update hpn/ldap/x509 patches to new release.
+
+  25 Aug 2010; Robin H. Johnson <robbat2@gentoo.org> openssh-5.6_p1.ebuild:
+  Update HPN and LPK patches for 5.6p1 series.
+
+  24 Aug 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  openssh-5.5_p1-r2.ebuild:
+  x86 stable wrt bug #334165
+
+*openssh-5.6_p1 (23 Aug 2010)
+
+  23 Aug 2010; Mike Frysinger <vapier@gentoo.org> +openssh-5.6_p1.ebuild:
+  Version bump.
 
 *openssh-5.5_p1-r2 (20 Jun 2010)
 *openssh-5.4_p1-r3 (20 Jun 2010)
