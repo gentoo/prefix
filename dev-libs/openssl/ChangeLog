@@ -1,6 +1,46 @@
 # ChangeLog for dev-libs/openssl
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.374 2010/12/02 22:25:53 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.385 2011/02/10 02:04:14 vapier Exp $
+
+*openssl-0.9.8r (10 Feb 2011)
+
+  10 Feb 2011; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8r.ebuild:
+  Version bump.
+
+*openssl-1.0.0d (08 Feb 2011)
+
+  08 Feb 2011; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.0d.ebuild:
+  Version bump.
+
+  10 Dec 2010; Brent Baude <ranger@gentoo.org> openssl-1.0.0c.ebuild:
+  Marking openssl-1.0.0c ppc64 for bug 347623
+
+  06 Dec 2010; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0c.ebuild:
+  alpha/ia64/m68k/sh/sparc stable wrt #347623
+
+  06 Dec 2010; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0c.ebuild:
+  s390 stable wrt #347623
+
+  05 Dec 2010; Markus Meier <maekke@gentoo.org> openssl-1.0.0c.ebuild:
+  arm stable, bug #347623
+
+  04 Dec 2010; Markos Chandras <hwoarang@gentoo.org> openssl-0.9.8q.ebuild,
+  openssl-1.0.0c.ebuild:
+  Stable on amd64 wrt bug #347623
+
+  03 Dec 2010; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0c.ebuild:
+  Stable for PPC (bug #347623).
+
+  03 Dec 2010; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0c.ebuild:
+  Stable for HPPA (bug #347623).
+
+  03 Dec 2010; Christian Faulhammer <fauli@gentoo.org>
+  openssl-0.9.8q.ebuild:
+  stable x86, security bug 347623
+
+  03 Dec 2010; Christian Faulhammer <fauli@gentoo.org>
+  openssl-1.0.0c.ebuild:
+  stable x86, security bug 347623
 
 *openssl-0.9.8q (02 Dec 2010)
 
