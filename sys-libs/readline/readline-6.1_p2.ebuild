@@ -63,6 +63,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-6.1-mint.patch
 	epatch "${FILESDIR}"/${PN}-6.1-darwin-shlib-versioning.patch
 	epatch "${FILESDIR}"/${PN}-6.1-aix-expfull.patch
+	epatch "${FILESDIR}"/${PN}-6.1-aix-soname.patch
 
 	# force ncurses linking #71420
 	sed -i -e 's:^SHLIB_LIBS=:SHLIB_LIBS=-lncurses:' support/shobj-conf || die "sed"
@@ -81,14 +82,10 @@ src_compile() {
 	emake || die
 
 	if ! tc-is-cross-compiler ; then
-		# linkable symlinks are created during 'make install' only (on AIX)
-		[[ ${CHOST} != *-aix* ]] ||
-		emake DESTDIR="${S}/examples/rlfe" libdir=/ install || die
 		# code is full of AC_TRY_RUN()
 		cd examples/rlfe
 		append-ldflags -L.
 		local l
-		[[ ${CHOST} == *-aix* ]] ||
 		for l in readline history ; do
 			ln -s ../../shlib/lib${l}*$(get_libname)* lib${l}$(get_libname)
 			ln -sf ../../lib${l}.a lib${l}.a
