@@ -143,7 +143,7 @@ src_prepare() {
 
 	# commented out patches fail and need evaluation if they're still necessary
 	#epatch "${FILESDIR}"/${PN}-5.8.8-mint.patch
-	epatch "${FILESDIR}"/${PN}-5.10.1-aix.patch
+	epatch "${FILESDIR}"/${PN}-5.12.3-aix-soname.patch
 	#epatch "${FILESDIR}"/${PN}-5.8.8-solaris-64bit.patch # may clash with native linker
 	epatch "${FILESDIR}"/${PN}-5.8.8-solaris-relocation.patch
 	#epatch "${FILESDIR}"/${PN}-5.8.8-irix.patch
