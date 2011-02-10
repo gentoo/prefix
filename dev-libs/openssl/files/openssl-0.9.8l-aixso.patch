@@ -1,3 +1,8 @@
+With a little help from my friend, the native-cctools wrapping ld to support
+'-soname' flag on AIX, we can provide full soname support there (#213277).
+However, this patch is not for upstream, as they cannot rely on that ld wrapper:
+They would have to do the aix-soname magic themself instead.
+
 --- Makefile.shared.orig	2009-11-24 09:25:23.835657176 +0100
 +++ Makefile.shared	2009-11-24 09:25:53.165563599 +0100
 @@ -498,7 +498,7 @@
@@ -18,37 +23,8 @@
  	NOALLSYMSFLAGS=''; \
 -	SHAREDFLAGS='$(CFLAGS) $(SHARED_LDFLAGS) -Wl,-bexpall,-bnolibpath,-bM:SRE'; \
 -	$(LINK_SO_A_VIA_O)
-+	SHAREDFLAGS='$(CFLAGS) $(SHARED_LDFLAGS) -shared -Wl,-bexpall,-bnolibpath,-G,-bernotok,-bsymbolic,-bexpall'; \
++	SHAREDFLAGS='$(CFLAGS) $(SHARED_LDFLAGS) -shared -Wl,-bexpall,-bnolibpath,-G,-bernotok,-bsymbolic,'"-soname=$$SHLIB$$SHLIB_SOVER$$SHLIB_SUFFIX"; \
 +	$(LINK_SO_A_UNPACKED)
  link_app.aix:
  	LDFLAGS="$(CFLAGS) -Wl,-brtl,-blibpath:$(LIBRPATH):$${LIBPATH:-/usr/lib:/lib}"; \
  	$(LINK_APP)
-@@ -535,10 +535,27 @@
- 
- # Targets to build symbolic links when needed
- symlink.gnu symlink.solaris symlink.svr3 symlink.svr5 symlink.irix \
--symlink.aix symlink.reliantunix:
-+symlink.reliantunix:
- 	@ $(CALC_VERSIONS); \
- 	SHLIB=lib$(LIBNAME).so; \
- 	$(SYMLINK_SO)
-+symlink.aix:
-+	@ $(CALC_VERSIONS); \
-+	SHLIB=lib$(LIBNAME).so; \
-+	$(SYMLINK_SO); \
-+	if [ -n "$$INHIBIT_SYMLINKS" ]; then :; else \
-+		prev=$$SHLIB$$SHLIB_SOVER$$SHLIB_SUFFIX; \
-+		if [ -n "$$SHLIB_SOVER" ]; then \
-+			( $(SET_X); rm -f $$SHLIB$$SHLIB_SUFFIX; \
-+			  exec 5>$$SHLIB$$SHLIB_SUFFIX; \
-+			  echo "#!$$prev" >&5; \
-+			  dump -Tv $$prev | \
-+			  	awk '{ if ($$4 == "EXP" && $$6 != "SECdef") { print $$8 } }' | \
-+				sort -u >&5; \
-+			  exec 5>&-; \
-+			); \
-+		fi; \
-+	fi
- symlink.darwin:
- 	@ $(CALC_VERSIONS); \
- 	SHLIB=lib$(LIBNAME); \
