@@ -489,7 +489,6 @@ dev-util/pccts
 dev-util/pida
 dev-util/pmk
 dev-util/pscan
-dev-util/qgit
 dev-util/qt-creator
 dev-util/ragel
 dev-util/re2c
@@ -526,6 +525,7 @@ dev-vcs/rcs
 dev-vcs/statcvs
 dev-vcs/svk
 dev-vcs/tig
+dev-vcs/qgit
 games-arcade/ascii-invaders
 games-arcade/nibbles
 games-arcade/tuxanci
