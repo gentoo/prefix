@@ -390,6 +390,7 @@ dev-libs/libunique
 dev-libs/libusb
 dev-libs/libusb-compat
 dev-libs/libxdg-basedir
+dev-libs/libxml2
 dev-libs/libyaml
 dev-libs/libzip
 dev-libs/log4cxx
