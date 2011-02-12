@@ -64,8 +64,8 @@ src_compile() {
 	if use python; then
 		python_copy_sources python
 		building() {
-			emake PYTHON_INCLUDES="$(python_get_includedir)" \
-				PYTHON_SITE_PACKAGES="$(python_get_sitedir)"
+			emake PYTHON_INCLUDES="${EPREFIX}$(python_get_includedir)" \
+				PYTHON_SITE_PACKAGES="${EPREFIX}$(python_get_sitedir)"
 		}
 		python_execute_function -s --source-dir python building
 	fi
@@ -87,8 +87,8 @@ src_install() {
 
 	if use python; then
 		installation() {
-			emake DESTDIR="${ED}" \
-				PYTHON_SITE_PACKAGES="$(python_get_sitedir)" \
+			emake DESTDIR="${D}" \
+				PYTHON_SITE_PACKAGES="${EPREFIX}$(python_get_sitedir)" \
 				install
 		}
 		python_execute_function -s --source-dir python installation
