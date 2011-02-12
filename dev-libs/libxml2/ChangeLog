@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libxml2
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.295 2010/12/31 23:49:15 arfrever Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.296 2011/02/11 17:30:19 pacho Exp $
+
+*libxml2-2.7.8 (11 Feb 2011)
+
+  11 Feb 2011; Pacho Ramos <pacho@gentoo.org> -libxml2-2.7.6.ebuild,
+  +libxml2-2.7.8.ebuild, +files/libxml2-2.7.8-reactivate-script.patch,
+  +files/libxml2-2.7.8-xpath-freeing.patch,
+  +files/libxml2-2.7.8-xpath-freeing2.patch,
+  +files/libxml2-2.7.8-xpath-memory.patch:
+  Version bump including security fixes, bump to eapi3, remove old.
 
   31 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   libxml2-2.7.7.ebuild:
