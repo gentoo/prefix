@@ -139,6 +139,15 @@ src_install() {
 		EXAMPLES_DIR="${EPREFIX}"/usr/share/doc/${PF}/examples \
 		install || die "Installation failed"
 
+	# on windows, xmllint is installed by interix libxml2 in parent prefix.
+	# this is the version to use. the native winnt version does not support
+	# symlinks, which makes repoman fail if the portage tree is linked in
+	# from another location (which is my default). -- mduft
+	if [[ ${CHOST} == *-winnt* ]]; then
+		rm -rf "${ED}"/usr/bin/xmllint
+		rm -rf "${ED}"/usr/bin/xmlcatalog
+	fi
+
 	if use python; then
 		installation() {
 			emake DESTDIR="${D}" \
@@ -168,20 +177,6 @@ src_install() {
 	if ! use examples; then
 		rm -rf "${ED}/usr/share/doc/${PF}/examples"
 		rm -rf "${ED}/usr/share/doc/${PF}/python/examples"
-	fi
-}
-
-pkg_preinst() {
-	#
-	# on windows, xmllint is installed by interix libxml2 in parent prefix.
-	# this is the version to use. the native winnt version does not support
-	# symlinks, which makes repoman fail if the portage tree is linked in
-	# from another location (which is my default).
-	#
-	if [[ ${CHOST} == *-winnt* ]]; then
-		cd "${ED}"
-		rm usr/bin/xmllint
-		rm usr/bin/xmlcatalog
 	fi
 }
 
