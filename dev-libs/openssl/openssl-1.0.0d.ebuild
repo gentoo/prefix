@@ -127,9 +127,11 @@ src_configure() {
 	local krb5=$(has_version app-crypt/mit-krb5 && echo "MIT" || echo "Heimdal")
 
 	case $CHOST in
-		sparc-sun-solaris*)
+		sparc*-sun-solaris*)
 			# openssl doesn't grok this setup, and guesses
-			# the architecture wrong, just disable asm for now
+			# the architecture wrong causing segfaults,
+			# just disable asm for now
+			# FIXME: I need to report this upstream
 			confopts="${confopts} no-asm"
 		;;
 		*-aix*)
