@@ -64,7 +64,7 @@ return_greatest() {
 return_greatest_wrapper() {
 	echo "$( return_greatest "$( \
 	wget -q "${RSURL}/${catpkg}" -O - | \
-	egrep "href=\"[^\"]+\.ebuild\"" -o | \
+	egrep --color=never "href=\"[^\"]+\.ebuild\"" -o | \
 	sed -e 's/^href="//' -e 's/"$//' -e 's/%2b/+/g' )" )"
 }
 
@@ -76,7 +76,7 @@ if [[ ${1:0:1} == "=" ]] ; then # Check to see if the first char is an "="
 	# Grab the index from the current $RSURL and parse it for the list
 	# of ebuilds.  Grab the specified version that the user entered.
 	ebuild="$(wget -q "${RSURL}/${catpkg}" -O - | \
-		grep -F $ebuildgrep -o | head -n1)"
+		grep --color=never -F $ebuildgrep -o | head -n1)"
 else
 	catpkg="$1"
 	# Use the wrapper function to just grab the latest version.
