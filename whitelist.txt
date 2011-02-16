@@ -631,6 +631,7 @@ media-gfx/xli
 media-libs/a52dec
 media-libs/alsa-lib
 media-libs/audiofile
+media-libs/babl
 media-libs/bio2jack
 media-libs/compface
 media-libs/emfengine
