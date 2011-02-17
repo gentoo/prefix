@@ -453,6 +453,7 @@ dev-util/autoproject
 dev-util/bcpp
 dev-util/bsdiff
 dev-util/btyacc
+dev-util/buildbot-slave
 dev-util/byacc
 dev-util/checkstyle
 dev-util/chromium-tools
