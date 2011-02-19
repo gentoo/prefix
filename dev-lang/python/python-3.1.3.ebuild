@@ -135,13 +135,11 @@ src_prepare() {
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-mint.patch
 
 	# python defaults to using .so files, however they are bundles
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
 	# need this to have _NSGetEnviron being used, which by default isn't...
 	[[ ${CHOST} == *-darwin* ]] && \
 		append-flags -DWITH_NEXT_FRAMEWORK
 	# but don't want framework path resulution stuff
 	epatch "${FILESDIR}"/${P}-darwin-no-framework-lookup.patch
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
 	# for Mac weenies
 	epatch "${FILESDIR}"/${P}-mac.patch
 	epatch "${FILESDIR}"/${P}-mac-64bits.patch
@@ -154,9 +152,6 @@ src_prepare() {
 	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}"':' \
 		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}"':' \
 		Makefile.pre.in || die
-
-	# on hpux, use gcc to link if used to compile
-#	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
