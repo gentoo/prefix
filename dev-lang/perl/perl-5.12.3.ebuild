@@ -141,16 +141,11 @@ src_prepare() {
 	ln -s ${LIBPERL} libperl$(get_libname ${SHORT_PV})
 	ln -s ${LIBPERL} libperl$(get_libname )
 
-	# commented out patches fail and need evaluation if they're still necessary
-	#epatch "${FILESDIR}"/${PN}-5.8.8-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.12.3-aix-soname.patch
-	#epatch "${FILESDIR}"/${PN}-5.8.8-solaris-64bit.patch # may clash with native linker
 	epatch "${FILESDIR}"/${PN}-5.8.8-solaris-relocation.patch
-	#epatch "${FILESDIR}"/${PN}-5.8.8-irix.patch
 	epatch "${FILESDIR}"/${PN}-5.10.1-cleanup-paths.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-usr-local.patch
 	epatch "${FILESDIR}"/${PN}-5.10.1-hpux.patch
-	#epatch "${FILESDIR}"/${PN}-5.8.8-hpux1131.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-darwin-cc-ld.patch
 
 	# rest of usr-local patch
