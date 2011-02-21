@@ -897,6 +897,7 @@ x11-libs/libXfont
 x11-libs/libXfontcache
 x11-libs/libXft
 x11-libs/libXi
+x11-libs/libXxf86dga
 x11-libs/libXinerama
 x11-libs/libXmu
 x11-libs/libXp
