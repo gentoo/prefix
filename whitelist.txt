@@ -263,6 +263,7 @@ app-text/scrollkeeper
 app-text/scrollkeeper-dtd
 app-text/sgml-common
 app-text/sgrep
+app-text/silvercity
 app-text/sword
 app-text/t1utils
 app-text/talkfilters
