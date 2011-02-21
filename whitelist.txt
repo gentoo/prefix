@@ -916,6 +916,7 @@ x11-libs/libfontenc
 x11-libs/libnotify
 x11-libs/libsexy
 x11-libs/libsvg-cairo
+x11-libs/libva
 x11-libs/libwnck
 x11-libs/libxcb
 x11-libs/libxdl_view
