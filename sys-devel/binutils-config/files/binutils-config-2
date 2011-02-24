@@ -197,12 +197,12 @@ switch_profile() {
 	# Make sure proper paths get updated
 	#
 	if [[ ${TARGET} == ${HOST} ]] ; then
-		echo "PATH=${EPREFIX}${BINPATH}" > "${EROOT}"/etc/env.d/05binutils
-		echo "ROOTPATH=${EPREFIX}${BINPATH}" >> "${EROOT}"/etc/env.d/05binutils
 		DATAPATH=${EPREFIX}/usr/share/binutils-data/${TARGET}/${VER}
 		local e="${EROOT}"/etc/env.d/05binutils
 		local ee="${e}.tmp"
 		rm -f "${ee}"
+		echo "PATH=${EPREFIX}${BINPATH}" >> "${ee}"
+		echo "ROOTPATH=${EPREFIX}${BINPATH}" >> "${ee}"
 		[[ -d ${DATAPATH}/man  ]] && echo "MANPATH=${DATAPATH}/man"   >> "${ee}"
 		[[ -d ${DATAPATH}/info ]] && echo "INFOPATH=${DATAPATH}/info" >> "${ee}"
 		# hmm, `ld` has this in SEARCH_DIR(), but ld.so does not ...
