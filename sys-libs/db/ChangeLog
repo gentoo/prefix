@@ -1,6 +1,17 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.316 2011/01/07 19:30:39 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.319 2011/02/15 00:14:18 mattst88 Exp $
+
+  15 Feb 2011; Matt Turner <mattst88@gentoo.org> db-4.8.30.ebuild:
+  Added ~mips keyword.
+
+*db-5.1.25 (08 Feb 2011)
+
+  08 Feb 2011; Robin H. Johnson <robbat2@gentoo.org> +db-5.1.25.ebuild:
+  Bug #353694: Version bump
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> db-1.85-r3.ebuild:
+  Drop to ~mips
 
 *db-5.0.32 (07 Jan 2011)
 
