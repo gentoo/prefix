@@ -1,0 +1,21 @@
+# Copyright 1999-2010 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/pkg_setup-v2.eblit,v 1.1 2010/10/08 18:25:10 olemarkus Exp $
+
+eblit-php-pkg_setup() {
+	# Mail support
+	php_check_mta
+
+	# imap support
+	# if virtuals/imap-c-client goes to new style virtual, we  can exchange this
+	# for proper use-deps
+	php_check_imap
+
+	# Oracle support
+	php_check_oracle_8
+
+	phpconfutils_warn_about_external_deps
+	depend.apache_pkg_setup
+}
+
+
