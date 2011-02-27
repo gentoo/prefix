@@ -268,7 +268,7 @@ cabal-build() {
 cabal-copy() {
 	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED=${D}
 	./setup copy \
-		--copy-prefix="${ED}/usr" \
+		--destdir="${D}" \
 		|| die "setup copy failed"
 
 	# cabal is a bit eager about creating dirs,
