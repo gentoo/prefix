@@ -24,11 +24,11 @@ DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
 	epydoc? ( >=dev-python/epydoc-2.0 !<=dev-python/pysqlite-2.4.1 )"
-# the debugedit blocker is for bug #289967
+# Require sandbox-2.2 for bug #288863.
 RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.2_p17
-		|| ( >=app-admin/eselect-1.1 >=app-admin/eselect-news-20071201 ) )
+		>=app-admin/eselect-1.2 )
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
 	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
@@ -38,13 +38,12 @@ RDEPEND="${python_dep}
 	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
 	kernel_HPUX? ( !hppa-hpux? ( >=app-misc/pax-utils-0.1.19 ) )
 	kernel_AIX? ( >=sys-apps/aix-miscutils-0.1.1634 )
-	selinux? ( >=dev-python/python-selinux-2.16 )
-	!>=dev-util/debugedit-4.4.6-r2"
+	selinux? ( || ( >=sys-libs/libselinux-2.0.94[python] <sys-libs/libselinux-2.0.94 ) )
+	!<app-shells/bash-3.2_p17"
 PDEPEND="
 	!build? (
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
-		|| ( >=dev-lang/python-2.6 >=dev-python/pycrypto-2.0.1-r6 )
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # rsync-2.6.4 rdep is for the --filter option #167668
@@ -76,13 +75,13 @@ S="${WORKDIR}"/prefix-${PN}-${TARBALL_PV}
 S_PL="${WORKDIR}"/${PN}-${PV_PL}
 
 src_prepare() {
-	if [ -n "${PATCHVER}" ]; then
-		cd "${S}"
+	if [ -n "${PATCHVER}" ] ; then
+		if [[ -L $S/bin/ebuild-helpers/portageq ]] ; then
+			rm "$S/bin/ebuild-helpers/portageq" \
+				|| die "failed to remove portageq helper symlink"
+		fi
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
-
-# breaks ebuild.sh
-#	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
 
