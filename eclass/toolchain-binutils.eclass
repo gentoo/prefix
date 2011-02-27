@@ -208,7 +208,7 @@ toolchain-binutils_src_compile() {
 	elif grep -q 'enable-gold=both/bfd' "${S}"/configure ; then
 		set -- "$@" --enable-gold=both/bfd
 	fi
-	if [[ ${CHOST} != *"-mint"* ]]; then
+	if [[ ${CHOST} != *"-mint"* ]]; then  #353410
 		if grep -q -e '--enable-plugins' "${S}"/ld/configure ; then
 			set -- "$@" --enable-plugins
 		fi
