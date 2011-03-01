@@ -866,6 +866,7 @@ sys-devel/llvm-gcc
 sys-devel/native-cctools
 sys-libs/pam
 sys-libs/suacomp
+sys-libs/talloc
 sys-process/htop
 sys-process/iotop
 sys-process/psmisc
