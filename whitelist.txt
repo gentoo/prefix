@@ -678,6 +678,7 @@ media-libs/libreplaygain
 media-libs/libsamplerate
 media-libs/libsvg
 media-libs/libuninameslist
+media-libs/libv4l
 media-libs/libvpx
 media-libs/libwmf
 media-libs/libwpg
