@@ -662,6 +662,7 @@ media-libs/libdvdread
 media-libs/libemf
 media-libs/libexif-gtk
 media-libs/libfpx
+media-libs/libjpeg-turbo
 media-libs/liblo
 media-libs/liblrdf
 media-libs/libmikmod
