@@ -1,6 +1,22 @@
 # ChangeLog for app-text/poppler-data
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-data/ChangeLog,v 1.34 2010/05/03 17:58:29 reavertm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-data/ChangeLog,v 1.37 2010/10/29 16:58:08 reavertm Exp $
+
+*poppler-data-0.4.4 (29 Oct 2010)
+
+  29 Oct 2010; Maciej Mrozowski <reavertm@gentoo.org>
+  -poppler-data-0.4.3.ebuild, +poppler-data-0.4.4.ebuild:
+  Version bump, remove old.
+
+  23 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  poppler-data-0.4.3.ebuild:
+  Fix license from adobe-ps to BSD wrt #335164 by William Throwe.
+
+*poppler-data-0.4.3 (18 Sep 2010)
+
+  18 Sep 2010; Maciej Mrozowski <reavertm@gentoo.org>
+  -poppler-data-0.4.2.ebuild, +poppler-data-0.4.3.ebuild:
+  Version bump, remove old, bug 331565
 
 *poppler-data-0.4.2 (03 May 2010)
 
