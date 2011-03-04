@@ -1,6 +1,40 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.99 2010/08/17 18:18:25 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.107 2010/11/07 19:17:54 anarchy Exp $
+
+  07 Nov 2010; Jory A. Pratt <anarchy@gentoo.org>
+  ghostscript-gpl-8.71-r1.ebuild, ghostscript-gpl-8.71-r6.ebuild,
+  ghostscript-gpl-9.00.ebuild:
+  Convert media-libs/jpeg to virtual/jpeg
+
+  24 Oct 2010; Brent Baude <ranger@gentoo.org>
+  ghostscript-gpl-8.71-r6.ebuild:
+  Marking ghostscript-gpl-8.71-r6 ppc64 for bug 332061
+
+  23 Oct 2010; Raúl Porcel <armin76@gentoo.org>
+  ghostscript-gpl-8.71-r6.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #332061
+
+  22 Oct 2010; Brent Baude <ranger@gentoo.org>
+  ghostscript-gpl-8.71-r6.ebuild:
+  Marking ghostscript-gpl-8.71-r6 ppc for bug 332061
+
+  19 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  ghostscript-gpl-8.71-r6.ebuild:
+  Stable on amd64 wrt bug #332061
+
+  19 Oct 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  ghostscript-gpl-8.71-r6.ebuild:
+  x86 stable wrt security bug #332061
+
+  19 Oct 2010; Jeroen Roovers <jer@gentoo.org>
+  ghostscript-gpl-8.71-r6.ebuild:
+  Stable for HPPA (bug #332061).
+
+*ghostscript-gpl-9.00 (07 Oct 2010)
+
+  07 Oct 2010; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-9.00.ebuild:
+  Version bump.
 
 *ghostscript-gpl-8.71-r6 (17 Aug 2010)
 
