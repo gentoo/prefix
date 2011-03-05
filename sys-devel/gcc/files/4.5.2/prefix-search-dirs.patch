@@ -1,0 +1,37 @@
+--- gcc/gcc.c.orig	2011-03-05 16:27:49.000000000 +0100
++++ gcc/gcc.c	2011-03-05 16:42:54.000000000 +0100
+@@ -2691,6 +2691,34 @@
+ {
+   struct add_to_obstack_info *info = (struct add_to_obstack_info *) data;
+ 
++#if DISABLE_MULTILIB
++  /*
++   * Fix multilib paths for our prefix, that is alter lib64 and lib32 to lib.
++   * No allocation needed, since the path won't grow but only shrink by two
++   * chars. We should not modify host multilib dirs, otherwise libs might not
++   * be found in /lib64 or /usr/lib64
++   */
++  int elen = strlen(STANDARD_EXEC_PREFIX);
++  if (elen && strncmp(path, STANDARD_EXEC_PREFIX, elen) == 0) {
++    /* multilib dirs are put at the end like ../lib32/ ../lib64/ */
++    static char const *mdirs[] = { "../lib64/", "../lib32/" };
++    int plen = strlen(path);
++    unsigned int idx;
++    int mlen;
++
++    /* For each path replace the multilib dir at the end of the path. */
++    for (idx = 0; idx < (sizeof(mdirs) / sizeof(mdirs[0])); idx++) {
++      mlen = strlen(mdirs[idx]);
++      if (strncmp(path + plen - mlen, mdirs[idx], mlen) == 0) {
++        /* Overwrite the part with null-termination. In prefix the only multilib
++           occurence is the one added by gcc so we can end here. */
++        strcpy(path + plen - mlen, "../lib/");
++        break;
++      }
++    }
++  }
++#endif
++
+   if (info->check_dir && !is_directory (path, false))
+     return NULL;
+ 

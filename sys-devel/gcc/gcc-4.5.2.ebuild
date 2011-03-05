@@ -19,7 +19,7 @@ SSP_STABLE="amd64 x86 ppc ppc64 arm
 SSP_UCLIBC_STABLE=""
 #end Hardened stuff
 
-inherit toolchain flag-o-matic prefix
+inherit toolchain flag-o-matic
 
 DESCRIPTION="The GNU Compiler Collection."
 
@@ -86,6 +86,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV}/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
 	if use prefix; then
+		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
 		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
 		# --enable-multilib), but this does make sense in prefix only
 		epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
