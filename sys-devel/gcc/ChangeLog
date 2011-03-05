@@ -1,6 +1,31 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.799 2011/01/01 00:59:21 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.806 2011/02/26 14:38:53 gmsoft Exp $
+
+  26 Feb 2011; Guy Martin <gmsoft@gentoo.org> ChangeLog:
+  Stable on hppa wrt bug #354881.
+
+  26 Feb 2011; Markos Chandras <hwoarang@gentoo.org> gcc-4.4.5.ebuild:
+  Stable on amd64 wrt bug #354881
+
+  25 Feb 2011; Christian Faulhammer <fauli@gentoo.org> gcc-4.4.5.ebuild:
+  stable x86, bug 354881
+
+  15 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> gcc-4.4.5.ebuild:
+  ppc/ppc64 stable wrt #354881. Thanks Alex Buell <alex.buell@munted.org.uk>
+  for testing.
+
+  13 Feb 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.5.2.ebuild:
+  Bump patchset to 1.1. Fixes for arm and testsuite stuff.
+
+  13 Feb 2011; Ryan Hill <dirtyepic@gentoo.org> -gcc-4.4.3-r2.ebuild,
+  -gcc-4.4.4-r1.ebuild, gcc-4.4.4-r2.ebuild, gcc-4.4.5.ebuild:
+  Release 4.4.4 p1.4 and 4.4.5 p1.2 with fix for HPPA wrong-code (bug #349113).
+  Remove old.
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> gcc-3.2.3-r4.ebuild,
+  gcc-4.1.2.ebuild:
+  Drop to ~mips
 
   01 Jan 2011; Ryan Hill <dirtyepic@gentoo.org> files/gcc-spec-env.patch:
   GET_ENVIRONMENT is poisoned in 4.6. Use getenv() instead.  No functional
