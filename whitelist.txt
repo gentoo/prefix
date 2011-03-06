@@ -124,7 +124,6 @@ app-editors/leafpad
 app-editors/lpe
 app-editors/mg
 app-editors/mlview
-app-editors/mousepad
 app-editors/mp
 app-editors/nano
 app-editors/ne
