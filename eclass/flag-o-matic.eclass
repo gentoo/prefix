@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.148 2010/05/08 03:47:41 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.150 2011/02/25 10:51:44 dirtyepic Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -36,7 +36,7 @@ setup-allowed-flags() {
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fbounds-checking -fno-strict-overflow"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-PIE -fno-pie -fno-unit-at-a-time"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -g -g[0-9] -ggdb -ggdb[0-9] -gstabs -gstabs+"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-ident"
+		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-ident -fpermissive"
 		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -W* -w"
 	fi
 	# allow a bunch of flags that negate features / control ABI
@@ -48,7 +48,7 @@ setup-allowed-flags() {
 		-mno-popcnt -mno-abm \
 		-mips1 -mips2 -mips3 -mips4 -mips32 -mips64 -mips16 -mplt \
 		-msoft-float -mno-soft-float -mhard-float -mno-hard-float -mfpu \
-		-mieee -mieee-with-inexact -mschedule \
+		-mieee -mieee-with-inexact -mschedule -mfloat-gprs -mspe -mno-spe \
 		-mtls-direct-seg-refs -mno-tls-direct-seg-refs \
 		-mflat -mno-flat -mno-faster-structs -mfaster-structs \
 		-m32 -m64 -mabi -mlittle-endian -mbig-endian -EL -EB -fPIC \
@@ -57,6 +57,9 @@ setup-allowed-flags() {
 
 	# 4.5
 	ALLOWED_FLAGS="${ALLOWED_FLAGS} -mno-fma4 -mno-movbe -mno-xop -mno-lwp"
+	# 4.6
+	ALLOWED_FLAGS="${ALLOWED_FLAGS} -mno-fsgsbase -mno-rdrnd -mno-f16c \
+		-mno-bmi -mno-tbm"
 
 	# {C,CXX,F,FC}FLAGS that we are think is ok, but needs testing
 	# NOTE:  currently -Os have issues with gcc3 and K6* arch's

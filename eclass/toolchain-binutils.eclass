@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.94 2010/12/09 01:32:33 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.95 2011/03/02 06:37:28 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -406,7 +406,7 @@ toolchain-binutils_pkg_postrm() {
 		choice=${choice//$'\n'/ }
 		choice=${choice/* }
 		if [[ -z ${choice} ]] ; then
-			env -i "${EPREFIX}"/usr/bin/binutils-config -u ${CTARGET}
+			env -i ROOT="${ROOT}" "${EPREFIX}"/usr/bin/binutils-config -u ${CTARGET}
 		else
 			binutils-config ${choice}
 		fi

@@ -1,12 +1,12 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Diego Pettenò <flameeyes@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.18 2009/12/11 20:33:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.19 2011/02/05 22:29:40 flameeyes Exp $
 #
 # This eclass contains functions to install pamd configuration files and
 # pam modules.
 
-inherit multilib
+inherit multilib flag-o-matic
 
 # dopamd <file> [more files]
 #
@@ -90,6 +90,23 @@ getpam_mod_dir() {
 	fi
 
 	echo ${PAM_MOD_DIR}
+}
+
+# pammod_hide_symbols
+#
+# Hide all non-PAM-used symbols from the module; this function creates a
+# simple ld version script that hides all the symbols that are not
+# necessary for PAM to load the module, then uses append-flags to make
+# sure that it gets used.
+pammod_hide_symbols() {
+	cat - > "${T}"/pam-eclass-pam_symbols.ver <<EOF
+{
+	global: pam_sm_*;
+	local: *;
+};
+EOF
+
+	append-ldflags -Wl,--version-script="${T}"/pam-eclass-pam_symbols.ver
 }
 
 # dopammod <file> [more files]

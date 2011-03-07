@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.444 2010/12/29 07:31:43 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.451 2011/03/01 00:13:01 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -57,7 +57,7 @@ is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
 }
 
-tc_version_is_at_least() { version_is_at_least "$1" "${2:-${GCC_PV}}" ; }
+tc_version_is_at_least() { version_is_at_least "$1" "${2:-${GCC_RELEASE_VER}}" ; }
 
 
 GCC_PV=${TOOLCHAIN_GCC_PV:-${PV}}
@@ -167,7 +167,8 @@ else
 				IUSE+=" graphite"
 				[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
 			fi
-			tc_version_is_at_least "4.5" && IUSE+=" lto"
+			[[ ${GCC_BRANCH_VER} == 4.5 ]] && IUSE+=" lto"
+			tc_version_is_at_least "4.6" && IUSE+=" go"
 		fi
 	fi
 
@@ -841,6 +842,12 @@ gcc_pkg_setup() {
 
 		# we dont want to use the installed compiler's specs to build gcc!
 		unset GCC_SPECS
+
+		if use nocxx ; then
+			use go && ewarn 'Go requires a C++ compiler, disabled due to USE="nocxx"'
+			use objc++ && ewarn 'Obj-C++ requires a C++ compiler, disabled due to USE="nocxx"'
+			use gcj && ewarn 'GCJ requires a C++ compiler, disabled due to USE="nocxx"'
+		fi
 	fi
 
 	want_libssp && libc_has_ssp && \
@@ -887,11 +894,11 @@ gcc-compiler_pkg_postinst() {
 
 	if ! is_crosscompile ; then
 		# hack to prevent collisions between SLOT
-		[[ ! -d ${EROOT}/lib/rcscripts/awk ]] \
-			&& mkdir -p "${EROOT}"/lib/rcscripts/awk
+		[[ ! -d ${EROOT}/$(get_libdir)/rcscripts/awk ]] \
+			&& mkdir -p "${EROOT}"/$(get_libdir)/rcscripts/awk
 		[[ ! -d ${EROOT}/sbin ]] \
 			&& mkdir -p "${EROOT}"/sbin
-		cp "${EROOT}/${DATAPATH}"/fixlafiles.awk "${EROOT}"/lib/rcscripts/awk/ || die "installing fixlafiles.awk"
+		cp "${EROOT}/${DATAPATH}"/fixlafiles.awk "${EROOT}"/$(get_libdir)/rcscripts/awk/ || die "installing fixlafiles.awk"
 		cp "${EROOT}/${DATAPATH}"/fix_libtool_files.sh "${EROOT}"/sbin/ || die "installing fix_libtool_files.sh"
 
 		[[ ! -d ${EROOT}/usr/bin ]] \
@@ -909,7 +916,7 @@ gcc-compiler_pkg_postinst() {
 gcc-compiler_pkg_prerm() {
 	# Don't let these files be uninstalled #87647
 	touch -c "${EROOT}"/sbin/fix_libtool_files.sh \
-		"${EROOT}"/lib/rcscripts/awk/fixlafiles.awk
+		"${EROOT}"/$(get_libdir)/rcscripts/awk/fixlafiles.awk
 }
 
 gcc-compiler_pkg_postrm() {
@@ -1274,12 +1281,18 @@ gcc-compiler-configure() {
 		hppa)
 			[[ ${GCCMAJOR} == "3" ]] && confgcc="${confgcc} --enable-sjlj-exceptions"
 			;;
+		# Set up defaults based on current CFLAGS
+		ppc)
+			is-flagq -mfloat-gprs=double && confgcc+=" --enable-e500-double"
+			[[ ${CTARGET//_/-} == *-e500v2-* ]] && confgcc+=" --enable-e500-double"
+			;;
 	esac
 
 	GCC_LANG="c"
 	is_cxx && GCC_LANG="${GCC_LANG},c++"
 	is_d   && GCC_LANG="${GCC_LANG},d"
 	is_gcj && GCC_LANG="${GCC_LANG},java"
+	is_go  && GCC_LANG="${GCC_LANG},go"
 	if is_objc || is_objcxx ; then
 		GCC_LANG="${GCC_LANG},objc"
 		if tc_version_is_at_least "4.0" ; then
@@ -1363,20 +1376,29 @@ gcc_do_configure() {
 	# users to control this feature in the event they need the support.
 	tc_version_is_at_least "4.3" && confgcc="${confgcc} $(use_enable fixed-point)"
 
-	# graphite support was added in 4.4, which depends upon external libraries
-	# for optimizations.  This option allows users to determine if they want
-	# these optimizations and libraries pulled in.  We disable the version check
-	# so we can use >=ppl-0.11
-	tc_version_is_at_least "4.4" && \
-		confgcc="${confgcc} $(use_with graphite ppl)
-			$(use_with graphite cloog)
-			--disable-ppl-version-check"
+	# Graphite support was added in 4.4, which depends on external libraries
+	# for optimizations.  Up to 4.6 we use cloog-ppl (cloog fork with Parma PPL
+	# backend).  Later versions will use upstream cloog with the ISL backend.  We
+	# disable the PPL version check so we can use >=ppl-0.11.
+	if tc_version_is_at_least "4.4"; then
+		confgcc="${confgcc} $(use_with graphite ppl)"
+		confgcc="${confgcc} $(use_with graphite cloog)"
+		if use graphite; then
+			confgcc="${confgcc} --disable-ppl-version-check"
+			# this will be removed when cloog-ppl-0.15.10 goes stable
+			if has_version '>=dev-libs/cloog-ppl-0.15.10'; then
+				confgcc="${confgcc} --with-cloog-include=/usr/include/cloog-ppl"
+			else
+				confgcc="${confgcc} --with-cloog-include=/usr/include/cloog"
+			fi
+		fi
+	fi
 
-	# lto support was added in 4.5, which depends upon elfutils.  This allows
-	# users to enable that option, and pull in the additional library
-	tc_version_is_at_least "4.5" && \
-		confgcc="${confgcc} $(use_enable lto)"
-
+	# LTO support was added in 4.5, which depends upon elfutils.  This allows
+	# users to enable that option, and pull in the additional library.  In 4.6,
+	# the dependency is no longer required.
+	[[ ${GCC_BRANCH_VER} == 4.5 ]] && confgcc="${confgcc} $(use_enable lto)"
+	[[ ${GCC_BRANCH_VER} > 4.5 ]] && confgcc="${confgcc} --enable-lto"
 
 	[[ $(tc-is-softfloat) == "yes" ]] && confgcc="${confgcc} --with-float=soft"
 	[[ $(tc-is-hardfloat) == "yes" ]] && confgcc="${confgcc} --with-float=hard"
@@ -1444,8 +1466,6 @@ gcc_do_configure() {
 		case ${CHOST} in
 			mingw*|*-mingw*|*-cygwin)
 				confgcc="${confgcc} --enable-threads=win32" ;;
-			*-mint*)
-				confgcc="${confgcc} --disable-threads" ;;
 			*)
 				confgcc="${confgcc} --enable-threads=posix" ;;
 		esac
@@ -1882,7 +1902,7 @@ gcc-compiler_src_install() {
 	# These should be symlinks
 	dodir /usr/bin
 	cd "${ED}"${BINPATH}
-	for x in cpp gcc g++ c++ g77 gcj gcjh gfortran ; do
+	for x in cpp gcc g++ c++ g77 gcj gcjh gfortran gccgo ; do
 		# For some reason, g77 gets made instead of ${CTARGET}-g77...
 		# this should take care of that
 		[[ -f ${x} ]] && mv ${x} ${CTARGET}-${x}
@@ -1980,13 +2000,20 @@ gcc-compiler_src_install() {
 	chown -R ${PORTAGE_INST_UID:-0}:${PORTAGE_INST_GID:-0} "${ED}"${LIBPATH}
 
 	# Move pretty-printers to gdb datadir to shut ldconfig up
-	gdbdir=/usr/share/gdb/auto-load
-	for module in $(find "${ED}" -iname "*-gdb.py" -print); do
-		insinto ${gdbdir}/$(dirname "${module/${ED}/}" | \
-				sed -e "s:/lib/:/$(get_libdir)/:g")
-		doins "${module}"
-		rm "${module}"
+	gdbdir=/usr/share/gdb/auto-load${LIBPATH/\/lib\//\/$(get_libdir)\/}
+	for i in "${ED}"${LIBPATH}{,/32}/*-gdb.py; do
+		if [[ -e ${i} ]]; then
+			basedir="$(dirname ${i/${ED}${LIBPATH}/})"
+			sed -i -e "s:^\(libdir = \).*:\1'${LIBPATH}${basedir}':" "${i}" #348128
+			insinto "${gdbdir}${basedir}"
+			doins "${i}"
+			rm "${i}"
+		fi
 	done
+
+	# Don't scan .gox files for executable stacks - false positives
+	export QA_EXECSTACK="usr/lib*/go/*/*.gox"
+	export QA_WX_LOAD="usr/lib*/go/*/*.gox"
 }
 
 gcc_slot_java() {
@@ -2541,7 +2568,12 @@ is_fortran() {
 
 is_gcj() {
 	gcc-lang-supported java || return 1
-	use gcj
+	! use nocxx && use gcj
+}
+
+is_go() {
+	gcc-lang-supported go || return 1
+	! use nocxx && use go
 }
 
 is_libffi() {
@@ -2556,7 +2588,7 @@ is_objc() {
 
 is_objcxx() {
 	gcc-lang-supported 'obj-c++' || return 1
-	use objc++
+	! use nocxx && use objc++
 }
 
 is_ada() {

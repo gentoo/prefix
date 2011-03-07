@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.27 2010/11/18 09:06:18 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.28 2011/01/25 14:15:50 pacho Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -193,7 +193,7 @@ case ${PF} in
 		add_depend "~dev-dotnet/gnomevfs-sharp-${PV}"
 		add_depend "~dev-dotnet/art-sharp-${PV}"
 		add_depend ">=gnome-base/libgnomecanvas-${GNOMECANVAS_REQUIRED_VERSION}"
-		add_depend ">=x11-libs/gtk+-2.14.0"
+		add_depend ">=x11-libs/gtk+-2.14.0:2"
 		;;
 	gconf-sharp-*)
 		add_depend ">=gnome-base/gconf-${PV_MAJOR}"
@@ -210,7 +210,7 @@ case ${PF} in
 		# incompatible changes, requiring .so bumps. gnome-desktop-sharp
 		# is locked to a specific .so.n version, so strict dependencies
 		# may be required in the future (as it has in the past).
-		add_depend ">=gnome-base/gnome-desktop-${PV_MAJOR}"
+		add_depend ">=gnome-base/gnome-desktop-${PV_MAJOR}:2"
 		;;
 	gnome-panel-sharp-*)
 		add_depend ">=gnome-base/gnome-panel-${PV_MAJOR}"
@@ -232,7 +232,7 @@ case ${PF} in
 		add_depend ">=gnome-extra/nautilus-cd-burner-2.24.0"
 		;;
 	rsvg-sharp-*)
-		add_depend ">=gnome-base/librsvg-${RSVG_REQUIRED_VERSION}"
+		add_depend ">=gnome-base/librsvg-${RSVG_REQUIRED_VERSION}:2"
 		;;
 	vte-sharp-*)
 		add_depend ">=x11-libs/vte-${VTE_REQUIRED_VERSION}"

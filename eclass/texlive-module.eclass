@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.57 2010/11/07 19:46:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.58 2011/02/17 13:21:43 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -20,7 +20,8 @@
 # Starting from TeX Live 2009, the eclass provides a src_unpack function taking
 # care of unpacking and relocating the files that need it.
 #
-# It inherits texlive-common.
+# It inherits texlive-common and base for supporting patching via the PATCHES
+# bash array with EAPI>=2.
 
 # @ECLASS-VARIABLE: TEXLIVE_MODULE_CONTENTS
 # @DESCRIPTION:
@@ -59,7 +60,7 @@
 # Information to display about the package.
 # e.g. for enabling/disabling a feature
 
-inherit texlive-common
+inherit texlive-common base
 
 HOMEPAGE="http://www.tug.org/texlive/"
 
