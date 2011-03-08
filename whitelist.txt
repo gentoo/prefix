@@ -108,6 +108,7 @@ app-crypt/shash
 app-crypt/sign
 app-crypt/signing-party
 app-crypt/steghide
+app-crypt/xca
 app-editors/bvi
 app-editors/cooledit
 app-editors/dav
