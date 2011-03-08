@@ -102,6 +102,7 @@ app-crypt/opencdk
 app-crypt/pinentry
 app-crypt/qca
 app-crypt/qca-ossl
+app-crypt/rotix
 app-crypt/shash
 app-crypt/sign
 app-crypt/signing-party
