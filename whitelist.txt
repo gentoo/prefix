@@ -94,6 +94,7 @@ app-crypt/bsign
 app-crypt/ccrypt
 app-crypt/gnupg
 app-crypt/gpgme
+app-crypt/johntheripper
 app-crypt/keylookup
 app-crypt/mcrypt
 app-crypt/md5deep
