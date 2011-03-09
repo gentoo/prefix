@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/libglade
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.130 2009/10/11 02:46:15 leio Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.132 2011/01/27 11:49:02 pacho Exp $
+
+  27 Jan 2011; Pacho Ramos <pacho@gentoo.org> libglade-2.6.4.ebuild:
+  Don't build tests when unneeded (bug #226227), bump to eapi3, set GCONF_DEBUG
+  to proper value and update HOMEPAGE.
+
+  08 Nov 2010; Gilles Dartiguelongue <eva@gentoo.org> libglade-2.6.4.ebuild:
+  Fix support for python interpreter not being python 2, bug #313451. Pin
+  glib and gtk+ to slot 2.
 
   11 Oct 2009; Mart Raudsepp <leio@gentoo.org> -libglade-2.6.3.ebuild:
   Remove old
