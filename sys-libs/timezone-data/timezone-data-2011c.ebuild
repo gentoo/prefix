@@ -1,13 +1,13 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2011a.ebuild,v 1.1 2011/01/25 21:01:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2011c.ebuild,v 1.1 2011/03/09 20:14:40 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
 code_ver=${PV}
 data_ver=${PV}
 DESCRIPTION="Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)"
-HOMEPAGE="ftp://elsie.nci.nih.gov/pub/"
+HOMEPAGE="http://www.twinsun.com/tz/tz-link.htm"
 SRC_URI="ftp://elsie.nci.nih.gov/pub/tzdata${data_ver}.tar.gz
 	ftp://elsie.nci.nih.gov/pub/tzcode${code_ver}.tar.gz
 	mirror://gentoo/tzdata${data_ver}.tar.gz
