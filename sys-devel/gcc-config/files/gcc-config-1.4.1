@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.1,v 1.10 2009/12/27 16:03:52 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.1,v 1.11 2011/03/07 12:48:15 vapier Exp $
 
 trap ":" INT QUIT TSTP
 
@@ -696,7 +696,7 @@ switch_profile() {
 		ewarn "If you intend to use the gcc from the new profile in an already"
 		ewarn "running shell, please remember to do:"
 		echo
-		ewarn " (bash) # source ${EPREFIX}/etc/profile"
+		ewarn " (bash) # . ${EPREFIX}/etc/profile"
 		ewarn "or"
 		ewarn " (tcsh) # source ${EPREFIX}/etc/csh.login"
 		echo
@@ -1001,9 +1001,9 @@ for x in "$@" ; do
 			rcsfile="$RCSfile: gcc-config-1.4.1,v $"
 			rcsfile=${rcsfile#: }
 			rcsfile=${rcsfile%,v*}
-			cvsrev="$Revision: 1.10 $"
+			cvsrev="$Revision: 1.11 $"
 			cvsrev=${cvsrev#: }
-			cvsdate="$Date: 2009/12/27 16:03:52 $"
+			cvsdate="$Date: 2011/03/07 12:48:15 $"
 			cvsdate=${cvsdate#: }
 			echo "${rcsfile} (r${cvsrev% *} @ ${cvsdate% *})"
 			exit 0

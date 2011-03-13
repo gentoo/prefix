@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.5,v 1.3 2011/01/18 07:04:36 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.5,v 1.4 2011/03/07 12:48:15 vapier Exp $
 
 # Format of /etc/env.d/gcc/:
 #  config-TARGET:	CURRENT=version for TARGET
@@ -677,7 +677,7 @@ switch_profile() {
 		ewarn "If you intend to use the gcc from the new profile in an already"
 		ewarn "running shell, please remember to do:"
 		echo
-		ewarn " (bash) # source ${EPREFIX}/etc/profile"
+		ewarn " (bash) # . ${EPREFIX}/etc/profile"
 		ewarn "or"
 		ewarn " (tcsh) # source ${EPREFIX}/etc/csh.login"
 		echo
@@ -931,9 +931,9 @@ for x in "$@" ; do
 			rcsfile="$RCSfile: gcc-config-1.5,v $"
 			rcsfile=${rcsfile#: }
 			rcsfile=${rcsfile%,v*}
-			cvsrev="$Revision: 1.3 $"
+			cvsrev="$Revision: 1.4 $"
 			cvsrev=${cvsrev#: }
-			cvsdate="$Date: 2011/01/18 07:04:36 $"
+			cvsdate="$Date: 2011/03/07 12:48:15 $"
 			cvsdate=${cvsdate#: }
 			echo "${rcsfile} (r${cvsrev% *} @ ${cvsdate% *})"
 			exit 0

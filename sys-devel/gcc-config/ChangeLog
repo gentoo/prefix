@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.188 2011/01/18 07:04:36 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.190 2011/03/07 12:48:15 vapier Exp $
+
+  07 Mar 2011; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.4.1,
+  files/gcc-config-1.5:
+  Change "source /etc/profile" to ". /etc/profile" for dumb shells #349522 by
+  Ulrich Müller.
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> gcc-config-1.3.16.ebuild,
+  gcc-config-1.4.0-r4.ebuild:
+  Drop to ~mips
 
   18 Jan 2011; Ryan Hill <dirtyepic@gentoo.org> files/gcc-config-1.5:
   Add support for gccgo in 4.6. (bug #329551)
