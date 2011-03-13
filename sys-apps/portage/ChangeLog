@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.18091 (13 Mar 2011)
+
+  13 Mar 2011; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.17901.ebuild, +portage-2.2.01.18091.ebuild:
+  Version bump, matches portage-2.2.0_alpha26, includes loadavg patch for AIX
+  and HP-UX
+
 *portage-2.2.01.18036 (27 Feb 2011)
 
   27 Feb 2011; Fabian Groffen <grobian@gentoo.org>
