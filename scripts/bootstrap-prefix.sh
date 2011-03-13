@@ -648,6 +648,12 @@ bootstrap_python() {
 		*-openbsd*)
 			CFLAGS="${CFLAGS} -D_BSD_SOURCE=1"
 		;;
+		*-linux*)
+			# python refuses to find the zlib headers that are built in the
+			# offset
+			CPPFLAGS="-I$EPREFIX/tmp/usr/include"
+			LDFLAGS="-L$EPREFIX/tmp/usr/lib -Wl,-rpath,$EPREFIX/tmp/usr/lib"
+		;;
 	esac
 
 	# if the user has a $HOME/.pydistutils.cfg file, the python
