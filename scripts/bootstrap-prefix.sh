@@ -651,8 +651,8 @@ bootstrap_python() {
 		*-linux*)
 			# python refuses to find the zlib headers that are built in the
 			# offset
-			CPPFLAGS="-I$EPREFIX/tmp/usr/include"
-			LDFLAGS="-L$EPREFIX/tmp/usr/lib -Wl,-rpath,$EPREFIX/tmp/usr/lib"
+			export CPPFLAGS="-I$EPREFIX/tmp/usr/include"
+			export LDFLAGS="-L$EPREFIX/tmp/usr/lib -Wl,-rpath,$EPREFIX/tmp/usr/lib"
 		;;
 	esac
 
