@@ -91,7 +91,7 @@ efetch() {
 bootstrap_setup() {
 	local profile=""
 	local keywords=""
-	local ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib\""
+	local ldflags_make_defaults=""
 	local cppflags_make_defaults="CPPFLAGS=\"-I${ROOT}/usr/include\""
 	local extra_make_globals=""
 	einfo "setting up some guessed defaults"
@@ -163,18 +163,23 @@ HOSTCC='gcc -m64'
 			;;
 		i*86-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/x86"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		x86_64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/amd64"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		ia64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/ia64"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		powerpc-unknown-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/ppc"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		armv7l-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/arm"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		sparc-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc"
@@ -273,21 +278,27 @@ HOSTCC='gcc -m64'
 			;;
 		powerpc-ibm-aix*)
 			profile="${PORTDIR}/profiles/prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
 		mips-sgi-irix*)
 			profile="${PORTDIR}/profiles/prefix/irix/${CHOST#mips-sgi-irix}/mips"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib\""
 			;;
 		i586-pc-interix*)
 			profile="${PORTDIR}/profiles/prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
 		i586-pc-winnt*)
 			profile="${PORTDIR}/profiles/prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
 		i686-pc-cygwin*)
 			profile="${PORTDIR}/profiles/prefix/windows/cygwin/${CHOST#i686-pc-cygwin}/x86"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
 		hppa64*-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa64"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L/usr/local/lib -R/usr/local/lib\""
 			;;
 		hppa2.0*-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa2.0"
@@ -295,24 +306,31 @@ HOSTCC='gcc -m64'
 			;;
 		ia64-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L/usr/local/lib -R/usr/local/lib\""
 			;;
 		i386-pc-freebsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		x86_64-pc-freebsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/freebsd/${CHOST#x86_64-pc-freebsd}/x64"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		i386-pc-netbsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/netbsd/${CHOST#i386-pc-netbsdelf}/x86"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		powerpc-unknown-openbsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#powerpc-unknown-openbsd}/ppc"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		i386-pc-openbsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#i386-pc-openbsd}/x86"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		x86_64-pc-openbsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#x86_64-pc-openbsd}/x64"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
 		*)	
 			einfo "You need to set up a make.profile symlink to a"
