@@ -262,7 +262,20 @@ src_configure() {
 	# Prefix itself we don't do multilib either, so make sure perl can find
 	# something compatible.
 	if use prefix ; then
-		myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) /lib /usr/lib /lib64 /usr/lib64 /lib32 /usr/lib32"
+		local ldir
+		local llib
+		local paths=""
+		echo "int main() {}" > "${T}"/t.c
+		# need to ensure dirs contain compatible libs, bug #358875
+		for ldir in /lib /usr/lib /lib64 /usr/lib64 /lib32 /usr/lib32 ; do
+			[[ -d ${ldir} ]] || continue
+			# find a random lib from here
+			llib=( ${ldir}/*$(get_libname) )
+			[[ -e ${llib[0]} ]] || continue
+			$(tc-getCC) -o "${T}"/t "${T}"/t.c ${llib[0]} >& /dev/null \
+				&& paths="${paths} ${ldir}"
+		done
+		myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) ${paths}"
 	elif [[ $(get_libdir) != "lib" ]] ; then
 		# We need to use " and not ', as the written config.sh use ' ...
 		myconf "-Dlibpth=/usr/local/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
