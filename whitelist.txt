@@ -846,6 +846,7 @@ sys-devel/gnuconfig
 sys-devel/llvm
 sys-devel/llvm-gcc
 sys-devel/native-cctools
+sys-libs/csu
 sys-libs/pam
 sys-libs/suacomp
 sys-libs/talloc
