@@ -1,0 +1,8 @@
+--- ghostscript-8.71/gsdjvu
++++ ghostscript-8.71/gsdjvu
+@@ -55,5 +55,5 @@
+ # Step 2 -- execute ghostscript
+ 
+-gsdir="$progdir"
++gsdir="$(dirname $progdir)"
+ GS_LIB="$gsdir/lib:$gsdir/fonts:$gsdir" exec "$gsdir/bin/gs" "$@"

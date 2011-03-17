@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.71-r6.ebuild,v 1.8 2010/11/07 19:17:54 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.01.ebuild,v 1.1 2011/02/23 22:12:07 tgurr Exp $
 
 EAPI=3
 inherit autotools eutils versionator flag-o-matic
@@ -12,24 +12,25 @@ MY_P=${P/-gpl}
 GSDJVU_PV=1.4
 PVM=$(get_version_component_range 1-2)
 SRC_URI="!bindist? ( djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.gz ) )
-	mirror://sourceforge/ghostscript/${MY_P}.tar.xz
-	mirror://gentoo/${P}-patchset-4.tar.bz2"
+	mirror://sourceforge/ghostscript/${MY_P}.tar.bz2
+	mirror://gentoo/${P}-patchset-1.tar.bz2"
 
 LICENSE="GPL-3 CPL-1.0"
 SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="bindist cairo cups djvu gtk jpeg2k X"
+IUSE="bindist cups djvu gtk idn jpeg2k X"
 
 COMMON_DEPEND="app-text/libpaper
+	media-libs/freetype:2
 	media-libs/fontconfig
 	virtual/jpeg
 	>=media-libs/libpng-1.2.42
 	>=media-libs/tiff-3.9.2
 	>=sys-libs/zlib-1.2.3
 	!bindist? ( djvu? ( app-text/djvu ) )
-	cairo? ( >=x11-libs/cairo-1.2.0 )
 	cups? ( >=net-print/cups-1.3.8 )
 	gtk? ( >=x11-libs/gtk+-2.0 )
+	idn? ( net-dns/libidn )
 	jpeg2k? ( media-libs/jasper )
 	X? ( x11-libs/libXt x11-libs/libXext )"
 
@@ -38,6 +39,7 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/pkgconfig"
 
 RDEPEND="${COMMON_DEPEND}
+	>=app-text/poppler-data-0.4.4
 	>=media-fonts/urw-fonts-2.4.9
 	linguas_ja? ( media-fonts/kochi-substitute )
 	linguas_ko? ( media-fonts/baekmuk-fonts )
@@ -52,22 +54,6 @@ for X in ${LANGS} ; do
 done
 
 pkg_setup() {
-	local p="${EPREFIX}/usr/share/fonts/default/ghostscript"
-	# die if path exists and is not a symbolic link so that
-	# installation of symbolic link doesn't fail, bug 311923
-	if [[ -e ${p} && ! -L ${p} ]]; then
-		eerror "The path ${p} exists and is not a"
-		eerror "symlink. It must be removed for ${CATEGORY}/${PN} to be installed."
-		eerror "Use the following command to check to which packages it belongs:"
-		eerror "  emerge gentoolkit ; equery belongs ${p}"
-		eerror
-		eerror "And remove packages listed. If it doesn't belong to any package, remove"
-		eerror "it manually and then re-emerge ${CATEGORY}/${PN}."
-		eerror "See bug #311923 for more details."
-		eerror
-		die "Path ${p} is not a symlink"
-	fi
-
 	if use bindist && use djvu; then
 		ewarn "You have bindist in your USE, djvu support will NOT be compiled!"
 		ewarn "See http://djvu.sourceforge.net/gsdjvu/COPYING for details on licensing issues."
@@ -75,7 +61,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# remove internal copies of expat, jasper, jpeg, libpng and zlib
+	# remove internal copies of various libraries
 	rm -rf "${S}/expat"
 	rm -rf "${S}/jasper"
 	rm -rf "${S}/jpeg"
@@ -84,10 +70,11 @@ src_prepare() {
 	rm -rf "${S}/zlib"
 	# remove internal urw-fonts
 	rm -rf "${S}/Resource/Font"
+	# remove internal CMaps (CMaps from poppler-data are used instead)
+	rm -rf "${S}/Resource/CMap"
 
 	# apply various patches, many borrowed from Fedora
-	# http://cvs.fedoraproject.org/viewvc/devel/ghostscript/
-	EPATCH_EXCLUDE="${PN}-8.64-gsdjvu-1.3.patch"
+	# http://pkgs.fedoraproject.org/gitweb/?p=ghostscript.git
 	EPATCH_SUFFIX="patch" EPATCH_FORCE="yes"
 	EPATCH_SOURCE="${WORKDIR}/patches/"
 	epatch
@@ -96,7 +83,8 @@ src_prepare() {
 		unpack gsdjvu-${GSDJVU_PV}.tar.gz
 		cp gsdjvu-${GSDJVU_PV}/gsdjvu "${S}"
 		cp gsdjvu-${GSDJVU_PV}/gdevdjvu.c "${S}/base"
-		epatch "${WORKDIR}/patches/${PN}-8.64-gsdjvu-1.3.patch"
+		epatch "${WORKDIR}/patches-gsdjvu/gsdjvu-1.3-${PN}-8.64.patch"
+		epatch "${WORKDIR}/patches-gsdjvu/gsdjvu-1.4-${PN}-9.00-upstream-buildfixes.patch"
 		# hard-coding paths sucks for Prefix
 		epatch "${FILESDIR}"/${PN}-8.71-gsdjvu-1.3-partial-revert.patch
 		cp gsdjvu-${GSDJVU_PV}/ps2utf8.ps "${S}/lib"
@@ -116,15 +104,10 @@ src_prepare() {
 
 	# search path fix
 	sed -i -e "s:\$(gsdatadir)/lib:${EPREFIX}/usr/share/ghostscript/${PVM}/$(get_libdir):" \
-		-e 's:$(\(gsdir\|datadir\))/fonts:'"${EPREFIX}"'/usr/share/fonts/default/ghostscript/:' \
 		-e "s:exdir=.*:exdir=${EPREFIX}/usr/share/doc/${PF}/examples:" \
 		-e "s:docdir=.*:docdir=${EPREFIX}/usr/share/doc/${PF}/html:" \
 		-e "s:GS_DOCDIR=.*:GS_DOCDIR=${EPREFIX}/usr/share/doc/${PF}/html:" \
 		base/Makefile.in base/*.mak || die "sed failed"
-
-	epatch "${FILESDIR}"/${PN}-8.64-interix.patch
-	epatch "${FILESDIR}"/${PN}-8.71-solaris.patch
-	epatch "${FILESDIR}"/${PN}-8.71-darwin.patch
 
 	cd "${S}"
 	eautoreconf
@@ -139,19 +122,37 @@ src_prepare() {
 }
 
 src_configure() {
+	local FONTPATH
+	for path in \
+		/usr/share/fonts/urw-fonts \
+		/usr/share/fonts/Type1 \
+		/usr/share/fonts \
+		/usr/share/poppler/cMap/Adobe-CNS1 \
+		/usr/share/poppler/cMap/Adobe-GB1 \
+		/usr/share/poppler/cMap/Adobe-Japan1 \
+		/usr/share/poppler/cMap/Adobe-Japan2 \
+		/usr/share/poppler/cMap/Adobe-Korea1
+	do
+		FONTPATH="$FONTPATH${FONTPATH:+:}$path"
+	done
+
 	econf \
-		$(use_enable cairo) \
 		$(use_enable cups) \
 		$(use_enable gtk) \
+		$(use_with cups pdftoraster) \
+		$(use_with idn libidn) \
 		$(use_with jpeg2k jasper) \
 		$(use_with X x) \
 		--disable-compile-inits \
 		--enable-dynamic \
+		--enable-freetype \
 		--enable-fontconfig \
 		--with-drivers=ALL \
+		--with-fontpath="$FONTPATH" \
 		--with-ijs \
 		--with-jbig2dec \
-		--with-libpaper
+		--with-libpaper \
+		--with-system-libtiff
 
 	if ! use bindist && use djvu ; then
 		sed -i -e 's!$(DD)bbox.dev!& $(DD)djvumask.dev $(DD)djvusep.dev!g' Makefile
@@ -169,8 +170,7 @@ src_compile() {
 }
 
 src_install() {
-	# parallel install is broken, bug #251066
-	emake -j1 DESTDIR="${D}" install-so install || die "emake install failed"
+	emake DESTDIR="${D}" install-so install || die "emake install failed"
 
 	if ! use bindist && use djvu ; then
 		dobin gsdjvu || die "dobin gsdjvu install failed"
@@ -180,15 +180,15 @@ src_install() {
 	rm -rf "${ED}/usr/bin/gsc"
 
 	rm -rf "${ED}/usr/share/doc/${PF}/html/"{README,PUBLIC}
-	dodoc doc/README || die "dodoc install failed"
+	dodoc doc/GS9_Color_Management.pdf || die "dodoc install failed"
 
 	cd "${S}/ijs"
 	emake DESTDIR="${D}" install || die "emake ijs install failed"
 
-	# rename an original cidfmap to cidfmap.GS
+	# rename the original cidfmap to cidfmap.GS
 	mv "${ED}/usr/share/ghostscript/${PVM}/Resource/Init/cidfmap"{,.GS} || die
 
-	# install our own cidfmap to allow the separated cidfmap
+	# install our own cidfmap to handle CJK fonts
 	insinto "/usr/share/ghostscript/${PVM}/Resource/Init"
 	doins "${WORKDIR}/fontmaps/CIDFnmap" || die "doins CIDFnmap failed"
 	doins "${WORKDIR}/fontmaps/cidfmap" || die "doins cidfmap failed"
@@ -197,6 +197,4 @@ src_install() {
 			doins "${WORKDIR}/fontmaps/cidfmap.${X}" || die "doins cidfmap.${X} failed"
 		fi
 	done
-
-	dosym /usr/share/fonts/urw-fonts /usr/share/fonts/default/ghostscript || die
 }
