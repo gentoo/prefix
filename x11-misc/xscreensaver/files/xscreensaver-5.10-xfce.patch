@@ -1,9 +1,0 @@
-diff -ur xscreensaver-5.10.orig/driver/screensaver-properties.desktop.in xscreensaver-5.10/driver/screensaver-properties.desktop.in
---- xscreensaver-5.10.orig/driver/screensaver-properties.desktop.in	2008-01-27 01:16:59.000000000 +0200
-+++ xscreensaver-5.10/driver/screensaver-properties.desktop.in	2009-09-10 14:18:48.000000000 +0300
-@@ -5,4 +5,4 @@
- _Name=Screensaver
- _Comment=Change screensaver properties
- Type=Application
--Categories=Settings;DesktopSettings;Security;
-+Categories=Settings;DesktopSettings;Security;X-XFCE;
