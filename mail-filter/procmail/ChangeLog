@@ -1,6 +1,9 @@
 # ChangeLog for mail-filter/procmail
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.46 2009/09/23 17:55:39 patrick Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/ChangeLog,v 1.47 2011/03/16 10:34:58 eras Exp $
+
+  16 Mar 2011; Eray Aslan <eras@gentoo.org> procmail-3.22-r10.ebuild:
+  change to new style virtual/mda
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> procmail-3.22-r10.ebuild:
   Remove virtual/libc
