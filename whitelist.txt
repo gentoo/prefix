@@ -914,6 +914,7 @@ x11-libs/libxkbui
 x11-libs/libxklavier
 x11-libs/neXtaw
 x11-libs/openmotif
+x11-libs/pango
 x11-libs/pixman
 x11-libs/qt
 x11-libs/qt-assistant
