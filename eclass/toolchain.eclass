@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.451 2011/03/01 00:13:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.453 2011/03/18 20:28:32 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1088,7 +1088,7 @@ gcc_src_unpack() {
 	done
 	ht_fix_file ${fix_files} */configure *.sh */Makefile.in
 
-	if ! is_crosscompile && is_multilib && \
+	if ! is_crosscompile && is_multilib && [[ ${SYMLINK_LIB} == "yes" ]] && \
 	   [[ ( $(tc-arch) == "amd64" || $(tc-arch) == "ppc64" ) && -z ${SKIP_MULTILIB_HACK} ]] ; then
 		disgusting_gcc_multilib_HACK || die "multilib hack failed"
 	fi
@@ -1354,7 +1354,7 @@ gcc_do_configure() {
 	# for things like libobjc-gnu, libgcj and libfortran.  If we enable it on
 	# non-Darwin we screw up the behaviour this eclass relies on.  We in
 	# particular need this over --libdir for bug #255315.
-	[[ ${CHOST} == *-darwin* ]] && \
+	[[ ${CTARGET} == *-darwin* ]] && \
 		confgcc="${confgcc} --enable-version-specific-runtime-libs"
 
 	# All our cross-compile logic goes here !  woo !

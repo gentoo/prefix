@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.135 2010/04/28 19:40:40 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.137 2011/03/15 19:54:12 serkan Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1758,6 +1758,43 @@ java-pkg_ant-tasks-depend() {
 	fi
 }
 
+
+# ------------------------------------------------------------------------------
+# @internal-function ejunit_
+#
+# Internal Junit wrapper function. Makes it easier to run the tests and checks for
+# dev-java/junit in DEPEND. Launches the tests using junit.textui.TestRunner.
+#
+# @param $1 - junit package (junit or junit-4)
+# @param $2 - -cp or -classpath
+# @param $3 - classpath; junit and recorded dependencies get appended
+# @param $@ - the rest of the parameters are passed to java
+ejunit_() {
+	debug-print-function ${FUNCNAME} $*
+
+	local pkgs
+	if [[ -f ${JAVA_PKG_DEPEND_FILE} ]]; then
+		for atom in $(cat ${JAVA_PKG_DEPEND_FILE} | tr : ' '); do
+			pkgs=${pkgs},$(echo ${atom} | sed -re "s/^.*@//")
+		done
+	fi
+
+	local junit=${1}
+	shift 1
+
+	local cp=$(java-pkg_getjars --with-dependencies ${junit}${pkgs})
+	if [[ ${1} = -cp || ${1} = -classpath ]]; then
+		cp="${2}:${cp}"
+		shift 2
+	else
+		cp=".:${cp}"
+	fi
+
+	local runner=junit.textui.TestRunner
+	debug-print "Calling: java -cp \"${cp}\" -Djava.awt.headless=true ${runner} ${@}"
+	java -cp "${cp}" -Djava.awt.headless=true ${runner} "${@}" || die "Running junit failed"
+}
+
 # ------------------------------------------------------------------------------
 # @ebuild-function ejunit
 #
@@ -1775,24 +1812,27 @@ java-pkg_ant-tasks-depend() {
 ejunit() {
 	debug-print-function ${FUNCNAME} $*
 
-	local pkgs
-	if [[ -f ${JAVA_PKG_DEPEND_FILE} ]]; then
-		for atom in $(cat ${JAVA_PKG_DEPEND_FILE} | tr : ' '); do
-			pkgs=${pkgs},$(echo ${atom} | sed -re "s/^.*@//")
-		done
-	fi
+	ejunit_ "junit" "${@}"
+}
 
-	local cp=$(java-pkg_getjars --with-dependencies junit${pkgs})
-	if [[ ${1} = -cp || ${1} = -classpath ]]; then
-		cp="${2}:${cp}"
-		shift 2
-	else
-		cp=".:${cp}"
-	fi
+# ------------------------------------------------------------------------------
+# @ebuild-function ejunit4
+#
+# Junit4 wrapper function. Makes it easier to run the tests and checks for
+# dev-java/junit:4 in DEPEND. Launches the tests using junit.textui.TestRunner.
+#
+# Examples:
+# ejunit4 -cp build/classes org.blinkenlights.jid3.test.AllTests
+# ejunit4 org.blinkenlights.jid3.test.AllTests
+#
+# @param $1 - -cp or -classpath
+# @param $2 - classpath; junit and recorded dependencies get appended
+# @param $@ - the rest of the parameters are passed to java
+# ------------------------------------------------------------------------------
+ejunit4() {
+	debug-print-function ${FUNCNAME} $*
 
-	local runner=junit.textui.TestRunner
-	debug-print "Calling: java -cp \"${cp}\" -Djava.awt.headless=true ${runner} ${@}"
-	java -cp "${cp}" -Djava.awt.headless=true ${runner} "${@}" || die "Running junit failed"
+	ejunit_ "junit-4" "${@}"
 }
 
 # ------------------------------------------------------------------------------

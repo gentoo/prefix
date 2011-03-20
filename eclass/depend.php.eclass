@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.28 2010/10/12 19:34:49 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.29 2011/03/18 15:59:25 olemarkus Exp $
 
 # Author: Stuart Herbert <stuart@gentoo.org>
 # Author: Luca Longinotti <chtekk@gentoo.org>
@@ -25,8 +25,8 @@ inherit eutils phpconfutils
 # Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP5
 # with cli SAPI.
 need_php5_cli() {
-	DEPEND="${DEPEND} =virtual/php-5*"
-	RDEPEND="${RDEPEND} =virtual/php-5*"
+	DEPEND="${DEPEND} =dev-lang/php-5*"
+	RDEPEND="${RDEPEND} =dev-lang/php-5*"
 	PHP_VERSION="5"
 }
 
@@ -76,8 +76,8 @@ uses_php5() {
 # Set this after setting DEPEND/RDEPEND in your ebuild if the ebuild requires PHP
 # (any version) with cli SAPI.
 need_php_cli() {
-	DEPEND="${DEPEND} virtual/php"
-	RDEPEND="${RDEPEND} virtual/php"
+	DEPEND="${DEPEND} dev-lang/php"
+	RDEPEND="${RDEPEND} dev-lang/php"
 }
 
 # @FUNCTION: need_php_httpd
