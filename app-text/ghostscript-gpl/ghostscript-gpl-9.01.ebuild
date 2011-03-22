@@ -102,12 +102,15 @@ src_prepare() {
 		sed -i "s:.*\$(GSSOX_XENAME)$::" base/*.mak || die "gsxso sed failed"
 	fi
 
-	# search path fix
+	# search path + compiler flags fix
 	sed -i -e "s:\$(gsdatadir)/lib:${EPREFIX}/usr/share/ghostscript/${PVM}/$(get_libdir):" \
 		-e "s:exdir=.*:exdir=${EPREFIX}/usr/share/doc/${PF}/examples:" \
 		-e "s:docdir=.*:docdir=${EPREFIX}/usr/share/doc/${PF}/html:" \
 		-e "s:GS_DOCDIR=.*:GS_DOCDIR=${EPREFIX}/usr/share/doc/${PF}/html:" \
+		-e 's: -g : :g' \
 		base/Makefile.in base/*.mak || die "sed failed"
+
+	epatch "${FILESDIR}"/${P}-darwin.patch
 
 	cd "${S}"
 	eautoreconf
