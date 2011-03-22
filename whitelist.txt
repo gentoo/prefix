@@ -565,6 +565,7 @@ gnome-base/gnome-applets
 gnome-base/gnome-common
 gnome-base/gnome-control-center
 gnome-base/gnome-desktop
+gnome-base/gnome-keyring
 gnome-base/gnome-light
 gnome-base/gnome-mime-data
 gnome-base/gnome-panel
