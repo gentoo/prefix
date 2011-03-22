@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.28 2011/01/25 14:15:50 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.29 2011/03/21 21:52:51 nirbheek Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -182,7 +182,7 @@ case ${PF} in
 		add_depend "~dev-dotnet/gdk-sharp-${PV}"
 		add_depend "~dev-dotnet/gtk-sharp-${PV}"
 		add_depend "~dev-dotnet/pango-sharp-${PV}"
-		add_depend ">=gnome-base/libglade-2.3.6"
+		add_depend ">=gnome-base/libglade-2.3.6:2.0"
 		;;
 	#gnome-sharp tarball
 	art-sharp-*)
@@ -196,13 +196,13 @@ case ${PF} in
 		add_depend ">=x11-libs/gtk+-2.14.0:2"
 		;;
 	gconf-sharp-*)
-		add_depend ">=gnome-base/gconf-${PV_MAJOR}"
+		add_depend ">=gnome-base/gconf-${PV_MAJOR}:2"
 		add_depend "=dev-dotnet/glade-sharp-${GTK_SHARP_REQUIRED_VERSION}*"
 		add_depend "~dev-dotnet/gnome-sharp-${PV}"
 		add_depend "~dev-dotnet/art-sharp-${PV}"
 		;;
 	gnomevfs-sharp-*)
-		add_depend ">=gnome-base/gnome-vfs-${PV_MAJOR}"
+		add_depend ">=gnome-base/gnome-vfs-${PV_MAJOR}:2"
 		;;
 	#gnome-desktop-sharp tarball
 	gnome-desktop-sharp-*)
@@ -216,14 +216,14 @@ case ${PF} in
 		add_depend ">=gnome-base/gnome-panel-${PV_MAJOR}"
 		;;
 	gnome-print-sharp-*)
-		add_depend ">=gnome-base/libgnomeprint-${API_VERSION}"
+		add_depend ">=gnome-base/libgnomeprint-${API_VERSION}:2.2"
 		;;
 	gtkhtml-sharp-*)
 		#NOTE: gtkhtml dependency must follow gtkhtml-sharp version.
 		#i.e.   gtkhtml-sharp-2.24.0 >=gtkhtml-3.24
 		#       gtkhtml-sharp-2.16.0 >=gtkhtml-3.16
 		#       See bug 249540 for unpleasant side effects.
-		add_depend ">=gnome-extra/gtkhtml-$(($(get_version_component_range 1) + 1 )).$(get_version_component_range 2)"
+		add_depend ">=gnome-extra/gtkhtml-$(($(get_version_component_range 1) + 1 )).$(get_version_component_range 2):3.14"
 		;;
 	gtksourceview-sharp-*)
 		add_depend ">=x11-libs/gtksourceview-${GTKSOURCEVIEW_REQUIRED_VERSION}:2.0"
@@ -235,10 +235,10 @@ case ${PF} in
 		add_depend ">=gnome-base/librsvg-${RSVG_REQUIRED_VERSION}:2"
 		;;
 	vte-sharp-*)
-		add_depend ">=x11-libs/vte-${VTE_REQUIRED_VERSION}"
+		add_depend ">=x11-libs/vte-${VTE_REQUIRED_VERSION}:0"
 		;;
 	wnck-sharp-*)
-		add_depend ">=x11-libs/libwnck-${PV_MAJOR}"
+		add_depend ">=x11-libs/libwnck-${PV_MAJOR}:1"
 		;;
 esac
 

@@ -1,11 +1,11 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.17 2010/12/29 03:57:24 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.18 2011/03/21 00:25:11 nirbheek Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
 
-inherit multilib flag-o-matic
+inherit multilib flag-o-matic python
 
 IUSE="${IUSE} custom-optimization"
 
@@ -15,24 +15,78 @@ RDEPEND="x11-libs/libXrender
 	>=sys-libs/zlib-1.1.4"
 
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	dev-util/pkgconfig
+	=dev-lang/python-2*[threads]"
 
-# Set by configure (plus USE_AUTOCONF=1), but useful for NSPR
-export MOZILLA_CLIENT=1
-export BUILD_OPT=1
-export NO_STATIC_LIB=1
-export USE_PTHREADS=1
+# mozconfig_annotate: add an annotated line to .mozconfig
+#
+# Example:
+# mozconfig_annotate "building on ultrasparc" --enable-js-ultrasparc
+# => ac_add_options --enable-js-ultrasparc # building on ultrasparc
+mozconfig_annotate() {
+	declare reason=$1 x ; shift
+	[[ $# -gt 0 ]] || die "mozconfig_annotate missing flags for ${reason}\!"
+	for x in ${*}; do
+		echo "ac_add_options ${x} # ${reason}" >>.mozconfig
+	done
+}
+
+# mozconfig_use_enable: add a line to .mozconfig based on a USE-flag
+#
+# Example:
+# mozconfig_use_enable truetype freetype2
+# => ac_add_options --enable-freetype2 # +truetype
+mozconfig_use_enable() {
+	declare flag=$(use_enable "$@")
+	mozconfig_annotate "$(useq $1 && echo +$1 || echo -$1)" "${flag}"
+}
+
+# mozconfig_use_with: add a line to .mozconfig based on a USE-flag
+#
+# Example:
+# mozconfig_use_with kerberos gss-api /usr/$(get_libdir)
+# => ac_add_options --with-gss-api=/usr/lib # +kerberos
+mozconfig_use_with() {
+	declare flag=$(use_with "$@")
+	mozconfig_annotate "$(useq $1 && echo +$1 || echo -$1)" "${flag}"
+}
+
+# mozconfig_use_extension: enable or disable an extension based on a USE-flag
+#
+# Example:
+# mozconfig_use_extension gnome gnomevfs
+# => ac_add_options --enable-extensions=gnomevfs
+mozconfig_use_extension() {
+	declare minus=$(useq $1 || echo -)
+	mozconfig_annotate "${minus:-+}$1" --enable-extensions=${minus}${2}
+}
+
+moz_pkgsetup() {
+	# Ensure we use C locale when building
+	export LANG="C"
+	export LC_ALL="C"
+	export LC_MESSAGES="C"
+	export LC_CTYPE="C"
+
+	# Ensure that we have a sane build enviroment
+	export MOZILLA_CLIENT=1
+	export BUILD_OPT=1
+	export NO_STATIC_LIB=1
+	export USE_PTHREADS=1
+	export ALDFLAGS=${LDFLAGS}
+
+	python_set_active_version 2
+}
 
 mozconfig_init() {
 	declare enable_optimize pango_version myext x
-	declare MOZ=$([[ ${PN} == mozilla || ${PN} == gecko-sdk ]] && echo true || echo false)
-	declare FF=$([[ ${PN} == *firefox ]] && echo true || echo false)
-	declare TB=$([[ ${PN} == *thunderbird ]] && echo true || echo false)
-	declare SB=$([[ ${PN} == *sunbird ]] && echo true || echo false)
-	declare EM=$([[ ${PN} == enigmail ]] && echo true || echo false)
-	declare XUL=$([[ ${PN} == *xulrunner ]] && echo true || echo false)
+	declare XUL=$([[ ${PN} == xulrunner ]] && echo true || echo false)
+	declare FF=$([[ ${PN} == firefox ]] && echo true || echo false)
+	declare IC=$([[ ${PN} == icecat ]] && echo true || echo false)
 	declare SM=$([[ ${PN} == seamonkey ]] && echo true || echo false)
-	declare IC=$([[ ${PN} == *icecat ]] && echo true || echo false)
+	declare TB=$([[ ${PN} == thunderbird ]] && echo true || echo false)
+	declare EM=$([[ ${PN} == enigmail ]] && echo true || echo false)
+
 
 	####################################
 	#
@@ -42,37 +96,26 @@ mozconfig_init() {
 	####################################
 
 	case ${PN} in
-		mozilla|gecko-sdk)
-			# The other builds have an initial --enable-extensions in their
-			# .mozconfig.  The "default" set in configure applies to mozilla
-			# specifically.
-			: >.mozconfig || die "initial mozconfig creation failed"
-			mozconfig_annotate "" --enable-extensions=default ;;
-		*firefox)
-			cp browser/config/mozconfig .mozconfig \
-				|| die "cp browser/config/mozconfig failed" ;;
-		enigmail)
-			cp mail/config/mozconfig .mozconfig \
-				|| die "cp mail/config/mozconfig failed" ;;
 		*xulrunner)
 			cp xulrunner/config/mozconfig .mozconfig \
 				|| die "cp xulrunner/config/mozconfig failed" ;;
-		*sunbird)
-			cp calendar/sunbird/config/mozconfig .mozconfig \
-				|| die "cp calendar/sunbird/config/mozconfig failed" ;;
-		*thunderbird)
-			cp mail/config/mozconfig .mozconfig \
-				|| die "cp mail/config/mozconfig failed" ;;
-		seamonkey)
-			# The other builds have an initial --enable-extensions in their
-			# .mozconfig.  The "default" set in configure applies to mozilla
-			# specifically.
-			: >.mozconfig || die "initial mozconfig creation failed"
-			mozconfig_annotate "" --enable-application=suite
-			mozconfig_annotate "" --enable-extensions=default ;;
+		*firefox)
+			cp browser/config/mozconfig .mozconfig \
+				|| die "cp browser/config/mozconfig failed" ;;
 		*icecat)
 			cp browser/config/mozconfig .mozconfig \
 				|| die "cp browser/config/mozconfig failed" ;;
+		seamonkey)
+			# Must create the initial mozconfig to enable application
+			: >.mozconfig || die "initial mozconfig creation failed"
+			mozconfig_annotate "" --enable-application=suite ;;
+		*thunderbird)
+			# Must create the initial mozconfig to enable application
+			: >.mozconfig || die "initial mozconfig creation failed"
+			mozconfig_annotate "" --enable-application=mail ;;
+		enigmail)
+			cp mail/config/mozconfig .mozconfig \
+				|| die "cp mail/config/mozconfig failed" ;;
 	esac
 
 	####################################
@@ -82,9 +125,7 @@ mozconfig_init() {
 	####################################
 
 	# Set optimization level
-	if [[ ${ARCH} == hppa ]]; then
-		mozconfig_annotate "more than -O0 causes segfaults on hppa" --enable-optimize=-O0
-	elif [[ ${ARCH} == x86 ]]; then
+	if [[ ${ARCH} == x86 ]]; then
 		mozconfig_annotate "less then -O2 causes a segfault on x86" --enable-optimize=-O2
 	elif use custom-optimization || [[ ${ARCH} =~ (alpha|ia64) ]]; then
 		# Set optimization level based on CFLAGS
@@ -104,14 +145,10 @@ mozconfig_init() {
 		mozconfig_annotate "mozilla default" --enable-optimize
 	fi
 
-	# Now strip optimization from CFLAGS so it doesn't end up in the
-	# compile string
+	# Strip optimization so it does not end up in compile string
 	filter-flags '-O*'
 
-	# Strip over-aggressive CFLAGS - Mozilla supplies its own
-	# fine-tuned CFLAGS and shouldn't be interfered with..  Do this
-	# AFTER setting optimization above since strip-flags only allows
-	# -O -O1 and -O2
+	# Strip over-aggressive CFLAGS 
 	strip-flags
 
 	# Additional ARCH support
@@ -170,26 +207,27 @@ mozconfig_init() {
 	#
 	####################################
 
-	mozconfig_annotate gentoo \
-		--disable-installer \
-		--disable-pedantic \
-		--enable-crypto \
+	mozconfig_annotate system_libs \
 		--with-system-jpeg \
 		--with-system-zlib \
-		--disable-updater \
 		--enable-pango \
 		--enable-svg \
-		--enable-system-cairo \
-		--disable-strip \
-		--disable-strip-libs \
-		--disable-install-strip \
-		--with-distribution-id=org.gentoo
-
-		# This doesn't work yet
+		--enable-system-cairo
+		# Requires libpng with apng support
 		#--with-system-png \
 
+	mozconfig_annotate disable_update_strip \
+		--disable-installer \
+		--disable-pedantic \
+		--disable-updater \
+		--disable-strip \
+		--disable-strip-libs \
+		--disable-install-strip
+
+
+
 	if [[ ${PN} != seamonkey ]]; then
-		mozconfig_annotate gentoo \
+		mozconfig_annotate basic_profile \
 			--enable-single-profile \
 			--disable-profilesharing \
 			--disable-profilelocking
@@ -200,18 +238,13 @@ mozconfig_init() {
 		mozconfig_annotate "building on ultrasparc" --enable-js-ultrasparc
 	fi
 
+	# Currently --enable-elf-dynstr-gc only works for x86,
+	if use x86 && [[ ${enable_optimize} != -O0 ]]; then
+		mozconfig_annotate "${ARCH} optimized build" --enable-elf-dynstr-gc
+	fi
+
 	# jemalloc won't build with older glibc
 	use elibc_glibc && ! has_version ">=sys-libs/glibc-2.4" && mozconfig_annotate "we have old glibc" --disable-jemalloc
-}
-
-# Simulate the silly csh makemake script
-makemake() {
-	typeset m topdir
-	for m in $(find . -name Makefile.in); do
-		topdir=$(echo "$m" | sed -r 's:[^/]+:..:g')
-		sed -e "s:@srcdir@:.:g" -e "s:@top_srcdir@:${topdir}:g" \
-			< ${m} > ${m%.in} || die "sed ${m} failed"
-	done
 }
 
 makemake2() {
@@ -220,49 +253,6 @@ makemake2() {
 		sed -e "s:@srcdir@:.:g" -e "s:@top_srcdir@:${topdir}:g" \
 			< ${m} > ${m%.in} || die "sed ${m} failed"
 	done
-}
-
-# mozconfig_annotate: add an annotated line to .mozconfig
-#
-# Example:
-# mozconfig_annotate "building on ultrasparc" --enable-js-ultrasparc
-# => ac_add_options --enable-js-ultrasparc # building on ultrasparc
-mozconfig_annotate() {
-	declare reason=$1 x ; shift
-	[[ $# -gt 0 ]] || die "mozconfig_annotate missing flags for ${reason}\!"
-	for x in ${*}; do
-		echo "ac_add_options ${x} # ${reason}" >>.mozconfig
-	done
-}
-
-# mozconfig_use_enable: add a line to .mozconfig based on a USE-flag
-#
-# Example:
-# mozconfig_use_enable truetype freetype2
-# => ac_add_options --enable-freetype2 # +truetype
-mozconfig_use_enable() {
-	declare flag=$(use_enable "$@")
-	mozconfig_annotate "$(useq $1 && echo +$1 || echo -$1)" "${flag}"
-}
-
-# mozconfig_use_with: add a line to .mozconfig based on a USE-flag
-#
-# Example:
-# mozconfig_use_with kerberos gss-api /usr/$(get_libdir)
-# => ac_add_options --with-gss-api=/usr/lib # +kerberos
-mozconfig_use_with() {
-	declare flag=$(use_with "$@")
-	mozconfig_annotate "$(useq $1 && echo +$1 || echo -$1)" "${flag}"
-}
-
-# mozconfig_use_extension: enable or disable an extension based on a USE-flag
-#
-# Example:
-# mozconfig_use_extension gnome gnomevfs
-# => ac_add_options --enable-extensions=gnomevfs
-mozconfig_use_extension() {
-	declare minus=$(useq $1 || echo -)
-	mozconfig_annotate "${minus:-+}$1" --enable-extensions=${minus}${2}
 }
 
 # mozconfig_final: display a table describing all configuration options paired
