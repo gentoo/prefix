@@ -1,6 +1,106 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.97 2011/01/25 15:07:06 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.116 2011/03/21 23:13:14 titanofold Exp $
+
+*postgresql-server-9.0.3-r2 (21 Mar 2011)
+
+  21 Mar 2011; Aaron W. Swenson <titanofold@gentoo.org>
+  -postgresql-server-9.0.3-r1.ebuild, +postgresql-server-9.0.3-r2.ebuild:
+  Fixes bug 359713
+
+*postgresql-server-9.0.3-r1 (21 Mar 2011)
+*postgresql-server-8.4.7-r1 (21 Mar 2011)
+*postgresql-server-8.3.14-r1 (21 Mar 2011)
+*postgresql-server-8.2.20-r1 (21 Mar 2011)
+
+  21 Mar 2011; Aaron W. Swenson <titanofold@gentoo.org>
+  +postgresql-server-8.2.20-r1.ebuild, +postgresql-server-8.3.14-r1.ebuild,
+  +postgresql-server-8.4.7-r1.ebuild, +postgresql-server-9.0.3-r1.ebuild:
+  Fixes bugs 274836, 302384, 323683, 325709, 347005, 347223, 353687 and
+  353750.
+
+*postgresql-server-9.1_alpha4 (20 Mar 2011)
+
+  20 Mar 2011; Aaron W. Swenson <titanofold@gentoo.org>
+  +postgresql-server-9.1_alpha4.ebuild:
+  Adding 9.1 pre-release
+
+  20 Mar 2011; Mr. Aaron W. Swenson (TitanOfOld) <titanofold@gentoo.org>
+  -files/postgresql.conf-8.1, -files/postgresql.init-8.1,
+  -files/postgresql.conf-8.1-r1, -files/postgresql.init-8.1-r1,
+  -postgresql-server-8.1.22.ebuild, -postgresql-server-8.1.23.ebuild,
+  -files/postgresql-8.1-common.patch, -files/postgresql-8.1-server.patch:
+  EOL'd upstream.
+
+  06 Mar 2011; Raúl Porcel <armin76@gentoo.org>
+  postgresql-server-9.0.3.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #353387
+
+  05 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  postgresql-server-9.0.3.ebuild:
+  ppc/ppc64 stable wrt #343883
+
+  27 Feb 2011; Tobias Klausmann <klausman@gentoo.org>
+  postgresql-server-9.0.3.ebuild:
+  Stable on alpha, bug #353387
+
+  27 Feb 2011; Tobias Klausmann <klausman@gentoo.org>
+  postgresql-server-8.4.7.ebuild:
+  Stable on alpha, bug #353387
+
+  27 Feb 2011; Tobias Klausmann <klausman@gentoo.org>
+  postgresql-server-8.3.14.ebuild:
+  Stable on alpha, bug #353387
+
+  27 Feb 2011; Tobias Klausmann <klausman@gentoo.org>
+  postgresql-server-8.2.20.ebuild:
+  Stable on alpha, bug #353387
+
+  16 Feb 2011; Markos Chandras <hwoarang@gentoo.org>
+  postgresql-server-8.2.20.ebuild, postgresql-server-8.3.14.ebuild,
+  postgresql-server-8.4.7.ebuild, postgresql-server-9.0.3.ebuild:
+  Stable on amd64 wrt bug #353387
+
+  16 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  postgresql-server-8.2.20.ebuild, postgresql-server-8.3.14.ebuild,
+  postgresql-server-8.4.7.ebuild:
+  ppc/ppc64 stable wrt #353387
+
+  05 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-9.0.3.ebuild:
+  stable x86, bug 343883
+
+  05 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.4.7.ebuild:
+  stable x86, security bug 353387
+
+  05 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.3.14.ebuild:
+  stable x86, security bug 353387
+
+  05 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.2.20.ebuild:
+  stable x86, security bug 353387
+
+  02 Feb 2011; Jeroen Roovers <jer@gentoo.org> postgresql-server-8.2.20.ebuild,
+  postgresql-server-8.3.14.ebuild, postgresql-server-8.4.7.ebuild,
+  postgresql-server-9.0.3.ebuild:
+  Stable for HPPA (bug #353387).
+
+*postgresql-server-9.0.3 (31 Jan 2011)
+*postgresql-server-8.4.7 (31 Jan 2011)
+*postgresql-server-8.3.14 (31 Jan 2011)
+*postgresql-server-8.2.20 (31 Jan 2011)
+
+  31 Jan 2011; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-8.2.20.ebuild, +postgresql-server-8.3.14.ebuild,
+  +postgresql-server-8.4.7.ebuild, +postgresql-server-9.0.3.ebuild:
+  Bump
+
+  31 Jan 2011; Patrick Lauer <patrick@gentoo.org>
+  -postgresql-server-8.1.21-r1.ebuild, -postgresql-server-8.2.17-r1.ebuild,
+  -postgresql-server-8.3.11-r1.ebuild, -postgresql-server-9.0.0.ebuild:
+  Remove old
 
   25 Jan 2011; Markos Chandras <hwoarang@gentoo.org>
   postgresql-server-9.0.1.ebuild:
