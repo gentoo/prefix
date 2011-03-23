@@ -118,6 +118,8 @@ tc-binutils_apply_patches() {
 
 	if ! use vanilla ; then
 		EPATCH_EXCLUDE=
+		# prefix does not do SYMLINK_LIB, but may run on such host (#359887)
+		! use prefix &&
 		[[ ${SYMLINK_LIB} != "yes" ]] && EPATCH_EXCLUDE+=" 65_all_binutils-*-amd64-32bit-path.patch"
 		if [[ -n ${PATCHVER} ]] ; then
 			EPATCH_SOURCE=${WORKDIR}/patch
