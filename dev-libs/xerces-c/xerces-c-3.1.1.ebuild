@@ -80,7 +80,7 @@ src_compile() {
 src_install () {
 	emake DESTDIR="${D}" install || die "emake failed"
 
-	use static-libs || rm "${ED}"/lib*/*.la
+	use static-libs || rm "${ED}"/usr/lib*/*.la
 
 	# To make sure an appropriate NLS msg file is around when using the iconv msgloader
 	# ICU has the messages compiled in.
