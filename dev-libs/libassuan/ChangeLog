@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/libassuan
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.73 2011/01/12 17:50:23 c1pher Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.78 2011/03/23 20:33:38 xarthisius Exp $
+
+  23 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> libassuan-2.0.1.ebuild:
+  ppc/ppc64 stable wrt #355265
+
+  12 Mar 2011; Tobias Klausmann <klausman@gentoo.org> libassuan-2.0.1.ebuild:
+  Stable on alpha, bug #355265
+
+  11 Mar 2011; Thomas Kahle <tomka@gentoo.org> libassuan-2.0.1.ebuild:
+  x86 stable per bug 355265
+
+  08 Mar 2011; Jeroen Roovers <jer@gentoo.org> libassuan-2.0.1.ebuild:
+  Stable for HPPA (bug #355265).
+
+  19 Feb 2011; Markos Chandras <hwoarang@gentoo.org> libassuan-2.0.1.ebuild:
+  Stable on amd64 wrt bug #355265
 
 *libassuan-2.0.1 (12 Jan 2011)
 
