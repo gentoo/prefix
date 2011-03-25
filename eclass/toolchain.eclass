@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.453 2011/03/18 20:28:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.456 2011/03/24 08:37:28 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1082,16 +1082,16 @@ gcc_src_unpack() {
 		sed -i -e 's/@RPATH_ENVVAR@/NO@RPATH_ENVVAR@/g' "${S}"/Makefile.in || die
 	fi
 
-	fix_files=""
-	for x in contrib/test_summary libstdc++-v3/scripts/check_survey.in ; do
-		[[ -e ${x} ]] && fix_files="${fix_files} ${x}"
-	done
-	ht_fix_file ${fix_files} */configure *.sh */Makefile.in
-
-	if ! is_crosscompile && is_multilib && [[ ${SYMLINK_LIB} == "yes" ]] && \
-	   [[ ( $(tc-arch) == "amd64" || $(tc-arch) == "ppc64" ) && -z ${SKIP_MULTILIB_HACK} ]] ; then
-		disgusting_gcc_multilib_HACK || die "multilib hack failed"
+	# No idea when this first started being fixed, but let's go with 4.3.x for now
+	if ! tc_version_is_at_least 4.3 ; then
+		fix_files=""
+		for x in contrib/test_summary libstdc++-v3/scripts/check_survey.in ; do
+			[[ -e ${x} ]] && fix_files="${fix_files} ${x}"
+		done
+		ht_fix_file ${fix_files} */configure *.sh */Makefile.in
 	fi
+
+	setup_multilib_osdirnames
 
 	gcc_version_patch
 	if [[ ${GCCMAJOR}.${GCCMINOR} > 4.0 ]] ; then
@@ -1199,8 +1199,12 @@ gcc-compiler-configure() {
 				   $(tc-getCPP ${CTARGET}) -E - <<<"#include <pthread.h>" >& /dev/null
 				then
 					confgcc="${confgcc} $(use_enable openmp libgomp)"
+				else
+					# Force disable as the configure script can be dumb #359855
+					confgcc="${confgcc} --disable-libgomp"
 				fi
 			else
+				# For gcc variants where we don't want openmp (e.g. kgcc)
 				confgcc="${confgcc} --disable-libgomp"
 			fi
 		fi
@@ -2463,34 +2467,44 @@ gcc_version_patch() {
 		"${S}"/gcc/version.c || die "Failed to change the bug URL"
 }
 
-# The purpose of this DISGUSTING gcc multilib hack is to allow 64bit libs
-# to live in lib instead of lib64 where they belong, with 32bit libraries
-# in lib32. This hack has been around since the beginning of the amd64 port,
-# and we're only now starting to fix everything that's broken. Eventually
-# this should go away.
+# This is a historical wart.  The original Gentoo/amd64 port used:
+#    lib32 - 32bit binaries (x86)
+#    lib64 - 64bit binaries (x86_64)
+#    lib   - "native" binaries (a symlink to lib64)
+# Most other distros use the logic (including mainline gcc):
+#    lib   - 32bit binaries (x86)
+#    lib64 - 64bit binaries (x86_64)
+# Over time, Gentoo is migrating to the latter form.
 #
-# Travis Tilley <lv@gentoo.org> (03 Sep 2004)
-#
-disgusting_gcc_multilib_HACK() {
+# Unfortunately, due to distros picking the lib32 behavior, newer gcc
+# versions will dynamically detect whether to use lib or lib32 for its
+# 32bit multilib.  So, to keep the automagic from getting things wrong
+# while people are transitioning from the old style to the new style,
+# we always set the MULTILIB_OSDIRNAMES var for relevant targets.
+setup_multilib_osdirnames() {
+	is_multilib || return 0
+
 	local config
 	local libdirs
-	if has_multilib_profile ; then
-		case $(tc-arch) in
-			amd64)
-				config="i386/t-linux64"
-				libdirs="../$(get_abi_LIBDIR amd64) ../$(get_abi_LIBDIR x86)" \
-			;;
-			ppc64)
-				config="rs6000/t-linux64"
-				libdirs="../$(get_abi_LIBDIR ppc64) ../$(get_abi_LIBDIR ppc)" \
-			;;
-		esac
+
+	if [[ ${SYMLINK_LIB} == "yes" ]] ; then
+		libdirs="../lib64 ../lib32"
 	else
-		die "Your profile is no longer supported by portage."
+		libdirs="../lib64 ../lib"
 	fi
 
+	# this only makes sense for some Linux targets
+	case ${CTARGET} in
+		x86_64*-linux*)    config="i386" ;;
+		powerpc64*-linux*) config="rs6000" ;;
+		sparc64*-linux*)   config="sparc" ;;
+		s390x*-linux*)     config="s390" ;;
+		*)	               return 0 ;;
+	esac
+	config+="/t-linux64"
+
 	einfo "updating multilib directories to be: ${libdirs}"
-	sed -i -e "s:^MULTILIB_OSDIRNAMES.*:MULTILIB_OSDIRNAMES = ${libdirs}:" "${S}"/gcc/config/${config}
+	sed -i -e "/^MULTILIB_OSDIRNAMES/s:=.*:= ${libdirs}:" "${S}"/gcc/config/${config} || die
 }
 
 disable_multilib_libjava() {

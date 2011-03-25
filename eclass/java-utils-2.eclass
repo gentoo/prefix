@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.137 2011/03/15 19:54:12 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.138 2011/03/23 19:32:57 serkan Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -243,6 +243,9 @@ java-pkg_doexamples() {
 			doins -r "$@"
 		) || die "Installing examples failed"
 	fi
+
+	# Let's make a symlink to the directory we have everything else under
+	dosym "${dest}" "${JAVA_PKG_SHAREPATH}/examples" || die
 }
 
 # -----------------------------------------------------------------------------
@@ -1791,6 +1794,9 @@ ejunit_() {
 	fi
 
 	local runner=junit.textui.TestRunner
+	if [[ "${junit}" == "junit-4" ]] ; then
+		runner=org.junit.runner.JUnitCore
+	fi
 	debug-print "Calling: java -cp \"${cp}\" -Djava.awt.headless=true ${runner} ${@}"
 	java -cp "${cp}" -Djava.awt.headless=true ${runner} "${@}" || die "Running junit failed"
 }
@@ -1804,6 +1810,8 @@ ejunit_() {
 # Examples:
 # ejunit -cp build/classes org.blinkenlights.jid3.test.AllTests
 # ejunit org.blinkenlights.jid3.test.AllTests
+# ejunit org.blinkenlights.jid3.test.FirstTest \
+#         org.blinkenlights.jid3.test.SecondTest
 #
 # @param $1 - -cp or -classpath
 # @param $2 - classpath; junit and recorded dependencies get appended
@@ -1824,6 +1832,8 @@ ejunit() {
 # Examples:
 # ejunit4 -cp build/classes org.blinkenlights.jid3.test.AllTests
 # ejunit4 org.blinkenlights.jid3.test.AllTests
+# ejunit4 org.blinkenlights.jid3.test.FirstTest \
+#         org.blinkenlights.jid3.test.SecondTest
 #
 # @param $1 - -cp or -classpath
 # @param $2 - classpath; junit and recorded dependencies get appended
