@@ -1,6 +1,15 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.245 2011/03/11 02:43:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.247 2011/03/22 17:04:01 vapier Exp $
+
+  22 Mar 2011; Mike Frysinger <vapier@gentoo.org> timezone-data-2011d.ebuild:
+  Stabilize for everyone for Turkey #359981 by Serkan Kaba.
+
+*timezone-data-2011d (21 Mar 2011)
+
+  21 Mar 2011; Mike Frysinger <vapier@gentoo.org> -timezone-data-2010o.ebuild,
+  +timezone-data-2011d.ebuild:
+  Version bump #359473 by Rodrigo Severo.
 
   11 Mar 2011; Mike Frysinger <vapier@gentoo.org> timezone-data-2011b.ebuild:
   Stabilize for everyone #358311 by Arfrever Frehtes Taifersar Arahesis.
