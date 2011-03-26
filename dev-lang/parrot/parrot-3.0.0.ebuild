@@ -29,7 +29,7 @@ DEPEND="dev-lang/perl[doc?]
 	${RDEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.3.0-fix-darwin-link.patch
+	epatch "${FILESDIR}"/${PN}-3.0.0-fix-darwin-link.patch
 }
 
 src_configure() {
@@ -56,6 +56,7 @@ src_configure() {
 
 src_compile() {
 	export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}"${S}"/blib/lib
+	export DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH:+$DYLD_LIBRARY_PATH:}"${S}"/blib/lib
 	# occasionally dies in parallel make
 	emake -j1 || die
 	if use doc ; then
@@ -71,11 +72,11 @@ src_install() {
 	emake -j1 install-dev DESTDIR="${D}" DOC_DIR="${EROOT}/usr/share/doc/${PF}" || die
 	dodoc CREDITS DEPRECATED.pod DONORS.pod NEWS PBC_COMPAT PLATFORMS RESPONSIBLE_PARTIES TODO || die
 	if use examples; then
-		insinto "${EROOT}/usr/share/doc/${PF}/examples"
+		insinto "/usr/share/doc/${PF}/examples"
 		doins -r examples/* || die
 	fi
 	if use doc; then
-		insinto "${EROOT}/usr/share/doc/${PF}/editor"
+		insinto "/usr/share/doc/${PF}/editor"
 		doins -r editor || die
 		cd docs/html
 		dohtml -r developer.html DONORS.pod.html index.html ops.html parrotbug.html pdds.html \

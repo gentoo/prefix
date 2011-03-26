@@ -70,11 +70,11 @@ src_install() {
 	emake -j1 install-dev DESTDIR="${D}" DOC_DIR="${EROOT}/usr/share/doc/${PF}" || die
 	dodoc CREDITS DEPRECATED.pod DONORS.pod NEWS PBC_COMPAT PLATFORMS RESPONSIBLE_PARTIES TODO || die
 	if use examples; then
-		insinto "${EROOT}/usr/share/doc/${PF}/examples"
+		insinto "/usr/share/doc/${PF}/examples"
 		doins -r examples/* || die
 	fi
 	if use doc; then
-		insinto "${EROOT}/usr/share/doc/${PF}/editor"
+		insinto "/usr/share/doc/${PF}/editor"
 		doins -r editor || die
 		cd docs/html
 		dohtml -r developer.html DONORS.pod.html index.html ops.html parrotbug.html pdds.html \
