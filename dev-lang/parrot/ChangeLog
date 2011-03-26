@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/parrot
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/ChangeLog,v 1.40 2011/01/19 12:59:31 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/ChangeLog,v 1.42 2011/03/26 09:39:08 grobian Exp $
+
+  26 Mar 2011; Fabian Groffen <grobian@gentoo.org> parrot-2.6.0.ebuild,
+  parrot-2.7.0.ebuild, parrot-2.9.1.ebuild, parrot-2.11.0.ebuild,
+  parrot-3.0.0.ebuild:
+  make install: don't use ${ROOT} for install locations
+  configure: don't use ${ROOT} for install locations
+  offset: don't use ED with DESTDIR in make install
+  insinto: don't use ${ROOT} with helpers
 
 *parrot-3.0.0 (19 Jan 2011)
 

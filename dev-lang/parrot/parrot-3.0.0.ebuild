@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/parrot-3.0.0.ebuild,v 1.1 2011/01/19 12:59:31 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/parrot-3.0.0.ebuild,v 1.3 2011/03/26 09:39:08 grobian Exp $
 
 EAPI=3
 
@@ -69,7 +69,7 @@ src_test() {
 }
 
 src_install() {
-	emake -j1 install-dev DESTDIR="${D}" DOC_DIR="${EROOT}/usr/share/doc/${PF}" || die
+	emake -j1 install-dev DESTDIR="${D}" DOC_DIR="${EPREFIX}/usr/share/doc/${PF}" || die
 	dodoc CREDITS DEPRECATED.pod DONORS.pod NEWS PBC_COMPAT PLATFORMS RESPONSIBLE_PARTIES TODO || die
 	if use examples; then
 		insinto "/usr/share/doc/${PF}/examples"
