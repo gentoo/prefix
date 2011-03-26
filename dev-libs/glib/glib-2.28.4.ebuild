@@ -50,9 +50,6 @@ src_prepare() {
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.26.1-solaris-thread.patch
 
-	# Fix compiling on Solaris -- applied upstream
-	epatch "${FILESDIR}"/${PN}-2.26.1-solaris.patch
-
 	# Don't fail gio tests when ran without userpriv, upstream bug 552912
 	# This is only a temporary workaround, remove as soon as possible
 	epatch "${FILESDIR}/${PN}-2.18.1-workaround-gio-test-failure-without-userpriv.patch"
