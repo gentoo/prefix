@@ -1,10 +1,11 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.26.1.ebuild,v 1.3 2011/01/11 16:23:49 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.28.4.ebuild,v 1.1 2011/03/22 00:50:05 nirbheek Exp $
 
 EAPI="3"
+PYTHON_DEPEND="2"
 
-inherit autotools gnome.org libtool eutils flag-o-matic pax-utils
+inherit autotools gnome.org libtool eutils flag-o-matic pax-utils python virtualx
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
@@ -21,17 +22,20 @@ RDEPEND="virtual/libiconv
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
 	>=sys-devel/gettext-0.11
-	>=dev-util/gtk-doc-am-1.13
 	x86-interix? ( sys-libs/itx-bind )
 	doc? (
 		>=dev-libs/libxslt-1.0
 		>=dev-util/gtk-doc-1.13
 		~app-text/docbook-xml-dtd-4.1.2 )
 	test? ( >=sys-apps/dbus-1.2.14 )"
-PDEPEND="introspection? ( dev-libs/gobject-introspection )"
+PDEPEND="introspection? ( dev-libs/gobject-introspection )
+	!<gnome-base/gvfs-1.6.4-r990" # Earlier versions do not work with glib
 
-# eautoreconf needs gtk-doc-am
 # XXX: Consider adding test? ( sys-devel/gdb ); assert-msg-test tries to use it
+
+pkg_setup() {
+	python_set_active_version 2
+}
 
 src_prepare() {
 	if use ia64 ; then
@@ -45,6 +49,9 @@ src_prepare() {
 
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.26.1-solaris-thread.patch
+
+	# Fix compiling on Solaris -- applied upstream
+	epatch "${FILESDIR}"/${PN}-2.26.1-solaris.patch
 
 	# Don't fail gio tests when ran without userpriv, upstream bug 552912
 	# This is only a temporary workaround, remove as soon as possible
@@ -63,9 +70,6 @@ src_prepare() {
 	# Fix test failure when upgrading from 2.22 to 2.24, upstream bug 621368
 	epatch "${FILESDIR}/${PN}-2.24-assert-test-failure.patch"
 
-	# skip tests that require writing to /root/.dbus, upstream bug ???
-	epatch "${FILESDIR}/${PN}-2.25-skip-tests-with-dbus-keyring.patch"
-
 	# Do not try to remove files on live filesystem, upstream bug #619274
 	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
 		-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
@@ -79,8 +83,6 @@ src_prepare() {
 		sed 's/^\(SUBDIRS =.*\)tests\(.*\)$/\1\2/' -i Makefile.am Makefile.in \
 			|| die "sed failed"
 	fi
-
-#	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
 
 	# make default sane for us
 	if use prefix ; then
@@ -118,7 +120,7 @@ src_prepare() {
 #		AT_M4DIR="m4macros" eautoreconf
 	fi
 
-	# Needed for the punt-python-check patch.
+	# Needed for the punt-python-check patch, disabling timeout test
 	# Also needed to prevent croscompile failures, see bug #267603
 	eautoreconf
 
@@ -154,12 +156,6 @@ src_configure() {
 	local mythreads=posix
 	[[ ${CHOST} == *-winnt* ]] && mythreads=win32
 
-	if [[ ${CHOST} == *-mint* ]] ; then
-		myconf="${myconf} --disable-threads"
-	else
-		myconf="${myconf} --with-threads=${mythreads}"
-	fi
-
 	# without this, AIX defines EEXIST and ENOTEMPTY to the same value
 	[[ ${CHOST} == *-aix* ]] && append-cppflags -D_LINUX_SOURCE_COMPAT
 
@@ -173,6 +169,7 @@ src_configure() {
 		  $(use_enable static-libs static) \
 		  --enable-regex \
 		  --with-pcre=internal \
+		  --with-threads=${mythreads} \
 		  --with-xml-catalog="${EPREFIX}"/etc/xml/catalog
 }
 
@@ -196,7 +193,13 @@ src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS
 	export XDG_CONFIG_DIRS="${EPREFIX}"/etc/xdg
 	export XDG_DATA_DIRS="${EPREFIX}"/usr/local/share:"${EPREFIX}"/usr/share
+	export G_DBUS_COOKIE_SHA1_KEYRING_DIR="${T}/temp"
 	export XDG_DATA_HOME="${T}"
+	unset GSETTINGS_BACKEND # bug 352451
+
+	# Related test is a bit nitpicking
+	mkdir "$G_DBUS_COOKIE_SHA1_KEYRING_DIR"
+	chmod 0700  "$G_DBUS_COOKIE_SHA1_KEYRING_DIR"
 
 	# Hardened: gdb needs this, bug #338891
 	if host-is-pax ; then
@@ -204,7 +207,8 @@ src_test() {
 			|| die "Hardened adjustment failed"
 	fi
 
-	emake check || die "tests failed"
+	# Need X for dbus-launch session X11 initialization
+	Xemake check || die "tests failed"
 }
 
 pkg_preinst() {

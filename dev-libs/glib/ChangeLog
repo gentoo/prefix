@@ -1,6 +1,65 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.439 2011/01/25 18:19:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.453 2011/03/22 18:51:01 ranger Exp $
+
+  22 Mar 2011; Brent Baude <ranger@gentoo.org> glib-2.26.1-r1.ebuild:
+  Marking glib-2.26.1-r1 ppc stable for bug 353436
+
+*glib-2.28.4 (22 Mar 2011)
+
+  22 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> -glib-2.24.2.ebuild,
+  -glib-2.26.1.ebuild, -glib-2.28.2.ebuild, +glib-2.28.4.ebuild:
+  Bump to 2.28.4: doc fixes, translation updates
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> glib-2.26.1-r1.ebuild:
+  ppc64 stable wrt #353436
+
+*glib-2.28.3 (14 Mar 2011)
+
+  14 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> -glib-2.28.1.ebuild,
+  +glib-2.28.3.ebuild:
+  Bump to 2.28.3, remove 2.28.1
+
+  12 Mar 2011; Raúl Porcel <armin76@gentoo.org> glib-2.26.1-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #353436
+
+*glib-2.28.2 (08 Mar 2011)
+
+  08 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> -glib-2.28.0.ebuild,
+  +glib-2.28.2.ebuild:
+  Bump to 2.28.2, remove 2.28.0
+
+  07 Mar 2011; Jeroen Roovers <jer@gentoo.org> glib-2.26.1-r1.ebuild:
+  Stable for HPPA (bug #353436).
+
+  24 Feb 2011; Thomas Kahle <tomka@gentoo.org> glib-2.26.1-r1.ebuild:
+  x86 stable per bug 353436
+
+  23 Feb 2011; Markos Chandras <hwoarang@gentoo.org> glib-2.26.1-r1.ebuild:
+  Stable on amd64 wrt bug #353436
+
+*glib-2.28.1 (19 Feb 2011)
+
+  19 Feb 2011; Nirbheek Chauhan <nirbheek@gentoo.org> +glib-2.28.1.ebuild:
+  Bump to 2.28.1, bugfix release
+
+*glib-2.28.0 (08 Feb 2011)
+
+  08 Feb 2011; Nirbheek Chauhan <nirbheek@gentoo.org> -glib-2.27.93.ebuild,
+  +glib-2.28.0.ebuild:
+  Bump to 2.28.0, remove 2.27.x. Various bugfixes, no ebuild changes
+
+*glib-2.27.93 (04 Feb 2011)
+
+  04 Feb 2011; Gilles Dartiguelongue <eva@gentoo.org> +glib-2.27.93.ebuild:
+  Version bump for early new glib testing.
+
+  03 Feb 2011; Pacho Ramos <pacho@gentoo.org> glib-2.26.1-r1.ebuild:
+  Disable dtrace and systemtap supports until bug #351931 is solved instead of
+  letting them be automagic.
+
+  30 Jan 2011; Raúl Porcel <armin76@gentoo.org> glib-2.24.2.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #348987
 
   25 Jan 2011; Jeroen Roovers <jer@gentoo.org> glib-2.24.2.ebuild:
   Stable for HPPA (bug #348987).
