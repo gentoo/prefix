@@ -1,7 +1,7 @@
-http://bugs.gentoo.org/show_bug.cgi?id=302144
-
-Only the install_name part is left, and specific to Gentoo Prefix being
-strict about them being right.
+- set correct DYLD_LIBARY_PATH from build-system (instead of external
+  from ebuild)
+- don't probe for Fink and MacPorts libraries, we only want Gentoo
+  Prefix' libs
 
 --- parrot-2.3.0/config/gen/makefiles/root.in
 +++ parrot-2.3.0/config/gen/makefiles/root.in
@@ -26,11 +26,3 @@ strict about them being right.
      for my $flag ( keys %$flagsref ) {
          $flagsref->{$flag} =~ s/^\s+//;
      }
-@@ -89,6 +86,7 @@
-             . '"'
-             . $conf->data->get('libdir')
-             . '/libparrot'
-+            . ".$version"
-             . $conf->data->get('share_ext')
-             . '"'
-     );
