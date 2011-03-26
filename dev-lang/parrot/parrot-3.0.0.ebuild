@@ -56,7 +56,6 @@ src_configure() {
 
 src_compile() {
 	export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}"${S}"/blib/lib
-	export DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH:+$DYLD_LIBRARY_PATH:}"${S}"/blib/lib
 	# occasionally dies in parallel make
 	emake -j1 || die
 	if use doc ; then
