@@ -4,6 +4,8 @@
 
 EAPI="2"
 
+inherit eutils
+
 DESCRIPTION="IPC library used by GnuPG and GPGME"
 HOMEPAGE="http://www.gnupg.org/related_software/libassuan/index.en.html"
 SRC_URI="mirror://gnupg/${PN}/${P}.tar.bz2"
@@ -15,6 +17,10 @@ IUSE="static-libs"
 
 DEPEND=">=dev-libs/libgpg-error-1.8"
 RDEPEND="${DEPEND}"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-darwin.patch
+}
 
 src_configure() {
 	econf $(use_enable static-libs static)
