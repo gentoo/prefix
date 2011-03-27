@@ -672,6 +672,7 @@ media-libs/musicbrainz
 media-libs/mutagen
 media-libs/openal
 media-libs/opengl-apple
+media-libs/phonon
 media-libs/portaudio
 media-libs/qimageblitz
 media-libs/raptor
@@ -703,7 +704,6 @@ media-sound/mpg123
 media-sound/mpg321
 media-sound/mt-daapd
 media-sound/musepack-tools
-# media-sound/phonon  # not sure what happened with this one
 media-sound/pulseaudio
 media-sound/shell-fm
 media-sound/shntool
