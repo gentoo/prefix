@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.156 2010/11/28 21:55:54 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.157 2011/03/26 23:44:43 jmbsvicetto Exp $
 
 # @ECLASS: mysql.eclass
 # @MAINTAINER:
@@ -145,6 +145,10 @@ RDEPEND="${DEPEND}
 		!prefix? ( !minimal? ( dev-db/mysql-init-scripts ) )
 		selinux? ( sec-policy/selinux-mysql )"
 
+if [ "${EAPI:-0}" = "2" ]; then
+	DEPEND="${DEPEND} static? ( sys-libs/ncurses[static-libs] )"
+fi
+
 # compile-time-only
 mysql_version_is_at_least "5.1" \
 || DEPEND="${DEPEND} berkdb? ( sys-apps/ed )"
@@ -152,6 +156,12 @@ mysql_version_is_at_least "5.1" \
 # compile-time-only
 mysql_version_is_at_least "5.1.12" \
 && DEPEND="${DEPEND} >=dev-util/cmake-2.4.3"
+
+[[ "${PN}" == "mariadb" ]] \
+&& mysql_version_is_at_least "5.2" \
+&& DEPEND="${DEPEND} oqgraph? ( >=dev-libs/boost-1.40.0 )"
+#SphinxSE is included but is not available in 5.2.4 due to a missing plug.in file
+#	sphinx? ( app-misc/sphinx )"
 
 # dev-perl/DBD-mysql is needed by some scripts installed by MySQL
 PDEPEND="perl? ( >=dev-perl/DBD-mysql-2.9004 )"
@@ -240,6 +250,12 @@ mysql_version_is_at_least "5.1" \
 
 [[ "${PN}" == "mariadb" ]] \
 && IUSE="${IUSE} libevent"
+
+[[ "${PN}" == "mariadb" ]] \
+&& mysql_version_is_at_least "5.2" \
+&& IUSE="${IUSE} oqgraph"
+#SphinxSE is included but is not available in 5.2.4 due to a missing plug.in file
+#&& IUSE="${IUSE} oqgraph sphinx"
 
 # MariaDB has integrated PBXT
 # PBXT_VERSION means that we have a PBXT patch for this PV
@@ -627,16 +643,17 @@ configure_51() {
 	if use extraengine ; then
 		# like configuration=max-no-ndb, archive and example removed in 5.1.11
 		# not added yet: ibmdb2i
-		# Not supporting as examples: example,daemon_example,ftexample 
+		# Not supporting as examples: example,daemon_example,ftexample
 		plugins_sta="${plugins_sta} partition"
-		plugins_dyn="${plugins_sta} federated"
 
 		if [[ "${PN}" != "mariadb" ]] ; then
 			elog "Before using the Federated storage engine, please be sure to read"
 			elog "http://dev.mysql.com/doc/refman/5.1/en/federated-limitations.html"
+			plugins_dyn="${plugins_sta} federated"
 		else
 			elog "MariaDB includes the FederatedX engine. Be sure to read"
 			elog "http://askmonty.org/wiki/index.php/Manual:FederatedX_storage_engine"
+			plugins_dyn="${plugins_sta} federatedx"
 		fi
 	else
 		plugins_dis="${plugins_dis} partition federated"
@@ -664,7 +681,15 @@ configure_51() {
 	if [[ "${PN}" == "mariadb" ]] ; then
 		# In MariaDB, InnoDB is packaged in the xtradb directory, so it's not
 		# caught above.
-		plugins_sta="${plugins_sta} maria"
+		# This is not optional, without it several upstream testcases fail.
+		# Also strongly recommended by upstream.
+		if [[ "${PV}" < "5.2.0" ]] ; then
+			myconf="${myconf} --with-maria-tmp-tables"
+			plugins_sta="${plugins_sta} maria"
+		else
+			myconf="${myconf} --with-aria-tmp-tables"
+			plugins_sta="${plugins_sta} aria"
+		fi
 
 		[ -e "${S}"/storage/innobase ] || [ -e "${S}"/storage/xtradb ] ||
 			die "The ${P} package doesn't provide innobase nor xtradb"
@@ -674,9 +699,16 @@ configure_51() {
 		done
 
 		myconf="${myconf} $(use_with libevent)"
-		# This is not optional, without it several upstream testcases fail.
-		# Also strongly recommended by upstream.
-		myconf="${myconf} --with-maria-tmp-tables"
+
+		if mysql_version_is_at_least "5.2" ; then
+			#This should include sphinx, but the 5.2.4 archive forgot the plug.in file
+			#for i in oqgraph sphinx ; do
+			for i in oqgraph ; do
+				use ${i} \
+				&& plugins_dyn="${plugins_dyn} ${i}" \
+				|| plugins_dis="${plugins_dis} ${i}"
+			done
+		fi
 	fi
 
 	if pbxt_available && [[ "${PBXT_NEWSTYLE}" == "1" ]]; then
@@ -754,6 +786,15 @@ mysql_pkg_setup() {
 		fi
 	fi
 
+	# bug 350844
+	case "${EAPI:-0}" in
+		0 | 1)
+			if use static && !built_with_use sys-libs/ncurses static-libs; then
+				die "To build MySQL statically you need to enable static-libs for sys-libs/ncurses"
+			fi
+			;;
+	esac
+
 	# Check for USE flag problems in pkg_setup
 	if use static && use ssl ; then
 		M="MySQL does not support being built statically with SSL support enabled!"
@@ -800,7 +841,7 @@ mysql_pkg_setup() {
 		GCC_VER=$(gcc-version)
 		case ${CHOST}:${GCC_VER} in
 			*-darwin*:4.*) : ;; # bug #310615
-			*:2*|*:3*|*:4.0|*:4.1|*:4.2) 
+			*:2*|*:3*|*:4.0|*:4.1|*:4.2)
 			eerror "Some releases of MySQL required a very new GCC, and then"
 			eerror "later release relaxed that requirement again. Either pick a"
 			eerror "MySQL >=5.0.87, or use a newer GCC."
@@ -905,7 +946,7 @@ mysql_src_prepare() {
 		popd >/dev/null
 	fi
 
-	if pbxt_available && [[ "${PBXT_NEWSTYLE}" == "1" ]] && use pbxt ; then
+	if pbxt_patch_available && [[ "${PBXT_NEWSTYLE}" == "1" ]] && use pbxt ; then
 		einfo "Adding storage engine: PBXT"
 		pushd "${S}"/storage >/dev/null
 		i='pbxt'
@@ -1284,7 +1325,6 @@ mysql_pkg_config() {
 
 	local pwd1="a"
 	local pwd2="b"
-	local MYSQL_ROOT_PASSWORD=''
 	local maxtry=15
 
 	if [ -z "${MYSQL_ROOT_PASSWORD}" -a -f "${EROOT}/root/.my.cnf" ]; then
@@ -1304,8 +1344,8 @@ mysql_pkg_config() {
 
 	if [ -z "${MYSQL_ROOT_PASSWORD}" ]; then
 
-		einfo "Please provide a password for the mysql 'root' user now,"
-		einfo "or in the MYSQL_ROOT_PASSWORD env var."
+		einfo "Please provide a password for the mysql 'root' user now, in the"
+		einfo "MYSQL_ROOT_PASSWORD env var or through the /root/.my.cnf file."
 		ewarn "Avoid [\"'\\_%] characters in the password"
 		read -rsp "    >" pwd1 ; echo
 

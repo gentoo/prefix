@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.138 2011/03/23 19:32:57 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.139 2011/03/26 00:43:12 serkan Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1805,7 +1805,7 @@ ejunit_() {
 # @ebuild-function ejunit
 #
 # Junit wrapper function. Makes it easier to run the tests and checks for
-# dev-java/junit in DEPEND. Launches the tests using junit.textui.TestRunner.
+# dev-java/junit in DEPEND. Launches the tests using org.junit.runner.JUnitCore.
 #
 # Examples:
 # ejunit -cp build/classes org.blinkenlights.jid3.test.AllTests
