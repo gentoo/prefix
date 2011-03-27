@@ -1,6 +1,19 @@
 # ChangeLog for app-text/xpdf
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.189 2010/02/11 17:03:17 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.192 2011/02/17 13:50:24 aballier Exp $
+
+  17 Feb 2011; Alexis Ballier <aballier@gentoo.org> xpdf-3.02-r4.ebuild,
+  +files/xpdf-3.02-poppler-0.16.patch:
+  fix build with poppler 0.16, bug #349942
+
+*xpdf-9999 (15 Jan 2011)
+
+  15 Jan 2011; Tomáš Chvátal <scarabeus@gentoo.org> +xpdf-9999.ebuild:
+  Add basic xpdf poppler live ebuild. So people might help upstream with
+  development. Per bug #323469.
+
+  10 Oct 2010; Ulrich Mueller <ulm@gentoo.org> xpdf-3.02-r4.ebuild:
+  Fix openmotif dependency.
 
   11 Feb 2010; Jeroen Roovers <jer@gentoo.org> xpdf-3.02-r4.ebuild:
   Stable for HPPA (bug #303461).
