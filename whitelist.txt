@@ -703,7 +703,7 @@ media-sound/mpg123
 media-sound/mpg321
 media-sound/mt-daapd
 media-sound/musepack-tools
-media-sound/phonon
+# media-sound/phonon  # not sure what happened with this one
 media-sound/pulseaudio
 media-sound/shell-fm
 media-sound/shntool
