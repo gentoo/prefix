@@ -715,6 +715,7 @@ media-sound/vorbis-tools
 media-video/asfrecorder
 media-video/dvdbackup
 media-video/kdenlive
+media-video/libav
 media-video/lsdvd
 media-video/mpeg-tools
 media-video/mpeg2vidcodec
