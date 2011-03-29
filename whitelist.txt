@@ -274,6 +274,8 @@ dev-db/maatkit
 dev-db/mysql
 dev-db/mysql++
 dev-db/mysql-workbench
+dev-db/postgresql-base
+dev-db/postgresql-server
 dev-db/redis
 dev-db/sqlite
 dev-db/tokyocabinet
