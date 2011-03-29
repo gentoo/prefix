@@ -1,71 +1,74 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r2.ebuild,v 1.17 2010/07/31 19:14:08 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.3-r1.ebuild,v 1.6 2011/03/18 21:52:31 vapier Exp $
 
-EAPI="2"
+EAPI="3"
+WANT_AUTOMAKE="none"
 
-inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
+inherit autotools eutils flag-o-matic multilib python toolchain-funcs
 
-MY_P="Python-${PV}"
+if [[ "${PV}" == *_pre* ]]; then
+	inherit subversion
 
-PATCHSET_REVISION="4"
+	ESVN_PROJECT="python"
+	ESVN_REPO_URI="http://svn.python.org/projects/python/branches/release31-maint"
+	ESVN_REVISION=""
+else
+	MY_PV="${PV%_p*}"
+	MY_P="Python-${MY_PV}"
+fi
+
+PATCHSET_REVISION="1"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
-SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
+if [[ "${PV}" == *_pre* ]]; then
+	SRC_URI=""
+else
+	SRC_URI="http://www.python.org/ftp/python/${MY_PV}/${MY_P}.tar.bz2
+		mirror://gentoo/python-gentoo-patches-${MY_PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
+fi
 
 LICENSE="PSF-2.2"
-SLOT="2.6"
+SLOT="3.1"
 PYTHON_ABI="${SLOT}"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
-
-# NOTE: dev-python/{elementtree,celementtree,pysqlite}
-#       do not conflict with the ones in python proper. - liquidx
+# this ebuild isn't ready/verified/up-to-date at all
+#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 RDEPEND=">=app-admin/eselect-python-20091230
 		>=sys-libs/zlib-1.1.3
-		!m68k-mint? ( virtual/libffi )
+		virtual/libffi
 		virtual/libintl
 		!build? (
-			berkdb? ( || (
-				sys-libs/db:4.7
-				sys-libs/db:4.6
-				sys-libs/db:4.5
-				sys-libs/db:4.4
-				sys-libs/db:4.3
-				sys-libs/db:4.2
-			) )
 			gdbm? ( sys-libs/gdbm )
 			ncurses? (
 				>=sys-libs/ncurses-5.2
 				readline? ( >=sys-libs/readline-4.1 )
 			)
-			sqlite? ( >=dev-db/sqlite-3 )
+			sqlite? ( >=dev-db/sqlite-3.3.3:3 )
 			ssl? ( dev-libs/openssl )
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
-		)
-		doc? ( dev-python/python-docs:${SLOT} )"
+		)"
 DEPEND="${RDEPEND}
+		$([[ "${PV}" == *_pre* ]] && echo "=${CATEGORY}/${PN}-${PV%%.*}*")
 		dev-util/pkgconfig
+		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] && echo "doc? ( dev-python/sphinx )")
 		!sys-devel/gcc[libffi]"
-RDEPEND+=" !build? ( app-misc/mime-types )"
+RDEPEND+=" !build? ( app-misc/mime-types )
+		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] || echo "doc? ( dev-python/python-docs:${SLOT} )")"
 PDEPEND="app-admin/python-updater"
 
 PROVIDE="virtual/python"
 
-S="${WORKDIR}/${MY_P}"
+if [[ "${PV}" != *_pre* ]]; then
+	S="${WORKDIR}/${MY_P}"
+fi
 
 pkg_setup() {
 	python_pkg_setup
-
-	if use berkdb; then
-		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
-		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
-		ewarn "module provided by dev-python/bsddb3 which supports both Python 2 and Python 3."
-	fi
+	die "this ebuild is BOOM-ware; it doesn't work, isn't up-to-date, and only exists to silence the update scripts"
 }
 
 src_prepare() {
@@ -74,49 +77,37 @@ src_prepare() {
 	rm -fr Modules/_ctypes/libffi*
 	rm -fr Modules/zlib
 
-	if ! tc-is-cross-compiler; then
-		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
+	if [[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+_pre ]]; then
+		if grep -Eq '#define PY_RELEASE_LEVEL[[:space:]]+PY_RELEASE_LEVEL_FINAL' Include/patchlevel.h; then
+			# Update micro version, release level and version string.
+			local micro_version="${PV%_pre*}"
+			micro_version="${micro_version##*.}"
+			local version_string="${PV%.*}.$((${micro_version} - 1))+"
+			sed \
+				-e "s/\(#define PY_MICRO_VERSION[[:space:]]\+\)[^[:space:]]\+/\1${micro_version}/" \
+				-e "s/\(#define PY_RELEASE_LEVEL[[:space:]]\+\)[^[:space:]]\+/\1PY_RELEASE_LEVEL_ALPHA/" \
+				-e "s/\(#define PY_VERSION[[:space:]]\+\"\)[^\"]\+\(\"\)/\1${version_string}\2/" \
+				-i Include/patchlevel.h || die "sed failed"
+		fi
 	fi
 
-	# hardcoding GNU specifics breaks platforms not using GNU binutils
-	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
-		*"GNU Binutils"*) # GNU as with noexecstack support
-			:
-		;;
-		*)
-			EPATCH_EXCLUDE=07_all_ctypes_execstack.patch
-		;;
-	esac
-	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+	local excluded_patches
+	if ! tc-is-cross-compiler; then
+		excluded_patches="*_all_crosscompile.patch"
+	fi
 
-	# apply before Gentoo libdir comes into effect
-	# these patches get rid of unwanted looking around in the host OS
-	epatch "${FILESDIR}"/${PN}-2.6.5-readline-prefix.patch
-	epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-use-first-bsddb-found.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
+	# stupidos hardcoding GNU specifics
+	[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* || ${CHOST} == *bsd* ]] || \
+		excluded_patches+=" 21_all_ctypes-execstack.patch"
 
-	# Darwin/OSX Framework related patches and tweaks
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-no-special-darwin-libffi.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-darwin-no-framework-lookup.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-mac.patch
-	epatch "${FILESDIR}"/${PN}-2.6.5-mac-just-prefix.patch # injects @@LIBDIR
-	# need this to have _NSGetEnviron being used, which by default isn't, also
-	# in a non-Framework build (use !aqua)   upstream doesn't build like this
-	[[ ${CHOST} == *-darwin* ]] && use !aqua && \
-		append-flags -DWITH_NEXT_FRAMEWORK
-	# this activates stuff from python-2.6.2-mac.patch (2.7+ has this fixed)
-	sed -i -e "s:@@APPLICATIONS_DIR@@:${EPREFIX}/Applications:g" \
-		Mac/Makefile.in \
-		Mac/IDLE/Makefile.in \
-		Mac/Tools/Doc/setup.py \
-		Mac/PythonLauncher/Makefile.in || die
-	# we need to set this to prevent the framework path to be used in an OSX
-	# Framework build, which causes misc unwanted effects in our UNIX-savvy env
-	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}/usr"':' \
-		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}/usr"':' \
-		Makefile.pre.in || die
+	local patchset_dir
+	if [[ "${PV}" == *_pre* ]]; then
+		patchset_dir="${FILESDIR}/${SLOT}-${PATCHSET_REVISION}"
+	else
+		patchset_dir="${WORKDIR}/${MY_PV}"
+	fi
+
+	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" epatch "${patchset_dir}"
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -127,17 +118,36 @@ src_prepare() {
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
-	# Fix os.utime() on hppa. utimes it not supported but unfortunately reported as working - gmsoft (22 May 04)
-	# PLEASE LEAVE THIS FIX FOR NEXT VERSIONS AS IT'S A CRITICAL FIX !!!
-	[[ "${ARCH}" == "hppa" ]] && sed -e "s/utimes //" -i "${S}/configure"
-
 	if ! use wininst; then
 		# Remove Microsoft Windows executables.
 		rm Lib/distutils/command/wininst-*.exe
 	fi
 
+	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
+	use prefix && epatch "${FILESDIR}"/${P}-use-first-bsddb-found.patch
+	epatch "${FILESDIR}"/${P}-readline-prefix.patch
+
 	# build static for mint
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.6.5-mint.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-mint.patch
+
+	# python defaults to using .so files, however they are bundles
+	# need this to have _NSGetEnviron being used, which by default isn't...
+	[[ ${CHOST} == *-darwin* ]] && \
+		append-flags -DWITH_NEXT_FRAMEWORK
+	# but don't want framework path resulution stuff
+	epatch "${FILESDIR}"/${P}-darwin-no-framework-lookup.patch
+	# for Mac weenies
+	epatch "${FILESDIR}"/${P}-mac.patch
+	epatch "${FILESDIR}"/${P}-mac-64bits.patch
+	epatch "${FILESDIR}"/${P}-mac-just-prefix.patch
+	sed -i -e "s:@@APPLICATIONS_DIR@@:${EPREFIX}/Applications:g" \
+		Mac/Makefile.in \
+		Mac/IDLE/Makefile.in \
+		Mac/Tools/Doc/setup.py \
+		Mac/PythonLauncher/Makefile.in || die
+	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}"':' \
+		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}"':' \
+		Makefile.pre.in || die
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
@@ -145,59 +155,50 @@ src_prepare() {
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
 	# make it compile on IRIX as well
-	epatch "${FILESDIR}"/${PN}-2.6.5-irix.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
 	# and generate a libpython2.6.so
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
-	# AIX 5.2 does not support sem_timedwait for multiprocessing module
-	epatch "${FILESDIR}"/${PN}-2.6-aix-multiprocessing.patch
+	# don't try to build antique stuff
+	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
 	# this fails to compile on OpenSolaris at least, do we need it?
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-sunaudiodev.patch
-	# 64-bits Solaris 8-10 have a missing libcrypt symlink
-	epatch "${FILESDIR}"/${PN}-2.6.2-solaris64-crypt.patch
-	# fixes compilation on more recent OpenSolaris, from them
-	epatch "${FILESDIR}"/${PN}-2.6.4-netpacket-solaris.patch
+
 	# http://bugs.python.org/issue6308
-	epatch "${FILESDIR}"/${PN}-2.6.2-termios-noqnx.patch
+	epatch "${FILESDIR}"/${P}-termios-noqnx.patch
+	# http://bugs.python.org/issue6163
+	epatch "${FILESDIR}"/${P}-hpuxgcc.patch
+
 	# build shared library on aix #278845
-	epatch "${FILESDIR}"/${PN}-2.6.2-aix-shared.patch
-	# hpux before 11.31
-	epatch "${FILESDIR}"/${PN}-2.6.2-missing-SEM_FAILED.patch
-	# http://bugs.python.org/issue4026
-	epatch "${FILESDIR}"/${P}-aix-fcntl.patch
+	epatch "${FILESDIR}"/${P}-aix-shared.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
 	if [[ ${CHOST} == *-interix* ]] ; then
-		epatch "${FILESDIR}"/${PN}-2.6.5-interix-noffi.patch
+		epatch "${FILESDIR}"/${PN}-2.6.1-interix.patch
 		# this one could be applied unconditionally, but to keep it
 		# clean, I do it together with the conditional one.
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
 		# some more modules fixed (_multiprocessing, dl)
-		epatch "${FILESDIR}"/${PN}-2.6.5-interix-modules.patch
-		# -r2 because of 12_all_check_availability_of_nis_headers
-		epatch "${FILESDIR}"/${PN}-2.6.4-r2-interix-nis.patch
+		epatch "${FILESDIR}"/${P}-interix-modules.patch
+		epatch "${FILESDIR}"/${P}-interix-nis.patch
 	fi
 
-	# Fix OtherFileTests.testStdin() not to assume
-	# that stdin is a tty for bug #248081.
-	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
+	if [[ "${PV}" == *_pre* ]]; then
+		sed -e "s/\(-DSVNVERSION=\).*\( -o\)/\1\\\\\"${ESVN_REVISION}\\\\\"\2/" -i Makefile.pre.in || die "sed failed"
+	fi
 
 	eautoreconf
 }
 
 src_configure() {
-	# Disable extraneous modules with extra dependencies.
 	if use build; then
-		export PYTHON_DISABLE_MODULES="dbm _bsddb gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
+		# Disable extraneous modules with extra dependencies.
+		export PYTHON_DISABLE_MODULES="gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
 		export PYTHON_DISABLE_SSL="1"
 	else
-		# dbm module can be linked against berkdb or gdbm.
-		# Defaults to gdbm when both are enabled, #204343.
 		local disable
-		use berkdb   || use gdbm || disable+=" dbm"
-		use berkdb   || disable+=" _bsddb"
 		use gdbm     || disable+=" gdbm"
 		use ncurses  || disable+=" _curses _curses_panel"
 		use readline || disable+=" readline"
@@ -205,7 +206,7 @@ src_configure() {
 		use ssl      || export PYTHON_DISABLE_SSL="1"
 		use tk       || disable+=" _tkinter"
 		use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
-		use x64-macos && disable+=" Nav _Qt" # Carbon
+		use x64-macos && disable+=" Nav" # Carbon
 		export PYTHON_DISABLE_MODULES="${disable}"
 
 		if ! use xml; then
@@ -233,14 +234,6 @@ src_configure() {
 		use hardened && replace-flags -O3 -O2
 	fi
 
-	# http://bugs.gentoo.org/show_bug.cgi?id=302137
-	if [[ ${CHOST} == powerpc-*-darwin* ]] && \
-		( is-flag "-mtune=*" || is-flag "-mcpu=*" ) ;
-	then
-		replace-flags -O2 -O3
-		replace-flags -Os -O3  # comment #14
-	fi
-
 	if tc-is-cross-compiler; then
 		OPT="-O1" CFLAGS="" LDFLAGS="" CC="" \
 		./configure --{build,host}=${CBUILD} || die "cross-configure failed"
@@ -254,19 +247,27 @@ src_configure() {
 			Makefile.pre.in || die "sed failed"
 	fi
 
-	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
+	# Export CXX so it ends up in /usr/lib/python3.X/config/Makefile.
 	tc-export CXX
 
-	# Set LDFLAGS so we link modules with -lpython2.6 correctly.
-	# Needed on FreeBSD unless Python 2.6 is already installed.
+	# Set LDFLAGS so we link modules with -lpython3.1 correctly.
+	# Needed on FreeBSD unless Python 3.1 is already installed.
 	# Please query BSD team before removing this!
 	append-ldflags "-L."
+
+	local dbmliborder
+	if use gdbm; then
+		dbmliborder+="${dbmliborder:+:}gdbm"
+	fi
 
 	# python defaults to use 'cc_r' on aix
 	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-gcc=$(tc-getCC)"
 
 	# Don't include libmpc on IRIX - it is only available for 64bit MIPS4
 	[[ ${CHOST} == *-irix* ]] && export ac_cv_lib_mpc_usconfig=no
+
+	# Interix poll is broken
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 
 	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
 
@@ -284,12 +285,17 @@ src_configure() {
 		--with-fpectl \
 		$(use_enable ipv6) \
 		$(use_with threads) \
-		$( (use wide-unicode && use !aqua) && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2") \
+		$( (use wide-unicode && use !aqua) && echo "--with-wide-unicode" || echo "--without-wide-unicode") \
 		--infodir='${prefix}/share/info' \
 		--mandir='${prefix}/share/man' \
+		--with-computed-gotos \
+		--with-dbmliborder="${dbmliborder}" \
 		--with-libc="" \
-		--with-system-ffi \
-		${myconf}
+		--with-system-ffi
+}
+
+src_compile() {
+	emake EPYTHON="python${PV%%.*}" || die "emake failed"
 }
 
 src_test() {
@@ -299,22 +305,24 @@ src_test() {
 		return
 	fi
 
+	if ! use threads; then
+		ewarn "Disabling tests due to USE=\"-threads\""
+		return
+	fi
+
 	# Byte compiling should be enabled here.
 	# Otherwise test_import fails.
 	python_enable_pyc
 
 	# Skip failing tests.
-	local skip_tests="distutils httpservers minidom pyexpat sax tcl"
-
-	# test_ctypes fails with PAX kernel (bug #234498).
-	host-is-pax && skip_tests+=" ctypes"
+	local skip_tests="distutils"
 
 	for test in ${skip_tests}; do
 		mv "${S}/Lib/test/test_${test}.py" "${T}"
 	done
 
 	# Rerun failed tests in verbose mode (regrtest -w).
-	EXTRATESTOPTS="-w" emake test
+	emake test EXTRATESTOPTS="-w" < /dev/tty
 	local result="$?"
 
 	for test in ${skip_tests}; do
@@ -326,7 +334,7 @@ src_test() {
 		elog "test_${test}.py"
 	done
 
-	elog "If you'd like to run them, you may:"
+	elog "If you would like to run them, you may:"
 	elog "cd '${EPREFIX}$(python_get_libdir)/test'"
 	elog "and run the tests separately."
 
@@ -338,8 +346,6 @@ src_test() {
 }
 
 src_install() {
-	[[ -z "${ED}" ]] && ED="${D%/}${EPREFIX}/"
-
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${SLOT}/lib-dynload/
 	# do not make multiple targets in parallel when there are broken
 	# sharedmods (during bootstrap), would build them twice in parallel.
@@ -348,7 +354,6 @@ src_install() {
 
 		# let the makefiles do their thing
 		emake -j1 CC="$(tc-getCC)" DESTDIR="${D}" STRIPFLAG= frameworkinstall || die "emake frameworkinstall failed"
-		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 
 		# avoid framework incompatability, degrade to a normal UNIX lib
 		mkdir -p "${ED}"/usr/$(get_libdir)
@@ -406,8 +411,6 @@ src_install() {
 		pushd "${D}${fwdir}"/Versions/${SLOT}/include > /dev/null
 		ln -s ../../../../../include/python${SLOT} || die
 		popd > /dev/null
-		# remove now dead symlink
-		rm "${ED}"/usr/lib/python${SLOT}/config/libpython${SLOT}.a
 
 		# same for libs
 		# NOTE: can't symlink the entire dir, because a real dir already exists
@@ -455,7 +458,6 @@ src_install() {
 EOF
 	else
 		emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
-		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 	fi
 	python_clean_installation_image -q
 
@@ -463,30 +465,25 @@ EOF
 
 	# Fix collisions between different slots of Python.
 	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${SLOT}"
-	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${SLOT}"
-	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${SLOT}"
-	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${SLOT}.1"
+	mv "${ED}usr/bin/pydoc3" "${ED}usr/bin/pydoc${SLOT}"
+	mv "${ED}usr/bin/idle3" "${ED}usr/bin/idle${SLOT}"
 	rm -f "${ED}usr/bin/smtpd.py"
 
 	# http://src.opensolaris.org/source/xref/jds/spec-files/trunk/SUNWPython.spec
 	# These #defines cause problems when building c99 compliant python modules
-	# http://bugs.python.org/issue1759169
 	[[ ${CHOST} == *-solaris* ]] && dosed -e \
 		's:^\(^#define \(_POSIX_C_SOURCE\|_XOPEN_SOURCE\|_XOPEN_SOURCE_EXTENDED\).*$\):/* \1 */:' \
 		 /usr/include/python${SLOT}/pyconfig.h
 
 	if use build; then
-		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,idlelib,lib-tk,sqlite3,test}
+		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{idlelib,sqlite3,test,tkinter}
 	else
-		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/"{bsddb/test,test}
-		use berkdb || rm -fr "${ED}$(python_get_libdir)/"{bsddb,test/test_bsddb*}
+		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/test"
 		use sqlite || rm -fr "${ED}$(python_get_libdir)/"{sqlite3,test/test_sqlite*}
-		use tk || rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{idlelib,lib-tk}
+		use tk || rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{idlelib,tkinter,test/test_tk*}
 	fi
 
 	use threads || rm -fr "${ED}$(python_get_libdir)/multiprocessing"
-
-	prep_ml_includes $(python_get_includedir)
 
 	dodoc Misc/{ACKS,HISTORY,NEWS} || die "dodoc failed"
 
@@ -498,28 +495,29 @@ EOF
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 
-	# Do not install empty directory.
-	rmdir "${ED}$(python_get_libdir)/lib-old"
-
-	# fix invalid shebang /usr/local/bin/python
-	sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python' \
-		"${ED}"/usr/$(get_libdir)/python${SLOT}/cgi.py
+	# Remove .py[co] files from the installed image,
+	# python_mod_optimize will (re)generate them.  Removing
+	# them here makes sure they don't end up in binpkgs, and
+	# fixes Bad Marshalling Data in Prefix when the offset
+	# was changed with a binpkg installation to match the
+	# target offset.
+	find "${D}" -name "*.py[co]" -delete
 }
 
 pkg_preinst() {
-	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.6" && ! has_version "${CATEGORY}/${PN}:2.7"; then
+	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version ">=${CATEGORY}/${PN}-${SLOT}_alpha"; then
 		python_updater_warning="1"
 	fi
 }
 
 eselect_python_update() {
-	local eselect_python_options
-	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
+	if [[ -z "$(eselect python show)" || ! -f "${EROOT}usr/bin/$(eselect python show)" ]]; then
+		eselect python update
+	fi
 
-	# Create python2 symlink.
-	eselect python update --python2 > /dev/null
-
-	eselect python update ${eselect_python_options}
+	if [[ -z "$(eselect python show --python${PV%%.*})" || ! -f "${EROOT}usr/bin/$(eselect python show --python${PV%%.*})" ]]; then
+		eselect python update --python${PV%%.*}
+	fi
 }
 
 pkg_postinst() {
@@ -536,7 +534,12 @@ pkg_postinst() {
 		ewarn
 		ewarn "\e[1;31m************************************************************************\e[0m"
 		ewarn
-		ebeep 12
+
+		local n
+		for ((n = 0; n < 12; n++)); do
+			echo -ne "\a"
+			sleep 1
+		done
 	fi
 }
 
