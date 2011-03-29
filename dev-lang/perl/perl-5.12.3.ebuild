@@ -143,6 +143,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-5.12.3-aix-soname.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-solaris-relocation.patch
+	epatch "${FILESDIR}"/${PN}-5.8.8-solaris11.patch
 	epatch "${FILESDIR}"/${PN}-5.10.1-cleanup-paths.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-usr-local.patch
 	epatch "${FILESDIR}"/${PN}-5.10.1-hpux.patch
