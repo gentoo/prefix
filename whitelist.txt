@@ -41,6 +41,7 @@ app-admin/eselect-mesa
 app-admin/eselect-oodict
 app-admin/eselect-opengl
 app-admin/eselect-pinentry
+app-admin/eselect-postgresql
 app-admin/eselect-unison
 app-admin/eselect-vi
 app-admin/gamin
