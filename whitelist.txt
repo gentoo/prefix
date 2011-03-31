@@ -334,7 +334,7 @@ dev-libs/cloog-ppl
 dev-libs/cvector
 dev-libs/darts
 dev-libs/dotconf
-dev-libs/eggdbus
+#dev-libs/eggdbus  # gone
 dev-libs/elfutils
 dev-libs/fribidi
 dev-libs/gf2x
