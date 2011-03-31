@@ -824,7 +824,6 @@ sys-apps/baselayout-prefix
 sys-apps/darwin-miscutils
 sys-apps/dog
 sys-apps/ed
-sys-apps/eject
 sys-apps/fakeroot
 sys-apps/help2man
 sys-apps/hexdump-esr
