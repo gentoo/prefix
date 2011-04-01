@@ -91,6 +91,8 @@ src_prepare() {
 			-i pym/_emerge/AbstractEbuildProcess.py || \
 			die "failed to patch AbstractEbuildProcess.py"
 	fi
+
+	epatch "${FILESDIR}"/${PN}-2.2.01.18213-ebuildshell.patch
 }
 
 src_configure() {

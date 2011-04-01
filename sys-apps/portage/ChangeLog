@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  01 Apr 2011; Michael Haubenwallner <haubi@gentoo.org>
+  portage-2.2.01.18213.ebuild, +files/portage-2.2.01.18213-ebuildshell.patch:
+  update ebuildshell patch (#155161)
+
 *portage-2.2.01.18213 (28 Mar 2011)
 
   28 Mar 2011; Fabian Groffen <grobian@gentoo.org>

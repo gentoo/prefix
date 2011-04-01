@@ -1,0 +1,105 @@
+http://bugs.gentoo.org/show_bug.cgi?id=155161
+
+--- portage/bin/ebuild.sh.orig	2010-12-15 11:12:12.466527126 +0100
++++ portage/bin/ebuild.sh	2010-12-15 11:11:04.757062756 +0100
+@@ -59,7 +59,7 @@
+ qa_call() {
+ 	local shopts=$(shopt) OLDIFS="$IFS"
+ 	local retval
+-	"$@"
++	call-ebuildshell "$@"
+ 	retval=$?
+ 	set +e
+ 	[[ $shopts != $(shopt) ]] &&
+@@ -1765,7 +1765,7 @@
+ filter_readonly_variables() {
+ 	local x filtered_vars
+ 	local readonly_bash_vars="BASHOPTS BASHPID DIRSTACK EUID
+-		FUNCNAME GROUPS PIPESTATUS PPID SHELLOPTS UID"
++		FUNCNAME GROUPS PIPESTATUS PPID SHELLOPTS UID BASH_VERSINFO"
+ 	local bash_misc_vars="BASH BASH_.* COMP_WORDBREAKS HISTCMD
+ 		HISTFILE HOSTNAME HOSTTYPE IFS LINENO MACHTYPE OLDPWD
+ 		OPTERR OPTIND OSTYPE POSIXLY_CORRECT PS4 PWD RANDOM
+@@ -1774,8 +1774,10 @@
+ 		SANDBOX_DEBUG_LOG SANDBOX_DISABLED SANDBOX_LIB
+ 		SANDBOX_LOG SANDBOX_ON"
+ 	local misc_garbage_vars="_portage_filter_opts"
+-	filtered_vars="$readonly_bash_vars $bash_misc_vars
+-		$PORTAGE_READONLY_VARS $misc_garbage_vars"
++	filtered_vars="$readonly_bash_vars"
++	if ! hasq --filter-for-subshell $* ; then
++		filtered_vars="$filtered_vars $bash_misc_vars $PORTAGE_READONLY_VARS $misc_garbage_vars"
++	fi
+ 
+ 	# Don't filter/interfere with prefix variables unless they are
+ 	# supported by the current EAPI.
+@@ -1805,7 +1807,11 @@
+ 			LC_CTYPE LC_MESSAGES LC_MONETARY
+ 			LC_NUMERIC LC_PAPER LC_TIME"
+ 	fi
+-	if ! hasq --allow-extra-vars $* ; then
++	if hasq --filter-metadata $* ; then
++		filtered_vars="$filtered_vars $PORTAGE_READONLY_METADATA"
++	fi
++	if ! hasq --allow-extra-vars $* &&
++	   ! hasq --filter-for-subshell $* ; then
+ 		filtered_vars="
+ 			${filtered_vars}
+ 			${PORTAGE_SAVED_READONLY_VARS}
+@@ -1936,6 +1942,56 @@
+ 	unset BIN_PATH BIN BODY FUNC_SRC
+ fi
+ 
++call-ebuildshell() {
++	if ! hasq ebuildshell ${FEATURES}; then
++		"$@"
++		return $?
++	fi
++	(
++		umask 002
++		(
++			(
++				set
++				declare -p
++				declare -fp
++				shopt -p
++				if [[ ${BASH_VERSINFO[0]} == 3 ]]; then
++					export
++				fi
++			) | filter_readonly_variables --filter-for-subshell
++			echo 'declare -r $PORTAGE_READONLY_METADATA $PORTAGE_READONLY_VARS'
++			echo "export PS1='EBUILD ${PN} $1 \$ '" 
++			echo 'unset ENV'
++			echo "type $1"
++			echo "echo WANTED: $@"
++			echo "trap '"
++			echo "umask 002"
++			echo "("
++			echo "	set"
++			echo "	declare -p"
++			echo "	declare -fp"
++			echo "	shopt -p"
++			if [[ ${BASH_VERSINFO[0]} == 3 ]]; then
++				echo "	export"
++			fi
++			echo -n ")"
++			echo -n " | filter_readonly_variables --filter-metadata"
++			echo " > ${T}/ebuildshell-environment-outcome' 0"
++		) > ${T}/ebuildshell-environment
++		chown portage:portage "${T}/ebuildshell-environment" &>/dev/null
++		chmod g+w "${T}/ebuildshell-environment" &>/dev/null
++	)
++
++	rm -f "${T}/ebuildshell-environment-outcome" >&/dev/null
++
++	unset BASH_ENV
++	env -i ${BASH} --rcfile "${T}/ebuildshell-environment"  -i || die
++
++	chown portage:portage "${T}/ebuildshell-environment-outcome" &>/dev/null
++	chmod g+w "${T}/ebuildshell-environment-outcome" &>/dev/null
++	source "${T}/ebuildshell-environment-outcome" &>/dev/null
++}
++
+ # Subshell/helper die support (must export for the die helper).
+ export EBUILD_MASTER_PID=$BASHPID
+ trap 'exit 1' SIGTERM
