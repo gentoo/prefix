@@ -1,6 +1,87 @@
 # ChangeLog for x11-terms/xterm
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.293 2010/04/14 14:40:03 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.317 2011/03/28 11:39:09 ssuominen Exp $
+
+*xterm-269 (28 Mar 2011)
+
+  28 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> +xterm-269.ebuild:
+  Version bump.
+
+  07 Mar 2011; Tomáš Chvátal <scarabeus@gentoo.org> -xterm-266.ebuild:
+  old
+
+  05 Mar 2011; Raúl Porcel <armin76@gentoo.org> xterm-267.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #354237
+
+  23 Feb 2011; Jeroen Roovers <jer@gentoo.org> xterm-267.ebuild:
+  Stable for HPPA (bug #354237).
+
+  14 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> xterm-267.ebuild:
+  ppc stable wrt #344827, #354237
+
+  13 Feb 2011; Tomáš Chvátal <scarabeus@gentoo.org> -xterm-262.ebuild:
+  old
+
+  12 Feb 2011; Raúl Porcel <armin76@gentoo.org> xterm-266.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #344827
+
+  12 Feb 2011; Christian Faulhammer <fauli@gentoo.org> xterm-267.ebuild:
+  stable x86, bug 354237
+
+  12 Feb 2011; Markos Chandras <hwoarang@gentoo.org> xterm-267.ebuild:
+  Stable on amd64 wrt bug #354237
+
+  24 Jan 2011; Steve Arnold <nerdboy@gentoo.org> xterm-266.ebuild:
+  This needs to be stable since 262 is broken on ppc.
+
+*xterm-267 (02 Jan 2011)
+
+  02 Jan 2011; Samuli Suominen <ssuominen@gentoo.org> +xterm-267.ebuild:
+  Version bump.
+
+  31 Dec 2010; Jeroen Roovers <jer@gentoo.org> xterm-266.ebuild:
+  Stable for HPPA (bug #344827).
+
+  29 Dec 2010; Markus Meier <maekke@gentoo.org> xterm-266.ebuild:
+  arm stable, bug #344827
+
+  25 Dec 2010; Christian Faulhammer <fauli@gentoo.org> xterm-266.ebuild:
+  x86 stable, bug 344827
+
+  23 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> xterm-266.ebuild:
+  amd64 stable wrt #344827
+
+  19 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> xterm-266.ebuild:
+  ppc64 stable wrt #344827
+
+*xterm-266 (05 Nov 2010)
+
+  05 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> +xterm-266.ebuild:
+  Version bump.
+
+  05 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> xterm-262.ebuild:
+  ppc64 stable wrt #339640
+
+  12 Oct 2010; Raúl Porcel <armin76@gentoo.org> xterm-262.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #339640
+
+  10 Oct 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> xterm-262.ebuild:
+  x86 stable wrt bug #339640
+
+  08 Oct 2010; Markos Chandras <hwoarang@gentoo.org> xterm-262.ebuild:
+  Stable on amd64 wrt bug #339640
+
+  04 Oct 2010; Jeroen Roovers <jer@gentoo.org> xterm-262.ebuild:
+  Stable for PPC (bug #339640).
+
+  04 Oct 2010; Jeroen Roovers <jer@gentoo.org> xterm-262.ebuild:
+  Stable for HPPA (bug #339640).
+
+*xterm-262 (10 Sep 2010)
+
+  10 Sep 2010; Samuli Suominen <ssuominen@gentoo.org> +xterm-262.ebuild:
+  Version bump wrt #336745 by Jeroen Roovers. Pass --enable-exec-xterm wrt
+  #315353 by Dimitrios Christidis.
 
 *xterm-256 (14 Apr 2010)
 

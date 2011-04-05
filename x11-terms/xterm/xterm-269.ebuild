@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-255.ebuild,v 1.1 2010/01/24 17:39:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-269.ebuild,v 1.1 2011/03/28 11:39:09 ssuominen Exp $
 
 EAPI=2
 inherit multilib eutils
@@ -14,20 +14,22 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="toolbar truetype unicode Xaw3d"
 
-COMMON_DEPEND="x11-libs/libX11
+COMMON_DEPEND="sys-libs/libutempter
+	x11-apps/xmessage
+	x11-libs/libX11
+	x11-libs/libXaw
+	x11-libs/libXft
+	x11-libs/libxkbfile
+	x11-libs/libXmu
 	x11-libs/libXrender
 	x11-libs/libXt
-	x11-libs/libXmu
-	x11-libs/libxkbfile
-	x11-libs/libXft
-	x11-libs/libXaw
-	x11-apps/xmessage
 	unicode? ( x11-apps/luit )
-	Xaw3d? ( x11-libs/Xaw3d )
-	kernel_linux? ( sys-libs/libutempter )"
+	Xaw3d? ( x11-libs/Xaw3d )"
 RDEPEND="${COMMON_DEPEND}
 	media-fonts/font-misc-misc"
 DEPEND="${COMMON_DEPEND}
+	dev-util/pkgconfig
+	x11-proto/kbproto
 	x11-proto/xproto"
 
 pkg_setup() {
@@ -39,12 +41,15 @@ src_prepare() {
 }
 
 src_configure() {
+	# looking for reason why crosscompile failed? try restoring this:
+	# --x-libraries="${EROOT}usr/$(get_libdir)"
+	# -ssuominen, 2011
+
 	# laymans fix, can't find another way, fd_mask & POSIX_C_SOURCE issue
 	[[ ${CHOST} == *-darwin8* ]] && export ac_cv_header_X11_Xpoll_h=no
 
 	econf \
 		--libdir="${EPREFIX}"/etc \
-		--x-libraries="${EROOT}usr/$(get_libdir)" \
 		--disable-full-tgetent \
 		--with-app-defaults=${DEFAULTS_DIR} \
 		--disable-setuid \
@@ -56,6 +61,7 @@ src_configure() {
 		--enable-256-color \
 		--enable-broken-osc \
 		--enable-broken-st \
+		--enable-exec-xterm \
 		$(use_enable truetype freetype) \
 		--enable-i18n \
 		--enable-load-vt-fonts \
