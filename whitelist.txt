@@ -837,6 +837,7 @@ sys-apps/ren
 sys-apps/rename
 sys-apps/ucspi-tcp
 sys-apps/which
+sys-block/eject
 sys-devel/autoconf-archive
 sys-devel/autoconf-wrapper
 sys-devel/autogen
