@@ -2,7 +2,7 @@ Don't try to build antique cruft
 
 --- setup.py
 +++ setup.py
-@@ -987,36 +987,8 @@
+@@ -1082,42 +1082,8 @@
          else:
              missing.append('_sqlite3')
  
@@ -18,6 +18,12 @@ Don't try to build antique cruft
 -        # the more recent berkeleydb's db.h file first in the include path
 -        # when attempting to compile and it will fail.
 -        f = "/usr/include/db.h"
+-
+-        if sys.platform == 'darwin':
+-            if is_macosx_sdk_path(f):
+-                sysroot = macosx_sdk_root()
+-                f = os.path.join(sysroot, f[1:])
+-
 -        if os.path.exists(f) and not db_incs:
 -            data = open(f).read()
 -            m = re.search(r"#s*define\s+HASHVERSION\s+2\s*", data)
