@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.22.ebuild,v 1.3 2010/10/13 11:23:53 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.24.ebuild,v 1.3 2011/02/21 18:35:33 fauli Exp $
 
 inherit versionator java-vm-2 eutils pax-utils
 
