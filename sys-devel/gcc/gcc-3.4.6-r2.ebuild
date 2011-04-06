@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.24 2010/01/09 20:42:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.25 2011/03/08 03:05:44 dirtyepic Exp $
 
 MAN_VER=""
 PATCH_VER="1.6"
@@ -63,7 +63,7 @@ RDEPEND=">=sys-devel/gcc-config-1.4
 				x11-libs/libXtst
 				x11-proto/xproto
 				x11-proto/xextproto
-				>=x11-libs/gtk+-2.2
+				=x11-libs/gtk+-2*
 			)
 			>=media-libs/libart_lgpl-2.1
 		)

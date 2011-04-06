@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.4-r2.ebuild,v 1.11 2011/02/13 04:53:21 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.4-r2.ebuild,v 1.13 2011/03/11 07:06:37 vapier Exp $
 
 PATCH_VER="1.4"
 UCLIBC_VER="1.0"
@@ -45,7 +45,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 				x11-libs/libXtst
 				x11-proto/xproto
 				x11-proto/xextproto
-				>=x11-libs/gtk+-2.2
+				=x11-libs/gtk+-2*
 				x11-libs/pango
 			)
 			>=media-libs/libart_lgpl-2.1

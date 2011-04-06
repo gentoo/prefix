@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.3-r2.ebuild,v 1.8 2010/01/09 12:58:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.3-r2.ebuild,v 1.10 2011/03/11 07:06:37 vapier Exp $
 
 GENTOO_PATCH_EXCLUDE="69_all_gcc43-pr39013.patch" #262567
 
@@ -43,7 +43,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 				x11-libs/libXtst
 				x11-proto/xproto
 				x11-proto/xextproto
-				>=x11-libs/gtk+-2.2
+				=x11-libs/gtk+-2*
 				x11-libs/pango
 			)
 			>=media-libs/libart_lgpl-2.1

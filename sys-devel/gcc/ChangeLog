@@ -1,6 +1,25 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.806 2011/02/26 14:38:53 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.810 2011/04/04 00:56:31 dirtyepic Exp $
+
+  04 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.6.0.ebuild:
+  Unbreak -U_FORTIFY_SOURCE (bug #361783).
+
+*gcc-4.6.0 (03 Apr 2011)
+
+  03 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.6.0.ebuild,
+  metadata.xml:
+  Version bump.
+
+  08 Mar 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-3.3.6-r1.ebuild,
+  gcc-3.4.6-r2.ebuild, gcc-4.0.4.ebuild, gcc-4.1.2.ebuild, gcc-4.2.4-r1.ebuild,
+  gcc-4.3.3-r2.ebuild, gcc-4.3.4.ebuild, gcc-4.3.5.ebuild, gcc-4.4.2.ebuild,
+  gcc-4.4.3-r3.ebuild, gcc-4.4.4-r2.ebuild, gcc-4.4.5.ebuild,
+  gcc-4.5.1-r1.ebuild, gcc-4.5.2.ebuild:
+  Lock down gtk+ dependencies.
+
+  05 Mar 2011; Raúl Porcel <armin76@gentoo.org> gcc-4.4.5.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #354881
 
   26 Feb 2011; Guy Martin <gmsoft@gentoo.org> ChangeLog:
   Stable on hppa wrt bug #354881.
