@@ -282,6 +282,9 @@ src_configure() {
 		myconf "-Dlibpth=/usr/local/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
 	fi
 
+	# don't try building ODBM, bug #354453
+	myconf -Dnoextensions=ODBM_File
+
 	sh Configure \
 		-des \
 		-Duseshrplib \
