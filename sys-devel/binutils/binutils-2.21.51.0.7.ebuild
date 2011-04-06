@@ -1,40 +1,32 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.18-r4.ebuild,v 1.2 2011/03/11 06:52:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.21.51.0.7.ebuild,v 1.1 2011/03/14 02:55:52 vapier Exp $
 
-PATCHVER="1.10"
+PATCHVER="1.0"
 ELF2FLT_VER=""
-inherit toolchain-binutils autotools
+inherit toolchain-binutils
 
-KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack
-
 	cd "${S}"
-	# http://sourceware.org/bugzilla/show_bug.cgi?id=5146
-	epatch "${FILESDIR}"/${PV}-bfd-alloca.patch
-	# http://sourceware.org/bugzilla/show_bug.cgi?id=5147
-	epatch "${FILESDIR}"/${PV}-gprof-fabs.patch
-	# http://sourceware.org/bugzilla/show_bug.cgi?id=5160
-	epatch "${FILESDIR}"/${PV}-bfd-bufsz.patch
-	# http://sourceware.org/bugzilla/show_bug.cgi?id=5449
-	epatch "${FILESDIR}"/${PV}-bfd-ia64elf.patch
+	[[ $SYMLINK_LIB == yes ]] &&
+	epatch "${FILESDIR}"/${PN}-2.20.51.0.1-linux-x86-on-amd64.patch
+	epatch "${FILESDIR}"/${PN}-2.21.51.0.6-mint.patch
+	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
 }
 
 src_compile() {
 	if has noinfo "${FEATURES}" \
 	|| ! type -p makeinfo >/dev/null
 	then
-		# disable regeneration of info pages #193364
+		# binutils >= 2.17 (accidentally?) requires 'makeinfo'
 		export EXTRA_EMAKE="MAKEINFO=true"
 	fi
 
-	# GNU ld is not recommended (or does not work) on hpux,
-	# so the native one is linked in.
 	case "${CTARGET}" in
-	*-hpux*) EXTRA_ECONF="--without-gnu-ld" ;;
-	*-interix*) EXTRA_ECONF="--without-gnu-ld --without-gnu-as" ;;
+	*-interix*) EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as" ;;
 	esac
 
 	toolchain-binutils_src_compile
@@ -44,13 +36,10 @@ src_install() {
 	toolchain-binutils_src_install
 
 	case "${CTARGET}" in
-	*-hpux*)
-		ln -s /usr/ccs/bin/ld "${ED}${BINPATH}"/ld || die "Cannot create ld symlink"
-		;;
     *-interix*)
 		ln -s /opt/gcc.3.3/bin/as "${ED}${BINPATH}"/as || die "Cannot create as symlink"
 		sed -e "s,@SCRIPTDIR@,${EPREFIX}${LIBPATH}/ldscripts," \
-			< "${FILESDIR}"/${PV}-ldwrap-interix.sh \
+			< "${FILESDIR}"/2.18-ldwrap-interix.sh \
 			> "${ED}${BINPATH}"/ld \
 			|| die "Cannot create ld wrapper"
 		chmod a+x "${ED}${BINPATH}"/ld
