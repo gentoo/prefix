@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.157 2011/03/26 23:44:43 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.158 2011/03/28 22:36:13 jmbsvicetto Exp $
 
 # @ECLASS: mysql.eclass
 # @MAINTAINER:
@@ -146,7 +146,7 @@ RDEPEND="${DEPEND}
 		selinux? ( sec-policy/selinux-mysql )"
 
 if [ "${EAPI:-0}" = "2" ]; then
-	DEPEND="${DEPEND} static? ( sys-libs/ncurses[static-libs] )"
+	DEPEND="${DEPEND} static? ( || ( sys-libs/ncurses[static-libs] <=sys-libs/ncurses-5.7-r3 ) )"
 fi
 
 # compile-time-only

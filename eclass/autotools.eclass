@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.101 2010/08/21 19:39:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.102 2011/04/06 03:52:08 flameeyes Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -159,20 +159,6 @@ eaclocal() {
 		break
 	done
 
-	if [[ -n ${AT_M4DIR} ]] ; then
-		for x in ${AT_M4DIR} ; do
-			case "${x}" in
-			"-I")
-				# We handle it below
-				;;
-			*)
-				[[ ! -d ${x} ]] && ewarn "eaclocal: '${x}' does not exist"
-				aclocal_opts="${aclocal_opts} -I ${x}"
-				;;
-			esac
-		done
-	fi
-
 	# in some cases (cross-eprefix build), EPREFIX may not be included
 	# by aclocal by default, since it only knows about BPREFIX.
 	local eprefix_include=
@@ -180,7 +166,7 @@ eaclocal() {
 		eprefix_include="-I ${EPREFIX}/usr/share/aclocal"
 
 	[[ ! -f aclocal.m4 || -n $(grep -e 'generated.*by aclocal' aclocal.m4) ]] && \
-		autotools_run_tool aclocal "$@" ${aclocal_opts} ${eprefix_include}
+		autotools_run_tool aclocal $(autotools_m4dir_include) "$@" ${aclocal_opts} ${eprefix_include}
 }
 
 # @FUNCTION: _elibtoolize
@@ -209,7 +195,7 @@ _elibtoolize() {
 eautoheader() {
 	# Check if we should run autoheader
 	[[ -n $(autotools_check_macro "AC_CONFIG_HEADERS") ]] || return 0
-	NO_FAIL=1 autotools_run_tool autoheader "$@"
+	NO_FAIL=1 autotools_run_tool autoheader $(autotools_m4dir_include) "$@"
 }
 
 # @FUNCTION: eautoconf
@@ -223,7 +209,7 @@ eautoconf() {
 		die "No configure.{ac,in} present!"
 	fi
 
-	autotools_run_tool autoconf "$@"
+	autotools_run_tool autoconf $(autotools_m4dir_include) "$@"
 }
 
 # @FUNCTION: eautomake
@@ -332,7 +318,7 @@ autotools_check_macro() {
 	[[ -f configure.ac || -f configure.in ]] || return 0
 	local macro
 	for macro ; do
-		WANT_AUTOCONF="2.5" autoconf --trace="${macro}" 2>/dev/null
+		WANT_AUTOCONF="2.5" autoconf $(autotools_m4dir_include) --trace="${macro}" 2>/dev/null
 	done
 	return 0
 }
@@ -366,4 +352,24 @@ autotools_get_auxdir() {
 	}' | uniq
 
 	return 0
+}
+
+autotools_m4dir_include() {
+	[[ -n ${AT_M4DIR} ]] || return
+
+	local include_opts=
+
+	for x in ${AT_M4DIR} ; do
+		case "${x}" in
+			"-I")
+				# We handle it below
+				;;
+			*)
+				[[ ! -d ${x} ]] && ewarn "autotools.eclass: '${x}' does not exist"
+				include_opts="${include_opts} -I ${x}"
+				;;
+		esac
+	done
+
+	echo $include_opts
 }
