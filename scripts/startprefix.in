@@ -7,6 +7,12 @@
 # prefix.  The SHELL environment variable is elevated in order to make
 # applications that start login shells to work, such as `screen`.
 
+# if you come from a substantially polluted environment (another
+# Prefix), calling this script as follows resolves most oddities I've
+# ever seen:
+# env -i HOME=$HOME TERM=$TERM USER=$USER /path/to/startprefix
+
+
 # What is our prefix?
 EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
 
