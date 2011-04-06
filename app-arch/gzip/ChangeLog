@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/gzip
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/ChangeLog,v 1.109 2010/07/31 17:32:58 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/ChangeLog,v 1.110 2011/04/03 11:15:56 ulm Exp $
+
+  03 Apr 2011; Ulrich Mueller <ulm@gentoo.org> gzip-1.4.ebuild:
+  Don't provide virtual/gzip, bug 358829.
 
   31 Jul 2010; Mike Frysinger <vapier@gentoo.org> gzip-1.4.ebuild,
   +files/gzip-1.4-assembler.patch:
