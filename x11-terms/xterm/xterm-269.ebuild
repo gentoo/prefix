@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="toolbar truetype unicode Xaw3d"
 
-COMMON_DEPEND="sys-libs/libutempter
+COMMON_DEPEND="kernel_linux? ( sys-libs/libutempter )
 	x11-apps/xmessage
 	x11-libs/libX11
 	x11-libs/libXaw
