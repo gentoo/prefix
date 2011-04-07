@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/libutempter-1.1.5.ebuild,v 1.11 2007/12/15 12:28:32 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/libutempter-1.1.5.ebuild,v 1.12 2011/04/05 11:46:34 ulm Exp $
 
 inherit eutils flag-o-matic versionator toolchain-funcs
 
@@ -13,10 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="elibc_FreeBSD"
 
-DEPEND="!virtual/utempter"
-RDEPEND="!virtual/utempter"
-
-PROVIDE="virtual/utempter"
+RDEPEND="!sys-apps/utempter"
 
 pkg_setup() {
 	enewgroup utmp 406

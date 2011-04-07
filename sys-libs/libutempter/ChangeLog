@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/libutempter
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/ChangeLog,v 1.34 2009/09/21 22:39:28 remi Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/ChangeLog,v 1.35 2011/04/05 11:46:34 ulm Exp $
+
+  05 Apr 2011; Ulrich Mueller <ulm@gentoo.org> libutempter-1.1.5.ebuild:
+  Don't PROVIDE virtual/utempter and update blocker, bug 361117.
 
   21 Sep 2009; Rémi Cardona <remi@gentoo.org> -libutempter-1.1.2.1.ebuild:
   drop old ebuilds
