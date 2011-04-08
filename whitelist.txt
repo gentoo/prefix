@@ -731,6 +731,7 @@ net-analyzer/iftop
 net-analyzer/lft
 net-analyzer/libnasl
 net-analyzer/linkchecker
+net-analyzer/mtr
 net-analyzer/nbtscan
 net-analyzer/nessus-libraries
 net-analyzer/netcat
