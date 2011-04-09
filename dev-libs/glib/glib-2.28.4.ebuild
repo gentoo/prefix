@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.28.4.ebuild,v 1.1 2011/03/22 00:50:05 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.28.4.ebuild,v 1.2 2011/03/26 18:34:04 eva Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -22,6 +22,7 @@ RDEPEND="virtual/libiconv
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
 	>=sys-devel/gettext-0.11
+	>=dev-util/gtk-doc-am-1.13
 	x86-interix? ( sys-libs/itx-bind )
 	doc? (
 		>=dev-libs/libxslt-1.0
@@ -158,16 +159,18 @@ src_configure() {
 
 	# Always use internal libpcre, bug #254659
 	econf ${myconf} \
-		  $(use_enable xattr) \
-		  $(use_enable doc man) \
-		  $(use_enable doc gtk-doc) \
-		  $(use_enable fam) \
-		  $(use_enable selinux) \
-		  $(use_enable static-libs static) \
-		  --enable-regex \
-		  --with-pcre=internal \
-		  --with-threads=${mythreads} \
-		  --with-xml-catalog="${EPREFIX}"/etc/xml/catalog
+		$(use_enable xattr) \
+		$(use_enable doc man) \
+		$(use_enable doc gtk-doc) \
+		$(use_enable fam) \
+		$(use_enable selinux) \
+		$(use_enable static-libs static) \
+		--enable-regex \
+		--with-pcre=internal \
+		--with-threads=${mythreads} \
+		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
+		--disable-dtrace \
+		--disable-systemtap
 }
 
 src_install() {
@@ -196,7 +199,7 @@ src_test() {
 
 	# Related test is a bit nitpicking
 	mkdir "$G_DBUS_COOKIE_SHA1_KEYRING_DIR"
-	chmod 0700  "$G_DBUS_COOKIE_SHA1_KEYRING_DIR"
+	chmod 0700 "$G_DBUS_COOKIE_SHA1_KEYRING_DIR"
 
 	# Hardened: gdb needs this, bug #338891
 	if host-is-pax ; then
