@@ -47,7 +47,7 @@ arch_binaries="$arch_binaries ppc? ( mirror://gentoo/ghc-bin-${PV}-ppc.tbz2 )"
 arch_binaries="$arch_binaries x86-fbsd? ( http://code.haskell.org/~slyfox/ghc-x86-fbsd/ghc-bin-${PV}-x86-fbsd.tbz2 )"
 
 arch_binaries="$arch_binaries x86-macos? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-i386-apple-darwin.tar.bz2 )"
-arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.1-powerpc-apple-darwin.tar.bz2 )"
+arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/6.10.1/maeder/ghc-6.10.1-powerpc-apple-darwin.tar.bz2 )"
 arch_binaries="$arch_binaries x86-solaris? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-i386-unknown-solaris2.tar.bz2 )"
 arch_binaries="$arch_binaries sparc-solaris? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-sparc-sun-solaris2.tar.bz2 )"
 
@@ -160,6 +160,8 @@ src_unpack() {
 	unpack ${ONLYA}
 	cd "${S}"  # base_src_unpack moves to ${S}
 	source "${FILESDIR}/ghc-apply-gmp-hack" "$(get_libdir)"
+
+	epatch "${FILESDIR}"/${P}-pic-powerpc.patch
 
 	ghc_setup_cflags
 
