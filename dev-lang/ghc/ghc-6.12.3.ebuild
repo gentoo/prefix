@@ -46,7 +46,7 @@ arch_binaries="$arch_binaries ppc? ( mirror://gentoo/ghc-bin-${PV}-ppc.tbz2 )"
 # various ports:
 arch_binaries="$arch_binaries x86-fbsd? ( http://code.haskell.org/~slyfox/ghc-x86-fbsd/ghc-bin-${PV}-x86-fbsd.tbz2 )"
 
-arch_binaries="$arch_binaries x86-macos? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-i386-apple-darwin.tar.bz2 )"
+arch_binaries="$arch_binaries x86-macos? ( http://www.haskell.org/ghc/dist/6.10.1/maeder/ghc-6.10.1-i386-apple-darwin.tar.bz2 )"
 arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/6.10.1/maeder/ghc-6.10.1-powerpc-apple-darwin.tar.bz2 )"
 arch_binaries="$arch_binaries x86-solaris? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-i386-unknown-solaris2.tar.bz2 )"
 arch_binaries="$arch_binaries sparc-solaris? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-sparc-sun-solaris2.tar.bz2 )"
@@ -201,7 +201,7 @@ src_unpack() {
 				use sparc-solaris && unpack ghc-6.10.4-sparc-sun-solaris2.tar.bz2
 				use x86-solaris && unpack ghc-6.10.4-i386-unknown-solaris2.tar.bz2
 				use ppc-macos && unpack ghc-6.10.1-powerpc-apple-darwin.tar.bz2
-				use x86-macos && unpack ghc-6.10.4-i386-apple-darwin.tar.bz2
+				use x86-macos && unpack ghc-6.10.1-i386-apple-darwin.tar.bz2
 				popd > /dev/null
 
 				pushd "${WORKDIR}"/ghc-bin-installer/ghc-6.10.? > /dev/null || die
@@ -213,16 +213,14 @@ src_unpack() {
 				if [[ ${CHOST} == *-solaris* ]] ; then
 					export LD_LIBRARY_PATH="${EPREFIX}/$(get_libdir):${EPREFIX}/usr/$(get_libdir):${LD_LIBRARY_PATH}"
 				elif [[ ${CHOST} == *-darwin* ]] ; then
-					local readline_framework gmp_framework ncurses_file
-					if [[ ${CHOST} == powerpc-*-darwin* ]]; then
-						readline_framework=GNUreadline.framework/GNUreadline
-						gmp_framework=/opt/local/lib/libgmp.3.dylib
-						ncurses_file=/opt/local/lib/libncurses.5.dylib
-					else
-						readline_framework=GNUreadline.framework/Versions/A/GNUreadline
-						gmp_framework=GMP.framework/Versions/A/GMP
-						ncurses_file=/nowhere
-					fi
+					# http://hackage.haskell.org/trac/ghc/ticket/2942
+					pushd utils/haddock/dist-install/build > /dev/null
+					ln -s Haddock haddock >& /dev/null # fails on IN-sensitive
+					popd > /dev/null
+
+					local readline_framework=GNUreadline.framework/GNUreadline
+					local gmp_framework=/opt/local/lib/libgmp.3.dylib
+					local ncurses_file=/opt/local/lib/libncurses.5.dylib
 					for binary in $(scanmacho -BRE MH_EXECUTE -F '%F' .) ; do
 						install_name_tool -change \
 							${readline_framework} \
