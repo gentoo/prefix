@@ -1,6 +1,15 @@
 # ChangeLog for app-admin/gkrellm
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.178 2010/01/12 14:58:37 lack Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.180 2011/03/27 09:44:34 nirbheek Exp $
+
+  27 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> gkrellm-2.3.2.ebuild,
+  gkrellm-2.3.2-r1.ebuild, gkrellm-2.3.4.ebuild, gkrellm-2.3.5.ebuild:
+  Fix slot-deps on gnome libs
+
+*gkrellm-2.3.5 (31 Oct 2010)
+
+  31 Oct 2010; Jim Ramsay <lack@gentoo.org> +gkrellm-2.3.5.ebuild:
+  Version bump: 2.3.5 is released. Bug #340113
 
 *gkrellm-2.3.4 (12 Jan 2010)
 

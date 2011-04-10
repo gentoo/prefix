@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.2.ebuild,v 1.10 2009/05/21 16:11:32 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.2.ebuild,v 1.11 2011/03/27 09:44:34 nirbheek Exp $
 
 EAPI=2
 
@@ -15,14 +15,14 @@ SLOT="2"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="hddtemp gnutls lm_sensors nls ssl ntlm X kernel_FreeBSD"
 
-RDEPEND=">=dev-libs/glib-2
+RDEPEND="dev-libs/glib:2
 	hddtemp? ( app-admin/hddtemp )
 	gnutls? ( net-libs/gnutls )
 	!gnutls? ( ssl? ( dev-libs/openssl ) )
 	lm_sensors? ( sys-apps/lm_sensors )
 	nls? ( virtual/libintl )
 	ntlm? ( net-libs/libntlm )
-	X? ( >=x11-libs/gtk+-2 )"
+	X? ( x11-libs/gtk+:2 )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	nls? ( sys-devel/gettext )"
