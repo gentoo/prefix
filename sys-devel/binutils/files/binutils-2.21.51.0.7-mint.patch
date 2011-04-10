@@ -1,7 +1,9 @@
-diff -ur --new-file binutils-2.20.51.0.2/bfd/Makefile.in binutils-2.20.51.0.2-mint/bfd/Makefile.in
---- binutils-2.20.51.0.2/bfd/Makefile.in	2009-10-09 23:25:42.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/Makefile.in	2009-10-22 16:39:34.000000000 +0100
-@@ -673,6 +673,7 @@
+http://bugs.gentoo.org/show_bug.cgi?id=362559
+
+diff -ur --new-file binutils-2.21.51.0.7/bfd/Makefile.am binutils-2.21.51.0.7-mint/bfd/Makefile.am
+--- binutils-2.21.51.0.7/bfd/Makefile.am	2010-12-06 14:23:53.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/Makefile.am	2011-04-08 10:07:06.000000000 +0000
+@@ -379,6 +379,7 @@
  	peigen.lo \
  	plugin.lo \
  	ppcboot.lo \
@@ -9,7 +11,7 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/Makefile.in binutils-2.20.51.0.2-mi
  	reloc16.lo \
  	riscix.lo \
  	som.lo \
-@@ -856,6 +857,7 @@
+@@ -559,6 +560,7 @@
  	pei-sh.c \
  	plugin.c \
  	ppcboot.c \
@@ -17,18 +19,29 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/Makefile.in binutils-2.20.51.0.2-mi
  	reloc16.c \
  	riscix.c \
  	som.c \
-@@ -1453,6 +1455,7 @@
- @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pex64igen.Plo@am__quote@
- @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plugin.Plo@am__quote@
- @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ppcboot.Plo@am__quote@
-+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/prg-mint.Plo@am__quote@
- @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/reloc.Plo@am__quote@
- @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/reloc16.Plo@am__quote@
- @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/riscix.Plo@am__quote@
-diff -ur --new-file binutils-2.20.51.0.2/bfd/acinclude.m4 binutils-2.20.51.0.2-mint/bfd/acinclude.m4
---- binutils-2.20.51.0.2/bfd/acinclude.m4	2009-09-08 18:11:55.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/acinclude.m4	2009-10-22 16:39:34.000000000 +0100
-@@ -3,7 +3,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/bfd/Makefile.in binutils-2.21.51.0.7-mint/bfd/Makefile.in
+--- binutils-2.21.51.0.7/bfd/Makefile.in	2010-12-06 14:23:53.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/Makefile.in	2011-04-08 10:07:06.000000000 +0000
+@@ -679,6 +679,7 @@
+ 	peigen.lo \
+ 	plugin.lo \
+ 	ppcboot.lo \
++	prg-mint.lo \
+ 	reloc16.lo \
+ 	riscix.lo \
+ 	som.lo \
+@@ -859,6 +860,7 @@
+ 	pei-sh.c \
+ 	plugin.c \
+ 	ppcboot.c \
++	prg-mint.c \
+ 	reloc16.c \
+ 	riscix.c \
+ 	som.c \
+diff -ur --new-file binutils-2.21.51.0.7/bfd/acinclude.m4 binutils-2.21.51.0.7-mint/bfd/acinclude.m4
+--- binutils-2.21.51.0.7/bfd/acinclude.m4	2009-12-14 15:46:47.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/acinclude.m4	2011-04-08 10:07:06.000000000 +0000
+@@ -5,7 +5,7 @@
  [AC_REQUIRE([AC_CANONICAL_TARGET])
  case "${host}" in
  changequote(,)dnl
@@ -37,10 +50,10 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/acinclude.m4 binutils-2.20.51.0.2-m
  changequote([,])dnl
    AC_DEFINE(USE_BINARY_FOPEN, 1, [Use b modifier when opening binary files?]) ;;
  esac])dnl
-diff -ur --new-file binutils-2.20.51.0.2/bfd/aoutx.h binutils-2.20.51.0.2-mint/bfd/aoutx.h
---- binutils-2.20.51.0.2/bfd/aoutx.h	2009-10-09 23:25:40.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/aoutx.h	2009-10-22 16:41:02.000000000 +0100
-@@ -1839,6 +1839,11 @@
+diff -ur --new-file binutils-2.21.51.0.7/bfd/aoutx.h binutils-2.21.51.0.7-mint/bfd/aoutx.h
+--- binutils-2.21.51.0.7/bfd/aoutx.h	2011-03-07 18:05:31.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/aoutx.h	2011-04-08 10:07:06.000000000 +0000
+@@ -1841,6 +1841,11 @@
    bfd_byte buffer[BYTES_IN_WORD];
    bfd_size_type amt = BYTES_IN_WORD;
  
@@ -52,7 +65,7 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/aoutx.h binutils-2.20.51.0.2-mint/b
    /* The string table starts with the size.  */
    PUT_WORD (abfd, _bfd_stringtab_size (tab) + BYTES_IN_WORD, buffer);
    if (bfd_bwrite ((void *) buffer, amt, abfd) != amt)
-@@ -4200,10 +4205,17 @@
+@@ -4220,10 +4225,17 @@
  		return FALSE;
  	    }
  
@@ -70,10 +83,10 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/aoutx.h binutils-2.20.51.0.2-mint/b
  	}
  
        if (r != bfd_reloc_ok)
-diff -ur --new-file binutils-2.20.51.0.2/bfd/bfd-in.h binutils-2.20.51.0.2-mint/bfd/bfd-in.h
---- binutils-2.20.51.0.2/bfd/bfd-in.h	2009-10-09 23:26:23.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/bfd-in.h	2009-10-22 16:39:34.000000000 +0100
-@@ -738,6 +738,15 @@
+diff -ur --new-file binutils-2.21.51.0.7/bfd/bfd-in.h binutils-2.21.51.0.7-mint/bfd/bfd-in.h
+--- binutils-2.21.51.0.7/bfd/bfd-in.h	2010-11-12 17:32:58.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/bfd-in.h	2011-04-08 10:07:06.000000000 +0000
+@@ -742,6 +742,15 @@
  extern bfd_boolean bfd_sparclinux_size_dynamic_sections
    (bfd *, struct bfd_link_info *);
  
@@ -89,10 +102,10 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/bfd-in.h binutils-2.20.51.0.2-mint/
  /* mmap hacks */
  
  struct _bfd_window_internal;
-diff -ur --new-file binutils-2.20.51.0.2/bfd/bfd-in2.h binutils-2.20.51.0.2-mint/bfd/bfd-in2.h
---- binutils-2.20.51.0.2/bfd/bfd-in2.h	2009-10-09 23:26:23.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/bfd-in2.h	2009-10-22 16:39:34.000000000 +0100
-@@ -745,6 +745,15 @@
+diff -ur --new-file binutils-2.21.51.0.7/bfd/bfd-in2.h binutils-2.21.51.0.7-mint/bfd/bfd-in2.h
+--- binutils-2.21.51.0.7/bfd/bfd-in2.h	2011-03-07 18:05:57.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/bfd-in2.h	2011-04-08 10:07:06.000000000 +0000
+@@ -749,6 +749,15 @@
  extern bfd_boolean bfd_sparclinux_size_dynamic_sections
    (bfd *, struct bfd_link_info *);
  
@@ -108,10 +121,10 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/bfd-in2.h binutils-2.20.51.0.2-mint
  /* mmap hacks */
  
  struct _bfd_window_internal;
-diff -ur --new-file binutils-2.20.51.0.2/bfd/config.bfd binutils-2.20.51.0.2-mint/bfd/config.bfd
---- binutils-2.20.51.0.2/bfd/config.bfd	2009-10-09 23:25:40.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/config.bfd	2009-10-22 16:39:34.000000000 +0100
-@@ -826,6 +826,11 @@
+diff -ur --new-file binutils-2.21.51.0.7/bfd/config.bfd binutils-2.21.51.0.7-mint/bfd/config.bfd
+--- binutils-2.21.51.0.7/bfd/config.bfd	2011-01-04 17:51:04.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/config.bfd	2011-04-08 10:07:06.000000000 +0000
+@@ -823,6 +823,11 @@
      # targ_selvecs=m68kmach3_vec
      # targ_cflags=-DSTAT_FOR_EXEC
      ;;
@@ -123,19 +136,10 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/config.bfd binutils-2.20.51.0.2-min
    m68*-hp*-netbsd*)
      targ_defvec=m68k4knetbsd_vec
      targ_selvecs="m68knetbsd_vec hp300bsd_vec sunos_big_vec"
-diff -ur --new-file binutils-2.20.51.0.2/bfd/configure binutils-2.20.51.0.2-mint/bfd/configure
---- binutils-2.20.51.0.2/bfd/configure	2009-10-09 23:25:40.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/configure	2009-10-22 16:39:35.000000000 +0100
-@@ -8529,7 +8529,7 @@
-       # Instead, we relocate shared libraries at runtime.
-       ;;
- 
--    msdosdjgpp*)
-+    msdosdjgpp* | mint*)
-       # Just because we use GCC doesn't mean we suddenly get shared libraries
-       # on systems that don't support them.
-       lt_prog_compiler_can_build_shared=no
-@@ -13477,7 +13477,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/bfd/configure binutils-2.21.51.0.7-mint/bfd/configure
+--- binutils-2.21.51.0.7/bfd/configure	2011-03-07 18:05:31.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/configure	2011-04-08 10:07:07.000000000 +0000
+@@ -13623,7 +13623,7 @@
  
  
  case "${host}" in
@@ -144,7 +148,7 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/configure binutils-2.20.51.0.2-mint
  
  $as_echo "#define USE_BINARY_FOPEN 1" >>confdefs.h
   ;;
-@@ -14977,6 +14977,7 @@
+@@ -15237,6 +15237,7 @@
      m68kcoff_vec)		tb="$tb coff-m68k.lo cofflink.lo" ;;
      m68kcoffun_vec)		tb="$tb coff-u68k.lo coff-m68k.lo cofflink.lo" ;;
      m68klinux_vec)		tb="$tb m68klinux.lo aout32.lo" ;;
@@ -152,10 +156,10 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/configure binutils-2.20.51.0.2-mint
      m68knetbsd_vec)		tb="$tb m68knetbsd.lo aout32.lo" ;;
      m68ksysvcoff_vec)		tb="$tb coff-svm68k.lo cofflink.lo" ;;
      m88kbcs_vec)		tb="$tb coff-m88k.lo" ;;
-diff -ur --new-file binutils-2.20.51.0.2/bfd/configure.in binutils-2.20.51.0.2-mint/bfd/configure.in
---- binutils-2.20.51.0.2/bfd/configure.in	2009-10-09 23:25:41.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/configure.in	2009-10-22 16:39:36.000000000 +0100
-@@ -865,6 +865,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/bfd/configure.in binutils-2.21.51.0.7-mint/bfd/configure.in
+--- binutils-2.21.51.0.7/bfd/configure.in	2011-03-07 18:05:31.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/configure.in	2011-04-08 10:07:07.000000000 +0000
+@@ -880,6 +880,7 @@
      m68kcoff_vec)		tb="$tb coff-m68k.lo cofflink.lo" ;;
      m68kcoffun_vec)		tb="$tb coff-u68k.lo coff-m68k.lo cofflink.lo" ;;
      m68klinux_vec)		tb="$tb m68klinux.lo aout32.lo" ;;
@@ -163,9 +167,9 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/configure.in binutils-2.20.51.0.2-m
      m68knetbsd_vec)		tb="$tb m68knetbsd.lo aout32.lo" ;;
      m68ksysvcoff_vec)		tb="$tb coff-svm68k.lo cofflink.lo" ;;
      m88kbcs_vec)		tb="$tb coff-m88k.lo" ;;
-diff -ur --new-file binutils-2.20.51.0.2/bfd/libaout.h binutils-2.20.51.0.2-mint/bfd/libaout.h
---- binutils-2.20.51.0.2/bfd/libaout.h	2009-10-09 23:25:42.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/libaout.h	2009-10-22 16:39:36.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/bfd/libaout.h binutils-2.21.51.0.7-mint/bfd/libaout.h
+--- binutils-2.21.51.0.7/bfd/libaout.h	2009-10-09 22:25:42.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/libaout.h	2011-04-08 10:07:08.000000000 +0000
 @@ -422,6 +422,10 @@
       table, used when linking on SunOS.  This is indexed by the symbol
       index.  */
@@ -185,9 +189,9 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/libaout.h binutils-2.20.51.0.2-mint
  
  /* We take the address of the first element of an asymbol to ensure that the
     macro is only ever applied to an asymbol.  */
-diff -ur --new-file binutils-2.20.51.0.2/bfd/prg-mint.c binutils-2.20.51.0.2-mint/bfd/prg-mint.c
---- binutils-2.20.51.0.2/bfd/prg-mint.c	1970-01-01 01:00:00.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/prg-mint.c	2009-10-22 16:39:36.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/bfd/prg-mint.c binutils-2.21.51.0.7-mint/bfd/prg-mint.c
+--- binutils-2.21.51.0.7/bfd/prg-mint.c	1970-01-01 00:00:00.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/prg-mint.c	2011-04-08 10:07:08.000000000 +0000
 @@ -0,0 +1,1732 @@
 +/* BFD backend for traditional MiNT executables.
 +   Copyright 1998, 2007, 2008, 2009 Free Software Foundation, Inc.
@@ -1921,10 +1925,10 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/prg-mint.c binutils-2.20.51.0.2-min
 +
 +  return TRUE;
 +}
-diff -ur --new-file binutils-2.20.51.0.2/bfd/targets.c binutils-2.20.51.0.2-mint/bfd/targets.c
---- binutils-2.20.51.0.2/bfd/targets.c	2009-10-09 23:25:40.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/bfd/targets.c	2009-10-22 16:39:36.000000000 +0100
-@@ -744,6 +744,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/bfd/targets.c binutils-2.21.51.0.7-mint/bfd/targets.c
+--- binutils-2.21.51.0.7/bfd/targets.c	2011-01-04 17:51:04.000000000 +0000
++++ binutils-2.21.51.0.7-mint/bfd/targets.c	2011-04-08 10:07:08.000000000 +0000
+@@ -770,6 +770,7 @@
  extern const bfd_target m68kcoff_vec;
  extern const bfd_target m68kcoffun_vec;
  extern const bfd_target m68klinux_vec;
@@ -1932,19 +1936,10 @@ diff -ur --new-file binutils-2.20.51.0.2/bfd/targets.c binutils-2.20.51.0.2-mint
  extern const bfd_target m68knetbsd_vec;
  extern const bfd_target m68ksysvcoff_vec;
  extern const bfd_target m88kbcs_vec;
-diff -ur --new-file binutils-2.20.51.0.2/binutils/configure binutils-2.20.51.0.2-mint/binutils/configure
---- binutils-2.20.51.0.2/binutils/configure	2009-10-09 23:25:39.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/binutils/configure	2009-10-22 16:39:40.000000000 +0100
-@@ -8320,7 +8320,7 @@
-       # Instead, we relocate shared libraries at runtime.
-       ;;
- 
--    msdosdjgpp*)
-+    msdosdjgpp* | mint*)
-       # Just because we use GCC doesn't mean we suddenly get shared libraries
-       # on systems that don't support them.
-       lt_prog_compiler_can_build_shared=no
-@@ -13021,7 +13021,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/binutils/configure binutils-2.21.51.0.7-mint/binutils/configure
+--- binutils-2.21.51.0.7/binutils/configure	2011-03-07 18:05:31.000000000 +0000
++++ binutils-2.21.51.0.7-mint/binutils/configure	2011-04-08 10:07:09.000000000 +0000
+@@ -13041,7 +13041,7 @@
  
  
  case "${host}" in
@@ -1953,10 +1948,10 @@ diff -ur --new-file binutils-2.20.51.0.2/binutils/configure binutils-2.20.51.0.2
  
  $as_echo "#define USE_BINARY_FOPEN 1" >>confdefs.h
   ;;
-diff -ur --new-file binutils-2.20.51.0.2/binutils/dlltool.c binutils-2.20.51.0.2-mint/binutils/dlltool.c
---- binutils-2.20.51.0.2/binutils/dlltool.c	2009-09-08 18:11:48.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/binutils/dlltool.c	2009-10-22 16:39:40.000000000 +0100
-@@ -4233,7 +4233,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/binutils/dlltool.c binutils-2.21.51.0.7-mint/binutils/dlltool.c
+--- binutils-2.21.51.0.7/binutils/dlltool.c	2010-12-06 14:23:54.000000000 +0000
++++ binutils-2.21.51.0.7-mint/binutils/dlltool.c	2011-04-08 10:07:09.000000000 +0000
+@@ -4360,7 +4360,7 @@
        if (*cp == '-')
  	dash = cp;
        if (
@@ -1965,10 +1960,10 @@ diff -ur --new-file binutils-2.20.51.0.2/binutils/dlltool.c binutils-2.20.51.0.2
  	  *cp == ':' || *cp == '\\' ||
  #endif
  	  *cp == '/')
-diff -ur --new-file binutils-2.20.51.0.2/binutils/dllwrap.c binutils-2.20.51.0.2-mint/binutils/dllwrap.c
---- binutils-2.20.51.0.2/binutils/dllwrap.c	2007-08-01 14:11:49.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/binutils/dllwrap.c	2009-10-22 16:39:40.000000000 +0100
-@@ -251,7 +251,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/binutils/dllwrap.c binutils-2.21.51.0.7-mint/binutils/dllwrap.c
+--- binutils-2.21.51.0.7/binutils/dllwrap.c	2010-08-11 21:51:51.000000000 +0000
++++ binutils-2.21.51.0.7-mint/binutils/dllwrap.c	2011-04-08 10:07:09.000000000 +0000
+@@ -263,7 +263,7 @@
  	dash = cp;
  
        if (
@@ -1977,9 +1972,24 @@ diff -ur --new-file binutils-2.20.51.0.2/binutils/dllwrap.c binutils-2.20.51.0.2
  	  *cp == ':' || *cp == '\\' ||
  #endif
  	  *cp == '/')
-diff -ur --new-file binutils-2.20.51.0.2/binutils/resrc.c binutils-2.20.51.0.2-mint/binutils/resrc.c
---- binutils-2.20.51.0.2/binutils/resrc.c	2008-08-23 16:36:14.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/binutils/resrc.c	2009-10-22 16:39:40.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/binutils/readelf.c binutils-2.21.51.0.7-mint/binutils/readelf.c
+--- binutils-2.21.51.0.7/binutils/readelf.c	2011-04-08 09:37:05.000000000 +0000
++++ binutils-2.21.51.0.7-mint/binutils/readelf.c	2011-04-08 10:07:10.000000000 +0000
+@@ -9903,7 +9903,11 @@
+ #ifndef __MSVCRT__
+ 	  /* PR 11128: Use two separate invocations in order to work
+              around bugs in the Solaris 8 implementation of printf.  */
++#if GCC_VERSION < 3000
++	  printf ("  [%6lx]  ", (unsigned long) (data - start));
++#else
+ 	  printf ("  [%6tx]  ", data - start);
++#endif
+ 	  printf ("%s\n", data);
+ #else
+ 	  printf ("  [%6Ix]  %s\n", (size_t) (data - start), data);
+diff -ur --new-file binutils-2.21.51.0.7/binutils/resrc.c binutils-2.21.51.0.7-mint/binutils/resrc.c
+--- binutils-2.21.51.0.7/binutils/resrc.c	2010-12-06 14:23:55.000000000 +0000
++++ binutils-2.21.51.0.7-mint/binutils/resrc.c	2011-04-08 10:07:10.000000000 +0000
 @@ -396,7 +396,7 @@
      *space = 0;
  
@@ -1998,9 +2008,9 @@ diff -ur --new-file binutils-2.20.51.0.2/binutils/resrc.c binutils-2.20.51.0.2-m
  	      *cp == ':' || *cp == '\\' ||
  #endif
  	      *cp == '/')
-diff -ur --new-file binutils-2.20.51.0.2/gas/config/te-mint.h binutils-2.20.51.0.2-mint/gas/config/te-mint.h
---- binutils-2.20.51.0.2/gas/config/te-mint.h	1970-01-01 01:00:00.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/gas/config/te-mint.h	2009-10-22 16:39:40.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/gas/config/te-mint.h binutils-2.21.51.0.7-mint/gas/config/te-mint.h
+--- binutils-2.21.51.0.7/gas/config/te-mint.h	1970-01-01 00:00:00.000000000 +0000
++++ binutils-2.21.51.0.7-mint/gas/config/te-mint.h	2011-04-08 10:07:10.000000000 +0000
 @@ -0,0 +1,30 @@
 +/* Copyright 2008 Free Software Foundation, Inc.
 +
@@ -2032,56 +2042,92 @@ diff -ur --new-file binutils-2.20.51.0.2/gas/config/te-mint.h binutils-2.20.51.0
 +#else
 +#include "obj-format.h"
 +#endif
-diff -ur --new-file binutils-2.20.51.0.2/gas/configure binutils-2.20.51.0.2-mint/gas/configure
---- binutils-2.20.51.0.2/gas/configure	2009-10-09 23:25:37.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/gas/configure	2009-10-22 16:39:41.000000000 +0100
-@@ -8277,7 +8277,7 @@
-       # Instead, we relocate shared libraries at runtime.
-       ;;
- 
--    msdosdjgpp*)
-+    msdosdjgpp* | mint*)
-       # Just because we use GCC doesn't mean we suddenly get shared libraries
-       # on systems that don't support them.
-       lt_prog_compiler_can_build_shared=no
-diff -ur --new-file binutils-2.20.51.0.2/gas/configure.tgt binutils-2.20.51.0.2-mint/gas/configure.tgt
---- binutils-2.20.51.0.2/gas/configure.tgt	2009-10-09 23:25:37.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/gas/configure.tgt	2009-10-22 16:39:41.000000000 +0100
-@@ -269,6 +269,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/gas/configure.tgt binutils-2.21.51.0.7-mint/gas/configure.tgt
+--- binutils-2.21.51.0.7/gas/configure.tgt	2011-01-04 17:51:04.000000000 +0000
++++ binutils-2.21.51.0.7-mint/gas/configure.tgt	2011-04-08 10:07:10.000000000 +0000
+@@ -266,6 +266,7 @@
    m68k-*-linux-*)			fmt=elf em=linux ;;
-   m68k-*-uclinux*)			fmt=elf ;;
+   m68k-*-uclinux*)			fmt=elf em=uclinux ;;
    m68k-*-gnu*)				fmt=elf ;;
 +  m68k-*-mint*)				fmt=aout em=mint bfd_gas=yes ;;
    m68k-*-netbsdelf*)			fmt=elf em=nbsd ;;
    m68k-*-netbsd*)			fmt=aout em=nbsd bfd_gas=yes ;;
    m68k-*-openbsd*)			fmt=aout em=nbsd bfd_gas=yes ;;
-diff -ur --new-file binutils-2.20.51.0.2/gprof/configure binutils-2.20.51.0.2-mint/gprof/configure
---- binutils-2.20.51.0.2/gprof/configure	2009-09-08 18:11:59.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/gprof/configure	2009-10-22 16:39:43.000000000 +0100
-@@ -8215,7 +8215,7 @@
-       # Instead, we relocate shared libraries at runtime.
-       ;;
+diff -ur --new-file binutils-2.21.51.0.7/gas/testsuite/gas/all/weakref1u.d binutils-2.21.51.0.7-mint/gas/testsuite/gas/all/weakref1u.d
+--- binutils-2.21.51.0.7/gas/testsuite/gas/all/weakref1u.d	2009-11-11 16:52:57.000000000 +0000
++++ binutils-2.21.51.0.7-mint/gas/testsuite/gas/all/weakref1u.d	2011-04-08 10:07:10.000000000 +0000
+@@ -3,7 +3,7 @@
+ #source: weakref1.s
+ # aout turns undefined into *ABS* symbols.
+ # see weakref1.d for comments on the other not-targets
+-#not-target: *-*-*aout m68k-*-netbsd m68k-*-openbsd* ns32k-*-netbsd alpha*-*-osf* *-*-ecoff
++#not-target: *-*-*aout m68k-*-netbsd m68k-*-openbsd* m68k-*-mint* ns32k-*-netbsd alpha*-*-osf* *-*-ecoff
  
--    msdosdjgpp*)
-+    msdosdjgpp* | mint*)
-       # Just because we use GCC doesn't mean we suddenly get shared libraries
-       # on systems that don't support them.
-       lt_prog_compiler_can_build_shared=no
-diff -ur --new-file binutils-2.20.51.0.2/include/filenames.h binutils-2.20.51.0.2-mint/include/filenames.h
---- binutils-2.20.51.0.2/include/filenames.h	2008-04-03 17:54:05.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/include/filenames.h	2009-10-22 16:39:43.000000000 +0100
+ # the rest of this file is generated with the following script:
+ # # script begin
+diff -ur --new-file binutils-2.21.51.0.7/gas/testsuite/gas/m68k/all.exp binutils-2.21.51.0.7-mint/gas/testsuite/gas/m68k/all.exp
+--- binutils-2.21.51.0.7/gas/testsuite/gas/m68k/all.exp	2011-03-07 18:05:32.000000000 +0000
++++ binutils-2.21.51.0.7-mint/gas/testsuite/gas/m68k/all.exp	2011-04-08 10:10:06.000000000 +0000
+@@ -71,7 +71,7 @@
+ 
+     gas_test_error "p11673.s" "-march=isab" "movel immediate with offset unsupported on isab"
+ 
+-    if { [istarget *-*-*aout] || [istarget *-*-netbsd] || [istarget *-*-openbsd*] } then {
++    if { [istarget *-*-*aout] || [istarget *-*-netbsd] || [istarget *-*-openbsd*] || [istarget *-*-mint*] } then {
+       run_dump_test p3041
+       run_dump_test p3041data
+       run_dump_test p3041pcrel
+diff -ur --new-file binutils-2.21.51.0.7/gas/testsuite/gas/m68k/br-isaa.d binutils-2.21.51.0.7-mint/gas/testsuite/gas/m68k/br-isaa.d
+--- binutils-2.21.51.0.7/gas/testsuite/gas/m68k/br-isaa.d	2009-11-11 16:52:56.000000000 +0000
++++ binutils-2.21.51.0.7-mint/gas/testsuite/gas/m68k/br-isaa.d	2011-04-08 10:07:10.000000000 +0000
+@@ -1,7 +1,7 @@
+ #name: br-isaa.d
+ #objdump: -dr
+ #as: -march=isaa -pcrel
+-#not-target: *-*-*aout m68k-*-netbsd m68k-*-openbsd*
++#not-target: *-*-*aout m68k-*-netbsd m68k-*-openbsd* m68k-*-mint*
+ 
+ .*:     file format .*
+ 
+diff -ur --new-file binutils-2.21.51.0.7/gas/testsuite/gas/m68k/br-isab.d binutils-2.21.51.0.7-mint/gas/testsuite/gas/m68k/br-isab.d
+--- binutils-2.21.51.0.7/gas/testsuite/gas/m68k/br-isab.d	2009-11-11 16:52:56.000000000 +0000
++++ binutils-2.21.51.0.7-mint/gas/testsuite/gas/m68k/br-isab.d	2011-04-08 10:07:10.000000000 +0000
+@@ -1,7 +1,7 @@
+ #name: br-isab.d
+ #objdump: -dr
+ #as: -march=isab -pcrel
+-#not-target: *-*-*aout m68k-*-netbsd m68k-*-openbsd*
++#not-target: *-*-*aout m68k-*-netbsd m68k-*-openbsd* m68k-*-mint*
+ 
+ .*:     file format .*
+ 
+diff -ur --new-file binutils-2.21.51.0.7/gas/testsuite/gas/m68k/br-isac.d binutils-2.21.51.0.7-mint/gas/testsuite/gas/m68k/br-isac.d
+--- binutils-2.21.51.0.7/gas/testsuite/gas/m68k/br-isac.d	2009-11-11 16:52:56.000000000 +0000
++++ binutils-2.21.51.0.7-mint/gas/testsuite/gas/m68k/br-isac.d	2011-04-08 10:07:10.000000000 +0000
+@@ -1,7 +1,7 @@
+ #name: br-isac.d
+ #objdump: -dr
+ #as: -march=isac -pcrel
+-#not-target: *-*-*aout m68k-*-netbsd m68k-*-openbsd*
++#not-target: *-*-*aout m68k-*-netbsd m68k-*-openbsd* m68k-*-mint*
+ 
+ .*:     file format .*
+ 
+diff -ur --new-file binutils-2.21.51.0.7/include/filenames.h binutils-2.21.51.0.7-mint/include/filenames.h
+--- binutils-2.21.51.0.7/include/filenames.h	2011-03-07 18:05:32.000000000 +0000
++++ binutils-2.21.51.0.7-mint/include/filenames.h	2011-04-08 10:07:27.000000000 +0000
 @@ -30,7 +30,7 @@
  extern "C" {
  #endif
  
 -#if defined(__MSDOS__) || defined(_WIN32) || defined(__OS2__) || defined (__CYGWIN__)
 +#if defined(__MSDOS__) || defined(_WIN32) || defined(__OS2__) || defined (__CYGWIN__) || defined (__MINT__)
- 
- #ifndef HAVE_DOS_BASED_FILE_SYSTEM
- #define HAVE_DOS_BASED_FILE_SYSTEM 1
-diff -ur --new-file binutils-2.20.51.0.2/include/getopt.h binutils-2.20.51.0.2-mint/include/getopt.h
---- binutils-2.20.51.0.2/include/getopt.h	2005-05-10 23:46:48.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/include/getopt.h	2009-10-22 16:39:43.000000000 +0100
+ #  ifndef HAVE_DOS_BASED_FILE_SYSTEM
+ #    define HAVE_DOS_BASED_FILE_SYSTEM 1
+ #  endif
+diff -ur --new-file binutils-2.21.51.0.7/include/getopt.h binutils-2.21.51.0.7-mint/include/getopt.h
+--- binutils-2.21.51.0.7/include/getopt.h	2005-05-10 22:46:48.000000000 +0000
++++ binutils-2.21.51.0.7-mint/include/getopt.h	2011-04-08 10:07:27.000000000 +0000
 @@ -106,7 +106,7 @@
     to find the declaration so provide a fully prototyped one.  If it
     is 1, we found it so don't provide any declaration at all.  */
@@ -2091,18 +2137,18 @@ diff -ur --new-file binutils-2.20.51.0.2/include/getopt.h binutils-2.20.51.0.2-m
  /* Many other libraries have conflicting prototypes for getopt, with
     differences in the consts, in unistd.h.  To avoid compilation
     errors, only prototype getopt for the GNU C library.  */
-diff -ur --new-file binutils-2.20.51.0.2/ld/Makefile.am binutils-2.20.51.0.2-mint/ld/Makefile.am
---- binutils-2.20.51.0.2/ld/Makefile.am	2009-10-09 23:25:32.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/ld/Makefile.am	2009-10-22 16:39:44.000000000 +0100
-@@ -282,6 +282,7 @@
- 	em68kelf.o \
- 	em68kelfnbsd.o \
- 	em68klinux.o \
-+	em68kmint.o \
- 	em68knbsd.o \
- 	em68kpsos.o \
- 	em88kbcs.o \
-@@ -1335,6 +1336,10 @@
+diff -ur --new-file binutils-2.21.51.0.7/ld/Makefile.am binutils-2.21.51.0.7-mint/ld/Makefile.am
+--- binutils-2.21.51.0.7/ld/Makefile.am	2011-03-07 18:05:32.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/Makefile.am	2011-04-08 10:07:27.000000000 +0000
+@@ -308,6 +308,7 @@
+ 	em68kelf.c \
+ 	em68kelfnbsd.c \
+ 	em68klinux.c \
++	em68kmint.c \
+ 	em68knbsd.c \
+ 	em68kpsos.c \
+ 	em88kbcs.c \
+@@ -1319,6 +1320,10 @@
  em68klinux.c: $(srcdir)/emulparams/m68klinux.sh \
    $(srcdir)/emultempl/linux.em $(srcdir)/scripttempl/aout.sc ${GEN_DEPENDS}
  	${GENSCRIPTS} m68klinux "$(tdir_m68klinux)"
@@ -2113,18 +2159,26 @@ diff -ur --new-file binutils-2.20.51.0.2/ld/Makefile.am binutils-2.20.51.0.2-min
  em68knbsd.c:	$(srcdir)/emulparams/m68knbsd.sh \
    $(srcdir)/emultempl/generic.em $(srcdir)/scripttempl/aout.sc ${GEN_DEPENDS}
  	${GENSCRIPTS} m68knbsd "$(tdir_m68knbsd)"
-diff -ur --new-file binutils-2.20.51.0.2/ld/Makefile.in binutils-2.20.51.0.2-mint/ld/Makefile.in
---- binutils-2.20.51.0.2/ld/Makefile.in	2009-10-09 23:25:27.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/ld/Makefile.in	2009-10-22 16:39:44.000000000 +0100
-@@ -568,6 +568,7 @@
- 	em68kelf.o \
- 	em68kelfnbsd.o \
- 	em68klinux.o \
-+	em68kmint.o \
- 	em68knbsd.o \
- 	em68kpsos.o \
- 	em88kbcs.o \
-@@ -2677,6 +2678,10 @@
+diff -ur --new-file binutils-2.21.51.0.7/ld/Makefile.in binutils-2.21.51.0.7-mint/ld/Makefile.in
+--- binutils-2.21.51.0.7/ld/Makefile.in	2011-03-07 18:05:32.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/Makefile.in	2011-04-08 10:07:27.000000000 +0000
+@@ -614,6 +614,7 @@
+ 	em68kelf.c \
+ 	em68kelfnbsd.c \
+ 	em68klinux.c \
++	em68kmint.c \
+ 	em68knbsd.c \
+ 	em68kpsos.c \
+ 	em88kbcs.c \
+@@ -1229,6 +1230,7 @@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/em68kelf.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/em68kelfnbsd.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/em68klinux.Po@am__quote@
++@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/em68kmint.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/em68knbsd.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/em68kpsos.Po@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/em88kbcs.Po@am__quote@
+@@ -2762,6 +2764,10 @@
  em68klinux.c: $(srcdir)/emulparams/m68klinux.sh \
    $(srcdir)/emultempl/linux.em $(srcdir)/scripttempl/aout.sc ${GEN_DEPENDS}
  	${GENSCRIPTS} m68klinux "$(tdir_m68klinux)"
@@ -2135,19 +2189,10 @@ diff -ur --new-file binutils-2.20.51.0.2/ld/Makefile.in binutils-2.20.51.0.2-min
  em68knbsd.c:	$(srcdir)/emulparams/m68knbsd.sh \
    $(srcdir)/emultempl/generic.em $(srcdir)/scripttempl/aout.sc ${GEN_DEPENDS}
  	${GENSCRIPTS} m68knbsd "$(tdir_m68knbsd)"
-diff -ur --new-file binutils-2.20.51.0.2/ld/configure binutils-2.20.51.0.2-mint/ld/configure
---- binutils-2.20.51.0.2/ld/configure	2009-09-08 18:11:37.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/ld/configure	2009-10-22 16:39:46.000000000 +0100
-@@ -8665,7 +8665,7 @@
-       # Instead, we relocate shared libraries at runtime.
-       ;;
- 
--    msdosdjgpp*)
-+    msdosdjgpp* | mint*)
-       # Just because we use GCC doesn't mean we suddenly get shared libraries
-       # on systems that don't support them.
-       lt_prog_compiler_can_build_shared=no
-@@ -12641,7 +12641,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/ld/configure binutils-2.21.51.0.7-mint/ld/configure
+--- binutils-2.21.51.0.7/ld/configure	2011-03-07 18:05:32.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/configure	2011-04-08 10:07:28.000000000 +0000
+@@ -16557,7 +16557,7 @@
  
  
  case "${host}" in
@@ -2156,10 +2201,10 @@ diff -ur --new-file binutils-2.20.51.0.2/ld/configure binutils-2.20.51.0.2-mint/
  
  $as_echo "#define USE_BINARY_FOPEN 1" >>confdefs.h
   ;;
-diff -ur --new-file binutils-2.20.51.0.2/ld/configure.tgt binutils-2.20.51.0.2-mint/ld/configure.tgt
---- binutils-2.20.51.0.2/ld/configure.tgt	2009-10-09 23:25:32.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/ld/configure.tgt	2009-10-22 16:39:46.000000000 +0100
-@@ -341,6 +341,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/ld/configure.tgt binutils-2.21.51.0.7-mint/ld/configure.tgt
+--- binutils-2.21.51.0.7/ld/configure.tgt	2011-01-04 17:51:04.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/configure.tgt	2011-04-08 10:07:28.000000000 +0000
+@@ -344,6 +344,7 @@
  			tdir_m68klinux=`echo ${targ_alias} | sed -e 's/linux/linuxaout/'` ;;
  m68k-*-uclinux*)	targ_emul=m68kelf ;;
  m68*-*-gnu*)		targ_emul=m68kelf ;;
@@ -2167,9 +2212,9 @@ diff -ur --new-file binutils-2.20.51.0.2/ld/configure.tgt binutils-2.20.51.0.2-m
  m68*-*-netbsd*4k*)	targ_emul=m68k4knbsd
  			targ_extra_emuls="m68knbsd m68kelfnbsd" ;;
  m68*-*-netbsdelf*)	targ_emul=m68kelfnbsd
-diff -ur --new-file binutils-2.20.51.0.2/ld/emulparams/m68kmint.sh binutils-2.20.51.0.2-mint/ld/emulparams/m68kmint.sh
---- binutils-2.20.51.0.2/ld/emulparams/m68kmint.sh	1970-01-01 01:00:00.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/ld/emulparams/m68kmint.sh	2009-10-22 16:39:46.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/ld/emulparams/m68kmint.sh binutils-2.21.51.0.7-mint/ld/emulparams/m68kmint.sh
+--- binutils-2.21.51.0.7/ld/emulparams/m68kmint.sh	1970-01-01 00:00:00.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/emulparams/m68kmint.sh	2011-04-08 10:07:28.000000000 +0000
 @@ -0,0 +1,6 @@
 +SCRIPT_NAME=m68kmint
 +OUTPUT_FORMAT="a.out-mintprg"
@@ -2177,9 +2222,9 @@ diff -ur --new-file binutils-2.20.51.0.2/ld/emulparams/m68kmint.sh binutils-2.20
 +TEXT_START_ADDR=0xe4
 +ARCH=m68k
 +EXTRA_EM_FILE=mint
-diff -ur --new-file binutils-2.20.51.0.2/ld/emultempl/generic.em binutils-2.20.51.0.2-mint/ld/emultempl/generic.em
---- binutils-2.20.51.0.2/ld/emultempl/generic.em	2009-09-08 18:11:36.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/ld/emultempl/generic.em	2009-10-22 16:39:46.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/ld/emultempl/generic.em binutils-2.21.51.0.7-mint/ld/emultempl/generic.em
+--- binutils-2.21.51.0.7/ld/emultempl/generic.em	2009-09-08 17:11:36.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/emultempl/generic.em	2011-04-08 10:07:28.000000000 +0000
 @@ -138,8 +138,8 @@
    ${LDEMUL_PLACE_ORPHAN-NULL},
    ${LDEMUL_SET_SYMBOLS-NULL},
@@ -2191,9 +2236,9 @@ diff -ur --new-file binutils-2.20.51.0.2/ld/emultempl/generic.em binutils-2.20.5
    ${LDEMUL_UNRECOGNIZED_FILE-NULL},
    ${LDEMUL_LIST_OPTIONS-NULL},
    ${LDEMUL_RECOGNIZED_FILE-NULL},
-diff -ur --new-file binutils-2.20.51.0.2/ld/emultempl/mint.em binutils-2.20.51.0.2-mint/ld/emultempl/mint.em
---- binutils-2.20.51.0.2/ld/emultempl/mint.em	1970-01-01 01:00:00.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/ld/emultempl/mint.em	2009-10-22 16:39:46.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/ld/emultempl/mint.em binutils-2.21.51.0.7-mint/ld/emultempl/mint.em
+--- binutils-2.21.51.0.7/ld/emultempl/mint.em	1970-01-01 00:00:00.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/emultempl/mint.em	2011-04-08 10:07:28.000000000 +0000
 @@ -0,0 +1,330 @@
 +# This shell script emits a C file. -*- C -*-
 +#   Copyright 2006, 2007 Free Software Foundation, Inc.
@@ -2525,9 +2570,9 @@ diff -ur --new-file binutils-2.20.51.0.2/ld/emultempl/mint.em binutils-2.20.51.0
 +LDEMUL_HANDLE_OPTION=gld${EMULATION_NAME}_handle_option
 +LDEMUL_LIST_OPTIONS=gld_${EMULATION_NAME}_list_options
 +LDEMUL_FINISH=gld${EMULATION_NAME}_finish
-diff -ur --new-file binutils-2.20.51.0.2/ld/scripttempl/m68kmint.sc binutils-2.20.51.0.2-mint/ld/scripttempl/m68kmint.sc
---- binutils-2.20.51.0.2/ld/scripttempl/m68kmint.sc	1970-01-01 01:00:00.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/ld/scripttempl/m68kmint.sc	2009-10-22 16:39:46.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/ld/scripttempl/m68kmint.sc binutils-2.21.51.0.7-mint/ld/scripttempl/m68kmint.sc
+--- binutils-2.21.51.0.7/ld/scripttempl/m68kmint.sc	1970-01-01 00:00:00.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/scripttempl/m68kmint.sc	2011-04-08 10:07:28.000000000 +0000
 @@ -0,0 +1,35 @@
 +cat <<EOF
 +${RELOCATING+OUTPUT_FORMAT(${OUTPUT_FORMAT})}
@@ -2564,10 +2609,10 @@ diff -ur --new-file binutils-2.20.51.0.2/ld/scripttempl/m68kmint.sc binutils-2.2
 +  }
 +}
 +EOF
-diff -ur --new-file binutils-2.20.51.0.2/libiberty/configure binutils-2.20.51.0.2-mint/libiberty/configure
---- binutils-2.20.51.0.2/libiberty/configure	2009-09-08 18:11:46.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/libiberty/configure	2009-10-22 16:39:46.000000000 +0100
-@@ -4844,6 +4844,7 @@
+diff -ur --new-file binutils-2.21.51.0.7/libiberty/configure binutils-2.21.51.0.7-mint/libiberty/configure
+--- binutils-2.21.51.0.7/libiberty/configure	2010-12-06 14:24:01.000000000 +0000
++++ binutils-2.21.51.0.7-mint/libiberty/configure	2011-04-08 10:07:29.000000000 +0000
+@@ -4850,6 +4850,7 @@
  if [ "${shared}" = "yes" ]; then
    case "${host}" in
      *-*-cygwin*)	;;
@@ -2575,9 +2620,9 @@ diff -ur --new-file binutils-2.20.51.0.2/libiberty/configure binutils-2.20.51.0.
      alpha*-*-linux*)	PICFLAG=-fPIC ;;
      arm*-*-*)		PICFLAG=-fPIC ;;
      hppa*-*-*)		PICFLAG=-fPIC ;;
-diff -ur --new-file binutils-2.20.51.0.2/libiberty/configure.ac binutils-2.20.51.0.2-mint/libiberty/configure.ac
---- binutils-2.20.51.0.2/libiberty/configure.ac	2009-09-08 18:11:46.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/libiberty/configure.ac	2009-10-22 16:39:46.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/libiberty/configure.ac binutils-2.21.51.0.7-mint/libiberty/configure.ac
+--- binutils-2.21.51.0.7/libiberty/configure.ac	2010-12-06 14:24:01.000000000 +0000
++++ binutils-2.21.51.0.7-mint/libiberty/configure.ac	2011-04-08 10:07:29.000000000 +0000
 @@ -201,6 +201,7 @@
  if [[ "${shared}" = "yes" ]]; then
    case "${host}" in
@@ -2586,9 +2631,9 @@ diff -ur --new-file binutils-2.20.51.0.2/libiberty/configure.ac binutils-2.20.51
      alpha*-*-linux*)	PICFLAG=-fPIC ;;
      arm*-*-*)		PICFLAG=-fPIC ;;
      hppa*-*-*)		PICFLAG=-fPIC ;;
-diff -ur --new-file binutils-2.20.51.0.2/libiberty/hex.c binutils-2.20.51.0.2-mint/libiberty/hex.c
---- binutils-2.20.51.0.2/libiberty/hex.c	2007-03-16 15:48:30.000000000 +0000
-+++ binutils-2.20.51.0.2-mint/libiberty/hex.c	2009-10-22 16:39:46.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/libiberty/hex.c binutils-2.21.51.0.7-mint/libiberty/hex.c
+--- binutils-2.21.51.0.7/libiberty/hex.c	2007-03-16 15:48:30.000000000 +0000
++++ binutils-2.21.51.0.7-mint/libiberty/hex.c	2011-04-08 10:07:28.000000000 +0000
 @@ -24,7 +24,7 @@
  #include "libiberty.h"
  #include "safe-ctype.h" /* for HOST_CHARSET_ASCII */
@@ -2598,9 +2643,9 @@ diff -ur --new-file binutils-2.20.51.0.2/libiberty/hex.c binutils-2.20.51.0.2-mi
   #error "hex.c requires EOF == -1"
  #endif
  
-diff -ur --new-file binutils-2.20.51.0.2/libiberty/safe-ctype.c binutils-2.20.51.0.2-mint/libiberty/safe-ctype.c
---- binutils-2.20.51.0.2/libiberty/safe-ctype.c	2005-06-22 21:53:36.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/libiberty/safe-ctype.c	2009-10-22 16:39:46.000000000 +0100
+diff -ur --new-file binutils-2.21.51.0.7/libiberty/safe-ctype.c binutils-2.21.51.0.7-mint/libiberty/safe-ctype.c
+--- binutils-2.21.51.0.7/libiberty/safe-ctype.c	2005-06-22 20:53:36.000000000 +0000
++++ binutils-2.21.51.0.7-mint/libiberty/safe-ctype.c	2011-04-08 10:07:28.000000000 +0000
 @@ -119,7 +119,7 @@
  #include <safe-ctype.h>
  #include <stdio.h>  /* for EOF */
@@ -2610,15 +2655,27 @@ diff -ur --new-file binutils-2.20.51.0.2/libiberty/safe-ctype.c binutils-2.20.51
   #error "<safe-ctype.h> requires EOF == -1"
  #endif
  
-diff -ur --new-file binutils-2.20.51.0.2/opcodes/configure binutils-2.20.51.0.2-mint/opcodes/configure
---- binutils-2.20.51.0.2/opcodes/configure	2009-10-09 23:25:44.000000000 +0100
-+++ binutils-2.20.51.0.2-mint/opcodes/configure	2009-10-22 16:39:47.000000000 +0100
-@@ -8265,7 +8265,7 @@
-       # Instead, we relocate shared libraries at runtime.
-       ;;
+--- binutils-2.21.51.0.7/ld/lexsup.c	2011-04-08 15:39:47.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/lexsup.c	2011-04-08 15:39:25.000000000 +0000
+@@ -57,6 +57,9 @@
+ #define	S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
+ #endif
  
--    msdosdjgpp*)
-+    msdosdjgpp* | mint*)
-       # Just because we use GCC doesn't mean we suddenly get shared libraries
-       # on systems that don't support them.
-       lt_prog_compiler_can_build_shared=no
++/* Report plugin symbols.  */
++bfd_boolean report_plugin_symbols;
++
+ static void set_default_dirlist (char *);
+ static void set_section_start (char *, char *);
+ static void set_segment_start (const char *, char *);
+--- binutils-2.21.51.0.7/ld/plugin.c	2011-04-08 15:39:00.000000000 +0000
++++ binutils-2.21.51.0.7-mint/ld/plugin.c	2011-04-08 15:39:54.000000000 +0000
+@@ -36,9 +36,6 @@
+ #include <Windows.h>
+ #endif
+ 
+-/* Report plugin symbols.  */
+-bfd_boolean report_plugin_symbols;
+-
+ /* Stores a single argument passed to a plugin.  */
+ typedef struct plugin_arg
+ {
