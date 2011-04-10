@@ -13,7 +13,7 @@ SRC_URI="http://hackage.haskell.org/packages/archive/${PN}/${PV}/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 IUSE="test"
 
 RDEPEND=">=dev-lang/ghc-6.10
