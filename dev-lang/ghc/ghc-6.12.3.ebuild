@@ -47,7 +47,7 @@ arch_binaries="$arch_binaries ppc? ( mirror://gentoo/ghc-bin-${PV}-ppc.tbz2 )"
 arch_binaries="$arch_binaries x86-fbsd? ( http://code.haskell.org/~slyfox/ghc-x86-fbsd/ghc-bin-${PV}-x86-fbsd.tbz2 )"
 
 arch_binaries="$arch_binaries x86-macos? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-i386-apple-darwin.tar.bz2 )"
-arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-powerpc-apple-darwin.tar.bz2 )"
+arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.1-powerpc-apple-darwin.tar.bz2 )"
 arch_binaries="$arch_binaries x86-solaris? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-i386-unknown-solaris2.tar.bz2 )"
 arch_binaries="$arch_binaries sparc-solaris? ( http://www.haskell.org/ghc/dist/6.10.4/maeder/ghc-6.10.4-sparc-sun-solaris2.tar.bz2 )"
 
@@ -196,47 +196,56 @@ src_unpack() {
 			else
 				mkdir "${WORKDIR}"/ghc-bin-installer || die
 				pushd "${WORKDIR}"/ghc-bin-installer > /dev/null || die
-				use sparc-solaris && unpack ghc-${PV}-sparc-sun-solaris2.tar.bz2
-				use x86-solaris && unpack ghc-${PV}-i386-unknown-solaris2.tar.bz2
-				use ppc-macos && unpack ghc-${PV}-powerpc-apple-darwin.tar.bz2
-				use x86-macos && unpack ghc-${PV}-i386-apple-darwin.tar.bz2
+				use sparc-solaris && unpack ghc-6.10.4-sparc-sun-solaris2.tar.bz2
+				use x86-solaris && unpack ghc-6.10.4-i386-unknown-solaris2.tar.bz2
+				use ppc-macos && unpack ghc-6.10.1-powerpc-apple-darwin.tar.bz2
+				use x86-macos && unpack ghc-6.10.4-i386-apple-darwin.tar.bz2
+				popd > /dev/null
 
-				# it is autoconf, but we really don't want to give it too
-				# much arguments, in fact we do the make in-place anyway
-				pushd "${P}" > /dev/null || die
-				./configure --prefix="${WORKDIR}"/usr || die
-				make install || die
-				popd > /dev/null
-				popd > /dev/null
+				pushd "${WORKDIR}"/ghc-bin-installer/ghc-6.10.? > /dev/null || die
 				# fix the binaries so they run, on Solaris we need an
-				# LD_LIBRARY_PATH which has our prefix libdirs, on Darwin we
-				# need to replace the frameworks with our libs from the prefix
-				pushd "${WORKDIR}"/usr > /dev/null || die
+				# LD_LIBRARY_PATH which has our prefix libdirs, on
+				# Darwin we need to replace the frameworks with our libs
+				# from the prefix fix before installation, because some
+				# of the tools are actually used during configure/make
 				if [[ ${CHOST} == *-solaris* ]] ; then
 					export LD_LIBRARY_PATH="${EPREFIX}/$(get_libdir):${EPREFIX}/usr/$(get_libdir):${LD_LIBRARY_PATH}"
 				elif [[ ${CHOST} == *-darwin* ]] ; then
-					local readline_framework
+					local readline_framework gmp_framework ncurses_file
 					if [[ ${CHOST} == powerpc-*-darwin* ]]; then
 						readline_framework=GNUreadline.framework/GNUreadline
+						gmp_framework=/opt/local/lib/libgmp.3.dylib
+						ncurses_file=/opt/local/lib/libncurses.5.dylib
 					else
 						readline_framework=GNUreadline.framework/Versions/A/GNUreadline
+						gmp_framework=GMP.framework/Versions/A/GMP
+						ncurses_file=/nowhere
 					fi
-					for binary in lib/*-apple-darwin/ghc-{${PV},pkg.bin}; do
+					for binary in $(scanmacho -BRE MH_EXECUTE -F '%F' .) ; do
 						install_name_tool -change \
 							${readline_framework} \
 							"${EPREFIX}"/lib/libreadline.dylib \
 							${binary} || die
 						install_name_tool -change \
-							GMP.framework/Versions/A/GMP \
+							${gmp_framework} \
 							"${EPREFIX}"/usr/lib/libgmp.dylib \
+							${binary} || die
+						install_name_tool -change \
+							${ncurses_file} \
+							"${EPREFIX}"/usr/lib/libncurses.dylib \
 							${binary} || die
 					done
 					# we don't do frameworks!
 					sed -i \
 						-e 's/\(frameworks = \)\["GMP"\]/\1[]/g' \
 						-e 's/\(extraLibraries = \)\["m"\]/\1["m","gmp"]/g' \
-						lib/*-apple-darwin/package.conf || die
+						rts/package.conf.in || die
 				fi
+
+				# it is autoconf, but we really don't want to give it too
+				# much arguments, in fact we do the make in-place anyway
+				./configure --prefix="${WORKDIR}"/usr || die
+				make install || die
 				popd > /dev/null
 			fi
 		fi
@@ -269,6 +278,7 @@ src_unpack() {
 		epatch "${FILESDIR}/ghc-6.12.1-configure-CHOST.patch"
 		epatch "${FILESDIR}/ghc-6.12.2-configure-CHOST-part2.patch"
 		epatch "${FILESDIR}/ghc-6.12.3-configure-CHOST-freebsd.patch"
+		epatch "${FILESDIR}/ghc-6.12.3-configure-CHOST-prefix.patch"
 
 		# -r and --relax are incompatible
 		epatch "${FILESDIR}/ghc-6.12.3-ia64-fixed-relax.patch"
