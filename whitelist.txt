@@ -45,6 +45,7 @@ app-admin/eselect-postgresql
 app-admin/eselect-unison
 app-admin/eselect-vi
 app-admin/gamin
+app-admin/keepassx
 app-admin/lsyncd
 app-admin/makepasswd
 app-admin/passook
