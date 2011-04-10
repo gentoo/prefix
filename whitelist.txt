@@ -182,6 +182,7 @@ app-text/asciidoc
 app-text/aspell
 app-text/barcode
 app-text/bogosort
+app-text/c2ps
 app-text/catdoc
 app-text/chasen
 app-text/clara
@@ -444,11 +445,14 @@ dev-util/checkstyle
 dev-util/chromium-tools
 dev-util/cmake
 dev-util/cocom
+dev-util/colorgcc
 dev-util/confix
 dev-util/confix-wrapper
+dev-util/cppunit
 dev-util/cproto
 dev-util/cucumber
 dev-util/cucumber-rails
+dev-util/cunit
 dev-util/dejagnu
 dev-util/desktop-file-utils
 dev-util/diffball
@@ -478,9 +482,11 @@ dev-util/pmk
 dev-util/pscan
 dev-util/qt-creator
 dev-util/ragel
+dev-util/rats
 dev-util/re2c
 dev-util/rej
 dev-util/scons
+dev-util/source-highlight
 dev-util/strace
 dev-util/tailor
 dev-util/tkdiff
@@ -814,9 +820,6 @@ net-misc/unison
 net-misc/wakeonlan
 net-misc/whois
 net-misc/youtube-dl
-net-nntp/hellanzb
-net-nntp/newspost
-net-nntp/nget
 net-p2p/mutella
 sys-apps/ack
 sys-apps/acl
@@ -980,6 +983,7 @@ media-fonts
 media-plugins
 net-dialup
 net-news
+net-nntp
 net-print
 net-voip
 net-wireless
