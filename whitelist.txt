@@ -124,6 +124,7 @@ app-misc/delay
 app-misc/devtodo
 app-misc/dvorak7min
 app-misc/figlet
+app-misc/gcal
 app-misc/geekcode
 app-misc/getopt
 app-misc/glimpse
@@ -169,6 +170,7 @@ app-shells/gentoo-bashcomp
 app-shells/prll
 app-shells/tcsh
 app-shells/zsh-completion
+app-text/a2ps
 app-text/adiff
 app-text/agrep
 app-text/aiksaurus
@@ -197,6 +199,7 @@ app-text/docbook-xsl-stylesheets
 app-text/docbook2X
 app-text/dos2unix
 app-text/duconv
+app-text/dvipdfm
 app-text/dvipng
 app-text/dvipsk
 app-text/dvisvgm
@@ -220,6 +223,7 @@ app-text/iso-codes
 app-text/ispell
 app-text/jadetex
 app-text/lcdf-typetools
+app-text/libpaper
 app-text/libspectre
 app-text/libwpd
 app-text/lout
@@ -231,6 +235,7 @@ app-text/passivetex
 app-text/pep
 app-text/po4a
 app-text/poppler
+app-text/poppler-data
 app-text/ps2eps
 app-text/ps2pkm
 app-text/psutils
@@ -238,6 +243,7 @@ app-text/recode
 app-text/rman
 app-text/rpl
 app-text/sablotron
+app-text/sary
 app-text/scrollkeeper
 app-text/scrollkeeper-dtd
 app-text/sgml-common
@@ -259,6 +265,7 @@ app-text/vlna
 app-text/wdiff
 app-text/wgetpaste
 app-text/wpd2sxw
+app-text/wv
 app-text/xdvik
 app-text/xhtml1
 app-text/xlhtml
@@ -455,6 +462,7 @@ dev-util/diffball
 dev-util/difffilter
 dev-util/diffstat
 dev-util/dmake
+dev-util/fhist
 dev-util/filepp
 dev-util/flawfinder
 dev-util/ftjam
@@ -832,6 +840,7 @@ sys-apps/man-pages
 sys-apps/man-pages-posix
 sys-apps/mawk
 sys-apps/miscfiles
+sys-apps/most
 sys-apps/prefix-chain-utils
 sys-apps/pv
 sys-apps/ren
