@@ -149,14 +149,6 @@ app-misc/tmux
 app-misc/ttyrec
 app-misc/when
 app-misc/zisofs-tools
-app-office/abiword
-app-office/akonadi-server
-app-office/calcurse
-app-office/ledger
-app-office/openoffice
-app-office/openoffice-bin
-app-office/orage
-app-office/texmacs
 app-portage/eclass-manpages
 app-portage/eix
 app-portage/elogv
@@ -968,6 +960,7 @@ app-doc
 app-emacs
 app-emulation
 app-i18n
+app-office
 app-pda
 app-vim
 dev-cpp
