@@ -347,19 +347,21 @@ src_prepare() {
 		epatch "${FILESDIR}/ghc-6.12.3-autoconf-2.66-4252.patch"
 
 		# ticket 2615, linker scripts
-		epatch "${FILESDIR}/ghc-6.12.3-ticket-2615-linker-script.patch"
+		# breaks Darwin
+		[[ ${CHOST} != *-darwin* ]] && \
+			epatch "${FILESDIR}/ghc-6.12.3-ticket-2615-linker-script.patch"
 
 		# export typechecker internals even if ghci is disabled
 		# http://hackage.haskell.org/trac/ghc/ticket/3558
 		epatch "${FILESDIR}/ghc-6.12.3-ghciless-haddock-3558.patch"
 
-		epatch "${FILESDIR}"/${P}-pic-powerpc.patch
-		epatch "${FILESDIR}"/${P}-darwin8.patch
-		epatch "${FILESDIR}"/${P}-mach-o-relocation-limit.patch
-
 		# This patch unbreaks ghci on GRSEC kernels hardened with
 		# TPE (Trusted Path Execution) protection.
 		epatch "${FILESDIR}/ghc-6.12.3-libffi-incorrect-detection-of-selinux.patch"
+
+		epatch "${FILESDIR}"/${P}-pic-powerpc.patch
+		epatch "${FILESDIR}"/${P}-darwin8.patch
+		epatch "${FILESDIR}"/${P}-mach-o-relocation-limit.patch
 
 		if use prefix; then
 			# Make configure find docbook-xsl-stylesheets from Prefix
