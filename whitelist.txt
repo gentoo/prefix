@@ -776,6 +776,7 @@ net-libs/libnice
 net-libs/libosip
 net-libs/libotr
 net-libs/libpcap
+net-libs/libsoup
 net-libs/libsoup-gnome
 net-libs/libsrtp
 net-libs/libssh
