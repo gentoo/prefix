@@ -161,8 +161,6 @@ src_unpack() {
 	cd "${S}"  # base_src_unpack moves to ${S}
 	source "${FILESDIR}/ghc-apply-gmp-hack" "$(get_libdir)"
 
-	epatch "${FILESDIR}"/${P}-pic-powerpc.patch
-
 	ghc_setup_cflags
 
 	if ! use ghcbootstrap; then
@@ -301,6 +299,10 @@ src_unpack() {
 		# export typechecker internals even if ghci is disabled
 		# http://hackage.haskell.org/trac/ghc/ticket/3558
 		epatch "${FILESDIR}/ghc-6.12.3-ghciless-haddock-3558.patch"
+
+		epatch "${FILESDIR}"/${P}-pic-powerpc.patch
+		epatch "${FILESDIR}"/${P}-darwin8.patch
+		epatch "${FILESDIR}"/${P}-mach-o-relocation-limit.patch
 
 		# as we have changed the build system
 # see below		eautoreconf
