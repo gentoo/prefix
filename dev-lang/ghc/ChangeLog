@@ -1,6 +1,23 @@
 # ChangeLog for dev-lang/ghc
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.200 2010/11/27 12:43:55 kolmodin Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.203 2011/03/27 19:44:17 slyfox Exp $
+
+*ghc-6.12.3-r1 (27 Mar 2011)
+
+  27 Mar 2011; Sergei Trofimovich <slyfox@gentoo.org> +ghc-6.12.3-r1.ebuild,
+  +files/ghc-6.12.3-ticket-2615-linker-script.patch:
+  Migrated to EAPI=3: initial PREFIX support (based on work of grobian);
+  USE=unicode for ncurses is a required depend (bug #326237 by Josh
+  Cartwright and others). Added linker script support to workaround bug
+  #311361 by Maciej Piechotka.
+
+  25 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> ghc-6.12.3.ebuild:
+  ppc/ppc64 stable wrt #338652
+
+  05 Feb 2011; Sergei Trofimovich <slyfox@gentoo.org> ghc-6.12.3.ebuild,
+  +files/ghc-6.12.3-libffi-incorrect-detection-of-selinux.patch:
+  Backported libffi fix from upstream. It fixes GHCi operation on GRSEC
+  kernel for TPE restricted users. Thanks to klondike!
 
   27 Nov 2010; Lennart Kolmodin <kolmodin@gentoo.org> -ghc-6.12.1.ebuild:
   Remove masked GHC 6.12.1.

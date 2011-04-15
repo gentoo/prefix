@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.12.3.ebuild,v 1.21 2011/02/25 12:36:04 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.12.3-r1.ebuild,v 1.1 2011/03/27 19:44:17 slyfox Exp $
 
 # Brief explanation of the bootstrap logic:
 #
@@ -27,6 +27,8 @@
 # you switch to gcc-4.x that this will also break ghc and you'll need to
 # re-emerge ghc (or ghc-bin). People using vanilla gcc can switch between
 # gcc-3.x and 4.x with no problems.
+
+EAPI="3"
 
 inherit base autotools bash-completion eutils flag-o-matic multilib toolchain-funcs ghc-package versionator pax-utils
 
@@ -65,7 +67,8 @@ RDEPEND="
 	kernel_SunOS? ( >=sys-devel/binutils-2.17 )
 	>=dev-lang/perl-5.6.1
 	>=dev-libs/gmp-4.1
-	!<dev-haskell/haddock-2.4.2"
+	!<dev-haskell/haddock-2.4.2
+	sys-libs/ncurses[unicode]"
 # earlier versions than 2.4.2 of haddock only works with older ghc releases
 
 DEPEND="${RDEPEND}
@@ -75,7 +78,7 @@ DEPEND="${RDEPEND}
 # In the ghcbootstrap case we rely on the developer having
 # >=ghc-5.04.3 on their $PATH already
 
-PDEPEND="!ghcbootstrap? ( =app-admin/haskell-updater-1.1* )"
+PDEPEND="!ghcbootstrap? ( || ( =app-admin/haskell-updater-1.2* =app-admin/haskell-updater-1.1* ) )"
 
 # use undocumented feature STRIP_MASK to fix this issue:
 # http://hackage.haskell.org/trac/ghc/ticket/3580
@@ -138,6 +141,58 @@ ghc_setup_cflags() {
 	use ia64 && append-ghc-cflags compile -G0
 }
 
+# substitutes string $1 to $2 in files $3 $4 ...
+relocate_path() {
+	local from=$1
+	local   to=$2
+	shift 2
+	local file=
+	for file in "$@"
+	do
+		sed -i -e "s|$from|$to|g" \
+		    "$file" || die "path relocation failed for '$file'"
+	done
+}
+
+# changes hardcoded ghc paths and updates package index
+# $1 - new absolute root path
+relocate_ghc() {
+	local to=$1
+
+	# backup original script to use it later after relocation
+	local gp_back="${T}/ghc-pkg-${PV}-orig"
+	cp "${WORKDIR}/usr/bin/ghc-pkg-${PV}" "$gp_back" || die "unable to backup ghc-pkg wrapper"
+
+	# Relocate from /usr to ${EPREFIX}/usr
+	relocate_path "/usr" "${to}/usr" \
+		"${WORKDIR}/usr/bin/ghc-${PV}" \
+		"${WORKDIR}/usr/bin/ghci-${PV}" \
+		"${WORKDIR}/usr/bin/ghc-pkg-${PV}" \
+		"${WORKDIR}/usr/bin/hsc2hs" \
+		"${WORKDIR}/usr/$(get_libdir)/${P}/package.conf.d/"*
+
+	# this one we will use to regenerate cache
+	# so it shoult point to current tree location
+	relocate_path "/usr" "${WORKDIR}/usr" "$gp_back"
+
+	if use prefix; then
+		# and insert LD_LIBRARY_PATH entry to EPREFIX dir tree
+		# TODO: add the same for darwin's CHOST and it's DYLD_
+		local new_ldpath='LD_LIBRARY_PATH="'${EPREFIX}/$(get_libdir):${EPREFIX}/usr/$(get_libdir)'${LD_LIBRARY_PATH:+:}${LD_LIBRARY_PATH}"\nexport LD_LIBRARY_PATH'
+		sed -i -e '2i'"$new_ldpath" \
+			"${WORKDIR}/usr/bin/ghc-${PV}" \
+			"${WORKDIR}/usr/bin/ghci-${PV}" \
+			"${WORKDIR}/usr/bin/ghc-pkg-${PV}" \
+			"$gp_back" \
+			"${WORKDIR}/usr/bin/hsc2hs" \
+			|| die "Adding LD_LIBRARY_PATH for wrappers failed"
+	fi
+
+	# regenerate the binary package cache
+	"$gp_back" recache || die "failed to update cache after relocation"
+	rm "$gp_back"
+}
+
 pkg_setup() {
 	if use ghcbootstrap; then
 		ewarn "You requested ghc bootstrapping, this is usually only used"
@@ -158,7 +213,9 @@ src_unpack() {
 	[[ ${CHOST} != *-linux-gnu ]] && ONLYA=${P}-src.tar.bz2
 	#base_src_unpack
 	unpack ${ONLYA}
-	cd "${S}"  # base_src_unpack moves to ${S}
+}
+
+src_prepare() {
 	source "${FILESDIR}/ghc-apply-gmp-hack" "$(get_libdir)"
 
 	ghc_setup_cflags
@@ -169,30 +226,23 @@ src_unpack() {
 		sed -i -e "s|\"\$topdir\"|\"\$topdir\" ${GHC_CFLAGS}|" \
 			"${WORKDIR}/usr/bin/ghc-${PV}"
 
-		# allow hardened users use vanilla biary to bootstrap ghc
+		# allow hardened users use vanilla binary to bootstrap ghc
 		# ghci uses mmap with rwx protection at it implements dynamic
 		# linking on it's own (bug #299709)
 		pax-mark -m "${WORKDIR}/usr/$(get_libdir)/${P}/ghc"
 	fi
 
 	if use binary; then
+		if use prefix; then
+			relocate_ghc "${EPREFIX}"
+		fi
 
 		# Move unpacked files to the expected place
 		mv "${WORKDIR}/usr" "${S}"
 	else
 		if ! use ghcbootstrap; then
 			if [[ ${CHOST} == *-linux-gnu ]] ; then
-			# Relocate from /usr to ${WORKDIR}/usr
-			sed -i -e "s|/usr|${WORKDIR}/usr|g" \
-				"${WORKDIR}/usr/bin/ghc-${PV}" \
-				"${WORKDIR}/usr/bin/ghci-${PV}" \
-				"${WORKDIR}/usr/bin/ghc-pkg-${PV}" \
-				"${WORKDIR}/usr/bin/hsc2hs" \
-				"${WORKDIR}/usr/$(get_libdir)/${P}/package.conf.d/"* \
-				|| die "Relocating ghc from /usr to workdir failed"
-
-			# regenerate the binary package cache
-			"${WORKDIR}/usr/bin/ghc-pkg" recache
+				relocate_ghc "${WORKDIR}"
 			else
 				mkdir "${WORKDIR}"/ghc-bin-installer || die
 				pushd "${WORKDIR}"/ghc-bin-installer > /dev/null || die
@@ -296,6 +346,9 @@ src_unpack() {
 		# substitute outdated macros
 		epatch "${FILESDIR}/ghc-6.12.3-autoconf-2.66-4252.patch"
 
+		# ticket 2615, linker scripts
+		epatch "${FILESDIR}/ghc-6.12.3-ticket-2615-linker-script.patch"
+
 		# export typechecker internals even if ghci is disabled
 		# http://hackage.haskell.org/trac/ghc/ticket/3558
 		epatch "${FILESDIR}/ghc-6.12.3-ghciless-haddock-3558.patch"
@@ -308,16 +361,17 @@ src_unpack() {
 		# TPE (Trusted Path Execution) protection.
 		epatch "${FILESDIR}/ghc-6.12.3-libffi-incorrect-detection-of-selinux.patch"
 
-		# as we have changed the build system
-# see below		eautoreconf
-	fi
+		if use prefix; then
+			# Make configure find docbook-xsl-stylesheets from Prefix
+			sed -i -e '/^FP_DIR_DOCBOOK_XSL/s:\[.*\]:['"${EPREFIX}"'/usr/share/sgml/docbook/xsl-stylesheets/]:' configure.ac || die
+		fi
 
-	# Make configure find docbook-xsl-stylesheets from Prefix
-	sed -i -e '/^FP_DIR_DOCBOOK_XSL/s:\[.*\]:['"${EPREFIX}"'/usr/share/sgml/docbook/xsl-stylesheets/]:' configure.ac || die
-	eautoreconf
+		# as we have changed the build system
+		eautoreconf
+	fi
 }
 
-src_compile() {
+src_configure() {
 	if ! use binary; then
 
 		# initialize build.mk
@@ -383,17 +437,19 @@ src_compile() {
 		fi
 
 		econf || die "econf failed"
+	fi # ! use binary
+}
 
+src_compile() {
+	if ! use binary; then
 		# LC_ALL needs to workaround ghc's ParseCmm failure on some (es) locales
 		# bug #202212 / http://hackage.haskell.org/trac/ghc/ticket/4207
 		LC_ALL=C emake all || die "make failed"
-
 	fi # ! use binary
 }
 
 src_install() {
 	if use binary; then
-		mkdir -p "${ED}"
 		mv "${S}/usr" "${ED}"
 
 		# Remove the docs if not requested
@@ -467,7 +523,6 @@ pkg_postinst() {
 		ewarn
 		ewarn "\e[1;31m************************************************************************\e[0m"
 		ewarn
-		ebeep 12
 	fi
 
 	bash-completion_pkg_postinst
