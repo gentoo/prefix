@@ -1,11 +1,11 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.6.3.ebuild,v 1.3 2010/08/01 11:30:21 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.6.7.ebuild,v 1.3 2011/03/29 03:10:47 ssuominen Exp $
 
-EAPI="2"
+EAPI="3"
 GCONF_DEBUG="no"
 
-inherit autotools bash-completion gnome2 eutils flag-o-matic
+inherit autotools bash-completion gnome2 eutils
 
 DESCRIPTION="GNOME Virtual Filesystem Layer"
 HOMEPAGE="http://www.gnome.org"
@@ -13,8 +13,7 @@ HOMEPAGE="http://www.gnome.org"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="archive avahi bluetooth cdda doc fuse gdu gnome gnome-keyring gphoto2 hal
-+http iphone samba +udev"
+IUSE="archive avahi bluetooth cdda doc fuse gdu gnome gnome-keyring gphoto2 +http ios samba +udev"
 
 RDEPEND=">=dev-libs/glib-2.23.4
 	>=sys-apps/dbus-1.0
@@ -28,18 +27,15 @@ RDEPEND=">=dev-libs/glib-2.23.4
 		dev-libs/dbus-glib
 		net-wireless/bluez
 		dev-libs/expat )
-	fuse? ( sys-fs/fuse )
-	gdu? ( >=sys-apps/gnome-disk-utility-2.28 )
+	fuse? ( >=sys-fs/fuse-2.8.0 )
+	gdu? ( >=sys-apps/gnome-disk-utility-2.29 )
 	gnome? ( >=gnome-base/gconf-2.0 )
 	gnome-keyring? ( >=gnome-base/gnome-keyring-1.0 )
 	gphoto2? ( >=media-libs/libgphoto2-2.4.7 )
-	iphone? ( app-pda/libimobiledevice )
+	ios? ( app-pda/libimobiledevice )
 	udev? (
 		cdda? ( >=dev-libs/libcdio-0.78.2[-minimal] )
 		>=sys-fs/udev-145[extras] )
-	hal? (
-		cdda? ( >=dev-libs/libcdio-0.78.2[-minimal] )
-		>=sys-apps/hal-0.5.10 )
 	http? ( >=net-libs/libsoup-gnome-2.26.0 )
 	samba? ( || ( >=net-fs/samba-3.4.6[smbclient]
 			<=net-fs/samba-3.3 ) )"
@@ -49,22 +45,23 @@ DEPEND="${RDEPEND}
 	dev-util/gtk-doc-am
 	doc? ( >=dev-util/gtk-doc-1 )"
 
-DOCS="AUTHORS ChangeLog NEWS README TODO"
-
 pkg_setup() {
 	# CFLAGS needed for Solaris. Took it from here:
 	# https://svn.sourceforge.net/svnroot/pkgbuild/spec-files-extra/trunk/SFEgnome-gvfs.spec
 	[[ ${CHOST} == *-solaris* ]] && append-flags "-D_XPG4_2 -D__EXTENSIONS__"
-	
-	if use cdda && ! use hal && ! use udev; then
-		ewarn "You have \"+cdda\", but you have \"-hal\" and \"-udev\""
-		ewarn "cdda support will NOT be built unless you enable EITHER hal OR udev"
+
+	if use cdda && ! use udev; then
+		ewarn
+		ewarn "You need to enable USE=\"udev\" for USE=\"cdda\" to be useful."
+		ewarn
 	fi
 
 	# --enable-udev does not work on Gentoo Prefix platforms. bug #293480
 	G2CONF="${G2CONF} $(use_enable !prefix udev)"
 
 	G2CONF="${G2CONF}
+		--disable-hal
+		--enable-udev
 		--disable-bash-completion
 		--with-dbus-service-dir="${EPREFIX}"/usr/share/dbus-1/services
 		$(use_enable archive)
@@ -75,12 +72,13 @@ pkg_setup() {
 		$(use_enable gdu)
 		$(use_enable gnome gconf)
 		$(use_enable gphoto2)
-		$(use_enable iphone afc)
+		$(use_enable ios afc)
 		$(use_enable udev gudev)
-		$(use_enable hal)
 		$(use_enable http)
 		$(use_enable gnome-keyring keyring)
 		$(use_enable samba)"
+
+	DOCS="AUTHORS ChangeLog NEWS README TODO"
 }
 
 src_prepare() {
@@ -97,11 +95,16 @@ src_prepare() {
 
 	use gphoto2 || use archive && eautoreconf
 
-	# There is no mkdtemp on Solaris libc. Using the same code as on Interix	
+	# There is no mkdtemp on Solaris libc. Using the same code as on Interix
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i -e 's:mkdtemp:mktemp:g' daemon/gvfsbackendburn.c || die
 	fi
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_header_stropts_h=no
+
+	# Disable API deprecation
+	sed 's/-DG_DISABLE_DEPRECATED//' \
+		-i */*/Makefile.am */*/Makefile.in */Makefile.am */Makefile.in \
+		|| die "sed failed"
 }
 
 src_install() {

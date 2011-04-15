@@ -1,6 +1,117 @@
 # ChangeLog for gnome-base/gvfs
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.108 2010/08/01 11:30:21 fauli Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/ChangeLog,v 1.139 2011/03/29 12:39:16 ssuominen Exp $
+
+  29 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> metadata.xml:
+  "ios" is now global USE flag.
+
+  29 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> gvfs-1.6.7.ebuild:
+  Remove sys-apps/hal support wrt #313389.
+
+  28 Mar 2011; Justin Lecher <jlec@gentoo.org> metadata.xml:
+  Make ios USE description understandable without using google
+
+  27 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> metadata.xml:
+  Move USE="hal" description here from use.desc.
+
+  27 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> gvfs-1.6.6-r1.ebuild,
+  gvfs-1.6.7.ebuild, metadata.xml:
+  Rename USE="iphone" to USE="ios" wrt #344763.
+
+  22 Mar 2011; Brent Baude <ranger@gentoo.org> gvfs-1.6.6-r1.ebuild:
+  Marking gvfs-1.6.6-r1 ppc stable for bug 353436
+
+*gvfs-1.6.7 (22 Mar 2011)
+
+  22 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> +gvfs-1.6.7.ebuild:
+  Bump to 1.6.7
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> gvfs-1.6.6-r1.ebuild:
+  ppc64 stable wrt #353436
+
+  25 Feb 2011; Gilles Dartiguelongue <eva@gentoo.org> gvfs-1.6.6-r1.ebuild:
+  Fix build with >=glib-2.27, bug #346055.
+
+  30 Jan 2011; Raúl Porcel <armin76@gentoo.org> gvfs-1.6.6-r1.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #348987
+
+  19 Jan 2011; Markos Chandras <hwoarang@gentoo.org> gvfs-1.6.6-r1.ebuild:
+  Stable on amd64 wrt bug #348987
+
+  18 Jan 2011; Christian Faulhammer <fauli@gentoo.org> gvfs-1.6.6-r1.ebuild:
+  x86 stable, bug 348987
+
+  17 Jan 2011; <xarth@gentoo.org> gvfs-1.6.4-r2.ebuild:
+  ppc stable wrt #346687
+
+*gvfs-1.6.6-r1 (04 Jan 2011)
+
+  04 Jan 2011; Samuli Suominen <ssuominen@gentoo.org> +gvfs-1.6.6-r1.ebuild:
+  Enable hal support only if udev support is disabled.
+
+  27 Dec 2010; Brent Baude <ranger@gentoo.org> gvfs-1.6.4-r2.ebuild:
+  Marking gvfs-1.6.4-r2 ppc64 for bug 346687
+
+  04 Dec 2010; Raúl Porcel <armin76@gentoo.org> gvfs-1.6.4-r2.ebuild:
+  alpha/ia64/sh/sparc stable wrt #346687
+
+  28 Nov 2010; Markus Meier <maekke@gentoo.org> gvfs-1.6.4-r2.ebuild:
+  x86 stable, bug #346687
+
+  28 Nov 2010; Markos Chandras <hwoarang@gentoo.org> gvfs-1.6.4-r2.ebuild:
+  Stable on amd64 wrt bug #346687
+
+  27 Nov 2010; Markus Meier <maekke@gentoo.org> gvfs-1.6.4-r2.ebuild:
+  arm stable, bug #346687
+
+*gvfs-1.6.6 (18 Nov 2010)
+
+  18 Nov 2010; Pacho Ramos <pacho@gentoo.org> +gvfs-1.6.6.ebuild:
+  Version bump with upstream fixes.
+
+*gvfs-1.6.4-r2 (08 Nov 2010)
+
+  08 Nov 2010; Daniel Gryniewicz <dang@gentoo.org> +gvfs-1.6.4-r2.ebuild,
+  +files/gvfs-1.6.4-O_TRUNC-fix.patch:
+  Fix file truncation on open; bug #344079
+
+  24 Oct 2010; Pacho Ramos <pacho@gentoo.org> -gvfs-1.2.3.ebuild,
+  -gvfs-1.4.3-r1.ebuild:
+  Remove old.
+
+  17 Oct 2010; Raúl Porcel <armin76@gentoo.org> gvfs-1.6.3.ebuild:
+  alpha/ia64/sh/sparc stable wrt #324077
+
+  14 Oct 2010; Markus Meier <maekke@gentoo.org> gvfs-1.6.3.ebuild:
+  arm stable, bug #324077
+
+  07 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> gvfs-1.6.3.ebuild:
+  ppc64 stable wrt #324077
+
+*gvfs-1.6.4-r1 (05 Oct 2010)
+
+  05 Oct 2010; Pacho Ramos <pacho@gentoo.org> -gvfs-1.6.4.ebuild,
+  +gvfs-1.6.4-r1.ebuild, +files/gvfs-1.6.4-sftp-timeout.patch:
+  Revision bump to fix timeouts with sftp due bug #339695 (reported by onip)
+  using upstream patch. Remove broken version.
+
+*gvfs-1.6.4 (27 Sep 2010)
+
+  27 Sep 2010; Gilles Dartiguelongue <eva@gentoo.org> +gvfs-1.6.4.ebuild:
+  Version bump. sftp: fix for openssh 5.6, bug #335316. iphone: support for
+  iOS4. smb: move around gconf code. Lots of translation updates.
+
+  11 Sep 2010; Joseph Jezak <josejx@gentoo.org> gvfs-1.6.3.ebuild:
+  Marked ppc for bug #324077.
+
+  29 Aug 2010; Raúl Porcel <armin76@gentoo.org> gvfs-1.4.3-r1.ebuild:
+  arm stable
+
+  19 Aug 2010; Gilles Dartiguelongue <eva@gentoo.org> gvfs-1.6.3.ebuild:
+  Raise gnome-disk-utility dependency per configure.
+
+  14 Aug 2010; Raúl Porcel <armin76@gentoo.org> gvfs-1.4.3-r1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #314899
 
   01 Aug 2010; Christian Faulhammer <fauli@gentoo.org> gvfs-1.6.3.ebuild:
   x86 stable, bug 324077
