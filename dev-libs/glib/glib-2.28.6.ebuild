@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.28.4.ebuild,v 1.2 2011/03/26 18:34:04 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.28.6.ebuild,v 1.1 2011/04/14 07:50:19 nirbheek Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -67,6 +67,9 @@ src_prepare() {
 
 	# Fix test failure when upgrading from 2.22 to 2.24, upstream bug 621368
 	epatch "${FILESDIR}/${PN}-2.24-assert-test-failure.patch"
+
+	# Fix compilation on several arches, bug #351387
+	epatch "${FILESDIR}/${PN}-2.26.1-gatomic-header.patch"
 
 	# Do not try to remove files on live filesystem, upstream bug #619274
 	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
