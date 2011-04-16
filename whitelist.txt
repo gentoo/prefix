@@ -394,6 +394,7 @@ dev-libs/redland-bindings
 dev-libs/shared-desktop-ontologies
 dev-libs/soprano
 dev-libs/syck
+dev-libs/tinyxml
 dev-libs/tre
 dev-libs/uriparser
 dev-libs/uulib
