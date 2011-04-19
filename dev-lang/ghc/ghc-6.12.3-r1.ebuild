@@ -362,6 +362,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/${P}-pic-powerpc.patch
 		epatch "${FILESDIR}"/${P}-darwin8.patch
 		epatch "${FILESDIR}"/${P}-mach-o-relocation-limit.patch
+		epatch "${FILESDIR}"/${P}-powerpc-darwin-no-mmap.patch
 
 		if use prefix; then
 			# Make configure find docbook-xsl-stylesheets from Prefix
