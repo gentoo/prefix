@@ -65,6 +65,7 @@ pkg_setup() {
 		*-netbsd*)    osname="netbsd" ;;
 		*-openbsd*)   osname="openbsd" ;;
 		*-darwin*)    osname="darwin" ;;
+		*-interix*)   osname="interix" ;;
 		*)            osname="linux" ;;
 	esac
 
