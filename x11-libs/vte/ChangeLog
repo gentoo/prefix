@@ -1,6 +1,83 @@
 # ChangeLog for x11-libs/vte
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.255 2010/08/01 11:12:35 fauli Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.274 2011/04/10 09:07:41 ssuominen Exp $
+
+  10 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> vte-0.26.2.ebuild:
+  Punt useless libtool file.
+
+  01 Apr 2011; Justin Lecher <jlec@gentoo.org> metadata.xml:
+  Fixed Typo in USE description
+
+  31 Mar 2011; Mart Raudsepp <leio@gentoo.org> vte-0.26.2.ebuild:
+  Add ~mips keyword
+
+  27 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> -vte-0.22.5.ebuild,
+  -vte-0.24.3.ebuild:
+  Remove old
+
+  22 Mar 2011; Brent Baude <ranger@gentoo.org> vte-0.26.2.ebuild:
+  Marking vte-0.26.2 ppc stable for bug 353436
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> vte-0.26.2.ebuild:
+  ppc64 stable wrt #353436
+
+  30 Jan 2011; Raúl Porcel <armin76@gentoo.org> vte-0.26.2.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #348987
+
+  25 Jan 2011; Jeroen Roovers <jer@gentoo.org> vte-0.26.2.ebuild:
+  Stable for HPPA (bug #348987).
+
+  19 Jan 2011; Markos Chandras <hwoarang@gentoo.org> vte-0.26.2.ebuild:
+  Stable on amd64 wrt bug #348987
+
+  18 Jan 2011; Christian Faulhammer <fauli@gentoo.org> vte-0.26.2.ebuild:
+  x86 stable, bug 348987
+
+*vte-0.26.2 (19 Nov 2010)
+
+  19 Nov 2010; Pacho Ramos <pacho@gentoo.org> -vte-0.26.1.ebuild,
+  +vte-0.26.2.ebuild:
+  Version bump fixing a leak, remove old.
+
+  20 Oct 2010; Gilles Dartiguelongue <eva@gentoo.org> vte-0.26.1.ebuild:
+  Assign glib/gtk+ dependencies to slot 2. Force maintainer mode to off.
+  Clean unneeded files for python module.
+
+  17 Oct 2010; Raúl Porcel <armin76@gentoo.org> vte-0.24.3.ebuild:
+  alpha/ia64/sh/sparc stable wrt #324077
+
+  14 Oct 2010; Markus Meier <maekke@gentoo.org> vte-0.24.3.ebuild:
+  arm stable, bug #324077
+
+*vte-0.26.1 (13 Oct 2010)
+
+  13 Oct 2010; Pacho Ramos <pacho@gentoo.org> -vte-0.26.0.ebuild,
+  +vte-0.26.1.ebuild:
+  Version bump with important fix: Pass the correct TERM value inside envp
+  when spawning (that will stop 'less' from working awfully). Remove old and
+  broken version.
+
+*vte-0.26.0 (09 Oct 2010)
+
+  09 Oct 2010; Pacho Ramos <pacho@gentoo.org> +vte-0.26.0.ebuild:
+  Version bump for Gnome 2.32: set terminal widget background color to
+  terminal background, fix 'Cursor invisible (plain black) in (xfce)
+  Terminal & terminator' bug, cleanup vte_terminal_determine_colors, other
+  bugfixes and translation updates. Add introspection support, update python
+  depends to work on systems with python3 as main interpreter, drop all
+  upstreamed patches.
+
+  07 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> vte-0.24.3.ebuild:
+  ppc64 stable wrt #324077
+
+  11 Sep 2010; Joseph Jezak <josejx@gentoo.org> vte-0.24.3.ebuild:
+  Marked ppc for bug #324077.
+
+  13 Aug 2010; Gilles Dartiguelongue <eva@gentoo.org> -vte-0.17.4-r3.ebuild,
+  -files/vte-0.17.4-fix-highlighting-on-activity.patch,
+  -files/vte-0.17.4-no-null-backspace.patch, -vte-0.20.5.ebuild,
+  -vte-0.24.2.ebuild:
+  Clean up old revisions.
 
   01 Aug 2010; Christian Faulhammer <fauli@gentoo.org> vte-0.24.3.ebuild:
   x86 stable, bug 324077
