@@ -1,6 +1,31 @@
 # ChangeLog for media-libs/imlib2
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.97 2010/07/23 23:36:53 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.105 2011/03/19 19:26:15 vapier Exp $
+
+  19 Mar 2011; Mike Frysinger <vapier@gentoo.org> imlib2-1.4.4.ebuild:
+  Fix EAPI=2 porting #359315 by A. Clark.
+
+  19 Feb 2011; Mike Frysinger <vapier@gentoo.org> imlib2-1.4.4.ebuild,
+  +files/imlib2-1.4.4-libpng-1.5.patch:
+  Fix building with libpng-1.5 #354989 by Lars Wendler.
+
+  02 Jan 2011; Mike Frysinger <vapier@gentoo.org> imlib2-1.4.4.ebuild:
+  Mark ppc stable #344781.
+
+  29 Dec 2010; Brent Baude <ranger@gentoo.org> imlib2-1.4.4.ebuild:
+  stable ppc64, bug 344781
+
+  05 Dec 2010; Raúl Porcel <armin76@gentoo.org> imlib2-1.4.4.ebuild:
+  alpha/ia64/sh/sparc stable wrt #344781
+
+  26 Nov 2010; Jeroen Roovers <jer@gentoo.org> imlib2-1.4.4.ebuild:
+  Stable for HPPA (bug #344781).
+
+  14 Nov 2010; Markus Meier <maekke@gentoo.org> imlib2-1.4.4.ebuild:
+  arm/x86 stable, bug #344781
+
+  12 Nov 2010; Markos Chandras <hwoarang@gentoo.org> imlib2-1.4.4.ebuild:
+  Stable on amd64 wrt bug #344781
 
   23 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> imlib2-1.4.4.ebuild:
   Use virtual/jpeg.
