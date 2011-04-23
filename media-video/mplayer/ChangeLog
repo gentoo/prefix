@@ -1,6 +1,77 @@
 # ChangeLog for media-video/mplayer
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.771 2011/01/02 19:57:12 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.789 2011/04/03 10:24:10 scarabeus Exp $
+
+  03 Apr 2011; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Set egit project properly.
+
+  03 Apr 2011; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Drop useless egit_project definition
+
+  26 Mar 2011; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Depend on virtual/ffmpeg
+
+  22 Mar 2011; Tomáš Chvátal <scarabeus@gentoo.org>
+  mplayer-1.0_rc4_p20110322.ebuild, mplayer-9999.ebuild:
+  Revert required use usage.
+
+*mplayer-1.0_rc4_p20110322 (22 Mar 2011)
+
+  22 Mar 2011; Tomáš Chvátal <scarabeus@gentoo.org>
+  -mplayer-1.0_rc4_p20101219.ebuild, -mplayer-1.0_rc4_p20110302.ebuild,
+  +mplayer-1.0_rc4_p20110322.ebuild, mplayer-9999.ebuild,
+  files/prepare_mplayer.sh:
+  Add new snapshot (update snapshot creator to use libav).
+
+  20 Mar 2011; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild,
+  files/prepare_mplayer.sh:
+  Move to use libav in live mplayer ebuild and snapshot preparator.
+
+  20 Mar 2011; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0_rc4_p20101114.ebuild:
+  arm/ia64/sparc stable wrt #343977
+
+  06 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  mplayer-1.0_rc4_p20101114.ebuild:
+  ppc64 stable wrt #343977
+
+*mplayer-1.0_rc4_p20110302 (02 Mar 2011)
+
+  02 Mar 2011; Tomáš Chvátal <scarabeus@gentoo.org>
+  +mplayer-1.0_rc4_p20110302.ebuild, mplayer-9999.ebuild,
+  files/prepare_mplayer.sh:
+  Add new snapshot so we have something matching to latest release. Cleanup
+  src_install a bit.
+
+  01 Mar 2011; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Update ebuild per bug #354023 and #354625. Thanks to reporters for patches.
+
+  30 Jan 2011; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Clone the ffmpeg from git as svn external was removed.
+
+  30 Jan 2011; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Update live verison to eapi4 and use_required syntax. Fix default
+  configuration section, some settings were eaten for me otherwise.
+
+  30 Jan 2011; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Fix dependency on vdpau (it specificaly check for headers in libvdpau). Per
+  bug #352422.
+
+  26 Jan 2011; Jeroen Roovers <jer@gentoo.org>
+  mplayer-1.0_rc4_p20101114.ebuild:
+  Stable for HPPA (bug #343977).
+
+  22 Jan 2011; Markos Chandras <hwoarang@gentoo.org>
+  mplayer-1.0_rc4_p20101114.ebuild:
+  Stable on amd64 wrt bug #343977
+
+  22 Jan 2011; Christian Faulhammer <fauli@gentoo.org>
+  mplayer-1.0_rc4_p20101114.ebuild:
+  stable x86, bug 343977
+
+  14 Jan 2011; Fabian Groffen <grobian@gentoo.org> mplayer-9999.ebuild:
+  Simplify and generalise too few registers logic for all x86 hosts, bug
+  #351588
 
   02 Jan 2011; Tobias Klausmann <klausman@gentoo.org>
   mplayer-1.0_rc4_p20101114.ebuild:

@@ -1,19 +1,21 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20101219.ebuild,v 1.1 2010/12/19 10:54:52 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20110322.ebuild,v 1.2 2011/03/22 23:58:03 scarabeus Exp $
 
-EAPI=3
+EAPI=4
 
+EGIT_REPO_URI="git://git.libav.org/libav.git"
+EGIT_PROJECT="ffmpeg"
 ESVN_REPO_URI="svn://svn.mplayerhq.hu/mplayer/trunk"
-[[ ${PV} = *9999* ]] && SVN_ECLASS="subversion" || SVN_ECLASS=""
+[[ ${PV} = *9999* ]] && SVN_ECLASS="subversion git" || SVN_ECLASS=""
 
 inherit toolchain-funcs eutils flag-o-matic multilib base ${SVN_ECLASS}
 
 # BUMP ME PLZ, NO COOKIES OTHERWISE
-[[ ${PV} != *9999* ]] && MPLAYER_REVISION=SVN-r32719
+[[ ${PV} != *9999* ]] && MPLAYER_REVISION=SVN-r33094
 
 IUSE="3dnow 3dnowext +a52 aalib +alsa altivec aqua +ass bidi bindist bl bluray
-bs2b +cddb +cdio cdparanoia cpudetection custom-cpuopts debug dga +dirac
+bs2b cddb +cdio cdparanoia cpudetection custom-cpuopts debug dga +dirac
 directfb doc +dts +dv dvb +dvd +dvdnav dxr3 +enca +encode esd +faac +faad fbcon
 ftp gif ggi gsm +iconv ipv6 jack joystick jpeg jpeg2k kernel_linux ladspa
 libcaca libmpeg2 lirc +live lzo mad md5sum +mmx mmxext mng +mp3 mpg123 nas
@@ -37,7 +39,8 @@ FONT_URI="
 if [[ ${PV} == *9999* ]]; then
 	RELEASE_URI=""
 else
-	RELEASE_URI="mirror://gentoo/${P}.tar.xz"
+	RELEASE_URI="http://dev.gentoo.org/~scarabeus/${P}.tar.xz
+		mirror://gentoo/${P}.tar.xz"
 fi
 SRC_URI="${RELEASE_URI}
 	!truetype? ( ${FONT_URI} )"
@@ -74,7 +77,7 @@ RDEPEND+="
 			media-libs/libggiwmh
 		)
 		opengl? ( virtual/opengl )
-		vdpau? ( || ( x11-libs/libvdpau >=x11-drivers/nvidia-drivers-180.51 ) )
+		vdpau? ( x11-libs/libvdpau )
 		xinerama? ( x11-libs/libXinerama )
 		xscreensaver? ( x11-libs/libXScrnSaver )
 		xv? (
@@ -182,6 +185,16 @@ else
 	KEYWORDS=""
 fi
 
+# bindist does not cope with amr codecs (#299405#c6), faac codecs are nonfree, win32codecs are nonfree
+# libcdio support: prefer libcdio over cdparanoia and don't check for cddb w/cdio
+# dvd navigation requires dvd read support
+# ass and freetype font require iconv and ass requires freetype fonts
+# unicode transformations are usefull only with iconv
+# libvorbis require external tremor to work
+# radio requires oss or alsa backend
+# xvmc requires xvideo support
+REQUIRED_USE="bindist? ( !amr !faac !win32codecs )"
+
 PATCHES=(
 )
 
@@ -227,8 +240,9 @@ pkg_setup() {
 src_unpack() {
 	if [[ ${PV} = *9999* ]]; then
 		subversion_src_unpack
-
 		cd "${WORKDIR}"
+		rm -rf "${WORKDIR}/${P}/ffmpeg/"
+		( S="${WORKDIR}/${P}/ffmpeg/" git_src_unpack )
 	else
 		unpack ${A}
 	fi
@@ -336,7 +350,6 @@ src_configure() {
 	#
 	# use external libdvdcss, dvdread and dvdnav
 	myconf+=" --disable-dvdread-internal --disable-libdvdcss-internal"
-
 	if use dvd; then
 		use dvdnav || myconf+=" --disable-dvdnav"
 	else
@@ -403,7 +416,6 @@ src_configure() {
 	# Codecs #
 	##########
 	myconf+=" --disable-musepack" # Use internal musepack codecs for SV7 and SV8 support
-	myconf+=" --disable-faad-internal" # always use system media-libs/faad2
 	myconf+=" --disable-libmpeg2-internal" # always use system media-libs/libmpeg2
 	use dirac || myconf+=" --disable-libdirac-lavc"
 	use dts || myconf+=" --disable-libdca"
@@ -419,9 +431,7 @@ src_configure() {
 		use ${i} || myconf+=" --disable-lib${i}"
 	done
 	use schroedinger || myconf+=" --disable-libschroedinger-lavc"
-	# Disable opencore-amr with bindist
-	# https://bugs.gentoo.org/show_bug.cgi?id=299405#c6
-	{ use amr && use !bindist ; } || myconf+=" --disable-libopencore_amrnb --disable-libopencore_amrwb"
+	use amr || myconf+=" --disable-libopencore_amrnb --disable-libopencore_amrwb"
 
 	uses="faad gif jpeg libmpeg2 live mad mng mpg123 png pnm speex tga theora xanim"
 	for i in ${uses}; do
@@ -483,9 +493,8 @@ src_configure() {
 	if use real; then
 		use x86 && myconf+=" --codecsdir=/opt/RealPlayer/codecs"
 		use amd64 && myconf+=" --codecsdir=/usr/$(get_libdir)/codecs"
-	elif ! use bindist; then
-		myconf+=" $(use_enable win32codecs win32dll)"
 	fi
+	myconf+=" $(use_enable win32codecs win32dll)"
 
 	################
 	# Video Output #
@@ -536,9 +545,7 @@ src_configure() {
 	# Advanced Options #
 	####################
 	# Platform specific flags, hardcoded on amd64 (see below)
-	if use cpudetection; then
-		myconf+=" --enable-runtime-cpudetection"
-	fi
+	use cpudetection && myconf+=" --enable-runtime-cpudetection"
 
 	# Turning off CPU optimizations usually will break the build.
 	# However, this use flag, if enabled, will allow users to completely
@@ -559,9 +566,10 @@ src_configure() {
 	fi
 
 	is-flag -O? || append-flags -O2
+
 	# workaround bug, x86 just has too few registers, see c.f.
 	# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=402950#44
-	# and 32bits OSX, bug 329861
+	# and 32-bits OSX, bug 329861
 	if [[ ${CHOST} == i?86-* ]] ; then
 		use debug || append-flags -fomit-frame-pointer
 	fi
@@ -638,12 +646,14 @@ src_configure() {
 	myconf="--cc=$(tc-getCC)
 		--host-cc=$(tc-getBUILD_CC)
 		--prefix=${EPREFIX}/usr
-		--confdir=${EPREFIX}/etc/mplayer
-		--datadir=${EPREFIX}/usr/share/mplayer
+		--bindir=${EPREFIX}/usr/bin
 		--libdir=${EPREFIX}/usr/$(get_libdir)
+		--confdir=${EPREFIX}/etc/mplayer
+		--datadir=${EPREFIX}/usr/share/mplayer${namesuf}
+		--mandir=${EPREFIX}/usr/share/man
 		${myconf}"
 
-	CFLAGS="${CFLAGS}" ./configure ${myconf} || die "configure died"
+	CFLAGS="${CFLAGS}" ./configure ${myconf} || die
 }
 
 src_compile() {
@@ -658,10 +668,10 @@ src_compile() {
 			hasq ${i} ${ALLOWED_LINGUAS} && BUILT_DOCS+=" ${i}"
 		done
 		if [[ -z $BUILT_DOCS ]]; then
-			emake -j1 -C DOCS/xml html-chunked || die "Failed to generate html docs"
+			emake -j1 -C DOCS/xml html-chunked
 		else
 			for i in ${BUILT_DOCS}; do
-				emake -j1 -C DOCS/xml html-chunked-${i} || die "Failed to generate html docs for ${i}"
+				emake -j1 -C DOCS/xml html-chunked-${i}
 			done
 		fi
 	fi
@@ -670,33 +680,27 @@ src_compile() {
 src_install() {
 	local i
 
-	emake prefix="${ED}/usr" \
-		BINDIR="${ED}/usr/bin" \
-		LIBDIR="${ED}/usr/$(get_libdir)" \
-		CONFDIR="${ED}/etc/mplayer" \
-		DATADIR="${ED}/usr/share/mplayer" \
-		MANDIR="${ED}/usr/share/man" \
+	emake \
+		DESTDIR="${ED}" \
 		INSTALLSTRIP="" \
-		install || die "emake install failed"
+		install
 
-	dodoc AUTHORS Changelog Copyright README etc/codecs.conf || die
+	dodoc AUTHORS Changelog Copyright README etc/codecs.conf
 
 	docinto tech/
-	dodoc DOCS/tech/{*.txt,MAINTAINERS,mpsub.sub,playtree,TODO,wishlist} || die
+	dodoc DOCS/tech/{*.txt,MAINTAINERS,mpsub.sub,playtree,TODO,wishlist}
 	docinto TOOLS/
-	dodoc TOOLS/* || die
+	dodoc -r TOOLS
 	if use real; then
 		docinto tech/realcodecs/
-		dodoc DOCS/tech/realcodecs/* || die
-		docinto TOOLS/realcodecs/
-		dodoc TOOLS/realcodecs/* || die
+		dodoc DOCS/tech/realcodecs/*
 	fi
 	docinto tech/mirrors/
-	dodoc DOCS/tech/mirrors/* || die
+	dodoc DOCS/tech/mirrors/*
 
 	if use doc; then
 		docinto html/
-		dohtml -r "${S}"/DOCS/HTML/* || die
+		dohtml -r "${S}"/DOCS/HTML/*
 	fi
 
 	if ! use ass && ! use truetype; then
@@ -712,10 +716,15 @@ src_install() {
 	fi
 
 	insinto /etc/mplayer
-	newins "${S}/etc/example.conf" mplayer.conf || die
-	doins "${S}/etc/input.conf" || die
+	newins "${S}/etc/example.conf" mplayer.conf
+	cat >> "${ED}/etc/mplayer/mplayer.conf" << _EOF_
+# Config options can be section specific, global
+# options should go in the default section
+[default]
+_EOF_
+	doins "${S}/etc/input.conf"
 	if use osdmenu; then
-		doins "${S}/etc/menu.conf" || die
+		doins "${S}/etc/menu.conf"
 	fi
 
 	if use ass || use truetype; then
@@ -734,7 +743,7 @@ _EOF_
 	fi
 
 	dosym ../../../etc/mplayer/mplayer.conf /usr/share/mplayer/mplayer.conf
-	newbin "${S}/TOOLS/midentify.sh" midentify || die
+	newbin "${S}/TOOLS/midentify.sh" midentify
 }
 
 pkg_preinst() {
