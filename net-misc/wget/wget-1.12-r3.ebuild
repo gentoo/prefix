@@ -1,6 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.12.ebuild,v 1.9 2009/10/18 14:26:26 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.12-r3.ebuild,v 1.9 2011/02/28 23:40:41 ranger Exp $
+
+EAPI="2"
 
 inherit eutils flag-o-matic
 
@@ -11,7 +13,7 @@ SRC_URI="mirror://gnu/wget/${P}.tar.bz2"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug idn ipv6 nls ntlm ssl static"
+IUSE="debug idn ipv6 nls ntlm +ssl static"
 
 RDEPEND="idn? ( net-dns/libidn )
 	ssl? ( >=dev-libs/openssl-0.9.6b )"
@@ -24,18 +26,19 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.12-linking.patch
+	epatch "${FILESDIR}"/${PN}-1.12-sni.patch #301312
 	epatch "${FILESDIR}"/${P}-debug-tests.patch #286173
+	epatch "${FILESDIR}"/${P}-CVE-2010-2252.patch #329941
+	epatch "${FILESDIR}"/${P}-sae.patch #344939
 
 	epatch "${FILESDIR}"/${PN}-1.12-no-solaris-md5.patch
 	epatch "${FILESDIR}"/${PN}-1.12-static-link-libz.patch
 	epatch "${FILESDIR}"/${PN}-1.12-PATH_MAX.patch #293551
 }
 
-src_compile() {
+src_configure() {
 	# openssl-0.9.8 now builds with -pthread on the BSD's
 	use elibc_FreeBSD && use ssl && append-ldflags -pthread
 
@@ -47,9 +50,7 @@ src_compile() {
 		$(use_enable ipv6) \
 		$(use_enable nls) \
 		$(use ssl && use_enable ntlm) \
-		$(use_enable debug) \
-		|| die
-	emake || die
+		$(use_enable debug)
 }
 
 src_install() {
@@ -60,7 +61,7 @@ src_install() {
 	use ipv6 && cat "${FILESDIR}"/wgetrc-ipv6 >> "${ED}"/etc/wgetrc
 
 	sed -i \
-		-e 's:/usr/local/etc:/etc:g' \
+		-e "s:/usr/local/etc:${EPREFIX}/etc:g" \
 		"${ED}"/etc/wgetrc \
 		"${ED}"/usr/share/man/man1/wget.1 \
 		"${ED}"/usr/share/info/wget.info

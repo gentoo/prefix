@@ -1,6 +1,65 @@
 # ChangeLog for net-misc/wget
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.122 2010/02/14 00:43:08 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.139 2011/02/28 23:40:41 ranger Exp $
+
+  28 Feb 2011; Brent Baude <ranger@gentoo.org> wget-1.12-r3.ebuild:
+  stable ppc64, bug 349114
+
+  13 Jan 2011; Jeroen Roovers <jer@gentoo.org> wget-1.12-r3.ebuild:
+  Stable for HPPA (bug #349114).
+
+  07 Jan 2011; Brent Baude <ranger@gentoo.org> wget-1.12-r3.ebuild:
+  stable ppc, bug 349114
+
+  04 Jan 2011; Raúl Porcel <armin76@gentoo.org> wget-1.12-r3.ebuild:
+  alpha/ia64/m68k/s390/sh stable wrt #349114
+
+  03 Jan 2011; Michael Weber <xmw@gentoo.org> wget-1.12-r3.ebuild:
+  sparc stable (bug 349114)
+
+  31 Dec 2010; Markos Chandras <hwoarang@gentoo.org> wget-1.12-r3.ebuild:
+  Stable on amd64 wrt bug #349114
+
+  28 Dec 2010; Markus Meier <maekke@gentoo.org> wget-1.12-r3.ebuild:
+  arm stable, bug #349114
+
+  27 Dec 2010; Thomas Kahle <tomka@gentoo.org> wget-1.12-r3.ebuild:
+  x86 stable per bug 349114
+
+*wget-1.12-r3 (26 Nov 2010)
+
+  26 Nov 2010; Mike Frysinger <vapier@gentoo.org> +wget-1.12-r3.ebuild,
+  +files/wget-1.12-sae.patch:
+  Add patch from upstream for SSL SAE #344939 by Michał Górny.
+
+  19 Sep 2010; Raúl Porcel <armin76@gentoo.org> wget-1.12-r2.ebuild:
+  s390 stable wrt #329941
+
+  06 Sep 2010; Jeroen Roovers <jer@gentoo.org> wget-1.12-r2.ebuild:
+  Stable for HPPA PPC (bug #329941).
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> wget-1.12-r2.ebuild:
+  Marking wget-1.12-r2 ppc64 for bug 329941
+
+  05 Sep 2010; Markos Chandras <hwoarang@gentoo.org> wget-1.12-r2.ebuild:
+  Stable on amd64 wrt bug #329941
+
+  04 Sep 2010; Raúl Porcel <armin76@gentoo.org> wget-1.12-r2.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #329941
+
+  04 Sep 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> wget-1.12-r2.ebuild:
+  x86 stable wrt security bug #329941
+
+  22 Aug 2010; Mike Frysinger <vapier@gentoo.org> wget-1.12-r2.ebuild,
+  files/wget-1.12-CVE-2010-2252.patch:
+  Fix some iri tests after CVE patch #333965 by Xake.
+
+*wget-1.12-r2 (21 Aug 2010)
+
+  21 Aug 2010; Mike Frysinger <vapier@gentoo.org> +wget-1.12-r2.ebuild,
+  +files/wget-1.12-CVE-2010-2252.patch, files/wget-1.12-sni.patch:
+  Add fix from upstream for CVE-2010-2252 #329941 by Stefan Behte. Tweak by
+  Sergei Trofimovich for IPv6 behavor in SNI patch #333839.
 
   14 Feb 2010; Mike Frysinger <vapier@gentoo.org> wget-1.12-r1.ebuild:
   Upgrade to EAPI=2 so we can set +ssl in IUSE #304887 by Kerin Millar.
