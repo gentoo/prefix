@@ -23,10 +23,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# Don't build or install locate because it conflicts with slocate,
-	# which is a secure version of locate.  See bug 18729
-	sed -i '/^SUBDIRS/s/locate//' Makefile.in
-
 	epatch "${FILESDIR}"/${P}-interix-mntlist.patch
 	epatch "${FILESDIR}"/${P}-interix-arg_max.patch
 	epatch "${FILESDIR}"/${P}-interix-arg_max-50000.patch
@@ -34,6 +30,10 @@ src_unpack() {
 	( cd gnulib && epatch "${FILESDIR}"/${P}-without-selinux.patch )
 
 	eautoreconf # for the interix and selinux patches. remove if both are gone.
+
+	# Don't build or install locate because it conflicts with slocate,
+	# which is a secure version of locate.  See bug 18729
+	sed -i '/^SUBDIRS/s/locate//' Makefile.in
 }
 
 src_compile() {
