@@ -49,7 +49,7 @@ java_prepare() {
 	epatch "${FILESDIR}/${PV}-makefile-flags.patch" "${FILESDIR}/${PV}-build.xml.patch"
 
 	# ... and also on Solaris platforms
-	sed -i -e '100,$s/SunOS/SunOSWithoutPrefix/g' build.xml || die
+	sed -i -e '150,$s/SunOS/SunOSWithoutPrefix/g' build.xml || die
 	# ... and Darwin
 	sed -i -e 's:/Developer:/no-way/dont/do/this:g' build.xml || die
 
