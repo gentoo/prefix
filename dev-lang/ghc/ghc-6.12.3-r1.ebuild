@@ -209,9 +209,12 @@ src_unpack() {
 	# Create the ${S} dir if we're using the binary version
 	use binary && mkdir "${S}"
 
-	ONLYA=${A}
-	[[ ${CHOST} != *-linux-gnu ]] && ONLYA=${P}-src.tar.bz2
-	#base_src_unpack
+	# the Solaris and Darwin binaries from ghc (maeder) need to be
+	# unpacked separately, so prevent them from being unpacked
+	local ONLYA=${A}
+	case ${CHOST} in
+		*-darwin* | *-solaris*)  ONLYA=${P}-src.tar.bz2  ;;
+	esac
 	unpack ${ONLYA}
 }
 
