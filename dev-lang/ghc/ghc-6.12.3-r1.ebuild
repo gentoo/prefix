@@ -244,9 +244,8 @@ src_prepare() {
 		mv "${WORKDIR}/usr" "${S}"
 	else
 		if ! use ghcbootstrap; then
-			if [[ ${CHOST} == *-linux-gnu ]] ; then
-				relocate_ghc "${WORKDIR}"
-			else
+			case ${CHOST} in
+				*-darwin* | *-solaris*)
 				mkdir "${WORKDIR}"/ghc-bin-installer || die
 				pushd "${WORKDIR}"/ghc-bin-installer > /dev/null || die
 				use sparc-solaris && unpack ghc-6.10.4-sparc-sun-solaris2.tar.bz2
@@ -298,7 +297,11 @@ src_prepare() {
 				./configure --prefix="${WORKDIR}"/usr || die
 				make install || die
 				popd > /dev/null
-			fi
+				;;
+				*)
+				relocate_ghc "${WORKDIR}"
+				;;
+			esac
 		fi
 
 		sed -i -e "s|\"\$topdir\"|\"\$topdir\" ${GHC_CFLAGS}|" \
