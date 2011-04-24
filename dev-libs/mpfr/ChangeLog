@@ -1,6 +1,38 @@
 # ChangeLog for dev-libs/mpfr
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.124 2010/08/30 17:32:52 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.134 2011/04/23 16:07:50 armin76 Exp $
+
+  23 Apr 2011; Raúl Porcel <armin76@gentoo.org> mpfr-3.0.0_p3.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #348634
+
+  10 Apr 2011; Tobias Klausmann <klausman@gentoo.org> mpfr-3.0.0_p3.ebuild:
+  Stable on alpha, bug #348634
+
+  08 Apr 2011; Markus Meier <maekke@gentoo.org> mpfr-3.0.0_p3.ebuild:
+  arm stable, bug #348634
+
+*mpfr-3.0.1 (05 Apr 2011)
+
+  05 Apr 2011; Mike Frysinger <vapier@gentoo.org> +mpfr-3.0.1.ebuild:
+  Version bump.
+
+  22 Mar 2011; Jeroen Roovers <jer@gentoo.org> mpfr-3.0.0_p3.ebuild:
+  Stable for HPPA (bug #348634).
+
+  22 Mar 2011; Thomas Kahle <tomka@gentoo.org> mpfr-3.0.0_p3.ebuild:
+  x86 stable per bug 348634
+
+  21 Mar 2011; Christoph Mende <angelos@gentoo.org> mpfr-3.0.0_p3.ebuild:
+  Stable on amd64 wrt bug #348634
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> mpfr-3.0.0_p3.ebuild:
+  ppc/ppc64 stable wrt #348634
+
+  11 Mar 2011; Markos Chandras <hwoarang@gentoo.org> mpfr-3.0.0_p3.ebuild:
+  Reverting keyword. Bug #348634
+
+  11 Mar 2011; Markos Chandras <hwoarang@gentoo.org> mpfr-3.0.0_p3.ebuild:
+  Stable on amd64 wrt bug #348634
 
 *mpfr-3.0.0_p3 (30 Aug 2010)
 
