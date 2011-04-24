@@ -1,6 +1,60 @@
 # ChangeLog for media-gfx/gimp
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.315 2010/07/09 15:28:44 scarabeus Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.328 2011/04/19 20:08:44 hanno Exp $
+
+*gimp-2.6.11-r2 (19 Apr 2011)
+
+  19 Apr 2011; Hanno Boeck <hanno@gentoo.org> +files/gimp-libpng15-v2.diff,
+  +gimp-2.6.11-r2.ebuild:
+  Patch for libpng 1.5 caused problems with 1.4, new patch, see #363493.
+
+  04 Apr 2011; Tomáš Chvátal <scarabeus@gentoo.org> gimp-9999.ebuild:
+  Update gegl/babl deps per bug #326439.
+
+  27 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> gimp-2.6.11-r1.ebuild,
+  gimp-9999.ebuild:
+  Remove support for sys-apps/hal wrt #313389.
+
+  21 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> gimp-2.6.10.ebuild,
+  gimp-2.6.11.ebuild, gimp-2.6.11-r1.ebuild, gimp-9999.ebuild:
+  Fix slot-deps on gnome libs
+
+  26 Feb 2011; Raúl Porcel <armin76@gentoo.org> gimp-2.6.11-r1.ebuild:
+  alpha/ia64/sparc stable wrt #350915
+
+  26 Feb 2011; Markos Chandras <hwoarang@gentoo.org> gimp-2.6.11-r1.ebuild:
+  Stable on amd64 wrt bug #350915
+
+  25 Feb 2011; Jeroen Roovers <jer@gentoo.org> gimp-2.6.11-r1.ebuild:
+  Stable for HPPA (bug #350915).
+
+  24 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  gimp-2.6.11-r1.ebuild:
+  x86 stable wrt security bug #350915
+
+  23 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> gimp-2.6.11-r1.ebuild:
+  ppc/ppc64 stable wrt #350915
+
+*gimp-2.6.11-r1 (16 Feb 2011)
+
+  16 Feb 2011; Hanno Boeck <hanno@gentoo.org> +gimp-2.6.11-r1.ebuild,
+  +files/gimp-libpng15.diff, +files/gimp-CVE-2010-4540-to-4543.diff:
+  Fix for CVE-2010-4540, CVE-2010-4541, CVE-2010-4542, CVE-2010-4543 and build
+  with libpng 1.5.
+
+  28 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  gimp-2.6.8.ebuild, gimp-2.6.10.ebuild, gimp-2.6.11.ebuild, gimp-9999.ebuild:
+  Fix deprecation warnings. Call python_pkg_setup(). Don't install .pyc / .pyo
+  files.
+
+  07 Nov 2010; Jory A. Pratt <anarchy@gentoo.org> gimp-2.6.8.ebuild,
+  gimp-2.6.10.ebuild, gimp-2.6.11.ebuild, gimp-9999.ebuild:
+  Convert media-libs/jpeg to virtual/jpeg
+
+*gimp-2.6.11 (07 Nov 2010)
+
+  07 Nov 2010; Tomáš Chvátal <scarabeus@gentoo.org> +gimp-2.6.11.ebuild:
+  Version bump to latest to fix printing. bug #341903 and #339783
 
   09 Jul 2010; Tomáš Chvátal <scarabeus@gentoo.org> gimp-9999.ebuild:
   Depend on correct lcms. Per bug #324921.
