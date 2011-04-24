@@ -1,6 +1,27 @@
 # ChangeLog for media-libs/fontconfig
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.149 2010/05/24 16:09:04 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.155 2011/04/02 14:41:12 armin76 Exp $
+
+  02 Apr 2011; Raúl Porcel <armin76@gentoo.org> fontconfig-2.8.0-r1.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #360221
+
+  30 Mar 2011; Jeroen Roovers <jer@gentoo.org> fontconfig-2.8.0-r1.ebuild:
+  Stable for HPPA (bug #360221).
+
+  27 Mar 2011; Tobias Klausmann <klausman@gentoo.org>
+  fontconfig-2.8.0-r1.ebuild:
+  Stable on alpha, bug #360221
+
+  27 Mar 2011; Brent Baude <ranger@gentoo.org> fontconfig-2.8.0-r1.ebuild:
+  Marking fontconfig-2.8.0-r1 ppc for bug 360221
+
+  26 Mar 2011; Christian Faulhammer <fauli@gentoo.org>
+  fontconfig-2.8.0-r1.ebuild:
+  stable x86, bug 360221
+
+  25 Mar 2011; Markos Chandras <hwoarang@gentoo.org>
+  fontconfig-2.8.0-r1.ebuild:
+  Stable on amd64 wrt bug #360221
 
   24 May 2010; Raúl Porcel <armin76@gentoo.org> fontconfig-2.8.0.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #309693
