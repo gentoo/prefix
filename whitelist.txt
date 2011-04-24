@@ -717,6 +717,7 @@ media-sound/shntool
 media-sound/snd
 media-sound/sox
 media-sound/streamripper
+media-sound/squeezeboxserver
 media-sound/twolame
 media-sound/vorbis-tools
 media-video/asfrecorder
