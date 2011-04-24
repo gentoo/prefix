@@ -789,6 +789,7 @@ net-libs/neon
 net-libs/openmq-cclient
 net-libs/openslp
 net-libs/ortp
+net-libs/serf
 net-libs/webkit-gtk
 net-libs/xulrunner
 net-mail/dovecot
