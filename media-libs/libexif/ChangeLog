@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libexif
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.114 2010/01/18 08:47:24 maekke Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.116 2011/04/04 23:20:46 nirbheek Exp $
+
+*libexif-0.6.20 (04 Apr 2011)
+
+  04 Apr 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +libexif-0.6.20.ebuild:
+  Bump to 0.6.20, bugfixes. All tests pass.
+
+  17 Feb 2011; Samuli Suominen <ssuominen@gentoo.org> libexif-0.6.19.ebuild:
+  USE="static-libs" and punt useless libtool archive.
 
   18 Jan 2010; Markus Meier <maekke@gentoo.org> -libexif-0.6.17.ebuild:
   old
