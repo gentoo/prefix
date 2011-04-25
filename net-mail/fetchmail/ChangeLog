@@ -1,6 +1,16 @@
 # ChangeLog for net-mail/fetchmail
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.195 2010/05/31 16:24:02 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.197 2010/12/13 08:23:01 tove Exp $
+
+*fetchmail-6.3.19 (13 Dec 2010)
+
+  13 Dec 2010; Torsten Veller <tove@gentoo.org> +fetchmail-6.3.19.ebuild:
+  Version bump. s/com_err/e2fsprogs-libs
+
+*fetchmail-6.3.18 (10 Oct 2010)
+
+  10 Oct 2010; Torsten Veller <tove@gentoo.org> +fetchmail-6.3.18.ebuild:
+  Version bump
 
   31 May 2010; Torsten Veller <tove@gentoo.org>
   -files/fetchmail-6.2.5-broken-headers.patch, -fetchmail-6.3.14.ebuild,
