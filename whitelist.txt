@@ -650,7 +650,6 @@ media-libs/libdvdnav
 media-libs/libdvdplay
 media-libs/libdvdread
 media-libs/libemf
-media-libs/libexif
 media-libs/libexif-gtk
 media-libs/libfpx
 media-libs/libjpeg-turbo
