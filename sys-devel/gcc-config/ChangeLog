@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.190 2011/03/07 12:48:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.192 2011/03/21 13:49:02 vapier Exp $
+
+  21 Mar 2011; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.5:
+  Default to /etc/portage/make.conf #338032 by Dennis Schridde.
+
+*gcc-config-1.5-r1 (18 Mar 2011)
+
+  18 Mar 2011; Mike Frysinger <vapier@gentoo.org> +gcc-config-1.5-r1.ebuild,
+  +files/wrapper-1.5.2.c:
+  Stop auto appending CFLAGS_<abi> from the env.
 
   07 Mar 2011; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.4.1,
   files/gcc-config-1.5:

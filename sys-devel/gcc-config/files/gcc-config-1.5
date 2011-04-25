@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.5,v 1.4 2011/03/07 12:48:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.5,v 1.5 2011/03/21 13:49:02 vapier Exp $
 
 # Format of /etc/env.d/gcc/:
 #  config-TARGET:	CURRENT=version for TARGET
@@ -49,7 +49,7 @@ Options:
   -O, --use-old              Use the old profile if one was selected.
   -f, --force                Make sure all config files are regenerated.
   -P, --use-portage-chost    Only set to given profile if its CHOST is the
-                             same as that set for portage in /etc/make.conf
+                             same as that set in /etc/portage/make.conf
                              (or one of other portage config files...).
   -c, --get-current-profile  Print current used gcc profile.
   -l, --list-profiles        Print a list of available profiles.
@@ -86,7 +86,10 @@ try_real_hard_to_find_CHOST() {
 	#
 
 	local varname=${1:-CHOST}
-	local conf=${EROOT}/etc/make.conf
+	local conf=${EROOT}/etc/portage/make.conf
+	if [[ ! -e ${conf} && -e ${EROOT}/etc/make.conf ]] ; then
+		conf=${EROOT}/etc/make.conf
+	fi
 	local ret=$(source "${conf}" 2>/dev/null ; echo ${!varname})
 	if [[ -z ${ret} ]] ; then
 		# newer portage supports spaces between the var and =
@@ -134,7 +137,7 @@ get_real_chost() {
 	if [[ -z ${REAL_CHOST} ]] ; then
 		eerror "${argv0}: Could not get portage CHOST!"
 		eerror "${argv0}: You should verify that CHOST is set in one of these places:"
-		eerror "${argv0}:  - ${EROOT}/etc/make.conf"
+		eerror "${argv0}:  - ${EROOT}/etc/portage/make.conf"
 		eerror "${argv0}:  - active environment"
 		exit 1
 	fi
@@ -931,9 +934,9 @@ for x in "$@" ; do
 			rcsfile="$RCSfile: gcc-config-1.5,v $"
 			rcsfile=${rcsfile#: }
 			rcsfile=${rcsfile%,v*}
-			cvsrev="$Revision: 1.4 $"
+			cvsrev="$Revision: 1.5 $"
 			cvsrev=${cvsrev#: }
-			cvsdate="$Date: 2011/03/07 12:48:15 $"
+			cvsdate="$Date: 2011/03/21 13:49:02 $"
 			cvsdate=${cvsdate#: }
 			echo "${rcsfile} (r${cvsrev% *} @ ${cvsdate% *})"
 			exit 0
