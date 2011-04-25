@@ -1,6 +1,37 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.276 2011/02/26 11:52:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.285 2011/04/23 16:56:32 ssuominen Exp $
+
+  23 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> dbus-1.4.6.ebuild:
+  ppc64 stable wrt #360769
+
+  23 Apr 2011; Raúl Porcel <armin76@gentoo.org> dbus-1.4.6.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #360769
+
+*dbus-1.4.8 (20 Apr 2011)
+
+  20 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> +dbus-1.4.8.ebuild:
+  Version bump wrt #363399. Pass --without-systemdsystemunitdir to disable
+  systemd support wrt #363961.
+
+  15 Apr 2011; Christian Faulhammer <fauli@gentoo.org> dbus-1.4.6.ebuild:
+  stable x86, bug 360769
+
+  12 Apr 2011; Jeroen Roovers <jer@gentoo.org> dbus-1.4.6.ebuild:
+  Stable for HPPA (bug #360769).
+
+  10 Apr 2011; Markus Meier <maekke@gentoo.org> dbus-1.4.6.ebuild:
+  arm stable, bug #360769
+
+  27 Mar 2011; Christoph Mende <angelos@gentoo.org> dbus-1.4.6.ebuild:
+  Stable on amd64 wrt bug #360769
+
+  27 Mar 2011; Brent Baude <ranger@gentoo.org> dbus-1.4.6.ebuild:
+  Marking dbus-1.4.6 ppc for bug 360769
+
+  03 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  dbus-1.4.1.ebuild, dbus-1.4.6.ebuild:
+  Use Python 2 during running tests (bug #357081).
 
 *dbus-1.4.6 (26 Feb 2011)
 

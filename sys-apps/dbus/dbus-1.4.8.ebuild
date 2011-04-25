@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.6.ebuild,v 1.9 2011/04/23 16:56:32 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.8.ebuild,v 1.1 2011/04/20 13:44:33 ssuominen Exp $
 
 EAPI=2
 inherit autotools eutils multilib flag-o-matic python virtualx prefix
@@ -145,6 +145,7 @@ src_configure() {
 		--with-system-socket=${EPREFIX}/var/run/dbus/system_bus_socket
 		--with-session-socket-dir=${EPREFIX}/tmp
 		--with-dbus-user=${PORTAGE_USER:-portage}
+		--without-systemdsystemunitdir
 		--localstatedir=${EPREFIX}/var
 		${myconf}"
 

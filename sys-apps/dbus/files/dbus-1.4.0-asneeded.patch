@@ -1,8 +1,7 @@
 http://bugs.freedesktop.org/show_bug.cgi?id=23162
 
-diff -ru ../dbus-1.4.0/dbus/Makefile.am ./dbus/Makefile.am
---- ../dbus-1.4.0/dbus/Makefile.am	2010-08-31 23:44:19.000000000 +0200
-+++ ./dbus/Makefile.am	2010-09-12 22:49:08.191226651 +0200
+--- dbus/Makefile.am
++++ dbus/Makefile.am
 @@ -277,7 +277,7 @@
  dbus_test_SOURCES=				\
  	dbus-test-main.c
@@ -12,9 +11,8 @@ diff -ru ../dbus-1.4.0/dbus/Makefile.am ./dbus/Makefile.am
  dbus_test_LDFLAGS=@R_DYNAMIC_LDFLAG@
  
  ## mop up the gcov files
-diff -ru ../dbus-1.4.0/test/Makefile.am ./test/Makefile.am
---- ../dbus-1.4.0/test/Makefile.am	2010-08-31 23:44:19.000000000 +0200
-+++ ./test/Makefile.am	2010-09-12 22:51:44.021632252 +0200
+--- test/Makefile.am
++++ test/Makefile.am
 @@ -63,17 +63,17 @@
  
  # When any programs are not linked to libdbus-internal, fix this.
@@ -38,9 +36,8 @@ diff -ru ../dbus-1.4.0/test/Makefile.am ./test/Makefile.am
  shell_test_LDFLAGS=@R_DYNAMIC_LDFLAG@
  spawn_test_LDADD=$(TEST_LIBS)
  spawn_test_LDFLAGS=@R_DYNAMIC_LDFLAG@
-diff -ru ../dbus-1.4.0/test/name-test/Makefile.am ./test/name-test/Makefile.am
---- ../dbus-1.4.0/test/name-test/Makefile.am	2010-08-31 23:44:19.000000000 +0200
-+++ ./test/name-test/Makefile.am	2010-09-12 22:53:29.046971038 +0200
+--- test/name-test/Makefile.am
++++ test/name-test/Makefile.am
 @@ -22,46 +22,46 @@
  test_pending_call_dispatch_SOURCES =		\
  	test-pending-call-dispatch.c
