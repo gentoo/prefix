@@ -1,6 +1,103 @@
 # ChangeLog for app-shells/bash
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.260 2010/05/20 03:01:41 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.286 2011/03/15 19:41:24 vapier Exp $
+
+*bash-4.2_p8 (15 Mar 2011)
+
+  15 Mar 2011; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p8.ebuild:
+  Version bump.
+
+*bash-4.2_p7 (06 Mar 2011)
+
+  06 Mar 2011; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p7.ebuild:
+  Version bump + move into ~arch.
+
+  03 Mar 2011; Mike Frysinger <vapier@gentoo.org> bash-4.2_p6.ebuild,
+  +files/bash-4.2-expand-string-unsplit.patch:
+  Add fix from upstream for quoting issues.
+
+*bash-4.2_p6 (02 Mar 2011)
+
+  02 Mar 2011; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p6.ebuild:
+  Version bump.
+
+  01 Mar 2011; Mike Frysinger <vapier@gentoo.org> bash-4.2_p5.ebuild,
+  +files/bash-4.2-chkexport.patch:
+  Add fix from upstream for brown bag bug in patch005.
+
+*bash-4.2_p5 (01 Mar 2011)
+
+  01 Mar 2011; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p5.ebuild:
+  Version bump.
+
+  28 Feb 2011; Brent Baude <ranger@gentoo.org> bash-4.1_p9.ebuild:
+  stable ppc64, bug 352383
+
+*bash-4.1_p10 (28 Feb 2011)
+
+  28 Feb 2011; Mike Frysinger <vapier@gentoo.org> +bash-4.1_p10.ebuild:
+  Version bump #356513 by Lars Wendler.
+
+  19 Feb 2011; Mike Frysinger <vapier@gentoo.org> files/bashrc:
+  Touch up by Evert for HOME replacement in PROMPT_PROMPT_COMMAND #354719.
+
+  19 Feb 2011; Mike Frysinger <vapier@gentoo.org> bash-4.2.ebuild,
+  +files/bash-4.2-patmatch.patch, +files/bash-4.2-rhs-split.patch,
+  +files/bash-4.2-vidomove.patch:
+  Add some fixes from upstream.
+
+*bash-4.2 (15 Feb 2011)
+
+  15 Feb 2011; Mike Frysinger <vapier@gentoo.org> +bash-4.2.ebuild:
+  Version bump.
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> bash-3.1_p17.ebuild:
+  Drop to ~mips
+
+  06 Feb 2011; Mike Frysinger <vapier@gentoo.org> bash-3.2_p51.ebuild,
+  bash-4.0_p38.ebuild:
+  Drop USE=examples in older versions #251319 by Robert Buchholz.
+
+  30 Jan 2011; Raúl Porcel <armin76@gentoo.org> bash-4.1_p9.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #352383
+
+  27 Jan 2011; Brent Baude <ranger@gentoo.org> bash-4.1_p9.ebuild:
+  stable ppc, bug 352383
+
+  25 Jan 2011; Jeroen Roovers <jer@gentoo.org> bash-4.1_p9.ebuild:
+  Stable for HPPA (bug #352383).
+
+  23 Jan 2011; Christian Faulhammer <fauli@gentoo.org> bash-4.1_p9.ebuild:
+  stable x86, bug 352383
+
+  23 Jan 2011; Markos Chandras <hwoarang@gentoo.org> bash-4.1_p9.ebuild:
+  Stable on amd64 wrt bug #352383
+
+*bash-4.1_p9 (09 Oct 2010)
+
+  09 Oct 2010; Mike Frysinger <vapier@gentoo.org> +bash-4.1_p9.ebuild:
+  Version bump #340273 by Lars Wendler.
+
+  09 Oct 2010; Markos Chandras <hwoarang@gentoo.org> bash-4.1_p7.ebuild:
+  Stable on amd64 wrt bug #336037
+
+  09 Oct 2010; Raúl Porcel <armin76@gentoo.org> bash-4.1_p7.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #336037
+
+  14 Sep 2010; Jeroen Roovers <jer@gentoo.org> bash-4.1_p7.ebuild:
+  Stable for HPPA (bug #336037).
+
+  12 Sep 2010; Joseph Jezak <josejx@gentoo.org> bash-4.1_p7.ebuild:
+  Marked ppc stable for bug #336037.
+
+  08 Sep 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> bash-4.1_p7.ebuild:
+  x86 stable wrt bug #336037
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> bash-4.1_p7.ebuild:
+  Marking bash-4.1_p7 ppc64 for bug 336037
+
+  04 Sep 2010; Mike Frysinger <vapier@gentoo.org> bash-4.1_p7.ebuild:
+  Disable emacs checking #335896 by Fernando V.
 
 *bash-4.1_p7 (20 May 2010)
 

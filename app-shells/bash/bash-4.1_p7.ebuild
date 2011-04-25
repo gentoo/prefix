@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p7.ebuild,v 1.1 2010/05/20 03:01:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p7.ebuild,v 1.8 2010/10/09 19:16:50 hwoarang Exp $
 
 EAPI="1"
 
@@ -153,11 +153,13 @@ src_compile() {
 	# sucks bad compared to ncurses
 	myconf="${myconf} --with-curses"
 
+	myconf="${myconf} --without-lispdir" #335896
+
 	use plugins && case ${CHOST} in
 		*-linux-gnu | *-solaris* | *-freebsd* )
 			append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/bash
 		;;
-		# Darwin doesn't need an rpath here
+		# Darwin doesn't need an rpath here (in fact doesn't grok the argument)
 	esac
 
 	if [[ ${CHOST} == *-interix* ]]; then
