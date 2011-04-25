@@ -680,6 +680,7 @@ media-libs/mutagen
 media-libs/openal
 media-libs/opengl-apple
 media-libs/phonon
+media-libs/phonon-qt7
 media-libs/portaudio
 media-libs/qimageblitz
 media-libs/raptor
