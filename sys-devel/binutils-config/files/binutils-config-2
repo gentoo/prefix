@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-2,v 1.2 2010/08/15 05:14:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-2,v 1.3 2011/04/03 21:44:42 vapier Exp $
 
 # Format of /etc/env.d/binutils/:
 #  config-TARGET:	CURRENT=version for TARGET
@@ -232,7 +232,7 @@ switch_profile() {
 		echo
 		ewarn "Please remember to run:"
 		echo
-		ewarn " (bash) # source ${EPREFIX}/etc/profile"
+		ewarn " (bash) # . ${EPREFIX}/etc/profile"
 		ewarn "or"
 		ewarn " (tcsh) # source ${EPREFIX}/etc/csh.login"
 		echo
@@ -421,7 +421,7 @@ while [[ $# -gt 0 ]] ; do
 			;;
 		-V|--version)
 			unset Header
-			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-2,v 1.2 2010/08/15 05:14:35 vapier Exp $"
+			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-2,v 1.3 2011/04/03 21:44:42 vapier Exp $"
 			cvsver=${cvsver##*binutils-config-}
 			bver=${cvsver%%,v *}
 			cvsver=${cvsver#* }
