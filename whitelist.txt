@@ -337,6 +337,7 @@ dev-libs/fribidi
 dev-libs/gf2x
 dev-libs/gmime
 dev-libs/gnulib
+dev-libs/gobject-introspection
 dev-libs/kpathsea
 dev-libs/libaio
 dev-libs/libatomic_ops
