@@ -1,12 +1,12 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.12.0.ebuild,v 1.1 2010/08/02 15:38:50 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.12.0.ebuild,v 1.2 2011/02/27 13:09:10 aballier Exp $
 
 EAPI="1"
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
 
-PATCHLEVEL="2"
+PATCHLEVEL="3"
 MY_P="${P/_/+}"
 DESCRIPTION="Fast modern type-inferring functional programming language descended from the ML family"
 HOMEPAGE="http://www.ocaml.org/"
@@ -44,6 +44,7 @@ src_unpack() {
 	cd "${S}"
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 #	epatch "${FILESDIR}"/${P}-doc-utf8.patch
+	epatch "${FILESDIR}"/${P}-solaris-gcc.patch
 }
 
 src_compile() {

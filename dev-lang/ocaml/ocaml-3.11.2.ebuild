@@ -44,6 +44,7 @@ src_unpack() {
 	cd "${S}"
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 #	epatch "${FILESDIR}"/${P}-doc-utf8.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 }
 
 src_compile() {
@@ -71,6 +72,8 @@ src_compile() {
 		-bindir "${EPREFIX}"/usr/bin \
 		-libdir "${EPREFIX}"/usr/$(get_libdir)/ocaml \
 		-mandir "${EPREFIX}"/usr/share/man \
+		-x11include "${EPREFIX}"/usr/inlude \
+		-x11lib "${EPREFIX}"/usr/$(get_libdir) \
 		-host "${CHOST}" \
 		-cc "$(tc-getCC)" \
 		-as "$(tc-getAS)" \

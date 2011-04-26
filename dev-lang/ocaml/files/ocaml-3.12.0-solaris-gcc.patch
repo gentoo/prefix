@@ -1,0 +1,25 @@
+we call with ${CHOST}-gcc, and our gcc is actually not as old as system
+gcc on Solaris
+
+--- configure
++++ configure
+@@ -551,7 +551,7 @@
+       esac;;
+     *-*-solaris2*)
+       case "$bytecc" in
+-        gcc*)
++        *gcc)
+           sharedcccompopts="-fPIC"
+           if sh ./solaris-ld; then
+             mksharedlib="$bytecc -shared"
+--- asmrun/i386.S
++++ asmrun/i386.S
+@@ -20,7 +20,7 @@
+    Linux/BSD with a.out binaries and NextStep do. */
+ 
+ #if defined(SYS_solaris)
+-#define CONCAT(a,b) a/**/b
++#define CONCAT(a,b) a##b
+ #else
+ #define CONCAT(a,b) a##b
+ #endif

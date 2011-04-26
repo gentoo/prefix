@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.188 2011/01/24 09:22:53 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.189 2011/02/27 13:09:10 aballier Exp $
+
+  27 Feb 2011; Alexis Ballier <aballier@gentoo.org> ocaml-3.12.0.ebuild:
+  Add a patch to pass libs as last argument to the linker when linking, fixes
+  our as-needed problems: bug #331377 and bug #331075
 
   24 Jan 2011; Alexis Ballier <aballier@gentoo.org>
   -files/ocaml-3.10.0-automagic.patch,
