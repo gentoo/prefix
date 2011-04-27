@@ -276,7 +276,7 @@ switch_profile() {
 		# Pass all by default
 		awk '!/^(STDCXX_INCDIR|LDPATH|CC|CXX|CTARGET|GCCBITS|GCC_SPECS|GCC_PATH)=/ {print $0}' \
 			"${GCC_ENV_D}/${CC_COMP}" >> "${envd}.tmp"
-		if [[ -d ${ROOT}/etc/ld.so.conf.d ]] ; then
+		if [[ -z ${EPREFIX} && -d ${ROOT}/etc/ld.so.conf.d ]] ; then
 			echo "${MY_LDPATH}" > "${ROOT}"/etc/ld.so.conf.d/05gcc-${CTARGET}.conf
 		else
 			echo "LDPATH=\"${MY_LDPATH}\"" >> "${envd}.tmp"
