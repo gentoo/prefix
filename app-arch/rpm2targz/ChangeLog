@@ -1,6 +1,25 @@
 # ChangeLog for app-arch/rpm2targz
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.80 2009/11/06 13:10:53 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.86 2011/03/01 00:38:20 ranger Exp $
+
+  01 Mar 2011; Brent Baude <ranger@gentoo.org> rpm2targz-9.0.0.4g.ebuild:
+  stable ppc64, bug 354959
+
+  27 Feb 2011; Brent Baude <ranger@gentoo.org> rpm2targz-9.0.0.4g.ebuild:
+  stable ppc, bug 354959
+
+  26 Feb 2011; Raúl Porcel <armin76@gentoo.org> rpm2targz-9.0.0.4g.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #354959
+
+  21 Feb 2011; Jeroen Roovers <jer@gentoo.org> rpm2targz-9.0.0.4g.ebuild:
+  Stable for HPPA (bug #354959).
+
+  20 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  rpm2targz-9.0.0.4g.ebuild:
+  x86 stable wrt bug #354959
+
+  16 Feb 2011; Markos Chandras <hwoarang@gentoo.org> rpm2targz-9.0.0.4g.ebuild:
+  Stable on amd64 wrt bug #354959
 
 *rpm2targz-9.0.0.4g (06 Nov 2009)
 

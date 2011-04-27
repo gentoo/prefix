@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.4g.ebuild,v 1.2 2010/10/14 01:41:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.4g.ebuild,v 1.8 2011/03/01 00:38:20 ranger Exp $
 
 inherit toolchain-funcs eutils
 
