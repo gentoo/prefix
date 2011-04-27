@@ -1,6 +1,138 @@
 # ChangeLog for media-libs/freetype
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.256 2010/07/20 16:19:47 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.291 2011/04/02 14:36:34 armin76 Exp $
+
+  02 Apr 2011; Raúl Porcel <armin76@gentoo.org> freetype-2.4.4.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #360223
+
+  30 Mar 2011; Jeroen Roovers <jer@gentoo.org> freetype-2.4.4.ebuild:
+  Stable for HPPA (bug #360223).
+
+  27 Mar 2011; Brent Baude <ranger@gentoo.org> freetype-2.4.4.ebuild:
+  Marking freetype-2.4.4 ppc for bug 360223
+
+  26 Mar 2011; Christian Faulhammer <fauli@gentoo.org>
+  freetype-2.4.4.ebuild:
+  stable x86, bug 360223
+
+  24 Mar 2011; Markos Chandras <hwoarang@gentoo.org> freetype-2.4.4.ebuild:
+  Stable on amd64 wrt bug #360223
+
+  24 Mar 2011; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.4.2.ebuild,
+  -freetype-2.4.3-r1.ebuild:
+  Remove vulnerable versions.
+
+*freetype-2.4.4 (01 Dec 2010)
+
+  01 Dec 2010; Peter Volkov <pva@gentoo.org> +freetype-2.4.4.ebuild:
+  Version bump. Fixes ugly fonts in pdf #342515, thank Pacho Ramos for work
+  with upstream.
+
+  28 Nov 2010; Brent Baude <ranger@gentoo.org> freetype-2.4.3-r2.ebuild:
+  Marking freetype-2.4.3-r2 ppc64 for bug 345843
+
+  23 Nov 2010; Jeroen Roovers <jer@gentoo.org> freetype-2.4.3-r2.ebuild:
+  Stable for HPPA PPC (bug #345843).
+
+  20 Nov 2010; Raúl Porcel <armin76@gentoo.org> freetype-2.4.3-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #345843
+
+  19 Nov 2010; Markos Chandras <hwoarang@gentoo.org> freetype-2.4.3-r2.ebuild:
+  Stable on amd64 wrt bug #345843
+
+  19 Nov 2010; Markus Meier <maekke@gentoo.org> freetype-2.4.3-r2.ebuild:
+  arm stable, bug #345843
+
+  18 Nov 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  freetype-2.4.3-r2.ebuild:
+  x86 stable wrt security bug #345843
+
+*freetype-2.4.3-r2 (18 Nov 2010)
+
+  18 Nov 2010; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.4.3.ebuild,
+  +freetype-2.4.3-r2.ebuild, +files/freetype-2.4.3-CVE-2010-3814.patch:
+  Revision bump for bug #345843. Remove old.
+
+  26 Oct 2010; Mark Loeser <halcy0n@gentoo.org> freetype-2.4.3-r1.ebuild:
+  Stable for ppc64; bug #342121
+
+  24 Oct 2010; Brent Baude <ranger@gentoo.org> freetype-2.4.3-r1.ebuild:
+  Marking freetype-2.4.3-r1 ppc for bug 342121
+
+  23 Oct 2010; Raúl Porcel <armin76@gentoo.org> freetype-2.4.3-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #342121
+
+  23 Oct 2010; Jeroen Roovers <jer@gentoo.org> freetype-2.4.3-r1.ebuild:
+  Stable for HPPA (bug #342121).
+
+  23 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  freetype-2.4.3-r1.ebuild:
+  Stable on amd64 wrt bug #342121
+
+*freetype-2.4.3-r1 (23 Oct 2010)
+
+  23 Oct 2010; Ryan Hill <dirtyepic@gentoo.org>
+  -files/freetype-2.3.9-CVE-2009-0946.patch, -freetype-2.3.11.ebuild,
+  -freetype-2.3.12.ebuild, +freetype-2.4.3-r1.ebuild,
+  +files/freetype-2.4.3-SA41738.patch:
+  Security patch for bug #342121 (SA41738). Remove old.
+
+  22 Oct 2010; Christian Faulhammer <fauli@gentoo.org>
+  freetype-2.4.3.ebuild:
+  stable x86, bug 341845
+
+  20 Oct 2010; Markos Chandras <hwoarang@gentoo.org> freetype-2.4.3.ebuild:
+  Stable on amd64 wrt bug #341845
+
+  12 Oct 2010; Ryan Hill <dirtyepic@gentoo.org> freetype-2.4.2.ebuild,
+  freetype-2.4.3.ebuild:
+  Enable trace macros with USE=debug so FT2_DEBUG works as documented.
+
+  10 Oct 2010; Alexis Ballier <aballier@gentoo.org>
+  freetype-1.4_pre20080316-r2.ebuild,
+  +files/freetype-1.4_pre20080316-kpathsea_version.patch:
+  Include kpathsea/version.h when available. Fixes a build failure with TeX
+  Live 2010.
+
+*freetype-2.4.3 (04 Oct 2010)
+
+  04 Oct 2010; Ryan Hill <dirtyepic@gentoo.org> +freetype-2.4.3.ebuild:
+  Version bump. This release fixes a regression in cubic spline flattening
+  affecting S-shaped glyphs introduced in 2.4.0 (bug #339572).
+
+  30 Sep 2010; Brent Baude <ranger@gentoo.org> freetype-2.3.12.ebuild:
+  stable ppc64, bug 320715
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> freetype-2.4.2.ebuild:
+  Marking freetype-2.4.2 ppc64 for bug 332701
+
+  28 Aug 2010; Raúl Porcel <armin76@gentoo.org> freetype-2.4.2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #332701
+
+  16 Aug 2010; Jeroen Roovers <jer@gentoo.org> freetype-2.4.2.ebuild:
+  Stable for HPPA (bug #332701).
+
+  16 Aug 2010; Jeroen Roovers <jer@gentoo.org> freetype-2.4.2.ebuild:
+  Stable for PPC (bug #332701).
+
+  15 Aug 2010; Markus Meier <maekke@gentoo.org> freetype-2.4.2.ebuild:
+  arm stable, bug #332701
+
+  14 Aug 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  freetype-2.4.2.ebuild:
+  x86 stable wrt security bug #332701
+
+  14 Aug 2010; Markos Chandras <hwoarang@gentoo.org> freetype-2.4.2.ebuild:
+  Stable on amd64 wrt bug #332701
+
+  14 Aug 2010; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.3.9-r1.ebuild,
+  -freetype-2.4.1.ebuild:
+  Remove old.
+
+*freetype-2.4.2 (07 Aug 2010)
+
+  07 Aug 2010; Ryan Hill <dirtyepic@gentoo.org> +freetype-2.4.2.ebuild:
+  Version bump. Fixes stack overflow and Type 42 font deallocation.
 
   20 Jul 2010; Jeroen Roovers <jer@gentoo.org> freetype-2.3.12.ebuild:
   Stable for HPPA (bug #320715).

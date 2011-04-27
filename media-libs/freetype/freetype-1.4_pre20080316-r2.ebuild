@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-1.4_pre20080316-r2.ebuild,v 1.6 2009/05/27 17:40:47 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-1.4_pre20080316-r2.ebuild,v 1.7 2010/10/10 16:53:29 aballier Exp $
 
 inherit autotools eutils libtool multilib
 
@@ -46,6 +46,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-CVE-2006-1861.patch #271234
 	epatch "${FILESDIR}"/${P}-CVE-2007-2754.patch #271234
+
+	epatch "${FILESDIR}"/${P}-kpathsea_version.patch #Fix build with TL2010
 
 	# disable tests (they don't compile)
 	sed -i -e "/^all:/ s:tttest ::" Makefile.in
