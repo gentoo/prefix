@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit eutils libtool toolchain-funcs flag-o-matic
+inherit eutils libtool toolchain-funcs flag-o-matic autotools
 
 DESCRIPTION="BSD tar command"
 HOMEPAGE="http://code.google.com/p/libarchive/"
@@ -31,6 +31,8 @@ DEPEND="${RDEPEND}
 		virtual/os-headers )"
 
 src_prepare() {
+	# for FreeMiNT
+	eautoreconf
 	elibtoolize
 	epunt_cxx
 }
