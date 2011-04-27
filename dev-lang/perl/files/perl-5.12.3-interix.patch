@@ -1,3 +1,5 @@
+reported: http://www.xray.mpe.mpg.de/mailing-lists/perl5-porters/2011-04/msg01014.html
+
 diff -ru perl-5.12.3.orig/hints/interix.sh perl-5.12.3/hints/interix.sh
 --- perl-5.12.3.orig/hints/interix.sh	2011-04-27 08:34:00 +0200
 +++ perl-5.12.3/hints/interix.sh	2011-04-27 08:53:46 +0200
