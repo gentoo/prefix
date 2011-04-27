@@ -1,6 +1,31 @@
 # ChangeLog for media-libs/lcms
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.118 2010/07/23 20:40:22 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.125 2011/02/26 18:18:37 arfrever Exp $
+
+  26 Feb 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  lcms-1.19.ebuild, +files/lcms-1.19-disable_static_modules.patch:
+  Set SUPPORT_PYTHON_ABIS, don't install .a files in Python site-packages
+  directories (bug #356601).
+
+*lcms-2.1 (12 Dec 2010)
+
+  12 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> +lcms-2.1.ebuild:
+  Version bump wrt #348468 by Matthew Turnbull.
+
+  29 Sep 2010; Jeroen Roovers <jer@gentoo.org> lcms-2.0a.ebuild:
+  Stable for PPC (bug #328795).
+
+  28 Sep 2010; Samuli Suominen <ssuominen@gentoo.org> lcms-1.19.ebuild:
+  USE="static-libs" and punt .la files.
+
+  04 Sep 2010; Raúl Porcel <armin76@gentoo.org> lcms-2.0a.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #328795
+
+  15 Aug 2010; Markus Meier <maekke@gentoo.org> lcms-2.0a.ebuild:
+  arm stable, bug #328795
+
+  10 Aug 2010; Jeroen Roovers <jer@gentoo.org> lcms-2.0a.ebuild:
+  Stable for HPPA (bug #328795).
 
   23 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> lcms-1.19.ebuild,
   lcms-2.0a.ebuild:
