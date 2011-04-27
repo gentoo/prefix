@@ -161,11 +161,7 @@ src_prepare() {
 	# used; 'require' will only look in @INC, not the current directory.
 	#epatch "${FILESDIR}"/${PN}-fix_h2ph_include_quote.patch
 
-	# on interix, $firstmakefile may not be 'makefile', since the
-	# filesystem may be case insensitive, and perl will wrongly
-	# delete Makefile.
-	#epatch "${FILESDIR}"/${P}-interix-firstmakefile.patch
-	#epatch "${FILESDIR}"/${P}-interix-misc.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 myconf() {
