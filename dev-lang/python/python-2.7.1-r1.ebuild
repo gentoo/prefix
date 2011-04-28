@@ -198,17 +198,8 @@ src_prepare() {
 	# needs native-cctools
 	epatch "${FILESDIR}"/${PN}-2.7.1-aix-soname.patch
 
-	# patch to make python behave nice with interix. There is one part
-	# maybe affecting other x86-platforms, thus conditional.
-	if [[ ${CHOST} == *-interix* ]] ; then
-		# this one could be applied unconditionally, but to keep it
-		# clean, I do it together with the conditional one.
-		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
-		# some more modules fixed (_multiprocessing, dl)
-		epatch "${FILESDIR}"/${PN}-2.6.2-interix-modules.patch
-		# -r2 because of 12_all_check_availability_of_nis_headers
-		epatch "${FILESDIR}"/${PN}-2.6.4-r2-interix-nis.patch
-	fi
+	# interix very reduced patch :)
+	epatch "${FILESDIR}"/${PN}-2.7.1-interix.patch
 
 	# Support versions of Autoconf other than 2.65.
 	sed -e "/version_required(2\.65)/d" -i configure.in || die "sed failed"
@@ -322,9 +313,6 @@ src_configure() {
 
 	# Don't include libmpc on IRIX - it is only available for 64bit MIPS4
 	[[ ${CHOST} == *-irix* ]] && export ac_cv_lib_mpc_usconfig=no
-
-	# Interix poll is broken
-	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 
 	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
 
