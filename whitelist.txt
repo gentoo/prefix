@@ -40,6 +40,7 @@ app-admin/eselect-maven
 app-admin/eselect-mesa
 app-admin/eselect-oodict
 app-admin/eselect-opengl
+app-admin/eselect-php
 app-admin/eselect-pinentry
 app-admin/eselect-postgresql
 app-admin/eselect-unison
