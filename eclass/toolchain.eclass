@@ -1500,6 +1500,9 @@ gcc_do_configure() {
 	*-freebsd*)
 		confgcc="${confgcc} --enable-__cxa_atexit"
 		;;
+	*-openbsd*)
+		confgcc="${confgcc} --enable-__cxa_atexit"
+		;;
 	*-solaris*)
 		confgcc="${confgcc} --enable-__cxa_atexit"
 		;;
