@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-3.0.2.ebuild,v 1.1 2011/01/15 12:25:40 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-3.0.3.ebuild,v 1.1 2011/03/10 15:27:23 fordfrog Exp $
 
 inherit java-pkg-2 prefix
 
@@ -31,7 +31,7 @@ src_unpack() {
 	chmod 644 "${S}"/boot/*.jar "${S}"/lib/*.jar "${S}"/conf/settings.xml || die
 
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.0.8-prefix.patch
+	epatch "${FILESDIR}"/${PN}-3.0.3-prefix.patch
 	eprefixify bin/mvn
 }
 
