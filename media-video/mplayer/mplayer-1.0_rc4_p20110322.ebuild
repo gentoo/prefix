@@ -681,7 +681,7 @@ src_install() {
 	local i
 
 	emake \
-		DESTDIR="${ED}" \
+		DESTDIR="${D}" \
 		INSTALLSTRIP="" \
 		install
 
