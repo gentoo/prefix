@@ -1,6 +1,36 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.187 2011/01/18 21:36:39 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.196 2011/04/15 08:04:03 vapier Exp $
+
+*file-5.06 (15 Apr 2011)
+
+  15 Apr 2011; Mike Frysinger <vapier@gentoo.org> +file-5.06.ebuild:
+  Version bump.
+
+  07 Apr 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  file-5.04.ebuild, file-5.05.ebuild:
+  Fix deprecation warnings (bug #362345).
+
+  04 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> file-5.05.ebuild:
+  USE="static-libs" and punt libtool archive if it's not set.
+
+  01 Mar 2011; Jeroen Roovers <jer@gentoo.org> file-5.05.ebuild:
+  Stable for HPPA (bug #355277).
+
+  01 Mar 2011; Brent Baude <ranger@gentoo.org> file-5.05.ebuild:
+  stable ppc64, bug 355277
+
+  27 Feb 2011; Markos Chandras <hwoarang@gentoo.org> file-5.05.ebuild:
+  Stable on amd64 wrt bug #355277
+
+  27 Feb 2011; Brent Baude <ranger@gentoo.org> file-5.05.ebuild:
+  stable ppc, bug 355277
+
+  26 Feb 2011; Raúl Porcel <armin76@gentoo.org> file-5.05.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #355277 wrt #355697
+
+  26 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> file-5.05.ebuild:
+  x86 stable wrt bug #355277
 
   18 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   file-5.05.ebuild:
