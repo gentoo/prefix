@@ -9,13 +9,14 @@ HOMEPAGE="http://www.FreeBSDFoundation.org/downloads/java.shtml"
 MY_PV=$(replace_version_separator 3 '_')
 MY_PVL=$(get_version_component_range 1-3)
 
-javafile="diablo-caffe-freebsd7-i386-$(replace_version_separator 4 '-b' ${MY_PV}).tar.bz2"
+javafile32="diablo-caffe-freebsd7-i386-$(replace_version_separator 4 '-b' ${MY_PV}).tar.bz2"
+javafile64="diablo-caffe-freebsd7-amd64-$(replace_version_separator 4 '-b' ${MY_PV}).tar.bz2"
 
-SRC_URI="$javafile"
+SRC_URI="x86-fbsd? ( ${javafile32} ) amd64-fbsd? ( ${javafile64} )"
 
 LICENSE="sun-bcla-java-vm"
 SLOT="1.6"
-KEYWORDS="~x86-freebsd"
+KEYWORDS="~x64-freebsd ~x86-freebsd"
 RESTRICT="fetch"
 IUSE="X examples nsplugin jce"
 
@@ -76,21 +77,42 @@ src_install() {
 		dosym /opt/sun-jce-bin-1.6.0/jre/lib/security/unlimited-jce/local_policy.jar /opt/${P}/jre/lib/security/
 	fi
 
+	local arch=i386
+	use amd64-fbsd && arch=amd64
+
 	if use nsplugin; then
-		install_mozilla_plugin /opt/${P}/jre/plugin/i386/ns7/libjavaplugin_oji.so
+		install_mozilla_plugin /opt/${P}/jre/plugin/${arch}/ns7/libjavaplugin_oji.so
 	fi
 
-	# Change libz.so.3 to libz.so.1
-# but not in prefix
-	use prefix || scanelf -qR -N libz.so.4 -F "#N" "${ED}"/opt/${P}/ | \
+	# Change libz.so.4 to libz.so.1
+	scanelf -qR -N libz.so.4 -F "#N" "${ED}"/opt/${P}/ | \
 		while read i; do
-		if [[ $(strings "$i" | fgrep -c libz.so.3) -ne 1 ]]; then
+		if [[ $(strings "$i" | fgrep -c libz.so.4) -ne 1 ]]; then
 			export SANITY_CHECK_LIBZ_FAILED=1
 			break
 		fi
 		sed -i -e 's/libz\.so\.4/libz.so.1/g' "$i"
 	done
 	[[ "$SANITY_CHECK_LIBZ_FAILED" = "1" ]] && die "failed to change libz.so.4 to libz.so.1"
+
+	# create wrappers such that we can set LD_LIBRARY_PATH because all objects
+	# are created without RPATH we could tamper with :(
+	local d bin
+	for d in "${ED}"/opt/${P}/bin "${ED}"/opt/${P}/jre/bin ; do
+		cd "${d}" || die
+		mkdir real-bins || die
+		for bin in * ; do
+			[[ ${bin} == real-bins ]] && continue
+			mv ${bin} real-bins/ || die
+			cat > ${bin} <<- _EOD
+				#!${EPREFIX}/bin/sh
+
+				export LD_LIBRARY_PATH="\${LD_LIBRARY_PATH}\${LD_LIBRARY_PATH+:}${EPREFIX}/opt/${P}/jre/lib/${arch}:${EPREFIX}/opt/${P}/jre/lib/${arch}/native_threads:${EPREFIX}/opt/${P}/jre/lib/${arch}/server:${EPREFIX}/opt/${P}/jre/lib/${arch}/headless:${EPREFIX}/lib:${EPREFIX}/usr/lib"
+				exec /${d#${D}}/real-bins/${bin}
+			_EOD
+			chmod 755 ${bin}
+		done
+	done
 
 	# create dir for system preferences
 	dodir /opt/${P}/jre/.systemPrefs
