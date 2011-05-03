@@ -16,10 +16,12 @@ cd "$1"
 mkdir bash-build
 cd bash-build
 
-ftp "http://distfiles.gentoo.org/distfiles/bash-3.2-patched.tar.gz"
-gzip -d bash-3.2-patched.tar.gz
-tar -xf bash-3.2-patched.tar
-cd bash-3.2
+GENTOO_MIRROR=${GENTOO_MIRROR:="http://distfiles.gentoo.org/distfiles"}
+
+ftp "${GENTOO_MIRROR}/bash-4.1.tar.gz"
+gzip -d bash-4.1.tar.gz
+tar -xf bash-4.1.tar
+cd bash-4.1
 
 ./configure --prefix="${1}"/usr --disable-nls
 make
