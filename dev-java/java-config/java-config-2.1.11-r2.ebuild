@@ -57,6 +57,7 @@ src_install() {
 	case $a in
 		*-hpux)       a=hpux;;
 		*-linux)      a=${a%-linux};;
+		amd64-fbsd)   a=x64-freebsd;;
 	esac
 
 	insinto /usr/share/java-config-2/config/
