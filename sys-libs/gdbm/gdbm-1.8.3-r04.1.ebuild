@@ -10,7 +10,7 @@ SRC_URI="mirror://gnu/gdbm/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="berkdb"
 
 DEPEND="berkdb? ( sys-libs/db )"
@@ -26,6 +26,7 @@ src_unpack() {
 }
 
 src_compile() {
+	[[ ${CHOST} == x86_64-pc-freebsd* ]] && append-flags -fPIC #363583
 	use berkdb || export ac_cv_lib_dbm_main=no ac_cv_lib_ndbm_main=no
 	econf \
 		--includedir="${EPREFIX}"/usr/include/gdbm \
