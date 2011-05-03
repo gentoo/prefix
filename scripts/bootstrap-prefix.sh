@@ -492,7 +492,7 @@ prep_gcc-fsf() {
 	GCC_A=gcc-${GCC_PV}.tar.bz2	
 	TAROPTS="-jxf"
 
-	efetch ${GENTOO_MIRROR}/${GCC_A}
+	efetch ${GENTOO_MIRRORS}/${GCC_A}
 
 }
 
@@ -554,7 +554,7 @@ bootstrap_gnu() {
 	[[ $PN == "gzip" ]] && A=${PN}-${PV}.tar
 	einfo "Bootstrapping ${A%-*}"
 
-	URL=${3-${GENTOO_MIRROR}/${A}}
+	URL=${3-${GENTOO_MIRRORS}/${A}}
 	efetch ${URL}
 
 	einfo "Unpacking ${A%-*}"
@@ -705,7 +705,7 @@ bootstrap_zlib() {
 
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GENTOO_MIRROR}/${A}
+	efetch ${GENTOO_MIRRORS}/${A}
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
@@ -816,9 +816,7 @@ bootstrap_texinfo() {
 }
 
 bootstrap_bash() {
-	# distfile with included patches to make portage happy
-	bootstrap_gnu bash 3.2 \
-		"${GENTOO_MIRROR}/bash-3.2-patched.tar.gz"
+	bootstrap_gnu bash 4.1
 }
 
 bootstrap_bison() {
@@ -840,7 +838,7 @@ bootstrap_bzip2() {
 	A=${PN}-${PV}.tar.gz
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GENTOO_MIRROR}/${A}
+	efetch ${GENTOO_MIRRORS}/${A}
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
@@ -1074,7 +1072,7 @@ PORTAGE_TMPDIR=${ROOT}/var/tmp
 DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
 SNAPSHOT_URL="http://files.prefix.freens.org/snapshots"
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
-GENTOO_MIRROR=${GENTOO_MIRROR:="http://distfiles.gentoo.org/distfiles"}
+GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org/distfiles"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 
 export MAKE
