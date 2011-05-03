@@ -14,7 +14,7 @@ SRC_URI="http://www.antlr.org/download/${P}.tar.gz
 	mirror://gentoo/${P}-generated.tar.bz2"
 LICENSE="BSD"
 SLOT="3"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="gunit"
 
 COMMON_DEPEND=">=dev-java/stringtemplate-3.2
