@@ -107,8 +107,8 @@ src_install() {
 			cat > ${bin} <<- _EOD
 				#!${EPREFIX}/bin/sh
 
-				export LD_LIBRARY_PATH="\${LD_LIBRARY_PATH}\${LD_LIBRARY_PATH+:}${EPREFIX}/opt/${P}/jre/lib/${arch}:${EPREFIX}/opt/${P}/jre/lib/${arch}/native_threads:${EPREFIX}/opt/${P}/jre/lib/${arch}/server:${EPREFIX}/opt/${P}/jre/lib/${arch}/headless:${EPREFIX}/lib:${EPREFIX}/usr/lib"
-				exec /${d#${D}}/real-bins/${bin}
+				export LD_LIBRARY_PATH="\${LD_LIBRARY_PATH}\${LD_LIBRARY_PATH+:}${EPREFIX}/lib"
+				exec /${d#${D}}/real-bins/${bin} "\$@"
 			_EOD
 			chmod 755 ${bin}
 		done
