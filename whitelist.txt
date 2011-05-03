@@ -580,6 +580,7 @@ gnome-base/gnome-mime-data
 gnome-base/gnome-panel
 gnome-base/gnome-session
 gnome-base/gnome-settings-daemon
+gnome-base/gsettings-desktop-schemas
 gnome-base/libbonobo
 gnome-base/libbonoboui
 gnome-base/libgnome
