@@ -767,6 +767,7 @@ net-irc/quassel
 net-irc/supybot
 net-irc/weechat
 net-libs/farsight2
+net-libs/glib-networking
 net-libs/gnet
 net-libs/ldns
 net-libs/libasyncns
