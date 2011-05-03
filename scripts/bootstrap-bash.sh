@@ -16,9 +16,9 @@ cd "$1"
 mkdir bash-build
 cd bash-build
 
-GENTOO_MIRROR=${GENTOO_MIRROR:="http://distfiles.gentoo.org/distfiles"}
+GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org/distfiles"}
 
-ftp "${GENTOO_MIRROR}/bash-4.1.tar.gz"
+ftp "${GENTOO_MIRRORS}/bash-4.1.tar.gz"
 gzip -d bash-4.1.tar.gz
 tar -xf bash-4.1.tar
 cd bash-4.1
