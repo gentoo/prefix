@@ -197,6 +197,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7.1-aix-safe-runpath.patch
 	# needs native-cctools
 	epatch "${FILESDIR}"/${PN}-2.7.1-aix-soname.patch
+	# http://bugs.python.org/issue10547, bug #365911
+	epatch "${FILESDIR}"/${PN}-2.7.1-bsd-module-ldflags.patch
 
 	# interix very reduced patch :)
 	epatch "${FILESDIR}"/${PN}-2.7.1-interix.patch
