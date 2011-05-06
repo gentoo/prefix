@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r5.ebuild,v 1.16 2010/06/17 14:39:18 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r5.ebuild,v 1.17 2011/04/05 05:23:28 ulm Exp $
 
 EAPI=2
 
@@ -24,7 +24,7 @@ RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	expat? ( dev-libs/expat )
 	mpi? ( sys-cluster/openmpi[cxx] )
 	sys-libs/zlib
-	python? ( virtual/python )
+	python? ( dev-lang/python )
 	!!<=dev-libs/boost-1.35.0-r2
 	>=app-admin/eselect-boost-0.3"
 DEPEND="${RDEPEND}

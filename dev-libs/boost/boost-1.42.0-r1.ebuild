@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.42.0-r1.ebuild,v 1.2 2010/06/17 14:39:18 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.42.0-r1.ebuild,v 1.3 2011/04/05 05:23:28 ulm Exp $
 
 EAPI="2"
 
@@ -20,7 +20,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solari
 RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	mpi? ( || ( sys-cluster/openmpi[cxx] sys-cluster/mpich2[cxx,threads] ) )
 	sys-libs/zlib
-	python? ( virtual/python )
+	python? ( dev-lang/python )
 	!!<=dev-libs/boost-1.35.0-r2
 	!x86-winnt? ( >=app-admin/eselect-boost-0.3 )"
 DEPEND="${RDEPEND}
@@ -350,9 +350,9 @@ src_install () {
 	if use mpi ; then
 		if use static-libs ; then
 			MPI_LIBS="libboost_mpi-mt-${MAJOR_PV}.a libboost_mpi-mt-${MAJOR_PV}$(get_libname)"
-	        else
+		else
 			MPI_LIBS="libboost_mpi-mt-${MAJOR_PV}$(get_libname)"
-	        fi
+		fi
 		for lib in ${MPI_LIBS} ; do
 			dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})" || die
 		done
@@ -361,9 +361,9 @@ src_install () {
 	if use debug ; then
 		if use static-libs ; then
 			THREAD_DEBUG_LIBS="libboost_thread-mt-${MAJOR_PV}-debug$(get_libname) libboost_thread-mt-${MAJOR_PV}-debug.a"
-	        else
+		else
 			THREAD_DEBUG_LIBS="libboost_thread-mt-${MAJOR_PV}-debug$(get_libname)"
-	        fi
+		fi
 
 		for lib in ${THREAD_DEBUG_LIBS} ; do
 			dosym ${lib} "/usr/$(get_libdir)/$(sed -e 's/-mt//' <<< ${lib})" || die
@@ -372,7 +372,7 @@ src_install () {
 		if use mpi ; then
 			if use static-libs ; then
 				MPI_DEBUG_LIBS="libboost_mpi-mt-${MAJOR_PV}-debug.a libboost_mpi-mt-${MAJOR_PV}-debug$(get_libname)"
-	                else
+			else
 				MPI_DEBUG_LIBS="libboost_mpi-mt-${MAJOR_PV}-debug$(get_libname)"
 			fi
 
