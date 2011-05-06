@@ -1,6 +1,29 @@
 # ChangeLog for dev-util/boost-build
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.64 2011/01/10 12:26:51 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.70 2011/04/16 11:29:07 armin76 Exp $
+
+  16 Apr 2011; Raúl Porcel <armin76@gentoo.org> boost-build-1.42.0.ebuild:
+  ia64/s390/sh stable wrt #344677
+
+*boost-build-1.46.1 (22 Mar 2011)
+
+  22 Mar 2011; Markos Chandras <hwoarang@gentoo.org>
+  +boost-build-1.46.1.ebuild:
+  Version bump. Bug #356479
+
+  13 Mar 2011; Markus Meier <maekke@gentoo.org> boost-build-1.42.0.ebuild:
+  arm stable, bug #344677
+
+  08 Mar 2011; Tobias Klausmann <klausman@gentoo.org>
+  boost-build-1.42.0.ebuild:
+  Stable on alpha, bug #344677
+
+  06 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  boost-build-1.42.0.ebuild:
+  ppc64 stable wrt #344677
+
+  21 Feb 2011; Michael Weber <xmw@gentoo.org> boost-build-1.42.0.ebuild:
+  sparc stable, bug 344677
 
   10 Jan 2011; Markos Chandras <hwoarang@gentoo.org> boost-build-1.42.0.ebuild:
   Stable on amd64 wrt bug 344677

@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.42.0.ebuild,v 1.11 2011/04/16 11:29:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.46.1.ebuild,v 1.1 2011/03/22 09:51:18 hwoarang Exp $
 
 EAPI="2"
 
@@ -22,17 +22,20 @@ DEPEND="!<dev-libs/boost-1.34.0
 	python? ( dev-lang/python )"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/boost_${MY_PV}/tools"
+S="${WORKDIR}/boost_${MY_PV}/tools/build/v2"
 
 src_unpack() {
-	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/{jam,build/v2} || die
+	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/build/v2 || die "unpacking tar failed"
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/boost-1.42-fix-mpich2-detection.patch"
-	epatch "${FILESDIR}/${PN}-1.42-env-whitespace.patch" # 293652
+	# TODO:
+	#	epatch "${FILESDIR}/boost-1.42-fix-mpich2-detection.patch"
 
-	epatch "${FILESDIR}"/boost-1.41-darwin-sanitise.patch
+	epatch "${FILESDIR}"/boost-1.46.1-darwin-sanitise.patch
+
+	cd "${S}/engine"
+	epatch "${FILESDIR}/${PN}-1.42-env-whitespace.patch" # 293652
 
 	# adds support for boosting with parity ...
 #fails
@@ -44,7 +47,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/1.39.0-build_jam-quoting.patch
 
 	# Remove stripping option
-	cd "${S}/jam/src"
+	cd "${S}/engine/src"
 	sed -i -e 's|-s\b||' \
 		build.jam || die "sed failed"
 
@@ -55,7 +58,7 @@ src_prepare() {
 	# and stripping flags when bjam is used as build-system
 	# We simply extend the optimization and debug-symbols feature
 	# with empty dummies called 'none'
-	cd "${S}/build/v2"
+	cd "${S}"
 	sed -i \
 		-e 's/\(off speed space\)/\1 none/' \
 		-e 's/\(debug-symbols      : on off\)/\1 none/' \
@@ -63,7 +66,7 @@ src_prepare() {
 }
 
 src_compile() {
-	cd jam/src
+	cd engine/src
 	local toolset
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
@@ -97,9 +100,9 @@ src_compile() {
 }
 
 src_install() {
-	newbin jam/src/bin.*/bjam bjam-${MAJOR_PV}
+	newbin engine/src/bin.*/bjam bjam-${MAJOR_PV}
 
-	cd "${S}/build/v2"
+	cd "${S}"
 	insinto /usr/share/boost-build-${MAJOR_PV}
 	doins -r boost-build.jam bootstrap.jam build-system.jam site-config.jam user-config.jam \
 		build kernel options tools util || die
@@ -114,6 +117,6 @@ src_install() {
 }
 
 src_test() {
-	cd jam/test
+	cd engine/test
 	./test.sh || die "tests failed"
 }
