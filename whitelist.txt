@@ -95,7 +95,7 @@ app-cdr/xbiso
 app-editors/bvi
 app-editors/cooledit
 app-editors/dav
-app-editors/easyedit
+app-editors/ee
 app-editors/emacs
 app-editors/emacs-vcs
 app-editors/gedit
