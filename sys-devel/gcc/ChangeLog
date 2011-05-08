@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.810 2011/04/04 00:56:31 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.811 2011/04/13 03:35:39 dirtyepic Exp $
+
+  13 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.6.0.ebuild:
+  Patchset bump. Fixes a couple ICEs and a wrong-code -ftree-vectorize bug.
+  Change preprocessor option handling to make specs work again (bug #361783).
 
   04 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.6.0.ebuild:
   Unbreak -U_FORTIFY_SOURCE (bug #361783).
