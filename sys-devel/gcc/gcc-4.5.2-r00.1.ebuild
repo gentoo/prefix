@@ -124,6 +124,11 @@ src_unpack() {
 
 src_compile() {
 	case ${CTARGET}:" ${USE} " in
+		powerpc*-darwin*)
+			# Altivec instructions cause an ICE, reduce flags here
+			# TODO: m64/powerpc64 implies -maltivec
+			filter-flags -m*
+		;;
 		*-mint*)
 			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
 		;;
@@ -166,7 +171,7 @@ src_compile() {
 			fi
 		;;
 	esac
-	
+
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
