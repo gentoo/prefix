@@ -1,6 +1,6 @@
 diff -ru Python-2.7.1.orig/Modules/_multiprocessing/multiprocessing.c Python-2.7.1/Modules/_multiprocessing/multiprocessing.c
---- Python-2.7.1.orig/Modules/_multiprocessing/multiprocessing.c	2011-04-27 14:49:16 +0200
-+++ Python-2.7.1/Modules/_multiprocessing/multiprocessing.c	2011-04-27 14:49:59 +0200
+--- Python-2.7.1.orig/Modules/_multiprocessing/multiprocessing.c	2011-05-11 15:09:57 +0200
++++ Python-2.7.1/Modules/_multiprocessing/multiprocessing.c	2011-05-10 09:38:53 +0200
 @@ -8,11 +8,13 @@
  
  #include "multiprocessing.h"
@@ -16,8 +16,8 @@ diff -ru Python-2.7.1.orig/Modules/_multiprocessing/multiprocessing.c Python-2.7
  PyObject *create_win32_namespace(void);
  
 diff -ru Python-2.7.1.orig/Modules/mathmodule.c Python-2.7.1/Modules/mathmodule.c
---- Python-2.7.1.orig/Modules/mathmodule.c	2011-04-27 14:50:18 +0200
-+++ Python-2.7.1/Modules/mathmodule.c	2011-04-27 14:38:05 +0200
+--- Python-2.7.1.orig/Modules/mathmodule.c	2011-05-11 15:09:57 +0200
++++ Python-2.7.1/Modules/mathmodule.c	2011-05-10 09:38:54 +0200
 @@ -1167,6 +1167,9 @@
      else {
          PyFPE_START_PROTECT("in math_frexp", return 0);
@@ -29,10 +29,17 @@ diff -ru Python-2.7.1.orig/Modules/mathmodule.c Python-2.7.1/Modules/mathmodule.
      }
      return Py_BuildValue("(di)", x, i);
 diff -ru Python-2.7.1.orig/Modules/posixmodule.c Python-2.7.1/Modules/posixmodule.c
---- Python-2.7.1.orig/Modules/posixmodule.c	2011-04-27 14:50:18 +0200
-+++ Python-2.7.1/Modules/posixmodule.c	2011-04-27 14:38:05 +0200
-@@ -9170,6 +9170,8 @@
+--- Python-2.7.1.orig/Modules/posixmodule.c	2011-05-11 15:09:57 +0200
++++ Python-2.7.1/Modules/posixmodule.c	2011-05-11 15:12:37 +0200
+@@ -9168,8 +9168,15 @@
+ #endif
+ 
      /* These come from sysexits.h */
++    /* INTERIX has a broken unistd.h, defining EX_OK to some arbitrary
++     * value, which has nothing to do with sysexits... */
++#ifdef __INTERIX
++# undef EX_OK
++#endif
  #ifdef EX_OK
      if (ins(d, "EX_OK", (long)EX_OK)) return -1;
 +#else /* !EX_OK */
@@ -41,8 +48,8 @@ diff -ru Python-2.7.1.orig/Modules/posixmodule.c Python-2.7.1/Modules/posixmodul
  #ifdef EX_USAGE
      if (ins(d, "EX_USAGE", (long)EX_USAGE)) return -1;
 diff -ru Python-2.7.1.orig/Objects/floatobject.c Python-2.7.1/Objects/floatobject.c
---- Python-2.7.1.orig/Objects/floatobject.c	2011-04-27 14:50:18 +0200
-+++ Python-2.7.1/Objects/floatobject.c	2011-04-27 14:38:05 +0200
+--- Python-2.7.1.orig/Objects/floatobject.c	2011-05-11 15:09:57 +0200
++++ Python-2.7.1/Objects/floatobject.c	2011-05-10 09:38:54 +0200
 @@ -460,6 +460,7 @@
          int wsign = _PyLong_Sign(w);
          size_t nbits;
@@ -124,8 +131,8 @@ diff -ru Python-2.7.1.orig/Objects/floatobject.c Python-2.7.1/Objects/floatobjec
          if (0.5 <= f && f < 1.0) {
              f *= 2.0;
 diff -ru Python-2.7.1.orig/Objects/longobject.c Python-2.7.1/Objects/longobject.c
---- Python-2.7.1.orig/Objects/longobject.c	2011-04-27 14:50:18 +0200
-+++ Python-2.7.1/Objects/longobject.c	2011-04-27 14:38:05 +0200
+--- Python-2.7.1.orig/Objects/longobject.c	2011-05-11 15:09:57 +0200
++++ Python-2.7.1/Objects/longobject.c	2011-05-10 09:38:54 +0200
 @@ -190,6 +190,11 @@
          dval = -dval;
      }
@@ -139,8 +146,8 @@ diff -ru Python-2.7.1.orig/Objects/longobject.c Python-2.7.1/Objects/longobject.
          return PyLong_FromLong(0L);
      ndig = (expo-1) / PyLong_SHIFT + 1; /* Number of 'digits' in result */
 diff -ru Python-2.7.1.orig/Python/dynload_shlib.c Python-2.7.1/Python/dynload_shlib.c
---- Python-2.7.1.orig/Python/dynload_shlib.c	2011-04-27 14:50:18 +0200
-+++ Python-2.7.1/Python/dynload_shlib.c	2011-04-27 14:38:05 +0200
+--- Python-2.7.1.orig/Python/dynload_shlib.c	2011-05-11 15:09:57 +0200
++++ Python-2.7.1/Python/dynload_shlib.c	2011-05-10 09:38:54 +0200
 @@ -132,6 +132,33 @@
      pathname = pathbuf;
  #endif
@@ -176,8 +183,8 @@ diff -ru Python-2.7.1.orig/Python/dynload_shlib.c Python-2.7.1/Python/dynload_sh
  
      if (handle == NULL) {
 diff -ru Python-2.7.1.orig/configure.in Python-2.7.1/configure.in
---- Python-2.7.1.orig/configure.in	2011-04-27 14:50:18 +0200
-+++ Python-2.7.1/configure.in	2011-04-27 14:38:06 +0200
+--- Python-2.7.1.orig/configure.in	2011-05-11 15:09:57 +0200
++++ Python-2.7.1/configure.in	2011-05-10 09:38:54 +0200
 @@ -790,6 +790,12 @@
            RUNSHARED=LD_LIBRARYN32_PATH=`pwd`:${LD_LIBRARYN32_PATH}
            INSTSONAME="$LDLIBRARY".$SOVERSION
@@ -222,8 +229,8 @@ diff -ru Python-2.7.1.orig/configure.in Python-2.7.1/configure.in
  	Darwin/*) 
  		# -u _PyMac_Error is needed to pull in the mac toolbox glue,
 diff -ru Python-2.7.1.orig/setup.py Python-2.7.1/setup.py
---- Python-2.7.1.orig/setup.py	2011-04-27 14:50:18 +0200
-+++ Python-2.7.1/setup.py	2011-04-27 14:38:05 +0200
+--- Python-2.7.1.orig/setup.py	2011-05-11 15:09:57 +0200
++++ Python-2.7.1/setup.py	2011-05-10 09:38:54 +0200
 @@ -1252,7 +1252,9 @@
          if sys.maxint == 0x7fffffff:
              # This requires sizeof(int) == sizeof(long) == sizeof(char*)
