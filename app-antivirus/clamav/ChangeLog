@@ -1,6 +1,103 @@
 # ChangeLog for app-antivirus/clamav
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.360 2010/06/05 14:58:25 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.386 2011/03/16 11:47:47 scarabeus Exp $
+
+  16 Mar 2011; Tomáš Chvátal <scarabeus@gentoo.org> clamav-0.97.ebuild:
+  Drop virtual definition per bug #358817. Drop glibc check as minimal user can
+  have is 2.6.
+
+  07 Mar 2011; Tim Harder <radhermit@gentoo.org>
+  -files/clamav-0.95.1-nls.patch, -files/clamav-0.95-nls.patch,
+  -clamav-0.96.ebuild, -clamav-0.96.1.ebuild, -clamav-0.96.3.ebuild,
+  -clamav-0.96.4.ebuild, -clamav-0.96.5.ebuild:
+  Remove old, insecure versions.
+
+  06 Mar 2011; Raúl Porcel <armin76@gentoo.org> clamav-0.97.ebuild:
+  ia64 stable wrt #354019
+
+  26 Feb 2011; Tobias Klausmann <klausman@gentoo.org> clamav-0.97.ebuild:
+  Stable on alpha, bug #354019
+
+  26 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> clamav-0.97.ebuild:
+  x86 stable wrt security bug #354019
+
+  26 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> clamav-0.97.ebuild:
+  ppc64 stable wrt #354019
+
+  26 Feb 2011; Markos Chandras <hwoarang@gentoo.org> clamav-0.97.ebuild:
+  Stable on amd64 wrt bug #354019
+
+  25 Feb 2011; Brent Baude <ranger@gentoo.org> clamav-0.97.ebuild:
+  Marking clamav-0.97 ppc for bug 354019
+
+  25 Feb 2011; Jeroen Roovers <jer@gentoo.org> clamav-0.97.ebuild:
+  Stable for HPPA SPARC (bug #354019).
+
+  22 Feb 2011; Tim Harder <radhermit@gentoo.org> clamav-0.97.ebuild:
+  Revert back to EAPI 2 for stabilization.
+
+*clamav-0.97 (22 Feb 2011)
+
+  22 Feb 2011; Tim Harder <radhermit@gentoo.org> +clamav-0.97.ebuild,
+  +files/clamav-0.97-nls.patch:
+  Version bump (bug #354019) with ebuild updates thanks to Bernd Lommerzheim.
+  Update to EAPI 4, don't install signature files (fixes bugs #336842 and
+  #345965), remove dependencies in the system set, update zlib dependency,
+  other minor cleanups and style changes.
+
+  07 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> clamav-0.96.5.ebuild:
+  stable ppc64 wrt #347627
+
+  07 Jan 2011; Brent Baude <ranger@gentoo.org> clamav-0.96.4.ebuild:
+  Marking clamav-0.96.4 ppc64 for bug 338226
+
+  12 Dec 2010; Raúl Porcel <armin76@gentoo.org> clamav-0.96.5.ebuild:
+  alpha/ia64/sparc stable wrt #347627
+
+  07 Dec 2010; Brent Baude <ranger@gentoo.org> clamav-0.96.5.ebuild:
+  Marking clamav-0.96.5 ppc for bug 347627
+
+  07 Dec 2010; Markos Chandras <hwoarang@gentoo.org> clamav-0.96.5.ebuild:
+  Stable on amd64 wrt bug #347627
+
+  07 Dec 2010; Jeroen Roovers <jer@gentoo.org> clamav-0.96.5.ebuild:
+  Stable for HPPA (bug #347627).
+
+  06 Dec 2010; Christian Faulhammer <fauli@gentoo.org> clamav-0.96.5.ebuild:
+  stable x86, security bug 347627
+
+*clamav-0.96.5 (04 Dec 2010)
+
+  04 Dec 2010; Hanno Boeck <hanno@gentoo.org> +clamav-0.96.5.ebuild:
+  Security bump, #347627.
+
+  20 Nov 2010; Raúl Porcel <armin76@gentoo.org> clamav-0.96.4.ebuild:
+  alpha/ia64/sparc stable wrt #338226
+
+  19 Nov 2010; Markos Chandras <hwoarang@gentoo.org> clamav-0.96.4.ebuild:
+  Stable on amd64 wrt bug #338226
+
+  19 Nov 2010; Jeroen Roovers <jer@gentoo.org> clamav-0.96.4.ebuild:
+  Stable for HPPA PPC (bug #338226).
+
+  19 Nov 2010; Thomas Kahle <tomka@gentoo.org> clamav-0.96.4.ebuild:
+  x86 stable per bug 338226
+
+*clamav-0.96.4 (17 Nov 2010)
+
+  17 Nov 2010; Tim Harder <radhermit@gentoo.org> +clamav-0.96.4.ebuild:
+  Version bump (bug #345189 by Deniss Gaplevsky).
+
+*clamav-0.96.3 (20 Sep 2010)
+
+  20 Sep 2010; Christian Ruppert <idl0r@gentoo.org> -clamav-0.96.2.ebuild,
+  +clamav-0.96.3.ebuild:
+  Version bump to 0.96.3, bug 338226. Remove old 0.96.2.
+
+*clamav-0.96.2 (14 Sep 2010)
+
+  14 Sep 2010; Christian Ruppert <idl0r@gentoo.org> +clamav-0.96.2.ebuild:
+  Version bump, bug 333337 fixes also bug 326199.
 
   05 Jun 2010; Raúl Porcel <armin76@gentoo.org> clamav-0.96.1.ebuild:
   alpha/ia64/sparc stable wrt #321157
