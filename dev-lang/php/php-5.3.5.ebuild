@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.5.ebuild,v 1.8 2011/01/11 19:20:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.5.ebuild,v 1.13 2011/03/17 16:34:47 olemarkus Exp $
 
 EAPI=2
 
@@ -137,13 +137,12 @@ DEPEND="!dev-lang/php:5
 		sys-libs/zlib
 	) ) )
 	firebird? ( dev-db/firebird )
-	fpm? ( >=dev-libs/libevent-1.4.12 )
 	gd? ( virtual/jpeg media-libs/libpng sys-libs/zlib )
 	gd-external? ( media-libs/gd )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )
 	gmp? ( >=dev-libs/gmp-4.1.2 )
 	iconv? ( virtual/libiconv )
-	imap? ( virtual/imap-c-client )
+	imap? ( virtual/imap-c-client[ssl=] )
 	intl? ( dev-libs/icu )
 	iodbc? ( dev-db/libiodbc )
 	kerberos? ( virtual/krb5 )
@@ -250,7 +249,7 @@ RDEPEND="${DEPEND}
 	phar? ( !dev-php${PHP_MV}/pecl-phar )
 	zip? ( !dev-php${PHP_MV}/pecl-zip )"
 
-[[ -n $SUHOSIN_VERSION ]] && DEPEND="${DEPEND} suhosin? (
+[[ -n $SUHOSIN_VERSION ]] && RDEPEND="${RDEPEND} suhosin? (
 =${CATEGORY}/${PN}-${SLOT}*[unicode] )"
 
 DEPEND="${DEPEND}
@@ -262,11 +261,6 @@ DEPEND="${DEPEND}
 PDEPEND="doc? ( app-doc/php-docs )"
 
 [[ -n $SUHOSIN_VERSION ]] && PDEPEND="${PDEPEND} suhosin? ( dev-php${PHP_MV}/suhosin )"
-
-# Portage doesn't support setting PROVIDE based on the USE flags that
-# have been enabled, so we have to PROVIDE everything for now and hope
-# for the best
-PROVIDE="virtual/php"
 
 # Allow users to install production version if they want to
 

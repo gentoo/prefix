@@ -1,6 +1,104 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.466 2011/01/11 19:20:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.488 2011/05/01 20:15:53 olemarkus Exp $
+
+*php-5.4.0_pre201104301030 (01 May 2011)
+
+  01 May 2011; <olemarkus@gentoo.org> +php-5.4.0_pre201104301030.ebuild,
+  +files/eblits/src_prepare-snapshots.eblit:
+  Added SVN snapshot ebuild
+
+*php-5.3.6-r1 (19 Apr 2011)
+
+  19 Apr 2011; <olemarkus@gentoo.org> php-5.2.14.ebuild, php-5.2.17.ebuild,
+  +php-5.3.6-r1.ebuild:
+  Added an EAPI4 version
+
+  09 Apr 2011; Raúl Porcel <armin76@gentoo.org> php-5.3.6.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #358791
+
+  05 Apr 2011; Markus Meier <maekke@gentoo.org> php-5.3.6.ebuild:
+  arm stable, bug #358791
+
+  02 Apr 2011; Christoph Mende <angelos@gentoo.org> php-5.3.6.ebuild:
+  Stable on amd64 wrt bug #358791
+
+  02 Apr 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> php-5.3.6.ebuild:
+  x86 stable wrt security bug #358791
+
+  02 Apr 2011; Jeroen Roovers <jer@gentoo.org> php-5.3.6.ebuild:
+  Stable for HPPA (bug #358791).
+
+  01 Apr 2011; Kacper Kowalik <xarthisius@gentoo.org> php-5.3.6.ebuild:
+  ppc/ppc64 stable wrt #358791
+
+  20 Mar 2011; <olemarkus@gentoo.org> -php-5.3.6_rc3.ebuild:
+  Removed RC as PHP 5.3.6 is now released
+
+  18 Mar 2011; <olemarkus@gentoo.org> +php-5.2.14.ebuild:
+  Readded 5.2.14 to unbreak a few neglected packages
+
+*php-5.3.6 (17 Mar 2011)
+
+  17 Mar 2011; Ole Markus With <olemarkus@gentoo.org> +php-5.3.6.ebuild:
+  Version bump
+
+  17 Mar 2011; Ole Markus With <olemarkus@gentoo.org>
+  files/eblits/pkg_setup-v1.eblit, php-5.2.17.ebuild, php-5.3.3-r1.ebuild,
+  php-5.3.5.ebuild, php-5.3.5-r1.ebuild, files/eblits/pkg_setup-v2.eblit,
+  php-5.3.6_rc3.ebuild:
+  Removed use of php_check_imap. #359221
+
+  17 Mar 2011; Ole Markus With <olemarkus@gentoo.org> -php-5.2.14.ebuild,
+  -php-5.2.16.ebuild, -php-5.3.4.ebuild:
+  Removed older versions
+
+  16 Mar 2011; <olemarkus@gentoo.org> php-5.3.6_rc3.ebuild:
+  Reordered the SAPIs so that embed is always the first sapi to be built if
+  selected. Fixes #358687
+
+  13 Mar 2011; <olemarkus@gentoo.org> +files/eblits/src_prepare-v3.eblit,
+  php-5.3.6_rc3.ebuild:
+  Added epatch_user. #357637
+
+*php-5.3.6_rc3 (10 Mar 2011)
+
+  10 Mar 2011; <olemarkus@gentoo.org> -php-5.3.6_rc1.ebuild,
+  -php-5.3.6_rc2.ebuild, +php-5.3.6_rc3.ebuild:
+  Another RC added
+
+*php-5.3.6_rc2 (03 Mar 2011)
+
+  03 Mar 2011; Ole Markus With <olemarkus@gentoo.org> +php-5.3.6_rc2.ebuild:
+  New 5.3.6 RC2
+
+  25 Feb 2011; Kevin McCarthy <signals@gentoo.org> php-5.2.14.ebuild,
+  php-5.2.16.ebuild, php-5.2.17.ebuild, php-5.3.3-r1.ebuild:
+  Updated depends from media-libs/jpeg to virtual/jpeg
+
+  25 Feb 2011; Ole Markus With <olemarkus@gentoo.org> php-5.3.5.ebuild,
+  php-5.3.6_rc1.ebuild:
+  Remove dependency on libevent
+
+  17 Feb 2011; Ole Markus With <olemarkus@gentoo.org> +php-5.3.6_rc1.ebuild,
+  metadata.xml:
+  Added an ebuild for 5.3.6 RC1
+  The suhosin USE flag no longer installs the extension, only the suhosin
+  patch
+
+*php-5.3.6_rc1 (17 Feb 2011)
+
+  30 Jan 2011; Raúl Porcel <armin76@gentoo.org> php-5.2.16.ebuild,
+  php-5.2.17.ebuild, php-5.3.3-r1.ebuild, php-5.3.4.ebuild, php-5.3.5.ebuild,
+  php-5.3.5-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable
+
+*php-5.3.5-r1 (29 Jan 2011)
+
+  29 Jan 2011; Matti Bickel <mabi@gentoo.org> php-5.2.17.ebuild,
+  +php-5.3.5-r1.ebuild:
+  fixed bugs #327049 (phar locale failure), #348567 (crypt_r typo), #352560
+  (suhosin caused circular dep), #329071 (disable phpize autoconf checks)
 
   11 Jan 2011; Jeroen Roovers <jer@gentoo.org> php-5.2.17.ebuild,
   php-5.3.5.ebuild:
