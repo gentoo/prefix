@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.1-r1.ebuild,v 1.5 2011/03/25 10:47:04 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.1-r1.ebuild,v 1.11 2011/04/22 18:18:09 armin76 Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
@@ -68,8 +68,6 @@ DEPEND="${RDEPEND}
 RDEPEND+=" !build? ( app-misc/mime-types )
 		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] || echo "doc? ( dev-python/python-docs:${SLOT} )")"
 PDEPEND="app-admin/python-updater"
-
-PROVIDE="virtual/python"
 
 if [[ "${PV}" != *_pre* ]]; then
 	S="${WORKDIR}/${MY_P}"
@@ -564,7 +562,7 @@ pkg_preinst() {
 
 eselect_python_update() {
 	local eselect_python_options
-	[[ -z "${EROOT}" ]] && EROOT="${ROOT%/}${EPREFIX}/"
+	[[ -z "${EROOT}" || (! -d "${EROOT}" && -d "${ROOT}") ]] && EROOT="${ROOT%/}${EPREFIX}/"
 
 	if [[ -z "$(eselect python show)" || ! -f "${EROOT}usr/bin/$(eselect python show)" ]]; then
 		eselect python update
