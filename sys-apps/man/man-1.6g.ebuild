@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6g.ebuild,v 1.2 2011/01/06 02:52:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6g.ebuild,v 1.3 2011/04/13 15:03:49 ulm Exp $
 
 EAPI="2"
 
@@ -20,7 +20,6 @@ RDEPEND="|| ( >=sys-apps/groff-1.19.2-r1 app-doc/heirloom-doctools )
 	!sys-apps/man-db
 	!<app-arch/lzma-4.63
 	lzma? ( app-arch/xz-utils )"
-PROVIDE="virtual/man"
 
 pkg_setup() {
 	enewgroup man 15

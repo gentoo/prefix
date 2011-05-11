@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6f-r4.ebuild,v 1.8 2010/10/30 16:17:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6f-r4.ebuild,v 1.9 2011/04/13 15:03:49 ulm Exp $
 
 EAPI="2"
 inherit eutils toolchain-funcs flag-o-matic prefix
@@ -19,7 +19,6 @@ RDEPEND="|| ( >=sys-apps/groff-1.19.2-r1 app-doc/heirloom-doctools )
 	!sys-apps/man-db
 	!app-arch/lzma
 	lzma? ( app-arch/xz-utils )"
-PROVIDE="virtual/man"
 
 pkg_setup() {
 	enewgroup man 15
