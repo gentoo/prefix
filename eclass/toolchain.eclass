@@ -1075,7 +1075,7 @@ gcc_src_unpack() {
 	# in a cross-compile)
 	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \   \"${EPREFIX}/Frameworks\"\, " \
 		"${S}"/gcc/config/darwin-c.c || die "sed  gcc/config/darwin-c.c failed"
-	
+
 	# for some reason the LD_LIBRARY_PATH (or whatever it is on the used
 	# platform) is set with the target libs in it, that kills the host tools
 	if is_crosscompile ; then
