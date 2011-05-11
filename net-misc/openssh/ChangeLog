@@ -1,6 +1,35 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.410 2011/02/10 03:10:55 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.418 2011/05/09 17:02:10 vapier Exp $
+
+*openssh-5.8_p2 (09 May 2011)
+
+  09 May 2011; Mike Frysinger <vapier@gentoo.org> +openssh-5.8_p2.ebuild:
+  Version bump.
+
+  16 Apr 2011; Ulrich Mueller <ulm@gentoo.org> openssh-5.5_p1-r2.ebuild,
+  openssh-5.6_p1-r2.ebuild, openssh-5.7_p1-r1.ebuild, openssh-5.8_p1-r1.ebuild:
+  Don't PROVIDE virtual/ssh, bug 361121.
+
+  19 Feb 2011; Mike Frysinger <vapier@gentoo.org> openssh-5.8_p1-r1.ebuild:
+  Encourage people to update their stored ssh key lists #355223 by Pacho Ramos.
+
+  19 Feb 2011; Mike Frysinger <vapier@gentoo.org> -openssh-5.8_p1.ebuild,
+  openssh-5.8_p1-r1.ebuild:
+  We want openssh-5.8_p1-r1 going stable.
+
+  13 Feb 2011; Raúl Porcel <armin76@gentoo.org> openssh-5.8_p1.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #353673
+
+  11 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  openssh-5.8_p1.ebuild:
+  x86 stable wrt security bug #353673
+
+  11 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> openssh-5.8_p1.ebuild:
+  ppc stable wrt 353673
+
+  10 Feb 2011; Markos Chandras <hwoarang@gentoo.org> openssh-5.8_p1.ebuild:
+  Stable on amd64 wrt bug #353673
 
   10 Feb 2011; Robin H. Johnson <robbat2@gentoo.org> openssh-5.5_p1-r2.ebuild,
   openssh-5.6_p1-r2.ebuild, openssh-5.7_p1-r1.ebuild, openssh-5.8_p1.ebuild,

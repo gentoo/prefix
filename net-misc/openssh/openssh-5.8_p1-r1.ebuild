@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.8_p1-r1.ebuild,v 1.3 2011/02/10 03:10:55 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.8_p1-r1.ebuild,v 1.6 2011/04/16 19:27:31 ulm Exp $
 
 EAPI="2"
 inherit eutils flag-o-matic multilib autotools pam
@@ -43,7 +43,6 @@ DEPEND="${RDEPEND}
 	sys-devel/autoconf"
 RDEPEND="${RDEPEND}
 	pam? ( >=sys-auth/pambase-20081028 )"
-PROVIDE="virtual/ssh"
 
 S=${WORKDIR}/${PARCH}
 
@@ -252,6 +251,10 @@ pkg_postinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
 
+	elog "Starting with openssh-5.8p1, the server will default to a newer key"
+	elog "algorithm (ECDSA).  You are encouraged to manually update your stored"
+	elog "keys list as servers update theirs.  See ssh-keyscan(1) for more info."
+	echo
 	ewarn "Remember to merge your config files in /etc/ssh/ and then"
 	ewarn "reload sshd: '/etc/init.d/sshd reload'."
 	if use pam ; then
