@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/gmp
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.140 2010/11/17 16:27:04 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.141 2011/05/09 15:38:15 vapier Exp $
+
+*gmp-5.0.2 (09 May 2011)
+
+  09 May 2011; Mike Frysinger <vapier@gentoo.org> +gmp-5.0.2.ebuild:
+  Version bump.
 
   17 Nov 2010; Jeroen Roovers <jer@gentoo.org> gmp-4.3.2.ebuild:
   Simply set GMPABI and remove other hackery (bug #344613).
