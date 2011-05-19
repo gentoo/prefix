@@ -1,6 +1,15 @@
 # ChangeLog for net-libs/librsync
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/librsync/ChangeLog,v 1.28 2009/09/23 18:50:06 patrick Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/librsync/ChangeLog,v 1.30 2011/04/09 16:24:03 jer Exp $
+
+*librsync-0.9.7-r2 (09 Apr 2011)
+
+  09 Apr 2011; Jeroen Roovers <jer@gentoo.org> +librsync-0.9.7-r2.ebuild:
+  Add USE=static-libs.
+
+  09 Apr 2011; Jeroen Roovers <jer@gentoo.org> -librsync-0.9.6.ebuild,
+  librsync-0.9.7.ebuild:
+  Do not install INSTALL. Remove unused DEPEND.
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> librsync-0.9.6.ebuild,
   librsync-0.9.7.ebuild:
