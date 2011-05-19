@@ -1,6 +1,16 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.109 2011/02/23 22:12:07 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.111 2011/05/10 18:51:46 tgurr Exp $
+
+*ghostscript-gpl-9.02 (10 May 2011)
+
+  10 May 2011; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-9.02.ebuild:
+  Version bump, fixing bug #365281.
+
+  27 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  ghostscript-gpl-8.71-r6.ebuild, ghostscript-gpl-9.00-r1.ebuild,
+  ghostscript-gpl-9.01.ebuild:
+  Fix slot-dep on gtk+
 
 *ghostscript-gpl-9.01 (23 Feb 2011)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.01.ebuild,v 1.2 2011/03/27 12:19:15 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.02.ebuild,v 1.1 2011/05/10 18:51:46 tgurr Exp $
 
 EAPI=3
 inherit autotools eutils versionator flag-o-matic
@@ -18,17 +18,19 @@ SRC_URI="!bindist? ( djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.g
 LICENSE="GPL-3 CPL-1.0"
 SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="bindist cups djvu gtk idn jpeg2k X"
+IUSE="bindist cups dbus djvu gtk idn jpeg2k X"
 
 COMMON_DEPEND="app-text/libpaper
-	media-libs/freetype:2
 	media-libs/fontconfig
-	virtual/jpeg
+	media-libs/freetype:2
+	media-libs/lcms:0
 	>=media-libs/libpng-1.2.42
 	>=media-libs/tiff-3.9.2
 	>=sys-libs/zlib-1.2.3
+	virtual/jpeg
 	!bindist? ( djvu? ( app-text/djvu ) )
 	cups? ( >=net-print/cups-1.3.8 )
+	dbus? ( sys-apps/dbus )
 	gtk? ( x11-libs/gtk+:2 )
 	idn? ( net-dns/libidn )
 	jpeg2k? ( media-libs/jasper )
@@ -63,8 +65,10 @@ pkg_setup() {
 src_prepare() {
 	# remove internal copies of various libraries
 	rm -rf "${S}/expat"
+	rm -rf "${S}/freetype"
 	rm -rf "${S}/jasper"
 	rm -rf "${S}/jpeg"
+	rm -rf "${S}/lcms"
 	rm -rf "${S}/libpng"
 	rm -rf "${S}/tiff"
 	rm -rf "${S}/zlib"
@@ -110,7 +114,7 @@ src_prepare() {
 		-e 's: -g : :g' \
 		base/Makefile.in base/*.mak || die "sed failed"
 
-	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${PN}-9.01-darwin.patch
 
 	cd "${S}"
 	eautoreconf
@@ -122,6 +126,14 @@ src_prepare() {
 
 	cd "${S}/ijs"
 	eautoreconf
+
+	# add EPREFIX to fontmap locations
+	local X
+	for X in ${LANGS} ; do
+		sed -i \
+			-e"s:/usr:${EPREFIX}/usr:" \
+			"${WORKDIR}/fontmaps/cidfmap.${X}" || die
+	done
 }
 
 src_configure() {
@@ -136,11 +148,12 @@ src_configure() {
 		/usr/share/poppler/cMap/Adobe-Japan2 \
 		/usr/share/poppler/cMap/Adobe-Korea1
 	do
-		FONTPATH="$FONTPATH${FONTPATH:+:}$path"
+		FONTPATH="$FONTPATH${FONTPATH:+:}${EPREFIX}$path"
 	done
 
 	econf \
 		$(use_enable cups) \
+		$(use_enable dbus) \
 		$(use_enable gtk) \
 		$(use_with cups pdftoraster) \
 		$(use_with idn libidn) \
