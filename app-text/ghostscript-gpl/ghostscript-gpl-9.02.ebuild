@@ -115,6 +115,7 @@ src_prepare() {
 		base/Makefile.in base/*.mak || die "sed failed"
 
 	epatch "${FILESDIR}"/${PN}-9.01-darwin.patch
+	epatch "${FILESDIR}"/${PN}-9.02-darwin-freetype.patch
 
 	cd "${S}"
 	eautoreconf
