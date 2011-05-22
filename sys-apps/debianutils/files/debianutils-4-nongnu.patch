@@ -1,20 +1,22 @@
-diff -ruN debianutils-2.17.5.orig/Makefile.am debianutils-2.17.5/Makefile.am
---- debianutils-2.17.5.orig/Makefile.am	2007-01-16 21:09:11.000000000 +0100
-+++ debianutils-2.17.5/Makefile.am	2007-04-02 11:46:30.000000000 +0200
-@@ -3,8 +3,8 @@
+diff -ur debianutils-4.orig/Makefile.am debianutils-4/Makefile.am
+--- debianutils-4.orig/Makefile.am	2011-05-18 21:13:00.000000000 +0200
++++ debianutils-4/Makefile.am	2011-05-22 13:03:31.000000000 +0200
+@@ -3,9 +3,9 @@
  SUBDIRS = po4a
  
- bin_PROGRAMS = run-parts tempfile
+ bin_PROGRAMS = run-parts tempfile ischroot
 -run_parts_SOURCES = run-parts.c
 -tempfile_SOURCES = tempfile.c
+-ischroot_SOURCES = ischroot.c
 +run_parts_SOURCES = run-parts.c getopt_long.c getopt_long.h
 +tempfile_SOURCES = tempfile.c getopt_long.c getopt_long.h
++ischroot_SOURCES = ischroot.c getopt_long.c getopt_long.h
  
- bin_SCRIPTS = which savelog sensible-browser sensible-editor \
- 	      sensible-pager
-diff -ruN debianutils-2.17.5.orig/configure.ac debianutils-2.17.5/configure.ac
---- debianutils-2.17.5.orig/configure.ac	2007-01-16 21:09:11.000000000 +0100
-+++ debianutils-2.17.5/configure.ac	2007-04-02 11:47:43.000000000 +0200
+ bin_SCRIPTS = which savelog
+ 
+diff -ur debianutils-4.orig/configure.ac debianutils-4/configure.ac
+--- debianutils-4.orig/configure.ac	2011-05-18 21:13:00.000000000 +0200
++++ debianutils-4/configure.ac	2011-05-22 13:02:53.000000000 +0200
 @@ -3,8 +3,12 @@
  
  AC_PROG_CC
@@ -26,11 +28,184 @@ diff -ruN debianutils-2.17.5.orig/configure.ac debianutils-2.17.5/configure.ac
 +AC_FUNC_CLOSEDIR_VOID
 +AC_HEADER_DIRENT
  
- AC_CONFIG_FILES([Makefile po4a/Makefile po4a/fr/Makefile])
+ AC_CONFIG_FILES([Makefile po4a/Makefile po4a/fr/Makefile po4a/sl/Makefile po4a/de/Makefile po4a/es/Makefile])
  AC_OUTPUT
-diff -ruN debianutils-2.17.5.orig/getopt_long.c debianutils-2.17.5/getopt_long.c
---- debianutils-2.17.5.orig/getopt_long.c	1970-01-01 01:00:00.000000000 +0100
-+++ debianutils-2.17.5/getopt_long.c	2007-04-02 11:47:57.000000000 +0200
+diff -ur debianutils-4.orig/ischroot.c debianutils-4/ischroot.c
+--- debianutils-4.orig/ischroot.c	2011-05-18 21:13:00.000000000 +0200
++++ debianutils-4/ischroot.c	2011-05-22 13:05:11.000000000 +0200
+@@ -7,6 +7,7 @@
+  * or later for copying conditions.  There is NO warranty.
+  */
+ 
++#include "config.h"
+ #include <stdio.h>
+ #include <stdint.h>
+ #include <stdlib.h>
+@@ -17,6 +18,8 @@
+ #include <getopt.h>
+ #endif /* HAVE_GETOPT_H */
+ 
++#include "getopt_long.h"
++
+ void version()
+ {
+   fprintf(stderr, "Debian ischroot, version " PACKAGE_VERSION
+diff -ur debianutils-4.orig/run-parts.c debianutils-4/run-parts.c
+--- debianutils-4.orig/run-parts.c	2011-05-22 13:02:07.000000000 +0200
++++ debianutils-4/run-parts.c	2011-05-22 13:02:53.000000000 +0200
+@@ -12,12 +12,27 @@
+  *
+  */
+ 
++#include "config.h"
++
+ #include <stdio.h>
+ #include <stdarg.h>
+ #include <stdlib.h>
+ #include <sys/types.h>
+ #include <sys/wait.h>
+-#include <dirent.h>
++#if defined(HAVE_DIRENT_H)
++# include <dirent.h>
++# define NAMLEN(dirent) strlen((dirent)->d_name)
++#else /* ! define HAVE_DIRENT_H */
++# define dirent direct
++# define NAMLEN(dirent) ((dirent)->d_namlen)
++# if defined(HAVE_SYS_NDIR_H)
++#  include <sys/ndir.h>
++# elif defined(HAVE_SYS_DIR_H)
++#  include <sys/dir.h>
++# elif defined(HAVE_NDIR_H)
++#  include <ndir.h>
++# endif
++#endif
+ #include <sys/stat.h>
+ #include <unistd.h>
+ #include <fcntl.h>
+@@ -35,6 +50,8 @@
+ #define RUNPARTS_ERE 1
+ #define RUNPARTS_LSBSYSINIT 100
+ 
++#include "getopt_long.h"
++
+ int test_mode = 0;
+ int list_mode = 0;
+ int verbose_mode = 0;
+@@ -284,6 +301,94 @@
+   }
+ }
+ 
++#ifndef HAVE_SCANDIR
++int alphasort(void const* a, void const* b)
++{
++	return strcoll( (*(struct dirent const **) a)->d_name,
++					(*(struct dirent const **) b)->d_name);
++}
++
++int scandir(char const* dir, struct dirent ***namelist,
++	int (*select) (struct dirent const*),
++	int (*cmp) (void const*, void const*))
++{
++	DIR *dp = opendir(dir);
++	struct dirent **v = NULL;
++	size_t vsize = 0;
++	size_t cnt = 0;
++	struct dirent *d;
++	int save_errno;
++
++	if (dp == NULL)
++		return -1;
++
++	save_errno = errno;
++	errno = 0;
++
++	while((d = readdir(dp)) != NULL) {
++		int use_it = select == NULL;
++
++		if (! use_it) {
++			use_it = select(d);
++			errno = 0;
++		}
++		if (use_it) {
++			struct dirent *vnew;
++			size_t dsize;
++
++			errno = 0;
++
++			if (cnt == vsize) {
++				struct dirent **new;
++				if (vsize == 0) {
++					vsize = 10;
++				} else {
++					vsize *= 2;
++				}
++				new = (struct dirent **)realloc(v, vsize * sizeof(*v));
++				if (new == NULL) {
++					break;
++				}
++				v = new;
++			}
++
++			dsize = &d->d_name[0] - (char*)d + NAMLEN(d) + 1;
++			vnew = (struct dirent*)malloc(dsize);
++			if (vnew == NULL) {
++				break;
++			}
++
++			v[cnt++] = (struct dirent*) memcpy(vnew, d, dsize);
++		}
++	}
++
++	if (errno != 0) {
++		save_errno = errno;
++
++		while(cnt > 0) {
++			free(v[--cnt]);
++		}
++		if (v != NULL) {
++			free(v);
++		}
++		cnt = -1;
++	} else {
++		if (cmp != NULL) {
++			qsort(v, cnt, sizeof(*v), cmp);
++		}
++
++		*namelist = v;
++	}
++
++#ifndef CLOSEDIR_VOID
++	(void)
++#endif /* CLOSEDIR_VOID */
++	closedir(dp);
++	errno = save_errno;
++
++	return cnt;
++}
++#endif /* ! HAVE_SCANDIR */
+ 
+ /* Find the parts to run & call run_part() */
+ void run_parts(char *dirname)
+diff -ur debianutils-4.orig/tempfile.c debianutils-4/tempfile.c
+--- debianutils-4.orig/tempfile.c	2011-05-18 21:13:00.000000000 +0200
++++ debianutils-4/tempfile.c	2011-05-22 13:02:53.000000000 +0200
+@@ -1,3 +1,4 @@
++#include "config.h"
+ #include <stdio.h>
+ #include <unistd.h>
+ #include <stdlib.h>
+@@ -10,6 +11,8 @@
+ #include <fcntl.h>
+ #include <string.h>
+ 
++#include "getopt_long.h"
++
+ char *progname;
+ 
+ void usage(int);
+diff -ruN debianutils-4.orig/getopt_long.c debianutils-4/getopt_long.c
+--- debianutils-4.orig/getopt_long.c	1970-01-01 01:00:00.000000000 +0100
++++ debianutils-4/getopt_long.c	2007-04-02 11:47:57.000000000 +0200
 @@ -0,0 +1,1237 @@
 +/*
 + * THIS IS NOT A CLEAN COPY OF GETOPT.C AND GETOPT1.C 
@@ -1269,9 +1444,9 @@ diff -ruN debianutils-2.17.5.orig/getopt_long.c debianutils-2.17.5/getopt_long.c
 +#endif /* TEST */
 +
 +#endif /* #ifndef HAVE_GETOPT_LONG */
-diff -ruN debianutils-2.17.5.orig/getopt_long.h debianutils-2.17.5/getopt_long.h
---- debianutils-2.17.5.orig/getopt_long.h	1970-01-01 01:00:00.000000000 +0100
-+++ debianutils-2.17.5/getopt_long.h	2007-04-02 11:47:57.000000000 +0200
+diff -ruN debianutils-4.orig/getopt_long.h debianutils-4/getopt_long.h
+--- debianutils-4.orig/getopt_long.h	1970-01-01 01:00:00.000000000 +0100
++++ debianutils-4/getopt_long.h	2007-04-02 11:47:57.000000000 +0200
 @@ -0,0 +1,179 @@
 +/* Declarations for getopt.
 +   Copyright 1989, 1990, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 2000
@@ -1452,156 +1627,3 @@ diff -ruN debianutils-2.17.5.orig/getopt_long.h debianutils-2.17.5/getopt_long.h
 +#endif /* !HAVE_GETOPT_LONG */
 +
 +#endif /* getopt_long.h */
-diff -ruN debianutils-2.17.5.orig/run-parts.c debianutils-2.17.5/run-parts.c
---- debianutils-2.17.5.orig/run-parts.c	2007-01-16 21:09:11.000000000 +0100
-+++ debianutils-2.17.5/run-parts.c	2007-04-02 11:51:22.000000000 +0200
-@@ -12,12 +12,27 @@
-  *
-  */
- 
-+#include "config.h"
-+
- #include <stdio.h>
- #include <stdarg.h>
- #include <stdlib.h>
- #include <sys/types.h>
- #include <sys/wait.h>
--#include <dirent.h>
-+#if defined(HAVE_DIRENT_H)
-+# include <dirent.h>
-+# define NAMLEN(dirent) strlen((dirent)->d_name)
-+#else /* ! define HAVE_DIRENT_H */
-+# define dirent direct
-+# define NAMLEN(dirent) ((dirent)->d_namlen)
-+# if defined(HAVE_SYS_NDIR_H)
-+#  include <sys/ndir.h>
-+# elif defined(HAVE_SYS_DIR_H)
-+#  include <sys/dir.h>
-+# elif defined(HAVE_NDIR_H)
-+#  include <ndir.h>
-+# endif
-+#endif
- #include <sys/stat.h>
- #include <unistd.h>
- #include <fcntl.h>
-@@ -31,6 +46,8 @@
- #include <sys/time.h>
- #include <regex.h>
- 
-+#include "getopt_long.h"
-+
- int test_mode = 0;
- int list_mode = 0;
- int verbose_mode = 0;
-@@ -278,6 +295,94 @@
-   }
- }
- 
-+#ifndef HAVE_SCANDIR
-+int alphasort(void const* a, void const* b)
-+{
-+	return strcoll( (*(struct dirent const **) a)->d_name,
-+					(*(struct dirent const **) b)->d_name);
-+}
-+
-+int scandir(char const* dir, struct dirent ***namelist,
-+	int (*select) (struct dirent const*),
-+	int (*cmp) (void const*, void const*))
-+{
-+	DIR *dp = opendir(dir);
-+	struct dirent **v = NULL;
-+	size_t vsize = 0;
-+	size_t cnt = 0;
-+	struct dirent *d;
-+	int save_errno;
-+
-+	if (dp == NULL)
-+		return -1;
-+
-+	save_errno = errno;
-+	errno = 0;
-+
-+	while((d = readdir(dp)) != NULL) {
-+		int use_it = select == NULL;
-+
-+		if (! use_it) {
-+			use_it = select(d);
-+			errno = 0;
-+		}
-+		if (use_it) {
-+			struct dirent *vnew;
-+			size_t dsize;
-+
-+			errno = 0;
-+
-+			if (cnt == vsize) {
-+				struct dirent **new;
-+				if (vsize == 0) {
-+					vsize = 10;
-+				} else {
-+					vsize *= 2;
-+				}
-+				new = (struct dirent **)realloc(v, vsize * sizeof(*v));
-+				if (new == NULL) {
-+					break;
-+				}
-+				v = new;
-+			}
-+
-+			dsize = &d->d_name[0] - (char*)d + NAMLEN(d) + 1;
-+			vnew = (struct dirent*)malloc(dsize);
-+			if (vnew == NULL) {
-+				break;
-+			}
-+
-+			v[cnt++] = (struct dirent*) memcpy(vnew, d, dsize);
-+		}
-+	}
-+
-+	if (errno != 0) {
-+		save_errno = errno;
-+
-+		while(cnt > 0) {
-+			free(v[--cnt]);
-+		}
-+		if (v != NULL) {
-+			free(v);
-+		}
-+		cnt = -1;
-+	} else {
-+		if (cmp != NULL) {
-+			qsort(v, cnt, sizeof(*v), cmp);
-+		}
-+
-+		*namelist = v;
-+	}
-+
-+#ifndef CLOSEDIR_VOID
-+	(void)
-+#endif /* CLOSEDIR_VOID */
-+	closedir(dp);
-+	errno = save_errno;
-+
-+	return cnt;
-+}
-+#endif /* ! HAVE_SCANDIR */
- 
- /* Find the parts to run & call run_part() */
- void run_parts(char *dirname)
-diff -ruN debianutils-2.17.5.orig/tempfile.c debianutils-2.17.5/tempfile.c
---- debianutils-2.17.5.orig/tempfile.c	2007-01-16 21:09:11.000000000 +0100
-+++ debianutils-2.17.5/tempfile.c	2007-04-02 11:51:22.000000000 +0200
-@@ -1,3 +1,4 @@
-+#include "config.h"
- #include <stdio.h>
- #include <unistd.h>
- #include <stdlib.h>
-@@ -10,6 +11,8 @@
- #include <fcntl.h>
- #include <string.h>
- 
-+#include "getopt_long.h"
-+
- char *progname;
- 
- void

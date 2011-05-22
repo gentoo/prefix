@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-3.4.1.ebuild,v 1.1 2010/09/20 00:04:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-4.ebuild,v 1.1 2011/05/19 03:28:22 jer Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -18,13 +18,13 @@ PDEPEND="|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp sys-freebsd/freebsd-u
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-3.2.1-no-bs-namespace.patch
-	epatch "${FILESDIR}"/${PN}-2.17.5-nongnu.patch
+	epatch "${FILESDIR}"/${PN}-3.4.2-no-bs-namespace.patch
+	epatch "${FILESDIR}"/${PN}-4-nongnu.patch
+	eautoreconf || die
 }
 
 src_compile() {
 	use static && append-ldflags -static
-	eautoreconf || die
 
 	econf || die
 	emake || die
@@ -44,4 +44,5 @@ src_install() {
 	use kernel_linux && doman installkernel.8
 	cd debian
 	dodoc changelog control
+	keepdir /etc/kernel/postinst.d
 }

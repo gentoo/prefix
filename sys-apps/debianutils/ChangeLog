@@ -1,6 +1,47 @@
 # ChangeLog for sys-apps/debianutils
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.152 2011/01/21 16:02:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.162 2011/05/19 03:28:22 jer Exp $
+
+*debianutils-4 (19 May 2011)
+
+  19 May 2011; Jeroen Roovers <jer@gentoo.org> +debianutils-4.ebuild:
+  Version bump.
+
+*debianutils-3.4.6 (18 May 2011)
+
+  18 May 2011; Jeroen Roovers <jer@gentoo.org> +debianutils-3.4.6.ebuild:
+  Version bump.
+
+*debianutils-3.4.5 (13 May 2011)
+
+  13 May 2011; Jeroen Roovers <jer@gentoo.org> +debianutils-3.4.5.ebuild:
+  Version bump.
+
+  10 May 2011; Jeroen Roovers <jer@gentoo.org>
+  -files/debianutils-3.2.1-no-bs-namespace.patch, -debianutils-3.2.3.ebuild,
+  -debianutils-3.3.ebuild, -debianutils-3.4.ebuild, -debianutils-3.4.1.ebuild,
+  -debianutils-3.4.2.ebuild, -debianutils-3.4.3-r1.ebuild:
+  Gone.
+
+  01 May 2011; Kacper Kowalik <xarthisius@gentoo.org> debianutils-3.4.4.ebuild:
+  ppc64 stable wrt #363025
+
+  23 Apr 2011; Raúl Porcel <armin76@gentoo.org> debianutils-3.4.4.ebuild:
+  alpha/arm/ia64/s390/sh/sparc/x86 stable wrt #363025
+
+  14 Apr 2011; Brent Baude <ranger@gentoo.org> debianutils-3.4.4.ebuild:
+  stable ppc, bug 363025
+
+  13 Apr 2011; Jeroen Roovers <jer@gentoo.org> debianutils-3.4.4.ebuild:
+  Stable for HPPA (bug #363025).
+
+  13 Apr 2011; Markos Chandras <hwoarang@gentoo.org> debianutils-3.4.4.ebuild:
+  Stable on amd64 wrt bug #363025
+
+*debianutils-3.4.4 (15 Feb 2011)
+
+  15 Feb 2011; Jeroen Roovers <jer@gentoo.org> +debianutils-3.4.4.ebuild:
+  Version bump.
 
 *debianutils-3.4.3-r1 (21 Jan 2011)
 
