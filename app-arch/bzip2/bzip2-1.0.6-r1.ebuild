@@ -45,6 +45,7 @@ src_unpack() {
 		fi
 	elif [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's,-soname,-h,' Makefile-libbz2_so || die "cannot replace -soname with -h"
+		sed -i -e 's,-fpic,,' -e 's,-fPIC,,' Makefile-libbz2_so || die "cannot replace pic options"
 	fi
 }
 
