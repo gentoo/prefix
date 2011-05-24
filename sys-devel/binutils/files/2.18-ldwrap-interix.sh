@@ -58,5 +58,14 @@ fi
 # and /usr/lib will allways get linked in before any library from our prefix (which
 # we *definitly* don't want...
 #
-eval "exec /opt/gcc.3.3/bin/ld $Args --script '$ScriptDir/$ScriptPlatform.$ScriptExt'"
+# There is some nasty redirection trick here, which enables this script to remove
+# dumb assertions from stderr without touching the rest.
+#
+exec 3>&1
+eval "/opt/gcc.3.3/bin/ld $Args --script '$ScriptDir/$ScriptPlatform.$ScriptExt'" 2>&1 >&3 3>&- \
+    | grep -v -E 'assertion fail .*/cofflink.c:5211' 3>&- 1>&2 2>/dev/null
+_st=${PIPESTATUS[0]}
+exec 3>&-
+
+exit ${_st}
 
