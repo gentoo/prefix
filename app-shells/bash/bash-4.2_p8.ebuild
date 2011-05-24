@@ -80,7 +80,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${PN}-4.1-interix-stdint.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi
 
@@ -149,16 +148,6 @@ src_compile() {
 		;;
 		# Darwin doesn't need an rpath here (in fact doesn't grok the argument)
 	esac
-
-	if [[ ${CHOST} == *-interix* ]]; then
-		export ac_cv_header_inttypes_h=no
-		export gt_cv_header_inttypes_h=no
-		export jm_ac_cv_header_inttypes_h=no
-
-		# argh... something doomed this test on windows ... ???
-		export bash_cv_type_intmax_t=yes
-		export bash_cv_type_uintmax_t=yes
-	fi
 
 	econf \
 		$(use_with afs) \
