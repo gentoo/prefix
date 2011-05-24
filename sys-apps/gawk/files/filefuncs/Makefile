@@ -65,7 +65,6 @@ endif
 all: $(TARGET_LIB)
 
 $(TARGET).o: $(TARGET).c
-	$(CC) $(CFLAGS) $(SHLIB) -Wall -DHAVE_CONFIG_H -c -O2 -fPIC -I$(AWKINCDIR) $^
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(SHLIB) -Wall -DHAVE_CONFIG_H -c -O2 -fPIC -I$(AWKINCDIR) $^
 
 $(TARGET_LIB): $(TARGET).o
