@@ -162,6 +162,15 @@ src_compile() {
 				CXX="${CC} -m32"
 			fi
 		;;
+		*-interix*" bootstrap "*)
+			# with suacomp, on interix, we need to have some header files
+			# available, which complement the system headers. adding this
+			# to CC/CXX is the only way to get a stage1 gcc built during
+			# bootstrap. the rest will work as normal.
+			tc-export CC CXX
+			CC="${CC} -I${EPREFIX}/usr/include"
+			CXX="${CXX} -I${EPREFIX}/usr/include"
+		;;
 	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
@@ -186,7 +195,7 @@ src_install() {
 	fi
 
 	# create a small profile.d script, unsetting some of the bad
-	# environment variables that the sustem could set from the outside.
+	# environment variables that the system could set from the outside.
 	# (GCC_SPECS, GCC_EXEC_PREFIX, CPATH, LIBRARY_PATH, LD_LIBRARY_PATH,
 	#  C_INCLUDE_PATH, CPLUS_INCLUDE_PATH, LIBPATH, SHLIB_PATH, LIB, INCLUDE,
 	#  LD_LIBRARY_PATH_32, LD_LIBRARY_PATH_64).
