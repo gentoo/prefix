@@ -22,7 +22,6 @@ S=${WORKDIR}/${MY_P}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-dnl.patch
-	epatch "${FILESDIR}"/${P}-interix-poll-h.patch
 	elibtoolize # for FreeMiNT, bug #333429
 }
 
