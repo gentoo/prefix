@@ -24,8 +24,6 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-interix-mntlist.patch
-	epatch "${FILESDIR}"/${P}-interix-arg_max.patch
-	epatch "${FILESDIR}"/${P}-interix-arg_max-50000.patch
 
 	( cd gnulib && epatch "${FILESDIR}"/${P}-without-selinux.patch )
 
