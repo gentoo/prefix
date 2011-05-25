@@ -22,15 +22,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-archives-many-objs.patch #334889
 	epatch "${FILESDIR}"/${P}-MAKEFLAGS-reexec.patch #31975
 
-	# breaks build on other interix systems.
-	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-3.81-interix3.patch
-
 	# this disables make abortion on write errors, which
 	# seem to be reported wrongly sporadically on interix.
 	epatch "${FILESDIR}"/${PN}-3.81-interix.patch
-
-	# fixes the build on interix (need stdint.h for uintmax_t).
-	epatch "${FILESDIR}"/${PN}-3.82-interix.patch
 
 	# enable library_search() to look for lib%.dylib on darwin
 	epatch "${FILESDIR}"/${PN}-3.81-darwin-library_search-dylib.patch
@@ -39,23 +33,6 @@ src_prepare() {
 src_configure() {
 	local myconf=
 	use static && append-ldflags -static
-
-	if [[ ${CHOST} == *-interix* ]]; then
-		# on interix, many others don't know large files (coreutils...),
-		# so no need for make to build that code.
-		myconf="${myconf} --disable-largefile"
-
-		# job-server does more harm than it helps. building with multiple
-		# jobs is still possible, but only local in one dir (which is the
-		# case with autotools anyway)
-		myconf="${myconf} --disable-job-server"
-
-		# on windows, the file system is case insensitive, so this would be
-		# correct, BUT: the APIs provided by SUA talk to the NT kernel, and
-		# there, objects are case sensitive, which makes the filesystem from
-		# a programmers POV case sensitive... :/
-		# myconf="${myconf} --enable-case-insensitive-file-system"
-	fi
 
 	econf \
 		--program-prefix=g \
