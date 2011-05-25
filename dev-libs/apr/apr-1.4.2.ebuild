@@ -38,7 +38,6 @@ src_prepare() {
 src_configure() {
 	local myconf
 
-	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
 
 	if use older-kernels-compatibility; then
