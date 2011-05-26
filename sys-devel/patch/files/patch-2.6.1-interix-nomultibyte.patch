@@ -1,3 +1,6 @@
+reported upstream: http://lists.gnu.org/archive/html/bug-patch/2011-05/msg00023.html
+actually a gnulib bug: http://lists.gnu.org/archive/html/bug-gnulib/2011-05/msg00565.html
+
 diff -ru patch-2.6.1.orig/gl/lib/quotearg.c patch-2.6.1/gl/lib/quotearg.c
 --- patch-2.6.1.orig/gl/lib/quotearg.c	2010-01-14 10:17:47 +0100
 +++ patch-2.6.1/gl/lib/quotearg.c	2010-01-14 10:22:56 +0100
