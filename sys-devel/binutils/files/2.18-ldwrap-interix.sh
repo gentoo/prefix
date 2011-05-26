@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Wrapper for interix to avoid /usr/local/*. This is done
 # by using our own linker scripts. These scripts are copied
