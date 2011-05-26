@@ -1,13 +1,16 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.15 2010/03/10 13:19:06 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.16 2011/04/20 20:48:47 voyageur Exp $
 
-inherit eutils flag-o-matic
-
+# @ECLASS: gnustep-base.eclass
+# @MAINTAINER:
+# GNUstep Herd <gnustep@gentoo.org>
+# @BLURB: Internal handling of GNUstep pacakges
+# @DESCRIPTION:
 # Inner gnustep eclass, should only be inherited directly by gnustep-base
 # packages
-#
-# maintainer: GNUstep Herd <gnustep@gentoo.org>
+
+inherit eutils flag-o-matic
 
 # IUSE variables across all GNUstep packages
 # "debug": enable code for debugging
@@ -17,7 +20,8 @@ IUSE="debug doc"
 # packages needed to build any base gnustep package
 GNUSTEP_CORE_DEPEND="doc? ( virtual/texi2dvi dev-tex/latex2html app-text/texi2html )"
 
-# Where to install GNUstep
+# New layout is used when ${EPREFIX}/usr/share/GNUstep/Makefiles exists
+# Where to install GNUstep (with old layout)
 GNUSTEP_PREFIX="${EPREFIX}/usr/GNUstep"
 
 # GNUstep environment array
@@ -89,8 +93,14 @@ gnustep-base_src_install() {
 gnustep-base_pkg_postinst() {
 	[[ $(type -t gnustep_config_script) != "function" ]] && return 0
 
+	local SCRIPT_PATH
+	if [[ -d ${EPREFIX}/usr/share/GNUstep/Makefiles ]]; then
+		SCRIPT_PATH="/usr/bin"
+	else
+		SCRIPT_PATH=${GNUSTEP_SYSTEM_TOOLS}/Gentoo
+	fi
 	elog "To use this package, as *user* you should run:"
-	elog "  ${GNUSTEP_SYSTEM_TOOLS}/Gentoo/config-${PN}.sh"
+	elog "  ${SCRIPT_PATH}/config-${PN}.sh"
 }
 
 # Clean/reset an ebuild to the installed GNUstep environment
@@ -98,22 +108,31 @@ egnustep_env() {
 	# Get additional variables
 	GNUSTEP_SH_EXPORT_ALL_VARIABLES="true"
 
-	if [[ -f ${GNUSTEP_PREFIX}/System/Library/Makefiles/GNUstep.sh ]] ; then
+	# Makefiles path
+	local GS_MAKEFILES
+	if [[ -d ${EPREFIX}/usr/share/GNUstep/Makefiles ]]; then
+		GS_MAKEFILES=${EPREFIX}/usr/share/GNUstep/Makefiles
+	else
+		GS_MAKEFILES=${GNUSTEP_PREFIX}/System/Library/Makefiles
+	fi
+	if [[ -f ${GS_MAKEFILES}/GNUstep.sh ]] ; then
 		# Reset GNUstep variables
-		source "${GNUSTEP_PREFIX}"/System/Library/Makefiles/GNUstep-reset.sh
-		source "${GNUSTEP_PREFIX}"/System/Library/Makefiles/GNUstep.sh
+		source "${GS_MAKEFILES}"/GNUstep-reset.sh
+		source "${GS_MAKEFILES}"/GNUstep.sh
 
 		# Needed to run installed GNUstep apps in sandbox
 		addpredict "/root/GNUstep"
 
-		# Set rpath in ldflags when available
-		case ${CHOST} in
-			*-linux-gnu|*-solaris*)
-				is-ldflagq -Wl,-rpath="${GNUSTEP_SYSTEM_LIBRARIES}" \
-					|| append-ldflags \
-						-Wl,-rpath="${GNUSTEP_SYSTEM_LIBRARIES}"
-			;;
-		esac
+		if [[ ! -d ${EPREFIX}/usr/share/GNUstep/Makefiles ]]; then
+			# Set rpath in ldflags when available
+			case ${CHOST} in
+				*-linux-gnu|*-solaris*)
+					is-ldflagq -Wl,-rpath="${GNUSTEP_SYSTEM_LIBRARIES}" \
+						|| append-ldflags \
+							-Wl,-rpath="${GNUSTEP_SYSTEM_LIBRARIES}"
+				;;
+			esac
+		fi
 
 		# Set up env vars for make operations
 		GS_ENV=( AUXILIARY_LDFLAGS="${LDFLAGS}" \
@@ -125,11 +144,8 @@ egnustep_env() {
 			GNUSTEP_INSTALLATION_DOMAIN=SYSTEM \
 			GNUSTEP_ABSOLUTE_INSTALL_PATHS=yes \
 			TAR_OPTIONS="${TAR_OPTIONS} --no-same-owner" \
-			messages=yes )
-
-		# Parallel-make support was added in gnustep-make 2.2.0
-		has_version "<gnustep-base/gnustep-make-2.2.0" \
-			&& GS_ENV=( "${GS_ENV[@]}" "-j1" )
+			messages=yes \
+			-j1 )
 
 		use debug \
 			&& GS_ENV=( "${GS_ENV[@]}" "debug=yes" ) \
@@ -151,8 +167,10 @@ egnustep_make() {
 
 # Make-install utilizing GNUstep Makefiles
 egnustep_install() {
-	# avoid problems due to our "weird" prefix, make sure it exists
-	mkdir -p "${D}"${GNUSTEP_SYSTEM_TOOLS}
+	if [[ ! -d ${EPREFIX}/usr/share/GNUstep/Makefiles ]]; then
+		# avoid problems due to our "weird" prefix, make sure it exists
+		mkdir -p "${D}"${GNUSTEP_SYSTEM_TOOLS}
+	fi
 	if [[ -f ./[mM]akefile || -f ./GNUmakefile ]] ; then
 		emake ${*} "${GS_ENV[@]}" install || die "package install failed"
 		return 0
@@ -222,7 +240,11 @@ EOF
 	done
 	echo 'echo "done"' >> "${T}"/${cfile}
 
-	exeinto ${GNUSTEP_SYSTEM_TOOLS#${EPREFIX}}/Gentoo
+	if [[ -d ${EPREFIX}/usr/share/GNUstep/Makefiles ]]; then
+		exeinto /usr/bin
+	else
+		exeinto ${GNUSTEP_SYSTEM_TOOLS#${EPREFIX}}/Gentoo
+	fi
 	doexe "${T}"/${cfile}
 }
 

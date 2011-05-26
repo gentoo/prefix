@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fdo-mime.eclass,v 1.8 2008/12/23 01:28:49 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/fdo-mime.eclass,v 1.10 2011/04/21 21:21:26 eva Exp $
 
 # @ECLASS: fdo-mime.eclass
 # @MAINTAINER: freedesktop-bugs@gentoo.org

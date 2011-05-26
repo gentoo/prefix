@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.456 2011/03/24 08:37:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.459 2011/04/11 23:11:01 dirtyepic Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -91,11 +91,9 @@ export GCC_FILESDIR=${GCC_FILESDIR:-${FILESDIR}}
 if [[ ${ETYPE} == "gcc-library" ]] ; then
 	GCC_VAR_TYPE=${GCC_VAR_TYPE:-non-versioned}
 	GCC_LIB_COMPAT_ONLY=${GCC_LIB_COMPAT_ONLY:-true}
-	GCC_TARGET_NO_MULTILIB=${GCC_TARGET_NO_MULTILIB:-true}
 else
 	GCC_VAR_TYPE=${GCC_VAR_TYPE:-versioned}
 	GCC_LIB_COMPAT_ONLY="false"
-	GCC_TARGET_NO_MULTILIB=${GCC_TARGET_NO_MULTILIB:-false}
 fi
 
 PREFIX=${TOOLCHAIN_PREFIX:-/usr}
@@ -699,7 +697,7 @@ create_gcc_env_entry() {
 	echo "ROOTPATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
 	echo "GCC_PATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
 
-	if use multilib && ! has_multilib_profile; then
+	if is_multilib ; then
 		LDPATH="${EPREFIX}${LIBPATH}"
 		for path in 32 64 ; do
 			[[ -d ${EPREFIX}${LIBPATH}/${path} ]] && LDPATH="${LDPATH}:${EPREFIX}${LIBPATH}/${path}"
@@ -803,13 +801,6 @@ gcc_pkg_setup() {
 
 	[[ -z ${ETYPE} ]] && die "Your ebuild needs to set the ETYPE variable"
 
-	if [[ ( $(tc-arch) == "amd64" || $(tc-arch) == "ppc64" ) && ( ${LD_PRELOAD} == "/lib/libsandbox.so" || ${LD_PRELOAD} == "/usr/lib/libsandbox.so" ) ]] && is_multilib ; then
-		eerror "Sandbox in your installed portage does not support compilation."
-		eerror "of a multilib gcc.	Please set FEATURES=-sandbox and try again."
-		eerror "After you have a multilib gcc, re-emerge portage to have a working sandbox."
-		die "No 32bit sandbox.	Retry with FEATURES=-sandbox."
-	fi
-
 	if [[ ${ETYPE} == "gcc-compiler" ]] ; then
 		case $(tc-arch) in
 		mips)
@@ -835,7 +826,7 @@ gcc_pkg_setup() {
 		# Setup variables which would normally be in the profile
 		if is_crosscompile ; then
 			multilib_env ${CTARGET}
-			if ! use multilib ; then
+			if ! is_multilib ; then
 				MULTILIB_ABIS=${DEFAULT_ABI}
 			fi
 		fi
@@ -1156,14 +1147,14 @@ gcc_src_unpack() {
 }
 
 gcc-library-configure() {
-	# multilib support
-	[[ ${GCC_TARGET_NO_MULTILIB} == "true" ]] \
-		&& confgcc="${confgcc} --disable-multilib" \
-		|| confgcc="${confgcc} --enable-multilib"
+	if is_multilib ; then
+		confgcc="${confgcc} --enable-multilib"
+	else
+		confgcc="${confgcc} --disable-multilib"
+	fi
 }
 
 gcc-compiler-configure() {
-	# multilib support
 	if is_multilib ; then
 		confgcc="${confgcc} --enable-multilib"
 	else
@@ -1325,9 +1316,6 @@ gcc-compiler-configure() {
 #	CTARGET
 #	CBUILD
 #			Enable building for a target that differs from CHOST
-#
-#	GCC_TARGET_NO_MULTILIB
-#			Disable multilib. Useful when building single library targets.
 #
 #	GCC_LANG
 #			Enable support for ${GCC_LANG} languages. defaults to just "c"
@@ -1789,7 +1777,7 @@ gcc_src_compile() {
 
 gcc_src_test() {
 	cd "${WORKDIR}"/build
-	emake -j1 -k check || ewarn "check failed and that sucks :("
+	emake -k check || ewarn "check failed and that sucks :("
 }
 
 gcc-library_src_install() {
@@ -2549,13 +2537,7 @@ fix_libtool_libdir_paths() {
 
 is_multilib() {
 	[[ ${GCCMAJOR} < 3 ]] && return 1
-	case ${CTARGET} in
-		mips64*|powerpc64*|s390x*|sparc*|x86_64*)
-			has_multilib_profile || use multilib ;;
-		*-*-solaris*|*-apple-darwin*|*-mint*)
-			use multilib ;;
-		*)	false ;;
-	esac
+	use multilib
 }
 
 is_cxx() {

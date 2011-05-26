@@ -1,15 +1,18 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.5 2009/02/01 17:44:23 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.6 2011/04/19 21:19:11 scarabeus Exp $
 
 inherit base
 
 # For GGZ Gaming Zone packages
 
-case ${EAPI:-0} in
-	0|1) EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm ;;
-	2) EXPORT_FUNCTIONS src_configure src_compile src_install pkg_postinst pkg_postrm ;;
+GAMES_GGZ_EXPF="src_compile src_install pkg_postinst pkg_postrm"
+case "${EAPI:-0}" in
+	2|3|4) GAMES_GGZ_EXPF+=" src_configure" ;;
+	0|1) : ;;
+	*) die "EAPI=${EAPI} is not supported" ;;
 esac
+EXPORT_FUNCTIONS ${GAMES_GGZ_EXPF}
 
 HOMEPAGE="http://www.ggzgamingzone.org/"
 SRC_URI="mirror://ggz/${PV}/${P}.tar.gz"
@@ -21,13 +24,11 @@ games-ggz_src_configure() {
 		--disable-dependency-tracking \
 		--enable-noregistry="${EPREFIX}${GGZ_MODDIR}" \
 		$(has debug ${IUSE} && ! use debug && echo --disable-debug) \
-		"$@" || die
+		"$@"
 }
 
 games-ggz_src_compile() {
-	case ${EAPI:-0} in
-		0|1) games-ggz_src_configure "$@" ;;
-	esac
+	has src_configure ${GAMES_GGZ_EXPF} || games-ggz_src_configure
 	emake || die "emake failed"
 }
 
@@ -41,7 +42,7 @@ games-ggz_src_install() {
 
 # Update ggz.modules with the .dsc files from ${GGZ_MODDIR}.
 games-ggz_update_modules() {
-	[[ ${EBUILD_PHASE} == "postinst" ]] || [[ ${EBUILD_PHASE} == "postrm" ]] \
+	[[ ${EBUILD_PHASE} == "postinst" || ${EBUILD_PHASE} == "postrm" ]] \
 	 	 || die "${FUNCNAME} can only be used in pkg_postinst or pkg_postrm"
 
 	# ggz-config needs libggz, so it could be broken

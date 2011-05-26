@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.102 2011/04/06 03:52:08 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.103 2011/05/16 03:44:26 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -154,6 +154,10 @@ eaclocal() {
 	local amflags_file
 	for amflags_file in GNUmakefile.am Makefile.am GNUmakefile.in Makefile.in ; do
 		[[ -e ${amflags_file} ]] || continue
+		# setup the env in case the pkg does something crazy
+		# in their ACLOCAL_AMFLAGS.  like run a shell script
+		# which turns around and runs autotools #365401
+		autotools_env_setup
 		aclocal_opts=$(sed -n '/^ACLOCAL_AMFLAGS[[:space:]]*=/s:[^=]*=::p' ${amflags_file})
 		eval aclocal_opts=\"${aclocal_opts}\"
 		break
@@ -265,11 +269,7 @@ eautopoint() {
 }
 
 # Internal function to run an autotools' tool
-autotools_run_tool() {
-	if [[ ${EBUILD_PHASE} != "unpack" && ${EBUILD_PHASE} != "prepare" ]]; then
-		ewarn "QA Warning: running $1 in ${EBUILD_PHASE} phase"
-	fi
-
+autotools_env_setup() {
 	# We do the “latest” → version switch here because it solves
 	# possible order problems, see bug #270010 as an example.
 	# During bootstrap in prefix there might be no automake merged yet
@@ -287,6 +287,13 @@ autotools_run_tool() {
 			die "Cannot find the latest automake! Tried ${_LATEST_AUTOMAKE}"
 	fi
 	[[ ${WANT_AUTOCONF} == "latest" ]] && export WANT_AUTOCONF=2.5
+}
+autotools_run_tool() {
+	if [[ ${EBUILD_PHASE} != "unpack" && ${EBUILD_PHASE} != "prepare" ]]; then
+		ewarn "QA Warning: running $1 in ${EBUILD_PHASE} phase"
+	fi
+
+	autotools_env_setup
 
 	local STDERR_TARGET="${T}/$1.out"
 	# most of the time, there will only be one run, but if there are

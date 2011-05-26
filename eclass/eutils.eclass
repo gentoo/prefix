@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.355 2011/03/18 20:36:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.356 2011/04/18 15:09:16 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1407,9 +1407,9 @@ unpack_makeself() {
 	esac
 
 	# lets grab the first few bytes of the file to figure out what kind of archive it is
-	local tmpfile=$(emktemp)
+	local filetype tmpfile=$(emktemp)
 	eval ${exe} 2>/dev/null | head -c 512 > "${tmpfile}"
-	local filetype=$(file -b "${tmpfile}")
+	filetype=$(file -b "${tmpfile}") || die
 	case ${filetype} in
 		*tar\ archive*)
 			eval ${exe} | tar --no-same-owner -xf -

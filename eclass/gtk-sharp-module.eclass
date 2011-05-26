@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.29 2011/03/21 21:52:51 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.30 2011/05/06 04:24:31 loki_val Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -216,7 +216,8 @@ case ${PF} in
 		add_depend ">=gnome-base/gnome-panel-${PV_MAJOR}"
 		;;
 	gnome-print-sharp-*)
-		add_depend ">=gnome-base/libgnomeprint-${API_VERSION}:2.2"
+		add_depend "gnome-base/libgnomeprint:2.2"
+		add_depend "gnome-base/libgnomeprintui:2.2"
 		;;
 	gtkhtml-sharp-*)
 		#NOTE: gtkhtml dependency must follow gtkhtml-sharp version.
