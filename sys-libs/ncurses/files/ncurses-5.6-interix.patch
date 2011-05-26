@@ -1,3 +1,5 @@
+reported and accepted upstream: http://lists.gnu.org/archive/html/bug-ncurses/2011-05/msg00008.html
+
 --- configure.orig	Tue Dec 18 16:49:58 2007
 +++ configure	Tue Dec 18 17:03:14 2007
 @@ -5165,6 +5165,16 @@
