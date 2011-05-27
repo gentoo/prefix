@@ -1,11 +1,11 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.6.7.ebuild,v 1.3 2011/03/29 03:10:47 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.6.7.ebuild,v 1.7 2011/04/30 17:41:56 armin76 Exp $
 
 EAPI="3"
 GCONF_DEBUG="no"
 
-inherit autotools bash-completion gnome2 eutils
+inherit autotools bash-completion gnome2 eutils flag-o-matic
 
 DESCRIPTION="GNOME Virtual Filesystem Layer"
 HOMEPAGE="http://www.gnome.org"
@@ -57,11 +57,9 @@ pkg_setup() {
 	fi
 
 	# --enable-udev does not work on Gentoo Prefix platforms. bug #293480
-	G2CONF="${G2CONF} $(use_enable !prefix udev)"
-
 	G2CONF="${G2CONF}
 		--disable-hal
-		--enable-udev
+		$(use_enable !prefix udev)
 		--disable-bash-completion
 		--with-dbus-service-dir="${EPREFIX}"/usr/share/dbus-1/services
 		$(use_enable archive)
