@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.18703 (28 May 2011)
+
+  28 May 2011; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.18213.ebuild, +portage-2.2.01.18703.ebuild:
+  Version bump, matches portage-2.2.0_alpha37
+
 *portage-2.2.01.18252 (17 Apr 2011)
 
   17 Apr 2011; Fabian Groffen <grobian@gentoo.org>
