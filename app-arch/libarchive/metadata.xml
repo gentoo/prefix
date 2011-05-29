@@ -28,17 +28,5 @@
       libarchive's native support: bsdtar will keep using bunzip2 as a
       filter if that's not built-in.
     </flag>
-    <flag name="lzma" restrict="&lt;app-arch/libarchive-2.7.1">
-      Allow accessing lzma-compressed archives through the lzmadec
-      library (<pkg>app-arch/lzma-utils</pkg>). This only affects
-      libarchive's native support: bsdtar will keep using unlzma as a
-      filter if that's not built-in.
-    </flag>
-    <flag name="lzma" restrict="&gt;=app-arch/libarchive-2.7.1">
-      Allow accessing lzma-compressed archives through the lzma
-      library (<pkg>app-arch/xz-utils</pkg>). This only affects
-      libarchive's native support: bsdtar will keep using unlzma as a
-      filter if that's not built-in.
-    </flag>
   </use>
 </pkgmetadata>

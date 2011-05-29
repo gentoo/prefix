@@ -1,6 +1,59 @@
 # ChangeLog for app-arch/libarchive
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.82 2010/08/11 08:48:08 ferringb Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.95 2011/05/07 16:51:11 armin76 Exp $
+
+  07 May 2011; Raúl Porcel <armin76@gentoo.org> libarchive-2.8.4-r1.ebuild:
+  ia64/sh/sparc stable wrt #357771
+
+  02 May 2011; Thomas Kahle <tomka@gentoo.org> libarchive-2.8.4-r1.ebuild:
+  x86 stable per bug 357771
+
+  27 Mar 2011; Tobias Klausmann <klausman@gentoo.org>
+  libarchive-2.8.4-r1.ebuild:
+  Stable on alpha, bug #357771
+
+  25 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  libarchive-2.8.4-r1.ebuild:
+  ppc/ppc64 stable wrt #357771
+
+  21 Mar 2011; Brent Baude <ranger@gentoo.org> libarchive-2.8.4.ebuild:
+  Marking libarchive-2.8.4 ppc for bug 357771
+
+  18 Mar 2011; Markus Meier <maekke@gentoo.org> libarchive-2.8.4-r1.ebuild:
+  arm stable, bug #357771
+
+  09 Mar 2011; Jeroen Roovers <jer@gentoo.org> libarchive-2.8.4-r1.ebuild:
+  Stable for HPPA (bug #357771).
+
+  08 Mar 2011; Markos Chandras <hwoarang@gentoo.org>
+  libarchive-2.8.4-r1.ebuild:
+  Stable on amd64 wrt bug #357773
+
+*libarchive-2.8.4-r1 (14 Feb 2011)
+*libarchive-2.8.3-r1 (14 Feb 2011)
+
+  14 Feb 2011; Brian Harring <ferringb@gentoo.org> +libarchive-2.8.3-r1.ebuild,
+  +libarchive-2.8.4-r1.ebuild:
+  revisit 352464; revbump (missed in the last round), add IUSE=expat to
+  enforce linkage via expat, else libxml2 is used.
+
+  14 Feb 2011; Brian Harring <ferringb@gentoo.org> libarchive-2.8.3.ebuild,
+  libarchive-2.8.4.ebuild:
+  add missing libxml2/expat dep for xar support. bug #352464
+
+  31 Dec 2010; Brian Harring <ferringb@gentoo.org> libarchive-2.7.1-r1.ebuild,
+  -libarchive-2.8.0.ebuild, libarchive-2.8.3.ebuild, libarchive-2.8.4.ebuild,
+  +files/libarchive-disable-lzma-size-test.patch:
+  Disable false-positive test failure against xz-5 (bug #343829), remove 2.8.0
+  since there are a few bugs the fuzz tester spots in that version.
+
+  18 Dec 2010; Mart Raudsepp <leio@gentoo.org> libarchive-2.8.4.ebuild:
+  Add ~mips keyword - required by new cmake-2.8.3
+
+  14 Nov 2010; Justin Lecher <jlec@gentoo.org> libarchive-2.7.1-r1.ebuild,
+  libarchive-2.8.0.ebuild, libarchive-2.8.3.ebuild, libarchive-2.8.4.ebuild,
+  metadata.xml:
+  Move local USE lzma to global USE
 
 *libarchive-2.8.4 (11 Aug 2010)
 

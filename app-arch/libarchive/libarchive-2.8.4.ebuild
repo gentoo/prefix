@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.8.4.ebuild,v 1.1 2010/08/11 08:48:08 ferringb Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.8.4.ebuild,v 1.6 2011/03/21 22:14:57 ranger Exp $
 
 EAPI="2"
 
@@ -22,6 +22,7 @@ COMPRESS_LIBS_DEPEND="lzma? ( app-arch/xz-utils )
 
 RDEPEND="!dev-libs/libarchive
 	dev-libs/openssl
+	|| ( dev-libs/libxml2 dev-libs/expat )
 	acl? ( virtual/acl )
 	xattr? ( kernel_linux? ( sys-apps/attr ) )
 	!static? ( ${COMPRESS_LIBS_DEPEND} )"
@@ -31,6 +32,7 @@ DEPEND="${RDEPEND}
 		virtual/os-headers )"
 
 src_prepare() {
+	epatch "$FILESDIR"/libarchive-disable-lzma-size-test.patch
 	# for FreeMiNT
 	eautoreconf
 	elibtoolize
@@ -67,7 +69,7 @@ src_configure() {
 		$(use_enable static-libs static) \
 		--without-lzmadec \
 		${myconf} \
-		--disable-dependency-tracking || die "econf failed."
+		--disable-dependency-tracking
 }
 
 src_test() {

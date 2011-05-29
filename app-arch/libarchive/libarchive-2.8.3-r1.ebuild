@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.8.0.ebuild,v 1.2 2010/03/24 13:03:26 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.8.3-r1.ebuild,v 1.1 2011/02/14 13:29:07 ferringb Exp $
 
 EAPI="2"
 
@@ -14,7 +14,7 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x86-solaris"
-IUSE="static static-libs acl xattr kernel_linux +bzip2 +lzma +zlib"
+IUSE="static static-libs acl xattr kernel_linux +bzip2 +lzma +zlib expat"
 
 COMPRESS_LIBS_DEPEND="lzma? ( app-arch/xz-utils )
 		bzip2? ( app-arch/bzip2 )
@@ -22,6 +22,8 @@ COMPRESS_LIBS_DEPEND="lzma? ( app-arch/xz-utils )
 
 RDEPEND="!dev-libs/libarchive
 	dev-libs/openssl
+	!expat? ( dev-libs/libxml2 )
+	expat? ( dev-libs/expat )
 	acl? ( virtual/acl )
 	xattr? ( kernel_linux? ( sys-apps/attr ) )
 	!static? ( ${COMPRESS_LIBS_DEPEND} )"
@@ -31,6 +33,7 @@ DEPEND="${RDEPEND}
 		virtual/os-headers )"
 
 src_prepare() {
+	epatch "$FILESDIR"/libarchive-disable-lzma-size-test.patch
 	elibtoolize
 	epunt_cxx
 }
@@ -63,9 +66,11 @@ src_configure() {
 		$(use_with zlib) \
 		$(use_with bzip2 bz2lib) $(use_with lzma) \
 		$(use_enable static-libs static) \
+		$(use_with expat expat) \
+		$(use_with !expat xml2)
 		--without-lzmadec \
 		${myconf} \
-		--disable-dependency-tracking || die "econf failed."
+		--disable-dependency-tracking
 }
 
 src_test() {

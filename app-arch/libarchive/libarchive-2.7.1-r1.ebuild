@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.1-r1.ebuild,v 1.9 2010/03/24 13:03:26 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.1-r1.ebuild,v 1.11 2010/12/31 09:18:02 ferringb Exp $
 
 EAPI="2"
 
@@ -31,6 +31,7 @@ DEPEND="${RDEPEND}
 		virtual/os-headers )"
 
 src_prepare() {
+	epatch "$FILESDIR"/libarchive-disable-lzma-size-test.patch
 	elibtoolize
 	epunt_cxx
 }
@@ -65,7 +66,7 @@ src_configure() {
 		$(use_enable static-libs static) \
 		--without-lzmadec \
 		${myconf} \
-		--disable-dependency-tracking || die "econf failed."
+		--disable-dependency-tracking
 }
 
 src_install() {
