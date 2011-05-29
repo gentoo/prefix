@@ -7,27 +7,41 @@
 		<name>Benedikt Böhm</name>
 	</maintainer>
 	<maintainer>
-		<email>voxus@gentoo.org</email>
-	</maintainer>
-	<maintainer>
 		<email>dev-zero@gentoo.org</email>
 		<name>Tiziano Müller</name>
 	</maintainer>
 	<use>
-		<flag name='addition'>Enables HTTP addition filter module</flag>
 		<flag name='aio'>Enables file AIO support</flag>
-		<flag name='flv'>Enables special processing module for flv files</flag>
 		<flag name='http'>Enable HTTP core support</flag>
 		<flag name='http-cache'>Enable HTTP cache support</flag>
 		<flag name='libatomic'>Use libatomic instead of builtin atomic operations</flag>
-		<flag name='pop'>Enables POP3 proxy support</flag>
-		<flag name='random-index'>Enables HTTP random index module</flag>
-		<flag name='realip'>Enables realip module</flag>
-		<flag name='smtp'>Enables SMTP proxy support</flag>
-		<flag name='static-gzip'>Enables support for gzipping static content</flag>
-		<flag name='status'>Enables stub_status module</flag>
-		<flag name='sub'>Enables sub_filter module</flag>
-		<flag name='webdav'>Enable webdav support</flag>
+		<flag name='nginx_modules_http_addition'>This module adds contents of
+			other locations before and after the current location's
+			content.</flag>
+		<flag name='nginx_modules_http_dav'>This module adds the HTTP and WebDAV
+			methods PUT, DELETE, MKCOL, COPY and MOVE.</flag>
+		<flag name='nginx_modules_http_flv'>This module provides the ability to
+			seek within FLV (Flash) files using time-based offsets.</flag>
+		<flag name='nginx_modules_http_random_index'>Pick a random directory
+			index from a directory.</flag>
+		<flag name='nginx_modules_http_realip'>This module allows to change the
+			client's IP address to value from request header (e. g. X-Real-IP or
+			X-Forwarded-For).</flag>
+		<flag name='nginx_modules_http_gzip_static'>Enables support for gzipping
+			static content on disk</flag>
+		<flag name='nginx_modules_http_stub_status'>This module provides the
+			ability to get some status from nginx</flag>
+		<flag name='nginx_modules_http_sub'>Enable support for search and
+			replace text in the nginx response</flag>
+		<flag name='nginx_modules_http_upload'>Enable support for handling file
+			uploads using multipart/form-data encoding</flag>
+		<flag name='nginx_modules_http_ey_balancer'>This module adds an upstream
+			connection queue to nginx</flag>
+		<flag name='nginx_modules_http_slowfs_cache'>This module adds the
+			ability to cache static files</flag>
+		<flag name='nginx_modules_mail_imap'>Enables IMAP proxy support</flag>
+		<flag name='nginx_modules_mail_pop3'>Enables POP3 proxy support</flag>
+		<flag name='nginx_modules_mail_smtp'>Enables SMTP proxy support</flag>
 	</use>
 	<upstream>
 		<changelog>http://nginx.org/en/CHANGES</changelog>

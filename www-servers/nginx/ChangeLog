@@ -1,6 +1,93 @@
 # ChangeLog for www-servers/nginx
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.265 2010/07/30 07:18:58 dev-zero Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.283 2011/05/24 21:12:51 maekke Exp $
+
+  24 May 2011; Markus Meier <maekke@gentoo.org> nginx-1.0.0-r1.ebuild:
+  x86 stable, bug #368219
+
+  24 May 2011; Markos Chandras <hwoarang@gentoo.org> nginx-1.0.0-r1.ebuild:
+  Stable on amd64 wrt bug #368219
+
+  24 May 2011; Benedikt Böhm <hollow@gentoo.org> nginx-0.8.53.ebuild,
+  nginx-0.8.53-r1.ebuild, nginx-1.0.0.ebuild, nginx-1.0.0-r1.ebuild,
+  nginx-1.0.2.ebuild:
+  fix USE dependencies for media-libs/gd wrt #368443
+
+  19 May 2011; Benedikt Böhm <hollow@gentoo.org> nginx-1.0.2.ebuild:
+  bump cache_purge module to fix build after nginx-1.0.1
+
+*nginx-1.0.2 (18 May 2011)
+
+  18 May 2011; Benedikt Böhm <hollow@gentoo.org> -nginx-0.9.7.ebuild,
+  +nginx-1.0.2.ebuild:
+  version bump wrt #367207
+
+  19 Apr 2011; Benedikt Böhm <hollow@gentoo.org>
+  files/nginx-0.8.32-ey-balancer.patch, nginx-1.0.0-r1.ebuild:
+  fix QA warnings and wrong README paths
+
+*nginx-1.0.0-r1 (18 Apr 2011)
+
+  18 Apr 2011; Benedikt Böhm <hollow@gentoo.org>
+  +files/nginx-0.8.32-ey-balancer.patch, +nginx-1.0.0-r1.ebuild,
+  metadata.xml:
+  add slowfs_cache and ey-balancer modules
+
+*nginx-1.0.0 (12 Apr 2011)
+
+  12 Apr 2011; Benedikt Böhm <hollow@gentoo.org> +nginx-1.0.0.ebuild:
+  version bump
+
+*nginx-0.9.7 (08 Apr 2011)
+
+  08 Apr 2011; Benedikt Böhm <hollow@gentoo.org> -nginx-0.7.65.ebuild,
+  -nginx-0.7.65-r1.ebuild, -nginx-0.8.52.ebuild, +nginx-0.9.7.ebuild,
+  files/nginx.logrotate, metadata.xml:
+  remove old 0.7 series, version bump to 0.9.7: drops passenger support,
+  adds http_upload module, fixes logrotate when not running
+
+  05 Mar 2011; Brent Baude <ranger@gentoo.org> nginx-0.8.53.ebuild:
+  stable ppc, bug 349223
+
+  02 Jan 2011; Markos Chandras <hwoarang@gentoo.org> nginx-0.8.53.ebuild:
+  Stable on amd64 wrt bug #349223
+
+  21 Dec 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> nginx-0.8.53.ebuild:
+  x86 stable wrt bug #349223
+
+*nginx-0.8.53-r1 (13 Dec 2010)
+
+  13 Dec 2010; Tiziano Müller <dev-zero@gentoo.org> -nginx-0.8.46.ebuild,
+  -nginx-0.8.47.ebuild, -nginx-0.8.48.ebuild, -nginx-0.8.49.ebuild,
+  +nginx-0.8.53-r1.ebuild, +files/passenger-3.0.1-cflags.patch,
+  +files/passenger-3.0.1-missing-auto-feature.patch,
+  +files/passenger-3.0.1-missing-include.patch:
+  Revision bump to bump passenger to 3.0.1 (currently p.masked for testing).
+  Removed old versions.
+
+*nginx-0.8.53 (28 Nov 2010)
+
+  28 Nov 2010; Benedikt Böhm <hollow@gentoo.org> +nginx-0.8.53.ebuild:
+  version bump wrt #342979
+
+*nginx-0.8.52 (30 Sep 2010)
+
+  30 Sep 2010; Tiziano Müller <dev-zero@gentoo.org> +nginx-0.8.52.ebuild:
+  Version bump (thanks to Johan Bergström).
+
+  19 Sep 2010; Benedikt Böhm <hollow@gentoo.org> files/nginx.conf-r4:
+  default to 1024 worker connections (see #337639)
+
+*nginx-0.8.49 (10 Aug 2010)
+
+  10 Aug 2010; Tiziano Müller <dev-zero@gentoo.org> +nginx-0.8.49.ebuild:
+  Version bump, bail out if cache_purge is used without fastcgi or uwsgi
+  (upstream is working on a real solution, thanks to jbergstroem).
+
+*nginx-0.8.48 (06 Aug 2010)
+
+  06 Aug 2010; Tiziano Müller <dev-zero@gentoo.org> +nginx-0.8.48.ebuild:
+  Version bump, added cache_purge-module (bug #322061).
 
 *nginx-0.8.47 (29 Jul 2010)
 
