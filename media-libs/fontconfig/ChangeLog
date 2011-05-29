@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.155 2011/04/02 14:41:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.156 2011/05/20 19:32:32 xarthisius Exp $
+
+  20 May 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  fontconfig-2.8.0-r1.ebuild:
+  ppc64 stable wrt #360221
 
   02 Apr 2011; Raúl Porcel <armin76@gentoo.org> fontconfig-2.8.0-r1.ebuild:
   arm/ia64/m68k/s390/sh/sparc stable wrt #360221
