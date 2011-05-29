@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.18706 (29 May 2011)
+
+  29 May 2011; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.18703.ebuild, +portage-2.2.01.18706.ebuild:
+  Fix for find error with e.g. virtual packages, bug #368839, changed fowners
+  not to operate in Prefix for non-privileged users
+
 *portage-2.2.01.18703 (28 May 2011)
 
   28 May 2011; Fabian Groffen <grobian@gentoo.org>
