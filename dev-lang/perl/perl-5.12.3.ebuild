@@ -315,7 +315,7 @@ src_configure() {
 		-Dd_semctl_semun \
 		-Dcf_by='Gentoo' \
 		-Dmyhostname='localhost' \
-		-Dperladmin='${PORTAGE_ROOT_USER}@localhost' \
+		-Dperladmin="${PORTAGE_ROOT_USER}@localhost" \
 		-Dinstallusrbinperl='n' \
 		-Ud_csh \
 		-Uusenm \
