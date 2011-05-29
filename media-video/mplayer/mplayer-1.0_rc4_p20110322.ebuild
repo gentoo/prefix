@@ -264,9 +264,6 @@ src_prepare() {
 		sed -i -e "s/UNKNOWN/${MPLAYER_REVISION}/" "${S}/version.sh" || die
 	fi
 
-	# fix path to bash executable in configure scripts
-	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure version.sh || die
-
 	# disable all "cleverness" of looking into hardwired paths
 	sed -i \
 		-e "s:/usr/\(local\|pkg\|openwin\|X11\(R[67]\)\?\)/:$EPREFIX/usr/:g" \
@@ -276,6 +273,9 @@ src_prepare() {
 		-e "s:-I\(/usr/include/\(Basic\)\?UsageEnvironment\):-I${EPREFIX}\1:" \
 		-e "s:-I/usr/lib\(64\)\?/live:-I$EPREFIX/usr/$(get_libname)/live:g" \
 		configure || die
+
+	# fix path to bash executable in configure scripts
+	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure version.sh || die
 
 	# Solaris issue, should be fixed for next snapshot:
 	# http://comments.gmane.org/gmane.comp.video.mplayer.user/65258
