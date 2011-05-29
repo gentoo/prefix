@@ -139,8 +139,10 @@ src_prepare() {
 
 	# pod/perltoc.pod fails
 	# lib/ExtUtils/t/Embed.t fails
-	ln -s ${LIBPERL} libperl$(get_libname ${SHORT_PV})
-	ln -s ${LIBPERL} libperl$(get_libname )
+	if [[ ${CHOST} != *-mint* ]]; then
+		ln -s ${LIBPERL} libperl$(get_libname ${SHORT_PV})
+		ln -s ${LIBPERL} libperl$(get_libname )
+	fi
 
 	epatch "${FILESDIR}"/${PN}-5.12.3-aix-soname.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-solaris-relocation.patch
@@ -149,6 +151,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.8.8-usr-local.patch
 	epatch "${FILESDIR}"/${PN}-5.10.1-hpux.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-darwin-cc-ld.patch
+	epatch "${FILESDIR}"/${PN}-5.12.3-mint.patch
 
 	# rest of usr-local patch
 	sed -i \
@@ -353,13 +356,15 @@ src_install() {
 	rm -f "${ED}"/usr/bin/perl
 	ln -s perl${MY_PV} "${ED}"/usr/bin/perl
 
-	dolib.so "${ED}"/${coredir}/${LIBPERL} || die
-	dosym ${LIBPERL} /usr/$(get_libdir)/libperl$(get_libname ${SHORT_PV}) || die
-	dosym ${LIBPERL} /usr/$(get_libdir)/libperl$(get_libname) || die
-	rm -f "${ED}"/${coredir}/${LIBPERL}
-	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/${LIBPERL}
-	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname ${SHORT_PV})
-	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname)
+	if [[ ${CHOST} != *-mint* ]]; then
+		dolib.so "${ED}"/${coredir}/${LIBPERL} || die
+		dosym ${LIBPERL} /usr/$(get_libdir)/libperl$(get_libname ${SHORT_PV}) || die
+		dosym ${LIBPERL} /usr/$(get_libdir)/libperl$(get_libname) || die
+		rm -f "${ED}"/${coredir}/${LIBPERL}
+		dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/${LIBPERL}
+		dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname ${SHORT_PV})
+		dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname)
+	fi
 
 	rm -rf "${ED}"/usr/share/man/man3 || die "Unable to remove module man pages"
 
