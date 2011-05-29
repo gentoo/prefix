@@ -1,6 +1,35 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.359 2011/01/22 11:19:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.368 2011/05/07 16:36:19 armin76 Exp $
+
+  07 May 2011; Raúl Porcel <armin76@gentoo.org> perl-5.12.3-r1.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #362025
+
+  02 May 2011; Tobias Klausmann <klausman@gentoo.org> perl-5.12.3-r1.ebuild:
+  Stable on alpha, bug #362025
+
+  27 Apr 2011; Jeroen Roovers <jer@gentoo.org> perl-5.12.3-r1.ebuild:
+  Stable for HPPA (bug #362025).
+
+  26 Apr 2011; Christoph Mende <angelos@gentoo.org> perl-5.12.3-r1.ebuild:
+  Stable on amd64 wrt bug #362025
+
+  26 Apr 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  perl-5.12.3-r1.ebuild:
+  x86 stable wrt security bug #362025
+
+  26 Apr 2011; Kacper Kowalik <xarthisius@gentoo.org> perl-5.12.3-r1.ebuild:
+  ppc/ppc64 stable wrt #362025
+
+*perl-5.12.3-r1 (25 Apr 2011)
+
+  25 Apr 2011; Torsten Veller <tove@gentoo.org> +perl-5.12.3-r1.ebuild:
+  Fix unwanted taint laundering in lc(), uc() et al. CVE-2011-1487 (#362025)
+
+  07 Mar 2011; Torsten Veller <tove@gentoo.org> perl-5.8.8-r8.ebuild,
+  perl-5.10.1.ebuild, -perl-5.12.2-r4.ebuild, -perl-5.12.2-r5.ebuild,
+  perl-5.12.2-r6.ebuild, perl-5.12.3.ebuild:
+  Drop -Dusrinc=$(get_ml_incdir) (#357737). Cleanup
 
   22 Jan 2011; Raúl Porcel <armin76@gentoo.org> perl-5.12.2-r6.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #351699

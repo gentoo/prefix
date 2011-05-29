@@ -1,12 +1,12 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.12.3.ebuild,v 1.2 2011/03/07 11:35:06 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.12.3-r1.ebuild,v 1.7 2011/05/07 16:36:19 armin76 Exp $
 
 EAPI=3
 
 inherit eutils alternatives flag-o-matic toolchain-funcs multilib
 
-PATCH_VER=1
+PATCH_VER=4
 
 PERL_OLDVERSEN="5.12.2 5.12.1 5.12.0"
 
@@ -21,7 +21,7 @@ SRC_URI="
 	mirror://cpan/src/${MY_P}.tar.bz2
 	mirror://cpan/authors/id/R/RJ/RJBS/${MY_P}.tar.bz2
 	mirror://gentoo/${MY_P}-${PATCH_VER}.tar.bz2
-	http://dev.gentoo.org/~tove/files/${MY_P}-${PATCH_VER}.tar.bz2"
+	http://dev.gentoo.org/~tove/distfiles/${CATEGORY}/${PN}/${MY_P}-${PATCH_VER}.tar.bz2"
 #	mirror://cpan/src/${MY_P}.tar.bz2
 #	mirror://gentoo/${MY_P}-${PATCH_VER}.tar.bz2
 HOMEPAGE="http://www.perl.org/"
