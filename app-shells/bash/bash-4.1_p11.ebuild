@@ -1,13 +1,13 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.2_p8.ebuild,v 1.1 2011/03/15 19:41:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p11.ebuild,v 1.2 2011/05/16 10:36:26 nyhm Exp $
 
 EAPI="1"
 
 inherit eutils flag-o-matic toolchain-funcs multilib prefix
 
 # Official patchlevel
-# See ftp://ftp.cwru.edu/pub/bash/bash-4.2-patches/
+# See ftp://ftp.cwru.edu/pub/bash/bash-3.2-patches/
 PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
 MY_PV=${MY_PV/_/-}
@@ -71,15 +71,25 @@ src_unpack() {
 	[[ ${READLINE_PLEVEL} -gt 0 ]] && epatch $(patches -s ${READLINE_PLEVEL} readline ${READLINE_VER})
 	cd ../..
 
+	epatch "${FILESDIR}"/${PN}-4.1-fbsd-eaccess.patch #303411
+
+	if ! use vanilla ; then
+		sed -i '1i#define NEED_FPURGE_DECL' execute_cmd.c # needs fpurge() decl
+		epatch "${FILESDIR}"/${PN}-4.1-parallel-build.patch
+	fi
+
 	# this adds additional prefixes
 	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
 	eprefixify pathnames.h.in
 
-	epatch "${FILESDIR}"/${PN}-4.0-mint.patch
+	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
 
 	if [[ ${CHOST} == *-interix* ]]; then
+		epatch "${FILESDIR}"/${PN}-4.1-interix-stdint.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix.patch
+		epatch "${FILESDIR}"/${PN}-4.1-interix-access-suacomp.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi
 
@@ -142,12 +152,24 @@ src_compile() {
 	# sucks bad compared to ncurses
 	myconf="${myconf} --with-curses"
 
+	myconf="${myconf} --without-lispdir" #335896
+
 	use plugins && case ${CHOST} in
 		*-linux-gnu | *-solaris* | *-freebsd* )
 			append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/bash
 		;;
 		# Darwin doesn't need an rpath here (in fact doesn't grok the argument)
 	esac
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_header_inttypes_h=no
+		export gt_cv_header_inttypes_h=no
+		export jm_ac_cv_header_inttypes_h=no
+
+		# argh... something doomed this test on windows ... ???
+		export bash_cv_type_intmax_t=yes
+		export bash_cv_type_uintmax_t=yes
+	fi
 
 	econf \
 		$(use_with afs) \
@@ -215,7 +237,9 @@ pkg_preinst() {
 		# rewrite the symlink to ensure that its mtime changes. having /bin/sh
 		# missing even temporarily causes a fatal error with paludis.
 		local target=$(readlink "${EROOT}"/bin/sh)
-		ln -sf "${target}" "${EROOT}"/bin/sh
+		local tmp=$(emktemp "${EROOT}"/bin)
+		ln -sf "${target}" "${tmp}"
+		mv -f "${tmp}" "${EROOT}"/bin/sh
 	fi
 }
 

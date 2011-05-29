@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p7.ebuild,v 1.8 2010/10/09 19:16:50 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p7.ebuild,v 1.9 2011/05/16 10:36:26 nyhm Exp $
 
 EAPI="1"
 
@@ -83,7 +83,6 @@ src_unpack() {
 	eprefixify pathnames.h.in
 
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
-	epatch "${FILESDIR}"/${PN}-4.0-mint.patch
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
 
@@ -238,7 +237,9 @@ pkg_preinst() {
 		# rewrite the symlink to ensure that its mtime changes. having /bin/sh
 		# missing even temporarily causes a fatal error with paludis.
 		local target=$(readlink "${EROOT}"/bin/sh)
-		ln -sf "${target}" "${EROOT}"/bin/sh
+		local tmp=$(emktemp "${EROOT}"/bin)
+		ln -sf "${target}" "${tmp}"
+		mv -f "${tmp}" "${EROOT}"/bin/sh
 	fi
 }
 

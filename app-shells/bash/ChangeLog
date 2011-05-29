@@ -1,6 +1,25 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.286 2011/03/15 19:41:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.289 2011/05/16 10:36:26 nyhm Exp $
+
+  16 May 2011; Tristan Heaven <nyhm@gentoo.org> bash-3.2_p51.ebuild,
+  bash-4.0_p38.ebuild, bash-4.1_p7.ebuild, bash-4.1_p9.ebuild,
+  bash-4.1_p10.ebuild, bash-4.1_p11.ebuild, bash-4.2_p8-r1.ebuild,
+  bash-4.2_p10.ebuild:
+  Rewrite /bin/sh symlink atomically, bug #367241
+
+*bash-4.2_p10 (09 May 2011)
+*bash-4.1_p11 (09 May 2011)
+
+  09 May 2011; Mike Frysinger <vapier@gentoo.org> +bash-4.1_p11.ebuild,
+  +bash-4.2_p10.ebuild:
+  Version bump.
+
+*bash-4.2_p8-r1 (29 Apr 2011)
+
+  29 Apr 2011; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p8-r1.ebuild,
+  +files/bash-4.2-print-heredoc.patch:
+  Add fix from upstream for heredocs printing #363371 by Andrey Hippo.
 
 *bash-4.2_p8 (15 Mar 2011)
 
