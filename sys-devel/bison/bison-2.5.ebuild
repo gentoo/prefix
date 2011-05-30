@@ -1,10 +1,10 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.4.3.ebuild,v 1.7 2011/05/24 14:53:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.5.ebuild,v 1.1 2011/05/16 19:37:21 vapier Exp $
 
 EAPI="2"
 
-inherit flag-o-matic eutils
+inherit eutils
 
 DESCRIPTION="A yacc-compatible parser generator"
 HOMEPAGE="http://www.gnu.org/software/bison/bison.html"
@@ -17,10 +17,6 @@ IUSE="nls static"
 
 DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND="sys-devel/m4"
-
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-uclibc-sched_param-def.patch
-}
 
 src_configure() {
 	use static && append-ldflags -static

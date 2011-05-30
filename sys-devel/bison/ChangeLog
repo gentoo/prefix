@@ -1,6 +1,30 @@
 # ChangeLog for sys-devel/bison
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.96 2010/12/12 19:02:14 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.103 2011/05/24 14:53:42 ranger Exp $
+
+  24 May 2011; Brent Baude <ranger@gentoo.org> bison-2.4.3.ebuild:
+  Marking bison-2.4.3 ppc for bug 367575
+
+  22 May 2011; Markus Meier <maekke@gentoo.org> bison-2.4.3.ebuild:
+  arm stable, bug #367575
+
+  19 May 2011; Markos Chandras <hwoarang@gentoo.org> bison-2.4.3.ebuild:
+  Stable on amd64 wrt bug #367575
+
+  18 May 2011; Jeroen Roovers <jer@gentoo.org> bison-2.4.3.ebuild:
+  Stable for HPPA (bug #367575).
+
+  17 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> bison-2.4.3.ebuild:
+  x86 stable wrt bug #367575
+
+*bison-2.5 (16 May 2011)
+
+  16 May 2011; Mike Frysinger <vapier@gentoo.org> +bison-2.5.ebuild:
+  Version bump #367459 by taaroa.
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> bison-1.875d.ebuild,
+  bison-2.3.ebuild:
+  Drop to ~mips
 
   12 Dec 2010; Mike Frysinger <vapier@gentoo.org> bison-2.4.2.ebuild,
   bison-2.4.3.ebuild, +files/bison-2.4.3-uclibc-sched_param-def.patch:
