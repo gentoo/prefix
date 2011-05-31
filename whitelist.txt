@@ -864,6 +864,7 @@ sys-devel/gdb-apple
 sys-devel/gnuconfig
 sys-devel/llvm
 sys-devel/llvm-gcc
+sys-devel/m4
 sys-devel/native-cctools
 sys-libs/csu
 sys-libs/pam
