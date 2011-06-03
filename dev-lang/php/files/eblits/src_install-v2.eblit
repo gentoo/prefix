@@ -142,7 +142,7 @@ php_install_ini() {
 
 	if [[ "${sapi}" == "fpm" ]] ; then
 		einfo "Installing FPM CGI config file php-fpm.conf"
-		insinto ${PHP_INI_DIR}
+		insinto "${PHP_INI_DIR#${EPREFIX}}"
 		doins "${FILESDIR}/php-fpm.conf"
 		dodir "/etc/init.d"
 		insinto "/etc/init.d"
