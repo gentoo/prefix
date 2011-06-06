@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.251 2011/04/30 17:07:50 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.253 2011/06/03 20:20:23 mpagano Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -151,29 +151,51 @@ detect_version() {
 	OKV=${OKV/_p*}
 
 	KV_MAJOR=$(get_version_component_range 1 ${OKV})
-	KV_MINOR=$(get_version_component_range 2 ${OKV})
-	KV_PATCH=$(get_version_component_range 3 ${OKV})
 
-	if [[ ${KV_MAJOR}${KV_MINOR}${KV_PATCH} -ge 269 ]]; then
-		KV_EXTRA=$(get_version_component_range 4- ${OKV})
-		KV_EXTRA=${KV_EXTRA/[-_]*}
+	# if KV_MAJOR >= 3, then we have no more KV_MINOR
+	if [[ ${KV_MAJOR} -lt 3 ]]; then
+		KV_MINOR=$(get_version_component_range 2 ${OKV})
+		KV_PATCH=$(get_version_component_range 3 ${OKV})
+		if [[ ${KV_MAJOR}${KV_MINOR}${KV_PATCH} -ge 269 ]]; then
+	        KV_EXTRA=$(get_version_component_range 4- ${OKV})
+	        KV_EXTRA=${KV_EXTRA/[-_]*}
+		else
+			KV_PATCH=$(get_version_component_range 3- ${OKV})
+		fi
 	else
-		KV_PATCH=$(get_version_component_range 3- ${OKV})
+		KV_PATCH=$(get_version_component_range 2 ${OKV})
+		KV_EXTRA=$(get_version_component_range 3- ${OKV})
+		KV_EXTRA=${KV_EXTRA/[-_]*}
 	fi
+
 	KV_PATCH=${KV_PATCH/[-_]*}
 
 	local v n=0 missing
-	for v in CKV OKV KV_{MAJOR,MINOR,PATCH} ; do
-		[[ -z ${!v} ]] && n=1 && missing="${missing}${v} ";
-	done
+	if [[ ${KV_MAJOR} -lt 3 ]]; then
+		for v in CKV OKV KV_{MAJOR,MINOR,PATCH} ; do
+			[[ -z ${!v} ]] && n=1 && missing="${missing}${v} ";
+		done
+	else
+		for v in CKV OKV KV_{MAJOR,PATCH} ; do
+			[[ -z ${!v} ]] && n=1 && missing="${missing}${v} ";
+		done
+	fi
+
 	[[ $n -eq 1 ]] && \
 		eerror "Missing variables: ${missing}" && \
 		die "Failed to extract kernel version (try explicit CKV in ebuild)!"
 	unset v n missing
 
-	KERNEL_BASE_URI="mirror://kernel/linux/kernel/v${KV_MAJOR}.${KV_MINOR}"
-	[[ -n "${K_LONGTERM}" ]] &&
-		KERNEL_BASE_URI="${KERNEL_BASE_URI}/longterm/v${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
+	if [[ ${KV_MAJOR} -ge 3 ]]; then
+		KV_PATCH_ARR=(${KV_PATCH//\./ })
+		KERNEL_BASE_URI="mirror://kernel/linux/kernel/v${KV_MAJOR}.${KV_PATCH_ARR}"
+		[[ -n "${K_LONGTERM}" ]] &&
+			KERNEL_BASE_URI="${KERNEL_BASE_URI}/longterm/v${KV_MAJOR}.${KV_PATCH_ARR}"
+	else
+		KERNEL_BASE_URI="mirror://kernel/linux/kernel/v${KV_MAJOR}.${KV_MINOR}"
+		[[ -n "${K_LONGTERM}" ]] &&
+			KERNEL_BASE_URI="${KERNEL_BASE_URI}/longterm/v${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
+	fi
 
 	KERNEL_URI="${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
 
@@ -184,7 +206,7 @@ detect_version() {
 	# We cannot trivally call kernel_is here, because it calls us to detect the
 	# version
 	#kernel_is ge 2 6 && RELEASE=${RELEASE/-pre/-git}
-	[ $(($KV_MAJOR * 1000 + $KV_MINOR)) -ge 2006 ] && RELEASE=${RELEASE/-pre/-git}
+	[ $(($KV_MAJOR * 1000 + ${KV_MINOR:-0})) -ge 2006 ] && RELEASE=${RELEASE/-pre/-git}
 	RELEASETYPE=${RELEASE//[0-9]}
 
 	# Now we know that RELEASE is the -rc/-git
@@ -221,8 +243,13 @@ detect_version() {
 	# The only messing around which should actually effect this is for KV_EXTRA
 	# since this has to limit OKV to MAJ.MIN.PAT and strip EXTRA off else
 	# KV_FULL evaluates to MAJ.MIN.PAT.EXT.EXT after EXTRAVERSION
+
 	if [[ -n ${KV_EXTRA} ]]; then
-		OKV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
+		if [[ -n ${KV_MINOR} ]]; then
+			OKV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
+		else
+			OKV="${KV_MAJOR}.${KV_PATCH}"
+		fi
 		KERNEL_URI="${KERNEL_BASE_URI}/patch-${CKV}.bz2
 					${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
 		UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${CKV}.bz2"
@@ -242,27 +269,65 @@ detect_version() {
 	# will pull:
 	#   linux-2.6.10.tar.bz2 & patch-2.6.11-rc3.bz2 & patch-2.6.11-rc3-git2.bz2
 
-	if [[ ${RELEASETYPE} == -rc ]] || [[ ${RELEASETYPE} == -pre ]]; then
-		OKV="${KV_MAJOR}.${KV_MINOR}.$((${KV_PATCH} - 1))"
-		KERNEL_URI="${KERNEL_BASE_URI}/testing/patch-${CKV//_/-}.bz2
-					${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
-		UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${CKV//_/-}.bz2"
+	if [[ ${KV_MAJOR}${KV_MINOR} -eq 26 ]]; then
+
+		if [[ ${RELEASETYPE} == -rc ]] || [[ ${RELEASETYPE} == -pre ]]; then
+			OKV="${KV_MAJOR}.${KV_MINOR}.$((${KV_PATCH} - 1))"
+			KERNEL_URI="${KERNEL_BASE_URI}/testing/patch-${CKV//_/-}.bz2
+						${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
+			UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${CKV//_/-}.bz2"
+		fi
+
+		if [[ ${RELEASETYPE} == -git ]]; then
+			KERNEL_URI="${KERNEL_BASE_URI}/snapshots/patch-${OKV}${RELEASE}.bz2
+						${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
+			UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${OKV}${RELEASE}.bz2"
+		fi
+
+		if [[ ${RELEASETYPE} == -rc-git ]]; then
+			OKV="${KV_MAJOR}.${KV_MINOR}.$((${KV_PATCH} - 1))"
+			KERNEL_URI="${KERNEL_BASE_URI}/snapshots/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE}.bz2
+						${KERNEL_BASE_URI}/testing/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE/-git*}.bz2
+						${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
+
+			UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE/-git*}.bz2 ${DISTDIR}/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE}.bz2"
+		fi
+	else
+		if [[ ${RELEASETYPE} == -rc ]] || [[ ${RELEASETYPE} == -pre ]]; then
+			if [[ ${KV_MAJOR}${KV_PATCH} -eq 30 ]]; then
+				OKV="2.6.39"
+			else
+				KV_PATCH_ARR=(${KV_PATCH//\./ })
+				OKV="${KV_MAJOR}.$((${KV_PATCH_ARR} - 1))"
+			fi
+			KERNEL_URI="${KERNEL_BASE_URI}/testing/patch-${CKV//_/-}.bz2
+						${KERNEL_BASE_URI}/testing/linux-${OKV}.tar.bz2"
+			UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${CKV//_/-}.bz2"
+		fi
+
+		if [[ ${RELEASETYPE} == -git ]]; then
+			KERNEL_URI="${KERNEL_BASE_URI}/snapshots/patch-${OKV}${RELEASE}.bz2
+						${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
+			UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${OKV}${RELEASE}.bz2"
+		fi
+
+		if [[ ${RELEASETYPE} == -rc-git ]]; then
+			if [[ ${KV_MAJOR}${KV_PATCH} -eq 30 ]]; then
+				OKV="2.6.39"
+			else
+				KV_PATCH_ARR=(${KV_PATCH//\./ })
+				OKV="${KV_MAJOR}.$((${KV_PATCH_ARR} - 1))"
+			fi
+			KERNEL_URI="${KERNEL_BASE_URI}/snapshots/patch-${KV_MAJOR}.${KV_PATCH}${RELEASE}.bz2
+						${KERNEL_BASE_URI}/testing/patch-${KV_MAJOR}.${KV_PATCH}${RELEASE/-git*}.bz2
+						${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
+
+			UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${KV_MAJOR}.${KV_PATCH}${RELEASE/-git*}.bz2 ${DISTDIR}/patch-${KV_MAJOR}.${KV_PATCH}${RELEASE}.bz2"
+		fi
+
+
 	fi
 
-	if [[ ${RELEASETYPE} == -git ]]; then
-		KERNEL_URI="${KERNEL_BASE_URI}/snapshots/patch-${OKV}${RELEASE}.bz2
-					${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
-		UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${OKV}${RELEASE}.bz2"
-	fi
-
-	if [[ ${RELEASETYPE} == -rc-git ]]; then
-		OKV="${KV_MAJOR}.${KV_MINOR}.$((${KV_PATCH} - 1))"
-		KERNEL_URI="${KERNEL_BASE_URI}/snapshots/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE}.bz2
-					${KERNEL_BASE_URI}/testing/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE/-git*}.bz2
-					${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
-
-		UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE/-git*}.bz2 ${DISTDIR}/patch-${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${RELEASE}.bz2"
-	fi
 
 	debug-print-kernel2-variables
 
@@ -325,7 +390,7 @@ if [[ ${ETYPE} == sources ]]; then
 	PDEPEND="!build? ( virtual/dev-manager )"
 
 	SLOT="${PVR}"
-	DESCRIPTION="Sources for the ${KV_MAJOR}.${KV_MINOR} linux kernel"
+	DESCRIPTION="Sources for the ${KV_MAJOR}.${KV_MINOR:-$KV_PATCH} linux kernel"
 	IUSE="symlink build"
 
 	# Bug #266157, deblob for libre support
@@ -341,7 +406,12 @@ if [[ ${ETYPE} == sources ]]; then
 			# stripped
 			LICENSE="${LICENSE} !deblob? ( freedist )"
 
-			DEBLOB_PV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
+			if [[ -n KV_MINOR ]]; then
+				DEBLOB_PV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
+			else
+				DEBLOB_PV="${KV_MAJOR}.${KV_PATCH}"
+			fi
+
 			DEBLOB_A="deblob-${DEBLOB_PV}"
 			DEBLOB_CHECK_A="deblob-check-${DEBLOB_PV}"
 			DEBLOB_HOMEPAGE="http://www.fsfla.org/svnwiki/selibre/linux-libre/"
@@ -460,7 +530,7 @@ universal_unpack() {
 	# fix a problem on ppc where TOUT writes to /usr/src/linux breaking sandbox
 	# only do this for kernel < 2.6.27 since this file does not exist in later
 	# kernels
-	if [[ ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} < 2.6.27 ]]
+	if [[ -n ${KV_MINOR} &&  ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} < 2.6.27 ]]
 	then
 		sed -i \
 			-e 's|TOUT	:= .tmp_gas_check|TOUT	:= $(T).tmp_gas_check|' \
@@ -708,18 +778,19 @@ postinst_sources() {
 	KV_MAJOR=$(get_version_component_range 1 ${OKV})
 	KV_MINOR=$(get_version_component_range 2 ${OKV})
 	KV_PATCH=$(get_version_component_range 3 ${OKV})
-	if [[ "$(tc-arch)" = "sparc" ]] \
-		&& [[ ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.24 ]]
-	then
-		echo
-		elog "NOTE: Since 2.6.25 the kernel Makefile has changed in a way that"
-		elog "you now need to do"
-		elog "  make CROSS_COMPILE=sparc64-unknown-linux-gnu-"
-		elog "instead of just"
-		elog "  make"
-		elog "to compile the kernel. For more information please browse to"
-		elog "https://bugs.gentoo.org/show_bug.cgi?id=214765"
-		echo
+	if [[ "$(tc-arch)" = "sparc" ]]; then
+		if [[ ${KV_MAJOR} -ge 3 || ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.24 ]]
+		then
+			echo
+			elog "NOTE: Since 2.6.25 the kernel Makefile has changed in a way that"
+			elog "you now need to do"
+			elog "  make CROSS_COMPILE=sparc64-unknown-linux-gnu-"
+			elog "instead of just"
+			elog "  make"
+			elog "to compile the kernel. For more information please browse to"
+			elog "https://bugs.gentoo.org/show_bug.cgi?id=214765"
+			echo
+		fi
 	fi
 }
 
@@ -844,7 +915,7 @@ unipatch() {
 	# do not apply fbcondecor patch to sparc/sparc64 as it breaks boot
 	# bug #272676
 	if [[ "$(tc-arch)" = "sparc" || "$(tc-arch)" = "sparc64" ]]; then
-		if [[ ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.28 ]]; then
+		if [[ ${KV_MAJOR} -ge 3 || ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.28 ]]; then
 			UNIPATCH_DROP="${UNIPATCH_DROP} *_fbcondecor-0.9.6.patch"
 			echo
 			ewarn "fbcondecor currently prevents sparc/sparc64 from booting"
