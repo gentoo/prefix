@@ -18,6 +18,11 @@ IUSE="nls static"
 DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND="sys-devel/m4"
 
+src_prepare() {
+	# acutally a gnulib bug - fixed upstream!
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
 src_configure() {
 	use static && append-ldflags -static
 	econf $(use_enable nls)
