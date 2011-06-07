@@ -31,7 +31,6 @@ RDEPEND="${python_dep}
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
 	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
-	less? ( sys-apps/less )
 	kernel_linux? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_SunOS? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.17 )
@@ -42,6 +41,7 @@ RDEPEND="${python_dep}
 	!<app-shells/bash-3.2_p17"
 PDEPEND="
 	!build? (
+		less? ( sys-apps/less )
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
 	)"
