@@ -1,6 +1,13 @@
 # ChangeLog for app-text/build-docbook-catalog
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.27 2009/08/23 16:08:48 flameeyes Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.28 2011/03/29 02:17:56 flameeyes Exp $
+
+*build-docbook-catalog-1.6 (29 Mar 2011)
+
+  29 Mar 2011; Diego E. Pettenò <flameeyes@gentoo.org>
+  build-docbook-catalog-1.4.ebuild, -build-docbook-catalog-1.5.ebuild,
+  +build-docbook-catalog-1.6.ebuild:
+  Version bump to handle bug #290680. Fix up SRC_URI/HOMEPAGE for old version.
 
 *build-docbook-catalog-1.5 (23 Aug 2009)
 

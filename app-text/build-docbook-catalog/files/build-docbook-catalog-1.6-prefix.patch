@@ -1,9 +1,9 @@
---- build-docbook-catalog-1.5.orig	2009-08-24 14:39:35.434950000 +0200
-+++ build-docbook-catalog-1.5	2009-08-24 14:42:44.887305740 +0200
+--- build-docbook-catalog-1.6
++++ build-docbook-catalog-1.6
 @@ -1,4 +1,4 @@
 -#!/bin/bash
 +#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
- # $Header: /var/cvsroot/gentoo-src/build-docbook-catalog/build-docbook-catalog,v 1.5 2009/08/23 16:06:03 flameeyes Exp $
+ # $Header: /var/cvsroot/gentoo-src/build-docbook-catalog/build-docbook-catalog,v 1.6 2011/03/29 02:11:48 flameeyes Exp $
  #
  # build-docbook-catalog: populate /etc/xml/docbook based in
 @@ -9,9 +9,9 @@

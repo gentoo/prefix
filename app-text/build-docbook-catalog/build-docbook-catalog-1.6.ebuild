@@ -1,12 +1,12 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/build-docbook-catalog-1.5.ebuild,v 1.1 2009/08/23 16:08:48 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/build-docbook-catalog-1.6.ebuild,v 1.1 2011/03/29 02:17:56 flameeyes Exp $
 
 inherit eutils prefix
 
 DESCRIPTION="DocBook XML catalog auto-updater"
-HOMEPAGE="http://unknown/"
-SRC_URI="mirror://gentoo/${P}.bz2"
+HOMEPAGE="http://www.gentoo.org/"
+SRC_URI="http://dev.gentoo.org/~flameeyes/${PN}/${P}.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -28,5 +28,5 @@ src_unpack() {
 
 src_install() {
 	keepdir /etc/xml
-	newbin ${P} ${PN} || die "newbin failed"
+	newsbin ${P} ${PN} || die
 }
