@@ -220,7 +220,7 @@ src_install() {
 	if use unicode ; then
 		gen_usr_ldscript libncursesw$(get_libname)
 	fi
-	ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses.$(get_libname)
+	ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname)
 
 #	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026
