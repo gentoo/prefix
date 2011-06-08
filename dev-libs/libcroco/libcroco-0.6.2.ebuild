@@ -18,7 +18,7 @@ RDEPEND="dev-libs/glib:2
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1 )
-	x86-interix? ( >=dev-util/gtk-doc-1 )"
+	x86-interix? ( >=dev-util/gtk-doc-am-1 )"
 
 pkg_setup() {
 	G2CONF="${G2CONF} --disable-static"
@@ -28,7 +28,5 @@ pkg_setup() {
 src_unpack() {
 	gnome2_src_unpack
 
-	# added gtk-doc.m4 to FILESDIR ro avoid a dependency on gtk-doc, and
-	# still be able to bootstrap this.
 	use x86-interix && eautoreconf # need new libtool for interix
 }
