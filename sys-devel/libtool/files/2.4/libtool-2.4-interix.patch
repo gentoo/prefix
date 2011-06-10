@@ -1,0 +1,55 @@
+reported upstream: http://lists.gnu.org/archive/html/libtool-patches/2011-06/msg00000.html
+
+diff -ru libtool-2.4.orig/libltdl/m4/libtool.m4 libtool-2.4/libltdl/m4/libtool.m4
+--- libtool-2.4.orig/libltdl/m4/libtool.m4	2011-06-09 11:41:02 +0200
++++ libtool-2.4/libltdl/m4/libtool.m4	2011-06-09 11:51:13 +0200
+@@ -4716,7 +4716,10 @@
+       _LT_TAGVAR(hardcode_direct, $1)=no
+       _LT_TAGVAR(hardcode_shlibpath_var, $1)=no
+       _LT_TAGVAR(hardcode_libdir_flag_spec, $1)='${wl}-rpath,$libdir'
+-      _LT_TAGVAR(export_dynamic_flag_spec, $1)='${wl}-E'
++	  # On interix, -E/--export-dynamic exists, but seems broken in some
++	  # cases. It isn't even possible to link a -E built shared lib to
++	  # another shared library (with or without -E).
++      _LT_TAGVAR(export_dynamic_flag_spec, $1)=
+       # Hack: On Interix 3.x, we cannot compile PIC because of a broken gcc.
+       # Instead, shared libraries are loaded at an image base (0x10000000 by
+       # default) and relocated if they conflict, which is a slow very memory
+@@ -4724,7 +4727,11 @@
+       # 256 KiB-aligned image base between 0x50000000 and 0x6FFC0000 at link
+       # time.  Moving up from 0x10000000 also allows more sbrk(2) space.
+       _LT_TAGVAR(archive_cmds, $1)='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags ${wl}-h,$soname ${wl}--image-base,`expr ${RANDOM-$$} % 4096 / 2 \* 262144 + 1342177280` -o $lib'
+-      _LT_TAGVAR(archive_expsym_cmds, $1)='sed "s,^,_," $export_symbols >$output_objdir/$soname.expsym~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags ${wl}-h,$soname ${wl}--retain-symbols-file,$output_objdir/$soname.expsym ${wl}--image-base,`expr ${RANDOM-$$} % 4096 / 2 \* 262144 + 1342177280` -o $lib'
++	  # It does not seem to have any positive or negative impact to retain
++	  # symbols or not. The only thing that happens is gazillions of warnings
++	  # polluting the linker output, as interix'ld doesn't seem to be able
++	  # to correctly handle retaining.
++      _LT_TAGVAR(archive_expsym_cmds, $1)="$_LT_TAGVAR(archive_cmds, $1)"
+       ;;
+ 
+     gnu* | linux* | tpf* | k*bsd*-gnu | kopensolaris*-gnu)
+@@ -6297,7 +6304,10 @@
+ 	_LT_TAGVAR(hardcode_direct, $1)=no
+ 	_LT_TAGVAR(hardcode_shlibpath_var, $1)=no
+ 	_LT_TAGVAR(hardcode_libdir_flag_spec, $1)='${wl}-rpath,$libdir'
+-	_LT_TAGVAR(export_dynamic_flag_spec, $1)='${wl}-E'
++	# On interix, -E/--export-dynamic exists, but seems broken in some
++	# cases. It isn't even possible to link a -E built shared lib to
++	# another shared library (with or without -E).
++	_LT_TAGVAR(export_dynamic_flag_spec, $1)=
+ 	# Hack: On Interix 3.x, we cannot compile PIC because of a broken gcc.
+ 	# Instead, shared libraries are loaded at an image base (0x10000000 by
+ 	# default) and relocated if they conflict, which is a slow very memory
+@@ -6305,7 +6315,11 @@
+ 	# 256 KiB-aligned image base between 0x50000000 and 0x6FFC0000 at link
+ 	# time.  Moving up from 0x10000000 also allows more sbrk(2) space.
+ 	_LT_TAGVAR(archive_cmds, $1)='$CC -shared $pic_flag $libobjs $deplibs $compiler_flags ${wl}-h,$soname ${wl}--image-base,`expr ${RANDOM-$$} % 4096 / 2 \* 262144 + 1342177280` -o $lib'
+-	_LT_TAGVAR(archive_expsym_cmds, $1)='sed "s,^,_," $export_symbols >$output_objdir/$soname.expsym~$CC -shared $pic_flag $libobjs $deplibs $compiler_flags ${wl}-h,$soname ${wl}--retain-symbols-file,$output_objdir/$soname.expsym ${wl}--image-base,`expr ${RANDOM-$$} % 4096 / 2 \* 262144 + 1342177280` -o $lib'
++	# It does not seem to have any positive or negative impact to retain
++	# symbols or not. The only thing that happens is gazillions of warnings
++	# polluting the linker output, as interix'ld doesn't seem to be able
++	# to correctly handle retaining.
++	_LT_TAGVAR(archive_expsym_cmds, $1)="$_LT_TAGVAR(archive_cmds, $1)"
+ 	;;
+       irix5* | irix6*)
+         case $cc_basename in
