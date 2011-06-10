@@ -1,0 +1,37 @@
+reported upstream: https://bugzilla.gnome.org/show_bug.cgi?id=652290
+
+diff -ru vte-0.26.2.orig/configure.in vte-0.26.2/configure.in
+--- vte-0.26.2.orig/configure.in	2011-06-10 15:28:23 +0200
++++ vte-0.26.2/configure.in	2011-06-10 15:29:09 +0200
+@@ -361,8 +361,8 @@
+ if test x$have_recvmsg = x1 ; then
+ 	AC_DEFINE(HAVE_RECVMSG,1,[Define if you have the recvmsg function.])
+ fi
+-AC_CHECK_FUNC(floor,,AC_CHECK_LIB(m,floor,LIBS=["$LIBS -lm"]))
+-AC_CHECK_FUNCS([ceil floor])
++AC_CHECK_LIB(m,floor,[LIBS="$LIBS -lm"; ac_cv_func_floor=yes])
++AC_CHECK_FUNCS([ceil floor round])
+ 
+ # Look for tgetent
+ 
+diff -ru vte-0.26.2.orig/src/vte.c vte-0.26.2/src/vte.c
+--- vte-0.26.2.orig/src/vte.c	2011-06-10 15:28:23 +0200
++++ vte-0.26.2/src/vte.c	2011-06-10 15:26:11 +0200
+@@ -63,6 +63,17 @@
+ #include <locale.h>
+ #endif
+ 
++#ifndef HAVE_ROUND
++#if defined(HAVE_CEIL) && defined(HAVE_FLOOR)
++static inline double round(double x) {
++	if(floor(x) < 0.5)
++		return floor(x);
++	else
++		return ceil(x);
++}
++#endif
++#endif
++
+ #if GTK_CHECK_VERSION (2, 90, 7)
+ #define GDK_KEY(symbol) GDK_KEY_##symbol
+ #else
