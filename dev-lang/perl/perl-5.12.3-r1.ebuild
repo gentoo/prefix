@@ -437,7 +437,7 @@ pkg_postinst() {
 		einfo "Converting C header files to the corresponding Perl format (ignore any error)"
 		# unprefixed as this is all kernel/libc stuff that we never provide
 		pushd /usr/include >/dev/null
-			h2ph -Q -a -d ${ARCH_LIB} \
+			h2ph -Q -a -d "${EPREFIX}${ARCH_LIB}" \
 				asm/termios.h syscall.h syslimits.h syslog.h sys/ioctl.h \
 				sys/socket.h sys/time.h wait.h sysexits.h
 		popd >/dev/null
