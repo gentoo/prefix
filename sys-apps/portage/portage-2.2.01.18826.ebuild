@@ -1,9 +1,12 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Id: portage-2.2.01.16270.ebuild 58665 2010-09-05 19:54:38Z grobian $
 
 RESTRICT="test"
 
+# Require EAPI 2 since we now require at least python-2.6 (for python 3
+# syntax support) which also requires EAPI 2.
+EAPI=2
 inherit eutils multilib python
 
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
@@ -11,19 +14,20 @@ HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
-IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
+IUSE="build doc epydoc ipc +less linguas_pl selinux prefix-chaining"
 
 python_dep=">=dev-lang/python-2.6 <dev-lang/python-3.0"
 
+# The pysqlite blocker is for bug #282760.
 DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
-	epydoc? ( >=dev-python/epydoc-2.0 )"
-# the debugedit blocker is for bug #289967
+	epydoc? ( >=dev-python/epydoc-2.0 !<=dev-python/pysqlite-2.4.1 )"
+# Require sandbox-2.2 for bug #288863.
 RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.2_p17
-		|| ( >=app-admin/eselect-1.1 >=app-admin/eselect-news-20071201 ) )
+		>=app-admin/eselect-1.2 )
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
 	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
@@ -33,16 +37,16 @@ RDEPEND="${python_dep}
 	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
 	kernel_HPUX? ( !hppa-hpux? ( >=app-misc/pax-utils-0.1.19 ) )
 	kernel_AIX? ( >=sys-apps/aix-miscutils-0.1.1634 )
-	selinux? ( >=dev-python/python-selinux-2.16 )
-	!>=dev-util/debugedit-4.4.6-r2"
+	selinux? ( || ( >=sys-libs/libselinux-2.0.94[python] <sys-libs/libselinux-2.0.94 ) )
+	!<app-shells/bash-3.2_p17"
 PDEPEND="
 	!build? (
+		less? ( sys-apps/less )
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
-		|| ( >=dev-lang/python-2.6 >=dev-python/pycrypto-2.0.1-r6 )
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
-# rsync-2.6.4 rdep is for the --filter option #167668
+# NOTE: FEATURES=install-sources requires debugedit and rsync
 
 SRC_ARCHIVES="http://dev.gentoo.org/~zmedico/portage/archives http://dev.gentoo.org/~grobian/distfiles"
 
@@ -70,22 +74,28 @@ fi
 S="${WORKDIR}"/prefix-${PN}-${TARBALL_PV}
 S_PL="${WORKDIR}"/${PN}-${PV_PL}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	if [ -n "${PATCHVER}" ]; then
-		cd "${S}"
+src_prepare() {
+	if [ -n "${PATCHVER}" ] ; then
+		if [[ -L $S/bin/ebuild-helpers/portageq ]] ; then
+			rm "$S/bin/ebuild-helpers/portageq" \
+				|| die "failed to remove portageq helper symlink"
+		fi
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
-	epatch "${FILESDIR}"/portage-2.2.00.15842-configshell.patch #308835
-	epatch "${FILESDIR}"/portage-2.2.00.15842-shebangcheck.patch #313731
-
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
+
+	if ! use ipc ; then
+		einfo "Disabling ipc..."
+		sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
+			-i pym/_emerge/AbstractEbuildProcess.py || \
+			die "failed to patch AbstractEbuildProcess.py"
+	fi
+
+	epatch "${FILESDIR}"/${PN}-2.2.01.18213-ebuildshell.patch
 }
 
-src_compile() {
+src_configure() {
 	if use prefix ; then
 		local extrapath="/usr/bin:/bin"
 		# ok, we can't rely on PORTAGE_ROOT_USER being there yet, as people
@@ -113,13 +123,10 @@ src_compile() {
 		# non-Prefix installs, relying on the autoconf defaults
 		econf || die "econf failed"
 	fi
-	emake || die "emake failed"
+}
 
-	if use elibc_FreeBSD; then
-		cd "${S}"/src/bsd-flags
-		chmod +x setup.py
-		./setup.py build || die "Failed to install bsd-chflags module"
-	fi
+src_compile() {
+	emake || die "emake failed"
 
 	if use doc; then
 		cd "${S}"/doc
@@ -161,6 +168,13 @@ src_install() {
 	if use userland_GNU; then
 		rm "${ED}"${portage_base}/bin/ebuild-helpers/sed || die "Failed to remove sed wrapper"
 	fi
+
+	# This allows config file updates that are applied for package
+	# moves to take effect immediately.
+	echo 'CONFIG_PROTECT_MASK="/etc/portage"' > "$T"/50portage \
+		|| die "failed to create 50portage"
+	doenvd "$T"/50portage || die "doenvd 50portage failed"
+	rm "$T"/50portage
 
 	# Symlinks to directories cause up/downgrade issues and the use of these
 	# modules outside of portage is probably negligible.
