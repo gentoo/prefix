@@ -7,6 +7,7 @@
 	<use>
 		<flag name="epydoc">Build html API documentation with epydoc.</flag>
 		<flag name="ipc">Use inter-process communication between portage and running ebuilds.</flag>
+		<flag name="less">Pull in sys-apps/less as default pager for etc-update.</flag>
 		<flag name="prefix-chaining">mduft's experimental prefix chaining facilities</flag>
 	</use>
 </pkgmetadata>
