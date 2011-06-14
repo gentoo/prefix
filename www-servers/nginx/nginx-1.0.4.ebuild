@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-1.0.2.ebuild,v 1.4 2011/06/02 06:07:10 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-1.0.4.ebuild,v 1.1 2011/06/02 06:07:10 hollow Exp $
 
 EAPI="2"
 
@@ -43,7 +43,7 @@ HTTP_EY_BALANCER_MODULE_SHA1="d373670"
 HTTP_SLOWFS_CACHE_MODULE_PV="1.6"
 HTTP_SLOWFS_CACHE_MODULE_P="ngx_slowfs_cache-${HTTP_SLOWFS_CACHE_MODULE_PV}"
 
-inherit eutils ssl-cert toolchain-funcs perl-module flag-o-matic
+inherit eutils ssl-cert toolchain-funcs perl-module flag-o-matic prefix
 
 DESCRIPTION="Robust, small and high performance http and reverse proxy server"
 HOMEPAGE="http://nginx.net/
@@ -289,6 +289,8 @@ src_install() {
 	newinitd "${FILESDIR}"/nginx.init-r2 nginx
 
 	cp "${FILESDIR}"/nginx.conf-r4 conf/nginx.conf
+	epatch "${FILESDIR}"/nginx.conf-r4-prefix.patch
+	eprefixify conf/nginx.conf
 	rm conf/win-utf conf/koi-win conf/koi-utf
 
 	dodir /etc/${PN}

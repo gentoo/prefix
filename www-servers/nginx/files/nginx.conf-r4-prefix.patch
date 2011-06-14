@@ -1,0 +1,52 @@
+--- conf/nginx.conf
++++ conf/nginx.conf
+@@ -1,7 +1,7 @@
+ user nginx nginx;
+ worker_processes 1;
+ 
+-error_log /var/log/nginx/error_log info;
++error_log @GENTOO_PORTAGE_EPREFIX@/var/log/nginx/error_log info;
+ 
+ events {
+ 	worker_connections 1024;
+@@ -9,7 +9,7 @@
+ }
+ 
+ http {
+-	include /etc/nginx/mime.types;
++	include @GENTOO_PORTAGE_EPREFIX@/etc/nginx/mime.types;
+ 	default_type application/octet-stream;
+ 
+ 	log_format main
+@@ -49,10 +49,10 @@
+ 		listen 127.0.0.1;
+ 		server_name localhost;
+ 
+-		access_log /var/log/nginx/localhost.access_log main;
+-		error_log /var/log/nginx/localhost.error_log info;
++		access_log @GENTOO_PORTAGE_EPREFIX@/var/log/nginx/localhost.access_log main;
++		error_log @GENTOO_PORTAGE_EPREFIX@/var/log/nginx/localhost.error_log info;
+ 
+-		root /var/www/localhost/htdocs;
++		root @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs;
+ 	}
+ 
+ 	# SSL example
+@@ -61,12 +61,12 @@
+ 	#	server_name localhost;
+ 
+ 	#	ssl on;
+-	#	ssl_certificate /etc/ssl/nginx/nginx.pem;
+-	#	ssl_certificate_key /etc/ssl/nginx/nginx.key;
++	#	ssl_certificate @GENTOO_PORTAGE_EPREFIX@/etc/ssl/nginx/nginx.pem;
++	#	ssl_certificate_key @GENTOO_PORTAGE_EPREFIX@/etc/ssl/nginx/nginx.key;
+ 
+-	#	access_log /var/log/nginx/localhost.ssl_access_log main;
+-	#	error_log /var/log/nginx/localhost.ssl_error_log info;
++	#	access_log @GENTOO_PORTAGE_EPREFIX@/var/log/nginx/localhost.ssl_access_log main;
++	#	error_log @GENTOO_PORTAGE_EPREFIX@/var/log/nginx/localhost.ssl_error_log info;
+ 
+-	#	root /var/www/localhost/htdocs;
++	#	root @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs;
+ 	#}
+ }
