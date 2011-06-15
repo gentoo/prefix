@@ -59,37 +59,14 @@ src_prepare() {
 		-e '/"dispatch"/d' \
 		bus/test-main.c || die
 
-	epatch "${FILESDIR}"/${PN}-1.4.0-interix.patch
-	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-1.4.0-interix5.patch
-	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.4.0-interix3.patch
-
-	# don't apply this unconditionally, as it will doom dbus on all other
-	# platforms (root <-> Administrator - argl).
-	if [[ ${CHOST} == *-interix* ]]; then
-		# unfortunately the -all patch doesn't apply directly with the -interix3 patch
-		[[ ${CHOST} == *-interix3* ]] &&
-			cp "${FILESDIR}"/${PN}-1.4.0-interix-all-3.patch "${T}"/itx.patch
-		[[ ${CHOST} != *-interix3* ]] &&
-			cp "${FILESDIR}"/${PN}-1.4.0-interix-all.patch "${T}"/itx.patch
-
-		# replace hardcoded values to enable portage pseudo root beeing
-		# system bus owner.
-		sed -i \
-			-e "s,+Administrators,$(id -gn),g" \
-			-e "s,Administrator,$(id -un),g" \
-			-e "s,197108,$(id -u),g" \
-			-e "s,313937313038,$(id -u | sed 's/./3&/g'),g" \
-				"${T}"/itx.patch
-
-		epatch "${T}"/itx.patch
-	fi
-
 	epatch "${FILESDIR}"/${PN}-1.4.0-asneeded.patch
 
 	# Doesn't build with PIE support
 	if [[ ${CHOST} == *-freebsd7.1 ]]; then
 		epatch "${FILESDIR}"/${PN}-1.2.3-freebsd71.patch
 	fi
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	# required for asneeded patch but also for bug 263909, cross-compile so
 	# don't remove eautoreconf
@@ -101,10 +78,6 @@ src_configure() {
 	local syssocket="${EPREFIX}"/var/run/dbus/system_bus_socket
 	local socketdir="${EPREFIX}"/tmp
 	local myconf=""
-
-	if [[ ${CHOST} == *-interix* ]]; then
-		export ac_cv_func_poll=no
-	fi
 
 	if [[ ${CHOST} == *-interix5* ]]; then
 		# interix 5.2 socket paths may not be longer than 14
@@ -118,14 +91,15 @@ src_configure() {
 	if [[ ${CHOST} != *-interix* ]]; then
 		# so we can get backtraces from apps
 		append-flags -rdynamic
+	else
+		# although poll() exists in suacomp and seems to work,
+		# the tests crash for unknown reason when enabling it.
+		export ac_cv_func_poll=no
 	fi
 
 	if [[ ${CHOST} == *-darwin* ]]; then
 		myconf="${myconf} --enable-launchd --with-launchd-agent-dir=${EPREFIX}/Library/LaunchAgents"
 	fi
-
-	# so we can get backtraces from apps
-	append-flags -rdynamic
 
 	# libaudit is *only* used in DBus wrt SELinux support, so disable it, if
 	# not on an SELinux profile.
@@ -142,8 +116,8 @@ src_configure() {
 		--enable-shared
 		--with-xml=expat
 		--with-system-pid-file=${EPREFIX}/var/run/dbus.pid
-		--with-system-socket=${EPREFIX}/var/run/dbus/system_bus_socket
-		--with-session-socket-dir=${EPREFIX}/tmp
+		--with-system-socket="${syssocket}"
+		--with-session-socket-dir="${socketdir}"
 		--with-dbus-user=${PORTAGE_USER:-portage}
 		--without-systemdsystemunitdir
 		--localstatedir=${EPREFIX}/var
