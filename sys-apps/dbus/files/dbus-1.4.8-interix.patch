@@ -1,8 +1,8 @@
 reported upstream: https://bugs.freedesktop.org/show_bug.cgi?id=38334
 
 diff -ru dbus-1.4.8.orig/bus/activation-helper.c dbus-1.4.8/bus/activation-helper.c
---- dbus-1.4.8.orig/bus/activation-helper.c	2011-06-15 09:54:49 +0200
-+++ dbus-1.4.8/bus/activation-helper.c	2011-06-15 09:32:35 +0200
+--- dbus-1.4.8.orig/bus/activation-helper.c	2011-06-15 15:39:50 +0200
++++ dbus-1.4.8/bus/activation-helper.c	2011-06-15 13:47:54 +0200
 @@ -322,12 +322,14 @@
      }
  
@@ -19,8 +19,8 @@ diff -ru dbus-1.4.8.orig/bus/activation-helper.c dbus-1.4.8/bus/activation-helpe
    /* change to the primary group for the user */
    if (setgid (pw->pw_gid))
 diff -ru dbus-1.4.8.orig/configure.ac dbus-1.4.8/configure.ac
---- dbus-1.4.8.orig/configure.ac	2011-06-15 09:54:49 +0200
-+++ dbus-1.4.8/configure.ac	2011-06-15 09:32:35 +0200
+--- dbus-1.4.8.orig/configure.ac	2011-06-15 15:39:50 +0200
++++ dbus-1.4.8/configure.ac	2011-06-15 13:47:54 +0200
 @@ -460,6 +460,8 @@
  AC_CHECK_FUNC(gethostbyname,,[AC_CHECK_LIB(nsl,gethostbyname)])
  
@@ -51,8 +51,8 @@ diff -ru dbus-1.4.8.orig/configure.ac dbus-1.4.8/configure.ac
  NETWORK_libs=
  if test x$dbus_win = xyes ; then
 diff -ru dbus-1.4.8.orig/dbus/dbus-server-unix.c dbus-1.4.8/dbus/dbus-server-unix.c
---- dbus-1.4.8.orig/dbus/dbus-server-unix.c	2011-06-15 09:39:32 +0200
-+++ dbus-1.4.8/dbus/dbus-server-unix.c	2011-06-15 10:11:35 +0200
+--- dbus-1.4.8.orig/dbus/dbus-server-unix.c	2011-06-15 15:39:50 +0200
++++ dbus-1.4.8/dbus/dbus-server-unix.c	2011-06-15 13:47:54 +0200
 @@ -31,6 +31,11 @@
  #include "dbus-sysdeps-unix.h"
  #include "dbus-string.h"
@@ -86,8 +86,8 @@ diff -ru dbus-1.4.8.orig/dbus/dbus-server-unix.c dbus-1.4.8/dbus/dbus-server-uni
                !_dbus_concat_dir_and_file (&full_path, &filename))
              {
 diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps-unix.c dbus-1.4.8/dbus/dbus-sysdeps-unix.c
---- dbus-1.4.8.orig/dbus/dbus-sysdeps-unix.c	2011-06-15 09:54:49 +0200
-+++ dbus-1.4.8/dbus/dbus-sysdeps-unix.c	2011-06-15 09:32:35 +0200
+--- dbus-1.4.8.orig/dbus/dbus-sysdeps-unix.c	2011-06-15 15:39:50 +0200
++++ dbus-1.4.8/dbus/dbus-sysdeps-unix.c	2011-06-15 15:25:40 +0200
 @@ -55,6 +55,7 @@
  #include <netinet/in.h>
  #include <netdb.h>
@@ -381,46 +381,12 @@ diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps-unix.c dbus-1.4.8/dbus/dbus-sysdeps-u
    for (i = 0 ; i < nlisten_fd ; i++)
      _dbus_close(listen_fd[i], NULL);
    dbus_free(listen_fd);
-@@ -1494,6 +1645,21 @@
- 
-  again:
- 
-+#ifdef __INTERIX
-+  /* interix seems to have problems wrt SIGPIPE
-+   * in some cases here. it looks like the signal
-+   * happening much faster than on other systems. */
-+  {
-+    struct sigaction old_sa, new_sa;
-+    int sa_status;
-+    new_sa.sa_handler = SIG_IGN;
-+    new_sa.sa_mask = 0;
-+    new_sa.sa_flags = 0;
-+
-+    if((sa_status = sigaction(SIGPIPE, &new_sa, &old_sa)) < 0)
-+      _dbus_warn("failed to ignore SIGPIPE.\n");
-+#endif /* __INTERIX */
-+
- #if defined(HAVE_CMSGCRED)
-   bytes_written = sendmsg (server_fd, &msg, 0
- #if HAVE_DECL_MSG_NOSIGNAL
-@@ -1508,6 +1674,12 @@
-                         );
- #endif
- 
-+#ifdef __INTERIX
-+    if(sa_status >= 0)
-+      sigaction(SIGPIPE, &old_sa, NULL);
-+  }
-+#endif /* __INTERIX */
-+
-   if (bytes_written < 0 && errno == EINTR)
-     goto again;
- 
-@@ -1558,12 +1730,13 @@
+@@ -1558,12 +1709,14 @@
                                  DBusCredentials *credentials,
                                  DBusError       *error)
  {
 -  struct msghdr msg;
++#ifndef __INTERIX
    struct iovec iov;
    char buf;
 -  dbus_uid_t uid_read;
@@ -433,7 +399,7 @@ diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps-unix.c dbus-1.4.8/dbus/dbus-sysdeps-u
  
  #ifdef HAVE_CMSGCRED
    union {
-@@ -1577,9 +1750,7 @@
+@@ -1577,9 +1730,7 @@
      struct sockcred cred;
    } cmsg;
  #endif
@@ -444,7 +410,7 @@ diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps-unix.c dbus-1.4.8/dbus/dbus-sysdeps-u
  
    _DBUS_ASSERT_ERROR_IS_CLEAR (error);
  
-@@ -1599,6 +1770,7 @@
+@@ -1599,6 +1750,7 @@
     * credentials information without doing anything special.
     */
  
@@ -452,7 +418,7 @@ diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps-unix.c dbus-1.4.8/dbus/dbus-sysdeps-u
    iov.iov_base = &buf;
    iov.iov_len = 1;
  
-@@ -1614,6 +1786,10 @@
+@@ -1614,6 +1766,10 @@
  
   again:
    bytes_read = recvmsg (client_fd, &msg, 0);
@@ -463,17 +429,32 @@ diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps-unix.c dbus-1.4.8/dbus/dbus-sysdeps-u
  
    if (bytes_read < 0)
      {
-@@ -1745,6 +1921,9 @@
-       }
-     if (ucred != NULL)
-       ucred_free (ucred);
-+#elif defined(__INTERIX)
-+    /* fake it on interix for now. */
-+    _dbus_credentials_add_from_current_process(credentials);
- #else /* !SO_PEERCRED && !HAVE_CMSGCRED && !HAVE_GETPEEREID && !HAVE_GETPEERUCRED */
-     _dbus_verbose ("Socket credentials not supported on this OS\n");
- #endif
-@@ -3832,7 +4011,7 @@
+@@ -1776,6 +1932,9 @@
+     }
+ 
+   return TRUE;
++#else /* __INTERIX */
++  _dbus_credentials_add_from_current_process(credentials);
++#endif /* __INTERIX */
+ }
+ 
+ /**
+@@ -1801,10 +1960,14 @@
+ {
+   _DBUS_ASSERT_ERROR_IS_CLEAR (error);
+ 
++#ifndef __INTERIX
+   if (write_credentials_byte (server_fd, error))
+     return TRUE;
+   else
+     return FALSE;
++#else
++  return TRUE;
++#endif
+ }
+ 
+ /**
+@@ -3832,7 +3995,7 @@
  dbus_bool_t
  _dbus_socket_can_pass_unix_fd(int fd) {
  
@@ -483,8 +464,8 @@ diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps-unix.c dbus-1.4.8/dbus/dbus-sysdeps-u
      struct sockaddr sa;
      struct sockaddr_storage storage;
 diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps-util-unix.c dbus-1.4.8/dbus/dbus-sysdeps-util-unix.c
---- dbus-1.4.8.orig/dbus/dbus-sysdeps-util-unix.c	2011-06-15 09:54:49 +0200
-+++ dbus-1.4.8/dbus/dbus-sysdeps-util-unix.c	2011-06-15 09:32:35 +0200
+--- dbus-1.4.8.orig/dbus/dbus-sysdeps-util-unix.c	2011-06-15 15:39:50 +0200
++++ dbus-1.4.8/dbus/dbus-sysdeps-util-unix.c	2011-06-15 13:47:54 +0200
 @@ -338,6 +338,7 @@
        return FALSE;
      }
@@ -502,8 +483,8 @@ diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps-util-unix.c dbus-1.4.8/dbus/dbus-sysd
    /* Set GID first, or the setuid may remove our permission
     * to change the GID
 diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps.h dbus-1.4.8/dbus/dbus-sysdeps.h
---- dbus-1.4.8.orig/dbus/dbus-sysdeps.h	2011-06-15 09:54:49 +0200
-+++ dbus-1.4.8/dbus/dbus-sysdeps.h	2011-06-15 09:32:35 +0200
+--- dbus-1.4.8.orig/dbus/dbus-sysdeps.h	2011-06-15 15:39:50 +0200
++++ dbus-1.4.8/dbus/dbus-sysdeps.h	2011-06-15 13:47:54 +0200
 @@ -274,6 +274,19 @@
  #define _DBUS_POLLHUP     0x0080
  /** Invalid request: fd not open */
@@ -525,8 +506,8 @@ diff -ru dbus-1.4.8.orig/dbus/dbus-sysdeps.h dbus-1.4.8/dbus/dbus-sysdeps.h
  /** There is data to read */
  #define _DBUS_POLLIN      0x0001
 diff -ru dbus-1.4.8.orig/dbus/sd-daemon.c dbus-1.4.8/dbus/sd-daemon.c
---- dbus-1.4.8.orig/dbus/sd-daemon.c	2011-06-15 09:54:49 +0200
-+++ dbus-1.4.8/dbus/sd-daemon.c	2011-06-15 09:32:35 +0200
+--- dbus-1.4.8.orig/dbus/sd-daemon.c	2011-06-15 15:39:50 +0200
++++ dbus-1.4.8/dbus/sd-daemon.c	2011-06-15 13:47:54 +0200
 @@ -40,9 +40,14 @@
  #include <string.h>
  #include <stdarg.h>
