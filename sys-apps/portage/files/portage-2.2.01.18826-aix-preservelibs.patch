@@ -1,0 +1,32 @@
+Need to list executables in NEEDED.XCOFF.1 too for preserve-libs.
+
+Do not prepend filenames with '.' twice when calculating the preserve-lib
+helper-filenames. Can't say which commit triggers this problem, as this
+did work before.
+--- bin/misc-functions.sh.orig	2011-06-16 17:15:47 +0200
++++ bin/misc-functions.sh	2011-06-16 17:17:13 +0200
+@@ -1178,7 +1178,9 @@
+ 			fi
+ 			prev_FILE=${FILE}
+ 
+-			[[ " ${FLAGS} " == *" SHROBJ "* ]] || continue
++			# shared objects have both EXEC and SHROBJ flags,
++			# while executables have EXEC flag only.
++			[[ " ${FLAGS} " == *" EXEC "* ]] || continue
+ 
+ 			# Make sure we disallow insecure RUNPATH's
+ 			# Don't want paths that point to the tree where the package was built
+--- pym/portage/util/_dyn_libs/LinkageMapXCoff.py.orig	2011-06-17 11:26:45 +0200
++++ pym/portage/util/_dyn_libs/LinkageMapXCoff.py	2011-06-17 11:32:13 +0200
+@@ -255,7 +255,11 @@
+ 			def as_contentmember(obj):
+ 				if obj.endswith("]"):
+ 					if obj.find("/") >= 0:
++						if obj[obj.rfind("/")+1] == ".":
++							return obj
+ 						return obj[:obj.rfind("/")] + "/." + obj[obj.rfind("/")+1:]
++					if obj[0] == ".":
++						return obj
+ 					return "." + obj
+ 				return obj
+ 

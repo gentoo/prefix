@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  17 Jun 2011; Michael Haubenwallner <haubi@gentoo.org>
+  portage-2.2.01.18826.ebuild,
+  +files/portage-2.2.01.18826-aix-preservelibs.patch:
+  fix the preserve-libs feature for AIX once more
+
 *portage-2.2.01.18826 (14 Jun 2011)
 
   14 Jun 2011; Fabian Groffen <grobian@gentoo.org>

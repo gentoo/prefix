@@ -75,6 +75,9 @@ S="${WORKDIR}"/prefix-${PN}-${TARBALL_PV}
 S_PL="${WORKDIR}"/${PN}-${PV_PL}
 
 src_prepare() {
+	# grobian please apply this patch when you get a round tuit --haubi
+	epatch "${FILESDIR}"/${PN}-2.2.01.18826-aix-preservelibs.patch
+
 	if [ -n "${PATCHVER}" ] ; then
 		if [[ -L $S/bin/ebuild-helpers/portageq ]] ; then
 			rm "$S/bin/ebuild-helpers/portageq" \
