@@ -1,0 +1,137 @@
+Create gcc libraries with full "soname" support on AIX,
+utilizing the ld-wrapper handling the '-soname' flag.
+
+http://bugs.gentoo.org/show_bug.cgi?id=213277
+
+diff -ruN gcc-4.2.4.orig/config.rpath gcc-4.2.4/config.rpath
+--- gcc-4.2.4.orig/config.rpath	2005-07-16 04:30:53 +0200
++++ gcc-4.2.4/config.rpath	2011-03-21 16:15:29 +0100
+@@ -204,7 +204,7 @@
+         # have to do anything special.
+         aix_use_runtimelinking=no
+       else
+-        aix_use_runtimelinking=no
++        aix_use_runtimelinking=yes
+         # Test if we are trying to use run time linking or normal
+         # AIX style linking. If -brtl is somewhere in LDFLAGS, we
+         # need to do runtime linking.
+diff -ruN gcc-4.2.4.orig/ltcf-c.sh gcc-4.2.4/ltcf-c.sh
+--- gcc-4.2.4.orig/ltcf-c.sh	2011-03-21 16:04:29 +0100
++++ gcc-4.2.4/ltcf-c.sh	2011-03-21 16:22:18 +0100
+@@ -325,7 +325,7 @@
+     else
+       # Test if we are trying to use run time linking, or normal AIX style linking.
+       # If -brtl is somewhere in LDFLAGS, we need to do run time linking.
+-      aix_use_runtimelinking=no
++      aix_use_runtimelinking=yes
+       for ld_flag in $LDFLAGS; do
+         if (test $ld_flag = "-brtl" || test $ld_flag = "-Wl,-brtl" ); then
+           aix_use_runtimelinking=yes
+@@ -342,7 +342,7 @@
+       #           link without error, but may produce a broken library.
+       allow_undefined_flag=' ${wl}-berok'
+       hardcode_libdir_flag_spec='${wl}-blibpath:$libdir:/usr/lib:/lib'
+-      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$soname $libobjs $deplibs $compiler_flags ${allow_undefined_flag} '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
++      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$realname ${wl}-soname "${wl}$soname" $libobjs $deplibs $compiler_flags ${allow_undefined_flag} ${wl}-bernotok '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
+     else
+       if test "$host_cpu" = ia64; then
+         if test $with_gnu_ld = no; then
+diff -ruN gcc-4.2.4.orig/ltcf-cxx.sh gcc-4.2.4/ltcf-cxx.sh
+--- gcc-4.2.4.orig/ltcf-cxx.sh	2011-03-21 16:04:29 +0100
++++ gcc-4.2.4/ltcf-cxx.sh	2011-03-21 16:22:43 +0100
+@@ -176,7 +176,7 @@
+     else
+       # Test if we are trying to use run time linking, or normal AIX style linking.
+       # If -brtl is somewhere in LDFLAGS, we need to do run time linking.
+-      aix_use_runtimelinking=no
++      aix_use_runtimelinking=yes
+       for ld_flag in $LDFLAGS; do
+         if (test $ld_flag = "-brtl" || test $ld_flag = "-Wl,-brtl" ); then
+           aix_use_runtimelinking=yes
+@@ -192,7 +192,7 @@
+     if test "$aix_use_runtimelinking" = yes; then
+       hardcode_libdir_flag_spec='${wl}-blibpath:$libdir:/usr/lib:/lib'
+       allow_undefined_flag=' -Wl,-G'
+-      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$soname $libobjs $deplibs $compiler_flags ${allow_undefined_flag} '"\${wl}$no_entry_flag \${wl}-brtl \${wl}$exp_sym_flag:\$export_symbols"
++      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$realname ${wl}-soname "${wl}$soname" $libobjs $deplibs $compiler_flags ${allow_undefined_flag} ${wl}-bernotok '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
+      else
+       if test "$host_cpu" = ia64; then
+         if test $with_gnu_ld = no; then
+diff -ruN gcc-4.2.4.orig/ltcf-gcj.sh gcc-4.2.4/ltcf-gcj.sh
+--- gcc-4.2.4.orig/ltcf-gcj.sh	2011-03-21 16:04:29 +0100
++++ gcc-4.2.4/ltcf-gcj.sh	2011-03-21 16:23:07 +0100
+@@ -324,7 +324,7 @@
+     else
+       # Test if we are trying to use run time linking, or normal AIX style linking.
+       # If -brtl is somewhere in LDFLAGS, we need to do run time linking.
+-      aix_use_runtimelinking=no
++      aix_use_runtimelinking=yes
+       for ld_flag in $LDFLAGS; do
+         if (test $ld_flag = "-brtl" || test $ld_flag = "-Wl,-brtl" ); then
+           aix_use_runtimelinking=yes
+@@ -341,7 +341,7 @@
+       #           link without error, but may produce a broken library.
+       allow_undefined_flag=' ${wl}-berok'
+       hardcode_libdir_flag_spec='${wl}-blibpath:$libdir:/usr/lib:/lib'
+-      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$soname $libobjs $deplibs $compiler_flags ${allow_undefined_flag} '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
++      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$realname ${wl}-soname "${wl}$soname" $libobjs $deplibs $compiler_flags ${allow_undefined_flag} ${wl}-bernotok '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
+     else
+       if test "$host_cpu" = ia64; then
+         if test $with_gnu_ld = no; then
+diff -ruN gcc-4.2.4.orig/ltconfig gcc-4.2.4/ltconfig
+--- gcc-4.2.4.orig/ltconfig	2011-03-21 16:04:29 +0100
++++ gcc-4.2.4/ltconfig	2011-03-21 16:14:16 +0100
+@@ -1005,6 +1005,7 @@
+       # If using run time linking (on AIX 4.2 or later) use lib<name>.so instead of
+       # lib<name>.a to let people know that these are not typical AIX shared libraries.
+       library_names_spec='${libname}${release}.so$versuffix ${libname}${release}.so$major $libname.so'
++      soname_spec='${libname}${release}${shared_ext}$major(shr.o)'
+     else
+       # We preserve .a as extension for shared libraries though AIX4.2
+       # and later when we are not doing run time linking.
+--- gcc-4.2.4.orig/gcc/config/rs6000/t-aix52
++++ gcc-4.2.4.orig/gcc/config/rs6000/t-aix52
+@@ -23,25 +23,32 @@
+ INSTALL_LIBGCC = install-multilib
+ 
+ # Build a shared libgcc library.
+-SHLIB_EXT = .a
++SHLIB_EXT = .so
++SHLIB_SOLINK = @shlib_base_name@.so
++SHLIB_SOVERSION = 1
++SHLIB_SONAME = @shlib_base_name@.so.$(SHLIB_SOVERSION)
+ SHLIB_LINK = $(GCC_FOR_TARGET) $(LIBGCC2_CFLAGS) -shared -nodefaultlibs \
+-	-Wl,-bE:@shlib_map_file@ -o @multilib_dir@/shr.o \
++	-Wl,-bE:@shlib_map_file@ -o @multilib_dir@/$(SHLIB_SONAME).tmp "-Wl,-soname=$(SHLIB_SONAME)(shr.o)" -Wl,-bernotok \
+ 	@multilib_flags@ @shlib_objs@ -lc \
+ 	`case pthread@multilib_dir@ in \
+ 	*pthread*) echo -L/usr/lib/threads -lpthreads -lc_r /usr/lib/libc.a ;; \
+-	*) echo -lc ;; esac` ; \
+-	rm -f @multilib_dir@/tmp-@shlib_base_name@.a ; \
+-	$(AR_CREATE_FOR_TARGET) @multilib_dir@/tmp-@shlib_base_name@.a \
+-	@multilib_dir@/shr.o ; \
+-	mv @multilib_dir@/tmp-@shlib_base_name@.a \
+-	   @multilib_dir@/@shlib_base_name@.a ; \
+-	rm -f @multilib_dir@/shr.o
++	*) echo -lc ;; esac` && \
++	rm -f @multilib_dir@/$(SHLIB_SOLINK) && \
++	if [ -f @multilib_dir@/$(SHLIB_SONAME) ]; then \
++	  mv -f @multilib_dir@/$(SHLIB_SONAME) \
++		@multilib_dir@/$(SHLIB_SONAME).backup; \
++	else true; fi && \
++	mv @multilib_dir@/$(SHLIB_SONAME).tmp @multilib_dir@/$(SHLIB_SONAME) && \
++	$(LN_S) $(SHLIB_SONAME) @multilib_dir@/$(SHLIB_SOLINK)
+ # $(slibdir) double quoted to protect it from expansion while building
+ # libgcc.mk.  We want this delayed until actual install time.
+ SHLIB_INSTALL = \
+ 	$$(mkinstalldirs) $$(DESTDIR)$$(slibdir)@shlib_slibdir_qual@; \
+-	$(INSTALL_DATA) @multilib_dir@/@shlib_base_name@.a \
+-		$$(DESTDIR)$$(slibdir)@shlib_slibdir_qual@/
++	$(INSTALL_DATA) @multilib_dir@/$(SHLIB_SONAME) \
++	  $$(DESTDIR)$$(slibdir)@shlib_slibdir_qual@/$(SHLIB_SONAME); \
++	rm -f $$(DESTDIR)$$(slibdir)@shlib_slibdir_qual@/$(SHLIB_SOLINK); \
++	$(LN_S) $(SHLIB_SONAME) \
++	  $$(DESTDIR)$$(slibdir)@shlib_slibdir_qual@/$(SHLIB_SOLINK)
+ SHLIB_LIBS = -lc `case pthread@multilib_dir@ in *pthread*) echo -lpthread ;; esac`
+ SHLIB_MKMAP = $(srcdir)/mkmap-flat.awk
+ SHLIB_MAPFILES = $(srcdir)/libgcc-std.ver $(srcdir)/config/rs6000/libgcc-ppc64.ver

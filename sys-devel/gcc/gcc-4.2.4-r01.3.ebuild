@@ -130,6 +130,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/4.2.2/aix-minimal-toc.patch
 	epatch "${FILESDIR}"/4.2.2/aix61-longdouble64.patch
+	epatch "${FILESDIR}"/4.2.2/aix-soname.patch
 }
 
 src_compile() {

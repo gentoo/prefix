@@ -1,44 +1,52 @@
---- gcc/config/rs6000/aix43.h.orig	2009-05-04 17:37:02 +0200
-+++ gcc/config/rs6000/aix43.h	2009-05-04 17:38:16 +0200
-@@ -143,7 +143,7 @@
+--- gcc/config/rs6000/aix43.h.orig	2011-06-10 13:44:52.702133487 +0200
++++ gcc/config/rs6000/aix43.h	2011-06-10 13:45:52.918701902 +0200
+@@ -143,8 +143,8 @@
     "
  
  #undef LINK_SPEC
 -#define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
-+#define LINK_SPEC "-brtl -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
-    %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
+-   %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
++#define LINK_SPEC "%{!shared:-brtl} -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
++   %{static:-bnso %(link_syscalls) } %{shared:-G -bernotok %{!e:-bnoentry}}\
     %{!maix64:%{!shared:%{g*: %(link_libg) }}} %{maix64:-b64}\
     %{mpe:-binitfini:poe_remote_main}"
---- gcc/config/rs6000/aix51.h.orig	2009-05-04 17:37:47 +0200
-+++ gcc/config/rs6000/aix51.h	2009-05-04 17:38:19 +0200
-@@ -138,7 +138,7 @@
+ 
+--- gcc/config/rs6000/aix51.h.orig	2011-06-10 13:44:58.358702965 +0200
++++ gcc/config/rs6000/aix51.h	2011-06-10 13:46:12.782003395 +0200
+@@ -138,8 +138,8 @@
     %{pthread:}-lpthreads -lc"
  
  #undef LINK_SPEC
 -#define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
-+#define LINK_SPEC "-brtl -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
-    %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
+-   %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
++#define LINK_SPEC "%{!shared:-brtl} -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
++   %{static:-bnso %(link_syscalls) } %{shared:-G -bernotok %{!e:-bnoentry}}\
     %{!maix64:%{!shared:%{g*: %(link_libg) }}} %{maix64:-b64}\
     %{mpe:-binitfini:poe_remote_main}"
---- gcc/config/rs6000/aix52.h.orig	2009-05-04 17:37:50 +0200
-+++ gcc/config/rs6000/aix52.h	2009-05-04 17:38:22 +0200
-@@ -140,7 +140,7 @@
+ 
+--- gcc/config/rs6000/aix52.h.orig	2011-06-10 13:45:00.741987969 +0200
++++ gcc/config/rs6000/aix52.h	2011-06-10 13:46:26.342060886 +0200
+@@ -140,8 +140,8 @@
     %{pthread:}-lpthreads -lc"
  
  #undef LINK_SPEC
 -#define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
-+#define LINK_SPEC "-brtl -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
-    %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
+-   %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
++#define LINK_SPEC "%{!shared:-brtl} -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
++   %{static:-bnso %(link_syscalls) } %{shared:-G -bernotok %{!e:-bnoentry}}\
     %{!maix64:%{!shared:%{g*: %(link_libg) }}} %{maix64:-b64}\
     %{mpe:-binitfini:poe_remote_main}"
---- gcc/config/rs6000/aix61.h.orig	2009-05-04 17:37:59 +0200
-+++ gcc/config/rs6000/aix61.h	2009-05-04 17:38:24 +0200
-@@ -143,7 +143,7 @@
+ 
+--- gcc/config/rs6000/aix61.h.orig	2011-06-10 13:45:03.455371116 +0200
++++ gcc/config/rs6000/aix61.h	2011-06-10 13:46:42.335327775 +0200
+@@ -143,8 +143,8 @@
     %{pthread:}-lpthreads -lc"
  
  #undef LINK_SPEC
 -#define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
-+#define LINK_SPEC "-brtl -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
-    %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
+-   %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
++#define LINK_SPEC "%{!shared:-brtl} -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
++   %{static:-bnso %(link_syscalls) } %{shared:-G -bernotok %{!e:-bnoentry}}\
     %{!maix64:%{!shared:%{g*: %(link_libg) }}} %{maix64:-b64}\
     %{mpe:-binitfini:poe_remote_main}"
+ 
