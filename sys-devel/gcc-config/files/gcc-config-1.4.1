@@ -387,54 +387,6 @@ switch_profile() {
 				return 0
 			}
 			;;
-		*-aix*)
-			LIBSUFFIX="a"
-			AIXLIBS=
-
-			do_single_runtime() {
-				dumpargs do_single_runtime "$@"
-				local sourcedir=$1; shift
-				local libname=$1; shift
-				local targetdir=$1; shift
-				local finaldir=$1; shift
-
-				aixdll \
-					--merge-runtime \
-					--finish=false \
-					--target="${targetdir}"/lib${libname}.${LIBSUFFIX} \
-					"${sourcedir}"/lib${libname}.${LIBSUFFIX} \
-				|| return 1
-				[[ ${AIXLIBS} == *":${targetdir}/lib${libname}.${LIBSUFFIX}:"* ]] \
-				|| AIXLIBS="${AIXLIBS}:${targetdir}/lib${libname}.${LIBSUFFIX}:"
-			}
-
-			finish_runtime_dir() {
-				dumpargs finish_runtime_dir "$@"
-				local sourcedir=$1; shift
-				local targetdir=$1; shift
-				local cleanup=$1; shift
-
-				local f save_IFS
-				save_IFS=$IFS; IFS=:
-				for f in ${AIXLIBS}; do
-					IFS=$save_IFS
-					[[ -n ${f} ]] || continue
-					aixdll \
-						--finish-merge \
-						--keepdir=false \
-						"${f}" \
-					|| return 1
-				done
-				IFS=$save_IFS
-				unset AIXLIBS
-
-				finish_runtime_dir_elf \
-					"${sourcedir}" \
-					"${targetdir}" \
-					${cleanup} \
-				|| return 1
-			}
-			;;
 		*-darwin*)
 			LIBSUFFIX="dylib"
 
