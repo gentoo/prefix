@@ -125,6 +125,23 @@ src_compile() {
 	# IRIX's MIPSpro produces garbage with >= -O2, bug #209137
 	[[ ${CHOST} == mips-sgi-irix* ]] && replace-flags -O? -O1
 
+	if [[ ${CHOST} == *-aix* ]] || [[ ${CHOST} == *-hpux* ]] ; then
+		# Avoid finding tgetent() in anything else but ncurses library,
+		# as <termcap.h> is provided by ncurses, even during bootstrap
+		# on AIX and HP-UX, and we would get undefined symbols like
+		# BC, PC, UP if linking against something else.
+		# The bash-bug is that it doesn't check for <termcap.h> provider,
+		# and unfortunately {,n}curses is checked last.
+		# Even if ncurses provides libcurses.so->libncurses.so symlink,
+		# it feels more clean to link against libncurses.so directly.
+		# (all configure-variables for tgetent() are shown here)
+		export ac_cv_func_tgetent=no
+		export ac_cv_lib_termcap_tgetent=no # found on HP-UX
+		export ac_cv_lib_tinfo_tgetent=no
+		export ac_cv_lib_curses_tgetent=no # found on AIX
+		#export ac_cv_lib_ncurses_tgetent=no
+	fi
+
 	# Always use the buildin readline, else if we update readline
 	# bash gets borked as readline is usually not binary compadible
 	# between minor versions.
