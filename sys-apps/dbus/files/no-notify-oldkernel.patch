@@ -1,0 +1,19 @@
+Probably will break something, but upstream deems no support for kernel <2.6.13
+
+http://lists.freedesktop.org/archives/dbus/2010-September/thread.html#13378
+
+or specifically:
+
+http://lists.freedesktop.org/archives/dbus/2010-September/013439.html
+--- dbus-1.4.0.orig/bus/bus.c	2010-08-31 23:44:19.000000000 +0200
++++ dbus-1.4.0/bus/bus.c	2010-11-04 22:20:28.000000000 +0100
+@@ -665,7 +665,8 @@ process_config_postinit (BusContext
+       return FALSE;
+     }
+ 
+-  bus_set_watched_dirs (context, &watched_dirs);
++  // bug 343601
++  //bus_set_watched_dirs (context, &watched_dirs);
+ 
+   _dbus_list_clear (&watched_dirs);
+ 

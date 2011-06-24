@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.12.ebuild,v 1.6 2011/06/22 20:18:35 ranger Exp $
 
 EAPI=2
-inherit autotools eutils multilib flag-o-matic python systemd virtualx prefix
+inherit autotools eutils multilib flag-o-matic python systemd virtualx linux-info prefix
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
@@ -68,6 +68,12 @@ src_prepare() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-1.4.8-interix.patch
+
+	if kernel_is lt 2 6 13; then
+		ewarn "Warning: Detected old kernel that doesn't support inotify,
+		disabling function now (see Gentoo bug 343601)"
+		epatch "${FILESDIR}"/no-notify-oldkernel.patch
+	fi
 
 	# required for asneeded patch but also for bug 263909, cross-compile so
 	# don't remove eautoreconf
