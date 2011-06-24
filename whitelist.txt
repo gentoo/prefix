@@ -764,6 +764,7 @@ net-fs/curlftpfs
 net-ftp/ncftp
 net-ftp/tnftp
 net-im/pork
+net-irc/atheme-services
 net-irc/quassel
 net-irc/supybot
 net-irc/weechat
