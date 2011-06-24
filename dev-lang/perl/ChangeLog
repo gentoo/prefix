@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.368 2011/05/07 16:36:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.369 2011/06/18 20:34:00 tove Exp $
+
+*perl-5.14.1 (18 Jun 2011)
+
+  18 Jun 2011; Torsten Veller <tove@gentoo.org> +perl-5.14.1.ebuild:
+  Version bump (tracker bug #356171)
 
   07 May 2011; Raúl Porcel <armin76@gentoo.org> perl-5.12.3-r1.ebuild:
   arm/ia64/m68k/s390/sh/sparc stable wrt #362025
