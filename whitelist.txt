@@ -908,7 +908,6 @@ x11-libs/libXfont
 x11-libs/libXfontcache
 x11-libs/libXft
 x11-libs/libXi
-x11-libs/libXxf86dga
 x11-libs/libXinerama
 x11-libs/libXmu
 x11-libs/libXp
@@ -920,12 +919,14 @@ x11-libs/libXt
 x11-libs/libXtst
 x11-libs/libXv
 x11-libs/libXvMC
+x11-libs/libXxf86dga
 x11-libs/libXxf86misc
 x11-libs/libXxf86vm
 x11-libs/libast
 x11-libs/libdrm
 x11-libs/libfontenc
 x11-libs/libnotify
+x11-libs/libpciaccess
 x11-libs/libsexy
 x11-libs/libsvg-cairo
 x11-libs/libva
