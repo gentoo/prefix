@@ -768,6 +768,7 @@ net-irc/atheme-services
 net-irc/quassel
 net-irc/supybot
 net-irc/weechat
+net-irc/unrealircd
 net-libs/farsight2
 net-libs/glib-networking
 net-libs/gnet
