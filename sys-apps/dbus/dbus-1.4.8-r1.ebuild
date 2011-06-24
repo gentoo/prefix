@@ -1,10 +1,9 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.1.ebuild,v 1.9 2011/01/11 11:34:07 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.8-r1.ebuild,v 1.1 2011/05/05 16:44:25 ssuominen Exp $
 
-EAPI="2"
-
-inherit autotools eutils multilib flag-o-matic virtualx prefix
+EAPI=2
+inherit autotools eutils multilib flag-o-matic python systemd virtualx prefix
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
@@ -15,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug doc selinux static-libs test X"
 
-CDEPEND="
+RDEPEND="
 	X? (
 		x11-libs/libX11
 		x11-libs/libXt
@@ -24,9 +23,6 @@ CDEPEND="
 		sys-libs/libselinux
 		sec-policy/selinux-dbus
 	)
-"
-RDEPEND="${CDEPEND}
-	!<sys-apps/dbus-0.91
 	>=dev-libs/expat-1.95.8
 "
 DEPEND="${RDEPEND}
@@ -36,6 +32,7 @@ DEPEND="${RDEPEND}
 		app-text/docbook-xml-dtd:4.1.2
 		app-text/xmlto
 	)
+	test? ( =dev-lang/python-2* )
 "
 
 # out of sources build directory
@@ -46,44 +43,19 @@ TBD=${WORKDIR}/${P}-tests-build
 pkg_setup() {
 	enewgroup messagebus
 	enewuser messagebus -1 "-1" -1 messagebus
+
+	if use test; then
+		python_set_active_version 2
+		python_pkg_setup
+	fi
 }
 
 src_prepare() {
-	# Delete pregenerated files from tarball wrt #337989 (testsuite fails)
-	find test/data -type f -name '*.service' -exec rm -f '{}' +
-	find test/data -type f -name 'debug-*.conf' -exec rm -f '{}' +
-
-	# Remove CFLAGS that is not supported by all gcc, bug #274456
-	sed 's/-Wno-pointer-sign//g' -i configure.in configure || die
-
 	# Tests were restricted because of this
-	sed -e 's/.*bus_dispatch_test.*/printf ("Disabled due to excess noise\\n");/' \
-		-e '/"dispatch"/d' -i "${S}/bus/test-main.c" || die
-
-	epatch "${FILESDIR}"/${PN}-1.4.0-interix.patch
-	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-1.4.0-interix5.patch
-	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.4.0-interix3.patch
-
-	# don't apply this unconditionally, as it will doom dbus on all other
-	# platforms (root <-> Administrator - argl).
-	if [[ ${CHOST} == *-interix* ]]; then
-		# unfortunately the -all patch doesn't apply directly with the -interix3 patch
-		[[ ${CHOST} == *-interix3* ]] &&
-			cp "${FILESDIR}"/${PN}-1.4.0-interix-all-3.patch "${T}"/itx.patch
-		[[ ${CHOST} != *-interix3* ]] &&
-			cp "${FILESDIR}"/${PN}-1.4.0-interix-all.patch "${T}"/itx.patch
-
-		# replace hardcoded values to enable portage pseudo root beeing
-		# system bus owner.
-		sed -i \
-			-e "s,+Administrators,$(id -gn),g" \
-			-e "s,Administrator,$(id -un),g" \
-			-e "s,197108,$(id -u),g" \
-			-e "s,313937313038,$(id -u | sed 's/./3&/g'),g" \
-				"${T}"/itx.patch
-
-		epatch "${T}"/itx.patch
-	fi
+	sed -i \
+		-e 's/.*bus_dispatch_test.*/printf ("Disabled due to excess noise\\n");/' \
+		-e '/"dispatch"/d' \
+		bus/test-main.c || die
 
 	epatch "${FILESDIR}"/${PN}-1.4.0-asneeded.patch
 
@@ -91,6 +63,8 @@ src_prepare() {
 	if [[ ${CHOST} == *-freebsd7.1 ]]; then
 		epatch "${FILESDIR}"/${PN}-1.2.3-freebsd71.patch
 	fi
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	# required for asneeded patch but also for bug 263909, cross-compile so
 	# don't remove eautoreconf
@@ -102,10 +76,6 @@ src_configure() {
 	local syssocket="${EPREFIX}"/var/run/dbus/system_bus_socket
 	local socketdir="${EPREFIX}"/tmp
 	local myconf=""
-
-	if [[ ${CHOST} == *-interix* ]]; then
-		export ac_cv_func_poll=no
-	fi
 
 	if [[ ${CHOST} == *-interix5* ]]; then
 		# interix 5.2 socket paths may not be longer than 14
@@ -119,14 +89,15 @@ src_configure() {
 	if [[ ${CHOST} != *-interix* ]]; then
 		# so we can get backtraces from apps
 		append-flags -rdynamic
+	else
+		# although poll() exists in suacomp and seems to work,
+		# the tests crash for unknown reason when enabling it.
+		export ac_cv_func_poll=no
 	fi
 
 	if [[ ${CHOST} == *-darwin* ]]; then
 		myconf="${myconf} --enable-launchd --with-launchd-agent-dir=${EPREFIX}/Library/LaunchAgents"
 	fi
-
-	# so we can get backtraces from apps
-	append-flags -rdynamic
 
 	# libaudit is *only* used in DBus wrt SELinux support, so disable it, if
 	# not on an SELinux profile.
@@ -143,9 +114,10 @@ src_configure() {
 		--enable-shared
 		--with-xml=expat
 		--with-system-pid-file=${EPREFIX}/var/run/dbus.pid
-		--with-system-socket=${EPREFIX}/var/run/dbus/system_bus_socket
-		--with-session-socket-dir=${EPREFIX}/tmp
+		--with-system-socket="${syssocket}"
+		--with-session-socket-dir="${socketdir}"
 		--with-dbus-user=${PORTAGE_USER:-portage}
+		$(systemd_with_unitdir)
 		--localstatedir=${EPREFIX}/var
 		${myconf}"
 
@@ -175,35 +147,34 @@ src_compile() {
 
 	cd "${BD}"
 	einfo "Running make in ${BD}"
-	emake || die "make failed"
+	emake || die
 
 	if use doc; then
-		einfo "Building API documentation..."
-		doxygen || die "doxygen failed"
+		doxygen || die
 	fi
 
 	if use test; then
 		cd "${TBD}"
 		einfo "Running make in ${TBD}"
-		emake || die "make failed"
+		emake || die
 	fi
 }
 
 src_test() {
 	cd "${TBD}"
-	DBUS_VERBOSE=1 Xmake check || die "make check failed"
+	DBUS_VERBOSE=1 Xemake -j1 check || die
 }
 
 src_install() {
 	# initscript
-	newinitd "${FILESDIR}"/dbus.init-1.0 dbus || die "newinitd failed"
+	newinitd "${FILESDIR}"/dbus.init-1.0 dbus || die
 
 	if use X ; then
 		# dbus X session script (#77504)
 		# turns out to only work for GDM (and startx). has been merged into
 		# other desktop (kdm and such scripts)
 		exeinto /etc/X11/xinit/xinitrc.d/
-		doexe "${FILESDIR}"/80-dbus || die "doexe failed"
+		doexe "${FILESDIR}"/80-dbus || die
 	fi
 
 	# needs to exist for the system socket
@@ -217,19 +188,19 @@ src_install() {
 	keepdir /etc/dbus-1/system.d/
 	keepdir /etc/dbus-1/session.d/
 
-	dodoc AUTHORS ChangeLog HACKING NEWS README doc/TODO || die "dodoc failed"
+	dodoc AUTHORS ChangeLog HACKING NEWS README doc/TODO || die
 
 	cd "${BD}"
 	# FIXME: split dtd's in dbus-dtd ebuild
-	emake DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die
 	if use doc; then
-		dohtml -p api/ doc/api/html/* || die "dohtml api failed"
+		dohtml -p api/ doc/api/html/* || die
 		cd "${S}"
-		dohtml doc/*.html || die "dohtml failed"
+		dohtml doc/*.html || die
 	fi
 
 	# Remove .la files
-	find "${ED}" -type f -name '*.la' -exec rm -f '{}' +
+	find "${ED}" -type f -name '*.la' -exec rm -f {} +
 }
 
 pkg_postinst() {
