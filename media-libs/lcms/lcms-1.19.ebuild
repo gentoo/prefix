@@ -63,9 +63,9 @@ src_compile() {
 
 		building() {
 			emake \
-				LCMS_PYEXECDIR="$(python_get_sitedir)" \
-				LCMS_PYINCLUDE="$(python_get_includedir)" \
-				LCMS_PYLIB="$(python_get_libdir)" \
+				LCMS_PYEXECDIR="${EPREFIX}$(python_get_sitedir)" \
+				LCMS_PYINCLUDE="${EPREFIX}$(python_get_includedir)" \
+				LCMS_PYLIB="${EPREFIX}$(python_get_libdir)" \
 				PYTHON_VERSION="$(python_get_version)"
 		}
 		python_execute_function -s --source-dir python building
@@ -83,8 +83,8 @@ src_install() {
 		installation() {
 			emake \
 				DESTDIR="${D}" \
-				LCMS_PYEXECDIR="$(python_get_sitedir)" \
-				LCMS_PYLIB="$(python_get_libdir)" \
+				LCMS_PYEXECDIR="${EPREFIX}$(python_get_sitedir)" \
+				LCMS_PYLIB="${EPREFIX}$(python_get_libdir)" \
 				PYTHON_VERSION="$(python_get_version)" \
 				install
 		}
