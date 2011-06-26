@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.11.0.ebuild,v 1.1 2010/07/22 20:13:14 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.10.5.ebuild,v 1.8 2011/04/23 16:53:26 armin76 Exp $
 
 EAPI="3"
 
@@ -18,8 +18,7 @@ else
 		#SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
 		SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
 	else
-		#SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.bz2"
-		SRC_URI="ftp://ftp.gnutls.org/pub/${PN}/devel/${P}.tar.bz2"
+		SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.bz2"
 	fi
 	unset MINOR_VERSION
 fi
@@ -28,26 +27,25 @@ fi
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="bindist +cxx doc examples guile lzo nls zlib"
+IUSE="bindist +cxx doc examples guile lzo nls test zlib"
 
-RDEPEND="dev-libs/libgpg-error
-	>=dev-libs/libgcrypt-1.4.0
+RDEPEND=">=dev-libs/libgcrypt-1.4.0
 	>=dev-libs/libtasn1-0.3.4
 	nls? ( virtual/libintl )
-	guile? ( dev-scheme/guile[networking] )
-	zlib? ( >=sys-libs/zlib-1.1 )
+	guile? ( >=dev-scheme/guile-1.8[networking] )
+	zlib? ( >=sys-libs/zlib-1.2.3.1 )
 	!bindist? ( lzo? ( >=dev-libs/lzo-2 ) )"
 DEPEND="${RDEPEND}
 	sys-devel/libtool
 	doc? ( dev-util/gtk-doc )
-	nls? ( sys-devel/gettext )"
+	nls? ( sys-devel/gettext )
+	test? ( app-misc/datefudge )"
 
 S="${WORKDIR}/${P%_pre*}"
 
 pkg_setup() {
 	if use lzo && use bindist; then
-		ewarn "lzo support was disabled for binary distribution of GnuTLS"
-		ewarn "due to licensing issues. See Bug #202381 for details."
+		ewarn "lzo support is disabled for binary distribution of GnuTLS due to licensing issues."
 	fi
 }
 
@@ -65,13 +63,15 @@ src_prepare() {
 		popd > /dev/null
 	done
 
-	elibtoolize # for sane .so versioning on FreeBSD
+	# Use sane .so versioning on FreeBSD.
+	elibtoolize
 }
 
 src_configure() {
 	local myconf
-	use cxx && [[ ${CHOST} == *-irix* ]] && export ac_cv_header_stdint_h=no
 	use bindist && myconf="--without-lzo" || myconf="$(use_with lzo)"
+	[[ "${VALGRIND_TESTS}" != "1" ]] && myconf+=" --disable-valgrind-tests"
+
 	econf --htmldir="${EPREFIX}"/usr/share/doc/${P}/html \
 		$(use_enable cxx) \
 		$(use_enable doc gtk-doc) \
@@ -81,18 +81,28 @@ src_configure() {
 		${myconf}
 }
 
+src_test() {
+	if has_version dev-util/valgrind && [[ "${VALGRIND_TESTS}" != "1" ]]; then
+		elog
+		elog "You can set VALGRIND_TESTS=\"1\" to enable Valgrind tests."
+		elog
+	fi
+
+	default
+}
+
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
-	dodoc AUTHORS ChangeLog NEWS README THANKS doc/TODO
+	dodoc AUTHORS ChangeLog NEWS README THANKS doc/TODO || die "dodoc failed"
 
 	if use doc; then
-		dodoc doc/gnutls.{pdf,ps}
-		dohtml doc/gnutls.html
+		dodoc doc/gnutls.{pdf,ps} || die "dodoc failed"
+		dohtml doc/gnutls.html || die "dohtml failed"
 	fi
 
 	if use examples; then
 		docinto examples
-		dodoc doc/examples/*.c
+		dodoc doc/examples/*.c || die "dodoc failed"
 	fi
 }

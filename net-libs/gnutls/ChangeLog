@@ -1,6 +1,250 @@
 # ChangeLog for net-libs/gnutls
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.255 2010/08/06 16:50:42 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.309 2011/05/14 18:42:08 arfrever Exp $
+
+*gnutls-2.12.5 (14 May 2011)
+
+  14 May 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.12.5.ebuild:
+  Version bump.
+
+*gnutls-2.12.4 (06 May 2011)
+
+  06 May 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.12.4.ebuild:
+  Version bump.
+
+  23 Apr 2011; Raúl Porcel <armin76@gentoo.org> gnutls-2.10.5.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #361525
+
+*gnutls-2.12.3 (22 Apr 2011)
+
+  22 Apr 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.12.3.ebuild:
+  Version bump.
+
+  16 Apr 2011; nixnut <nixnut@gentoo.org> gnutls-2.10.5.ebuild:
+  ppc stable #361525
+
+  12 Apr 2011; Markus Meier <maekke@gentoo.org> gnutls-2.10.5.ebuild:
+  arm stable, bug #361525
+
+*gnutls-2.12.2 (08 Apr 2011)
+
+  08 Apr 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.12.2.ebuild:
+  Version bump.
+
+  05 Apr 2011; Jeroen Roovers <jer@gentoo.org> gnutls-2.10.5.ebuild:
+  Stable for HPPA (bug #361525).
+
+  04 Apr 2011; Thomas Kahle <tomka@gentoo.org> gnutls-2.10.5.ebuild:
+  x86 stable per bug 361525
+
+*gnutls-2.12.1 (03 Apr 2011)
+
+  03 Apr 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.12.1.ebuild:
+  Version bump.
+
+  02 Apr 2011; Christoph Mende <angelos@gentoo.org> gnutls-2.10.5.ebuild:
+  Stable on amd64 wrt bug #361525
+
+*gnutls-2.12.0-r1 (30 Mar 2011)
+
+  30 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.12.0-r1.ebuild, +files/gnutls-2.12.0-C++.patch:
+  Fix compatibility with C++.
+
+*gnutls-2.12.0 (25 Mar 2011)
+
+  25 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.12.0.ebuild:
+  Version bump.
+
+  22 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  gnutls-2.10.5.ebuild, gnutls-2.11.7.ebuild:
+  Update dependencies (bug #358625).
+
+*gnutls-2.11.7 (09 Mar 2011)
+
+  09 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -gnutls-2.10.2.ebuild, -gnutls-2.10.2-r1.ebuild, -gnutls-2.10.3.ebuild,
+  -gnutls-2.11.4.ebuild, -gnutls-2.11.4-r1.ebuild, -gnutls-2.11.5.ebuild,
+  +gnutls-2.11.7.ebuild:
+  Version bump.
+
+  28 Feb 2011; Brent Baude <ranger@gentoo.org> gnutls-2.10.4.ebuild:
+  Marking gnutls-2.10.4 ppc64 for bug 352744
+
+*gnutls-2.10.5 (28 Feb 2011)
+
+  28 Feb 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -gnutls-2.8.6.ebuild, -gnutls-2.10.1.ebuild, +gnutls-2.10.5.ebuild:
+  Version bump.
+
+  22 Feb 2011; nixnut <nixnut@gentoo.org> gnutls-2.10.4.ebuild:
+  ppc stable #352744
+
+  30 Jan 2011; Raúl Porcel <armin76@gentoo.org> gnutls-2.10.4.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #352744
+
+  28 Jan 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> gnutls-2.10.4.ebuild:
+  x86 stable wrt bug #352744
+
+  26 Jan 2011; Markos Chandras <hwoarang@gentoo.org> gnutls-2.10.4.ebuild:
+  Stable on amd64 wrt bug #352744
+
+  25 Jan 2011; Jeroen Roovers <jer@gentoo.org> gnutls-2.10.4.ebuild:
+  Stable for HPPA (bug #352744).
+
+  10 Jan 2011; Samuli Suominen <ssuominen@gentoo.org> gnutls-2.10.4.ebuild,
+  gnutls-2.11.6.ebuild:
+  Prevent valgrind detection (we definately don't want to run valgrind from
+  Portage because it's too unreliable).
+
+  27 Dec 2010; Brent Baude <ranger@gentoo.org> gnutls-2.10.2.ebuild:
+  stable ppc64, bug 343755
+
+*gnutls-2.11.6 (27 Dec 2010)
+
+  27 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.11.6.ebuild:
+  Version bump.
+
+*gnutls-2.11.5 (27 Dec 2010)
+
+  27 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.11.5.ebuild:
+  Version bump.
+
+*gnutls-2.10.4 (27 Dec 2010)
+
+  27 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.10.4.ebuild:
+  Version bump.
+
+*gnutls-2.10.3 (27 Dec 2010)
+
+  27 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -files/gnutls-2.6.0-cxx-configure.in.patch, -gnutls-2.10.0.ebuild,
+  +gnutls-2.10.3.ebuild, -gnutls-2.11.0.ebuild, -gnutls-2.11.1.ebuild,
+  -gnutls-2.11.2.ebuild, -gnutls-2.11.3.ebuild:
+  Version bump.
+
+  27 Nov 2010; Raúl Porcel <armin76@gentoo.org> gnutls-2.10.2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #343755
+
+  13 Nov 2010; Raúl Porcel <armin76@gentoo.org> gnutls-2.10.2-r1.ebuild:
+  Add ~ia64/~m68k/~s390/~sh/~sparc wrt #326999
+
+  12 Nov 2010; Dane Smith <c1pher@gentoo.org> gnutls-2.10.2-r1.ebuild,
+  gnutls-2.11.4-r1.ebuild:
+  Changed guile dependency in 2.10.2-r1 and 2.11.4-r1 to be >=1.8 wrt bug
+  302619.
+
+  10 Nov 2010; Dane Smith <c1pher@gentoo.org> gnutls-2.10.2-r1.ebuild:
+  Readd alpha keyword as per bug 326999 as alpha *has* in fact keyworded
+  app-misc/datefudge.
+
+*gnutls-2.11.4-r1 (10 Nov 2010)
+*gnutls-2.10.2-r1 (10 Nov 2010)
+
+  10 Nov 2010; Dane Smith <c1pher@gentoo.org> -gnutls-2.10.1-r1.ebuild,
+  +gnutls-2.10.2-r1.ebuild, +gnutls-2.11.4-r1.ebuild, metadata.xml:
+  *Revision bumps for 2.10.2 and 2.11.4 include new valgrind use flag to fix
+  automahic dependency wrt bug 333403. 
+  *Small QA fixes in both.
+  *Removed keywords for alpha ia64 m68k s390 sh sparc in 2.10.2-r1 as
+  datefudge
+  is not keyworded for those archs. I will be opening a keyword req for
+  datefudge.
+  *Removed 2.10.1-r1 as it contained an ~alpha keyword when datefudge was
+  not
+  keyworded for alpha.
+
+  06 Nov 2010; Markus Meier <maekke@gentoo.org> gnutls-2.10.2.ebuild:
+  arm stable, bug #343755
+
+  04 Nov 2010; Christian Faulhammer <fauli@gentoo.org> gnutls-2.10.2.ebuild:
+  stable x86, bug 343755
+
+  03 Nov 2010; Jeroen Roovers <jer@gentoo.org> gnutls-2.10.2.ebuild:
+  Stable for PPC (bug #343755).
+
+  02 Nov 2010; Jeroen Roovers <jer@gentoo.org> gnutls-2.10.2.ebuild:
+  Stable for HPPA (bug #343755).
+
+  02 Nov 2010; Markos Chandras <hwoarang@gentoo.org> gnutls-2.10.2.ebuild:
+  Stable on amd64 wrt bug #343755
+
+  24 Oct 2010; Tobias Klausmann <klausman@gentoo.org> gnutls-2.10.1.ebuild:
+  Stable on alpha, bug #337139
+
+*gnutls-2.11.4 (16 Oct 2010)
+
+  16 Oct 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.11.4.ebuild:
+  Version bump.
+
+*gnutls-2.11.3 (16 Oct 2010)
+
+  16 Oct 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.11.3.ebuild:
+  Version bump.
+
+*gnutls-2.11.2 (16 Oct 2010)
+
+  16 Oct 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.11.2.ebuild:
+  Version bump. Fix dependencies (bug #337661).
+
+  11 Oct 2010; Markus Meier <maekke@gentoo.org> gnutls-2.10.1.ebuild:
+  arm stable, bug #337139
+
+  10 Oct 2010; Tobias Klausmann <klausman@gentoo.org>
+  gnutls-2.10.1-r1.ebuild:
+  Keyworded on alpha, bug #326999
+
+  06 Oct 2010; Jeroen Roovers <jer@gentoo.org> gnutls-2.10.1.ebuild:
+  Stable for HPPA (bug #337139).
+
+*gnutls-2.10.2 (01 Oct 2010)
+
+  01 Oct 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.10.2.ebuild:
+  Version bump.
+
+  30 Sep 2010; Samuli Suominen <ssuominen@gentoo.org> gnutls-2.11.1.ebuild:
+  Backport USE="test" also to development series.
+
+*gnutls-2.10.1-r1 (28 Sep 2010)
+
+  28 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +gnutls-2.10.1-r1.ebuild:
+  USE="test" for app-misc/datefudge DEPEND wrt #326999.
+
+  28 Sep 2010; Samuli Suominen <ssuominen@gentoo.org> gnutls-2.10.1.ebuild:
+  ppc64 stable wrt #337139
+
+  28 Sep 2010; Brent Baude <ranger@gentoo.org> gnutls-2.10.1.ebuild:
+  stable ppc, bug 337139
+
+  25 Sep 2010; Markus Meier <maekke@gentoo.org> gnutls-2.10.1.ebuild:
+  x86 stable, bug #337139
+
+  20 Sep 2010; Markos Chandras <hwoarang@gentoo.org> gnutls-2.10.1.ebuild:
+  Stable on amd64 wrt bug #337139
+
+*gnutls-2.11.1 (14 Sep 2010)
+
+  14 Sep 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnutls-2.11.1.ebuild:
+  Version bump.
+
+  14 Sep 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  metadata.xml:
+  Add "nettle" USE flag.
 
   06 Aug 2010; Jeroen Roovers <jer@gentoo.org> gnutls-2.10.0.ebuild:
   Stable for PPC (bug #292025).
