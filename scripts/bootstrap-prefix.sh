@@ -1032,9 +1032,31 @@ case ${CHOST} in
 	;;
 esac
 
+# deal with a problem on OSX with Python's locales
+case ${CHOST}:${LC_ALL}:${LANG} in
+	*-darwin*:UTF-8:*|*-darwin*:*:UTF-8)
+		eerror "Your LC_ALL and/or LANG is set to 'UTF-8'."
+		eerror "This setting is known to cause trouble with Python.  Please run"
+		case ${SHELL} in
+			*/tcsh|*/csh)
+				eerror "  setenv LC_ALL en_US.UTF-8"
+				eerror "  setenv LANG en_US.UTF-8"
+				eerror "and make it permanent by adding it to your ~/.${SHELL##*/}rc"
+				exit 1
+			;;
+			*)
+				eerror "  export LC_ALL=en_US.UTF-8"
+				eerror "  export LANG=en_US.UTF-8"
+				eerror "and make it permanent by adding it to your ~/.profile"
+				exit 1
+			;;
+		esac
+	;;
+esac
+
 # Just guessing a prefix is kind of scary.  Hence, to make it a bit less
 # scary, we force the user to give the prefix location here.  This also
-# makes the script a bit less dangerous as it will die when just ran to
+# makes the script a bit less dangerous as it will die when just run to
 # "see what happens".
 if [ -z "$1" ];
 then
