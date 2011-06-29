@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.11-r2.ebuild,v 1.2 2010/12/11 16:34:46 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.11-r3.ebuild,v 1.6 2011/03/28 08:57:45 ssuominen Exp $
 
 EAPI="2"
 PYTHON_DEPEND="*:2.6"
@@ -30,6 +30,7 @@ PYTHON_MODNAME="java_config_2"
 src_prepare() {
 	distutils_src_prepare
 	epatch "${FILESDIR}/${P}-python3.patch"
+	epatch "${FILESDIR}/python-abi-support.patch"
 }
 
 src_test() {
@@ -52,6 +53,7 @@ src_prepare() {
 
 src_install() {
 	distutils_src_install
+	rm -rf "${ED}"/usr/share/mimelnk #350459
 
 	local a=${ARCH}
 	case $a in

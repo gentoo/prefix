@@ -1,6 +1,45 @@
 # ChangeLog for dev-java/java-config
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.254 2010/11/14 16:51:25 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.263 2011/03/28 08:57:45 ssuominen Exp $
+
+  28 Mar 2011; Samuli Suominen <ssuominen@gentoo.org>
+  java-config-2.1.11-r3.ebuild:
+  Don't install deprecated x-java-jnlp-file.desktop to /usr/share/mimelnk wrt
+  #350459. Signed off by Alistair Bush.
+
+  25 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  java-config-2.1.11-r3.ebuild:
+  ppc64 stable wrt #351486
+
+  23 Jan 2011; Raúl Porcel <armin76@gentoo.org> java-config-2.1.10.ebuild,
+  java-config-2.1.11.ebuild:
+  Drop alpha keywords
+
+  22 Jan 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  java-config-2.1.11-r3.ebuild:
+  x86 stable wrt bug #351486
+
+  13 Jan 2011; Brent Baude <ranger@gentoo.org> java-config-2.1.11-r3.ebuild:
+  stable ppc, bug 351486
+
+  13 Jan 2011; Markos Chandras <hwoarang@gentoo.org>
+  java-config-2.1.11-r3.ebuild:
+  Stable on amd64 wrt bug #351486
+
+*java-config-2.1.11-r3 (13 Dec 2010)
+
+  13 Dec 2010; Alistair Bush <ali_bush@gentoo.org>
+  +java-config-2.1.11-r3.ebuild, +files/python-abi-support.patch:
+  Add special handling of Python-specific variables for support for Jython.
+  #348306.
+
+  11 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  java-config-2.1.10.ebuild, java-config-2.1.11.ebuild,
+  java-config-2.1.11-r1.ebuild, java-config-2.1.11-r2.ebuild:
+  Restrict Jython ABIs.
+
+  27 Nov 2010; Michael Weber <xmw@gentoo.org> java-config-2.1.11.ebuild:
+  Add ~sparc (bug 344659).
 
   14 Nov 2010; Raúl Porcel <armin76@gentoo.org>
   java-config-2.1.11-r1.ebuild:
