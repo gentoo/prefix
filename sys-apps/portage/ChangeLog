@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.18890 (01 Jul 2011)
+
+  01 Jul 2011; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.18706.ebuild, +portage-2.2.01.18890.ebuild:
+  Version bump, matches portage-2.2.0_alpha43
+
   17 Jun 2011; Michael Haubenwallner <haubi@gentoo.org>
   portage-2.2.01.18826.ebuild,
   +files/portage-2.2.01.18826-aix-preservelibs.patch:

@@ -14,7 +14,7 @@ HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
-IUSE="build doc epydoc ipc linguas_pl selinux prefix-chaining"
+IUSE="build doc epydoc ipc +less linguas_pl selinux prefix-chaining"
 
 python_dep=">=dev-lang/python-2.6 <dev-lang/python-3.0"
 
@@ -41,11 +41,12 @@ RDEPEND="${python_dep}
 	!<app-shells/bash-3.2_p17"
 PDEPEND="
 	!build? (
+		less? ( sys-apps/less )
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
-# rsync-2.6.4 rdep is for the --filter option #167668
+# NOTE: FEATURES=install-sources requires debugedit and rsync
 
 SRC_ARCHIVES="http://dev.gentoo.org/~zmedico/portage/archives http://dev.gentoo.org/~grobian/distfiles"
 
