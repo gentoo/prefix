@@ -962,6 +962,7 @@ x11-terms/aterm
 x11-terms/gnome-terminal
 x11-terms/terminal
 x11-terms/tilda
+x11-terms/rxvt-unicode
 
 # entire categories
 app-accessibility
