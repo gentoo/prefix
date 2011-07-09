@@ -267,15 +267,18 @@ src_configure() {
 		local paths=""
 		echo "int main() {}" > "${T}"/t.c
 		# need to ensure dirs contain compatible libs, bug #358875
-		for ldir in /lib /usr/lib /lib64 /lib/64 /usr/lib64 /usr/lib/64 /lib32 /usr/lib32 ; do
+		for ldir in /lib64 /lib/64 /usr/lib64 /usr/lib/64 /lib32 /usr/lib32 /lib /usr/lib ; do
 			[[ -d ${ldir} ]] || continue
-			# find a random lib from here
-			llib=( ${ldir}/*$(get_libname) )
-			[[ -e ${llib[0]} ]] || continue
-			$(tc-getCC) -o "${T}"/t "${T}"/t.c ${llib[0]} >& /dev/null \
-				&& paths="${paths} ${ldir}"
+			# look for libc, which should be somewhere
+			llib=${ldir}/libc$(get_libname)
+			[[ -e ${llib} ]] || continue
+			if $(tc-getCC) -o "${T}"/t "${T}"/t.c ${llib} >& /dev/null ; then
+				ldir=${ldir#/usr}
+				paths="${ldir} /usr${ldir}"
+				break
+			fi
 		done
-		myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) ${paths}"
+		myconf "-Dlibpth=${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir) ${paths:-/lib /usr/lib}"
 	elif [[ $(get_libdir) != "lib" ]] ; then
 		# We need to use " and not ', as the written config.sh use ' ...
 		myconf "-Dlibpth=/usr/local/$(get_libdir) /$(get_libdir) /usr/$(get_libdir)"
