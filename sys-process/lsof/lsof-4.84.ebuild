@@ -13,7 +13,7 @@ SRC_URI="ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/${MY_P}.tar.bz2
 
 LICENSE="lsof"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="static selinux"
 
 DEPEND="selinux? ( sys-libs/libselinux )"
