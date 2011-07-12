@@ -158,6 +158,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.12.3-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.12.3-interix.patch
 
+	# Fix build on OSX Lion (10.7)
+	sed -i -e '/^usenm=/s/true/false/' hints/darwin.sh
+
 	# rest of usr-local patch
 	sed -i \
 		-e '/^locincpth=/c\locincpth=""' \
