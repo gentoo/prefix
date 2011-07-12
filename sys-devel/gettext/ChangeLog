@@ -1,6 +1,18 @@
 # ChangeLog for sys-devel/gettext
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.190 2010/12/04 15:35:26 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.193 2011/04/08 19:40:29 betelgeuse Exp $
+
+  08 Apr 2011; Petteri Räty <betelgeuse@gentoo.org>
+  gettext-0.18.1.1-r2.ebuild:
+  Fix typo in calling java-pkg-opt-2_pkg_preinst.
+
+*gettext-0.18.1.1-r2 (07 Apr 2011)
+
+  07 Apr 2011; Alistair Bush <ali_bush@gentoo.org> +gettext-0.18.1.1-r2.ebuild:
+  Add java support. Thanks to Ralph Sennhauser. see #361713.
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> gettext-0.16.1-r1.ebuild:
+  Drop to ~mips
 
   04 Dec 2010; Raúl Porcel <armin76@gentoo.org> gettext-0.18.1.1-r1.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #338654
@@ -618,8 +630,6 @@
   07 Feb 2003; Guy Martin <gmsoft@gentoo.org> gettext-0.11.5-r1.ebuild : 
   Added hppa to keywords.
 
-*gettext-0.11.1  (12 Dec 2002)
-
   12 Dec 2002 ; Jan Seidel <tuxus@gentoo.org> :
   Added mips to keywords.
 
@@ -674,7 +684,7 @@
   enabled gettext to install them instead.  Hopefully this solves the
   intermittent php emerge bug.
 
-*gettext-0.11.1
+*gettext-0.11.1 (27 Mar 2002)
 
   27 Mar 2002; Seemant Kulleen <seemant@gentoo.org> gettext-0.11.1.ebuild :
 
