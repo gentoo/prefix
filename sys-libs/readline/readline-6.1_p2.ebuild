@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.1_p2.ebuild,v 1.2 2010/03/24 04:14:27 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.1_p2.ebuild,v 1.8 2011/03/01 00:34:48 ranger Exp $
 
 inherit autotools eutils multilib toolchain-funcs flag-o-matic
 
@@ -71,6 +71,9 @@ src_unpack() {
 	# fix building under Gentoo/FreeBSD; upstream FreeBSD deprecated
 	# objformat for years, so we don't want to rely on that.
 	sed -i -e '/objformat/s:if .*; then:if true; then:' support/shobj-conf || die
+
+	# support OSX Lion
+	sed -i -e 's/darwin10\*/darwin1\[01\]\*/g' support/shobj-conf || die
 
 	ln -s ../.. examples/rlfe/readline # for local readline headers
 }

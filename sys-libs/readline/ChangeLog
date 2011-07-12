@@ -1,6 +1,35 @@
 # ChangeLog for sys-libs/readline
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.160 2010/05/09 17:43:31 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.168 2011/03/01 00:48:21 vapier Exp $
+
+*readline-6.2_p1 (01 Mar 2011)
+
+  01 Mar 2011; Mike Frysinger <vapier@gentoo.org> +readline-6.2_p1.ebuild:
+  Version bump.
+
+  01 Mar 2011; Brent Baude <ranger@gentoo.org> readline-6.1_p2.ebuild:
+  stable ppc64, bug 354939
+
+  26 Feb 2011; Raúl Porcel <armin76@gentoo.org> readline-6.1_p2.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #354939
+
+  22 Feb 2011; nixnut <nixnut@gentoo.org> readline-6.1_p2.ebuild:
+  ppc stable #354939
+
+  21 Feb 2011; Jeroen Roovers <jer@gentoo.org> readline-6.1_p2.ebuild:
+  Stable for HPPA (bug #354939).
+
+  20 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  readline-6.1_p2.ebuild:
+  x86 stable wrt bug #354939
+
+  16 Feb 2011; Markos Chandras <hwoarang@gentoo.org> readline-6.1_p2.ebuild:
+  Stable on amd64 wrt bug #354939
+
+*readline-6.2 (15 Feb 2011)
+
+  15 Feb 2011; Mike Frysinger <vapier@gentoo.org> +readline-6.2.ebuild:
+  Version bump.
 
   09 May 2010; Raúl Porcel <armin76@gentoo.org> readline-6.1.ebuild:
   alpha stable wrt #310819
