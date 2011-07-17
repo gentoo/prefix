@@ -2,6 +2,15 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.18980 (17 Jul 2011)
+
+  17 Jul 2011; Fabian Groffen <grobian@gentoo.org>
+  -files/portage-2.2.00.13849-ebuildshell.patch,
+  -files/portage-2.2.00.15842-configshell.patch,
+  -files/portage-2.2.00.15842-shebangcheck.patch, -portage-2.2.01.18761.ebuild,
+  +portage-2.2.01.18980.ebuild, +files/portage-2.2.01.18980-ebuildshell.patch:
+  Version bump, matches portage-2.2.0_alpha45+, cleanup
+
 *portage-2.2.01.18890 (01 Jul 2011)
 
   01 Jul 2011; Fabian Groffen <grobian@gentoo.org>

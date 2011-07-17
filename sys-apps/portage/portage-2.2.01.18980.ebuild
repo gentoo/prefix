@@ -16,7 +16,7 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 SLOT="0"
 IUSE="build doc epydoc ipc +less linguas_pl selinux prefix-chaining"
 
-python_dep=">=dev-lang/python-2.6 <dev-lang/python-3.0"
+python_dep=">=dev-lang/python-2.7 <dev-lang/python-3.0"
 
 # The pysqlite blocker is for bug #282760.
 DEPEND="${python_dep}
@@ -46,7 +46,7 @@ PDEPEND="
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
-# rsync-2.6.4 rdep is for the --filter option #167668
+# NOTE: FEATURES=install-sources requires debugedit and rsync
 
 SRC_ARCHIVES="http://dev.gentoo.org/~zmedico/portage/archives http://dev.gentoo.org/~grobian/distfiles"
 
@@ -92,7 +92,7 @@ src_prepare() {
 			die "failed to patch AbstractEbuildProcess.py"
 	fi
 
-	epatch "${FILESDIR}"/${PN}-2.2.01.18213-ebuildshell.patch
+	epatch "${FILESDIR}"/${PN}-2.2.01.18980-ebuildshell.patch
 }
 
 src_configure() {
