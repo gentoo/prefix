@@ -161,6 +161,24 @@ CXX='g++ -m64'
 HOSTCC='gcc -m64'
 "
 			;;
+		i*86-apple-darwin11)
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.7/x86"
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
+			extra_make_globals="
+CC='gcc -m32'
+CXX='g++ -m32'
+HOSTCC='gcc -m32'
+"
+			;;
+		x86_64-apple-darwin11)
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.7/x64"
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
+			extra_make_globals="
+CC='gcc -m64'
+CXX='g++ -m64'
+HOSTCC='gcc -m64'
+"
+			;;
 		i*86-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/x86"
 			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
