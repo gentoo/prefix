@@ -776,7 +776,7 @@ bootstrap_coreutils6() {
 }
 
 bootstrap_coreutils8() {
-	bootstrap_gnu coreutils 8.2
+	bootstrap_gnu coreutils 8.12
 }
 
 bootstrap_tar15() {
