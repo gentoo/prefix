@@ -613,6 +613,12 @@ bootstrap_gnu() {
 	# coreutils completely useless (install failing on everything)
 	[[ ${A%-*} == "coreutils" ]] && myconf="${myconf} --disable-acl"
 
+	if [[ ${A%-*} == "coreutils" && ${CHOST} == *-darwin11 ]] ; then
+		# something in the headers changed, which breaks gnulib
+		sed -i -e '/^#ifndef weak_alias$/a\# undef __stpncpy' lib/stpncpy.c
+		sed -i -e '/^# undef __stpncpy$/a\# undef stpncpy' lib/stpncpy.c
+	fi
+	
 	if [[ ${A%-*} == "coreutils" && ${CHOST} == *-interix* ]] ; then
 		# Interix doesn't have filesystem listing stuff, but that means all
 		# other utilities but df aren't useless at all, so don't die
