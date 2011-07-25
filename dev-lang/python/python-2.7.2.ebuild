@@ -202,6 +202,7 @@ src_configure() {
 		use tk       || disable+=" _tkinter"
 		use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
 		[[ ${CHOST} == *64-apple-darwin* ]] && disable+=" Nav _Qt" # Carbon
+		[[ ${CHOST} == *-apple-darwin11 ]] && disable+=" _Fm _Qd _Qdoffs"
 		export PYTHON_DISABLE_MODULES="${disable}"
 
 		if ! use xml; then
