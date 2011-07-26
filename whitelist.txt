@@ -841,6 +841,7 @@ sys-apps/help2man
 sys-apps/hexdump-esr
 sys-apps/hwloc
 sys-apps/keyutils
+sys-apps/lm_sensors
 sys-apps/man-pages
 sys-apps/man-pages-posix
 sys-apps/mawk
