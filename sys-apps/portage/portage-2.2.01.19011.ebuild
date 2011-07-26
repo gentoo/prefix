@@ -16,7 +16,7 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 SLOT="0"
 IUSE="build doc epydoc ipc +less linguas_pl selinux prefix-chaining"
 
-python_dep=">=dev-lang/python-2.6 <dev-lang/python-3.0"
+python_dep=">=dev-lang/python-2.7 <dev-lang/python-3.0"
 
 # The pysqlite blocker is for bug #282760.
 DEPEND="${python_dep}
@@ -75,9 +75,6 @@ S="${WORKDIR}"/prefix-${PN}-${TARBALL_PV}
 S_PL="${WORKDIR}"/${PN}-${PV_PL}
 
 src_prepare() {
-	# grobian please apply this patch when you get a round tuit --haubi
-	epatch "${FILESDIR}"/${PN}-2.2.01.18826-aix-preservelibs.patch
-
 	if [ -n "${PATCHVER}" ] ; then
 		if [[ -L $S/bin/ebuild-helpers/portageq ]] ; then
 			rm "$S/bin/ebuild-helpers/portageq" \
@@ -95,7 +92,7 @@ src_prepare() {
 			die "failed to patch AbstractEbuildProcess.py"
 	fi
 
-	epatch "${FILESDIR}"/${PN}-2.2.01.18213-ebuildshell.patch
+	epatch "${FILESDIR}"/${PN}-2.2.01.18980-ebuildshell.patch
 }
 
 src_configure() {
