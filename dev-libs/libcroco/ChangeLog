@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libcroco
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.49 2010/07/20 04:37:02 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.50 2011/01/27 11:28:49 pacho Exp $
+
+  27 Jan 2011; Pacho Ramos <pacho@gentoo.org> libcroco-0.6.2.ebuild:
+  Don't build tests when not needed (bug #226215), bump to eapi3 and set
+  GCONF_DEBUG to proper value.
 
   20 Jul 2010; Jeroen Roovers <jer@gentoo.org> libcroco-0.6.1.ebuild,
   libcroco-0.6.2.ebuild:
