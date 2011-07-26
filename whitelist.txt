@@ -832,6 +832,7 @@ sys-apps/ack
 sys-apps/acl
 sys-apps/aix-miscutils
 sys-apps/baselayout-prefix
+sys-apps/busybox
 sys-apps/darwin-miscutils
 sys-apps/dog
 sys-apps/ed
