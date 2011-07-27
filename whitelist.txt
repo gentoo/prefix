@@ -374,6 +374,7 @@ dev-libs/libtommath
 dev-libs/libunique
 dev-libs/libusb
 dev-libs/libusb-compat
+dev-libs/libx86emu
 dev-libs/libxdg-basedir
 dev-libs/libxml2
 dev-libs/libyaml
@@ -820,6 +821,7 @@ net-misc/pssh
 net-misc/puf
 net-misc/sitecopy
 net-misc/socat
+net-misc/ssvnc
 net-misc/throttle
 net-misc/tinc
 net-misc/tokyotyrant
@@ -837,11 +839,14 @@ sys-apps/darwin-miscutils
 sys-apps/dog
 sys-apps/ed
 sys-apps/fakeroot
+sys-apps/gptfdisk
 sys-apps/help2man
 sys-apps/hexdump-esr
+sys-apps/hwinfo
 sys-apps/hwloc
 sys-apps/keyutils
 sys-apps/lm_sensors
+sys-apps/lshw
 sys-apps/man-pages
 sys-apps/man-pages-posix
 sys-apps/mawk
