@@ -661,7 +661,7 @@ bootstrap_python() {
 		PV=2.6.4
 		A=python-${PV}-interix.tar.bz2
 	else
-		PV=2.6.4
+		PV=2.6.4  # PV=2.7.2 is available, but fails on Mac
 		A=python-${PV}-patched.tar.bz2
 	fi
 	einfo "Bootstrapping ${A%-*}"
