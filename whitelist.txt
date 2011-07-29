@@ -90,6 +90,7 @@ app-arch/zoo
 app-cdr/bchunk
 app-cdr/bin2iso
 app-cdr/ccd2iso
+app-cdr/dvd+rw-tools
 app-cdr/nrg2iso
 app-cdr/xbiso
 app-editors/bvi
@@ -343,6 +344,7 @@ dev-libs/kpathsea
 dev-libs/libaio
 dev-libs/libatomic_ops
 dev-libs/libattica
+dev-libs/libconfig
 dev-libs/libdbusmenu-qt
 dev-libs/libdshconfig
 dev-libs/libebml
@@ -518,11 +520,11 @@ dev-vcs/hg-git
 dev-vcs/hgsubversion
 dev-vcs/hgsvn
 dev-vcs/mercurial
+dev-vcs/qgit
 dev-vcs/rcs
 dev-vcs/statcvs
 dev-vcs/svk
 dev-vcs/tig
-dev-vcs/qgit
 games-arcade/ascii-invaders
 games-arcade/nibbles
 games-arcade/tuxanci
@@ -722,8 +724,8 @@ media-sound/shell-fm
 media-sound/shntool
 media-sound/snd
 media-sound/sox
-media-sound/streamripper
 media-sound/squeezeboxserver
+media-sound/streamripper
 media-sound/twolame
 media-sound/vorbis-tools
 media-video/asfrecorder
@@ -809,6 +811,7 @@ net-misc/autossh
 net-misc/axel
 net-misc/clusterssh
 net-misc/curl
+net-misc/dhcpcd
 net-misc/gsasl
 net-misc/ipcalc
 net-misc/iperf
@@ -817,6 +820,7 @@ net-misc/keychain
 net-misc/mDNSResponder
 net-misc/memcached
 net-misc/mico
+net-misc/openvpn
 net-misc/pssh
 net-misc/puf
 net-misc/sitecopy
@@ -840,6 +844,7 @@ sys-apps/dog
 sys-apps/ed
 sys-apps/fakeroot
 sys-apps/gptfdisk
+sys-apps/hdparm
 sys-apps/help2man
 sys-apps/hexdump-esr
 sys-apps/hwinfo
@@ -852,10 +857,13 @@ sys-apps/man-pages-posix
 sys-apps/mawk
 sys-apps/miscfiles
 sys-apps/most
+sys-apps/net-tools
 sys-apps/prefix-chain-utils
 sys-apps/pv
 sys-apps/ren
 sys-apps/rename
+sys-apps/sdparm
+sys-apps/smartmontools
 sys-apps/ucspi-tcp
 sys-apps/which
 sys-block/eject
@@ -873,6 +881,8 @@ sys-devel/llvm
 sys-devel/llvm-gcc
 sys-devel/m4
 sys-devel/native-cctools
+sys-fs/dosfstools
+sys-fs/mtd-utils
 sys-libs/csu
 sys-libs/pam
 sys-libs/suacomp
@@ -968,9 +978,9 @@ x11-libs/xforms
 x11-libs/xtrans
 x11-terms/aterm
 x11-terms/gnome-terminal
+x11-terms/rxvt-unicode
 x11-terms/terminal
 x11-terms/tilda
-x11-terms/rxvt-unicode
 
 # entire categories
 app-accessibility
