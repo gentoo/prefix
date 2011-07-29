@@ -149,6 +149,7 @@ app-misc/sphinx
 app-misc/strigi
 app-misc/supercat
 app-misc/tmux
+app-misc/tmux-mem-cpu-load
 app-misc/ttyrec
 app-misc/when
 app-misc/zisofs-tools
