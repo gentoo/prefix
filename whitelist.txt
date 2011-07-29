@@ -801,6 +801,7 @@ net-libs/webkit-gtk
 net-libs/xulrunner
 net-mail/dovecot
 net-mail/getmail
+net-mail/mailutils
 net-mail/mairix
 net-mail/mlmmj
 net-mail/mpack
