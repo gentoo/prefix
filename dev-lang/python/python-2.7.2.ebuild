@@ -95,10 +95,16 @@ pkg_setup() {
 }
 
 src_prepare() {
+	local excluded_patches
+
 	# Ensure that internal copies of expat, libffi and zlib are not used.
 	rm -fr Modules/expat
 	rm -fr Modules/_ctypes/libffi*
 	rm -fr Modules/zlib
+
+	# if building a patched source-tar, comment the rm's above, and uncomment
+	# this line:
+	#excluded_patches="01_all_prefix-no-patch-invention.patch"
 
 	if [[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]]; then
 		if [[ "$(hg branch)" != "default" ]]; then
@@ -124,20 +130,9 @@ src_prepare() {
 		fi
 	fi
 
-	local excluded_patches
 	if ! tc-is-cross-compiler; then
-		excluded_patches="*_all_crosscompile.patch"
+		excluded_patches+=" *_all_crosscompile.patch"
 	fi
-
-	# hardcoding GNU specifics breaks platforms not using GNU binutils
-	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
-		*"GNU Binutils"*) # GNU as with noexecstack support
-			:
-		;;
-		*)
-			excluded_patches+=" 07_all_ctypes_execstack.patch"
-		;;
-	esac
 
 	local patchset_dir
 	if [[ "${PV}" == *_pre* ]]; then
@@ -150,7 +145,7 @@ src_prepare() {
 
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-2_7
-	EPATCH_SUFFIX="patch" \
+	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
 		epatch "${WORKDIR}"/python-prefix-${MY_PV}-gentoo-patches
 
 	# need this to have _NSGetEnviron being used, which by default isn't, also
