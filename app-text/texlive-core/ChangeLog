@@ -1,6 +1,62 @@
 # ChangeLog for app-text/texlive-core
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.128 2010/10/30 18:46:04 aballier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.141 2011/07/28 15:44:28 aballier Exp $
+
+  28 Jul 2011; Alexis Ballier <aballier@gentoo.org> texlive-core-2011.ebuild:
+  disable eptex with use=-cjk too, should fix bug #376765
+
+  28 Jul 2011; Alexis Ballier <aballier@gentoo.org> texlive-core-2011.ebuild:
+  bump a bit the version requirements
+
+*texlive-core-2011 (28 Jul 2011)
+
+  28 Jul 2011; Alexis Ballier <aballier@gentoo.org> +texlive-core-2011.ebuild:
+  bump to TeX Live 2011
+
+  11 Jul 2011; Alexis Ballier <aballier@gentoo.org> files/texmf-update2010:
+  fix mktemp usage on fbsd
+
+*texlive-core-2010-r3 (06 Jul 2011)
+
+  06 Jul 2011; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2010-r1.ebuild, -texlive-core-2010-r2.ebuild,
+  +texlive-core-2010-r3.ebuild:
+  revision bump to force a rebuild
+
+  06 Jul 2011; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2010-r2.ebuild:
+  I mistakenly lost the xetex math patch with the last patchset... readd it now
+
+*texlive-core-2010-r2 (28 Jun 2011)
+
+  28 Jun 2011; Alexis Ballier <aballier@gentoo.org>
+  +texlive-core-2010-r2.ebuild:
+  disable largefile again as it seems to cause problems on some arches, require
+  a kpathsea version with largefile support disabled
+
+  18 May 2011; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2010-r1.ebuild:
+  fix build with long flag strings, bug #349085
+
+*texlive-core-2010-r1 (01 Mar 2011)
+
+  01 Mar 2011; Alexis Ballier <aballier@gentoo.org> -texlive-core-2010.ebuild,
+  +texlive-core-2010-r1.ebuild:
+  revbump it to force a rebuild
+
+  01 Mar 2011; Alexis Ballier <aballier@gentoo.org> texlive-core-2010.ebuild:
+  Add a patch to fix xetex math mode in 64 bits, reported by Faustus
+  <orlovm@cs.bgu.ac.il>, bug #356701
+
+  17 Feb 2011; Alexis Ballier <aballier@gentoo.org> texlive-core-2010.ebuild:
+  Add a patch from debian to fix a2ping invocation wrt its shebang, part of bug
+  #289818
+
+  16 Feb 2011; Alexis Ballier <aballier@gentoo.org> texlive-core-2010.ebuild:
+  use etexmf-update
+
+  16 Feb 2011; Alexis Ballier <aballier@gentoo.org> texlive-core-2010.ebuild:
+  Import a fix from upstream to fix build with libpng 1.5, bug #355105
 
   30 Oct 2010; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2010.ebuild:

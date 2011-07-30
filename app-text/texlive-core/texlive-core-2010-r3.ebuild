@@ -1,12 +1,12 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2010.ebuild,v 1.2 2010/10/30 18:46:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2010-r3.ebuild,v 1.1 2011/07/06 20:41:51 aballier Exp $
 
 EAPI=3
 
 inherit eutils flag-o-matic toolchain-funcs libtool texlive-common prefix
 
-PATCHLEVEL="20"
+PATCHLEVEL="25"
 TL_SOURCE_VERSION=20100722
 MY_PV=${PN%-core}-${TL_SOURCE_VERSION}-source
 
@@ -74,7 +74,7 @@ COMMON_DEPEND="${MODULAR_X_DEPEND}
 		media-libs/freetype:2
 		media-libs/silgraphite
 	)
-	dev-libs/kpathsea
+	>=dev-libs/kpathsea-6.0.1_p20110627
 	cjk? ( dev-libs/ptexenc )"
 
 DEPEND="${COMMON_DEPEND}
@@ -169,6 +169,7 @@ src_configure() {
 		--disable-xdvipdfmx \
 		--enable-shared \
 		--disable-native-texlive-build \
+		--disable-largefile \
 		$(use_enable xetex) \
 		$(use_enable cjk ptex) \
 		$(use_enable cjk mendexk) \
@@ -300,9 +301,7 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	if [ "$ROOT" = "/" ] ; then
-		"${EPREFIX}"/usr/sbin/texmf-update
-	fi
+	etexmf-update
 
 	elog
 	elog "If you have configuration files in ${EPREFIX}/etc/texmf to merge,"
