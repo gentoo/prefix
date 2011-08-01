@@ -1,6 +1,43 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.811 2011/04/13 03:35:39 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.819 2011/07/21 02:05:08 jer Exp $
+
+  21 Jul 2011; Jeroen Roovers <jer@gentoo.org> gcc-4.4.6.ebuild:
+  Stable for HPPA (bug #374465).
+
+  20 Jul 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-2.95.3-r9.ebuild,
+  gcc-2.95.3-r10.ebuild, gcc-3.1.1-r2.ebuild, gcc-3.2.2.ebuild,
+  gcc-3.2.3-r4.ebuild, gcc-3.3.6-r1.ebuild, gcc-3.4.6-r2.ebuild,
+  gcc-4.0.4.ebuild, gcc-4.1.2.ebuild, gcc-4.2.4-r1.ebuild, gcc-4.3.3-r2.ebuild,
+  gcc-4.4.2.ebuild, gcc-4.4.3-r3.ebuild:
+  Repoman talks too much.
+
+*gcc-4.4.6 (20 Jul 2011)
+
+  20 Jul 2011; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.4.6.ebuild:
+  Version bump (bug #364021).
+
+*gcc-4.6.1 (05 Jul 2011)
+
+  05 Jul 2011; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.6.1.ebuild:
+  Version bump.
+
+  03 Jul 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.4.5.ebuild:
+  Patchset 1.3 for 4.4.5. Fixes bug #347281 (backport PowerPC -msingle-pic-base
+  and -mrelocatable support), bug #352201 (float args passed incorrectly from
+  ms_abi to sysv functions), and bug #365045 (IA64 ICE building erlang).
+
+*gcc-4.3.6 (01 Jul 2011)
+
+  01 Jul 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.3.5.ebuild,
+  +gcc-4.3.6.ebuild, metadata.xml:
+  Version bump (bug #373305), fix some repoman warnings.
+
+  01 Jul 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.3.4.ebuild:
+  4.3.4 p1.3 fixes a race condition in the build system (bug #305739).
+
+  09 Jun 2011; Mike Frysinger <vapier@gentoo.org> gcc-3.3.6-r1.ebuild:
+  Fix from upstream for missing symbol versions in multilib builds #304239.
 
   13 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.6.0.ebuild:
   Patchset bump. Fixes a couple ICEs and a wrong-code -ftree-vectorize bug.

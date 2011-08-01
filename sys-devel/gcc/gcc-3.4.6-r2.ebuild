@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.25 2011/03/08 03:05:44 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.26 2011/07/20 08:58:35 dirtyepic Exp $
 
 MAN_VER=""
 PATCH_VER="1.6"
@@ -39,10 +39,10 @@ SPLIT_SPECS=${SPLIT_SPECS-true}
 
 inherit toolchain eutils prefix
 
-DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
+DESCRIPTION="The GNU Compiler Collection"
 
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux"
-IUSE="ip28 ip32r10k"
+IUSE="ip28 ip32r10k n32 n64"
 
 # we need a proper glibc version for the Scrt1.o provided to the pie-ssp specs
 # NOTE: we SHOULD be using at least binutils 2.15.90.0.1 everywhere for proper

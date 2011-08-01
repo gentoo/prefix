@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.0.ebuild,v 1.3 2011/04/13 03:35:39 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.6.ebuild,v 1.2 2011/07/21 02:05:08 jer Exp $
 
-PATCH_VER="1.2"
+PATCH_VER="1.0"
 UCLIBC_VER="1.0"
 
 ETYPE="gcc-compiler"
@@ -14,26 +14,26 @@ SPECS_GCC_VER="4.4.3"
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
 PIE_GLIBC_STABLE="x86 amd64 ppc ppc64 arm ia64"
 PIE_UCLIBC_STABLE="x86 arm amd64 ppc ppc64"
-SSP_STABLE="amd64 x86 ppc ppc64 arm
-# uclibc need tls and nptl support for SSP support"
+SSP_STABLE="amd64 x86 ppc ppc64 arm"
+# uclibc need tls and nptl support for SSP support
 SSP_UCLIBC_STABLE=""
 #end Hardened stuff
 
-inherit toolchain flag-o-matic
+inherit toolchain flag-o-matic prefix
 
-DESCRIPTION="The GNU Compiler Collection."
+DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
 LICENSE="GPL-3 LGPL-3 || ( GPL-3 libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
+	>=sys-devel/gcc-config-1.4
 	virtual/libiconv
-	>=dev-libs/gmp-4.3.2
-	>=dev-libs/mpfr-2.4.2
-	>=dev-libs/mpc-0.8.1
+	>=dev-libs/gmp-4.2.1
+	>=dev-libs/mpfr-2.3.2
 	graphite? (
-		>=dev-libs/cloog-ppl-0.15.10
-		>=dev-libs/ppl-0.11
+		>=dev-libs/ppl-0.10
+		>=dev-libs/cloog-ppl-0.15.4
 	)
 	!build? (
 		gcj? (
@@ -50,73 +50,108 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 			app-arch/zip
 			app-arch/unzip
 		)
+		>=sys-libs/ncurses-5.2-r2
 		nls? ( sys-devel/gettext )
 	)"
 DEPEND="${RDEPEND}
-	test? (
-		>=dev-util/dejagnu-1.4.4
-		>=sys-devel/autogen-5.5.4
-	)
+	test? ( >=dev-util/dejagnu-1.4.4 >=sys-devel/autogen-5.5.4 )
 	>=sys-apps/texinfo-4.8
 	>=sys-devel/bison-1.875
-	>=sys-devel/flex-2.5.4
+	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )
 	kernel_linux? (
-	>=${CATEGORY}/binutils-2.18
+		ppc? ( >=${CATEGORY}/binutils-2.17 )
+		ppc64? ( >=${CATEGORY}/binutils-2.17 )
+		>=${CATEGORY}/binutils-2.15.94
 	)"
-PDEPEND=">=sys-devel/gcc-config-1.4
-	go? ( >=sys-devel/gcc-config-1.5 )"
-
+PDEPEND=">=sys-devel/gcc-config-1.4"
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )"
 fi
 
+pkg_setup() {
+	gcc_pkg_setup
+
+	if use graphite ; then
+		ewarn "Graphite support is still experimental and unstable."
+		ewarn "Any bugs resulting from the use of Graphite will not be fixed."
+	fi
+}
+
 src_unpack() {
-	toolchain_src_unpack
+	gcc_src_unpack
 
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
 	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
 
+	# http://bugs.gentoo.org/show_bug.cgi?id=201490
+	epatch "${FILESDIR}"/4.2.2/gentoo-fixincludes.patch
+
+	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=27516
+	epatch "${FILESDIR}"/4.3.0/treelang-nomakeinfo.patch
+
 	# add support for 64-bits native target on Solaris
-	epatch "${FILESDIR}"/4.5.1/solaris-x86_64.patch
+	epatch "${FILESDIR}"/4.4.0/gcc-4.4.1-solaris-x86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
-	epatch "${FILESDIR}"/${PV}/solaris-searchpath.patch
+	epatch "${FILESDIR}"/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
+	# replace nasty multilib dirs like ../lib64 that occur on --disable-multilib
 	if use prefix; then
-		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
-		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
-		# --enable-multilib), but this does make sense in prefix only
-		epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
+		epatch "${FILESDIR}"/4.3.3/prefix-search-dirs.patch
+		eprefixify "${S}"/gcc/gcc.c
 	fi
 
 	# make it have correct install_names on Darwin
 	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
 
+	# --- The following patches still cause failure for other
+	# platforms. Since gcc-4.4 is still masked on interix, and
+	# i have no time ATM to fix things, i for now just commented
+	# them out.
+
+	# interix patches - all from 4.2.4 updated and combined
+	#epatch "${FILESDIR}"/${P}-interix.patch
+	# and this one to avoid the need of a re-bootstrap.
+	#epatch "${FILESDIR}"/${P}-interix-avoid-bs.patch
+
 	if [[ ${CHOST} == *-mint* ]] ; then
-		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
 		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint1.patch
+		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint2.patch
 		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint3.patch
-		epatch "${FILESDIR}"/4.5.1/${PN}-4.5.1-mint1.patch
-		epatch "${FILESDIR}"/4.5.2/${PN}-4.5.2-mint1.patch
+		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
 	fi
 
-	# Always behave as if -pthread were passed on AIX and HPUX (#266548)
-	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
-	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
+	# Always behave as if -pthread were passed on AIX (#266548)
+	epatch "${FILESDIR}"/4.3.3/aix-force-pthread.patch
 
 	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
+
+	#epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
+	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
+	epatch "${FILESDIR}"/4.4.4/aix-bnoerok.patch
+	epatch "${FILESDIR}"/4.2.2/aix-lineno.patch
 
 	# libgcc's Makefiles reuses $T, work around that :(
 	[[ ${CHOST} == *-solaris* ]] && \
 		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
 
+	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
+	# but this does make sense in prefix only.
+	use prefix && epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
+
 	use vanilla && return 0
 
+	sed -i 's/use_fixproto=yes/:/' gcc/config.gcc #PR33200
+
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
+
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.4.0/gcc-4.4.0-softfloat.patch
+
+	epatch "${FILESDIR}"/4.2.2/aix-minimal-toc.patch
+	epatch "${FILESDIR}"/4.2.2/aix61-longdouble64.patch
 }
 
 src_compile() {
@@ -217,11 +252,3 @@ src_install() {
 
 }
 
-pkg_setup() {
-	toolchain_pkg_setup
-
-	ewarn
-	ewarn "LTO support is still experimental and unstable."
-	ewarn "Any bugs resulting from the use of LTO will not be fixed."
-	ewarn
-}
