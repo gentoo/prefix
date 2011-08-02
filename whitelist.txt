@@ -318,6 +318,7 @@ dev-lang/mosml
 dev-lang/nasm
 dev-lang/orc
 dev-lang/pasm
+dev-lang/path64
 dev-lang/squirrel
 dev-lang/srf
 dev-lang/swig
