@@ -1162,6 +1162,7 @@ dev-python/pyrex
 dev-python/pyro
 dev-python/pysqlite
 dev-python/pysvn
+dev-python/pytest
 dev-python/python-cdb
 dev-python/python-dateutil
 dev-python/python-docs
