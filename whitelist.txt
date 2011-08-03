@@ -884,6 +884,7 @@ sys-devel/llvm
 sys-devel/llvm-gcc
 sys-devel/m4
 sys-devel/native-cctools
+sys-devel/ucpp
 sys-libs/csu
 sys-libs/pam
 sys-libs/suacomp
