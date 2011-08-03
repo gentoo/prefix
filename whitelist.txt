@@ -976,6 +976,10 @@ x11-libs/qt-xmlpatterns
 x11-libs/qwt
 x11-libs/startup-notification
 x11-libs/xcb-util
+x11-libs/xcb-util-image
+x11-libs/xcb-util-keysyms
+x11-libs/xcb-util-renderutil
+x11-libs/xcb-util-wm
 x11-libs/xforms
 x11-libs/xtrans
 x11-terms/aterm
