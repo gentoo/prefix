@@ -576,7 +576,7 @@ games-misc/fortune-mod-zx-error
 games-misc/sex
 games-misc/wtf
 games-puzzle/freesweep
-games-strategy/wormux
+games-strategy/warmux
 gnome-base/gnome-applets
 gnome-base/gnome-common
 gnome-base/gnome-control-center
