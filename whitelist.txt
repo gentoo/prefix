@@ -222,6 +222,7 @@ app-text/lcdf-typetools
 app-text/libpaper
 app-text/libspectre
 app-text/libwpd
+app-text/libwpg
 app-text/lout
 app-text/mbtpdfasm
 app-text/multitail
@@ -680,7 +681,6 @@ media-libs/libuninameslist
 media-libs/libv4l
 media-libs/libvpx
 media-libs/libwmf
-media-libs/libwpg
 media-libs/mediastreamer
 media-libs/mesa
 media-libs/mlt
