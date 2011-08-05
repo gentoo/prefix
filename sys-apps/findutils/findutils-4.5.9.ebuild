@@ -56,6 +56,7 @@ src_compile() {
 }
 
 src_install() {
+	emake -C locate dblocation.texi # bug #364885
 	emake DESTDIR="${D}" install || die
 	dodoc NEWS README TODO ChangeLog
 }
