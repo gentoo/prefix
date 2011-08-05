@@ -158,6 +158,7 @@ app-portage/eix
 app-portage/elogv
 app-portage/gentoolkit
 app-portage/gentoolkit-dev
+app-portage/layman
 app-portage/prefix-chain-setup
 app-shells/bash-completion
 app-shells/dsh
