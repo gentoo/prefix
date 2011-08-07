@@ -448,6 +448,7 @@ dev-util/bsdiff
 dev-util/btyacc
 dev-util/buildbot-slave
 dev-util/byacc
+dev-util/cgdb
 dev-util/checkstyle
 dev-util/chromium-tools
 dev-util/cmake
