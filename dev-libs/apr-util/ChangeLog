@@ -1,6 +1,33 @@
 # ChangeLog for dev-libs/apr-util
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.156 2010/10/09 16:38:47 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.163 2011/07/29 20:43:44 neurogeek Exp $
+
+*apr-util-1.3.12 (29 Jul 2011)
+
+  29 Jul 2011; Jesus Rivero <neurogeek@gentoo.org> +apr-util-1.3.12.ebuild,
+  +files/apr-util-1.3.12-bdb-5.2.patch:
+  Version bump. Ebuild and patch by Arfrever.
+
+  14 May 2011; Raúl Porcel <armin76@gentoo.org> apr-util-1.3.11.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #366903
+
+  14 May 2011; Kacper Kowalik <xarthisius@gentoo.org> apr-util-1.3.11.ebuild:
+  ppc/ppc64 stable wrt #366903
+
+  13 May 2011; Jeroen Roovers <jer@gentoo.org> apr-util-1.3.11.ebuild:
+  Stable for HPPA (bug #366903).
+
+  12 May 2011; Thomas Kahle <tomka@gentoo.org> apr-util-1.3.11.ebuild:
+  x86 stable per bug 366903
+
+  11 May 2011; Markos Chandras <hwoarang@gentoo.org> apr-util-1.3.11.ebuild:
+  Stable on amd64 wrt bug #366903
+
+*apr-util-1.3.11 (09 May 2011)
+
+  09 May 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +apr-util-1.3.11.ebuild:
+  Version bump.
 
   09 Oct 2010; Raúl Porcel <armin76@gentoo.org> apr-util-1.3.10.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #339527
