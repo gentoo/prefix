@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.4.2.ebuild,v 1.12 2010/09/19 09:01:59 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.4.5.ebuild,v 1.1 2011/07/07 10:21:09 hwoarang Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit autotools eutils libtool multilib
 
@@ -13,11 +13,12 @@ SRC_URI="mirror://apache/apr/${P}.tar.bz2"
 LICENSE="Apache-2.0"
 SLOT="1"
 KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc older-kernels-compatibility +urandom"
+IUSE="doc elibc_FreeBSD older-kernels-compatibility +urandom +uuid"
 RESTRICT="test"
 
-DEPEND="doc? ( app-doc/doxygen )"
-RDEPEND=""
+RDEPEND="uuid? ( !elibc_FreeBSD? ( >=sys-apps/util-linux-2.16 ) )"
+DEPEND="${RDEPEND}
+	doc? ( app-doc/doxygen )"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.2.11-mint.patch
@@ -78,8 +79,13 @@ src_configure() {
 		esac
 	fi
 
-	CONFIG_SHELL="${EPREFIX}"/bin/bash \
-	econf --enable-layout=gentoo \
+	if ! use uuid; then
+		local apr_cv_osuuid
+		export apr_cv_osuuid="no"
+	fi
+
+	CONFIG_SHELL="${EPREFIX}"/bin/bash econf \
+		--enable-layout=gentoo \
 		--enable-nonportable-atomics \
 		${myconf}
 
@@ -90,7 +96,7 @@ src_configure() {
 }
 
 src_compile() {
-	emake -j1 || die "emake failed"
+	emake || die "emake failed"
 
 	if use doc; then
 		emake dox || die "emake dox failed"
@@ -99,6 +105,8 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+
+	find "${ED}" -name "*.la" -print0 | xargs -0 rm -f
 
 	dodoc CHANGES NOTICE README
 

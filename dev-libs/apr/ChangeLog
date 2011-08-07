@@ -1,6 +1,38 @@
 # ChangeLog for dev-libs/apr
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.166 2010/09/19 09:01:59 hollow Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.174 2011/07/07 10:21:09 hwoarang Exp $
+
+*apr-1.4.5 (07 Jul 2011)
+
+  07 Jul 2011; Markos Chandras <hwoarang@gentoo.org> +apr-1.4.5.ebuild:
+  Version bump. Requested by Arfrever
+
+  14 May 2011; Raúl Porcel <armin76@gentoo.org> apr-1.4.4.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #366903
+
+  14 May 2011; Kacper Kowalik <xarthisius@gentoo.org> apr-1.4.4.ebuild:
+  ppc/ppc64 stable wrt #366903
+
+  13 May 2011; Jeroen Roovers <jer@gentoo.org> apr-1.4.4.ebuild:
+  Stable for HPPA (bug #366903).
+
+  12 May 2011; Thomas Kahle <tomka@gentoo.org> apr-1.4.4.ebuild:
+  x86 stable per bug 366903
+
+  11 May 2011; Markos Chandras <hwoarang@gentoo.org> apr-1.4.4.ebuild:
+  Stable on amd64 wrt bug #366903
+
+*apr-1.4.4 (09 May 2011)
+
+  09 May 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +apr-1.4.4.ebuild:
+  Version bump.
+
+*apr-1.4.2-r1 (18 Feb 2011)
+
+  18 Feb 2011; Benedikt Böhm <hollow@gentoo.org> +apr-1.4.2-r1.ebuild,
+  +files/apr_ring_volatile.patch, metadata.xml:
+  fix UUID support (bug #320845) and gcc 4.5 support (bug #355171)
 
   19 Sep 2010; Benedikt Böhm <hollow@gentoo.org> apr-1.4.2.ebuild:
   fix CONFIG_SHELL wrt #335944
