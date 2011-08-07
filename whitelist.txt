@@ -535,7 +535,6 @@ games-arcade/nibbles
 games-arcade/tuxanci
 games-board/gnugo
 games-board/xmahjongg
-games-emulation
 games-misc/fortune-mod-all
 games-misc/fortune-mod-at-linux
 games-misc/fortune-mod-bofh-excuses
@@ -1013,6 +1012,7 @@ dev-tcltk
 dev-texlive
 kde-base
 kde-misc
+games-emulation
 gnustep-apps
 gnustep-base
 gnome-extra
