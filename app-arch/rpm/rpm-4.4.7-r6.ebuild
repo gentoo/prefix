@@ -1,8 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r6.ebuild,v 1.2 2010/07/19 05:20:05 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r6.ebuild,v 1.4 2011/01/08 19:21:44 arfrever Exp $
 
-inherit eutils autotools distutils perl-module flag-o-matic
+EAPI="3"
+
+inherit eutils autotools perl-module flag-o-matic python
 
 DESCRIPTION="Red Hat Package Management Utils"
 HOMEPAGE="http://www.rpm5.org/"
@@ -30,9 +32,7 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	doc? ( app-doc/doxygen )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/rpm-4.4.6-with-sqlite.patch
 	epatch "${FILESDIR}"/rpm-4.4.7-stupidness.patch
 	epatch "${FILESDIR}"/rpm-4.4.6-autotools.patch
@@ -58,7 +58,7 @@ src_unpack() {
 	# TODO Get rid of internal copies of lua, db and db3
 }
 
-src_compile() {
+src_configure() {
 	# Until strict aliasing is porperly fixed...
 	filter-flags -fstrict-aliasing
 	append-flags -fno-strict-aliasing
@@ -70,8 +70,10 @@ src_compile() {
 		$(use_with doc apidocs) \
 		$(use_with perl) \
 		$(use_with sqlite) \
-		$(use_enable nls) \
-		|| die "econf failed"
+		$(use_enable nls)
+}
+
+src_compile() {
 	emake -j1 || die "emake failed"
 }
 
@@ -92,7 +94,7 @@ src_install() {
 	use perl && fixlocalpod
 
 	#remove .la file. Bug #300096
-	rm "${ED}"/$(python_get_sitedir)/${PN}/_rpmmodule.la
+	use python && python_clean_installation_image
 }
 
 pkg_postinst() {
@@ -104,5 +106,9 @@ pkg_postinst() {
 		"${EROOT}"/usr/bin/rpm --initdb --root="${ROOT}"
 	fi
 
-	distutils_pkg_postinst
+	use python && python_mod_optimize rpm
+}
+
+pkg_postrm() {
+	use python && python_mod_cleanup rpm
 }

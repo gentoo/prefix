@@ -1,6 +1,43 @@
 # ChangeLog for app-arch/rpm
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.117 2010/10/18 19:38:54 sochotnicky Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.125 2011/05/08 15:13:06 sochotnicky Exp $
+
+*rpm-4.9.0 (08 May 2011)
+*rpm-4.8.1-r2 (08 May 2011)
+
+  08 May 2011; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -rpm-4.8.1-r1.ebuild, +rpm-4.8.1-r2.ebuild, +rpm-4.9.0.ebuild:
+  Added latest upstream version. Removed sqlite USE flag in 4.9.x since
+  it's not supported anymore. Fixed #356769,#308303.
+
+  24 Apr 2011; Diego E. Pettenò <flameeyes@gentoo.org> rpm-4.8.1-r1.ebuild:
+  QA: do not force presence of db-4.5, as it'll always use the latest one
+  available, up to and including 4.8.
+
+  08 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  rpm-4.4.6-r7.ebuild, rpm-4.4.7-r6.ebuild, rpm-4.8.1-r1.ebuild,
+  rpm-5.1.6.ebuild:
+  Fix deprecation warnings.
+
+  08 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -rpm-4.4.7-r4.ebuild, -rpm-4.4.7-r5.ebuild:
+  Delete.
+
+*rpm-4.8.1-r1 (27 Dec 2010)
+
+  27 Dec 2010; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -rpm-4.8.1.ebuild, +rpm-4.8.1-r1.ebuild:
+  Fix #349840 (incorrect symlinks to /bin/rpm)
+
+  14 Dec 2010; Matt Turner <mattst88@gentoo.org> rpm-4.4.7-r4.ebuild,
+  rpm-4.4.7-r5.ebuild, rpm-4.4.7-r6.ebuild, rpm-4.8.1.ebuild,
+  rpm-5.1.6.ebuild:
+  MIPS doesn't care about rpm, dropping keywords.
+
+  10 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> rpm-5.1.6.ebuild,
+  metadata.xml:
+  Rename USE="neon" to USE="webdav-neon" to free USE="neon" for ARM NEON
+  general-purpose SIMD engine.
 
   18 Oct 2010; Stanislav Ochotnicky <sochotnicky@gentoo.org>
   rpm-4.8.1.ebuild:

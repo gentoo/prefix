@@ -1,8 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-5.1.6.ebuild,v 1.6 2010/06/22 19:59:58 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-5.1.6.ebuild,v 1.9 2011/01/08 19:21:44 arfrever Exp $
 
-inherit eutils multilib distutils python
+EAPI="3"
+
+inherit eutils multilib python
 
 MY_P=${P/_alpha/a}
 MY_P=${P/_beta/b}
@@ -14,7 +16,7 @@ SRC_URI="http://rpm5.org/files/rpm/rpm-5.1/${MY_P}.tar.gz"
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="berkdb bzip2 doc lua magic neon nls pcre perl python selinux sqlite"
+IUSE="berkdb bzip2 doc lua magic webdav-neon nls pcre perl python selinux sqlite"
 
 #	dmalloc? ( dev-libs/dmalloc )
 #	efence? ( dev-util/efence )
@@ -25,7 +27,7 @@ RDEPEND="dev-libs/beecrypt
 	berkdb? ( sys-libs/db )
 	bzip2? ( app-arch/bzip2 )
 	lua? ( dev-lang/lua )
-	neon? ( net-libs/neon )
+	webdav-neon? ( net-libs/neon )
 	pcre? ( dev-libs/libpcre )
 	perl? ( dev-lang/perl )
 	python? ( dev-lang/python )
@@ -46,16 +48,14 @@ pkg_setup () {
 	ewarn "    rpm --initdb"
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	rm -rf file xar #db
 	sed -i \
 		-e '/^pkgconfigdir/s:=.*:=$(libdir)/pkgconfig:' \
 		scripts/Makefile.in || die
 }
 
-src_compile() {
+src_configure() {
 #		$(use_with dmalloc) \
 #		$(use_with efence) \
 #		$(use_with keyutils) \
@@ -67,7 +67,7 @@ src_compile() {
 		$(use_with doc apidocs) \
 		$(use_with magic file) \
 		$(use_with lua) \
-		$(use_with neon) \
+		$(use_with webdav-neon neon) \
 		$(use_with nls) \
 		$(use_with pcre) \
 		$(use_with perl) \
@@ -76,9 +76,7 @@ src_compile() {
 		$(use_with sqlite) \
 		$(use berkdb || use sqlite || echo --with-db) \
 		--with-path-lib="${EPREFIX}/usr/$(get_libdir)/rpm" \
-		--with-python-lib-dir="${EPREFIX}$(python_get_libdir)" \
-		|| die "econf failed"
-	emake || die "emake failed"
+		--with-python-lib-dir="${EPREFIX}$(python_get_libdir)"
 }
 
 src_install() {
@@ -106,5 +104,9 @@ pkg_postinst() {
 	fi
 	chown rpm:rpm "${EROOT}"/var/lib/rpm/*
 
-	distutils_pkg_postinst
+	use python && python_mod_optimize rpm
+}
+
+pkg_postrm() {
+	use python && python_mod_cleanup rpm
 }
