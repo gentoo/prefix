@@ -371,6 +371,7 @@ dev-libs/libmemcached
 dev-libs/libmowgli
 dev-libs/libnl
 dev-libs/liboop
+dev-libs/libpcre
 dev-libs/libpthread-stubs
 dev-libs/libsigc++
 dev-libs/libsigsegv
