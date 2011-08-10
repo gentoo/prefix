@@ -76,6 +76,8 @@ fi
 src_unpack() {
 	toolchain_src_unpack
 
+	use vanilla && return 0
+
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
 	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
 
@@ -112,8 +114,6 @@ src_unpack() {
 	# libgcc's Makefiles reuses $T, work around that :(
 	[[ ${CHOST} == *-solaris* ]] && \
 		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
-
-	use vanilla && return 0
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.4.0/gcc-4.4.0-softfloat.patch

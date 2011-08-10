@@ -74,6 +74,8 @@ fi
 src_unpack() {
 	gcc_src_unpack
 
+	use vanilla && return 0
+
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
 	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
 
@@ -116,8 +118,6 @@ src_unpack() {
 
 	#epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
 	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
-
-	use vanilla && return 0
 
 	sed -i 's/use_fixproto=yes/:/' gcc/config.gcc #PR33200
 

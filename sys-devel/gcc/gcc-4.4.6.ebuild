@@ -83,6 +83,8 @@ pkg_setup() {
 src_unpack() {
 	gcc_src_unpack
 
+	use vanilla && return 0
+
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
 	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
 
@@ -141,8 +143,6 @@ src_unpack() {
 	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
 	# but this does make sense in prefix only.
 	use prefix && epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
-
-	use vanilla && return 0
 
 	sed -i 's/use_fixproto=yes/:/' gcc/config.gcc #PR33200
 
