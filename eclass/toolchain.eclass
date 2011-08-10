@@ -491,6 +491,15 @@ has_libssp() {
 }
 
 want_libssp() {
+	# Not sure what this function is supposed to do, but since GCC always has
+	# libssp from 4.1, we need libssp as soon as our libc doesn't have it (like
+	# Solaris) I hope this doesn't break linux, but it shouldn't.  Since the
+	# code forces configure to think ssp is in libc when this function returns
+	# false, we need to ensure that is correct.
+	if tc_version_is_at_least 4.1 ; then
+		libc_has_ssp && return 1
+		return 0
+	fi
 	[[ ${GCC_LIBSSP_SUPPORT} == "true" ]] || return 1
 	has_libssp || return 1
 	[[ -n ${PP_VER} ]] || return 1
@@ -550,7 +559,7 @@ glibc_have_pie() {
 # This function determines whether or not libc has been patched with stack
 # smashing protection support.
 libc_has_ssp() {
-	[[ ${EROOT} != "/" ]] && return 0
+	[[ ${ROOT} != "/" ]] && return 0
 
 	# lib hacks taken from sandbox configure
 	echo 'int main(){}' > "${T}"/libctest.c
