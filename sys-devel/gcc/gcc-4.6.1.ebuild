@@ -112,7 +112,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
 
 	# libgcc's Makefiles reuses $T, work around that :(
-	[[ ${CHOST} == *-solaris* ]] && \
+	# only necessary on x86/x64, breaks on sparc
+	[[ ${CHOST} == *86-*-solaris* ]] && \
 		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch

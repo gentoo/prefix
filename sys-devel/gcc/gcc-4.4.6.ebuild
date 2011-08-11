@@ -137,7 +137,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.2.2/aix-lineno.patch
 
 	# libgcc's Makefiles reuses $T, work around that :(
-	[[ ${CHOST} == *-solaris* ]] && \
+	# only necessary on x86/x64, breaks on sparc
+	[[ ${CHOST} == *86-*-solaris* ]] && \
 		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
 
 	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
