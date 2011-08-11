@@ -1025,6 +1025,7 @@ media-fonts
 media-plugins
 net-dialup
 net-irc
+net-nds
 net-news
 net-nntp
 net-print
