@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.0d.ebuild,v 1.1 2011/02/08 19:00:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.0d.ebuild,v 1.13 2011/07/12 04:10:48 vapier Exp $
 
 EAPI="2"
 
@@ -35,10 +35,11 @@ src_unpack() {
 }
 
 src_prepare() {
-# this patch kills Darwin, but seems not necessary on Solaris and Linux
-#	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8l-binutils.patch #289130
 	epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
+	epatch "${FILESDIR}"/${PN}-1.0.0d-alpha-typo.patch #364699
+	epatch "${FILESDIR}"/${PN}-1.0.0d-fbsd-amd64.patch #363089
+	epatch "${FILESDIR}"/${PN}-1.0.0d-windres.patch #373743
 	epatch_user #332661
 
 	# disable fips in the build
@@ -77,11 +78,7 @@ src_prepare() {
 	chmod a+rx gentoo.config
 
 	append-flags -fno-strict-aliasing
-	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
-		*"GNU Binutils"*) # GNU as with noexecstack support
-			append-flags -Wa,--noexecstack
-		;;
-	esac
+	append-flags $(test-flags-CC -Wa,--noexecstack)
 
 	# type -P required on platforms where perl is not installed
 	# in the same prefix (prefix-chaining).
@@ -112,7 +109,7 @@ src_configure() {
 	unset APPS #197996
 	unset SCRIPTS #312551
 
-	tc-export CC AR RANLIB
+	tc-export CC AR RANLIB RC
 
 	# Clean out patent-or-otherwise-encumbered code
 	# Camellia: Royalty Free            http://en.wikipedia.org/wiki/Camellia_(cipher)

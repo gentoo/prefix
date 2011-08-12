@@ -1,6 +1,64 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.385 2011/02/10 02:04:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.399 2011/07/12 04:10:48 vapier Exp $
+
+  12 Jul 2011; Mike Frysinger <vapier@gentoo.org> files/gentoo.config-1.0.0,
+  openssl-1.0.0d.ebuild, +files/openssl-1.0.0d-windres.patch:
+  Add more mingw support -- respect RC/WINDRES settings, check ming64 hosts,
+  and only use --noexecstack if the toolchain supports it #373743 by Bertrand
+  Jacquin.
+
+  07 Jul 2011; Alexis Ballier <aballier@gentoo.org> openssl-1.0.0d.ebuild,
+  +files/openssl-1.0.0d-fbsd-amd64.patch:
+  add patch from Yuta SATOH to fix build on amd64-fbsd, bug #363089
+
+  05 Jul 2011; Mike Frysinger <vapier@gentoo.org>
+  -files/openssl-0.9.7e-gentoo.patch, openssl-0.9.8r.ebuild,
+  openssl-1.0.0d.ebuild:
+  Punt old -lcrypt patch which hasn't been needed for a long time #373743#19 by
+  Bertrand Jacquin.
+
+  05 Jul 2011; Mike Frysinger <vapier@gentoo.org> files/gentoo.config-1.0.0:
+  Decode mingw targets #373743 by Bertrand Jacquin.
+
+  30 Apr 2011; Mike Frysinger <vapier@gentoo.org> openssl-1.0.0d.ebuild,
+  +files/openssl-1.0.0d-alpha-typo.patch:
+  Fix typo in alpha asm code #364699 by Raúl Porcel.
+
+  16 Mar 2011; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8r.ebuild,
+  openssl-1.0.0d.ebuild:
+  Tweak sed to use | for separator #358771 by Raffaello D. Di Napoli.
+
+  05 Mar 2011; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0d.ebuild:
+  ia64/s390/sh/sparc stable wrt #354139
+
+  26 Feb 2011; Tobias Klausmann <klausman@gentoo.org> openssl-1.0.0d.ebuild:
+  Stable on alpha, bug #354139
+
+  24 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  openssl-0.9.8r.ebuild:
+  stable x86, security bug 354139
+
+  24 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  openssl-0.9.8r.ebuild:
+  stable x86, security bug 354139
+
+  21 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  openssl-1.0.0d.ebuild:
+  stable x86, security bug 354139
+
+  19 Feb 2011; Markus Meier <maekke@gentoo.org> openssl-1.0.0d.ebuild:
+  arm stable, bug #354139
+
+  18 Feb 2011; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0d.ebuild:
+  Stable for HPPA (bug #354139).
+
+  17 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> openssl-1.0.0d.ebuild:
+  ppc/ppc64 stable wrt #354139
+
+  17 Feb 2011; Markos Chandras <hwoarang@gentoo.org> openssl-0.9.8r.ebuild,
+  openssl-1.0.0d.ebuild:
+  Stable on amd64 wrt bug #354139
 
 *openssl-0.9.8r (10 Feb 2011)
 
