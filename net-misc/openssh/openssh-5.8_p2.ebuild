@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.8_p2.ebuild,v 1.1 2011/05/09 17:02:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.8_p2.ebuild,v 1.2 2011/05/16 00:52:24 robbat2 Exp $
 
 EAPI="2"
 inherit eutils flag-o-matic multilib autotools pam
@@ -10,7 +10,7 @@ inherit eutils flag-o-matic multilib autotools pam
 PARCH=${P/_/}
 
 HPN_PATCH="${PARCH/p2/p1}-hpn13v11.diff.gz"
-LDAP_PATCH="${PARCH/-5.8p2/-lpk-5.7p1}-0.3.13.patch.gz"
+LDAP_PATCH="${PARCH/-/-lpk-}-0.3.14.patch.gz"
 X509_VER="6.2.4" X509_PATCH="${PARCH/p2/p1}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
@@ -80,7 +80,7 @@ src_prepare() {
 	if ! use X509 ; then
 		if [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 			epatch "${WORKDIR}"/${LDAP_PATCH%.*}
-			epatch "${FILESDIR}"/${PN}-5.2p1-ldap-stdargs.diff #266654
+			#epatch "${FILESDIR}"/${PN}-5.2p1-ldap-stdargs.diff #266654 - merged
 			# version.h patch conflict avoidence
 			mv version.h version.h.lpk
 			cp -f version.h.pristine version.h

@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/files/sshd.rc6.2,v 1.1 2011/01/24 02:55:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/files/sshd.rc6.2,v 1.2 2011/05/28 16:57:48 vapier Exp $
 
 opts="${opts} reload checkconfig gen_keys"
 
@@ -27,7 +27,12 @@ checkconfig() {
 
 	gen_keys || return 1
 
-	"${SSHD_BINARY}" -t ${myopts} || return 1
+	[ "${SSHD_PIDFILE}" != "/var/run/sshd.pid" ] \
+		&& SSHD_OPTS="${SSHD_OPTS} -o PidFile=${SSHD_PIDFILE}"
+	[ "${SSHD_CONFDIR}" != "/etc/ssh" ] \
+		&& SSHD_OPTS="${SSHD_OPTS} -f ${SSHD_CONFDIR}/sshd_config"
+
+	"${SSHD_BINARY}" -t ${SSHD_OPTS} || return 1
 }
 
 gen_key() {
@@ -50,17 +55,12 @@ gen_keys() {
 }
 
 start() {
-	local myopts=""
-	[ "${SSHD_PIDFILE}" != "/var/run/sshd.pid" ] \
-		&& myopts="${myopts} -o PidFile=${SSHD_PIDFILE}"
-	[ "${SSHD_CONFDIR}" != "/etc/ssh" ] \
-		&& myopts="${myopts} -f ${SSHD_CONFDIR}/sshd_config"
-
 	checkconfig || return 1
+
 	ebegin "Starting ${SVCNAME}"
 	start-stop-daemon --start --exec "${SSHD_BINARY}" \
 	    --pidfile "${SSHD_PIDFILE}" \
-	    -- ${myopts} ${SSHD_OPTS}
+	    -- ${SSHD_OPTS}
 	eend $?
 }
 

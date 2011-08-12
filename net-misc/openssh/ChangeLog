@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.418 2011/05/09 17:02:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.420 2011/05/28 16:57:48 vapier Exp $
+
+  28 May 2011; Mike Frysinger <vapier@gentoo.org> files/sshd.rc6.2:
+  Move custom opts to checkconfig and include those when verifying config
+  sanity #367303 by Horst Prote.
+
+  16 May 2011; Robin H. Johnson <robbat2@gentoo.org> openssh-5.8_p2.ebuild:
+  Bug #366643: rediff the LPK patch for LDAP usage. Also merge the Mozilla uid
+  customization LPK change.
 
 *openssh-5.8_p2 (09 May 2011)
 
