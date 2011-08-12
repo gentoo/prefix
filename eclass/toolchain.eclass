@@ -566,6 +566,13 @@ libc_has_ssp() {
 	LC_ALL=C gcc "${T}"/libctest.c -lc -o libctest -Wl,-verbose &> "${T}"/libctest.log || return 1
 	local libc_file=$(awk '/attempt to open/ { if (($4 ~ /\/libc\.so/) && ($5 == "succeeded")) LIBC = $4; }; END {print LIBC}' "${T}"/libctest.log)
 
+	if [[ -z ${libc_file} ]] ; then
+		# not sure why this can't be used by default, but let's keep on using
+		# it as a fallback, see bug #378905
+		libc_file=$(gcc -print-file-name=libc.so)
+		[[ ${libc_file} == "libc.so" ]] && libc_file=
+	fi
+
 	[[ -z ${libc_file} ]] && die "Unable to find a libc !?"
 
 	# Check for gcc-4.x style ssp support
