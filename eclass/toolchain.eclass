@@ -561,6 +561,22 @@ glibc_have_pie() {
 libc_has_ssp() {
 	[[ ${ROOT} != "/" ]] && return 0
 
+	case ${CHOST} in
+		*-darwin*)
+			nm /usr/lib/libSystem.dylib | grep stack_chk_guard && return 0
+			return 1
+		;;
+		*-linux-gnu|*-solaris*)
+			# test below
+			:
+		;;
+		*)
+			# something odd, assume it downright hasn't,
+			#like e.g. AIX, bug #378905, comment #18
+			return 1
+		;;
+	esac
+
 	# lib hacks taken from sandbox configure
 	echo 'int main(){}' > "${T}"/libctest.c
 	LC_ALL=C gcc "${T}"/libctest.c -lc -o libctest -Wl,-verbose &> "${T}"/libctest.log || return 1
@@ -568,7 +584,7 @@ libc_has_ssp() {
 
 	if [[ -z ${libc_file} ]] ; then
 		# not sure why this can't be used by default, but let's keep on using
-		# it as a fallback, see bug #378905
+		# it as a fallback for e.g. Solaris with Sun ld, see bug #378905
 		libc_file=$(gcc -print-file-name=libc.so)
 		[[ ${libc_file} == "libc.so" ]] && libc_file=
 	fi
