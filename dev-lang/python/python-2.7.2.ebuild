@@ -18,6 +18,7 @@ else
 fi
 
 PATCHSET_REVISION="0"
+PREFIX_PATCHREV="-r1"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -26,7 +27,7 @@ if [[ "${PV}" == *_pre* ]]; then
 else
 	SRC_URI="http://www.python.org/ftp/python/${MY_PV}/${MY_P}.tar.bz2
 		mirror://gentoo/python-gentoo-patches-${MY_PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
-	SRC_URI+=" prefix? ( http://dev.gentoo.org/~grobian/distfiles/python-prefix-${MY_PV}-gentoo-patches.tar.bz2 )"
+	SRC_URI+=" prefix? ( http://dev.gentoo.org/~grobian/distfiles/python-prefix-${MY_PV}-gentoo-patches${PREFIX_PATCHREV}.tar.bz2 )"
 fi
 
 LICENSE="PSF-2.2"
@@ -146,7 +147,7 @@ src_prepare() {
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-2_7
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
-		epatch "${WORKDIR}"/python-prefix-${MY_PV}-gentoo-patches
+		epatch "${WORKDIR}"/python-prefix-${MY_PV}-gentoo-patches${PREFIX_PATCHREV}
 
 	# need this to have _NSGetEnviron being used, which by default isn't, also
 	# in a non-Framework build (use !aqua)   upstream doesn't build like this
