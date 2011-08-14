@@ -275,7 +275,8 @@ src_prepare() {
 		configure || die
 
 	# fix path to bash executable in configure scripts
-	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure version.sh || die
+	sed -i -e "1c\#!${EPREFIX}/bin/bash" \
+		configure version.sh help/help_create.sh || die
 
 	# Solaris issue, should be fixed for next snapshot:
 	# http://comments.gmane.org/gmane.comp.video.mplayer.user/65258
