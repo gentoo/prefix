@@ -1,6 +1,42 @@
 # ChangeLog for media-video/mplayer
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.789 2011/04/03 10:24:10 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.798 2011/07/15 06:15:32 mattst88 Exp $
+
+  15 Jul 2011; Matt Turner <mattst88@gentoo.org>
+  mplayer-1.0_rc4_p20110322.ebuild:
+  Added ~mips, bug 304931
+
+  08 Jul 2011; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20101114.ebuild, mplayer-1.0_rc4_p20110322.ebuild,
+  mplayer-9999.ebuild:
+  Convert from "hasq" to "has".
+
+  23 Jun 2011; Alexis Ballier <aballier@gentoo.org>
+  -mplayer-1.0_rc4_p20091026-r1.ebuild,
+  -files/mplayer-1.0_rc4_p20091026-arm_neon.patch:
+  remove old
+
+  23 Jun 2011; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  use git-2.eclass for ffmpeg
+
+  23 Jun 2011; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  do not default enable faac, its non free, not compatible with binary
+  distribution, and ffmpeg has an encoder now
+
+  08 Jun 2011; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  fix variable quoting
+
+  08 Jun 2011; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  remove useless CFLAGS variable assignment
+
+  08 Jun 2011; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild,
+  +files/dump_ffmpeg.sh, metadata.xml:
+  Always use system ffmpeg, use only the required internal headers from ffmpeg,
+  bug #361731
+
+  22 May 2011; Joseph Jezak <josejx@gentoo.org>
+  mplayer-1.0_rc4_p20101114.ebuild:
+  Marked ppc stable for bug #343977.
 
   03 Apr 2011; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
   Set egit project properly.
