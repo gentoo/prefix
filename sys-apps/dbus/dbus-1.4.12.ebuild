@@ -68,6 +68,7 @@ src_prepare() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-1.4.8-interix.patch
+	epatch "${FILESDIR}"/${P}-solaris.patch
 
 	if kernel_is lt 2 6 13; then
 		ewarn "Warning: Detected old kernel that doesn't support inotify,
@@ -106,6 +107,12 @@ src_configure() {
 
 	if [[ ${CHOST} == *-darwin* ]]; then
 		myconf="${myconf} --enable-launchd --with-launchd-agent-dir=${EPREFIX}/Library/LaunchAgents"
+	fi
+
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# we need more flag trickery as before just to have struct msg_header
+		# and f->_dd, bug #378707
+		append-flags -D__EXTENSIONS__ -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1
 	fi
 
 	# libaudit is *only* used in DBus wrt SELinux support, so disable it, if

@@ -1,0 +1,15 @@
+https://bugs.freedesktop.org/show_bug.cgi?id=39987
+https://bugs.gentoo.org/show_bug.cgi?id=378707
+
+--- dbus-1.4.12/dbus/dbus-sysdeps-util-unix.c
++++ dbus-1.4.12/dbus/dbus-sysdeps-util-unix.c
+@@ -59,6 +59,9 @@ 
+ #define O_BINARY 0
+ #endif
+ 
++#ifndef LOG_PERROR
++#define LOG_PERROR 0
++#endif
+ /**
+  * @addtogroup DBusInternalsUtils
+  * @{
