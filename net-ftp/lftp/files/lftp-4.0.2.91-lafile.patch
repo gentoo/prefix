@@ -1,5 +1,5 @@
---- lftp-4.0.2.91.orig/src/Makefile.am	2009-07-29 08:29:10.000000000 +0200
-+++ lftp-4.0.2.91/src/Makefile.am	2009-10-13 18:32:26.000000000 +0200
+--- a/src/Makefile.am
++++ b/src/Makefile.am
 @@ -18,7 +18,8 @@
  example_module1_la_SOURCES = example-module1.cc
  example_module1_la_LDFLAGS  = -module -avoid-version -rpath $(pkgverlibdir)

@@ -1,14 +1,14 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.0.9.1.ebuild,v 1.1 2010/07/21 12:45:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.3.1.ebuild,v 1.6 2011/08/13 17:33:57 maekke Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit eutils autotools libtool
 
 DESCRIPTION="A sophisticated ftp/sftp/http/https/torrent client and file transfer program"
 HOMEPAGE="http://lftp.yar.ru/"
-SRC_URI="http://ftp.yars.free.net/pub/source/${PN}/devel/${P}.tar.gz"
+SRC_URI="http://ftp.yars.free.net/pub/source/${PN}/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -29,9 +29,11 @@ RDEPEND="
 
 DEPEND="
 	${RDEPEND}
-	nls? ( sys-devel/gettext )
-	dev-lang/perl
 	=sys-devel/libtool-2*
+	app-arch/xz-utils
+	dev-lang/perl
+	dev-util/pkgconfig
+	nls? ( sys-devel/gettext )
 "
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.7.14-darwin-bundle.patch

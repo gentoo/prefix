@@ -1,6 +1,174 @@
 # ChangeLog for net-ftp/lftp
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.270 2010/08/03 17:18:05 ranger Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.316 2011/08/13 17:33:57 maekke Exp $
+
+  13 Aug 2011; Markus Meier <maekke@gentoo.org> lftp-4.3.1.ebuild:
+  arm stable, bug #377341
+
+  09 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> lftp-4.3.1.ebuild:
+  ppc/ppc64 stable wrt #377341
+
+  08 Aug 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> lftp-4.3.1.ebuild:
+  x86 stable wrt bug #377341
+
+  02 Aug 2011; Jeroen Roovers <jer@gentoo.org> lftp-4.3.1.ebuild:
+  Stable for HPPA (bug #377341).
+
+  02 Aug 2011; Markos Chandras <hwoarang@gentoo.org> lftp-4.3.1.ebuild:
+  Stable on amd64 wrt bug #377341
+
+  20 Jul 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #34534
+
+  18 Jul 2011; Jeroen Roovers <jer@gentoo.org> -lftp-4.1.3.ebuild,
+  -lftp-4.2.1.ebuild, -lftp-4.2.2.ebuild:
+  ^
+
+  17 Jul 2011; Mark Loeser <halcy0n@gentoo.org> lftp-4.2.3.ebuild:
+  Stable for ppc64; bug #369681
+
+*lftp-4.3.1 (28 Jun 2011)
+
+  28 Jun 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.3.1.ebuild:
+  Version bump.
+
+  24 Jun 2011; Raúl Porcel <armin76@gentoo.org> lftp-4.2.3.ebuild:
+  alpha/ia64/s390/sparc stable wrt #369681
+
+  23 Jun 2011; Brent Baude <ranger@gentoo.org> lftp-4.2.3.ebuild:
+  Marking lftp-4.2.3 ppc for bug 369681
+
+*lftp-4.3.0 (18 Jun 2011)
+
+  18 Jun 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.3.0.ebuild:
+  Version bump.
+
+  11 Jun 2011; Markus Meier <maekke@gentoo.org> lftp-4.2.3.ebuild:
+  arm stable, bug #369681
+
+  08 Jun 2011; Markus Meier <maekke@gentoo.org> lftp-4.2.3.ebuild:
+  x86 stable, bug #369681
+
+  05 Jun 2011; Jeroen Roovers <jer@gentoo.org> lftp-4.2.3.ebuild:
+  Stable for HPPA (bug #369681).
+
+  02 Jun 2011; Markos Chandras <hwoarang@gentoo.org> lftp-4.2.3.ebuild:
+  Stable on amd64 wrt bug #369681
+
+  22 May 2011; Jeroen Roovers <jer@gentoo.org> lftp-4.1.3.ebuild,
+  lftp-4.2.1.ebuild, lftp-4.2.2.ebuild, lftp-4.2.3.ebuild:
+  DEPEND on dev-util/pkgconfig by dE (bug #368359). Sort DEPEND entries.
+
+*lftp-4.2.3 (02 May 2011)
+
+  02 May 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.2.3.ebuild:
+  Version bump.
+
+*lftp-4.2.2 (18 Apr 2011)
+
+  18 Apr 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.2.2.ebuild:
+  Version bump.
+
+*lftp-4.2.1 (04 Apr 2011)
+
+  04 Apr 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.2.1.ebuild:
+  Version bump.
+
+*lftp-4.2.0 (04 Mar 2011)
+
+  04 Mar 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.2.0.ebuild:
+  Version bump.
+
+  01 Mar 2011; Brent Baude <ranger@gentoo.org> lftp-4.1.3.ebuild:
+  stable ppc64, bug 355921
+
+  27 Feb 2011; Brent Baude <ranger@gentoo.org> lftp-4.1.3.ebuild:
+  Marking lftp-4.1.3 ppc for bug 355921
+
+  26 Feb 2011; Raúl Porcel <armin76@gentoo.org> lftp-4.1.3.ebuild:
+  alpha/ia64/s390/sparc stable wrt #355921
+
+  26 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> lftp-4.1.3.ebuild:
+  x86 stable wrt bug #355921
+
+  25 Feb 2011; Jeroen Roovers <jer@gentoo.org> lftp-4.1.3.ebuild:
+  Stable for HPPA (bug #355921).
+
+  22 Feb 2011; Markos Chandras <hwoarang@gentoo.org> lftp-4.1.3.ebuild:
+  Stable on amd64 wrt bug #355921
+
+  25 Jan 2011; Jeroen Roovers <jer@gentoo.org>
+  files/lftp-4.0.2.91-lafile.patch:
+  Clean up patch.
+
+*lftp-4.1.3 (18 Jan 2011)
+
+  18 Jan 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.1.3.ebuild:
+  Version bump.
+
+  09 Jan 2011; Raúl Porcel <armin76@gentoo.org> lftp-4.1.1.ebuild:
+  alpha/ia64/s390/sparc stable wrt #349801
+
+*lftp-4.1.2 (03 Jan 2011)
+
+  03 Jan 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.1.2.ebuild:
+  Version bump. Switch to xz.
+
+  02 Jan 2011; Markus Meier <maekke@gentoo.org> lftp-4.1.1.ebuild:
+  arm stable, bug #349801
+
+  01 Jan 2011; Markos Chandras <hwoarang@gentoo.org> lftp-4.1.1.ebuild:
+  Stable on amd64 wrt bug #349801
+
+  01 Jan 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> lftp-4.1.1.ebuild:
+  x86 stable wrt bug #349801
+
+  30 Dec 2010; Jeroen Roovers <jer@gentoo.org> lftp-4.1.1.ebuild:
+  Stable for HPPA PPC (bug #349801).
+
+  28 Dec 2010; Brent Baude <ranger@gentoo.org> lftp-4.1.1.ebuild:
+  stable ppc64, bug 349801
+
+*lftp-4.1.1 (25 Nov 2010)
+
+  25 Nov 2010; Jeroen Roovers <jer@gentoo.org> -lftp-4.1.0.ebuild,
+  +lftp-4.1.1.ebuild:
+  Version bump.
+
+*lftp-4.1.0 (23 Nov 2010)
+
+  23 Nov 2010; Jeroen Roovers <jer@gentoo.org> -lftp-4.0.10.90.ebuild,
+  +lftp-4.1.0.ebuild:
+  Version bump.
+
+*lftp-4.0.10.90 (24 Oct 2010)
+
+  24 Oct 2010; Jeroen Roovers <jer@gentoo.org> +lftp-4.0.10.90.ebuild:
+  Development version bump.
+
+  12 Oct 2010; Raúl Porcel <armin76@gentoo.org> lftp-4.0.10.ebuild:
+  arm/ia64/s390/sparc stable wrt #339953
+
+  11 Oct 2010; Jeroen Roovers <jer@gentoo.org> lftp-4.0.10.ebuild:
+  Stable for HPPA PPC (bug #339953).
+
+  10 Oct 2010; Tobias Klausmann <klausman@gentoo.org> lftp-4.0.10.ebuild:
+  Stable on alpha, bug #339953
+
+  10 Oct 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> lftp-4.0.10.ebuild:
+  x86 stable wrt bug #339953
+
+  08 Oct 2010; Markos Chandras <hwoarang@gentoo.org> lftp-4.0.10.ebuild:
+  Stable on amd64 wrt bug #339953
+
+  25 Sep 2010; Jeroen Roovers <jer@gentoo.org> lftp-4.0.9.ebuild:
+  Source moved by Gustavo Felisberto (bug #338605).
+
+*lftp-4.0.10 (02 Sep 2010)
+
+  02 Sep 2010; Jeroen Roovers <jer@gentoo.org> -lftp-4.0.9.1.ebuild,
+  +lftp-4.0.10.ebuild:
+  Version bump.
 
   03 Aug 2010; Brent Baude <ranger@gentoo.org> lftp-4.0.9.ebuild:
   Marking lftp-4.0.9 ppc64 for bug 329939
