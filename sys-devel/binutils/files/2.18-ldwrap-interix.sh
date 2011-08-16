@@ -15,6 +15,7 @@ Opt_r=no
 Opt_N=no
 Opt_n=no
 Opt_shared=no
+Opt_ldl="-ldl"
 Args=
 
 for arg in "$@"; do
@@ -24,6 +25,7 @@ for arg in "$@"; do
 	-N)       Opt_N=yes ;;
 	-n)       Opt_n=yes ;;
 	--shared) Opt_shared=yes ;;
+    -Bstatic) Opt_ldl= ;;
 	esac
 
 	# manpages states '-soname', but '-h' seems to work better !?
@@ -62,7 +64,7 @@ fi
 # dumb assertions from stderr without touching the rest.
 #
 exec 3>&1
-eval "/opt/gcc.3.3/bin/ld $Args --script '$ScriptDir/$ScriptPlatform.$ScriptExt'" 2>&1 >&3 3>&- \
+eval "/opt/gcc.3.3/bin/ld $Args $Opt_ldl --script '$ScriptDir/$ScriptPlatform.$ScriptExt'" 2>&1 >&3 3>&- \
     | grep -v -E 'assertion fail .*/cofflink.c:5211' 3>&- 1>&2 2>/dev/null
 _st=${PIPESTATUS[0]}
 exec 3>&-

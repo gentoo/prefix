@@ -45,11 +45,11 @@ src_install() {
 		chmod a+x "${ED}${BINPATH}"/ld
 
 		dodir "${LIBPATH}"/ldscripts
-	
+
 		# yes, this is "i586-pc-interix3" for SFU 3.5, SUA 5.2 and SUA 6.0
 		# additionally insert the prefix as absolute top search dir...
 		for x in /opt/gcc.3.3/i586-pc-interix3/lib/ldscripts/i386pe_posix.*; do
-			sed -e 's, SEARCH_DIR("/usr/local/lib"); , ,' \
+			sed -e 's, SEARCH_DIR("/usr/local/lib"); , SEARCH_DIR("/usr/lib/x86"); ,' \
 				-e "s,^\(SEARCH_DIR(\),SEARCH_DIR(\"${EPREFIX}/lib\"); SEARCH_DIR(\"${EPREFIX}/usr/lib\"); \1," \
 			< $x \
 			> "${ED}${LIBPATH}"/ldscripts/${x##*/} \
