@@ -17,13 +17,13 @@ IUSE="debug doc fam +introspection selinux +static-libs test xattr"
 
 RDEPEND="virtual/libiconv
 	sys-libs/zlib
+	x86-interix? ( sys-libs/itx-bind )
 	xattr? ( sys-apps/attr )
 	fam? ( virtual/fam )"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
 	>=sys-devel/gettext-0.11
 	>=dev-util/gtk-doc-am-1.13
-	x86-interix? ( sys-libs/itx-bind )
 	doc? (
 		>=dev-libs/libxslt-1.0
 		>=dev-util/gtk-doc-1.13
