@@ -176,6 +176,9 @@ src_prepare() {
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
+	# required when building on 64bit SUA installations.
+	epatch "${FILESDIR}"/${P}-interix-64.patch
+
 	eautoreconf
 }
 
