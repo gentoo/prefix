@@ -35,6 +35,15 @@ for arg in "$@"; do
 	-soname)  arg="-h" ;;
 	-soname=*) OptArg="${arg#-soname=}"; arg="-h" ;;
 	--version-script=*) continue ;; # ignore. this only make troubles!
+    -L/usr/lib/x86) continue ;; # fuck off, bloody bastard see below:
+		# gcc needs to know about /usr/lib/x86 to find startfiles, but
+		# knowing it, makes gcc add this path with -L on the linker
+		# command line. since the linker is a binutils-config extwrapper,
+		# it removes all -L${EPREFIX}/{lib,usr/lib} from the command line
+		# (and the linker itself adds them again later on). This makes us
+		# end up with /usr/lib/x86 up front of the prefix, making the linker
+		# find _WRONG_ libraries, resulting in damaged binaries and/or failed
+		# links.
 	esac
 
 	Args="$Args '$arg'"
