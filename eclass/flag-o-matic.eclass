@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.150 2011/02/25 10:51:44 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.155 2011/08/17 18:20:59 vapier Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -130,7 +130,11 @@ filter-flags() {
 # @DESCRIPTION:
 # Remove flags that enable Large File Support.
 filter-lfs-flags() {
-	[[ -n $@ ]] && die "filter-lfs-flags takes no arguments"
+	[[ $# -ne 0 ]] && die "filter-lfs-flags takes no arguments"
+	# http://www.gnu.org/s/libc/manual/html_node/Feature-Test-Macros.html
+	# _LARGEFILE_SOURCE: enable support for new LFS funcs (ftello/etc...)
+	# _LARGEFILE64_SOURCE: enable support for 64bit variants (off64_t/fseeko64/etc...)
+	# _FILE_OFFSET_BITS: default to 64bit variants (off_t is defined as off64_t)
 	filter-flags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_LARGE_FILES -D_LARGE_FILE_API
 }
 
@@ -179,7 +183,8 @@ append-fflags() {
 # @DESCRIPTION:
 # Add flags that enable Large File Support.
 append-lfs-flags() {
-	[[ -n $@ ]] && die "append-lfs-flags takes no arguments"
+	[[ $# -ne 0 ]] && die "append-lfs-flags takes no arguments"
+	# see comments in filter-lfs-flags func for meaning of these
 	case ${CHOST} in
 	*-aix*) append-cppflags -D_LARGE_FILES -D_LARGE_FILE_API ;;
 	*) append-cppflags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE ;;
@@ -416,11 +421,11 @@ test-flag-PROG() {
 	local comp=$1
 	local flags="$2"
 
-	[[ -z ${comp} || -z ${flags} ]] && \
-		return 1
+	[[ -z ${comp} || -z ${flags} ]] && return 1
 
+	# use -c so we can test the assembler as well
 	local PROG=$(tc-get${comp})
-	${PROG} ${flags} -S -o /dev/null -xc /dev/null \
+	${PROG} ${flags} -c -o /dev/null -xc /dev/null \
 		> /dev/null 2>&1
 }
 
@@ -500,15 +505,6 @@ test-flags-FC() { test-flags-PROG "FC" "$@"; }
 # its really only present due to the append-flags() abomination.
 test-flags() { test-flags-CC "$@"; }
 
-# @FUNCTION: test_flag
-# @DESCRIPTION:
-# DEPRICIATED, use test-flags()
-test_flag() {
-	ewarn "test_flag: deprecated, please use test-flags()!" >&2
-
-	test-flags-CC "$@"
-}
-
 # @FUNCTION: test_version_info
 # @USAGE: <version>
 # @DESCRIPTION:
@@ -553,66 +549,13 @@ get-flag() {
 	return 1
 }
 
-# @FUNCTION: has_hardened
-# @DESCRIPTION:
-# DEPRECATED - use gcc-specs-relro or gcc-specs-now from toolchain-funcs
-has_hardened() {
-	ewarn "has_hardened: deprecated, please use gcc-specs-{relro,now}()!" >&2
-
-	test_version_info Hardened && return 0
-	# The specs file wont exist unless gcc has GCC_SPECS support
-	[[ -f ${GCC_SPECS} && ${GCC_SPECS} != ${GCC_SPECS/hardened/} ]]
-}
-
-# @FUNCTION: has_pic
-# @DESCRIPTION:
-# DEPRECATED - use gcc-specs-pie from toolchain-funcs
-# indicate whether PIC is set
-has_pic() {
-	ewarn "has_pic: deprecated, please use gcc-specs-pie()!" >&2
-
-	[[ ${CFLAGS/-fPIC} != ${CFLAGS} || \
-	   ${CFLAGS/-fpic} != ${CFLAGS} ]] || \
-	gcc-specs-pie
-}
-
-# @FUNCTION: has_pie
-# @DESCRIPTION:
-# DEPRECATED - use gcc-specs-pie from toolchain-funcs
-# indicate whether PIE is set
-has_pie() {
-	ewarn "has_pie: deprecated, please use gcc-specs-pie()!" >&2
-
-	[[ ${CFLAGS/-fPIE} != ${CFLAGS} || \
-	   ${CFLAGS/-fpie} != ${CFLAGS} ]] || \
-	gcc-specs-pie
-}
-
-# @FUNCTION: has_ssp_all
-# @DESCRIPTION:
-# DEPRECATED - use gcc-specs-ssp from toolchain-funcs
-# indicate whether code for SSP is being generated for all functions
-has_ssp_all() {
-	ewarn "has_ssp_all: deprecated, please use gcc-specs-ssp()!" >&2
-
-	# note; this matches only -fstack-protector-all
-	[[ ${CFLAGS/-fstack-protector-all} != ${CFLAGS} || \
-	   -n $(echo | $(tc-getCC) ${CFLAGS} -E -dM - | grep __SSP_ALL__) ]] || \
-	gcc-specs-ssp-to-all
-}
-
-# @FUNCTION: has_ssp
-# @DESCRIPTION:
-# DEPRECATED - use gcc-specs-ssp from toolchain-funcs
-# indicate whether code for SSP is being generated
-has_ssp() {
-	ewarn "has_ssp: deprecated, please use gcc-specs-ssp()!" >&2
-
-	# note; this matches both -fstack-protector and -fstack-protector-all
-	[[ ${CFLAGS/-fstack-protector} != ${CFLAGS} || \
-	   -n $(echo | $(tc-getCC) ${CFLAGS} -E -dM - | grep __SSP__) ]] || \
-	gcc-specs-ssp
-}
+# DEAD FUNCS.  Remove by Dec 2011.
+test_flag()    { die "$0: deprecated, please use test-flags()!" ; }
+has_hardened() { die "$0: deprecated, please use gcc-specs-{relro,now}()!" ; }
+has_pic()      { die "$0: deprecated, please use gcc-specs-pie()!" ; }
+has_pie()      { die "$0: deprecated, please use gcc-specs-pie()!" ; }
+has_ssp_all()  { die "$0: deprecated, please use gcc-specs-ssp()!" ; }
+has_ssp()      { die "$0: deprecated, please use gcc-specs-ssp()!" ; }
 
 # @FUNCTION: has_m64
 # @DESCRIPTION:
