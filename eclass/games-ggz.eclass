@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.6 2011/04/19 21:19:11 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.7 2011/08/04 19:31:38 scarabeus Exp $
 
 inherit base
 
@@ -55,7 +55,7 @@ games-ggz_update_modules() {
 	mkdir -p "${confdir}"
 	echo -n > "${confdir}"/ggz.modules
 	if [[ -d ${moddir} ]] ; then
-		ebegin "Installing GGZ modules"
+		ebegin "Updating GGZ modules"
 		cd "${moddir}"
 		find . -type f -name '*.dsc' | while read dsc ; do
 			DESTDIR=${ROOT} ggz-config -Dim "${dsc}" || ((rval++))
