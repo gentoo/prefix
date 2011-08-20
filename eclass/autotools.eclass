@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.103 2011/05/16 03:44:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.104 2011/08/07 22:53:28 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -299,7 +299,12 @@ autotools_run_tool() {
 	# most of the time, there will only be one run, but if there are
 	# more, make sure we get unique log filenames
 	if [[ -e ${STDERR_TARGET} ]] ; then
-		STDERR_TARGET="${T}/$1-$$.out"
+		local i=1
+		while :; do
+			STDERR_TARGET="${T}/$1-${i}.out"
+			[[ -e ${STDERR_TARGET} ]] || break
+			: $(( i++ ))
+		done
 	fi
 
 	printf "***** $1 *****\n***** PWD: ${PWD}\n***** $*\n\n" > "${STDERR_TARGET}"
