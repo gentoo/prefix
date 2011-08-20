@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.103 2010/10/28 04:16:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.104 2011/07/12 14:29:41 aballier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -329,6 +329,7 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 						|| echo sparc
 					;;
 		vax*)		echo vax;;
+		x86_64*freebsd*) echo amd64;;
 		x86_64*)
 			# Starting with linux-2.6.24, the 'x86_64' and 'i386'
 			# trees have been unified into 'x86'.
