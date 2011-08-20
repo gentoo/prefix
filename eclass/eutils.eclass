@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.356 2011/04/18 15:09:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.362 2011/08/09 00:43:48 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -252,6 +252,11 @@ epatch() {
 		# Some people like to make dirs of patches w/out suffixes (vim)
 		set -- "$1"/*${EPATCH_SUFFIX:+."${EPATCH_SUFFIX}"}
 
+	elif [[ -f ${EPATCH_SOURCE}/$1 ]] ; then
+		# Re-use EPATCH_SOURCE as a search dir
+		epatch "${EPATCH_SOURCE}/$1"
+		return $?
+
 	else
 		# sanity check ... if it isn't a dir or file, wtf man ?
 		[[ $# -ne 0 ]] && EPATCH_SOURCE=$1
@@ -377,9 +382,14 @@ epatch() {
 			echo "PATCH COMMAND:  patch -p${count} ${EPATCH_OPTS} < '${PATCH_TARGET}'"
 			echo
 			_epatch_draw_line "***** ${patchname} *****"
+			patch -p${count} ${EPATCH_OPTS} --dry-run -f < "${PATCH_TARGET}" 2>&1
+			ret=$?
+			echo
+			echo "patch program exited with status ${ret}"
+			exit ${ret}
 			) >> "${STDERR_TARGET}"
 
-			if (patch -p${count} ${EPATCH_OPTS} --dry-run -f < "${PATCH_TARGET}") >> "${STDERR_TARGET}" 2>&1 ; then
+			if [ $? -eq 0 ] ; then
 				(
 				_epatch_draw_line "***** ${patchname} *****"
 				echo
@@ -387,6 +397,10 @@ epatch() {
 				echo
 				_epatch_draw_line "***** ${patchname} *****"
 				patch -p${count} ${EPATCH_OPTS} < "${PATCH_TARGET}" 2>&1
+				ret=$?
+				echo
+				echo "patch program exited with status ${ret}"
+				exit ${ret}
 				) >> "${STDERR_TARGET}"
 
 				if [ $? -ne 0 ] ; then
@@ -427,8 +441,39 @@ epatch() {
 	[[ ${SINGLE_PATCH} == "no" ]] && einfo "Done with patching"
 	: # everything worked
 }
+
+# @FUNCTION: epatch_user
+# @USAGE:
+# @DESCRIPTION:
+# Applies user-provided patches to the source tree. The patches are
+# taken from /etc/portage/patches/<CATEGORY>/<PF|P|PN>/, where the first
+# of these three directories to exist will be the one to use, ignoring
+# any more general directories which might exist as well.
+#
+# User patches are intended for quick testing of patches without ebuild
+# modifications, as well as for permanent customizations a user might
+# desire. Obviously, there can be no official support for arbitrarily
+# patched ebuilds. So whenever a build log in a bug report mentions that
+# user patches were applied, the user should be asked to reproduce the
+# problem without these.
+#
+# Not all ebuilds do call this function, so placing patches in the
+# stated directory might or might not work, depending on the package and
+# the eclasses it inherits and uses. It is safe to call the function
+# repeatedly, so it is always possible to add a call at the ebuild
+# level. The first call is the time when the patches will be
+# applied.
+#
+# Ideally, this function should be called after gentoo-specific patches
+# have been applied, so that their code can be modified as well, but
+# before calls to e.g. eautoreconf, as the user patches might affect
+# autotool input files as well.
 epatch_user() {
 	[[ $# -ne 0 ]] && die "epatch_user takes no options"
+
+	# Allow multiple calls to this function; ignore all but the first
+	local applied="${T}/epatch_user.applied"
+	[[ -e ${applied} ]] && return 2
 
 	# don't clobber any EPATCH vars that the parent might want
 	local EPATCH_SOURCE check base=${PORTAGE_CONFIGROOT%/}/etc/portage/patches
@@ -442,9 +487,11 @@ epatch_user() {
 			EPATCH_FORCE="yes" \
 			EPATCH_MULTI_MSG="Applying user patches from ${EPATCH_SOURCE} ..." \
 			epatch
+			echo "${EPATCH_SOURCE}" > "${applied}"
 			return 0
 		fi
 	done
+	echo "none" > "${applied}"
 	return 1
 }
 
@@ -499,7 +546,7 @@ egetent() {
 	*-darwin[678])
 		case "$2" in
 		*[!0-9]*) # Non numeric
-			nidump $1 . | awk -F":" "{ if (\$1 ~ /^$2$/) {print \$0;exit;} }"
+			nidump $1 . | awk -F":" "{ if (\$1 ~ /^$2\$/) {print \$0;exit;} }"
 			;;
 		*)	# Numeric
 			nidump $1 . | awk -F":" "{ if (\$3 == $2) {print \$0;exit;} }"
@@ -1729,9 +1776,9 @@ strip-linguas() {
 			fi
 			for f in $(find "$d" -name '*.po' -exec basename {} .po ';') ; do
 				if [[ ${op} == "-i" ]] ; then
-					hasq ${f} ${ls} && newls="${newls} ${f}"
+					has ${f} ${ls} && newls="${newls} ${f}"
 				else
-					hasq ${f} ${ls} || newls="${newls} ${f}"
+					has ${f} ${ls} || newls="${newls} ${f}"
 				fi
 			done
 			ls=${newls}
@@ -1743,7 +1790,7 @@ strip-linguas() {
 	nols=""
 	newls=""
 	for f in ${LINGUAS} ; do
-		if hasq ${f} ${ls} ; then
+		if has ${f} ${ls} ; then
 			newls="${newls} ${f}"
 		else
 			nols="${nols} ${f}"

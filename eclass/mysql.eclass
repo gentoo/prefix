@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.160 2011/05/07 19:16:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.162 2011/08/19 20:06:12 jmbsvicetto Exp $
 
 # @ECLASS: mysql.eclass
 # @MAINTAINER:
@@ -130,7 +130,8 @@ DEPEND="ssl? ( >=dev-libs/openssl-0.9.6d )
 		>=sys-apps/sed-4
 		>=sys-apps/texinfo-4.7-r1
 		>=sys-libs/readline-4.1
-		>=sys-libs/zlib-1.2.3"
+		>=sys-libs/zlib-1.2.3
+		virtual/yacc"
 
 [[ "${PN}" == "mariadb" ]] \
 && DEPEND="${DEPEND} libevent? ( >=dev-libs/libevent-1.4 )"
@@ -778,7 +779,7 @@ pbxt_src_install() {
 #   create new user and group for mysql
 #   warn about deprecated features
 mysql_pkg_setup() {
-	if hasq test ${FEATURES} ; then
+	if has test ${FEATURES} ; then
 		if ! use minimal ; then
 			if [[ $UID -eq 0 ]]; then
 				eerror "Testing with FEATURES=-userpriv is no longer supported by upstream. Tests MUST be run as non-root."

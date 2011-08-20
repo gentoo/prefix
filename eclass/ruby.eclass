@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.79 2010/08/03 15:50:02 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.80 2011/07/08 11:35:01 ssuominen Exp $
 #
 # DEPRECATION NOTICE
 # This eclass is deprecated because it does not properly handle
@@ -194,7 +194,7 @@ erubydoc() {
 		dohtml -r *
 	fi
 
-	if hasq examples ${IUSE} && use examples; then
+	if has examples ${IUSE} && use examples; then
 		for dir in sample samples example examples; do
 			if [ -d ${dir} ] ; then
 				dodir /usr/share/doc/${PF}

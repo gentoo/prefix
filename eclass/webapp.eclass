@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.66 2011/05/19 12:05:13 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.69 2011/07/27 07:50:39 lxnay Exp $
 
 # @ECLASS: webapp.eclass
 # @MAINTAINER:
@@ -59,7 +59,12 @@ webapp_read_config() {
 	if has_version '>=app-admin/webapp-config-1.50'; then
 		ENVVAR=$(${WEBAPP_CONFIG} --query ${PN} ${PVR}) || die "Could not read settings from webapp-config!"
 		eval ${ENVVAR}
-	else
+	elif [[ "${WEBAPP_OPTIONAL}" != "yes" ]]; then
+		# ETC_CONFIG might not be available
+		. ${ETC_CONFIG} || die "Unable to read ${ETC_CONFIG}"
+	elif [[ -f "${ETC_CONFIG}" ]]; then
+		# WEBAPP_OPTIONAL is set to yes
+		# and this must run only if ETC_CONFIG actually exists
 		. ${ETC_CONFIG} || die "Unable to read ${ETC_CONFIG}"
 	fi
 }
@@ -121,14 +126,21 @@ webapp_getinstalltype() {
 			if [[ "${my_pvr}" != "${PVR}" ]]; then
 				elog "This is an upgrade"
 				IS_UPGRADE=1
+				# for binpkgs, reset status, var declared in global scope
+				IS_REPLACE=0
 			else
 				elog "This is a re-installation"
 				IS_REPLACE=1
+				# for binpkgs, reset status, var declared in global scope
+				IS_UPGRADE=0
 			fi
 		else
 			elog "${my_output} is installed there"
 		fi
 	else
+		# for binpkgs, reset status, var declared in global scope
+		IS_REPLACE=0
+		IS_UPGRADE=0
 		elog "This is an installation"
 	fi
 }
@@ -495,7 +507,7 @@ webapp_pkg_postinst() {
 			${my_cmd}
 
 			echo
-			local cleaner="${WEBAPP_CLEANER} -p -C ${PN}"
+			local cleaner="${WEBAPP_CLEANER} -p -C /${PN}"
 			einfo "Running ${cleaner}"
 			${cleaner}
 		else
@@ -542,7 +554,7 @@ webapp_pkg_prerm() {
 			if [[ -f "${x}"/.webapp ]]; then
 				. "${x}"/.webapp
 				if [[ -n "${WEB_HOSTNAME}" && -n "${WEB_INSTALLDIR}" ]]; then
-					${WEBAPP_CONFIG} -C -h ${WEB_HOSTNAME} -d ${WEB_INSTALLDIR}
+					${WEBAPP_CONFIG} -C -h ${WEB_HOSTNAME} -d ${WEB_INSTALLDIR} ${PN} ${PVR}
 				fi
 			else
 				ewarn "Cannot find file ${x}/.webapp"

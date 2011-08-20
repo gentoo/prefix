@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.461 2011/07/08 11:35:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.462 2011/08/13 03:09:40 dirtyepic Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -727,7 +727,7 @@ create_gcc_env_entry() {
 	if is_multilib ; then
 		LDPATH="${EPREFIX}${LIBPATH}"
 		for path in 32 64 ; do
-			[[ -d ${EPREFIX}${LIBPATH}/${path} ]] && LDPATH="${LDPATH}:${EPREFIX}${LIBPATH}/${path}"
+			[[ -d ${ED}${LIBPATH}/${path} ]] && LDPATH="${LDPATH}:${EPREFIX}${LIBPATH}/${path}"
 		done
 	else
 		local MULTIDIR
