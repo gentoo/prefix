@@ -1,6 +1,41 @@
 # ChangeLog for dev-tex/luatex
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.81 2010/12/16 12:45:42 aballier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.91 2011/08/14 17:03:51 maekke Exp $
+
+  14 Aug 2011; Markus Meier <maekke@gentoo.org> luatex-0.70.1.ebuild:
+  arm stable, bug #355085
+
+  12 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> luatex-0.70.1.ebuild:
+  ppc/ppc64 stable wrt #355085
+
+  12 Aug 2011; Thomas Kahle <tomka@gentoo.org> luatex-0.70.1.ebuild:
+  x86 stable per bug 355085
+
+  09 Aug 2011; Markos Chandras <hwoarang@gentoo.org> luatex-0.70.1.ebuild:
+  Stable on amd64 wrt bug #355085
+
+*luatex-0.70.1 (04 Jul 2011)
+
+  04 Jul 2011; Alexis Ballier <aballier@gentoo.org> +luatex-0.70.1.ebuild:
+  version bump
+
+  15 Jun 2011; Naohiro Aota <naota@gentoo.org> luatex-0.65.0.ebuild:
+  Added ~x86-fbsd, bug #345317
+
+  13 Jun 2011; Matt Turner <mattst88@gentoo.org> luatex-0.65.0.ebuild:
+  Added ~mips, bug 345317
+
+  27 Feb 2011; Raúl Porcel <armin76@gentoo.org> luatex-0.65.0.ebuild:
+  Add ~alpha/~ia64/~s390/~sh/~sparc wrt #345317
+
+  20 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> luatex-0.65.0.ebuild:
+  Marked ~ppc/~ppc64 wrt #345317
+
+  15 Feb 2011; Alexis Ballier <aballier@gentoo.org> luatex-0.65.0.ebuild:
+  Fix build with libpng 1.5, by Lars Wendler (Polynomial-C)
+  <polynomial-c@gentoo.org>, imported from netbsd
+  ftp://ftp.netbsd.org/pub/pkgsrc/current/pkgsrc/print/luatex/patches/patch-ad
+  , bug #355091
 
   16 Dec 2010; Alexis Ballier <aballier@gentoo.org> -luatex-0.64.0.ebuild:
   remove old

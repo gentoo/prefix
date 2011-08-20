@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.65.0.ebuild,v 1.6 2011/06/15 06:03:47 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.70.1.ebuild,v 1.5 2011/08/14 17:03:51 maekke Exp $
 
 EAPI="2"
 
@@ -8,9 +8,8 @@ inherit libtool eutils
 
 DESCRIPTION="An extended version of pdfTeX using Lua as an embedded scripting language."
 HOMEPAGE="http://www.luatex.org/"
-SRC_URI="http://foundry.supelec.fr/gf/download/frsrelease/386/1704/${PN}-beta-${PV}-source.tar.bz2
-	http://foundry.supelec.fr/gf/download/frsrelease/386/1705/${PN}-beta-${PV}-doc.tar.bz2
-	mirror://gentoo/${P}-libpng15.patch.bz2"
+SRC_URI="http://foundry.supelec.fr/gf/download/frsrelease/392/1730/${PN}-beta-${PV}.tar.bz2
+	http://foundry.supelec.fr/gf/download/frsrelease/392/1732/${PN}-beta-${PV}-doc.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -21,7 +20,7 @@ RDEPEND="dev-libs/zziplib
 	>=media-libs/libpng-1.4
 	>=app-text/poppler-0.12.3-r3[xpdf-headers]
 	sys-libs/zlib
-	dev-libs/kpathsea"
+	>=dev-libs/kpathsea-6.0.1_p20110627"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
@@ -31,8 +30,7 @@ PRELIBS="libs/obsdcompat"
 #kpathsea_extraconf="--disable-shared --disable-largefile"
 
 src_prepare() {
-	epatch "${WORKDIR}/${P}-libpng15.patch"
-	elibtoolize
+	S="${S}/build-aux" elibtoolize --shallow
 }
 
 src_configure() {
@@ -51,6 +49,8 @@ src_configure() {
 		--disable-all-pkgs	\
 		--disable-mp		\
 		--disable-ptex		\
+		--disable-tex		\
+		--disable-mf		\
 	    --disable-largefile \
 		--disable-ipc		\
 		--disable-shared	\
@@ -81,6 +81,7 @@ src_configure() {
 }
 
 src_compile() {
+	texk/web2c/luatexdir/getluatexsvnversion.sh || die
 	for i in ${PRELIBS} ; do
 		cd "${S}/${i}"
 		emake || die "failed to build ${i}"
@@ -95,10 +96,10 @@ src_install() {
 		install-exec-am || die
 
 	dodoc "${WORKDIR}/${PN}-beta-${PV}/README" || die
-	newman "${WORKDIR}/${PN}-beta-${PV}/manual/${PN}.man" "${PN}.1" || die
+	doman "${WORKDIR}/texmf/doc/man/man1/"*.1 || die
 	if use doc ; then
-		insinto /usr/share/doc/${PF}
-		doins "${WORKDIR}/${PN}-beta-${PV}/manual/"*.pdf || die
+		dodoc "${WORKDIR}/${PN}-beta-${PV}/manual/"*.pdf || die
+		dodoc "${WORKDIR}/texmf/doc/man/man1/"*.pdf || die
 	fi
 }
 
