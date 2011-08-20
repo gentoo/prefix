@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.50 2010/10/17 12:55:00 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.51 2011/07/08 11:35:01 ssuominen Exp $
 
 inherit java-utils-2
 
@@ -62,9 +62,9 @@ JAVA_ANT_E_DEPEND="${JAVA_ANT_E_DEPEND}
 
 # this eclass must be inherited after java-pkg-2 or java-pkg-opt-2
 # if it's java-pkg-opt-2, ant dependencies are pulled based on USE flag
-if hasq java-pkg-opt-2 ${INHERITED}; then
+if has java-pkg-opt-2 ${INHERITED}; then
 	JAVA_ANT_E_DEPEND="${JAVA_PKG_OPT_USE}? ( ${JAVA_ANT_E_DEPEND} )"
-elif ! hasq java-pkg-2 ${INHERITED}; then
+elif ! has java-pkg-2 ${INHERITED}; then
 	eerror "java-ant-2 eclass can only be inherited AFTER java-pkg-2 or java-pkg-opt-2"
 fi
 
@@ -145,7 +145,7 @@ esac
 # ------------------------------------------------------------------------------
 java-ant-2_src_configure() {
 	# if java support is optional, don't perform this when the USE flag is off
-	if hasq java-pkg-opt-2 ${INHERITED}; then
+	if has java-pkg-opt-2 ${INHERITED}; then
 		use ${JAVA_PKG_OPT_USE} || return
 	fi
 
@@ -328,7 +328,7 @@ java-ant_bsfix_files() {
 				readonly JAVA_ANT_JAVADOC_OUTPUT_DIR="${WORKDIR}/gentoo_javadoc"
 				mkdir -p "${JAVA_ANT_JAVADOC_OUTPUT_DIR}" || die
 
-				if hasq doc ${IUSE}; then
+				if has doc ${IUSE}; then
 					if use doc; then
 						if [[ -z ${EANT_DOC_TARGET} ]]; then
 							EANT_DOC_TARGET="gentoojavadoc"
