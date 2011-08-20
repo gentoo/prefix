@@ -73,7 +73,7 @@ has "${EAPI}" 0 1 && JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
 # so that ebuilds can use new features without depending on specific versions.
 # -----------------------------------------------------------------------------
 JAVA_PKG_E_DEPEND="!x86-winnt? ( >=dev-java/java-config-2.1.9-r1 ${JAVA_PKG_PORTAGE_DEP} )"
-hasq source ${JAVA_PKG_IUSE} && JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
+has source ${JAVA_PKG_IUSE} && JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
 
 # -----------------------------------------------------------------------------
 # @variable-preinherit JAVA_PKG_WANT_BOOTCLASSPATH
