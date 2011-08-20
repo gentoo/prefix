@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.24 2010/12/22 10:02:05 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.25 2011/07/08 11:35:01 ssuominen Exp $
 
 EAPI="2"
 
@@ -521,7 +521,7 @@ apache-2_src_install() {
 	use doc && APACHE2_OPTS="${APACHE2_OPTS} -D MANUAL"
 	use ssl && APACHE2_OPTS="${APACHE2_OPTS} -D SSL -D SSL_DEFAULT_VHOST"
 	use suexec && APACHE2_OPTS="${APACHE2_OPTS} -D SUEXEC"
-	if hasq negotiation ${APACHE2_MODULES} && use apache2_modules_negotiation; then
+	if has negotiation ${APACHE2_MODULES} && use apache2_modules_negotiation; then
 		APACHE2_OPTS="${APACHE2_OPTS} -D LANGUAGE"
 	fi
 
