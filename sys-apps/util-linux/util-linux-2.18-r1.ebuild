@@ -85,8 +85,8 @@ lfs_fallocate_test() {
 }
 
 want_libuuid() {
-	# bug #350841, currently only not on OS X Snow Leopard
-	[[ ${CHOST} != *-darwin10 ]]
+	# bug #350841, currently only not on OS X Snow Leopard and onwards
+	[[ ${CHOST} != *-darwin1[0123] ]]
 }
 
 src_configure() {
