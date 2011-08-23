@@ -1,0 +1,14 @@
+reported: http://code.google.com/p/libarchive/issues/detail?id=172&colspec=ID%20Type%20Status%20Priority%20Milestone%20OpSys%20Owner%20Summary
+
+diff -ru libarchive-2.8.4.orig/libarchive/archive.h libarchive-2.8.4/libarchive/archive.h
+--- libarchive-2.8.4.orig/libarchive/archive.h	2011-08-23 10:58:52 +0200
++++ libarchive-2.8.4/libarchive/archive.h	2011-08-23 11:04:04 +0200
+@@ -37,7 +37,7 @@
+  */
+ #if defined(__BORLANDC__) && __BORLANDC__ >= 0x560
+ # define __LA_STDINT_H <stdint.h>
+-#elif !defined(__WATCOMC__) && !defined(_MSC_VER) && !defined(__INTERIX) && !defined(__BORLANDC__)
++#elif !defined(__WATCOMC__) && !defined(_MSC_VER) && !defined(__BORLANDC__)
+ # define __LA_STDINT_H <inttypes.h>
+ #endif
+ 

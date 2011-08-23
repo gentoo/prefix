@@ -13,7 +13,7 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc64-solaris ~x86-solaris"
 IUSE="static static-libs acl xattr kernel_linux +bzip2 +lzma +zlib expat"
 
 COMPRESS_LIBS_DEPEND="lzma? ( app-arch/xz-utils )
@@ -34,6 +34,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "$FILESDIR"/libarchive-disable-lzma-size-test.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 	# for FreeMiNT
 	eautoreconf
 	elibtoolize
