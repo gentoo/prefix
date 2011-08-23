@@ -18,7 +18,7 @@ else
 fi
 
 PATCHSET_REVISION="0"
-PREFIX_PATCHREV="-r1"
+PREFIX_PATCHREV="-r2"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -175,9 +175,6 @@ src_prepare() {
 		Modules/Setup.dist \
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
-
-	# required when building on 64bit SUA installations.
-	epatch "${FILESDIR}"/${P}-interix-64.patch
 
 	eautoreconf
 }
