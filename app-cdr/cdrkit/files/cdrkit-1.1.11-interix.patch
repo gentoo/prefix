@@ -1,0 +1,58 @@
+diff -ru cdrkit-1.1.11.orig/include/AddScgBits.cmake cdrkit-1.1.11/include/AddScgBits.cmake
+--- cdrkit-1.1.11.orig/include/AddScgBits.cmake	2011-08-24 10:44:39 +0200
++++ cdrkit-1.1.11/include/AddScgBits.cmake	2011-08-24 10:48:35 +0200
+@@ -61,8 +61,11 @@
+    LIST(APPEND EXTRA_LIBS -pthread "-framework CoreFoundation" "-framework IOKit")
+ ELSE(APPLE)
+    IF(NOT LIBC_SCHED)
+-      LIST(APPEND EXTRA_LIBS -lrt)
+-      #MESSAGE("Using librt for realtime functions")
++   	FIND_LIBRARY(HAVE_LIBRT rt)
++   	IF(HAVE_LIBRT)
++		LIST(APPEND EXTRA_LIBS rt)
++	   	#MESSAGE("Using librt for realtime functions")
++	ENDIF(HAVE_LIBRT)
+    ENDIF(NOT LIBC_SCHED)
+ ENDIF(APPLE)
+ 
+diff -ru cdrkit-1.1.11.orig/include/CMakeLists.txt cdrkit-1.1.11/include/CMakeLists.txt
+--- cdrkit-1.1.11.orig/include/CMakeLists.txt	2011-08-24 10:44:39 +0200
++++ cdrkit-1.1.11/include/CMakeLists.txt	2011-08-24 10:45:18 +0200
+@@ -166,5 +168,13 @@
+ ")
+ CHECK_C_SOURCE_COMPILES("${TESTSRC}" HAVE_DYN_ARRAYS)
+ 
++SET(TESTSRC "
++int main() {
++	(void)valloc(0x10);
++	return 0;
++}
++")
++CHECK_C_SOURCE_COMPILES("${TESTSRC}" HAVE_VALLOC)
++
+ CONFIGURE_FILE( xconfig.h.in xconfig.h)
+ 
+diff -ru cdrkit-1.1.11.orig/include/xconfig.h.in cdrkit-1.1.11/include/xconfig.h.in
+--- cdrkit-1.1.11.orig/include/xconfig.h.in	2011-08-24 10:44:39 +0200
++++ cdrkit-1.1.11/include/xconfig.h.in	2011-08-24 10:48:48 +0200
+@@ -88,7 +88,11 @@
+ 
+ #cmakedefine HAVE_SYS_MMAN_H
+ 		/* to use definitions for mmap()/madvise()... from sys/mman.h */
++#ifdef __INTERIX
++#define MAJOR_IN_MKDEV 1		/* interix has those in sys/mkdev.h */
++#else
+ #define MAJOR_IN_SYSMACROS 1	/* if we should include sys/sysmacros.h to get major()/minor()/makedev() */
++#endif
+ #cmakedefine HAVE_SYS_DKIO_H
+ #cmakedefine HAVE_SUN_DKIO_H
+ #cmakedefine HAVE_POLL_H
+@@ -174,7 +178,7 @@
+ #define HAVE_USLEEP 1		/* usleep() is present in libc */
+ #define HAVE_FORK 1		/* fork() is present in libc */
+ #define HAVE_ALLOCA 1		/* alloca() is present (else use malloc())*/
+-#define HAVE_VALLOC 1		/* valloc() is present in libc (else use malloc())*/
++#cmakedefine HAVE_VALLOC 1		/* valloc() is present in libc (else use malloc())*/
+ 
+ /*
+  * Important:	This must be a result from a check _before_ the Large File test
