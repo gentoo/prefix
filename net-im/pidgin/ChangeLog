@@ -1,6 +1,157 @@
 # ChangeLog for net-im/pidgin
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.207 2010/11/22 16:29:07 tester Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.246 2011/07/27 07:01:12 pva Exp $
+
+*pidgin-2.9.0-r1 (27 Jul 2011)
+
+  27 Jul 2011; Peter Volkov <pva@gentoo.org> +pidgin-2.9.0-r1.ebuild,
+  +files/pidgin-2.9.0-conversation.c.patch:
+  Fix multiple display of room members, bug 375627 thank Antonov Nikolay for
+  digging patch.
+
+  09 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> pidgin-2.9.0.ebuild:
+  ppc stable wrt #372785
+
+  06 Jul 2011; Mark Loeser <halcy0n@gentoo.org> pidgin-2.9.0.ebuild:
+  Stable for ppc64; bug #372785
+
+  03 Jul 2011; Raúl Porcel <armin76@gentoo.org> pidgin-2.9.0.ebuild:
+  alpha/ia64/sparc stable wrt #372785
+
+  01 Jul 2011; Peter Volkov <pva@gentoo.org> pidgin-2.9.0.ebuild:
+  Depend on avahi[dbus] for required avahi-client, bug #373659 thank Antonio
+  Quartulli for report.
+
+  29 Jun 2011; Christoph Mende <angelos@gentoo.org> pidgin-2.9.0.ebuild:
+  Stable on amd64 wrt bug #372785
+
+  29 Jun 2011; Thomas Kahle <tomka@gentoo.org> pidgin-2.9.0.ebuild:
+  x86 stable per bug 372785
+
+  29 Jun 2011; Jeroen Roovers <jer@gentoo.org> pidgin-2.9.0.ebuild:
+  Stable for HPPA (bug #372785).
+
+*pidgin-2.9.0 (27 Jun 2011)
+
+  27 Jun 2011; Peter Volkov <pva@gentoo.org> +pidgin-2.9.0.ebuild:
+  Version bump, fixes security bug #372785 thank tman and jer for report.
+
+  20 Jun 2011; Peter Volkov <pva@gentoo.org> pidgin-2.8.0-r1.ebuild:
+  Allow pidgin be built against net-libs/libgadu[-ssl], bug 372075 thank
+  Bartosz Brachaczek for report.
+
+*pidgin-2.8.0-r1 (19 Jun 2011)
+
+  19 Jun 2011; Peter Volkov <pva@gentoo.org> +pidgin-2.8.0-r1.ebuild,
+  +files/pidgin-2.8.0-finch-icq.patch:
+  Fix finch inability to connect to ICQ networks, bug 372037 thank Mario for
+  report.
+
+*pidgin-2.8.0 (14 Jun 2011)
+
+  14 Jun 2011; Peter Volkov <pva@gentoo.org> +pidgin-2.8.0.ebuild:
+  Version bump, bug #370783 thank tman for report.
+
+  15 Apr 2011; Peter Volkov <pva@gentoo.org> -pidgin-2.7.10.ebuild,
+  pidgin-2.7.11.ebuild:
+  Allow to build net-libs/libgadu without ssl, bug #363627 thank Bartosz
+  Brachaczek for report. Drop old.
+
+  25 Mar 2011; Peter Volkov <pva@gentoo.org> pidgin-2.7.10.ebuild,
+  pidgin-2.7.11.ebuild:
+  Update libgadu dependency, bug #359329 thank tman for report.
+
+  18 Mar 2011; Raúl Porcel <armin76@gentoo.org> pidgin-2.7.11.ebuild:
+  ia64/sparc stable wrt #358403
+
+  15 Mar 2011; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.11.ebuild:
+  Stable for HPPA (bug #358403).
+
+  13 Mar 2011; Tobias Klausmann <klausman@gentoo.org> pidgin-2.7.11.ebuild:
+  Stable on alpha, bug #358403
+
+  13 Mar 2011; Markos Chandras <hwoarang@gentoo.org> pidgin-2.7.11.ebuild:
+  Stable on amd64 wrt bug #358403
+
+  13 Mar 2011; Christian Faulhammer <fauli@gentoo.org> pidgin-2.7.11.ebuild:
+  stable x86, security bug 358403
+
+  13 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> pidgin-2.7.11.ebuild:
+  ppc/ppc64 stable wrt #358403
+
+*pidgin-2.7.11 (12 Mar 2011)
+
+  12 Mar 2011; Peter Volkov <pva@gentoo.org> -pidgin-2.7.5.ebuild,
+  -pidgin-2.7.9.ebuild, +pidgin-2.7.11.ebuild:
+  Version bump, fixes security bug #358403, thank tman for report. Drop old.
+
+  14 Feb 2011; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.10.ebuild:
+  Stable for HPPA (bug #353953).
+
+  12 Feb 2011; Markos Chandras <hwoarang@gentoo.org> pidgin-2.7.10.ebuild:
+  Stable on amd64 wrt bug #353953
+
+  12 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> pidgin-2.7.10.ebuild:
+  ppc/ppc64 stable wrt #353953
+
+  12 Feb 2011; Raúl Porcel <armin76@gentoo.org> pidgin-2.7.10.ebuild:
+  alpha/ia64/sparc stable wrt #353953
+
+  12 Feb 2011; Christian Faulhammer <fauli@gentoo.org> pidgin-2.7.10.ebuild:
+  stable x86, security bug 353953
+
+  12 Feb 2011; Peter Volkov <pva@gentoo.org> pidgin-2.7.10.ebuild:
+  Drop patch applied upstream, bug #354573, thank Alexandre Rostovtsev for
+  report.
+
+*pidgin-2.7.10 (12 Feb 2011)
+
+  12 Feb 2011; Peter Volkov <pva@gentoo.org> +pidgin-2.7.10.ebuild:
+  Version bump, fixes security issue #353953, thank tman for report.
+
+  10 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> pidgin-2.7.9.ebuild:
+  ppc64 stable wrt #349906
+
+  04 Jan 2011; Peter Volkov <pva@gentoo.org> -pidgin-2.7.4.ebuild,
+  pidgin-2.7.9.ebuild:
+  dbus-python dependency for purple-url-handler, bug #350269, thank Jimmy C.
+  Chau for report. Drop old.
+
+  01 Jan 2011; Raúl Porcel <armin76@gentoo.org> pidgin-2.7.9.ebuild:
+  alpha/ia64 stable wrt #349906
+
+  30 Dec 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.9.ebuild:
+  Stable for HPPA PPC SPARC (bug #349906).
+
+  29 Dec 2010; Thomas Kahle <tomka@gentoo.org> pidgin-2.7.9.ebuild:
+  x86 stable per bug 349906
+
+  29 Dec 2010; Markos Chandras <hwoarang@gentoo.org> pidgin-2.7.9.ebuild:
+  Stable on amd64 wrt bug #349906
+
+*pidgin-2.7.9 (29 Dec 2010)
+
+  29 Dec 2010; Peter Volkov <pva@gentoo.org> -pidgin-2.7.7.ebuild,
+  -pidgin-2.7.8.ebuild, +pidgin-2.7.9.ebuild:
+  Version bump, fixes security issue #339938, thank Tim Sammut for report.
+
+  28 Dec 2010; Brent Baude <ranger@gentoo.org> pidgin-2.7.5.ebuild:
+  Marking pidgin-2.7.5 ppc64 for bug 343653
+
+  24 Dec 2010; Peter Volkov <pva@gentoo.org> pidgin-2.7.8.ebuild:
+  Add !<x11-plugins/pidgin-facebookchat-1.69-r1, bug #349224, thank Diego Elio
+  Pettenò for report.
+
+*pidgin-2.7.8 (20 Dec 2010)
+
+  20 Dec 2010; Peter Volkov <pva@gentoo.org> +pidgin-2.7.8.ebuild:
+  Version bump.
+
+*pidgin-2.7.7 (25 Nov 2010)
+
+  25 Nov 2010; Olivier Crête <tester@gentoo.org> -pidgin-2.7.6.ebuild,
+  +pidgin-2.7.7.ebuild:
+  Version bump, bug #346711
 
 *pidgin-2.7.6 (22 Nov 2010)
 
