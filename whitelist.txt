@@ -156,6 +156,7 @@ app-misc/zisofs-tools
 app-portage/eclass-manpages
 app-portage/eix
 app-portage/elogv
+app-portage/esearch
 app-portage/gentoolkit
 app-portage/gentoolkit-dev
 app-portage/layman
