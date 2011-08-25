@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/ufed
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.80 2010/03/31 13:54:12 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.82 2011/07/20 16:24:43 pacho Exp $
+
+  20 Jul 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #81177
+
+  20 Oct 2010; Mart Raudsepp <leio@gentoo.org> ufed-0.40-r6.ebuild:
+  Drop to ~mips
 
   31 Mar 2010; Samuli Suominen <ssuominen@gentoo.org> ufed-0.40-r11.ebuild:
   Don't use econf for non-autoconf based ./configure script.

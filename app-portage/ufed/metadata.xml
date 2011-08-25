@@ -2,8 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>tools-portage</herd>
-<maintainer>
-<email>truedfx@gentoo.org</email>
-<name>Harald van Dĳk</name>
-</maintainer>
 </pkgmetadata>
