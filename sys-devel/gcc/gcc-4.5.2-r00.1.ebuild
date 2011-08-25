@@ -110,6 +110,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
 
 	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
+	epatch "${FILESDIR}"/4.5.2/solaris-pthread.patch
 
 	# libgcc's Makefiles reuses $T, work around that :(
 	# only necessary on x86/x64, breaks on sparc

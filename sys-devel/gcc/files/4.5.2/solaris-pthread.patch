@@ -1,0 +1,32 @@
+Fix compiling java/gcj on Solaris
+
+Chí-Thanh Christopher Nguyễn
+
+https://bugs.gentoo.org/show_bug.cgi?id=380369
+
+--- a/libjava/configure.ac
++++ b/libjava/configure.ac
+@@ -1064,6 +1064,10 @@
+ 	THREADLIBS='-lpthread -lrt'
+ 	THREADSPEC='-lpthread -lrt'
+ 	;;
++     *-*-solaris*)
++	THREADCXXFLAGS=-pthread
++	THREADSPEC=-lpthread
++	;;
+      *)
+ 	THREADLIBS=-lpthread
+ 	THREADSPEC=-lpthread
+--- a/libjava/configure
++++ b/libjava/configure
+@@ -20702,6 +20702,10 @@
+ 	THREADLIBS='-lpthread -lrt'
+ 	THREADSPEC='-lpthread -lrt'
+ 	;;
++     *-*-solaris*)
++	THREADCXXFLAGS=-pthread
++	THREADSPEC=-lpthread
++	;;
+      *)
+ 	THREADLIBS=-lpthread
+ 	THREADSPEC=-lpthread
