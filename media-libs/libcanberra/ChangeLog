@@ -1,6 +1,108 @@
 # ChangeLog for media-libs/libcanberra
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.47 2010/08/01 11:08:29 fauli Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.71 2011/07/21 17:26:29 pacho Exp $
+
+*libcanberra-0.28-r4 (21 Jul 2011)
+*libcanberra-0.28-r3 (21 Jul 2011)
+
+  21 Jul 2011; Pacho Ramos <pacho@gentoo.org> -libcanberra-0.28-r2.ebuild,
+  +libcanberra-0.28-r3.ebuild, +libcanberra-0.28-r4.ebuild,
+  +files/libcanberra-0.28-revert-gsettings.patch:
+  Revision bump to let latest version recover Gnome2 support, latest revision
+  will be used for Gnome3 compatibility and masked with the rest of gnome3
+  stuff present in the tree.
+
+  10 Jul 2011; Pacho Ramos <pacho@gentoo.org> -libcanberra-0.28-r1.ebuild,
+  libcanberra-0.28-r2.ebuild, +files/gconf-2.m4:
+  gconf-2.m4 is needed for autoconf, bug #374561 by Piotrek Juzwiak. Also
+  handle .la files removal better (bug #374573 by Piotrek Juzwiak). Remove old.
+
+  01 Jun 2011; Diego E. Pettenò <flameeyes@gentoo.org>
+  libcanberra-0.28-r2.ebuild, +files/libcanberra-0.28-underlinking.patch:
+  Avoid underlinking the modules, fixes bug #367355.
+
+*libcanberra-0.28-r2 (08 May 2011)
+
+  08 May 2011; Gilles Dartiguelongue <eva@gentoo.org>
+  +libcanberra-0.28-r2.ebuild:
+  Add support for systemd, bug #366177.
+
+*libcanberra-0.28-r1 (01 May 2011)
+
+  01 May 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +libcanberra-0.28-r1.ebuild:
+  Add libcanberra-0.28-r1 from the gnome overlay
+
+  10 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> libcanberra-0.26.ebuild:
+  Reset dependency_libs to '' in libtool files.
+
+  27 Mar 2011; Pacho Ramos <pacho@gentoo.org> -libcanberra-0.23.ebuild,
+  -libcanberra-0.25.ebuild, metadata.xml:
+  Fix 'tdb' USE flag description (bug #360687 by Dean Matzkov), remove old.
+
+  22 Mar 2011; Brent Baude <ranger@gentoo.org> libcanberra-0.26.ebuild:
+  Marking libcanberra-0.26 ppc stable for bug 353436
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> libcanberra-0.26.ebuild:
+  ppc64 stable wrt #353436
+
+  12 Mar 2011; Raúl Porcel <armin76@gentoo.org> libcanberra-0.26.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #353436
+
+  07 Mar 2011; Jeroen Roovers <jer@gentoo.org> libcanberra-0.26.ebuild:
+  Stable for HPPA (bug #353436).
+
+  24 Feb 2011; Thomas Kahle <tomka@gentoo.org> libcanberra-0.26.ebuild:
+  x86 stable per bug 353436
+
+  23 Feb 2011; Markos Chandras <hwoarang@gentoo.org> libcanberra-0.26.ebuild:
+  Stable on amd64 wrt bug #353436
+
+  17 Oct 2010; Raúl Porcel <armin76@gentoo.org> libcanberra-0.25.ebuild:
+  alpha/ia64/sh/sparc stable wrt #324077
+
+  14 Oct 2010; Markus Meier <maekke@gentoo.org> libcanberra-0.25.ebuild:
+  arm stable, bug #324077
+
+*libcanberra-0.26 (09 Oct 2010)
+
+  09 Oct 2010; Pacho Ramos <pacho@gentoo.org> +libcanberra-0.26.ebuild:
+  Version bump with gtk+3 fixes (but still disabled until ready for the
+  tree), bump to EAPI3 and run elibtoolize only when required (as read on
+  ChangeLog, only ~x86-fbsd needs it).
+
+  07 Oct 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libcanberra-0.25.ebuild:
+  ppc64 stable wrt #324077
+
+  24 Sep 2010; Pacho Ramos <pacho@gentoo.org> libcanberra-0.25.ebuild:
+  Disable parallel installation until bug #253862 is solved.
+
+  23 Sep 2010; Pacho Ramos <pacho@gentoo.org> -libcanberra-0.11.ebuild,
+  -files/libcanberra-0.14-am-gconf-source-2-m4.patch,
+  -files/libcanberra-0.14-backward-compatibility-libtool.patch,
+  -libcanberra-0.22.ebuild, libcanberra-0.25.ebuild, metadata.xml:
+  Allow people to not RDEPEND on x11-themes/sound-theme-freedesktop
+  unsetting 'sound' USE flag, but turn it on by default for better 'user
+  experience' with Gnome and Xfce desktops (thanks to Samuli Suominen for
+  his patch on bug #323379). Also remove old versions.
+
+  22 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libcanberra-0.25.ebuild:
+  Missing x11-themes/sound-theme-freedesktop RDEPEND which is required for
+  index.theme file wrt #323379 by Daniel Cater.
+
+  11 Sep 2010; Joseph Jezak <josejx@gentoo.org> libcanberra-0.25.ebuild:
+  Marked ppc for bug #324077.
+
+  18 Aug 2010; Markus Meier <maekke@gentoo.org> libcanberra-0.23.ebuild:
+  arm stable, bug #314899
+
+  14 Aug 2010; Raúl Porcel <armin76@gentoo.org> libcanberra-0.23.ebuild:
+  alpha/ia64/sh/sparc stable wrt #314899
+
+  05 Aug 2010; Jeroen Roovers <jer@gentoo.org> libcanberra-0.25.ebuild:
+  Stable for HPPA (bug #324077).
 
   01 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
   libcanberra-0.25.ebuild:
