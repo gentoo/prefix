@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/gdbm
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.52 2010/02/06 01:34:41 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.53 2011/02/06 21:35:09 leio Exp $
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> gdbm-1.8.3-r3.ebuild:
+  Drop to ~mips
 
   06 Feb 2010; Mike Frysinger <vapier@gentoo.org> gdbm-1.8.3-r4.ebuild:
   Improve gdbm migration info with tip from Robert Cernansky #299390.

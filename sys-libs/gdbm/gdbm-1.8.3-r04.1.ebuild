@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r4.ebuild,v 1.13 2010/03/20 21:03:23 vapier Exp $
 
-inherit eutils libtool flag-o-matic multilib
+inherit eutils libtool flag-o-matic multilib autotools
 
 DESCRIPTION="Standard GNU database libraries"
 HOMEPAGE="http://www.gnu.org/software/gdbm/gdbm.html"
@@ -21,7 +21,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-fix-install-ownership.patch #24178
 	epatch "${FILESDIR}"/${P}-compat-linking.patch #165263, #223865
 	epatch "${FILESDIR}"/${P}-build.patch #209730
-	elibtoolize
+	#elibtoolize
+	rm aclocal.m4
+	epatch "${FILESDIR}"/${P}-fix-compat-linking.patch #377421
+	eautoreconf # we need this for #377421, next to the patch
 	append-lfs-flags
 }
 
