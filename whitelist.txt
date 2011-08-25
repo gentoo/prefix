@@ -263,7 +263,7 @@ app-text/vilistextum
 app-text/vlna
 app-text/wdiff
 app-text/wgetpaste
-app-text/wpd2sxw
+app-text/wpd2odt
 app-text/wv
 app-text/xdvik
 app-text/xhtml1
