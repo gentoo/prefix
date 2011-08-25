@@ -1,6 +1,34 @@
 # ChangeLog for net-libs/libtorrent
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.152 2010/07/04 13:22:34 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.158 2011/06/09 20:31:45 slyfox Exp $
+
+*libtorrent-0.12.7-r1 (09 Jun 2011)
+
+  09 Jun 2011; Sergei Trofimovich <slyfox@gentoo.org>
+  +libtorrent-0.12.7-r1.ebuild,
+  +files/libtorrent-0.12.7-DHT-unaligned-access.patch:
+  Fixed unaligned access on platforms not supporting one
+  (http://libtorrent.rakshasa.no/ticket/1263).
+
+  13 Apr 2011; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  libtorrent-0.12.7.ebuild, +files/libtorrent-0.12.7-gcc-4.6.0.patch:
+  Fix compilation with gcc 4.6.0
+
+  13 Apr 2011; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  libtorrent-0.12.7.ebuild, +files/libtorrent-0.12.7-test.patch:
+  Add patch to fix tests (thanks to AlphatPC@gmail.com)
+
+*libtorrent-0.12.7 (03 Apr 2011)
+
+  03 Apr 2011; Patrick Lauer <patrick@gentoo.org> +libtorrent-0.12.7.ebuild,
+  +files/download_constructor.diff:
+  Bump, fix for upstream issue #2505 included
+
+  08 Dec 2010; Mike Frysinger <vapier@gentoo.org> libtorrent-0.12.6.ebuild:
+  Fix building on systems that lack posix_fallocate().
+
+  18 Aug 2010; Jeroen Roovers <jer@gentoo.org> libtorrent-0.12.6.ebuild:
+  Stable for HPPA (bug #311143).
 
   04 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
   libtorrent-0.12.6.ebuild:
