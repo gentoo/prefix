@@ -1,6 +1,51 @@
 # ChangeLog for net-p2p/rtorrent
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.155 2010/07/04 13:23:28 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.162 2011/08/15 19:44:03 sochotnicky Exp $
+
+*rtorrent-0.8.7-r4 (15 Aug 2011)
+
+  15 Aug 2011; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -rtorrent-0.8.7-r3.ebuild, +rtorrent-0.8.7-r4.ebuild:
+  Install man page manually(default target skips this now)
+
+*rtorrent-0.8.7-r3 (09 May 2011)
+*rtorrent-0.8.6-r4 (09 May 2011)
+
+  09 May 2011; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -rtorrent-0.8.6-r3.ebuild, +rtorrent-0.8.6-r4.ebuild,
+  -rtorrent-0.8.7-r2.ebuild, +rtorrent-0.8.7-r3.ebuild, files/rtorrentd.init:
+  Fixed up init script for daemon mode (problems when using baselayout-2)
+
+*rtorrent-0.8.7-r2 (18 Apr 2011)
+
+  18 Apr 2011; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -rtorrent-0.8.7-r1.ebuild, +rtorrent-0.8.7-r2.ebuild,
+  +files/rtorrent-0.8.7-canvas-fix.patch, metadata.xml:
+  Added optional support for color torrent listing
+
+*rtorrent-0.8.7-r1 (11 Apr 2011)
+*rtorrent-0.8.6-r3 (11 Apr 2011)
+
+  11 Apr 2011; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -rtorrent-0.8.5.ebuild, -rtorrent-0.8.6.ebuild, -rtorrent-0.8.6-r2.ebuild,
+  +rtorrent-0.8.6-r3.ebuild, -rtorrent-0.8.7.ebuild,
+  +rtorrent-0.8.7-r1.ebuild, files/rtorrentd.init:
+  Fixed up init script a bit
+  Removed old ~arch ebuilds that have been superseded
+
+*rtorrent-0.8.7 (03 Apr 2011)
+
+  03 Apr 2011; Patrick Lauer <patrick@gentoo.org> +rtorrent-0.8.7.ebuild:
+  Bump to match libtorrent
+
+*rtorrent-0.8.6-r2 (28 Mar 2011)
+
+  28 Mar 2011; Alex Alexander <wired@gentoo.org> +rtorrent-0.8.6-r2.ebuild,
+  +files/rtorrent-0.8.6-ncurses.patch:
+  fixed bug #358271
+
+  18 Aug 2010; Jeroen Roovers <jer@gentoo.org> rtorrent-0.8.6-r1.ebuild:
+  Stable for HPPA (bug #311143).
 
   04 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
   rtorrent-0.8.6-r1.ebuild:

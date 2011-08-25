@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.6.ebuild,v 1.3 2010/01/21 11:19:34 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.7-r4.ebuild,v 1.1 2011/08/15 19:44:03 sochotnicky Exp $
 
 EAPI=2
 
@@ -12,8 +12,8 @@ SRC_URI="http://libtorrent.rakshasa.no/downloads/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
-IUSE="daemon debug ipv6 xmlrpc"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris"
+IUSE="color daemon debug ipv6 test xmlrpc"
 
 COMMON_DEPEND=">=net-libs/libtorrent-0.12.${PV##*.}
 	>=dev-libs/libsigc++-2.2.2:2
@@ -23,14 +23,16 @@ COMMON_DEPEND=">=net-libs/libtorrent-0.12.${PV##*.}
 RDEPEND="${COMMON_DEPEND}
 	daemon? ( app-misc/screen )"
 DEPEND="${COMMON_DEPEND}
+	test? ( dev-util/cppunit )
 	dev-util/pkgconfig"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.8.5-solaris.patch
-}
+	# bug #358271
+	epatch "${FILESDIR}"/${PN}-0.8.6-ncurses.patch
 
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-canvas-fix.patch
+	use color && EPATCH_OPTS="-p1" epatch "${FILESDIR}"/${P}-canvas-fix.patch
+
+	epatch "${FILESDIR}"/${PN}-0.8.5-solaris.patch
 }
 
 src_configure() {
@@ -46,9 +48,21 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS README TODO doc/rtorrent.rc
+	doman doc/rtorrent.1
 
 	if use daemon; then
 		newinitd "${FILESDIR}/rtorrentd.init" rtorrentd || die "newinitd failed"
 		newconfd "${FILESDIR}/rtorrentd.conf" rtorrentd || die "newconfd failed"
+	fi
+}
+
+pkg_postinst() {
+	if use color; then
+		elog "rtorrent colors patch"
+		elog "Set colors using the options below in .rtorrent.rc:"
+		elog "Options: done_fg_color, done_bg_color, active_fg_color, active_bg_color"
+		elog "Colors: 0 = black, 1 = red, 2 = green, 3 = yellow, 4 = blue,"
+		elog "5 = magenta, 6 = cyan and 7 = white"
+		elog "Example: done_fg_color = 1"
 	fi
 }
