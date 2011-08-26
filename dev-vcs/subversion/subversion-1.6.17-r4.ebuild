@@ -124,6 +124,10 @@ src_prepare() {
 
 	sed -e "/SWIG_PY_INCLUDES=/s/\$ac_cv_python_includes/\\\\\$(PYTHON_INCLUDES)/" -i build/ac-macros/swig.m4 || die "sed failed"
 
+	# this bites us in particular on Solaris
+	sed -i -e '1c\#!/usr/bin/env sh' build/transform_libtool_scripts.sh || \
+		die "/bin/sh is not POSIX shell!"
+
 	eautoconf
 	elibtoolize
 
@@ -148,6 +152,21 @@ src_configure() {
 	else
 		myconf+=" --disable-nls"
 	fi
+
+	case ${CHOST} in
+		*-solaris*)
+			# -lintl isn't added for some reason (makes Neon check fail)
+			use nls && append-libs -lintl
+		;;
+		*-aix*)
+			# avoid recording immediate path to sharedlibs into executables
+			append-ldflags -Wl,-bnoipath
+		;;
+		*-interix*)
+			# loader crashes on the LD_PRELOADs...
+			myconf="${myconf} --disable-local-library-preloading"
+		;;
+	esac
 
 	econf --libdir="${EPREFIX}/usr/$(get_libdir)" \
 		$(use_with apache2 apxs "${APXS}") \
