@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>gnome</herd>
+<herd>freedesktop</herd>
+<maintainer>
+	<email>freedesktop-bugs@gentoo.org</email>
+</maintainer>
 <use>
 	<flag name='gnome'>Enable support for reading proxy settings from
 		GNOME using <pkg>gnome-base/gconf</pkg></flag>
@@ -10,7 +13,5 @@
 		<pkg>net-libs/webkit-gtk</pkg></flag>
 	<flag name='xulrunner'>Enable support for reading proxy settings from
 		<pkg>net-libs/xulrunner</pkg></flag>
-	<flag name='vala'>Enable support for the Vala programming language</flag>
 </use>
 </pkgmetadata>
-

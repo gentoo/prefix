@@ -1,6 +1,124 @@
 # ChangeLog for net-libs/libproxy
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.37 2010/07/15 16:19:15 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.68 2011/08/06 09:05:25 zmedico Exp $
+
+  06 Aug 2011; Zac Medico <zmedico@gentoo.org> libproxy-0.4.6-r3.ebuild:
+  Add ~x86-linux keyword.
+
+  31 Jul 2011; Jeroen Roovers <jer@gentoo.org> libproxy-0.4.6-r3.ebuild:
+  Stable for HPPA (bug #372813).
+
+  28 Jul 2011; Pacho Ramos <pacho@gentoo.org> -libproxy-0.4.6-r2.ebuild:
+  Remove old.
+
+  24 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> libproxy-0.4.6-r3.ebuild:
+  ppc/ppc64 stable wrt #372813
+
+  23 Jul 2011; Raúl Porcel <armin76@gentoo.org> libproxy-0.4.6-r3.ebuild:
+  alpha/ia64/sh/sparc stable wrt #372813
+
+  23 Jul 2011; Markus Meier <maekke@gentoo.org> libproxy-0.4.6-r3.ebuild:
+  arm stable, bug #372813
+
+  17 Jul 2011; Markus Meier <maekke@gentoo.org> libproxy-0.4.6-r3.ebuild:
+  x86 stable, bug #372813
+
+  16 Jul 2011; Nirbheek Chauhan <nirbheek@gentoo.org> libproxy-0.4.6-r3.ebuild:
+  Always install the vapi file since it needs no deps and is only 333 bytes in
+  size. See bug 372813.
+
+  14 Jul 2011; Pacho Ramos <pacho@gentoo.org> libproxy-0.4.6-r3.ebuild:
+  amd64 stable, bug #372813
+
+  09 Jul 2011; Matt Turner <mattst88@gentoo.org> libproxy-0.4.6-r3.ebuild:
+  Added ~mips, bug 365331
+
+*libproxy-0.4.6-r3 (05 Jun 2011)
+
+  05 Jun 2011; Pacho Ramos <pacho@gentoo.org> +libproxy-0.4.6-r3.ebuild,
+  +files/libproxy-0.4.6-backports.patch,
+  +files/libproxy-0.4.6-flags-mixing.patch:
+  Revision bump disabling webkit support as it causes problems like bug #366791
+  (we will be able to recover this with webkit-1.6), do the same for xulrunner
+  support because of important problems like bug #360893 giving unresolved
+  symbols due problems to use proper mozjs. Thanks a lot to Nirbheek for his
+  assistance with this. Also include and old upstream patch to stop mixing
+  CFLAGS and CXXFLAGS (bug #338125 by Justin Lecher) and an opensuse patch
+  including some more fixes from upstream.
+
+*libproxy-0.4.6-r2 (27 Mar 2011)
+
+  27 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> +libproxy-0.4.6-r2.ebuild,
+  +files/libproxy-0.4.6-xulrunner-2.patch:
+  Fix building with net-libs/xulrunner >= 2.0 wrt #359879 by Justin Lecher.
+
+  21 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> libproxy-0.4.6.ebuild:
+  Fix slot-deps on gnome libs
+
+  07 Mar 2011; Pacho Ramos <pacho@gentoo.org> libproxy-0.4.6-r1.ebuild:
+  Looks to work with vala:0.10 as-is. Pin deps to appropriate slots.
+
+  20 Feb 2011; Raúl Porcel <armin76@gentoo.org> libproxy-0.4.6.ebuild:
+  ia64/sh stable wrt #343069
+
+  13 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  libproxy-0.4.6.ebuild:
+  stable x86, bug 343069
+
+  09 Feb 2011; Michael Weber <xmw@gentoo.org> libproxy-0.4.6.ebuild:
+  arm/sparc stable wrt #343069
+
+  26 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> libproxy-0.4.6.ebuild:
+  amd64 stable wrt #343069
+
+  22 Dec 2010; Tobias Klausmann <klausman@gentoo.org> libproxy-0.4.6.ebuild:
+  Stable on alpha, bug #343069
+
+  03 Nov 2010; Markos Chandras <hwoarang@gentoo.org> libproxy-0.4.6.ebuild:
+  Revert my commit
+
+  03 Nov 2010; Markos Chandras <hwoarang@gentoo.org> libproxy-0.4.6.ebuild:
+  Stable on amd64 wrt bug #343069
+
+  02 Nov 2010; Jeroen Roovers <jer@gentoo.org> libproxy-0.4.6.ebuild:
+  Stable for PPC (bug #343069).
+
+  02 Nov 2010; Jeroen Roovers <jer@gentoo.org> libproxy-0.4.6.ebuild:
+  Stable for HPPA (bug #343069).
+
+  02 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> libproxy-0.4.6.ebuild,
+  libproxy-0.4.6-r1.ebuild:
+  Rekeyword ~ppc because dev-lang/vala is now keyworded wrt #320429.
+
+  02 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> libproxy-0.4.6.ebuild:
+  ppc64 stable wrt #343069
+
+*libproxy-0.4.6-r1 (02 Nov 2010)
+
+  02 Nov 2010; Samuli Suominen <ssuominen@gentoo.org> libproxy-0.4.6.ebuild,
+  +libproxy-0.4.6-r1.ebuild:
+  Disable dev-lang/vala support because it's not ready to be stabilized wrt
+  #343737.
+
+  28 Oct 2010; Samuli Suominen <ssuominen@gentoo.org>
+  files/libproxy-0.4.6-mozjs-link_directory.patch:
+  Update to upstream patch wrt #339216 by Nicolas Dufresne.
+
+  30 Sep 2010; Samuli Suominen <ssuominen@gentoo.org> libproxy-0.4.6.ebuild,
+  +files/libproxy-0.4.6-mozjs-link_directory.patch:
+  Fix missing link directories for mozjs wrt #339216 by "DaggyStyle".
+
+*libproxy-0.4.6 (29 Sep 2010)
+
+  29 Sep 2010; Pacho Ramos <pacho@gentoo.org> +libproxy-0.4.6.ebuild:
+  Version bump with a lot of bugfixes, minimum cmake required version is 2.6
+  now, drop 'debug' USE flag as there is no need now to filter Werror/Wall
+  CFLAGS, add dotnet support, build tests only when needed, fix
+  CFLAGS/CXXFLAGS/LDFLAGS parsing.
+
+  16 Aug 2010; Samuli Suominen <ssuominen@gentoo.org> libproxy-0.4.2.ebuild,
+  +files/libproxy-0.4.2-glibc212.patch:
+  Fix building with recent glibc wrt #332857 by f3d.
 
   15 Jul 2010; Jeroen Roovers <jer@gentoo.org> libproxy-0.4.2.ebuild:
   Marked ~hppa (bug #320429).
