@@ -1,6 +1,60 @@
 # ChangeLog for app-admin/eselect-wxwidgets
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/ChangeLog,v 1.44 2009/11/13 01:48:24 dirtyepic Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/ChangeLog,v 1.57 2011/01/22 07:13:19 dirtyepic Exp $
+
+  22 Jan 2011; Ryan Hill <dirtyepic@gentoo.org> -files/wxwidgets.eselect-0.8,
+  -files/wx-config-1.1, -files/wxrc-1.1, -eselect-wxwidgets-1.1.ebuild,
+  -eselect-wxwidgets-1.2.ebuild, -eselect-wxwidgets-1.3.ebuild,
+  -files/wxwin.m4:
+  Remove old.
+
+  12 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  eselect-wxwidgets-1.4.ebuild:
+  ppc/ppc64 stable wrt #330017
+
+  05 Sep 2010; Raúl Porcel <armin76@gentoo.org>
+  eselect-wxwidgets-1.4.ebuild:
+  alpha/ia64/sh/sparc stable wrt #330017
+
+  21 Aug 2010; Markus Meier <maekke@gentoo.org>
+  eselect-wxwidgets-1.4.ebuild:
+  arm stable, bug #330017
+
+  09 Aug 2010; Jeroen Roovers <jer@gentoo.org> eselect-wxwidgets-1.4.ebuild:
+  Stable for HPPA (bug #330017).
+
+  31 Jul 2010; Markos Chandras <hwoarang@gentoo.org>
+  eselect-wxwidgets-1.4.ebuild:
+  Stable on amd64 wrt bug #330017
+
+  27 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  eselect-wxwidgets-1.4.ebuild:
+  stable x86, bug 330017
+
+  27 Jul 2010; Jeroen Roovers <jer@gentoo.org> eselect-wxwidgets-1.3.ebuild:
+  Stable for HPPA (bug #305331).
+
+  07 Apr 2010; Brent Baude <ranger@gentoo.org> eselect-wxwidgets-1.3.ebuild:
+  Marking eselect-wxwidgets-1.3 ppc64 for bug 305331
+
+  07 Apr 2010; Brent Baude <ranger@gentoo.org> eselect-wxwidgets-1.3.ebuild:
+  Marking eselect-wxwidgets-1.3 ppc for bug 305331
+
+  14 Mar 2010; Raúl Porcel <armin76@gentoo.org>
+  eselect-wxwidgets-1.3.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #305331
+
+*eselect-wxwidgets-1.4 (16 Feb 2010)
+
+  16 Feb 2010; Ryan Hill <dirtyepic@gentoo.org>
+  +eselect-wxwidgets-1.4.ebuild, +files/wxwin.m4-2.9:
+  Version bump, adds support for 2.9 development builds.
+
+*eselect-wxwidgets-1.3 (24 Jan 2010)
+
+  24 Jan 2010; Ryan Hill <dirtyepic@gentoo.org> +files/wx-config-1.3,
+  +files/wxrc-1.3, +eselect-wxwidgets-1.3.ebuild:
+  Fix bashisms in wrapper scripts. Bug #301778 by Anthony Parsons.
 
 *eselect-wxwidgets-1.2 (13 Nov 2009)
 
