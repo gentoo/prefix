@@ -1,6 +1,28 @@
 # ChangeLog for dev-libs/pth
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.63 2011/01/25 19:11:15 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.69 2011/06/23 14:44:10 hwoarang Exp $
+
+  23 Jun 2011; Markos Chandras <hwoarang@gentoo.org> -pth-2.0.7-r2.ebuild:
+  Remove old ebuilds. Requested by Arfrever
+
+  21 May 2011; Kacper Kowalik <xarthisius@gentoo.org> pth-2.0.7-r3.ebuild:
+  ppc/ppc64 stable wrt #366665
+
+  21 May 2011; Raúl Porcel <armin76@gentoo.org> pth-2.0.7-r3.ebuild:
+  alpha/m68k/s390/sh/sparc/x86 stable wrt #366665
+
+  13 May 2011; Jeroen Roovers <jer@gentoo.org> pth-2.0.7-r3.ebuild:
+  Stable for HPPA (bug #366665).
+
+  11 May 2011; Markos Chandras <hwoarang@gentoo.org> pth-2.0.7-r3.ebuild:
+  Stable on amd64 wrt bug #366665
+
+*pth-2.0.7-r3 (09 Apr 2011)
+
+  09 Apr 2011; Raúl Porcel <armin76@gentoo.org> +pth-2.0.7-r3.ebuild,
+  +files/pth-2.0.7-ia64.patch:
+  Add a new revision that provides a workaround for bug #350815, and a patch
+  for ia64. Straight to stable for arm/ia64/sh
 
   25 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   -pth-2.0.7.ebuild, -pth-2.0.7-r1.ebuild:
