@@ -39,6 +39,9 @@ src_compile() {
 	local conf
 
 	[[ ${CHOST} == *-mint* ]] && conf="${conf} --enable-pthread"
+	# http://www.mail-archive.com/pth-users@gnu.org/msg00525.html
+	[[ ${CHOST} == powerpc*-darwin9 ]] && \
+		conf="${conf} --with-mctx-mth=sjlj --with-mctx-dsp=ssjlj --with-mctx-stk=sas"
 
 	use debug && conf="${conf} --enable-debug"	# have a bug --disable-debug and shared
 
