@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47.ebuild,v 1.13 2010/06/21 15:14:55 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47.ebuild,v 1.16 2011/08/04 16:27:36 scarabeus Exp $
 
 EAPI=2
 inherit eutils flag-o-matic gnome2
@@ -22,7 +22,7 @@ RESTRICT="test"
 COMMON_DEPEND="
 	>=app-text/poppler-0.12.3-r3[cairo,xpdf-headers]
 	dev-cpp/glibmm
-	>=dev-cpp/gtkmm-2.10.0
+	>=dev-cpp/gtkmm-2.10.0:2.4
 	>=dev-libs/boehm-gc-6.4
 	>=dev-libs/glib-2.6.5
 	>=dev-libs/libsigc++-2.0.12
@@ -34,10 +34,10 @@ COMMON_DEPEND="
 	media-libs/fontconfig
 	>=media-libs/freetype-2
 	>=media-libs/libpng-1.2
-	>=media-libs/libwpg-0.1
+	>=app-text/libwpg-0.1
 	sci-libs/gsl
 	x11-libs/libXft
-	>=x11-libs/gtk+-2.10.7
+	>=x11-libs/gtk+-2.10.7:2
 	>=x11-libs/pango-1.4.0
 	|| ( dev-lang/python[xml] dev-python/pyxml )
 	gnome? ( >=gnome-base/gnome-vfs-2.0 )

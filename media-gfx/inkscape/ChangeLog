@@ -1,6 +1,86 @@
 # ChangeLog for media-gfx/inkscape
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.144 2010/09/05 13:54:57 maekke Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.163 2011/08/04 16:27:36 scarabeus Exp $
+
+  04 Aug 2011; Tomáš Chvátal <scarabeus@gentoo.org> inkscape-0.47.ebuild,
+  inkscape-0.48.0.ebuild, inkscape-0.48.1.ebuild, inkscape-0.48.1-r1.ebuild,
+  inkscape-0.48.2.ebuild:
+  media-libs/libwpg app-text/libwpg
+
+  26 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> inkscape-0.48.2.ebuild:
+  Marked ~ppc64 wrt #356243
+
+  13 Jul 2011; Tim Harder <radhermit@gentoo.org> inkscape-0.48.2.ebuild,
+  +files/inkscape-0.48.2-libwpg.patch:
+  Fix issue when both slots of libwpg are installed (bug #363703).
+
+*inkscape-0.48.2 (11 Jul 2011)
+
+  11 Jul 2011; Tim Harder <radhermit@gentoo.org> +inkscape-0.48.2.ebuild:
+  Version bump (bug #374847).
+
+  24 Jun 2011; Brent Baude <ranger@gentoo.org> inkscape-0.48.1.ebuild:
+  Marking inkscape-0.48.1 ~ppc for bug 347633
+
+*inkscape-0.48.1-r1 (29 Apr 2011)
+
+  29 Apr 2011; Tim Harder <radhermit@gentoo.org>
+  +files/inkscape-0.48.0-libwpd.patch, +inkscape-0.48.1-r1.ebuild,
+  +files/inkscape-0.48.1-gcc-4.6.patch:
+  Revision bump. Apply patch to work with the latest libwpd/libwpg (bug #363703
+  by Pacho Ramos, patch by Fedora) and fix compile with gcc-4.6 (bug #362639 by
+  emil karlson).
+
+  24 Apr 2011; Raúl Porcel <armin76@gentoo.org> inkscape-0.47.ebuild,
+  inkscape-0.48.0.ebuild:
+  Drop sparc keywords
+
+  01 Mar 2011; Jeroen Roovers <jer@gentoo.org> inkscape-0.48.1.ebuild:
+  Marked ~hppa (bug #356243).
+
+  24 Feb 2011; Tim Harder <radhermit@gentoo.org> inkscape-0.48.1.ebuild,
+  +files/inkscape-0.48.1-lcms.patch:
+  Fix compile when the lcms USE flag is disabled (bug #356285). Fix thanks to
+  Shannon.
+
+*inkscape-0.48.1 (23 Feb 2011)
+
+  23 Feb 2011; Tim Harder <radhermit@gentoo.org> +inkscape-0.48.1.ebuild,
+  +files/inkscape-0.48.1-libpng15.patch:
+  Version bump (bug #354721). Use bz2 tarball, add RDEPEND on uniconvertor (bug
+  #345393), use slot dependencies for freetype and lcms, fix compile with
+  libpng-1.5 (bug #355845), and remove old post-install message.
+
+  22 Feb 2011; Tim Harder <radhermit@gentoo.org> inkscape-0.47.ebuild,
+  inkscape-0.48.0.ebuild:
+  Use correct slot dependencies for gtk+ and gtkmm.
+
+  04 Jan 2011; Michael Weber <xmw@gentoo.org> inkscape-0.48.0.ebuild:
+  sparc stable (bug 343371)
+
+  28 Dec 2010; Hanno Boeck <hanno@gentoo.org> inkscape-0.48.0.ebuild,
+  +files/inkscape-0.48.0-poppler-0.16.patch:
+  Upstream fix for poppler 0.16.
+
+  28 Dec 2010; Brent Baude <ranger@gentoo.org> inkscape-0.48.0.ebuild:
+  stable ppc64, bug 343371
+
+  15 Nov 2010; Jeroen Roovers <jer@gentoo.org> inkscape-0.48.0.ebuild:
+  Stable for PPC (bug #343371).
+
+  04 Nov 2010; Jeroen Roovers <jer@gentoo.org> inkscape-0.48.0.ebuild:
+  Stable for HPPA (bug #343371).
+
+  04 Nov 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  inkscape-0.48.0.ebuild:
+  x86 stable wrt bug #343371
+
+  31 Oct 2010; Markos Chandras <hwoarang@gentoo.org> inkscape-0.48.0.ebuild:
+  Stable on amd64 wrt bug #343371
+
+  26 Oct 2010; Markus Meier <maekke@gentoo.org> inkscape-0.48.0.ebuild,
+  +files/inkscape-0.48.0-spell.patch:
+  fix automagic dep on aspell, bug #327891
 
   05 Sep 2010; Markus Meier <maekke@gentoo.org> inkscape-0.48.0.ebuild:
   raise gtkmm dep to >=dev-cpp/gtkmm-2.18 by aisomur in bug #335423
