@@ -1,6 +1,72 @@
 # ChangeLog for gnome-base/orbit
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/ChangeLog,v 1.161 2010/07/20 02:13:46 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/ChangeLog,v 1.179 2011/08/13 17:30:47 armin76 Exp $
+
+  13 Aug 2011; Raúl Porcel <armin76@gentoo.org> orbit-2.14.19-r1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #369909
+
+  17 Jul 2011; Markus Meier <maekke@gentoo.org> orbit-2.14.19-r1.ebuild:
+  arm stable, bug #369909
+
+  14 Jul 2011; Thomas Kahle <tomka@gentoo.org> orbit-2.14.19-r1.ebuild:
+  x86 stable per bug 369909
+
+  05 Jul 2011; Pacho Ramos <pacho@gentoo.org> -orbit-2.14.18.ebuild,
+  orbit-2.14.19-r1.ebuild:
+  Rely on gnome.org.eclass functions to set proper SRC_URI, this solves bug
+  #374159 by pavelo. Remove old.
+
+  01 Jul 2011; Markos Chandras <hwoarang@gentoo.org> orbit-2.14.19-r1.ebuild:
+  Stable on amd64 wrt bug #278255
+
+  14 Apr 2011; Diego E. Pettenò <flameeyes@gentoo.org>
+  orbit-2.14.19-r1.ebuild:
+  QA: fix cross-compile workaround. When moving to EAPI=2, cross-compilation
+  was broken as G2CONF is set too late.
+
+  22 Mar 2011; Brent Baude <ranger@gentoo.org> orbit-2.14.19.ebuild:
+  Marking orbit-2.14.19 ppc stable for bug 353436
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> orbit-2.14.19.ebuild:
+  ppc64 stable wrt #353436
+
+*orbit-2.14.19-r1 (12 Mar 2011)
+
+  12 Mar 2011; Pacho Ramos <pacho@gentoo.org> -orbit-2.14.17.ebuild,
+  +orbit-2.14.19-r1.ebuild:
+  Build and install test utils conditionally (bug #226233), skip broken test as
+  upstream doesn't care (bug #331709). Remove old.
+
+  30 Jan 2011; Raúl Porcel <armin76@gentoo.org> orbit-2.14.19.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #348987
+
+  19 Jan 2011; Markos Chandras <hwoarang@gentoo.org> orbit-2.14.19.ebuild:
+  Stable on amd64 wrt bug #348987
+
+  18 Jan 2011; Christian Faulhammer <fauli@gentoo.org> orbit-2.14.19.ebuild:
+  x86 stable, bug 348987
+
+  07 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> orbit-2.14.18.ebuild:
+  ppc64 stable wrt #324077
+
+*orbit-2.14.19 (01 Oct 2010)
+
+  01 Oct 2010; Gilles Dartiguelongue <eva@gentoo.org> -orbit-2.14.16.ebuild,
+  +orbit-2.14.19.ebuild:
+  Version bump. Re-add debug USE flag, needed for test suite.
+
+  11 Sep 2010; Joseph Jezak <josejx@gentoo.org> orbit-2.14.18.ebuild:
+  Marked ppc for bug #324077.
+
+  07 Sep 2010; Pacho Ramos <pacho@gentoo.org> orbit-2.14.18.ebuild:
+  Set MAKEOPTS to -j1 since parallel build fails from time to time, bug
+  #273031
+
+  18 Aug 2010; Markus Meier <maekke@gentoo.org> orbit-2.14.18.ebuild:
+  arm stable, bug #314899
+
+  14 Aug 2010; Raúl Porcel <armin76@gentoo.org> orbit-2.14.18.ebuild:
+  alpha/ia64/sh/sparc stable wrt #314899
 
   20 Jul 2010; Jeroen Roovers <jer@gentoo.org> orbit-2.14.16.ebuild,
   orbit-2.14.17.ebuild, orbit-2.14.18.ebuild:

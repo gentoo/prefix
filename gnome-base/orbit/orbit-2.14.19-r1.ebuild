@@ -1,36 +1,40 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.18.ebuild,v 1.4 2010/07/20 02:13:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.19-r1.ebuild,v 1.7 2011/08/13 17:30:47 armin76 Exp $
 
-EAPI="2"
-GCONF_DEBUG="no"
+EAPI="3"
+GCONF_DEBUG="yes"
+GNOME_ORG_MODULE="ORBit2"
 
-inherit gnome2 toolchain-funcs eutils autotools
-
-MY_P="ORBit2-${PV}"
-PVP=(${PV//[-\._]/ })
-S=${WORKDIR}/${MY_P}
+inherit gnome2 toolchain-funcs autotools eutils
 
 DESCRIPTION="ORBit2 is a high-performance CORBA ORB"
-HOMEPAGE="http://www.gnome.org/"
-SRC_URI="mirror://gnome/sources/ORBit2/${PVP[0]}.${PVP[1]}/${MY_P}.tar.bz2"
+HOMEPAGE="http://projects.gnome.org/ORBit2/"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="2"
 KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="doc"
+IUSE="doc test"
 
-RDEPEND=">=dev-libs/glib-2.8
+RDEPEND=">=dev-libs/glib-2.8:2
 	>=dev-libs/libIDL-0.8.2"
 
 DEPEND="
 	>=dev-util/pkgconfig-0.18
 	doc? ( >=dev-util/gtk-doc-1 )"
 
-DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README* TODO"
+pkg_setup() {
+	DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README* TODO"
+	if use test; then
+		if ! use debug; then
+			elog "USE=debug is required for the test feature. Auto-enabling."
+		fi
+		G2CONF="${G2CONF} --enable-debug"
+	fi
+}
 
-src_unpack() {
-	gnome2_src_unpack
+src_prepare() {
+	gnome2_src_prepare
 
 	epatch "${FILESDIR}"/${PN}-2.14.14-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.14.16-interix.patch
@@ -43,19 +47,27 @@ src_unpack() {
 		# avoid needing dev-util/gtk-doc for eautoreconf only
 		use doc || : > gtk-doc.make
 		use doc || sed -i -e 's,GTK_DOC_CHECK,#&,' configure.in
-		eautoreconf
+		#eautoreconf  # done below now
 	fi
-}
-
-src_prepare() {
-	gnome2_src_prepare
 
 	# Fix wrong process kill, bug #268142
 	sed "s:killall lt-timeout-server:killall timeout-server:" \
-		-i test/timeout.sh || die "sed failed"
+		-i test/timeout.sh || die "sed 1 failed"
+
+	# Do not mess with CFLAGS
+	sed 's/-ggdb -O0//' -i configure.in configure || die "sed 2 failed"
+
+	if ! use test; then
+		sed -i -e 's/test //' Makefile.am || die
+	fi
+
+	# Drop failing test, bug #331709
+	sed -i -e 's/test-mem //' test/Makefile.am || die
+
+	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	# We need to unset IDL_DIR, which is set by RSI's IDL.  This causes certain
 	# files to be not found by autotools when compiling ORBit.  See bug #58540
 	# for more information.  Please don't remove -- 8/18/06
@@ -70,7 +82,12 @@ src_compile() {
 		[ -x "${EPREFIX}"/usr/bin/orbit-idl-2 ] || die "Please emerge ~${CATEGORY}/${P} on the host system first"
 		G2CONF="${G2CONF} --with-idl-compiler=${EPREFIX}/usr/bin/orbit-idl-2"
 	fi
+	gnome2_src_configure
+}
 
+src_compile() {
+	# Parallel build fails from time to time, bug #273031
+	MAKEOPTS="${MAKEOPTS} -j1"
 	gnome2_src_compile
 }
 
