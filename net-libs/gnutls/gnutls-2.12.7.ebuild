@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.10.5.ebuild,v 1.9 2011/07/11 00:09:02 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.12.7.ebuild,v 1.1 2011/07/07 07:42:59 hwoarang Exp $
 
 EAPI="3"
 
@@ -13,7 +13,7 @@ if [[ "${PV}" == *pre* ]]; then
 	SRC_URI="http://daily.josefsson.org/${P%.*}/${P%.*}-${PV#*pre}.tar.gz"
 else
 	MINOR_VERSION="${PV#*.}"
-	MINOR_VERSION="${MINOR_VERSION%.*}"
+	MINOR_VERSION="${MINOR_VERSION%%.*}"
 	if [[ $((MINOR_VERSION % 2)) == 0 ]]; then
 		#SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
 		SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
@@ -23,16 +23,18 @@ else
 	unset MINOR_VERSION
 fi
 
-# GPL-3 for the gnutls-extras library and LGPL for the gnutls library.
-LICENSE="LGPL-2.1 GPL-3"
+# LGPL-2.1 for libgnutls library and GPL-3 for libgnutls-extra library.
+LICENSE="GPL-3 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="bindist +cxx doc examples guile lzo nls test zlib"
+IUSE="bindist +cxx doc examples guile lzo +nettle nls test zlib"
 
-RDEPEND=">=dev-libs/libgcrypt-1.4.0
-	>=dev-libs/libtasn1-0.3.4
+# lib/m4/hooks.m4 says that GnuTLS uses a fork of PaKChoiS.
+RDEPEND=">=dev-libs/libtasn1-0.3.4
 	nls? ( virtual/libintl )
 	guile? ( >=dev-scheme/guile-1.8[networking] )
+	nettle? ( >=dev-libs/nettle-2.1[gmp] )
+	!nettle? ( >=dev-libs/libgcrypt-1.4.0 )
 	zlib? ( >=sys-libs/zlib-1.2.3.1 )
 	!bindist? ( lzo? ( >=dev-libs/lzo-2 ) )"
 DEPEND="${RDEPEND}
@@ -50,6 +52,9 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# tests/suite directory is not distributed.
+	sed -e 's|AC_CONFIG_FILES(\[tests/suite/Makefile\])|:|' -i configure.ac
+
 	sed -e 's/imagesdir = $(infodir)/imagesdir = $(htmldir)/' -i doc/Makefile.am
 
 	local dir
@@ -76,6 +81,7 @@ src_configure() {
 		$(use_enable cxx) \
 		$(use_enable doc gtk-doc) \
 		$(use_enable guile) \
+		$(use_with !nettle libgcrypt) \
 		$(use_enable nls) \
 		$(use_with zlib) \
 		${myconf}
