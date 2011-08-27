@@ -1,0 +1,52 @@
+gcc/
+
+2011-07-29  Mikael Pettersson  <mikpe@it.uu.se>
+
+	PR target/47908
+	* config/m68k/m68k-protos.h (optimization_options): Declare.
+	* config/m68k/m68k.c (optimization_options): New function.
+	Disable instruction scheduling for non-ColdFire targets.
+	* config/m68k/m68k.h (OPTIMIZATION_OPTIONS): Define.
+
+--- gcc-4.5.3/gcc/config/m68k/m68k-protos.h.~1~	2009-05-18 09:54:44.000000000 +0200
++++ gcc-4.5.3/gcc/config/m68k/m68k-protos.h	2011-07-29 13:31:33.000000000 +0200
+@@ -95,6 +95,7 @@ extern void m68k_expand_prologue (void);
+ extern bool m68k_use_return_insn (void);
+ extern void m68k_expand_epilogue (bool);
+ extern void override_options (void);
++extern void optimization_options (int, int);
+ extern const char *m68k_cpp_cpu_ident (const char *);
+ extern const char *m68k_cpp_cpu_family (const char *);
+ extern void init_68881_table (void);
+--- gcc-4.5.3/gcc/config/m68k/m68k.c.~1~	2010-06-14 22:01:39.000000000 +0200
++++ gcc-4.5.3/gcc/config/m68k/m68k.c	2011-07-29 13:31:33.000000000 +0200
+@@ -742,6 +742,17 @@ override_options (void)
+     }
+ }
+ 
++void
++optimization_options (int level ATTRIBUTE_UNUSED, int size ATTRIBUTE_UNUSED)
++{
++  if (m68k_sched_cpu == CPU_UNKNOWN)
++    {
++      flag_schedule_insns = 0;
++      flag_schedule_insns_after_reload = 0;
++      flag_modulo_sched = 0;
++    }
++}
++
+ /* Generate a macro of the form __mPREFIX_cpu_NAME, where PREFIX is the
+    given argument and NAME is the argument passed to -mcpu.  Return NULL
+    if -mcpu was not passed.  */
+--- gcc-4.5.3/gcc/config/m68k/m68k.h.~1~	2009-09-22 17:49:54.000000000 +0200
++++ gcc-4.5.3/gcc/config/m68k/m68k.h	2011-07-29 13:31:33.000000000 +0200
+@@ -276,6 +276,9 @@ along with GCC; see the file COPYING3.  
+ 
+ #define OVERRIDE_OPTIONS   override_options()
+ 
++#define OPTIMIZATION_OPTIONS(LEVEL,SIZE) \
++  optimization_options ((LEVEL), (SIZE))
++
+ /* These are meant to be redefined in the host dependent files */
+ #define SUBTARGET_OVERRIDE_OPTIONS
+ 
