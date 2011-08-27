@@ -50,6 +50,9 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# fetched from upstream for #373433
+	epatch "${FILESDIR}"/${P}-snprintf-macro.patch
+
 	sed -e 's/imagesdir = $(infodir)/imagesdir = $(htmldir)/' -i doc/Makefile.am
 
 	local dir

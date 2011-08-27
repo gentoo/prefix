@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.312 2011/07/11 00:09:02 halcy0n Exp $
 
+  27 Aug 2011; Fabian Groffen <grobian@gentoo.org> gnutls-2.10.5.ebuild,
+  +files/gnutls-2.10.5-snprintf-macro.patch:
+  Add backported patch by Naohiro Aota to fix compilation issues with
+  fortifying compilers (recent Darwins), bug #373433
+
   10 Jul 2011; Mark Loeser <halcy0n@gentoo.org> gnutls-2.10.5.ebuild:
   Stable for ppc64; bug #361525
 
