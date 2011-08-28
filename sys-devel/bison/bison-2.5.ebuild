@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.5.ebuild,v 1.1 2011/05/16 19:37:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.5.ebuild,v 1.4 2011/08/17 03:43:40 mattst88 Exp $
 
 EAPI="2"
 
@@ -15,8 +15,9 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls static"
 
-DEPEND="nls? ( sys-devel/gettext )"
-RDEPEND="sys-devel/m4"
+RDEPEND=">=sys-devel/m4-1.4.16"
+DEPEND="${RDEPEND}
+	nls? ( sys-devel/gettext )"
 
 src_prepare() {
 	# acutally a gnulib bug - fixed upstream!
@@ -42,7 +43,16 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [[ ! -e ${EROOT}/usr/bin/yacc ]] ; then
-		ln -s yacc.bison "${EROOT}"/usr/bin/yacc
+	local f="${EROOT}/usr/bin/yacc"
+	if [[ ! -e ${f} ]] ; then
+		ln -s yacc.bison "${f}"
+	fi
+}
+
+pkg_postrm() {
+	# clean up the dead symlink when we get unmerged #377469
+	local f="${EROOT}/usr/bin/yacc"
+	if [[ -L ${f} && ! -e ${f} ]] ; then
+		rm -f "${f}"
 	fi
 }

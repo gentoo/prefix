@@ -1,6 +1,23 @@
 # ChangeLog for sys-devel/bison
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.103 2011/05/24 14:53:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.108 2011/08/17 03:43:40 mattst88 Exp $
+
+  17 Aug 2011; Matt Turner <mattst88@gentoo.org> bison-2.4.2.ebuild,
+  bison-2.4.3.ebuild, bison-2.5.ebuild:
+  In fact, m4 should be in DEPEND as well, bug 379351.
+
+  07 Aug 2011; Mike Frysinger <vapier@gentoo.org> bison-2.5.ebuild:
+  Clean up dead yacc symlink on unmerge #377469 by Michael.
+
+  31 Jul 2011; Matt Turner <mattst88@gentoo.org> bison-2.5.ebuild:
+  Bump m4 requirement to 1.4.16, bug 375637. Also move it from RDEPEND back to
+  DEPEND. It was originally moved in 2006 as a hack.
+
+  08 Jun 2011; Kacper Kowalik <xarthisius@gentoo.org> bison-2.4.3.ebuild:
+  ppc64 stable wrt #367575
+
+  05 Jun 2011; Raúl Porcel <armin76@gentoo.org> bison-2.4.3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #367575
 
   24 May 2011; Brent Baude <ranger@gentoo.org> bison-2.4.3.ebuild:
   Marking bison-2.4.3 ppc for bug 367575
