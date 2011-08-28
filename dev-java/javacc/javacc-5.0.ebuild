@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/javacc-5.0.ebuild,v 1.1 2010/03/16 11:12:41 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/javacc-5.0.ebuild,v 1.2 2011/01/29 11:07:07 fordfrog Exp $
 
 JAVA_PKG_IUSE="doc examples source test"
 EAPI="2"
@@ -13,20 +13,12 @@ SRC_URI="https://${PN}.dev.java.net/files/documents/17/142527/${P}src.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 IUSE=""
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 DEPEND=">=virtual/jdk-1.5
 	dev-java/junit:0
-	test? (
-		>=virtual/jdk-1.5
-		dev-java/ant-junit
-	)
-	!test? ( >=virtual/jdk-1.4 )"
-RDEPEND=">=virtual/jre-1.4
+	test? (	dev-java/ant-junit )"
+RDEPEND=">=virtual/jre-1.5
 	dev-java/junit:0"
-
-# We don't want 1.5 bytecode just because of the testcase
-JAVA_PKG_WANT_TARGET="1.4"
-JAVA_PKG_WANT_SOURCE="1.4"
 
 S="${WORKDIR}/${PN}"
 
@@ -40,12 +32,12 @@ _eant() {
 }
 
 src_compile() {
+	# this testcase wants 1.5 and this seems the easiest way to do it
+	JAVA_PKG_WANT_SOURCE="1.5" JAVA_PKG_WANT_TARGET="1.5" java-ant_bsfix_one examples/JavaGrammars/1.5/build.xml
 	_eant jar $(use_doc)
 }
 
 src_test() {
-	# this testcase wants 1.5 and this seems the easiest way to do it
-	JAVA_PKG_WANT_SOURCE="1.5" JAVA_PKG_WANT_TARGET="1.5" java-ant_bsfix_one examples/JavaGrammars/1.5/build.xml
 	ANT_TASKS="ant-junit" _eant test
 }
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/javacc-4.2.ebuild,v 1.3 2010/03/21 15:32:57 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/javacc-4.2.ebuild,v 1.4 2011/02/20 14:40:20 xarthisius Exp $
 
 JAVA_PKG_IUSE="doc examples source test"
 EAPI="2"
@@ -13,7 +13,7 @@ SRC_URI="https://${PN}.dev.java.net/files/documents/17/117795/${P}src.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 IUSE=""
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 DEPEND=">=virtual/jdk-1.5
 	dev-java/junit:0
 	test? (
