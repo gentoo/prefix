@@ -648,6 +648,7 @@ media-libs/compface
 media-libs/emfengine
 media-libs/faad2
 media-libs/freeglut
+media-libs/freetype
 media-libs/gegl
 media-libs/glew
 media-libs/gst-plugins-bad
