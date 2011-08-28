@@ -436,6 +436,7 @@ dev-tex/latexdiff
 dev-tex/latexmk
 dev-tex/leaflet
 dev-tex/mh
+dev-tex/pdfannotextractor
 dev-tex/pgf
 dev-tex/prosper
 dev-tex/qtexengine
