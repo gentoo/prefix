@@ -122,6 +122,7 @@ app-editors/zile
 app-misc/abook
 app-misc/banner
 app-misc/beanstalkd
+app-misc/byobu
 app-misc/colordiff
 app-misc/delay
 app-misc/devtodo
