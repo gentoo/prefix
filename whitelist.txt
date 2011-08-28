@@ -392,6 +392,7 @@ dev-libs/log4cxx
 dev-libs/maloc
 dev-libs/mpc
 dev-libs/nettle
+dev-libs/newt
 dev-libs/nspr
 dev-libs/nss
 dev-libs/ntl
@@ -465,6 +466,7 @@ dev-util/cucumber
 dev-util/cucumber-rails
 dev-util/cunit
 dev-util/ddd
+dev-util/debhelper
 dev-util/dejagnu
 dev-util/desktop-file-utils
 dev-util/diffball
