@@ -183,6 +183,7 @@ src_configure() {
 		--disable-dvisvgm \
 		--disable-vlna \
 		--disable-xdvipdfmx \
+		--disable-xdv2pdf \
 		--enable-shared \
 		--disable-native-texlive-build \
 		--disable-largefile \
