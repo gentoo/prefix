@@ -523,6 +523,7 @@ dev-vcs/cvs2cl
 dev-vcs/cvs2svn
 dev-vcs/cvsd
 dev-vcs/cvsps
+dev-vcs/cvsutils
 dev-vcs/darcs
 dev-vcs/giggle
 dev-vcs/git
