@@ -657,6 +657,7 @@ media-libs/id3lib
 media-libs/jasper
 media-libs/jbigkit
 media-libs/jpeg
+media-libs/libafterimage
 media-libs/libao
 media-libs/libass
 media-libs/libcddb
