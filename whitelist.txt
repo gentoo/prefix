@@ -1276,6 +1276,7 @@ dev-java/constantine
 dev-java/dom4j
 dev-java/eclipse-ecj
 dev-java/ehcache
+dev-java/fontbox
 dev-java/gjdoc
 dev-java/gnu-regexp
 dev-java/groovy
@@ -1327,6 +1328,7 @@ dev-java/msv
 dev-java/mx4j-core
 dev-java/nanoxml
 dev-java/oscache
+dev-java/pdfbox
 dev-java/qdox
 dev-java/relaxng-datatype
 dev-java/rhino
