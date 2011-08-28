@@ -232,6 +232,7 @@ app-text/multitail
 app-text/o3read
 app-text/par
 app-text/passivetex
+app-text/pdfjam
 app-text/pep
 app-text/po4a
 app-text/poppler
