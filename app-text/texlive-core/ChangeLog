@@ -1,6 +1,61 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.141 2011/07/28 15:44:28 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.152 2011/08/19 18:52:45 aballier Exp $
+
+*texlive-core-2011-r4 (19 Aug 2011)
+
+  19 Aug 2011; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2011-r3.ebuild, +texlive-core-2011-r4.ebuild:
+  revbump ~arch version
+
+  19 Aug 2011; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2010-r4.ebuild, texlive-core-2011-r3.ebuild:
+  add patch to fix textrels, bug #195688 by Magnus Granberg
+
+  14 Aug 2011; Markus Meier <maekke@gentoo.org> texlive-core-2010-r4.ebuild:
+  arm stable, bug #355085
+
+  12 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  texlive-core-2010-r4.ebuild:
+  ppc/ppc64 stable wrt #355085
+
+  12 Aug 2011; Thomas Kahle <tomka@gentoo.org> texlive-core-2010-r4.ebuild:
+  x86 stable per bug 355085
+
+  09 Aug 2011; Markos Chandras <hwoarang@gentoo.org>
+  texlive-core-2010-r4.ebuild:
+  Stable on amd64 wrt bug #355085
+
+*texlive-core-2011-r3 (04 Aug 2011)
+
+  04 Aug 2011; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2011-r2.ebuild, +texlive-core-2011-r3.ebuild:
+  Add texlive.infra module, required by updmap now, by Thomas Witt in bug
+  #377609; missing dep on perl-getopt-long for updmap too
+
+  31 Jul 2011; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2011-r2.ebuild:
+  bump luatex dep in par with texlive meta ebuild, should fix bug #377065
+
+*texlive-core-2011-r2 (31 Jul 2011)
+
+  31 Jul 2011; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2011-r1.ebuild, +texlive-core-2011-r2.ebuild:
+  do not "build" biber, its a prebuilt binary -> not for us, well see about
+  making an ebuild for it later, by Rafał Mużyło in bug
+
+*texlive-core-2011-r1 (30 Jul 2011)
+*texlive-core-2010-r4 (30 Jul 2011)
+
+  30 Jul 2011; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2010-r3.ebuild, +texlive-core-2010-r4.ebuild,
+  -texlive-core-2011.ebuild, +texlive-core-2011-r1.ebuild:
+  push changes into new revisions
+
+  30 Jul 2011; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2010-r3.ebuild, texlive-core-2011.ebuild:
+  Add patch from upstream to fix off-by-one error causing pdftex not to default
+  to pdf output... by Martin von Gagern in bug #374147
 
   28 Jul 2011; Alexis Ballier <aballier@gentoo.org> texlive-core-2011.ebuild:
   disable eptex with use=-cjk too, should fix bug #376765
