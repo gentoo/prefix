@@ -1,6 +1,60 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.291 2011/04/02 14:36:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.304 2011/08/21 19:15:53 dirtyepic Exp $
+
+  21 Aug 2011; Ryan Hill <dirtyepic@gentoo.org> freetype-2.4.6.ebuild,
+  metadata.xml:
+  Add missing app-arch/bzip2 dependency.
+
+  19 Aug 2011; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.4.4.ebuild:
+  Remove old.
+
+  14 Aug 2011; Raúl Porcel <armin76@gentoo.org> freetype-2.4.6.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #377143
+
+  13 Aug 2011; Markus Meier <maekke@gentoo.org> freetype-2.4.6.ebuild:
+  arm stable, bug #377143
+
+  09 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> freetype-2.4.6.ebuild:
+  ppc/ppc64 stable wrt #377143
+
+  08 Aug 2011; Thomas Kahle <tomka@gentoo.org> freetype-2.4.6.ebuild:
+  x86 stable per bug 377143
+
+  07 Aug 2011; Markos Chandras <hwoarang@gentoo.org> freetype-2.4.6.ebuild:
+  Stable on amd64 wrt bug #377143
+
+  05 Aug 2011; Zac Medico <zmedico@gentoo.org> freetype-2.4.6.ebuild:
+  Add ~x86-linux keyword.
+
+  05 Aug 2011; Jeroen Roovers <jer@gentoo.org> freetype-2.4.6.ebuild:
+  Stable for HPPA (bug #377143).
+
+  31 Jul 2011; Michael Sterrett <mr_bones_@gentoo.org> +freetype-2.4.4.ebuild:
+  Breaking stable deps isn't allowed. Resurrected stable ebuild until the
+  new version is marked stable.
+
+*freetype-2.4.6 (31 Jul 2011)
+
+  31 Jul 2011; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.4.4.ebuild,
+  -freetype-2.4.5.ebuild, +freetype-2.4.6.ebuild:
+  Version bump. This version fixes CVE-2011-0226 which allows an attacker to
+  execute arbitrary code. All users must upgrade ASAP. (bug #377143)
+
+  http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2011-0226
+
+  Remove vulnerable versions.
+
+*freetype-2.4.5 (25 Jun 2011)
+
+  25 Jun 2011; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.4.3-r2.ebuild,
+  -files/freetype-2.4.3-CVE-2010-3814.patch,
+  -files/freetype-2.4.3-SA41738.patch, +freetype-2.4.5.ebuild:
+  Version bump. Add static-libs USE flag. Improve USE flag descriptions
+  (bug #368125 by Donald.  Remove old.
+
+  20 May 2011; Kacper Kowalik <xarthisius@gentoo.org> freetype-2.4.4.ebuild:
+  ppc64 stable wrt #360223
 
   02 Apr 2011; Raúl Porcel <armin76@gentoo.org> freetype-2.4.4.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #360223
