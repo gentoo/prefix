@@ -699,6 +699,7 @@ media-libs/mlt
 media-libs/musicbrainz
 media-libs/mutagen
 media-libs/openal
+media-libs/opencore-amr
 media-libs/opengl-apple
 media-libs/phonon
 media-libs/phonon-qt7
