@@ -322,6 +322,7 @@ dev-lang/ifc
 dev-lang/mosml
 dev-lang/nasm
 dev-lang/orc
+dev-lang/parrot
 dev-lang/pasm
 dev-lang/path64
 dev-lang/squirrel
