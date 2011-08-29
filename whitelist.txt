@@ -624,6 +624,7 @@ media-gfx/graphicsmagick
 media-gfx/graphviz
 media-gfx/igal
 media-gfx/imagemagick
+media-gfx/inkscape
 media-gfx/jhead
 media-gfx/jpeg2ps
 media-gfx/jpeginfo
