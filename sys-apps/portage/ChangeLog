@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.19120 (30 Aug 2011)
+
+  30 Aug 2011; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.18890.ebuild, -portage-2.2.01.18980.ebuild,
+  +portage-2.2.01.19120.ebuild:
+  New snapshot with patches for bugs #378625, #381125 and another
+  unicode_decode bug reported on -alt ML
+
 *portage-2.2.01.19074 (25 Aug 2011)
 
   25 Aug 2011; Fabian Groffen <grobian@gentoo.org>
