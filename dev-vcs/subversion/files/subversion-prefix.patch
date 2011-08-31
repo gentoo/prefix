@@ -1,8 +1,0 @@
---- contrib/client-side/svn_load_dirs.pl.in~	2007-10-14 10:31:35 +0200
-+++ contrib/client-side/svn_load_dirs.pl.in	2007-10-14 10:31:47 +0200
-@@ -1,4 +1,4 @@
--#!/usr/bin/perl -w
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
- 
- # $HeadURL: http://svn.collab.net/repos/svn/branches/1.4.x/contrib/client-side/svn_load_dirs.pl.in $
- # $LastChangedDate: 2006-11-10 19:07:14 +0000 (Fri, 10 Nov 2006) $
