@@ -824,6 +824,7 @@ net-misc/tinc
 net-misc/tokyotyrant
 net-misc/unison
 net-misc/wakeonlan
+net-misc/wget
 net-misc/whois
 net-misc/youtube-dl
 net-p2p/mutella
