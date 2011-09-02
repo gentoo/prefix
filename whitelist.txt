@@ -617,6 +617,7 @@ media-gfx/pydot
 media-gfx/tachyon
 media-gfx/tgif
 media-gfx/ufraw
+media-gfx/uniconvertor
 media-gfx/xli
 media-libs/a52dec
 media-libs/alsa-lib
@@ -691,6 +692,7 @@ media-libs/sdl-net
 media-libs/sdl-ttf
 media-libs/sg
 media-libs/silgraphite
+media-libs/sk1libs
 media-libs/swfdec
 media-libs/taglib
 media-libs/tiff
