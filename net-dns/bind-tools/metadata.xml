@@ -3,10 +3,6 @@
 <pkgmetadata>
 	<herd>bind</herd>
 	<maintainer>
-		<email>voxus@gentoo.org</email>
-		<name>Konstantin V. Arkhipov</name>
-	</maintainer>
-	<maintainer>
 		<email>idl0r@gentoo.org</email>
 		<name>Christian Ruppert</name>
 	</maintainer>

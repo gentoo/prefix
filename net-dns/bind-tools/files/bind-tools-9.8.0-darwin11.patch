@@ -1,0 +1,13 @@
+https://trac.macports.org/ticket/30284
+https://bugs.gentoo.org/show_bug.cgi?id=380955
+
+--- lib/isc/unix/include/isc/net.h
++++ lib/isc/unix/include/isc/net.h
+@@ -17,6 +17,7 @@
+ 
+ /* $Id: net.h,v 1.50 2008-12-01 04:14:54 marka Exp $ */
+ 
++#define __APPLE_USE_RFC_2292
+ #ifndef ISC_NET_H
+ #define ISC_NET_H 1
+ 

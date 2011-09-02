@@ -1,6 +1,178 @@
 # ChangeLog for net-dns/bind-tools
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.157 2010/06/19 11:24:17 idl0r Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.196 2011/06/02 10:54:16 flameeyes Exp $
+
+  02 Jun 2011; Diego E. Pettenò <flameeyes@gentoo.org>
+  bind-tools-9.8.0.ebuild:
+  Fix cross-compilation (bug #266570) by exporting BUILD_CC and forcing-enabled
+  epoll on Linux builds. Also change the libiconv dependency on idn. Note that
+  USE=ssl fails because there is another AC_TRY_RUN call that is not
+  short-circuitable.
+
+  27 May 2011; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.6.2_p2-r2.ebuild, -bind-tools-9.6.3.ebuild,
+  -files/bind-tools-9.6.1-parallel.patch:
+  Remove 9.6.x.
+
+  28 Apr 2011; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.7.2_p2-r2.ebuild:
+  Remove 9.7.2.
+
+  28 Mar 2011; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.4.3_p5.ebuild, -bind-tools-9.4.3_p5-r2.ebuild:
+  Remove 9.4.x.
+
+  22 Mar 2011; Brent Baude <ranger@gentoo.org> bind-tools-9.7.3.ebuild:
+  Marking bind-tools-9.7.3 ppc64 for bug 358265
+
+  22 Mar 2011; Brent Baude <ranger@gentoo.org> bind-tools-9.7.3.ebuild:
+  Marking bind-tools-9.7.3 ppc for bug 358265
+
+  19 Mar 2011; Raúl Porcel <armin76@gentoo.org> bind-tools-9.7.3.ebuild:
+  alpha/arm/ia64/s390/sh/sparc/x86 stable wrt #358265
+
+  11 Mar 2011; Jeroen Roovers <jer@gentoo.org> bind-tools-9.7.3.ebuild:
+  Stable for HPPA (bug #358265).
+
+  10 Mar 2011; Markos Chandras <hwoarang@gentoo.org> bind-tools-9.7.3.ebuild:
+  Stable on amd64 wrt bug #358265
+
+  10 Mar 2011; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.6.2_p2.ebuild, -bind-tools-9.7.1.ebuild:
+  Remove 9.6.2_p2 and 9.7.1 as well.
+
+  10 Mar 2011; Brent Baude <ranger@gentoo.org>
+  bind-tools-9.6.2_p2-r2.ebuild, bind-tools-9.7.2_p2-r2.ebuild:
+  net-dns/bind-tools-9.6.2_p2-r2 and 9.7.2_p2-r2 ppc64 for bug 337638
+
+  10 Mar 2011; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.7.1-r2.ebuild:
+  Remove 9.7.1-r2.
+
+*bind-tools-9.8.0 (01 Mar 2011)
+
+  01 Mar 2011; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.8.0_rc1.ebuild, +bind-tools-9.8.0.ebuild:
+  Version bump to 9.8.0
+
+*bind-tools-9.8.0_rc1 (25 Feb 2011)
+
+  25 Feb 2011; Christian Ruppert <idl0r@gentoo.org>
+  +bind-tools-9.8.0_rc1.ebuild:
+  Version bump to 9.8.0_rc1.
+
+*bind-tools-9.7.3 (15 Feb 2011)
+
+  15 Feb 2011; Christian Ruppert <idl0r@gentoo.org> +bind-tools-9.7.3.ebuild:
+  Version bump to 9.7.3
+
+*bind-tools-9.6.3 (05 Feb 2011)
+
+  05 Feb 2011; Christian Ruppert <idl0r@gentoo.org> +bind-tools-9.6.3.ebuild:
+  Version bump to 9.6.3.
+
+  13 Jan 2011; Brent Baude <ranger@gentoo.org>
+  bind-tools-9.6.2_p2-r2.ebuild, bind-tools-9.7.2_p2-r2.ebuild:
+  Mark -9.6.2_p2-r2 -9.7.2_p2-r2 ppc for bug 337638
+
+  29 Dec 2010; Markos Chandras <hwoarang@gentoo.org>
+  bind-tools-9.6.2_p2-r2.ebuild, bind-tools-9.7.2_p2-r2.ebuild:
+  Stable on amd64 wrt bug #337638
+
+  27 Dec 2010; Jeroen Roovers <jer@gentoo.org> bind-tools-9.6.2_p2-r2.ebuild,
+  bind-tools-9.7.2_p2-r2.ebuild:
+  Stable for HPPA (bug #337638).
+
+  19 Dec 2010; Raúl Porcel <armin76@gentoo.org> bind-tools-9.6.2_p2-r2.ebuild,
+  bind-tools-9.7.2_p2-r2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #347621
+
+  17 Dec 2010; Tobias Klausmann <klausman@gentoo.org>
+  bind-tools-9.7.2_p2-r2.ebuild:
+  Stable on alpha, bug #337638
+
+  17 Dec 2010; Tobias Klausmann <klausman@gentoo.org>
+  bind-tools-9.6.2_p2-r2.ebuild:
+  Stable on alpha, bug #337638
+
+  15 Dec 2010; Markus Meier <maekke@gentoo.org> bind-tools-9.7.2_p2-r2.ebuild:
+  arm stable, bug #337638
+
+  15 Dec 2010; Markus Meier <maekke@gentoo.org> bind-tools-9.6.2_p2-r2.ebuild:
+  arm stable, bug #337638
+
+  14 Dec 2010; Christian Faulhammer <fauli@gentoo.org>
+  bind-tools-9.6.2_p2-r2.ebuild, bind-tools-9.7.2_p2-r2.ebuild:
+  stable x86, bug 337638
+
+*bind-tools-9.7.2_p2-r2 (14 Nov 2010)
+*bind-tools-9.7.1-r2 (14 Nov 2010)
+*bind-tools-9.6.2_p2-r2 (14 Nov 2010)
+*bind-tools-9.4.3_p5-r2 (14 Nov 2010)
+
+  14 Nov 2010; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.4.3_p5-r1.ebuild, +bind-tools-9.4.3_p5-r2.ebuild,
+  -bind-tools-9.6.2_p2-r1.ebuild, +bind-tools-9.6.2_p2-r2.ebuild,
+  -bind-tools-9.7.1-r1.ebuild, +bind-tools-9.7.1-r2.ebuild,
+  -bind-tools-9.7.2_p2-r1.ebuild, +bind-tools-9.7.2_p2-r2.ebuild:
+  Revbump. Re bug 344029, use append-cflags instead of append-cppflags.
+
+*bind-tools-9.7.2_p2-r1 (11 Nov 2010)
+*bind-tools-9.7.1-r1 (11 Nov 2010)
+*bind-tools-9.6.2_p2-r1 (11 Nov 2010)
+*bind-tools-9.4.3_p5-r1 (11 Nov 2010)
+
+  11 Nov 2010; Christian Ruppert <idl0r@gentoo.org> bind-tools-9.4.3_p5.ebuild,
+  +bind-tools-9.4.3_p5-r1.ebuild, +bind-tools-9.6.2_p2-r1.ebuild,
+  +bind-tools-9.7.1-r1.ebuild, -bind-tools-9.7.2_p2.ebuild,
+  +bind-tools-9.7.2_p2-r1.ebuild:
+  Fix HOMEPAGE. QA fixes. Revision bump, added a definition to enable the
+  sigchase feature, bug 344029. Merged my latest changes into
+  bind-tools-9.4.3_p5-r1.
+
+  06 Nov 2010; Markus Meier <maekke@gentoo.org> bind-tools-9.7.1.ebuild:
+  arm stable, bug #337638
+
+  06 Nov 2010; Markus Meier <maekke@gentoo.org> bind-tools-9.6.2_p2.ebuild:
+  arm stable, bug #337638
+
+  06 Oct 2010; Markus Meier <maekke@gentoo.org> bind-tools-9.6.2_p2.ebuild,
+  bind-tools-9.7.1.ebuild:
+  x86 stable, bug #337638
+
+*bind-tools-9.7.2_p2 (05 Oct 2010)
+
+  05 Oct 2010; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.4.3_p4.ebuild, +bind-tools-9.7.2_p2.ebuild:
+  Version bump to 9.7.2-P2. Remove old 9.4.3-P4.
+
+  01 Oct 2010; Brent Baude <ranger@gentoo.org> bind-tools-9.6.2_p2.ebuild,
+  bind-tools-9.7.1.ebuild:
+  Marking -9.6.2_p2 and -9.7.1 for bug 337638
+
+  28 Sep 2010; Jeroen Roovers <jer@gentoo.org> bind-tools-9.6.2_p2.ebuild,
+  bind-tools-9.7.1.ebuild:
+  Stable for PPC (bug #337638).
+
+  28 Sep 2010; Jeroen Roovers <jer@gentoo.org> bind-tools-9.7.1.ebuild:
+  Stable for HPPA (bug #326999).
+
+  28 Sep 2010; Jeroen Roovers <jer@gentoo.org> bind-tools-9.6.2_p2.ebuild:
+  Stable for HPPA (bug #326999).
+
+  28 Sep 2010; Brent Baude <ranger@gentoo.org> bind-tools-9.4.3_p5.ebuild:
+  Marking bind-tools-9.4.3_p5 ppc for bug 335840
+
+  22 Sep 2010; Markos Chandras <hwoarang@gentoo.org>
+  bind-tools-9.6.2_p2.ebuild, bind-tools-9.7.1.ebuild:
+  Stable on amd64 wrt bug #337638
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> bind-tools-9.4.3_p5.ebuild:
+  Marking bind-tools-9.4.3_p5 ppc64 for bug 335840
+
+  03 Sep 2010; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.7.0_p1.ebuild:
+  Remove bind-tools-9.7.0_p1.ebuild.
 
 *bind-tools-9.7.1 (19 Jun 2010)
 
