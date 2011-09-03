@@ -16,7 +16,7 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux 
 IUSE="doc elibc_FreeBSD older-kernels-compatibility +urandom +uuid"
 RESTRICT="test"
 
-RDEPEND="uuid? ( !elibc_FreeBSD? ( >=sys-apps/util-linux-2.16 ) )"
+RDEPEND="uuid? ( elibc_glibc? ( >=sys-apps/util-linux-2.16 ) )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
