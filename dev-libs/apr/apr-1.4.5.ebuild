@@ -16,7 +16,11 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux 
 IUSE="doc elibc_FreeBSD older-kernels-compatibility +urandom +uuid"
 RESTRICT="test"
 
-RDEPEND="uuid? ( elibc_glibc? ( >=sys-apps/util-linux-2.16 ) )"
+# NOTE: most UNIX systems have uuid functionality in their libc
+RDEPEND="uuid? (
+	elibc_glibc? ( >=sys-apps/util-linux-2.16 )
+	elibc_mintlib? ( >=sys-apps/util-linux-2.18 )
+)"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
