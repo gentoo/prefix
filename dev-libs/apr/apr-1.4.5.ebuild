@@ -22,7 +22,6 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.2.11-mint.patch
-	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${PN}-1.3.5-irix.patch
 
 	# Ensure that system libtool is used.
 	local g=
@@ -58,9 +57,7 @@ src_configure() {
 	fi
 
 	if [[ ${CHOST} == *-mint* ]] ; then
-		myconf="${myconf} --disable-dso --disable-threads"
-	else
-		myconf="${myconf} --enable-threads"
+		myconf+=" --disable-dso"
 	fi
 
 	# shl_load does not search runpath, but hpux11 supports dlopen
@@ -87,10 +84,8 @@ src_configure() {
 	CONFIG_SHELL="${EPREFIX}"/bin/bash econf \
 		--enable-layout=gentoo \
 		--enable-nonportable-atomics \
+		--enable-threads \
 		${myconf}
-
-	local g=
-	[[ ${CHOST} == *-darwin* ]] && g=g
 
 	rm -f libtool
 }
@@ -116,5 +111,6 @@ src_install() {
 
 	# This file is only used on AIX systems, which Gentoo is not,
 	# and causes collisions between the SLOTs, so remove it.
+	# Even in Prefix, we don't need this on AIX.
 	rm -f "${ED}usr/$(get_libdir)/apr.exp"
 }
