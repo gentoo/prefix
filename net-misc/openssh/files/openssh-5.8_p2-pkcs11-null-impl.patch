@@ -1,0 +1,50 @@
+https://bugzilla.mindrot.org/show_bug.cgi?id=1929
+https://bugzilla.mindrot.org/attachment.cgi?id=2078
+https://bugs.gentoo.org/show_bug.cgi?id=381961
+
+Patch by Alan Hourihane, accepted upstream for 5.9
+
+Index: ssh-keygen.c
+===================================================================
+RCS file: /home/dtucker/openssh/cvs/openssh/ssh-keygen.c,v
+retrieving revision 1.227
+diff -u -p -r1.227 ssh-keygen.c
+--- ssh-keygen.c	5 May 2011 04:17:19 -0000	1.227
++++ ssh-keygen.c	4 Sep 2011 09:27:57 -0000
+@@ -49,10 +49,7 @@
+ #include "hostfile.h"
+ #include "dns.h"
+ #include "ssh2.h"
+-
+-#ifdef ENABLE_PKCS11
+ #include "ssh-pkcs11.h"
+-#endif
+ 
+ /* Number of bits in the RSA/DSA key.  This value can be set on the command line. */
+ #define DEFAULT_BITS		2048
+Index: ssh-pkcs11.c
+===================================================================
+RCS file: /home/dtucker/openssh/cvs/openssh/ssh-pkcs11.c,v
+retrieving revision 1.7
+diff -u -p -r1.7 ssh-pkcs11.c
+--- ssh-pkcs11.c	25 Jun 2010 23:36:10 -0000	1.7
++++ ssh-pkcs11.c	4 Sep 2011 09:25:28 -0000
+@@ -590,4 +590,18 @@ fail:
+ 	return (-1);
+ }
+ 
++#else
++
++int
++pkcs11_init(int interactive)
++{
++	return (0);
++}
++
++void
++pkcs11_terminate(void)
++{
++	return;
++}
++
+ #endif /* ENABLE_PKCS11 */

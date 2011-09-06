@@ -114,6 +114,7 @@ src_prepare() {
 	sed -i "s:-lcrypto:$(pkg-config --libs openssl):" configure{,.ac} || die
 
 	epatch "${FILESDIR}"/${PN}-5.5_p1-interix.patch
+	epatch "${FILESDIR}"/${P}-pkcs11-null-impl.patch
 
 	# setting setuid bit may fail as non-priviledged user (prefix).
 	if [[ $(id -u) != 0 ]]; then
