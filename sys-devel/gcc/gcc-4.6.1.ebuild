@@ -78,14 +78,12 @@ src_unpack() {
 
 	use vanilla && return 0
 
-	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
-	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
-
 	# add support for 64-bits native target on Solaris
-	epatch "${FILESDIR}"/4.5.1/solaris-x86_64.patch
+	#epatch "${FILESDIR}"/4.5.1/solaris-x86_64.patch
+	# pray this is upstream now, I vaguely recall it is
 
 	# make sure 64-bits native targets don't screw up the linker paths
-	epatch "${FILESDIR}"/${PV}/solaris-searchpath.patch
+	epatch "${FILESDIR}"/4.5.2/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
 	if use prefix; then
 		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
@@ -110,8 +108,6 @@ src_unpack() {
 	# Always behave as if -pthread were passed on AIX and HPUX (#266548)
 	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
 	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
-
-	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
 
 	# libgcc's Makefiles reuses $T, work around that :(
 	# only necessary on x86/x64, breaks on sparc
