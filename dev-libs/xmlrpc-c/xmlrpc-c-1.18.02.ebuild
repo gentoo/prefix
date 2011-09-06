@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.18.02.ebuild,v 1.17 2010/12/14 03:46:30 mattst88 Exp $
 
@@ -69,6 +69,13 @@ src_prepare() {
 			-e '/^USE_LIBTOOL/s/=/= yes/' \
 			"${S}"/config.mk.in || die "404. File not found while sedding"
 	fi
+
+	# newer curl doesn't provide curl/types.h
+	sed -i -e '/curl\/types.h/d' \
+		lib/curl_transport/curlmulti.c \
+		lib/curl_transport/curltransaction.c \
+		lib/curl_transport/xmlrpc_curl_transport.c \
+		|| die
 
 	# fix install_name issue
 	if [[ ${CHOST} == *-darwin* ]]; then
