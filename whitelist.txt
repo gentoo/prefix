@@ -858,7 +858,6 @@ sys-apps/most
 sys-apps/net-tools
 sys-apps/prefix-chain-utils
 sys-apps/pv
-sys-apps/ren
 sys-apps/rename
 sys-apps/sdparm
 sys-apps/smartmontools
