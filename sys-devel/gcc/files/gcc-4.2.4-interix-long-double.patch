@@ -1,0 +1,15 @@
+diff -ru gcc-4.2.4.orig/gcc/config/interix.h gcc-4.2.4/gcc/config/interix.h
+--- gcc-4.2.4.orig/gcc/config/interix.h	2011-09-09 08:51:18 +0200
++++ gcc-4.2.4/gcc/config/interix.h	2011-09-09 08:58:21 +0200
+@@ -92,6 +92,11 @@
+ #define WCHAR_TYPE "short unsigned int"
+ #define WCHAR_TYPE_SIZE 16
+ 
++/* gcc defaults to 96 bits on i386, which is bad on interix, as VC++
++ * seems to default to 64 bit. since the interix libc is built with VC++,
++ * we need to do the same thing here. */
++#define LONG_DOUBLE_TYPE_SIZE 64
++
+ /* Our strategy for finding global constructors is a bit different, although
+    not a lot.  */
+ #define DO_GLOBAL_CTORS_BODY						\
