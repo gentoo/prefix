@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.19235 (13 Sep 2011)
+
+  13 Sep 2011; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.19234.ebuild, +portage-2.2.01.19235.ebuild:
+  Replace faulty snapshot that had a broken enough repoman to die on committing
+  the Manifest
+
 *portage-2.2.01.19234 (13 Sep 2011)
 
   13 Sep 2011; Fabian Groffen <grobian@gentoo.org>
