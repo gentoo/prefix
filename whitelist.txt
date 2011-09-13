@@ -1105,7 +1105,6 @@ dev-python/gnome-python-desktop-base
 dev-python/gnome-vfs-python
 dev-python/gnuplot-py
 dev-python/gst-python
-dev-python/gtksourceview-python
 dev-python/imaging
 dev-python/ipython
 dev-python/jinja
