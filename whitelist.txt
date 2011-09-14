@@ -634,6 +634,7 @@ media-libs/gegl
 media-libs/glew
 media-libs/gst-plugins-bad
 media-libs/gst-plugins-base
+media-libs/gstreamer
 media-libs/id3lib
 media-libs/jasper
 media-libs/jbigkit
