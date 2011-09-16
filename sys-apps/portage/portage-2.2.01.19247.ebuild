@@ -92,7 +92,10 @@ src_prepare() {
 			die "failed to patch AbstractEbuildProcess.py"
 	fi
 
-#	epatch "${FILESDIR}"/${PN}-2.2.01.18980-ebuildshell.patch
+	# grobian please take this patch into the repo
+	epatch "${FILESDIR}"/${PN}-2.2.01.19247-aix-preserve-libs.patch
+
+	epatch "${FILESDIR}"/${PN}-2.2.01.19247-ebuildshell.patch
 }
 
 src_configure() {

@@ -1,0 +1,163 @@
+Drop code identical to and inheritable from LinkageMapELF.
+
+Update code that is duplicated from LinkageMapELF.
+
+Actually query information for /all/ preserved shared objects,
+not the last one only.
+Maybe the KeyError-problem is gone for AIX due to this fix,
+even if that workaround was inherited from LinkageMapELF.
+
+Deal with existing helper files in a binpkg created with 'quickpkg'.
+Eventually improve performance when creating helper files.
+
+--- pym/portage/util/_dyn_libs/LinkageMapXCoff.py.orig	2011-09-14 16:02:34 +0200
++++ pym/portage/util/_dyn_libs/LinkageMapXCoff.py	2011-09-14 16:34:43 +0200
+@@ -71,21 +71,10 @@
+ 				# filesystem.
+ 				return os.path.realpath(abs_path)
+ 			# Return a tuple of the device and inode, as well as the basename,
+-			# because of hardlinks the device and inode might be identical.
++			# because of hardlinks (notably for the .libNAME[shr.o] helpers)
++			# the device and inode might be identical.
+ 			return (object_stat.st_dev, object_stat.st_ino, os.path.basename(abs_path.rstrip(os.sep)))
+ 
+-		def file_exists(self):
+-			"""
+-			Determine if the file for this key exists on the filesystem.
+-
+-			@rtype: Boolean
+-			@return:
+-				1. True if the file exists.
+-				2. False if the file does not exist or is a broken symlink.
+-
+-			"""
+-			return isinstance(self._key, tuple)
+-
+ 	class _LibGraphNode(_ObjectKey):
+ 		__slots__ = ("alt_paths",)
+ 
+@@ -175,10 +164,9 @@
+ 					continue
+ 				plibs.update((x, cpv) for x in items)
+ 		if plibs:
+-			for x in plibs:
+-				args = [BASH_BINARY, "-c", ':'
+-					+ '; member="' + x + '"'
+-					+ '; archive=${member}'
++			args = [BASH_BINARY , "-c" , ':'
++				 + '; for member in "$@"'
++				 + '; do archive=${member}'
+ 					+ '; if [[ ${member##*/} == .*"["*"]" ]]'
+ 					+ '; then member=${member%/.*}/${member##*/.}'
+ 						 + '; archive=${member%[*}'
+@@ -195,9 +183,21 @@
+ 					+ '; done'
+ 					+ '; [[ -n ${MEMBER} ]] && MEMBER="[${MEMBER}]"'
+ 					+ '; [[ " ${FLAGS} " == *" SHROBJ "* ]] && soname=${FILE##*/}${MEMBER} || soname='
+-					+ '; echo "${FORMAT##* }${FORMAT%%-*};${FILE#${ROOT%/}}${MEMBER};${soname};${RUNPATH};${needed}"'
+-					+ '; [[ -z ${member} && -n ${MEMBER} ]] && echo "${FORMAT##* }${FORMAT%%-*};${FILE#${ROOT%/}};${FILE##*/};;"'
+-				]
++					+ '; case ${member:+y}:${MEMBER:+y}'
++					#    member requested,    member found: show shared archive member
++					 + ' in y:y) echo "${FORMAT##* }${FORMAT%%-*};${FILE#${ROOT%/}}${MEMBER};${soname};${RUNPATH};${needed}"'
++					# no member requested,    member found: show archive
++					 + ' ;;  :y) echo "${FORMAT##* }${FORMAT%%-*};${FILE#${ROOT%/}};${FILE##*/};;"'
++					# no member requested, no member found: show standalone shared object
++					 + ' ;;  : ) echo "${FORMAT##* }${FORMAT%%-*};${FILE#${ROOT%/}};${FILE##*/};${RUNPATH};${needed}"'
++					#    member requested, no member found: ignore archive replaced by standalone shared object
++					 + ' ;; y: )'
++					 + ' ;; esac'
++				 + '; done'
++			, 'aixdll-query'
++			]
++			args.extend(os.path.join(root, x.lstrip("." + os.sep)) \
++				for x in plibs)
+ 			try:
+ 				proc = subprocess.Popen(args, stdout=subprocess.PIPE)
+ 			except EnvironmentError as e:
+@@ -228,17 +228,8 @@
+ 					owner = plibs.pop(fields[1], None)
+ 					lines.append((owner, "aixdll-query", ";".join(fields)))
+ 				proc.wait()
++				proc.stdout.close()
+ 
+-		if plibs:
+-			# Preserved libraries that did not appear in the bash
+-			# aixdll-query code output.  This is known to happen with
+-			# statically linked libraries.  Generate dummy lines for
+-			# these, so we can assume that every preserved library has
+-			# an entry in self._obj_properties.  This is important in
+-			# order to prevent findConsumers from raising an unwanted
+-			# KeyError.
+-			for x, cpv in plibs.items():
+-				lines.append((cpv, "plibs", ";".join(['', x, '', '', ''])))
+ 		# Share identical frozenset instances when available,
+ 		# in order to conserve memory.
+ 		frozensets = {}
+@@ -318,23 +309,4 @@
+ 				soname_node.providers = tuple(set(soname_node.providers))
+ 				soname_node.consumers = tuple(set(soname_node.consumers))
+ 
+-	def getSoname(self, obj):
+-		"""
+-		Return the soname associated with an object.
+-
+-		@param obj: absolute path to an object
+-		@type obj: string (example: '/usr/bin/bar')
+-		@rtype: string
+-		@return: soname as a string
+-
+-		"""
+-		if not self._libs:
+-			self.rebuild()
+-		if isinstance(obj, self._ObjectKey):
+-			obj_key = obj
+-			if obj_key not in self._obj_properties:
+-				raise KeyError("%s not in object list" % obj_key)
+-			return self._obj_properties[obj_key].soname
+-		if obj not in self._obj_key_cache:
+-			raise KeyError("%s not in object list" % obj)
+-		return self._obj_properties[self._obj_key_cache[obj]].soname
++	pass
+--- bin/misc-functions.sh.orig	2011-09-14 17:53:45 +0200
++++ bin/misc-functions.sh	2011-09-14 18:21:01 +0200
+@@ -1297,7 +1297,7 @@
+ 	else
+ 		die "cannot find where to use 'ar' and 'strip' from"
+ 	fi
+-	local archives_members= archives=() chmod400files=()
++	local archives_members= archives=() helperfiles=()
+ 	local archive_member soname runpath needed archive contentmember
+ 	while read archive_member; do
+ 		archive_member=${archive_member#*;${EPREFIX}/} # drop "^type;EPREFIX/"
+@@ -1321,13 +1321,24 @@
+ 		# portage does os.lstat() on merged files every now
+ 		# and then, so keep stamp-files for archive members
+ 		# around to get the preserve-libs feature working.
+-		{	echo "Please leave this file alone, it is an important helper"
+-			echo "for portage to implement the 'preserve-libs' feature on AIX." 
+-		} > "${ED}${contentmember}" || die "cannot create ${contentmember}"
+-		chmod400files[${#chmod400files[@]}]=${ED}${contentmember}
++		helperfiles[${#helperfiles[@]}]=${ED}${contentmember}
+ 	done < "${PORTAGE_BUILDDIR}"/build-info/NEEDED.XCOFF.1
+-	[[ ${#chmod400files[@]} == 0 ]] ||
+-	chmod 0400 "${chmod400files[@]}" || die "cannot chmod ${chmod400files[@]}"
++	if [[ ${#helperfiles[@]} > 0 ]]; then
++		rm -f "${helperfiles[@]}" || die "cannot prune ${helperfiles[@]}"
++		local f prev=
++		for f in "${helperfiles[@]}"
++		do
++			if [[ -z ${prev} ]]; then
++				{	echo "Please leave this file alone, it is an important helper"
++					echo "for portage to implement the 'preserve-libs' feature on AIX." 
++				} > "${f}" || die "cannot create ${f}"
++				chmod 0400 "${f}" || die "cannot chmod ${f}"
++				prev=${f}
++			else
++				ln "${prev}" "${f}" || die "cannot create hardlink ${f}"
++			fi
++		done
++	fi
+ 
+ 	local preservemembers libmetadir prunedirs=()
+ 	local FILE MEMBER FLAGS
