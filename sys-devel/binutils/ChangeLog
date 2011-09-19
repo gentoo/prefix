@@ -1,6 +1,72 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.409 2011/03/14 02:55:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.422 2011/09/19 01:44:26 vapier Exp $
+
+  19 Sep 2011; Mike Frysinger <vapier@gentoo.org> binutils-2.21.1-r1.ebuild:
+  Fix up most test failures #379105.
+
+  18 Sep 2011; Mike Frysinger <vapier@gentoo.org> binutils-2.18-r3.ebuild,
+  binutils-2.18-r4.ebuild, binutils-2.19.1-r1.ebuild,
+  binutils-2.20.1-r1.ebuild, binutils-2.21.1.ebuild, binutils-2.21.1-r1.ebuild:
+  Temporarily set some ebuilds to ignore Gentoo mirrors since upstream
+  regenerated their tarballs #381831 by Randy Barlow.
+
+  25 Aug 2011; Markos Chandras <hwoarang@gentoo.org> binutils-2.21.1.ebuild,
+  binutils-2.21.1-r1.ebuild:
+  Restore ~amd64 to 2.21.1 and stabilize 2.21.1-r1 instead. Bug #378485
+
+  22 Aug 2011; Tony Vroon <chainsaw@gentoo.org> binutils-2.21.1.ebuild:
+  Marked stable on AMD64 based on arch testing by Ian "idella4" Delaney &
+  Agostino "ago" Sarubbo in bug #378485. The test suite has gained a failure,
+  but the package was deemed functional.
+
+*binutils-2.21.1-r1 (22 Aug 2011)
+
+  22 Aug 2011; Mike Frysinger <vapier@gentoo.org> +binutils-2.21.1-r1.ebuild:
+  Fix up pax patch due to local variable renames #379321 by Sven Vermeulen.
+
+  22 Aug 2011; Mike Frysinger <vapier@gentoo.org> -binutils-2.21.51.0.1.ebuild,
+  -binutils-2.21.51.0.2.ebuild, -binutils-2.21.51.0.3.ebuild,
+  -binutils-2.21.51.0.4.ebuild, -binutils-2.21.51.0.5.ebuild,
+  -binutils-2.21.51.0.6.ebuild, -binutils-2.21.51.0.7.ebuild,
+  -binutils-2.21.51.0.8.ebuild, -binutils-2.21.51.0.9.ebuild:
+  Move old ebuilds to toolchain overlay.
+
+*binutils-2.21.53.0.2 (11 Aug 2011)
+*binutils-2.21.53.0.1 (11 Aug 2011)
+
+  11 Aug 2011; Mike Frysinger <vapier@gentoo.org> +binutils-2.21.53.0.1.ebuild,
+  +binutils-2.21.53.0.2.ebuild:
+  Version bumps.
+
+*binutils-2.21.1 (28 Jun 2011)
+
+  28 Jun 2011; Mike Frysinger <vapier@gentoo.org> +binutils-2.21.1.ebuild:
+  Version bump.
+
+*binutils-2.21.52.0.2 (17 Jun 2011)
+
+  17 Jun 2011; Mike Frysinger <vapier@gentoo.org> +binutils-2.21.52.0.2.ebuild:
+  Version bump.
+
+  11 Jun 2011; Alexis Ballier <aballier@gentoo.org> binutils-2.21.ebuild:
+  keyword -x86-fbsd and -sparc-fbsd until bug #347931 is solved; it doesnt
+  build
+
+*binutils-2.21.52.0.1 (09 Jun 2011)
+
+  09 Jun 2011; Mike Frysinger <vapier@gentoo.org> +binutils-2.21.52.0.1.ebuild:
+  Version bump.
+
+*binutils-2.21.51.0.9 (09 May 2011)
+
+  09 May 2011; Mike Frysinger <vapier@gentoo.org> +binutils-2.21.51.0.9.ebuild:
+  Version bump.
+
+*binutils-2.21.51.0.8 (10 Apr 2011)
+
+  10 Apr 2011; Mike Frysinger <vapier@gentoo.org> +binutils-2.21.51.0.8.ebuild:
+  Version bump.
 
 *binutils-2.21.51.0.7 (14 Mar 2011)
 
