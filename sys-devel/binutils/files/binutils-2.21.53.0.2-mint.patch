@@ -2222,20 +2222,6 @@ diff -ur --new-file binutils-2.21.51.0.7/ld/emulparams/m68kmint.sh binutils-2.21
 +TEXT_START_ADDR=0xe4
 +ARCH=m68k
 +EXTRA_EM_FILE=mint
-diff -ur --new-file binutils-2.21.51.0.7/ld/emultempl/generic.em binutils-2.21.51.0.7-mint/ld/emultempl/generic.em
---- binutils-2.21.51.0.7/ld/emultempl/generic.em	2009-09-08 17:11:36.000000000 +0000
-+++ binutils-2.21.51.0.7-mint/ld/emultempl/generic.em	2011-04-08 10:07:28.000000000 +0000
-@@ -138,8 +138,8 @@
-   ${LDEMUL_PLACE_ORPHAN-NULL},
-   ${LDEMUL_SET_SYMBOLS-NULL},
-   ${LDEMUL_PARSE_ARGS-NULL},
--  NULL,	/* add_options */
--  NULL,	/* handle_option */
-+  ${LDEMUL_ADD_OPTIONS-NULL},
-+  ${LDEMUL_HANDLE_OPTION-NULL},
-   ${LDEMUL_UNRECOGNIZED_FILE-NULL},
-   ${LDEMUL_LIST_OPTIONS-NULL},
-   ${LDEMUL_RECOGNIZED_FILE-NULL},
 diff -ur --new-file binutils-2.21.51.0.7/ld/emultempl/mint.em binutils-2.21.51.0.7-mint/ld/emultempl/mint.em
 --- binutils-2.21.51.0.7/ld/emultempl/mint.em	1970-01-01 00:00:00.000000000 +0000
 +++ binutils-2.21.51.0.7-mint/ld/emultempl/mint.em	2011-04-08 10:07:28.000000000 +0000
@@ -2667,15 +2653,15 @@ diff -ur --new-file binutils-2.21.51.0.7/libiberty/safe-ctype.c binutils-2.21.51
  static void set_default_dirlist (char *);
  static void set_section_start (char *, char *);
  static void set_segment_start (const char *, char *);
---- binutils-2.21.51.0.7/ld/plugin.c	2011-04-08 15:39:00.000000000 +0000
-+++ binutils-2.21.51.0.7-mint/ld/plugin.c	2011-04-08 15:39:54.000000000 +0000
-@@ -36,9 +36,6 @@
- #include <Windows.h>
+--- binutils-2.21.53.0.2/ld/plugin.c	2011-08-05 15:31:17.000000000 +0000
++++ binutils-2.21.53.0.2-mint/ld/plugin.c	2011-09-20 10:34:17.000000000 +0000
+@@ -37,9 +37,6 @@
+ #include <windows.h>
  #endif
  
 -/* Report plugin symbols.  */
 -bfd_boolean report_plugin_symbols;
 -
- /* Stores a single argument passed to a plugin.  */
- typedef struct plugin_arg
- {
+ /* Store plugin intermediate files permanently.  */
+ bfd_boolean plugin_save_temps;
+ 
