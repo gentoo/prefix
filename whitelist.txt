@@ -125,6 +125,7 @@ app-misc/beanstalkd
 app-misc/byobu
 app-misc/ca-certificates
 app-misc/colordiff
+app-misc/datefudge
 app-misc/delay
 app-misc/devtodo
 app-misc/dvorak7min
