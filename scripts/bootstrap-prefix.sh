@@ -911,7 +911,12 @@ if [[ -z ${CHOST} ]]; then
 				;;
 			Darwin)
 				rev="`uname -r | cut -d'.' -f 1`"
-				CHOST="`uname -p`-apple-darwin$rev"
+				if [[ ${rev} == 11 ]] ; then
+					# Lion is 64-bits default (and 64-bits CPUs)
+					CHOST="x86_64-apple-darwin$rev"
+				else
+					CHOST="`uname -p`-apple-darwin$rev"
+				fi
 				;;
 			SunOS)
 				case `uname -p` in
