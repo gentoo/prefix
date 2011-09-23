@@ -1,6 +1,55 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.111 2011/05/10 18:51:46 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.121 2011/09/18 22:00:43 maekke Exp $
+
+  18 Sep 2011; Markus Meier <maekke@gentoo.org> ghostscript-gpl-9.04-r3.ebuild:
+  x86 stable, bug #382951
+
+  16 Sep 2011; Tony Vroon <chainsaw@gentoo.org> ghostscript-gpl-9.04-r3.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo & Ian
+  "idella4" Delaney in bug #382951.
+
+*ghostscript-gpl-9.04-r3 (25 Aug 2011)
+
+  25 Aug 2011; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-9.04-r2.ebuild,
+  +ghostscript-gpl-9.04-r3.ebuild:
+  Revbump updating the upstream fix for gdevcups RGBW handling (Ghostscript bug
+  #691922). Remove old.
+
+*ghostscript-gpl-9.04-r2 (17 Aug 2011)
+
+  17 Aug 2011; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-9.04-r1.ebuild,
+  +ghostscript-gpl-9.04-r2.ebuild:
+  Revbump for new gsdjvu release. Remove old.
+
+*ghostscript-gpl-9.04-r1 (16 Aug 2011)
+
+  16 Aug 2011; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-9.00-r1.ebuild,
+  -ghostscript-gpl-9.01.ebuild, -ghostscript-gpl-9.02.ebuild,
+  -files/ghostscript-gpl-9.02-byteswap.patch,
+  -files/ghostscript-gpl-9.02-libpng15.patch, -ghostscript-gpl-9.04.ebuild,
+  +ghostscript-gpl-9.04-r1.ebuild:
+  Revbump fixing bug #353454, #379043 and #379203. Remove old.
+
+*ghostscript-gpl-9.04 (10 Aug 2011)
+
+  10 Aug 2011; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-9.04.ebuild:
+  Version bump.
+
+  07 Aug 2011; Diego E. Pettenò <flameeyes@gentoo.org>
+  ghostscript-gpl-9.02.ebuild:
+  Use -j1 for install as well, see bug #356303.
+
+  05 Aug 2011; Naohiro Aota <naota@gentoo.org> ghostscript-gpl-9.02.ebuild,
+  +files/ghostscript-gpl-9.02-byteswap.patch:
+  Handle FreeBSD byteswap function. Fix bug #367119
+
+  05 Jun 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  ghostscript-gpl-9.02.ebuild, +files/ghostscript-gpl-9.02-libpng15.patch:
+  Added patch for libpng-1.5, bug 355047
+
+  02 Jun 2011; Andreas K. Huettel <dilfridge@gentoo.org> metadata.xml:
+  Add local description for bindist use-flag, bug 369243
 
 *ghostscript-gpl-9.02 (10 May 2011)
 
