@@ -779,6 +779,7 @@ net-libs/libgsasl
 net-libs/libmsn
 net-libs/libnet
 net-libs/libnice
+net-libs/liboauth
 net-libs/libosip
 net-libs/libotr
 net-libs/libpcap
