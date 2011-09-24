@@ -1108,6 +1108,7 @@ dev-python/gnome-python-desktop-base
 dev-python/gnome-vfs-python
 dev-python/gnuplot-py
 dev-python/gst-python
+dev-python/httplib2
 dev-python/imaging
 dev-python/ipython
 dev-python/jinja
@@ -1127,6 +1128,7 @@ dev-python/markupsafe
 dev-python/matplotlib
 dev-python/mechanize
 dev-python/medusa
+dev-python/mock
 dev-python/mocker
 dev-python/mpmath
 dev-python/mysql-python
@@ -1135,6 +1137,7 @@ dev-python/nevow
 dev-python/nltk
 dev-python/nose
 dev-python/numpy
+dev-python/oauth2
 dev-python/paramiko
 dev-python/paste
 dev-python/pastedeploy
