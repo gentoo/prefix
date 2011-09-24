@@ -327,6 +327,7 @@ dev-lang/orc
 dev-lang/parrot
 dev-lang/pasm
 dev-lang/path64
+dev-lang/spidermonkey
 dev-lang/squirrel
 dev-lang/srf
 dev-lang/swig
