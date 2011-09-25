@@ -74,7 +74,8 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	ghcbootstrap? (	doc? (	~app-text/docbook-xml-dtd-4.2
 							app-text/docbook-xsl-stylesheets
-							>=dev-libs/libxslt-1.1.2 ) )"
+							>=dev-libs/libxslt-1.1.2 ) )
+	!ghcbootstrap? ( kernel_Darwin? ( virtual/libffi ) )"
 # In the ghcbootstrap case we rely on the developer having
 # >=ghc-5.04.3 on their $PATH already
 
@@ -296,6 +297,12 @@ src_prepare() {
 				# much arguments, in fact we do the make in-place anyway
 				./configure --prefix="${WORKDIR}"/usr || die
 				make install || die
+
+				if [[ ${CHOST} == *-darwin* ]] ; then
+					# remove libffi.a that causes problems when
+					# >=bintutils-apple-4.1 (Xcode 4) is in use
+					rm "${WORKDIR}"/usr/lib/ghc-6.10.1/libffi.a || die
+				fi
 				popd > /dev/null
 				;;
 				*)
