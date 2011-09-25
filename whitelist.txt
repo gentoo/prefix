@@ -310,6 +310,7 @@ dev-haskell/regex-posix
 dev-haskell/stm
 dev-haskell/tar
 dev-haskell/terminfo
+dev-haskell/text
 dev-haskell/time
 dev-haskell/utf8-string
 dev-haskell/x11
