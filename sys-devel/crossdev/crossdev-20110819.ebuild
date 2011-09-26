@@ -7,18 +7,16 @@ EAPI="3"
 if [[ ${PV} == "99999999" ]] ; then
 	EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/crossdev.git"
 	inherit git-2
+	SRC_URI=""
+	#KEYWORDS=""
+else
 	SRC_URI="mirror://gentoo/${P}.tar.xz
 		http://dev.gentoo.org/~vapier/dist/${P}.tar.xz"
 	#KEYWORDS=""
-else
-	SRC_URI="mirror://gentoo/${P}.tar.lzma
-		http://dev.gentoo.org/~vapier/dist/${P}.tar.lzma"
-KEYWORDS=""
 fi
 
 DESCRIPTION="Gentoo Cross-toolchain generator"
 HOMEPAGE="http://www.gentoo.org/"
-SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
