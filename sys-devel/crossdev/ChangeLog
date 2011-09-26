@@ -1,6 +1,41 @@
 # ChangeLog for sys-devel/crossdev
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.72 2010/10/11 09:00:42 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.81 2011/08/19 18:12:57 vapier Exp $
+
+*crossdev-20110819 (19 Aug 2011)
+
+  19 Aug 2011; Mike Frysinger <vapier@gentoo.org> +crossdev-20110819.ebuild:
+  Version bump.
+
+  19 Aug 2011; Mike Frysinger <vapier@gentoo.org> crossdev-20110705.ebuild:
+  Stabilize.
+
+  14 Jul 2011; Mike Frysinger <vapier@gentoo.org> crossdev-99999999.ebuild:
+  Encode the git version into crossdev so the log output is useful.
+
+*crossdev-20110705 (05 Jul 2011)
+
+  05 Jul 2011; Mike Frysinger <vapier@gentoo.org> +crossdev-20110705.ebuild:
+  Push out multilib fixes.
+
+  05 Jul 2011; Mike Frysinger <vapier@gentoo.org> crossdev-20100814.ebuild,
+  crossdev-20101011.ebuild, crossdev-20110310.ebuild, crossdev-99999999.ebuild:
+  Migrate to git-2 eclass.
+
+  13 Apr 2011; Mike Frysinger <vapier@gentoo.org> crossdev-20110310.ebuild:
+  Stabilize for everyone #359901 by Joachim Breuer.
+
+*crossdev-20110310 (11 Mar 2011)
+
+  11 Mar 2011; Mike Frysinger <vapier@gentoo.org> +crossdev-20110310.ebuild:
+  Version bump.
+
+  11 Mar 2011; Mike Frysinger <vapier@gentoo.org> crossdev-20101011.ebuild:
+  Stabilize for everyone.
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> crossdev-0.9.18-r10.ebuild,
+  crossdev-20100620.ebuild, crossdev-20100814.ebuild:
+  Drop to ~mips
 
 *crossdev-20101011 (11 Oct 2010)
 
