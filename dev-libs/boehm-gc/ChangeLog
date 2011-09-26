@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/boehm-gc
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.76 2010/09/26 22:13:45 xmw Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.77 2011/03/04 14:59:14 jlec Exp $
+
+*boehm-gc-7.2_alpha4-r1 (04 Mar 2011)
+*boehm-gc-7.1-r1 (04 Mar 2011)
+
+  04 Mar 2011; Justin Lecher <jlec@gentoo.org> boehm-gc-7.0-r1.ebuild,
+  -boehm-gc-7.1.ebuild, +boehm-gc-7.1-r1.ebuild, -boehm-gc-7.2_alpha4.ebuild,
+  +boehm-gc-7.2_alpha4-r1.ebuild:
+  Corrected unusable pkg-config files
 
   26 Sep 2010; Michael Weber <xmw@gentoo.org> boehm-gc-7.1.ebuild,
   boehm-gc-7.2_alpha4.ebuild:

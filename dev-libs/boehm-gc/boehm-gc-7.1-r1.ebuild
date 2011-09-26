@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-7.1.ebuild,v 1.7 2010/09/26 22:13:45 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-7.1-r1.ebuild,v 1.1 2011/03/04 14:59:14 jlec Exp $
 
 inherit eutils
 
@@ -27,6 +27,7 @@ src_unpack() {
 	sed -i -e '/^SUBDIRS/s/doc//' Makefile.in || die
 	epatch "${FILESDIR}"/${PN}-6.5-gentoo.patch
 	epatch "${FILESDIR}"/gc6.6-builtin-backtrace-uclibc.patch
+	sed '/Cflags/s:$:/gc:g' -i bdw-gc.pc.in || die
 }
 
 src_compile() {
@@ -40,7 +41,7 @@ src_compile() {
 
 	use threads || myconf="${myconf} --disable-threads"
 
-	econf ${myconf} || die "Configure failed..."
+	econf ${myconf}
 	emake || die
 }
 
