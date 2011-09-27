@@ -18,7 +18,7 @@ else
 fi
 
 PATCHSET_REVISION="0"
-PREFIX_PATCHREV="-r2"
+PREFIX_PATCHREV="-r3"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
