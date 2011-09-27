@@ -865,6 +865,7 @@ sys-apps/mawk
 sys-apps/miscfiles
 sys-apps/most
 sys-apps/net-tools
+sys-apps/pcsc-lite
 sys-apps/prefix-chain-utils
 sys-apps/pv
 sys-apps/rename
