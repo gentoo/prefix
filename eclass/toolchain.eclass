@@ -1385,9 +1385,9 @@ gcc_do_configure() {
 			confgcc="${confgcc} --disable-ppl-version-check"
 			# this will be removed when cloog-ppl-0.15.10 goes stable
 			if has_version '>=dev-libs/cloog-ppl-0.15.10'; then
-				confgcc="${confgcc} --with-cloog-include=/usr/include/cloog-ppl"
+				confgcc="${confgcc} --with-cloog-include=${EPREFIX}/usr/include/cloog-ppl"
 			else
-				confgcc="${confgcc} --with-cloog-include=/usr/include/cloog"
+				confgcc="${confgcc} --with-cloog-include=${EPREFIX}/usr/include/cloog"
 			fi
 		fi
 	fi
