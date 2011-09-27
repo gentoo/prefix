@@ -1,6 +1,38 @@
 # ChangeLog for app-mobilephone/gnokii
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/ChangeLog,v 1.104 2010/06/17 20:07:42 patrick Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/ChangeLog,v 1.113 2011/09/21 07:44:16 mgorny Exp $
+
+  21 Sep 2011; Michał Górny <mgorny@gentoo.org> gnokii-9999.ebuild:
+  Migrate to git-2.
+
+  22 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> gnokii-0.6.29.ebuild:
+  ppc/ppc64 stable wrt #332043
+
+  27 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  gnokii-0.6.27-r2.ebuild, gnokii-0.6.27-r4.ebuild, gnokii-0.6.28.1.ebuild,
+  gnokii-0.6.29.ebuild, gnokii-9999.ebuild:
+  Fix slot-dep on gtk+
+
+  29 Sep 2010; Jeroen Roovers <jer@gentoo.org> gnokii-0.6.29.ebuild:
+  Stable for HPPA (bug #332043).
+
+  05 Sep 2010; Raúl Porcel <armin76@gentoo.org> gnokii-0.6.29.ebuild:
+  sparc stable wrt #332043
+
+  12 Aug 2010; Markos Chandras <hwoarang@gentoo.org> gnokii-0.6.29.ebuild:
+  Stable on amd64 wrt bug #332043
+
+  12 Aug 2010; Christian Faulhammer <fauli@gentoo.org> gnokii-0.6.29.ebuild:
+  stable x86, bug 332043
+
+  10 Aug 2010; Christian Faulhammer <fauli@gentoo.org> gnokii-0.6.29.ebuild:
+  add missing quotes
+
+*gnokii-0.6.29 (10 Aug 2010)
+
+  10 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
+  +gnokii-0.6.29.ebuild, +files/gnokii-0.6.29-pcsc.patch:
+  version bump with pcsc patch from bug 319243
 
   17 Jun 2010; Patrick Lauer <patrick@gentoo.org> gnokii-0.6.27-r2.ebuild,
   gnokii-0.6.27-r4.ebuild, gnokii-0.6.28.1.ebuild, gnokii-9999.ebuild:
