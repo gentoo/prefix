@@ -1,11 +1,9 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.6.ebuild,v 1.1 2011/07/01 07:27:56 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.6-r1.ebuild,v 1.2 2011/09/26 17:38:49 vapier Exp $
 
 PATCH_VER="1.0"
 UCLIBC_VER="1.0"
-
-ETYPE="gcc-compiler"
 
 # Hardened gcc 4 stuff
 PIE_VER="10.1.5"
@@ -72,7 +70,7 @@ if [[ ${CATEGORY} != cross-* ]] ; then
 fi
 
 src_unpack() {
-	gcc_src_unpack
+	toolchain_src_unpack
 
 	use vanilla && return 0
 

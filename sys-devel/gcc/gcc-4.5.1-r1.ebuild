@@ -1,11 +1,9 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.5.1-r1.ebuild,v 1.4 2011/03/11 07:06:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.5.1-r1.ebuild,v 1.6 2011/09/26 17:38:49 vapier Exp $
 
 PATCH_VER="1.4"
 UCLIBC_VER="1.0"
-
-ETYPE="gcc-compiler"
 
 # Hardened gcc 4 stuff
 PIE_VER="0.4.5"
@@ -36,7 +34,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 		>=dev-libs/ppl-0.10
 		>=dev-libs/cloog-ppl-0.15.8
 	)
-	lto? ( >=dev-libs/elfutils-0.143 )
+	lto? ( || ( >=dev-libs/elfutils-0.143 dev-libs/libelf ) )
 	!build? (
 		gcj? (
 			gtk? (
@@ -74,7 +72,7 @@ if [[ ${CATEGORY} != cross-* ]] ; then
 fi
 
 src_unpack() {
-	gcc_src_unpack
+	toolchain_src_unpack
 
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
 	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
@@ -135,6 +133,17 @@ src_unpack() {
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.4.0/gcc-4.4.0-softfloat.patch
 }
 
+pkg_setup() {
+	toolchain_pkg_setup
+
+	if use lto ; then
+		ewarn
+		ewarn "LTO support is still experimental and unstable."
+		ewarn "Any bugs resulting from the use of LTO will not be fixed."
+		ewarn
+	fi
+}
+
 src_compile() {
 	case ${CTARGET}:" ${USE} " in
 		*-mint*)
@@ -179,7 +188,7 @@ src_compile() {
 			fi
 		;;
 	esac
-	
+
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX

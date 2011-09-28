@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.26 2011/07/20 08:58:35 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.27 2011/09/26 17:38:49 vapier Exp $
 
 MAN_VER=""
 PATCH_VER="1.6"
@@ -15,8 +15,6 @@ HTB_GCC_VER="3.4.4"
 D_VER="0.24"
 
 GCC_LIBSSP_SUPPORT="true"
-
-ETYPE="gcc-compiler"
 
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
 SSP_STABLE="x86 sparc amd64 ppc ppc64 ia64"
@@ -86,7 +84,7 @@ DEPEND="${RDEPEND}
 PDEPEND=">=sys-devel/gcc-config-1.4"
 
 src_unpack() {
-	gcc_src_unpack
+	toolchain_src_unpack
 
 	# misc patches that havent made it into a patch tarball yet
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch

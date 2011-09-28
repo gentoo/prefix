@@ -1,6 +1,51 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.819 2011/07/21 02:05:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.827 2011/09/26 17:38:49 vapier Exp $
+
+  26 Sep 2011; Mike Frysinger <vapier@gentoo.org> gcc-2.95.3-r10.ebuild,
+  gcc-3.2.2.ebuild, gcc-3.3.6-r1.ebuild, gcc-3.4.6-r2.ebuild, gcc-4.0.4.ebuild,
+  gcc-4.1.2.ebuild, gcc-4.2.4-r1.ebuild, gcc-4.3.3-r2.ebuild, gcc-4.3.4.ebuild,
+  gcc-4.3.5.ebuild, gcc-4.3.6-r1.ebuild, gcc-4.4.2.ebuild, gcc-4.4.3-r3.ebuild,
+  gcc-4.4.4-r2.ebuild, gcc-4.4.5.ebuild, gcc-4.4.6-r1.ebuild,
+  gcc-4.5.1-r1.ebuild, gcc-4.5.2.ebuild, gcc-4.5.3-r1.ebuild, gcc-4.6.0.ebuild,
+  gcc-4.6.1-r1.ebuild:
+  Scrub now unused ETYPE logic.
+
+  25 Sep 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> gcc-4.5.3-r1.ebuild:
+  x86 stable wrt bug #357479
+
+  23 Sep 2011; Kacper Kowalik <xarthisius@gentoo.org> gcc-4.5.3-r1.ebuild:
+  ppc/ppc64 stable wrt #357479
+
+  20 Sep 2011; Tony Vroon <chainsaw@gentoo.org> gcc-4.5.3-r1.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo in bug
+  #357479.
+
+*gcc-4.6.1-r1 (13 Aug 2011)
+*gcc-4.5.3-r1 (13 Aug 2011)
+*gcc-4.4.6-r1 (13 Aug 2011)
+*gcc-4.3.6-r1 (13 Aug 2011)
+
+  13 Aug 2011; Ryan Hill <dirtyepic@gentoo.org> -gcc-4.3.6.ebuild,
+  +gcc-4.3.6-r1.ebuild, -gcc-4.4.6.ebuild, +gcc-4.4.6-r1.ebuild,
+  -gcc-4.5.3.ebuild, +gcc-4.5.3-r1.ebuild, -gcc-4.6.1.ebuild,
+  +gcc-4.6.1-r1.ebuild:
+  Rev bumps to force fix for bug #377633. No other changes.
+
+*gcc-4.5.3 (06 Aug 2011)
+
+  06 Aug 2011; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.5.3.ebuild:
+  Version bump (bug #365935). Also fixes HPPA miscompile (bug #322831) and IA64
+  ICE (bug #365045).
+
+  06 Aug 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.5.1-r1.ebuild,
+  gcc-4.5.2.ebuild:
+  Allow dev-libs/libelf as an alternative to elfutils for LTO support in 4.5
+  (bug #375737).
+
+  06 Aug 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.6.0.ebuild,
+  gcc-4.6.1.ebuild:
+  Drop softfloat patches for 4.6 (bug #372199).
 
   21 Jul 2011; Jeroen Roovers <jer@gentoo.org> gcc-4.4.6.ebuild:
   Stable for HPPA (bug #374465).

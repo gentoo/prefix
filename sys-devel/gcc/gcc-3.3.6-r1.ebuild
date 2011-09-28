@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.3.6-r1.ebuild,v 1.18 2011/07/20 08:58:35 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.3.6-r1.ebuild,v 1.19 2011/09/26 17:38:49 vapier Exp $
 
 MAN_VER=""
 PATCH_VER="1.7"
@@ -8,8 +8,6 @@ UCLIBC_VER="1.0"
 PIE_VER="8.7.8"
 PP_VER="1.0"
 HTB_VER="1.00-r2"
-
-ETYPE="gcc-compiler"
 
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
 SSP_STABLE="x86 amd64"
@@ -73,7 +71,7 @@ DEPEND="${RDEPEND}
 PDEPEND=">=sys-devel/gcc-config-1.4"
 
 src_unpack() {
-	gcc_src_unpack
+	toolchain_src_unpack
 
 	if [[ -n ${UCLIBC_VER} ]] && [[ ${CTARGET} == *-uclibc* ]] ; then
 		mv "${S}"/gcc-3.3.2/libstdc++-v3/config/os/uclibc "${S}"/libstdc++-v3/config/os/ || die

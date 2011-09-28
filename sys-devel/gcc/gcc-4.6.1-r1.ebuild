@@ -1,11 +1,9 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.1.ebuild,v 1.1 2011/07/05 05:00:10 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.1-r1.ebuild,v 1.2 2011/09/26 17:38:49 vapier Exp $
 
 PATCH_VER="1.0"
 UCLIBC_VER="1.0"
-
-ETYPE="gcc-compiler"
 
 # Hardened gcc 4 stuff
 PIE_VER="0.4.5"
@@ -115,7 +113,6 @@ src_unpack() {
 		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
-	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.4.0/gcc-4.4.0-softfloat.patch
 }
 
 src_compile() {

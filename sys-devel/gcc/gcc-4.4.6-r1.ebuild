@@ -1,11 +1,9 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.5.ebuild,v 1.11 2011/07/03 03:18:48 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.6-r1.ebuild,v 1.2 2011/09/26 17:38:49 vapier Exp $
 
-PATCH_VER="1.3"
+PATCH_VER="1.0"
 UCLIBC_VER="1.0"
-
-ETYPE="gcc-compiler"
 
 # Hardened gcc 4 stuff
 PIE_VER="0.4.5"
@@ -72,7 +70,7 @@ if [[ ${CATEGORY} != cross-* ]] ; then
 fi
 
 pkg_setup() {
-	gcc_pkg_setup
+	toolchain_pkg_setup
 
 	if use graphite ; then
 		ewarn "Graphite support is still experimental and unstable."
@@ -81,7 +79,8 @@ pkg_setup() {
 }
 
 src_unpack() {
-	gcc_src_unpack
+	toolchain_src_unpack
+	use vanilla && return 0
 
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
 	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
@@ -135,14 +134,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.2.2/aix-lineno.patch
 
 	# libgcc's Makefiles reuses $T, work around that :(
-	[[ ${CHOST} == *-solaris* ]] && \
+	# only necessary on x86/x64, breaks on sparc
+	[[ ${CHOST} == *86-*-solaris* ]] && \
 		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
 
 	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
 	# but this does make sense in prefix only.
 	use prefix && epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
-
-	use vanilla && return 0
 
 	sed -i 's/use_fixproto=yes/:/' gcc/config.gcc #PR33200
 

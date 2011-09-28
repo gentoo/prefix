@@ -62,7 +62,7 @@ if [[ ${CATEGORY} != cross-* ]] ; then
 fi
 
 src_unpack() {
-	gcc_src_unpack
+	toolchain_src_unpack
 
 	use vanilla && return 0
 
