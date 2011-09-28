@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/db.eclass,v 1.42 2011/07/08 11:36:00 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/db.eclass,v 1.43 2011/08/29 01:28:10 vapier Exp $
 # This is a common location for functions used in the sys-libs/db ebuilds
 #
 # Bugs: pauldv@gentoo.org
@@ -191,7 +191,7 @@ db_src_test() {
 		for t in \
 			../test/test.tcl \
 			../test/tcl/test.tcl \
-			; do 
+			; do
 			[[ -f "${t}" ]] && testbase="${t}" && break
 		done
 		echo "source ${t}" > testrunner.tcl
@@ -199,7 +199,7 @@ db_src_test() {
 				sed -e "s/.*-j\([0-9]\+\).*/\1/"`
 		if [[ ${testJobs} =~ [[:digit:]]+ ]]; then
 			echo "run_parallel ${testJobs} run_std" >> testrunner.tcl
-		else 
+		else
 			echo 'run_std' >>testrunner.tcl
 		fi
 

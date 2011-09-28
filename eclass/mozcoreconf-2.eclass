@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.21 2011/07/08 11:36:00 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.22 2011/08/29 01:28:10 vapier Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
@@ -150,7 +150,7 @@ mozconfig_init() {
 	# Strip optimization so it does not end up in compile string
 	filter-flags '-O*'
 
-	# Strip over-aggressive CFLAGS 
+	# Strip over-aggressive CFLAGS
 	use custom-cflags || strip-flags
 
 	# Additional ARCH support

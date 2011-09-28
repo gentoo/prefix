@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.141 2011/07/08 11:35:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.143 2011/09/10 14:32:58 serkan Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1320,7 +1320,7 @@ java-pkg_get-bootclasspath() {
 	local version="${1}"
 
 	local bcp
-	case "${version}" in 
+	case "${version}" in
 		auto)
 			bcp="$(java-config -g BOOTCLASSPATH)"
 			;;
@@ -2524,6 +2524,10 @@ java-pkg_setup-vm() {
 	elif [[ "${vendor}" == "ibm" ]]; then
 		addpredict "/proc/self/maps"
 		addpredict "/proc/cpuinfo"
+		addpredict "/proc/self/coredump_filter"
+	elif [[ "${vendor}" == "oracle" ]]; then
+		addpredict "/dev/random"
+		addpredict "/proc/self/coredump_filter"
 	elif [[ "${vendor}" == "jrockit" ]]; then
 		addpredict "/proc/cpuinfo"
 	fi

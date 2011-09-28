@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.99 2011/08/11 02:17:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.101 2011/09/19 14:34:58 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -63,6 +63,8 @@ case ${BTYPE} in
 		SRC_URI="mirror://kernel/linux/devel/binutils/binutils-${PV}.tar.bz2
 			mirror://kernel/linux/devel/binutils/test/binutils-${PV}.tar.bz2
 			mirror://gnu/binutils/binutils-${PV}.tar.bz2"
+		# disable kernel mirrors until kernel.org is back up #383579
+		SRC_URI="mirror://gnu/binutils/binutils-${PV}.tar.bz2"
 esac
 add_src_uri() {
 	[[ -z $2 ]] && return
@@ -79,7 +81,7 @@ if version_is_at_least 2.18 ; then
 else
 	LICENSE="|| ( GPL-2 LGPL-2 )"
 fi
-IUSE="nls multitarget multislot test vanilla"
+IUSE="nls multitarget multislot static-libs test vanilla"
 if use multislot ; then
 	SLOT="${CTARGET}-${BVER}"
 elif is_cross ; then
@@ -241,6 +243,7 @@ toolchain-binutils_src_compile() {
 		--enable-64-bit-bfd \
 		--enable-shared \
 		--disable-werror \
+		$(use_enable static-libs static) \
 		${EXTRA_ECONF}
 	echo ./configure "$@"
 	"${S}"/configure "$@" || die
@@ -290,6 +293,7 @@ toolchain-binutils_src_install() {
 	cd "${MY_BUILDDIR}"
 	emake DESTDIR="${D}" tooldir="${EPREFIX}/${LIBPATH}" install || die
 	rm -rf "${ED}"/${LIBPATH}/bin
+	use static-libs || find "${ED}" -name '*.la' -delete
 
 	# Newer versions of binutils get fancy with ${LIBPATH} #171905
 	cd "${ED}"/${LIBPATH}

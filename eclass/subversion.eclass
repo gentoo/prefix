@@ -1,15 +1,14 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.69 2010/12/19 14:51:46 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.70 2011/08/22 04:46:32 vapier Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
 # Akinori Hattori <hattya@gentoo.org>
 # Bo Ørsted Andresen <zlin@gentoo.org>
 # Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
-#
+# @AUTHOR:
 # Original Author: Akinori Hattori <hattya@gentoo.org>
-#
 # @BLURB: The subversion eclass is written to fetch software sources from subversion repositories
 # @DESCRIPTION:
 # The subversion eclass provides functions to fetch, patch and bootstrap

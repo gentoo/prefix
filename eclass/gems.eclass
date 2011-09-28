@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.34 2010/08/03 15:51:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.35 2011/08/22 04:46:31 vapier Exp $
 
 # DEPRECATION NOTICE
 # This eclass is deprecated because it does not properly handle
@@ -9,9 +9,8 @@
 # @ECLASS: gems.eclass
 # @MAINTAINER:
 # ruby@gentoo.org
-#
+# @AUTHOR:
 # Original Author: Rob Cakebread <pythonhead@gentoo.org>
-#
 # @BLURB: Eclass helping with the installation of RubyGems
 # @DESCRIPTION:
 # See http://dev.gentoo.org/~pythonhead/ruby/gems.html for notes on using gems with Portage.

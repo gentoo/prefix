@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.104 2011/08/07 22:53:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.108 2011/09/23 04:14:38 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -9,8 +9,6 @@
 # @DESCRIPTION:
 # This eclass is for safely handling autotooled software packages that need to
 # regenerate their build scripts.  All functions will abort in case of errors.
-#
-# NB:  If you add anything, please comment it!
 
 inherit eutils libtool
 
@@ -23,6 +21,11 @@ inherit eutils libtool
 # @DESCRIPTION:
 # The major version of automake your package needs
 : ${WANT_AUTOMAKE:=latest}
+
+# @ECLASS-VARIABLE: WANT_LIBTOOL
+# @DESCRIPTION:
+# Do you want libtool?  Valid values here are "latest" and "none".
+: ${WANT_LIBTOOL:=latest}
 
 # @ECLASS-VARIABLE: _LATEST_AUTOMAKE
 # @INTERNAL
@@ -53,13 +56,22 @@ if [[ -n ${WANT_AUTOCONF} ]] ; then
 		2.1)        _autoconf_atom="=sys-devel/autoconf-${WANT_AUTOCONF}*" ;;
 		# if you change the “latest” version here, change also autotools_run_tool
 		latest|2.5) _autoconf_atom=">=sys-devel/autoconf-2.61" ;;
-		*)          _autoconf_atom="INCORRECT-WANT_AUTOCONF-SETTING-IN-EBUILD" ;;
+		*)          die "Invalid WANT_AUTOCONF value '${WANT_AUTOCONF}'" ;;
 	esac
 	export WANT_AUTOCONF
 fi
 
-AUTOTOOLS_DEPEND="${_automake_atom} ${_autoconf_atom}"
-[[ ${CATEGORY}/${PN} != "sys-devel/libtool" ]] && AUTOTOOLS_DEPEND="${AUTOTOOLS_DEPEND} >=sys-devel/libtool-2.2.6b"
+_libtool_atom="sys-devel/libtool"
+if [[ -n ${WANT_LIBTOOL} ]] ; then
+	case ${WANT_LIBTOOL} in
+		none)   _libtool_atom="" ;;
+		latest) ;;
+		*)      die "Invalid WANT_LIBTOOL value '${WANT_LIBTOOL}'" ;;
+	esac
+	export WANT_LIBTOOL
+fi
+
+AUTOTOOLS_DEPEND="${_automake_atom} ${_autoconf_atom} ${_libtool_atom}"
 RDEPEND=""
 
 # @ECLASS-VARIABLE: AUTOTOOLS_AUTO_DEPEND
@@ -139,6 +151,34 @@ eautoreconf() {
 	return 0
 }
 
+# @FUNCTION: eaclocal_amflags
+# @DESCRIPTION:
+# Extract the ACLOCAL_AMFLAGS value from the Makefile.am and try to handle
+# (most) of the crazy crap that people throw at us.
+eaclocal_amflags() {
+	local aclocal_opts amflags_file
+
+	for amflags_file in GNUmakefile.am Makefile.am GNUmakefile.in Makefile.in ; do
+		[[ -e ${amflags_file} ]] || continue
+		# setup the env in case the pkg does something crazy
+		# in their ACLOCAL_AMFLAGS.  like run a shell script
+		# which turns around and runs autotools. #365401
+		# or split across multiple lines. #383525
+		autotools_env_setup
+		aclocal_opts=$(sed -n \
+			"/^ACLOCAL_AMFLAGS[[:space:]]*=/{ \
+			  # match the first line
+			  s:[^=]*=::p; \
+			  # then gobble up all escaped lines
+			  : nextline /\\\\$/{ n; p; b nextline; } \
+			}" ${amflags_file})
+		eval aclocal_opts=\""${aclocal_opts}"\"
+		break
+	done
+
+	echo ${aclocal_opts}
+}
+
 # @FUNCTION: eaclocal
 # @DESCRIPTION:
 # These functions runs the autotools using autotools_run_tool with the
@@ -149,20 +189,6 @@ eautoreconf() {
 # Always adds ${EPREFIX}/usr/share/aclocal to accommodate situations where
 # aclocal comes from another EPREFIX (for example cross-EPREFIX builds).
 eaclocal() {
-	local aclocal_opts
-
-	local amflags_file
-	for amflags_file in GNUmakefile.am Makefile.am GNUmakefile.in Makefile.in ; do
-		[[ -e ${amflags_file} ]] || continue
-		# setup the env in case the pkg does something crazy
-		# in their ACLOCAL_AMFLAGS.  like run a shell script
-		# which turns around and runs autotools #365401
-		autotools_env_setup
-		aclocal_opts=$(sed -n '/^ACLOCAL_AMFLAGS[[:space:]]*=/s:[^=]*=::p' ${amflags_file})
-		eval aclocal_opts=\"${aclocal_opts}\"
-		break
-	done
-
 	# in some cases (cross-eprefix build), EPREFIX may not be included
 	# by aclocal by default, since it only knows about BPREFIX.
 	local eprefix_include=
@@ -170,7 +196,7 @@ eaclocal() {
 		eprefix_include="-I ${EPREFIX}/usr/share/aclocal"
 
 	[[ ! -f aclocal.m4 || -n $(grep -e 'generated.*by aclocal' aclocal.m4) ]] && \
-		autotools_run_tool aclocal $(autotools_m4dir_include) "$@" ${aclocal_opts} ${eprefix_include}
+		autotools_run_tool aclocal $(autotools_m4dir_include) "$@" $(eaclocal_amflags) ${eprefix_include}
 }
 
 # @FUNCTION: _elibtoolize

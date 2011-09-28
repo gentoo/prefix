@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.259 2011/08/19 13:26:12 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.260 2011/08/29 01:28:10 vapier Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -220,7 +220,7 @@ detect_version() {
 		KV_PATCH_ARR=(${KV_PATCH//\./ })
 
 		# at this point 080811, Linus is putting 3.1 kernels in 3.0 directory
-		# revisit when 3.1 is released 
+		# revisit when 3.1 is released
 		if [[ ${KV_PATCH} -gt 0 ]]; then
 			KERNEL_BASE_URI="mirror://kernel/linux/kernel/v${KV_MAJOR}.$((${KV_PATCH_ARR} - 1))"
 		else

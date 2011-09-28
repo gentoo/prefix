@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.18 2010/08/12 10:53:57 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.19 2011/08/25 18:19:00 nirbheek Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -17,11 +17,11 @@
 inherit eutils gst-plugins10
 
 GST_EXPF="src_unpack src_compile src_install"
-case ${EAPI:-0} in                                                                  
-	2|3) GST_EXPF="${GST_EXPF} src_prepare src_configure" ;;                
-	1|0) ;;                                                                     
-	*) die "Unknown EAPI" ;;                                                   
-esac                                                                                
+case ${EAPI:-0} in
+	2|3) GST_EXPF="${GST_EXPF} src_prepare src_configure" ;;
+	1|0) ;;
+	*) die "Unknown EAPI" ;;
+esac
 EXPORT_FUNCTIONS ${GST_EXPF}
 
 ###

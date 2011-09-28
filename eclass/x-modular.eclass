@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.120 2010/09/09 11:19:51 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.121 2011/08/29 01:28:10 vapier Exp $
 #
 # @DEPRECATED
 # This eclass has been superseded by xorg-2
@@ -555,7 +555,7 @@ remove_font_metadata() {
 # @FUNCTION: install_driver_hwdata
 # @USAGE:
 # @DESCRIPTION:
-# Installs device-to-driver mappings for system-config-display and 
+# Installs device-to-driver mappings for system-config-display and
 # anything else that uses hwdata.
 install_driver_hwdata() {
 	insinto /usr/share/hwdata/videoaliases

@@ -1,11 +1,11 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.58 2011/02/17 13:21:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.60 2011/08/29 01:28:10 vapier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
 # tex@gentoo.org
-#
+# @AUTHOR:
 # Original Author: Alexis Ballier <aballier@gentoo.org>
 # @BLURB: Provide generic install functions so that modular texlive's texmf ebuild will only have to inherit this eclass
 # @DESCRIPTION:
@@ -120,7 +120,7 @@ RELOC_TARGET=texmf-dist
 texlive-module_src_unpack() {
 	if has "${EAPI:-0}" 0 1 2 ; then
 		local i s
-		# Avoid installing world writable files 
+		# Avoid installing world writable files
 		# Bugs #309997, #310039, #338881
 		umask 022
 		for i in ${A}
@@ -247,7 +247,7 @@ texlive-module_make_language_lua_lines() {
 # Generates the config files that are to be installed in /etc/texmf;
 # texmf-update script will take care of merging the different config files for
 # different packages in a single one used by the whole tex installation.
-# 
+#
 # Once the config files are generated, we build the format files using fmtutil
 # (provided by texlive-core). The compiled format files will be sent to
 # texmf-var/web2c, like fmtutil defaults to but with some trick to stay in the

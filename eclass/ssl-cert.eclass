@@ -1,10 +1,11 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.18 2010/02/16 14:23:39 pva Exp $
-#
+# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.19 2011/08/22 04:46:32 vapier Exp $
+
 # @ECLASS: ssl-cert.eclass
 # @MAINTAINER:
-# Author: Max Kalika <max@gentoo.org>
+# @AUTHOR:
+# Max Kalika <max@gentoo.org>
 # @BLURB: Eclass for SSL certificates
 # @DESCRIPTION:
 # This eclass implements a standard installation procedure for installing

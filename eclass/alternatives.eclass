@@ -1,12 +1,11 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.16 2010/11/24 06:49:41 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/alternatives.eclass,v 1.17 2011/08/22 04:46:31 vapier Exp $
 
 # @ECLASS: alternatives.eclass
-# @MAINTAINER:
-#
-# Original author :     Alastair Tse <liquidx@gentoo.org> (03 Oct 2003)
-# @BLURB:  Creates symlink to the latest version of multiple slotted packages.
+# @AUTHOR:
+# Original author: Alastair Tse <liquidx@gentoo.org> (03 Oct 2003)
+# @BLURB: Creates symlink to the latest version of multiple slotted packages.
 # @DESCRIPTION:
 # When a package is SLOT'ed, very often we need to have a symlink to the
 # latest version. However, depending on the order the user has merged them,

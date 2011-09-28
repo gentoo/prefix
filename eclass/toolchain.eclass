@@ -1,14 +1,14 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.462 2011/08/13 03:09:40 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.472 2011/09/27 12:14:25 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
+#---->> eclass stuff <<----
 HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
 RESTRICT="strip" # cross-compilers need controlled stripping
 
-#---->> eclass stuff <<----
 inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib fixheadtails prefix
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test pkg_preinst src_install pkg_postinst pkg_prerm pkg_postrm
@@ -16,33 +16,6 @@ DESCRIPTION="Based on the ${ECLASS} eclass"
 
 FEATURES=${FEATURES/multilib-strict/}
 
-toolchain_pkg_setup() {
-	gcc_pkg_setup
-}
-toolchain_src_unpack() {
-	gcc_src_unpack
-}
-toolchain_src_compile() {
-	gcc_src_compile
-}
-toolchain_src_test() {
-	gcc_src_test
-}
-toolchain_pkg_preinst() {
-	${ETYPE}_pkg_preinst
-}
-toolchain_src_install() {
-	${ETYPE}_src_install
-}
-toolchain_pkg_postinst() {
-	${ETYPE}_pkg_postinst
-}
-toolchain_pkg_prerm() {
-	${ETYPE}_pkg_prerm
-}
-toolchain_pkg_postrm() {
-	${ETYPE}_pkg_postrm
-}
 #----<< eclass stuff >>----
 
 
@@ -58,7 +31,6 @@ is_crosscompile() {
 }
 
 tc_version_is_at_least() { version_is_at_least "$1" "${2:-${GCC_RELEASE_VER}}" ; }
-
 
 GCC_PV=${TOOLCHAIN_GCC_PV:-${PV}}
 GCC_PVR=${GCC_PV}
@@ -88,104 +60,107 @@ elif [[ ${GCC_PV} == *_rc* ]] ; then
 fi
 export GCC_FILESDIR=${GCC_FILESDIR:-${FILESDIR}}
 
-if [[ ${ETYPE} == "gcc-library" ]] ; then
-	GCC_VAR_TYPE=${GCC_VAR_TYPE:-non-versioned}
-	GCC_LIB_COMPAT_ONLY=${GCC_LIB_COMPAT_ONLY:-true}
-else
-	GCC_VAR_TYPE=${GCC_VAR_TYPE:-versioned}
-	GCC_LIB_COMPAT_ONLY="false"
-fi
-
 PREFIX=${TOOLCHAIN_PREFIX:-/usr}
 
-if [[ ${GCC_VAR_TYPE} == "versioned" ]] ; then
-	if tc_version_is_at_least 3.4.0 ; then
-		LIBPATH=${TOOLCHAIN_LIBPATH:-${PREFIX}/lib/gcc/${CTARGET}/${GCC_CONFIG_VER}}
-	else
-		LIBPATH=${TOOLCHAIN_LIBPATH:-${PREFIX}/lib/gcc-lib/${CTARGET}/${GCC_CONFIG_VER}}
-	fi
-	INCLUDEPATH=${TOOLCHAIN_INCLUDEPATH:-${LIBPATH}/include}
-	if is_crosscompile ; then
-		BINPATH=${TOOLCHAIN_BINPATH:-${PREFIX}/${CHOST}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}}
-	else
-		BINPATH=${TOOLCHAIN_BINPATH:-${PREFIX}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}}
-	fi
-	DATAPATH=${TOOLCHAIN_DATAPATH:-${PREFIX}/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}}
-	# Dont install in /usr/include/g++-v3/, but in gcc internal directory.
-	# We will handle /usr/include/g++-v3/ with gcc-config ...
-	STDCXX_INCDIR=${TOOLCHAIN_STDCXX_INCDIR:-${LIBPATH}/include/g++-v${GCC_BRANCH_VER/\.*/}}
-elif [[ ${GCC_VAR_TYPE} == "non-versioned" ]] ; then
-	# using non-versioned directories to install gcc, like what is currently
-	# done for ppc64 and 3.3.3_pre, is a BAD IDEA. DO NOT do it!! However...
-	# setting up variables for non-versioned directories might be useful for
-	# specific gcc targets, like libffi. Note that we dont override the value
-	# returned by get_libdir here.
-	LIBPATH=${TOOLCHAIN_LIBPATH:-${PREFIX}/$(get_libdir)}
-	INCLUDEPATH=${TOOLCHAIN_INCLUDEPATH:-${PREFIX}/include}
-	BINPATH=${TOOLCHAIN_BINPATH:-${PREFIX}/bin}
-	DATAPATH=${TOOLCHAIN_DATAPATH:-${PREFIX}/share}
-	STDCXX_INCDIR=${TOOLCHAIN_STDCXX_INCDIR:-${PREFIX}/include/g++-v3}
+if tc_version_is_at_least 3.4.0 ; then
+	LIBPATH=${TOOLCHAIN_LIBPATH:-${PREFIX}/lib/gcc/${CTARGET}/${GCC_CONFIG_VER}}
+else
+	LIBPATH=${TOOLCHAIN_LIBPATH:-${PREFIX}/lib/gcc-lib/${CTARGET}/${GCC_CONFIG_VER}}
 fi
+INCLUDEPATH=${TOOLCHAIN_INCLUDEPATH:-${LIBPATH}/include}
+if is_crosscompile ; then
+	BINPATH=${TOOLCHAIN_BINPATH:-${PREFIX}/${CHOST}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}}
+else
+	BINPATH=${TOOLCHAIN_BINPATH:-${PREFIX}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}}
+fi
+DATAPATH=${TOOLCHAIN_DATAPATH:-${PREFIX}/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}}
+# Dont install in /usr/include/g++-v3/, but in gcc internal directory.
+# We will handle /usr/include/g++-v3/ with gcc-config ...
+STDCXX_INCDIR=${TOOLCHAIN_STDCXX_INCDIR:-${LIBPATH}/include/g++-v${GCC_BRANCH_VER/\.*/}}
 
 #----<< globals >>----
 
 
 #---->> SLOT+IUSE logic <<----
-if [[ ${ETYPE} == "gcc-library" ]] ; then
-	IUSE="nls build test"
-	SLOT="${CTARGET}-${SO_VERSION_SLOT:-5}"
-else
-	IUSE="multislot nptl test"
+IUSE="build multislot nls nptl test vanilla"
+
+if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
+	IUSE+=" altivec fortran nocxx"
+	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
+	[[ -n ${PP_VER}	 ]] && IUSE+=" nossp"
+	[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
+	[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
+	[[ -n ${D_VER}	 ]] && IUSE+=" d"
 
 	if tc_version_is_at_least 3 ; then
-		IUSE+=" vanilla"
-	fi
+		IUSE+=" bootstrap doc gcj gtk hardened libffi multilib objc"
 
-	if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
-		IUSE+=" altivec build fortran nls nocxx"
-		[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
-		[[ -n ${PP_VER}	 ]] && IUSE+=" nossp"
-		[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
-		[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
-		[[ -n ${D_VER}	 ]] && IUSE+=" d"
-
-		if tc_version_is_at_least 3 ; then
-			IUSE+=" bootstrap doc gcj gtk hardened libffi multilib objc"
-
-			tc_version_is_at_least "4.0" && IUSE+=" objc-gc mudflap"
-			tc_version_is_at_least "4.1" && IUSE+=" objc++"
-			tc_version_is_at_least "4.2" && IUSE+=" openmp"
-			tc_version_is_at_least "4.3" && IUSE+=" fixed-point"
-			if tc_version_is_at_least "4.4" ; then
-				IUSE+=" graphite"
-				[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
-			fi
-			[[ ${GCC_BRANCH_VER} == 4.5 ]] && IUSE+=" lto"
-			tc_version_is_at_least "4.6" && IUSE+=" go"
+		tc_version_is_at_least "4.0" && IUSE+=" objc-gc mudflap"
+		tc_version_is_at_least "4.1" && IUSE+=" objc++"
+		tc_version_is_at_least "4.2" && IUSE+=" openmp"
+		tc_version_is_at_least "4.3" && IUSE+=" fixed-point"
+		if tc_version_is_at_least "4.4" ; then
+			IUSE+=" graphite"
+			[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
 		fi
+		[[ ${GCC_BRANCH_VER} == 4.5 ]] && IUSE+=" lto"
+		tc_version_is_at_least "4.6" && IUSE+=" go"
 	fi
+fi
 
-	# Support upgrade paths here or people get pissed
-	if use multislot ; then
-		SLOT="${CTARGET}-${GCC_CONFIG_VER}"
-	elif is_crosscompile; then
-		SLOT="${CTARGET}-${GCC_BRANCH_VER}"
-	else
-		SLOT="${GCC_BRANCH_VER}"
-	fi
+# Support upgrade paths here or people get pissed
+if use multislot ; then
+	SLOT="${CTARGET}-${GCC_CONFIG_VER}"
+elif is_crosscompile; then
+	SLOT="${CTARGET}-${GCC_BRANCH_VER}"
+else
+	SLOT="${GCC_BRANCH_VER}"
 fi
 #----<< SLOT+IUSE logic >>----
 
+#---->> DEPEND <<----
+
+RDEPEND="sys-libs/zlib
+	!build? (
+		nls? ( sys-devel/gettext )
+	)"
+if tc_version_is_at_least 3 ; then
+	RDEPEND+=" virtual/libiconv"
+fi
+if tc_version_is_at_least 4 ; then
+	RDEPEND+=" >=dev-libs/gmp-4.2.1 >=dev-libs/mpfr-2.3.2"
+	if tc_version_is_at_least 4.5 ; then
+		RDEPEND+=" >=dev-libs/mpc-0.8.1"
+	fi
+fi
+if has graphite ${IUSE} ; then
+	RDEPEND+="
+	    graphite? (
+	        >=dev-libs/cloog-ppl-0.15.10
+	        >=dev-libs/ppl-0.10
+	    )"
+fi
+
+DEPEND="${RDEPEND}
+	>=sys-apps/texinfo-4.8
+	>=sys-devel/bison-1.875
+	>=sys-devel/flex-2.5.4
+	test? (
+		>=dev-util/dejagnu-1.4.4
+		>=sys-devel/autogen-5.5.4
+	)"
+if tc_version_is_at_least 4.2 && has gcj ${IUSE} ; then
+	DEPEND+=" gcj? ( app-arch/zip app-arch/unzip )"
+fi
+
+PDEPEND=">=sys-devel/gcc-config-1.4"
+
+#----<< DEPEND >>----
 
 #---->> S + SRC_URI essentials <<----
 
 # This function sets the source directory depending on whether we're using
-# a prerelease, snapshot, or release tarball. To use it, just set S with:
-#
-#	S="$(gcc_get_s_dir)"
-#
-# Travis Tilley <lv@gentoo.org> (03 Sep 2004)
-#
+# a prerelease, snapshot, or release tarball.
 gcc_get_s_dir() {
 	local GCC_S
 	if [[ -n ${PRERELEASE} ]] ; then
@@ -197,6 +172,7 @@ gcc_get_s_dir() {
 	fi
 	echo "${GCC_S}"
 }
+S=$(gcc_get_s_dir)
 
 # This function handles the basics of setting the SRC_URI for a gcc ebuild.
 # To use, set SRC_URI with:
@@ -376,7 +352,6 @@ get_gcc_src_uri() {
 
 	echo "${GCC_SRC_URI}"
 }
-S=$(gcc_get_s_dir)
 SRC_URI=$(get_gcc_src_uri)
 #---->> S + SRC_URI essentials >>----
 
@@ -804,13 +779,13 @@ copy_minispecs_gcc_specs() {
 		$(XGCC) -dumpspecs > "${WORKDIR}"/specs/specs
 		cat "${WORKDIR}"/build.specs >> "${WORKDIR}"/specs/specs
 		doins "${WORKDIR}"/specs/specs || die "failed to install the specs file"
-	fi	
+	fi
 }
 
 #----<< specs + env.d logic >>----
 
 #---->> pkg_* <<----
-gcc_pkg_setup() {
+toolchain_pkg_setup() {
 	# yuck, but how else to do it portable?
 	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
 	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]] ; then
@@ -826,25 +801,21 @@ gcc_pkg_setup() {
 	# TPREFIX is the prefix of the CTARGET installation
 	export TPREFIX=${TPREFIX:-${EPREFIX}}
 
-	[[ -z ${ETYPE} ]] && die "Your ebuild needs to set the ETYPE variable"
-
-	if [[ ${ETYPE} == "gcc-compiler" ]] ; then
-		# Setup variables which would normally be in the profile
-		if is_crosscompile ; then
-			multilib_env ${CTARGET}
-			if ! is_multilib ; then
-				MULTILIB_ABIS=${DEFAULT_ABI}
-			fi
+	# Setup variables which would normally be in the profile
+	if is_crosscompile ; then
+		multilib_env ${CTARGET}
+		if ! is_multilib ; then
+			MULTILIB_ABIS=${DEFAULT_ABI}
 		fi
+	fi
 
-		# we dont want to use the installed compiler's specs to build gcc!
-		unset GCC_SPECS
+	# we dont want to use the installed compiler's specs to build gcc!
+	unset GCC_SPECS
 
-		if use nocxx ; then
-			use go && ewarn 'Go requires a C++ compiler, disabled due to USE="nocxx"'
-			use objc++ && ewarn 'Obj-C++ requires a C++ compiler, disabled due to USE="nocxx"'
-			use gcj && ewarn 'GCJ requires a C++ compiler, disabled due to USE="nocxx"'
-		fi
+	if use nocxx ; then
+		use go && ewarn 'Go requires a C++ compiler, disabled due to USE="nocxx"'
+		use objc++ && ewarn 'Obj-C++ requires a C++ compiler, disabled due to USE="nocxx"'
+		use gcj && ewarn 'GCJ requires a C++ compiler, disabled due to USE="nocxx"'
 	fi
 
 	want_libssp && libc_has_ssp && \
@@ -854,11 +825,11 @@ gcc_pkg_setup() {
 	unset LANGUAGES #265283
 }
 
-gcc-compiler_pkg_preinst() {
+toolchain_pkg_preinst() {
 	:
 }
 
-gcc-compiler_pkg_postinst() {
+toolchain_pkg_postinst() {
 	do_gcc_config
 
 	if ! is_crosscompile ; then
@@ -910,13 +881,13 @@ gcc-compiler_pkg_postinst() {
 	fi
 }
 
-gcc-compiler_pkg_prerm() {
+toolchain_pkg_prerm() {
 	# Don't let these files be uninstalled #87647
 	touch -c "${EROOT}"/sbin/fix_libtool_files.sh \
 		"${EROOT}"/$(get_libdir)/rcscripts/awk/fixlafiles.awk
 }
 
-gcc-compiler_pkg_postrm() {
+toolchain_pkg_postrm() {
 	# to make our lives easier (and saner), we do the fix_libtool stuff here.
 	# rather than checking SLOT's and trying in upgrade paths, we just see if
 	# the common libstdc++.la exists in the ${LIBPATH} of the gcc that we are
@@ -954,39 +925,6 @@ gcc-compiler_pkg_postrm() {
 
 #---->> src_* <<----
 
-# generic GCC src_unpack, to be called from the ebuild's src_unpack.
-# BIG NOTE regarding hardened support: ebuilds with support for hardened are
-# expected to export the following variable:
-#
-#	HARDENED_GCC_WORKS
-#			This variable should be set to the archs on which hardened should
-#			be allowed. For example: HARDENED_GCC_WORKS="x86 sparc amd64"
-#			This allows for additional archs to be supported by hardened when
-#			ready.
-#
-# Travis Tilley <lv@gentoo.org> (03 Sep 2004)
-#
-gcc-compiler_src_unpack() {
-	# fail if using pie patches, building hardened, and glibc doesnt have
-	# the necessary support
-	want_pie && use hardened && glibc_have_pie
-
-	if use hardened ; then
-		einfo "updating configuration to build hardened GCC"
-		make_gcc_hard || die "failed to make gcc hard"
-	fi
-
-	if is_libffi ; then
-		# move the libffi target out of gcj and into all
-		sed -i \
-			-e '/^libgcj=/s:target-libffi::' \
-			-e '/^target_lib/s:=":="target-libffi :' \
-			"${S}"/configure || die
-	fi
-}
-gcc-library_src_unpack() {
-	:
-}
 guess_patch_type_in_dir() {
 	[[ -n $(ls "$1"/*.bz2 2>/dev/null) ]] \
 		&& EPATCH_SUFFIX="patch.bz2" \
@@ -1026,7 +964,7 @@ do_gcc_rename_java_bins() {
 			die "Failed to fixup file ${jfile} for rename to grmic"
 	done
 }
-gcc_src_unpack() {
+toolchain_src_unpack() {
 	export BRANDING_GCC_PKGVERSION="Gentoo ${GCC_PVR}"
 
 	[[ -z ${UCLIBC_VER} ]] && [[ ${CTARGET} == *-uclibc* ]] && die "Sorry, this version does not support uClibc"
@@ -1054,7 +992,22 @@ gcc_src_unpack() {
 	do_gcc_PIE_patches
 	epatch_user
 
-	${ETYPE}_src_unpack || die "failed to ${ETYPE}_src_unpack"
+	# fail if using pie patches, building hardened, and glibc doesnt have
+	# the necessary support
+	want_pie && use hardened && glibc_have_pie
+
+	if use hardened ; then
+		einfo "updating configuration to build hardened GCC"
+		make_gcc_hard || die "failed to make gcc hard"
+	fi
+
+	if is_libffi ; then
+		# move the libffi target out of gcj and into all
+		sed -i \
+			-e '/^libgcj=/s:target-libffi::' \
+			-e '/^target_lib/s:=":="target-libffi :' \
+			"${S}"/configure || die
+	fi
 
 	# protoize don't build on FreeBSD, skip it
 	## removed in 4.5, bug #270558 --de.
@@ -1152,38 +1105,51 @@ gcc_src_unpack() {
 	disable_multilib_libjava || die "failed to disable multilib java"
 }
 
-gcc-library-configure() {
-	if is_multilib ; then
-		confgcc="${confgcc} --enable-multilib"
+gcc-multilib-configure() {
+	# if multilib is disabled, get out quick!
+	if ! is_multilib ; then
+		confgcc+=" --disable-multilib"
+		return
 	else
-		confgcc="${confgcc} --disable-multilib"
+		confgcc+=" --enable-multilib"
 	fi
+
+	# translate our notion of multilibs into gcc's
+	local abi map=() list
+	case ${CTARGET} in
+	x86_64*) tc_version_is_at_least 4.7 && map=(amd64:m64 x86:m32 x32:mx32) ;;
+	esac
+	for abi in $(get_all_abis) ; do
+		local m a l
+		for m in "${map[@]}" ; do
+			a=${m%:*}
+			l=${m#*:}
+			[[ ${abi} == ${a} ]] && list=",${l}${list}"
+		done
+	done
+	[[ -n ${list} ]] && confgcc+=" --with-multilib-list=${list:1}"
 }
 
 gcc-compiler-configure() {
-	if is_multilib ; then
-		confgcc="${confgcc} --enable-multilib"
-	else
-		confgcc="${confgcc} --disable-multilib"
-	fi
+	gcc-multilib-configure
 
 	if tc_version_is_at_least "4.0" ; then
 		if has mudflap ${IUSE} ; then
-			confgcc="${confgcc} $(use_enable mudflap libmudflap)"
+			confgcc+=" $(use_enable mudflap libmudflap)"
 		else
-			confgcc="${confgcc} --disable-libmudflap"
+			confgcc+=" --disable-libmudflap"
 		fi
 
 		if want_libssp ; then
-			confgcc="${confgcc} --enable-libssp"
+			confgcc+=" --enable-libssp"
 		else
 			export gcc_cv_libc_provides_ssp=yes
-			confgcc="${confgcc} --disable-libssp"
+			confgcc+=" --disable-libssp"
 		fi
 
 		# If we want hardened support with the newer piepatchset for >=gcc 4.4
 		if tc_version_is_at_least 4.4 && want_minispecs ; then
-			confgcc="${confgcc} $(use_enable hardened esp)"
+			confgcc+=" $(use_enable hardened esp)"
 		fi
 
 		if tc_version_is_at_least "4.2" ; then
@@ -1195,23 +1161,14 @@ gcc-compiler-configure() {
 				if ! is_crosscompile || \
 				   $(tc-getCPP ${CTARGET}) -E - <<<"#include <pthread.h>" >& /dev/null
 				then
-					confgcc="${confgcc} $(use_enable openmp libgomp)"
+					confgcc+=" $(use_enable openmp libgomp)"
 				else
 					# Force disable as the configure script can be dumb #359855
-					confgcc="${confgcc} --disable-libgomp"
+					confgcc+=" --disable-libgomp"
 				fi
 			else
 				# For gcc variants where we don't want openmp (e.g. kgcc)
-				confgcc="${confgcc} --disable-libgomp"
-			fi
-		fi
-
-		# enable the cld workaround until we move things to stable.
-		# by that point, the rest of the software out there should
-		# have caught up.
-		if tc_version_is_at_least "4.3" ; then
-			if ! has ${ARCH} ${KEYWORDS} ; then
-				confgcc="${confgcc} --enable-cld"
+				confgcc+=" --disable-libgomp"
 			fi
 		fi
 
@@ -1226,25 +1183,37 @@ gcc-compiler-configure() {
 		#
 		# This should translate into "/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}/python"
 		if tc_version_is_at_least "4.4" ; then
-			confgcc="${confgcc} --with-python-dir=${DATAPATH/$PREFIX/}/python"
+			confgcc+=" --with-python-dir=${DATAPATH/$PREFIX/}/python"
 		fi
 	fi
 
 	# For newer versions of gcc, use the default ("release"), because no
 	# one (even upstream apparently) tests with it disabled. #317217
 	if tc_version_is_at_least 4 || [[ -n ${GCC_CHECKS_LIST} ]] ; then
-		confgcc="${confgcc} --enable-checking=${GCC_CHECKS_LIST:-release}"
+		confgcc+=" --enable-checking=${GCC_CHECKS_LIST:-release}"
 	else
-		confgcc="${confgcc} --disable-checking"
+		confgcc+=" --disable-checking"
 	fi
 
 	# GTK+ is preferred over xlib in 3.4.x (xlib is unmaintained
 	# right now). Much thanks to <csm@gnu.org> for the heads up.
 	# Travis Tilley <lv@gentoo.org>	 (11 Jul 2004)
 	if ! is_gcj ; then
-		confgcc="${confgcc} --disable-libgcj"
+		confgcc+=" --disable-libgcj"
 	elif use gtk ; then
-		confgcc="${confgcc} --enable-java-awt=gtk"
+		confgcc+=" --enable-java-awt=gtk"
+	fi
+
+	# newer gcc versions like to bootstrap themselves with C++,
+	# so we need to manually disable it ourselves
+	if tc_version_is_at_least 4.7 && ! is_cxx ; then
+		confgcc+=" --disable-build-with-cxx --disable-build-poststage1-with-cxx"
+	fi
+
+	# newer gcc's come with libquadmath, but only fortran uses
+	# it, so auto punt it when we don't care
+	if tc_version_is_at_least 4.6 && ! is_fortran ; then
+		confgcc+=" --disable-libquadmath"
 	fi
 
 	case $(tc-arch) in
@@ -1257,13 +1226,13 @@ gcc-compiler-configure() {
 				# Remove endian ('l' / 'eb')
 				[[ ${arm_arch} == *l  ]] && arm_arch=${arm_arch%l}
 				[[ ${arm_arch} == *eb ]] && arm_arch=${arm_arch%eb}
-				confgcc="${confgcc} --with-arch=${arm_arch}"
+				confgcc+=" --with-arch=${arm_arch}"
 			fi
 
 			# Enable hardvfp
 			if [[ ${CTARGET##*-} == *eabi ]] && [[ $(tc-is-hardfloat) == yes ]] && \
 			    tc_version_is_at_least "4.5" ; then
-			        confgcc="${confgcc} --with-float=hard"
+			        confgcc+=" --with-float=hard"
 			fi
 			;;
 		# Add --with-abi flags to set default MIPS ABI
@@ -1271,16 +1240,16 @@ gcc-compiler-configure() {
 			local mips_abi=""
 			[[ ${DEFAULT_ABI} == n64 ]] && mips_abi="--with-abi=64"
 			[[ ${DEFAULT_ABI} == n32 ]] && mips_abi="--with-abi=n32"
-			[[ -n ${mips_abi} ]] && confgcc="${confgcc} ${mips_abi}"
+			[[ -n ${mips_abi} ]] && confgcc+=" ${mips_abi}"
 			;;
 		# Default arch for x86 is normally i386, lets give it a bump
 		# since glibc will do so based on CTARGET anyways
 		x86)
-			confgcc="${confgcc} --with-arch=${CTARGET%%-*}"
+			confgcc+=" --with-arch=${CTARGET%%-*}"
 			;;
 		# Enable sjlj exceptions for backward compatibility on hppa
 		hppa)
-			[[ ${GCCMAJOR} == "3" ]] && confgcc="${confgcc} --enable-sjlj-exceptions"
+			[[ ${GCCMAJOR} == "3" ]] && confgcc+=" --enable-sjlj-exceptions"
 			;;
 		# Set up defaults based on current CFLAGS
 		ppc)
@@ -1297,7 +1266,7 @@ gcc-compiler-configure() {
 	if is_objc || is_objcxx ; then
 		GCC_LANG="${GCC_LANG},objc"
 		if tc_version_is_at_least "4.0" ; then
-			use objc-gc && confgcc="${confgcc} --enable-objc-gc"
+			use objc-gc && confgcc+=" --enable-objc-gc"
 		fi
 		is_objcxx && GCC_LANG="${GCC_LANG},obj-c++"
 	fi
@@ -1339,7 +1308,7 @@ gcc_do_configure() {
 	fi
 
 	# Set configuration based on path variables
-	confgcc="${confgcc} \
+	confgcc+=" \
 		--prefix=${EPREFIX}${PREFIX} \
 		--bindir=${EPREFIX}${BINPATH} \
 		--includedir=${EPREFIX}${INCLUDEPATH} \
@@ -1353,41 +1322,41 @@ gcc_do_configure() {
 	# non-Darwin we screw up the behaviour this eclass relies on.  We in
 	# particular need this over --libdir for bug #255315.
 	[[ ${CTARGET} == *-darwin* ]] && \
-		confgcc="${confgcc} --enable-version-specific-runtime-libs"
+		confgcc+=" --enable-version-specific-runtime-libs"
 
 	# All our cross-compile logic goes here !  woo !
-	confgcc="${confgcc} --host=${CHOST}"
+	confgcc+=" --host=${CHOST}"
 	if is_crosscompile || tc-is-cross-compiler ; then
 		# Straight from the GCC install doc:
 		# "GCC has code to correctly determine the correct value for target
 		# for nearly all native systems. Therefore, we highly recommend you
 		# not provide a configure target when configuring a native compiler."
-		confgcc="${confgcc} --target=${CTARGET}"
+		confgcc+=" --target=${CTARGET}"
 	fi
-	[[ -n ${CBUILD} ]] && confgcc="${confgcc} --build=${CBUILD}"
+	[[ -n ${CBUILD} ]] && confgcc+=" --build=${CBUILD}"
 
 	# ppc altivec support
-	confgcc="${confgcc} $(use_enable altivec)"
+	confgcc+=" $(use_enable altivec)"
 
 	# gcc has fixed-point arithmetic support in 4.3 for mips targets that can
 	# significantly increase compile time by several hours.  This will allow
 	# users to control this feature in the event they need the support.
-	tc_version_is_at_least "4.3" && confgcc="${confgcc} $(use_enable fixed-point)"
+	tc_version_is_at_least "4.3" && confgcc+=" $(use_enable fixed-point)"
 
 	# Graphite support was added in 4.4, which depends on external libraries
 	# for optimizations.  Up to 4.6 we use cloog-ppl (cloog fork with Parma PPL
 	# backend).  Later versions will use upstream cloog with the ISL backend.  We
 	# disable the PPL version check so we can use >=ppl-0.11.
 	if tc_version_is_at_least "4.4"; then
-		confgcc="${confgcc} $(use_with graphite ppl)"
-		confgcc="${confgcc} $(use_with graphite cloog)"
+		confgcc+=" $(use_with graphite ppl)"
+		confgcc+=" $(use_with graphite cloog)"
 		if use graphite; then
-			confgcc="${confgcc} --disable-ppl-version-check"
+			confgcc+=" --disable-ppl-version-check"
 			# this will be removed when cloog-ppl-0.15.10 goes stable
 			if has_version '>=dev-libs/cloog-ppl-0.15.10'; then
-				confgcc="${confgcc} --with-cloog-include=${EPREFIX}/usr/include/cloog-ppl"
+				confgcc+=" --with-cloog-include=${EPREFIX}/usr/include/cloog-ppl"
 			else
-				confgcc="${confgcc} --with-cloog-include=${EPREFIX}/usr/include/cloog"
+				confgcc+=" --with-cloog-include=${EPREFIX}/usr/include/cloog"
 			fi
 		fi
 	fi
@@ -1395,33 +1364,31 @@ gcc_do_configure() {
 	# LTO support was added in 4.5, which depends upon elfutils.  This allows
 	# users to enable that option, and pull in the additional library.  In 4.6,
 	# the dependency is no longer required.
-	[[ ${GCC_BRANCH_VER} == 4.5 ]] && confgcc="${confgcc} $(use_enable lto)"
-	[[ ${GCC_BRANCH_VER} > 4.5 ]] && confgcc="${confgcc} --enable-lto"
+	[[ ${GCC_BRANCH_VER} == 4.5 ]] && confgcc+=" $(use_enable lto)"
+	[[ ${GCC_BRANCH_VER} > 4.5 ]] && confgcc+=" --enable-lto"
 
-	[[ $(tc-is-softfloat) == "yes" ]] && confgcc="${confgcc} --with-float=soft"
-	[[ $(tc-is-hardfloat) == "yes" ]] && confgcc="${confgcc} --with-float=hard"
+	[[ $(tc-is-softfloat) == "yes" ]] && confgcc+=" --with-float=soft"
+	[[ $(tc-is-hardfloat) == "yes" ]] && confgcc+=" --with-float=hard"
 
 	# Native Language Support
 	if use nls ; then
-		confgcc="${confgcc} --enable-nls --without-included-gettext"
+		confgcc+=" --enable-nls --without-included-gettext"
 	else
-		confgcc="${confgcc} --disable-nls"
+		confgcc+=" --disable-nls"
 	fi
 
 	# reasonably sane globals (hopefully)
-	confgcc="${confgcc} \
+	confgcc+=" \
 		--with-system-zlib \
 		--disable-werror \
 		--enable-secureplt"
 
-	# etype specific configuration
-	einfo "running ${ETYPE}-configure"
-	${ETYPE}-configure || die
+	gcc-compiler-configure || die
 
 	# if not specified, assume we are building for a target that only
 	# requires C support
 	GCC_LANG=${GCC_LANG:-c}
-	confgcc="${confgcc} --enable-languages=${GCC_LANG}"
+	confgcc+=" --enable-languages=${GCC_LANG}"
 
 	if is_crosscompile ; then
 		# When building a stage1 cross-compiler (just C compiler), we have to
@@ -1437,71 +1404,71 @@ gcc_do_configure() {
 			*-uclibc*)		 needed_libc=uclibc;;
 			*-cygwin)        needed_libc=cygwin;;
 			mingw*|*-mingw*) needed_libc=mingw-runtime;;
-			avr)			 confgcc="${confgcc} --enable-shared --disable-threads";;
-			*-apple-darwin*) confgcc="${confgcc} --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
-			*-solaris*)      confgcc="${confgcc} --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
-			*-freebsd*)      confgcc="${confgcc} --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
+			avr)			 confgcc+=" --enable-shared --disable-threads";;
+			*-apple-darwin*) confgcc+=" --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
+			*-solaris*)      confgcc+=" --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
+			*-freebsd*)      confgcc+=" --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
 		esac
 		if [[ -n ${needed_libc} ]] ; then
 			if ! has_version ${CATEGORY}/${needed_libc} ; then
-				confgcc="${confgcc} --disable-shared --disable-threads --without-headers"
+				confgcc+=" --disable-shared --disable-threads --without-headers"
 			elif built_with_use --hidden --missing false ${CATEGORY}/${needed_libc} crosscompile_opts_headers-only ; then
-				confgcc="${confgcc} --disable-shared --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}"
+				confgcc+=" --disable-shared --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}"
 			else
-				confgcc="${confgcc} --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}"
+				confgcc+=" --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}"
 			fi
 		fi
 
 		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then
-			confgcc="${confgcc} --disable-bootstrap"
+			confgcc+=" --disable-bootstrap"
 		fi
 	else
 		if tc-is-static-only ; then
-			confgcc="${confgcc} --disable-shared"
+			confgcc+=" --disable-shared"
 		else
-			confgcc="${confgcc} --enable-shared"
+			confgcc+=" --enable-shared"
 		fi
 		case ${CHOST} in
 			mingw*|*-mingw*|*-cygwin)
-				confgcc="${confgcc} --enable-threads=win32" ;;
+				confgcc+=" --enable-threads=win32" ;;
 			*)
-				confgcc="${confgcc} --enable-threads=posix" ;;
+				confgcc+=" --enable-threads=posix" ;;
 		esac
 
 		if use prefix ; then
 			# should be /usr, because it's the path to search includes for,
 			# which is unrelated to TOOLCHAIN_PREFIX, a.k.a. PREFIX
-			confgcc="${confgcc} --with-local-prefix=${TPREFIX}/usr"
+			confgcc+=" --with-local-prefix=${TPREFIX}/usr"
 		fi
 	fi
 	# __cxa_atexit is "essential for fully standards-compliant handling of
 	# destructors", but apparently requires glibc.
 	case ${CTARGET} in
 	*-uclibc*)
-		confgcc="${confgcc} --disable-__cxa_atexit --enable-target-optspace $(use_enable nptl tls)"
-		[[ ${GCCMAJOR}.${GCCMINOR} == 3.3 ]] && confgcc="${confgcc} --enable-sjlj-exceptions"
+		confgcc+=" --disable-__cxa_atexit --enable-target-optspace $(use_enable nptl tls)"
+		[[ ${GCCMAJOR}.${GCCMINOR} == 3.3 ]] && confgcc+=" --enable-sjlj-exceptions"
 		if tc_version_is_at_least 3.4 && [[ ${GCCMAJOR}.${GCCMINOR} < 4.3 ]] ; then
-			confgcc="${confgcc} --enable-clocale=uclibc"
+			confgcc+=" --enable-clocale=uclibc"
 		fi
 		;;
 	*-elf|*-eabi)
-		confgcc="${confgcc} --with-newlib"
+		confgcc+=" --with-newlib"
 		;;
 	*-gnu*)
-		confgcc="${confgcc} --enable-__cxa_atexit"
-		confgcc="${confgcc} --enable-clocale=gnu"
+		confgcc+=" --enable-__cxa_atexit"
+		confgcc+=" --enable-clocale=gnu"
 		;;
 	*-freebsd*)
-		confgcc="${confgcc} --enable-__cxa_atexit"
+		confgcc+=" --enable-__cxa_atexit"
 		;;
 	*-openbsd*)
-		confgcc="${confgcc} --enable-__cxa_atexit"
+		confgcc+=" --enable-__cxa_atexit"
 		;;
 	*-solaris*)
-		confgcc="${confgcc} --enable-__cxa_atexit"
+		confgcc+=" --enable-__cxa_atexit"
 		;;
 	esac
-	[[ ${GCCMAJOR}.${GCCMINOR} < 3.4 ]] && confgcc="${confgcc} --disable-libunwind-exceptions"
+	[[ ${GCCMAJOR}.${GCCMINOR} < 3.4 ]] && confgcc+=" --disable-libunwind-exceptions"
 
 	# create a sparc*linux*-{gcc,g++} that can handle -m32 and -m64 (biarch)
 	if [[ ${CTARGET} == sparc*linux* ]] \
@@ -1509,7 +1476,7 @@ gcc_do_configure() {
 		&& ! is_crosscompile \
 		&& [[ ${GCCMAJOR}.${GCCMINOR} > 4.2 ]]
 	then
-		confgcc="${confgcc} --enable-targets=all"
+		confgcc+=" --enable-targets=all"
 	fi
 
 	tc_version_is_at_least 4.3 && set -- "$@" \
@@ -1631,34 +1598,6 @@ gcc_do_make() {
 	popd
 }
 
-# This function will add ${GCC_CONFIG_VER} to the names of all shared libraries in the
-# directory specified to avoid filename collisions between multiple slotted
-# non-versioned gcc targets. If no directory is specified, it is assumed that
-# you want -all- shared objects to have ${GCC_CONFIG_VER} added. Example
-#
-#	add_version_to_shared ${ED}/usr/$(get_libdir)
-#
-# Travis Tilley <lv@gentoo.org> (05 Sep 2004)
-#
-add_version_to_shared() {
-	local sharedlib sharedlibdir
-	[[ -z $1 ]] \
-		&& sharedlibdir=${ED} \
-		|| sharedlibdir=$1
-
-	for sharedlib in $(find ${sharedlibdir} -name *.so.*) ; do
-		if [[ ! -L ${sharedlib} ]] ; then
-			einfo "Renaming `basename "${sharedlib}"` to `basename "${sharedlib/.so*/}-${GCC_CONFIG_VER}.so.${sharedlib/*.so./}"`"
-			mv "${sharedlib}" "${sharedlib/.so*/}-${GCC_CONFIG_VER}.so.${sharedlib/*.so./}" \
-				|| die
-			pushd `dirname "${sharedlib}"` > /dev/null || die
-			ln -sf "`basename "${sharedlib/.so*/}-${GCC_CONFIG_VER}.so.${sharedlib/*.so./}"`" \
-				"`basename "${sharedlib}"`" || die
-			popd > /dev/null || die
-		fi
-	done
-}
-
 # This is mostly a stub function to be overwritten in an ebuild
 gcc_do_filter_flags() {
 	strip-flags
@@ -1742,10 +1681,14 @@ gcc_do_filter_flags() {
 	export GCJFLAGS=${GCJFLAGS:-${CFLAGS}}
 }
 
-gcc_src_compile() {
+toolchain_src_compile() {
 	gcc_do_filter_flags
 	einfo "CFLAGS=\"${CFLAGS}\""
 	einfo "CXXFLAGS=\"${CXXFLAGS}\""
+
+	# Force internal zip based jar script to avoid random
+	# issues with 3rd party jar implementations.  #384291
+	export JAR=no
 
 	# For hardened gcc 4.3 piepatchset to build the hardened specs
 	# file (build.specs) to use when building gcc.
@@ -1774,58 +1717,19 @@ gcc_src_compile() {
 
 	# Do not create multiple specs files for PIE+SSP if boundschecking is in
 	# USE, as we disable PIE+SSP when it is.
-	if [[ ${ETYPE} == "gcc-compiler" ]] && want_split_specs && ! want_minispecs; then
+	if want_split_specs && ! want_minispecs; then
 		split_out_specs_files || die "failed to split out specs"
 	fi
 
 	popd > /dev/null
 }
 
-gcc_src_test() {
+toolchain_src_test() {
 	cd "${WORKDIR}"/build
 	emake -k check || ewarn "check failed and that sucks :("
 }
 
-gcc-library_src_install() {
-	# Do the 'make install' from the build directory
-	cd "${WORKDIR}"/build
-	S=${WORKDIR}/build \
-	emake -j1 \
-		DESTDIR="${D}" \
-		prefix=${PREFIX} \
-		bindir=${EPREFIX}${BINPATH} \
-		includedir=${EPREFIX}${LIBPATH}/include \
-		datadir=${EPREFIX}${DATAPATH} \
-		mandir=${EPREFIX}${DATAPATH}/man \
-		infodir=${EPREFIX}${DATAPATH}/info \
-		LIBPATH="${EPREFIX}${LIBPATH}" \
-		${GCC_INSTALL_TARGET} || die
-
-	if [[ ${GCC_LIB_COMPAT_ONLY} == "true" ]] ; then
-		rm -rf "${ED}"${INCLUDEPATH}
-		rm -rf "${ED}"${DATAPATH}
-		pushd "${ED}"${LIBPATH}/
-		rm *.a *.la *.so
-		popd
-	fi
-
-	if [[ -n ${GCC_LIB_USE_SUBDIR} ]] ; then
-		mkdir -p "${WORKDIR}"/${GCC_LIB_USE_SUBDIR}/
-		mv "${ED}"${LIBPATH}/* "${WORKDIR}"/${GCC_LIB_USE_SUBDIR}/
-		mv "${WORKDIR}"/${GCC_LIB_USE_SUBDIR}/ "${ED}"${LIBPATH}
-
-		dodir /etc/env.d
-		echo "LDPATH=\"${EPREFIX}${LIBPATH}/${GCC_LIB_USE_SUBDIR}/\"" >> "${ED}"/etc/env.d/99${PN}
-	fi
-
-	if [[ ${GCC_VAR_TYPE} == "non-versioned" ]] ; then
-		# if we're not using versioned directories, we need to use versioned
-		# filenames.
-		add_version_to_shared
-	fi
-}
-
-gcc-compiler_src_install() {
+toolchain_src_install() {
 	local x=
 
 	cd "${WORKDIR}"/build
@@ -2078,8 +1982,7 @@ gcc_movelibs() {
 			${LIBPATH}/${OS_MULTIDIR} \
 			${LIBPATH}/../${MULTIDIR} \
 			${PREFIX}/lib/${OS_MULTIDIR} \
-			${PREFIX}/${CTARGET}/lib/${OS_MULTIDIR} \
-			${PREFIX}/lib/${MULTIDIR}
+			${PREFIX}/${CTARGET}/lib/${OS_MULTIDIR}
 		do
 			removedirs="${removedirs} ${FROMDIR}"
 			FROMDIR=${ED}${FROMDIR}
@@ -2482,13 +2385,7 @@ setup_multilib_osdirnames() {
 	is_multilib || return 0
 
 	local config
-	local libdirs
-
-	if [[ ${SYMLINK_LIB} == "yes" ]] ; then
-		libdirs="../lib64 ../lib32"
-	else
-		libdirs="../lib64 ../lib"
-	fi
+	local libdirs="../lib64 ../lib32"
 
 	# this only makes sense for some Linux targets
 	case ${CTARGET} in
@@ -2500,8 +2397,18 @@ setup_multilib_osdirnames() {
 	esac
 	config+="/t-linux64"
 
-	einfo "updating multilib directories to be: ${libdirs}"
-	sed -i -e "/^MULTILIB_OSDIRNAMES/s:=.*:= ${libdirs}:" "${S}"/gcc/config/${config} || die
+	if [[ ${SYMLINK_LIB} == "yes" ]] ; then
+		einfo "updating multilib directories to be: ${libdirs}"
+		if tc_version_is_at_least 4.7 && [[ ${CTARGET} == x86_64*-linux* ]] ; then
+			set -- -e '/^MULTILIB_OSDIRNAMES.*lib32/s:[$][(]if.*):../lib32:'
+		else
+			set -- -e "/^MULTILIB_OSDIRNAMES/s:=.*:= ${libdirs}:"
+		fi
+	else
+		einfo "using upstream multilib; disabling lib32 autodetection"
+		set -- -r -e 's:[$][(]if.*,(.*)[)]:\1:'
+	fi
+	sed -i "$@" "${S}"/gcc/config/${config} || die
 }
 
 disable_multilib_libjava() {
@@ -2608,3 +2515,9 @@ is_treelang() {
 	#use treelang
 	return 0
 }
+
+# should kill these off once all the ebuilds are migrated
+gcc_pkg_setup() { toolchain_pkg_setup ; }
+gcc_src_unpack() { toolchain_src_unpack ; }
+gcc_src_compile() { toolchain_src_compile ; }
+gcc_src_test() { toolchain_src_test ; }

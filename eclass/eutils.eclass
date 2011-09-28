@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.362 2011/08/09 00:43:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.364 2011/09/21 21:46:49 mgorny Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -66,11 +66,12 @@ fi
 # @FUNCTION: eqawarn
 # @USAGE: [message]
 # @DESCRIPTION:
-# Proxy to einfo for package managers that don't provide eqawarn and use the PM
-# implementation if available.
+# Proxy to ewarn for package managers that don't provide eqawarn and use the PM
+# implementation if available. Reuses PORTAGE_ELOG_CLASSES as set by the dev
+# profile.
 if ! declare -F eqawarn >/dev/null ; then
 	eqawarn() {
-		einfo "$@"
+		has qa ${PORTAGE_ELOG_CLASSES} && ewarn "$@"
 	}
 fi
 
@@ -2052,4 +2053,21 @@ path_exists() {
 		-a) return $(( r != 0 )) ;;
 		-o) return $(( r == $# )) ;;
 	esac
+}
+
+# @FUNCTION: in_iuse
+# @USAGE: <flag>
+# @DESCRIPTION:
+# Determines whether the given flag is in IUSE. Strips IUSE default prefixes
+# as necessary.
+#
+# Note that this function should not be used in the global scope.
+in_iuse() {
+	debug-print-function ${FUNCNAME} "${@}"
+	[[ ${#} -eq 1 ]] || die "Invalid args to ${FUNCNAME}()"
+
+	local flag=${1}
+	local liuse=( ${IUSE} )
+
+	has "${flag}" "${liuse[@]#[+-]}"
 }
