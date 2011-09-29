@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.364 2011/09/21 21:46:49 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.365 2011/09/29 02:32:20 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -2071,3 +2071,10 @@ in_iuse() {
 
 	has "${flag}" "${liuse[@]#[+-]}"
 }
+
+# @FUNCTION: usex
+# @USAGE: <USE flag> [true output] [false output] [true suffix] [false suffix]
+# @DESCRIPTION:
+# If USE flag is set, echo [true output][true suffix] (defaults to "yes"),
+# otherwise echo [false output][false suffix] (defaults to "no").
+usex() { use "$1" && echo "${2-yes}$4" || echo "${3-no}$5" ; } #382963
