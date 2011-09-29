@@ -1,11 +1,12 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.2.2.ebuild,v 1.3 2009/10/04 20:08:32 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.2.2-r1.ebuild,v 1.1 2011/09/15 07:35:25 ssuominen Exp $
 
-EAPI=2
-WX_GTK_VER="2.6"
+EAPI="3"
+PYTHON_DEPEND="2"
+PYTHON_USE_WITH="threads"
 
-inherit distutils fdo-mime eutils wxwidgets
+inherit distutils fdo-mime eutils
 
 MY_P="${P/bittorrent/BitTorrent}"
 #MY_P="${MY_P/}"
@@ -18,11 +19,9 @@ SRC_URI="http://download.bittorrent.com/dl/archive/${MY_P}.tar.gz"
 LICENSE="BitTorrent"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
-IUSE="aqua gtk"
+IUSE=""
 
-RDEPEND=">=dev-lang/python-2.4.4-r14[threads]
-	gtk? ( =dev-python/wxpython-2.6*[unicode] )
-	>=dev-python/pycrypto-2.0
+RDEPEND=">=dev-python/pycrypto-2.0
 	>=dev-python/twisted-2
 	dev-python/twisted-web
 	net-zope/zope-interface"
@@ -34,13 +33,6 @@ DEPEND="${RDEPEND}
 DOCS="README.txt TRACKERLESS.txt public.key"
 PYTHON_MODNAME="BitTorrent"
 
-pkg_setup() {
-	if use gtk ; then
-		need-wxwidgets unicode ||
-			die "You must build wxGTK and wxpython with unicode support"
-	fi
-}
-
 src_prepare() {
 	# path for documentation is in lowercase #109743
 	sed -i -r "s:(dp.*appdir):\1.lower():" BitTorrent/platform.py
@@ -49,15 +41,7 @@ src_prepare() {
 
 src_install() {
 	distutils_src_install
-	use gtk || use aqua || rm -f "${ED}"/usr/bin/bittorrent
-
-	if use gtk ; then
-		doicon images/logo/bittorrent.ico
-		newicon images/logo/bittorrent_icon_32.png bittorrent.png
-		make_desktop_entry "bittorrent" "BitTorrent" bittorrent "Network"
-		echo "MimeType=application/x-bittorrent" \
-			>> "${ED}"/usr/share/applications/bittorrent-${PN}.desktop
-	fi
+	rm -f "${ED}"/usr/bin/bittorrent
 
 	newinitd "${FILESDIR}"/bittorrent-tracker.initd bittorrent-tracker
 	newconfd "${FILESDIR}"/bittorrent-tracker.confd bittorrent-tracker
