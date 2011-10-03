@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.319 2011/02/15 00:14:18 mattst88 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.320 2011/07/16 19:43:16 robbat2 Exp $
+
+*db-5.2.28 (16 Jul 2011)
+
+  16 Jul 2011; Robin H. Johnson <robbat2@gentoo.org> +db-5.2.28.ebuild,
+  +files/db-5.2.28-sqlite-configure-path.patch:
+  Version bump.
 
   15 Feb 2011; Matt Turner <mattst88@gentoo.org> db-4.8.30.ebuild:
   Added ~mips keyword.
