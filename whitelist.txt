@@ -341,6 +341,7 @@ dev-lang/tk
 dev-lang/ucblogo
 dev-lang/v8
 dev-lang/yasm
+dev-libs/Ice
 dev-libs/atk
 dev-libs/beecrypt
 dev-libs/blitz
