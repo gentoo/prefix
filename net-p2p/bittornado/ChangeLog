@@ -1,6 +1,10 @@
 # ChangeLog for net-p2p/bittornado
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittornado/ChangeLog,v 1.70 2008/01/17 14:17:37 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittornado/ChangeLog,v 1.71 2011/03/28 20:31:43 arfrever Exp $
+
+  28 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  bittornado-0.3.18-r2.ebuild:
+  Use Python 2 (bug #315857).
 
   17 Jan 2008; Raúl Porcel <armin76@gentoo.org>
   bittornado-0.3.18-r2.ebuild:
