@@ -1,6 +1,41 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.399 2011/07/12 04:10:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.408 2011/10/01 07:28:54 pva Exp $
+
+  01 Oct 2011; Peter Volkov <pva@gentoo.org> openssl-1.0.0e.ebuild:
+  Install README.gost when USE=rfc3779, bug #385027.
+
+  17 Sep 2011; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0e.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #382069
+
+  15 Sep 2011; Mike Frysinger <vapier@gentoo.org>
+  -files/openssl-0.9.8l-binutils.patch, openssl-1.0.0d.ebuild,
+  openssl-1.0.0e.ebuild:
+  Drop gas patch since upstream worked around it in a different way (by
+  updating the x86_64-xlate.pl helper).
+
+  12 Sep 2011; Kacper Kowalik <xarthisius@gentoo.org> openssl-1.0.0e.ebuild:
+  ppc/ppc64 stable wrt #382069
+
+  11 Sep 2011; Markus Meier <maekke@gentoo.org> openssl-1.0.0e.ebuild:
+  arm/x86 stable, bug #382069
+
+  09 Sep 2011; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0e.ebuild:
+  Stable for HPPA (bug #382069).
+
+  07 Sep 2011; Tony Vroon <chainsaw@gentoo.org> openssl-1.0.0e.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo in
+  security bug #382069.
+
+*openssl-1.0.0e (07 Sep 2011)
+
+  07 Sep 2011; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.0e.ebuild:
+  Version bump #382069.
+
+  12 Aug 2011; Sergei Trofimovich <slyfox@gentoo.org> openssl-1.0.0d.ebuild,
+  +files/openssl-1.0.0d-alpha-fix-unalign.patch:
+  Fix unaligned access on alpha (bug #371561 by Tobias Klausmann). Thanks to
+  Andy Polyakov <appro@openssl.org> for the fix.
 
   12 Jul 2011; Mike Frysinger <vapier@gentoo.org> files/gentoo.config-1.0.0,
   openssl-1.0.0d.ebuild, +files/openssl-1.0.0d-windres.patch:
