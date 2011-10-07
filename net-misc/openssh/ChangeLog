@@ -1,6 +1,42 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.420 2011/05/28 16:57:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.426 2011/09/26 17:04:20 vapier Exp $
+
+*openssh-5.9_p1-r3 (26 Sep 2011)
+
+  26 Sep 2011; Mike Frysinger <vapier@gentoo.org> -openssh-5.9_p1.ebuild,
+  -openssh-5.9_p1-r2.ebuild, +openssh-5.9_p1-r3.ebuild,
+  +files/openssh-5.9_p1-x509-glue.patch:
+  Add x509 patch and release.
+
+*openssh-5.9_p1-r2 (14 Sep 2011)
+*openssh-5.8_p2-r1 (14 Sep 2011)
+
+  14 Sep 2011; Lars Wendler <polynomial-c@gentoo.org>
+  +openssh-5.8_p2-r1.ebuild, -openssh-5.9_p1-r1.ebuild,
+  +openssh-5.9_p1-r2.ebuild, files/sshd.rc6.3:
+  non-maintainer commit: Replaced deprecated opts variable (bug #382227) and
+  removed --stop option from reload function (bug #382975). Bot changes and
+  revbumps were done with kind permission from vapier.
+
+  12 Sep 2011; Mike Frysinger <vapier@gentoo.org> openssh-5.9_p1-r1.ebuild:
+  Simplify test homedir logic a bit, and fix quoting.
+
+*openssh-5.9_p1-r1 (07 Sep 2011)
+
+  07 Sep 2011; Robin H. Johnson <robbat2@gentoo.org> +openssh-5.9_p1-r1.ebuild:
+  Add complete port of HPN+LPK patches, also adjust the HOMEDIR setting for
+  src_test to complete in more cases.
+
+  07 Sep 2011; Mike Frysinger <vapier@gentoo.org> openssh-5.9_p1.ebuild:
+  Retain default AuthorizedKeysFile behavior.
+
+*openssh-5.9_p1 (07 Sep 2011)
+
+  07 Sep 2011; Mike Frysinger <vapier@gentoo.org> +openssh-5.9_p1.ebuild,
+  +files/openssh-5.9_p1-sshd-gssapi-multihomed.patch, +files/sshd.rc6.3:
+  Version bump. Drop --oknodo in init.d #377771 by Michael Mair-Keimberger. Add
+  GSSAPI/Kerberos fix #378361 by Kevan Carstensen.
 
   28 May 2011; Mike Frysinger <vapier@gentoo.org> files/sshd.rc6.2:
   Move custom opts to checkconfig and include those when verifying config
