@@ -37,6 +37,8 @@ src_install() {
 	else
 		sed -i -e "s:/usr/:${EPREFIX}/usr/:" \
 			${ED}/usr/bin/ccache-config || die
+		sed -i -e "s:/etc/:${EPREFIX}/etc/:" \
+			${ED}/usr/bin/ccache-config || die
 	fi
 }
 
