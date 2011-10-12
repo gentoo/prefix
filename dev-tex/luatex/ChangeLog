@@ -1,6 +1,20 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.91 2011/08/14 17:03:51 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.97 2011/10/05 18:10:27 aballier Exp $
+
+  05 Oct 2011; Alexis Ballier <aballier@gentoo.org> +files/poppler018.patch,
+  luatex-0.70.1.ebuild:
+  fix build with latest poppler, by Martin von Gagern, bug #384875
+
+  05 Oct 2011; Alexis Ballier <aballier@gentoo.org> -luatex-0.63.0.ebuild,
+  -luatex-0.65.0.ebuild:
+  remove old
+
+  04 Oct 2011; Jeroen Roovers <jer@gentoo.org> luatex-0.70.1.ebuild:
+  Stable for HPPA (bug #355085).
+
+  18 Sep 2011; Raúl Porcel <armin76@gentoo.org> luatex-0.70.1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #355085
 
   14 Aug 2011; Markus Meier <maekke@gentoo.org> luatex-0.70.1.ebuild:
   arm stable, bug #355085
