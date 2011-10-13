@@ -129,6 +129,7 @@ app-misc/datefudge
 app-misc/delay
 app-misc/devtodo
 app-misc/dvorak7min
+app-misc/fdupes
 app-misc/figlet
 app-misc/gcal
 app-misc/geekcode
