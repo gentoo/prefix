@@ -92,7 +92,7 @@ src_prepare() {
 			die "failed to patch AbstractEbuildProcess.py"
 	fi
 
-	epatch "${FILESDIR}"/${PN}-2.2.01.18980-ebuildshell.patch
+	epatch "${FILESDIR}"/${PN}-2.2.01.19247-ebuildshell.patch
 }
 
 src_configure() {
