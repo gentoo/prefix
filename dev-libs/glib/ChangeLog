@@ -1,6 +1,128 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.456 2011/04/14 07:50:19 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.486 2011/10/06 08:52:18 ssuominen Exp $
+
+  06 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> glib-2.30.0.ebuild:
+  export LIBFFI_CFLAGS and LIBFFI_LIBS if dev-util/pkgconfig is not installed
+  wrt #385561 by Bartosz Szreder
+
+  05 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> glib-2.28.8.ebuild:
+  ppc/ppc64 stable wrt #369909
+
+  28 Sep 2011; Samuli Suominen <ssuominen@gentoo.org> glib-2.30.0.ebuild:
+  Use virtual/libffi instead of dev-libs/libffi in case we have to switch to
+  using copy from GCC in future.
+
+*glib-2.30.0 (27 Sep 2011)
+
+  27 Sep 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +files/glib-2.29.18-external-gdbus-codegen.patch, +glib-2.30.0.ebuild:
+  Bump to 2.30, from the GNOME overlay. Ebuild updates and patches by
+  tetromino.
+
+  14 Aug 2011; Samuli Suominen <ssuominen@gentoo.org> glib-2.28.8.ebuild:
+  Revert last libtool file preservation since we have usable pkg-config files
+  wrt #379115.
+
+  14 Aug 2011; Nirbheek Chauhan <nirbheek@gentoo.org> glib-2.28.8.ebuild:
+  Remove .la files only when USE=-static-libs. Previous commit by ssuominen
+  punted .la files unconditionally, bug 379115
+
+  13 Aug 2011; Raúl Porcel <armin76@gentoo.org> glib-2.28.8.ebuild:
+  m68k stable wrt #369909
+
+  13 Aug 2011; Raúl Porcel <armin76@gentoo.org> glib-2.28.8.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #369909
+
+  10 Aug 2011; Samuli Suominen <ssuominen@gentoo.org> glib-2.28.8.ebuild:
+  Fix circular depend with USE="test" and dev-util/pkgconfig. Remove libtool
+  files.
+
+  17 Jul 2011; Markus Meier <maekke@gentoo.org> glib-2.28.8.ebuild:
+  arm stable, bug #369909
+
+  14 Jul 2011; Thomas Kahle <tomka@gentoo.org> glib-2.28.8.ebuild:
+  x86 stable per bug 369909
+
+  04 Jul 2011; Alexis Ballier <aballier@gentoo.org> glib-2.28.8.ebuild:
+  implicit . argument to find is a GNUism that fails with BSDs find; the die
+  call following it made glib impossile to build on G/FreeBSD
+
+  04 Jul 2011; Pacho Ramos <pacho@gentoo.org> glib-2.28.8.ebuild:
+  Fix warning about skipped tests being shown even when tests are disabled by
+  the user (bug #373963 by William Throwe).
+
+  01 Jul 2011; Markos Chandras <hwoarang@gentoo.org> glib-2.28.8.ebuild:
+  Stable on amd64 wrt bug #278255
+
+  01 Jul 2011; Pacho Ramos <pacho@gentoo.org> glib-2.28.8.ebuild:
+  Really skip tests when unneeded (bug #373069 by Matt Turner).
+
+  11 Jun 2011; Pacho Ramos <pacho@gentoo.org>
+  -files/glib-2.25-skip-tests-with-dbus-keyring.patch, -glib-2.26.1-r1.ebuild,
+  -files/glib-2.26.1-deprecation-tests.patch,
+  -files/glib-2.26.1-gdatetime-test.patch,
+  -files/glib-2.26.1-gdbus-flushes.patch,
+  -files/glib-2.26.1-gsettings-rules.patch:
+  Remove old.
+
+  11 Jun 2011; Nirbheek Chauhan <nirbheek@gentoo.org> -glib-2.28.7.ebuild,
+  glib-2.28.8.ebuild:
+  Use xz tarballs, remove old
+
+  08 Jun 2011; Pacho Ramos <pacho@gentoo.org> glib-2.28.8.ebuild:
+  Notify people about some tests will be skipped in certain situations and
+  intruct them about how to run all of them. Thanks a lot to Gilles for
+  explaining me the possible problems could appear if people ignores this
+  situation.
+
+*glib-2.28.8 (06 Jun 2011)
+
+  06 Jun 2011; Pacho Ramos <pacho@gentoo.org> +glib-2.28.8.ebuild:
+  Version bump, also skip tests requiring dev-python/dbus-python and
+  dev-util/desktop-file-utils when they are not available as cannot DEPEND on
+  them due circular dependencies problem (bugs #286629 and #349236).
+
+  05 Jun 2011; Pacho Ramos <pacho@gentoo.org> glib-1.2.10-r5.ebuild,
+  -files/glib-2.24-punt-python-check.patch,
+  -files/glib-2.26.1-gsettings-read.patch,
+  -files/glib-2.26.1-locked-message.patch, -glib-2.28.5.ebuild,
+  glib-2.28.7.ebuild:
+  Block broken gtk-doc versions that causes problems like bug #363213. Remove
+  old. Make repoman happier with glib-1.
+
+  28 May 2011; Raúl Porcel <armin76@gentoo.org> glib-2.28.6.ebuild:
+  Add patch to fix bug 368275 again
+
+*glib-2.28.7 (21 May 2011)
+
+  21 May 2011; Nirbheek Chauhan <nirbheek@gentoo.org> +glib-2.28.7.ebuild:
+  Bump to 2.28.7, lots of bugfixes
+
+  20 May 2011; Samuli Suominen <ssuominen@gentoo.org> glib-2.28.6.ebuild:
+  Move dev-util/pkgconfig DEPEND behind USE="test" because it's only required
+  for checking sys-apps/dbus. This way we don't get circular dependencies now
+  that dev-util/pkgconfig is using system copy of dev-libs/glib:2.
+  Download pkg.m4 in SRC_URI for eautoreconf.
+
+  30 Apr 2011; Raúl Porcel <armin76@gentoo.org> glib-2.28.6.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #364973
+
+  28 Apr 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> glib-2.28.6.ebuild:
+  x86 stable wrt security bug #364973
+
+  27 Apr 2011; Jeroen Roovers <jer@gentoo.org> glib-2.28.6.ebuild:
+  Stable for HPPA (bug #364973).
+
+  27 Apr 2011; Christoph Mende <angelos@gentoo.org> glib-2.28.6.ebuild:
+  Stable on amd64 wrt bug #364973
+
+  27 Apr 2011; Kacper Kowalik <xarthisius@gentoo.org> glib-2.28.6.ebuild:
+  ppc/ppc64 stable wrt #364973
+
+  26 Apr 2011; Gilles Dartiguelongue <eva@gentoo.org> glib-2.28.5.ebuild,
+  glib-2.28.6.ebuild:
+  Drop disable-visibility, bug #364989.
 
   03 May 2011; Fabian Groffen <grobian@gentoo.org> glib-2.28.6.ebuild:
   Marked ~x64-freebsd

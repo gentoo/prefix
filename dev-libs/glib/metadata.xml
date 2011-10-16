@@ -5,5 +5,7 @@
   <use>
     <flag name="introspection">Use <pkg>dev-libs/gobject-introspection</pkg>
       for introspection</flag>
+	<flag name="systemtap">Build support for profiling and tracing using 
+		<pkg>dev-util/systemtap</pkg></flag>
   </use>
 </pkgmetadata>

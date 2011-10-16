@@ -1,11 +1,10 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.28.6.ebuild,v 1.10 2011/05/28 17:25:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.0.ebuild,v 1.3 2011/10/06 08:52:18 ssuominen Exp $
 
-EAPI="3"
-PYTHON_DEPEND="2"
+EAPI="4"
 
-inherit autotools gnome.org libtool eutils flag-o-matic pax-utils python virtualx
+inherit autotools gnome.org libtool eutils flag-o-matic multilib pax-utils virtualx
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
@@ -14,31 +13,30 @@ SRC_URI="${SRC_URI}
 
 LICENSE="LGPL-2"
 SLOT="2"
+IUSE="debug doc fam selinux +static-libs systemtap test xattr"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="debug doc fam +introspection selinux +static-libs test xattr"
 
 RDEPEND="virtual/libiconv
+	virtual/libffi
 	sys-libs/zlib
 	x86-interix? ( sys-libs/itx-bind )
 	xattr? ( sys-apps/attr )
 	fam? ( virtual/fam )"
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.11
-	>=dev-util/gtk-doc-am-1.13
+	>=dev-util/gtk-doc-am-1.15
 	doc? (
 		>=dev-libs/libxslt-1.0
-		>=dev-util/gtk-doc-1.13
+		>=dev-util/gtk-doc-1.15
 		~app-text/docbook-xml-dtd-4.1.2 )
-	test? ( dev-util/pkgconfig
-		>=sys-apps/dbus-1.2.14 )"
-PDEPEND="introspection? ( dev-libs/gobject-introspection )
-	!<gnome-base/gvfs-1.6.4-r990" # Earlier versions do not work with glib
+	systemtap? ( >=dev-util/systemtap-1.3 )
+	test? (
+		>=dev-util/gdbus-codegen-2.30.0
+		>=sys-apps/dbus-1.2.14 )
+	!<dev-util/gtk-doc-1.15-r2"
+PDEPEND="!<gnome-base/gvfs-1.6.4-r990" # Earlier versions do not work with glib
 
 # XXX: Consider adding test? ( sys-devel/gdb ); assert-msg-test tries to use it
-
-pkg_setup() {
-	python_set_active_version 2
-}
 
 src_prepare() {
 	mv -vf "${WORKDIR}"/pkg-config-*/pkg.m4 "${WORKDIR}"/ || die
@@ -55,9 +53,6 @@ src_prepare() {
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.26.1-solaris-thread.patch
 
-	# Fix compilation on several arches, bug #351387
-	epatch "${FILESDIR}/${PN}-2.26.1-gatomic-header.patch"
-
 	# Don't fail gio tests when ran without userpriv, upstream bug 552912
 	# This is only a temporary workaround, remove as soon as possible
 	epatch "${FILESDIR}/${PN}-2.18.1-workaround-gio-test-failure-without-userpriv.patch"
@@ -68,29 +63,33 @@ src_prepare() {
 	# For MiNT, bug #324233
 	epatch "${FILESDIR}"/${PN}-2.22.5-nothreads.patch
 
-	# Don't check for python, hence removing the build-time python dep.
-	# We remove the gdb python scripts in src_install due to bug 291328
-	epatch "${FILESDIR}/${PN}-2.25-punt-python-check.patch"
-
 	# Fix test failure when upgrading from 2.22 to 2.24, upstream bug 621368
 	epatch "${FILESDIR}/${PN}-2.24-assert-test-failure.patch"
-
-	# Fix compilation on several arches, bug #351387
-	epatch "${FILESDIR}/${PN}-2.26.1-gatomic-header.patch"
 
 	# Do not try to remove files on live filesystem, upstream bug #619274
 	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
 		-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
 
-	# Disable failing tests, upstream bug #???
-	epatch "${FILESDIR}/${PN}-2.26.0-disable-locale-sensitive-test.patch"
-	epatch "${FILESDIR}/${PN}-2.26.0-disable-volumemonitor-broken-test.patch"
-
 	if ! use test; then
 		# don't waste time building tests
-		sed 's/^\(SUBDIRS =.*\)tests\(.*\)$/\1\2/' -i Makefile.am Makefile.in \
-			|| die "sed failed"
+		sed 's/^\(.*\SUBDIRS .*\=.*\)tests\(.*\)$/\1\2/' -i $(find . -name Makefile.am -o -name Makefile.in) || die
+	else
+		# Disable tests requiring dev-util/desktop-file-utils when not installed, bug #286629
+		if ! has_version dev-util/desktop-file-utils ; then
+			ewarn "Some tests will be skipped due dev-util/desktop-file-utils not being present on your system,"
+			ewarn "think on installing it to get these tests run."
+			sed -i -e "/appinfo\/associations/d" gio/tests/appinfo.c || die
+			sed -i -e "/desktop-app-info\/default/d" gio/tests/desktop-app-info.c || die
+			sed -i -e "/desktop-app-info\/fallback/d" gio/tests/desktop-app-info.c || die
+			sed -i -e "/desktop-app-info\/lastused/d" gio/tests/desktop-app-info.c || die
+		fi
 	fi
+
+	# gdbus-codegen is a separate package
+	epatch "${FILESDIR}/${PN}-2.29.18-external-gdbus-codegen.patch"
+
+	# disable pyc compiling
+	ln -sfn $(type -P true) py-compile
 
 	# make default sane for us
 	if use prefix ; then
@@ -119,6 +118,7 @@ src_prepare() {
 
 	# Needed for the punt-python-check patch, disabling timeout test
 	# Also needed to prevent croscompile failures, see bug #267603
+	# Also needed for the no-gdbus-codegen patch
 	AT_M4DIR="${WORKDIR}" eautoreconf
 
 	[[ ${CHOST} == *-freebsd* ]] && elibtoolize
@@ -127,6 +127,14 @@ src_prepare() {
 }
 
 src_configure() {
+	# Avoid circular depend with dev-util/pkgconfig
+	if ! has_version dev-util/pkgconfig; then
+		export DBUS1_CFLAGS="-I/usr/include/dbus-1.0 -I/usr/$(get_libdir)/dbus-1.0/include"
+		export DBUS1_LIBS="-ldbus-1"
+		export LIBFFI_CFLAGS="-I$(echo /usr/$(get_libdir)/libffi-*/include)"
+		export LIBFFI_LIBS="-lffi"
+	fi
+
 	local myconf
 
 	# Building with --disable-debug highly unrecommended.  It will build glib in
@@ -163,12 +171,12 @@ src_configure() {
 		$(use_enable fam) \
 		$(use_enable selinux) \
 		$(use_enable static-libs static) \
+		$(use_enable systemtap dtrace) \
+		$(use_enable systemtap systemtap) \
 		--enable-regex \
 		--with-pcre=internal \
 		--with-threads=${mythreads} \
-		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog \
-		--disable-dtrace \
-		--disable-systemtap
+		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog
 }
 
 src_install() {
@@ -185,6 +193,10 @@ src_install() {
 		newins "${ED}/etc/bash_completion.d/${f}-bash-completion.sh" ${f} || die
 	done
 	rm -rf "${ED}/etc"
+
+	# Completely useless with or without USE static-libs, people need to use
+	# pkg-config
+	find "${ED}" -name '*.la' -exec rm -f {} +
 }
 
 src_test() {
@@ -211,14 +223,12 @@ src_test() {
 
 pkg_preinst() {
 	# Only give the introspection message if:
-	# * The user has it enabled
+	# * The user has gobject-introspection
 	# * Has glib already installed
 	# * Previous version was different from new version
-	if use introspection && has_version "${CATEGORY}/${PN}"; then
-		if ! has_version "=${CATEGORY}/${PF}"; then
-			ewarn "You must rebuild gobject-introspection so that the installed"
-			ewarn "typelibs and girs are regenerated for the new APIs in glib"
-		fi
+	if has_version "dev-libs/gobject-introspection" && ! has_version "=${CATEGORY}/${PF}"; then
+		ewarn "You must rebuild gobject-introspection so that the installed"
+		ewarn "typelibs and girs are regenerated for the new APIs in glib"
 	fi
 }
 
@@ -227,5 +237,13 @@ pkg_postinst() {
 	if has_version dev-libs/dbus-glib; then
 		ewarn "If you experience a breakage after updating dev-libs/glib try"
 		ewarn "rebuilding dev-libs/dbus-glib"
+	fi
+
+	if has_version '<x11-libs/gtk+-3.0.12:3'; then
+		# To have a clear upgrade path for gtk+-3.0.x users, have to resort to
+		# a warning instead of a blocker
+		ewarn
+		ewarn "Using <gtk+-3.0.12:3 with ${P} results in frequent crashes."
+		ewarn "You should upgrade to a newer version of gtk+:3 immediately."
 	fi
 }
