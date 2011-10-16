@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Copyright 2006-2010 Gentoo Foundation; Distributed under the GPL v2
 
+# <grobian@gentoo.org> -- 2001-10-16
+# treat ChangeLogs special, such that newer repoman that update the
+# ChangeLog can just do so -- we try to 'prepend only' avoiding
+# conflicts
 # <abcd@gentoo.org> -- 2010-01-14
 # allow eclasses to be found in MTREEDIR if not in PTREEDIR
 # <zuxez@cs.tu-berlin.de> -- 2009-08-11
@@ -434,23 +438,48 @@ revision_diff() {
 		[[ ${package##*.} == "ebuild" ]] && sed -i \
 			-e 's|^KEYWORDS=.*$|'"$(egrep '^KEYWORDS=' $pfile | head -n1)"'|' \
 			/var/tmp/$package-$mtecv.$tmp /var/tmp/$package-$ptecv.$tmp
-		# destroy changes (hopefully) with the prefixed version by eapifying
-		eapify /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp > /dev/null
-		# if the file was checked out by ecopy from the web, correct the
-		# header so we don't get conflicts because of that
-		sed -i -e '/^# $Header:/s:/var/www/viewcvs.gentoo.org/raw_cvs:/var/cvsroot:' \
-			$pfile
-		# show what's going to change
-		diff -U 1 /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
-		local chng=$?
-		# (attempt to) do it!
-		diff -u /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp \
-			| patch --no-backup-if-mismatch $pfile
-		local ret=$?
+		if [[ ${package} != "ChangeLog" ]] ; then
+			# destroy changes (hopefully) with the prefixed version by eapifying
+			eapify /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp > /dev/null
+			# if the file was checked out by ecopy from the web, correct the
+			# header so we don't get conflicts because of that
+			sed -i -e '/^# $Header:/s:/var/www/viewcvs.gentoo.org/raw_cvs:/var/cvsroot:' \
+				$pfile
+			# show what's going to change
+			diff -U 1 /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
+			local chng=$?
+			# (attempt to) do it!
+			diff -u /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp \
+				| patch --no-backup-if-mismatch $pfile
+			local ret=$?
+			# try to get new patches and stuff
+			fetch_files $pfile
+		else
+			# treat ChangeLogs different, so we can have appends both in
+			# gx86 and Prefix (repoman insists)
+
+			# first zap the headers, so we don't get any changes there
+			sed -i \
+				-e '1c\# ChangeLog for '"${EPACKAGE}" \
+				-e '2c\# Copyright 1999-'"$(date +%Y)"' Gentoo Foundation; Distributed under the GPL v2' \
+				/var/tmp/$package-$mtecv.$tmp
+			{
+				echo "@@ -1,3 +1,3 @@"
+				head -n3 /var/tmp/$package-$ptecv.$tmp | sed -e 's/^/-/'
+				head -n3 $pfile | sed -e 's/^/+/'
+			} | patch -r - --no-backup-if-mismatch /var/tmp/$package-$ptecv.$tmp
+			
+			# then just take the first hunk, nothing more
+			diff -U 1 /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp | sed -e '4,$s/^@@ .*$/REMOVEMEXXXXXX/' | sed -e '/REMOVEMEXXXXXX/,$d'
+			local chng=$?
+			diff -U 0 /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp | \
+				sed -e '4,$s/^@@ .*$/REMOVEMEXXXXXX/' | \
+				sed -e '/REMOVEMEXXXXXX/,$d' | \
+				patch --no-backup-if-mismatch $pfile
+			local ret=$?
+		fi
 		[[ $ret == 0 ]] && ret=$chng
 		rm /var/tmp/$package-$ptecv.$tmp /var/tmp/$package-$mtecv.$tmp
-		# try to get new patches and stuff
-		fetch_files $pfile
 		return $ret
 	fi
 }
