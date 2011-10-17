@@ -1,6 +1,21 @@
 # ChangeLog for net-mail/uw-mailutils
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/ChangeLog,v 1.30 2009/09/23 19:15:01 patrick Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/ChangeLog,v 1.33 2011/09/12 20:49:28 eras Exp $
+
+*uw-mailutils-2007f (12 Sep 2011)
+
+  12 Sep 2011; Eray Aslan <eras@gentoo.org> +uw-mailutils-2007f.ebuild:
+  version bump
+
+  06 Jun 2011; Eray Aslan <eras@gentoo.org> -uw-mailutils-2007b.ebuild,
+  uw-mailutils-2007e-r1.ebuild:
+  Respect LDFLAGS - bug #336565. Remove old. EAPI bump.
+
+*uw-mailutils-2007e-r1 (06 May 2011)
+
+  06 May 2011; Eray Aslan <eras@gentoo.org> +uw-mailutils-2007e-r1.ebuild,
+  +files/uw-mailutils-ssl.patch:
+  add pam and ssl USE flags - bugs 129729 276401
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> uw-mailutils-2007b.ebuild,
   uw-mailutils-2007e.ebuild:
