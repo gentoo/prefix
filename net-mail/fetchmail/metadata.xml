@@ -4,6 +4,7 @@
   <herd>net-mail</herd>
   <use>
     <flag name="hesiod">Enable support for hesiod</flag>
-    <flag name="tk">Adds support for Tk GUI toolkit, in particular it installs fetchmailconf</flag>
+    <flag name="tk">Enable support for Tk GUI toolkit, in particular it installs fetchmailconf</flag>
+    <flag name="socks">Enable support for socks proxy</flag>
   </use>
 </pkgmetadata>

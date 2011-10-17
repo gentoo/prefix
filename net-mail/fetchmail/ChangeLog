@@ -1,6 +1,91 @@
 # ChangeLog for net-mail/fetchmail
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.197 2010/12/13 08:23:01 tove Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.222 2011/08/27 11:30:50 armin76 Exp $
+
+  27 Aug 2011; Raúl Porcel <armin76@gentoo.org> fetchmail-6.3.21.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #380453
+
+  26 Aug 2011; Thomas Kahle <tomka@gentoo.org> fetchmail-6.3.21.ebuild:
+  x86 stable per bug 380453
+
+  26 Aug 2011; Markos Chandras <hwoarang@gentoo.org> fetchmail-6.3.21.ebuild:
+  Stable on amd64 wrt bug #380453
+
+  25 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> fetchmail-6.3.21.ebuild:
+  ppc/ppc64 stable wrt #380453
+
+  25 Aug 2011; Jeroen Roovers <jer@gentoo.org> fetchmail-6.3.21.ebuild:
+  Stable for HPPA (bug #380453).
+
+*fetchmail-6.3.21 (24 Aug 2011)
+
+  24 Aug 2011; Eray Aslan <eras@gentoo.org> +files/fetchmail.initd,
+  -files/MD5_library_pickup.patch, +fetchmail-6.3.21.ebuild,
+  -files/debian-580796.patch, +files/fetchmail.confd:
+  Version bump. Add socks USE flag - bug #380405. Allow multiple deamons - bug
+  #380371. Remove unused patches.
+
+  05 Aug 2011; Eray Aslan <eras@gentoo.org> files/fetchmail.new:
+  fix deprecated chuid option in init script - bug #377777
+
+  13 Jun 2011; Eray Aslan <eras@gentoo.org> -fetchmail-6.3.19.ebuild:
+  Remove vulnerable version
+
+  12 Jun 2011; Raúl Porcel <armin76@gentoo.org> fetchmail-6.3.20.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #369403
+
+  11 Jun 2011; Markus Meier <maekke@gentoo.org> fetchmail-6.3.20.ebuild:
+  arm stable, bug #369403
+
+  08 Jun 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> fetchmail-6.3.20.ebuild:
+  x86 stable wrt security bug #369403
+
+  07 Jun 2011; Markos Chandras <hwoarang@gentoo.org> fetchmail-6.3.20.ebuild:
+  Stable on amd64 wrt bug #369403
+
+  07 Jun 2011; Jeroen Roovers <jer@gentoo.org> fetchmail-6.3.20.ebuild:
+  Stable for HPPA (bug #369403).
+
+  07 Jun 2011; Kacper Kowalik <xarthisius@gentoo.org> fetchmail-6.3.20.ebuild:
+  ppc/ppc64 stable wrt #369403
+
+*fetchmail-6.3.20 (07 Jun 2011)
+
+  07 Jun 2011; Eray Aslan <eras@gentoo.org> +fetchmail-6.3.20.ebuild:
+  Version bump - security bug #369403
+
+  28 May 2011; Eray Aslan <eras@gentoo.org> -fetchmail-6.3.17.ebuild,
+  -fetchmail-6.3.17-r1.ebuild, -fetchmail-6.3.18.ebuild:
+  Remove old versions
+
+  28 May 2011; Brent Baude <ranger@gentoo.org> fetchmail-6.3.19.ebuild:
+  Marking fetchmail-6.3.19 ppc for bug 364849
+
+  23 May 2011; Thomas Kahle <tomka@gentoo.org> fetchmail-6.3.19.ebuild:
+  x86 stable per bug 364849
+
+  21 May 2011; Raúl Porcel <armin76@gentoo.org> fetchmail-6.3.19.ebuild:
+  alpha/ia64/s390/sh/sparc/x86 stable wrt #364849
+
+  17 May 2011; Markus Meier <maekke@gentoo.org> fetchmail-6.3.19.ebuild:
+  arm stable, bug #364849
+
+  13 May 2011; Jeroen Roovers <jer@gentoo.org> fetchmail-6.3.19.ebuild:
+  Stable for HPPA (bug #364849).
+
+  12 May 2011; Eray Aslan <eras@gentoo.org> fetchmail-6.3.19.ebuild:
+  Add flex to depend - bug #221399
+
+  02 May 2011; Samuli Suominen <ssuominen@gentoo.org> fetchmail-6.3.19.ebuild:
+  ppc64 stable wrt #364849
+
+  28 Apr 2011; Markos Chandras <hwoarang@gentoo.org> fetchmail-6.3.19.ebuild:
+  Stable on amd64 wrt bug #364849
+
+  25 Apr 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  fetchmail-6.3.17.ebuild, fetchmail-6.3.17-r1.ebuild, fetchmail-6.3.18.ebuild,
+  fetchmail-6.3.19.ebuild:
+  Fix deprecation warnings.
 
 *fetchmail-6.3.19 (13 Dec 2010)
 
