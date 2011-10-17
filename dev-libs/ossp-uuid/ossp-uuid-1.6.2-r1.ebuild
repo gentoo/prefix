@@ -1,17 +1,18 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ossp-uuid-1.6.2.ebuild,v 1.8 2010/04/25 20:14:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ossp-uuid-1.6.2-r1.ebuild,v 1.7 2011/08/20 18:42:21 jer Exp $
 
-EAPI="1"
+EAPI="2"
 
 PHP_EXT_NAME="uuid"
 PHP_EXT_INI="yes"
 PHP_EXT_ZENDEXT="no"
 PHP_VERSION="5"
 
-inherit eutils multilib php-ext-source-r1 depend.php
-
 MY_P="uuid-${PV}"
+PHP_EXT_S="${WORKDIR}/${MY_P}/php"
+PHP_EXT_OPTIONAL_USE="php"
+inherit eutils multilib php-ext-source-r2
 
 DESCRIPTION="An ISO-C:1999 API and corresponding CLI for the generation of DCE 1.1, ISO/IEC 11578:1996 and RFC 4122 compliant UUID."
 HOMEPAGE="http://www.ossp.org/pkg/lib/uuid/"
@@ -21,24 +22,27 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE="+cxx php"
 
-DEPEND="php? ( dev-lang/php:5 )"
+DEPEND=""
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 
-	epatch "${FILESDIR}/${P}-gentoo.patch"
+	epatch "${FILESDIR}/${P}-gentoo-r1.patch"
 
 	if use php; then
-		cd php
-		php-ext-source-r1_phpize
+		local slot
+		for slot in $(php_get_slots); do
+	        php_init_slot_env ${slot}
+			epatch "${FILESDIR}/${P}-gentoo-php.patch"
+		done
+
+		php-ext-source-r2_src_prepare
 	fi
 }
 
-src_compile() {
+src_configure() {
 	# Notes:
 	# * collides with e2fstools libs and includes if not moved around
 	# * perl-bindings are broken
@@ -51,11 +55,16 @@ src_compile() {
 		--without-php \
 		$(use_with cxx) \
 		|| die "econf failed"
+	if use php; then
+		php-ext-source-r2_src_configure
+	fi
+}
+
+src_compile() {
 	emake || die "emake failed"
 
 	if use php; then
-		cd php
-		php-ext-source-r1_src_compile
+		php-ext-source-r2_src_compile
 	fi
 }
 
@@ -65,9 +74,9 @@ src_install() {
 	dodoc AUTHORS BINDINGS ChangeLog HISTORY NEWS OVERVIEW PORTING README SEEALSO THANKS TODO USERS
 
 	if use php ; then
-		cd php
-		php-ext-source-r1_src_install
-		insinto /usr/share/php5
+		php-ext-source-r2_src_install
+		cd "${S}/php"
+		insinto /usr/share/php
 		newins uuid.php5 uuid.php
 	fi
 

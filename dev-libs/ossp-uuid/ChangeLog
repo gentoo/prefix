@@ -1,6 +1,39 @@
 # ChangeLog for dev-libs/ossp-uuid
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.20 2010/04/25 20:14:06 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.28 2011/08/21 13:49:33 olemarkus Exp $
+
+  21 Aug 2011; Ole Markus With <olemarkus@gentoo.org> -ossp-uuid-1.6.1.ebuild,
+  -ossp-uuid-1.6.2.ebuild:
+  Non-maintainer commit: removing older ebuilds that depend on dev-lang/php:5
+  (bug 363809)
+
+  20 Aug 2011; Jeroen Roovers <jer@gentoo.org> ossp-uuid-1.6.2-r1.ebuild:
+  Stable for HPPA (bug #373357).
+
+  24 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  ossp-uuid-1.6.2-r1.ebuild:
+  ppc/ppc64 stable wrt #373357
+
+  23 Jul 2011; Raúl Porcel <armin76@gentoo.org> ossp-uuid-1.6.2-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #373357
+
+  15 Jul 2011; Markus Meier <maekke@gentoo.org> ossp-uuid-1.6.2-r1.ebuild:
+  x86 stable, bug #373357
+
+  10 Jul 2011; Markus Meier <maekke@gentoo.org> ossp-uuid-1.6.2-r1.ebuild:
+  arm stable, bug #373357
+
+  30 Jun 2011; Markos Chandras <hwoarang@gentoo.org> ossp-uuid-1.6.2-r1.ebuild:
+  Stable on amd64 wrt bug #373357
+
+*ossp-uuid-1.6.2-r1 (05 Jun 2011)
+
+  05 Jun 2011; <olemarkus@gentoo.org> +ossp-uuid-1.6.2-r1.ebuild,
+  +files/ossp-uuid-1.6.2-gentoo-php.patch,
+  +files/ossp-uuid-1.6.2-gentoo-r1.patch:
+  Non-maintainer commit: Made ebuild work with minor version slotted PHP.
+  Split patch so the PHP part could be applied to all versions.
+  See bug 343699
 
   25 Apr 2010; Raúl Porcel <armin76@gentoo.org> ossp-uuid-1.6.2.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable wrt #285475
