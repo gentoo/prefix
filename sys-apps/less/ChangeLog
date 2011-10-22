@@ -1,6 +1,43 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.120 2011/01/06 01:04:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.130 2011/10/09 19:19:07 vapier Exp $
+
+  09 Oct 2011; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
+  Only run cd-info when the .cue file exists #285507 by Martin von Gagern.
+
+*less-444 (09 Jun 2011)
+
+  09 Jun 2011; Mike Frysinger <vapier@gentoo.org> +less-444.ebuild,
+  files/less.envd:
+  Version bump.
+
+  01 May 2011; Kacper Kowalik <xarthisius@gentoo.org> less-441.ebuild:
+  ppc64 stable wrt #363145
+
+  23 Apr 2011; Raúl Porcel <armin76@gentoo.org> less-441.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #363145
+
+  16 Apr 2011; nixnut <nixnut@gentoo.org> less-441.ebuild:
+  ppc stable #363145
+
+  15 Apr 2011; Christoph Mende <angelos@gentoo.org> less-441.ebuild:
+  Stable on amd64 wrt bug #363145
+
+  13 Apr 2011; Thomas Kahle <tomka@gentoo.org> less-441.ebuild:
+  x86 stable per bug 363145
+
+  11 Apr 2011; Jeroen Roovers <jer@gentoo.org> less-441.ebuild:
+  Stable for HPPA (bug #363145).
+
+*less-443 (11 Apr 2011)
+
+  11 Apr 2011; Mike Frysinger <vapier@gentoo.org> +less-443.ebuild:
+  Version bump.
+
+*less-441 (28 Feb 2011)
+
+  28 Feb 2011; Mike Frysinger <vapier@gentoo.org> +less-441.ebuild:
+  Version bump.
 
 *less-440 (06 Jan 2011)
 

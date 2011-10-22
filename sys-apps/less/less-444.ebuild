@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-440.ebuild,v 1.1 2011/01/06 01:04:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-444.ebuild,v 1.1 2011/06/09 18:37:30 vapier Exp $
 
 inherit eutils
 
