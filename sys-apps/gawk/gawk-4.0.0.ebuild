@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.8.ebuild,v 1.7 2011/08/05 19:08:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-4.0.0.ebuild,v 1.1 2011/07/03 19:38:25 vapier Exp $
 
 EAPI="2"
 
@@ -15,18 +15,10 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls"
 
-RDEPEND=""
+# older gawk's provided shared lib for baselayout-1
+RDEPEND="!<sys-apps/baselayout-2.0.1"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
-
-SFFS=${WORKDIR}/filefuncs
-
-src_unpack() {
-	unpack ${A}
-
-	# Copy filefuncs module's source over ...
-	cp -r "${FILESDIR}"/filefuncs "${SFFS}" || die "cp failed"
-}
 
 src_prepare() {
 	# use symlinks rather than hardlinks, and disable version links
@@ -46,22 +38,11 @@ src_configure() {
 	export ac_cv_libsigsegv=no
 	econf \
 		--libexec='$(libdir)/misc' \
-		$(use_enable nls) \
-		--enable-switch
-}
-
-src_compile() {
-	emake || die
-	if ! $(tc-is-static-only) ; then
-		emake -C "${SFFS}" CC="$(tc-getCC)" || die "filefuncs emake failed"
-	fi
+		$(use_enable nls)
 }
 
 src_install() {
 	emake install DESTDIR="${D}" || die
-	if ! $(tc-is-static-only) ; then
-		emake -C "${SFFS}" LIBDIR="${EPREFIX}$(get_libdir)" install || die
-	fi
 
 	# Keep important gawk in /bin
 	if use userland_GNU ; then
@@ -78,8 +59,7 @@ src_install() {
 	# Install headers
 	insinto /usr/include/awk
 	doins *.h || die
-	# We do not want 'acconfig.h' in there ...
-	rm -f "${ED}"/usr/include/awk/acconfig.h
+	rm "${ED}"/usr/include/awk/config.h || die
 
 	dodoc AUTHORS ChangeLog FUTURES LIMITATIONS NEWS PROBLEMS POSIX.STD README README_d/*.*
 	for x in */ChangeLog ; do

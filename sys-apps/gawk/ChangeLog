@@ -1,6 +1,26 @@
 # ChangeLog for sys-apps/gawk
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.131 2010/08/15 21:30:52 truedfx Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.137 2011/08/05 19:08:07 jer Exp $
+
+  05 Aug 2011; Jeroen Roovers <jer@gentoo.org> gawk-3.1.8.ebuild:
+  Stable for HPPA (bug #373939).
+
+  25 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> gawk-3.1.8.ebuild:
+  ppc/ppc64 stable wrt #373939
+
+  23 Jul 2011; Raúl Porcel <armin76@gentoo.org> gawk-3.1.8.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #373939
+
+  17 Jul 2011; Markus Meier <maekke@gentoo.org> gawk-3.1.8.ebuild:
+  arm/x86 stable, bug #373939
+
+  05 Jul 2011; Markos Chandras <hwoarang@gentoo.org> gawk-3.1.8.ebuild:
+  Stable on amd64 wrt bug #373939
+
+*gawk-4.0.0 (03 Jul 2011)
+
+  03 Jul 2011; Mike Frysinger <vapier@gentoo.org> +gawk-4.0.0.ebuild:
+  Version bump #373937 by Lars Wendler.
 
   15 Aug 2010; Harald van Dĳk <truedfx@gentoo.org> gawk-3.1.8.ebuild:
   Fix quoting
