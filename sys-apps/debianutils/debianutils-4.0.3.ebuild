@@ -25,7 +25,6 @@ src_unpack() {
 
 src_compile() {
 	use static && append-ldflags -static
-
 	econf || die
 	emake || die
 }

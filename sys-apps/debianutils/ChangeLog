@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.165 2011/10/10 08:46:14 radhermit Exp $
 
+  22 Oct 2011; Fabian Groffen <grobian@gentoo.org> debianutils-4.0.3.ebuild:
+  Reduce diff with gx86
+
 *debianutils-4.0.3 (10 Oct 2011)
 
   10 Oct 2011; Tim Harder <radhermit@gentoo.org> +debianutils-4.0.3.ebuild:
