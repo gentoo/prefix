@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.43.ebuild,v 1.8 2009/03/14 12:31:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.43.ebuild,v 1.9 2011/05/16 20:34:44 vapier Exp $
 
 inherit eutils autotools toolchain-funcs multilib flag-o-matic
 
@@ -36,7 +36,7 @@ src_unpack() {
 	mv install-sh acl.install-sh || die
 	AT_M4DIR="m4" eautoreconf
 	mv acl.install-sh install-sh || die
-	strip-linguas po
+	strip-linguas -u po
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		sed -i -e 's/__THROW//g' include/xattr.h

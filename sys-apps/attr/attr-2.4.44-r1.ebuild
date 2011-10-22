@@ -1,8 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.44.ebuild,v 1.8 2011/05/16 20:34:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.44-r1.ebuild,v 1.2 2011/05/16 20:34:44 vapier Exp $
 
-EAPI="2"
+EAPI="4"
 
 inherit eutils toolchain-funcs autotools
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://nongnu/${PN}/${P}.src.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
-IUSE="nls"
+IUSE="nls static-libs"
 
 DEPEND="nls? ( sys-devel/gettext )
 	sys-devel/autoconf"
@@ -50,12 +50,14 @@ src_configure() {
 
 	econf \
 		$(use_enable nls gettext) \
+		--enable-shared $(use_enable static-libs static) \
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir) \
 		--bindir="${EPREFIX}"/bin
 }
 
 src_install() {
 	emake DIST_ROOT="${D}" install install-lib install-dev || die
+	use static-libs || find "${ED}" -name '*.la' -delete
 	# the man-pages packages provides the man2 files
 	rm -r "${ED}"/usr/share/man/man2
 

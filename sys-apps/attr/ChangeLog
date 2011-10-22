@@ -1,6 +1,43 @@
 # ChangeLog for sys-apps/attr
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/ChangeLog,v 1.124 2010/12/05 16:07:43 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/ChangeLog,v 1.134 2011/09/03 16:51:32 armin76 Exp $
+
+  03 Sep 2011; Raúl Porcel <armin76@gentoo.org> attr-2.4.46.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #379055
+
+  01 Sep 2011; Jeroen Roovers <jer@gentoo.org> attr-2.4.46.ebuild:
+  Stable for HPPA (bug #379055).
+
+  28 Aug 2011; Markus Meier <maekke@gentoo.org> attr-2.4.46.ebuild:
+  arm stable, bug #379055
+
+  21 Aug 2011; nixnut <nixnut@gentoo.org> attr-2.4.46.ebuild:
+  ppc stable #379055
+
+  21 Aug 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> attr-2.4.46.ebuild:
+  x86 stable wrt bug #379055
+
+  14 Aug 2011; Markos Chandras <hwoarang@gentoo.org> attr-2.4.46.ebuild:
+  Stable on amd64 wrt bug #379055
+
+  16 May 2011; Mike Frysinger <vapier@gentoo.org> attr-2.4.43.ebuild,
+  attr-2.4.44.ebuild, attr-2.4.44-r1.ebuild, attr-2.4.46.ebuild:
+  Fix by Petr Pisar for strip-linguas call #217153.
+
+  16 May 2011; Mike Frysinger <vapier@gentoo.org> attr-2.4.46.ebuild,
+  +files/attr-2.4.46-config-shell.patch:
+  Fix building when /bin/sh is not functional enough #366671 by Alec Moskvin.
+
+*attr-2.4.46 (09 May 2011)
+
+  09 May 2011; Mike Frysinger <vapier@gentoo.org> +attr-2.4.46.ebuild:
+  Version bump.
+
+*attr-2.4.44-r1 (15 Apr 2011)
+
+  15 Apr 2011; Diego E. Pettenò <flameeyes@gentoo.org> +attr-2.4.44-r1.ebuild:
+  Revision bump: port to EAPI=4, drop prepalldocs, add static-libs USE flag,
+  drop .la files if static-libs are disabled.
 
   05 Dec 2010; Raúl Porcel <armin76@gentoo.org> attr-2.4.44.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #346455
