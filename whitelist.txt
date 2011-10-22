@@ -845,6 +845,7 @@ net-p2p/mutella
 sys-apps/ack
 sys-apps/acl
 sys-apps/aix-miscutils
+sys-apps/attr
 sys-apps/baselayout-prefix
 sys-apps/busybox
 sys-apps/darwin-miscutils
