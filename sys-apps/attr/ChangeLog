@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/ChangeLog,v 1.134 2011/09/03 16:51:32 armin76 Exp $
 
+  22 Oct 2011; Fabian Groffen <grobian@gentoo.org> attr-2.4.46.ebuild:
+  Drop ~ppc-macos keyword since attr (no longer) compiles on Mac OS X
+
   03 Sep 2011; Raúl Porcel <armin76@gentoo.org> attr-2.4.46.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #379055
 
