@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.5.10-r1.ebuild,v 1.3 2011/07/05 21:12:54 aballier Exp $
 
+EAPI="3"
+
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 DESCRIPTION="GNU utilities for finding files"
@@ -19,16 +21,13 @@ RDEPEND="selinux? ( sys-libs/libselinux )
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
 }
 
-src_compile() {
+src_configure() {
 	use static && append-ldflags -static
 
 	local myconf
@@ -39,6 +38,9 @@ src_compile() {
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/find \
 		${myconf} \
 		|| die "configure failed"
+}
+
+src_compile() {
 	emake AR="$(tc-getAR)" || die "make failed"
 }
 
