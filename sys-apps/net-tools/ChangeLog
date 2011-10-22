@@ -1,6 +1,82 @@
 # ChangeLog for sys-apps/net-tools
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.99 2010/10/08 02:15:28 leio Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.117 2011/10/14 03:17:46 vapier Exp $
+
+  14 Oct 2011; Mike Frysinger <vapier@gentoo.org>
+  net-tools-1.60_p20110820045617.ebuild:
+  Update HOMEPAGE after berlios->sf move.
+
+*net-tools-1.60_p20110820045617 (20 Aug 2011)
+
+  20 Aug 2011; Mike Frysinger <vapier@gentoo.org>
+  +net-tools-1.60_p20110820045617.ebuild:
+  Version bump for #379715 by Nathan Phillip Brink.
+
+  29 Jul 2011; Zac Medico <zmedico@gentoo.org>
+  net-tools-1.60_p20110409135728.ebuild:
+  Add ~x86-linux keyword.
+
+  28 Jul 2011; Zac Medico <zmedico@gentoo.org>
+  net-tools-1.60_p20110409135728.ebuild:
+  Fix for prefix.
+
+  12 Jun 2011; Raúl Porcel <armin76@gentoo.org>
+  net-tools-1.60_p20110409135728.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #368061
+
+  09 Jun 2011; Jeroen Roovers <jer@gentoo.org>
+  net-tools-1.60_p20110409135728.ebuild:
+  Stable for HPPA (bug #368061).
+
+  08 Jun 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  net-tools-1.60_p20110409135728.ebuild:
+  ppc/ppc64 stable wrt #368061
+
+  05 Jun 2011; Markus Meier <maekke@gentoo.org>
+  net-tools-1.60_p20110409135728.ebuild:
+  arm stable, bug #368061
+
+  02 Jun 2011; Markus Meier <maekke@gentoo.org>
+  net-tools-1.60_p20110409135728.ebuild:
+  x86 stable, bug #368061
+
+  29 May 2011; Markos Chandras <hwoarang@gentoo.org>
+  net-tools-1.60_p20110409135728.ebuild:
+  Stable on amd64 wrt bug #368061
+
+*net-tools-1.60_p20110409135728 (09 Apr 2011)
+
+  09 Apr 2011; Mike Frysinger <vapier@gentoo.org>
+  +net-tools-1.60_p20110409135728.ebuild:
+  Version bump.
+
+  09 Apr 2011; Mike Frysinger <vapier@gentoo.org>
+  net-tools-1.60_p20100815160931.ebuild:
+  Mark stable for ia64/s390/sh/sparc #357659.
+
+  04 Apr 2011; Thomas Kahle <tomka@gentoo.org>
+  net-tools-1.60_p20100815160931.ebuild:
+  x86 stable per bug 357659
+
+  27 Mar 2011; Tobias Klausmann <klausman@gentoo.org>
+  net-tools-1.60_p20100815160931.ebuild:
+  Stable on alpha, bug #357659
+
+  18 Mar 2011; Markus Meier <maekke@gentoo.org>
+  net-tools-1.60_p20100815160931.ebuild:
+  arm stable, bug #357659
+
+  13 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  net-tools-1.60_p20100815160931.ebuild:
+  ppc/ppc64 stable wrt #357659
+
+  11 Mar 2011; Jeroen Roovers <jer@gentoo.org>
+  net-tools-1.60_p20100815160931.ebuild:
+  Stable for HPPA (bug #357659).
+
+  08 Mar 2011; Markos Chandras <hwoarang@gentoo.org>
+  net-tools-1.60_p20100815160931.ebuild:
+  Stable on amd64 wrt bug #357659
 
   08 Oct 2010; Mart Raudsepp <leio@gentoo.org> net-tools-1.60-r13.ebuild:
   Drop to ~mips

@@ -1,14 +1,16 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20100101055920.ebuild,v 1.1 2010/01/01 06:10:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20110820045617.ebuild,v 1.2 2011/10/14 03:17:46 vapier Exp $
+
+EAPI="3"
 
 inherit flag-o-matic toolchain-funcs eutils
 
 PATCH_VER="1"
 DESCRIPTION="Standard Linux networking tools"
-HOMEPAGE="http://net-tools.berlios.de/"
-SRC_URI="mirror://gentoo/${P}.tar.lzma
-	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.lzma"
+HOMEPAGE="http://net-tools.sourceforge.net/"
+SRC_URI="mirror://gentoo/${P}.tar.xz
+	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -17,7 +19,7 @@ IUSE="nls static"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
-	|| ( app-arch/xz-utils app-arch/lzma-utils )"
+	app-arch/xz-utils"
 
 maint_pkg_create() {
 	cd /usr/local/src/net-tools/git
@@ -31,17 +33,19 @@ maint_pkg_create() {
 	sed -i "/^RELEASE/s:=.*:=${pv}:" Makefile || die
 	emake dist >/dev/null
 	popd >/dev/null
-	zcat ${p}.tar.gz | lzma > ${p}.tar.lzma
+	zcat ${p}.tar.gz | xz > ${p}.tar.xz
 	rm -f ${p}.tar.gz
 	popd >/dev/null
 
 	local patches="${p}-patches-${PATCH_VER}"
-	mkdir "${T}"/${patches}
-	git format-patch -o "${T}"/${patches} master..gentoo > /dev/null
-	tar cf - -C "${T}" ${patches} | lzma > "${T}"/${patches}.tar.lzma
-	rm -rf "${T}"/${patches}
+	local d="${T}/${patches}"
+	mkdir "${d}"
+	git format-patch -o "${d}" master..gentoo > /dev/null
+	echo "From http://git.overlays.gentoo.org/gitweb/?p=proj/net-tools.git" > "${d}"/README
+	tar cf - -C "${T}" ${d##*/} | xz > "${T}"/${patches}.tar.xz
+	rm -rf "${d}"
 
-	du -b "${T}"/*.tar.lzma
+	du -b "${T}"/*.tar.xz
 }
 
 pkg_setup() { [[ -n ${VAPIER_LOVES_YOU} ]] && maint_pkg_create ; }
@@ -56,23 +60,19 @@ set_opt() {
 		config.in || die
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch "${WORKDIR}"/${P}-patches-${PATCH_VER}
+}
 
+src_configure() {
 	set_opt I18N use nls
 	set_opt HAVE_HWIB has_version '>=sys-kernel/linux-headers-2.6'
 	if use static ; then
 		append-flags -static
 		append-ldflags -static
 	fi
-}
-
-src_compile() {
 	tc-export AR CC
 	yes "" | ./configure.sh config.in || die
-	emake || die
 }
 
 src_install() {
