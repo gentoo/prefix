@@ -1,6 +1,28 @@
 # ChangeLog for sys-apps/groff
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.113 2011/01/13 17:16:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.120 2011/05/07 18:02:54 armin76 Exp $
+
+  07 May 2011; Raúl Porcel <armin76@gentoo.org> groff-1.21.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #362561
+
+  05 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> groff-1.21.ebuild:
+  x86 stable wrt bug #362561
+
+  01 May 2011; Kacper Kowalik <xarthisius@gentoo.org> groff-1.21.ebuild:
+  ppc64 stable wrt #362561
+
+  14 Apr 2011; Brent Baude <ranger@gentoo.org> groff-1.21.ebuild:
+  Marking groff-1.21 ppc for bug 362561
+
+  11 Apr 2011; Jeroen Roovers <jer@gentoo.org> groff-1.21.ebuild:
+  Stable for HPPA (bug #362561).
+
+  09 Apr 2011; Christoph Mende <angelos@gentoo.org> groff-1.21.ebuild:
+  Stable on amd64 wrt bug #362561
+
+  24 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  groff-1.20.1-r3.ebuild:
+  ppc64 stable wrt #350491
 
   13 Jan 2011; Jeroen Roovers <jer@gentoo.org> groff-1.20.1-r3.ebuild:
   Stable for HPPA (bug #350491).
