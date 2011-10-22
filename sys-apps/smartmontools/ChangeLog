@@ -1,6 +1,45 @@
 # ChangeLog for sys-apps/smartmontools
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.98 2011/01/26 14:21:54 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.106 2011/10/21 22:30:14 robbat2 Exp $
+
+*smartmontools-5.42 (21 Oct 2011)
+
+  21 Oct 2011; Robin H. Johnson <robbat2@gentoo.org>
+  +smartmontools-5.42.ebuild:
+  Version bump.
+
+*smartmontools-5.41-r1 (15 Sep 2011)
+
+  15 Sep 2011; Lars Wendler <polynomial-c@gentoo.org>
+  -smartmontools-5.41.ebuild, +smartmontools-5.41-r1.ebuild, files/smartd.rc:
+  non-maintainer commit: Removed deprecated --oknodo option (bug #377769).
+  Replaced deprecated opts variable (bug #381879) and removed --stop option
+  from reload function. All done with kind permission from vapier.
+
+  20 Aug 2011; Mike Frysinger <vapier@gentoo.org> smartmontools-5.41.ebuild,
+  smartmontools-9999.ebuild:
+  Add libcap-ng to DEPEND too #379401.
+
+  29 Jul 2011; Zac Medico <zmedico@gentoo.org> smartmontools-5.41.ebuild,
+  smartmontools-9999.ebuild:
+  Add ~x86-linux keyword.
+
+  28 Jul 2011; Zac Medico <zmedico@gentoo.org> smartmontools-5.41.ebuild,
+  smartmontools-9999.ebuild:
+  Bump to EAPI 3 and fix for prefix.
+
+*smartmontools-5.41 (13 Jun 2011)
+
+  13 Jun 2011; Jeroen Roovers <jer@gentoo.org> +smartmontools-5.41.ebuild:
+  Version bump by Opportunist (bug #371367).
+
+  08 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  smartmontools-5.40.ebuild:
+  ppc stable wrt #352599. Add ~ppc64 wrt #354125. Thanks to Stephen Lewis
+  <lewis+gentoo@freeshell.org> for the report.
+
+  29 Jan 2011; Raúl Porcel <armin76@gentoo.org> smartmontools-5.40.ebuild:
+  alpha/arm/ia64/sparc stable wrt #352599
 
   26 Jan 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
   smartmontools-5.40.ebuild:
