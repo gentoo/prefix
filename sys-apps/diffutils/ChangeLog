@@ -1,6 +1,34 @@
 # ChangeLog for sys-apps/diffutils
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.57 2010/05/05 17:17:14 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.65 2011/09/04 03:50:29 radhermit Exp $
+
+*diffutils-3.2 (04 Sep 2011)
+
+  04 Sep 2011; Tim Harder <radhermit@gentoo.org> +diffutils-3.2.ebuild:
+  Version bump.
+
+*diffutils-3.1 (02 Sep 2011)
+
+  02 Sep 2011; Tim Harder <radhermit@gentoo.org> +diffutils-3.1.ebuild:
+  Version bump. Update to EAPI 4.
+
+  29 May 2011; Raúl Porcel <armin76@gentoo.org> diffutils-3.0.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #359657
+
+  20 May 2011; Kacper Kowalik <xarthisius@gentoo.org> diffutils-3.0.ebuild:
+  ppc/ppc64 stable wrt #359657
+
+  13 May 2011; Jeroen Roovers <jer@gentoo.org> diffutils-3.0.ebuild:
+  Stable for HPPA (bug #359657).
+
+  09 May 2011; Markus Meier <maekke@gentoo.org> diffutils-3.0.ebuild:
+  arm stable, bug #359657
+
+  03 May 2011; Richard Freeman <rich0@gentoo.org> diffutils-3.0.ebuild:
+  amd64 stable - 359657
+
+  02 May 2011; Thomas Kahle <tomka@gentoo.org> diffutils-3.0.ebuild:
+  x86 stable per bug 359657
 
 *diffutils-3.0 (05 May 2010)
 
