@@ -1,6 +1,21 @@
 # ChangeLog for sys-apps/preload
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.17 2010/09/17 10:59:47 pacho Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.21 2011/02/27 20:48:25 hwoarang Exp $
+
+  27 Feb 2011; Markos Chandras <hwoarang@gentoo.org> preload-0.6.4-r2.ebuild:
+  Stable on amd64 wrt bug #356309
+
+  26 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  preload-0.6.4-r2.ebuild:
+  x86 stable wrt bug #356309
+
+  23 Feb 2011; Pacho Ramos <pacho@gentoo.org> preload-0.6.4-r2.ebuild:
+  Also needs dev-util/pkgconfig.
+
+  23 Feb 2011; Pacho Ramos <pacho@gentoo.org> -preload-0.6.4-r1.ebuild,
+  preload-0.6.4-r2.ebuild:
+  Set dev-libs/glib as DEPEND and RDEPEND, DEPEND on help2man also (bug
+  #355965), use eapi3. Remove old.
 
   17 Sep 2010; Pacho Ramos <pacho@gentoo.org>
   files/preload-0.6.4-use-help2man-as-usual.patch:

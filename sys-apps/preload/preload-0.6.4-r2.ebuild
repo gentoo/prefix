@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/preload-0.6.4-r2.ebuild,v 1.1 2010/09/07 12:11:05 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/preload-0.6.4-r2.ebuild,v 1.5 2011/02/27 20:48:25 hwoarang Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit eutils autotools prefix
 
@@ -17,8 +17,10 @@ IUSE="vanilla"
 
 WANT_AUTOCONF="2.56"
 
-RDEPEND=">=dev-libs/glib-2.6"
-DEPEND="${RDEPEND}"
+RDEPEND=">=dev-libs/glib-2.6:2"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig
+	sys-apps/help2man"
 
 src_prepare() {
 	epatch "${FILESDIR}"/00-patch-configure.diff
