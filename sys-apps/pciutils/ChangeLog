@@ -1,6 +1,35 @@
 # ChangeLog for sys-apps/pciutils
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pciutils/ChangeLog,v 1.175 2010/04/10 19:28:55 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pciutils/ChangeLog,v 1.183 2011/10/20 00:33:40 vapier Exp $
+
+*pciutils-3.1.8 (20 Oct 2011)
+
+  20 Oct 2011; Mike Frysinger <vapier@gentoo.org> +pciutils-3.1.8.ebuild:
+  Version bump #387645 by Corentin Chary.
+
+  01 May 2011; Kacper Kowalik <xarthisius@gentoo.org> pciutils-3.1.7.ebuild:
+  ppc/ppc64 stable wrt #360793
+
+  02 Apr 2011; Raúl Porcel <armin76@gentoo.org> pciutils-3.1.7.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #360793
+
+  29 Mar 2011; Jeroen Roovers <jer@gentoo.org> pciutils-3.1.7.ebuild:
+  Stable for HPPA (bug #360793).
+
+  28 Mar 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  pciutils-3.1.7.ebuild:
+  x86 stable wrt bug #360793
+
+  27 Mar 2011; Christoph Mende <angelos@gentoo.org> pciutils-3.1.7.ebuild:
+  Stable on amd64 wrt bug #360793
+
+  27 Mar 2011; Tobias Klausmann <klausman@gentoo.org> pciutils-3.1.7.ebuild:
+  Stable on alpha, bug #360793
+
+*pciutils-3.1.7-r1 (27 Mar 2011)
+
+  27 Mar 2011; Mike Frysinger <vapier@gentoo.org> +pciutils-3.1.7-r1.ebuild:
+  Add USE=static-libs and drop uncompressed pci.ids hal hack.
 
 *pciutils-3.1.7 (10 Apr 2010)
 
