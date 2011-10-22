@@ -1,15 +1,15 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.18-r1.ebuild,v 1.12 2011/04/02 14:23:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.20.1.ebuild,v 1.1 2011/10/20 13:37:01 vapier Exp $
 
-EAPI="2"
+EAPI="3"
 
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux/util-linux.git"
 inherit eutils toolchain-funcs libtool flag-o-matic autotools
 [[ ${PV} == "9999" ]] && inherit git autotools
 
 MY_PV=${PV/_/-}
-MY_P=${PN}-ng-${MY_PV}
+MY_P=${PN}-${MY_PV}
 S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="Various useful Linux utilities"
@@ -19,21 +19,23 @@ if [[ ${PV} == "9999" ]] ; then
 	#KEYWORDS=""
 else
 	SRC_URI="mirror://kernel/linux/utils/util-linux/v${PV:0:4}/${MY_P}.tar.bz2
-		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-ng-2.18-20100706.diff.bz2 )"
-#	KEYWORDS="~amd64-linux ~x86-linux"
-KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
+		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-2.20-20110905.diff.bz2 )"
+	# prefix patches don't apply, but we still need them
+	#  -> why would we want util-linux anyway? just for libuuid
+	#KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="+cramfs crypt loop-aes nls old-linux perl selinux slang uclibc unicode"
+IUSE="+cramfs crypt ddate loop-aes ncurses nls old-linux perl selinux slang static-libs uclibc unicode"
 
 RDEPEND="!sys-process/schedutils
 	!sys-apps/setarch
-	>=sys-libs/ncurses-5.2-r2
+	!<sys-apps/sysvinit-2.88-r3
 	!<sys-libs/e2fsprogs-libs-1.41.8
 	!<sys-fs/e2fsprogs-1.41.8
 	cramfs? ( sys-libs/zlib )
+	ncurses? ( >=sys-libs/ncurses-5.2-r2 )
 	perl? ( dev-lang/perl )
 	selinux? ( sys-libs/libselinux )
 	slang? ( sys-libs/slang )"
@@ -43,31 +45,13 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	if [[ ${PV} == "9999" ]] ; then
+		po/update-potfiles
 		autopoint --force
 		eautoreconf
 	else
-		use loop-aes && epatch "${WORKDIR}"/util-linux-ng-*.diff
+		use loop-aes && epatch "${WORKDIR}"/util-linux-*.diff
 	fi
 	use uclibc && sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c
-	epatch "${FILESDIR}"/${P}-ncursesw.patch
-	epatch "${FILESDIR}"/${P}-slang.patch #326373
-	epatch "${FILESDIR}"/${P}-cfdisk-string-len.patch #328959
-	epatch "${FILESDIR}"/${P}-falloc.patch #339432
-	if use prefix ; then
-		epatch "${FILESDIR}"/${PN}-2.17.1-non-linux-shlibs.patch
-		epatch "${FILESDIR}"/${PN}-2.18-non-linux-shlibs.patch
-		epatch "${FILESDIR}"/${PN}-2.18-external-uuid-dep.patch
-		epatch "${FILESDIR}"/${PN}-2.18-no-loff_t.patch
-		epatch "${FILESDIR}"/${PN}-2.18-solaris-crypt.patch
-		epatch "${FILESDIR}"/${PN}-2.18-solaris-socket-link.patch
-		epatch "${FILESDIR}"/${PN}-2.18-solaris-mkdev.patch
-		epatch "${FILESDIR}"/${PN}-2.18-solaris-io.patch
-		epatch "${FILESDIR}"/${PN}-2.18-solaris-paths.patch
-		epatch "${FILESDIR}"/${PN}-2.18-solaris-uint32t.patch
-		epatch "${FILESDIR}"/${PN}-2.18-solaris-err.patch
-		epatch "${FILESDIR}"/${PN}-2.18-solaris-dirfd.patch
-		eautoreconf
-	fi
 	elibtoolize
 }
 
@@ -89,11 +73,13 @@ want_libuuid() {
 	[[ ${CHOST} != *-darwin1[0123] ]]
 }
 
+usex() { use $1 && echo ${2:-yes} || echo ${3:-no} ; }
 src_configure() {
 	lfs_fallocate_test
 	local myconf=
 	if use prefix ; then
 		myconf="
+			--with-ncurses=$(usex ncurses $(usex unicode auto yes) no) \
 			--disable-mount
 			--disable-fsck
 			--$($(want_libuuid) && echo enable || echo disable)-libuuid
@@ -130,8 +116,9 @@ src_configure() {
 		myconf="
 			--enable-agetty
 			$(use_enable cramfs)
+			$(use_enable ddate) \
 			$(use_enable old-linux elvtune)
-			--disable-init
+			--with-ncurses=$(usex ncurses $(usex unicode auto yes) no) \
 			--disable-kill
 			--disable-last
 			--disable-mesg
@@ -152,8 +139,8 @@ src_configure() {
 	econf \
 		--enable-fs-paths-extra="${EPREFIX}"/usr/sbin \
 		$(use_enable nls) \
-		$(use unicode || echo --with-ncurses) \
 		$(use_with slang) \
+		$(use_enable static-libs static) \
 		$(tc-has-tls || echo --disable-tls) \
 		${myconf}
 }
@@ -183,6 +170,7 @@ src_install() {
 		fi
 	fi
 	dodoc AUTHORS NEWS README* TODO docs/*
+	use ddate || find "${ED}"/usr/share/man -name 'ddate.1*' -delete
 
 	# need the libs in /
 	local libuuid=
@@ -195,4 +183,9 @@ src_install() {
 pkg_postinst() {
 	ewarn "The loop-aes code has been split out of USE=crypt and into USE=loop-aes."
 	ewarn "If you need support for it, make sure to update your USE accordingly."
+}
+
+pkg_postinst() {
+	elog "The agetty util now clears the terminal by default.  You"
+	elog "might want to add --noclear to your /etc/inittab lines."
 }

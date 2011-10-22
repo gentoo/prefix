@@ -1,6 +1,139 @@
 # ChangeLog for sys-apps/util-linux
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.323 2010/11/22 01:04:58 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.356 2011/10/20 13:37:01 vapier Exp $
+
+*util-linux-2.20.1 (20 Oct 2011)
+
+  20 Oct 2011; Mike Frysinger <vapier@gentoo.org> +util-linux-2.20.1.ebuild:
+  Version bump.
+
+  20 Oct 2011; Mike Frysinger <vapier@gentoo.org> util-linux-2.20-r1.ebuild,
+  util-linux-9999.ebuild:
+  Inform users of new default clear behavior #381401#5 by Neil Bothwick.
+
+*util-linux-2.20-r1 (17 Oct 2011)
+
+  17 Oct 2011; Mike Frysinger <vapier@gentoo.org> +util-linux-2.20-r1.ebuild,
+  +files/util-linux-2.20-dmesg-newline.patch,
+  +files/util-linux-2.20-sysfs-init.patch:
+  Add fixes from upstream for dmesg stopping with blank newlines #385305 by
+  Maxime Gervais. Add fix from upstream for nfs/btrfs unmounting #385323 by
+  Thomas Arnett.
+
+  17 Oct 2011; Mike Frysinger <vapier@gentoo.org> util-linux-2.19.1-r1.ebuild:
+  Mark alpha/arm/hppa/ia64/m68k/s390/sh stable #384305.
+
+  23 Sep 2011; Lars Wendler <polynomial-c@gentoo.org> util-linux-2.20.ebuild:
+  non-maintainer commit: Updated loop-aes patch (bug #381521).
+
+  21 Sep 2011; Michał Górny <mgorny@gentoo.org> util-linux-9999.ebuild:
+  Migrate to git-2.
+
+  14 Sep 2011; Mike Frysinger <vapier@gentoo.org> util-linux-2.20.ebuild:
+  Drop ddate man page when USE=-ddate #381291#5 by Ulrich Müller.
+
+  07 Sep 2011; Mike Frysinger <vapier@gentoo.org> util-linux-2.20.ebuild,
+  util-linux-9999.ebuild, metadata.xml:
+  Add USE=ddate to control ddate util #381291 by Ole Henrik Jahren.
+
+*util-linux-2.20 (29 Aug 2011)
+
+  29 Aug 2011; Mike Frysinger <vapier@gentoo.org> +util-linux-2.20.ebuild,
+  util-linux-9999.ebuild:
+  Version bump which fixes #373381 by Chris Richards. Add USE=static-libs
+  support #378269 by Agostino Sarubbo. Sync changes between live git and stable
+  release ebuilds. Block older sysvinits since we now install the mountpoint
+  util ourselves.
+
+  29 Jul 2011; Zac Medico <zmedico@gentoo.org> util-linux-2.19.1-r1.ebuild,
+  util-linux-9999.ebuild:
+  Add ~x86-linux keyword.
+
+  26 Jul 2011; Zac Medico <zmedico@gentoo.org> util-linux-2.19.1-r1.ebuild:
+  Bump to EAPI 3 and fix for prefix.
+
+*util-linux-2.19.1-r1 (12 Jul 2011)
+
+  12 Jul 2011; Mike Frysinger <vapier@gentoo.org> +util-linux-2.19.1-r1.ebuild,
+  +files/util-linux-2.19.1-mount-a-segv.patch,
+  +files/util-linux-2.19.1-umount-l-nfs.patch:
+  Add fixes from upstream for `mount -a` segfault #366213 and `umount -l`
+  stalls #370051 by Pacho Ramos.
+
+  17 Jun 2011; Dane Smith <c1pher@gentoo.org> util-linux-2.19.1.ebuild,
+  metadata.xml:
+  Re-add support for loop-aes wrt bug 371437.
+
+  07 Jun 2011; Mike Frysinger <vapier@gentoo.org> util-linux-9999.ebuild:
+  Run the helper po script so the subdir gets the necessary files created
+  #370455 by Michał Górny.
+
+  14 May 2011; Raúl Porcel <armin76@gentoo.org> util-linux-2.19.1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #359759
+
+  14 May 2011; Kacper Kowalik <xarthisius@gentoo.org> util-linux-2.19.1.ebuild:
+  ppc/ppc64 stable wrt #359759
+
+  09 May 2011; Markus Meier <maekke@gentoo.org> util-linux-2.19.1.ebuild:
+  arm stable, bug #359759
+
+  04 May 2011; Thomas Kahle <tomka@gentoo.org> util-linux-2.19.1.ebuild:
+  x86 stable per bug 359759
+
+  04 May 2011; Jeroen Roovers <jer@gentoo.org> util-linux-2.19.1.ebuild:
+  Stable for HPPA (bug #359759).
+
+  03 May 2011; Markos Chandras <hwoarang@gentoo.org> util-linux-2.19.1.ebuild:
+  Stable on amd64 wrt bug #359759
+
+*util-linux-2.19.1 (02 May 2011)
+
+  02 May 2011; Mike Frysinger <vapier@gentoo.org> +util-linux-2.19.1.ebuild:
+  Version bump.
+
+  07 Apr 2011; Mike Frysinger <vapier@gentoo.org> util-linux-2.19.ebuild,
+  util-linux-9999.ebuild:
+  Add USE=ncurses to control the lib usage #221941 by Jim Kukunas and Mart
+  Raudsepp.
+
+  07 Apr 2011; Mike Frysinger <vapier@gentoo.org> util-linux-2.19.ebuild,
+  +files/util-linux-2.19-old-libc.patch:
+  Add fallback code for older versions of glibc #361271 by Viktor Robev.
+
+  02 Apr 2011; Raúl Porcel <armin76@gentoo.org> util-linux-2.18-r1.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #356941
+
+  25 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  util-linux-2.18-r1.ebuild:
+  ppc64 stable wrt #356941
+
+  19 Mar 2011; Thomas Kahle <tomka@gentoo.org> util-linux-2.18-r1.ebuild:
+  x86 stable per bug 356941
+
+  13 Mar 2011; Markus Meier <maekke@gentoo.org> util-linux-2.18-r1.ebuild:
+  arm stable, bug #356941
+
+  12 Mar 2011; Tobias Klausmann <klausman@gentoo.org>
+  util-linux-2.18-r1.ebuild:
+  Stable on alpha, bug #356941
+
+  12 Mar 2011; Mike Frysinger <vapier@gentoo.org> util-linux-2.19.ebuild,
+  util-linux-9999.ebuild:
+  Punt USE=loop-aes to stop useless complaints.
+
+  07 Mar 2011; Jeroen Roovers <jer@gentoo.org> util-linux-2.18-r1.ebuild:
+  Stable for HPPA (bug #356941).
+
+  04 Mar 2011; Brent Baude <ranger@gentoo.org> util-linux-2.18-r1.ebuild:
+  stable ppc, bug 356941
+
+  01 Mar 2011; Markos Chandras <hwoarang@gentoo.org> util-linux-2.18-r1.ebuild:
+  Stable on amd64 wrt bug #356941
+
+*util-linux-2.19 (10 Feb 2011)
+
+  10 Feb 2011; Mike Frysinger <vapier@gentoo.org> +util-linux-2.19.ebuild:
+  Version bump.
 
   22 Nov 2010; Mike Frysinger <vapier@gentoo.org> util-linux-2.18-r1.ebuild,
   util-linux-9999.ebuild, metadata.xml:
