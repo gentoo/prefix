@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.155 2011/08/17 18:20:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.156 2011/10/08 18:37:30 vapier Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -671,11 +671,13 @@ filter-ldflags() {
 }
 
 # @FUNCTION: raw-ldflags
-# @USAGE: <flags>
+# @USAGE: [flags]
 # @DESCRIPTION:
 # Turn C style ldflags (-Wl,-foo) into straight ldflags - the results
 # are suitable for passing directly to 'ld'; note LDFLAGS is usually passed
 # to gcc where it needs the '-Wl,'.
+#
+# If no flags are specified, then default to ${LDFLAGS}.
 raw-ldflags() {
 	local x input="$@"
 	[[ -z ${input} ]] && input=${LDFLAGS}

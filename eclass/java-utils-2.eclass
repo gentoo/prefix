@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.143 2011/09/10 14:32:58 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.145 2011/10/02 08:10:28 serkan Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -2526,6 +2526,9 @@ java-pkg_setup-vm() {
 		addpredict "/proc/cpuinfo"
 		addpredict "/proc/self/coredump_filter"
 	elif [[ "${vendor}" == "oracle" ]]; then
+		addpredict "/dev/random"
+		addpredict "/proc/self/coredump_filter"
+	elif [[ "${vendor}" == icedtea* ]] && java-pkg_is-vm-version-ge "1.7" ; then
 		addpredict "/dev/random"
 		addpredict "/proc/self/coredump_filter"
 	elif [[ "${vendor}" == "jrockit" ]]; then

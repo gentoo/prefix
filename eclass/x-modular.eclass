@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.121 2011/08/29 01:28:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.122 2011/10/04 21:23:46 chithanh Exp $
 #
 # @DEPRECATED
 # This eclass has been superseded by xorg-2
@@ -182,8 +182,7 @@ DEPEND="${DEPEND}
 
 if [[ "${PN/util-macros}" = "${PN}" ]]; then
 	DEPEND="${DEPEND}
-		>=x11-misc/util-macros-1.3.0
-		|| ( sys-devel/binutils sys-devel/binutils-apple sys-devel/native-cctools )"
+		>=x11-misc/util-macros-1.3.0"
 fi
 
 RDEPEND="${RDEPEND}

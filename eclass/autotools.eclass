@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.108 2011/09/23 04:14:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.109 2011/10/05 13:44:25 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -280,7 +280,7 @@ eautomake() {
 		fi
 	fi
 
-	[[ -f INSTALL && -f AUTHORS && -f ChangeLog && -f NEWS ]] \
+	[[ -f INSTALL && -f AUTHORS && -f ChangeLog && -f NEWS && -f README ]] \
 		|| extra_opts="${extra_opts} --foreign"
 
 	# --force-missing seems not to be recognized by some flavours of automake

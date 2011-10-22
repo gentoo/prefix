@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.51 2011/07/08 11:35:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.52 2011/10/21 11:05:01 caster Exp $
 
 inherit java-utils-2
 
@@ -431,20 +431,28 @@ java-ant_rewrite-classpath() {
 # ------------------------------------------------------------------------------
 # @public java-ant_remove-taskdefs
 #
-# Removes taskdef elements from the file
+# Removes (named) taskdef elements from the file.
+# Options:
+#   --name NAME : only remove taskdef with name NAME.
 # @param $1 - the file to rewrite (defaults to build.xml)
 # ------------------------------------------------------------------------------
 java-ant_remove-taskdefs() {
 	debug-print-function ${FUNCNAME} $*
-	local file=${1:-build.xml}
+	local task_name
+	if [[ "${1}" == --name ]]; then
+		task_name="${2}"
+		shift 2
+	fi
+	local file="${1:-build.xml}"
 	echo "Removing taskdefs from ${file}"
 	python <<EOF
 import sys
 from xml.dom.minidom import parse
 dom = parse("${file}")
 for elem in dom.getElementsByTagName('taskdef'):
-       elem.parentNode.removeChild(elem)
-       elem.unlink()
+    if (len("${task_name}") == 0 or elem.getAttribute("name") == "${task_name}"):
+        elem.parentNode.removeChild(elem)
+        elem.unlink()
 f = open("${file}", "w")
 dom.writexml(f)
 f.close()

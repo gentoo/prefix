@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.472 2011/09/27 12:14:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.473 2011/10/17 19:10:58 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -813,9 +813,9 @@ toolchain_pkg_setup() {
 	unset GCC_SPECS
 
 	if use nocxx ; then
-		use go && ewarn 'Go requires a C++ compiler, disabled due to USE="nocxx"'
-		use objc++ && ewarn 'Obj-C++ requires a C++ compiler, disabled due to USE="nocxx"'
-		use gcj && ewarn 'GCJ requires a C++ compiler, disabled due to USE="nocxx"'
+		huse go && ewarn 'Go requires a C++ compiler, disabled due to USE="nocxx"'
+		huse objc++ && ewarn 'Obj-C++ requires a C++ compiler, disabled due to USE="nocxx"'
+		huse gcj && ewarn 'GCJ requires a C++ compiler, disabled due to USE="nocxx"'
 	fi
 
 	want_libssp && libc_has_ssp && \
@@ -2453,6 +2453,11 @@ is_multilib() {
 	use multilib
 }
 
+huse() {
+	has $1 ${IUSE} || return 1
+	use $1
+}
+
 is_cxx() {
 	gcc-lang-supported 'c++' || return 1
 	! use nocxx
@@ -2460,7 +2465,7 @@ is_cxx() {
 
 is_d() {
 	gcc-lang-supported d || return 1
-	use d
+	huse d
 }
 
 is_f77() {
@@ -2480,27 +2485,26 @@ is_fortran() {
 
 is_gcj() {
 	gcc-lang-supported java || return 1
-	! use nocxx && use gcj
+	! use nocxx && huse gcj
 }
 
 is_go() {
 	gcc-lang-supported go || return 1
-	! use nocxx && use go
+	! use nocxx && huse go
 }
 
 is_libffi() {
-	has libffi ${IUSE} || return 1
-	use libffi
+	huse libffi
 }
 
 is_objc() {
 	gcc-lang-supported objc || return 1
-	use objc
+	huse objc
 }
 
 is_objcxx() {
 	gcc-lang-supported 'obj-c++' || return 1
-	! use nocxx && use objc++
+	! use nocxx && huse objc++
 }
 
 is_ada() {

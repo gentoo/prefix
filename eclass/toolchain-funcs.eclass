@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.107 2011/09/12 21:42:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.108 2011/10/17 19:11:49 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -219,6 +219,73 @@ tc-is-static-only() {
 
 	# *MiNT doesn't have shared libraries, only platform so far
 	return $([[ ${host} == *-mint* ]])
+}
+
+# @FUNCTION: tc-env_build
+# @USAGE: <command> [command args]
+# @INTERNAL
+# @DESCRIPTION:
+# Setup the compile environment to the build tools and then execute the
+# specified command.  We use tc-getBUILD_XX here so that we work with
+# all of the semi-[non-]standard env vars like $BUILD_CC which often
+# the target build system does not check.
+tc-env_build() {
+	CFLAGS=${BUILD_CFLAGS:--O1 -pipe} \
+	CXXFLAGS=${BUILD_CXXFLAGS:--O1 -pipe} \
+	CPPFLAGS=${BUILD_CPPFLAGS} \
+	LDFLAGS=${BUILD_LDFLAGS} \
+	AR=$(tc-getBUILD_AR) \
+	AS=$(tc-getBUILD_AS) \
+	CC=$(tc-getBUILD_CC) \
+	CPP=$(tc-getBUILD_CPP) \
+	CXX=$(tc-getBUILD_CXX) \
+	LD=$(tc-getBUILD_LD) \
+	NM=$(tc-getBUILD_NM) \
+	PKG_CONFIG=$(tc-getBUILD_PKG_CONFIG) \
+	RANLIB=$(tc-getBUILD_RANLIB) \
+	"$@"
+}
+
+# @FUNCTION: econf_build
+# @USAGE: [econf flags]
+# @DESCRIPTION:
+# Sometimes we need to locally build up some tools to run on CBUILD because
+# the package has helper utils which are compiled+executed when compiling.
+# This won't work when cross-compiling as the CHOST is set to a target which
+# we cannot natively execute.
+#
+# For example, the python package will build up a local python binary using
+# a portable build system (configure+make), but then use that binary to run
+# local python scripts to build up other components of the overall python.
+# We cannot rely on the python binary in $PATH as that often times will be
+# a different version, or not even installed in the first place.  Instead,
+# we compile the code in a different directory to run on CBUILD, and then
+# use that binary when compiling the main package to run on CHOST.
+#
+# For example, with newer EAPIs, you'd do something like:
+# @CODE
+# src_configure() {
+# 	ECONF_SOURCE=${S}
+# 	if tc-is-cross-compiler ; then
+# 		mkdir "${WORKDIR}"/${CBUILD}
+# 		pushd "${WORKDIR}"/${CBUILD} >/dev/null
+# 		econf_build --disable-some-unused-stuff
+# 		popd >/dev/null
+# 	fi
+# 	... normal build paths ...
+# }
+# src_compile() {
+# 	if tc-is-cross-compiler ; then
+# 		pushd "${WORKDIR}"/${CBUILD} >/dev/null
+# 		emake one-or-two-build-tools
+# 		ln/mv build-tools to normal build paths in ${S}/
+# 		popd >/dev/null
+# 	fi
+# 	... normal build paths ...
+# }
+# @CODE
+econf_build() {
+	tc-env_build econf --build=${CBUILD:-${CHOST}} "$@"
 }
 
 # @FUNCTION: tc-has-openmp
