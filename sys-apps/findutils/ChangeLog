@@ -1,6 +1,26 @@
 # ChangeLog for sys-apps/findutils
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.194 2010/08/15 05:33:52 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.198 2011/07/05 21:12:54 aballier Exp $
+
+  05 Jul 2011; Alexis Ballier <aballier@gentoo.org> findutils-4.5.10-r1.ebuild:
+  keyword ~sparc-fbsd; untested but should work as it works on sparc and
+  x86-fbsd; the plan is to have it part of @system so we do not have other
+  option
+
+  05 Jul 2011; Alexis Ballier <aballier@gentoo.org> findutils-4.5.10-r1.ebuild:
+  keyword ~x86-fbsd
+
+*findutils-4.5.10-r1 (05 Jul 2011)
+*findutils-4.4.2-r1 (05 Jul 2011)
+
+  05 Jul 2011; Mike Frysinger <vapier@gentoo.org> +findutils-4.4.2-r1.ebuild,
+  +findutils-4.5.10-r1.ebuild:
+  Drop --without-included-regex as it breaks systems more than it saves size.
+
+*findutils-4.5.10 (11 May 2011)
+
+  11 May 2011; Mike Frysinger <vapier@gentoo.org> +findutils-4.5.10.ebuild:
+  Version bump.
 
 *findutils-4.5.9 (15 Aug 2010)
 
