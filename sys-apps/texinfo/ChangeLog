@@ -1,6 +1,22 @@
 # ChangeLog for sys-apps/texinfo
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.110 2009/03/17 10:17:02 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.113 2011/04/23 12:10:31 dirtyepic Exp $
+
+  23 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> texinfo-4.13-r1.ebuild,
+  +files/texinfo-4.13-accentenc-test.patch:
+  Backport fix from upstream for accentenc test (bug #322151).
+
+  12 Feb 2011; Mike Frysinger <vapier@gentoo.org> texinfo-4.13-r1.ebuild:
+  Keep from regenerating man pages since their content is unchanged #354589 by
+  Alexey Sychev.
+
+*texinfo-4.13-r1 (10 Feb 2011)
+
+  10 Feb 2011; Mike Frysinger <vapier@gentoo.org> +texinfo-4.13-r1.ebuild,
+  +files/texinfo-4.13-texi2dvi-regexp-range.patch,
+  +files/texinfo-4.13-xz.patch:
+  Add fixes from upstream for grep regexp ranges #311885 by Martin von Gagern
+  and for XZ support #269742 by Martin Väth.
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org> texinfo-4.13.ebuild:
   m68k stable wrt #259121, thanks to kolla for testing
