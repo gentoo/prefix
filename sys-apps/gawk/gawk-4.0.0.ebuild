@@ -26,12 +26,6 @@ src_prepare() {
 		-e '/^LN =/s:=.*:= $(LN_S):' \
 		-e '/install-exec-hook:/s|$|\nfoo:|' \
 		Makefile.in doc/Makefile.in
-
-	# on solaris, we have stupid /usr/bin/awk, but gcc,
-	# which's preprocessor understands '\'-linebreaks
-# fails to apply, still necessary?
-#	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
-	epatch "${FILESDIR}"/${PN}-3.1.6-mint.patch
 }
 
 src_configure() {
