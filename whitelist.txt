@@ -127,6 +127,7 @@ app-misc/ca-certificates
 app-misc/colordiff
 app-misc/datefudge
 app-misc/delay
+app-misc/detox
 app-misc/devtodo
 app-misc/dvorak7min
 app-misc/fdupes
