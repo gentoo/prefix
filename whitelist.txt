@@ -627,6 +627,7 @@ media-gfx/povray
 media-gfx/pydot
 media-gfx/tachyon
 media-gfx/tgif
+media-gfx/transfig
 media-gfx/ufraw
 media-gfx/uniconvertor
 media-gfx/xli
