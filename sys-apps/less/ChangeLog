@@ -3,6 +3,10 @@
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.130 2011/10/09 19:19:07 vapier Exp $
 
   23 Oct 2011; Fabian Groffen <grobian@gentoo.org>
+  files/less-444-regcmp-libs.patch:
+  Add note about patch being sent upstream
+
+  23 Oct 2011; Fabian Groffen <grobian@gentoo.org>
   +files/less-444-regcmp-libs.patch, less-444.ebuild:
   Use patch for regcmp library search that would be acceptable for upstream.
 

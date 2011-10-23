@@ -2,6 +2,8 @@ When regcmp is in libc (such as on Solaris 10) we obviously find regcmp
 in any library we additionally link against that exists, which adds
 unnecessary library dependencies.
 
+Patch submitted to upstream author by email 2011-10-23
+
 --- configure.ac
 +++ configure.ac
 @@ -30,11 +30,9 @@
