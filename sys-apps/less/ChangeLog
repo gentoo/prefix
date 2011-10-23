@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.130 2011/10/09 19:19:07 vapier Exp $
 
+  23 Oct 2011; Fabian Groffen <grobian@gentoo.org>
+  +files/less-444-regcmp-libs.patch, less-444.ebuild:
+  Use patch for regcmp library search that would be acceptable for upstream.
+
   09 Oct 2011; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
   Only run cd-info when the .cue file exists #285507 by Martin von Gagern.
 

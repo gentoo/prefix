@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-444.ebuild,v 1.1 2011/06/09 18:37:30 vapier Exp $
 
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION="Excellent text file viewer"
 HOMEPAGE="http://www.greenwoodsoftware.com/less/"
@@ -21,18 +21,14 @@ src_unpack() {
 	cd "${S}"
 	cp "${DISTDIR}"/code2color "${S}"/
 	epatch "${FILESDIR}"/code2color.patch
+	epatch "${FILESDIR}"/${P}-regcmp-libs.patch
+	eautoreconf
 }
 
 yesno() { use $1 && echo yes || echo no ; }
 src_compile() {
 	export ac_cv_lib_ncursesw_initscr=$(yesno unicode)
 	export ac_cv_lib_ncurses_initscr=$(yesno !unicode)
-	# Solaris includes regcmp in it's libc, but configure wrongly checks -lgen
-	# and -lintl, which obviously both "provide" regcmp.
-	if [[ ${CHOST} == *-solaris* ]] ; then
-		export ac_cv_lib_gen_regcmp=no
-		export ac_cv_lib_intl_regcmp=no
-	fi
 	econf || die
 	emake || die
 }
