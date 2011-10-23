@@ -42,10 +42,12 @@ src_unpack() {
 			doc/Makefile.sub || die "cross-compile sed failed"
 	fi
 
+	local pfx=
+	use prefix && pfx=" Prefix"
 	cat <<-EOF >> tmac/mdoc.local
-	.ds volume-operating-system Gentoo
-	.ds operating-system Gentoo/${KERNEL}
-	.ds default-operating-system Gentoo/${KERNEL}
+	.ds volume-operating-system Gentoo${pfx}
+	.ds operating-system Gentoo${pfx}/${KERNEL}
+	.ds default-operating-system Gentoo${pfx}/${KERNEL}
 	EOF
 
 	if use linguas_ja ; then
@@ -57,9 +59,9 @@ src_unpack() {
 	# from upstream, #353287, #353377
 	epatch "${FILESDIR}"/groff-1.21-makefile.patch
 	epatch "${FILESDIR}"/groff-1.21-gnulib.patch
-	# make sure we don't get a crappy `g' nameprefix
-	epatch "${FILESDIR}"/groff-1.19.2-no-g-nameprefix.patch
-	AT_M4DIR=m4 eautoreconf
+	# make sure we don't get a crappy `g' nameprefix on UNIX systems with real
+	# troff (GROFF_G macro runs some test to see, its own troff doesn't satisfy)
+	sed -i -e 's/^[ \t]\+g=g$/g=/' configure || die
 }
 
 src_compile() {
