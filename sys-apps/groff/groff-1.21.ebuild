@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.21.ebuild,v 1.8 2011/05/07 18:02:54 armin76 Exp $
 
+EAPI="3"
+
 inherit autotools eutils toolchain-funcs
 
 DESCRIPTION="Text formatter used for man pages"
@@ -24,10 +26,7 @@ DEPEND=">=sys-apps/texinfo-4.7-r1
 		x11-libs/libICE
 	)"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.19.2-man-unicode-dashes.patch #16108 #17580 #121502
 
 	# Make sure we can cross-compile this puppy
@@ -64,13 +63,12 @@ src_unpack() {
 	sed -i -e 's/^[ \t]\+g=g$/g=/' configure || die
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		--with-appresdir="${EPREFIX}"/usr/share/X11/app-defaults \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		$(use_with X x) \
 		$(use linguas_ja && echo --enable-japanese)
-	emake || die
 }
 
 src_install() {

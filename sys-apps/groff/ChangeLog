@@ -3,6 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.120 2011/05/07 18:02:54 armin76 Exp $
 
   23 Oct 2011; Fabian Groffen <grobian@gentoo.org> groff-1.21.ebuild:
+  Convert to EAPI=3 for EPREFIX usage
+
+  23 Oct 2011; Fabian Groffen <grobian@gentoo.org> groff-1.21.ebuild:
   Identify as Gentoo Prefix, and simplify no-g-nameprefix patch to a sed
   statement.
 
