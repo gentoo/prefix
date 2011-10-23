@@ -738,6 +738,7 @@ media-sound/streamripper
 media-sound/twolame
 media-sound/vorbis-tools
 media-video/asfrecorder
+media-video/dirac
 media-video/dvdbackup
 media-video/kdenlive
 media-video/libav
