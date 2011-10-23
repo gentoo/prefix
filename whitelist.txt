@@ -580,6 +580,7 @@ gnome-base/gnome-control-center
 gnome-base/gnome-desktop
 gnome-base/gnome-keyring
 gnome-base/gnome-light
+gnome-base/gnome-menus
 gnome-base/gnome-mime-data
 gnome-base/gnome-panel
 gnome-base/gnome-session
@@ -589,6 +590,7 @@ gnome-base/libbonobo
 gnome-base/libbonoboui
 gnome-base/libgnome
 gnome-base/libgnome-keyring
+gnome-base/libgnomecanvas
 gnome-base/libgnomekbd
 gnome-base/libgnomeprint
 gnome-base/libgnomeprintui
