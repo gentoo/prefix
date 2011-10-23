@@ -856,6 +856,7 @@ sys-apps/ed
 sys-apps/fakeroot
 sys-apps/gptfdisk
 sys-apps/grep
+sys-apps/groff
 sys-apps/hdparm
 sys-apps/help2man
 sys-apps/hexdump-esr
