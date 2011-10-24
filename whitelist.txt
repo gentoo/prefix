@@ -507,6 +507,7 @@ dev-util/patchelf
 dev-util/patchutils
 dev-util/pccts
 dev-util/pida
+dev-util/pkgconfig
 dev-util/pmk
 dev-util/pscan
 dev-util/qt-creator
