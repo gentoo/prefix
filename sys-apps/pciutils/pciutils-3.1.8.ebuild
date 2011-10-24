@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/pciutils/pciutils-3.1.8.ebuild,v 1.1 2011/10/20 00:33:40 vapier Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit eutils multilib toolchain-funcs
 
