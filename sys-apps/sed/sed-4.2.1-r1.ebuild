@@ -34,9 +34,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-4.1.5-alloca.patch
-	epatch "${FILESDIR}"/${PN}-4.1.4-aix-malloc.patch
-	epatch "${FILESDIR}"/${PN}-4.1.5-regex-nobool.patch
 	epatch "${FILESDIR}"/${P}-handle-incomplete-sequences-as-if-they-were-invalid.patch #284403
+	epatch "${FILESDIR}"/${PN}-4.1.4-aix-malloc.patch
 	epatch "${FILESDIR}"/${P}-espipe.patch
 	# don't use sed here if we have to recover a broken host sed
 }

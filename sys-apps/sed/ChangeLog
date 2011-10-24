@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/sed
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.111 2010/11/28 17:21:42 ranger Exp $
+
+  24 Oct 2011; Fabian Groffen <grobian@gentoo.org> sed-4.2.1-r1.ebuild:
+  Drop regex-nobool as it seems no longer necessary
 
   28 Nov 2010; Brent Baude <ranger@gentoo.org> sed-4.2.1.ebuild:
   stable ppc64, bug 340919
