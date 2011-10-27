@@ -1,14 +1,19 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.14.ebuild,v 1.4 2011/08/29 06:12:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.42_pre0702.ebuild,v 1.1 2011/09/01 19:32:02 vapier Exp $
 
-EAPI=2
+case ${PV} in
+*_pre*) UP_PV="${PV%_pre*}-WIP-${PV#*_pre}" ;;
+*)      UP_PV=${PV} ;;
+esac
+
+EAPI="2"
 
 inherit toolchain-funcs eutils multilib
 
 DESCRIPTION="e2fsprogs libraries (common error and subsystem)"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
-SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/e2fsprogs/${PN}-${UP_PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -21,6 +26,8 @@ RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
 	!<sys-fs/e2fsprogs-1.41.8"
 DEPEND="nls? ( sys-devel/gettext )
 	dev-util/pkgconfig"
+
+S=${WORKDIR}/${P%_pre*}
 
 src_prepare() {
 	printf 'all:\n%%:;@:\n' > doc/Makefile.in # don't bother with docs #305613

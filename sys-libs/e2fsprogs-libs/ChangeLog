@@ -1,6 +1,23 @@
 # ChangeLog for sys-libs/e2fsprogs-libs
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.64 2010/12/29 08:12:56 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.68 2011/09/01 19:32:02 vapier Exp $
+
+*e2fsprogs-libs-1.42_pre0702 (01 Sep 2011)
+
+  01 Sep 2011; Mike Frysinger <vapier@gentoo.org>
+  +e2fsprogs-libs-1.42_pre0702.ebuild:
+  Add WIP from upstream #379573 by Sebastian Pipping.
+
+  29 Aug 2011; Jeroen Roovers <jer@gentoo.org> e2fsprogs-libs-1.41.14.ebuild:
+  Stable for HPPA (bug #378039).
+
+  14 Aug 2011; Markus Meier <maekke@gentoo.org> e2fsprogs-libs-1.41.14.ebuild:
+  amd64/arm/x86 stable, bug #378039
+
+  29 Jun 2011; Mike Frysinger <vapier@gentoo.org>
+  e2fsprogs-libs-1.41.12.ebuild, e2fsprogs-libs-1.41.14.ebuild:
+  Tweak doc/Makefile.in stub to work with make-3.82+ #373095 by Torbjörn
+  Svensson.
 
 *e2fsprogs-libs-1.41.14 (29 Dec 2010)
 

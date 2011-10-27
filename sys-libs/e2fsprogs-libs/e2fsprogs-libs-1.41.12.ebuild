@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.12.ebuild,v 1.10 2010/12/04 21:51:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.12.ebuild,v 1.11 2011/06/29 20:45:20 vapier Exp $
 
 EAPI=2
 
@@ -23,7 +23,7 @@ DEPEND="nls? ( sys-devel/gettext )
 	dev-util/pkgconfig"
 
 src_prepare() {
-	echo 'all %:' > doc/Makefile.in # don't bother with docs #305613
+	printf 'all:\n%%:;@:\n' > doc/Makefile.in # don't bother with docs #305613
 	epatch "${FILESDIR}"/${PN}-1.41.12-darwin-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.41.9-irix.patch
 	if [[ ${CHOST} == *-mint* ]]; then
