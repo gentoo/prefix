@@ -1,6 +1,78 @@
 # ChangeLog for media-libs/libsndfile
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.113 2010/06/25 12:07:14 aballier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.130 2011/09/27 19:39:02 ssuominen Exp $
+
+  27 Sep 2011; Samuli Suominen <ssuominen@gentoo.org> libsndfile-1.0.25.ebuild:
+  Use largefile flags when building emul-linux- pkgs wrt #313259 by Marc Joliet
+  and Pacho Ramos
+
+  12 Sep 2011; Alexis Ballier <aballier@gentoo.org> -libsndfile-1.0.23.ebuild,
+  -libsndfile-1.0.24.ebuild:
+  remove old
+
+  12 Sep 2011; Kacper Kowalik <xarthisius@gentoo.org> libsndfile-1.0.25.ebuild:
+  ppc/ppc64 stable wrt #375125
+
+  11 Sep 2011; Raúl Porcel <armin76@gentoo.org> libsndfile-1.0.25.ebuild:
+  alpha/ia64/sh/sparc stable wrt #375125
+
+  11 Sep 2011; Markus Meier <maekke@gentoo.org> libsndfile-1.0.25.ebuild:
+  arm/x86 stable, bug #375125
+
+  09 Sep 2011; Jeroen Roovers <jer@gentoo.org> libsndfile-1.0.25.ebuild:
+  Stable for HPPA (bug #375125).
+
+  07 Sep 2011; Tony Vroon <chainsaw@gentoo.org> libsndfile-1.0.25.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo in
+  security bug #375125 filed by Alexis Ballier.
+
+*libsndfile-1.0.25 (13 Jul 2011)
+
+  13 Jul 2011; Alexis Ballier <aballier@gentoo.org> +libsndfile-1.0.25.ebuild:
+  version bump
+
+*libsndfile-1.0.24 (24 Mar 2011)
+
+  24 Mar 2011; Tim Harder <radhermit@gentoo.org> -libsndfile-1.0.21.ebuild,
+  -libsndfile-1.0.21-r1.ebuild, -libsndfile-1.0.22.ebuild,
+  +libsndfile-1.0.24.ebuild:
+  Version bump and remove old. Update to EAPI 4, add static-libs USE flag, and
+  remove unneeded m4 script removal line.
+
+  23 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> libsndfile-1.0.23.ebuild:
+  ppc/ppc64 stable wrt #355361
+
+  26 Feb 2011; Raúl Porcel <armin76@gentoo.org> libsndfile-1.0.23.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #355361
+
+  26 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libsndfile-1.0.23.ebuild:
+  x86 stable wrt bug #355361
+
+  25 Feb 2011; Jeroen Roovers <jer@gentoo.org> libsndfile-1.0.23.ebuild:
+  Stable for HPPA (bug #355361).
+
+  17 Feb 2011; Markos Chandras <hwoarang@gentoo.org> libsndfile-1.0.23.ebuild:
+  Stable on amd64 wrt bug #355361
+
+*libsndfile-1.0.23 (10 Oct 2010)
+
+  10 Oct 2010; Alexis Ballier <aballier@gentoo.org>
+  +libsndfile-1.0.23.ebuild:
+  version bump
+
+*libsndfile-1.0.22 (05 Oct 2010)
+
+  05 Oct 2010; Tim Harder <radhermit@gentoo.org> +libsndfile-1.0.22.ebuild:
+  Version bump, minor bug fixes. Bump libvorbis dependency, remove unused
+  libtool eclass, update to EAPI=3, use src_prepare instead of src_unpack,
+  and use src_configure instead of src_compile.
+
+*libsndfile-1.0.21-r1 (05 Sep 2010)
+
+  05 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +libsndfile-1.0.21-r1.ebuild:
+  Remove append-lfs-flags (#313259) again wrt #335728.
 
   25 Jun 2010; Alexis Ballier <aballier@gentoo.org>
   -libsndfile-1.0.17-r1.ebuild, -files/libsndfile-1.0.17-autotools.patch,
