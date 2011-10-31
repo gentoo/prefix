@@ -657,13 +657,8 @@ bootstrap_gnu() {
 }
 
 bootstrap_python() {
-	if [[ ${CHOST} == *-interix* ]] ; then
-		PV=2.6.4
-		A=python-${PV}-interix.tar.bz2
-	else
-		PV=2.7.2
-		A=python-${PV}-patched.tar.bz2
-	fi
+	PV=2.7.2
+	A=python-${PV}-patched.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 
 	# don't really want to put this on the mirror, since they are
