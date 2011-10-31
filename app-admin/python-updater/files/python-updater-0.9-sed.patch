@@ -1,0 +1,11 @@
+--- a/python-updater	2011-08-29 07:20:35.000000000 +0000
++++ b/python-updater	2011-08-29 07:21:08.000000000 +0000
+@@ -61,6 +61,8 @@
+ EBUILD="1"
+ source /etc/init.d/functions.sh
+ 
++PATH=/usr/lib/portage/bin/ebuild-helpers:$PATH
++
+ # portage variables
+ PKG_DBDIR=/var/db/pkg
+ 

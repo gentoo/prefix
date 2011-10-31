@@ -30,7 +30,7 @@ src_unpack() {
 	sed -i \
 		-e "s:@GENTOO_PORTAGE_EPREFIX@:${EPREFIX}:g" \
 		-e "s:@GENTOO_PORTAGE_LIBSUFFIX@:$(get_libname):g" \
-		"${PN}" || die "eprefixify failed"
+		"${PN}" || die "prefixifying failed"
 	eend $?
 }
 

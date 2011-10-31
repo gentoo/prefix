@@ -1,6 +1,62 @@
 # ChangeLog for app-admin/python-updater
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.53 2010/07/30 16:58:01 jer Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.66 2011/08/29 10:28:31 naota Exp $
+
+*python-updater-0.9-r1 (29 Aug 2011)
+
+  29 Aug 2011; Naohiro Aota <naota@gentoo.org> +python-updater-0.9-r1.ebuild,
+  +files/python-updater-0.9-sed.patch:
+  Add patch to use ebuild-helper's version of sed
+
+  06 Aug 2011; Markos Chandras <hwoarang@gentoo.org>
+  -files/python-updater-0.7-fix_import.patch,
+  -files/python-updater-0.8-splitdebug.patch, +python-updater-0.9.ebuild,
+  +python-updater-9999.ebuild:
+  Restore ebuilds that I removed by accident
+
+  06 Aug 2011; Markos Chandras <hwoarang@gentoo.org>
+  -python-updater-0.9.ebuild, -python-updater-9999.ebuild:
+  Remove old files
+
+  05 Aug 2011; Markos Chandras <hwoarang@gentoo.org>
+  -python-updater-0.7.ebuild, -python-updater-0.7-r1.ebuild,
+  -python-updater-0.8-r1.ebuild:
+  Remove old ebuild. Requested by Arfrever
+
+  20 Jul 2011; Mark Loeser <halcy0n@gentoo.org> python-updater-0.9.ebuild:
+  Stable for ppc64; bug #371849
+
+  27 Jun 2011; Brent Baude <ranger@gentoo.org> python-updater-0.9.ebuild:
+  Marking python-updater-0.9 ppc for bug 371849
+
+  24 Jun 2011; Raúl Porcel <armin76@gentoo.org> python-updater-0.9.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #371849
+
+  19 Jun 2011; Markus Meier <maekke@gentoo.org> python-updater-0.9.ebuild:
+  arm stable, bug #371849
+
+  18 Jun 2011; Markos Chandras <hwoarang@gentoo.org> python-updater-0.9.ebuild:
+  Stable on amd64 wrt bug #371849
+
+  18 Jun 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  python-updater-0.9.ebuild:
+  x86 stable wrt bug #371849
+
+  17 Jun 2011; Jeroen Roovers <jer@gentoo.org> python-updater-0.9.ebuild:
+  Stable for HPPA (bug #371849).
+
+*python-updater-0.9 (16 May 2011)
+
+  16 May 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-updater-0.9.ebuild:
+  Version bump. Fixed bugs: #303037, #347229, #347897.
+
+*python-updater-0.8-r1 (23 Mar 2011)
+
+  23 Mar 2011; Jeroen Roovers <jer@gentoo.org> -python-updater-0.8.ebuild,
+  +python-updater-0.8-r1.ebuild, +files/python-updater-0.8-splitdebug.patch:
+  Ignore splitdebug directories thanks to patch by Arfrever Frehtes Taifersar
+  Arahesis (bug #308579).
 
   30 Jul 2010; Jeroen Roovers <jer@gentoo.org> python-updater-0.8.ebuild:
   Stable for HPPA (bug #320043).
