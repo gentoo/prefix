@@ -1,6 +1,28 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.121 2011/09/18 22:00:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.125 2011/10/19 19:29:49 tgurr Exp $
+
+*ghostscript-gpl-9.04-r4 (31 Oct 2011)
+
+  31 Oct 2011; Fabian Groffen <grobian@gentoo.org>
+  +files/ghostscript-gpl-9.04-mint.patch, +ghostscript-gpl-9.04-r4.ebuild,
+  ghostscript-gpl-9.04-r3.ebuild:
+  Sync, add patch for FreeMiNT, bug #389081
+
+*ghostscript-gpl-9.04-r4 (19 Oct 2011)
+
+  19 Oct 2011; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-9.04-r4.ebuild:
+  Revbump fixing bug #383831 which affects stable users.
+
+  12 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
+  ghostscript-gpl-9.04-r3.ebuild:
+  ppc/ppc64 stable wrt #382951
+
+  06 Oct 2011; Jeroen Roovers <jer@gentoo.org> ghostscript-gpl-9.04-r3.ebuild:
+  Respect LDFLAGS (bug #367239). Stable for HPPA (bug #382951).
+
+  05 Oct 2011; Markus Meier <maekke@gentoo.org> ghostscript-gpl-9.04-r3.ebuild:
+  arm stable, bug #382951
 
   18 Sep 2011; Markus Meier <maekke@gentoo.org> ghostscript-gpl-9.04-r3.ebuild:
   x86 stable, bug #382951

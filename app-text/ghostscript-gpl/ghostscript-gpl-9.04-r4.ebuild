@@ -1,9 +1,9 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/Attic/ghostscript-gpl-9.04-r3.ebuild,v 1.6 2011/10/12 16:26:50 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.04-r4.ebuild,v 1.1 2011/10/19 19:29:49 tgurr Exp $
 
 EAPI=3
-inherit autotools eutils versionator flag-o-matic
+inherit autotools eutils versionator flag-o-matic toolchain-funcs
 
 DESCRIPTION="Ghostscript is an interpreter for the PostScript language and for PDF"
 HOMEPAGE="http://ghostscript.com/"
@@ -114,6 +114,7 @@ src_prepare() {
 		base/Makefile.in base/*.mak || die "sed failed"
 
 	epatch "${FILESDIR}"/${PN}-9.01-darwin.patch
+	epatch "${FILESDIR}"/${PN}-9.04-mint.patch
 
 	cd "${S}"
 	eautoreconf
@@ -137,6 +138,7 @@ src_prepare() {
 
 src_configure() {
 	local FONTPATH
+	local myconf ijsconf
 	for path in \
 		/usr/share/fonts/urw-fonts \
 		/usr/share/fonts/Type1 \
@@ -150,8 +152,16 @@ src_configure() {
 		FONTPATH="$FONTPATH${FONTPATH:+:}${EPREFIX}$path"
 	done
 
+	if tc-is-static-only ; then
+		myconf="--enable-dynamic=no"
+		ijsconf="--disable-shared"
+	else
+		myconf="--enable-dynamic=yes"
+		ijsconf="--enable-shared"
+	fi
+
 	econf \
-		--enable-dynamic \
+		${myconf} \
 		--enable-freetype \
 		--enable-fontconfig \
 		--disable-compile-inits \
@@ -177,12 +187,13 @@ src_configure() {
 
 	cd "${S}/ijs"
 	econf \
-		--enable-shared \
+		${ijsconf} \
 		$(use_enable static-libs static)
 }
 
 src_compile() {
-	emake -j1 so all || die "emake failed"
+	tc-is-static-only || emake -j1 so || die "emake failed"
+	emake -j1 all || die "emake failed"
 
 	cd "${S}/ijs"
 	emake || die "ijs emake failed"
@@ -190,7 +201,11 @@ src_compile() {
 
 src_install() {
 	# -j1 -> see bug #356303
-	emake -j1 DESTDIR="${D}" install-so install || die "emake install failed"
+	tc-is-static-only || emake -j1 DESTDIR="${D}" install-so || die "emake install failed"
+	emake -j1 DESTDIR="${D}" install || die "emake install failed"
+
+	# some printer drivers still require pstoraster, bug #383831
+	use cups && dosym /usr/libexec/cups/filter/gstoraster /usr/libexec/cups/filter/pstoraster
 
 	if ! use bindist && use djvu ; then
 		dobin gsdjvu || die "dobin gsdjvu install failed"

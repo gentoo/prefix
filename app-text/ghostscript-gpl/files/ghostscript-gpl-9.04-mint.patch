@@ -1,0 +1,273 @@
+--- configure.ac.old	2011-10-11 15:27:01.000000000 +0100
++++ configure.ac	2011-10-11 15:29:24.000000000 +0100
+@@ -618,6 +618,7 @@
+ AC_SUBST(SHARE_ZLIB)
+ AC_SUBST(ZLIBDIR)
+ AC_SUBST(FT_SYS_ZLIB)
++LIBS="$LIBS -lz"
+ 
+ dnl png for the png output device; it also requires zlib
+ LIBPNGDIR=src
+@@ -684,9 +685,23 @@
+ 	    HAVE_LOCAL_LIBTIFF=1
+ 	    SHARE_LIBTIFF=0
+ 	else
+-	    AC_CHECK_LIB(tiff, TIFFOpen,
++            # We MUST NOT use PKG_CHECK_MODULES since it is a) not a standard
++            # autoconf macro and b) requires pkg-config on the system, which is
++            # NOT standard on ANY OS, including Linux!
++            if test "x$PKGCONFIG" != x; then
++                AC_MSG_CHECKING(for libtiff with pkg-config)
++                if $PKGCONFIG --exists libtiff-4; then
++                        AC_MSG_RESULT(yes)
++                        CFLAGS="$CFLAGS `$PKGCONFIG --cflags libtiff-4`"
++                        LIBS="$LIBS `$PKGCONFIG --libs libtiff-4`"
++                        HAVE_SYSTEM_LIBTIFF=1
++                fi
++            fi
++            if test -z "$HAVE_SYSTEM_LIBTIFF"; then
++	    	AC_CHECK_LIB(tiff, TIFFOpen,
+ 		     [AC_CHECK_HEADERS(tiff.h, [HAVE_SYSTEM_LIBTIFF=1;SHARE_LIBTIFF=1])],
+ 		     [], [-ljpeg])
++	    fi
+ 	fi
+ 	if test "x$HAVE_LOCAL_LIBTIFF" = x && test "x$HAVE_SYSTEM_LIBTIFF" = x; then
+ 	    AC_MSG_NOTICE([Could not find a copy of libtiff on your system.
+@@ -696,9 +711,23 @@
+ 	fi
+ 	;;
+     xyes)
+-	AC_CHECK_LIB(tiff, TIFFOpen,
++        # We MUST NOT use PKG_CHECK_MODULES since it is a) not a standard
++        # autoconf macro and b) requires pkg-config on the system, which is
++        # NOT standard on ANY OS, including Linux!
++        if test "x$PKGCONFIG" != x; then
++                AC_MSG_CHECKING(for libtiff with pkg-config)
++                if $PKGCONFIG --exists libtiff-4; then
++                        AC_MSG_RESULT(yes)
++                        CFLAGS="$CFLAGS `$PKGCONFIG --cflags libtiff-4`"
++                        LIBS="$LIBS `$PKGCONFIG --libs libtiff-4`"
++                        HAVE_SYSTEM_LIBTIFF=1
++                fi
++        fi
++        if test -z "$HAVE_SYSTEM_LIBTIFF"; then
++            AC_CHECK_LIB(tiff, TIFFOpen,
+ 		     [AC_CHECK_HEADERS(tiff.h, [HAVE_SYSTEM_LIBTIFF=1;SHARE_LIBTIFF=1])],
+ 		     [], [-ljpeg])
++	fi
+ 	if test "x$HAVE_SYSTEM_LIBTIFF" != x; then
+ 	    SHARE_LIBTIFF=1
+ 	    TIFFDEVS="$TIFFDEVS_ALL"
+@@ -1272,8 +1301,13 @@
+ 		fi
+ 		;;
+ 	PRINTERS)
+-		P_DEVS0="$P_DEVS0 $CANON_DEVS $EPSON_DEVS $HP_DEVS $LEXMARK_DEVS $BROTHER_DEVS $APPLE_DEVS $IBM_DEVS $OKI_DEVS $JAPAN_DEVS $MISC_PDEVS $ETS_HALFTONING_DEVS $OPVP_DEVS"
++		P_DEVS0="$P_DEVS0 $CANON_DEVS $EPSON_DEVS $HP_DEVS $LEXMARK_DEVS $BROTHER_DEVS $APPLE_DEVS $IBM_DEVS $OKI_DEVS $JAPAN_DEVS $MISC_PDEVS $ETS_HALFTONING_DEVS"
+                 IJS_DEVS0="$IJSDEVS"
++		if test x$ac_cv_lib_dl_dlopen != xno -a x$found_iconv != xno; then
++			P_DEVS0="$P_DEVS0 $OPVP_DEVS"
++		else
++			AC_MSG_WARN(Unable to include opvp/oprp driver due to missing or disabled prerequisites...)
++		fi
+ 		;;
+ 	FILES)
+ 		F_DEVS0="$F_DEVS0 $BMP_DEVS $FAX_DEVS $JPEG_DEVS $TIFF_DEVS $PCX_DEVS $PBM_DEVS $PS_DEVS $WTS_HALFTONING_DEVS $MISC_FDEVS"
+@@ -1486,43 +1520,45 @@
+ AC_ARG_ENABLE([dynamic], AC_HELP_STRING([--enable-dynamic],
+     [Enable dynamically loaded drivers]),
+ [
+-	case `uname` in
+-		Linux*|GNU*)
+-		INSTALL_SHARED="install-shared"
+-		if test "x$X_DEVS" != x; then
++	if test "x$enable_dynamic" != xno; then
++		case `uname` in
++			Linux*|GNU*)
++			INSTALL_SHARED="install-shared"
++			if test "x$X_DEVS" != x; then
++				DYNAMIC_DEVS="\$(GLOBJDIR)/X11.so"
++			else
++				DYNAMIC_DEVS=""
++			fi
++			DYNAMIC_FLAGS="-DGS_DEVS_SHARED -DGS_DEVS_SHARED_DIR=\\\"\$(gssharedir)\\\""
++			X11_DEVS=""
++			OPT_CFLAGS="$DYNAMIC_CFLAGS $OPT_CFLAGS"
++			DBG_CFLAGS="$DYNAMIC_CFLAGS $DBG_CFLAGS"
++			;;
++			*BSD)
+ 			DYNAMIC_DEVS="\$(GLOBJDIR)/X11.so"
+-		else
+-			DYNAMIC_DEVS=""
+-		fi
+-		DYNAMIC_FLAGS="-DGS_DEVS_SHARED -DGS_DEVS_SHARED_DIR=\\\"\$(gssharedir)\\\""
+-		X11_DEVS=""
+-		OPT_CFLAGS="$DYNAMIC_CFLAGS $OPT_CFLAGS"
+-		DBG_CFLAGS="$DYNAMIC_CFLAGS $DBG_CFLAGS"
+-		;;
+-		*BSD)
+-		DYNAMIC_DEVS="\$(GLOBJDIR)/X11.so"
+-		DYNAMIC_FLAGS="-DGS_DEVS_SHARED -DGS_DEVS_SHARED_DIR=\\\"\$(gssharedir)\\\""
+-		X11_DEVS=""
+-		OPT_CFLAGS="$DYNAMIC_CFLAGS $OPT_CFLAGS"
+-		DBG_CFLAGS="$DYNAMIC_CFLAGS $DBG_CFLAGS"
+-		;;
+-		Darwin*)
+-		INSTALL_SHARED="install-shared"
+-		DYNAMIC_FLAGS="-DGS_DEVS_SHARED -DGS_DEVS_SHARED_DIR=\\\"\$(gssharedir)\\\""
+-		X11_DEVS=""
+-		OPT_CFLAGS="$DYNAMIC_CFLAGS $OPT_CFLAGS"
+-		DBG_CFLAGS="$DYNAMIC_CFLAGS $DBG_CFLAGS"
+-		;;
+-		SunOS)
+-		DYNAMIC_DEVS="\$(GLOBJDIR)/X11.so"
+-		DYNAMIC_FLAGS="-DGS_DEVS_SHARED -DGS_DEVS_SHARED_DIR=\\\"\$(gssharedir)\\\""
+-		OPT_CFLAGS="$DYNAMIC_CFLAGS $OPT_CFLAGS"
+-		DBG_CFLAGS="$DYNAMIC_CFLAGS $DBG_CFLAGS"
+-		;;
+-		*)
+-		AC_MSG_ERROR([Sorry, dynamic driver support not available on this platform!])
+-		;;
+-	esac
++			DYNAMIC_FLAGS="-DGS_DEVS_SHARED -DGS_DEVS_SHARED_DIR=\\\"\$(gssharedir)\\\""
++			X11_DEVS=""
++			OPT_CFLAGS="$DYNAMIC_CFLAGS $OPT_CFLAGS"
++			DBG_CFLAGS="$DYNAMIC_CFLAGS $DBG_CFLAGS"
++			;;
++			Darwin*)
++			INSTALL_SHARED="install-shared"
++			DYNAMIC_FLAGS="-DGS_DEVS_SHARED -DGS_DEVS_SHARED_DIR=\\\"\$(gssharedir)\\\""
++			X11_DEVS=""
++			OPT_CFLAGS="$DYNAMIC_CFLAGS $OPT_CFLAGS"
++			DBG_CFLAGS="$DYNAMIC_CFLAGS $DBG_CFLAGS"
++			;;
++			SunOS)
++			DYNAMIC_DEVS="\$(GLOBJDIR)/X11.so"
++			DYNAMIC_FLAGS="-DGS_DEVS_SHARED -DGS_DEVS_SHARED_DIR=\\\"\$(gssharedir)\\\""
++			OPT_CFLAGS="$DYNAMIC_CFLAGS $OPT_CFLAGS"
++			DBG_CFLAGS="$DYNAMIC_CFLAGS $DBG_CFLAGS"
++			;;
++			*)
++			AC_MSG_ERROR([Sorry, dynamic driver support not available on this platform!])
++			;;
++		esac
++	fi
+ ])
+ 
+ AC_SUBST(DYNAMIC_CFLAGS)
+--- base/sha2.c.old	2011-08-05 12:12:20.000000000 +0100
++++ base/sha2.c	2011-10-31 11:27:20.946042197 +0000
+@@ -352,7 +352,7 @@
+ static const char *sha2_hex_digits = "0123456789abcdef";
+ 
+ /*** SHA-256: *********************************************************/
+-void SHA256_Init(SHA256_CTX* context) {
++void pSHA256_Init(SHA256_CTX* context) {
+         if (context == (SHA256_CTX*)0) {
+                 return;
+         }
+@@ -535,7 +535,7 @@
+ 
+ #endif /* SHA2_UNROLL_TRANSFORM */
+ 
+-void SHA256_Update(SHA256_CTX* context, const sha2_byte *data, size_t len) {
++void pSHA256_Update(SHA256_CTX* context, const sha2_byte *data, size_t len) {
+         unsigned int	freespace, usedspace;
+ 
+         if (len == 0) {
+@@ -583,7 +583,7 @@
+         usedspace = freespace = 0;
+ }
+ 
+-void SHA256_Final(sha2_byte digest[], SHA256_CTX* context) {
++void pSHA256_Final(sha2_byte digest[], SHA256_CTX* context) {
+         sha2_word32	*d = (sha2_word32*)digest;
+         unsigned int	usedspace;
+ 
+@@ -654,7 +654,7 @@
+         assert(context != (SHA256_CTX*)0);
+ 
+         if (buffer != (char*)0) {
+-                SHA256_Final(digest, context);
++                pSHA256_Final(digest, context);
+ 
+                 for (i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+                         *buffer++ = sha2_hex_digits[(*d & 0xf0) >> 4];
+@@ -672,8 +672,8 @@
+ char* SHA256_Data(const sha2_byte* data, size_t len, char digest[SHA256_DIGEST_STRING_LENGTH]) {
+         SHA256_CTX	context;
+ 
+-        SHA256_Init(&context);
+-        SHA256_Update(&context, data, len);
++        pSHA256_Init(&context);
++        pSHA256_Update(&context, data, len);
+         return SHA256_End(&context, digest);
+ }
+ 
+--- base/sha2.h.old	2011-08-05 12:12:20.000000000 +0100
++++ base/sha2.h	2011-10-31 11:21:13.643830418 +0000
+@@ -115,9 +115,9 @@
+ #ifndef NOPROTO
+ #ifdef SHA2_USE_INTTYPES_H
+ 
+-void SHA256_Init(SHA256_CTX *);
+-void SHA256_Update(SHA256_CTX*, const uint8_t*, size_t);
+-void SHA256_Final(uint8_t[SHA256_DIGEST_LENGTH], SHA256_CTX*);
++void pSHA256_Init(SHA256_CTX *);
++void pSHA256_Update(SHA256_CTX*, const uint8_t*, size_t);
++void pSHA256_Final(uint8_t[SHA256_DIGEST_LENGTH], SHA256_CTX*);
+ char* SHA256_End(SHA256_CTX*, char[SHA256_DIGEST_STRING_LENGTH]);
+ char* SHA256_Data(const uint8_t*, size_t, char[SHA256_DIGEST_STRING_LENGTH]);
+ 
+@@ -135,9 +135,9 @@
+ 
+ #else /* SHA2_USE_INTTYPES_H */
+ 
+-void SHA256_Init(SHA256_CTX *);
+-void SHA256_Update(SHA256_CTX*, const u_int8_t*, size_t);
+-void SHA256_Final(u_int8_t[SHA256_DIGEST_LENGTH], SHA256_CTX*);
++void pSHA256_Init(SHA256_CTX *);
++void pSHA256_Update(SHA256_CTX*, const u_int8_t*, size_t);
++void pSHA256_Final(u_int8_t[SHA256_DIGEST_LENGTH], SHA256_CTX*);
+ char* SHA256_End(SHA256_CTX*, char[SHA256_DIGEST_STRING_LENGTH]);
+ char* SHA256_Data(const u_int8_t*, size_t, char[SHA256_DIGEST_STRING_LENGTH]);
+ 
+@@ -157,9 +157,9 @@
+ 
+ #else /* NOPROTO */
+ 
+-void SHA256_Init();
+-void SHA256_Update();
+-void SHA256_Final();
++void pSHA256_Init();
++void pSHA256_Update();
++void pSHA256_Final();
+ char* SHA256_End();
+ char* SHA256_Data();
+ 
+--- base/ssha2.c.old	2011-08-05 12:12:20.000000000 +0100
++++ base/ssha2.c	2011-10-31 11:21:28.562319068 +0000
+@@ -28,7 +28,7 @@
+ {
+     stream_SHA256E_state *const ss = (stream_SHA256E_state *) st;
+ 
+-    SHA256_Init(&ss->sha256);
++    pSHA256_Init(&ss->sha256);
+     return 0;
+ }
+ 
+@@ -41,12 +41,12 @@
+     int status = 0;
+ 
+     if (pr->ptr < pr->limit) {
+-        SHA256_Update(&ss->sha256, pr->ptr + 1, pr->limit - pr->ptr);
++        pSHA256_Update(&ss->sha256, pr->ptr + 1, pr->limit - pr->ptr);
+         pr->ptr = pr->limit;
+     }
+     if (last) {
+         if (pw->limit - pw->ptr >= 32) {
+-            SHA256_Final(pw->ptr + 1, &ss->sha256);
++            pSHA256_Final(pw->ptr + 1, &ss->sha256);
+             pw->ptr += 32;
+             status = EOFC;
+         } else
