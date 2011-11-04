@@ -1217,6 +1217,7 @@ dev-java/ant-nodeps
 dev-java/ant-owanttask
 dev-java/ant-swing
 dev-java/ant-trax
+dev-java/antlr
 dev-java/apple-jdk-bin
 dev-java/asm
 dev-java/aspectwerkz
