@@ -1,6 +1,31 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.486 2011/10/06 08:52:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.489 2011/10/18 14:28:10 jer Exp $
+
+  18 Oct 2011; Jeroen Roovers <jer@gentoo.org> glib-2.28.8.ebuild:
+  Stable for HPPA (bug #385699).
+
+*glib-2.30.1-r1 (16 Oct 2011)
+
+  16 Oct 2011; Pacho Ramos <pacho@gentoo.org> +glib-2.30.1-r1.ebuild,
+  +files/glib-2.30.1-homedir-env.patch, metadata.xml:
+  Fix python ddependency issues as it's needed in some cases, bug #384853 (by
+  Alexandre Rostovtsev and Arfrever Frehtes Taifersar Arahesis); depend more
+  scrictly on dev-util/gdbus-codegen to prevent unwanted mixes (and also help
+  maintainers to remember both need to be bumped at the same time); utils die
+  themselves with eapi4 (drop unneeded dies then); handle the G_HOME
+  environment variable to override the passwd entry, upstream bug #142568;
+  handle the G_HOME environment variable to override the passwd entry, upstream
+  bug #142568 (by Debian folks);
+  workaround-gio-test-failure-without-userpriv.patch looks to be no longer
+  needed as upstream bug should be fixed; assert-msg-test prefers to have gdb
+  installed when running test.
+
+*glib-2.30.1 (16 Oct 2011)
+
+  16 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> +glib-2.30.1.ebuild,
+  +files/glib-2.30.1-external-gdbus-codegen.patch:
+  Version bump.
 
   06 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> glib-2.30.0.ebuild:
   export LIBFFI_CFLAGS and LIBFFI_LIBS if dev-util/pkgconfig is not installed
