@@ -1,6 +1,36 @@
 # ChangeLog for dev-libs/expat
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.97 2010/03/09 22:04:59 josejx Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.106 2011/10/23 12:55:47 armin76 Exp $
+
+  23 Oct 2011; Raúl Porcel <armin76@gentoo.org> expat-2.0.1-r5.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #383361
+
+  05 Oct 2011; Markus Meier <maekke@gentoo.org> expat-2.0.1-r5.ebuild:
+  arm stable, bug #383361
+
+  21 Sep 2011; Jeroen Roovers <jer@gentoo.org> expat-2.0.1-r5.ebuild:
+  Stable for HPPA (bug #383361).
+
+  20 Sep 2011; Andreas Schuerch <nativemad@gentoo.org> expat-2.0.1-r5.ebuild:
+  x86 stable, thanks JD. Bug 383361
+
+  18 Sep 2011; Markos Chandras <hwoarang@gentoo.org> expat-2.0.1-r5.ebuild:
+  Stable on amd64 wrt bug #383361
+
+*expat-2.0.1-r5 (01 Aug 2011)
+
+  01 Aug 2011; Samuli Suominen <ssuominen@gentoo.org> +expat-2.0.1-r5.ebuild:
+  Build libexpatu (unicode) and libexpatw (unicode wchar_t) libraries wrt
+  #306655 by Gilles Dartiguelongue and Tiziano Müller
+
+*expat-2.0.1-r4 (29 Jul 2011)
+
+  29 Jul 2011; Samuli Suominen <ssuominen@gentoo.org> +expat-2.0.1-r4.ebuild:
+  Remove libtool and static files with USE="-static-libs"
+
+  11 Jul 2011; Alexis Ballier <aballier@gentoo.org> expat-2.0.1-r3.ebuild:
+  move libexpat.so.1 to /lib with FreeBSD libc as thats now a library required
+  by libs in /lib and programs in /sbin
 
   09 Mar 2010; Joseph Jezak <josejx@gentoo.org> expat-2.0.1-r3.ebuild:
   Marked ppc stable for bug #303727.
