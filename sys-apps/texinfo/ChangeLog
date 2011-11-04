@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.113 2011/04/23 12:10:31 dirtyepic Exp $
 
+  04 Nov 2011; Fabian Groffen <grobian@gentoo.org> texinfo-4.13-r1.ebuild:
+  Move up Prefix patches, since they cause regeneration of manpages too
+
   23 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> texinfo-4.13-r1.ebuild,
   +files/texinfo-4.13-accentenc-test.patch:
   Backport fix from upstream for accentenc test (bug #322151).

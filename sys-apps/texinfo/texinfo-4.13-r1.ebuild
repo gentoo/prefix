@@ -23,14 +23,14 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PN}-4.11-prefix.patch # needs touch below
+	epatch "${FILESDIR}"/${P}-mint.patch
+
 	epatch "${FILESDIR}"/${P}-xz.patch #269742
 	touch doc/install-info.1 #354589
 	epatch "${FILESDIR}"/${P}-texi2dvi-regexp-range.patch #311885
 	touch doc/{texi2dvi,texi2pdf,pdftexi2dvi}.1 #354589
 	epatch "${FILESDIR}"/${P}-accentenc-test.patch
-
-	epatch "${FILESDIR}"/${PN}-4.11-prefix.patch
-	epatch "${FILESDIR}"/${P}-mint.patch
 }
 
 src_configure() {
