@@ -81,7 +81,7 @@ pkg_nofetch() {
 src_unpack() {
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		for i in ${A}; do
-			rm -f "${S}"/jre/{LICENSE,README} "${S}"/{LICENSE,README.html}
+			rm -f "${S}"/jre/{LICENSE,README} "${S}"/LICENSE
 			# don't die on unzip, it always "fails"
 			unzip "${DISTDIR}"/${i}
 		done
@@ -90,7 +90,7 @@ src_unpack() {
 			rm ${f}
 		done
 	else
-		sh ${DISTDIR}/${A} --accept-license --unpack || die "Failed to unpack"
+		sh "${DISTDIR}"/${A} --accept-license --unpack || die "Failed to unpack"
 		sh "${DISTDIR}"/${A} -noregister || die "Failed to unpack"
 	fi
 }
