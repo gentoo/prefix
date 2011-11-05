@@ -63,11 +63,11 @@ pkg_nofetch() {
 	elif use x86-solaris; then
 		AT=${SOL_X86_AT}
 	elif use x64-solaris; then
-		AT=${SOL_AMD64_AT}
+		AT="${SOL_X86_AT} and ${SOL_AMD64_AT}"
 	elif use sparc-solaris; then
 		AT=${SOL_SPARC_AT}
 	elif use sparc64-solaris; then
-		AT=${SOL_SPARCv9_AT}
+		AT="${SOL_SPARC_AT} and ${SOL_SPARCv9_AT}"
 	fi
 
 	einfo "Due to Oracle no longer providing the distro-friendly DLJ bundles, the package has become fetch restricted again."

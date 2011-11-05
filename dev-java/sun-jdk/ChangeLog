@@ -3,6 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.309 2011/10/30 14:17:41 caster Exp $
 
   05 Nov 2011; Fabian Groffen <grobian@gentoo.org> sun-jdk-1.6.0.29.ebuild:
+  Fix fetch instructions for 64-bits Solaris targets
+
+  05 Nov 2011; Fabian Groffen <grobian@gentoo.org> sun-jdk-1.6.0.29.ebuild:
   Reduce differences with gx86, functionally no changes
 
   30 Oct 2011; Vlastimil Babka <caster@gentoo.org> sun-jdk-1.6.0.27.ebuild,
