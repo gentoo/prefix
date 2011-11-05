@@ -1,6 +1,50 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.300 2011/02/21 18:35:33 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.309 2011/10/30 14:17:41 caster Exp $
+
+  30 Oct 2011; Vlastimil Babka <caster@gentoo.org> sun-jdk-1.6.0.27.ebuild,
+  sun-jdk-1.6.0.29.ebuild:
+  Change icedtea6-bin to icedtea-bin:6.
+
+  30 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> sun-jdk-1.6.0.29.ebuild:
+  x86 stable wrt bug #387851
+
+  22 Oct 2011; Vlastimil Babka <caster@gentoo.org> sun-jdk-1.6.0.29.ebuild:
+  Simplify unpacking.
+
+*sun-jdk-1.6.0.29 (22 Oct 2011)
+
+  22 Oct 2011; Vlastimil Babka <caster@gentoo.org> +sun-jdk-1.6.0.29.ebuild,
+  +files/sun-jdk-1.6.env-r1, +files/fontconfig.Gentoo.properties-r1:
+  Version bug, security bug #387851. Unfortunately had to change license and
+  make the package fetch restricted due to the DJL binaries no longer provided.
+  Free alternatives are dev-java/icedtea6-bin and dev-java/icedtea. Added
+  prefix support. Thanks to Ralph Sennhauser (sera) for the ebuild.
+
+*sun-jdk-1.6.0.27 (01 Sep 2011)
+
+  01 Sep 2011; Vlastimil Babka <caster@gentoo.org> -sun-jdk-1.6.0.24.ebuild,
+  -sun-jdk-1.6.0.25.ebuild, +sun-jdk-1.6.0.27.ebuild:
+  Version bump. Due to DLJ bundles no longer provided by Oracle, the package
+  changes license to Oracle-BCLA-JavaSE and is fetch restricted again.
+  Alternatives are dev-java/icedtea6-bin and dev-java/icedtea
+
+  18 Jun 2011; Markos Chandras <hwoarang@gentoo.org> sun-jdk-1.6.0.26.ebuild:
+  Stable on amd64 wrt bug #370559
+
+  10 Jun 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> sun-jdk-1.6.0.26.ebuild:
+  x86 stable wrt security bug #370559
+
+*sun-jdk-1.6.0.26 (08 Jun 2011)
+
+  08 Jun 2011; Vlastimil Babka <caster@gentoo.org> +sun-jdk-1.6.0.26.ebuild:
+  Version bump, security bug #370559.
+
+*sun-jdk-1.6.0.25 (26 Apr 2011)
+
+  26 Apr 2011; Vlastimil Babka <caster@gentoo.org> -sun-jdk-1.6.0.23.ebuild,
+  +sun-jdk-1.6.0.25.ebuild:
+  Version bump.
 
   21 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
   sun-jdk-1.6.0.24.ebuild:
