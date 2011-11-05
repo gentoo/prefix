@@ -22,11 +22,11 @@ JDK_URI="http://www.oracle.com/technetwork/java/javase/downloads/jdk-${MY_PV}-do
 DESCRIPTION="Oracle's Java SE Development Kit"
 HOMEPAGE="http://www.oracle.com/technetwork/java/javase/"
 SRC_URI="x86? ( ${X86_AT} )
-		amd64? ( ${AMD64_AT} )
-		x86-solaris? ( ${SOL_X86_AT} )
-		x64-solaris? ( ${SOL_X86_AT} ${SOL_AMD64_AT} )
-		sparc-solaris? ( ${SOL_SPARC_AT} )
-		sparc64-solaris? ( ${SOL_SPARC_AT} ${SOL_SPARCv9_AT} )"
+	amd64? ( ${AMD64_AT} )
+	x86-solaris? ( ${SOL_X86_AT} )
+	x64-solaris? ( ${SOL_X86_AT} ${SOL_AMD64_AT} )
+	sparc-solaris? ( ${SOL_SPARC_AT} )
+	sparc64-solaris? ( ${SOL_SPARC_AT} ${SOL_SPARCv9_AT} )"
 
 LICENSE="Oracle-BCLA-JavaSE"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
@@ -136,7 +136,7 @@ src_install() {
 	fi
 
 	# Remove empty dirs we might have copied
-	rmdir -v $(find "${ED}" -type d -empty) || die
+	rmdir -v $(find "${D}" -type d -empty) || die
 
 	dodoc COPYRIGHT
 	dohtml README.html
