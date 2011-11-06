@@ -1,6 +1,19 @@
 # ChangeLog for app-text/xpdf
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.192 2011/02/17 13:50:24 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.196 2011/10/18 21:56:02 dilfridge Exp $
+
+  18 Oct 2011; Andreas K. Huettel <dilfridge@gentoo.org> xpdf-3.02-r4.ebuild:
+  Require poppler-0.18 because of bug 384009
+
+  18 Oct 2011; Andreas K. Huettel <dilfridge@gentoo.org> xpdf-3.02-r4.ebuild:
+  Drop to ~arch so we can get rid of poppler-0.14; probably this is not one of
+  the most popular packages anymore.
+
+  03 Oct 2011; Tomáš Chvátal <scarabeus@gentoo.org> xpdf-3.02-r4.ebuild:
+  Bump the patchset version to work with poppler 0.18.0
+
+  03 May 2011; Tomáš Chvátal <scarabeus@gentoo.org> xpdf-9999.ebuild:
+  Bump eapi and use git-2 eclass.
 
   17 Feb 2011; Alexis Ballier <aballier@gentoo.org> xpdf-3.02-r4.ebuild,
   +files/xpdf-3.02-poppler-0.16.patch:

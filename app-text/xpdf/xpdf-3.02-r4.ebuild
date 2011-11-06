@@ -1,15 +1,15 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r4.ebuild,v 1.9 2011/02/17 13:50:24 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r4.ebuild,v 1.12 2011/10/18 21:56:02 dilfridge Exp $
 
-EAPI=2
+EAPI=4
 
 inherit fdo-mime gnome2 eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="An X Viewer for PDF Files"
 HOMEPAGE="http://www.foolabs.com/xpdf/"
 SRC_URI="http://gentooexperimental.org/~genstef/dist/${P}-poppler-20071121.tar.bz2
-	mirror://gentoo/xpdf-3.02-patchset-02.tar.bz2"
+	http://dev.gentoo.org/~scarabeus/xpdf-3.02-patchset-03.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -17,7 +17,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 IUSE="nodrm"
 
 RDEPEND="
-	>=app-text/poppler-0.12.3-r3[xpdf-headers]
+	>=app-text/poppler-0.18.0[xpdf-headers]
 	>=x11-libs/openmotif-2.3:0
 	x11-libs/libX11
 	x11-libs/libXpm
@@ -58,18 +58,18 @@ src_configure() {
 
 src_compile() {
 	tc-export CXX
-	emake || die
+	emake
 }
 
 src_install() {
-	dobin xpdf || die
-	doman xpdf.1 || die
-	insinto /etc || die
-	doins "${PATCHDIR}"/xpdfrc || die
-	dodoc README ANNOUNCE CHANGES || die
-	doicon "${PATCHDIR}"/xpdf.png || die
-	insinto /usr/share/applications || die
-	doins "${PATCHDIR}"/xpdf.desktop || die
+	dobin xpdf
+	doman xpdf.1
+	insinto /etc
+	doins "${PATCHDIR}"/xpdfrc
+	dodoc README ANNOUNCE CHANGES
+	doicon "${PATCHDIR}"/xpdf.png
+	insinto /usr/share/applications
+	doins "${PATCHDIR}"/xpdf.desktop
 }
 
 pkg_preinst() {
