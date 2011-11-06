@@ -1,6 +1,15 @@
 # ChangeLog for gnome-base/libglade
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.132 2011/01/27 11:49:02 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.135 2011/09/29 16:50:18 pacho Exp $
+
+  29 Sep 2011; Pacho Ramos <pacho@gentoo.org> libglade-2.6.4.ebuild:
+  Drop DEPRECATED flags, bug #384775 by Ian Abbott.
+
+  22 Apr 2011; Gilles Dartiguelongue <eva@gentoo.org> libglade-2.6.4.ebuild:
+  Ensure tests are run, bug #354631.
+
+  10 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> libglade-2.6.4.ebuild:
+  USE="static-libs" and punt useless libtool file.
 
   27 Jan 2011; Pacho Ramos <pacho@gentoo.org> libglade-2.6.4.ebuild:
   Don't build tests when unneeded (bug #226227), bump to eapi3, set GCONF_DEBUG
