@@ -1,6 +1,67 @@
 # ChangeLog for sys-devel/libtool
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.182 2010/11/29 15:12:34 flameeyes Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.196 2011/10/20 03:39:19 vapier Exp $
+
+*libtool-2.4-r4 (20 Oct 2011)
+
+  20 Oct 2011; Mike Frysinger <vapier@gentoo.org> -libtool-2.4-r3.ebuild,
+  +libtool-2.4-r4.ebuild, libtool-2.4.2.ebuild, libtool-9999.ebuild:
+  Have system libtool build static objs by default even when USE=-static-libs
+  #336167#20.
+
+*libtool-2.4.2 (18 Oct 2011)
+
+  18 Oct 2011; Mike Frysinger <vapier@gentoo.org> +libtool-2.4.2.ebuild:
+  Version bump.
+
+  04 Oct 2011; Mike Frysinger <vapier@gentoo.org> libtool-2.2.10.ebuild,
+  libtool-2.4-r1.ebuild, libtool-2.4-r3.ebuild, libtool-9999.ebuild:
+  Turn binutils dep into a blocker, and put it behind USE=test.
+
+*libtool-2.4-r3 (24 Sep 2011)
+
+  24 Sep 2011; Mike Frysinger <vapier@gentoo.org> -libtool-2.4-r2.ebuild,
+  +libtool-2.4-r3.ebuild, libtool-9999.ebuild:
+  Restore libltdl.la and add a comment noting its requirement to prevent future
+  screw-ups #383929 by Francesco Riosa.
+
+*libtool-2.4-r2 (23 Sep 2011)
+
+  23 Sep 2011; Mike Frysinger <vapier@gentoo.org> +libtool-2.4-r2.ebuild,
+  +files/libtool-2.4-openmp.patch, libtool-9999.ebuild:
+  Unify live/release ebuilds again. Add patch from upstream for openmp when
+  linking #349078 by Justin Lecher. Add USE=static-libs support #379047 by
+  Agostino Sarubbo.
+
+  21 Sep 2011; Michał Górny <mgorny@gentoo.org> libtool-9999.ebuild:
+  Migrate to git-2.
+
+  22 Aug 2011; Mike Frysinger <vapier@gentoo.org> libtool-2.2.10.ebuild,
+  libtool-2.4-r1.ebuild:
+  Use new WANT_LIBTOOL=none knob to disable recursive self depend.
+
+  13 Aug 2011; Raúl Porcel <armin76@gentoo.org> libtool-2.4-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #375579
+
+  02 Aug 2011; Jeroen Roovers <jer@gentoo.org> libtool-2.4-r1.ebuild:
+  Stable for HPPA (bug #375579).
+
+  01 Aug 2011; Markus Meier <maekke@gentoo.org> libtool-2.4-r1.ebuild:
+  amd64/arm/x86 stable, bug #375579
+
+  26 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> libtool-2.4-r1.ebuild:
+  ppc/ppc64 stable wrt #375579
+
+  22 Feb 2011; Mike Frysinger <vapier@gentoo.org> libtool-2.2.10.ebuild,
+  libtool-2.4-r1.ebuild:
+  Drop back down to EAPI=2 to ease upgrades #356089 by Chí-Thanh Christopher
+  Nguyễn.
+
+  19 Feb 2011; Mike Frysinger <vapier@gentoo.org> libtool-2.4-r1.ebuild:
+  Block even newer versions of automake #355551 by Tim Yamin.
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> libtool-1.3.5.ebuild:
+  Drop to ~mips
 
 *libtool-2.4-r1 (29 Nov 2010)
 
