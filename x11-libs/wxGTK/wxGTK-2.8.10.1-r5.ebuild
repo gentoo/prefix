@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.10.1-r5.ebuild,v 1.9 2010/04/09 03:52:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.10.1-r5.ebuild,v 1.11 2011/02/27 14:32:40 dirtyepic Exp $
 
 EAPI=2
 
@@ -24,16 +24,16 @@ RDEPEND="
 	odbc?   ( dev-db/unixODBC )
 	sdl?    ( media-libs/libsdl )
 	X?  (
-		>=x11-libs/gtk+-2.4
-		>=dev-libs/glib-2.4
-		media-libs/jpeg
+		>=x11-libs/gtk+-2.4:2
+		>=dev-libs/glib-2.4:2
+		virtual/jpeg
 		media-libs/tiff
 		x11-libs/libSM
 		x11-libs/libXinerama
 		x11-libs/libXxf86vm
-		gnome?  ( gnome-base/libgnomeprintui )
+		gnome?  ( gnome-base/libgnomeprintui:2.2 )
 		gstreamer? (
-			>=gnome-base/gconf-2.0
+			gnome-base/gconf:2
 			>=media-libs/gstreamer-0.10 )
 		opengl? ( virtual/opengl )
 		)

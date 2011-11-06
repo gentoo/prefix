@@ -1,6 +1,74 @@
 # ChangeLog for x11-libs/wxGTK
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.254 2010/06/29 01:06:19 dirtyepic Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.272 2011/10/25 04:06:33 dirtyepic Exp $
+
+  25 Oct 2011; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.9.1.1.ebuild:
+  Apply libpng-1.5 patch to 2.9 as well.
+
+  09 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> wxGTK-2.8.12.0.ebuild,
+  wxGTK-2.9.1.1.ebuild:
+  Missing gst-plugins-base depend for -lgstinterfaces-0.10 checked by
+  configure.in.
+
+  15 Sep 2011; Samuli Suominen <ssuominen@gentoo.org> wxGTK-2.6.4.0-r6.ebuild:
+  Fix building with libpng15 wrt #380833 by Diego Elio Pettenò
+
+  16 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> wxGTK-2.8.11.0.ebuild:
+  ppc64 stable wrt #364203
+
+  28 Jun 2011; Brent Baude <ranger@gentoo.org> wxGTK-2.8.11.0.ebuild:
+  Marking wxGTK-2.8.11.0 ppc for bug 364203
+
+  04 Jun 2011; Raúl Porcel <armin76@gentoo.org> wxGTK-2.8.11.0.ebuild:
+  alpha/ia64/sh/sparc stable wrt #364203
+
+  21 May 2011; Thomas Kahle <tomka@gentoo.org> wxGTK-2.8.11.0.ebuild:
+  x86 stable per bug 364203
+
+  13 May 2011; Markus Meier <maekke@gentoo.org> wxGTK-2.8.11.0.ebuild:
+  arm stable, bug #364203
+
+  27 Apr 2011; Christoph Mende <angelos@gentoo.org> wxGTK-2.8.11.0.ebuild:
+  Stable on amd64 wrt bug #364203
+
+  26 Apr 2011; Jeroen Roovers <jer@gentoo.org> wxGTK-2.8.11.0.ebuild:
+  Stable for HPPA (bug #364203).
+
+*wxGTK-2.8.12.0 (20 Apr 2011)
+
+  20 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> +wxGTK-2.8.12.0.ebuild:
+  Version bump (bug #363319).
+
+  29 Mar 2011; Christoph Mende <angelos@gentoo.org> wxGTK-2.6.4.0-r6.ebuild:
+  Fix gtk+ slot deps
+
+  19 Mar 2011; Ryan Hill <dirtyepic@gentoo.org>
+  +files/wxGTK-2.8.11-libpng15.patch, wxGTK-2.8.11.0.ebuild:
+  Add patch fixing build with libpng-1.5 (bug #355035).
+
+  27 Feb 2011; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.8.10.1-r5.ebuild,
+  wxGTK-2.8.11.0.ebuild, wxGTK-2.9.1.1.ebuild:
+  Slot gnome stuff.
+
+  26 Feb 2011; Kevin McCarthy <signals@gentoo.org> wxGTK-2.6.4.0-r6.ebuild:
+  Updated depends from media-libs/jpeg to virtual/jpeg
+
+*wxGTK-2.9.1.1 (23 Jan 2011)
+
+  23 Jan 2011; Ryan Hill <dirtyepic@gentoo.org> -wxGTK-2.9.1.ebuild,
+  +wxGTK-2.9.1.1.ebuild, +files/wxGTK-2.9.1.1-collision.patch,
+  -files/wxGTK-2.9.1-collision.patch:
+  Version bump. Remove old.
+
+  23 Nov 2010; Justin Lecher <jlec@gentoo.org> wxGTK-2.8.10.1-r5.ebuild,
+  wxGTK-2.8.11.0.ebuild, wxGTK-2.9.1.ebuild:
+  Moved to virtual/jpeg, tested by me: compilation and runtime
+
+*wxGTK-2.9.1 (14 Aug 2010)
+
+  14 Aug 2010; Ryan Hill <dirtyepic@gentoo.org> +wxGTK-2.9.1.ebuild,
+  +files/wxGTK-2.9.1-collision.patch:
+  Add 2.9 development branch (bug #298387 by sping).
 
   29 Jun 2010; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.8.11.0.ebuild:
   Really make tiff dependency optional (bug #326061).

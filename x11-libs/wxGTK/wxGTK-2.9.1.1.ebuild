@@ -1,39 +1,37 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.11.0.ebuild,v 1.12 2011/07/16 09:32:34 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.9.1.1.ebuild,v 1.4 2011/10/25 04:06:33 dirtyepic Exp $
 
-EAPI="2"
+EAPI="3"
 
-inherit eutils versionator flag-o-matic multilib
+inherit eutils flag-o-matic
 
 DESCRIPTION="GTK+ version of wxWidgets, a cross-platform C++ GUI toolkit."
 HOMEPAGE="http://wxwidgets.org/"
 
-BASE_PV="$(get_version_component_range 1-3)"
-BASE_P="${PN}-${BASE_PV}"
-
 # we use the wxPython tarballs because they include the full wxGTK sources and
 # docs, and are released more frequently than wxGTK.
 SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
+#	doc? ( mirror://sourceforge/wxpython/wxPython-docs-${PV}.tar.bz2 )"
 
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="aqua X doc debug gnome gstreamer odbc opengl pch sdl tiff"
+IUSE="aqua X doc debug gnome gstreamer opengl pch sdl tiff"
 
 RDEPEND="
 	dev-libs/expat
-	odbc?   ( dev-db/unixODBC )
 	sdl?    ( media-libs/libsdl )
 	X?  (
-		>=x11-libs/gtk+-2.4:2
-		>=dev-libs/glib-2.4:2
+		>=x11-libs/gtk+-2.18:2
+		>=dev-libs/glib-2.22:2
 		virtual/jpeg
 		x11-libs/libSM
 		x11-libs/libXinerama
 		x11-libs/libXxf86vm
-		gnome?  ( gnome-base/libgnomeprintui:2.2 )
+		gnome? ( gnome-base/libgnomeprintui:2.2 )
 		gstreamer? (
 			gnome-base/gconf:2
-			>=media-libs/gstreamer-0.10 )
+			>=media-libs/gstreamer-0.10
+			>=media-libs/gst-plugins-base-0.10 )
 		opengl? ( virtual/opengl )
 		tiff?   ( media-libs/tiff )
 		)
@@ -44,37 +42,31 @@ RDEPEND="
 		)"
 
 DEPEND="${RDEPEND}
-		dev-util/pkgconfig
-		X?  (
-			x11-proto/xproto
-			x11-proto/xineramaproto
-			x11-proto/xf86vidmodeproto
-			)"
+	dev-util/pkgconfig
+	X?  (
+		x11-proto/xproto
+		x11-proto/xineramaproto
+		x11-proto/xf86vidmodeproto
+		)"
+#		test? ( dev-util/cppunit )
 
-PDEPEND=">=app-admin/eselect-wxwidgets-0.7"
+PDEPEND=">=app-admin/eselect-wxwidgets-1.4"
 
-SLOT="2.8"
+SLOT="2.9"
 LICENSE="wxWinLL-3
 		GPL-2
-		odbc?	( LGPL-2 )
 		doc?	( wxWinFDL-3 )"
 
 S="${WORKDIR}/wxPython-src-${PV}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.8.11-unicode-odbc.patch
-	epatch "${FILESDIR}"/${PN}-2.8.11-collision.patch
-	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch              # Bug #174874
-	epatch "${FILESDIR}"/${PN}-2.8.10.1-odbc-defines.patch     # Bug #310923
-	epatch "${FILESDIR}"/${PN}-2.8.11-libpng15.patch           # Bug #355035
+	epatch "${FILESDIR}"/${P}-collision.patch
+	epatch "${FILESDIR}"/${PN}-2.8.11-libpng15.patch
 
-# this patch needs an eautoreconf which mysteriously breaks the OSX build
-#	epatch "${FILESDIR}"/${PN}-2.8.9.2-interix.patch
-
-	sed -i \
-		-e '/^SEARCH_INCLUDE=/s:^:SEARCH_INCLUDE="'"${EPREFIX}"'/usr/include"\nX_DISABLE_:' \
-		-e '/^SEARCH_LIB=/s/\$wx_cv_std_libpath/'"$(get_libdir)"'/' \
-		configure || die
+#	sed -i \
+#		-e '/^SEARCH_INCLUDE=/s:^:SEARCH_INCLUDE="'"${EPREFIX}"'/usr/include"\nX_DISABLE_:' \
+#		-e '/^SEARCH_LIB=/s/\$wx_cv_std_libpath/'"$(get_libdir)"'/' \
+#		configure || die
 }
 
 src_configure() {
@@ -84,16 +76,22 @@ src_configure() {
 
 	# X independent options
 	myconf="--enable-compat26
-			--enable-shared
-			--enable-unicode
-			--with-regex=builtin
 			--with-zlib=sys
 			--with-expat=sys
-			$(use_enable debug)
 			$(use_enable pch precomp-headers)
-			$(use_with odbc odbc sys)
-			$(use_with sdl)
-			$(use_with tiff libtiff sys)"
+			$(use_with sdl)"
+
+	# debug in >=2.9
+	#   if USE="debug" set max debug level (wxDEBUG_LEVEL=2)
+	#   if USE="-debug" use the default (wxDEBUG_LEVEL=1)
+	#   do not use --disable-debug
+	# this means we always build debugging features into the library, and
+	# apps can disable these features by building w/ -NDEBUG or wxDEBUG_LEVEL_0.
+	# wxDEBUG_LEVEL=2 enables assertions that have expensive runtime costs.
+	# http://docs.wxwidgets.org/2.9/overview_debugging.html
+	# http://groups.google.com/group/wx-dev/browse_thread/thread/c3c7e78d63d7777f/05dee25410052d9c
+	use debug \
+		&& myconf="${myconf} --enable-debug=max"
 
 	# wxGTK options
 	#   --enable-graphics_ctx - needed for webkit, editra
@@ -106,11 +104,12 @@ src_configure() {
 			--with-libpng=sys
 			--with-libxpm=sys
 			--with-libjpeg=sys
+			--without-gnomevfs
 			$(use_enable gstreamer mediactrl)
-			$(use_enable opengl)
 			$(use_with opengl)
 			$(use_with gnome gnomeprint)
-			--without-gnomevfs"
+			$(use_with !gnome gtkprint)
+			$(use_with tiff libtiff sys)"
 
 	use aqua && \
 		myconf="${myconf}
@@ -137,36 +136,29 @@ src_configure() {
 
 src_compile() {
 	cd "${S}"/wxgtk_build
-
 	emake || die "make failed."
-
-	if [[ -d contrib/src ]]; then
-		cd contrib/src
-		emake || die "make contrib failed."
-	fi
 }
+
+# Currently fails - need to investigate
+#src_test() {
+#	cd "${S}"/wxgtk_build/tests
+#	emake || die "failed building testsuite"
+#	./test -d || ewarn "failed running testsuite"
+#}
 
 src_install() {
 	cd "${S}"/wxgtk_build
 
 	emake DESTDIR="${D}" install || die "install failed."
 
-	if [[ -d contrib/src ]]; then
-		cd contrib/src
-		emake DESTDIR="${D}" install || die "install contrib failed."
-	fi
-
 	cd "${S}"/docs
-	dodoc changes.txt readme.txt todo30.txt
+	dodoc changes.txt readme.txt
 	newdoc base/readme.txt base_readme.txt
 	newdoc gtk/readme.txt gtk_readme.txt
 
 	if use doc; then
-		dohtml -r "${S}"/docs/html/*
+		dohtml -r "${S}"/docs/doxygen/out/html/*
 	fi
-
-	# We don't want this
-	rm "${ED}"usr/share/locale/it/LC_MESSAGES/wxmsw.mo
 }
 
 pkg_postinst() {
