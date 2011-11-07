@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.11.13.ebuild,v 1.1 2011/01/24 17:53:03 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.11.29.ebuild,v 1.1 2011/10/22 20:22:06 keri Exp $
 
 EAPI=2
 
@@ -128,5 +128,5 @@ src_install() {
 		fi
 	fi
 
-	dodoc ReleaseNotes/relnotes-5.10 INSTALL PORTING README VERSION || die
+	dodoc ReleaseNotes/relnotes-5.10 INSTALL README VERSION || die
 }

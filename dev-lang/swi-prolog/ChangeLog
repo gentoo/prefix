@@ -1,6 +1,176 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.263 2011/01/24 17:53:03 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.299 2011/10/22 20:22:06 keri Exp $
+
+*swi-prolog-5.11.29 (22 Oct 2011)
+
+  22 Oct 2011; <keri@gentoo.org> +swi-prolog-5.11.29.ebuild:
+  Bump -5.11 develop ment version
+
+  22 Oct 2011; <keri@gentoo.org> -swi-prolog-5.11.24.ebuild,
+  -swi-prolog-5.11.25.ebuild, -swi-prolog-5.11.26.ebuild,
+  -swi-prolog-5.11.26-r1.ebuild:
+  Remove old development versions
+
+  11 Oct 2011; <keri@gentoo.org> swi-prolog-5.10.5-r1.ebuild,
+  swi-prolog-5.11.28.ebuild:
+  Include PLCFLAGS, PLLDFLAGS in swipl pkg-config file. Closes #380661
+
+  04 Oct 2011; <keri@gentoo.org> swi-prolog-5.10.5-r1.ebuild,
+  swi-prolog-5.11.28.ebuild:
+  Do not use internal zlib header handling; this invalidates the need for
+  zutil.h
+
+*swi-prolog-5.11.28 (03 Oct 2011)
+
+  03 Oct 2011; <keri@gentoo.org> +swi-prolog-5.11.28.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.27 (14 Sep 2011)
+
+  14 Sep 2011; <keri@gentoo.org> +swi-prolog-5.11.27.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.26-r1 (26 Aug 2011)
+*swi-prolog-5.10.5-r1 (26 Aug 2011)
+
+  26 Aug 2011; <keri@gentoo.org> +swi-prolog-5.10.5-r1.ebuild,
+  +swi-prolog-5.11.26-r1.ebuild:
+  Specify correct include-path in swipl.pc. Closes #380661
+
+*swi-prolog-5.10.5 (21 Aug 2011)
+
+  21 Aug 2011; <keri@gentoo.org> +swi-prolog-5.10.5.ebuild:
+  Version bump
+
+*swi-prolog-5.11.26 (21 Aug 2011)
+
+  21 Aug 2011; <keri@gentoo.org> +swi-prolog-5.11.26.ebuild:
+  Bump -5.11 development version
+
+  22 Jul 2011; <keri@gentoo.org> -swi-prolog-5.11.20.ebuild,
+  -swi-prolog-5.11.21.ebuild, -swi-prolog-5.11.22.ebuild,
+  -swi-prolog-5.11.23.ebuild:
+  Remove old versions
+
+*swi-prolog-5.11.25 (17 Jul 2011)
+
+  17 Jul 2011; <keri@gentoo.org> +swi-prolog-5.11.25.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.24 (01 Jul 2011)
+
+  01 Jul 2011; <keri@gentoo.org> +swi-prolog-5.11.24.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.23 (24 Jun 2011)
+
+  24 Jun 2011; <keri@gentoo.org> +swi-prolog-5.11.23.ebuild:
+  Bump -5.11 development version
+
+  24 Jun 2011; <keri@gentoo.org> -swi-prolog-5.10.2.ebuild,
+  -swi-prolog-5.10.3.ebuild:
+  Remove old versions
+
+  23 Jun 2011; Brent Baude <ranger@gentoo.org> swi-prolog-5.10.4.ebuild:
+  Marking swi-prolog-5.10.4 ppc for bug 368537
+
+  19 Jun 2011; Raúl Porcel <armin76@gentoo.org> swi-prolog-5.10.2.ebuild,
+  swi-prolog-5.10.3.ebuild, swi-prolog-5.10.4.ebuild,
+  swi-prolog-5.11.20.ebuild, swi-prolog-5.11.21.ebuild,
+  swi-prolog-5.11.22.ebuild:
+  Drop alpha/sparc keywords
+
+*swi-prolog-5.11.22 (03 Jun 2011)
+
+  03 Jun 2011; <keri@gentoo.org> +swi-prolog-5.11.22.ebuild:
+  Bump -5.11 development version
+
+  27 May 2011; Markos Chandras <hwoarang@gentoo.org> swi-prolog-5.10.4.ebuild:
+  Stable on amd64 wrt bug #368537
+
+  24 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  swi-prolog-5.10.4.ebuild:
+  x86 stable wrt bug #368537
+
+  21 May 2011; <keri@gentoo.org> -swi-prolog-5.11.17.ebuild,
+  -swi-prolog-5.11.18.ebuild, -swi-prolog-5.11.19.ebuild:
+  Remove old development versions
+
+*swi-prolog-5.11.21 (21 May 2011)
+
+  21 May 2011; <keri@gentoo.org> +swi-prolog-5.11.21.ebuild:
+  Bump -5.11 development version
+
+  07 May 2011; <keri@gentoo.org> swi-prolog-5.10.4.ebuild,
+  swi-prolog-5.11.20.ebuild:
+  Fix JPL handling of long values
+
+*swi-prolog-5.11.20 (06 May 2011)
+
+  06 May 2011; <keri@gentoo.org> +swi-prolog-5.11.20.ebuild:
+  Bump -5.11 development version
+
+  30 Apr 2011; <keri@gentoo.org> swi-prolog-5.10.4.ebuild,
+  swi-prolog-5.11.19.ebuild:
+  Fix bigendian term_hash signatures in testsuite
+
+  30 Apr 2011; <keri@gentoo.org> swi-prolog-5.10.4.ebuild,
+  swi-prolog-5.11.19.ebuild:
+  Fix dtoa during consult on big-endian machines
+
+*swi-prolog-5.11.19 (19 Apr 2011)
+
+  19 Apr 2011; <keri@gentoo.org> +swi-prolog-5.11.19.ebuild:
+  Bump -5.11 development version
+
+  19 Apr 2011; <keri@gentoo.org> -swi-prolog-5.11.12.ebuild,
+  -swi-prolog-5.11.13.ebuild, -swi-prolog-5.11.14.ebuild,
+  -swi-prolog-5.11.15.ebuild, -swi-prolog-5.11.16.ebuild:
+  Remove old development versions
+
+*swi-prolog-5.10.4 (30 Mar 2011)
+
+  30 Mar 2011; <keri@gentoo.org> +swi-prolog-5.10.4.ebuild:
+  Version bump
+
+*swi-prolog-5.10.3 (25 Mar 2011)
+
+  25 Mar 2011; <keri@gentoo.org> +swi-prolog-5.10.3.ebuild:
+  Version bump
+
+*swi-prolog-5.11.18 (25 Mar 2011)
+
+  25 Mar 2011; <keri@gentoo.org> +swi-prolog-5.11.18.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.17 (17 Mar 2011)
+
+  17 Mar 2011; <keri@gentoo.org> +swi-prolog-5.11.17.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.16 (17 Mar 2011)
+
+  17 Mar 2011; <keri@gentoo.org> +swi-prolog-5.11.16.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.15 (23 Feb 2011)
+
+  23 Feb 2011; <keri@gentoo.org> +swi-prolog-5.11.15.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.14 (21 Feb 2011)
+
+  21 Feb 2011; <keri@gentoo.org> +swi-prolog-5.11.14.ebuild:
+  Bump -5.11 development version
+
+  12 Feb 2011; <keri@gentoo.org> -swi-prolog-5.10.0-r1.ebuild,
+  -swi-prolog-5.10.1.ebuild, -swi-prolog-5.11.9.ebuild,
+  -swi-prolog-5.11.10.ebuild, -swi-prolog-5.11.11.ebuild:
+  Remove old versions
+
+  12 Feb 2011; Raúl Porcel <armin76@gentoo.org> swi-prolog-5.10.2.ebuild:
+  alpha/sparc stable wrt #350116
 
 *swi-prolog-5.11.13 (24 Jan 2011)
 
