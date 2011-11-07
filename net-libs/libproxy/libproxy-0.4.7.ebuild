@@ -41,6 +41,12 @@ pkg_setup() {
 	fi
 }
 
+src_prepare() {
+	cmake-utils_prepare
+	# fix stupidity preventing a pkgconfig file to be installed
+	sed -i -e 's/AND NOT APPLE//' libproxy/cmake/pkgconfig.cmk || die
+}
+
 src_configure() {
 	[[ ${CHOST} == *-solaris* ]] && append-libs -lsocket -lnsl
 	if [[ ${CHOST} == *-interix* ]]; then
