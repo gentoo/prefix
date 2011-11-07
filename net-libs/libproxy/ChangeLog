@@ -3,9 +3,6 @@
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.69 2011/10/18 19:05:58 pacho Exp $
 
   07 Nov 2011; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
-  Remove invalid call
-
-  07 Nov 2011; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
   Fix cmakefile not to omit pkgconfig file on Darwin
 
   07 Nov 2011; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
