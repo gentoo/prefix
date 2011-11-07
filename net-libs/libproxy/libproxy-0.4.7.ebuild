@@ -42,7 +42,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	cmake-utils_prepare
 	# fix stupidity preventing a pkgconfig file to be installed
 	sed -i -e 's/AND NOT APPLE//' libproxy/cmake/pkgconfig.cmk || die
 }
