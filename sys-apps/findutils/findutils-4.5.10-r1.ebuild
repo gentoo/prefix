@@ -36,6 +36,7 @@ src_configure() {
 	econf \
 		$(use_enable nls) \
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/find \
+		$(use_with selinux) \
 		${myconf} \
 		|| die "configure failed"
 }

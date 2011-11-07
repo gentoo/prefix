@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.198 2011/07/05 21:12:54 aballier Exp $
 
+  07 Nov 2011; Fabian Groffen <grobian@gentoo.org> findutils-4.5.10-r1.ebuild:
+  Fix compilation on platforms with SElinux, but without SElinux in the right
+  bitness
+
   22 Oct 2011; Fabian Groffen <grobian@gentoo.org> findutils-4.5.10-r1.ebuild:
   Convert to EAPI=3 for EPREFIX usage
 
