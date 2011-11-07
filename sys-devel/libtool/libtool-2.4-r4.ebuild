@@ -102,7 +102,9 @@ src_install() {
 	# Building libtool with --disable-static will cause the installed
 	# helper to not build static objects by default.  This is undesirable
 	# for crappy packages that utilize the system libtool, so undo that.
-	dosed '1,/^build_old_libs=/{/^build_old_libs=/{s:=.*:=yes:}}' /usr/bin/libtool || die
+	local g=
+	[[ ${CHOST} == *-darwin* ]] && g="g"
+	dosed '1,/^build_old_libs=/{/^build_old_libs=/{s:=.*:=yes:}}' /usr/bin/${g}libtool || die
 
 	for x in $(find "${ED}" -name config.guess -o -name config.sub) ; do
 		rm -f "${x}" ; ln -sf "${EPREFIX}"/usr/share/gnuconfig/${x##*/} "${x}"
