@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.69 2011/10/18 19:05:58 pacho Exp $
 
+  07 Nov 2011; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
+  Marked ~x86-macos
+
 *libproxy-0.4.7 (18 Oct 2011)
 
   18 Oct 2011; Pacho Ramos <pacho@gentoo.org> +libproxy-0.4.7.ebuild,
