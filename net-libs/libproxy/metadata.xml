@@ -7,11 +7,7 @@
 </maintainer>
 <use>
 	<flag name='gnome'>Enable support for reading proxy settings from
-		GNOME using <pkg>gnome-base/gconf</pkg></flag>
+		GNOME</flag>
 	<flag name='kde'>Enable support for reading proxy settings from KDE</flag>
-	<flag name='webkit'>Enable support for reading proxy settings from
-		<pkg>net-libs/webkit-gtk</pkg></flag>
-	<flag name='xulrunner'>Enable support for reading proxy settings from
-		<pkg>net-libs/xulrunner</pkg></flag>
 </use>
 </pkgmetadata>
