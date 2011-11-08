@@ -364,21 +364,21 @@ mysql_disable_test() {
 # Initialize global variables
 # 2005-11-19 <vivo@gentoo.org>
 mysql_init_vars() {
-	MY_SHAREDSTATEDIR=${MY_SHAREDSTATEDIR="/usr/share/mysql"}
-	MY_SYSCONFDIR=${MY_SYSCONFDIR="/etc/mysql"}
-	MY_LIBDIR=${MY_LIBDIR="/usr/$(get_libdir)/mysql"}
-	MY_LOCALSTATEDIR=${MY_LOCALSTATEDIR="/var/lib/mysql"}
-	MY_LOGDIR=${MY_LOGDIR="/var/log/mysql"}
-	MY_INCLUDEDIR=${MY_INCLUDEDIR="/usr/include/mysql"}
+	MY_SHAREDSTATEDIR=${MY_SHAREDSTATEDIR="${EPREFIX}/usr/share/mysql"}
+	MY_SYSCONFDIR=${MY_SYSCONFDIR="${EPREFIX}/etc/mysql"}
+	MY_LIBDIR=${MY_LIBDIR="${EPREFIX}/usr/$(get_libdir)/mysql"}
+	MY_LOCALSTATEDIR=${MY_LOCALSTATEDIR="${EPREFIX}/var/lib/mysql"}
+	MY_LOGDIR=${MY_LOGDIR="${EPREFIX}/var/log/mysql"}
+	MY_INCLUDEDIR=${MY_INCLUDEDIR="${EPREFIX}/usr/include/mysql"}
 
 	if [[ -z "${MY_DATADIR}" ]] ; then
 		MY_DATADIR=""
-		if [[ -f ${EPREFIX}${MY_SYSCONFDIR}/my.cnf ]] ; then
+		if [[ -f ${MY_SYSCONFDIR}/my.cnf ]] ; then
 			MY_DATADIR=`"my_print_defaults" mysqld 2>/dev/null \
 				| sed -ne '/datadir/s|^--datadir=||p' \
 				| tail -n1`
 			if [[ -z "${MY_DATADIR}" ]] ; then
-				MY_DATADIR=`grep ^datadir ${EPREFIX}${MY_SYSCONFDIR}/my.cnf \
+				MY_DATADIR=`grep ^datadir ${MY_SYSCONFDIR}/my.cnf \
 				| sed -e 's/.*=\s*//' \
 				| tail -n1`
 			fi
@@ -386,16 +386,13 @@ mysql_init_vars() {
 		if [[ -z "${MY_DATADIR}" ]] ; then
 			MY_DATADIR="${MY_LOCALSTATEDIR}"
 			einfo "Using default MY_DATADIR"
-		else
-			# strip leading EPREFIX returned by already installed mysql
-			MY_DATADIR="${MY_DATADIR#${EPREFIX}}"
 		fi
-		elog "MySQL MY_DATADIR is ${EPREFIX}${MY_DATADIR}"
+		elog "MySQL MY_DATADIR is ${MY_DATADIR}"
 
 		if [[ -z "${PREVIOUS_DATADIR}" ]] ; then
-			if [[ -e "${EPREFIX}${MY_DATADIR}" ]] ; then
+			if [[ -e "${MY_DATADIR}" ]] ; then
 				# If you get this and you're wondering about it, see bug #207636
-				elog "MySQL datadir found in ${EPREFIX}${MY_DATADIR}"
+				elog "MySQL datadir found in ${MY_DATADIR}"
 				elog "A new one will not be created."
 				PREVIOUS_DATADIR="yes"
 			else
@@ -414,8 +411,7 @@ mysql_init_vars() {
 				ewarn "MySQL MY_DATADIR has changed"
 				ewarn "from ${MY_DATADIR}"
 				ewarn "to ${new_MY_DATADIR}"
-				# strip leading EPREFIX returned by already installed mysql
-				MY_DATADIR="${new_MY_DATADIR#${EPREFIX}}"
+				MY_DATADIR="${new_MY_DATADIR}"
 			fi
 		fi
 	fi
@@ -923,7 +919,7 @@ mysql_src_prepare() {
 
 	# Make charsets install in the right place
 	find . -name 'Makefile.am' \
-		-exec sed --in-place -e 's!$(pkgdatadir)!'"${EPREFIX}"${MY_SHAREDSTATEDIR}'!g' {} \;
+		-exec sed --in-place -e 's!$(pkgdatadir)!'${MY_SHAREDSTATEDIR}'!g' {} \;
 
 	if mysql_version_is_at_least "4.1" ; then
 		# Remove what needs to be recreated, so we're sure it's actually done
@@ -1053,11 +1049,11 @@ mysql_src_configure() {
 
 	econf \
 		--libexecdir="${EPREFIX}"/usr/sbin \
-		--sysconfdir="${EPREFIX}"${MY_SYSCONFDIR} \
-		--localstatedir="${EPREFIX}"${MY_LOCALSTATEDIR} \
-		--sharedstatedir="${EPREFIX}"${MY_SHAREDSTATEDIR} \
-		--libdir="${EPREFIX}"${MY_LIBDIR} \
-		--includedir="${EPREFIX}"${MY_INCLUDEDIR} \
+		--sysconfdir=${MY_SYSCONFDIR} \
+		--localstatedir=${MY_LOCALSTATEDIR} \
+		--sharedstatedir=${MY_SHAREDSTATEDIR} \
+		--libdir=${MY_LIBDIR} \
+		--includedir=${MY_INCLUDEDIR} \
 		--with-low-memory \
 		--with-client-ldflags=-lstdc++ \
 		--enable-thread-safe-client \
@@ -1102,8 +1098,8 @@ mysql_src_install() {
 
 	emake install \
 		DESTDIR="${D}" \
-		benchdir_root="${EPREFIX}"${MY_SHAREDSTATEDIR} \
-		testroot="${EPREFIX}${MY_SHAREDSTATEDIR}" \
+		benchdir_root=${MY_SHAREDSTATEDIR} \
+		testroot="${MY_SHAREDSTATEDIR}" \
 		|| die "emake install failed"
 
 	if [[ "${PBXT_NEWSTYLE}" != "1" ]]; then
@@ -1122,23 +1118,23 @@ mysql_src_install() {
 	for removeme in  "mysql-log-rotate" mysql.server* \
 		binary-configure* my-*.cnf mi_test_all*
 	do
-		rm -f "${ED}"/${MY_SHAREDSTATEDIR}/${removeme}
+		rm -f "${D}"/${MY_SHAREDSTATEDIR}/${removeme}
 	done
 
 	# Clean up stuff for a minimal build
 	if use minimal ; then
 		einfo "Remove all extra content for minimal build"
-		rm -Rf "${ED}${MY_SHAREDSTATEDIR}"/{mysql-test,sql-bench}
+		rm -Rf "${D}${MY_SHAREDSTATEDIR}"/{mysql-test,sql-bench}
 		rm -f "${ED}"/usr/bin/{mysql{_install_db,manager*,_secure_installation,_fix_privilege_tables,hotcopy,_convert_table_format,d_multi,_fix_extensions,_zap,_explain_log,_tableinfo,d_safe,_install,_waitpid,binlog,test},myisam*,isam*,pack_isam}
 		rm -f "${ED}/usr/sbin/mysqld"
-		rm -f "${ED}${MY_LIBDIR}"/lib{heap,merge,nisam,my{sys,strings,sqld,isammrg,isam},vio,dbug}.a
+		rm -f "${D}${MY_LIBDIR}"/lib{heap,merge,nisam,my{sys,strings,sqld,isammrg,isam},vio,dbug}.a
 	fi
 
 	# Unless they explicitly specific USE=test, then do not install the
 	# testsuite. It DOES have a use to be installed, esp. when you want to do a
 	# validation of your database configuration after tuning it.
 	if use !test ; then
-		rm -rf "${ED}"/${MY_SHAREDSTATEDIR}/mysql-test
+		rm -rf "${D}"/${MY_SHAREDSTATEDIR}/mysql-test
 	fi
 
 	# Configuration stuff
@@ -1148,10 +1144,10 @@ mysql_src_install() {
 		5.[1-9]|6*|7*) mysql_mycnf_version="5.1" ;;
 	esac
 	einfo "Building default my.cnf (${mysql_mycnf_version})"
-	insinto "${MY_SYSCONFDIR}"
+	insinto "${MY_SYSCONFDIR#${EPREFIX}}"
 	doins scripts/mysqlaccess.conf
 	mycnf_src="my.cnf-${mysql_mycnf_version}"
-	sed -e "s!@DATADIR@!${EPREFIX}${MY_DATADIR}!g" \
+	sed -e "s!@DATADIR@!${MY_DATADIR}!g" \
 		-e "s!/tmp!${EPREFIX}/tmp!" \
 		-e "s!/usr!${EPREFIX}/usr!" \
 		-e "s!= /var!= ${EPREFIX}/var!" \
@@ -1171,13 +1167,13 @@ mysql_src_install() {
 		# Empty directories ...
 		diropts "-m0750"
 		if [[ "${PREVIOUS_DATADIR}" != "yes" ]] ; then
-			dodir "${MY_DATADIR}"
-			keepdir "${MY_DATADIR}"
-			chown -R mysql:mysql "${ED}/${MY_DATADIR}"
+			dodir "${MY_DATADIR#${EPREFIX}}"
+			keepdir "${MY_DATADIR#${EPREFIX}}"
+			chown -R mysql:mysql "${D}/${MY_DATADIR}"
 		fi
 
 		diropts "-m0755"
-		for folder in "${MY_LOGDIR}" "/var/run/mysqld" ; do
+		for folder in "${MY_LOGDIR#${EPREFIX}}" "/var/run/mysqld" ; do
 			dodir "${folder}"
 			keepdir "${folder}"
 			chown -R mysql:mysql "${ED}/${folder}"
@@ -1234,12 +1230,12 @@ mysql_pkg_postinst() {
 	mysql_init_vars
 
 	# Check FEATURES="collision-protect" before removing this
-	[[ -d "${EROOT}/var/log/mysql" ]] || install -d -m0750 -o mysql -g mysql "${EROOT}${MY_LOGDIR}"
+	[[ -d "${EROOT}/var/log/mysql" ]] || install -d -m0750 -o mysql -g mysql "${ROOT}${MY_LOGDIR}"
 
 	# Secure the logfiles
-	touch "${EROOT}${MY_LOGDIR}"/mysql.{log,err}
-	chown mysql:mysql "${EROOT}${MY_LOGDIR}"/mysql*
-	chmod 0660 "${EROOT}${MY_LOGDIR}"/mysql*
+	touch "${ROOT}${MY_LOGDIR}"/mysql.{log,err}
+	chown mysql:mysql "${ROOT}${MY_LOGDIR}"/mysql*
+	chmod 0660 "${ROOT}${MY_LOGDIR}"/mysql*
 
 	# Minimal builds don't have the MySQL server
 	if ! use minimal ; then
@@ -1308,8 +1304,8 @@ mysql_pkg_config() {
 	fi
 
 	if [[ ( -n "${MY_DATADIR}" ) && ( "${MY_DATADIR}" != "${old_MY_DATADIR}" ) ]]; then
-		local MY_DATADIR_s="$(strip_duplicate_slashes ${EROOT}/${MY_DATADIR})"
-		local old_MY_DATADIR_s="$(strip_duplicate_slashes ${EROOT}/${old_MY_DATADIR})"
+		local MY_DATADIR_s="$(strip_duplicate_slashes ${ROOT}/${MY_DATADIR})"
+		local old_MY_DATADIR_s="$(strip_duplicate_slashes ${ROOT}/${old_MY_DATADIR})"
 
 		if [[ -d "${old_MY_DATADIR_s}" ]]; then
 			if [[ -d "${MY_DATADIR_s}" ]]; then
@@ -1339,9 +1335,9 @@ mysql_pkg_config() {
 		MYSQL_ROOT_PASSWORD="$(sed -n -e '/^password=/s,^password=,,gp' "${EROOT}/root/.my.cnf")"
 	fi
 
-	if [[ -d "${EROOT}/${MY_DATADIR}/mysql" ]] ; then
+	if [[ -d "${ROOT}/${MY_DATADIR}/mysql" ]] ; then
 		ewarn "You have already a MySQL database in place."
-		ewarn "(${EROOT}/${MY_DATADIR}/*)"
+		ewarn "(${ROOT}/${MY_DATADIR}/*)"
 		ewarn "Please rename or delete it if you wish to replace it."
 		die "MySQL database already exists!"
 	fi
@@ -1370,7 +1366,7 @@ mysql_pkg_config() {
 	local options=""
 	local sqltmp="$(emktemp)"
 
-	local help_tables="${EROOT}${MY_SHAREDSTATEDIR}/fill_help_tables.sql"
+	local help_tables="${ROOT}${MY_SHAREDSTATEDIR}/fill_help_tables.sql"
 	[[ -r "${help_tables}" ]] \
 	&& cp "${help_tables}" "${TMPDIR}/fill_help_tables.sql" \
 	|| touch "${TMPDIR}/fill_help_tables.sql"
@@ -1383,10 +1379,10 @@ mysql_pkg_config() {
 		die "Failed to run mysql_install_db. Please review /var/log/mysql/mysqld.err AND ${TMPDIR}/mysql_install_db.log"
 	fi
 	popd &>/dev/null
-	[[ -f "${EROOT}/${MY_DATADIR}/mysql/user.frm" ]] \
+	[[ -f "${ROOT}/${MY_DATADIR}/mysql/user.frm" ]] \
 	|| die "MySQL databases not installed"
-	chown -R mysql:mysql "${EROOT}/${MY_DATADIR}" 2>/dev/null
-	chmod 0750 "${EROOT}/${MY_DATADIR}" 2>/dev/null
+	chown -R mysql:mysql "${ROOT}/${MY_DATADIR}" 2>/dev/null
+	chmod 0750 "${ROOT}/${MY_DATADIR}" 2>/dev/null
 
 	# Figure out which options we need to disable to do the setup
 	helpfile="${TMPDIR}/mysqld-help"
@@ -1423,7 +1419,7 @@ mysql_pkg_config() {
 		${options} \
 		--user=mysql \
 		--basedir=${EROOT}/usr \
-		--datadir=${EROOT}/${MY_DATADIR} \
+		--datadir=${ROOT}/${MY_DATADIR} \
 		--max_allowed_packet=8M \
 		--net_buffer_length=16K \
 		--default-storage-engine=MyISAM \
