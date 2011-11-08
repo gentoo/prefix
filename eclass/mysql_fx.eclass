@@ -207,9 +207,9 @@ mysql_lib_symlinks() {
 			# libtool works
 			if [[ ${CHOST} == *-darwin* ]] ; then
 				# macho: libname.x.y.z.dylib
-				local libbasename=${libnameln%%.*}     # libname
-				local libver=${libname#${libbasename}} # .x.y.z.dylib
-				libver=${libver%${libsuffix}}          # .x.y.z
+				local libbasename=${libnameln%%.*}       # libname
+				local libver=${libnameln#${libbasename}} # .x.y.z.dylib
+				libver=${libver%${libsuffix}}            # .x.y.z
 				while [[ -n ${libver} ]] && [[ ${maxdots} -lt 6 ]] ; do
 					libnameln="${libbasename}${libver}${libsuffix}"
 					rm -f "${libnameln}"
