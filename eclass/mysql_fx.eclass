@@ -217,6 +217,9 @@ mysql_lib_symlinks() {
 					(( ++maxdots ))
 					libver=${libver%.*}
 				done
+				libnameln="${libbasename}${libsuffix}"
+				rm -f "${libnameln}"
+				ln -s "${libname}" "${libnameln}"
 			else
 				# elf: libname.so.x.y.z
 				while [[ ${libnameln:0-3} != '${libsuffix}' ]] && [[ ${maxdots} -lt 6 ]] ; do
