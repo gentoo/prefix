@@ -688,8 +688,12 @@ bootstrap_python() {
 		*-linux*)
 			# python refuses to find the zlib headers that are built in the
 			# offset
+			# Bug 382263: make sure Python will know about the libdir in use for
+			# the current arch
+			libdir="/usr/lib/$(gcc -print-multi-os-directory)"
+
 			export CPPFLAGS="-I$EPREFIX/tmp/usr/include"
-			export LDFLAGS="-L$EPREFIX/tmp/usr/lib -Wl,-rpath,$EPREFIX/tmp/usr/lib"
+			export LDFLAGS="-L$EPREFIX/tmp/usr/lib -Wl,-rpath,$EPREFIX/tmp/usr/lib -L${libdir}"
 		;;
 	esac
 
