@@ -39,6 +39,13 @@ src_prepare() {
 	# Use pkg-config for libedit linkage
 	sed -i "/LIBS/s:-ledit:\`$(tc-getPKG_CONFIG) --libs libedit $(use static && echo --static)\`:" configure.ac
 
+	# don't redefine stat on Solaris
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		sed -i \
+			-e '/AC_DEFINE([fl]\?stat64/s/stat/solnostat/g' \
+			configure.ac || die
+	fi
+
 	# May as well, as the debian patches force this anyway
 	eautoreconf
 }
