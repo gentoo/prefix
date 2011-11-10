@@ -239,8 +239,9 @@ src_configure() {
 		# for Python's setup.py not to do false assumptions (only looking in
 		# host paths) we need to make explicit where Prefix stuff is
 		append-flags -I${EPREFIX}/usr/include
-		append-flags -L${EPREFIX}/$(get_libdir)
-		append-flags -L${EPREFIX}/usr/$(get_libdir)
+		append-ldflags -L${EPREFIX}/$(get_libdir)
+		append-ldflags -L${EPREFIX}/usr/$(get_libdir)
+		append-ldflags -L/usr/lib32 -L/usr/lib64 -L/lib32 -L/lib64
 		# Have to move $(CPPFLAGS) to before $(CFLAGS) to ensure that
 		# local include paths - set in $(CPPFLAGS) - are searched first.
 		sed -i -e "/^PY_CFLAGS[ \\t]*=/s,\\\$(CFLAGS)[ \\t]*\\\$(CPPFLAGS),\$(CPPFLAGS) \$(CFLAGS)," Makefile.pre.in || die

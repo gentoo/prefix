@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.538 2011/06/27 09:19:45 djc Exp $
 
+  10 Nov 2011; Fabian Groffen <grobian@gentoo.org> python-2.7.2.ebuild:
+  Add -L-flags to LDFLAGS, and add explicit searches for host OS libdirs, which
+  finally solves #381163
+
   27 Jun 2011; Dirkjan Ochtman <djc@gentoo.org> python-2.7.2.ebuild,
   python-3.2.ebuild:
   Bump required autoconf version to 2.65 (bug 372461).
