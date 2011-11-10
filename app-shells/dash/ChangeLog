@@ -3,6 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/app-shells/dash/ChangeLog,v 1.89 2011/10/30 16:15:52 armin76 Exp $
 
   10 Nov 2011; Fabian Groffen <grobian@gentoo.org> dash-0.5.7.1.ebuild:
+  Marked ~x86-linux and ~amd64-linux
+
+  10 Nov 2011; Fabian Groffen <grobian@gentoo.org> dash-0.5.7.1.ebuild:
   Fix compilation on 64-bits Solaris targets
 
   06 Nov 2011; Fabian Groffen <grobian@gentoo.org> dash-0.5.7.1.ebuild:
