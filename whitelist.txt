@@ -531,6 +531,7 @@ dev-util/unifdef
 dev-util/valgrind
 dev-util/wiggle
 dev-util/xfce4-dev-tools
+gnome-base/dconf
 gnome-base/gnome-applets
 gnome-base/gnome-common
 gnome-base/gnome-control-center
