@@ -865,6 +865,7 @@ sys-libs/talloc
 sys-process/htop
 sys-process/iotop
 sys-process/numactl
+sys-process/parallel
 sys-process/pkill-darwin
 sys-process/psmisc
 sys-process/time
