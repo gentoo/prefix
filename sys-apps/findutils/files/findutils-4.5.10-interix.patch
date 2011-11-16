@@ -1,0 +1,124 @@
+From de53ac26074b94ec249e69f9850b999efae4f1d3 Mon Sep 17 00:00:00 2001
+From: James Youngman <jay@gnu.org>
+Date: Sat, 28 May 2011 23:05:35 +0000
+Subject: Savannah bug #31424: Revert Interix-specific change.
+
+Gnulib will use suacomp for solving this problem, so findutils
+will not need a workaround here.
+* lib/arg-max.h: Delete this file.
+* lib/Makefile.am (libfind_a_SOURCES): Remove arg-max.h.
+* lib/buildcmd.c: Don't include arg-max.h.
+* xargs/xargs.c: Likewise.
+---
+diff --git a/ChangeLog b/ChangeLog
+index bc89b8e..52eda47 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,3 +1,13 @@
++2011-05-29  James Youngman  <jay@gnu.org>
++
++	Savannah bug #31424: Revert Interix-specific change.
++	Gnulib will use suacomp for solving this problem, so findutils
++	will not need a workaround here.
++	* lib/arg-max.h: Delete this file.
++	* lib/Makefile.am (libfind_a_SOURCES): Remove arg-max.h.
++	* lib/buildcmd.c: Don't include arg-max.h.
++	* xargs/xargs.c: Likewise.
++
+ 2011-05-24  James Youngman  <jay@gnu.org>
+ 
+ 	Fix Savannah bug #33384.
+diff --git a/lib/Makefile.am b/lib/Makefile.am
+index 79c431a..029037e 100644
+--- a/lib/Makefile.am
++++ b/lib/Makefile.am
+@@ -34,7 +34,7 @@ INCLUDES = -I../gnulib/lib -I$(top_srcdir)/gnulib/lib
+ LDADD = ../gnulib/lib/libgnulib.a $(LIBINTL)
+ 
+ libfind_a_SOURCES += nextelem.h printquoted.h listfile.h \
+-	regextype.h dircallback.h safe-atoi.h arg-max.h
++	regextype.h dircallback.h safe-atoi.h
+ libfind_a_SOURCES += listfile.c nextelem.c extendbuf.c buildcmd.c savedirinfo.c \
+ 	forcefindlib.c qmark.c printquoted.c regextype.c dircallback.c fdleak.c \
+ 	safe-atoi.c
+diff --git a/lib/arg-max.h b/lib/arg-max.h
+deleted file mode 100644
+index 1d4d412..0000000
+--- a/lib/arg-max.h
++++ b/dev/null
+@@ -1,49 +0,0 @@
+-/* arg-max.h -- ARG_MAX and _SC_ARG_MAX checks and manipulations
+-
+-   Copyright (C) 2010 Free Software Foundation, Inc.
+-
+-   This program is free software: you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation, either version 3 of the License, or
+-   (at your option) any later version.
+-
+-   This program is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
+-
+-   You should have received a copy of the GNU General Public License
+-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-
+-   Written by James Youngman.
+-*/
+-#ifndef INC_ARG_MAX_H
+-#define INC_ARG_MAX_H 1
+-
+-#include <unistd.h>		/* for sysconf() */
+-
+-#ifdef __INTERIX
+-/* On Interix, _SC_ARG_MAX yields a value that (according to
+- * http://lists.gnu.org/archive/html/bug-findutils/2010-10/msg00047.html)
+- * actually does not work (i.e. it is larger than the real limit).
+- * The value of ARG_MAX is reportedly smaller than the real limit.
+- *
+- * I considered a configure test for this which allocates an argument
+- * list longer than ARG_MAX but shorter than _SC_ARG_MAX and then
+- * tries to exec something, but this will not work for us when
+- * cross-compiling if the target is Interix.
+- *
+- * Although buildcmd has heuristics for dealing with the possibility
+- * that execve fails due to length limits in the implementation, it
+- * assumed that changes are only necessary if execve fails with errno
+- * set to E2BIG.  On Interix, this failure mode of execve appears to
+- * set errno to ENOMEM.
+- *
+- * Since we may undefine _SC_ARG_MAX, we must include this header after
+- * unistd.h.
+- */
+-# undef _SC_ARG_MAX
+-# define BC_SC_ARG_MAX_IS_UNRELIABLE 1
+-#endif
+-
+-#endif
+diff --git a/lib/buildcmd.c b/lib/buildcmd.c
+index 44adb41..d595e6f 100644
+--- a/lib/buildcmd.c
++++ b/lib/buildcmd.c
+@@ -71,7 +71,6 @@
+ 
+ #include "xstrtol.h"
+ #include "buildcmd.h"
+-#include "arg-max.h"		/* must include after unistd.h. */
+ 
+ 
+ extern char **environ;
+diff --git a/xargs/xargs.c b/xargs/xargs.c
+index 4a773e3..97f530f 100644
+--- a/xargs/xargs.c
++++ b/xargs/xargs.c
+@@ -85,7 +85,6 @@
+ #endif
+ 
+ #include "buildcmd.h"
+-#include "arg-max.h"		/* must include after unistd.h. */
+ 
+ 
+ /* Return nonzero if S is the EOF string.  */
+--
+cgit v0.8.3.4
