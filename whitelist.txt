@@ -231,9 +231,11 @@ app-text/libpaper
 app-text/libspectre
 app-text/libwpd
 app-text/libwpg
+app-text/libwps
 app-text/lout
 app-text/mbtpdfasm
 app-text/multitail
+app-text/mythes
 app-text/o3read
 app-text/par
 app-text/passivetex
@@ -359,6 +361,7 @@ dev-libs/gf2x
 dev-libs/gmime
 dev-libs/gnulib
 dev-libs/gobject-introspection
+dev-libs/hyphen
 dev-libs/kpathsea
 dev-libs/libaio
 dev-libs/libatomic_ops
@@ -502,6 +505,7 @@ dev-util/idutils
 dev-util/intltool
 dev-util/kdoc
 dev-util/linklint
+dev-util/mdds
 dev-util/meld
 dev-util/patchelf
 dev-util/patchutils
@@ -665,6 +669,7 @@ media-libs/swfdec
 media-libs/taglib
 media-libs/tiff
 media-libs/tunepimp
+media-libs/vigra
 media-libs/win32codecs
 media-sound/alac_decoder
 media-sound/alsa-headers
@@ -943,6 +948,7 @@ x11-libs/qt-webkit
 x11-libs/qt-xmlpatterns
 x11-libs/qwt
 x11-libs/startup-notification
+x11-libs/wxGTK
 x11-libs/xcb-util
 x11-libs/xcb-util-image
 x11-libs/xcb-util-keysyms
