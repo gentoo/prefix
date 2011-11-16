@@ -10,24 +10,6 @@ will not need a workaround here.
 * lib/buildcmd.c: Don't include arg-max.h.
 * xargs/xargs.c: Likewise.
 ---
-diff --git a/ChangeLog b/ChangeLog
-index bc89b8e..52eda47 100644
---- a/ChangeLog
-+++ b/ChangeLog
-@@ -1,3 +1,13 @@
-+2011-05-29  James Youngman  <jay@gnu.org>
-+
-+	Savannah bug #31424: Revert Interix-specific change.
-+	Gnulib will use suacomp for solving this problem, so findutils
-+	will not need a workaround here.
-+	* lib/arg-max.h: Delete this file.
-+	* lib/Makefile.am (libfind_a_SOURCES): Remove arg-max.h.
-+	* lib/buildcmd.c: Don't include arg-max.h.
-+	* xargs/xargs.c: Likewise.
-+
- 2011-05-24  James Youngman  <jay@gnu.org>
- 
- 	Fix Savannah bug #33384.
 diff --git a/lib/Makefile.am b/lib/Makefile.am
 index 79c431a..029037e 100644
 --- a/lib/Makefile.am
