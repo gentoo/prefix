@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.19 2011/06/28 15:27:23 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.20 2011/11/08 12:16:29 voyageur Exp $
 
 # @ECLASS: gnustep-base.eclass
 # @MAINTAINER:
@@ -124,8 +124,7 @@ egnustep_env() {
 		if [[ ! -f ${T}/GNUstep.conf ]]; then
 			cp "${EPREFIX}"/etc/GNUstep/GNUstep.conf "${T}" \
 				|| die "GNUstep.conf copy failed"
-			sed -e "s#\(GNUSTEP_USER_DIR=\).*#\1${T}#" \
-				-e "s#\(GNUSTEP_USER_DEFAULTS_DIR=\).*#\1${T}/Defaults#" \
+			sed -e "s#\(GNUSTEP_USER_.*DIR.*=\)#\1${T}/#" \
 				-i "${T}"/GNUstep.conf || die "GNUstep.conf sed failed"
 		fi
 
@@ -147,8 +146,6 @@ egnustep_env() {
 			DESTDIR="${D}" \
 			HOME="${T}" \
 			GNUSTEP_CONFIG_FILE="${T}"/GNUstep.conf \
-			GNUSTEP_USER_DIR="${T}" \
-			GNUSTEP_USER_DEFAULTS_DIR="${T}"/Defaults \
 			GNUSTEP_INSTALLATION_DOMAIN=SYSTEM \
 			GNUSTEP_ABSOLUTE_INSTALL_PATHS=yes \
 			TAR_OPTIONS="${TAR_OPTIONS} --no-same-owner" \

@@ -1,0 +1,56 @@
+# ChangeLog for eclass directory
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.14 2011/11/15 09:02:15 caster Exp $
+
+  15 Nov 2011; Vlastimil Babka <caster@gentoo.org> java-vm-2.eclass:
+  Drop the repetitive elogs about revdep rebuild control files for binary
+  JVM's.
+
+  14 Nov 2011; Nirbheek Chauhan <nirbheek@gentoo.org> mozconfig-3.eclass:
+  Remove obsolete xorg-x11 dep from mozconfig-3
+
+  14 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org> gnome2-utils.eclass,
+  gnome2.eclass:
+  Add gnome2_environment_reset() to reset env variables that often cause build
+  or test failures (most recently bug #380639). The XDG_* resetting code had
+  been tested in the gnome overlay for months with good results.
+
+  12 Nov 2011; Davide Pesavento <pesa@gentoo.org> qt4-r2.eclass:
+  Restore ${S} fallback, but with a deprecation notice saying that it will be
+  removed in 30 days.
+
+  12 Nov 2011; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
+  Set qt@g.o as maintainer, minor cleanups (quoting, whitespace, etc.)
+
+  12 Nov 2011; Davide Pesavento <pesa@gentoo.org> qt4-r2.eclass:
+  Remove ${S} fallback from src_unpack, set qt@g.o as maintainer, remove
+  unnecessary quoting.
+
+  12 Nov 2011; Ralph Sennhauser <sera@gentoo.org> java-vm-2.eclass:
+  Add java-vm_sandbox-predict for installing a sandbox control file along with
+  any JVM that needs it. Bug 388937#c1
+
+  11 Nov 2011; Ryan Hill <dirtyepic@gentoo.org> flag-o-matic.eclass:
+  Test that appended flags are valid. This allows people to add flags that were
+  unsupported in earlier releases without needing to do version checking.
+
+  10 Nov 2011; Pacho Ramos <pacho@gentoo.org> gtk-sharp-module.eclass:
+  gnome-desktop-sharp stuff need gnome-desktop:2, bug #389181 by Kacper
+  Kowalik.
+
+  10 Nov 2011; Naohiro Aota <naota@gentoo.org>
+  ELT-patches/fbsd-conf/00broken-libglade:
+  Add patch applied detection comment
+
+  08 Nov 2011; Bernard Cafarelli <voyageur@gentoo.org> gnustep-base.eclass:
+  Fix sandbox access violation on /root/GNUstep, bug #383665
+
+  08 Nov 2011; Michael Pagano <mpagano@gentoo.org> kernel-2.eclass:
+  Modify to support new location of 2.6 kernels on kernel.org and mirrors
+
+  04 Nov 2011; Naohiro Aota <naota@gentoo.org> mysql.eclass, user.eclass:
+  Change possible mis-used ${action} to ${db}
+
+  03 Nov 2011; Andreas K. Huettel <dilfridge@gentoo.org> +ChangeLog:
+  Created ChangeLog
+

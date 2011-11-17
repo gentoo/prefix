@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.473 2011/10/17 19:10:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.479 2011/11/14 17:40:06 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -85,12 +85,11 @@ STDCXX_INCDIR=${TOOLCHAIN_STDCXX_INCDIR:-${LIBPATH}/include/g++-v${GCC_BRANCH_VE
 IUSE="build multislot nls nptl test vanilla"
 
 if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
-	IUSE+=" altivec fortran nocxx"
+	IUSE+=" altivec cxx fortran nocxx"
 	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
-	[[ -n ${PP_VER}	 ]] && IUSE+=" nossp"
-	[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
 	[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
-	[[ -n ${D_VER}	 ]] && IUSE+=" d"
+	[[ -n ${D_VER}   ]] && IUSE+=" d"
+	[[ -n ${PP_VER}${SPECS_VER} ]] && IUSE+=" nossp"
 
 	if tc_version_is_at_least 3 ; then
 		IUSE+=" bootstrap doc gcj gtk hardened libffi multilib objc"
@@ -99,10 +98,7 @@ if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
 		tc_version_is_at_least "4.1" && IUSE+=" objc++"
 		tc_version_is_at_least "4.2" && IUSE+=" openmp"
 		tc_version_is_at_least "4.3" && IUSE+=" fixed-point"
-		if tc_version_is_at_least "4.4" ; then
-			IUSE+=" graphite"
-			[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
-		fi
+		tc_version_is_at_least "4.4" && IUSE+=" graphite"
 		[[ ${GCC_BRANCH_VER} == 4.5 ]] && IUSE+=" lto"
 		tc_version_is_at_least "4.6" && IUSE+=" go"
 	fi
@@ -128,12 +124,18 @@ if tc_version_is_at_least 3 ; then
 	RDEPEND+=" virtual/libiconv"
 fi
 if tc_version_is_at_least 4 ; then
-	RDEPEND+=" >=dev-libs/gmp-4.2.1 >=dev-libs/mpfr-2.3.2"
+	GMP_MPFR_DEPS=">=dev-libs/gmp-4.3.2 >=dev-libs/mpfr-2.4.2"
+	if tc_version_is_at_least 4.3 ; then
+		RDEPEND+=" ${GMP_MPFR_DEPS}"
+	elif in_iuse fortran ; then
+		RDEPEND+=" fortran? ( ${GMP_MPFR_DEPS} )"
+	fi
 	if tc_version_is_at_least 4.5 ; then
 		RDEPEND+=" >=dev-libs/mpc-0.8.1"
 	fi
+	in_iuse lto && RDEPEND+=" lto? ( || ( >=dev-libs/elfutils-0.143 dev-libs/libelf ) )"
 fi
-if has graphite ${IUSE} ; then
+if in_iuse graphite ; then
 	RDEPEND+="
 	    graphite? (
 	        >=dev-libs/cloog-ppl-0.15.10
@@ -149,8 +151,18 @@ DEPEND="${RDEPEND}
 		>=dev-util/dejagnu-1.4.4
 		>=sys-devel/autogen-5.5.4
 	)"
-if tc_version_is_at_least 4.2 && has gcj ${IUSE} ; then
-	DEPEND+=" gcj? ( app-arch/zip app-arch/unzip )"
+if in_iuse gcj ; then
+	GCJ_GTK_DEPS="
+		x11-libs/libXt
+		x11-libs/libX11
+		x11-libs/libXtst
+		x11-proto/xproto
+		x11-proto/xextproto
+		=x11-libs/gtk+-2*"
+	tc_version_is_at_least 3.4 && GCJ_GTK_DEPS+=" x11-libs/pango"
+	GCJ_DEPS=">=media-libs/libart_lgpl-2.1"
+	tc_version_is_at_least 4.2 && GCJ_DEPS+=" app-arch/zip app-arch/unzip"
+	DEPEND+=" gcj? ( gtk? ( ${GCJ_GTK_DEPS} ) ${GCJ_DEPS} )"
 fi
 
 PDEPEND=">=sys-devel/gcc-config-1.4"
@@ -812,10 +824,10 @@ toolchain_pkg_setup() {
 	# we dont want to use the installed compiler's specs to build gcc!
 	unset GCC_SPECS
 
-	if use nocxx ; then
-		huse go && ewarn 'Go requires a C++ compiler, disabled due to USE="nocxx"'
-		huse objc++ && ewarn 'Obj-C++ requires a C++ compiler, disabled due to USE="nocxx"'
-		huse gcj && ewarn 'GCJ requires a C++ compiler, disabled due to USE="nocxx"'
+	if ! use cxx ; then
+		use_if_iuse go && ewarn 'Go requires a C++ compiler, disabled due to USE="-cxx"'
+		use_if_iuse objc++ && ewarn 'Obj-C++ requires a C++ compiler, disabled due to USE="-cxx"'
+		use_if_iuse gcj && ewarn 'GCJ requires a C++ compiler, disabled due to USE="-cxx"'
 	fi
 
 	want_libssp && libc_has_ssp && \
@@ -1134,7 +1146,7 @@ gcc-compiler-configure() {
 	gcc-multilib-configure
 
 	if tc_version_is_at_least "4.0" ; then
-		if has mudflap ${IUSE} ; then
+		if in_iuse mudflap ; then
 			confgcc+=" $(use_enable mudflap libmudflap)"
 		else
 			confgcc+=" --disable-libmudflap"
@@ -1153,7 +1165,7 @@ gcc-compiler-configure() {
 		fi
 
 		if tc_version_is_at_least "4.2" ; then
-			if has openmp ${IUSE} ; then
+			if in_iuse openmp ; then
 				# Make sure target has pthreads support. #326757 #335883
 				# There shouldn't be a chicken&egg problem here as openmp won't
 				# build without a C library, and you can't build that w/out
@@ -1307,6 +1319,13 @@ gcc_do_configure() {
 		export EPREFIX=${realEPREFIX}
 	fi
 
+	# Sanity check for USE=nocxx -> USE=cxx migration
+	if (use cxx && use nocxx) || (use !cxx && use !nocxx) ; then
+		eerror "We are migrating USE=nocxx to USE=cxx, but your USE settings do not make"
+		eerror "sense.  Please make sure these two flags line up logically in your setup."
+		die "USE='cxx nocxx' and USE='-cxx -nocxx' make no sense"
+	fi
+
 	# Set configuration based on path variables
 	confgcc+=" \
 		--prefix=${EPREFIX}${PREFIX} \
@@ -1364,8 +1383,11 @@ gcc_do_configure() {
 	# LTO support was added in 4.5, which depends upon elfutils.  This allows
 	# users to enable that option, and pull in the additional library.  In 4.6,
 	# the dependency is no longer required.
-	[[ ${GCC_BRANCH_VER} == 4.5 ]] && confgcc+=" $(use_enable lto)"
-	[[ ${GCC_BRANCH_VER} > 4.5 ]] && confgcc+=" --enable-lto"
+	if tc_version_is_at_least "4.6" ; then
+		confgcc+=" --enable-lto"
+	elif tc_version_is_at_least "4.5" ; then
+		confgcc+=" $(use_enable lto)"
+	fi
 
 	[[ $(tc-is-softfloat) == "yes" ]] && confgcc+=" --with-float=soft"
 	[[ $(tc-is-hardfloat) == "yes" ]] && confgcc+=" --with-float=hard"
@@ -1581,7 +1603,7 @@ gcc_do_make() {
 		${GCC_MAKE_TARGET} \
 		|| die "emake failed with ${GCC_MAKE_TARGET}"
 
-	if ! is_crosscompile && ! use nocxx && use doc ; then
+	if ! is_crosscompile && use cxx && use doc ; then
 		if type -p doxygen > /dev/null ; then
 			if tc_version_is_at_least 4.3 ; then
 				cd "${CTARGET}"/libstdc++-v3/doc
@@ -2453,19 +2475,14 @@ is_multilib() {
 	use multilib
 }
 
-huse() {
-	has $1 ${IUSE} || return 1
-	use $1
-}
-
 is_cxx() {
 	gcc-lang-supported 'c++' || return 1
-	! use nocxx
+	use cxx
 }
 
 is_d() {
 	gcc-lang-supported d || return 1
-	huse d
+	use_if_iuse d
 }
 
 is_f77() {
@@ -2485,26 +2502,26 @@ is_fortran() {
 
 is_gcj() {
 	gcc-lang-supported java || return 1
-	! use nocxx && huse gcj
+	use cxx && use_if_iuse gcj
 }
 
 is_go() {
 	gcc-lang-supported go || return 1
-	! use nocxx && huse go
+	use cxx && use_if_iuse go
 }
 
 is_libffi() {
-	huse libffi
+	use_if_iuse libffi
 }
 
 is_objc() {
 	gcc-lang-supported objc || return 1
-	huse objc
+	use_if_iuse objc
 }
 
 is_objcxx() {
 	gcc-lang-supported 'obj-c++' || return 1
-	! use nocxx && huse objc++
+	use cxx && use_if_iuse objc++
 }
 
 is_ada() {
@@ -2513,7 +2530,7 @@ is_ada() {
 }
 
 is_treelang() {
-	has boundschecking ${IUSE} && use boundschecking && return 1 #260532
+	use_if_iuse boundschecking && return 1 #260532
 	is_crosscompile && return 1 #199924
 	gcc-lang-supported treelang || return 1
 	#use treelang

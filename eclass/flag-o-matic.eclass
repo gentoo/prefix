@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.156 2011/10/08 18:37:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.158 2011/11/14 20:29:03 vapier Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -143,7 +143,7 @@ filter-lfs-flags() {
 # @DESCRIPTION:
 # Add extra <flags> to the current CPPFLAGS.
 append-cppflags() {
-	[[ -z $* ]] && return 0
+	[[ $# -eq 0 ]] && return 0
 	export CPPFLAGS="${CPPFLAGS} $*"
 	return 0
 }
@@ -153,8 +153,8 @@ append-cppflags() {
 # @DESCRIPTION:
 # Add extra <flags> to the current CFLAGS.
 append-cflags() {
-	[[ -z $* ]] && return 0
-	export CFLAGS="${CFLAGS} $*"
+	[[ $# -eq 0 ]] && return 0
+	export CFLAGS=$(test-flags-CC ${CFLAGS} "$@")
 	return 0
 }
 
@@ -163,8 +163,8 @@ append-cflags() {
 # @DESCRIPTION:
 # Add extra <flags> to the current CXXFLAGS.
 append-cxxflags() {
-	[[ -z $* ]] && return 0
-	export CXXFLAGS="${CXXFLAGS} $*"
+	[[ $# -eq 0 ]] && return 0
+	export CXXFLAGS=$(test-flags-CXX ${CXXFLAGS} "$@")
 	return 0
 }
 
@@ -173,9 +173,9 @@ append-cxxflags() {
 # @DESCRIPTION:
 # Add extra <flags> to the current {F,FC}FLAGS.
 append-fflags() {
-	[[ -z $* ]] && return 0
-	export FFLAGS="${FFLAGS} $*"
-	export FCFLAGS="${FCFLAGS} $*"
+	[[ $# -eq 0 ]] && return 0
+	export FFLAGS=$(test-flags-F77 ${FFLAGS} "$@")
+	export FCFLAGS=$(test-flags-FC ${FCFLAGS} "$@")
 	return 0
 }
 
@@ -196,7 +196,7 @@ append-lfs-flags() {
 # @DESCRIPTION:
 # Add extra <flags> to your current {C,CXX,F,FC}FLAGS.
 append-flags() {
-	[[ -z $* ]] && return 0
+	[[ $# -eq 0 ]] && return 0
 	append-cflags "$@"
 	append-cxxflags "$@"
 	append-fflags "$@"
@@ -462,7 +462,6 @@ test-flags-PROG() {
 
 	[[ -z ${comp} ]] && return 1
 
-	x=""
 	for x in "$@" ; do
 		test-flag-${comp} "${x}" && flags="${flags}${flags:+ }${x}" || \
 			ewarn "removing ${x} because ${comp} rejected it"
@@ -635,7 +634,7 @@ replace-sparc64-flags() {
 # @DESCRIPTION:
 # Add extra <libs> to the current LIBS.
 append-libs() {
-	[[ -z $* ]] && return 0
+	[[ $# -eq 0 ]] && return 0
 	local flag
 	for flag in "$@"; do
 		[[ ${flag} == -l* ]] && flag=${flag#-l}
@@ -650,7 +649,7 @@ append-libs() {
 # @DESCRIPTION:
 # Add extra <flags> to the current LDFLAGS.
 append-ldflags() {
-	[[ -z $* ]] && return 0
+	[[ $# -eq 0 ]] && return 0
 	local flag
 	for flag in "$@"; do
 		[[ ${flag} == -l* ]] && \
