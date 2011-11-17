@@ -1,30 +1,36 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.2.ebuild,v 1.10 2011/11/13 20:03:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.2_p1.ebuild,v 1.3 2011/11/13 20:03:31 vapier Exp $
 
 inherit flag-o-matic eutils libtool toolchain-funcs
 
+MY_PV=${PV/_p*}
+MY_P=${PN}-${MY_PV}
+PLEVEL=${PV/*p}
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
 HOMEPAGE="http://gmplib.org/"
-SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
-#	doc? ( http://www.nada.kth.se/~tege/${PN}-man-${PV}.pdf )"
+SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.bz2
+	doc? ( http://gmplib.org/${PN}-man-${MY_PV}.pdf )"
 
 LICENSE="LGPL-3"
 SLOT="0"
 
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="cxx" #doc
+IUSE="doc cxx static-libs"
 
 DEPEND="sys-devel/m4"
 RDEPEND=""
 
+S=${WORKDIR}/${MY_P}
+
 src_unpack() {
-	unpack ${A}
+	unpack ${MY_P}.tar.bz2
 	cd "${S}"
 	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
 
 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
 	epatch "${FILESDIR}"/${PN}-5.0.0-s390.diff
+	epatch "${FILESDIR}"/${MY_P}-unnormalised-dividends.patch
 
 	# disable -fPIE -pie in the tests for x86  #236054
 	if use x86 && gcc-specs-pie ; then
@@ -68,21 +74,27 @@ src_compile() {
 	econf \
 		--localstatedir="${EPREFIX}"/var/state/gmp \
 		--disable-mpbsd \
-		$(use_enable cxx) \
+		$(use_enable !nocxx cxx) \
 		${myconf} \
-		|| die "configure failed"
+		$(use_enable static-libs static) \
+		|| die
 
-	emake || die "emake failed"
+	emake || die
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die
+
+	# should be a standalone lib
+	rm -f "${ED}"/usr/$(get_libdir)/libgmp.la
+	# this requires libgmp
+	use static-libs || rm -f "${ED}"/usr/$(get_libdir)/libgmpxx.la
 
 	dodoc AUTHORS ChangeLog NEWS README
 	dodoc doc/configuration doc/isa_abi_headache
 	dohtml -r doc
 
-	#use doc && cp "${DISTDIR}"/gmp-man-${PV}.pdf "${ED}"/usr/share/doc/${PF}/
+	use doc && cp "${DISTDIR}"/gmp-man-${MY_PV}.pdf "${ED}"/usr/share/doc/${PF}/
 }
 
 pkg_preinst() {

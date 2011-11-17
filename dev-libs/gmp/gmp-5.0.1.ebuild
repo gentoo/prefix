@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.1.ebuild,v 1.8 2010/11/16 21:01:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.1.ebuild,v 1.11 2011/11/13 20:03:31 vapier Exp $
 
-inherit flag-o-matic eutils libtool flag-o-matic toolchain-funcs
+inherit flag-o-matic eutils libtool toolchain-funcs
 
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
 HOMEPAGE="http://gmplib.org/"
@@ -13,7 +13,10 @@ LICENSE="LGPL-3"
 SLOT="0"
 
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="nocxx" #doc
+IUSE="cxx" #doc
+
+DEPEND="sys-devel/m4"
+RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
@@ -63,7 +66,7 @@ src_compile() {
 	econf \
 		--localstatedir="${EPREFIX}"/var/state/gmp \
 		--disable-mpbsd \
-		$(use_enable !nocxx cxx) \
+		$(use_enable cxx) \
 		${myconf} \
 		|| die "configure failed"
 
