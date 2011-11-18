@@ -361,10 +361,11 @@ src_install() {
 	[[ -z "${ED}" ]] && ED="${D%/}${EPREFIX}/"
 
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${SLOT}/lib-dynload/
-	# do not make multiple targets in parallel when there are broken
-	# sharedmods (during bootstrap), would build them twice in parallel.
 	if use aqua ; then
 		local fwdir="${EPREFIX}"/usr/$(get_libdir)/Python.framework
+
+		# do not make multiple targets in parallel when there are broken
+		# sharedmods (during bootstrap), would build them twice in parallel.
 
 		# let the makefiles do their thing
 		emake -j1 CC="$(tc-getCC)" DESTDIR="${D}" STRIPFLAG= frameworkinstall || die "emake frameworkinstall failed"
