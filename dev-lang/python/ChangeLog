@@ -1,6 +1,96 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.538 2011/06/27 09:19:45 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.557 2011/10/31 04:02:01 vapier Exp $
+
+  31 Oct 2011; Mike Frysinger <vapier@gentoo.org> python-2.6.7-r2.ebuild,
+  python-2.7.2-r2.ebuild, python-2.7.2-r3.ebuild, python-3.1.4-r2.ebuild,
+  python-3.1.4-r3.ebuild, python-3.2-r2.ebuild, python-3.2.2.ebuild:
+  Drop unnecessary USE=kernel_linux check in plat-linux3 setup.
+
+  30 Oct 2011; Raúl Porcel <armin76@gentoo.org> python-2.7.2-r3.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #387849
+
+  27 Oct 2011; Tony Vroon <chainsaw@gentoo.org> python-2.7.2-r3.ebuild,
+  python-3.1.4-r3.ebuild:
+  Marked stable on AMD64; objections in arch testing by Ian "idella4" Delaney &
+  Agostino "ago" Sarubbo in bug #387849 were overridden by request of Dirkjan
+  Ochtman.
+
+  27 Oct 2011; Jesus Rivero <neurogeek@gentoo.org> python-2.4.6.ebuild,
+  python-2.5.4-r4.ebuild, python-2.6.6-r2.ebuild, python-2.7.1-r1.ebuild,
+  python-3.1.3-r1.ebuild, python-3.2-r2.ebuild, python-3.2.2.ebuild,
+  files/pydoc.conf, files/pydoc.init:
+  Changes to pydoc conf.d and init.d files wrt bug #361867. Patch by
+  Arfrever
+
+  26 Oct 2011; Jeroen Roovers <jer@gentoo.org> python-3.1.4-r3.ebuild:
+  Stable for HPPA (bug #387849).
+
+  26 Oct 2011; Jeroen Roovers <jer@gentoo.org> python-2.7.2-r3.ebuild:
+  Stable for HPPA (bug #387849).
+
+  24 Oct 2011; Markus Meier <maekke@gentoo.org> python-2.7.2-r3.ebuild:
+  arm stable, bug #387849
+
+  23 Oct 2011; Markus Meier <maekke@gentoo.org> python-3.1.4-r3.ebuild:
+  x86 stable, bug #387849
+
+  23 Oct 2011; Markus Meier <maekke@gentoo.org> python-2.7.2-r3.ebuild:
+  x86 stable, bug #387849
+
+*python-3.2.2 (16 Sep 2011)
+
+  16 Sep 2011; Dirkjan Ochtman <djc@gentoo.org> +python-3.2.2.ebuild:
+  Version bump to 3.2.2 (fixes bug 375051).
+
+*python-3.1.4-r3 (16 Sep 2011)
+*python-2.7.2-r3 (16 Sep 2011)
+
+  16 Sep 2011; Dirkjan Ochtman <djc@gentoo.org> +files/linux2.patch,
+  +python-2.7.2-r3.ebuild, +python-3.1.4-r3.ebuild:
+  Set sys.platform to linux2 even on linux3 (bug 375257).
+
+  16 Sep 2011; Dirkjan Ochtman <djc@gentoo.org> -python-2.6.5-r3.ebuild,
+  -python-2.7.1-r2.ebuild:
+  Remove old versions.
+
+  27 Aug 2011; Jesus Rivero <neurogeek@gentoo.org> python-2.7.2-r2.ebuild,
+  python-3.1.3-r1.ebuild, python-3.1.4-r2.ebuild:
+  Change to generic license
+
+  23 Aug 2011; Jesus Rivero <neurogeek@gentoo.org> python-3.2-r2.ebuild,
+  +files/python-3.2-soname_typo.patch:
+  Applied patch from upstream, wrt bug #376303. Fixed License
+
+  07 Aug 2011; Naohiro Aota <naota@gentoo.org> python-2.6.7-r2.ebuild,
+  python-2.7.2-r2.ebuild, python-3.1.4-r2.ebuild, python-3.2-r2.ebuild:
+  Move more linux3 compat hack into kernel_linux check. Bug #374579
+
+  05 Aug 2011; Naohiro Aota <naota@gentoo.org> python-2.6.7-r2.ebuild,
+  python-2.7.2-r2.ebuild, python-3.1.4-r2.ebuild, python-3.2-r2.ebuild:
+  Move linux3 compat hack into kernel_linux check. Bug #374579
+
+*python-3.2-r2 (24 Jul 2011)
+*python-3.1.4-r2 (24 Jul 2011)
+*python-2.7.2-r2 (24 Jul 2011)
+*python-2.6.7-r2 (24 Jul 2011)
+
+  24 Jul 2011; Jesus Rivero <neurogeek@gentoo.org> -python-2.6.7-r1.ebuild,
+  +python-2.6.7-r2.ebuild, -python-2.7.2-r1.ebuild, +python-2.7.2-r2.ebuild,
+  -python-3.1.4-r1.ebuild, +python-3.1.4-r2.ebuild, -python-3.2-r1.ebuild,
+  +python-3.2-r2.ebuild:
+  Revbump N. 2 for all testing versions of Python wrt bug #374579 and linux-3
+
+*python-3.2-r1 (22 Jul 2011)
+*python-3.1.4-r1 (22 Jul 2011)
+*python-2.7.2-r1 (22 Jul 2011)
+*python-2.6.7-r1 (22 Jul 2011)
+
+  22 Jul 2011; Jesus Rivero <neurogeek@gentoo.org> -python-2.6.7.ebuild,
+  +python-2.6.7-r1.ebuild, -python-2.7.2.ebuild, +python-2.7.2-r1.ebuild,
+  -python-3.1.4.ebuild, +python-3.1.4-r1.ebuild, -python-3.2.ebuild,
+  +python-3.2-r1.ebuild:
+  Revbump for all testing versions of Python wrt bug #374579 and linux-3
 
   18 Nov 2011; Fabian Groffen <grobian@gentoo.org> python-2.7.2.ebuild:
   Move comment about parallel make to the emake call it refers to
