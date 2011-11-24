@@ -1,6 +1,8 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-3.0.1.ebuild,v 1.2 2011/07/14 18:33:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-3.1.0.ebuild,v 1.1 2011/10/03 17:43:00 vapier Exp $
+
+EAPI="3"
 
 # NOTE: we cannot depend on autotools here starting with gcc-4.3.x
 inherit eutils libtool multilib
@@ -15,16 +17,14 @@ SRC_URI="http://www.mpfr.org/mpfr-${MY_PV}/${MY_P}.tar.bz2"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE=""
+IUSE="static-libs"
 
-RDEPEND=">=dev-libs/gmp-4.1.4-r2"
+RDEPEND=">=dev-libs/gmp-4.1.4-r2[static-libs=]"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	[[ -d ${FILESDIR}/${PV} ]] && epatch "${FILESDIR}"/${PV}/*.patch
 	[[ ${PLEVEL} == ${PV} ]] && return 0
 	for ((i=1; i<=PLEVEL; ++i)) ; do
@@ -52,19 +52,29 @@ src_compile() {
 	emake || die
 }
 
+src_configure() {
+	econf \
+		--docdir=/usr/share/doc/${PF} \
+		$(use_enable static-libs static)
+}
+
 src_install() {
 	emake install DESTDIR="${D}" || die
-	rm "${ED}"/usr/share/doc/${PN}/*.html || die
-	mv "${ED}"/usr/share/doc/{${PN},${PF}} || die
+	use static-libs || rm -f "${ED}"/usr/$(get_libdir)/libmpfr.la
+
+	# clean up html/license install
+	pushd "${ED}"/usr/share/doc/${PF} >/dev/null
+	dohtml *.html && rm COPYING* *.html || die
+	popd >/dev/null
+	# some, but not all, are already installed
 	dodoc AUTHORS BUGS ChangeLog NEWS README TODO
-	dohtml *.html
 	prepalldocs
 }
 
 pkg_preinst() {
-	preserve_old_lib /usr/$(get_libdir)/libmpfr.so.1
+	preserve_old_lib /usr/$(get_libdir)/libmpfr$(get_libname 1)
 }
 
 pkg_postinst() {
-	preserve_old_lib_notify /usr/$(get_libdir)/libmpfr.so.1
+	preserve_old_lib_notify /usr/$(get_libdir)/libmpfr$(get_libname 1)
 }

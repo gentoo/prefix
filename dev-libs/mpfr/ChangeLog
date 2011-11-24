@@ -1,6 +1,45 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.134 2011/04/23 16:07:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.143 2011/10/12 10:26:53 armin76 Exp $
+
+  12 Oct 2011; Raúl Porcel <armin76@gentoo.org> mpfr-3.0.1_p4.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #380673
+
+*mpfr-3.1.0 (03 Oct 2011)
+
+  03 Oct 2011; Mike Frysinger <vapier@gentoo.org> +mpfr-3.1.0.ebuild:
+  Version bump.
+
+*mpfr-2.4.2_p3-r1 (03 Oct 2011)
+
+  03 Oct 2011; Mike Frysinger <vapier@gentoo.org> +mpfr-2.4.2_p3-r1.ebuild:
+  Add ebuild for libmpfr.so.1 ABI name.
+
+  14 Sep 2011; Jeroen Roovers <jer@gentoo.org> mpfr-3.0.1_p4.ebuild:
+  Stable for HPPA (bug #380673).
+
+  04 Sep 2011; Markus Meier <maekke@gentoo.org> mpfr-3.0.1_p4.ebuild:
+  arm/x86 stable, bug #380673
+
+  26 Aug 2011; Tony Vroon <chainsaw@gentoo.org> mpfr-3.0.1_p4.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo in bug
+  #380673 filed by Mike "SpanKY" Frysinger.
+
+*mpfr-3.0.1_p4-r1 (25 Aug 2011)
+
+  25 Aug 2011; Mike Frysinger <vapier@gentoo.org> +mpfr-3.0.1_p4-r1.ebuild:
+  Add support for USE=static-libs #378235 by Agostino Sarubbo.
+
+*mpfr-3.0.1_p4 (14 Jul 2011)
+
+  14 Jul 2011; Mike Frysinger <vapier@gentoo.org> +files/3.0.1/patch01,
+  +files/3.0.1/patch02, +files/3.0.1/patch04, +mpfr-3.0.1_p4.ebuild,
+  +files/3.0.1/patch03:
+  Version bump.
+
+  14 Jul 2011; Mike Frysinger <vapier@gentoo.org> mpfr-2.4.2_p3.ebuild,
+  mpfr-3.0.0_p3.ebuild, mpfr-3.0.1.ebuild:
+  Use exact upstream URIs #375119 by zino.
 
   23 Apr 2011; Raúl Porcel <armin76@gentoo.org> mpfr-3.0.0_p3.ebuild:
   ia64/m68k/s390/sh/sparc stable wrt #348634
