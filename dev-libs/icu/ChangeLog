@@ -1,6 +1,109 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.138 2011/01/15 14:41:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.165 2011/10/30 12:02:54 hwoarang Exp $
+
+*icu-4.8.1.1 (30 Oct 2011)
+
+  30 Oct 2011; Markos Chandras <hwoarang@gentoo.org> +icu-4.8.1.1.ebuild:
+  Version bump. Ebuild by Arfrever.
+
+  29 Oct 2011; Markus Meier <maekke@gentoo.org> icu-4.8.1-r2.ebuild:
+  arm stable, bug #387259
+
+  19 Oct 2011; Jeroen Roovers <jer@gentoo.org> icu-4.8.1-r2.ebuild:
+  Stable for HPPA (bug #387259).
+
+  18 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> icu-4.8.1-r2.ebuild:
+  x86 stable wrt bug #387259
+
+  17 Oct 2011; Markos Chandras <hwoarang@gentoo.org> icu-4.8.1-r2.ebuild:
+  Stable on amd64 wrt bug #387259
+
+*icu-4.8.1-r2 (12 Oct 2011)
+
+  12 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> +icu-4.8.1-r2.ebuild,
+  +files/icu-4.8.1-fix_nan.patch:
+  Backport an upstream patch to fix Gentoo bug #380827 by Piotr Mitas.
+
+*icu-4.8.1-r1 (05 Sep 2011)
+
+  05 Sep 2011; Tomáš Chvátal <scarabeus@gentoo.org> -icu-4.6.1.ebuild,
+  -icu-4.8.1.ebuild, +icu-4.8.1-r1.ebuild,
+  +files/icu-4.8.1-fix_binformat_fonts.patch:
+  Revision bump in order to fix font-crash problem in libreoffice. Bug #381327
+
+  20 Aug 2011; Jeroen Roovers <jer@gentoo.org> icu-4.8.ebuild:
+  Stable for HPPA (bug #374589).
+
+  31 Jul 2011; Raúl Porcel <armin76@gentoo.org> icu-4.8.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #374589
+
+  29 Jul 2011; Jesus Rivero <neurogeek@gentoo.org> metadata.xml:
+  Changed Arfrever email and added myself
+
+*icu-4.8.1 (29 Jul 2011)
+
+  29 Jul 2011; Jesus Rivero <neurogeek@gentoo.org> +icu-4.8.1.ebuild:
+  Version bump. Ebuild by Arfrever.
+
+  25 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> icu-4.8.ebuild:
+  ppc/ppc64 stable wrt #374589
+
+  24 Jul 2011; Thomas Kahle <tomka@gentoo.org> icu-4.8.ebuild:
+  x86 stable per bug 374589
+
+  23 Jul 2011; Markos Chandras <hwoarang@gentoo.org> icu-4.8.ebuild:
+  Stable on amd64 wrt bug #374589
+
+*icu-4.8 (24 Jun 2011)
+
+  24 Jun 2011; Markos Chandras <hwoarang@gentoo.org> -icu-4.8_rc1.ebuild,
+  +icu-4.8.ebuild:
+  Version bump. Requested by Arfrever
+
+  24 May 2011; Brent Baude <ranger@gentoo.org> icu-4.6.1.ebuild:
+  Marking icu-4.6.1 ppc for bug 364409
+
+*icu-4.8_rc1 (18 May 2011)
+
+  18 May 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +icu-4.8_rc1.ebuild:
+  Version bump.
+
+  07 May 2011; Raúl Porcel <armin76@gentoo.org> icu-4.6.1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #364409
+
+  05 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> icu-4.6.1.ebuild:
+  x86 stable wrt bug #364409
+
+  27 Apr 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  icu-4.6.1.ebuild, +files/icu-4.6.1-parallel_installation.patch:
+  Fix parallel installation (bug #272328).
+
+  26 Apr 2011; Christoph Mende <angelos@gentoo.org> icu-4.6.1.ebuild:
+  Stable on amd64 wrt bug #364409
+
+  26 Apr 2011; Jeroen Roovers <jer@gentoo.org> icu-4.6.1.ebuild:
+  Stable for HPPA (bug #364409).
+
+  03 Apr 2011; Raúl Porcel <armin76@gentoo.org> icu-4.6.ebuild:
+  ia64/s390/sh stable wrt #350861
+
+*icu-4.6.1 (23 Mar 2011)
+
+  23 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +icu-4.6.1.ebuild:
+  Version bump.
+
+  27 Feb 2011; Tobias Klausmann <klausman@gentoo.org> icu-4.6.ebuild:
+  Stable on alpha, bug #350861
+
+  26 Feb 2011; Michael Weber <xmw@gentoo.org> icu-4.6.ebuild:
+  sparc stable (bug 350861)
+
+  28 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  icu-4.6.ebuild, +files/icu-4.6-pkgdata.patch:
+  Fix building with large CFLAGS (bug #326021).
 
   15 Jan 2011; Markus Meier <maekke@gentoo.org> icu-4.6.ebuild:
   x86 stable, bug #350861

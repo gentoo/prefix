@@ -1,0 +1,56 @@
+diff -ur icu.orig/source/config/mh-darwin icu/source/config/mh-darwin
+--- icu.orig/source/config/mh-darwin	2011-10-19 01:13:00.000000000 +0200
++++ icu/source/config/mh-darwin	2011-11-27 20:51:08.000000000 +0100
+@@ -4,6 +4,13 @@
+ ## Copyright (c) 1999-2011 International Business Machines Corporation and
+ ## others. All Rights Reserved.
+ 
++
++SO_TARGET = $(LIBDIR)/$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO)
++FINAL_SO_TARGET = $(LIBDIR)/$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO_TARGET_VERSION).$(SO)
++MIDDLE_SO_TARGET = $(LIBDIR)/$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO_TARGET_VERSION_MAJOR).$(SO)
++
++IS_DARWIN = yes
++
+ ## Flags for position independent code
+ SHAREDLIBCFLAGS = -dynamic
+ SHAREDLIBCXXFLAGS = -dynamic
+@@ -28,7 +35,7 @@
+ ifeq ($(ENABLE_RPATH),YES)
+ LD_SONAME = -Wl,-compatibility_version -Wl,$(SO_TARGET_VERSION_MAJOR) -Wl,-current_version -Wl,$(SO_TARGET_VERSION) -install_name $(libdir)/$(notdir $(MIDDLE_SO_TARGET))
+ else
+-LD_SONAME = -Wl,-compatibility_version -Wl,$(SO_TARGET_VERSION_MAJOR) -Wl,-current_version -Wl,$(SO_TARGET_VERSION) -install_name $(notdir $(MIDDLE_SO_TARGET))
++LD_SONAME = -Wl,-compatibility_version -Wl,$(SO_TARGET_VERSION_MAJOR) -Wl,-current_version -Wl,$(SO_TARGET_VERSION) -install_name $(libdir)/$(notdir $(MIDDLE_SO_TARGET))
+ endif
+ 
+ ## Compiler switch to embed a runtime search path
+diff -ur icu.orig/source/stubdata/Makefile.in icu/source/stubdata/Makefile.in
+--- icu.orig/source/stubdata/Makefile.in	2011-10-19 01:13:00.000000000 +0200
++++ icu/source/stubdata/Makefile.in	2011-11-27 20:49:45.000000000 +0100
+@@ -32,7 +32,11 @@
+ 
+ 
+ ifneq ($(ENABLE_SHARED),)
++ifeq ($(IS_DARWIN),)
+ SO_TARGET = $(STUBDATA_LIBDIR)$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX)$(STUB_SUFFIX).$(SO)
++else
++SO_TARGET = $(LIBDIR)/$(STUBDATA_LIBDIR)$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX)$(STUB_SUFFIX).$(SO)
++endif
+ ALL_SO_TARGETS = $(FINAL_SO_TARGET) $(MIDDLE_SO_TARGET) $(SO_TARGET) $(BATCH_STUB_TARGET) $(SHARED_OBJECT)
+ endif
+ 
+diff -ur icu.orig/source/tools/ctestfw/Makefile.in icu/source/tools/ctestfw/Makefile.in
+--- icu.orig/source/tools/ctestfw/Makefile.in	2011-10-19 01:12:44.000000000 +0200
++++ icu/source/tools/ctestfw/Makefile.in	2011-11-27 20:49:45.000000000 +0100
+@@ -31,7 +31,11 @@
+ endif
+ 
+ ifneq ($(ENABLE_SHARED),)
++ifeq ($(IS_DARWIN),)
+ SO_TARGET = $(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO)
++else
++SO_TARGET = $(LIBDIR)/$(LIBICU)$(TARGET_STUBNAME)$(ICULIBSUFFIX).$(SO)
++endif
+ ALL_SO_TARGETS = $(SO_TARGET) $(MIDDLE_SO_TARGET) $(FINAL_SO_TARGET) $(SHARED_OBJECT)
+ endif
+ 

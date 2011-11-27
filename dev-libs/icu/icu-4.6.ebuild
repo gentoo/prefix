@@ -1,10 +1,10 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.6.ebuild,v 1.7 2011/01/15 14:41:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.6.ebuild,v 1.11 2011/04/03 11:46:25 armin76 Exp $
 
 EAPI="3"
 
-inherit versionator multilib
+inherit eutils versionator multilib
 
 MAJOR_MINOR_VERSION="$(get_version_component_range 1-2)"
 MICRO_VERSION="$(get_version_component_range 3)"
@@ -54,6 +54,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
 	# fix part 1 for echo_{t,c,n}
 	epatch "${FILESDIR}"/${P}-echo_t.patch
+
+	epatch "${FILESDIR}/${P}-pkgdata.patch"
 }
 
 src_configure() {

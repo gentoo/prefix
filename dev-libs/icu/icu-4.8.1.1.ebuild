@@ -1,24 +1,28 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.4.1.ebuild,v 1.13 2010/09/30 20:35:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.8.1.1.ebuild,v 1.1 2011/10/30 12:02:54 hwoarang Exp $
 
-EAPI="3"
+EAPI="4"
 
-inherit eutils flag-o-matic versionator multilib
+inherit versionator
 
-MAJOR_MINOR_VERSION="$(get_version_component_range 1-2)"
-MICRO_VERSION="$(get_version_component_range 3)"
+MAJOR_VERSION="$(get_version_component_range 1)"
+MINOR_VERSION="$(get_version_component_range 2)"
+if [[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+(_rc[[:digit:]]*)?$ ]]; then
+	MICRO_VERSION="0"
+else
+	MICRO_VERSION="$(get_version_component_range 3)"
+fi
 
 DESCRIPTION="International Components for Unicode"
 HOMEPAGE="http://www.icu-project.org/"
 
-BASE_URI="http://download.icu-project.org/files/icu4c/${PV}"
-DOCS_BASE_URI="http://download.icu-project.org/files/icu4c/${MAJOR_MINOR_VERSION}"
+BASE_URI="http://download.icu-project.org/files/icu4c/${PV/_/}"
 SRC_ARCHIVE="icu4c-${PV//./_}-src.tgz"
-DOCS_ARCHIVE="icu4c-${MAJOR_MINOR_VERSION//./_}-docs.zip"
+DOCS_ARCHIVE="icu4c-${PV//./_}-docs.zip"
 
 SRC_URI="${BASE_URI}/${SRC_ARCHIVE}
-	doc? ( ${DOCS_BASE_URI}/${DOCS_ARCHIVE} )"
+	doc? ( ${BASE_URI}/${DOCS_ARCHIVE} )"
 
 LICENSE="BSD"
 SLOT="0"
@@ -30,7 +34,7 @@ RDEPEND=""
 
 S="${WORKDIR}/${PN}/source"
 
-QA_DT_NEEDED="/usr/lib.*/libicudata$(get_libname ${MAJOR_MINOR_VERSION/./}.${MICRO_VERSION:-0})"
+QA_DT_NEEDED="/usr/lib.*/libicudata\.so\.${MAJOR_VERSION}${MINOR_VERSION}\.${MICRO_VERSION}.*"
 
 src_unpack() {
 	unpack "${SRC_ARCHIVE}"
@@ -43,24 +47,23 @@ src_unpack() {
 }
 
 src_prepare() {
-	# Do not hardcode used CFLAGS, LDFLAGS etc. into icu-config
-	# Bug 202059
-	# https://bugs.icu-project.org/trac/ticket/6102
-	for x in ARFLAGS CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
-		sed -i -e "/^${x} =.*/s:@${x}@::" "config/Makefile.inc.in" || die "sed failed"
+	# Do not hardcode flags into icu-config.
+	# https://ssl.icu-project.org/trac/ticket/6102
+	local variable
+	for variable in CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
+		sed -i -e "/^${variable} =.*/s:@${variable}@::" config/Makefile.inc.in || die "sed failed"
 	done
 
-	epatch "${FILESDIR}/${P}-pkgdata.patch"
-	epatch "${FILESDIR}/${P}-et_EE.patch"
-	epatch "${FILESDIR}/${P}-arm.patch"
-
 	# for correct install_names
-	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
+	epatch "${FILESDIR}"/${PN}-4.8.1-darwin.patch
+	# fix part 1 for echo_{t,c,n}
+	epatch "${FILESDIR}"/${PN}-4.6-echo_t.patch
+
+	epatch "${FILESDIR}/${PN}-4.8.1-fix_binformat_fonts.patch"
+	epatch "${FILESDIR}/${PN}-4.8.1-fix_nan.patch"
 }
 
 src_configure() {
-	append-flags -fno-strict-aliasing
-
 	if [[ ${CHOST} == *-irix* ]]; then
 		if [[ -n "${LD_LIBRARYN32_PATH}" || -n "${LD_LIBRARY64_PATH}" ]]; then
 			case "${ABI:-$DEFAULT_ABI}" in
@@ -90,6 +93,7 @@ src_configure() {
 
 	# make sure we configure with the same shell as we run icu-config
 	# with, or ECHO_N, ECHO_T and ECHO_C will be wrongly defined
+	# (this is part 2 from the echo_{t,c,n} fix)
 	export CONFIG_SHELL=${EPREFIX}/bin/sh
 	econf \
 		$(use_enable debug) \
@@ -103,11 +107,21 @@ src_compile() {
 }
 
 src_test() {
-	emake -j1 check || die "emake check failed"
+	# INTLTEST_OPTS: intltest options
+	#   -e: Exhaustive testing
+	#   -l: Reporting of memory leaks
+	#   -v: Increased verbosity
+	# IOTEST_OPTS: iotest options
+	#   -e: Exhaustive testing
+	#   -v: Increased verbosity
+	# CINTLTST_OPTS: cintltst options
+	#   -e: Exhaustive testing
+	#   -v: Increased verbosity
+	emake -j1 check
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install || die "emake install failed"
+	emake DESTDIR="${D}" install
 
 	dohtml ../readme.html
 	dodoc ../unicode-license.txt

@@ -2,8 +2,12 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>arfrever@gentoo.org</email>
+		<email>arfrever.fta@gmail.com</email>
 		<name>Arfrever Frehtes Taifersar Arahesis</name>
+		<description>Proxy maintainer. CC him on bugs</description>
 	</maintainer>
-	<herd>php</herd>
+	<maintainer>
+		<email>neurogeek@gentoo.org</email>
+		<name>Jesus Rivero</name>
+	</maintainer>
 </pkgmetadata>
