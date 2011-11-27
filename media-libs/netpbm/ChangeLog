@@ -1,6 +1,86 @@
 # ChangeLog for media-libs/netpbm
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.243 2010/07/23 20:52:24 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.260 2011/11/16 09:47:56 jlec Exp $
+
+  16 Nov 2011; Justin Lecher <jlec@gentoo.org> netpbm-10.51.00-r2.ebuild:
+  Corrected Slotting of media-libs/tiff and media-libs/libpng
+
+  23 Oct 2011; Tim Harder <radhermit@gentoo.org>
+  -files/netpbm-10.35.0-pnmtopng-zlib.patch, -files/netpbm-10.35.0-xml2.patch,
+  -files/netpbm-10.42.0-gcc43.patch,
+  -files/netpbm-10.46.00-min_DCT_v_scaled_size.patch,
+  -files/netpbm-10.48.00-pngx.patch,
+  -files/netpbm-10.48.00-pnmtopng-zlib.patch, -netpbm-10.49.00.ebuild,
+  -files/netpbm-10.49.00-sigpower.patch, -netpbm-10.51.00-r1.ebuild:
+  Remove old.
+
+  23 Oct 2011; Raúl Porcel <armin76@gentoo.org> netpbm-10.51.00-r2.ebuild:
+  alpha/sparc stable wrt #383753
+
+  16 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  netpbm-10.51.00-r2.ebuild:
+  ppc stable wrt #383753
+
+  16 Oct 2011; Mike Frysinger <vapier@gentoo.org> netpbm-10.51.00-r2.ebuild:
+  Move forward stable keywords for trivial changes, and mark ia64/s390/sh
+  stable #383753.
+
+*netpbm-10.51.00-r2 (12 Oct 2011)
+
+  12 Oct 2011; Justin Lecher <jlec@gentoo.org> +netpbm-10.51.00-r2.ebuild,
+  +files/netpbm-10.51.00-underlinking.patch, metadata.xml:
+  Fix underlinking, #367405
+
+  11 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
+  netpbm-10.51.00-r1.ebuild:
+  ppc64 stable wrt #383753
+
+  11 Oct 2011; Jeroen Roovers <jer@gentoo.org> netpbm-10.51.00-r1.ebuild:
+  Stable for HPPA (bug #383753).
+
+  08 Oct 2011; Markus Meier <maekke@gentoo.org> netpbm-10.51.00-r1.ebuild:
+  arm stable, bug #383753
+
+  01 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  netpbm-10.51.00-r1.ebuild:
+  x86 stable wrt bug #383753
+
+  24 Sep 2011; Robin H. Johnson <robbat2@gentoo.org> netpbm-10.49.00.ebuild,
+  netpbm-10.51.00-r1.ebuild:
+  Bug #297257: Change /dev/stdin usage to "-", because /dev/stdin device node
+  does not exist in all of the stage3 tarballs, and if netpbm gets pulled in
+  early during the user install, it will fail. Also fixing in stages. Might
+  also help Prefix users with no /dev.
+  
+  24 Sep 2011; Tony Vroon <chainsaw@gentoo.org> netpbm-10.51.00-r1.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo & Ian
+  "idella4" Delaney in bug #383753.
+
+  13 Sep 2011; Mike Frysinger <vapier@gentoo.org> netpbm-10.51.00-r1.ebuild:
+  Clean up doc install #382833 by Ulrich Müller.
+
+  15 Aug 2011; Mike Frysinger <vapier@gentoo.org> netpbm-10.51.00-r1.ebuild:
+  Add patch by Stuart Longland for libpng-1.5 build failure #355025 by Lars
+  Wendler.
+
+*netpbm-10.51.00-r1 (22 Sep 2010)
+
+  22 Sep 2010; Mike Frysinger <vapier@gentoo.org>
+  +netpbm-10.51.00-r1.ebuild,
+  +files/netpbm-10.51.00-pnmconvol-nooffset.patch:
+  Add fix from upstream for nooffset with pnmconvol #338230 by Sergey
+  Alirzaev.
+
+  19 Sep 2010; Mike Frysinger <vapier@gentoo.org> netpbm-10.51.00.ebuild:
+  Fix install error with urt subdir #337971 by Steve Kutnar and drop importinc
+  dependencies with files #337984 by Andrew Evans.
+
+*netpbm-10.51.00 (18 Sep 2010)
+
+  18 Sep 2010; Mike Frysinger <vapier@gentoo.org> +netpbm-10.51.00.ebuild,
+  +files/netpbm-10.51.00-ppmtompeg-free.patch:
+  Version bump to fix warnings in older code #337747 by David J Cozatt. Fix
+  parallel build issues with include dir handling #149843 by Jiri Tyr.
 
   23 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
   netpbm-10.49.00.ebuild:

@@ -1,34 +1,34 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.49.00.ebuild,v 1.10 2010/07/23 20:52:24 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.51.00-r2.ebuild,v 1.5 2011/11/16 09:47:56 jlec Exp $
 
-EAPI=1
+EAPI="3"
+
 inherit toolchain-funcs eutils multilib prefix
 
-MAN_VER=10.33
 DESCRIPTION="A set of utilities for converting to/from the netpbm (and related) formats"
 HOMEPAGE="http://netpbm.sourceforge.net/"
-SRC_URI="mirror://gentoo/${P}.tar.lzma
-	mirror://gentoo/${PN}-${MAN_VER}-manpages.tar.bz2"
+SRC_URI="mirror://gentoo/${P}.tar.xz
+	mirror://gentoo/${P}-libpng-1.5.patch.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="jbig jpeg jpeg2k png rle svga tiff X xml zlib"
 
-RDEPEND="jpeg? ( virtual/jpeg )
+RDEPEND="jbig? ( media-libs/jbigkit )
+	jpeg? ( virtual/jpeg )
 	jpeg2k? ( media-libs/jasper )
-	tiff? ( >=media-libs/tiff-3.5.5 )
-	png? ( >=media-libs/libpng-1.4 )
+	png? ( >=media-libs/libpng-1.4:0 )
+	rle? ( media-libs/urt )
+	svga? ( media-libs/svgalib )
+	tiff? ( >=media-libs/tiff-3.5.5:0 )
 	xml? ( dev-libs/libxml2 )
 	zlib? ( sys-libs/zlib )
-	svga? ( media-libs/svgalib )
-	jbig? ( media-libs/jbigkit )
-	rle? ( media-libs/urt )
 	X? ( x11-libs/libX11 )"
 DEPEND="${RDEPEND}
-	sys-devel/flex
-	app-arch/xz-utils"
+	app-arch/xz-utils
+	sys-devel/flex"
 
 maint_pkg_create() {
 	local base="${EPREFIX}/usr/local/src"
@@ -40,11 +40,11 @@ maint_pkg_create() {
 		svn export -q ${srcdir}/${PV} netpbm-${PV}
 		eend $? || return 1
 
-		ebegin "Creating netpbm-${PV}.tar.lzma"
-		tar cf - netpbm-${PV} | lzma > netpbm-${PV}.tar.lzma
+		ebegin "Creating netpbm-${PV}.tar.xz"
+		tar cf - netpbm-${PV} | xz > netpbm-${PV}.tar.xz
 		eend $?
 
-		einfo "Tarball now ready at: ${T}/netpbm-${PV}.tar.lzma"
+		einfo "Tarball now ready at: ${T}/netpbm-${PV}.tar.xz"
 	else
 		einfo "You need to run:"
 		einfo " cd ${base}"
@@ -52,7 +52,7 @@ maint_pkg_create() {
 		die "need svn checkout dir"
 	fi
 }
-pkg_setup() { [[ -n ${VAPIER_LOVES_YOU} && ! -e ${DISTDIR}/${P}.tar.lzma ]] && maint_pkg_create ; }
+pkg_setup() { [[ -n ${VAPIER_LOVES_YOU} && ! -e ${DISTDIR}/${P}.tar.xz ]] && maint_pkg_create ; }
 
 netpbm_libtype() {
 	case ${CHOST} in
@@ -79,13 +79,12 @@ netpbm_config() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
-	epatch "${FILESDIR}"/netpbm-10.48.00-pnmtopng-zlib.patch #291987
-	epatch "${FILESDIR}"/${P}-sigpower.patch #310179
+	epatch "${FILESDIR}"/${P}-ppmtompeg-free.patch
+	epatch "${FILESDIR}"/${P}-pnmconvol-nooffset.patch #338230
+	epatch "${WORKDIR}"/${P}-libpng-1.5.patch #355025
+	epatch "${FILESDIR}"/${P}-underlinking.patch #367405
 
 	epatch "${FILESDIR}"/${PN}-10.46.00-darwin.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-solaris.patch
@@ -96,9 +95,25 @@ src_unpack() {
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 		editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
 
+	# make sure we use system urt
+	sed -i '/SUPPORT_SUBDIRS/s:urt::' GNUmakefile || die
+	rm -rf urt
+
+	# take care of the importinc stuff ourselves by only doing it once
+	# at the top level and having all subdirs use that one set #149843
+	sed -i \
+		-e '/^importinc:/s|^|importinc:\nmanual_|' \
+		-e '/-Iimportinc/s|-Iimp|-I"$(BUILDDIR)"/imp|g'\
+		common.mk || die
+	sed -i \
+		-e '/%.c/s: importinc$::' \
+		common.mk lib/Makefile lib/util/Makefile || die
+
 	# avoid ugly depend.mk warnings
 	touch $(find . -name Makefile | sed s:Makefile:depend.mk:g)
+}
 
+src_configure() {
 	cat config.mk.in - >> config.mk <<-EOF
 	# Misc crap
 	BUILD_FIASCO = N
@@ -150,30 +165,29 @@ src_compile() {
 	# same holds for interix, but we only need iberty
 	[[ ${CHOST} == *-interix* ]] && extlibs="-liberty"
 
-	emake LIBS="${extlibs}" -j1 || die
+	emake LIBS="${extlibs}" -j1 pm_config.h version.h manual_importinc || die #149843
+	emake LIBS="${extlibs}" || die
 }
 
 src_install() {
 	mkdir -p "${ED}"
-	emake -j1 package pkgdir="${ED}"/usr || die "make package failed"
+	# Subdir make targets like to use `mkdir` all over the place
+	# without any actual dependencies, thus the -j1.
+	emake -j1 package pkgdir="${ED}"/usr || die
 
 	[[ $(get_libdir) != "lib" ]] && mv "${ED}"/usr/lib "${ED}"/usr/$(get_libdir)
 
 	# Remove cruft that we don't need, and move around stuff we want
-	rm -f "${ED}"/usr/bin/{doc.url,manweb} || die
+	rm "${ED}"/usr/bin/{doc.url,manweb} || die
 	rm -r "${ED}"/usr/man/web || die
 	rm -r "${ED}"/usr/link || die
-	rm -f "${ED}"/usr/{README,VERSION,config_template,pkginfo} || die
+	rm "${ED}"/usr/{README,VERSION,config_template,pkginfo} || die
 	dodir /usr/share
 	mv "${ED}"/usr/man "${ED}"/usr/share/ || die
 	mv "${ED}"/usr/misc "${ED}"/usr/share/netpbm || die
 
 	dodoc README
 	cd doc
-	GLOBIGNORE='*.html:.*' dodoc *
+	dodoc HISTORY Netpbm.programming USERDOC
 	dohtml -r .
-
-	cd "${WORKDIR}"/${PN}-${MAN_VER}-manpages || die
-	doman *.[0-9]
-	dodoc README* gen-netpbm-manpages
 }
