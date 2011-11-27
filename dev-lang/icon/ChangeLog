@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/icon
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.46 2010/09/19 17:42:20 armin76 Exp $
+
+  27 Nov 2011; Fabian Groffen <grobian@gentoo.org> icon-9.5.0.ebuild:
+  Allow dep on gcc-apple, and keyworded ~x86-macos, thanks to MATSUI Tetsushi in
+  bug #392005
 
   19 Sep 2010; Raúl Porcel <armin76@gentoo.org> icon-9.5.0.ebuild:
   Add ~s390 wrt #316195

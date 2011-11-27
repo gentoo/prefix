@@ -11,7 +11,7 @@ DESCRIPTION="very high level language"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="X iplsrc"
 
 S="${WORKDIR}/icon-v${MY_PV}src"
@@ -21,7 +21,7 @@ DEPEND="X? ( x11-proto/xextproto
 			x11-libs/libX11
 			x11-libs/libXpm
 			x11-libs/libXt )
-	sys-devel/gcc"
+		|| ( sys-devel/gcc sys-devel/gcc-apple )"
 
 src_unpack() {
 	unpack ${A}
