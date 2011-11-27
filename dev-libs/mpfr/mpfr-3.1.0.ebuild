@@ -45,16 +45,11 @@ src_prepare() {
 	elibtoolize
 }
 
-src_compile() {
-	econf \
-		--with-gmp-lib="${EPREFIX}"/usr/$(get_libdir) \
-		--with-gmp-include="${EPREFIX}"/usr/include || die
-	emake || die
-}
-
 src_configure() {
 	econf \
-		--docdir=/usr/share/doc/${PF} \
+		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
+		--with-gmp-lib="${EPREFIX}"/usr/$(get_libdir) \
+		--with-gmp-include="${EPREFIX}"/usr/include || die
 		$(use_enable static-libs static)
 }
 
