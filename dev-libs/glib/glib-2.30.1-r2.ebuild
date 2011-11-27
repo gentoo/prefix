@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.1-r1.ebuild,v 1.1 2011/10/16 21:37:16 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.1-r2.ebuild,v 1.1 2011/11/11 17:35:20 ssuominen Exp $
 
 EAPI="4"
 PYTHON_DEPEND="utils? 2"
@@ -37,8 +37,9 @@ DEPEND="${RDEPEND}
 		sys-devel/gdb
 		=dev-lang/python-2*
 		>=dev-util/gdbus-codegen-${PV}
-		>=sys-apps/dbus-1.2.14 )
-	!<dev-util/gtk-doc-1.15-r2"
+		>=sys-apps/dbus-1.4.16-r2 )
+	!<dev-util/gtk-doc-1.15-r2
+	!<sys-apps/dbus-1.4.16-r2"
 PDEPEND="!<gnome-base/gvfs-1.6.4-r990" # Earlier versions do not work with glib
 
 pkg_setup() {
@@ -116,6 +117,9 @@ src_prepare() {
 
 	# Handle the G_HOME environment variable to override the passwd entry, upstream bug #142568
 	epatch "${FILESDIR}/${PN}-2.30.1-homedir-env.patch"
+
+	# Fix hardcoded path to machine-id wrt #390143
+	sed -i -e '/g_file_get_contents/s:/var/lib/dbus/machine-id:/etc/machine-id:' gio/gdbusprivate.c || die
 
 	# disable pyc compiling
 	ln -sfn $(type -P true) py-compile

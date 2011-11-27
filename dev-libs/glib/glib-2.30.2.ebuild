@@ -1,10 +1,12 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.0.ebuild,v 1.3 2011/10/06 08:52:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.2.ebuild,v 1.2 2011/11/14 19:06:22 tetromino Exp $
 
 EAPI="4"
+PYTHON_DEPEND="utils? 2"
+# Avoid runtime dependency on python when USE=test
 
-inherit autotools gnome.org libtool eutils flag-o-matic multilib pax-utils virtualx
+inherit autotools gnome.org libtool eutils flag-o-matic multilib pax-utils python virtualx
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
@@ -13,7 +15,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="LGPL-2"
 SLOT="2"
-IUSE="debug doc fam selinux +static-libs systemtap test xattr"
+IUSE="debug doc fam selinux +static-libs systemtap test utils xattr"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="virtual/libiconv
@@ -21,22 +23,32 @@ RDEPEND="virtual/libiconv
 	sys-libs/zlib
 	x86-interix? ( sys-libs/itx-bind )
 	xattr? ( sys-apps/attr )
-	fam? ( virtual/fam )"
+	fam? ( virtual/fam )
+	utils? ( >=dev-util/gdbus-codegen-${PV} )"
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.11
 	>=dev-util/gtk-doc-am-1.15
 	doc? (
 		>=dev-libs/libxslt-1.0
+		>=dev-util/gdbus-codegen-${PV}
 		>=dev-util/gtk-doc-1.15
 		~app-text/docbook-xml-dtd-4.1.2 )
 	systemtap? ( >=dev-util/systemtap-1.3 )
 	test? (
-		>=dev-util/gdbus-codegen-2.30.0
+		sys-devel/gdb
+		=dev-lang/python-2*
+		>=dev-util/gdbus-codegen-${PV}
 		>=sys-apps/dbus-1.2.14 )
 	!<dev-util/gtk-doc-1.15-r2"
 PDEPEND="!<gnome-base/gvfs-1.6.4-r990" # Earlier versions do not work with glib
 
-# XXX: Consider adding test? ( sys-devel/gdb ); assert-msg-test tries to use it
+pkg_setup() {
+	# Needed for gio/tests/gdbus-testserver.py
+	if use test ; then
+		python_set_active_version 2
+		python_pkg_setup
+	fi
+}
 
 src_prepare() {
 	mv -vf "${WORKDIR}"/pkg-config-*/pkg.m4 "${WORKDIR}"/ || die
@@ -55,7 +67,7 @@ src_prepare() {
 
 	# Don't fail gio tests when ran without userpriv, upstream bug 552912
 	# This is only a temporary workaround, remove as soon as possible
-	epatch "${FILESDIR}/${PN}-2.18.1-workaround-gio-test-failure-without-userpriv.patch"
+#	epatch "${FILESDIR}/${PN}-2.18.1-workaround-gio-test-failure-without-userpriv.patch"
 
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
@@ -70,7 +82,8 @@ src_prepare() {
 	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
 		-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
 
-	if ! use test; then
+	# need to build tests if USE=doc for bug #387385
+	if ! use test && ! use doc; then
 		# don't waste time building tests
 		sed 's/^\(.*\SUBDIRS .*\=.*\)tests\(.*\)$/\1\2/' -i $(find . -name Makefile.am -o -name Makefile.in) || die
 	else
@@ -83,10 +96,31 @@ src_prepare() {
 			sed -i -e "/desktop-app-info\/fallback/d" gio/tests/desktop-app-info.c || die
 			sed -i -e "/desktop-app-info\/lastused/d" gio/tests/desktop-app-info.c || die
 		fi
+
+		# Disable tests requiring dbus-python and pygobject; bugs #349236, #377549, #384853
+		if ! has_version dev-python/dbus-python || ! has_version 'dev-python/pygobject:2' ; then
+			ewarn "Some tests will be skipped due to dev-python/dbus-python or dev-python/pygobject:2"
+			ewarn "not being present on your system, think on installing them to get these tests run."
+			sed -i -e "/connection\/filter/d" gio/tests/gdbus-connection.c || die
+			sed -i -e "/connection\/large_message/d" gio/tests/gdbus-connection-slow.c || die
+			sed -i -e "/gdbus\/proxy/d" gio/tests/gdbus-proxy.c || die
+			sed -i -e "/gdbus\/proxy-well-known-name/d" gio/tests/gdbus-proxy-well-known-name.c || die
+			sed -i -e "/gdbus\/introspection-parser/d" gio/tests/gdbus-introspection.c || die
+			sed -i -e "/g_test_add_func/d" gio/tests/gdbus-threading.c || die
+			sed -i -e "/gdbus\/method-calls-in-thread/d" gio/tests/gdbus-threading.c || die
+			# needed to prevent gdbus-threading from asserting
+			ln -sfn $(type -P true) gio/tests/gdbus-testserver.py
+		fi
 	fi
 
 	# gdbus-codegen is a separate package
-	epatch "${FILESDIR}/${PN}-2.29.18-external-gdbus-codegen.patch"
+	epatch "${FILESDIR}/${PN}-2.30.1-external-gdbus-codegen.patch"
+
+	# Handle the G_HOME environment variable to override the passwd entry, upstream bug #142568
+	epatch "${FILESDIR}/${PN}-2.30.1-homedir-env.patch"
+
+	# Fix hardcoded path to machine-id wrt #390143
+	epatch "${FILESDIR}/${PN}-2.30.2-machine-id.patch"
 
 	# disable pyc compiling
 	ln -sfn $(type -P true) py-compile
@@ -129,9 +163,11 @@ src_prepare() {
 src_configure() {
 	# Avoid circular depend with dev-util/pkgconfig
 	if ! has_version dev-util/pkgconfig; then
-		export DBUS1_CFLAGS="-I/usr/include/dbus-1.0 -I/usr/$(get_libdir)/dbus-1.0/include"
-		export DBUS1_LIBS="-ldbus-1"
-		export LIBFFI_CFLAGS="-I$(echo /usr/$(get_libdir)/libffi-*/include)"
+		if has_version sys-apps/dbus; then
+			export DBUS1_CFLAGS="-I${EPREFIX}/usr/include/dbus-1.0 -I${EPREFIX}/usr/$(get_libdir)/dbus-1.0/include"
+			export DBUS1_LIBS="-ldbus-1"
+		fi
+		export LIBFFI_CFLAGS="-I$(echo "${EPREFIX}"/usr/$(get_libdir)/libffi-*/include)"
 		export LIBFFI_LIBS="-lffi"
 	fi
 
@@ -181,16 +217,22 @@ src_configure() {
 
 src_install() {
 	local f
-	emake DESTDIR="${D}" install || die "Installation failed"
+
+	# install-exec-hook substitutes ${PYTHON} in glib/gtester-report
+	emake DESTDIR="${D}" PYTHON="${EPREFIX}/usr/bin/python2" install
+
+	if ! use utils; then
+		rm "${ED}usr/bin/gtester-report"
+	fi
 
 	# Don't install gdb python macros, bug 291328
 	rm -rf "${ED}/usr/share/gdb/" "${ED}/usr/share/glib-2.0/gdb/"
 
-	dodoc AUTHORS ChangeLog* NEWS* README || die "dodoc failed"
+	dodoc AUTHORS ChangeLog* NEWS* README
 
 	insinto /usr/share/bash-completion
 	for f in gdbus gsettings; do
-		newins "${ED}/etc/bash_completion.d/${f}-bash-completion.sh" ${f} || die
+		newins "${ED}/etc/bash_completion.d/${f}-bash-completion.sh" ${f}
 	done
 	rm -rf "${ED}/etc"
 
@@ -218,7 +260,7 @@ src_test() {
 	fi
 
 	# Need X for dbus-launch session X11 initialization
-	Xemake check || die "tests failed"
+	Xemake check
 }
 
 pkg_preinst() {
