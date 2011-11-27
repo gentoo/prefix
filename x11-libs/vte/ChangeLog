@@ -1,6 +1,130 @@
 # ChangeLog for x11-libs/vte
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.274 2011/04/10 09:07:41 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.301 2011/11/22 16:17:36 zmedico Exp $
+
+  22 Nov 2011; Zac Medico <zmedico@gentoo.org> vte-0.28.2-r202.ebuild:
+  Add ~x86-linux keyword.
+
+*vte-0.30.1-r2 (18 Nov 2011)
+*vte-0.28.2-r202 (18 Nov 2011)
+
+  18 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -vte-0.28.2-r201.ebuild, +vte-0.28.2-r202.ebuild, -vte-0.30.1-r1.ebuild,
+  +vte-0.30.1-r2.ebuild, files/vte-0.30.1-alt-meta.patch:
+  Update meta key patch to fix Alt-? and Alt-/ handling.
+
+  16 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  vte-0.28.2-r201.ebuild, vte-0.30.1-r1.ebuild:
+  Forgot to inherit eutils.
+
+*vte-0.28.2-r201 (16 Nov 2011)
+
+  16 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +vte-0.28.2-r201.ebuild:
+  Also apply the Alt key patch to vte:0 since it looks like new versions of
+  gtk+:2 will be treating Alt the same way as gtk+-3.2.2.
+
+*vte-0.30.1-r1 (15 Nov 2011)
+
+  15 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +vte-0.30.1-r1.ebuild, +files/vte-0.30.1-alt-meta.patch:
+  Add a patch to unbreak Alt key handling with gtk+-3.2.2.
+
+  30 Oct 2011; Raúl Porcel <armin76@gentoo.org> vte-0.28.2-r300.ebuild:
+  alpha/ia64/sh/sparc stable wrt #385699
+
+  30 Oct 2011; Raúl Porcel <armin76@gentoo.org> vte-0.28.2-r200.ebuild:
+  alpha/ia64/sh/sparc stable wrt #385699
+
+  28 Oct 2011; Markus Meier <maekke@gentoo.org> vte-0.28.2-r300.ebuild:
+  arm stable, bug #385699
+
+  28 Oct 2011; Markus Meier <maekke@gentoo.org> vte-0.28.2-r200.ebuild:
+  arm stable, bug #385699
+
+*vte-0.30.1 (21 Oct 2011)
+
+  21 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org> +vte-0.30.1.ebuild:
+  Add vte-0.30.1 from the gnome overlay.
+  Notable changes: better accessibility support, and no more gtk2 version.
+
+  21 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> vte-0.28.2-r200.ebuild,
+  vte-0.28.2-r300.ebuild:
+  x86 stable wrt bug #385699
+
+  18 Oct 2011; Jeroen Roovers <jer@gentoo.org> vte-0.28.2-r200.ebuild,
+  vte-0.28.2-r300.ebuild:
+  Stable for HPPA (bug #385699).
+
+  16 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> vte-0.28.2-r200.ebuild,
+  vte-0.28.2-r300.ebuild:
+  ppc/ppc64 stable wrt #385699
+
+  14 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> vte-0.28.2-r200.ebuild,
+  vte-0.28.2-r300.ebuild:
+  amd64 stable wrt #385699
+
+  04 Oct 2011; Pacho Ramos <pacho@gentoo.org>
+  files/vte-0.28.0-fix-gdk-targets.patch:
+  Fix gdk-targets patch to prevent underlinking problems, bug #369387 and patch
+  by Naohiro Aota.
+
+*vte-0.28.2-r300 (10 Sep 2011)
+*vte-0.28.2-r200 (10 Sep 2011)
+
+  10 Sep 2011; Pacho Ramos <pacho@gentoo.org> -vte-0.26.2.ebuild,
+  +vte-0.28.2-r200.ebuild, +vte-0.28.2-r300.ebuild:
+  Version bump, remove old, include introspection macro for gtk3 version until
+  a better solution is supplied.
+
+  11 Jul 2011; Matt Turner <mattst88@gentoo.org> vte-0.28.1-r200.ebuild,
+  vte-0.28.1-r300.ebuild:
+  Added ~mips, bug 364693
+
+  09 Jul 2011; Raúl Porcel <armin76@gentoo.org> vte-0.28.1-r200.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #371320
+
+  06 Jul 2011; Mark Loeser <halcy0n@gentoo.org> vte-0.28.1-r200.ebuild:
+  Stable for ppc64; bug #371320
+
+  29 Jun 2011; Christoph Mende <angelos@gentoo.org> vte-0.28.1-r200.ebuild:
+  Stable on amd64 wrt bug #371320
+
+  29 Jun 2011; Jeroen Roovers <jer@gentoo.org> vte-0.28.1-r200.ebuild:
+  Stable for HPPA (bug #371320).
+
+  28 Jun 2011; Brent Baude <ranger@gentoo.org> vte-0.28.1-r200.ebuild:
+  Marking vte-0.28.1-r200 ppc stable for bug 371320
+
+  22 Jun 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> vte-0.28.1-r200.ebuild:
+  x86 stable wrt security bug #371320
+
+  15 Jun 2011; Nirbheek Chauhan <nirbheek@gentoo.org> vte-0.28.1-r200.ebuild,
+  vte-0.28.1-r300.ebuild:
+  Fix glade dependency, see bug 364831
+
+*vte-0.28.1-r300 (15 Jun 2011)
+*vte-0.28.1-r200 (15 Jun 2011)
+
+  15 Jun 2011; Nirbheek Chauhan <nirbheek@gentoo.org> -vte-0.28.0-r200.ebuild,
+  -vte-0.28.0-r300.ebuild, +vte-0.28.1-r200.ebuild, +vte-0.28.1-r300.ebuild:
+  Bump to 0.28.1, security bump, remove vulnerable versions
+
+  01 May 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -files/vte-0.24.1-background-color.patch,
+  -files/vte-0.24.1-background-color2.patch,
+  -files/vte-0.24.1-cleanup-background.patch,
+  -files/vte-0.24.2-invisible-cursor.patch,
+  -files/vte-0.24.2-invisible-cursor2.patch,
+  +files/vte-0.28.0-fix-gdk-targets.patch:
+  Remove unused patches, fix bug 365555
+
+*vte-0.28.0-r300 (30 Apr 2011)
+*vte-0.28.0-r200 (30 Apr 2011)
+
+  30 Apr 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +vte-0.28.0-r200.ebuild, +vte-0.28.0-r300.ebuild:
+  Bump to 0.28.0, add both gtk2 and gtk3 versions
 
   10 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> vte-0.26.2.ebuild:
   Punt useless libtool file.
