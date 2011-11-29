@@ -235,6 +235,7 @@ app-text/lout
 app-text/mbtpdfasm
 app-text/multitail
 app-text/mythes
+app-text/noweb
 app-text/o3read
 app-text/par
 app-text/passivetex
@@ -440,6 +441,7 @@ dev-tex/detex
 dev-tex/dot2tex
 dev-tex/dot2texi
 dev-tex/dvi2tty
+dev-tex/dvipost
 dev-tex/envlab
 dev-tex/europecv
 dev-tex/feynmf
