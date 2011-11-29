@@ -1263,6 +1263,7 @@ dev-java/fontbox
 dev-java/gjdoc
 dev-java/gnu-regexp
 dev-java/groovy
+dev-java/guava
 dev-java/hamcrest-core
 dev-java/hoteqn
 dev-java/hp-jdk-bin
