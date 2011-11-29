@@ -145,7 +145,6 @@ app-misc/mime-types
 app-misc/mmv
 app-misc/mtail
 app-misc/ondir
-app-misc/openjnlp
 app-misc/pipeworks
 app-misc/realpath
 app-misc/rlwrap
@@ -1289,7 +1288,6 @@ dev-java/jgroups
 dev-java/jline
 dev-java/jmock
 dev-java/jna-posix
-dev-java/jnlp-bin
 dev-java/joda-time
 dev-java/joni
 dev-java/jrexx
