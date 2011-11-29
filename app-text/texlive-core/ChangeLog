@@ -1,6 +1,32 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.152 2011/08/19 18:52:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.158 2011/11/07 13:55:14 aballier Exp $
+
+  07 Nov 2011; Alexis Ballier <aballier@gentoo.org> -files/texmf-update2008,
+  -texlive-core-2008-r7.ebuild, -texlive-core-2008-r8.ebuild,
+  -texlive-core-2009-r1.ebuild, -texlive-core-2009-r2.ebuild,
+  -files/texmf-update2009:
+  remove old
+
+*texlive-core-2011-r5 (02 Nov 2011)
+
+  02 Nov 2011; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2011-r4.ebuild, +texlive-core-2011-r5.ebuild:
+  make a revbump to force rebuild with new patches
+
+  02 Nov 2011; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2011-r4.ebuild:
+  add upstream patches from branch 2011
+
+  12 Oct 2011; Raúl Porcel <armin76@gentoo.org> texlive-core-2010-r4.ebuild,
+  texlive-core-2011-r4.ebuild:
+  Add append-ldflags for alpha
+
+  04 Oct 2011; Jeroen Roovers <jer@gentoo.org> texlive-core-2010-r4.ebuild:
+  Stable for HPPA (bug #355085).
+
+  18 Sep 2011; Raúl Porcel <armin76@gentoo.org> texlive-core-2010-r4.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #355085
 
 *texlive-core-2011-r4 (19 Aug 2011)
 
