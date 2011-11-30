@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.143 2011/10/12 10:26:53 armin76 Exp $
 
+  30 Nov 2011; Fabian Groffen <grobian@gentoo.org> mpfr-3.0.1_p4-r1.ebuild:
+  Fix double econf (src_compile leftover)
+
   29 Nov 2011; Fabian Groffen <grobian@gentoo.org> +files/3.0.1,
   +files/3.0.1/patch01, +files/3.0.1/patch02, +files/3.0.1/patch03,
   +files/3.0.1/patch04:

@@ -45,15 +45,11 @@ src_prepare() {
 	elibtoolize
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		--with-gmp-lib="${EPREFIX}"/usr/$(get_libdir) \
 		--with-gmp-include="${EPREFIX}"/usr/include || die
-	emake || die
-}
-
-src_configure() {
-	econf $(use_enable static-libs static)
+		$(use_enable static-libs static)
 }
 
 src_install() {
