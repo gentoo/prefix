@@ -99,7 +99,6 @@ src_unpack() {
 		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint3.patch
 		epatch "${FILESDIR}"/4.5.1/${PN}-4.5.1-mint1.patch
 		epatch "${FILESDIR}"/4.5.2/${PN}-4.5.2-mint1.patch
-		# backport from 4.5.3 (/4.6.2?)
 		epatch "${FILESDIR}"/4.5.2/m68k-coldfire.patch
 	fi
 
