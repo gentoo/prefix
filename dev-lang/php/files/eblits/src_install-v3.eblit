@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_install-v2.eblit,v 1.13 2011/07/23 10:14:46 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_install-v3.eblit,v 1.5 2011/11/08 18:14:08 olemarkus Exp $
 
 eblit-php-src_install() {
 	# see bug #324739 for what happens when we don't have that
@@ -26,15 +26,6 @@ eblit-php-src_install() {
 
 	local extension_dir="$("${ED}/${PHP_DESTDIR#${EPREFIX}}/bin/php-config" --extension-dir)"
 
-	# And install the modules to it
-	if use sharedext ; then
-		insinto "${extension_dir#${EPREFIX}}"
-		doins "${WORKDIR}/sapis-build/${first_sapi}/modules/"*$(get_modname)
-	fi
-
-	# Generate the USE file for PHP
-	phpconfutils_generate_usefile
-
 	# Create the directory where we'll put version-specific php scripts
 	keepdir /usr/share/php${PHP_MV}
 
@@ -45,20 +36,39 @@ eblit-php-src_install() {
 		if use "${sapi}" ; then
 			einfo "Installing SAPI: ${sapi}"
 			cd "${WORKDIR}/sapis-build/${sapi}"
-			# needed each time, php_install_ini would reset it
-			into "${PHP_DESTDIR#${EPREFIX}}"
-			file=$(find "${SAPI_DIR}/${sapi}/" -type f | head -n 1)
 
-			if [[ "${file: -3}" == ".so" ]]; then 
-				if [[ "${sapi}" == "apache2" ]]; then
-					insinto "${PHP_DESTDIR#${EPREFIX}}/apache2/"
-					newins "${file}" "${file/*\/}"
-          keepdir "/usr/$(get_libdir)/apache2/modules"
-				else
-					dolib.so "${file}" || die "Unable to install ${sapi} sapi"
-				fi
+			if [[ "${sapi}" == "apache2" ]] ; then
+				# We're specifically not using emake install-sapi as libtool
+				# may cause unnecessary relink failures (see bug #351266)
+				insinto "${PHP_DESTDIR}/apache2/"
+				newins ".libs/libphp5$(get_libname)" "libphp${PHP_MV}$(get_libname)"
+				keepdir "/usr/$(get_libdir)/apache2/modules"
 			else
-				dobin "${file}" || die "Unable to install ${sapi} sapi"
+				# needed each time, php_install_ini would reset it
+				into "${PHP_DESTDIR}"
+			    case "$sapi" in
+					cli)
+						source="sapi/cli/php"
+						;;
+					cgi)
+						source="sapi/cgi/php-cgi"
+						;;
+					fpm)
+						source="sapi/fpm/php-fpm"
+						;;
+					embed)
+						source="libs/libphp${PHP_MV}$(get_libname)"
+						;;
+					*)
+						die "unhandled sapi in src_install"
+						;;
+				esac
+
+				if [[ "${source}" == *"$(get_libname)" ]]; then 
+					dolib.so "${source}" || die "Unable to install ${sapi} sapi"
+				else
+					dobin "${source}" || die "Unable to install ${sapi} sapi"
+				fi
 			fi
 
 			php_install_ini "${sapi}"
@@ -66,7 +76,7 @@ eblit-php-src_install() {
 			# construct correct SAPI string for php-config
 			# thanks to ferringb for the bash voodoo
 			if [[ "${sapi}" == "apache2" ]]; then
-			    sapi_list="${sapi_list:+${sapi_list} }apache2handler"
+				sapi_list="${sapi_list:+${sapi_list} }apache2handler"
 			else
 				sapi_list="${sapi_list:+${sapi_list} }${sapi}"
 			fi
@@ -96,12 +106,6 @@ php_install_ini() {
 	local phpinisrc="${PHP_INI_UPSTREAM}-${phpsapi}"
 	cp "${PHP_INI_UPSTREAM}" "${phpinisrc}"
 
-	# default to allow_url_open=Off, bug 332763
-	sed -e 's|^allow_url_fopen .*|allow_url_fopen = Off|g' -i "${phpinisrc}"
-
-	# default to expose_php=Off, bug 300695
-	sed -e 's|^expose_php .*|expose_php = Off|g' -i "${phpinisrc}"
-
 	# default to /tmp for save_path, bug #282768
 	sed -e 's|^;session.save_path .*$|session.save_path = "'"${EPREFIX}"'/tmp"|g' -i "${phpinisrc}"
 
@@ -120,18 +124,6 @@ php_install_ini() {
 
 	dodir "${PHP_EXT_INI_DIR#${EPREFIX}}"
 	dodir "${PHP_EXT_INI_DIR_ACTIVE#${EPREFIX}}"
-
-	# Install any extensions built as shared objects
-	if use sharedext ; then
-		insinto "${PHP_EXT_INI_DIR#${EPREFIX}}"
-		for extension in "${ED}/${extension_dir#${EPREFIX}}/"*$(get_modname) ; do
-			extension="${extension##*/}"
-			inifilename="${extension/$(get_modname)/.ini}"
-			echo "extension=${extension}" > "${WORKDIR}/sapis-build/${phpsapi}/modules/$inifilename"
-			doins "${WORKDIR}/sapis-build/${phpsapi}/modules/$inifilename"
-			dosym "${PHP_EXT_INI_DIR#${EPREFIX}}/${inifilename}" "${PHP_EXT_INI_DIR_ACTIVE#${EPREFIX}}/${inifilename}"
-		done
-	fi
 
 	# SAPI-specific handling
 	if [[ "${sapi}" == "apache2" ]] ; then

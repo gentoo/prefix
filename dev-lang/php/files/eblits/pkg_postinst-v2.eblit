@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/pkg_postinst-v2.eblit,v 1.12 2011/02/18 09:18:38 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/pkg_postinst-v2.eblit,v 1.13 2011/07/26 16:47:11 olemarkus Exp $
 
 eblit-php-pkg_postinst() {
 	# Output some general info to the user
@@ -28,8 +28,6 @@ eblit-php-pkg_postinst() {
 		fi
 	done
 
-	elog "You may have to recompile third-party extensions now"
-	elog "(includes every dev-php5/pecl-* package and probably others in that category)"
 	elog "Make sure that PHP_TARGETS in /etc/make.conf includes php${SLOT/./-} in order"
 	elog "to compile extensions for the ${SLOT} ABI"
 	elog

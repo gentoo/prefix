@@ -1,15 +1,12 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.3.3-r1.ebuild,v 1.12 2011/03/17 16:34:47 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.4.0_rc2.ebuild,v 1.1 2011/11/25 09:10:47 olemarkus Exp $
 
-EAPI=2
+EAPI=4
 
-PHPCONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob interbase oci8 sapdb solid"
+inherit eutils autotools flag-o-matic versionator depend.apache apache-module db-use libtool prefix
 
-inherit eutils autotools flag-o-matic versionator depend.apache apache-module db-use phpconfutils php-common-r1 libtool prefix
-
-PHP_PATCHSET="2"
-SUHOSIN_VERSION="${PV}-0.9.10"
+SUHOSIN_VERSION=""
 FPM_VERSION="builtin"
 EXPECTED_TEST_FAILURES=""
 
@@ -18,6 +15,9 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos
 function php_get_uri ()
 {
 	case "${1}" in
+		"php-stas")
+			echo "http://downloads.php.net/stas/${2}"
+		;;
 		"php-pre")
 			echo "http://downloads.php.net/johannes/${2}"
 		;;
@@ -27,8 +27,8 @@ function php_get_uri ()
 		"suhosin")
 			echo "http://download.suhosin.org/${2}"
 		;;
-		"ntnu")
-			echo "http://folk.ntnu.no/olemarku/gentoo/${2}"
+		"olemarkus")
+			echo "http://olemarkus.org/~olemarkus/gentoo/${2}"
 		;;
 		"gentoo")
 			echo "mirror://gentoo/${2}"
@@ -44,16 +44,21 @@ PHP_MV="$(get_major_version)"
 # alias, so we can handle different types of releases (finals, rcs, alphas,
 # betas, ...) w/o changing the whole ebuild
 PHP_PV="${PV/_rc/RC}"
-PHP_RELEASE="php"
+PHP_PV="${PHP_PV/_alpha/alpha}"
+PHP_PV="${PHP_PV/_beta/beta}"
+PHP_RELEASE="php-stas"
 PHP_P="${PN}-${PHP_PV}"
 
-PHP_PATCHSET_LOC="gentoo"
+PHP_PATCHSET_LOC="olemarkus"
 
 PHP_SRC_URI="$(php_get_uri "${PHP_RELEASE}" "${PHP_P}.tar.bz2")"
 
-PHP_PATCHSET="${PHP_PATCHSET:-${PR/r/}}"
+PHP_PATCHSET="0"
 PHP_PATCHSET_URI="
 	$(php_get_uri "${PHP_PATCHSET_LOC}" "php-patchset-${PV}-r${PHP_PATCHSET}.tar.bz2")"
+
+PHP_FPM_INIT_VER="4"
+PHP_FPM_CONF_VER="1"
 
 if [[ ${SUHOSIN_VERSION} == *-gentoo ]]; then
 	# in some cases we use our own suhosin patch (very recent version,
@@ -81,8 +86,11 @@ DESCRIPTION="The PHP language runtime engine: CLI, CGI, FPM/FastCGI, Apache2 and
 HOMEPAGE="http://php.net/"
 LICENSE="PHP-3"
 
+SLOT="$(get_version_component_range 1-2)"
+S="${WORKDIR}/${PHP_P}"
+
 # We can build the following SAPIs in the given order
-SAPIS="cli cgi fpm embed apache2"
+SAPIS="embed cli cgi fpm apache2"
 
 # Gentoo-specific, common features
 IUSE="kolab"
@@ -90,50 +98,45 @@ IUSE="kolab"
 # SAPIs and SAPI-specific USE flags (cli SAPI is default on):
 IUSE="${IUSE}
 	${SAPIS/cli/+cli}
-	concurrentmodphp threads"
+	threads"
 
-IUSE="${IUSE} adabas bcmath berkdb birdstep bzip2 calendar cdb cjk
-	crypt +ctype curl curlwrappers db2 dbmaker debug doc empress
-	empress-bcs enchant esoob exif frontbase +fileinfo +filter firebird
-	flatfile ftp gd gd-external gdbm gmp +hash +iconv imap inifile
-	interbase intl iodbc ipv6 +json kerberos ldap ldap-sasl libedit
-	mssql mysql mysqlnd mysqli nls oci8
+IUSE="${IUSE} bcmath berkdb bzip2 calendar cdb cjk
+	crypt +ctype curl curlwrappers debug doc
+	enchant exif frontbase +fileinfo +filter firebird
+	flatfile ftp gd gdbm gmp +hash +iconv imap inifile
+	intl iodbc ipv6 +json kerberos ldap ldap-sasl libedit mhash
+	mssql mysql mysqlnd mysqli nls
 	oci8-instant-client odbc pcntl pdo +phar pic +posix postgres qdbm
-	readline recode sapdb +session sharedext sharedmem
-	+simplexml snmp soap sockets solid spell sqlite sqlite3 ssl suhosin
+	readline recode +session sharedmem
+	+simplexml snmp soap sockets spell sqlite3 ssl
 	sybase-ct sysvipc tidy +tokenizer truetype unicode wddx
-	+xml +xmlreader +xmlwriter xmlrpc xpm xsl zip zlib"
+	xml xmlreader xmlwriter xmlrpc xpm xsl zip zlib"
 
-DEPEND="app-admin/php-toolkit
-	>=dev-libs/libpcre-7.9[unicode]
-	adabas? ( >=dev-db/unixODBC-1.8.13 )
+# Enable suhosin if available
+[[ -n $SUHOSIN_VERSION ]] && IUSE="${IUSE} suhosin"
+
+DEPEND="!dev-lang/php:5
+	>=app-admin/eselect-php-0.6.2
+	>=dev-libs/libpcre-8.12[unicode]
 	apache2? ( www-servers/apache[threads=] )
 	berkdb? ( =sys-libs/db-4* )
-	birdstep? ( >=dev-db/unixODBC-1.8.13 )
 	bzip2? ( app-arch/bzip2 )
 	cdb? ( || ( dev-db/cdb dev-db/tinycdb ) )
-	cjk? ( !gd? ( !gd-external? (
+	cjk? ( !gd? (
 		virtual/jpeg
 		media-libs/libpng
 		sys-libs/zlib
-	) ) )
+	) )
 	crypt? ( >=dev-libs/libmcrypt-2.4 )
 	curl? ( >=net-misc/curl-7.10.5 )
-	db2? ( >=dev-db/unixODBC-1.8.13 )
-	dbmaker? ( >=dev-db/unixODBC-1.8.13 )
-	empress? ( >=dev-db/unixODBC-1.8.13 )
-	empress-bcs? ( >=dev-db/unixODBC-1.8.13 )
 	enchant? ( app-text/enchant )
-	esoob? ( >=dev-db/unixODBC-1.8.13 )
-	exif? ( !gd? ( !gd-external? (
+	exif? ( !gd? (
 		virtual/jpeg
 		media-libs/libpng
 		sys-libs/zlib
-	) ) )
+	) )
 	firebird? ( dev-db/firebird )
-	fpm? ( >=dev-libs/libevent-1.4.12 )
 	gd? ( virtual/jpeg media-libs/libpng sys-libs/zlib )
-	gd-external? ( media-libs/gd )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )
 	gmp? ( >=dev-libs/gmp-4.1.2 )
 	iconv? ( virtual/libiconv )
@@ -142,8 +145,8 @@ DEPEND="app-admin/php-toolkit
 	iodbc? ( dev-db/libiodbc )
 	kerberos? ( virtual/krb5 )
 	kolab? ( >=net-libs/c-client-2004g-r1 )
-	ldap? ( !oci8? ( >=net-nds/openldap-1.2.11 ) )
-	ldap-sasl? ( !oci8? ( dev-libs/cyrus-sasl >=net-nds/openldap-1.2.11 ) )
+	ldap? ( >=net-nds/openldap-1.2.11 )
+	ldap-sasl? ( dev-libs/cyrus-sasl >=net-nds/openldap-1.2.11 )
 	libedit? ( || ( sys-freebsd/freebsd-lib dev-libs/libedit ) )
 	mssql? ( dev-db/freetds[mssql] )
 	!mysqlnd? (
@@ -157,23 +160,20 @@ DEPEND="app-admin/php-toolkit
 	qdbm? ( dev-db/qdbm )
 	readline? ( sys-libs/readline )
 	recode? ( app-text/recode )
-	sapdb? ( >=dev-db/unixODBC-1.8.13 )
 	sharedmem? ( dev-libs/mm )
 	simplexml? ( >=dev-libs/libxml2-2.6.8 )
 	snmp? ( >=net-analyzer/net-snmp-5.2 )
 	soap? ( >=dev-libs/libxml2-2.6.8 )
-	solid? ( >=dev-db/unixODBC-1.8.13 )
 	spell? ( >=app-text/aspell-0.50 )
-	sqlite? ( =dev-db/sqlite-2* pdo? ( =dev-db/sqlite-3* ) )
-	sqlite3? ( =dev-db/sqlite-3* )
+	sqlite3? ( >=dev-db/sqlite-3.7.6.3 )
 	ssl? ( >=dev-libs/openssl-0.9.7 )
 	sybase-ct? ( dev-db/freetds )
 	tidy? ( app-text/htmltidy )
 	truetype? (
 		=media-libs/freetype-2*
 		>=media-libs/t1lib-5.0.0
-		!gd? ( !gd-external? (
-			virtual/jpeg media-libs/libpng sys-libs/zlib ) )
+		!gd? (
+			virtual/jpeg media-libs/libpng sys-libs/zlib )
 	)
 	unicode? ( dev-libs/oniguruma )
 	wddx? ( >=dev-libs/libxml2-2.6.8 )
@@ -193,70 +193,72 @@ DEPEND="app-admin/php-toolkit
 "
 
 php="=${CATEGORY}/${PF}"
-RDEPEND="${DEPEND}
-	truetype? ( || ( $php[gd] $php[gd-external] ) )
-	cjk? ( || ( $php[gd] $php[gd-external] ) )
-	exif? ( || ( $php[gd] $php[gd-external] ) )
 
-	xpm? ( $php[gd] )
-	gd? ( $php[zlib,-gd-external] )
-	gd-external? ( $php[-gd] )
-	simplexml? ( $php[xml] )
-	soap? ( $php[xml] )
-	wddx? ( $php[xml] )
-	xmlrpc? ( || ( $php[xml] $php[iconv] ) )
-	xmlreader? ( $php[xml] )
-	xsl? ( $php[xml] )
-	ldap-sasl? ( $php[ldap,-oci8] )
-	suhosin? ( $php[unicode] )
-	adabas? ( $php[odbc] )
-	birdstep? ( $php[odbc] )
-	dbmaker? ( $php[odbc] )
-	empress-bcs? ( $php[empress] )
-	empress? ( $php[odbc] )
-	esoob? ( $php[odbc] )
-	db2? ( $php[odbc] )
-	sapdb? ( $php[odbc] )
-	solid? ( $php[odbc] )
-	kolab? ( $php[imap] )
-	phar? ( $php[hash] )
+REQUIRED_USE="
+	truetype? ( gd )
+	cjk? ( gd )
+	exif? ( gd )
+
+	xpm? ( gd )
+	gd? ( zlib )
+	simplexml? ( xml )
+	soap? ( xml )
+	wddx? ( xml )
+	xmlrpc? ( || ( xml iconv ) )
+	xmlreader? ( xml )
+	xsl? ( xml )
+	ldap-sasl? ( ldap )
+	kolab? ( imap )
+	mhash? ( hash )
+	phar? ( hash )
 	mysqlnd? ( || (
-		$php[mysql]
-		$php[mysqli]
-		$php[pdo]
+		mysql
+		mysqli
+		pdo
 	) )
 
-	oci8? ( $php[-oci8-instant-client,-ldap-sasl] )
-	oci8-instant-client? ( $php[-oci8] )
+	qdbm? ( !gdbm )
+	readline? ( !libedit )
+	recode? ( !imap !mysql !mysqli )
+	sharedmem? ( !threads )
 
-	qdbm? ( $php[-gdbm] )
-	readline? ( $php[-libedit] )
-	recode? ( $php[-imap,-mysql,-mysqli] )
-	firebird? ( $php[-interbase] )
-	sharedmem? ( $php[-threads] )
-
-	!cli? ( !cgi? ( !apache2? ( !embed? ( $php[cli] ) ) ) )
-
-	enchant? ( !dev-php${PHP_MV}/pecl-enchant )
-	fileinfo? ( !dev-php${PHP_MV}/pecl-fileinfo )
-	filter? ( !dev-php${PHP_MV}/pecl-filter )
-	json? ( !dev-php${PHP_MV}/pecl-json )
-	phar? ( !dev-php${PHP_MV}/pecl-phar )
-	zip? ( !dev-php${PHP_MV}/pecl-zip )"
+	!cli? ( !cgi? ( !fpm? ( !apache2? ( !embed? ( cli ) ) ) ) )"
 
 DEPEND="${DEPEND}
+	enchant? ( !dev-php5/pecl-enchant )
+	fileinfo? ( !<dev-php5/pecl-fileinfo-1.0.4-r2 )
+	filter? ( !dev-php5/pecl-filter )
+	json? ( !dev-php5/pecl-json )
+	phar? ( !dev-php5/pecl-phar )
+	zip? ( !dev-php5/pecl-zip )"
+
+[[ -n $SUHOSIN_VERSION ]] && RDEPEND="${RDEPEND} suhosin? (
+=${CATEGORY}/${PN}-${SLOT}*[unicode] )"
+
+DEPEND="${DEPEND}
+	sys-devel/flex
 	>=sys-devel/m4-1.4.3
 	>=sys-devel/libtool-1.5.18"
 
 # They are in PDEPEND because we need PHP installed first!
-PDEPEND="doc? ( app-doc/php-docs )
-	suhosin? ( dev-php${PHP_MV}/suhosin )"
+PDEPEND="doc? ( app-doc/php-docs )"
 
-SLOT="${PHP_MV}"
-S="${WORKDIR}/${PHP_P}"
+# No longer depend on the extension. The suhosin USE flag only installs the
+# patch
+#[[ -n $SUHOSIN_VERSION ]] && PDEPEND="${PDEPEND} suhosin? ( dev-php${PHP_MV}/suhosin )"
 
+# Allow users to install production version if they want to
+
+case "${PHP_INI_VERSION}" in
+	production|development)
+		;;
+	*)
+		PHP_INI_VERSION="development"
+		;;
+esac
+
+PHP_INI_UPSTREAM="php.ini-${PHP_INI_VERSION}"
 PHP_INI_FILE="php.ini"
-PHP_INI_UPSTREAM="php.ini-production"
 
 want_apache
 
@@ -305,7 +307,7 @@ eblit-run-maybe() {
 # Usage: <function> [version]
 # Runs a function defined in an eblit
 eblit-run() {
-	eblit-include --skip common "${*:2}"
+	eblit-include --skip common v2
 	eblit-include "$@"
 	eblit-run-maybe eblit-$1-pre
 	eblit-${PN}-$1
@@ -320,24 +322,18 @@ eblit-pkg() {
 	eblit-core $1 $2 1
 }
 
-eblit-pkg pkg_setup v1
+eblit-pkg pkg_setup v3
 
-src_prepare() { 
-	if use mysqli && [[ ${CHOST} == *apple* && ${PV} == 5.3.3 ]] ; then
-		# Fix mysqli build failure on OS X caused by ulong (php-bug: 52413)
-		epatch "${FILESDIR}/php-5.3.3-ulong-osx.patch"
-	fi
-
-	eblit-run src_prepare v1 ; 
+src_prepare() {
+	eblit-run src_prepare v4 ;
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# http://bugs.php.net/bug.php?id=48795, bug #343481
 		sed -i -e '/BUILD_CGI="\\$(CC)/s/CC/CXX/' configure || die
 	fi
 }
-src_configure() { eblit-run src_configure v1 ; }
-src_compile() { eblit-run src_compile v1 ; }
-src_install() { eblit-run src_install v1 ; }
+src_configure() { eblit-run src_configure v3 ; }
+src_compile() { eblit-run src_compile v2 ; }
+src_install() { eblit-run src_install v3 ; }
 src_test() { eblit-run src_test v1 ; }
-
-eblit-pkg pkg_postinst v1
+pkg_postinst() { eblit-run pkg_postinst v2 ; }

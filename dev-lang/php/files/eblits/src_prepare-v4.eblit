@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_prepare-v1.eblit,v 1.3 2010/06/01 16:17:05 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_prepare-v4.eblit,v 1.1 2011/06/29 06:38:38 olemarkus Exp $
 
 eblit-php-src_prepare() {
 	# USE=sharedmem (session/mod_mm to be exact) tries to mmap() this path
@@ -11,19 +11,17 @@ eblit-php-src_prepare() {
 	addpredict /session_mm_cli250.sem
 	addpredict /session_mm_cli0.sem
 
-	# Concurrent PHP Apache2 modules support
-	use apache2 && use concurrentmodphp && \
-		epatch "${WORKDIR}/${PV}/opt/concurrent_apache_modules.patch"
-
 	# kolab support (support for imap annotations)
-	use kolab && epatch "${WORKDIR}/${PV}/opt/imap-kolab-annotations.patch"
+	use kolab && epatch "${WORKDIR}/patches/opt/imap-kolab-annotations.patch"
 
 	# Change PHP branding
-	sed -re	"s|^(PHP_EXTRA_VERSION=\").*(\")|\1${PHP_EXTRA_BRANDING}-pl${PR/r/}-gentoo\2|g" \
+	# Get the alpha/beta/rc version
+	local ver=$(get_version_component_range 4)
+	sed -re	"s|^(PHP_EXTRA_VERSION=\").*(\")|\1${PHP_EXTRA_BRANDING}-${ver}-pl${PR/r/}-gentoo\2|g" \
 		-i configure.in || die "Unable to change PHP branding"
 
 	# Apply generic PHP patches
-	EPATCH_SOURCE="${WORKDIR}/${PV}/generic" EPATCH_SUFFIX="patch" \
+		EPATCH_SOURCE="${WORKDIR}/patches/generic" EPATCH_SUFFIX="patch" \
 		EPATCH_FORCE="yes" \
 		EPATCH_MULTI_MSG="Applying generic patches and fixes from upstream..." epatch
 
@@ -36,7 +34,7 @@ eblit-php-src_prepare() {
 	sed -i \
 		-e "s,-i -a -n php${PHP_MV},-i -n php${PHP_MV},g" \
 		-e "s,-i -A -n php${PHP_MV},-i -n php${PHP_MV},g" \
-		configure sapi/apache2filter/config.m4 sapi/apache2handler/config.m4
+	configure sapi/apache2filter/config.m4 sapi/apache2handler/config.m4
 
 	# Patch PHP to support heimdal instead of mit-krb5
 	if has_version "app-crypt/heimdal" ; then
@@ -47,24 +45,18 @@ eblit-php-src_prepare() {
 	fi
 
 	# Suhosin support
-	if use suhosin ; then
-		epatch "${WORKDIR}/${SUHOSIN_PATCH}"
+	if [[ -n $SUHOSIN_VERSION ]] ; then
+		if use suhosin ; then
+			epatch "${WORKDIR}/${SUHOSIN_PATCH}"
+		fi
+	else
+		ewarn "Please note that this version of PHP does not yet come with a suhosin patch"
 	fi
 
-	# rebuild the whole autotools stuff as we are heavily patching it
-	# (suhosin, fastbuild, ...)
-
-	# eaclocal doesn't accept --force, so we try to force re-generation
-	# this way
+	#Add user patches #357637
+	epatch_user
+	
+	#force rebuilding aclocal.m4
 	rm aclocal.m4
-
-	# work around divert() issues with newer autoconf, bug #281697
-	if has_version '>=sys-devel/autoconf-2.64' ; then
-		sed -i -r \
-			-e 's:^((m4_)?divert)[(]([0-9]*)[)]:\1(600\3):' \
-			$(grep -l divert $(find . -name '*.m4') configure.in) || die
-	fi
-	eautoreconf --force -W no-cross
+	eautoreconf
 }
-
-

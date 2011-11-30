@@ -4,7 +4,6 @@
 	<herd>php</herd>
 	<use>
 		<flag name='cli'>Enable CLI SAPI</flag>
-		<flag name='concurrentmodphp'>Make it possible to load both mod_php4 and mod_php5 into the same Apache2 instance (experimental)</flag>
 		<flag name='discard-path'>Switch on common security setting for CGI SAPI</flag>
 		<flag name='embed'>Enable embed SAPI</flag>
 		<flag name='enchant'>Add supports Enchant spelling library.</flag>
