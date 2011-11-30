@@ -5,13 +5,10 @@
 	</IfModule>
 
 	# Set it to handle the files
-	<FilesMatch "\.ph(p5?|tml)$">
-		SetHandler application/x-httpd-php
-	</FilesMatch>
-
-	<FilesMatch "\.phps$">
-		SetHandler application/x-httpd-php-source
-	</FilesMatch>
+	<IfModule mod_mime.c>
+		AddHandler application/x-httpd-php .php .php5 .phtml
+		AddHandler application/x-httpd-php-source .phps
+	</IfModule>
 
 	DirectoryIndex index.php index.phtml
 </IfDefine>

@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.523 2011/11/25 09:10:47 olemarkus Exp $
 
+  30 Nov 2011; Fabian Groffen <grobian@gentoo.org> +files/php-fpm-r4.init,
+  +files/70_mod_php5.conf-apache2, +files/php-fpm-r1.conf,
+  -files/70_mod_php5_concurr.conf-apache2-r1,
+  -files/70_mod_php5.conf-apache2-r1:
+  Fix files, adding and removing based on gx86, bug #383159
+
 *php-5.4.0_rc2 (25 Nov 2011)
 *php-5.3.9_rc2 (25 Nov 2011)
 

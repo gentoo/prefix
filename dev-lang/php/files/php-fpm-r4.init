@@ -1,0 +1,41 @@
+#!/sbin/runscript
+
+PHPSLOT="php5.3"
+
+PHP_FPM_CONF="/etc/php/fpm-${PHPSLOT}/php-fpm.conf"
+
+PHP_FPM_PID="/var/run/php-fpm.pid"
+
+opts="depend start stop reload"
+
+depend() {
+	need net
+	use apache2 lighttpd nginx
+}
+
+start() {
+        ebegin "Starting PHP FastCGI Process Manager"
+        start-stop-daemon --start --pidfile ${PHP_FPM_PID} --exec \
+            /usr/bin/php-fpm -- -y "${PHP_FPM_CONF}" -g "${PHP_FPM_PID}"
+        local i=0
+        local timeout=5
+        while [ ! -f ${PHP_FPM_PID} ] && [ $i -le $timeout ]; do
+            sleep 1
+            i=$(($i + 1))
+        done
+        
+        [ $timeout -gt $i ]
+        eend $?
+}
+
+stop() {
+        ebegin "Stopping PHP FastCGI Process Manager"
+        start-stop-daemon --signal QUIT --stop --exec /usr/bin/php-fpm --pidfile ${PHP_FPM_PID}
+        eend $?
+}
+
+reload() {
+    ebegin "Reloading PHP FastCGI Process Manager"
+    [ -f ${PHP_FPM_PID} ] && kill -USR2 $(cat ${PHP_FPM_PID})
+    eend $?
+}
