@@ -1297,6 +1297,7 @@ dev-java/jrexx
 dev-java/jsap
 dev-java/jsch
 dev-java/jsr173
+dev-java/jsr305
 dev-java/jta
 dev-java/jtreemap
 dev-java/junit
