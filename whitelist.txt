@@ -390,6 +390,7 @@ dev-libs/libmowgli
 dev-libs/libnl
 dev-libs/liboop
 dev-libs/libpcre
+dev-libs/libpeas
 dev-libs/libpthread-stubs
 dev-libs/libsigc++
 dev-libs/libsigsegv
