@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.557 2011/10/31 04:02:01 vapier Exp $
 
+  01 Dec 2011; Fabian Groffen <grobian@gentoo.org> python-2.7.2.ebuild,
+  python-2.7.2-r3.ebuild:
+  Make sure the linker can write bin/python2.7, remove symlink that's in the
+  way, bug #390861
+
   20 Nov 2011; Fabian Groffen <grobian@gentoo.org> python-2.7.2-r3.ebuild:
   Avoid warn-spam by only passing dirs to the linker that actually exist.
 

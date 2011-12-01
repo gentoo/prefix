@@ -393,6 +393,7 @@ src_install() {
 
 		# rebuild python executable to be the non-pythonw (python wrapper)
 		# version so we don't get framework crap
+		rm "${ED}"/usr/bin/python${SLOT}  # drop existing symlink, bug #390861
 		$(tc-getCC) "${ED}"/usr/$(get_libdir)/libpython${SLOT}.dylib \
 			-o "${ED}"/usr/bin/python${SLOT} \
 			Modules/python.o || die
