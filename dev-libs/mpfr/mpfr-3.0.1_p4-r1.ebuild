@@ -48,7 +48,7 @@ src_prepare() {
 src_configure() {
 	econf \
 		--with-gmp-lib="${EPREFIX}"/usr/$(get_libdir) \
-		--with-gmp-include="${EPREFIX}"/usr/include || die
+		--with-gmp-include="${EPREFIX}"/usr/include \
 		$(use_enable static-libs static)
 }
 
