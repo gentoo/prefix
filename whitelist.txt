@@ -405,6 +405,7 @@ dev-libs/libxdg-basedir
 dev-libs/libxml2
 dev-libs/libyaml
 dev-libs/libzip
+dev-libs/lzo
 dev-libs/log4cxx
 dev-libs/maloc
 dev-libs/mpc
