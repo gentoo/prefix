@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.20 2011/11/08 12:16:29 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.21 2011/11/18 14:23:03 voyageur Exp $
 
 # @ECLASS: gnustep-base.eclass
 # @MAINTAINER:
@@ -150,6 +150,9 @@ egnustep_env() {
 			GNUSTEP_ABSOLUTE_INSTALL_PATHS=yes \
 			TAR_OPTIONS="${TAR_OPTIONS} --no-same-owner" \
 			messages=yes )
+
+		use doc \
+			&& GS_ENV=( "${GS_ENV[@]}" VARTEXFONTS="${T}"/fonts )
 
 		use debug \
 			&& GS_ENV=( "${GS_ENV[@]}" "debug=yes" ) \

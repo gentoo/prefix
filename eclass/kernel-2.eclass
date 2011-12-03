@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.262 2011/11/08 01:05:22 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.270 2011/12/02 04:34:59 vapier Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -83,20 +83,18 @@ if [[ ${CTARGET} == ${CHOST} && ${CATEGORY/cross-} != ${CATEGORY} ]]; then
 fi
 
 HOMEPAGE="http://www.kernel.org/ http://www.gentoo.org/ ${HOMEPAGE}"
-[[ -z ${LICENSE} ]] && \
-	LICENSE="GPL-2"
+: ${LICENSE:="GPL-2"}
 
 # This is the latest KV_PATCH of the deblob tool available from the
 # libre-sources upstream. If you bump this, you MUST regenerate the Manifests
 # for ALL kernel-2 consumer packages where deblob is available.
-[[ -z ${DEBLOB_MAX_VERSION} ]] && DEBLOB_MAX_VERSION=38
+: ${DEBLOB_MAX_VERSION:=38}
 
 # No need to run scanelf/strip on kernel sources/headers (bug #134453).
 RESTRICT="binchecks strip"
 
 # set LINUX_HOSTCFLAGS if not already set
-[[ -z ${LINUX_HOSTCFLAGS} ]] && \
-	LINUX_HOSTCFLAGS="-Wall -Wstrict-prototypes -Os -fomit-frame-pointer -I${S}/include"
+: ${LINUX_HOSTCFLAGS:="-Wall -Wstrict-prototypes -Os -fomit-frame-pointer -I${S}/include"}
 
 # debugging functions
 #==============================================================
@@ -118,10 +116,8 @@ handle_genpatches() {
 	[[ -z ${K_WANT_GENPATCHES} || -z ${K_GENPATCHES_VER} ]] && return 1
 
 	debug-print "Inside handle_genpatches"
-	local oldifs=${IFS}
-	export IFS="."
-	local OKV_ARRAY=( $OKV )
-	export IFS=${oldifs}
+	local OKV_ARRAY
+	IFS="." read -r -a OKV_ARRAY <<<"${OKV}"
 
 	# for > 3.0 kernels, handle genpatches tarball name
 	# genpatches for 3.0 and 3.0.1 might be named
@@ -172,10 +168,8 @@ detect_version() {
 
 	KV_MAJOR=$(get_version_component_range 1 ${OKV})
 	# handle if OKV is X.Y or X.Y.Z (e.g. 3.0 or 3.0.1)
-	local oldifs=${IFS}
-	export IFS="."
-	local OKV_ARRAY=( $OKV )
-	export IFS=${oldifs}
+	local OKV_ARRAY
+	IFS="." read -r -a OKV_ARRAY <<<"${OKV}"
 
 	# if KV_MAJOR >= 3, then we have no more KV_MINOR
 	#if [[ ${KV_MAJOR} -lt 3 ]]; then
@@ -400,9 +394,9 @@ kernel_is() {
 	unset v n
 
 	# Now we can continue
-	local operator test value x=0 y=0 z=0
+	local operator test value
 
-	case ${1} in
+	case $1 in
 	  lt) operator="-lt"; shift;;
 	  gt) operator="-gt"; shift;;
 	  le) operator="-le"; shift;;
@@ -410,24 +404,11 @@ kernel_is() {
 	  eq) operator="-eq"; shift;;
 	   *) operator="-eq";;
 	esac
+	[[ $# -gt 3 ]] && die "Error in kernel-2_kernel_is(): too many parameters"
 
-	for x in ${@}; do
-		for((y=0; y<$((3 - ${#x})); y++)); do value="${value}0"; done
-		value="${value}${x}"
-		z=$((${z} + 1))
-
-		case ${z} in
-		  1) for((y=0; y<$((3 - ${#KV_MAJOR})); y++)); do test="${test}0"; done;
-			 test="${test}${KV_MAJOR}";;
-		  2) for((y=0; y<$((3 - ${#KV_MINOR})); y++)); do test="${test}0"; done;
-			 test="${test}${KV_MINOR}";;
-		  3) for((y=0; y<$((3 - ${#KV_PATCH})); y++)); do test="${test}0"; done;
-			 test="${test}${KV_PATCH}";;
-		  *) die "Error in kernel-2_kernel_is(): Too many parameters.";;
-		esac
-	done
-
-	[ ${test} ${operator} ${value} ] && return 0 || return 1
+	: $(( test = (KV_MAJOR << 16) + (KV_MINOR << 8) + KV_PATCH ))
+	: $(( value = (${1:-${KV_MAJOR}} << 16) + (${2:-${KV_MINOR}} << 8) + ${3:-${KV_PATCH}} ))
+	[ ${test} ${operator} ${value} ]
 }
 
 kernel_is_2_4() {
@@ -504,11 +485,7 @@ elif [[ ${ETYPE} == headers ]]; then
 	# lets unset it here.
 	unset KBUILD_OUTPUT
 
-	if [[ ${CTARGET} = ${CHOST} ]]; then
-		SLOT="0"
-	else
-		SLOT="${CTARGET}"
-	fi
+	SLOT="0"
 else
 	eerror "Unknown ETYPE=\"${ETYPE}\", must be \"sources\" or \"headers\""
 	die "Unknown ETYPE=\"${ETYPE}\", must be \"sources\" or \"headers\""
@@ -576,10 +553,8 @@ unpack_2_6() {
 universal_unpack() {
 	debug-print "Inside universal_unpack"
 
-	local oldifs=${IFS}
-	export IFS="."
-	local OKV_ARRAY=( $OKV )
-	export IFS=${oldifs}
+	local OKV_ARRAY
+	IFS="." read -r -a OKV_ARRAY <<<"${OKV}"
 
 	cd "${WORKDIR}"
 	if [[ ${#OKV_ARRAY[@]} -ge 3 ]] && [[ ${KV_MAJOR} -ge 3 ]]; then
@@ -1136,67 +1111,6 @@ detect_arch() {
 	done
 }
 
-# sparc nastiness
-#==============================================================
-# This script generates the files in /usr/include/asm for sparc systems
-# during installation of sys-kernel/linux-headers.
-# Will no longer be needed when full 64 bit support is used on sparc64
-# systems.
-#
-# Shamefully ripped from Debian
-# ----------------------------------------------------------------------
-
-# Idea borrowed from RedHat's kernel package
-
-# This is gonna get replaced by something in multilib.eclass soon...
-# --eradicator
-generate_sparc_asm() {
-	local name
-
-	cd $1 || die
-	mkdir asm
-
-	for h in `( ls asm-sparc; ls asm-sparc64 ) | grep '\.h$' | sort -u`; do
-		name="$(echo $h | tr a-z. A-Z_)"
-		# common header
-		echo "/* All asm/ files are generated and point to the corresponding
- * file in asm-sparc or asm-sparc64.
- */
-
-#ifndef __SPARCSTUB__${name}__
-#define __SPARCSTUB__${name}__
-" > asm/${h}
-
-		# common for sparc and sparc64
-		if [ -f asm-sparc/$h -a -f asm-sparc64/$h ]; then
-			echo "#ifdef __arch64__
-#include <asm-sparc64/$h>
-#else
-#include <asm-sparc/$h>
-#endif
-" >> asm/${h}
-
-		# sparc only
-		elif [ -f asm-sparc/$h ]; then
-echo "#ifndef __arch64__
-#include <asm-sparc/$h>
-#endif
-" >> asm/${h}
-
-		# sparc64 only
-		else
-echo "#ifdef __arch64__
-#include <asm-sparc64/$h>
-#endif
-" >> asm/${h}
-		fi
-
-		# common footer
-		echo "#endif /* !__SPARCSTUB__${name}__ */" >> asm/${h}
-	done
-	return 0
-}
-
 headers___fix() {
 	# Voodoo to partially fix broken upstream headers.
 	# note: do not put inline/asm/volatile together (breaks "inline asm volatile")
@@ -1287,7 +1201,7 @@ kernel-2_pkg_postinst() {
 
 kernel-2_pkg_setup() {
 	if kernel_is 2 4; then
-		if [ "$( gcc-major-version )" -eq "4" ] ; then
+		if [[ $(gcc-major-version) -ge 4 ]] ; then
 			echo
 			ewarn "Be warned !! >=sys-devel/gcc-4.0.0 isn't supported with linux-2.4!"
 			ewarn "Either switch to another gcc-version (via gcc-config) or use a"
@@ -1306,6 +1220,8 @@ kernel-2_pkg_setup() {
 }
 
 kernel-2_pkg_postrm() {
+	# This warning only makes sense for kernel sources.
+	[[ ${ETYPE} == headers ]] && return 0
 	echo
 	ewarn "Note: Even though you have successfully unmerged "
 	ewarn "your kernel package, directories in kernel source location: "
@@ -1314,4 +1230,3 @@ kernel-2_pkg_postrm() {
 	ewarn "will not remove these modified files and the directories they reside in."
 	echo
 }
-

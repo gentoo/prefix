@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.143 2011/03/22 17:20:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.144 2011/11/26 07:36:46 vapier Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -8,7 +8,7 @@
 # you better have a *good* reason why you're *not* using games.eclass
 # in a games-* ebuild
 
-inherit base multilib toolchain-funcs eutils
+inherit base multilib toolchain-funcs eutils user
 
 case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst pkg_postinst ;;
@@ -140,7 +140,7 @@ games_pkg_setup() {
 	# Dear portage team, we are so sorry.  Lots of love, games team.
 	# See Bug #61680
 	[[ ${USERLAND} != "GNU" ]] && return 0
-	[[ $(getent passwd "${GAMES_USER_DED}" | cut -f7 -d:) == "/bin/false" ]] \
+	[[ $(egetshell "${GAMES_USER_DED}") == "/bin/false" ]] \
 		&& usermod -s "${EPREFIX}"/bin/bash "${GAMES_USER_DED}"
 }
 

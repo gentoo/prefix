@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.122 2011/10/04 21:23:46 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.123 2011/11/22 18:42:10 vapier Exp $
 #
 # @DEPRECATED
 # This eclass has been superseded by xorg-2
@@ -8,7 +8,8 @@
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
-# Donnie Berkholz <dberkholz@gentoo.org>, x11@gentoo.org
+# Donnie Berkholz <dberkholz@gentoo.org>
+# x11@gentoo.org
 # @BLURB: Reduces code duplication in the modularized X11 ebuilds.
 # @DESCRIPTION:
 # This eclass makes trivial X ebuilds possible for apps, fonts, drivers,

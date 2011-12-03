@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.102 2011/10/28 07:58:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.104 2011/11/29 22:45:31 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -82,6 +82,9 @@ else
 	LICENSE="|| ( GPL-2 LGPL-2 )"
 fi
 IUSE="nls multitarget multislot static-libs test vanilla"
+if version_is_at_least 2.19 ; then
+	IUSE+=" zlib"
+fi
 if use multislot ; then
 	SLOT="${CTARGET}-${BVER}"
 elif is_cross ; then
@@ -91,6 +94,7 @@ else
 fi
 
 RDEPEND=">=sys-devel/binutils-config-1.9"
+in_iuse zlib && RDEPEND+=" zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}
 	test? ( dev-util/dejagnu )
 	nls? ( sys-devel/gettext )
@@ -203,6 +207,7 @@ toolchain-binutils_src_compile() {
 
 	cd "${MY_BUILDDIR}"
 	set --
+
 	# enable gold if available (installed as ld.gold)
 	if grep -q 'enable-gold=default' "${S}"/configure ; then
 		set -- "$@" --enable-gold
@@ -217,17 +222,27 @@ toolchain-binutils_src_compile() {
 			set -- "$@" --enable-plugins
 		fi
 	fi
+
 	use nls \
 		&& set -- "$@" --without-included-gettext \
 		|| set -- "$@" --disable-nls
+
+	if in_iuse zlib ; then
+		# older versions did not have an explicit configure flag
+		export ac_cv_search_zlibVersion=$(usex zlib -lz no)
+		set -- "$@" $(use_with zlib)
+	fi
+
 	[[ ${CHOST} == *"-solaris"* ]] && use nls && append-libs -lintl
 	use multitarget && set -- "$@" --enable-targets=all
 	[[ -n ${CBUILD} ]] && set -- "$@" --build=${CBUILD}
 	is_cross && set -- "$@" --with-sysroot=${EPREFIX}/usr/${CTARGET}
+
 	# glibc-2.3.6 lacks support for this ... so rather than force glibc-2.5+
 	# on everyone in alpha (for now), we'll just enable it when possible
 	has_version ">=${CATEGORY}/glibc-2.5" && set -- "$@" --enable-secureplt
 	has_version ">=sys-libs/glibc-2.5" && set -- "$@" --enable-secureplt
+
 	set -- "$@" \
 		--prefix=${EPREFIX}/usr \
 		--host=${CHOST} \

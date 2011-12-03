@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.368 2011/10/27 07:16:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.370 2011/12/02 10:22:41 ferringb Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -72,6 +72,7 @@ fi
 if ! declare -F eqawarn >/dev/null ; then
 	eqawarn() {
 		has qa ${PORTAGE_ELOG_CLASSES} && ewarn "$@"
+		:
 	}
 fi
 
@@ -337,7 +338,7 @@ epatch() {
 			STDERR_TARGET="${T}/${patchname}-$$.out"
 		fi
 
-		printf "***** %s *****\n\n" "${patchname}" > "${STDERR_TARGET}"
+		printf "***** %s *****\nPWD: %s\n\n" "${patchname}" "${PWD}" > "${STDERR_TARGET}"
 
 		# Decompress the patch if need be
 		local count=0

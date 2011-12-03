@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql-v2.eclass,v 1.9 2011/10/07 04:30:18 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql-v2.eclass,v 1.10 2011/11/17 16:04:02 dev-zero Exp $
 
 # @ECLASS: mysql-v2.eclass
 # @MAINTAINER:
@@ -640,7 +640,7 @@ mysql-v2_pkg_config() {
 	help_tables="${TMPDIR}/fill_help_tables.sql"
 
 	pushd "${TMPDIR}" &>/dev/null
-	"${EROOT}/usr/bin/mysql_install_db" "--basedir=${EPREFIX}/usr" >"${TMPDIR}"/mysql_install_db.log 2>&1
+	"${EROOT}/usr/bin/mysql_install_db" --basedir="${EPREFIX}/usr" >"${TMPDIR}"/mysql_install_db.log 2>&1
 	if [ $? -ne 0 ]; then
 		grep -B5 -A999 -i "ERROR" "${TMPDIR}"/mysql_install_db.log 1>&2
 		die "Failed to run mysql_install_db. Please review ${EPREFIX}/var/log/mysql/mysqld.err AND ${TMPDIR}/mysql_install_db.log"
