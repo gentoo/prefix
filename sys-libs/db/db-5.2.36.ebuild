@@ -55,8 +55,8 @@ src_prepare() {
 	#epatch "${FILESDIR}"/${PN}-4.8-libtool.patch
 	# upstreamed:5.2.36
 	#epatch "${FILESDIR}"/${PN}-4.8.24-java-manifest-location.patch
-
-	epatch "${FILESDIR}"/${PN}-4.6-interix.patch
+	# fails to apply
+	#epatch "${FILESDIR}"/${PN}-4.6-interix.patch
 
 	pushd dist > /dev/null || die "Cannot cd to 'dist'"
 
