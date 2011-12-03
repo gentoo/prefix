@@ -1,6 +1,82 @@
 # ChangeLog for sys-devel/make
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.74 2010/10/18 00:59:13 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.92 2011/12/03 00:57:25 vapier Exp $
+
+*make-3.82-r4 (03 Dec 2011)
+
+  03 Dec 2011; Mike Frysinger <vapier@gentoo.org> +make-3.82-r4.ebuild,
+  +files/make-3.82-copy-on-expand.patch, +files/make-3.82-long-cmdline.patch,
+  +files/make-3.82-oneshell.patch, +files/make-3.82-parallel-remake.patch:
+  Add some more fixes from upstream, and forward port the long cmdline patch
+  from 3.81 #300867 by Alexander Vershilov.
+
+  20 Oct 2011; Brent Baude <ranger@gentoo.org> make-3.82-r1.ebuild:
+  Marking make-3.82-r1 ppc for bug 381199
+
+  24 Sep 2011; Raúl Porcel <armin76@gentoo.org> make-3.82-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #381199
+
+  18 Sep 2011; Markus Meier <maekke@gentoo.org> make-3.82-r1.ebuild:
+  arm stable, bug #381199
+
+*make-3.82-r3 (17 Sep 2011)
+
+  17 Sep 2011; Mike Frysinger <vapier@gentoo.org> +make-3.82-r3.ebuild,
+  +files/make-3.82-glob-speedup.patch:
+  Add more complete glob optimization patch from upstream #382845 by Tomáš
+  Chvátal.
+
+  17 Sep 2011; Mike Frysinger <vapier@gentoo.org> -make-3.82-r2.ebuild,
+  -files/make-3.82-glob-speedup.patch:
+  Punt broken glob build #383311 by Lars Wendler.
+
+*make-3.82-r2 (17 Sep 2011)
+
+  17 Sep 2011; Mike Frysinger <vapier@gentoo.org> +make-3.82-r2.ebuild,
+  +files/make-3.82-glob-speedup.patch:
+  Add glob optimization patch from upstream #382845 by Tomáš Chvátal.
+
+  05 Sep 2011; Jeroen Roovers <jer@gentoo.org> make-3.82-r1.ebuild:
+  Stable for HPPA (bug #381199).
+
+  04 Sep 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> make-3.82-r1.ebuild:
+  x86 stable wrt bug #381199
+
+  31 Aug 2011; Tony Vroon <chainsaw@gentoo.org> make-3.82-r1.ebuild:
+  Marked stable on AMD64 based on arch testing by Elijah "Armageddon" El
+  Lazkani & Agostino "ago" Sarubbo in bug #381199 filed by Mike "SpanKY"
+  Frysinger.
+
+  09 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> make-3.82.ebuild:
+  ppc/ppc64 stable wrt #367265
+
+*make-3.82-r1 (07 Jun 2011)
+
+  07 Jun 2011; Tony Vroon <chainsaw@gentoo.org> +make-3.82-r1.ebuild,
+  +files/make-3.82-memory-corruption.patch:
+  Revision bump. Patch from upstream fixes memory corruption for
+  Android/Cyanogenmod builds; Savannah bug report #33125. As reported by blackd
+  in bug #355907; patch scavenged by Mike "SpanKY" Frysinger, additional
+  research by Peter "loki_val" Alfredsen & Samuli Suominen.
+
+  05 Jun 2011; Jeroen Roovers <jer@gentoo.org> make-3.82.ebuild:
+  Stable for HPPA (bug #367265).
+
+  05 Jun 2011; Raúl Porcel <armin76@gentoo.org> make-3.82.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #367265
+
+  02 Jun 2011; Markus Meier <maekke@gentoo.org> make-3.82.ebuild:
+  arm stable, bug #367265
+
+  31 May 2011; Markus Meier <maekke@gentoo.org> make-3.82.ebuild:
+  x86 stable, bug #367265
+
+  29 May 2011; Markos Chandras <hwoarang@gentoo.org> make-3.82.ebuild:
+  Stable on amd64 wrt bug #367265
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> make-3.80-r4.ebuild,
+  make-3.81.ebuild:
+  Drop to ~mips
 
   18 Oct 2010; Mike Frysinger <vapier@gentoo.org> make-3.82.ebuild:
   Move into unstable.

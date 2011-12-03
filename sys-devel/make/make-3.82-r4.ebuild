@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/make-3.82.ebuild,v 1.11 2011/07/09 09:17:29 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/make-3.82-r4.ebuild,v 1.1 2011/12/03 00:57:25 vapier Exp $
 
 EAPI="2"
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu//make/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+#KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
 IUSE="nls static"
 
 DEPEND="nls? ( sys-devel/gettext )"
@@ -21,6 +21,12 @@ RDEPEND="nls? ( virtual/libintl )"
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-archives-many-objs.patch #334889
 	epatch "${FILESDIR}"/${P}-MAKEFLAGS-reexec.patch #31975
+	epatch "${FILESDIR}"/${P}-memory-corruption.patch #355907
+	epatch "${FILESDIR}"/${P}-glob-speedup.patch #382845
+	epatch "${FILESDIR}"/${P}-copy-on-expand.patch
+	epatch "${FILESDIR}"/${P}-oneshell.patch
+	epatch "${FILESDIR}"/${P}-parallel-remake.patch
+	epatch "${FILESDIR}"/${P}-long-cmdline.patch #300867 #301116
 
 	# this disables make abortion on write errors, which
 	# seem to be reported wrongly sporadically on interix.
@@ -40,7 +46,7 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog NEWS README*
 	if [[ ${USERLAND} == "GNU" ]] ; then
 		# we install everywhere as 'gmake' but on GNU systems,
