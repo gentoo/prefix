@@ -90,7 +90,6 @@ src_unpack() {
 			rm ${f}
 		done
 	else
-		sh "${DISTDIR}"/${A} --accept-license --unpack || die "Failed to unpack"
 		sh "${DISTDIR}"/${A} -noregister || die "Failed to unpack"
 	fi
 }
