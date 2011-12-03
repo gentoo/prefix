@@ -1,6 +1,53 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.502 2011/08/10 18:16:07 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.514 2011/10/22 17:16:53 jer Exp $
+
+  22 Oct 2011; Jeroen Roovers <jer@gentoo.org> ruby-1.9.3_rc1.ebuild:
+  Add workaround for target_arch issue (bug #342819). Marked ~hppa (bug
+  #332593).
+
+  22 Oct 2011; Jeroen Roovers <jer@gentoo.org> ruby-1.9.2_p290.ebuild:
+  Add workaround for target_arch issue (bug #342819). Marked ~hppa (bug
+  #332593).
+
+  22 Oct 2011; Raúl Porcel <armin76@gentoo.org> ruby-1.8.7_p352.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #386369
+
+*ruby-1.9.3_rc1 (22 Oct 2011)
+
+  22 Oct 2011; Hans de Graaff <graaff@gentoo.org> +ruby-1.9.3_rc1.ebuild:
+  Version bump.
+
+  15 Oct 2011; Markus Meier <maekke@gentoo.org> ruby-1.8.7_p352.ebuild:
+  arm stable, bug #386369
+
+  14 Oct 2011; Andreas Schuerch <nativemad@gentoo.org> ruby-1.8.7_p352.ebuild:
+  x86 stable, bug 386369
+
+  10 Oct 2011; Jeroen Roovers <jer@gentoo.org> ruby-1.8.7_p352.ebuild:
+  Stable for HPPA (bug #386369).
+
+  09 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> ruby-1.8.7_p352.ebuild:
+  ppc/ppc64 stable wrt #386369
+
+  09 Oct 2011; Markos Chandras <hwoarang@gentoo.org> ruby-1.8.7_p352.ebuild:
+  Stable on amd64 wrt bug #386369
+
+  09 Oct 2011; Hans de Graaff <graaff@gentoo.org> -ruby-1.9.2-r1.ebuild:
+  Remove vulnerable version, bug 386369.
+
+*ruby-1.8.7_p352 (30 Aug 2011)
+
+  30 Aug 2011; Alex Legler <a3li@gentoo.org> -ruby-1.8.7_p334.ebuild,
+  +ruby-1.8.7_p352.ebuild:
+  Patchlevel bump for ruby:1.8. Removing old version
+
+*ruby-1.9.2_p290 (30 Aug 2011)
+
+  30 Aug 2011; Alex Legler <a3li@gentoo.org> -ruby-1.9.2_rc2-r1.ebuild,
+  -ruby-1.9.2.ebuild, +ruby-1.9.2_p290.ebuild:
+  Patchlevel bump. Thanks to Shota Fukumori for proposing an ebuild. Removing
+  old patchlevels.
 
   10 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org>
   ruby-1.8.7_p334-r2.ebuild:

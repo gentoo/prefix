@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.2-r1.ebuild,v 1.2 2011/07/15 17:25:03 mattst88 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_rc1.ebuild,v 1.2 2011/10/22 17:16:53 jer Exp $
 
 EAPI=2
 
@@ -10,12 +10,13 @@ inherit autotools eutils flag-o-matic multilib versionator
 
 RUBYPL=$(get_version_component_range 4)
 
-MY_P="${PN}-$(get_version_component_range 1-3)-p${RUBYPL:-0}"
+#MY_P="${PN}-$(get_version_component_range 1-3)-${RUBYPL:-0}"
+MY_P="${PN}-$(get_version_component_range 1-3)-rc1"
 S=${WORKDIR}/${MY_P}
 
 SLOT=$(get_version_component_range 1-2)
 MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
-# 1.9.2 still uses 1.9.1
+# 1.9.3 still uses 1.9.1
 RUBYVERSION=1.9.1
 
 if [[ -n ${PATCHSET} ]]; then
@@ -30,12 +31,12 @@ fi
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/${MY_P}.tar.bz2
+SRC_URI="mirror://ruby/1.9/${MY_P}.tar.bz2
 		 http://dev.gentoo.org/~flameeyes/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
 
-LICENSE="|| ( Ruby GPL-2 )"
+LICENSE="|| ( Ruby BSD-2 )"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc examples gdbm ipv6 +rdoc rubytests socks5 ssl tk xemacs ncurses +readline yaml" #libedit
+IUSE="berkdb debug doc examples gdbm ipv6 +rdoc rubytests socks5 ssl tk xemacs ncurses +readline +yaml" #libedit
 
 # libedit support is removed everywhere because of this upstream bug:
 # http://redmine.ruby-lang.org/issues/show/3698
@@ -72,11 +73,11 @@ src_prepare() {
 		epatch "${WORKDIR}/patches"
 
 	einfo "Unbundling gems..."
+	cd "$S"
 	rm -r \
-		{bin,lib}/rake \
+		{bin,lib}/rake lib/rake.rb man/rake.1 \
 		ext/json \
-		bin/gem \
-		|| die "removal failed"
+		bin/gem || die "removal failed"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
@@ -125,6 +126,9 @@ src_configure() {
 #		myconf="${myconf} --without-readline"
 #	fi
 	myconf="${myconf} $(use_with readline)"
+
+	# Set a faux target (bug #342819)
+	use hppa && myconf="${myconf} --target=parisc"
 
 	econf \
 		--program-suffix=${MY_SUFFIX} \
