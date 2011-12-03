@@ -1,6 +1,15 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.321 2011/11/01 07:35:52 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.322 2011/11/13 20:38:10 vapier Exp $
+
+  13 Nov 2011; Mike Frysinger <vapier@gentoo.org> db-4.2.52_p5.ebuild,
+  db-4.2.52_p5-r1.ebuild, db-4.3.29_p1.ebuild, db-4.3.29_p1-r1.ebuild,
+  db-4.4.20_p4.ebuild, db-4.4.20_p4-r1.ebuild, db-4.5.20_p2.ebuild,
+  db-4.5.20_p2-r1.ebuild, db-4.6.21_p4.ebuild, db-4.7.25_p3.ebuild,
+  db-4.7.25_p4.ebuild, db-4.8.24.ebuild, db-4.8.26.ebuild, db-4.8.30.ebuild,
+  db-5.0.21-r1.ebuild, db-5.0.26.ebuild, db-5.0.32.ebuild, db-5.1.19-r2.ebuild,
+  db-5.1.25.ebuild, db-5.2.28.ebuild, db-5.2.36.ebuild:
+  Convert USE=nocxx to USE=cxx.
 
 *db-5.2.36 (01 Nov 2011)
 
