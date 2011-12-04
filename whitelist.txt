@@ -158,10 +158,12 @@ app-misc/tmux-mem-cpu-load
 app-misc/ttyrec
 app-misc/when
 app-misc/zisofs-tools
+app-portage/diffmask
 app-portage/eclass-manpages
 app-portage/eix
 app-portage/elogv
 app-portage/esearch
+app-portage/flaggie
 app-portage/gentoolkit
 app-portage/gentoolkit-dev
 app-portage/layman
