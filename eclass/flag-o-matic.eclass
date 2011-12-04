@@ -424,9 +424,14 @@ test-flag-PROG() {
 	[[ -z ${comp} || -z ${flags} ]] && return 1
 
 	# use -c so we can test the assembler as well
+	# don't use -o /dev/null: /usr/ccs/bin/as: File exists (Sun LD)
+	# don't use /dev/null as input: -xc flag needs not to exist #254120
+	local src=${T}/tf-${comp}-${SECONDS}.c
+	echo "main() {}" > "${src}"
 	local PROG=$(tc-get${comp})
-	${PROG} ${flags} -c -o /dev/null -xc /dev/null \
+	${PROG} ${flags} -c -o "${src}.o" "${src}" \
 		> /dev/null 2>&1
+	rm -f "${src}"{,.o}
 }
 
 # @FUNCTION: test-flag-CC
