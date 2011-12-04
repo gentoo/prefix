@@ -718,6 +718,10 @@ bootstrap_python() {
 	$MAKE -k install || echo "??? Python failed to install *sigh* continuing anyway"
 	cd "${ROOT}"/usr/bin
 	ln -sf python${PV%.*} python
+	cd "${ROOT}"/usr/lib
+	# messes up python emerges, and shouldn't be necessary for anything
+	# http://forums.gentoo.org/viewtopic-p-6890526.html
+	rm -f libpython${PV%.*}.a
 
 	einfo "${A%-*} bootstrapped"
 }
