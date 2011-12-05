@@ -431,7 +431,9 @@ test-flag-PROG() {
 	local PROG=$(tc-get${comp})
 	${PROG} ${flags} -c -o "${src}.o" "${src}" \
 		> /dev/null 2>&1
+	local ret=$?
 	rm -f "${src}"{,.o}
+	[[ ${ret} == 0 ]] && true || false
 }
 
 # @FUNCTION: test-flag-CC
