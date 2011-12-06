@@ -1,6 +1,54 @@
 # ChangeLog for app-arch/bzip2
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.85 2010/10/09 16:30:07 armin76 Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.99 2011/11/02 03:28:17 mattst88 Exp $
+
+  02 Nov 2011; Matt Turner <mattst88@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  Stable on Alpha, bug 387333.
+
+  29 Oct 2011; Markus Meier <maekke@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  arm stable, bug #387333
+
+  23 Oct 2011; nixnut <nixnut@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  ppc stable #387333
+
+  18 Oct 2011; Tony Vroon <chainsaw@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armagedon" El Lazkani in bug #387333.
+
+  18 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  x86 stable wrt bug #387333
+
+  17 Oct 2011; Jeroen Roovers <jer@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  Stable for HPPA (bug #387333).
+
+  29 Aug 2011; Jeroen Roovers <jer@gentoo.org> bzip2-1.0.6-r2.ebuild:
+  Stable for HPPA (bug #377315).
+
+  28 Aug 2011; Raúl Porcel <armin76@gentoo.org> bzip2-1.0.6-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #377315
+
+  21 Aug 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> bzip2-1.0.6-r2.ebuild:
+  x86 stable wrt bug #377315
+
+  14 Aug 2011; Markos Chandras <hwoarang@gentoo.org> bzip2-1.0.6-r2.ebuild:
+  Stable on amd64 wrt bug #377315
+
+  13 Aug 2011; Markus Meier <maekke@gentoo.org> bzip2-1.0.6-r2.ebuild:
+  arm stable, bug #377315
+
+  13 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> bzip2-1.0.6-r2.ebuild:
+  ppc/ppc64 stable wrt #377315
+
+*bzip2-1.0.6-r3 (12 Aug 2011)
+
+  12 Aug 2011; Mike Frysinger <vapier@gentoo.org> +bzip2-1.0.6-r3.ebuild:
+  Add USE=static-libs support #378211 by Agostino Sarubbo.
+
+*bzip2-1.0.6-r2 (16 May 2011)
+
+  16 May 2011; Mike Frysinger <vapier@gentoo.org> +bzip2-1.0.6-r2.ebuild,
+  +files/bzip2-1.0.6-progress.patch:
+  Update progress patch by Justin Binns for LFS #365639 by Christopher Head.
 
   09 Oct 2010; Raúl Porcel <armin76@gentoo.org> bzip2-1.0.6.ebuild:
   ia64/m68k/s390/sh/sparc stable wrt #338215
