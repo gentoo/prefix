@@ -1,6 +1,76 @@
 # ChangeLog for eclass
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.14 2011/11/15 09:02:15 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.35 2011/12/05 07:07:44 floppym Exp $
+
+  05 Dec 2011; Mike Gilbert <floppym@gentoo.org> java-vm-2.eclass:
+  Add semicolon to fix ferringb's last change.
+
+  04 Dec 2011; Brian Harring <ferringb@gentoo.org> java-vm-2.eclass:
+  Fix IFS=: bleeding out from java-vm_sandbox-predict invocations.
+
+  03 Dec 2011; Ulrich Mueller <ulm@gentoo.org> elisp.eclass,
+  elisp-common.eclass:
+  Sync eclasses from Emacs overlay (revision 1759).
+  elisp.eclass: Allow for user patches. New variable ELISP_REMOVE.
+  elisp-common.eclass: Replace echo by ebegin/eend for proper logging.
+
+  02 Dec 2011; Brian Harring <ferringb@gentoo.org> eutils.eclass:
+  Fix eqawarn to match portage's return code; this fixes sporadic failures
+  in alternate managers for packages like freetype that bleed the
+  return code through.
+
+  27 Nov 2011; Michał Górny <mgorny@gentoo.org> autotools-utils.eclass:
+  Revert making pushd/popd fatal due to humongous breakage. Add a warning
+  message instead.
+
+  27 Nov 2011; Michał Górny <mgorny@gentoo.org> autotools-utils.eclass:
+  Denote that autotools-utils must not be mixed with econf/emake.
+
+  26 Nov 2011; Michał Górny <mgorny@gentoo.org> autotools-utils.eclass:
+  Remove implicit IUSE=debug deprecation warning.
+
+  26 Nov 2011; Michał Górny <mgorny@gentoo.org> autotools-utils.eclass:
+  Add failure handling for pushd/popd calls.
+
+  24 Nov 2011; Ralph Sennhauser <sera@gentoo.org> java-vm-2.eclass:
+  set_java_env(): Substitute @SLOT@ in vm env files
+  java-vm_check-nsplugin(): Fix handling of IUSE defaults
+
+  24 Nov 2011; Maciej Mrozowski <reavertm@gentoo.org> virtuoso.eclass:
+  Dependency on <gawk-4 moved to virtuoso-server-6.1.{2,3}.
+
+  21 Nov 2011; Jory A. Pratt <anarchy@gentoo.org> nsplugins.eclass:
+  Assign to mozilla herd, add share_plugins_dir function for mozilla
+  applications.
+
+  21 Nov 2011; Jory A. Pratt <anarchy@gentoo.org> mozconfig-3.eclass:
+  Fix handling of crashreporter use.
+
+  21 Nov 2011; Ralph Sennhauser <sera@gentoo.org> java-vm-2.eclass:
+  Move handling of PaX marking JVM executables to eclass.
+
+  21 Nov 2011; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Fix live ebuilds.
+
+  19 Nov 2011; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
+  Add dependency on dev-util/pkgconfig (#385835 and #387783).
+
+  19 Nov 2011; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
+  Remove support for Qt 4.5, add blockers for qt-declarative, small cleanup.
+
+  19 Nov 2011; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
+  Make qt_assistant_cleanup() a no-op for Qt 4.7.4 and later (bug #386709).
+
+  18 Nov 2011; Michał Górny <mgorny@gentoo.org> scons-utils.eclass:
+  Add DESTDIR-like variable to the example.
+
+  18 Nov 2011; Bernard Cafarelli <voyageur@gentoo.org> gnustep-base.eclass:
+  Set VARTEXFONTS for doc generation, fix sandbox access violation on
+  /var/cache/fonts
+
+  17 Nov 2011; Tiziano Müller <dev-zero@gentoo.org> mysql-v2.eclass:
+  Fixed misplaced quotes in mysql-v2 eclass causing 'emerge --config mysql' to
+  fail (bug #388673).
 
   15 Nov 2011; Vlastimil Babka <caster@gentoo.org> java-vm-2.eclass:
   Drop the repetitive elogs about revdep rebuild control files for binary
