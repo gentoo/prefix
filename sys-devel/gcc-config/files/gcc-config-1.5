@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.5,v 1.5 2011/03/21 13:49:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.5,v 1.6 2011/11/11 16:12:49 vapier Exp $
 
 # Format of /etc/env.d/gcc/:
 #  config-TARGET:	CURRENT=version for TARGET
@@ -35,6 +35,11 @@ die_eerror() {
 # on software developers.
 SED=$(type -P gsed)
 : ${SED:=$(type -P sed)}
+
+# Further pain: `tac` is not available everywhere #390179
+if ! type -P tac >/dev/null ; then
+	tac() { ${SED} -e '1!G;h;$!d' "$@" ; }
+fi
 
 GENTOO_LIBDIR="lib"
 [[ ${GENTOO_LIBDIR} == @*@ ]] && GENTOO_LIBDIR="lib"
@@ -178,7 +183,14 @@ update_wrappers() {
 		[[ -e ${wrapper} ]] && break
 	done
 
-	# Update the wrappers for this profile
+	# Update the wrappers for this profile.  We maintain this list
+	# by hand as the tools that are available can come & go if the
+	# user re-emerges gcc with dif USE flags.  We need to clean out
+	# the old wrappers if the functionality no longer exists.
+	# XXX: Future work: save the list of wrappers we generated in
+	# the generated env.d file so we can scrub things better.
+	# After that, we can use a dynamic list based on what tools are
+	# actually available in ${GCC_PATH}/.
 	for x in {,${CTARGET}-}{cpp,cc,gcc,c++,g++,f77,g77,gcj,gcjh,gcov,gdc,gdmd,gfortran,gccgo} ; do
 		# Obviously don't want to touch native stuff for cross-compilers
 		[[ ${x} != ${CTARGET}-* ]] && is_cross_compiler && continue
@@ -934,9 +946,9 @@ for x in "$@" ; do
 			rcsfile="$RCSfile: gcc-config-1.5,v $"
 			rcsfile=${rcsfile#: }
 			rcsfile=${rcsfile%,v*}
-			cvsrev="$Revision: 1.5 $"
+			cvsrev="$Revision: 1.6 $"
 			cvsrev=${cvsrev#: }
-			cvsdate="$Date: 2011/03/21 13:49:02 $"
+			cvsdate="$Date: 2011/11/11 16:12:49 $"
 			cvsdate=${cvsdate#: }
 			echo "${rcsfile} (r${cvsrev% *} @ ${cvsdate% *})"
 			exit 0

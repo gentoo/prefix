@@ -1,7 +1,7 @@
 /*
  * Copyright 1999-2011 Gentoo Foundation
  * Distributed under the terms of the GNU General Public License v2
- * $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/wrapper-1.5.2.c,v 1.1 2011/03/18 19:47:37 vapier Exp $
+ * $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/wrapper-1.5.2.c,v 1.2 2011/06/18 18:46:23 vapier Exp $
  * Author: Martin Schlemmer <azarah@gentoo.org>
  * az's lackey: Mike Frysinger <vapier@gentoo.org>
  */
@@ -42,15 +42,17 @@
 })
 
 struct wrapper_data {
-	char *name, *fullname, *bin, *path;
+	const char *name;
+	char *fullname, *bin, *path;
 };
 
 static const struct {
-	char *alias;
-	char *target;
+	const char *alias;
+	const char *target;
 } wrapper_aliases[] = {
 	{ "cc",  "gcc" },
-	{ "f77", "g77" },
+	{ "f77", "gfortran" },
+	{ "f95", "gfortran" },
 };
 
 #define wrapper_warn(fmt, ...) fprintf(stderr, "%s" fmt "\n", "gcc-config: ", ## __VA_ARGS__)
