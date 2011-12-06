@@ -1,53 +1,19 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.7 2011/03/11 07:06:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.11 2011/12/02 23:43:54 vapier Exp $
 
 PATCH_VER="1.1"
 UCLIBC_VER="1.0"
 
-ETYPE="gcc-compiler"
-
-# whether we should split out specs files for multiple {PIE,SSP}-by-default
-# and vanilla configurations.
-SPLIT_SPECS=no #${SPLIT_SPECS-true} hard disable until #106690 is fixed
-
 inherit toolchain flag-o-matic prefix
 
-DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
+DESCRIPTION="The GNU Compiler Collection"
 
 LICENSE="GPL-3 LGPL-2.1 || ( GPL-3 libgcc libstdc++ ) FDL-1.2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
-RDEPEND=">=sys-libs/zlib-1.1.4
-	>=sys-devel/gcc-config-1.4
-	virtual/libiconv
-	fortran? (
-		>=dev-libs/gmp-4.2.1
-		>=dev-libs/mpfr-2.2.0_p10
-	)
-	!build? (
-		gcj? (
-			gtk? (
-				x11-libs/libXt
-				x11-libs/libX11
-				x11-libs/libXtst
-				x11-proto/xproto
-				x11-proto/xextproto
-				=x11-libs/gtk+-2*
-				x11-libs/pango
-			)
-			>=media-libs/libart_lgpl-2.1
-			app-arch/zip
-			app-arch/unzip
-		)
-		>=sys-libs/ncurses-5.2-r2
-		nls? ( sys-devel/gettext )
-	)"
+RDEPEND=""
 DEPEND="${RDEPEND}
-	test? ( sys-devel/autogen dev-util/dejagnu )
-	>=sys-apps/texinfo-4.2-r4
-	>=sys-devel/bison-1.875
-	sys-devel/flex
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	kernel_Interix? ( || ( ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 ) )
@@ -56,10 +22,6 @@ DEPEND="${RDEPEND}
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94
 	) ) )"
-PDEPEND=">=sys-devel/gcc-config-1.4"
-if [[ ${CATEGORY} != cross-* ]] ; then
-	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.3.6 ) )"
-fi
 
 src_unpack() {
 	toolchain_src_unpack

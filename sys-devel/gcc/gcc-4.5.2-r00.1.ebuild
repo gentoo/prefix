@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.5.2.ebuild,v 1.6 2011/09/26 17:38:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.5.2.ebuild,v 1.7 2011/11/09 19:22:57 vapier Exp $
 
 PATCH_VER="1.1"
 UCLIBC_VER="1.0"
@@ -24,39 +24,8 @@ DESCRIPTION="The GNU Compiler Collection."
 LICENSE="GPL-3 LGPL-3 || ( GPL-3 libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
-RDEPEND=">=sys-libs/zlib-1.1.4
-	>=sys-devel/gcc-config-1.4
-	virtual/libiconv
-	>=dev-libs/gmp-4.3.2
-	>=dev-libs/mpfr-2.4.2
-	>=dev-libs/mpc-0.8.1
-	graphite? (
-		>=dev-libs/ppl-0.10
-		>=dev-libs/cloog-ppl-0.15.8
-	)
-	lto? ( || ( >=dev-libs/elfutils-0.143 dev-libs/libelf ) )
-	!build? (
-		gcj? (
-			gtk? (
-				x11-libs/libXt
-				x11-libs/libX11
-				x11-libs/libXtst
-				x11-proto/xproto
-				x11-proto/xextproto
-				=x11-libs/gtk+-2*
-				x11-libs/pango
-			)
-			>=media-libs/libart_lgpl-2.1
-			app-arch/zip
-			app-arch/unzip
-		)
-		>=sys-libs/ncurses-5.2-r2
-		nls? ( sys-devel/gettext )
-	)"
+RDEPEND=""
 DEPEND="${RDEPEND}
-	test? ( >=dev-util/dejagnu-1.4.4 >=sys-devel/autogen-5.5.4 )
-	>=sys-apps/texinfo-4.8
-	>=sys-devel/bison-1.875
 	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
@@ -66,7 +35,6 @@ DEPEND="${RDEPEND}
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94
 	)"
-PDEPEND=">=sys-devel/gcc-config-1.4"
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )"
 fi

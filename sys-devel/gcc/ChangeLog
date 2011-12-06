@@ -1,6 +1,71 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.827 2011/09/26 17:38:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.841 2011/12/06 04:16:08 vapier Exp $
+
+  06 Dec 2011; Mike Frysinger <vapier@gentoo.org> metadata.xml:
+  Add description for new USE=libssp flag.
+
+  06 Dec 2011; Mike Frysinger <vapier@gentoo.org> -files/3.4.3/libssp.patch,
+  gcc-3.3.6-r1.ebuild, gcc-3.4.6-r2.ebuild, gcc-4.0.4.ebuild:
+  Drop obsolete/unsupported SSP/PIE code in older gcc versions.
+
+  06 Dec 2011; Ryan Hill <dirtyepic@gentoo.org> gcc-4.6.2.ebuild:
+  Bump to patchset 1.1. Fixes compile issues on arm (bug #366253), and enable
+  fortification by default using builtin defines instead of spec rules as the
+  latter may become unsupportable in the future.
+
+  04 Dec 2011; Mike Frysinger <vapier@gentoo.org> gcc-3.3.6-r1.ebuild,
+  gcc-3.4.6-r2.ebuild:
+  Drop dead MAN_VER code.
+
+  03 Dec 2011; Mike Frysinger <vapier@gentoo.org>
+  -files/stubs/gcc-3.3-htb-stub.patch, -files/stubs/gcc-3.3-ssp-stub.patch,
+  -files/stubs/gcc-3.4-htb-stub.patch, -files/stubs/gcc-3.4-ssp-stub.patch,
+  -files/stubs/gcc-4.0-htb-stub.patch, -files/stubs/gcc-4.0-ssp-stub.patch:
+  Drop now unused stub patches.
+
+  03 Dec 2011; Mike Frysinger <vapier@gentoo.org> gcc-4.6.0.ebuild,
+  gcc-4.6.1-r1.ebuild, gcc-4.6.2.ebuild:
+  Disable fortify patches with older glibcs #362315 by Leonid Volnitsky.
+
+  03 Dec 2011; Mike Frysinger <vapier@gentoo.org> gcc-4.0.4.ebuild,
+  gcc-4.3.3-r2.ebuild, gcc-4.3.4.ebuild:
+  Drop obsolete GENTOO_PATCH_EXCLUDE lines.
+
+  02 Dec 2011; Mike Frysinger <vapier@gentoo.org> gcc-2.95.3-r10.ebuild,
+  gcc-3.2.2.ebuild, gcc-3.3.6-r1.ebuild, gcc-3.4.6-r2.ebuild, gcc-4.0.4.ebuild,
+  gcc-4.1.2.ebuild, gcc-4.2.4-r1.ebuild, gcc-4.3.3-r2.ebuild, gcc-4.3.4.ebuild,
+  gcc-4.3.5.ebuild, gcc-4.3.6-r1.ebuild, gcc-4.4.2.ebuild:
+  Delete old hardened logic as we no longer support it (split specs/etc...).
+
+  02 Dec 2011; Mike Frysinger <vapier@gentoo.org> metadata.xml:
+  Add USE=gtk description by Ralph Sennhauser #362799 by Peter Volkov.
+
+  09 Nov 2011; Mike Frysinger <vapier@gentoo.org> gcc-2.95.3-r10.ebuild,
+  gcc-3.3.6-r1.ebuild, gcc-3.4.6-r2.ebuild, gcc-4.0.4.ebuild, gcc-4.1.2.ebuild,
+  gcc-4.2.4-r1.ebuild, gcc-4.3.3-r2.ebuild, gcc-4.3.4.ebuild, gcc-4.3.5.ebuild,
+  gcc-4.3.6-r1.ebuild, gcc-4.4.2.ebuild, gcc-4.4.3-r3.ebuild,
+  gcc-4.4.4-r2.ebuild, gcc-4.4.5.ebuild, gcc-4.4.6-r1.ebuild,
+  gcc-4.5.1-r1.ebuild, gcc-4.5.2.ebuild, gcc-4.5.3-r1.ebuild, gcc-4.6.0.ebuild,
+  gcc-4.6.1-r1.ebuild, gcc-4.6.2.ebuild:
+  Drop most dependencies now that toolchain.eclass takes care of them. Also
+  drop the ncurses dep as that seems to be purely a workaround for an ancient
+  issue #4411 which we have addressed in different ways.
+
+*gcc-4.6.2 (30 Oct 2011)
+
+  30 Oct 2011; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.6.2.ebuild:
+  Version bump. Also fixes bug #364319 (preprocessor flag canonicalization
+  patch broke gcj), and bug #387483 (broken clang++).
+
+  24 Oct 2011; Raúl Porcel <armin76@gentoo.org> gcc-4.5.3-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #357478
+
+  09 Oct 2011; Markus Meier <maekke@gentoo.org> gcc-4.5.3-r1.ebuild:
+  arm stable, bug #357479
+
+  04 Oct 2011; Jeroen Roovers <jer@gentoo.org> gcc-4.5.3-r1.ebuild:
+  Stable for HPPA (bug #357479).
 
   30 Nov 2011; Fabian Groffen <grobian@gentoo.org> gcc-4.6.1-r1.ebuild,
   gcc-4.5.3-r1.ebuild:
