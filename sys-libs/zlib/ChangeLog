@@ -1,6 +1,60 @@
 # ChangeLog for sys-libs/zlib
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.83 2010/07/08 04:28:06 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.97 2011/09/23 17:52:32 jlec Exp $
+
+  23 Sep 2011; Justin Lecher <jlec@gentoo.org> zlib-1.2.5.1-r2.ebuild,
+  metadata.xml:
+  econf dies alone
+
+  21 Sep 2011; Mike Frysinger <vapier@gentoo.org> zlib-1.2.5.1-r2.ebuild:
+  Also rename macros in new minizip headers.
+
+*zlib-1.2.5.1-r2 (21 Sep 2011)
+
+  21 Sep 2011; Mike Frysinger <vapier@gentoo.org>
+  +files/zlib-1.2.4-minizip-autotools.patch, +zlib-1.2.5.1-r2.ebuild,
+  metadata.xml:
+  Add USE=static-libs support, and USE=minizip to control building of the
+  minizip code as a library for other apps to link against (like vlc) #383351.
+
+*zlib-1.2.5.1-r1 (16 Sep 2011)
+
+  16 Sep 2011; Mike Frysinger <vapier@gentoo.org> +zlib-1.2.5.1-r1.ebuild:
+  Rename OF/ON defines in exported header to avoid collisions with other
+  packages #383179 by Ben Longbons.
+
+*zlib-1.2.5.1 (11 Sep 2011)
+
+  11 Sep 2011; Mike Frysinger <vapier@gentoo.org> +zlib-1.2.5.1.ebuild,
+  +files/zlib-1.2.5.1-symlinks.patch, +files/zlib-1.2.5.1-version.patch:
+  Version bump.
+
+  01 May 2011; Kacper Kowalik <xarthisius@gentoo.org> zlib-1.2.5-r2.ebuild:
+  ppc64 stable wrt #359953
+
+  10 Apr 2011; Raúl Porcel <armin76@gentoo.org> zlib-1.2.5-r2.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #359953
+
+  08 Apr 2011; Markus Meier <maekke@gentoo.org> zlib-1.2.5-r2.ebuild:
+  arm stable, bug #359953
+
+  29 Mar 2011; Jeroen Roovers <jer@gentoo.org> zlib-1.2.5-r2.ebuild:
+  Stable for HPPA (bug #359953).
+
+  27 Mar 2011; Brent Baude <ranger@gentoo.org> zlib-1.2.5-r2.ebuild:
+  stable ppc, bug 359953
+
+  27 Mar 2011; Tobias Klausmann <klausman@gentoo.org> zlib-1.2.5-r2.ebuild:
+  Stable on alpha, bug #359953
+
+  26 Mar 2011; Christian Faulhammer <fauli@gentoo.org> zlib-1.2.5-r2.ebuild:
+  stable x86, bug 359953
+
+  22 Mar 2011; Christoph Mende <angelos@gentoo.org> zlib-1.2.5-r2.ebuild:
+  Stable on amd64 wrt bug #359953
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> zlib-1.2.3-r1.ebuild:
+  Drop to ~mips
 
   08 Jul 2010; Mike Frysinger <vapier@gentoo.org> zlib-1.2.5-r2.ebuild:
   Update by Alon Bar-Lev for mingw support #310307 by Nathan Phillip Brink.

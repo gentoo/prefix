@@ -1,18 +1,18 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.5-r2.ebuild,v 1.12 2011/05/01 09:52:06 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.5.1-r2.ebuild,v 1.3 2011/09/23 17:52:32 jlec Exp $
 
-inherit eutils toolchain-funcs
+inherit autotools eutils toolchain-funcs
 
 DESCRIPTION="Standard (de)compression library"
 HOMEPAGE="http://www.zlib.net/"
-SRC_URI="http://www.gzip.org/zlib/${P}.tar.bz2
-	http://www.zlib.net/${P}.tar.bz2"
+SRC_URI="http://www.gzip.org/zlib/${P}.tar.gz
+	http://www.zlib.net/current/beta/${P}.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE=""
+IUSE="minizip static-libs"
 
 RDEPEND="!<dev-libs/libxml2-2.7.7" #309623
 
@@ -24,9 +24,16 @@ src_unpack() {
 	# +if (...) 2>/dev/null; then
 	sed -i 's|\<test "`\([^"]*\) 2>&1`" = ""|\1 2>/dev/null|' configure || die
 
-	epatch "${FILESDIR}"/${P}-ldflags.patch #319661
-	epatch "${FILESDIR}"/${P}-lfs-decls.patch #316377
-	epatch "${FILESDIR}"/${P}-fbsd_chosts.patch #316841
+	epatch "${FILESDIR}"/${P}-version.patch
+	epatch "${FILESDIR}"/${P}-symlinks.patch
+	EPATCH_OPTS=-p1 epatch "${FILESDIR}"/${PN}-1.2.4-minizip-autotools.patch
+	if use minizip ; then
+		cd contrib/minizip
+		sed -i "s:@ZLIB_VER@:${PV}:" configure.ac || die
+		ln -s ../../minigzip.c || die
+		eautoreconf
+	fi
+
 	epatch "${FILESDIR}"/${P}-aix-soname.patch #213277
 
 	# also set soname and stuff on Solaris (with CHOST compensation fix as below)
@@ -41,10 +48,13 @@ src_unpack() {
 # fails, still necessary?
 #	epatch "${FILESDIR}"/${PN}-1.2.3-shlib-aix.patch
 	# patch breaks shared libs installation
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-static.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.5.2-static.patch
 }
 
+usex() { use $1 && echo ${2:-yes} || echo ${3:-no} ; }
+echoit() { echo "$@"; "$@"; }
 src_compile() {
+	tc-export CC
 	case ${CHOST} in
 	*-mingw*|mingw*)
 		emake -f win32/Makefile.gcc STRIP=true prefix="${EPREFIX}"/usr PREFIX=${CHOST}- || die
@@ -58,16 +68,26 @@ src_compile() {
 			zlib.pc.in > zlib.pc || die
 		;;
 	*-mint*)
-		./configure --static --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) || die
+		echoit ./configure --static --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) || die
 		emake || die
 		;;
 	*)	# not an autoconf script, so can't use econf
-		CC=$(tc-getCC) ./configure --shared --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) || die
+		echoit ./configure --shared --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) || die
 		emake || die
 		;;
 	esac
+	if use minizip ; then
+		cd contrib/minizip
+		econf $(use_enable static-libs static)
+		emake || die
+	fi
 }
 
+sed_macros() {
+	# clean up namespace a little #383179
+	# we do it here so we only have to tweak 2 files
+	sed -i -r 's:\<(O[FN])\>:_Z_\1:g' "$@" || die
+}
 src_install() {
 	case ${CHOST} in
 	*-mingw*|mingw*)
@@ -84,6 +104,7 @@ src_install() {
 	*)
 		emake install DESTDIR="${D}" LDCONFIG=: || die
 		gen_usr_ldscript -a z
+		sed_macros "${ED}"/usr/include/*.h
 		;;
 	esac
 
@@ -94,4 +115,13 @@ src_install() {
 		into /
 		dolib libz$(get_libname ${PV}).dll
 	fi
+
+	if use minizip ; then
+		cd contrib/minizip
+		emake install DESTDIR="${D}" || die
+		sed_macros "${ED}"/usr/include/minizip/*.h
+		dodoc *.txt
+	fi
+
+	use static-libs || rm -f "${ED}"/usr/$(get_libdir)/*.{a,la}
 }
