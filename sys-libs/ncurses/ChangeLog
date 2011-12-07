@@ -1,6 +1,67 @@
 # ChangeLog for sys-libs/ncurses
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.178 2010/11/15 11:55:07 wired Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.195 2011/12/03 10:45:04 maekke Exp $
+
+  03 Dec 2011; Markus Meier <maekke@gentoo.org> ncurses-5.9.ebuild:
+  arm stable, bug #377631
+
+  02 Dec 2011; Steve Dibb <beandog@gentoo.org> ncurses-5.9.ebuild:
+  amd64 stable, bug 377631
+
+  30 Nov 2011; Jeroen Roovers <jer@gentoo.org> ncurses-5.9.ebuild:
+  Stable for HPPA (bug #377631).
+
+  28 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> ncurses-5.9.ebuild:
+  x86 stable wrt bug #377631
+
+*ncurses-5.9-r1 (21 Nov 2011)
+
+  21 Nov 2011; Mike Frysinger <vapier@gentoo.org> +ncurses-5.9-r1.ebuild:
+  Install pkg-config files.
+
+  13 Nov 2011; Mike Frysinger <vapier@gentoo.org> -ncurses-5.6-r2.ebuild,
+  -ncurses-5.7-r3.ebuild, -ncurses-5.7-r5.ebuild, -ncurses-5.7-r6.ebuild:
+  Drop old ebuilds (to lose USE=nocxx).
+
+  22 May 2011; Kacper Kowalik <xarthisius@gentoo.org> ncurses-5.7-r7.ebuild:
+  ppc64 stable wrt #353437
+
+  23 Apr 2011; Raúl Porcel <armin76@gentoo.org> ncurses-5.7-r7.ebuild:
+  alpha/ia64/s390/sh stable wrt #353437
+
+  19 Apr 2011; Michael Weber <xmw@gentoo.org> ncurses-5.7-r7.ebuild:
+  sparc stable (bug 353437)
+
+  15 Apr 2011; Michael Weber <xmw@gentoo.org> ncurses-5.7-r7.ebuild:
+  arm stable (bug 353437)
+
+  15 Apr 2011; Christoph Mende <angelos@gentoo.org> ncurses-5.7-r7.ebuild:
+  Stable on amd64 wrt bug #353437
+
+  13 Apr 2011; Brent Baude <ranger@gentoo.org> ncurses-5.7-r7.ebuild:
+  Marking ncurses-5.7-r7 ppc for bug 353437
+
+  12 Apr 2011; Jeroen Roovers <jer@gentoo.org> ncurses-5.7-r7.ebuild:
+  Stable for HPPA (bug #353437).
+
+  12 Apr 2011; Thomas Kahle <tomka@gentoo.org> ncurses-5.7-r7.ebuild:
+  x86 stable per bug 353437
+
+*ncurses-5.9 (12 Apr 2011)
+
+  12 Apr 2011; Mike Frysinger <vapier@gentoo.org> +ncurses-5.9.ebuild:
+  Version bump #363177 by Panagiotis Christopoulos.
+
+*ncurses-5.8 (01 Mar 2011)
+
+  01 Mar 2011; Mike Frysinger <vapier@gentoo.org> +ncurses-5.8.ebuild,
+  +files/ncurses-5.8-gfbsd.patch, +files/ncurses-5.8-rxvt-unicode.patch:
+  Version bump.
+
+*ncurses-5.7-r7 (01 Mar 2011)
+
+  01 Mar 2011; Mike Frysinger <vapier@gentoo.org> +ncurses-5.7-r7.ebuild:
+  Fix new static-libs logic #351316 by Rafał Mużyło.
 
 *ncurses-5.7-r6 (15 Nov 2010)
 

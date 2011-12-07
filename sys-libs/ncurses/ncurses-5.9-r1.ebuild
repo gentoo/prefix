@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r5.ebuild,v 1.1 2010/07/07 19:25:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r1.ebuild,v 1.1 2011/11/21 22:08:23 vapier Exp $
 
 EAPI="1"
 AUTOTOOLS_AUTO_DEPEND="no"
@@ -39,22 +39,20 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
-	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
-	epatch "${FILESDIR}"/${PN}-5.7-emacs.patch #270527
+	epatch "${FILESDIR}"/${PN}-5.8-gfbsd.patch
 	epatch "${FILESDIR}"/${PN}-5.7-nongnu.patch
-	epatch "${FILESDIR}"/${PN}-5.7-tic-cross-detection.patch #288881
-	epatch "${FILESDIR}"/${PN}-5.7-rxvt-unicode.patch #192083
-	epatch "${FILESDIR}"/${P}-hashdb-open.patch #245370
-	sed -i '/with_no_leaks=yes/s:=.*:=$enableval:' configure #305889
+	epatch "${FILESDIR}"/${PN}-5.8-rxvt-unicode.patch #192083
+	sed -i \
+		-e '/^PKG_CONFIG_LIBDIR/s:=.*:=$(libdir)/pkgconfig:' \
+		misc/Makefile.in || die
 
-	epatch "${FILESDIR}"/${PN}-5.7-mint.patch
-	epatch "${FILESDIR}"/${PN}-5.7-mint-terminfo.patch
+#fails	epatch "${FILESDIR}"/${PN}-5.7-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
-	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
+#fails	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
 #	epatch "${FILESDIR}"/${PN}-5.6-libtool.patch # used on aix
-	epatch "${FILESDIR}"/${PN}-5.7-x64-freebsd.patch
-	epatch "${FILESDIR}"/${PN}-5.7-ldflags-with-libtool.patch
+#fails	epatch "${FILESDIR}"/${PN}-5.7-x64-freebsd.patch
+#fails	epatch "${FILESDIR}"/${PN}-5.7-ldflags-with-libtool.patch
 
 	# irix /bin/sh is no good
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
@@ -127,7 +125,7 @@ do_compile() {
 	elif [[ ${CHOST} == *-mint* ]]; then
 		:
 	else
-		myconf="--with-shared $(use_enable static-libs normal)"
+		myconf="--with-shared"
 	fi
 
 	if [[ ${CHOST} == *-interix* ]]; then
@@ -157,15 +155,15 @@ do_compile() {
 		--enable-const \
 		--enable-colorfgbg \
 		--enable-echo \
+		--enable-pc-files \
 		$(use_enable !ada warnings) \
 		$(use_with debug assertions) \
-		$(use_enable !debug leaks) \
+		$(use_enable debug leaks) \
 		$(use_with debug expanded) \
 		$(use_with !debug macros) \
 		$(use_with trace) \
 		${conf_abi} \
-		"$@" \
-		|| die "configure failed"
+		"$@"
 
 	[[ ${CHOST} == *-solaris* ]] && \
 		sed -i -e 's/-D_XOPEN_SOURCE_EXTENDED//g' c++/Makefile
@@ -185,9 +183,14 @@ do_compile() {
 	# generating sources so if we generate the sources first (in
 	# non-parallel), we can then build the rest of the package
 	# in parallel.  This is not really a perf hit since the source
-	# generation is quite small.  -vapier
-	emake -j1 sources || die "make sources failed"
-	emake ${make_flags} || die "make ${make_flags} failed"
+	# generation is quite small.
+	emake -j1 sources || die
+	# For some reason, sources depends on pc-files which depends on
+	# compiled libraries which depends on sources which ...
+	# Manually delete the pc-files file so the install step will
+	# create the .pc files we want.
+	rm -f misc/pc-files
+	emake ${make_flags} || die
 }
 
 src_install() {
@@ -197,10 +200,10 @@ src_install() {
 	# install unicode version second so that the binaries in /usr/bin
 	# support both wide and narrow
 	cd "${WORKDIR}"/narrowc
-	emake DESTDIR="${D}" install || die "make narrowc install failed"
+	emake DESTDIR="${D}" install || die
 	if use unicode ; then
 		cd "${WORKDIR}"/widec
-		emake DESTDIR="${D}" install || die "make widec install failed"
+		emake DESTDIR="${D}" install || die
 	fi
 
 	if need-libtool; then
@@ -220,7 +223,8 @@ src_install() {
 	if use unicode ; then
 		gen_usr_ldscript libncursesw$(get_libname)
 	fi
-	ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses.$(get_libname)
+	ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname) || die
+	use static-libs || rm "${ED}"/usr/$(get_libdir)/*.a
 
 #	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026

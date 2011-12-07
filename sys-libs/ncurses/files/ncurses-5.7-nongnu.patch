@@ -1,7 +1,5 @@
-Index: work/ncurses-5.7/ncurses/curses.priv.h
-===================================================================
---- work.orig/ncurses-5.7/ncurses/curses.priv.h
-+++ work/ncurses-5.7/ncurses/curses.priv.h
+--- ncurses-5.7/ncurses/curses.priv.h
++++ ncurses-5.7/ncurses/curses.priv.h
 @@ -1452,6 +1452,8 @@ extern NCURSES_EXPORT(void) _nc_expanded
  
  /* charable.c */

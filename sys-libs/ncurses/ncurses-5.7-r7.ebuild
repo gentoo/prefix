@@ -1,9 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r3.ebuild,v 1.10 2010/03/06 23:12:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r7.ebuild,v 1.9 2011/05/22 18:19:56 xarthisius Exp $
 
 EAPI="1"
-inherit eutils flag-o-matic toolchain-funcs multilib
+AUTOTOOLS_AUTO_DEPEND="no"
+inherit eutils flag-o-matic toolchain-funcs multilib autotools
 
 MY_PV=${PV:0:3}
 PV_SNAP=${PV:4}
@@ -15,17 +16,26 @@ SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
 LICENSE="MIT"
 SLOT="5"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="ada +cxx debug doc gpm minimal profile trace unicode"
+IUSE="ada +cxx debug doc gpm minimal profile static-libs trace unicode"
 
-DEPEND="gpm? ( sys-libs/gpm )"
+DEPEND="gpm? ( sys-libs/gpm )
+	kernel_AIX? ( ${AUTOTOOLS_DEPEND} )
+	kernel_HPUX? ( ${AUTOTOOLS_DEPEND} )"
 #	berkdb? ( sys-libs/db )"
 RDEPEND="!<x11-terms/rxvt-unicode-9.06-r3"
 
 S=${WORKDIR}/${MY_P}
 
+need-libtool() {
+	# need libtool to build aix-style shared objects inside archive libs, but
+	# cannot depend on libtool, as this would create circular dependencies...
+	# And libtool-1.5.26 needs (a similar) patch for AIX (DESTDIR) as found in
+	# http://lists.gnu.org/archive/html/bug-libtool/2008-03/msg00124.html
+	# Use libtool on hpux too to get some soname.
+	[[ ${CHOST} == *'-aix'* || ${CHOST} == *'-hpux'* ]]
+}
+
 src_unpack() {
-	need-libtool && ! type libtool >&/dev/null &&
-		die "Please make some working libtool available manually before emerging ncurses"
 	unpack ${A}
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
@@ -33,7 +43,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.7-emacs.patch #270527
 	epatch "${FILESDIR}"/${PN}-5.7-nongnu.patch
 	epatch "${FILESDIR}"/${PN}-5.7-tic-cross-detection.patch #288881
-	epatch "${FILESDIR}"/${PN}-5.7-rxvt-unicode.patch #192083
+	epatch "${FILESDIR}"/${PN}-5.7-rxvt-unicode-9.09.patch #192083
 	epatch "${FILESDIR}"/${P}-hashdb-open.patch #245370
 	sed -i '/with_no_leaks=yes/s:=.*:=$enableval:' configure #305889
 
@@ -48,17 +58,32 @@ src_unpack() {
 
 	# irix /bin/sh is no good
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
+
+	if need-libtool; then
+		mkdir "${WORKDIR}"/local-libtool || die
+		cd "${WORKDIR}"/local-libtool || die
+		cat >configure.ac<<-EOF
+			AC_INIT(local-libtool, 0)
+			AC_PROG_CC
+			AC_PROG_CXX
+			AC_PROG_LIBTOOL
+			AC_OUTPUT
+		EOF
+		eautoreconf
+	fi
 }
 
 src_compile() {
+	if need-libtool; then
+		cd "${WORKDIR}"/local-libtool || die
+		econf
+		export PATH="${WORKDIR}"/local-libtool:${PATH}
+		cd "${S}" || die
+	fi
+
 	unset TERMINFO #115036
 	tc-export BUILD_CC
 	export BUILD_CPPFLAGS+=" -D_GNU_SOURCE" #214642
-
-	if [[ ${CHOST} == *-interix* ]] ; then
-		export ac_cv_func_poll=no
-		export ac_cv_header_poll_h=no
-	fi
 
 	# when cross-compiling, we need to build up our own tic
 	# because people often don't keep matching host/target
@@ -70,7 +95,7 @@ src_compile() {
 		CXXFLAGS=${BUILD_CXXFLAGS} \
 		CPPFLAGS=${BUILD_CPPFLAGS} \
 		LDFLAGS="${BUILD_LDFLAGS} -static" \
-		do_compile cross --without-shared
+		do_compile cross --without-shared --with-normal
 	fi
 
 	make_flags=""
@@ -105,6 +130,10 @@ do_compile() {
 		myconf="--with-shared"
 	fi
 
+	if [[ ${CHOST} == *-interix* ]]; then
+		myconf="--without-leaks"
+	fi
+
 	# We need the basic terminfo files in /etc, bug #37026.  We will
 	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
 	# src_install() ...
@@ -130,13 +159,12 @@ do_compile() {
 		--enable-echo \
 		$(use_enable !ada warnings) \
 		$(use_with debug assertions) \
-		$(use_enable !debug leaks) \
+		$(use_enable debug leaks) \
 		$(use_with debug expanded) \
 		$(use_with !debug macros) \
 		$(use_with trace) \
 		${conf_abi} \
-		"$@" \
-		|| die "configure failed"
+		"$@"
 
 	[[ ${CHOST} == *-solaris* ]] && \
 		sed -i -e 's/-D_XOPEN_SOURCE_EXTENDED//g' c++/Makefile
@@ -156,9 +184,9 @@ do_compile() {
 	# generating sources so if we generate the sources first (in
 	# non-parallel), we can then build the rest of the package
 	# in parallel.  This is not really a perf hit since the source
-	# generation is quite small.  -vapier
-	emake -j1 sources || die "make sources failed"
-	emake ${make_flags} || die "make ${make_flags} failed"
+	# generation is quite small.
+	emake -j1 sources || die
+	emake ${make_flags} || die
 }
 
 src_install() {
@@ -168,10 +196,10 @@ src_install() {
 	# install unicode version second so that the binaries in /usr/bin
 	# support both wide and narrow
 	cd "${WORKDIR}"/narrowc
-	emake DESTDIR="${D}" install || die "make narrowc install failed"
+	emake DESTDIR="${D}" install || die
 	if use unicode ; then
 		cd "${WORKDIR}"/widec
-		emake DESTDIR="${D}" install || die "make widec install failed"
+		emake DESTDIR="${D}" install || die
 	fi
 
 	if need-libtool; then
@@ -191,6 +219,8 @@ src_install() {
 	if use unicode ; then
 		gen_usr_ldscript libncursesw$(get_libname)
 	fi
+	ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname) || die
+	use static-libs || rm "${ED}"/usr/$(get_libdir)/*.a
 
 #	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026
@@ -223,21 +253,4 @@ src_install() {
 	cd "${S}"
 	dodoc ANNOUNCE MANIFEST NEWS README* TO-DO doc/*.doc
 	use doc && dohtml -r doc/html/
-}
-
-pkg_preinst() {
-	use unicode || preserve_old_lib /$(get_libdir)/libncursesw$(get_libname 5)
-}
-
-pkg_postinst() {
-	use unicode || preserve_old_lib_notify /$(get_libdir)/libncursesw$(get_libname 5)
-}
-
-need-libtool() {
-	# need libtool to build aix-style shared objects inside archive libs, but
-	# cannot depend on libtool, as this would create circular dependencies...
-	# And libtool-1.5.26 needs (a similar) patch for AIX (DESTDIR) as found in
-	# http://lists.gnu.org/archive/html/bug-libtool/2008-03/msg00124.html
-	# Use libtool on hpux too to get some soname.
-	[[ ${CHOST} == *'-aix'* || ${CHOST} == *'-hpux'* ]]
 }
