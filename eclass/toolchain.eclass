@@ -15,7 +15,6 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test pkg_preinst src_insta
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
 FEATURES=${FEATURES/multilib-strict/}
-
 #----<< eclass stuff >>----
 
 
@@ -464,6 +463,11 @@ create_gcc_env_entry() {
 		gcc_envd_file="${ED}${gcc_envd_base}-$1"
 		gcc_specs_file="${EPREFIX}${LIBPATH}/$1.specs"
 	fi
+
+	# phase PATH/ROOTPATH out ...
+	echo "PATH=\"${EPREFIX}${BINPATH}\"" > ${gcc_envd_file}
+	echo "ROOTPATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
+	echo "GCC_PATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
 
 	# We want to list the default ABI's LIBPATH first so libtool
 	# searches that directory first.  This is a temporary
@@ -1057,7 +1061,6 @@ gcc_do_configure() {
 		--mandir=${EPREFIX}${DATAPATH}/man \
 		--infodir=${EPREFIX}${DATAPATH}/info \
 		--with-gxx-include-dir=${EPREFIX}${STDCXX_INCDIR}"
-
 	# On Darwin we need libdir to be set in order to get correct install names
 	# for things like libobjc-gnu, libgcj and libfortran.  If we enable it on
 	# non-Darwin we screw up the behaviour this eclass relies on.  We in
