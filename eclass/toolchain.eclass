@@ -471,13 +471,13 @@ create_gcc_env_entry() {
 	# conflicting ABIs by using the first one in the search path
 	local abi=${DEFAULT_ABI}
 	local MULTIDIR=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
-	local LDPATH=${LIBPATH}
+	local LDPATH=${EPREFIX}${LIBPATH}
 	[[ ${MULTIDIR} != "." ]] && LDPATH+=/${MULTIDIR}
 	for abi in $(get_all_abis) ; do
 		[[ ${abi} == ${DEFAULT_ABI} ]] && continue
 
 		MULTIDIR=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
-		LDPATH+=:${LIBPATH}
+		LDPATH+=:${EPREFIX}${LIBPATH}
 		[[ ${MULTIDIR} != "." ]] && LDPATH+=/${MULTIDIR}
 	done
 
