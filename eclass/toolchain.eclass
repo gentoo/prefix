@@ -884,7 +884,9 @@ gcc-compiler-configure() {
 		if use_if_iuse libssp ; then
 			confgcc+=" --enable-libssp"
 		else
-			export gcc_cv_libc_provides_ssp=yes
+			# Not all libc's have ssp built in.  I assume only glibc has for
+			# now.
+			elibc_glibc && export gcc_cv_libc_provides_ssp=yes
 			confgcc+=" --disable-libssp"
 		fi
 
