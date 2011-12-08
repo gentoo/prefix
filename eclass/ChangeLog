@@ -1,6 +1,9 @@
 # ChangeLog for eclass
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.35 2011/12/05 07:07:44 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.36 2011/12/07 00:29:38 dirtyepic Exp $
+
+  07 Dec 2011; Ryan Hill <dirtyepic@gentoo.org> toolchain.eclass:
+  Disappear disappeared devs.
 
   05 Dec 2011; Mike Gilbert <floppym@gentoo.org> java-vm-2.eclass:
   Add semicolon to fix ferringb's last change.

@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.502 2011/12/06 05:22:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.507 2011/12/07 16:11:17 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -244,11 +244,12 @@ S=$(
 #			HTB_GCC_VER to that version of gcc.
 #
 gentoo_urls() {
-	local devspace="HTTP~lv/GCC/URI HTTP~eradicator/gcc/URI HTTP~vapier/dist/URI
-	HTTP~halcy0n/patches/URI HTTP~zorry/patches/gcc/URI HTTP~dirtyepic/dist/URI"
+	local devspace="HTTP~vapier/dist/URI HTTP~dirtyepic/dist/URI
+	HTTP~halcy0n/patches/URI HTTP~zorry/patches/gcc/URI"
 	devspace=${devspace//HTTP/http:\/\/dev.gentoo.org\/}
 	echo mirror://gentoo/$1 ${devspace//URI/$1}
 }
+
 get_gcc_src_uri() {
 	export PATCH_GCC_VER=${PATCH_GCC_VER:-${GCC_RELEASE_VER}}
 	export UCLIBC_GCC_VER=${UCLIBC_GCC_VER:-${PATCH_GCC_VER}}
@@ -464,44 +465,21 @@ create_gcc_env_entry() {
 		gcc_specs_file="${EPREFIX}${LIBPATH}/$1.specs"
 	fi
 
-	# phase PATH/ROOTPATH out ...
-	echo "PATH=\"${EPREFIX}${BINPATH}\"" > ${gcc_envd_file}
-	echo "ROOTPATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
-	echo "GCC_PATH=\"${EPREFIX}${BINPATH}\"" >> ${gcc_envd_file}
+	# We want to list the default ABI's LIBPATH first so libtool
+	# searches that directory first.  This is a temporary
+	# workaround for libtool being stupid and using .la's from
+	# conflicting ABIs by using the first one in the search path
+	local abi=${DEFAULT_ABI}
+	local MULTIDIR=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
+	local LDPATH=${LIBPATH}
+	[[ ${MULTIDIR} != "." ]] && LDPATH+=/${MULTIDIR}
+	for abi in $(get_all_abis) ; do
+		[[ ${abi} == ${DEFAULT_ABI} ]] && continue
 
-	if is_multilib ; then
-		LDPATH="${EPREFIX}${LIBPATH}"
-		for path in 32 64 ; do
-			[[ -d ${ED}${LIBPATH}/${path} ]] && LDPATH="${LDPATH}:${EPREFIX}${LIBPATH}/${path}"
-		done
-	else
-		local MULTIDIR
-		LDPATH="${EPREFIX}${LIBPATH}"
-
-		# We want to list the default ABI's LIBPATH first so libtool
-		# searches that directory first.  This is a temporary
-		# workaround for libtool being stupid and using .la's from
-		# conflicting ABIs by using the first one in the search path
-
-		local abi=${DEFAULT_ABI}
-		local MULTIDIR=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
-		if [[ ${MULTIDIR} == "." ]] ; then
-			LDPATH="${EPREFIX}${LIBPATH}"
-		else
-			LDPATH="${EPREFIX}${LIBPATH}/${MULTIDIR}"
-		fi
-
-		for abi in $(get_all_abis) ; do
-			[[ ${abi} == ${DEFAULT_ABI} ]] && continue
-
-			MULTIDIR=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
-			if [[ ${MULTIDIR} == "." ]] ; then
-				LDPATH=${LDPATH}:${EPREFIX}${LIBPATH}
-			else
-				LDPATH=${LDPATH}:${EPREFIX}${LIBPATH}/${MULTIDIR}
-			fi
-		done
-	fi
+		MULTIDIR=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
+		LDPATH+=:${LIBPATH}
+		[[ ${MULTIDIR} != "." ]] && LDPATH+=/${MULTIDIR}
+	done
 
 	echo "LDPATH=\"${LDPATH}\"" >> ${gcc_envd_file}
 	echo "MANPATH=\"${EPREFIX}${DATAPATH}/man\"" >> ${gcc_envd_file}
@@ -873,7 +851,14 @@ gcc-multilib-configure() {
 	# translate our notion of multilibs into gcc's
 	local abi map=() list
 	case ${CTARGET} in
-	x86_64*) tc_version_is_at_least 4.7 && map=(amd64:m64 x86:m32 x32:mx32) ;;
+	x86_64*)
+		# drop the 4.6.2 stuff once 4.7 goes stable
+		if tc_version_is_at_least 4.7 ||
+		   ( tc_version_is_at_least 4.6.2 && has x32 $(get_all_abis) )
+		then
+			map=(amd64:m64 x86:m32 x32:mx32)
+		fi
+		;;
 	esac
 	for abi in $(get_all_abis) ; do
 		local m a l
@@ -1432,6 +1417,7 @@ gcc_do_filter_flags() {
 }
 
 toolchain_src_compile() {
+	multilib_env ${CTARGET}
 	gcc_do_filter_flags
 	einfo "CFLAGS=\"${CFLAGS}\""
 	einfo "CXXFLAGS=\"${CXXFLAGS}\""
@@ -1589,9 +1575,7 @@ toolchain_src_install() {
 			|| prepman "${DATAPATH}"
 	fi
 	# prune empty dirs left behind
-	for x in 1 2 3 4 ; do
-		find "${ED}" -type d -exec rmdir "{}" \; >& /dev/null
-	done
+	find "${ED}" -depth -type d -delete 2>/dev/null
 
 	# install testsuite results
 	if use test; then
@@ -1624,9 +1608,10 @@ toolchain_src_install() {
 		doexe "${GCC_FILESDIR}"/c{89,99} || die
 	fi
 
-	# use gid of 0 because some stupid ports don't have
-	# the group 'root' set to gid 0
-	chown -R ${PORTAGE_INST_UID:-0}:${PORTAGE_INST_GID:-0} "${ED}"${LIBPATH}
+	# Use gid of 0 because some stupid ports don't have
+	# the group 'root' set to gid 0.  Send to /dev/null
+	# for people who are testing as non-root.
+	chown -R ${PORTAGE_INST_UID:-0}:${PORTAGE_INST_GID:-0} "${ED}"${LIBPATH} 2>/dev/null
 
 	# Move pretty-printers to gdb datadir to shut ldconfig up
 	local py gdbdir=/usr/share/gdb/auto-load${LIBPATH/\/lib\//\/$(get_libdir)\/}
@@ -1976,7 +1961,10 @@ setup_multilib_osdirnames() {
 
 	if [[ ${SYMLINK_LIB} == "yes" ]] ; then
 		einfo "updating multilib directories to be: ${libdirs}"
-		if tc_version_is_at_least 4.7 && [[ ${CTARGET} == x86_64*-linux* ]] ; then
+		# drop the 4.6.2 stuff once 4.7 goes stable
+		if tc_version_is_at_least 4.7 ||
+		   ( tc_version_is_at_least 4.6.2 && has x32 $(get_all_abis) )
+		then
 			set -- -e '/^MULTILIB_OSDIRNAMES.*lib32/s:[$][(]if.*):../lib32:'
 		else
 			set -- -e "/^MULTILIB_OSDIRNAMES/s:=.*:= ${libdirs}:"
