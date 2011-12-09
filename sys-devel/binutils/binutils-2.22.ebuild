@@ -17,7 +17,7 @@ src_unpack() {
 	cd "${S}"
 	[[ $SYMLINK_LIB == yes ]] &&
 	epatch "${FILESDIR}"/${PN}-2.20.51.0.1-linux-x86-on-amd64.patch
-	#fails: epatch "${FILESDIR}"/${PN}-2.21.53.0.2-mint.patch
+	epatch "${FILESDIR}"/${PN}-2.22-mint.patch
 	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
 }
 

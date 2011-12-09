@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.431 2011/12/05 15:22:32 vapier Exp $
 
+  09 Dec 2011; Fabian Groffen <grobian@gentoo.org>
+  +files/binutils-2.22-mint.patch, binutils-2.22.ebuild:
+  Add updated patch for FreeMiNT by Alan Hourihane, bug #394151
+
   05 Dec 2011; Mike Frysinger <vapier@gentoo.org> Manifest:
   Update patch tarball digests to match published one #393233 by Jerome Kurtz.
 
