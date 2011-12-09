@@ -185,7 +185,7 @@
  
  	if [[ CHECK_STATIC_LINKING -ne 0 ]]; then
 -		binaries="$(scanelf -qs +Py_Initialize < <(grep -E "^obj" "${content}" | cut -d" " -f2 | grep -Ev "^/usr/lib(32|64)?/debug/") | sed "s/.* //")"
-+		binaries="$(scantool -qs +Py_Initialize < <(grep -E "^obj" "${content}" | cut -d" " -f2 | grep -Ev "^@GENTOO_PORTAGE_EPREFIX@/usr/lib(32|64)?/debug/") | sed "s/.* //")"
++		binaries="$(${scantool} -qs +Py_Initialize < <(grep -E "^obj" "${content}" | cut -d" " -f2 | grep -Ev "^@GENTOO_PORTAGE_EPREFIX@/usr/lib(32|64)?/debug/") | sed "s/.* //")"
  		if [[ -n "${binaries}" ]]; then
  			PKGS_TO_REMERGE+=" ${CATPKGVER}"
  			eindent
@@ -203,7 +203,7 @@
  
  	if [[ CHECK_SHARED_LINKING -ne 0 ]]; then
 -		binaries="$(scanelf -qF "%F %n" < <(grep -E "^obj" "${content}" | cut -d" " -f2 | grep -Ev "^/usr/lib(32|64)?/debug/") | grep -E "( |,)$(get_OLD_PYTHON_SHARED_LIBRARIES_REGEX)(,|$)")"
-+		binaries="$(scantool -qF "%F %n" < <(grep -E "^obj" "${content}" | cut -d" " -f2 | grep -Ev "^@GENTOO_PORTAGE_EPREFIX@/usr/lib(32|64)?/debug/") | grep -E "( |,)$(get_OLD_PYTHON_SHARED_LIBRARIES_REGEX)(,|$)")"
++		binaries="$(${scantool} -qF "%F %n" < <(grep -E "^obj" "${content}" | cut -d" " -f2 | grep -Ev "^@GENTOO_PORTAGE_EPREFIX@/usr/lib(32|64)?/debug/") | grep -E "( |,)$(get_OLD_PYTHON_SHARED_LIBRARIES_REGEX)(,|$)")"
  		if [[ -n "${binaries}" ]]; then
  			PKGS_TO_REMERGE+=" ${CATPKGVER}"
  			eindent

@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.66 2011/08/29 10:28:31 naota Exp $
 
+  09 Dec 2011; Fabian Groffen <grobian@gentoo.org>
+  files/python-updater-0.9-prefix.patch:
+  Fix scantool invocation, thanks kazuhiro in bug #394097
+
 *python-updater-0.9-r1 (29 Aug 2011)
 
   29 Aug 2011; Naohiro Aota <naota@gentoo.org> +python-updater-0.9-r1.ebuild,
