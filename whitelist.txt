@@ -1178,6 +1178,7 @@ dev-python/python-gnutls
 dev-python/python-ldap
 dev-python/python-memcached
 dev-python/pytz
+dev-python/pyxattr
 dev-python/pyxml
 dev-python/pyyaml
 dev-python/quixote
