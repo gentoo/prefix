@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.19893 (10 Dec 2011)
+
+  10 Dec 2011; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.19893.ebuild,
+  -portage-2.2.01.19833.ebuild:
+  Bump, replace previous faulty snapshot, ebuilds could cause out-of-prefix
+  installations with funcs like doman.
+
 *portage-2.2.01.19833 (08 Dec 2011)
 
   08 Dec 2011; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.19833.ebuild:
