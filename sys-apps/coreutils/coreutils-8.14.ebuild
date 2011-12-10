@@ -89,6 +89,10 @@ src_configure() {
 
 	tc-is-cross-compiler && [[ ${CHOST} == *linux* ]] && export fu_cv_sys_stat_statfs2_bsize=yes #311569
 
+	# m4/pthread.m4 on FreeBSD thinks pthread_join doesn't need any libaries
+	# sort.c:(.text+0x4f25): undefined reference to `pthread_create'
+	[[ ${CHOST} == *-freebsd* ]] && export gl_cv_search_pthread_join=-pthread
+
 	use static && append-ldflags -static && sed -i '/elf_sys=yes/s:yes:no:' configure #321821
 	use selinux || export ac_cv_{header_selinux_{context,flash,selinux}_h,search_setfilecon}=no #301782
 	# kill/uptime - procps
