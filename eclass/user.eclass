@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/user.eclass,v 1.17 2011/11/29 19:32:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/user.eclass,v 1.18 2011/12/10 20:03:17 vapier Exp $
 
 # @ECLASS: user.eclass
 # @MAINTAINER:
@@ -12,6 +12,9 @@
 # @DESCRIPTION:
 # The user eclass contains a suite of functions that allow ebuilds
 # to quickly make sure users in the installed system are sane.
+
+if [[ ${___ECLASS_ONCE_USER} != "recur -_+^+_- spank" ]] ; then
+___ECLASS_ONCE_USER="recur -_+^+_- spank"
 
 # @FUNCTION: _assert_pkg_ebuild_phase
 # @INTERNAL
@@ -397,3 +400,5 @@ egetshell() {
 
 	egetent passwd "$1" | cut -d: -f${pos}
 }
+
+fi

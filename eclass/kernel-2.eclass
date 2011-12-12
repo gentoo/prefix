@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.270 2011/12/02 04:34:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.272 2011/12/10 07:57:59 vapier Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -146,14 +146,8 @@ detect_version() {
 	# - KV: Kernel Version (2.6.0-gentoo/2.6.0-test11-gentoo-r1)
 	# - EXTRAVERSION: The additional version appended to OKV (-gentoo/-gentoo-r1)
 
-	if [[ -n ${KV_FULL} ]]; then
-		# we will set this for backwards compatibility.
-		KV=${KV_FULL}
-
-		# we know KV_FULL so lets stop here. but not without resetting S
-		S=${WORKDIR}/linux-${KV_FULL}
-		return
-	fi
+	# We've already run, so nothing to do here.
+	[[ -n ${KV_FULL} ]] && return 0
 
 	# CKV is used as a comparison kernel version, which is used when
 	# PV doesnt reflect the genuine kernel version.
@@ -1222,6 +1216,9 @@ kernel-2_pkg_setup() {
 kernel-2_pkg_postrm() {
 	# This warning only makes sense for kernel sources.
 	[[ ${ETYPE} == headers ]] && return 0
+
+	# If there isn't anything left behind, then don't complain.
+	[[ -e ${EROOT}usr/src/linux-${KV_FULL} ]] || return 0
 	echo
 	ewarn "Note: Even though you have successfully unmerged "
 	ewarn "your kernel package, directories in kernel source location: "
