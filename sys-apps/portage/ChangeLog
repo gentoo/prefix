@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.19941 (14 Dec 2011)
+
+  14 Dec 2011; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.19941.ebuild,
+  -portage-2.2.01.19295.ebuild, -portage-2.2.01.19478.ebuild:
+  Version bump, quite some commits after portage-2.2.0_alpha80.  Contains
+  lockfile fixes.
+
 *portage-2.2.01.19893 (10 Dec 2011)
 
   10 Dec 2011; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.19893.ebuild,
