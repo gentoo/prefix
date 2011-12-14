@@ -28,10 +28,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-symlinks.patch
 	EPATCH_OPTS=-p1 epatch "${FILESDIR}"/${PN}-1.2.4-minizip-autotools.patch
 	if use minizip ; then
-		cd contrib/minizip
+		pushd contrib/minizip > /dev/null || die
 		sed -i "s:@ZLIB_VER@:${PV}:" configure.ac || die
 		ln -s ../../minigzip.c || die
 		eautoreconf
+		popd > /dev/null
 	fi
 
 	epatch "${FILESDIR}"/${P}-aix-soname.patch #213277

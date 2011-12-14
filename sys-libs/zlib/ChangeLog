@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.97 2011/09/23 17:52:32 jlec Exp $
 
+  14 Dec 2011; Fabian Groffen <grobian@gentoo.org> zlib-1.2.5.1-r2.ebuild:
+  Make sure we restore the working directory after minizip patching not to break
+  further patching, bug #394629
+
   23 Sep 2011; Justin Lecher <jlec@gentoo.org> zlib-1.2.5.1-r2.ebuild,
   metadata.xml:
   econf dies alone
