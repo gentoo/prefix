@@ -1,22 +1,15 @@
-Ripped from Fedora
-
 If /proc isnt mounted, `top` will cause screen corruption ...
 
 --- procps-3.2.3/top.c
 +++ procps-3.2.3/top.c
-@@ -3201,12 +3201,15 @@
- 
- int main (int dont_care_argc, char *argv[])
+@@ -3201,6 +3201,10 @@
  {
-+   struct stat isproc;
     (void)dont_care_argc;
     before(*argv);
++
++   if (access("/proc/stat", F_OK))
++      std_err("/proc is not mounted, required for output data");
++
                                          //                 +-------------+
     windows_stage1();                    //                 top (sic) slice
     configs_read();                      //                 > spread etc, <
-    parse_args(&argv[1]);                //                 > lean stuff, <
-+   if (stat("/proc/self", &isproc)==-1)
-+      std_err("/proc is not mounted, required for output data");
-    whack_terminal();                    //                 > onions etc. <
-    windows_stage2();                    //                 as bottom slice
-                                         //                 +-------------+

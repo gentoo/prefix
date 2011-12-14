@@ -1,29 +1,47 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.8-r1.ebuild,v 1.3 2011/06/14 20:35:27 mattst88 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.8_p11.ebuild,v 1.7 2011/12/08 06:23:58 vapier Exp $
+
+EAPI="2"
 
 inherit flag-o-matic eutils toolchain-funcs multilib
 
+DEB_VER=${PV#*_p}
+MY_PV=${PV%_p*}
+MY_P="${PN}-${MY_PV}"
 DESCRIPTION="Standard informational utilities and process-handling tools"
 HOMEPAGE="http://procps.sourceforge.net/"
-SRC_URI="http://procps.sourceforge.net/${P}.tar.gz"
+SRC_URI="http://procps.sourceforge.net/${MY_P}.tar.gz
+	mirror://debian/pool/main/p/procps/${PN}_${MY_PV}-${DEB_VER}.debian.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="unicode"
 
-RDEPEND=">=sys-libs/ncurses-5.2-r2"
+RDEPEND=">=sys-libs/ncurses-5.2-r2[unicode?]"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+S=${WORKDIR}/${MY_P}
 
-	epatch "${FILESDIR}"/3.2.5-top-sort.patch
-	epatch "${FILESDIR}"/procps-3.2.7-proc-mount.patch
-	epatch "${FILESDIR}"/procps-3.2.3-noproc.patch
-	epatch "${FILESDIR}"/procps-3.2.8-toprc-fixup.patch
-	epatch "${FILESDIR}"/procps-3.2.8+gmake-3.82.patch
+src_prepare() {
+	local p d="${WORKDIR}"/debian/patches
+	pushd "${d}" >/dev/null
+	# makefile_dev_null: this bug is actually in gcc and is already fixed
+	for p in $(use unicode || echo watch_{unicode,ansi_colour}) makefile_dev_null ; do
+		rm ${p}.patch || die
+		sed -i "/^${p}/d" series || die
+	done
+	popd >/dev/null
+	EPATCH_SOURCE="${d}" \
+	epatch $(<"${d}"/series)
+	# fixup debian watch_exec_beep.patch
+	sed -i '1i#include <sys/wait.h>' watch.c || die
+
+	epatch "${FILESDIR}"/${PN}-3.2.7-proc-mount.patch
+	epatch "${FILESDIR}"/${PN}-3.2.3-noproc.patch
+	epatch "${FILESDIR}"/${PN}-3.2.8-toprc-fixup.patch
+	epatch "${FILESDIR}"/${PN}-3.2.8-r1-forest-prefix.patch
+	epatch "${FILESDIR}"/${PN}-3.2.8-time_t.patch
 
 	# Clean up the makefile
 	#  - we do stripping ourselves
@@ -66,19 +84,10 @@ src_install() {
 		|| die "install failed"
 
 	insinto /usr/include/proc
-	doins proc/*.h || die "doins include"
-
-	# we want stripped stuff any case
-	chmod u+w "${ED}"/usr/bin/*
+	doins proc/*.h || die
 
 	dodoc sysctl.conf BUGS NEWS TODO ps/HACKING
 
 	# compat symlink so people who shouldnt be using libproc can #170077
-	dosym libproc-${PV}.so /$(get_libdir)/libproc.so
-}
-
-pkg_postinst() {
-	einfo "NOTE: With NPTL \"ps\" and \"top\" no longer"
-	einfo "show threads. You can use any of: -m m -L -T H"
-	einfo "in ps or the H key in top to show them"
+	dosym libproc-${MY_PV}.so /$(get_libdir)/libproc.so || die
 }

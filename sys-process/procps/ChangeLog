@@ -1,6 +1,74 @@
 # ChangeLog for sys-process/procps
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.41 2010/11/21 20:16:28 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.59 2011/12/08 06:23:58 vapier Exp $
+
+  08 Dec 2011; Mike Frysinger <vapier@gentoo.org> procps-3.2.8_p11.ebuild,
+  +files/procps-3.2.8-time_t.patch:
+  Fix ps segfault on x32 ABI.
+
+  03 Dec 2011; Raúl Porcel <armin76@gentoo.org> procps-3.2.8_p11.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #390003
+
+  13 Nov 2011; Markus Meier <maekke@gentoo.org> procps-3.2.8_p11.ebuild:
+  arm stable, bug #390003
+
+  11 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> procps-3.2.8_p11.ebuild:
+  x86 stable wrt bug #390003
+
+  10 Nov 2011; Jeroen Roovers <jer@gentoo.org> procps-3.2.8_p11.ebuild:
+  Stable for HPPA (bug #390003).
+
+  10 Nov 2011; Tony Vroon <chainsaw@gentoo.org> procps-3.2.8_p11.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armageddon" El Lazkani in bug #390003.
+
+*procps-3.2.8_p11 (26 Sep 2011)
+
+  26 Sep 2011; Mike Frysinger <vapier@gentoo.org> +procps-3.2.8_p11.ebuild:
+  Version bump.
+
+  06 Sep 2011; Matt Turner <mattst88@gentoo.org> procps-3.2.8_p10-r1.ebuild:
+  Depend on ncurses[unicode?], bug 381739.
+
+*procps-3.2.8_p10-r1 (28 Jul 2011)
+
+  28 Jul 2011; Michał Górny <mgorny@gentoo.org> -procps-3.2.8_p10.ebuild,
+  +procps-3.2.8_p10-r1.ebuild:
+  Fix libproc.so symlink, per bug #376299. Reviewed by Tony Vroon.
+
+  23 Jul 2011; Mike Frysinger <vapier@gentoo.org> procps-3.2.8_p10.ebuild:
+  Delete Debian unicode patches when USE=-unicode.
+
+*procps-3.2.8_p10 (20 Jul 2011)
+
+  20 Jul 2011; Mike Frysinger <vapier@gentoo.org>
+  files/procps-3.2.3-noproc.patch, +procps-3.2.8_p10.ebuild,
+  +files/procps-3.2.8-r1-forest-prefix.patch:
+  Start using Debian patchset #375275 by Dieter Ries.
+
+  14 Jun 2011; Matt Turner <mattst88@gentoo.org>
+  -files/procps-3.2.6-mips-n32_isnt_usable_on_mips64_yet.patch,
+  procps-3.2.8.ebuild, procps-3.2.8-r1.ebuild, procps-3.2.8-r2.ebuild,
+  metadata.xml:
+  Remove n32 USE flag and patch, bug 371278
+
+  08 Jun 2011; Kacper Kowalik <xarthisius@gentoo.org> procps-3.2.8-r2.ebuild:
+  ppc64 stable wrt #367279
+
+  24 May 2011; Brent Baude <ranger@gentoo.org> procps-3.2.8-r2.ebuild:
+  Marking procps-3.2.8-r2 ppc for bug 367279
+
+  21 May 2011; Raúl Porcel <armin76@gentoo.org> procps-3.2.8-r2.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #367279
+
+  18 May 2011; Jeroen Roovers <jer@gentoo.org> procps-3.2.8-r2.ebuild:
+  Stable for HPPA (bug #367279).
+
+  18 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> procps-3.2.8-r2.ebuild:
+  x86 stable wrt bug #367279
+
+  15 May 2011; Christoph Mende <angelos@gentoo.org> procps-3.2.8-r2.ebuild:
+  Stable on amd64 wrt bug #367279
 
 *procps-3.2.8-r2 (21 Nov 2010)
 
