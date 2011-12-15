@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/diablo-jdk/diablo-jdk-1.6.0.07.02.ebuild,v 1.2 2010/03/13 14:12:58 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/diablo-jdk/diablo-jdk-1.6.0.07.02.ebuild,v 1.3 2011/05/21 04:29:26 ssuominen Exp $
 
 inherit java-vm-2 eutils versionator
 
@@ -142,7 +142,7 @@ pkg_postinst() {
 	fi
 
 	echo
-	ewarn "Some parts of Sun's JRE require ${xwarn} virtual/lpr to be installed."
+	ewarn "Some parts of Sun's JRE require ${xwarn} net-print/cups or net-print/lprng to be installed."
 	ewarn "Be careful which Java libraries you attempt to use."
 
 	echo
