@@ -997,7 +997,6 @@ dev-cpp
 dev-dotnet
 dev-games
 dev-php
-dev-php5
 dev-scheme
 dev-tcltk
 dev-texlive
