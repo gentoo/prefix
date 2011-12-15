@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.30 2011/08/22 04:46:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.php.eclass,v 1.31 2011/12/14 23:10:51 mabi Exp $
 
 # @ECLASS: depend.php.eclass
 # @MAINTAINER:
@@ -106,7 +106,6 @@ need_php() {
 need_php_by_category() {
 	case "${CATEGORY}" in
 		dev-php) need_php ;;
-		dev-php5) need_php5 ;;
 		*) die "Version of PHP required by packages in category ${CATEGORY} unknown"
 	esac
 }

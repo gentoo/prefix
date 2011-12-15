@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.272 2011/12/10 07:57:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.273 2011/12/12 22:01:37 vapier Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -379,6 +379,7 @@ detect_version() {
 	handle_genpatches
 }
 
+# Note: duplicated in linux-info.eclass
 kernel_is() {
 	# ALL of these should be set before we can safely continue this function.
 	# some of the sources have in the past had only one set.
@@ -390,7 +391,7 @@ kernel_is() {
 	# Now we can continue
 	local operator test value
 
-	case $1 in
+	case ${1#-} in
 	  lt) operator="-lt"; shift;;
 	  gt) operator="-gt"; shift;;
 	  le) operator="-le"; shift;;

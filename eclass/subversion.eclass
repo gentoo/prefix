@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.70 2011/08/22 04:46:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.71 2011/12/14 23:40:18 vapier Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -218,7 +218,7 @@ subversion_fetch() {
 
 	if [[ ! -d ${ESVN_STORE_DIR} ]]; then
 		debug-print "${FUNCNAME}: initial checkout. creating subversion directory"
-		mkdir -p "${ESVN_STORE_DIR}" || die "${ESVN}: can't mkdir ${ESVN_STORE_DIR}."
+		mkdir -m 775 -p "${ESVN_STORE_DIR}" || die "${ESVN}: can't mkdir ${ESVN_STORE_DIR}."
 	fi
 
 	pushd "${ESVN_STORE_DIR}" > /dev/null || die "${ESVN}: can't chdir to ${ESVN_STORE_DIR}"
@@ -251,7 +251,7 @@ subversion_fetch() {
 
 		debug-print "${FUNCNAME}: ${ESVN_FETCH_CMD} ${options} ${repo_uri}"
 
-		mkdir -p "${ESVN_PROJECT}" || die "${ESVN}: can't mkdir ${ESVN_PROJECT}."
+		mkdir -m 775 -p "${ESVN_PROJECT}" || die "${ESVN}: can't mkdir ${ESVN_PROJECT}."
 		cd "${ESVN_PROJECT}" || die "${ESVN}: can't chdir to ${ESVN_PROJECT}"
 		if [[ -n "${ESVN_USER}" ]]; then
 			${ESVN_FETCH_CMD} ${options} --username "${ESVN_USER}" --password "${ESVN_PASSWORD}" "${repo_uri}" || die "${ESVN}: can't fetch to ${wc_path} from ${repo_uri}."

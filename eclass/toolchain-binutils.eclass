@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.104 2011/11/29 22:45:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.106 2011/12/12 22:47:55 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -8,7 +8,8 @@
 # us easily merge multiple versions for multiple targets (if we wish) and
 # then switch the versions on the fly (with `binutils-config`).
 #
-# binutils-9999           -> live cvs
+# binutils-99999999       -> live cvs
+# binutils-9999           -> live git
 # binutils-9999_preYYMMDD -> nightly snapshot date YYMMDD
 # binutils-#              -> normal release
 
@@ -17,26 +18,37 @@ if [[ -n ${BINUTILS_TYPE} ]] ; then
 	BTYPE=${BINUTILS_TYPE}
 else
 	case ${PV} in
-	9999)      BTYPE="cvs";;
+	99999999)  BTYPE="cvs";;
+	9999)      BTYPE="git";;
 	9999_pre*) BTYPE="snap";;
 	*)         BTYPE="rel";;
 	esac
 fi
 
-if [[ ${BTYPE} == "cvs" ]] ; then
+case ${BTYPE} in
+cvs)
 	extra_eclass="cvs"
 	ECVS_SERVER="sourceware.org:/cvs/src"
 	ECVS_MODULE="binutils"
 	ECVS_USER="anoncvs"
 	ECVS_PASS="anoncvs"
 	BVER="cvs"
-elif [[ ${BTYPE} == "snap" ]] ; then
+	;;
+git)
+	extra_eclass="git-2"
+	BVER="git"
+	EGIT_REPO_URI="git://sourceware.org/git/binutils.git"
+	;;
+snap)
 	BVER=${PV/9999_pre}
-elif [[ ${BTYPE} == "rel" ]] ; then
+	;;
+rel)
 	BVER=${PV}
-else
+	;;
+*)
 	BVER=${BINUTILS_VER}
-fi
+	;;
+esac
 
 inherit eutils libtool flag-o-matic gnuconfig multilib versionator ${extra_eclass}
 EXPORT_FUNCTIONS src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
@@ -57,7 +69,7 @@ DESCRIPTION="Tools necessary to build programs"
 HOMEPAGE="http://sources.redhat.com/binutils/"
 
 case ${BTYPE} in
-	cvs)  SRC_URI="";;
+	cvs|git) SRC_URI="" ;;
 	snap) SRC_URI="ftp://gcc.gnu.org/pub/binutils/snapshots/binutils-${BVER}.tar.bz2";;
 	rel)
 		SRC_URI="mirror://kernel/linux/devel/binutils/binutils-${PV}.tar.bz2
@@ -102,7 +114,10 @@ DEPEND="${RDEPEND}
 	virtual/yacc"
 
 S=${WORKDIR}/binutils
-[[ ${BVER} != "cvs" ]] && S=${S}-${BVER}
+case ${BVER} in
+cvs|git) ;;
+*) S=${S}-${BVER} ;;
+esac
 
 LIBPATH=/usr/$(get_libdir)/binutils/${CTARGET}/${BVER}
 INCPATH=${LIBPATH}/include
@@ -115,7 +130,11 @@ else
 fi
 
 tc-binutils_unpack() {
-	unpack ${A}
+	case ${BTYPE} in
+	cvs) cvs_src_unpack ;;
+	git) git-2_src_unpack ;;
+	*)   unpack ${A} ;;
+	esac
 	mkdir -p "${MY_BUILDDIR}"
 	[[ -d ${WORKDIR}/patch ]] && mkdir "${WORKDIR}"/patch/skip
 }
@@ -257,6 +276,7 @@ toolchain-binutils_src_compile() {
 		--enable-64-bit-bfd \
 		--enable-shared \
 		--disable-werror \
+		--with-bugurl=http://bugs.gentoo.org/ \
 		$(use_enable static-libs static) \
 		${EXTRA_ECONF}
 	echo ./configure "$@"

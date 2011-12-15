@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.96 2011/11/18 17:32:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.97 2011/12/13 21:28:15 vapier Exp $
 
 # @ECLASS: libtool.eclass
 # @MAINTAINER:
@@ -13,6 +13,9 @@
 # Note, this eclass does not require libtool as it only applies patches to
 # generated libtool files.  We do not run the libtoolize program because that
 # requires a regeneration of the main autotool files in order to work properly.
+
+if [[ ${___ECLASS_ONCE_LIBTOOL} != "recur -_+^+_- spank" ]] ; then
+___ECLASS_ONCE_LIBTOOL="recur -_+^+_- spank"
 
 # If an overlay has eclass overrides, but doesn't actually override the
 # libtool.eclass, we'll have ECLASSDIR pointing to the active overlay's
@@ -497,3 +500,5 @@ VER_to_int() {
 	echo 1
 	return 1
 }
+
+fi

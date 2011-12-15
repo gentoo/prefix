@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.510 2011/12/10 08:55:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.511 2011/12/13 00:21:54 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1265,6 +1265,16 @@ gcc_do_configure() {
 
 	# return to whatever directory we were in before
 	popd > /dev/null
+}
+
+has toolchain_death_notice ${EBUILD_DEATH_HOOKS} || EBUILD_DEATH_HOOKS+=" toolchain_death_notice"
+toolchain_death_notice() {
+	pushd "${WORKDIR}"/build >/dev/null
+	tar jcf gcc-build-logs.tar.bz2 $(find -name config.log)
+	eerror
+	eerror "Please include ${PWD}/gcc-build-logs.tar.bz2 in your bug report"
+	eerror
+	popd >/dev/null
 }
 
 # This function accepts one optional argument, the make target to be used.

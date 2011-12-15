@@ -1,12 +1,15 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.144 2011/11/26 07:36:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.146 2011/12/14 16:38:47 vapier Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
 # This is the games eclass for standardizing the install of games ...
 # you better have a *good* reason why you're *not* using games.eclass
 # in a games-* ebuild
+
+if [[ ${___ECLASS_ONCE_GAMES} != "recur -_+^+_- spank" ]] ; then
+___ECLASS_ONCE_GAMES="recur -_+^+_- spank"
 
 inherit base multilib toolchain-funcs eutils user
 
@@ -129,7 +132,6 @@ games_pkg_setup() {
 	fi
 
 	tc-export CC CXX
-	[[ ${GAMES_CHECK_LICENSE} == "yes" ]] && check_license ${LICENSE}
 
 	enewgroup "${GAMES_GROUP}" 35
 	[[ ${GAMES_USER} != "root" ]] \
@@ -224,3 +226,5 @@ games_umod_unpack() {
 	rm -f "${Ddir}"/System/{ucc-bin,{Manifest,Def{ault,User},User,UT200{3,4}}.ini,{Engine,Core,zlib,ogg,vorbis}.so,{Engine,Core}.int,ucc.log} &>/dev/null \
 		|| die "Removing temporary files"
 }
+
+fi

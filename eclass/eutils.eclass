@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.370 2011/12/02 10:22:41 ferringb Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.372 2011/12/14 17:36:18 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -14,6 +14,9 @@
 #
 # Due to the nature of this eclass, some functions may have maintainers
 # different from the overall eclass!
+
+if [[ ${___ECLASS_ONCE_EUTILS} != "recur -_+^+_- spank" ]] ; then
+___ECLASS_ONCE_EUTILS="recur -_+^+_- spank"
 
 inherit multilib portability user
 
@@ -1087,65 +1090,6 @@ unpack_makeself() {
 	assert "failure unpacking (${filetype}) makeself ${shrtsrc} ('${ver}' +${skip})"
 }
 
-# @FUNCTION: check_license
-# @USAGE: [license]
-# @DESCRIPTION:
-# Display a license for user to accept.  If no license is
-# specified, then ${LICENSE} is used.
-check_license() {
-	local lic=$1
-	if [ -z "${lic}" ] ; then
-		lic="${PORTDIR}/licenses/${LICENSE}"
-	else
-		if [ -e "${PORTDIR}/licenses/${lic}" ] ; then
-			lic="${PORTDIR}/licenses/${lic}"
-		elif [ -e "${PWD}/${lic}" ] ; then
-			lic="${PWD}/${lic}"
-		elif [ -e "${lic}" ] ; then
-			lic="${lic}"
-		fi
-	fi
-	local l="`basename ${lic}`"
-
-	# here is where we check for the licenses the user already
-	# accepted ... if we don't find a match, we make the user accept
-	local alic
-	eshopts_push -o noglob # so that bash doesn't expand "*"
-	for alic in ${ACCEPT_LICENSE} ; do
-		if [[ ${alic} == ${l} ]]; then
-			eshopts_pop
-			return 0
-		fi
-	done
-	eshopts_pop
-	[ ! -f "${lic}" ] && die "Could not find requested license ${lic}"
-
-	local licmsg=$(emktemp)
-	cat <<-EOF > ${licmsg}
-	**********************************************************
-	The following license outlines the terms of use of this
-	package.  You MUST accept this license for installation to
-	continue.  When you are done viewing, hit 'q'.	If you
-	CTRL+C out of this, the install will not run!
-	**********************************************************
-
-	EOF
-	cat ${lic} >> ${licmsg}
-	${PAGER:-less} ${licmsg} || die "Could not execute pager (${PAGER}) to accept ${lic}"
-	einfon "Do you accept the terms of this license (${l})? [yes/no] "
-	read alic
-	case ${alic} in
-		yes|Yes|y|Y)
-			return 0
-			;;
-		*)
-			echo;echo;echo
-			eerror "You MUST accept the license to continue!  Exiting!"
-			die "Failed to accept license"
-			;;
-	esac
-}
-
 # @FUNCTION: cdrom_get_cds
 # @USAGE: <file on cd1> [file on cd2] [file on cd3] [...]
 # @DESCRIPTION:
@@ -1697,3 +1641,7 @@ use_if_iuse() {
 # If USE flag is set, echo [true output][true suffix] (defaults to "yes"),
 # otherwise echo [false output][false suffix] (defaults to "no").
 usex() { use "$1" && echo "${2-yes}$4" || echo "${3-no}$5" ; } #382963
+
+check_license() { die "you no longer need this as portage supports ACCEPT_LICENSE itself"; }
+
+fi

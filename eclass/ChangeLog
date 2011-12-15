@@ -1,6 +1,22 @@
 # ChangeLog for eclass
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.38 2011/12/10 17:28:16 pesa Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.43 2011/12/14 19:57:20 tetromino Exp $
+
+  14 Dec 2011; Alexandre Rostovtsev <tetromino@gentoo.org> gnome2-utils.eclass,
+  gnome2.eclass:
+  Do not use gnome2_schemas_update --uninstall; --uninstall has no effect since
+  glib-2.25.11, and has been removed in 2.31.x (bug #394501, thanks to
+  Marc-Antoine Perennou for reporting).
+
+  14 Dec 2011; Sergei Trofimovich <slyfox@gentoo.org> multilib.eclass:
+  Added -m32 to CFLAGS_sparc32. Allows to build sparc64-* multilib toolchain
+  without additional tuning.
+
+  14 Dec 2011; Michał Górny <mgorny@gentoo.org> autotools-utils.eclass:
+  Drop base.eclass inherit and thus src_unpack() export.
+
+  13 Dec 2011; Ralph Sennhauser <sera@gentoo.org> java-utils-2.eclass:
+  No longer require JDK for installing java binpkg. #206024
 
   10 Dec 2011; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
   Handle sparc64-* in arch configuration.

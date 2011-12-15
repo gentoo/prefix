@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.147 2011/10/29 14:05:48 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.148 2011/12/13 14:42:39 sera Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -2143,6 +2143,12 @@ java-pkg_init() {
 	debug-print-function ${FUNCNAME} $*
 
 	[[ ${CHOST} == *-winnt* ]] && return
+
+	# Don't set up build environment if installing from binary. #206024 #258423
+	[[ "${MERGE_TYPE}" == "binary" ]] && return
+	# Also try Portage's nonstandard EMERGE_FROM for old EAPIs, if it doesn't
+	# work nothing is lost.
+	has ${EAPI:-0} 0 1 2 3 && [[ "${EMERGE_FROM}" == "binary" ]] && return
 
 	unset JAVAC
 	unset JAVA_HOME
