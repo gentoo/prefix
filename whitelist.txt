@@ -1269,6 +1269,7 @@ dev-java/commons-pool
 dev-java/commons-vfs
 dev-java/concurrent-util
 dev-java/constantine
+dev-java/diablo-jdk
 dev-java/dom4j
 dev-java/eclipse-ecj
 dev-java/ehcache
