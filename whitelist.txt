@@ -717,6 +717,7 @@ media-video/mpeg2vidcodec
 media-video/mpgtx
 media-video/mplayer2
 media-video/smplayer
+media-video/vlc
 net-analyzer/argus
 net-analyzer/arping
 net-analyzer/chaosreader
