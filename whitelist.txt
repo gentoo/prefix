@@ -1325,6 +1325,7 @@ dev-java/mockobjects
 dev-java/msv
 dev-java/mx4j-core
 dev-java/nanoxml
+dev-java/oracle-jdk-bin
 dev-java/oscache
 dev-java/pdfbox
 dev-java/qdox
@@ -1340,6 +1341,7 @@ dev-java/stringtemplate
 dev-java/sun-jacc-api
 dev-java/sun-jaf
 dev-java/sun-javamail
+dev-java/sun-jdk
 dev-java/sun-jms
 dev-java/sun-jmx
 dev-java/swarmcache
