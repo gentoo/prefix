@@ -743,6 +743,7 @@ net-analyzer/rrdtool
 net-analyzer/tcpdump
 net-analyzer/tcpflow
 net-analyzer/ttcp
+net-analyzer/wireshark
 net-dns/c-ares
 net-dns/unbound
 net-fs/curlftpfs
