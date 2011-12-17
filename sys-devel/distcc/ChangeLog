@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.211 2011/10/28 05:41:06 matsuu Exp $
 
+  17 Dec 2011; Fabian Groffen <grobian@gentoo.org>
+  +files/distcc-3.1-python-propagate-libs.patch, distcc-3.1-r5.ebuild:
+  Fix runtime of python pump lib on Solaris, fix DCCC path (already fixed in
+  3.2)
+
   17 Dec 2011; Fabian Groffen <grobian@gentoo.org> -distcc-3.0-r4.ebuild,
   -distcc-3.1-r4.ebuild:
   Drop old from Prefix, distcc-config --install no longer exists in current

@@ -13,7 +13,7 @@ SRC_URI="http://distcc.googlecode.com/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="avahi gnome gtk hardened ipv6 selinux xinetd"
 
 RESTRICT="test"
@@ -55,8 +55,10 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-freedesktop.patch"
 	# bug #258364
 	epatch "${FILESDIR}/${P}-python.patch"
+	# fix runtime crashes of the python module (pump)
+	epatch "${FILESDIR}/${P}-python-propagate-libs.patch"
 
-	sed -i -e "/PATH/s:\$distcc_location:${DCCC_PATH}:" pump.in || die
+	sed -i -e "/PATH/s:\$distcc_location:${EPREFIX}${DCCC_PATH}:" pump.in || die
 
 	# Bugs #120001, #167844 and probably more. See patch for description.
 	use hardened && epatch "${FILESDIR}/distcc-hardened.patch"
@@ -87,7 +89,7 @@ src_install() {
 	emake -j1 DESTDIR="${D}" install || die
 
 	#dobin "${FILESDIR}/3.0/distcc-config"
-	dobin ${S}/distcc-config
+	dobin "${S}/distcc-config"
 
 	newinitd "${FILESDIR}/${PV}/init" distccd
 
@@ -104,7 +106,7 @@ src_install() {
 	cat > "${T}/02distcc" <<-EOF
 	# This file is managed by distcc-config; use it to change these settings.
 	DISTCC_LOG="${DISTCC_LOG}"
-	DCCC_PATH="${DCCC_PATH}"
+	DCCC_PATH="${EPREFIX}${DCCC_PATH}"
 	DISTCC_VERBOSE="${DISTCC_VERBOSE}"
 	EOF
 	doenvd "${T}/02distcc"

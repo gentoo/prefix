@@ -1,0 +1,39 @@
+Make sure we link against all the necessary libraries.
+
+--- include_server/setup.py
++++ include_server/setup.py
+@@ -162,7 +162,7 @@
+     include_dirs=cpp_flags_includes,
+     define_macros=[('_GNU_SOURCE', 1)],
+     library_dirs=[],
+-    libraries=[],
++    libraries=[x[2:] for x in os.getenv('LIBS', '').strip().split()],
+     runtime_library_dirs=[],
+     extra_objects=[],
+     extra_compile_args=python_cflags_env.split()
+--- Makefile.in
++++ Makefile.in
+@@ -565,6 +565,7 @@
+ 	  SRCDIR="$(srcdir)"                            \
+ 	  CFLAGS="$(CFLAGS) $(PYTHON_CFLAGS)"           \
+ 	  CPPFLAGS="$(CPPFLAGS)"                        \
++	  LIBS="$(LIBS)"                                \
+ 	  $(INCLUDESERVER_PYTHON) "$(srcdir)/include_server/setup.py" \
+ 	      build 					\
+ 	        --build-base="$(include_server_builddir)"  \
+@@ -924,6 +925,7 @@
+ 	  SRCDIR="$(srcdir)"                            \
+ 	  CFLAGS="$(CFLAGS) $(PYTHON_CFLAGS)"           \
+ 	  CPPFLAGS="$(CPPFLAGS)"                        \
++	  LIBS="$(LIBS)"                                \
+ 	  $(INCLUDESERVER_PYTHON) "$(srcdir)/include_server/setup.py" \
+ 	      clean	\
+ 	         --build-base="$(include_server_builddir)"  \
+@@ -1046,6 +1048,7 @@
+ 	  SRCDIR="$(srcdir)"                            \
+ 	  CFLAGS="$(CFLAGS) $(PYTHON_CFLAGS)"           \
+ 	  CPPFLAGS="$(CPPFLAGS)"                        \
++	  LIBS="$(LIBS)"                                \
+ 	  $(INCLUDESERVER_PYTHON) "$(srcdir)/include_server/setup.py" \
+ 	      build 					\
+ 	        --build-base="$(include_server_builddir)" \
