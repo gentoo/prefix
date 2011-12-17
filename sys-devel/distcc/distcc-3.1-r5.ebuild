@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r5.ebuild,v 1.1 2010/12/22 21:16:55 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r5.ebuild,v 1.2 2011/03/28 22:37:44 eva Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -23,11 +23,11 @@ RDEPEND="dev-libs/popt
 	gnome? (
 		>=gnome-base/libgnome-2
 		>=gnome-base/libgnomeui-2
-		>=x11-libs/gtk+-2
+		x11-libs/gtk+:2
 		x11-libs/pango
 	)
 	gtk? (
-		>=x11-libs/gtk+-2
+		x11-libs/gtk+:2
 	)"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
@@ -86,7 +86,8 @@ src_install() {
 	# In rare cases, parallel make install failed
 	emake -j1 DESTDIR="${D}" install || die
 
-	dobin "${FILESDIR}/3.0/distcc-config"
+	#dobin "${FILESDIR}/3.0/distcc-config"
+	dobin ${S}/distcc-config
 
 	newinitd "${FILESDIR}/${PV}/init" distccd
 
