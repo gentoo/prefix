@@ -14,7 +14,7 @@ SRC_URI="http://distcc.googlecode.com/files/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+#KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="avahi crossdev gnome gssapi gtk hardened ipv6 selinux xinetd"
 
 RESTRICT="test"
