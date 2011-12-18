@@ -13,7 +13,7 @@ SRC_URI="http://distcc.googlecode.com/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~sparc64-solaris"
 IUSE="avahi gnome gtk hardened ipv6 selinux xinetd"
 
 RESTRICT="test"
