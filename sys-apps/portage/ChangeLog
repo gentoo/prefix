@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.19981 (19 Dec 2011)
+
+  19 Dec 2011; Fabian Groffen <grobian@gentoo.org>
+  +files/portage-2.2.01.19981-ebuildshell.patch, +portage-2.2.01.19981.ebuild,
+  -portage-2.2.01.19893.ebuild:
+  Version bump, matches portage-2.1.10.41+, fixes bug #395241
+  (FEATURES=installsources installing sources to incorrect path)
+
 *portage-2.2.01.19941 (14 Dec 2011)
 
   14 Dec 2011; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.19941.ebuild,
