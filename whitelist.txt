@@ -494,6 +494,7 @@ dev-util/cucumber-rails
 dev-util/cunit
 dev-util/ddd
 dev-util/debhelper
+dev-util/debugedit
 dev-util/dejagnu
 dev-util/desktop-file-utils
 dev-util/diffball
