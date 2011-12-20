@@ -1,6 +1,9 @@
-diff -ru gd-2.0.35.orig/gd_gd.c gd-2.0.35/gd_gd.c
---- gd-2.0.35.orig/gd_gd.c	2006-04-05 17:52:22.000000000 +0200
-+++ gd-2.0.35/gd_gd.c	2009-11-09 11:57:01.000000000 +0100
+http://bugs.gentoo.org/292130
+
+fix in usptream repo already
+
+--- gd-2.0.35/gd_gd.c
++++ gd-2.0.35/gd_gd.c
 @@ -44,6 +44,10 @@
  	    {
  	      goto fail1;

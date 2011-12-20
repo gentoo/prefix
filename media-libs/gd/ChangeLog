@@ -1,6 +1,57 @@
 # ChangeLog for media-libs/gd
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.65 2010/07/23 20:55:11 ssuominen Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.79 2011/12/15 17:08:03 vapier Exp $
+
+  15 Dec 2011; Mike Frysinger <vapier@gentoo.org> gd-2.0.35-r3.ebuild:
+  Pass --without-x to avoid useless system -I/-L paths.
+
+  15 Dec 2011; Mike Frysinger <vapier@gentoo.org> gd-2.0.35-r3.ebuild,
+  +files/gd-2.0.35-libpng-pkg-config.patch:
+  Use libpng's pkg-config files rather than xxx-config scripts.
+
+  15 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> -gd-2.0.35-r1.ebuild,
+  -gd-2.0.35-r2.ebuild:
+  old
+
+  05 Nov 2011; Raúl Porcel <armin76@gentoo.org> gd-2.0.35-r3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #387291
+
+  30 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> gd-2.0.35-r3.ebuild:
+  Fix building with USE="png -zlib" wrt #381729 by Brennan Shacklett
+
+  29 Oct 2011; Markus Meier <maekke@gentoo.org> gd-2.0.35-r3.ebuild:
+  arm stable, bug #387291
+
+  21 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> gd-2.0.35-r3.ebuild:
+  x86 stable wrt #387291
+
+  18 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> gd-2.0.35-r3.ebuild:
+  ppc/ppc64 stable wrt #387291
+
+  18 Oct 2011; Jeroen Roovers <jer@gentoo.org> gd-2.0.35-r3.ebuild:
+  Stable for HPPA (bug #387291).
+
+  16 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> gd-2.0.35-r3.ebuild:
+  amd64 stable wrt #387291 and force libpng >= 1.5 :0 to ensure gdlib-config is
+  correct.
+
+  16 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> gd-2.0.35-r3.ebuild:
+  Upgrade libpng version sed.
+
+  15 Apr 2011; Mike Frysinger <vapier@gentoo.org> gd-2.0.35-r3.ebuild:
+  Disable png/zlib related programs when support is disabled #363491 by Albert
+  W. Hopkins.
+
+*gd-2.0.35-r3 (13 Apr 2011)
+
+  13 Apr 2011; Mike Frysinger <vapier@gentoo.org> +gd-2.0.35-r3.ebuild,
+  +files/gd-2.0.35-fontconfig.patch:
+  Split out USE=zlib logic from USE=png, and add fix from upstream for
+  fontconfig #363367 by genbug.
+
+  11 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> gd-2.0.35-r2.ebuild:
+  Remove libtool and static archive if USE="static-libs" is not set wrt #362959
+  by Stéphane Pagnon.
 
   23 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> gd-2.0.35-r2.ebuild:
   Use virtual/jpeg.

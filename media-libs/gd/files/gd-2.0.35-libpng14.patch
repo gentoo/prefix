@@ -1,5 +1,7 @@
-http://bugs.gentoo.org/show_bug.cgi?id=305101
+http://bugs.gentoo.org/305101
 http://repos.archlinux.org/wsvn/packages/gd/trunk/libpng14.patch
+
+patch in upstream repo already
 
 --- gd_png.c
 +++ gd_png.c
