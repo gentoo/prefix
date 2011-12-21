@@ -865,6 +865,7 @@ sys-devel/bc
 sys-devel/binutils-apple
 sys-devel/clang
 sys-devel/gcc-apple
+sys-devel/gdb
 sys-devel/gdb-apple
 sys-devel/gnuconfig
 sys-devel/llvm
