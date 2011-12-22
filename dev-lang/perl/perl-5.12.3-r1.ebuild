@@ -16,7 +16,6 @@ MY_PV="${PV%_rc*}"
 
 DESCRIPTION="Larry Wall's Practical Extraction and Report Language"
 
-S="${WORKDIR}/${MY_P}"
 SRC_URI="
 	mirror://cpan/src/${MY_P}.tar.bz2
 	mirror://cpan/authors/id/R/RJ/RJBS/${MY_P}.tar.bz2
@@ -152,6 +151,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.10.1-hpux.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-darwin-cc-ld.patch
 	epatch "${FILESDIR}"/${PN}-5.12.3-mint.patch
+	epatch "${FILESDIR}"/${PN}-5.12.3-interix.patch
 
 	# Fix build on OSX Lion (10.7)
 	sed -i -e '/^usenm=/s/true/false/' hints/darwin.sh
@@ -162,12 +162,6 @@ src_prepare() {
 		-e '/^loclibpth=/c\loclibpth=""' \
 		-e '/^glibpth=.*\/local\//s: /usr/local/lib.*":":' \
 		Configure || die
-
-	# Also add the directory prefix of the current file when the quote syntax is
-	# used; 'require' will only look in @INC, not the current directory.
-	#epatch "${FILESDIR}"/${PN}-fix_h2ph_include_quote.patch
-
-	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 myconf() {
@@ -210,16 +204,6 @@ src_configure() {
 		OLD_ZLIB = False
 		GZIP_OS_CODE = AUTO_DETECT
 	EOF
-
-	case ${CHOST} in
-		*-irix*)
-			myconf -Dcc="cc -n32 -mips4"
-			myconf -Dccdlflags='-exports'
-		;;
-		*)
-			myconf -Dccdlflags='-rdynamic'
-		;;
-	esac
 
 	# allow either gdbm to provide ndbm (in <gdbm/ndbm.h>) or db1
 
@@ -297,6 +281,7 @@ src_configure() {
 		-Dcc="$(tc-getCC)" \
 		-Doptimize="${CFLAGS}" \
 		-Dldflags="${LDFLAGS}" \
+		-Dccdlflags='-rdynamic' \
 		-Dprefix="${EPREFIX}"'/usr' \
 		-Dinstallprefix="${EPREFIX}"'/usr' \
 		-Dsiteprefix="${EPREFIX}"'/usr' \
@@ -323,7 +308,7 @@ src_configure() {
 		-Dd_semctl_semun \
 		-Dcf_by='Gentoo' \
 		-Dmyhostname='localhost' \
-		-Dperladmin="${PORTAGE_ROOT_USER}@localhost" \
+		-Dperladmin="${PORTAGE_ROOT_USER:-root}@localhost" \
 		-Dinstallusrbinperl='n' \
 		-Ud_csh \
 		-Uusenm \
