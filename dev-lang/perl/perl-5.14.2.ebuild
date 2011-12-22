@@ -153,7 +153,7 @@ src_prepare() {
 
 	# pod/perltoc.pod fails
 	# lib/ExtUtils/t/Embed.t fails
-	if tc-is-static-only ; then
+	if ! tc-is-static-only ; then
 		ln -s ${LIBPERL} libperl$(get_libname ${SHORT_PV}) || die
 		ln -s ${LIBPERL} libperl$(get_libname ) || die
 	fi
@@ -344,7 +344,7 @@ src_install() {
 	rm -f "${ED}"/usr/bin/perl
 	ln -s perl${MY_PV} "${ED}"/usr/bin/perl || die
 
-	if tc-is-static-only ; then
+	if ! tc-is-static-only ; then
 		dolib.so "${ED}"${coredir}/${LIBPERL}
 		rm -f "${ED}"${coredir}/${LIBPERL}
 		ln -sf ${LIBPERL} "${ED}"/usr/$(get_libdir)/libperl$(get_libname ${SHORT_PV}) || die

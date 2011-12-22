@@ -4,6 +4,10 @@
 
   22 Dec 2011; Fabian Groffen <grobian@gentoo.org> perl-5.12.3-r1.ebuild,
   perl-5.14.2.ebuild:
+  Fix inversed logic
+
+  22 Dec 2011; Fabian Groffen <grobian@gentoo.org> perl-5.12.3-r1.ebuild,
+  perl-5.14.2.ebuild:
   Generalise MiNT CHOST conditionals using tc-is-static-only
 
   22 Dec 2011; Fabian Groffen <grobian@gentoo.org> perl-5.12.3-r1.ebuild,
