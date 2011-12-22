@@ -289,7 +289,6 @@ src_configure() {
 		-Dcc="$(tc-getCC)" \
 		-Doptimize="${CFLAGS}" \
 		-Dldflags="${LDFLAGS}" \
-		-Dccdlflags='-rdynamic' \
 		-Dprefix="${EPREFIX}"'/usr' \
 		-Dinstallprefix="${EPREFIX}"'/usr' \
 		-Dsiteprefix="${EPREFIX}"'/usr' \
