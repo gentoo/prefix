@@ -1,6 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.10.1.ebuild,v 1.20 2010/11/13 16:05:05 armin76 Exp $
+
+EAPI="3"
 
 inherit multilib
 

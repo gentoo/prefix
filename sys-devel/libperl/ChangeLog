@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.162 2011/03/07 11:36:45 tove Exp $
 
+  22 Dec 2011; Fabian Groffen <grobian@gentoo.org> libperl-5.10.1-r00.1.ebuild:
+  Set EAPI=3 as preparation for migrating to gx86
+
   07 Mar 2011; Torsten Veller <tove@gentoo.org> libperl-5.8.8-r2.ebuild:
   Drop -Dusrinc=$(get_ml_incdir) (#357737)
 
