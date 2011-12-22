@@ -17,7 +17,6 @@ MY_PV="${PV%_rc*}"
 
 DESCRIPTION="Larry Wall's Practical Extraction and Report Language"
 
-S="${WORKDIR}/${MY_P}"
 SRC_URI="
 	mirror://cpan/src/${MY_P}.tar.bz2
 	mirror://cpan/authors/id/${MODULE_AUTHOR:0:1}/${MODULE_AUTHOR:0:2}/${MODULE_AUTHOR}/${MY_P}.tar.bz2
@@ -154,9 +153,9 @@ src_prepare() {
 
 	# pod/perltoc.pod fails
 	# lib/ExtUtils/t/Embed.t fails
-	if [[ ${CHOST} != *-mint* ]]; then
-	ln -s ${LIBPERL} libperl$(get_libname ${SHORT_PV}) || die
-	ln -s ${LIBPERL} libperl$(get_libname ) || die
+	if tc-is-static-only ; then
+		ln -s ${LIBPERL} libperl$(get_libname ${SHORT_PV}) || die
+		ln -s ${LIBPERL} libperl$(get_libname ) || die
 	fi
 
 	epatch "${FILESDIR}"/${PN}-5.12.3-aix-soname.patch
@@ -345,14 +344,14 @@ src_install() {
 	rm -f "${ED}"/usr/bin/perl
 	ln -s perl${MY_PV} "${ED}"/usr/bin/perl || die
 
-	if [[ ${CHOST} != *-mint* ]]; then
-	dolib.so "${ED}"${coredir}/${LIBPERL}
-	rm -f "${ED}"${coredir}/${LIBPERL}
-	ln -sf ${LIBPERL} "${ED}"/usr/$(get_libdir)/libperl$(get_libname ${SHORT_PV}) || die
-	ln -sf ${LIBPERL} "${ED}"/usr/$(get_libdir)/libperl$(get_libname) || die
-	ln -sf ../../../../../$(get_libdir)/${LIBPERL} "${ED}"${coredir}/${LIBPERL} || die
-	ln -sf ../../../../../$(get_libdir)/${LIBPERL} "${ED}"${coredir}/libperl$(get_libname ${SHORT_PV}) || die
-	ln -sf ../../../../../$(get_libdir)/${LIBPERL} "${ED}"${coredir}/libperl$(get_libname) || die
+	if tc-is-static-only ; then
+		dolib.so "${ED}"${coredir}/${LIBPERL}
+		rm -f "${ED}"${coredir}/${LIBPERL}
+		ln -sf ${LIBPERL} "${ED}"/usr/$(get_libdir)/libperl$(get_libname ${SHORT_PV}) || die
+		ln -sf ${LIBPERL} "${ED}"/usr/$(get_libdir)/libperl$(get_libname) || die
+		ln -sf ../../../../../$(get_libdir)/${LIBPERL} "${ED}"${coredir}/${LIBPERL} || die
+		ln -sf ../../../../../$(get_libdir)/${LIBPERL} "${ED}"${coredir}/libperl$(get_libname ${SHORT_PV}) || die
+		ln -sf ../../../../../$(get_libdir)/${LIBPERL} "${ED}"${coredir}/libperl$(get_libname) || die
 	fi
 
 	rm -rf "${ED}"/usr/share/man/man3 || die "Unable to remove module man pages"
