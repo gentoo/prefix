@@ -1,6 +1,38 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.370 2011/06/24 14:48:58 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.378 2011/11/07 17:45:03 xarthisius Exp $
+
+  07 Nov 2011; Kacper Kowalik <xarthisius@gentoo.org> perl-5.12.4-r1.ebuild:
+  ppc/ppc64 stable wrt #384593
+
+  23 Oct 2011; Raúl Porcel <armin76@gentoo.org> perl-5.12.4-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #384593
+
+  16 Oct 2011; Matt Turner <mattst88@gentoo.org> perl-5.12.4-r1.ebuild,
+  perl-5.14.2.ebuild:
+  Remove mips d_u32align hack from the gcc-3.3 days (circa 2003)
+
+  10 Oct 2011; Markus Meier <maekke@gentoo.org> perl-5.12.4-r1.ebuild:
+  arm/x86 stable, bug #384593
+
+  05 Oct 2011; Jeroen Roovers <jer@gentoo.org> perl-5.12.4-r1.ebuild:
+  Stable for HPPA (bug #384593).
+
+  27 Sep 2011; Tony Vroon <chainsaw@gentoo.org> perl-5.12.4-r1.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armageddon" El Lazkani in bug #384593.
+
+*perl-5.14.2 (27 Sep 2011)
+
+  27 Sep 2011; Torsten Veller <tove@gentoo.org> +perl-5.14.2.ebuild:
+  Version bump
+
+*perl-5.14.1-r1 (09 Aug 2011)
+*perl-5.12.4-r1 (09 Aug 2011)
+
+  09 Aug 2011; Torsten Veller <tove@gentoo.org> -perl-5.12.2-r6.ebuild,
+  -perl-5.12.3.ebuild, +perl-5.12.4-r1.ebuild, +perl-5.14.1-r1.ebuild:
+  Add xsubpp to the dual-life scripts list. Cleanup
 
 *perl-5.12.4 (24 Jun 2011)
 
