@@ -1,0 +1,137 @@
+# HG changeset patch
+# User Fabian Groffen <grobian@gentoo.org>
+# Date 1324637719 -3600
+# Node ID d70f677c2c1293d45e51a7f0e3b97b5e2b2900e7
+# Parent  e7a44acf78b8678781b5d24a90d96d1a53601b41
+https://bugs.gentoo.org/155161
+
+FEATURES=ebuildshell emerge xxxxx
+
+results in an interactive shell for each function portage calls from the
+ebuild, where all functionality is available as in the ebuild
+(src_unpack, epatch, etc.).  This allows for convenient debugging of
+ebuild issues.
+
+diff -r e7a44acf78b8 -r d70f677c2c12 bin/ebuild.sh
+--- a/bin/ebuild.sh	Fri Dec 23 11:24:27 2011 +0100
++++ b/bin/ebuild.sh	Fri Dec 23 11:55:19 2011 +0100
+@@ -82,7 +82,7 @@
+ qa_call() {
+ 	local shopts=$(shopt) OLDIFS="$IFS"
+ 	local retval
+-	"$@"
++	call-ebuildshell "$@"
+ 	retval=$?
+ 	set +e
+ 	[[ $shopts != $(shopt) ]] &&
+@@ -453,6 +453,56 @@
+ 	unset BIN_PATH BIN BODY FUNC_SRC
+ fi
+ 
++call-ebuildshell() {
++	if ! has ebuildshell ${FEATURES}; then
++		"$@"
++		return $?
++	fi
++	(
++		umask 002
++		(
++			(
++				set
++				declare -p
++				declare -fp
++				shopt -p
++				if [[ ${BASH_VERSINFO[0]} == 3 ]]; then
++					export
++				fi
++			) | filter_readonly_variables --filter-for-subshell
++			echo 'declare -r $PORTAGE_READONLY_METADATA $PORTAGE_READONLY_VARS'
++			echo "export PS1='EBUILD ${PN} $1 \$ '" 
++			echo 'unset ENV'
++			echo "type $1"
++			echo "echo WANTED: $@"
++			echo "trap '"
++			echo "umask 002"
++			echo "("
++			echo "	set"
++			echo "	declare -p"
++			echo "	declare -fp"
++			echo "	shopt -p"
++			if [[ ${BASH_VERSINFO[0]} == 3 ]]; then
++				echo "	export"
++			fi
++			echo -n ")"
++			echo -n " | filter_readonly_variables --filter-metadata"
++			echo " > ${T}/ebuildshell-environment-outcome' 0"
++		) > ${T}/ebuildshell-environment
++		chown ${PORTAGE_USER:-portage}:${PORTAGE_GROUP:-portage} "${T}/ebuildshell-environment" &>/dev/null
++		chmod g+w "${T}/ebuildshell-environment" &>/dev/null
++	)
++
++	rm -f "${T}/ebuildshell-environment-outcome" >&/dev/null
++
++	unset BASH_ENV
++	env -i ${BASH} --rcfile "${T}/ebuildshell-environment"  -i || die
++
++	chown ${PORTAGE_USER:-portage}:${PORTAGE_GROUP:-portage} "${T}/ebuildshell-environment-outcome" &>/dev/null
++	chmod g+w "${T}/ebuildshell-environment-outcome" &>/dev/null
++	source "${T}/ebuildshell-environment-outcome" &>/dev/null
++}
++
+ # Subshell/helper die support (must export for the die helper).
+ export EBUILD_MASTER_PID=$BASHPID
+ trap 'exit 1' SIGTERM
+diff -r e7a44acf78b8 -r d70f677c2c12 bin/phase-functions.sh
+--- a/bin/phase-functions.sh	Fri Dec 23 11:24:27 2011 +0100
++++ b/bin/phase-functions.sh	Fri Dec 23 11:55:19 2011 +0100
+@@ -84,7 +84,7 @@
+ filter_readonly_variables() {
+ 	local x filtered_vars
+ 	local readonly_bash_vars="BASHOPTS BASHPID DIRSTACK EUID
+-		FUNCNAME GROUPS PIPESTATUS PPID SHELLOPTS UID"
++		FUNCNAME GROUPS PIPESTATUS PPID SHELLOPTS UID BASH_VERSINFO"
+ 	local bash_misc_vars="BASH BASH_.* COLUMNS COMP_WORDBREAKS HISTCMD
+ 		HISTFILE HOSTNAME HOSTTYPE IFS LINENO MACHTYPE OLDPWD
+ 		OPTERR OPTIND OSTYPE POSIXLY_CORRECT PS4 PWD RANDOM
+@@ -95,8 +95,10 @@
+ 	# Untrusted due to possible application of package renames to binpkgs
+ 	local binpkg_untrusted_vars="CATEGORY P PF PN PR PV PVR"
+ 	local misc_garbage_vars="_portage_filter_opts"
+-	filtered_vars="$readonly_bash_vars $bash_misc_vars
+-		$PORTAGE_READONLY_VARS $misc_garbage_vars"
++	filtered_vars="$readonly_bash_vars"
++	if ! has --filter-for-subshell $* ; then
++		filtered_vars="$filtered_vars $bash_misc_vars $PORTAGE_READONLY_VARS $misc_garbage_vars"
++	fi
+ 
+ 	# Don't filter/interfere with prefix variables unless they are
+ 	# supported by the current EAPI.
+@@ -126,7 +128,11 @@
+ 			LC_CTYPE LC_MESSAGES LC_MONETARY
+ 			LC_NUMERIC LC_PAPER LC_TIME"
+ 	fi
+-	if ! has --allow-extra-vars $* ; then
++	if has --filter-metadata $* ; then
++		filtered_vars="$filtered_vars $PORTAGE_READONLY_METADATA"
++	fi
++	if ! has --allow-extra-vars $* &&
++	   ! has --filter-for-subshell $* ; then
+ 		if [ "${EMERGE_FROM}" = binary ] ; then
+ 			# preserve additional variables from build time,
+ 			# while excluding untrusted variables
+diff -r e7a44acf78b8 -r d70f677c2c12 man/make.conf.5
+--- a/man/make.conf.5	Fri Dec 23 11:24:27 2011 +0100
++++ b/man/make.conf.5	Fri Dec 23 11:55:19 2011 +0100
+@@ -287,6 +287,12 @@
+ Use locks to ensure that unsandboxed ebuild phases never execute
+ concurrently. Also see \fIparallel\-install\fR.
+ .TP
++.B ebuildshell
++Drop into an interactive shell for each phase function, meant for
++debugging.  Because the shell would normally be used to execute the
++phase function, commands like src_unpack or epatch are available in the
++interactive shell.  Use `exit 1` to terminate the merge.
++.TP
+ .B fakeroot
+ Enable fakeroot for the install and package phases when a non-root user runs
+ the \fBebuild\fR(1) command.
