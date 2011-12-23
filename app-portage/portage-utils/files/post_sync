@@ -2,7 +2,7 @@
 # Copyright 2006-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-for f in "@GENTOO_PORTAGE_EPREFIX@"/etc/portage/postsync.d/* ; do
+for f in /etc/portage/postsync.d/* ; do
 	[ -x "${f}" ] && "${f}"
 done
 :

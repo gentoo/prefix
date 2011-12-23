@@ -1,6 +1,44 @@
 # ChangeLog for app-portage/portage-utils
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.111 2010/06/08 05:49:29 vapier Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.120 2011/12/22 20:46:03 vapier Exp $
+
+*portage-utils-0.9 (22 Dec 2011)
+
+  22 Dec 2011; Mike Frysinger <vapier@gentoo.org> +portage-utils-0.9.ebuild:
+  Version bump to fix a few more bugs.
+
+  20 Dec 2011; Jeroen Roovers <jer@gentoo.org> portage-utils-0.8.ebuild:
+  Stable for HPPA (bug #395317).
+
+  20 Dec 2011; Agostino Sarubbo <ago@gentoo.org> portage-utils-0.8.ebuild:
+  Stable for AMD64, wrt bug #395317
+
+*portage-utils-0.8 (19 Dec 2011)
+
+  19 Dec 2011; Mike Frysinger <vapier@gentoo.org> -portage-utils-0.7.ebuild,
+  +portage-utils-0.8.ebuild:
+  Version bump to fix previous broken release.
+
+  18 Dec 2011; Naohiro Aota <naota@gentoo.org> portage-utils-0.7.ebuild:
+  Re-keyword ~x86-fbsd
+
+*portage-utils-0.7 (11 Dec 2011)
+
+  11 Dec 2011; Mike Frysinger <vapier@gentoo.org> +portage-utils-0.7.ebuild:
+  Version bump with autotools support.
+
+*portage-utils-0.6 (03 Oct 2011)
+
+  03 Oct 2011; Mike Frysinger <vapier@gentoo.org> +portage-utils-0.6.ebuild:
+  Version bump.
+
+  22 May 2011; Naohiro Aota <naota@gentoo.org> portage-utils-0.5.ebuild:
+  Drop ~x86-fbsd keyword
+
+*portage-utils-0.5 (17 Mar 2011)
+
+  17 Mar 2011; Mike Frysinger <vapier@gentoo.org> +portage-utils-0.5.ebuild:
+  Version bump.
 
 *portage-utils-0.4 (08 Jun 2010)
 

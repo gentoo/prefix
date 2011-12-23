@@ -1,3 +1,3 @@
 #!/bin/sh
-[ -x "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/q ] && "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/q -r ${PORTAGE_QUIET:+-q}
+[ -x /usr/bin/q ] && /usr/bin/q -r ${PORTAGE_QUIET:+-q}
 :
