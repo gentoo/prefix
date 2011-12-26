@@ -1,10 +1,13 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Diego Pettenò <flameeyes@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.20 2011/07/08 11:35:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.21 2011/12/17 04:20:52 vapier Exp $
 #
 # This eclass contains functions to install pamd configuration files and
 # pam modules.
+
+if [[ ${___ECLASS_ONCE_PAM} != "recur -_+^+_- spank" ]] ; then
+___ECLASS_ONCE_PAM="recur -_+^+_- spank"
 
 inherit multilib flag-o-matic
 
@@ -235,3 +238,5 @@ pam_epam_expand() {
 #
 # 	eshopts_pop # reset old shell opts
 # }
+
+fi

@@ -1,6 +1,51 @@
 # ChangeLog for eclass
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.43 2011/12/14 19:57:20 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ChangeLog,v 1.55 2011/12/26 00:11:07 pesa Exp $
+
+  26 Dec 2011; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
+  Misc cleanups, add a few missing "|| die", fix description of some functions.
+
+  25 Dec 2011; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
+  Delete obsolete sed on fvisibility.test, it's no longer needed in all
+  versions of Qt currently available in the tree.
+
+  22 Dec 2011; Michał Górny <mgorny@gentoo.org> autotools-utils.eclass:
+  Add a note on AT_NOELIBTOOLIZE=yes in src_prepare(). Fixes #395649.
+
+  21 Dec 2011; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
+  Disable rpath for Qt 4.8 and later (bug #380415). Thanks to dilfridge for
+  testing.
+
+  21 Dec 2011; Davide Pesavento <pesa@gentoo.org> qt4-build.eclass:
+  Remove obsolete workaround.
+
+  18 Dec 2011; Robin H. Johnson <robbat2@gentoo.org> python.eclass:
+  Bug #390691: Be careful about cp call to coreutils with --no-preserve option
+  that might not be available until later in an upgrade.
+
+  18 Dec 2011; Diego E. Pettenò <flameeyes@gentoo.org> ruby-ng.eclass:
+  Reorder setting of REQUIRED_USE to stay near IUSE setting; also use
+  ruby_get_use_targets to set IUSE.
+
+  18 Dec 2011; Andreas K. Huettel <dilfridge@gentoo.org> kde4-base.eclass,
+  kde4-functions.eclass, kde4-meta.eclass:
+  Re-sync kde4 eclasses with kde overlay: remove libkworkspace target hacks
+  (requires libkworkspace rebuild), force qt-4.7.4 for kde-4.8, properly treat
+  kde-4.[789] version numbers, warn if the handbook useflag is added manually
+
+  17 Dec 2011; Maciej Mrozowski <reavertm@gentoo.org> eutils.eclass:
+  Revert old eshopts_{pop,push} implementations until new ones pass unit tests.
+  Bug 395025.
+
+  16 Dec 2011; Jonathan Callen <abcd@gentoo.org> qt4-build.eclass:
+  Set importdir to be /usr/$(get_libdir)/qt4/imports instead of the
+  non-FHS-compliant /usr/imports
+
+  16 Dec 2011; Maxim Koltsov <maksbotan@gentoo.org> leechcraft.eclass:
+  Add app-arch/xz-utils dependency to leechcraft.eclass
+
+  15 Dec 2011; Maxim Koltsov <maksbotan@gentoo.org> leechcraft.eclass:
+  Update leechcraft eclass to new filename suffix
 
   14 Dec 2011; Alexandre Rostovtsev <tetromino@gentoo.org> gnome2-utils.eclass,
   gnome2.eclass:

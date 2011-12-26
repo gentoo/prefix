@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.97 2011/12/13 21:28:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.98 2011/12/21 21:21:04 vapier Exp $
 
 # @ECLASS: libtool.eclass
 # @MAINTAINER:
@@ -208,8 +208,10 @@ elibtoolize() {
 			${force} || continue
 		fi
 
-		einfo "Running elibtoolize in: ${d#${WORKDIR}/}/"
-		if [[ -f ${d}/.elibtoolized ]] ; then
+		local outfunc="einfo"
+		[[ -f ${d}/.elibtoolized ]] && outfunc="ewarn"
+		${outfunc} "Running elibtoolize in: ${d#${WORKDIR}/}/"
+		if [[ ${outfunc} == "ewarn" ]] ; then
 			ewarn "  We've already been run in this tree; you should"
 			ewarn "  avoid this if possible (perhaps by filing a bug)"
 		fi

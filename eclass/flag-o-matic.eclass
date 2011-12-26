@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.160 2011/12/10 20:03:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.161 2011/12/15 05:23:15 vapier Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -706,31 +706,5 @@ no-as-needed() {
 		echo "-Wl,--no-as-needed" ;;
 	esac
 }
-
-# Some tests for when we screw with things and want to make
-# sure we didn't break anything
-#TESTS() {
-#	CFLAGS="-a -b -c=1"
-#	CXXFLAGS="-x -y -z=2"
-#	LDFLAGS="-l -m -n=3"
-#
-#	die() { exit 1; }
-#	(is-flag 1 2 3) && die
-#	(is-ldflag 1 2 3) && die
-#
-#	is-flagq -l && die
-#	is-ldflagq -a && die
-#	is-flagq -a || die
-#	is-flagq -x || die
-#	is-ldflagq -n=* || die
-#	is-ldflagq -n && die
-#
-#	strip-unsupported-flags
-#	[[ ${CFLAGS} == "-c=1" ]] || die
-#	[[ ${CXXFLAGS} == "-y -z=2" ]] || die
-#
-#	echo "All tests pass"
-#}
-#TESTS
 
 fi

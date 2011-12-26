@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.511 2011/12/13 00:21:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.514 2011/12/16 18:44:34 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -369,18 +369,13 @@ hardened_gcc_is_stable() {
 	return 1
 }
 
-_want_stuff() {
-	local var=$1 flag=$2
-	[[ -z ${!var} ]] && return 1
-	use ${flag} && return 0
-	return 1
-}
-want_boundschecking() { _want_stuff HTB_VER boundschecking ; }
 want_pie() {
 	! use hardened && [[ -n ${PIE_VER} ]] && use nopie && return 1
 	[[ -n ${PIE_VER} ]] && [[ -n ${SPECS_VER} ]] && return 0
 	tc_version_is_at_least 4.3.2 && return 1
-	_want_stuff PIE_VER !nopie
+	[[ -z ${PIE_VER} ]] && return 1
+	use !nopie && return 0
+	return 1
 }
 
 want_minispecs() {
@@ -1000,10 +995,9 @@ gcc-compiler-configure() {
 			confgcc+=" --with-abi=$(gcc-abi-map ${DEFAULT_ABI})"
 			;;
 		amd64)
-			# drop the 4.6.2 stuff once 4.7 goes stable
-			if tc_version_is_at_least 4.7 ||
-			   ( tc_version_is_at_least 4.6.2 && has x32 $(get_all_abis) )
-			then
+			# drop the older/ABI checks once this get's merged into some
+			# version of gcc upstream
+			if [[ ${PV} == "4.6.2" ]] && has x32 $(get_all_abis) ; then
 				confgcc+=" --with-abi=$(gcc-abi-map ${DEFAULT_ABI})"
 			fi
 			;;
@@ -1316,10 +1310,12 @@ gcc_do_make() {
 
 	# the gcc docs state that parallel make isnt supported for the
 	# profiledbootstrap target, as collisions in profile collecting may occur.
-	[[ ${GCC_MAKE_TARGET} == "profiledbootstrap" ]] && export MAKEOPTS="${MAKEOPTS} -j1"
-
-	# boundschecking seems to introduce parallel build issues
-	want_boundschecking && export MAKEOPTS="${MAKEOPTS} -j1"
+	# boundschecking also seems to introduce parallel build issues.
+	if [[ ${GCC_MAKE_TARGET} == "profiledbootstrap" ]] ||
+	   use_if_iuse boundschecking
+	then
+		export MAKEOPTS="${MAKEOPTS} -j1"
+	fi
 
 	if [[ ${GCC_MAKE_TARGET} == "all" ]] ; then
 		STAGE1_CFLAGS=${STAGE1_CFLAGS-"${CFLAGS}"}
@@ -1815,14 +1811,13 @@ gcc_quick_unpack() {
 			unpack gcc-${SPECS_GCC_VER}-specs-${SPECS_VER}.tar.bz2
 	fi
 
-	want_boundschecking && \
-		unpack "bounds-checking-gcc-${HTB_GCC_VER}-${HTB_VER}.patch.bz2"
+	use_if_iuse boundschecking && unpack "bounds-checking-gcc-${HTB_GCC_VER}-${HTB_VER}.patch.bz2"
 
 	popd > /dev/null
 }
 
 do_gcc_HTB_patches() {
-	want_boundschecking || return 0
+	use_if_iuse boundschecking || return 0
 
 	# modify the bounds checking patch with a regression patch
 	epatch "${WORKDIR}/bounds-checking-gcc-${HTB_GCC_VER}-${HTB_VER}.patch"
@@ -1832,10 +1827,6 @@ do_gcc_HTB_patches() {
 # do various updates to PIE logic
 do_gcc_PIE_patches() {
 	want_pie || return 0
-
-	want_boundschecking \
-		&& rm -f "${WORKDIR}"/piepatch/*/*-boundschecking-no.patch* \
-		|| rm -f "${WORKDIR}"/piepatch/*/*-boundschecking-yes.patch*
 
 	use vanilla && return 0
 
@@ -1946,20 +1937,18 @@ gcc_version_patch() {
 	tc_version_is_at_least 4.3 && return 0
 
 	local version_string=${GCC_CONFIG_VER}
-	[[ -n ${BRANCH_UPDATE} ]] && version_string="${version_string} ${BRANCH_UPDATE}"
+	[[ -n ${BRANCH_UPDATE} ]] && version_string+=" ${BRANCH_UPDATE}"
 
 	einfo "patching gcc version: ${version_string} (${BRANDING_GCC_PKGVERSION})"
 
+	local gcc_sed=( -e 's:gcc\.gnu\.org/bugs\.html:bugs\.gentoo\.org/:' )
 	if grep -qs VERSUFFIX "${S}"/gcc/version.c ; then
-		sed -i -e "s~VERSUFFIX \"\"~VERSUFFIX \" (${BRANDING_GCC_PKGVERSION})\"~" \
-			"${S}"/gcc/version.c || die "failed to update VERSUFFIX with Gentoo branding"
+		gcc_sed+=( -e "/VERSUFFIX \"\"/s:\"\":\" (${BRANDING_GCC_PKGVERSION})\":" )
 	else
 		version_string="${version_string} (${BRANDING_GCC_PKGVERSION})"
-		sed -i -e "s~\(const char version_string\[\] = \"\).*\(\".*\)~\1$version_string\2~" \
-			"${S}"/gcc/version.c || die "failed to update version.c with Gentoo branding."
+		gcc_sed+=( -e "/const char version_string\[\] = /s:= \".*\":= \"${version_string}\":" )
 	fi
-	sed -i -e 's~gcc\.gnu\.org\/bugs\.html~bugs\.gentoo\.org\/~' \
-		"${S}"/gcc/version.c || die "Failed to change the bug URL"
+	sed -i "${gcc_sed[@]}" "${S}"/gcc/version.c || die
 }
 
 # This is a historical wart.  The original Gentoo/amd64 port used:
