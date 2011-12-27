@@ -828,6 +828,7 @@ sys-apps/baselayout-prefix
 sys-apps/busybox
 sys-apps/darwin-miscutils
 sys-apps/dog
+sys-apps/dstat
 sys-apps/ed
 sys-apps/fakeroot
 sys-apps/gptfdisk
