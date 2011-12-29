@@ -811,6 +811,7 @@ net-misc/puf
 net-misc/sitecopy
 net-misc/socat
 net-misc/ssvnc
+net-misc/telnet-bsd
 net-misc/throttle
 net-misc/tinc
 net-misc/tokyotyrant
