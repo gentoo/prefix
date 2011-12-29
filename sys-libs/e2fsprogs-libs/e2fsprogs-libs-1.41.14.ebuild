@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.14.ebuild,v 1.4 2011/08/29 06:12:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.14.ebuild,v 1.7 2011/11/09 04:30:53 vapier Exp $
 
 EAPI=2
 
@@ -13,10 +13,9 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint"
-IUSE="nls elibc_glibc"
+IUSE="nls"
 
-RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
-	!sys-libs/com_err
+RDEPEND="!sys-libs/com_err
 	!sys-libs/ss
 	!<sys-fs/e2fsprogs-1.41.8"
 DEPEND="nls? ( sys-devel/gettext )

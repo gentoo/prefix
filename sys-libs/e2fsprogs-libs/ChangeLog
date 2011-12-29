@@ -1,6 +1,24 @@
 # ChangeLog for sys-libs/e2fsprogs-libs
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.68 2011/09/01 19:32:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.72 2011/12/07 16:50:09 vapier Exp $
+
+*e2fsprogs-libs-1.42 (07 Dec 2011)
+
+  07 Dec 2011; Mike Frysinger <vapier@gentoo.org>
+  -e2fsprogs-libs-1.42_pre0702.ebuild, +e2fsprogs-libs-1.42.ebuild:
+  Bump to final 1.42 release #392637 by Christian Inci. Add half-assed
+  USE=static-libs support #377537 by Agostino Sarubbo.
+
+  09 Nov 2011; Mike Frysinger <vapier@gentoo.org> e2fsprogs-libs-1.41.7.ebuild,
+  e2fsprogs-libs-1.41.12.ebuild, e2fsprogs-libs-1.41.14.ebuild,
+  e2fsprogs-libs-1.42_pre0702.ebuild:
+  Drop the glibc dep now that we handle tls in the build generically.
+
+  06 Nov 2011; Brent Baude <ranger@gentoo.org> e2fsprogs-libs-1.41.14.ebuild:
+  Marking e2fsprogs-libs-1.41.14 ppc for bug 378039
+
+  30 Oct 2011; Raúl Porcel <armin76@gentoo.org> e2fsprogs-libs-1.41.14.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #378039
 
 *e2fsprogs-libs-1.42_pre0702 (01 Sep 2011)
 
