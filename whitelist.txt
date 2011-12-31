@@ -171,6 +171,7 @@ app-portage/gentoopm
 app-portage/install-mask
 app-portage/layman
 app-portage/pfl
+app-portage/portage-utils
 app-portage/prefix-chain-setup
 app-portage/smart-live-rebuild
 app-shells/bash-completion
