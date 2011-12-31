@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.197 2011/12/28 19:26:42 halcy0n Exp $
 
+  31 Dec 2011; Fabian Groffen <grobian@gentoo.org> ncurses-5.9-r1.ebuild:
+  Cleanup some legacy
+
   28 Dec 2011; Mark Loeser <halcy0n@gentoo.org> ncurses-5.9.ebuild:
   Stable for ppc/ppc64; bug #377631
 

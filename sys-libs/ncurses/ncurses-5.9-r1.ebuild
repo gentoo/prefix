@@ -46,15 +46,10 @@ src_unpack() {
 		-e '/^PKG_CONFIG_LIBDIR/s:=.*:=$(libdir)/pkgconfig:' \
 		misc/Makefile.in || die
 
-#fails	epatch "${FILESDIR}"/${PN}-5.7-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
-#fails	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
-#	epatch "${FILESDIR}"/${PN}-5.6-libtool.patch # used on aix
-#fails	epatch "${FILESDIR}"/${PN}-5.7-x64-freebsd.patch
-#fails	epatch "${FILESDIR}"/${PN}-5.7-ldflags-with-libtool.patch
 
-	# irix /bin/sh is no good
+	# /bin/sh is not always good enough
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
 
 	if need-libtool; then
@@ -165,9 +160,6 @@ do_compile() {
 		${conf_abi} \
 		"$@"
 
-	[[ ${CHOST} == *-solaris* ]] && \
-		sed -i -e 's/-D_XOPEN_SOURCE_EXTENDED//g' c++/Makefile
-
 	# Fix for install location of the lib{,n}curses{,w} libs as in Gentoo we
 	# want those in lib not usr/lib.  We cannot move them lateron after
 	# installing, because that will result in broken install_names for
@@ -175,9 +167,6 @@ do_compile() {
 	# But this only is true when building without libtool.
 	need-libtool ||
 	sed -i -e '/^libdir/s:/usr/lib\(64\|\)$:/lib\1:' ncurses/Makefile || die "nlibdir"
-
-	# for IRIX to get tests compiling
-	epatch "${FILESDIR}"/${PN}-5.7-irix.patch
 
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
