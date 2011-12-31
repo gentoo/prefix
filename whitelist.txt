@@ -437,6 +437,7 @@ dev-libs/tinyxml
 dev-libs/tre
 dev-libs/uriparser
 dev-libs/uulib
+dev-libs/yajl
 dev-libs/zziplib
 dev-lisp/cl-asdf
 dev-lisp/cl-asdf-binary-locations
