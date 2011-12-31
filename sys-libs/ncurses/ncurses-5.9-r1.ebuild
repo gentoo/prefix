@@ -212,7 +212,9 @@ src_install() {
 	if use unicode ; then
 		gen_usr_ldscript libncursesw$(get_libname)
 	fi
-	ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname) || die
+	if ! tc-is-static-only ; then
+		ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname) || die
+	fi
 	use static-libs || rm "${ED}"/usr/$(get_libdir)/*.a
 
 #	if ! use berkdb ; then

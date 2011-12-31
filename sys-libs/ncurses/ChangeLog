@@ -3,6 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.197 2011/12/28 19:26:42 halcy0n Exp $
 
   31 Dec 2011; Fabian Groffen <grobian@gentoo.org> ncurses-5.9-r1.ebuild:
+  Don't link non-existing shared libraries on static-only platforms, bug #394877
+
+  31 Dec 2011; Fabian Groffen <grobian@gentoo.org> ncurses-5.9-r1.ebuild:
   Cleanup some legacy
 
   28 Dec 2011; Mark Loeser <halcy0n@gentoo.org> ncurses-5.9.ebuild:
