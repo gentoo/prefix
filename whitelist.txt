@@ -831,6 +831,7 @@ sys-apps/attr
 sys-apps/baselayout-prefix
 sys-apps/busybox
 sys-apps/darwin-miscutils
+sys-apps/dmidecode
 sys-apps/dog
 sys-apps/dstat
 sys-apps/ed
