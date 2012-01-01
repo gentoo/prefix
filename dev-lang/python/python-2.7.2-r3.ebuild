@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.2-r3.ebuild,v 1.7 2011/10/31 04:02:01 vapier Exp $
 
@@ -455,7 +455,7 @@ src_install() {
 
 		# fix up Makefile
 		sed -i \
-			-e '/^LINKFORSHARED=/s/_PyMac_Error.*$/PyMac_Error/' \
+			-e '/^LINKFORSHARED=/s/-u _PyMac_Error.*$//' \
 			-e '/^LDFLAGS=/s/=.*$/=/' \
 			-e '/^prefix=/s:=.*$:= '"${EPREFIX}"'/usr:' \
 			-e '/^PYTHONFRAMEWORK=/s/=.*$/=/' \
