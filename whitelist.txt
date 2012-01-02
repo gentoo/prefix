@@ -819,6 +819,7 @@ net-misc/throttle
 net-misc/tinc
 net-misc/tokyotyrant
 net-misc/unison
+net-misc/vde
 net-misc/wakeonlan
 net-misc/wget
 net-misc/whois
