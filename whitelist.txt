@@ -581,6 +581,7 @@ media-gfx/figurine
 media-gfx/fontforge
 media-gfx/gif2png
 media-gfx/gifsicle
+media-gfx/gpicview
 media-gfx/graphicsmagick
 media-gfx/graphviz
 media-gfx/igal
