@@ -834,6 +834,10 @@ bootstrap_gawk() {
 	bootstrap_gnu gawk 3.1.5
 }
 
+bootstrap_gawk4() {
+	bootstrap_gnu gawk 4.0.0
+}
+
 bootstrap_binutils() {
 	bootstrap_gnu binutils 2.17
 }
