@@ -48,8 +48,6 @@ src_unpack() {
 	# put libz.so.1 into libz.a on AIX
 # fails, still necessary?
 #	epatch "${FILESDIR}"/${PN}-1.2.3-shlib-aix.patch
-	# patch breaks shared libs installation
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.5.2-static.patch
 }
 
 usex() { use $1 && echo ${2:-yes} || echo ${3:-no} ; }
