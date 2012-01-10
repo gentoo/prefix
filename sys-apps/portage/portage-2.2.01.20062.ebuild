@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id: portage-2.2.01.16270.ebuild 58665 2010-09-05 19:54:38Z grobian $
 
@@ -91,7 +91,7 @@ src_prepare() {
 			die "failed to patch AbstractEbuildProcess.py"
 	fi
 
-	epatch "${FILESDIR}"/${PN}-2.2.01.19981-ebuildshell.patch
+	epatch "${FILESDIR}"/${PN}-2.2.01.20020-ebuildshell.patch
 }
 
 src_configure() {
