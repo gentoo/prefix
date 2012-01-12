@@ -345,6 +345,7 @@ dev-lang/orc
 dev-lang/parrot
 dev-lang/pasm
 dev-lang/path64
+dev-lang/polyml
 dev-lang/spidermonkey
 dev-lang/squirrel
 dev-lang/srf
