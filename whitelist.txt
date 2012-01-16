@@ -1147,6 +1147,7 @@ dev-python/networkx
 dev-python/nevow
 dev-python/nltk
 dev-python/nose
+dev-python/numexpr
 dev-python/numpy
 dev-python/oauth2
 dev-python/paramiko
@@ -1182,6 +1183,7 @@ dev-python/pyrex
 dev-python/pyro
 dev-python/pysqlite
 dev-python/pysvn
+dev-python/pytables
 dev-python/pytest
 dev-python/python-cdb
 dev-python/python-dateutil
