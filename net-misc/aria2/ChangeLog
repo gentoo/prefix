@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.77 2012/01/15 14:13:50 dev-zero Exp $
 
+  16 Jan 2012; Fabian Groffen <grobian@gentoo.org> aria2-1.14.1.ebuild:
+  Fix Prefix parameter passing, inspired by Yuriy Taraday's work in bug #383547
+
   15 Jan 2012; Tiziano Müller <dev-zero@gentoo.org> aria2-1.14.1.ebuild:
   Migrate to bash-completion-r1 eclass.
 

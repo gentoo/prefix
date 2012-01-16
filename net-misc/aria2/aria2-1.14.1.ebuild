@@ -59,11 +59,13 @@ src_prepare() {
 src_configure() {
 	local myconf="--without-gnutls --without-openssl"
 	use ssl && \
-		myconf="$(use_with gnutls) $(use_with !gnutls openssl "${EPREFIX}"/usr/$(get_libdir))"
+		myconf="$(use_with gnutls) \
+		$(use_with !gnutls openssl) \
+		$(use_with !gnutls openssl-prefix "${EPREFIX}")"
 
 	local xmllib="--without-libexpat --without-libxml2"
 	if use metalink || use xmlrpc ; then
-		xmllib="$(use_with expat libexpat "${EPREFIX}"/usr/$(get_libdir)) $(use_with !expat libxml2)"
+		xmllib="$(use_with expat libexpat) $(use_with expat libexpat-prefix "${EPREFIX}") $(use_with !expat libxml2)"
 	fi 
 
 	use doc || export ac_cv_path_ASCIIDOC=
@@ -81,9 +83,11 @@ src_configure() {
 		--with-libz \
 		$(use_enable nls) \
 		$(use_enable metalink) \
-		$(use_with sqlite sqlite3 "${EPREFIX}"/usr/$(get_libdir)) \
+		$(use_with sqlite sqlite3) \
+		$(use_with sqlite sqlite3-prefix "${EPREFIX}") \
 		$(use_enable bittorrent) \
 		$(use_with ares libcares "${EPREFIX}"/usr/$(get_libdir)) \
+		$(use_with ares libcares-prefix "${EPREFIX}") \
 		--without-libnettle --without-libgmp \
 		${xmllib} \
 		${myconf}
