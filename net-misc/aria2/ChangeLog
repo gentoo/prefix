@@ -1,6 +1,75 @@
 # ChangeLog for net-misc/aria2
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.64 2010/07/19 09:21:48 dev-zero Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.77 2012/01/15 14:13:50 dev-zero Exp $
+
+  15 Jan 2012; Tiziano Müller <dev-zero@gentoo.org> aria2-1.14.1.ebuild:
+  Migrate to bash-completion-r1 eclass.
+
+*aria2-1.14.1 (15 Jan 2012)
+
+  15 Jan 2012; Tiziano Müller <dev-zero@gentoo.org> -aria2-1.9.4.ebuild,
+  -aria2-1.10.0.ebuild, -aria2-1.10.1.ebuild, -aria2-1.10.2.ebuild,
+  -aria2-1.10.5.ebuild, -aria2-1.10.6.ebuild, -aria2-1.10.7.ebuild,
+  -aria2-1.10.8.ebuild, -aria2-1.10.9.ebuild, -aria2-1.11.0.ebuild,
+  -aria2-1.11.2.ebuild, -aria2-1.12.0.ebuild, +aria2-1.14.1.ebuild,
+  metadata.xml:
+  Version bump (bug #388971) and conditionally rebuild doc (bug #366485). Drop
+  old versions.
+
+*aria2-1.12.1 (03 Aug 2011)
+
+  03 Aug 2011; Sebastian Pipping <sping@gentoo.org> +aria2-1.12.1.ebuild:
+  Bump to 1.12.1, looks trivial
+
+*aria2-1.12.0 (30 Jun 2011)
+
+  30 Jun 2011; Sebastian Pipping <sping@gentoo.org> +aria2-1.12.0.ebuild:
+  Bump to 1.12.0, looks trivial
+
+*aria2-1.11.2 (22 May 2011)
+
+  22 May 2011; Sebastian Pipping <sping@gentoo.org> +aria2-1.11.2.ebuild:
+  Bump to 1.11.2, looks trivial
+
+*aria2-1.11.0 (21 Mar 2011)
+
+  21 Mar 2011; Sebastian Pipping <sping@gentoo.org> +aria2-1.11.0.ebuild:
+  Bump to 1.11.0, looks trivial
+
+*aria2-1.10.9 (10 Jan 2011)
+
+  10 Jan 2011; Sebastian Pipping <sping@gentoo.org> +aria2-1.10.9.ebuild:
+  Bump to 1.10.9, looks trivial
+
+*aria2-1.10.8 (19 Dec 2010)
+
+  19 Dec 2010; Sebastian Pipping <sping@gentoo.org> +aria2-1.10.8.ebuild:
+  Bump to 1.10.8, looks trivial
+
+*aria2-1.10.7 (06 Dec 2010)
+
+  06 Dec 2010; <sping@gentoo.org> +aria2-1.10.7.ebuild:
+  Bump to 1.10.7, integrate Bash completion, add build dependency on asciidoc
+
+*aria2-1.10.6 (05 Nov 2010)
+
+  05 Nov 2010; Sebastian Pipping <sping@gentoo.org> +aria2-1.10.6.ebuild:
+  Bump to 1.10.6, looks trivial
+
+*aria2-1.10.5 (29 Oct 2010)
+
+  29 Oct 2010; Sebastian Pipping <sping@gentoo.org> +aria2-1.10.5.ebuild:
+  Bumping myself, bump looks trivial (bug #342355)
+
+*aria2-1.10.2 (01 Sep 2010)
+
+  01 Sep 2010; Tiziano Müller <dev-zero@gentoo.org> +aria2-1.10.2.ebuild:
+  Version bump.
+
+*aria2-1.10.1 (30 Aug 2010)
+
+  30 Aug 2010; Tiziano Müller <dev-zero@gentoo.org> +aria2-1.10.1.ebuild:
+  Version bump.
 
 *aria2-1.10.0 (19 Jul 2010)
 
