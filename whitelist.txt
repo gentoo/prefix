@@ -356,6 +356,7 @@ dev-lang/ucblogo
 dev-lang/v8
 dev-lang/yasm
 dev-libs/Ice
+dev-libs/iniparser
 dev-libs/atk
 dev-libs/beecrypt
 dev-libs/blitz
