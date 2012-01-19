@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.116 2011/12/14 20:46:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.118 2012/01/06 21:06:17 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -256,14 +256,12 @@ eautomake() {
 
 	# Run automake if:
 	#  - a Makefile.am type file exists
-	#  - a Makefile.in type file exists and the configure
-	#    script is using the AM_INIT_AUTOMAKE directive
-	for makefile_name in {GNUmakefile,{M,m}akefile}.{am,in} "" ; do
+	#  - the configure script is using the AM_INIT_AUTOMAKE directive
+	for makefile_name in {GNUmakefile,{M,m}akefile}.am "" ; do
 		[[ -f ${makefile_name} ]] && break
 	done
-	[[ -z ${makefile_name} ]] && return 0
 
-	if [[ ${makefile_name} == *.in ]] ; then
+	if [[ -z ${makefile_name} ]] ; then
 		if ! grep -qs AM_INIT_AUTOMAKE configure.?? ; then
 			return 0
 		fi
@@ -297,6 +295,25 @@ eautomake() {
 # Runs autopoint (from the gettext package).
 eautopoint() {
 	autotools_run_tool autopoint "$@"
+}
+
+# @FUNCTION: config_rpath_update
+# @USAGE: [destination]
+# @DESCRIPTION:
+# Some packages utilize the config.rpath helper script, but don't
+# use gettext directly.  So we have to copy it in manually since
+# we can't let `autopoint` do it for us.
+config_rpath_update() {
+	local dst src=$(type -P gettext | sed 's:bin/gettext:share/gettext/config.rpath:')
+
+	[[ $# -eq 0 ]] && set -- $(find -name config.rpath)
+	[[ $# -eq 0 ]] && return 0
+
+	einfo "Updating all config.rpath files"
+	for dst in "$@" ; do
+		einfo "   ${dst}"
+		cp "${src}" "${dst}" || die
+	done
 }
 
 # Internal function to run an autotools' tool
