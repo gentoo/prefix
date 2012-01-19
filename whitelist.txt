@@ -123,6 +123,7 @@ app-editors/zile
 app-misc/abook
 app-misc/banner
 app-misc/beanstalkd
+app-misc/detox
 app-misc/byobu
 app-misc/ca-certificates
 app-misc/colordiff
