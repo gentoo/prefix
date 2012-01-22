@@ -1,6 +1,84 @@
 # ChangeLog for app-arch/xz-utils
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.19 2010/10/26 14:18:45 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.41 2011/12/29 21:18:03 halcy0n Exp $
+
+  29 Dec 2011; Mark Loeser <halcy0n@gentoo.org> xz-utils-5.0.3.ebuild:
+  Stable for ppc64; bug #379379
+
+  20 Oct 2011; Brent Baude <ranger@gentoo.org> xz-utils-5.0.3.ebuild:
+  Marking xz-utils-5.0.3 ppc for bug 379379
+
+  25 Sep 2011; Mike Frysinger <vapier@gentoo.org> xz-utils-5.0.3.ebuild,
+  xz-utils-9999.ebuild:
+  Drop unnecessary .la file #384421 by Hans.
+
+  17 Sep 2011; Raúl Porcel <armin76@gentoo.org> xz-utils-5.0.3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #379379
+
+  01 Sep 2011; Jeroen Roovers <jer@gentoo.org> xz-utils-5.0.3.ebuild:
+  Stable for HPPA (bug #379379).
+
+  28 Aug 2011; Markus Meier <maekke@gentoo.org> xz-utils-5.0.3.ebuild:
+  arm stable, bug #379379
+
+  21 Aug 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> xz-utils-5.0.3.ebuild:
+  x86 stable wrt bug #379379
+
+  17 Aug 2011; Markos Chandras <hwoarang@gentoo.org> xz-utils-5.0.3.ebuild:
+  Stable on amd64 wrt bug #379379
+
+  28 Jul 2011; Michał Górny <mgorny@gentoo.org> xz-utils-9999.ebuild:
+  Migrate to git-2, fix EGIT_REPO_URI, per bug #376377. Reviewed by Tony Vroon.
+
+*xz-utils-5.0.3 (24 May 2011)
+
+  24 May 2011; Mike Frysinger <vapier@gentoo.org> +xz-utils-5.0.3.ebuild:
+  Version bump.
+
+*xz-utils-5.0.2 (04 Apr 2011)
+
+  04 Apr 2011; Mike Frysinger <vapier@gentoo.org> +xz-utils-5.0.2.ebuild:
+  Version bump.
+
+  20 Mar 2011; Raúl Porcel <armin76@gentoo.org> xz-utils-5.0.1.ebuild:
+  ia64/m68k/s390/sh stable wrt #355649
+
+  16 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> xz-utils-5.0.1.ebuild:
+  ppc64 stable wrt #355649
+
+  12 Mar 2011; Tobias Klausmann <klausman@gentoo.org> xz-utils-5.0.1.ebuild:
+  Stable on alpha, bug #355649
+
+  06 Mar 2011; Christian Faulhammer <fauli@gentoo.org>
+  xz-utils-5.0.1.ebuild:
+  stable x86, bug 355649
+
+  06 Mar 2011; Michael Weber <xmw@gentoo.org> xz-utils-5.0.1.ebuild:
+  arm stable (bug 355649)
+
+  05 Mar 2011; Michael Weber <xmw@gentoo.org> xz-utils-5.0.1.ebuild:
+  ppc/sparc stable (bug 355649)
+
+  01 Mar 2011; Jeroen Roovers <jer@gentoo.org> xz-utils-5.0.1.ebuild:
+  Stable for HPPA (bug #355649).
+
+  01 Mar 2011; Markos Chandras <hwoarang@gentoo.org> xz-utils-5.0.1.ebuild:
+  Stable on amd64 wrt bug #355649
+
+*xz-utils-5.0.1-r1 (01 Mar 2011)
+
+  01 Mar 2011; Mike Frysinger <vapier@gentoo.org> +xz-utils-5.0.1-r1.ebuild,
+  +files/xz-utils-5.0.1-xzgrep-typo.patch:
+  Fix by Martin Väth for typo in xzgrep #356627 by Diego Elio Pettenò.
+
+*xz-utils-5.0.1 (05 Feb 2011)
+
+  05 Feb 2011; Mike Frysinger <vapier@gentoo.org> +xz-utils-5.0.1.ebuild:
+  Version bump.
+
+  06 Jan 2011; Mike Frysinger <vapier@gentoo.org> xz-utils-5.0.0.ebuild,
+  xz-utils-9999.ebuild:
+  Update blocker to allow newer versions of app-arch/lzma #218459.
 
 *xz-utils-5.0.0 (26 Oct 2010)
 
