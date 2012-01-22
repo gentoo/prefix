@@ -1,6 +1,53 @@
 # ChangeLog for dev-lang/ruby
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.514 2011/10/22 17:16:53 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.526 2012/01/08 15:36:01 armin76 Exp $
+
+  08 Jan 2012; Raúl Porcel <armin76@gentoo.org> ruby-1.8.7_p357.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #396301
+
+  04 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> ruby-1.8.7_p357.ebuild:
+  x86 stable wrt bug #396301
+
+  30 Dec 2011; Jeroen Roovers <jer@gentoo.org> ruby-1.8.7_p357.ebuild:
+  Stable for HPPA (bug #396301).
+
+  29 Dec 2011; Mark Loeser <halcy0n@gentoo.org> ruby-1.8.7_p357.ebuild:
+  Stable for ppc/ppc64; bug #396301
+
+  29 Dec 2011; Jeroen Roovers <jer@gentoo.org> ruby-1.9.3_p0.ebuild:
+  Marked ~hppa (bug #332593).
+
+  29 Dec 2011; Hans de Graaff <graaff@gentoo.org> ruby-1.9.3_p0.ebuild:
+  Add back ~alpha keyword now that rubygems is keyworded.
+
+  29 Dec 2011; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p357.ebuild:
+  Stable for AMD64, wrt security bug #396301
+
+*ruby-1.8.7_p357 (28 Dec 2011)
+
+  28 Dec 2011; Hans de Graaff <graaff@gentoo.org> +ruby-1.8.7_p357.ebuild:
+  Version bump for security bug 396301.
+
+  28 Dec 2011; Hans de Graaff <graaff@gentoo.org> ruby-1.9.3_p0.ebuild:
+  Drop alpha, arm, hppa for now since each missing a dependency, bug 332593.
+
+  28 Dec 2011; Hans de Graaff <graaff@gentoo.org> ruby-1.9.3_p0.ebuild:
+  Drop alpha keyword for now because alpha doesn't have a new enough rubygems
+  keyworded, bug 332593.
+
+  28 Dec 2011; Hans de Graaff <graaff@gentoo.org> ruby-1.9.3_p0.ebuild:
+  Block older versions of packages that are no longer compatible. Remove
+  ancient blocks on packags long gone from the tree.
+
+  28 Dec 2011; Hans de Graaff <graaff@gentoo.org> -ruby-1.8.7_p334-r1.ebuild,
+  -ruby-1.8.7_p334-r2.ebuild, -ruby-1.9.2_p290.ebuild, -ruby-1.9.3_rc1.ebuild:
+  Remove old versions.
+
+*ruby-1.9.3_p0 (18 Dec 2011)
+
+  18 Dec 2011; Hans de Graaff <graaff@gentoo.org> +ruby-1.9.3_p0.ebuild:
+  Version bump to 1.9.3p0. Still has massive failures in the rubytests test
+  suite which need to be diagnosed first.
 
   22 Oct 2011; Jeroen Roovers <jer@gentoo.org> ruby-1.9.3_rc1.ebuild:
   Add workaround for target_arch issue (bug #342819). Marked ~hppa (bug

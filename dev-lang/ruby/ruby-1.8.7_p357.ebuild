@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p334-r2.ebuild,v 1.2 2011/08/10 18:16:07 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p357.ebuild,v 1.6 2012/01/08 15:36:01 armin76 Exp $
 
 EAPI=2
 
@@ -44,9 +44,7 @@ RDEPEND="
 	!libedit? ( readline? ( sys-libs/readline ) )
 	sys-libs/zlib
 	>=app-admin/eselect-ruby-20100603
-	!=dev-lang/ruby-cvs-${SLOT}*
-	!<dev-ruby/rdoc-2
-	!dev-ruby/rexml"
+	!<dev-ruby/rdoc-2"
 DEPEND="${RDEPEND}"
 PDEPEND="xemacs? ( app-xemacs/ruby-modes )"
 
