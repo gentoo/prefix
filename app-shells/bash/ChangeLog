@@ -1,6 +1,28 @@
 # ChangeLog for app-shells/bash
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.289 2011/05/16 10:36:26 nyhm Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.294 2011/11/24 00:06:53 vapier Exp $
+
+*bash-4.2_p20 (24 Nov 2011)
+
+  24 Nov 2011; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p20.ebuild:
+  Version bump.
+
+  01 Nov 2011; Mike Frysinger <vapier@gentoo.org>
+  files/bash-4.2-parallel-build.patch:
+  Fix parallel build failures with mkbuiltin.
+
+  07 Oct 2011; Mike Frysinger <vapier@gentoo.org> bash-4.2_p10.ebuild,
+  +files/bash-4.2-parallel-build.patch:
+  Fix parallel build issues with parse.y and version.h/syntax.c.
+
+  16 Sep 2011; Mike Frysinger <vapier@gentoo.org> bash-4.2_p10.ebuild,
+  +files/bash-4.2-execute-job-control.patch:
+  Fix building when job controls are disabled (like when cross-compiling)
+  #383237 by Maciej Grela.
+
+  11 Aug 2011; Mike Frysinger <vapier@gentoo.org> bash-4.2_p8-r1.ebuild,
+  bash-4.2_p10.ebuild:
+  Pull in yacc due to .y changes #376591 by Bertrand Jacquin.
 
   16 May 2011; Tristan Heaven <nyhm@gentoo.org> bash-3.2_p51.ebuild,
   bash-4.0_p38.ebuild, bash-4.1_p7.ebuild, bash-4.1_p9.ebuild,
