@@ -875,6 +875,7 @@ sys-devel/automake-wrapper
 sys-devel/bc
 sys-devel/binutils-apple
 sys-devel/clang
+sys-devel/dragonegg
 sys-devel/gcc-apple
 sys-devel/gdb
 sys-devel/gdb-apple
