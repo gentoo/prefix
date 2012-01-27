@@ -1,6 +1,35 @@
 # ChangeLog for dev-libs/gmp
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.152 2011/11/13 20:03:31 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.161 2012/01/03 10:21:17 vapier Exp $
+
+  03 Jan 2012; Mike Frysinger <vapier@gentoo.org> gmp-5.0.2_p1.ebuild:
+  Mung the libgmp.la references in libgmpxx.la #397389 by David Leverton.
+
+  01 Jan 2012; Raúl Porcel <armin76@gentoo.org> gmp-5.0.2_p1.ebuild:
+  ia64/m68k/s390/sh/sparc/x86 stable wrt #395193
+
+  26 Dec 2011; Markus Meier <maekke@gentoo.org> gmp-5.0.2_p1.ebuild:
+  arm stable, bug #395193
+
+  23 Dec 2011; Matt Turner <mattst88@gentoo.org> gmp-5.0.2_p1.ebuild:
+  alpha stable, bug #395193.
+
+  20 Dec 2011; Jeroen Roovers <jer@gentoo.org> gmp-5.0.2_p1.ebuild:
+  Stable for HPPA (bug #395193).
+
+  18 Dec 2011; Agostino Sarubbo <ago@gentoo.org> gmp-5.0.2_p1.ebuild:
+  Stable for AMD64, wrt bug #395193
+
+  18 Dec 2011; Mike Frysinger <vapier@gentoo.org> gmp-5.0.2.ebuild:
+  Mark ppc64 stable #380675.
+
+  08 Dec 2011; Mike Frysinger <vapier@gentoo.org>
+  files/gmp-5.0.2-x32-support.patch:
+  Tweak the x32 fix so it works for native builds too.
+
+  07 Dec 2011; Mike Frysinger <vapier@gentoo.org> gmp-5.0.2_p1.ebuild,
+  +files/gmp-5.0.2-x32-bugfix.patch, +files/gmp-5.0.2-x32-support.patch:
+  Add x32 ABI support.
 
   13 Nov 2011; Mike Frysinger <vapier@gentoo.org> gmp-4.3.2.ebuild,
   gmp-5.0.1.ebuild, gmp-5.0.2.ebuild, gmp-5.0.2_p1.ebuild:
