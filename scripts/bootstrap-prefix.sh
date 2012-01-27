@@ -636,6 +636,9 @@ bootstrap_gnu() {
 		export CPPFLAGS="${CPPFLAGS} -DCHAR_BIT=8"
 	fi
 
+	# Gentoo Bug 400831, fails on Ubuntu with libssl-dev installed
+	[[ ${A%-*} == "wget" ]] && myconf="${myconf} --without-ssl"
+
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
 	if [[ ${A%-*} == "make" && $(type -t $MAKE) != "file" ]]; then
