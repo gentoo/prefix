@@ -371,6 +371,8 @@ HOSTCC='gcc -m64'
 		# and we don't need to spam the user about news until after a --sync
 		# because the tools aren't available to read the news item yet anyway.
 		echo 'FEATURES="${FEATURES} -news"' >> "${profile}"/make.defaults
+		# Disable the STALE warning because the snapshot frequently gets stale.
+		echo 'PORTAGE_SYNC_STALE=0' >> "${profile}"/make.defaults
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
 	# Hack for bash because curses is not always available (linux).
