@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_install-v2.eblit,v 1.13 2011/07/23 10:14:46 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_install-v2.eblit,v 1.14 2011/12/16 09:02:43 olemarkus Exp $
 
 eblit-php-src_install() {
 	# see bug #324739 for what happens when we don't have that
@@ -31,9 +31,6 @@ eblit-php-src_install() {
 		insinto "${extension_dir#${EPREFIX}}"
 		doins "${WORKDIR}/sapis-build/${first_sapi}/modules/"*$(get_modname)
 	fi
-
-	# Generate the USE file for PHP
-	phpconfutils_generate_usefile
 
 	# Create the directory where we'll put version-specific php scripts
 	keepdir /usr/share/php${PHP_MV}
