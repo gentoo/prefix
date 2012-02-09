@@ -785,6 +785,7 @@ net-libs/libssh2
 net-libs/libvncserver
 net-libs/loudmouth
 net-libs/neon
+net-libs/nodejs
 net-libs/openmq-cclient
 net-libs/openslp
 net-libs/ortp
