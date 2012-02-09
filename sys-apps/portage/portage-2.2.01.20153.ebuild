@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id: portage-2.2.01.16270.ebuild 58665 2010-09-05 19:54:38Z grobian $
 
@@ -14,7 +14,7 @@ HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
-IUSE="build doc epydoc ipc +less linguas_pl selinux prefix-chaining"
+IUSE="build doc epydoc ipc linguas_pl selinux prefix-chaining"
 
 python_dep=">=dev-lang/python-2.7 <dev-lang/python-3.0"
 
@@ -41,7 +41,6 @@ RDEPEND="${python_dep}
 	!<app-shells/bash-3.2_p17"
 PDEPEND="
 	!build? (
-		less? ( sys-apps/less )
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
 	)"
@@ -92,7 +91,7 @@ src_prepare() {
 			die "failed to patch AbstractEbuildProcess.py"
 	fi
 
-	epatch "${FILESDIR}"/${PN}-2.2.01.19247-ebuildshell.patch
+	epatch "${FILESDIR}"/${PN}-2.2.01.20020-ebuildshell.patch
 }
 
 src_configure() {
@@ -245,10 +244,6 @@ pkg_postinst() {
 			einfo "converting NEEDED files to new syntax, please wait"
 	done
 	popd > /dev/null
-	elog
-	elog "For help with using portage please consult the Gentoo Handbook"
-	elog "at http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=3"
-	elog
 
 	if [[ ${EAPIPREFIX_UPGRADE} == 0 ]] ; then
 		local eapi
@@ -278,12 +273,6 @@ pkg_postinst() {
 		elog "want to remerge world (emerge -e world) to take full advantage"
 		elog "of some of the new features in 2.2."
 		elog "This is not required however for portage to function properly."
-		elog
-	fi
-
-	if [ -z "${PV/*_pre*}" ]; then
-		elog "If you always want to use the latest development version of portage"
-		elog "please read http://www.gentoo.org/proj/en/portage/doc/testing.xml"
 		elog
 	fi
 }
