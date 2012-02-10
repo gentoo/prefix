@@ -99,6 +99,7 @@ app-editors/bvi
 app-editors/cooledit
 app-editors/dav
 app-editors/ee
+app-editors/elvis
 app-editors/emacs
 app-editors/emacs-vcs
 app-editors/gedit
