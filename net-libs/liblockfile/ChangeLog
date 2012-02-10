@@ -1,6 +1,18 @@
 # ChangeLog for net-libs/liblockfile
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.59 2010/04/08 19:37:15 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.62 2011/12/18 14:35:28 eras Exp $
+
+*liblockfile-1.09 (18 Dec 2011)
+
+  18 Dec 2011; Eray Aslan <eras@gentoo.org>
+  -files/liblockfile-1.06-glibc24.patch, +liblockfile-1.09.ebuild:
+  version bump and remove old patches
+
+  08 Jun 2011; Eray Aslan <eras@gentoo.org> -liblockfile-1.06-r2.ebuild:
+  Remove old
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> liblockfile-1.06-r2.ebuild:
+  Drop to ~mips
 
   08 Apr 2010; Jeroen Roovers <jer@gentoo.org> liblockfile-1.08.ebuild:
   Stable for HPPA (bug #302016).
