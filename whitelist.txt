@@ -110,6 +110,7 @@ app-editors/hexedit
 app-editors/hteditor
 app-editors/jasspa-microemacs
 app-editors/jed
+app-editors/joe
 app-editors/leafpad
 app-editors/lpe
 app-editors/mg
