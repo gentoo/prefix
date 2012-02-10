@@ -120,6 +120,7 @@ app-editors/nano
 app-editors/ne
 app-editors/nedit
 app-editors/teco
+app-editors/vile
 app-editors/vim
 app-editors/vim-core
 app-editors/zile
