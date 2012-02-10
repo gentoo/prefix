@@ -1,6 +1,19 @@
 # ChangeLog for sys-devel/distcc
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.211 2011/10/28 05:41:06 matsuu Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/ChangeLog,v 1.214 2012/02/10 02:53:46 patrick Exp $
+
+  10 Feb 2012; Patrick Lauer <patrick@gentoo.org> distcc-3.2_rc1.ebuild:
+  Changing python deps in preparation for 2.4 removal
+
+*distcc-3.1-r6 (09 Jan 2012)
+
+  09 Jan 2012; Alex Alexander <wired@gentoo.org> +distcc-3.1-r6.ebuild,
+  +files/distcc-3.1-argc-fix.patch:
+  added patch that increases argc properly, fixing virtualbox compilation.
+  acked by xarthisius and Ultrabug, bug #351979
+
+  27 Dec 2011; Ultrabug <ultrabug@gentoo.org> files/3.1/init:
+  Fix 3.1 series init script wrt #390063 thanks to André-Sebastian Liebe.
 
   18 Dec 2011; Fabian Groffen <grobian@gentoo.org> distcc-3.1-r5.ebuild:
   Marked ~sparc64-solaris
