@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/elvis-2.2.0-r3.ebuild,v 1.11 2009/08/05 18:29:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/elvis-2.2.0-r3.ebuild,v 1.12 2010/08/31 16:59:59 nelchael Exp $
 
 inherit eutils versionator
 
@@ -53,6 +53,10 @@ src_compile() {
 
 	# Don't try to write to /etc
 	sed -i -e 's,/etc/elvis,${ED}/etc/elvis,g' Makefile || die "sed 3 failed"
+
+	# Use LDFLAGS
+	sed -i -e "s#\$(CC) \$(CFLAGS)#\$(CC) \$(CFLAGS) ${LDFLAGS}#" Makefile || \
+		die "sed 4 failed"
 
 	emake || die "make failed"
 }
