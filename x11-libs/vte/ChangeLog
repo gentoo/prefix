@@ -1,6 +1,31 @@
 # ChangeLog for x11-libs/vte
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.301 2011/11/22 16:17:36 zmedico Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.307 2012/02/10 02:47:58 patrick Exp $
+
+  10 Feb 2012; Patrick Lauer <patrick@gentoo.org> vte-0.28.1-r200.ebuild,
+  vte-0.28.2-r200.ebuild, vte-0.28.2-r202.ebuild, vte-0.28.2-r203.ebuild:
+  Changing python deps in preparation for 2.4 removal
+
+*vte-0.30.1-r3 (30 Jan 2012)
+*vte-0.28.2-r301 (30 Jan 2012)
+*vte-0.28.2-r203 (30 Jan 2012)
+
+  30 Jan 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +vte-0.28.2-r203.ebuild, +vte-0.28.2-r301.ebuild, +vte-0.30.1-r3.ebuild:
+  Ensure that vte properly uses gnome-pty-helper (bug #401389, thanks to
+  زياد بن عبدالعزيز الباتلي for reporting).
+
+  18 Jan 2012; Markus Meier <maekke@gentoo.org> vte-0.28.2-r202.ebuild:
+  arm stable, bug #393007
+
+  14 Jan 2012; Markus Meier <maekke@gentoo.org> vte-0.28.2-r202.ebuild:
+  x86 stable, bug #393007
+
+  29 Dec 2011; Pacho Ramos <pacho@gentoo.org> vte-0.28.2-r202.ebuild:
+  amd64 stable, bug 393007
+
+  20 Dec 2011; Jeroen Roovers <jer@gentoo.org> vte-0.28.2-r202.ebuild:
+  Stable for HPPA (bug #393007).
 
 *vte-0.28.2-r202 (29 Nov 2011)
 
