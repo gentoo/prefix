@@ -770,6 +770,7 @@ net-libs/libetpan
 net-libs/libgadu
 net-libs/libgmail
 net-libs/libgsasl
+net-libs/liblockfile
 net-libs/libmsn
 net-libs/libnet
 net-libs/libnice
