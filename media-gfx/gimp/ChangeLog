@@ -1,6 +1,112 @@
 # ChangeLog for media-gfx/gimp
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.328 2011/04/19 20:08:44 hanno Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.352 2012/02/02 00:59:17 sping Exp $
+
+*gimp-2.6.12 (02 Feb 2012)
+
+  02 Feb 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.6.12.ebuild:
+  Bump to 2.6.12, drop included patches
+
+  02 Jan 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.7.4.ebuild,
+  +files/gimp-2.7.4-no-deprecation.patch:
+  Fix compilation with non-dependency dev-libs/atk-1.32.0-r1. Thanks to
+  cyberbat for testing. (bug #395695)
+
+*gimp-2.7.4 (01 Jan 2012)
+
+  01 Jan 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.7.4.ebuild:
+  Bump to 2.7.4 (bug #395695)
+
+  01 Jan 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.7.3-r1.ebuild,
+  gimp-9999.ebuild:
+  Fix update versions of live ebuild (bug #395065), propagate Automake 1.11
+  bump to 2.7.3-r1
+
+  29 Nov 2011; Sebastian Pipping <sping@gentoo.org> gimp-2.7.3-r1.ebuild,
+  +files/gimp-2.7.3-libm.patch:
+  Fix underlinking with libm reported by Rion (bug #283152, comment 20)
+
+  16 Nov 2011; Justin Lecher <jlec@gentoo.org> gimp-2.6.11-r1.ebuild,
+  gimp-2.6.11-r2.ebuild, gimp-2.6.11-r3.ebuild, gimp-2.6.11-r4.ebuild,
+  gimp-2.6.11-r5.ebuild, gimp-2.6.11-r6.ebuild, gimp-2.7.3.ebuild,
+  gimp-2.7.3-r1.ebuild, gimp-9999.ebuild:
+  Corrected Slotting of media-libs/tiff
+
+*gimp-2.6.11-r6 (12 Oct 2011)
+
+  12 Oct 2011; Justin Lecher <jlec@gentoo.org> +gimp-2.6.11-r6.ebuild,
+  metadata.xml:
+  Fiy for undelinking, #367605
+
+  10 Oct 2011; Sebastian Pipping <sping@gentoo.org> gimp-2.7.3-r1.ebuild:
+  Add dev-util/gtk-doc-am (not gtk-doc) to DEPEND due to the call to
+  eautoreconf (bug #386453)
+
+  09 Oct 2011; Sebastian Pipping <sping@gentoo.org> gimp-9999.ebuild:
+  Remove glib 2.29 patch from live ebuild (bug #386247)
+
+  29 Sep 2011; Sebastian Pipping <sping@gentoo.org> gimp-2.6.11-r5.ebuild,
+  +files/gimp-2.6.11-poppler-0.17.patch:
+  Fix compilation of 2.6.11-r5 against recent poppler (patch from Fedora,
+  Gentoo bug #384903)
+
+  12 Sep 2011; Kacper Kowalik <xarthisius@gentoo.org> gimp-2.6.11-r5.ebuild:
+  ppc/ppc64 stable wrt #379289
+
+  10 Sep 2011; Raúl Porcel <armin76@gentoo.org> gimp-2.6.11-r5.ebuild:
+  alpha/ia64/sparc stable wrt #379289
+
+  09 Sep 2011; Jeroen Roovers <jer@gentoo.org> gimp-2.6.11-r5.ebuild:
+  Stable for HPPA (bug #379289).
+
+  04 Sep 2011; Tony Vroon <chainsaw@gentoo.org> gimp-2.6.11-r5.ebuild:
+  Marked stable on AMD64 based on arch testing by Elijah "Armageddon" El
+  Lazkani & Agostino "ago" Sarubbo in security bug #379289.
+
+  04 Sep 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> gimp-2.6.11-r5.ebuild:
+  x86 stable wrt security bug #379289
+
+*gimp-2.6.11-r5 (03 Sep 2011)
+
+  03 Sep 2011; Sebastian Pipping <sping@gentoo.org> +gimp-2.6.11-r5.ebuild,
+  +files/gimp-2.6.11-cve-2011-2896.patch:
+  Integrate patch for security issue CVE-2011-2896 (bug #379289)
+
+  02 Sep 2011; Sebastian Pipping <sping@gentoo.org> metadata.xml:
+  Add myself as a backup maintainer
+
+*gimp-2.7.3-r1 (02 Sep 2011)
+*gimp-2.6.11-r4 (02 Sep 2011)
+
+  02 Sep 2011; Sebastian Pipping <sping@gentoo.org> +gimp-2.6.11-r4.ebuild,
+  +gimp-2.7.3-r1.ebuild:
+  Set precedence of Gimp on PDF files to zero (bug #321111)
+
+*gimp-2.6.11-r3 (02 Sep 2011)
+
+  02 Sep 2011; Sebastian Pipping <sping@gentoo.org> +gimp-2.6.11-r3.ebuild,
+  +files/gimp-2.6.11-file-uri.patch:
+  Apply file-uri patch by upstream (bug #372941)
+
+  02 Sep 2011; Sebastian Pipping <sping@gentoo.org> gimp-2.7.3.ebuild,
+  gimp-9999.ebuild:
+  Fix dependencies (bug #381389)
+
+  31 Aug 2011; Sebastian Pipping <sping@gentoo.org> gimp-9999.ebuild:
+  Pass --disable-gtk-doc to autogen.sh in live ebuild (bug #346341)
+
+  31 Aug 2011; Sebastian Pipping <sping@gentoo.org> gimp-9999.ebuild:
+  Sync and fix live ebuild with 2.7.3
+
+*gimp-2.7.3 (31 Aug 2011)
+
+  31 Aug 2011; Sebastian Pipping <sping@gentoo.org> +gimp-2.7.3.ebuild,
+  +files/gimp-2.7.3-glib-2.29.patch:
+  Bump to 2.7.3, package.mask'ed for now (bug #283152)
+
+  30 Jul 2011; Christoph Mende <angelos@gentoo.org> gimp-2.6.11-r1.ebuild,
+  gimp-2.6.11-r2.ebuild, +files/gimp-curl-headers.diff:
+  Fix compilation against curl-7.21.7 (bug #377075)
 
 *gimp-2.6.11-r2 (19 Apr 2011)
 

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
-<maintainer>
-	<email>hanno@gentoo.org</email>
-</maintainer>
-<use>
-	<flag name='webkit'>
+	<maintainer>
+		<email>hanno@gentoo.org</email>
+	</maintainer>
+	<maintainer>
+		<email>sping@gentoo.org</email>
+		<description>backup maintainer</description>
+	</maintainer>
+	<use>
+		<flag name="webkit">
 		Enable the webkit rendering engine
 	</flag>
-	<flag name='smp'>
+		<flag name="smp">
 		Enable support for multiprocessors
 	</flag>
-</use>
+	</use>
 </pkgmetadata>
