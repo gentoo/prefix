@@ -1,9 +1,0 @@
---- libs/flate/match.S.old	2009-04-09 13:18:11.000000000 +0200
-+++ libs/flate/match.S	2009-05-02 03:51:42.000000000 +0200
-@@ -364,3 +364,6 @@
- 		popl	%edi
- 		popl	%ebp
- match_init:	ret
-+#if defined(__linux__) && defined(__ELF__)
-+.section .note.GNU-stack,"",%progbits
-+#endif
