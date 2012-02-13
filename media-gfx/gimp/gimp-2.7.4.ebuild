@@ -13,7 +13,7 @@ SRC_URI="mirror://gimp/v$(get_version_component_range 1-2)/${P}.tar.bz2"
 
 LICENSE="GPL-3 LGPL-3"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
 IUSE="aqua alsa aalib altivec curl dbus debug doc exif gnome jpeg jpeg2k lcms mmx mng pdf png python smp sse svg tiff udev webkit wmf xpm"
 
