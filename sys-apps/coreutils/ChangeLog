@@ -1,10 +1,33 @@
 # ChangeLog for sys-apps/coreutils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.326 2011/10/18 22:47:25 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.333 2012/02/02 15:23:23 ssuominen Exp $
 
   10 Dec 2011; Fabian Groffen <grobian@gentoo.org> coreutils-8.14.ebuild:
   Fix compilation on FreBSD, override the pthread check which incorrectly
   concludes no libs are necessary
+
+  02 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> coreutils-8.14.ebuild:
+  ppc64 stable wrt #397929
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> coreutils-8.14.ebuild:
+  Marking coreutils-8.14 ppc for bug 397929
+
+  21 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> coreutils-8.14.ebuild:
+  x86 stable wrt bug #397929
+
+  18 Jan 2012; Markus Meier <maekke@gentoo.org> coreutils-8.14.ebuild:
+  arm stable, bug #397929
+
+  17 Jan 2012; Jeroen Roovers <jer@gentoo.org> coreutils-8.14.ebuild:
+  Stable for HPPA (bug #397929).
+
+  07 Jan 2012; Agostino Sarubbo <ago@gentoo.org> coreutils-8.14.ebuild:
+  Stable for AMD64, wrt bug #397929
+
+*coreutils-8.15 (06 Jan 2012)
+
+  06 Jan 2012; Mike Frysinger <vapier@gentoo.org> +coreutils-8.15.ebuild:
+  Version bump.
 
   18 Oct 2011; Mike Frysinger <vapier@gentoo.org> coreutils-8.14.ebuild:
   Extend man page hack to missing perl #387091 by nzqr.
