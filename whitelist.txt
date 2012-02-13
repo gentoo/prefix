@@ -112,6 +112,7 @@ app-editors/jasspa-microemacs
 app-editors/jed
 app-editors/joe
 app-editors/leafpad
+app-editors/levee
 app-editors/lpe
 app-editors/mg
 app-editors/mlview
