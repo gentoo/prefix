@@ -226,8 +226,11 @@ toolchain-binutils_src_compile() {
 	set --
 
 	# enable gold if available (installed as ld.gold)
-	if grep -q 'enable-gold=default' "${S}"/configure ; then
-		set -- "$@" --enable-gold
+	# PREFIX LOCAL: Linux only (fails to compile on Solaris)
+	if [[ ${CHOST} == *-linux* ]] ; then
+		if grep -q 'enable-gold=default' "${S}"/configure ; then
+			set -- "$@" --enable-gold
+	fi
 	# old ways - remove when 2.21 is stable
 	elif grep -q 'enable-gold=both/ld' "${S}"/configure ; then
 		set -- "$@" --enable-gold=both/ld
