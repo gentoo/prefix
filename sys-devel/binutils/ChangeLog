@@ -1,6 +1,31 @@
 # ChangeLog for sys-devel/binutils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.431 2011/12/05 15:22:32 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.437 2012/02/06 04:29:29 vapier Exp $
+
+  06 Feb 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.22.52.0.1.ebuild:
+  Drop KEYWORDS -- didn't mean to add those.
+
+*binutils-2.22.52.0.1 (05 Feb 2012)
+
+  05 Feb 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.22.52.0.1.ebuild:
+  Version bump.
+
+*binutils-9999 (05 Feb 2012)
+
+  05 Feb 2012; Mike Frysinger <vapier@gentoo.org> +binutils-9999.ebuild:
+  Add live git version.
+
+  28 Dec 2011; Mark Loeser <halcy0n@gentoo.org> binutils-2.21.1-r1.ebuild:
+  Stable for ppc/ppc64; bug #378485
+
+*binutils-2.22-r1 (11 Dec 2011)
+
+  11 Dec 2011; Mike Frysinger <vapier@gentoo.org> +binutils-2.22-r1.ebuild:
+  Add fixes from upstream for ppc/hppa/s390x, and a hardened fix for static
+  linking.
+
+  11 Dec 2011; Raúl Porcel <armin76@gentoo.org> binutils-2.21.1-r1.ebuild:
+  sparc stable wrt #378485
 
   09 Dec 2011; Fabian Groffen <grobian@gentoo.org>
   +files/binutils-2.22-mint.patch, binutils-2.22.ebuild:
