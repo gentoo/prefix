@@ -26,7 +26,7 @@
   Version bump.
 
   10 Dec 2011; Fabian Groffen <grobian@gentoo.org> coreutils-8.14.ebuild:
-  Fix compilation on FreBSD, override the pthread check which incorrectly
+  Fix compilation on FreeBSD, override the pthread check which incorrectly
   concludes no libs are necessary
 
   18 Oct 2011; Mike Frysinger <vapier@gentoo.org> coreutils-8.14.ebuild:
