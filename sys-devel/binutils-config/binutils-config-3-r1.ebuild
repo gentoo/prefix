@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/binutils-config-2-r1.ebuild,v 1.7 2011/07/10 23:39:04 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/binutils-config-3-r1.ebuild,v 1.2 2011/12/05 19:50:48 vapier Exp $
 
 inherit eutils toolchain-funcs prefix
 
@@ -14,16 +14,14 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="sunld"
 
-RDEPEND=">=sys-apps/findutils-4.2
-	>=sys-devel/gcc-config-1.4.0"
+RDEPEND="userland_GNU? ( !<sys-apps/findutils-4.2 )"
 
 S=${WORKDIR}/toolchain-prefix-wrapper-${W_VER}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	cp "${FILESDIR}"/${P} ./${PN} || die "cannot gain ${FILESDIR}/${P}"
-	epatch "${FILESDIR}"/1.9-extwrapper.patch
+	cp "${FILESDIR}"/${P} ./${PN} || die
 	eprefixify ${PN} || die "eprefixify failed."
 }
 

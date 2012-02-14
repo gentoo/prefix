@@ -1,6 +1,40 @@
 # ChangeLog for sys-devel/binutils-config
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.43 2011/04/23 16:49:26 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.51 2011/12/05 19:50:48 vapier Exp $
+
+  05 Dec 2011; Mike Frysinger <vapier@gentoo.org> binutils-config-3-r1.ebuild:
+  Use a blocker dep to avoid pulling in packages we do not need.
+
+*binutils-config-3-r1 (29 Sep 2011)
+
+  29 Sep 2011; Mike Frysinger <vapier@gentoo.org> files/binutils-config-3,
+  -binutils-config-3.ebuild, +binutils-config-3-r1.ebuild:
+  Make linker switching more general, and add a `die` helper.
+
+  29 Aug 2011; Mike Frysinger <vapier@gentoo.org> files/binutils-config-3:
+  Make profile switching more atomic #380759.
+
+  23 Aug 2011; Mike Frysinger <vapier@gentoo.org> files/binutils-config-3:
+  Make sure all the profile specs still work after previous rework.
+
+  12 Aug 2011; Mike Frysinger <vapier@gentoo.org> files/binutils-config-3,
+  files/binutils-config.8:
+  Add support for profile selection based on the active version of a specified
+  target.
+
+  12 Aug 2011; Mike Frysinger <vapier@gentoo.org> files/binutils-config-3:
+  Also support linker switching for current profile, and add some helpful user
+  output so they can see what is going on.
+
+*binutils-config-3 (12 Aug 2011)
+
+  12 Aug 2011; Mike Frysinger <vapier@gentoo.org> +files/binutils-config-3,
+  +binutils-config-3.ebuild, files/binutils-config.8:
+  Add options to switch the linker on the fly between gold and bfd, and clean
+  up the tangled profile/target logic.
+
+  10 Jul 2011; Mark Loeser <halcy0n@gentoo.org> binutils-config-2-r1.ebuild:
+  Stable for ppc64; bug #361849
 
   23 Apr 2011; Raúl Porcel <armin76@gentoo.org> binutils-config-2-r1.ebuild:
   alpha/ia64/m68k/s390/sh/sparc/x86 stable wrt #361849
