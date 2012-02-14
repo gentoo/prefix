@@ -82,6 +82,9 @@ src_prepare() {
 }
 
 src_configure() {
+	# hangs when using dash before configure is even printing anything
+	export CONFIG_SHELL=${BASH}
+
 	if [[ ${CHOST} == *-interix* ]]; then
 		append-flags "-Dgetgrgid=getgrgid_nomembers"
 		append-flags "-Dgetgrent=getgrent_nomembers"
