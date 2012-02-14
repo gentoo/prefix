@@ -2,10 +2,6 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.333 2012/02/02 15:23:23 ssuominen Exp $
 
-  10 Dec 2011; Fabian Groffen <grobian@gentoo.org> coreutils-8.14.ebuild:
-  Fix compilation on FreBSD, override the pthread check which incorrectly
-  concludes no libs are necessary
-
   02 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> coreutils-8.14.ebuild:
   ppc64 stable wrt #397929
 
@@ -28,6 +24,10 @@
 
   06 Jan 2012; Mike Frysinger <vapier@gentoo.org> +coreutils-8.15.ebuild:
   Version bump.
+
+  10 Dec 2011; Fabian Groffen <grobian@gentoo.org> coreutils-8.14.ebuild:
+  Fix compilation on FreBSD, override the pthread check which incorrectly
+  concludes no libs are necessary
 
   18 Oct 2011; Mike Frysinger <vapier@gentoo.org> coreutils-8.14.ebuild:
   Extend man page hack to missing perl #387091 by nzqr.
