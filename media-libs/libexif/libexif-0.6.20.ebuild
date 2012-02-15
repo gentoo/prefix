@@ -1,8 +1,9 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.20.ebuild,v 1.1 2011/04/04 23:20:46 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.20.ebuild,v 1.10 2012/01/06 20:05:58 ranger Exp $
 
-EAPI=2
+EAPI=4
+
 inherit eutils autotools
 
 DESCRIPTION="Library for parsing, editing, and saving EXIF data"
@@ -23,13 +24,15 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.6.13-pkgconfig.patch
 	elibtoolize # FreeBSD .so version
+
+	# remove -g from FLAGS bug (#390249)
+	sed -i -e '/FLAGS=/s:-g::' configure || die
 }
 
 src_configure() {
 	# Solaris /bin/sh no like
 	export CONFIG_SHELL="${EPREFIX}"/bin/bash
 	econf \
-		--disable-dependency-tracking \
 		$(use_enable static-libs static) \
 		$(use_enable nls) \
 		$(use_enable doc docs) \
@@ -37,8 +40,7 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install
 	find "${ED}" -name '*.la' -exec rm -f {} +
 	rm -f "${ED}"usr/share/doc/${PF}/{ABOUT-NLS,COPYING}
-	prepalldocs
 }

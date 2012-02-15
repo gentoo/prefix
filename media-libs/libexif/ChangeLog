@@ -1,6 +1,31 @@
 # ChangeLog for media-libs/libexif
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.116 2011/04/04 23:20:46 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.124 2012/01/06 20:05:58 ranger Exp $
+
+  06 Jan 2012; Brent Baude <ranger@gentoo.org> libexif-0.6.20.ebuild:
+  Marking libexif-0.6.20 ppc for bug 390249
+
+  17 Dec 2011; Raúl Porcel <armin76@gentoo.org> libexif-0.6.20.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #390249
+
+  11 Dec 2011; Markus Meier <maekke@gentoo.org> libexif-0.6.20.ebuild:
+  x86 stable, bug #390249
+
+  23 Nov 2011; Markus Meier <maekke@gentoo.org> libexif-0.6.20.ebuild:
+  arm stable, bug #390249
+
+  16 Nov 2011; Markos Chandras <hwoarang@gentoo.org> libexif-0.6.20.ebuild:
+  Stable on amd64 wrt bug #390249
+
+  16 Nov 2011; Jeroen Roovers <jer@gentoo.org> libexif-0.6.20.ebuild:
+  Stable for HPPA (bug #390249).
+
+  13 Nov 2011; Michael Weber <xmw@gentoo.org> libexif-0.6.20.ebuild:
+  bump EAPI to 4, sed configure directly, prepalldocs restored, -Wall restored
+  (thanks ssuominen for the review)
+
+  13 Nov 2011; Michael Weber <xmw@gentoo.org> libexif-0.6.20.ebuild:
+  remove -g from FLAGS, as pointed out by Agostino Sarubbo (bug 390249)
 
   15 Feb 2012; Fabian Groffen <grobian@gentoo.org> libexif-0.6.20.ebuild:
   Marked ~x64-macos
