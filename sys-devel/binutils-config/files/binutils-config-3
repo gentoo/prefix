@@ -1,5 +1,5 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-3,v 1.6 2011/09/29 20:26:56 vapier Exp $
 
@@ -178,7 +178,7 @@ switch_profile() {
 	# Generate library / ldscripts symlinks
 	#
 	: ${LIBPATH:=/usr/lib/binutils/${TARGET}/${VER}}
-	cd "${EROOT}/${LIBPATH}" || exit 1
+	[[ ${LIBPATH} == ${EPREFIX}* ]] && LIBPATH=${LIBPATH#${EPREFIX}}
 	if [[ ${TARGET} == ${HOST} ]] ; then
 		dstlib=${EROOT}/usr/${HOST}/lib
 	else

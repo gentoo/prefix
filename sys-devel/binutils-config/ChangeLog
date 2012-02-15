@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.51 2011/12/05 19:50:48 vapier Exp $
 
+  15 Feb 2012; Fabian Groffen <grobian@gentoo.org> files/binutils-config-3:
+  Fix double Prefix problem (no revbump to prepare getting rid of
+  interrevisions)
+
   05 Dec 2011; Mike Frysinger <vapier@gentoo.org> binutils-config-3-r1.ebuild:
   Use a blocker dep to avoid pulling in packages we do not need.
 
