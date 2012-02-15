@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libcroco
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.50 2011/01/27 11:28:49 pacho Exp $
+
+  15 Feb 2012; Fabian Groffen <grobian@gentoo.org> libcroco-0.6.2.ebuild:
+  Marked ~x64-macos
 
   27 Jan 2011; Pacho Ramos <pacho@gentoo.org> libcroco-0.6.2.ebuild:
   Don't build tests when not needed (bug #226215), bump to eapi3 and set
