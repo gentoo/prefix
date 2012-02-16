@@ -516,6 +516,7 @@ dev-util/fhist
 dev-util/filepp
 dev-util/flawfinder
 dev-util/ftjam
+dev-util/gdbus-codegen
 dev-util/global
 dev-util/gob
 dev-util/gperf
