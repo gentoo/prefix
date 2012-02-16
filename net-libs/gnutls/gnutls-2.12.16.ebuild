@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit autotools libtool
+inherit eutils autotools libtool
 
 DESCRIPTION="A TLS 1.2 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
@@ -54,6 +54,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-aflocal.patch  # backport from 3.0
+
 	# tests/suite directory is not distributed.
 	sed -i -e 's|AC_CONFIG_FILES(\[tests/suite/Makefile\])|:|' \
 		configure.ac || die
