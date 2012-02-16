@@ -185,7 +185,6 @@ app-shells/bash-completion
 app-shells/dsh
 app-shells/fish
 app-shells/gentoo-bashcomp
-app-shells/prll
 app-shells/tcsh
 app-shells/zsh-completion
 app-text/a2ps
@@ -905,6 +904,7 @@ sys-process/iotop
 sys-process/numactl
 sys-process/parallel
 sys-process/pkill-darwin
+sys-process/prll
 sys-process/psmisc
 sys-process/time
 sys-process/unixtop
