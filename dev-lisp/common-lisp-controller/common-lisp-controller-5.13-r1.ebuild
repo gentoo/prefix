@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/common-lisp-controller/common-lisp-controller-5.13-r1.ebuild,v 1.6 2009/10/13 16:58:24 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/common-lisp-controller/common-lisp-controller-5.13-r1.ebuild,v 1.7 2012/01/06 23:03:09 vapier Exp $
 
 inherit eutils prefix
 
@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
-DEPEND="app-misc/realpath
+DEPEND="|| ( >=sys-apps/coreutils-8.15 app-misc/realpath )
 	>=dev-lisp/cl-asdf-1.84
 	dev-lang/perl"
 
