@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.2.ebuild,v 1.7 2011/12/08 18:14:25 vapier Exp $
 
@@ -53,9 +53,12 @@ src_unpack() {
 
 	use vanilla && return 0
 
+	# call the linker without explicit target like on sparc
+	epatch "${FILESDIR}"/solaris-i386-ld-emulation.patch
+
 	# add support for 64-bits native target on Solaris
+	#fails, wait until 4.7
 	#epatch "${FILESDIR}"/4.5.1/solaris-x86_64.patch
-	# pray this is upstream now, I vaguely recall it is
 
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/4.5.2/solaris-searchpath.patch
@@ -85,8 +88,9 @@ src_unpack() {
 
 	# libgcc's Makefiles reuses $T, work around that :(
 	# only necessary on x86/x64, breaks on sparc
-	[[ ${CHOST} == *86-*-solaris* ]] && \
-		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
+	#fails to apply, still necessary with 4.7?
+	#[[ ${CHOST} == *86-*-solaris* ]] && \
+	#	epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 }

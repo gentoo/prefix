@@ -1,0 +1,36 @@
+Since GNU ld 2.21, targets *_sol2 exist that strictly stick to the
+Solaris 2 ABI.  GCC enables them when 2.21 or higher was found.
+Unfortunately 2.22 requires the *_sol2 targets to be used leading to a
+useless toolchain upon upgrade of binutils, when gcc wasn't compiled
+with 2.21 or newer yet.
+
+On Solaris sparc, this problem is not so severe, since gcc won't pass an
+explicit target when neither -m32 or -m64 were given.  It lets binutils
+decide, which's default target is fine.  However, on i386, the specfile
+always emits the target to the call to ld, because of the m64 && !m64.
+Use m64 and m32 like the sparc specs instead, to also have ld figure out
+the default target itself.
+
+This not only fixes the upgrade path (too late for most, unfortunately),
+but also makes our toolchain a bit more resistant against switching
+between versions.
+
+--- gcc/config/i386/sol2-10.h
++++ gcc/config/i386/sol2-10.h
+@@ -131,14 +131,14 @@
+ #endif
+ 
+ #define TARGET_LD_EMULATION "%{m64:-m " X86_64_EMULATION "}" \
+-			    "%{!m64:-m " I386_EMULATION "} "
++			    "%{m32:-m " I386_EMULATION "} "
+ #else
+ #define TARGET_LD_EMULATION ""
+ #endif
+ 
+ #undef LINK_ARCH_SPEC
+ #define LINK_ARCH_SPEC TARGET_LD_EMULATION \
+-		       "%{m64:" LINK_ARCH64_SPEC "}%{!m64:" LINK_ARCH32_SPEC "}"
++		       "%{m64:" LINK_ARCH64_SPEC "}%{m32:" LINK_ARCH32_SPEC "}"
+ 
+ /* We do not need to search a special directory for startup files.  */
+ #undef MD_STARTFILE_PREFIX

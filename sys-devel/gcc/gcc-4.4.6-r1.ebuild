@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.6-r1.ebuild,v 1.3 2011/11/09 19:22:56 vapier Exp $
 
@@ -59,6 +59,9 @@ src_unpack() {
 
 	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=27516
 	epatch "${FILESDIR}"/4.3.0/treelang-nomakeinfo.patch
+
+	# call the linker without explicit target like on sparc
+	epatch "${FILESDIR}"/solaris-i386-ld-emulation.patch
 
 	# add support for 64-bits native target on Solaris
 	epatch "${FILESDIR}"/4.4.0/gcc-4.4.1-solaris-x86_64.patch
