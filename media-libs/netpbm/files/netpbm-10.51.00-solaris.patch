@@ -1,0 +1,16 @@
+Inspired by
+http://mail-index.netbsd.org/pkgsrc-bugs/2010/03/04/msg036725.html
+
+Solves c99 requirement and makes it compile fine on Solaris
+
+--- editor/pampaintspill.c
++++ editor/pampaintspill.c
+@@ -37,7 +37,7 @@
+   10.04.14
+ */
+ 
+-#define _XOPEN_SOURCE 600  /* Make sure random(), srandom() are in <stdlib.h>*/
++#define _XOPEN_SOURCE 500  /* Make sure random(), srandom() are in <stdlib.h>*/
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>

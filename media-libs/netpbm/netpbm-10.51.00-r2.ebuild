@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.51.00-r2.ebuild,v 1.5 2011/11/16 09:47:56 jlec Exp $
 
@@ -89,6 +89,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-10.46.00-darwin.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-solaris.patch
 	epatch "${FILESDIR}"/${PN}-10.48.00-solaris.patch
+	epatch "${FILESDIR}"/${PN}-10.51.00-solaris.patch
 	epatch "${FILESDIR}"/${PN}-10.48.00-interix.patch
 	epatch "${FILESDIR}"/${PN}-10.49.00-darwin-signals.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
