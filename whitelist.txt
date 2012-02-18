@@ -491,7 +491,6 @@ dev-util/buildbot-slave
 dev-util/byacc
 dev-util/cgdb
 dev-util/checkstyle
-dev-util/chromium-tools
 dev-util/cmake
 dev-util/cocom
 dev-util/colorgcc
