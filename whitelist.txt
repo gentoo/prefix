@@ -1220,6 +1220,7 @@ dev-python/soappy
 dev-python/sphinx
 dev-python/sqlalchemy
 dev-python/sqlobject
+dev-python/sympy
 dev-python/turbojson
 dev-python/twisted
 dev-python/twisted-mail
