@@ -823,6 +823,10 @@ bootstrap_tar22() {
 	bootstrap_gnu tar 1.22
 }
 
+bootstrap_tar26() {
+	bootstrap_gnu tar 1.26
+}
+
 bootstrap_make() {
 	bootstrap_gnu make 3.81
 }
