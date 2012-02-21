@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.2-r3.ebuild,v 1.7 2011/10/31 04:02:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.2-r3.ebuild,v 1.11 2012/02/13 18:29:32 xarthisius Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
@@ -180,7 +180,8 @@ src_prepare() {
 	# Linux-3 compat. Bug #374579 (upstream issue12571)
 	cp -r "${S}/Lib/plat-linux2" "${S}/Lib/plat-linux3" || die
 
-	eautoreconf
+	eautoconf
+	eautoheader
 }
 
 src_configure() {
@@ -587,13 +588,6 @@ pkg_postinst() {
 			echo -ne "\a"
 			sleep 1
 		done
-	fi
-
-	if [[ "${PV}" != *_pre* ]]; then
-		elog
-		elog "If you want to help in testing of recent changes in Python, then you can use"
-		elog "snapshots of Python from python overlay."
-		elog
 	fi
 }
 
