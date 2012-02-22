@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/binutils-config-3-r1.ebuild,v 1.2 2011/12/05 19:50:48 vapier Exp $
 
@@ -6,8 +6,8 @@ inherit eutils toolchain-funcs prefix
 
 DESCRIPTION="Utility to change the binutils version being used - prefix version"
 HOMEPAGE="http://www.gentoo.org/"
-W_VER="0.3.1681"
-SRC_URI="http://dev.gentoo.org/~haubi/distfiles/toolchain-prefix-wrapper-${W_VER}.tar.bz2"
+W_VER="0.3.1718"
+SRC_URI="http://dev.gentoo.org/~grobian/distfiles/toolchain-prefix-wrapper-${W_VER}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
