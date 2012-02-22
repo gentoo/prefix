@@ -16,7 +16,7 @@ IUSE="sunld"
 
 RDEPEND="userland_GNU? ( !<sys-apps/findutils-4.2 )"
 
-S=${WORKDIR}/toolchain-prefix-wrapper-${W_VER}
+S=${WORKDIR}
 
 src_unpack() {
 	unpack ${A}

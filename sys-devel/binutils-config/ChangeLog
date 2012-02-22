@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.51 2011/12/05 19:50:48 vapier Exp $
 
+  22 Feb 2012; Fabian Groffen <grobian@gentoo.org>
+  -binutils-config-1.9-r04.15.ebuild, -binutils-config-1.9-r04.16.ebuild,
+  -binutils-config-2-r01.1.ebuild, -files/1.9-extwrapper.patch,
+  -files/binutils-config-1.9, -files/binutils-config-1.9-libpath-ordering.patch,
+  -files/binutils-config-1.9-solaris-native-ld.patch, -files/binutils-config-2,
+  binutils-config-3-r01.1.ebuild:
+  Cleanup old ebuilds, fix harmless directory not found error.
+
 *binutils-config-3-r01.1 (22 Feb 2012)
 
   22 Feb 2012; Fabian Groffen <grobian@gentoo.org>
