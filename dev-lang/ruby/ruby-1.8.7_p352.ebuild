@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p352.ebuild,v 1.7 2011/10/22 12:07:43 armin76 Exp $
 
@@ -58,6 +58,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
 	epatch "${FILESDIR}/${PN}-1.8.7_p249-pthread-linking.patch"
 	epatch "${FILESDIR}/${PN}-1.8.7-darwin9-getsetcontext.patch"
+	epatch "${FILESDIR}/${PN}-1.8.7-glibc-2.14-fclose-behaviour.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
