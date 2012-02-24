@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_p0.ebuild,v 1.6 2012/02/05 22:06:30 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_p125.ebuild,v 1.1 2012/02/18 08:35:39 graaff Exp $
 
 EAPI=2
 
@@ -204,7 +204,7 @@ src_install() {
 	dosym "libruby${MY_SUFFIX}$(get_libname ${PV%_*})" \
 		"/usr/$(get_libdir)/libruby$(get_libname ${PV%_*})"
 
-	dodoc ChangeLog NEWS doc/NEWS-1.8.7 README* ToDo || die
+	dodoc ChangeLog NEWS doc/NEWS* README* ToDo || die
 
 	if use rubytests; then
 		pushd test
