@@ -892,7 +892,6 @@ sys-devel/native-cctools
 sys-devel/parity
 sys-devel/ucpp
 sys-libs/csu
-sys-libs/glibc
 sys-libs/itx-bind
 sys-libs/pam
 sys-libs/suacomp
