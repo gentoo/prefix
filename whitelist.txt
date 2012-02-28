@@ -821,6 +821,7 @@ net-misc/mico
 net-misc/openvpn
 net-misc/pssh
 net-misc/puf
+net-misc/rsync
 net-misc/sitecopy
 net-misc/socat
 net-misc/ssvnc
