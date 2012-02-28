@@ -59,6 +59,7 @@ app-admin/stow
 app-arch/arc
 app-arch/arj
 app-arch/bsdsfv
+app-arch/cabextract
 app-arch/cfv
 app-arch/cksfv
 app-arch/dpkg
