@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  29 Feb 2012; Michael Haubenwallner <haubi@gentoo.org>
+  portage-2.2.01.20239.ebuild, +files/portage-2.2.01.20239-ebuildshell.patch:
+  handle 'ebuildshell' feature like the 'interactive' property in
+  stdio-redirection
+
 *portage-2.2.01.20239 (19 Feb 2012)
 
   19 Feb 2012; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.20239.ebuild,
