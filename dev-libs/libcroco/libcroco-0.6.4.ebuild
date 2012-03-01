@@ -43,3 +43,7 @@ src_prepare() {
 			|| die "sed failed"
 	fi
 }
+
+src_configure() {
+	econf $([[ ${CHOST} == *-darwin* ]] && echo "--disable-Bsymbolic")
+}
