@@ -44,6 +44,7 @@ app-admin/eselect-php
 app-admin/eselect-pinentry
 app-admin/eselect-postgresql
 app-admin/eselect-rails
+app-admin/eselect-sh
 app-admin/eselect-unison
 app-admin/eselect-vi
 app-admin/eselect-qtgraphicssystem
