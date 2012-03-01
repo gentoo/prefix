@@ -1,3 +1,8 @@
+# HG changeset patch
+# User Michael Haubenwallner <haubi@gentoo.org>
+# Date 1330634734 -3600
+# Node ID 6780ee2ddb337bbd8b4b2681615de7e78e6fb8c1
+# Parent  04da3d4d44af4fd2096316f8e1bbb7a998011040
 https://bugs.gentoo.org/155161
 
 FEATURES=ebuildshell emerge xxxxx
@@ -7,9 +12,9 @@ ebuild, where all functionality is available as in the ebuild
 (src_unpack, epatch, etc.).  This allows for convenient debugging of
 ebuild issues.
 
-diff -r e7a44acf78b8 -r d70f677c2c12 bin/ebuild.sh
---- a/bin/ebuild.sh	Fri Dec 23 11:24:27 2011 +0100
-+++ b/bin/ebuild.sh	Fri Dec 23 11:55:19 2011 +0100
+diff -r 04da3d4d44af -r 6780ee2ddb33 bin/ebuild.sh
+--- a/bin/ebuild.sh	Thu Mar 01 21:31:12 2012 +0100
++++ b/bin/ebuild.sh	Thu Mar 01 21:45:34 2012 +0100
 @@ -82,7 +82,7 @@
  qa_call() {
  	local shopts=$(shopt) OLDIFS="$IFS"
@@ -76,9 +81,9 @@ diff -r e7a44acf78b8 -r d70f677c2c12 bin/ebuild.sh
  # Subshell/helper die support (must export for the die helper).
  export EBUILD_MASTER_PID=$BASHPID
  trap 'exit 1' SIGTERM
-diff -r e7a44acf78b8 -r d70f677c2c12 bin/phase-functions.sh
---- a/bin/phase-functions.sh	Fri Dec 23 11:24:27 2011 +0100
-+++ b/bin/phase-functions.sh	Fri Dec 23 11:55:19 2011 +0100
+diff -r 04da3d4d44af -r 6780ee2ddb33 bin/phase-functions.sh
+--- a/bin/phase-functions.sh	Thu Mar 01 21:31:12 2012 +0100
++++ b/bin/phase-functions.sh	Thu Mar 01 21:45:34 2012 +0100
 @@ -84,7 +84,7 @@
  filter_readonly_variables() {
  	local x filtered_vars
@@ -114,10 +119,10 @@ diff -r e7a44acf78b8 -r d70f677c2c12 bin/phase-functions.sh
  		if [ "${EMERGE_FROM}" = binary ] ; then
  			# preserve additional variables from build time,
  			# while excluding untrusted variables
-diff -r e7a44acf78b8 -r d70f677c2c12 man/make.conf.5
---- a/man/make.conf.5	Fri Dec 23 11:24:27 2011 +0100
-+++ b/man/make.conf.5	Fri Dec 23 11:55:19 2011 +0100
-@@ -287,6 +287,12 @@
+diff -r 04da3d4d44af -r 6780ee2ddb33 man/make.conf.5
+--- a/man/make.conf.5	Thu Mar 01 21:31:12 2012 +0100
++++ b/man/make.conf.5	Thu Mar 01 21:45:34 2012 +0100
+@@ -297,6 +297,12 @@
  Use locks to ensure that unsandboxed ebuild phases never execute
  concurrently. Also see \fIparallel\-install\fR.
  .TP
@@ -130,8 +135,9 @@ diff -r e7a44acf78b8 -r d70f677c2c12 man/make.conf.5
  .B fakeroot
  Enable fakeroot for the install and package phases when a non-root user runs
  the \fBebuild\fR(1) command.
---- a/pym/_emerge/AbstractEbuildProcess.py.orig	2012-02-29 13:55:16.997484009 +0100
-+++ b/pym/_emerge/AbstractEbuildProcess.py	2012-02-29 13:56:04.780639073 +0100
+diff -r 04da3d4d44af -r 6780ee2ddb33 pym/_emerge/AbstractEbuildProcess.py
+--- a/pym/_emerge/AbstractEbuildProcess.py	Thu Mar 01 21:31:12 2012 +0100
++++ b/pym/_emerge/AbstractEbuildProcess.py	Thu Mar 01 21:45:34 2012 +0100
 @@ -97,6 +97,7 @@
  			self.fd_pipes = {}
  		null_fd = None
