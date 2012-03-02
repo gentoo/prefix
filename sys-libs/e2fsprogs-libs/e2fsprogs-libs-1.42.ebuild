@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.42.ebuild,v 1.1 2011/12/07 16:50:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.42.ebuild,v 1.6 2012/02/27 20:53:19 vapier Exp $
 
 case ${PV} in
 *_pre*) UP_PV="${PV%_pre*}-WIP-${PV#*_pre}" ;;
@@ -68,5 +68,5 @@ src_install() {
 	emake STRIP=: DESTDIR="${D}" install || die
 	gen_usr_ldscript -a com_err ss
 	# configure doesn't have an option to disable static libs :/
-	find "${ED}" -name '*.a' -delete
+	use static-libs || find "${ED}" -name '*.a' -delete
 }
