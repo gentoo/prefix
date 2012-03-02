@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/binutils-config-3-r1.ebuild,v 1.2 2011/12/05 19:50:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/binutils-config-3-r2.ebuild,v 1.1 2012/03/01 21:37:11 vapier Exp $
 
 inherit eutils toolchain-funcs prefix
 

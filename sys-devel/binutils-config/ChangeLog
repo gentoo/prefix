@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/binutils-config
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.51 2011/12/05 19:50:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.52 2012/03/01 21:37:11 vapier Exp $
+
+*binutils-config-3-r2 (01 Mar 2012)
+
+  01 Mar 2012; Mike Frysinger <vapier@gentoo.org> files/binutils-config-3,
+  -binutils-config-3-r1.ebuild, +binutils-config-3-r2.ebuild:
+  Drop old upgrade logic that is only there for systems 4.5+ years old as it is
+  causing issues with newer ones, and 4.5+ upgrade time is plenty #381633 by
+  Tim Harder.
 
   22 Feb 2012; Fabian Groffen <grobian@gentoo.org>
   -binutils-config-1.9-r04.15.ebuild, -binutils-config-1.9-r04.16.ebuild,
