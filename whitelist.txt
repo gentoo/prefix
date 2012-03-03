@@ -1084,7 +1084,9 @@ xfce-extra
 
 # separate projects encompassing a large amount of packages in progress
 
-# Operation Dandy Pearl (Perl), bug #294758
+# Operation Dandy Pearl (Perl) -- FINISHED
+dev-lang/perl
+sys-devel/libperl
 dev-perl
 perl-core
 
