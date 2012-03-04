@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <!-- 
-$Header: /var/cvsroot/gentoo-x86/skel.metadata.xml,v 1.18 2008/07/28 19:27:05 cardoe Exp $
+$Header: /var/cvsroot/gentoo-x86/skel.metadata.xml,v 1.19 2011/09/23 09:08:52 mgorny Exp $
 
 This is the example metadata file.
 The root element of this file is <pkgmetadata>. Within this element a 
@@ -16,7 +16,7 @@ Before committing, please remove the comments from this file. They are
 not relevant for general metadata.xml files.
 -->
 <pkgmetadata>
-<herd>no-herd</herd>
+<!-- <herd>some-herd</herd> -->
 <maintainer>
   <email>@gentoo.org</email>
 <!--  <description>Description of the maintainership</description> -->

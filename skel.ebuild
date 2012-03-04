@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -12,10 +12,11 @@
 # generated to contain the correct data.
 
 # The EAPI variable tells the ebuild format in use.
-# Defaults to 0 if not specified. The current PMS draft contains details on
-# a proposed EAPI=0 definition but is not finalized yet.
-# Eclasses will test for this variable if they need to use EAPI > 0 features.
-#EAPI=0
+# Defaults to 0 if not specified.
+# It is suggested that you use the latest EAPI approved by the Council.
+# The PMS contains specifications for all EAPIs. Eclasses will test for this
+# variable if they need to use EAPI > 0 features.
+EAPI=4
 
 # inherit lists eclasses to inherit functions from. Almost all ebuilds should
 # inherit eutils, as a large amount of important functionality has been
@@ -35,11 +36,12 @@ inherit eutils
 DESCRIPTION="This is a sample skeleton ebuild file"
 
 # Homepage, not used by Portage directly but handy for developer reference
-HOMEPAGE="http://foo.bar.com/"
+HOMEPAGE="http://foo.example.org/"
 
 # Point to any required sources; these will be automatically downloaded by
 # Portage.
-SRC_URI="ftp://foo.bar.com/${P}.tar.gz"
+SRC_URI="ftp://foo.example.org/${P}.tar.gz"
+
 
 # License of the package.  This must match the name of file(s) in
 # /usr/portage/licenses/.  For complex license combination see the developer
@@ -63,7 +65,7 @@ SLOT="0"
 # instead of relying on an external package.mask file.  Right now, you should
 # set the KEYWORDS variable for every ebuild so that it contains the names of
 # all the architectures with which the ebuild works.  All of the official
-# architectures can be found in the keywords.desc file which is in
+# architectures can be found in the arch.list file which is in
 # /usr/portage/profiles/.  Usually you should just set this to "~x86".  The ~
 # in front of the architecture indicates that the package is new and should be
 # considered unstable until testing proves its stability.  So, if you've
@@ -87,6 +89,7 @@ IUSE="gnome X"
 # for details.  Usually not needed.
 #RESTRICT="strip"
 
+
 # Build-time dependencies, such as
 #    ssl? ( >=dev-libs/openssl-0.9.6b )
 #    >=dev-lang/perl-5.6.1-r1
@@ -107,9 +110,10 @@ RDEPEND="${DEPEND}"
 #S="${WORKDIR}/${P}"
 
 
-# The following src_compile function is implemented as default by portage, so
-# you only need to call it, if you need a different behaviour.
-#src_compile() {
+# The following src_configure function is implemented as default by portage, so
+# you only need to call it if you need a different behaviour.
+# This function is available only in EAPI 2 and later.
+#src_configure() {
 	# Most open-source packages use GNU autoconf for configuration.
 	# The default, quickest (and preferred) way of running configure is:
 	#econf
@@ -124,11 +128,18 @@ RDEPEND="${DEPEND}"
 	#	--host=${CHOST} \
 	#	--prefix=/usr \
 	#	--infodir=/usr/share/info \
-	#	--mandir=/usr/share/man || die "./configure failed"
+	#	--mandir=/usr/share/man || die
 	# Note the use of --infodir and --mandir, above. This is to make
 	# this package FHS 2.2-compliant.  For more information, see
 	#   http://www.pathname.com/fhs/
+#}
 
+# The following src_compile function is implemented as default by portage, so
+# you only need to call it, if you need different behaviour.
+# For EAPI < 2 src_compile runs also commands currently present in
+# src_configure. Thus, if you're using an older EAPI, you need to copy them
+# to your src_compile and drop the src_configure function.
+#src_compile() {
 	# emake (previously known as pmake) is a script that calls the
 	# standard GNU make with parallel building options for speedier
 	# builds (especially on SMP systems).  Try emake first.  It might
@@ -137,15 +148,19 @@ RDEPEND="${DEPEND}"
 	# make to a single process.  The -j1 is a visual clue to others
 	# that the makefiles have bugs that have been worked around.
 
-	#emake || die "emake failed"
+	#emake || die
 #}
 
-src_install() {
+# The following src_install function is implemented as default by portage, so
+# you only need to call it, if you need different behaviour.
+# For EAPI < 4 src_install is just returing true, so you need to always specify
+# this function in older EAPIs.
+#src_install() {
 	# You must *personally verify* that this trick doesn't install
 	# anything outside of DESTDIR; do this by reading and
 	# understanding the install part of the Makefiles.
 	# This is the preferred way to install.
-	emake DESTDIR="${D}" install || die "emake install failed"
+	#emake DESTDIR="${D}" install || die
 
 	# When you hit a failure with emake, do not just use make. It is
 	# better to fix the Makefiles to allow proper parallelization.
@@ -161,11 +176,11 @@ src_install() {
 	#	mandir="${D}"/usr/share/man \
 	#	infodir="${D}"/usr/share/info \
 	#	libdir="${D}"/usr/$(get_libdir) \
-	#	install || die "emake install failed"
+	#	install || die
 	# Again, verify the Makefiles!  We don't want anything falling
 	# outside of ${D}.
 
 	# The portage shortcut to the above command is simply:
 	#
-	#einstall || die "einstall failed"
-}
+	#einstall || die
+#}
