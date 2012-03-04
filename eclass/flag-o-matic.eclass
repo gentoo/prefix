@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.161 2011/12/15 05:23:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.169 2012/02/26 12:09:44 blueness Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -15,58 +15,44 @@ ___ECLASS_ONCE_FLAG_O_MATIC="recur -_+^+_- spank"
 
 inherit eutils toolchain-funcs multilib
 
-################ DEPRECATED functions ################
-# The following are still present to avoid breaking existing
-# code more than necessary; however they are deprecated. Please
-# use gcc-specs-* from toolchain-funcs.eclass instead, if you
-# need to know which hardened techs are active in the compiler.
-# See bug #100974
-#
-# has_hardened
-# has_pie
-# has_pic
-# has_ssp_all
-# has_ssp
-
+# Return all the flag variables that our high level funcs operate on.
+all-flag-vars() {
+	echo {C,CPP,CXX,CCAS,F,FC,LD}FLAGS
+}
 
 # {C,CXX,F,FC}FLAGS that we allow in strip-flags
 # Note: shell globs and character lists are allowed
 setup-allowed-flags() {
-	if [[ -z ${ALLOWED_FLAGS} ]] ; then
-		export ALLOWED_FLAGS="-pipe"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -O -O0 -O1 -O2 -mcpu -march -mtune"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fstack-protector -fstack-protector-all"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fbounds-checking -fno-strict-overflow"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-PIE -fno-pie -fno-unit-at-a-time"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -g -g[0-9] -ggdb -ggdb[0-9] -gstabs -gstabs+"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-ident -fpermissive"
-		export ALLOWED_FLAGS="${ALLOWED_FLAGS} -W* -w"
-	fi
+	ALLOWED_FLAGS="-pipe"
+	ALLOWED_FLAGS+=" -O -O1 -O2 -Os -mcpu -march -mtune"
+	ALLOWED_FLAGS+=" -fstack-protector -fstack-protector-all"
+	ALLOWED_FLAGS+=" -fbounds-checking -fno-strict-overflow"
+	ALLOWED_FLAGS+=" -fno-PIE -fno-pie -fno-unit-at-a-time"
+	ALLOWED_FLAGS+=" -g -g[0-9] -ggdb -ggdb[0-9] -gstabs -gstabs+"
+	ALLOWED_FLAGS+=" -fno-ident -fpermissive"
+	ALLOWED_FLAGS+=" -W* -w"
+
 	# allow a bunch of flags that negate features / control ABI
-	ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-stack-protector -fno-stack-protector-all \
-		-fno-strict-aliasing -fno-bounds-checking -fstrict-overflow -fno-omit-frame-pointer"
-	ALLOWED_FLAGS="${ALLOWED_FLAGS} -mregparm -mno-app-regs -mapp-regs \
-		-mno-mmx -mno-sse -mno-sse2 -mno-sse3 -mno-ssse3 -mno-sse4 -mno-sse4.1 \
-		-mno-sse4.2 -mno-avx -mno-aes -mno-pclmul -mno-sse4a -mno-3dnow \
-		-mno-popcnt -mno-abm \
-		-mips1 -mips2 -mips3 -mips4 -mips32 -mips64 -mips16 -mplt \
+	ALLOWED_FLAGS+=" -fno-stack-protector -fno-stack-protector-all \
+		-fno-strict-aliasing -fno-bounds-checking -fstrict-overflow \
+		-fno-omit-frame-pointer"
+	ALLOWED_FLAGS+=" -mregparm -mno-app-regs -mapp-regs -mno-mmx -mno-sse \
+		-mno-sse2 -mno-sse3 -mno-ssse3 -mno-sse4 -mno-sse4.1 -mno-sse4.2 \
+		-mno-avx -mno-aes -mno-pclmul -mno-sse4a -mno-3dnow -mno-popcnt \
+		-mno-abm -mips1 -mips2 -mips3 -mips4 -mips32 -mips64 -mips16 -mplt \
 		-msoft-float -mno-soft-float -mhard-float -mno-hard-float -mfpu \
 		-mieee -mieee-with-inexact -mschedule -mfloat-gprs -mspe -mno-spe \
-		-mtls-direct-seg-refs -mno-tls-direct-seg-refs \
-		-mflat -mno-flat -mno-faster-structs -mfaster-structs \
-		-m32 -m64 -mx32 -mabi -mlittle-endian -mbig-endian -EL -EB -fPIC \
-		-mlive-g0 -mcmodel -mstack-bias -mno-stack-bias \
-		-msecure-plt -m*-toc -D* -U*"
+		-mtls-direct-seg-refs -mno-tls-direct-seg-refs -mflat -mno-flat \
+		-mno-faster-structs -mfaster-structs -m32 -m64 -mx32 -mabi \
+		-mlittle-endian -mbig-endian -EL -EB -fPIC -mlive-g0 -mcmodel \
+		-mstack-bias -mno-stack-bias -msecure-plt -m*-toc -D* -U*"
 
 	# 4.5
-	ALLOWED_FLAGS="${ALLOWED_FLAGS} -mno-fma4 -mno-movbe -mno-xop -mno-lwp"
+	ALLOWED_FLAGS+=" -mno-fma4 -mno-movbe -mno-xop -mno-lwp"
 	# 4.6
-	ALLOWED_FLAGS="${ALLOWED_FLAGS} -mno-fsgsbase -mno-rdrnd -mno-f16c \
-		-mno-bmi -mno-tbm"
+	ALLOWED_FLAGS+=" -mno-fsgsbase -mno-rdrnd -mno-f16c -mno-bmi -mno-tbm"
 
-	# {C,CXX,F,FC}FLAGS that we are think is ok, but needs testing
-	# NOTE:  currently -Os have issues with gcc3 and K6* arch's
-	export UNSTABLE_FLAGS="-Os -O3 -freorder-blocks"
+	export ALLOWED_FLAGS
 	return 0
 }
 
@@ -99,33 +85,29 @@ _filter-hardened() {
 # Strings removed are matched as globs, so for example
 # '-O*' would remove -O1, -O2 etc.
 _filter-var() {
-	local f x VAR VAL
-	declare -a new
-
-	VAR=$1
+	local f x var=$1 new=()
 	shift
-	eval VAL=\${${VAR}}
-	for f in ${VAL}; do
-		for x in "$@"; do
+
+	for f in ${!var} ; do
+		for x in "$@" ; do
 			# Note this should work with globs like -O*
 			[[ ${f} == ${x} ]] && continue 2
 		done
-		eval new\[\${\#new\[@]}]=\${f}
+		new+=( "${f}" )
 	done
-	eval export ${VAR}=\${new\[*]}
+	eval export ${var}=\""${new[*]}"\"
 }
 
 # @FUNCTION: filter-flags
 # @USAGE: <flags>
 # @DESCRIPTION:
-# Remove particular <flags> from {C,CPP,CXX,F,FC}FLAGS.  Accepts shell globs.
+# Remove particular <flags> from {C,CPP,CXX,CCAS,F,FC,LD}FLAGS.  Accepts shell globs.
 filter-flags() {
 	_filter-hardened "$@"
-	_filter-var CFLAGS "$@"
-	_filter-var CPPFLAGS "$@"
-	_filter-var CXXFLAGS "$@"
-	_filter-var FFLAGS "$@"
-	_filter-var FCFLAGS "$@"
+	local v
+	for v in $(all-flag-vars) ; do
+		_filter-var ${v} "$@"
+	done
 	return 0
 }
 
@@ -211,24 +193,21 @@ append-flags() {
 # @DESCRIPTION:
 # Replace the <old> flag with <new>.  Accepts shell globs for <old>.
 replace-flags() {
-	[[ $# != 2 ]] \
-		&& echo && eerror "Usage: replace-flags <old flag> <new flag>" \
-		&& die "replace-flags takes 2 arguments, not $#"
+	[[ $# != 2 ]] && die "Usage: replace-flags <old flag> <new flag>"
 
-	local f fset
-	declare -a new_CFLAGS new_CXXFLAGS new_FFLAGS new_FCFLAGS
-
-	for fset in CFLAGS CXXFLAGS FFLAGS FCFLAGS; do
+	local f var new
+	for var in $(all-flag-vars) ; do
 		# Looping over the flags instead of using a global
 		# substitution ensures that we're working with flag atoms.
 		# Otherwise globs like -O* have the potential to wipe out the
 		# list of flags.
-		for f in ${!fset}; do
+		new=()
+		for f in ${!var} ; do
 			# Note this should work with globs like -O*
 			[[ ${f} == ${1} ]] && f=${2}
-			eval new_${fset}\[\${\#new_${fset}\[@]}]=\${f}
+			new+=( "${f}" )
 		done
-		eval export ${fset}=\${new_${fset}\[*]}
+		eval export ${var}=\""${new[*]}"\"
 	done
 
 	return 0
@@ -266,7 +245,12 @@ _is_flagq() {
 # Returns shell true if <flag> is in {C,CXX,F,FC}FLAGS, else returns shell false.  Accepts shell globs.
 is-flagq() {
 	[[ -n $2 ]] && die "Usage: is-flag <flag>"
-	_is_flagq CFLAGS $1 || _is_flagq CXXFLAGS $1 || _is_flagq FFLAGS $1 || _is_flagq FCFLAGS $1
+
+	local var
+	for var in $(all-flag-vars) ; do
+		_is_flagq ${var} "$1" && return 0
+	done
+	return 1
 }
 
 # @FUNCTION: is-flag
@@ -332,99 +316,43 @@ filter-mfpmath() {
 # @DESCRIPTION:
 # Strip C[XX]FLAGS of everything except known good/safe flags.
 strip-flags() {
-	local x y flag NEW_CFLAGS NEW_CXXFLAGS NEW_FFLAGS NEW_FCFLAGS
+	local x y var
 
 	setup-allowed-flags
 
-	local NEW_CFLAGS=""
-	local NEW_CXXFLAGS=""
-	local NEW_FFLAGS=""
-	local NEW_FCFLAGS=""
-
-	# Allow unstable C[XX]FLAGS if we are using unstable profile ...
-
-	#
-	#
-	# In Gentoo Prefix, this is useless. Not a problem, but on aix6 it causes
-	# bash to hang and I can't figure it out. So it is disabled for now.
-	# --darkside@g.o (14 Jan 2009)
-
-	if use !prefix; then
-		if has "~$(tc-arch)" ${ACCEPT_KEYWORDS} ; then
-			ALLOWED_FLAGS="${ALLOWED_FLAGS} ${UNSTABLE_FLAGS}"
-		fi
-	fi
-
 	set -f	# disable pathname expansion
 
-	for x in ${CFLAGS}; do
-		for y in ${ALLOWED_FLAGS}; do
-			flag=${x%%=*}
-			if [ "${flag%%${y}}" = "" ] ; then
-				NEW_CFLAGS="${NEW_CFLAGS} ${x}"
-				break
-			fi
-		done
-	done
+	for var in $(all-flag-vars) ; do
+		local new=()
 
-	for x in ${CXXFLAGS}; do
-		for y in ${ALLOWED_FLAGS}; do
-			flag=${x%%=*}
-			if [ "${flag%%${y}}" = "" ] ; then
-				NEW_CXXFLAGS="${NEW_CXXFLAGS} ${x}"
-				break
-			fi
+		for x in ${!var} ; do
+			local flag=${x%%=*}
+			for y in ${ALLOWED_FLAGS} ; do
+				if [[ -z ${flag%%${y}} ]] ; then
+					new+=( "${x}" )
+					break
+				fi
+			done
 		done
-	done
 
-	for x in ${FFLAGS}; do
-		for y in ${ALLOWED_FLAGS}; do
-			flag=${x%%=*}
-			if [ "${flag%%${y}}" = "" ] ; then
-				NEW_FFLAGS="${NEW_FFLAGS} ${x}"
-				break
-			fi
-		done
-	done
+		# In case we filtered out all optimization flags fallback to -O2
+		if _is_flagq ${var} "-O*" && ! _is_flagq new "-O*" ; then
+			new+=( -O2 )
+		fi
 
-	for x in ${FCFLAGS}; do
-		for y in ${ALLOWED_FLAGS}; do
-			flag=${x%%=*}
-			if [ "${flag%%${y}}" = "" ] ; then
-				NEW_FCFLAGS="${NEW_FCFLAGS} ${x}"
-				break
-			fi
-		done
+		eval export ${var}=\""${new[*]}"\"
 	done
-
-	# In case we filtered out all optimization flags fallback to -O2
-	if [ "${CFLAGS/-O}" != "${CFLAGS}" -a "${NEW_CFLAGS/-O}" = "${NEW_CFLAGS}" ]; then
-		NEW_CFLAGS="${NEW_CFLAGS} -O2"
-	fi
-	if [ "${CXXFLAGS/-O}" != "${CXXFLAGS}" -a "${NEW_CXXFLAGS/-O}" = "${NEW_CXXFLAGS}" ]; then
-		NEW_CXXFLAGS="${NEW_CXXFLAGS} -O2"
-	fi
-	if [ "${FFLAGS/-O}" != "${FFLAGS}" -a "${NEW_FFLAGS/-O}" = "${NEW_FFLAGS}" ]; then
-		NEW_FFLAGS="${NEW_FFLAGS} -O2"
-	fi
-	if [ "${FCFLAGS/-O}" != "${FCFLAGS}" -a "${NEW_FCFLAGS/-O}" = "${NEW_FCFLAGS}" ]; then
-		NEW_FCFLAGS="${NEW_FCFLAGS} -O2"
-	fi
 
 	set +f	# re-enable pathname expansion
 
-	export CFLAGS="${NEW_CFLAGS}"
-	export CXXFLAGS="${NEW_CXXFLAGS}"
-	export FFLAGS="${NEW_FFLAGS}"
-	export FCFLAGS="${NEW_FCFLAGS}"
 	return 0
 }
 
 test-flag-PROG() {
 	local comp=$1
-	local flags="$2"
+	local flag=$2
 
-	[[ -z ${comp} || -z ${flags} ]] && return 1
+	[[ -z ${comp} || -z ${flag} ]] && return 1
 
 	# use -c so we can test the assembler as well
 	# don't use -o /dev/null: /usr/ccs/bin/as: File exists (Sun LD)
@@ -432,7 +360,7 @@ test-flag-PROG() {
 	local src=${T}/tf-${comp}-${SECONDS}.c
 	echo "main() {}" > "${src}"
 	local PROG=$(tc-get${comp})
-	${PROG} ${flags} -c -o "${src}.o" "${src}" \
+	${PROG} "${flag}" -c -o "${src}.o" "${src}" \
 		> /dev/null 2>&1
 	local ret=$?
 	rm -f "${src}"{,.o}
@@ -542,29 +470,23 @@ strip-unsupported-flags() {
 # @DESCRIPTION:
 # Find and echo the value for a particular flag.  Accepts shell globs.
 get-flag() {
-	local f findflag="$1"
+	local f var findflag="$1"
 
 	# this code looks a little flaky but seems to work for
 	# everything we want ...
 	# for example, if CFLAGS="-march=i686":
 	# `get-flag -march` == "-march=i686"
 	# `get-flag march` == "i686"
-	for f in ${CFLAGS} ${CXXFLAGS} ${FFLAGS} ${FCFLAGS} ; do
-		if [ "${f/${findflag}}" != "${f}" ] ; then
-			printf "%s\n" "${f/-${findflag}=}"
-			return 0
-		fi
+	for var in $(all-flag-vars) ; do
+		for f in ${!var} ; do
+			if [ "${f/${findflag}}" != "${f}" ] ; then
+				printf "%s\n" "${f/-${findflag}=}"
+				return 0
+			fi
+		done
 	done
 	return 1
 }
-
-# DEAD FUNCS.  Remove by Dec 2011.
-test_flag()    { die "$0: deprecated, please use test-flags()!" ; }
-has_hardened() { die "$0: deprecated, please use gcc-specs-{relro,now}()!" ; }
-has_pic()      { die "$0: deprecated, please use gcc-specs-pie()!" ; }
-has_pie()      { die "$0: deprecated, please use gcc-specs-pie()!" ; }
-has_ssp_all()  { die "$0: deprecated, please use gcc-specs-ssp()!" ; }
-has_ssp()      { die "$0: deprecated, please use gcc-specs-ssp()!" ; }
 
 # @FUNCTION: has_m64
 # @DESCRIPTION:
@@ -572,6 +494,8 @@ has_ssp()      { die "$0: deprecated, please use gcc-specs-ssp()!" ; }
 # WORKS. Non-multilib gcc will take both -m32 and -m64. If the flag works
 # return code is 0, else the return code is 1.
 has_m64() {
+	eqawarn "${FUNCNAME}: don't use this anymore"
+
 	# this doesnt test if the flag is accepted, it tests if the flag
 	# actually -WORKS-. non-multilib gcc will take both -m32 and -m64!
 	# please dont replace this function with test_flag in some future
@@ -587,27 +511,8 @@ has_m64() {
 	return 1
 }
 
-# @FUNCTION: has_m32
-# @DESCRIPTION:
-# This doesn't test if the flag is accepted, it tests if the flag actually
-# WORKS. Non-mulilib gcc will take both -m32 and -64. If the flag works return
-# code is 0, else return code is 1.
 has_m32() {
-	# this doesnt test if the flag is accepted, it tests if the flag
-	# actually -WORKS-. non-multilib gcc will take both -m32 and -m64!
-	# please dont replace this function with test_flag in some future
-	# clean-up!
-
-	[ "$(tc-arch)" = "amd64" ] && has_multilib_profile && return 0
-
-	local temp=$(emktemp)
-	echo "int main() { return(0); }" > "${temp}".c
-	MY_CC=$(tc-getCC)
-	${MY_CC/ .*/} -m32 -o "$(emktemp)" "${temp}".c > /dev/null 2>&1
-	local ret=$?
-	rm -f "${temp}".c
-	[[ ${ret} != 1 ]] && return 0
-	return 1
+	die "${FUNCNAME}: don't use this anymore"
 }
 
 # @FUNCTION: replace-sparc64-flags

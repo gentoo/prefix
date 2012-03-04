@@ -1,6 +1,6 @@
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.17 2008/11/03 22:17:50 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.18 2011/12/27 17:55:12 fauli Exp $
 
 # Author Olivier Fisette <ribosome@gentoo.org>
 
@@ -74,11 +74,11 @@ embassy_src_compile() {
 			"--mandir=${PREFIX}/share/man" \
 			${EXTRA_CONF} || die
 	emake || die "Before reporting this error as a bug, please make sure you compiled
-    EMBOSS and the EMBASSY packages with the same \"USE\" flags. Failure to
-    do so may prevent the compilation of some EMBASSY packages, or cause
-    runtime problems with some EMBASSY programs. For example, if you
-    compile EMBOSS with \"png\" support and then try to build DOMAINATRIX
-    without \"png\" support, compilation will fail when linking the binaries."
+	EMBOSS and the EMBASSY packages with the same \"USE\" flags. Failure to
+	do so may prevent the compilation of some EMBASSY packages, or cause
+	runtime problems with some EMBASSY programs. For example, if you
+	compile EMBOSS with \"png\" support and then try to build DOMAINATRIX
+	without \"png\" support, compilation will fail when linking the binaries."
 }
 
 embassy_src_install() {

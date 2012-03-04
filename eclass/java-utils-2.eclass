@@ -2,11 +2,11 @@
 #
 # Copyright (c) 2004-2005, Thomas Matthijs <axxo@gentoo.org>
 # Copyright (c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
-# Copyright (c) 2004-2005, Gentoo Foundation
+# Copyright (c) 2004-2011, Gentoo Foundation
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.148 2011/12/13 14:42:39 sera Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.149 2011/12/27 17:55:12 fauli Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -2748,7 +2748,7 @@ java-pkg_ensure-dep() {
 	local target_pkg="${2}"
 	local dev_error=""
 
-    # remove the version specification, which may include globbing (* and [123])
+	# remove the version specification, which may include globbing (* and [123])
 	local stripped_pkg=$(echo "${target_pkg}" | sed \
 		's/-\([0-9*]*\(\[[0-9]*\]\)*\)*\(\.\([0-9*]*\(\[[0-9]*\]\)*\)*\)*$//')
 

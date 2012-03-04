@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.376 2011/12/17 06:13:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.386 2012/03/01 22:10:50 naota Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -18,7 +18,7 @@
 if [[ ${___ECLASS_ONCE_EUTILS} != "recur -_+^+_- spank" ]] ; then
 ___ECLASS_ONCE_EUTILS="recur -_+^+_- spank"
 
-inherit multilib portability user
+inherit multilib user
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
@@ -214,6 +214,7 @@ eumask_push() {
 # @DESCRIPTION:
 # Restore the previous umask state.
 eumask_pop() {
+	[[ $# -eq 0 ]] || die "${FUNCNAME}: we take no options"
 	local s
 	estack_pop eumask s || die "${FUNCNAME}: unbalanced push"
 	umask ${s} || die "${FUNCNAME}: sanity: could not restore umask: ${s}"
@@ -441,15 +442,18 @@ epatch() {
 		fi
 
 		# Dynamically detect the correct -p# ... i'm lazy, so shoot me :/
+		local patch_cmd
 		while [[ ${count} -lt 5 ]] ; do
+			patch_cmd="${BASH_ALIASES[patch]:-patch} -p${count} ${EPATCH_OPTS}"
+
 			# Generate some useful debug info ...
 			(
 			_epatch_draw_line "***** ${patchname} *****"
 			echo
-			echo "PATCH COMMAND:  patch -p${count} ${EPATCH_OPTS} < '${PATCH_TARGET}'"
+			echo "PATCH COMMAND:  ${patch_cmd} < '${PATCH_TARGET}'"
 			echo
 			_epatch_draw_line "***** ${patchname} *****"
-			patch -p${count} ${EPATCH_OPTS} --dry-run -f < "${PATCH_TARGET}" 2>&1
+			${patch_cmd} --dry-run -f < "${PATCH_TARGET}" 2>&1
 			ret=$?
 			echo
 			echo "patch program exited with status ${ret}"
@@ -463,7 +467,7 @@ epatch() {
 				echo "ACTUALLY APPLYING ${patchname} ..."
 				echo
 				_epatch_draw_line "***** ${patchname} *****"
-				patch -p${count} ${EPATCH_OPTS} < "${PATCH_TARGET}" 2>&1
+				${patch_cmd} < "${PATCH_TARGET}" 2>&1
 				ret=$?
 				echo
 				echo "patch program exited with status ${ret}"
@@ -500,8 +504,16 @@ epatch() {
 			die "Failed Patch: ${patchname}!"
 		fi
 
-		# if everything worked, delete the patch log
+		# if everything worked, delete the full debug patch log
 		rm -f "${STDERR_TARGET}"
+
+		# then log away the exact stuff for people to review later
+		cat <<-EOF >> "${T}/epatch.log"
+		PATCH: ${x}
+		CMD: ${patch_cmd}
+		PWD: ${PWD}
+
+		EOF
 		eend 0
 	done
 
@@ -539,12 +551,12 @@ epatch_user() {
 	[[ $# -ne 0 ]] && die "epatch_user takes no options"
 
 	# Allow multiple calls to this function; ignore all but the first
-	local applied="${T}/epatch_user.applied"
+	local applied="${T}/epatch_user.log"
 	[[ -e ${applied} ]] && return 2
 
 	# don't clobber any EPATCH vars that the parent might want
 	local EPATCH_SOURCE check base=${PORTAGE_CONFIGROOT%/}/etc/portage/patches
-	for check in {${CATEGORY}/${PF},${CATEGORY}/${P},${CATEGORY}/${PN}}; do
+	for check in ${CATEGORY}/{${P}-${PR},${P},${PN}}; do
 		EPATCH_SOURCE=${base}/${CTARGET}/${check}
 		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${CHOST}/${check}
 		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${check}
@@ -609,20 +621,23 @@ edos2unix() {
 	sed -i 's/\r$//' -- "$@" || die
 }
 
-# Make a desktop file !
-# Great for making those icons in kde/gnome startmenu !
-# Amaze your friends !	Get the women !	 Join today !
+# @FUNCTION: make_desktop_entry
+# @USAGE: make_desktop_entry(<command>, [name], [icon], [type], [fields])
+# @DESCRIPTION:
+# Make a .desktop file.
 #
-# make_desktop_entry(<command>, [name], [icon], [type], [fields])
-#
-# binary:	what command does the app run with ?
-# name:		the name that will show up in the menu
-# icon:		give your little like a pretty little icon ...
-#			this can be relative (to /usr/share/pixmaps) or
-#			a full path to an icon
-# type:		what kind of application is this ?	for categories:
-#			http://standards.freedesktop.org/menu-spec/latest/apa.html
+# @CODE
+# binary:   what command does the app run with ?
+# name:     the name that will show up in the menu
+# icon:     give your little like a pretty little icon ...
+#           this can be relative (to /usr/share/pixmaps) or
+#           a full path to an icon
+# type:     what kind of application is this?
+#           for categories:
+#           http://standards.freedesktop.org/menu-spec/latest/apa.html
+#           if unset, function tries to guess from package's category
 # fields:	extra fields to append to the desktop file; a printf string
+# @CODE
 make_desktop_entry() {
 	[[ -z $1 ]] && die "make_desktop_entry: You must specify the executable"
 
@@ -638,22 +653,22 @@ make_desktop_entry() {
 		case ${catmaj} in
 			app)
 				case ${catmin} in
-					accessibility) type=Accessibility;;
+					accessibility) type="Utility;Accessibility";;
 					admin)         type=System;;
 					antivirus)     type=System;;
-					arch)          type=Archiving;;
-					backup)        type=Archiving;;
-					cdr)           type=DiscBurning;;
-					dicts)         type=Dictionary;;
+					arch)          type="Utility;Archiving";;
+					backup)        type="Utility;Archiving";;
+					cdr)           type="AudioVideo;DiscBurning";;
+					dicts)         type="Office;Dictionary";;
 					doc)           type=Documentation;;
-					editors)       type=TextEditor;;
-					emacs)         type=TextEditor;;
-					emulation)     type=Emulator;;
-					laptop)        type=HardwareSettings;;
+					editors)       type="Utility;TextEditor";;
+					emacs)         type="Development;TextEditor";;
+					emulation)     type="System;Emulator";;
+					laptop)        type="Settings;HardwareSettings";;
 					office)        type=Office;;
-					pda)           type=PDA;;
-					vim)           type=TextEditor;;
-					xemacs)        type=TextEditor;;
+					pda)           type="Office;PDA";;
+					vim)           type="Development;TextEditor";;
+					xemacs)        type="Development;TextEditor";;
 				esac
 				;;
 
@@ -939,432 +954,6 @@ newicon() {
 	insinto /usr/share/pixmaps
 	newins "$@"
 	)
-}
-
-# for internal use only (unpack_pdv and unpack_makeself)
-find_unpackable_file() {
-	local src=$1
-	if [[ -z ${src} ]] ; then
-		src=${DISTDIR}/${A}
-	else
-		if [[ -e ${DISTDIR}/${src} ]] ; then
-			src=${DISTDIR}/${src}
-		elif [[ -e ${PWD}/${src} ]] ; then
-			src=${PWD}/${src}
-		elif [[ -e ${src} ]] ; then
-			src=${src}
-		fi
-	fi
-	[[ ! -e ${src} ]] && return 1
-	echo "${src}"
-}
-
-# @FUNCTION: unpack_pdv
-# @USAGE: <file to unpack> <size of off_t>
-# @DESCRIPTION:
-# Unpack those pesky pdv generated files ...
-# They're self-unpacking programs with the binary package stuffed in
-# the middle of the archive.  Valve seems to use it a lot ... too bad
-# it seems to like to segfault a lot :(.  So lets take it apart ourselves.
-#
-# You have to specify the off_t size ... I have no idea how to extract that
-# information out of the binary executable myself.  Basically you pass in
-# the size of the off_t type (in bytes) on the machine that built the pdv
-# archive.
-#
-# One way to determine this is by running the following commands:
-#
-# @CODE
-# 	strings <pdv archive> | grep lseek
-# 	strace -elseek <pdv archive>
-# @CODE
-#
-# Basically look for the first lseek command (we do the strings/grep because
-# sometimes the function call is _llseek or something) and steal the 2nd
-# parameter.  Here is an example:
-#
-# @CODE
-# 	vapier@vapier 0 pdv_unpack # strings hldsupdatetool.bin | grep lseek
-# 	lseek
-# 	vapier@vapier 0 pdv_unpack # strace -elseek ./hldsupdatetool.bin
-# 	lseek(3, -4, SEEK_END)					= 2981250
-# @CODE
-#
-# Thus we would pass in the value of '4' as the second parameter.
-unpack_pdv() {
-	local src=$(find_unpackable_file "$1")
-	local sizeoff_t=$2
-
-	[[ -z ${src} ]] && die "Could not locate source for '$1'"
-	[[ -z ${sizeoff_t} ]] && die "No idea what off_t size was used for this pdv :("
-
-	local shrtsrc=$(basename "${src}")
-	echo ">>> Unpacking ${shrtsrc} to ${PWD}"
-	local metaskip=$(tail -c ${sizeoff_t} "${src}" | hexdump -e \"%i\")
-	local tailskip=$(tail -c $((${sizeoff_t}*2)) "${src}" | head -c ${sizeoff_t} | hexdump -e \"%i\")
-
-	# grab metadata for debug reasons
-	local metafile=$(emktemp)
-	tail -c +$((${metaskip}+1)) "${src}" > "${metafile}"
-
-	# rip out the final file name from the metadata
-	local datafile=$(tail -c +$((${metaskip}+1)) "${src}" | strings | head -n 1)
-	datafile=$(basename "${datafile}")
-
-	# now lets uncompress/untar the file if need be
-	local tmpfile=$(emktemp)
-	tail -c +$((${tailskip}+1)) ${src} 2>/dev/null | head -c 512 > ${tmpfile}
-
-	local iscompressed=$(file -b "${tmpfile}")
-	if [[ ${iscompressed:0:8} == "compress" ]] ; then
-		iscompressed=1
-		mv ${tmpfile}{,.Z}
-		gunzip ${tmpfile}
-	else
-		iscompressed=0
-	fi
-	local istar=$(file -b "${tmpfile}")
-	if [[ ${istar:0:9} == "POSIX tar" ]] ; then
-		istar=1
-	else
-		istar=0
-	fi
-
-	#for some reason gzip dies with this ... dd cant provide buffer fast enough ?
-	#dd if=${src} ibs=${metaskip} count=1 \
-	#	| dd ibs=${tailskip} skip=1 \
-	#	| gzip -dc \
-	#	> ${datafile}
-	if [ ${iscompressed} -eq 1 ] ; then
-		if [ ${istar} -eq 1 ] ; then
-			tail -c +$((${tailskip}+1)) ${src} 2>/dev/null \
-				| head -c $((${metaskip}-${tailskip})) \
-				| tar -xzf -
-		else
-			tail -c +$((${tailskip}+1)) ${src} 2>/dev/null \
-				| head -c $((${metaskip}-${tailskip})) \
-				| gzip -dc \
-				> ${datafile}
-		fi
-	else
-		if [ ${istar} -eq 1 ] ; then
-			tail -c +$((${tailskip}+1)) ${src} 2>/dev/null \
-				| head -c $((${metaskip}-${tailskip})) \
-				| tar --no-same-owner -xf -
-		else
-			tail -c +$((${tailskip}+1)) ${src} 2>/dev/null \
-				| head -c $((${metaskip}-${tailskip})) \
-				> ${datafile}
-		fi
-	fi
-	true
-	#[ -s "${datafile}" ] || die "failure unpacking pdv ('${metaskip}' '${tailskip}' '${datafile}')"
-	#assert "failure unpacking pdv ('${metaskip}' '${tailskip}' '${datafile}')"
-}
-
-# @FUNCTION: unpack_makeself
-# @USAGE: [file to unpack] [offset] [tail|dd]
-# @DESCRIPTION:
-# Unpack those pesky makeself generated files ...
-# They're shell scripts with the binary package tagged onto
-# the end of the archive.  Loki utilized the format as does
-# many other game companies.
-#
-# If the file is not specified, then ${A} is used.  If the
-# offset is not specified then we will attempt to extract
-# the proper offset from the script itself.
-unpack_makeself() {
-	local src_input=${1:-${A}}
-	local src=$(find_unpackable_file "${src_input}")
-	local skip=$2
-	local exe=$3
-
-	[[ -z ${src} ]] && die "Could not locate source for '${src_input}'"
-
-	local shrtsrc=$(basename "${src}")
-	echo ">>> Unpacking ${shrtsrc} to ${PWD}"
-	if [[ -z ${skip} ]] ; then
-		local ver=$(grep -m1 -a '#.*Makeself' "${src}" | awk '{print $NF}')
-		local skip=0
-		exe=tail
-		case ${ver} in
-			1.5.*|1.6.0-nv)	# tested 1.5.{3,4,5} ... guessing 1.5.x series is same
-				skip=$(grep -a ^skip= "${src}" | cut -d= -f2)
-				;;
-			2.0|2.0.1)
-				skip=$(grep -a ^$'\t'tail "${src}" | awk '{print $2}' | cut -b2-)
-				;;
-			2.1.1)
-				skip=$(grep -a ^offset= "${src}" | awk '{print $2}' | cut -b2-)
-				(( skip++ ))
-				;;
-			2.1.2)
-				skip=$(grep -a ^offset= "${src}" | awk '{print $3}' | head -n 1)
-				(( skip++ ))
-				;;
-			2.1.3)
-				skip=`grep -a ^offset= "${src}" | awk '{print $3}'`
-				(( skip++ ))
-				;;
-			2.1.4|2.1.5)
-				skip=$(grep -a offset=.*head.*wc "${src}" | awk '{print $3}' | head -n 1)
-				skip=$(head -n ${skip} "${src}" | wc -c)
-				exe="dd"
-				;;
-			*)
-				eerror "I'm sorry, but I was unable to support the Makeself file."
-				eerror "The version I detected was '${ver}'."
-				eerror "Please file a bug about the file ${shrtsrc} at"
-				eerror "http://bugs.gentoo.org/ so that support can be added."
-				die "makeself version '${ver}' not supported"
-				;;
-		esac
-		debug-print "Detected Makeself version ${ver} ... using ${skip} as offset"
-	fi
-	case ${exe} in
-		tail)	exe="tail -n +${skip} '${src}'";;
-		dd)		exe="dd ibs=${skip} skip=1 if='${src}'";;
-		*)		die "makeself cant handle exe '${exe}'"
-	esac
-
-	# lets grab the first few bytes of the file to figure out what kind of archive it is
-	local filetype tmpfile=$(emktemp)
-	eval ${exe} 2>/dev/null | head -c 512 > "${tmpfile}"
-	filetype=$(file -b "${tmpfile}") || die
-	case ${filetype} in
-		*tar\ archive*)
-			eval ${exe} | tar --no-same-owner -xf -
-			;;
-		bzip2*)
-			eval ${exe} | bzip2 -dc | tar --no-same-owner -xf -
-			;;
-		gzip*)
-			eval ${exe} | tar --no-same-owner -xzf -
-			;;
-		compress*)
-			eval ${exe} | gunzip | tar --no-same-owner -xf -
-			;;
-		*)
-			eerror "Unknown filetype \"${filetype}\" ?"
-			false
-			;;
-	esac
-	assert "failure unpacking (${filetype}) makeself ${shrtsrc} ('${ver}' +${skip})"
-}
-
-# @FUNCTION: cdrom_get_cds
-# @USAGE: <file on cd1> [file on cd2] [file on cd3] [...]
-# @DESCRIPTION:
-# Aquire cd(s) for those lovely cd-based emerges.  Yes, this violates
-# the whole 'non-interactive' policy, but damnit I want CD support !
-#
-# With these cdrom functions we handle all the user interaction and
-# standardize everything.  All you have to do is call cdrom_get_cds()
-# and when the function returns, you can assume that the cd has been
-# found at CDROM_ROOT.
-#
-# The function will attempt to locate a cd based upon a file that is on
-# the cd.  The more files you give this function, the more cds
-# the cdrom functions will handle.
-#
-# Normally the cdrom functions will refer to the cds as 'cd #1', 'cd #2',
-# etc...  If you want to give the cds better names, then just export
-# the appropriate CDROM_NAME variable before calling cdrom_get_cds().
-# Use CDROM_NAME for one cd, or CDROM_NAME_# for multiple cds.  You can
-# also use the CDROM_NAME_SET bash array.
-#
-# For those multi cd ebuilds, see the cdrom_load_next_cd() function.
-cdrom_get_cds() {
-	# first we figure out how many cds we're dealing with by
-	# the # of files they gave us
-	local cdcnt=0
-	local f=
-	for f in "$@" ; do
-		((++cdcnt))
-		export CDROM_CHECK_${cdcnt}="$f"
-	done
-	export CDROM_TOTAL_CDS=${cdcnt}
-	export CDROM_CURRENT_CD=1
-
-	# now we see if the user gave use CD_ROOT ...
-	# if they did, let's just believe them that it's correct
-	if [[ -n ${CD_ROOT}${CD_ROOT_1} ]] ; then
-		local var=
-		cdcnt=0
-		while [[ ${cdcnt} -lt ${CDROM_TOTAL_CDS} ]] ; do
-			((++cdcnt))
-			var="CD_ROOT_${cdcnt}"
-			[[ -z ${!var} ]] && var="CD_ROOT"
-			if [[ -z ${!var} ]] ; then
-				eerror "You must either use just the CD_ROOT"
-				eerror "or specify ALL the CD_ROOT_X variables."
-				eerror "In this case, you will need ${CDROM_TOTAL_CDS} CD_ROOT_X variables."
-				die "could not locate CD_ROOT_${cdcnt}"
-			fi
-		done
-		export CDROM_ROOT=${CD_ROOT_1:-${CD_ROOT}}
-		einfo "Found CD #${CDROM_CURRENT_CD} root at ${CDROM_ROOT}"
-		export CDROM_SET=-1
-		for f in ${CDROM_CHECK_1//:/ } ; do
-			((++CDROM_SET))
-			[[ -e ${CDROM_ROOT}/${f} ]] && break
-		done
-		export CDROM_MATCH=${f}
-		return
-	fi
-
-	# User didn't help us out so lets make sure they know they can
-	# simplify the whole process ...
-	if [[ ${CDROM_TOTAL_CDS} -eq 1 ]] ; then
-		einfo "This ebuild will need the ${CDROM_NAME:-cdrom for ${PN}}"
-		echo
-		einfo "If you do not have the CD, but have the data files"
-		einfo "mounted somewhere on your filesystem, just export"
-		einfo "the variable CD_ROOT so that it points to the"
-		einfo "directory containing the files."
-		echo
-		einfo "For example:"
-		einfo "export CD_ROOT=/mnt/cdrom"
-		echo
-	else
-		if [[ -n ${CDROM_NAME_SET} ]] ; then
-			# Translate the CDROM_NAME_SET array into CDROM_NAME_#
-			cdcnt=0
-			while [[ ${cdcnt} -lt ${CDROM_TOTAL_CDS} ]] ; do
-				((++cdcnt))
-				export CDROM_NAME_${cdcnt}="${CDROM_NAME_SET[$((${cdcnt}-1))]}"
-			done
-		fi
-
-		einfo "This package will need access to ${CDROM_TOTAL_CDS} cds."
-		cdcnt=0
-		while [[ ${cdcnt} -lt ${CDROM_TOTAL_CDS} ]] ; do
-			((++cdcnt))
-			var="CDROM_NAME_${cdcnt}"
-			[[ ! -z ${!var} ]] && einfo " CD ${cdcnt}: ${!var}"
-		done
-		echo
-		einfo "If you do not have the CDs, but have the data files"
-		einfo "mounted somewhere on your filesystem, just export"
-		einfo "the following variables so they point to the right place:"
-		einfon ""
-		cdcnt=0
-		while [[ ${cdcnt} -lt ${CDROM_TOTAL_CDS} ]] ; do
-			((++cdcnt))
-			echo -n " CD_ROOT_${cdcnt}"
-		done
-		echo
-		einfo "Or, if you have all the files in the same place, or"
-		einfo "you only have one cdrom, you can export CD_ROOT"
-		einfo "and that place will be used as the same data source"
-		einfo "for all the CDs."
-		echo
-		einfo "For example:"
-		einfo "export CD_ROOT_1=/mnt/cdrom"
-		echo
-	fi
-
-	export CDROM_SET=""
-	export CDROM_CURRENT_CD=0
-	cdrom_load_next_cd
-}
-
-# @FUNCTION: cdrom_load_next_cd
-# @DESCRIPTION:
-# Some packages are so big they come on multiple CDs.  When you're done reading
-# files off a CD and want access to the next one, just call this function.
-# Again, all the messy details of user interaction are taken care of for you.
-# Once this returns, just read the variable CDROM_ROOT for the location of the
-# mounted CD.  Note that you can only go forward in the CD list, so make sure
-# you only call this function when you're done using the current CD.
-cdrom_load_next_cd() {
-	local var
-	((++CDROM_CURRENT_CD))
-
-	unset CDROM_ROOT
-	var=CD_ROOT_${CDROM_CURRENT_CD}
-	[[ -z ${!var} ]] && var="CD_ROOT"
-	if [[ -z ${!var} ]] ; then
-		var="CDROM_CHECK_${CDROM_CURRENT_CD}"
-		_cdrom_locate_file_on_cd ${!var}
-	else
-		export CDROM_ROOT=${!var}
-	fi
-
-	einfo "Found CD #${CDROM_CURRENT_CD} root at ${CDROM_ROOT}"
-}
-
-# this is used internally by the cdrom_get_cds() and cdrom_load_next_cd()
-# functions.  this should *never* be called from an ebuild.
-# all it does is try to locate a give file on a cd ... if the cd isn't
-# found, then a message asking for the user to insert the cdrom will be
-# displayed and we'll hang out here until:
-# (1) the file is found on a mounted cdrom
-# (2) the user hits CTRL+C
-_cdrom_locate_file_on_cd() {
-	local mline=""
-	local showedmsg=0 showjolietmsg=0
-
-	while [[ -z ${CDROM_ROOT} ]] ; do
-		local i=0
-		local -a cdset=(${*//:/ })
-		if [[ -n ${CDROM_SET} ]] ; then
-			cdset=(${cdset[${CDROM_SET}]})
-		fi
-
-		while [[ -n ${cdset[${i}]} ]] ; do
-			local dir=$(dirname ${cdset[${i}]})
-			local file=$(basename ${cdset[${i}]})
-
-			local point= node= fs= foo=
-			while read point node fs foo ; do
-				[[ " cd9660 iso9660 udf " != *" ${fs} "* ]] && \
-					! [[ ${fs} == "subfs" && ",${opts}," == *",fs=cdfss,"* ]] \
-					&& continue
-				point=${point//\040/ }
-				[[ ! -d ${point}/${dir} ]] && continue
-				[[ -z $(find "${point}/${dir}" -maxdepth 1 -iname "${file}") ]] && continue
-				export CDROM_ROOT=${point}
-				export CDROM_SET=${i}
-				export CDROM_MATCH=${cdset[${i}]}
-				return
-			done <<< "$(get_mounts)"
-
-			((++i))
-		done
-
-		echo
-		if [[ ${showedmsg} -eq 0 ]] ; then
-			if [[ ${CDROM_TOTAL_CDS} -eq 1 ]] ; then
-				if [[ -z ${CDROM_NAME} ]] ; then
-					einfo "Please insert+mount the cdrom for ${PN} now !"
-				else
-					einfo "Please insert+mount the ${CDROM_NAME} cdrom now !"
-				fi
-			else
-				if [[ -z ${CDROM_NAME_1} ]] ; then
-					einfo "Please insert+mount cd #${CDROM_CURRENT_CD} for ${PN} now !"
-				else
-					local var="CDROM_NAME_${CDROM_CURRENT_CD}"
-					einfo "Please insert+mount the ${!var} cdrom now !"
-				fi
-			fi
-			showedmsg=1
-		fi
-		einfo "Press return to scan for the cd again"
-		einfo "or hit CTRL+C to abort the emerge."
-		echo
-		if [[ ${showjolietmsg} -eq 0 ]] ; then
-			showjolietmsg=1
-		else
-			ewarn "If you are having trouble with the detection"
-			ewarn "of your CD, it is possible that you do not have"
-			ewarn "Joliet support enabled in your kernel.  Please"
-			ewarn "check that CONFIG_JOLIET is enabled in your kernel."
-			ebeep 5
-		fi
-		read || die "something is screwed with your system"
-	done
 }
 
 # @FUNCTION: strip-linguas

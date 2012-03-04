@@ -1,7 +1,7 @@
-# Copyright 2004 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Diego Pettenò <flameeyes@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.21 2011/12/17 04:20:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.22 2011/12/27 17:55:12 fauli Exp $
 #
 # This eclass contains functions to install pamd configuration files and
 # pam modules.
@@ -122,7 +122,8 @@ dopammod() {
 		return 0;
 	fi
 
-	exeinto $(getpam_mod_dir#${EPREFIX})
+	local dir=$(getpam_mod_dir)
+	exeinto ${dir#${EPREFIX}}
 	doexe "$@" || die "failed to install $@"
 }
 
@@ -137,7 +138,8 @@ newpammod() {
 		return 0;
 	fi
 
-	exeinto $(getpam_mod_dir#${EPREFIX})
+	local dir=$(getpam_mod_dir)
+	exeinto ${dir#${EPREFIX}}
 	newexe "$1" "$2" || die "failed to install $1 as $2"
 }
 

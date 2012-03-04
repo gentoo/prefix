@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.21 2011/11/18 14:23:03 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.24 2012/02/20 10:14:44 voyageur Exp $
 
 # @ECLASS: gnustep-base.eclass
 # @MAINTAINER:
@@ -121,11 +121,11 @@ egnustep_env() {
 		source "${GS_MAKEFILES}"/GNUstep.sh
 
 		# Create compilation GNUstep.conf if it does not exist yet
-		if [[ ! -f ${T}/GNUstep.conf ]]; then
-			cp "${EPREFIX}"/etc/GNUstep/GNUstep.conf "${T}" \
+		if [[ ! -f ${WORKDIR}/GNUstep.conf ]]; then
+			cp "${EPREFIX}"/etc/GNUstep/GNUstep.conf "${WORKDIR}" \
 				|| die "GNUstep.conf copy failed"
-			sed -e "s#\(GNUSTEP_USER_.*DIR.*=\)#\1${T}/#" \
-				-i "${T}"/GNUstep.conf || die "GNUstep.conf sed failed"
+			sed -e "s#\(GNUSTEP_USER_.*DIR.*=\)#\1${WORKDIR}/#" \
+				-i "${WORKDIR}"/GNUstep.conf || die "GNUstep.conf sed failed"
 		fi
 
 
@@ -145,7 +145,7 @@ egnustep_env() {
 			ADDITIONAL_NATIVE_LIB_DIRS="${GNUSTEP_SYSTEM_LIBRARIES}" \
 			DESTDIR="${D}" \
 			HOME="${T}" \
-			GNUSTEP_CONFIG_FILE="${T}"/GNUstep.conf \
+			GNUSTEP_CONFIG_FILE="${WORKDIR}"/GNUstep.conf \
 			GNUSTEP_INSTALLATION_DOMAIN=SYSTEM \
 			GNUSTEP_ABSOLUTE_INSTALL_PATHS=yes \
 			TAR_OPTIONS="${TAR_OPTIONS} --no-same-owner" \
@@ -157,6 +157,13 @@ egnustep_env() {
 		use debug \
 			&& GS_ENV=( "${GS_ENV[@]}" "debug=yes" ) \
 			|| GS_ENV=( "${GS_ENV[@]}" "debug=no" )
+
+		if grep -q libobjc.so.4 "${GS_MAKEFILES}"/config.make;
+		then
+			# Set clang for packages that do not respect gnustep-make
+			# settings (gnustep-base's configure for example)
+			export CC=clang CXX=clang CPP="clang -E" LD="clang"
+		fi
 
 		return 0
 	fi

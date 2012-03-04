@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.118 2012/01/06 21:06:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.122 2012/02/20 02:54:21 robbat2 Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -60,8 +60,8 @@ if [[ -n ${WANT_AUTOCONF} ]] ; then
 	case ${WANT_AUTOCONF} in
 		none)       _autoconf_atom="" ;; # some packages don't require autoconf at all
 		2.1)        _autoconf_atom="=sys-devel/autoconf-${WANT_AUTOCONF}*" ;;
-		# if you change the “latest” version here, change also autotools_run_tool
-		latest|2.5) _autoconf_atom=">=sys-devel/autoconf-2.61" ;;
+		# if you change the "latest" version here, change also autotools_env_setup
+		latest|2.5) _autoconf_atom=">=sys-devel/autoconf-2.68" ;;
 		*)          die "Invalid WANT_AUTOCONF value '${WANT_AUTOCONF}'" ;;
 	esac
 	export WANT_AUTOCONF
@@ -97,6 +97,27 @@ unset _automake_atom _autoconf_atom
 # @DESCRIPTION:
 # Additional options to pass to automake during
 # eautoreconf call.
+
+# @ECLASS-VARIABLE: AT_NOEACLOCAL
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Don't run eaclocal command if set to 'yes',
+# useful when eaclocal needs to be ran with
+# particular options
+
+# @ECLASS-VARIABLE: AT_NOEAUTOCONF
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Don't run eautoconf command if set to 'yes',
+# useful when eautoconf needs to be ran with
+# particular options
+
+# @ECLASS-VARIABLE: AT_NOEAUTOMAKE
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Don't run eautomake command if set to 'yes',
+# useful when eautomake needs to be ran with
+# particular options
 
 # @ECLASS-VARIABLE: AT_NOELIBTOOLIZE
 # @DEFAULT_UNSET
@@ -142,18 +163,20 @@ eautoreconf() {
 
 	auxdir=$(autotools_get_auxdir)
 
-	einfo "Running eautoreconf in '${PWD}' ..."
-	[[ -n ${auxdir} ]] && mkdir -p ${auxdir}
-	eaclocal
+	if  [[ ${AT_NOEACLOCAL} != "yes" ]]; then
+		einfo "Running eautoreconf in '${PWD}' ..."
+		[[ -n ${auxdir} ]] && mkdir -p ${auxdir}
+		eaclocal
+	fi
 	[[ ${CHOST} == *-darwin* ]] && g=g
 	if ${LIBTOOLIZE:-${g}libtoolize} -n --install >& /dev/null ; then
 		_elibtoolize --copy --force --install
 	else
 		_elibtoolize --copy --force
 	fi
-	eautoconf
-	eautoheader
-	FROM_EAUTORECONF="yes" eautomake ${AM_OPTS}
+	[[ ${AT_NOEAUTOCONF} != "yes" ]] && eautoconf
+	[[ ${AT_NOEAUTOHEADER} != "yes" ]] && eautoheader
+	[[ ${AT_NOEAUTOMAKE} != "yes" ]] && FROM_EAUTORECONF="yes" eautomake ${AM_OPTS}
 
 	[[ ${AT_NOELIBTOOLIZE} == "yes" ]] && return 0
 
@@ -318,7 +341,7 @@ config_rpath_update() {
 
 # Internal function to run an autotools' tool
 autotools_env_setup() {
-	# We do the “latest” → version switch here because it solves
+	# We do the "latest" → version switch here because it solves
 	# possible order problems, see bug #270010 as an example.
 	# During bootstrap in prefix there might be no automake merged yet
 	# due to --nodeps, but still available somewhere in PATH.

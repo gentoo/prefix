@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.71 2011/12/14 23:40:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.75 2012/02/21 18:03:49 jlec Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -156,6 +156,16 @@ ESVN_DISABLE_DEPENDENCIES="${ESVN_DISABLE_DEPENDENCIES:-}"
 # tree by users.
 ESVN_OFFLINE="${ESVN_OFFLINE:-${ESCM_OFFLINE}}"
 
+# @ECLASS-VARIABLE: ESVN_UMASK
+# @DESCRIPTION:
+# Set this variable to a custom umask. This is intended to be set by users.
+# By setting this to something like 002, it can make life easier for people
+# who do development as non-root (but are in the portage group), and then
+# switch over to building with FEATURES=userpriv.  Or vice-versa.  Shouldn't
+# be a security issue here as anyone who has portage group write access
+# already can screw the system over in more creative ways.
+ESVN_UMASK="${ESVN_UMASK:-${EVCS_UMASK}}"
+
 # @ECLASS-VARIABLE: ESVN_UP_FREQ
 # @DESCRIPTION:
 # Set the minimum number of hours between svn up'ing in any given svn module. This is particularly
@@ -215,6 +225,10 @@ subversion_fetch() {
 
 	addread "/etc/subversion"
 	addwrite "${ESVN_STORE_DIR}"
+
+	if [[ -n "${ESVN_UMASK}" ]]; then
+		eumask_push "${ESVN_UMASK}"
+	fi
 
 	if [[ ! -d ${ESVN_STORE_DIR} ]]; then
 		debug-print "${FUNCNAME}: initial checkout. creating subversion directory"
@@ -284,7 +298,25 @@ subversion_fetch() {
 		fi
 
 		if [[ -z ${esvn_up_freq} ]]; then
-			if [[ ${ESVN_WC_URL} != $(subversion__get_repository_uri "${repo_uri}") ]]; then
+			if [[ ${ESVN_WC_UUID} != $(subversion__svn_info "${repo_uri}" "Repository UUID") ]]; then
+				# UUID mismatch. Delete working copy and check out it again.
+				einfo "subversion recheck out start -->"
+				einfo "     old UUID: ${ESVN_WC_UUID}"
+				einfo "     new UUID: $(subversion__svn_info "${repo_uri}" "Repository UUID")"
+				einfo "     repository: ${repo_uri}${revision:+@}${revision}"
+
+				rm -fr "${ESVN_PROJECT}" || die
+
+				debug-print "${FUNCNAME}: ${ESVN_FETCH_CMD} ${options} ${repo_uri}"
+
+				mkdir -m 775 -p "${ESVN_PROJECT}" || die "${ESVN}: can't mkdir ${ESVN_PROJECT}."
+				cd "${ESVN_PROJECT}" || die "${ESVN}: can't chdir to ${ESVN_PROJECT}"
+				if [[ -n "${ESVN_USER}" ]]; then
+					${ESVN_FETCH_CMD} ${options} --username "${ESVN_USER}" --password "${ESVN_PASSWORD}" "${repo_uri}" || die "${ESVN}: can't fetch to ${wc_path} from ${repo_uri}."
+				else
+					${ESVN_FETCH_CMD} ${options} "${repo_uri}" || die "${ESVN}: can't fetch to ${wc_path} from ${repo_uri}."
+				fi
+			elif [[ ${ESVN_WC_URL} != $(subversion__get_repository_uri "${repo_uri}") ]]; then
 				einfo "subversion switch start -->"
 				einfo "     old repository: ${ESVN_WC_URL}@${ESVN_WC_REVISION}"
 				einfo "     new repository: ${repo_uri}${revision:+@}${revision}"
@@ -312,6 +344,10 @@ subversion_fetch() {
 				fi
 			fi
 		fi
+	fi
+
+	if [[ -n "${ESVN_UMASK}" ]]; then
+		eumask_pop
 	fi
 
 	einfo "   working copy: ${wc_path}"
@@ -438,7 +474,9 @@ subversion__svn_info() {
 	local target="${1}"
 	local key="${2}"
 
-	env LC_ALL=C svn info "${target}" | grep -i "^${key}" | cut -d" " -f2-
+	env LC_ALL=C svn info \
+		${options} --username "${ESVN_USER}" --password "${ESVN_PASSWORD}" \
+		"${target}" | grep -i "^${key}" | cut -d" " -f2-
 }
 
 ## -- subversion__get_repository_uri() --------------------------------------- #

@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.514 2011/12/16 18:44:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.519 2012/03/02 05:56:29 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -9,7 +9,7 @@ HOMEPAGE="http://gcc.gnu.org/"
 LICENSE="GPL-2 LGPL-2.1"
 RESTRICT="strip" # cross-compilers need controlled stripping
 
-inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib fixheadtails prefix
+inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib fixheadtails pax-utils prefix
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test pkg_preinst src_install pkg_postinst pkg_prerm pkg_postrm
 DESCRIPTION="Based on the ${ECLASS} eclass"
@@ -138,7 +138,7 @@ if in_iuse graphite ; then
 	RDEPEND+="
 	    graphite? (
 	        >=dev-libs/cloog-ppl-0.15.10
-	        >=dev-libs/ppl-0.10
+	        >=dev-libs/ppl-0.11
 	    )"
 fi
 
@@ -1108,12 +1108,7 @@ gcc_do_configure() {
 		confgcc+=" $(use_with graphite cloog)"
 		if use graphite; then
 			confgcc+=" --disable-ppl-version-check"
-			# this will be removed when cloog-ppl-0.15.10 goes stable
-			if has_version '>=dev-libs/cloog-ppl-0.15.10'; then
-				confgcc+=" --with-cloog-include=${EPREFIX}/usr/include/cloog-ppl"
-			else
-				confgcc+=" --with-cloog-include=${EPREFIX}/usr/include/cloog"
-			fi
+			confgcc+=" --with-cloog-include=${EPREFIX}/usr/include/cloog-ppl"
 		fi
 	fi
 
@@ -1539,10 +1534,6 @@ toolchain_src_install() {
 
 	gcc_slot_java
 
-	# Move <cxxabi.h> to compiler-specific directories
-	[[ -f ${ED}${STDCXX_INCDIR}/cxxabi.h ]] && \
-		mv -f "${ED}"${STDCXX_INCDIR}/cxxabi.h "${ED}"${LIBPATH}/include/
-
 	# These should be symlinks
 	dodir /usr/bin
 	cd "${ED}"${BINPATH}
@@ -1551,7 +1542,7 @@ toolchain_src_install() {
 		# this should take care of that
 		[[ -f ${x} ]] && mv ${x} ${CTARGET}-${x}
 
-		if [[ -f ${CTARGET}-${x} ]] && ! is_crosscompile ; then
+		if [[ -f ${CTARGET}-${x} ]] ; then
 			ln -sf ${CTARGET}-${x} ${x}
 
 			# Create version-ed symlinks
@@ -1657,6 +1648,12 @@ toolchain_src_install() {
 	# Don't scan .gox files for executable stacks - false positives
 	export QA_EXECSTACK="usr/lib*/go/*/*.gox"
 	export QA_WX_LOAD="usr/lib*/go/*/*.gox"
+
+	# Disable RANDMMAP so PCH works. #301299
+	if tc_version_is_at_least 4.3 ; then
+		pax-mark -r "${ED}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1"
+		pax-mark -r "${ED}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1plus"
+	fi
 }
 
 gcc_slot_java() {
@@ -1847,11 +1844,18 @@ do_gcc_PIE_patches() {
 		EPATCH_MULTI_MSG="Applying default pie patches ..." \
 		epatch "${WORKDIR}"/piepatch/def
 	fi
-		# we want to be able to control the pie patch logic via something other
-		# than ALL_CFLAGS...
-		sed -e '/^ALL_CFLAGS/iHARD_CFLAGS = ' \
-			-e 's|^ALL_CFLAGS = |ALL_CFLAGS = $(HARD_CFLAGS) |' \
-			-i "${S}"/gcc/Makefile.in
+	
+	# we want to be able to control the pie patch logic via something other
+	# than ALL_CFLAGS...
+	sed -e '/^ALL_CFLAGS/iHARD_CFLAGS = ' \
+		-e 's|^ALL_CFLAGS = |ALL_CFLAGS = $(HARD_CFLAGS) |' \
+		-i "${S}"/gcc/Makefile.in
+	# Need to add HARD_CFLAGS to ALL_CXXFLAGS on >= 4.7
+	if tc_version_is_at_least 4.7.0 ; then
+		sed -e '/^ALL_CXXFLAGS/iHARD_CFLAGS = ' \
+                        -e 's|^ALL_CXXFLAGS = |ALL_CXXFLAGS = $(HARD_CFLAGS) |' \
+                        -i "${S}"/gcc/Makefile.in
+	fi
 
 	BRANDING_GCC_PKGVERSION="${BRANDING_GCC_PKGVERSION}, pie-${PIE_VER}"
 }
