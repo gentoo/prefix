@@ -195,6 +195,10 @@ HOSTCC='gcc -m64'
 			profile="${PORTDIR}/profiles/prefix/linux/ppc"
 			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
 			;;
+		powerpc64-unknown-linux-gnu)
+			profile="${PORTDIR}/profiles/prefix/linux/ppc64"
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
+			;;
 		armv7l-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/arm"
 			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib\""
