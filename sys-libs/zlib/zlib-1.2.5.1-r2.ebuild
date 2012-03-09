@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.5.1-r2.ebuild,v 1.3 2011/09/23 17:52:32 jlec Exp $
 
+AUTOTOOLS_AUTO_DEPEND="no"
 inherit autotools eutils toolchain-funcs
 
 DESCRIPTION="Standard (de)compression library"
