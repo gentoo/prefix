@@ -736,7 +736,8 @@ bootstrap_python() {
 }
 
 bootstrap_zlib() {
-	PV=1.2.5
+	# use 1.2.5 by default, current bootstrap guides
+	PV="${1:-1.2.5}"
 	A=zlib-${PV}.tar.bz2
 
 	einfo "Bootstrapping ${A%-*}"
@@ -771,6 +772,11 @@ bootstrap_zlib() {
 	rm -Rf "${ROOT}"/usr/lib/libpython*.a
 
 	einfo "${A%-*} bootstrapped"
+}
+
+bootstrap_zlib126() {
+	# bug 407215
+	bootstrap_zlib 1.2.6
 }
 
 bootstrap_sed() {
