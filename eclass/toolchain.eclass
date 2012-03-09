@@ -1241,11 +1241,13 @@ gcc_do_configure() {
 	# if the target can do biarch (-m32/-m64), enable it.  overhead should
 	# be small, and should simplify building of 64bit kernels in a 32bit
 	# userland by not needing sys-devel/kgcc64.  #349405
+	if ! use prefix ; then
 	case $(tc-arch) in
 	ppc|ppc64) tc_version_is_at_least 3.4 && confgcc+=" --enable-targets=all" ;;
 	sparc)     tc_version_is_at_least 4.4 && confgcc+=" --enable-targets=all" ;;
 	amd64|x86) tc_version_is_at_least 4.3 && confgcc+=" --enable-targets=all" ;;
 	esac
+	fi
 
 	tc_version_is_at_least 4.3 && set -- "$@" \
 		--with-bugurl=http://bugs.gentoo.org/ \
