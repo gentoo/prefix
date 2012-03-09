@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.109 2012/02/05 02:33:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.111 2012/03/05 18:55:47 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -92,9 +92,7 @@ if version_is_at_least 2.19 ; then
 	IUSE+=" zlib"
 fi
 if use multislot ; then
-	SLOT="${CTARGET}-${BVER}"
-elif is_cross ; then
-	SLOT="${CTARGET}"
+	SLOT="${BVER}"
 else
 	SLOT="0"
 fi
@@ -276,6 +274,7 @@ toolchain-binutils_src_compile() {
 		--includedir=${EPREFIX}${INCPATH} \
 		--enable-64-bit-bfd \
 		--enable-shared \
+		--enable-threads \
 		--disable-werror \
 		--with-bugurl=http://bugs.gentoo.org/ \
 		$(use_enable static-libs static) \
