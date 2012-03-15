@@ -923,6 +923,7 @@ x11-libs/gtkglext
 x11-libs/gtksourceview
 x11-libs/guile-gtk
 x11-libs/ige-mac-integration
+x11-libs/libGLw
 x11-libs/libICE
 x11-libs/libSM
 x11-libs/libX11
