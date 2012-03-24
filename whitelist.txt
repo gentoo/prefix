@@ -334,6 +334,7 @@ dev-haskell/tar
 dev-haskell/terminfo
 dev-haskell/text
 dev-haskell/time
+dev-haskell/transformers
 dev-haskell/utf8-string
 dev-haskell/x11
 dev-haskell/zlib
