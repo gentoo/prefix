@@ -898,6 +898,7 @@ sys-devel/ucpp
 sys-libs/csu
 sys-libs/itx-bind
 sys-libs/pam
+sys-libs/slang
 sys-libs/suacomp
 sys-libs/talloc
 sys-libs/uclibc
