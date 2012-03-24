@@ -377,6 +377,9 @@ HOSTCC='gcc -m64'
 		echo 'FEATURES="${FEATURES} -news"' >> "${profile}"/make.defaults
 		# Disable the STALE warning because the snapshot frequently gets stale.
 		echo 'PORTAGE_SYNC_STALE=0' >> "${profile}"/make.defaults
+		# Set correct PYTHONPATH for Portage, since our Python lives in
+		# $EPREFIX/tmp, bug #407573
+		echo "PYTHONPATH=${ROOT}/usr/lib/portage/pym" >> "${profile}"/make.defaults
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
 	# Hack for bash because curses is not always available (linux).
