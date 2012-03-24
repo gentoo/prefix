@@ -1,6 +1,40 @@
 # ChangeLog for sys-libs/slang
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.119 2010/12/27 12:51:44 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.129 2012/03/02 20:20:40 ssuominen Exp $
+
+  02 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -files/slang-2.1.2-slsh-libs.patch, -slang-2.2.2.ebuild, -slang-2.2.3.ebuild:
+  old
+
+  02 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> slang-2.2.4.ebuild:
+  ppc64 stable wrt #397239
+
+  28 Feb 2012; Brent Baude <ranger@gentoo.org> slang-2.2.4.ebuild:
+  Marking slang-2.2.4 ppc for bug 397239
+
+  14 Feb 2012; Jeroen Roovers <jer@gentoo.org> slang-2.2.4.ebuild:
+  Stable for HPPA (bug #397239).
+
+  12 Feb 2012; Raúl Porcel <armin76@gentoo.org> slang-2.2.4.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #397239
+
+  29 Jan 2012; Markus Meier <maekke@gentoo.org> slang-2.2.4.ebuild:
+  arm stable, bug #397239
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> slang-2.2.4.ebuild:
+  x86 stable wrt bug #397239
+
+  23 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> slang-2.2.4.ebuild:
+  USE="static-libs" to control the building of libslang.a static archive wrt
+  #399841 by Maurizio Camisaschi
+
+  23 Jan 2012; Agostino Sarubbo <ago@gentoo.org> slang-2.2.4.ebuild:
+  Stable for amd64, wrt bug #397239
+
+*slang-2.2.4 (25 Apr 2011)
+
+  25 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> +slang-2.2.4.ebuild:
+  Version bump.
 
 *slang-2.2.3 (27 Dec 2010)
 

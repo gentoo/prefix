@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.2.3.ebuild,v 1.1 2010/12/27 12:51:44 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.2.4.ebuild,v 1.9 2012/03/02 20:19:20 ssuominen Exp $
 
-EAPI=2
+EAPI=4
 inherit eutils
 
 DESCRIPTION="A multi-platform programmer's library designed to allow a developer to create robust software"
@@ -11,13 +11,13 @@ SRC_URI="mirror://slang/v${PV%.*}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="cjk pcre png readline zlib"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+IUSE="cjk pcre png readline static-libs zlib"
 
 # ncurses for ncurses5-config to get terminfo directory
 RDEPEND="sys-libs/ncurses
 	pcre? ( dev-libs/libpcre )
-	png? ( >=media-libs/libpng-1.4 )
+	png? ( >=media-libs/libpng-1.2:0 )
 	cjk? ( dev-libs/oniguruma )
 	readline? ( sys-libs/readline )
 	zlib? ( sys-libs/zlib )"
@@ -46,14 +46,15 @@ src_configure() {
 }
 
 src_compile() {
-	emake elf static || die
+	emake elf $(use static-libs && echo static)
 
-	cd slsh
-	emake slsh || die
+	pushd slsh >/dev/null
+	emake slsh
+	popd
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install-all || die "emake install-all failed."
+	emake DESTDIR="${D}" install-elf $(use static-libs && echo install-static)
 
 	rm -rf "${ED}"/usr/share/doc/{slang,slsh}
 
