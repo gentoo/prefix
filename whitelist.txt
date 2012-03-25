@@ -896,6 +896,7 @@ sys-devel/native-cctools
 sys-devel/parity
 sys-devel/ucpp
 sys-libs/csu
+sys-libs/gdbm
 sys-libs/itx-bind
 sys-libs/pam
 sys-libs/slang
