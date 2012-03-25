@@ -403,7 +403,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20111205"
+	local PV="20120324"
 	do_tree http://files.prefix.freens.org/distfiles prefix-overlay-${PV}.tar.bz2
 }
 
