@@ -845,11 +845,7 @@ bootstrap_make() {
 }
 
 bootstrap_patch() {
-	bootstrap_gnu patch 2.5.4
-}
-
-bootstrap_patch9() {
-	bootstrap_gnu patch 2.5.9
+	bootstrap_gnu patch 2.6.1
 }
 
 bootstrap_gawk() {
