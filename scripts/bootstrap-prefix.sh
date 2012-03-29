@@ -783,65 +783,41 @@ bootstrap_zlib126() {
 }
 
 bootstrap_sed() {
-	bootstrap_gnu sed 4.1.4
+	bootstrap_gnu sed 4.2.1
 }
 
 bootstrap_findutils3() {
 	bootstrap_gnu findutils 4.2.33
 }
 
-bootstrap_findutils() {
+bootstrap_findutils4() {
 	# distfile with included patches for IRIX and Interix
 	bootstrap_gnu findutils 4.4.0 \
 		"http://dev.gentoo.org/~grobian/distfiles/findutils-4.4.0-patched.tar.gz"
 }
 
-bootstrap_findutils5() {
-	bootstrap_gnu findutils 4.5.9
+bootstrap_findutils() {
+	bootstrap_gnu findutils 4.5.10
 }
 
 bootstrap_wget() {
-	bootstrap_gnu wget 1.10.2
+	bootstrap_gnu wget 1.13.4
 }
 
 bootstrap_grep() {
-	bootstrap_gnu grep 2.5.1a
-}
-
-bootstrap_grep4() {
-	bootstrap_gnu grep 2.5.4
+	bootstrap_gnu grep 2.11
 }
 
 bootstrap_coreutils() {
-	bootstrap_gnu coreutils 5.94
-}
-
-bootstrap_coreutils6() {
-	bootstrap_gnu coreutils 6.11
-}
-
-bootstrap_coreutils8() {
-	bootstrap_gnu coreutils 8.12
-}
-
-bootstrap_tar15() {
-	bootstrap_gnu tar 1.15.1
+	bootstrap_gnu coreutils 8.16
 }
 
 bootstrap_tar() {
-	bootstrap_gnu tar 1.19
-}
-
-bootstrap_tar22() {
-	bootstrap_gnu tar 1.22
-}
-
-bootstrap_tar26() {
 	bootstrap_gnu tar 1.26
 }
 
 bootstrap_make() {
-	bootstrap_gnu make 3.81
+	bootstrap_gnu make 3.82
 }
 
 bootstrap_patch() {
@@ -849,7 +825,7 @@ bootstrap_patch() {
 }
 
 bootstrap_gawk() {
-	bootstrap_gnu gawk 3.1.5
+	bootstrap_gnu gawk 3.1.8
 }
 
 bootstrap_gawk4() {
@@ -865,7 +841,7 @@ bootstrap_texinfo() {
 }
 
 bootstrap_bash() {
-	bootstrap_gnu bash 4.1
+	bootstrap_gnu bash 4.2
 }
 
 bootstrap_bison() {
@@ -873,17 +849,17 @@ bootstrap_bison() {
 }
 
 bootstrap_m4() {
-	bootstrap_gnu m4 1.4.12
+	bootstrap_gnu m4 1.4.15
 }
 
 bootstrap_gzip() {
-	bootstrap_gnu gzip 1.3.12
+	bootstrap_gnu gzip 1.4
 }
 
 bootstrap_bzip2() {
 	local PN PV A S
 	PN=bzip2
-	PV=1.0.4
+	PV=1.0.6
 	A=${PN}-${PV}.tar.gz
 	einfo "Bootstrapping ${A%-*}"
 
