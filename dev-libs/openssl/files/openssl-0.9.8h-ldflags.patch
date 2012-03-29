@@ -2,6 +2,8 @@ http://bugs.gentoo.org/181438
 
 make sure we respect LDFLAGS
 
+also make sure we don't add useless -rpath flags to the system libdir
+
 --- openssl-0.9.8h/Makefile.org
 +++ openssl-0.9.8h/Makefile.org
 @@ -180,6 +181,7 @@
@@ -19,7 +21,7 @@ make sure we respect LDFLAGS
  	SHAREDFLAGS="$(CFLAGS) $(SHARED_LDFLAGS) -shared -Wl,-Bsymbolic -Wl,-soname=$$SHLIB$$SHLIB_SOVER$$SHLIB_SUFFIX"
  
 -DO_GNU_APP=LDFLAGS="$(CFLAGS) -Wl,-rpath,$(LIBRPATH)"
-+DO_GNU_APP=LDFLAGS="$(LDFLAGS) $(CFLAGS) -Wl,-rpath,$(LIBRPATH)"
++DO_GNU_APP=LDFLAGS="$(LDFLAGS) $(CFLAGS)"
  
  #This is rather special.  It's a special target with which one can link
  #applications without bothering with any features that have anything to

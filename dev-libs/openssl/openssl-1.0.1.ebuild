@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.0c.ebuild,v 1.9 2010/12/10 19:08:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1.ebuild,v 1.1 2012/03/15 03:44:50 vapier Exp $
 
-EAPI="2"
+EAPI="4"
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -14,14 +14,17 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz
 
 LICENSE="openssl"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="bindist gmp kerberos rfc3779 sse2 test zlib"
+# Let openssh make its way out to people w/out openssl check.
+#KEYWORDS="~alpha amd64 ~arm hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
+IUSE="bindist gmp kerberos rfc3779 sse2 static-libs test vanilla zlib"
 
-RDEPEND="gmp? ( dev-libs/gmp )
-	zlib? ( sys-libs/zlib )
+# Have the sub-libs in RDEPEND with [static-libs] since, logically,
+# our libssl.a depends on libz.a/etc... at runtime.
+LIB_DEPEND="gmp? ( dev-libs/gmp[static-libs(+)] )
+	zlib? ( sys-libs/zlib[static-libs(+)] )
 	kerberos? ( app-crypt/mit-krb5 )"
-# portage depend is just to help people not break their systems (preserve-libs
-# feature is broken in prior versions)
+RDEPEND="static-libs? ( ${LIB_DEPEND} )
+	!static-libs? ( ${LIB_DEPEND//\[static-libs(+)]} )"
 DEPEND="${RDEPEND}
 	sys-apps/diffutils
 	>=dev-lang/perl-5
@@ -35,11 +38,19 @@ src_unpack() {
 }
 
 src_prepare() {
-# this patch kills Darwin, but seems not necessary on Solaris and Linux
-#	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8l-binutils.patch #289130
-	epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
-	epatch_user #332661
+	# Make sure we only ever touch Makefile.org and avoid patching a file
+	# that gets blown away anyways by the Configure script in src_configure
+	rm -f Makefile
+
+	if ! use vanilla ; then
+		epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
+		epatch "${FILESDIR}"/${PN}-1.0.0d-fbsd-amd64.patch #363089
+		epatch "${FILESDIR}"/${PN}-1.0.0d-windres.patch #373743
+		epatch "${FILESDIR}"/${PN}-1.0.0h-pkg-config.patch
+		epatch "${FILESDIR}"/${PN}-1.0.1-parallel-build.patch
+		epatch "${FILESDIR}"/${PN}-1.0.1-x32.patch
+		epatch_user #332661
+	fi
 
 	# disable fips in the build
 	# make sure the man pages are suffixed #302165
@@ -51,7 +62,7 @@ src_prepare() {
 		-e $(has noman FEATURES \
 			&& echo '/^install:/s:install_docs::' \
 			|| echo '/^MANDIR=/s:=.*:='"${EPREFIX}"'/usr/share/man:') \
-		Makefile{,.org} \
+		Makefile.org \
 		|| die
 	# show the actual commands in the log
 	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
@@ -73,15 +84,11 @@ src_prepare() {
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure || die
 
 	# allow openssl to be cross-compiled
-	cp "${FILESDIR}"/gentoo.config-1.0.0 gentoo.config || die "cp cross-compile failed"
+	cp "${FILESDIR}"/gentoo.config-1.0.0 gentoo.config || die
 	chmod a+rx gentoo.config
 
 	append-flags -fno-strict-aliasing
-	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
-		*"GNU Binutils"*) # GNU as with noexecstack support
-			append-flags -Wa,--noexecstack
-		;;
-	esac
+	append-flags $(test-flags-CC -Wa,--noexecstack)
 
 	# type -P required on platforms where perl is not installed
 	# in the same prefix (prefix-chaining).
@@ -111,25 +118,28 @@ src_prepare() {
 src_configure() {
 	unset APPS #197996
 	unset SCRIPTS #312551
+	unset CROSS_COMPILE #311473
 
-	tc-export CC AR RANLIB
+	tc-export CC AR RANLIB RC
 
 	# Clean out patent-or-otherwise-encumbered code
 	# Camellia: Royalty Free            http://en.wikipedia.org/wiki/Camellia_(cipher)
-	# IDEA:     5,214,703 07/01/2012    http://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm
+	# IDEA:     Expired                 http://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm
 	# EC:       ????????? ??/??/2015    http://en.wikipedia.org/wiki/Elliptic_Curve_Cryptography
 	# MDC2:     Expired                 http://en.wikipedia.org/wiki/MDC-2
 	# RC5:      5,724,428 03/03/2015    http://en.wikipedia.org/wiki/RC5
 
-	use_ssl() { use $1 && echo "enable-${2:-$1} ${*:3}" || echo "no-${2:-$1}" ; }
+	use_ssl() { usex $1 "enable-${2:-$1}" "no-${2:-$1}" " ${*:3}" ; }
 	echoit() { echo "$@" ; "$@" ; }
 
 	local krb5=$(has_version app-crypt/mit-krb5 && echo "MIT" || echo "Heimdal")
 
 	case $CHOST in
-		sparc-sun-solaris*)
+		sparc*-sun-solaris*)
 			# openssl doesn't grok this setup, and guesses
-			# the architecture wrong, just disable asm for now
+			# the architecture wrong causing segfaults,
+			# just disable asm for now
+			# FIXME: I need to report this upstream
 			confopts="${confopts} no-asm"
 		;;
 		*-aix*)
@@ -148,7 +158,7 @@ src_configure() {
 		$(use sse2 || echo "no-sse2") \
 		enable-camellia \
 		$(use_ssl !bindist ec) \
-		$(use_ssl !bindist idea) \
+		enable-idea \
 		enable-mdc2 \
 		$(use_ssl !bindist rc5) \
 		enable-tlsext \
@@ -160,7 +170,7 @@ src_configure() {
 		--openssldir="${EPREFIX}"/etc/ssl \
 		--libdir=$(get_libdir) \
 		shared threads ${confopts} \
-		|| die "Configure failed"
+		|| die
 
 	if [[ ${CHOST} == i?86*-*-linux* || ${CHOST} == i?86*-*-freebsd* ]]; then
 		# does not compile without optimization on x86-linux and x86-fbsd
@@ -189,25 +199,36 @@ src_compile() {
 		( cd fips && emake -j1 links PERL=$(type -P perl) ) || die "make links in fips failed"
 	fi
 
-	# depend is needed to use $confopts
-	# rehash is needed to prep the certs/ dir
-	emake -j1 depend || die "depend failed"
-	emake -j1 all rehash || die "make all failed"
+	# depend is needed to use $confopts; it also doesn't matter
+	# that it's -j1 as the code itself serializes subdirs
+	emake -j1 depend
+	emake all
+	# rehash is needed to prep the certs/ dir; do this
+	# separately to avoid parallel build issues.
+	emake rehash
 }
 
 src_test() {
-	emake -j1 test || die "make test failed"
+	emake -j1 test
 }
 
 src_install() {
-	emake -j1 INSTALL_PREFIX="${D}" install || die
-	dobin "${WORKDIR}"/c_rehash || die #333117
+	emake INSTALL_PREFIX="${D}" install
+	dobin "${WORKDIR}"/c_rehash #333117
 	dodoc CHANGES* FAQ NEWS README doc/*.txt doc/c-indentation.el
 	dohtml -r doc/*
+	use rfc3779 && dodoc engines/ccgost/README.gost
+
+	# This is crappy in that the static archives are still built even
+	# when USE=static-libs.  But this is due to a failing in the openssl
+	# build system: the static archives are built as PIC all the time.
+	# Only way around this would be to manually configure+compile openssl
+	# twice; once with shared lib support enabled and once without.
+	use static-libs || rm -f "${ED}"/usr/lib*/lib*.a
 
 	# create the certs directory
 	dodir /etc/ssl/certs
-	cp -RP certs/* "${ED}"/etc/ssl/certs/ || die "failed to install certs"
+	cp -RP certs/* "${ED}"/etc/ssl/certs/ || die
 	rm -r "${ED}"/etc/ssl/certs/{demo,expired}
 
 	# Namespace openssl programs to prevent conflicts with other man pages

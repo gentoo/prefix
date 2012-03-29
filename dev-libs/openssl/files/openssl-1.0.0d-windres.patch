@@ -1,3 +1,10 @@
+URL: http://rt.openssl.org/Ticket/Display.html?id=2558
+Subject: make windres controllable via build env var settings
+
+atm, the windres code in openssl is only usable via the cross-compile prefix 
+option unlike all the other build tools. so add support for the standard $RC 
+/ $WINDRES env vars as well.
+
 Index: Configure
 ===================================================================
 RCS file: /usr/local/src/openssl/CVSROOT/openssl/Configure,v

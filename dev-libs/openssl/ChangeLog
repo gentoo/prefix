@@ -1,6 +1,128 @@
 # ChangeLog for dev-libs/openssl
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.408 2011/10/01 07:28:54 pva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.436 2012/03/19 00:53:30 vapier Exp $
+
+  19 Mar 2012; Mike Frysinger <vapier@gentoo.org>
+  files/openssl-1.0.1-parallel-build.patch:
+  Fix logic bug in parallel build so symlinks get generated #408381 by venom00.
+
+  17 Mar 2012; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0h.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #406199
+
+  15 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> openssl-0.9.8u.ebuild:
+  x86 stable wrt bug #406199
+
+*openssl-1.0.1 (15 Mar 2012)
+
+  15 Mar 2012; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.1.ebuild,
+  +files/openssl-1.0.1-parallel-build.patch, +files/openssl-1.0.1-x32.patch:
+  Version bump.
+
+  13 Mar 2012; Agostino Sarubbo <ago@gentoo.org> openssl-0.9.8u.ebuild,
+  openssl-1.0.0h.ebuild:
+  Stable for amd64, wrt bug #406199
+
+  13 Mar 2012; Brent Baude <ranger@gentoo.org> openssl-0.9.8u.ebuild,
+  openssl-1.0.0h.ebuild:
+  Marking openssl-0.9.8u and openssl-1.0.0h ppc and ppc64 for bug 406199 
+
+  13 Mar 2012; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0h.ebuild:
+  Stable for HPPA (bug #406199).
+
+  12 Mar 2012; Mike Frysinger <vapier@gentoo.org>
+  files/openssl-0.9.8h-ldflags.patch, files/openssl-1.0.0a-ldflags.patch:
+  Drop useless -rpath flags.
+
+*openssl-1.0.0h (12 Mar 2012)
+*openssl-0.9.8u (12 Mar 2012)
+
+  12 Mar 2012; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8u.ebuild,
+  +openssl-1.0.0h.ebuild, +files/openssl-1.0.0h-pkg-config.patch:
+  Version bump #406199.
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> openssl-0.9.8t.ebuild,
+  openssl-1.0.0g.ebuild:
+  Marking openssl-0.9.8t and -1.0.0g for bug 399365
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> openssl-0.9.8t.ebuild,
+  openssl-1.0.0g.ebuild:
+  Marking 0.9.8t and 1.0.0g for sec bug 399365
+
+  28 Jan 2012; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0g.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #399365
+
+  24 Jan 2012; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0g.ebuild:
+  Stable for HPPA (bug #399365).
+
+  24 Jan 2012; Thomas Kahle <tomka@gentoo.org> openssl-0.9.8t.ebuild,
+  openssl-1.0.0g.ebuild:
+  x86 stable per bug 399365
+
+  24 Jan 2012; Agostino Sarubbo <ago@gentoo.org> openssl-0.9.8t.ebuild,
+  openssl-1.0.0g.ebuild:
+  Stable for AMD64, wrt security bug #399365
+
+*openssl-1.0.0g (18 Jan 2012)
+*openssl-0.9.8t (18 Jan 2012)
+
+  18 Jan 2012; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8t.ebuild,
+  +openssl-1.0.0g.ebuild:
+  Version bump.
+
+  16 Jan 2012; Mark Loeser <halcy0n@gentoo.org> openssl-1.0.0f-r1.ebuild:
+  Stable for ppc/ppc64; bug #397695
+
+  14 Jan 2012; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0f-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #397695
+
+  12 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  openssl-0.9.8s-r1.ebuild, openssl-1.0.0f-r1.ebuild:
+  x86 stable wrt bug #397695
+
+  11 Jan 2012; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0f-r1.ebuild:
+  Stable for HPPA (bug #397695).
+
+  11 Jan 2012; Agostino Sarubbo <ago@gentoo.org> openssl-0.9.8s-r1.ebuild:
+  Stable for AMD64, wrt security bug #397695
+
+  11 Jan 2012; Agostino Sarubbo <ago@gentoo.org> openssl-1.0.0f-r1.ebuild:
+  Stable for AMD64, wrt security bug #397695
+
+*openssl-1.0.0f-r1 (11 Jan 2012)
+*openssl-0.9.8s-r1 (11 Jan 2012)
+
+  11 Jan 2012; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8s-r1.ebuild,
+  +openssl-1.0.0f-r1.ebuild, metadata.xml:
+  Remove IDEA algos from USE=bindist #398439 by Ulrich Müller. Update EAPI and
+  static-libs dep so we can work with older versions of zlib #397695#3.
+
+*openssl-1.0.0f (04 Jan 2012)
+*openssl-0.9.8s (04 Jan 2012)
+
+  04 Jan 2012; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8s.ebuild,
+  +openssl-1.0.0f.ebuild:
+  Version bump #397695.
+
+  07 Dec 2011; Mike Frysinger <vapier@gentoo.org> files/gentoo.config-1.0.0,
+  openssl-1.0.0e-r1.ebuild, +files/openssl-1.0.0e-x32.patch:
+  Add support for x32 ABIs.
+
+*openssl-1.0.0e-r1 (01 Dec 2011)
+
+  01 Dec 2011; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.0e-r1.ebuild,
+  +files/openssl-1.0.0e-parallel-build.patch,
+  +files/openssl-1.0.0e-pkg-config.patch:
+  Remove CROSS_COMPILE from the env since we setup all the tools explicitly
+  #311473 by Thomas Sachau. Add USE=static-libs support #378259 by Agostino
+  Sarubbo. Try and fix up parallel build yet again #196554 by Duncan. Clean up
+  the pkg-config files to keep --libs clean (not include --static output).
+
+  01 Dec 2011; Mike Frysinger <vapier@gentoo.org> metadata.xml:
+  Document USE=bindist specifics #369245 by Donald.
+
+  31 Oct 2011; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8r.ebuild:
+  Update to EAPI=2 to keep down differences with newer openssl ebuilds, and fix
+  path to enginedir in multilib setup.
 
   01 Oct 2011; Peter Volkov <pva@gentoo.org> openssl-1.0.0e.ebuild:
   Install README.gost when USE=rfc3779, bug #385027.

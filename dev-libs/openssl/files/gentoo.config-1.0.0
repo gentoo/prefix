@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/files/gentoo.config-1.0.0,v 1.3 2011/07/12 04:10:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/files/gentoo.config-1.0.0,v 1.4 2011/12/07 16:03:05 vapier Exp $
 #
 # Openssl doesn't play along nicely with cross-compiling 
 # like autotools based projects, so let's teach it new tricks.
@@ -79,7 +79,7 @@ machine=""
 chost_machine=${CHOST%%-*}
 case ${system} in
 linux)
-	case ${chost_machine} in
+	case ${chost_machine}:${ABI} in
 		alphaev56*)   machine=alpha+bwx-${compiler};;
 		alphaev[678]*)machine=alpha+bwx-${compiler};;
 		alpha*)       machine=alpha-${compiler};;
@@ -91,7 +91,8 @@ linux)
 		bfin*)        machine="generic32 -DL_ENDIAN";;
 	#	hppa64*)      machine=parisc64;;
 		hppa*)        machine="generic32 -DB_ENDIAN";;
-		i[0-9]86*)    machine=elf;;
+		i[0-9]86*|\
+		x86_64*:x86)  machine=elf;;
 		ia64*)        machine=ia64;;
 		m68*)         machine="generic32 -DB_ENDIAN";;
 		mips*el*)     machine="generic32 -DL_ENDIAN";;
@@ -106,6 +107,7 @@ linux)
 		sparc*)       machine=sparcv8;;
 		s390x*)       machine=s390x;;
 		s390*)        machine="generic32 -DB_ENDIAN";;
+		x86_64*:x32)  machine=x32;;
 		x86_64*)      machine=x86_64;;
 	esac
 	;;

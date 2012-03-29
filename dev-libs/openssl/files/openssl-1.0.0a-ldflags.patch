@@ -17,7 +17,7 @@ http://bugs.gentoo.org/327421
  	SHAREDFLAGS="$(CFLAGS) $(SHARED_LDFLAGS) -shared -Wl,-Bsymbolic -Wl,-soname=$$SHLIB$$SHLIB_SOVER$$SHLIB_SUFFIX"
  
 -DO_GNU_APP=LDFLAGS="$(CFLAGS) -Wl,-rpath,$(LIBRPATH)"
-+DO_GNU_APP=LDFLAGS="$(LDFLAGS) $(CFLAGS) -Wl,-rpath,$(LIBRPATH)"
++DO_GNU_APP=LDFLAGS="$(LDFLAGS) $(CFLAGS)"
  
  #This is rather special.  It's a special target with which one can link
  #applications without bothering with any features that have anything to
