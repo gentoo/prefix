@@ -824,6 +824,10 @@ bootstrap_patch() {
 	bootstrap_gnu patch 2.6.1
 }
 
+bootstrap_patch254() {
+	bootstrap_gnu patch 2.5.4
+}
+
 bootstrap_gawk() {
 	bootstrap_gnu gawk 3.1.8
 }
