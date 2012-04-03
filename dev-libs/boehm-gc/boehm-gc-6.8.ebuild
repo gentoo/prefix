@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-6.8.ebuild,v 1.10 2009/09/23 17:16:29 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-6.8.ebuild,v 1.11 2011/11/13 18:56:12 vapier Exp $
 
 inherit eutils
 
@@ -14,12 +14,7 @@ SRC_URI="http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/${MY_P}.tar.gz"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
-IUSE="nocxx threads"
-
-RDEPEND=""
-
-DEPEND="${RDEPEND}
-	>=sys-apps/sed-4"
+IUSE="cxx threads"
 
 src_unpack() {
 	unpack ${A}
@@ -30,17 +25,9 @@ src_unpack() {
 }
 
 src_compile() {
-	local myconf=""
-
-	if use nocxx ; then
-		myconf="${myconf} --disable-cplusplus"
-	else
-		myconf="${myconf} --enable-cplusplus"
-	fi
-
-	use threads || myconf="${myconf} --disable-threads"
-
-	econf ${myconf} || die "Configure failed..."
+	econf \
+		$(use_enable cxx cplusplus) \
+		$(use threads || echo --disable-threads)
 	emake || die
 }
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-7.2_alpha4-r1.ebuild,v 1.1 2011/03/04 14:59:14 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-7.2_alpha4-r1.ebuild,v 1.2 2011/11/13 18:56:12 vapier Exp $
 
 inherit eutils
 
@@ -14,7 +14,7 @@ SRC_URI="http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/${MY_P}.tar.gz"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="nocxx threads"
+IUSE="cxx threads"
 
 DEPEND="dev-libs/libatomic_ops"
 RDEPEND="${DEPEND}"
@@ -27,17 +27,10 @@ src_unpack() {
 
 src_compile() {
 	sed '/Cflags/s:$:/gc:g' -i bdw-gc.pc.in || die
-	local myconf="--with-libatomic-ops=yes"
-
-	if use nocxx ; then
-		myconf="${myconf} --disable-cplusplus"
-	else
-		myconf="${myconf} --enable-cplusplus"
-	fi
-
-	use threads || myconf="${myconf} --disable-threads"
-
-	econf ${myconf}
+	econf \
+		--with-libatomic-ops=yes \
+		$(use_enable cxx cplusplus) \
+		$(use threads || echo --disable-threads)
 	emake || die
 }
 
