@@ -1,6 +1,40 @@
 # ChangeLog for dev-libs/apr-util
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.163 2011/07/29 20:43:44 neurogeek Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.173 2011/12/27 23:35:41 neurogeek Exp $
+
+*apr-util-1.4.1 (27 Dec 2011)
+
+  27 Dec 2011; Jesus Rivero <neurogeek@gentoo.org> +apr-util-1.4.1.ebuild,
+  metadata.xml:
+  Version bump. Ebuild by Arfrever.
+
+  11 Nov 2011; Markos Chandras <hwoarang@gentoo.org> -apr-util-1.3.11.ebuild:
+  Remove old ebuild
+
+  11 Nov 2011; Markos Chandras <hwoarang@gentoo.org> apr-util-1.3.12.ebuild:
+  Add static-libs USE flag. Patch by Arfrever.
+
+  29 Oct 2011; Raúl Porcel <armin76@gentoo.org> apr-util-1.3.12.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #385859
+
+  24 Oct 2011; Markus Meier <maekke@gentoo.org> apr-util-1.3.12.ebuild:
+  x86 stable, bug #385859
+
+  23 Oct 2011; Markus Meier <maekke@gentoo.org> apr-util-1.3.12.ebuild:
+  arm stable, bug #385859
+
+  22 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> apr-util-1.3.12.ebuild:
+  ppc/ppc64 stable wrt #385859
+
+  19 Oct 2011; Jeroen Roovers <jer@gentoo.org> apr-util-1.3.12.ebuild:
+  Stable for HPPA (bug #385859).
+
+  19 Oct 2011; Tony Vroon <chainsaw@gentoo.org> apr-util-1.3.12.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo & Ian
+  "idella4" Delaney in security bug #385859.
+
+  09 Sep 2011; Tomáš Chvátal <scarabeus@gentoo.org> apr-util-1.3.12.ebuild:
+  Drop the sqlite2 useflag, keep only sqlite3 around.
 
 *apr-util-1.3.12 (29 Jul 2011)
 
