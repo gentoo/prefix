@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.42.0.ebuild,v 1.6 2011/07/15 16:27:59 mattst88 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.46.1-r1.ebuild,v 1.7 2012/01/08 11:42:28 hwoarang Exp $
 
 EAPI="2"
 
@@ -59,7 +59,7 @@ pkg_setup() {
 	fi
 
 	if use test ; then
-		CHECKREQS_DISK_BUILD="1024"
+		CHECKREQS_DISK_BUILD="15G"
 		check_reqs
 
 		ewarn "The tests may take several hours on a recent machine"
@@ -98,18 +98,20 @@ src_prepare() {
 	#epatch "${FILESDIR}"/${PN}-1.41.0-solaris-namespace-clash.patch
 
 	epatch "${FILESDIR}/remove-toolset-${PV}.patch"
+	epatch "${FILESDIR}/${PN}-1.45.0-lambda_bind.patch"
 
-	 # bug 291660
-	epatch "${FILESDIR}/boost-${PV}-parameter-needs-python.patch"
+	# Compile against python 3.2. Bug #367245
+	epatch "${FILESDIR}"/${P}-python32.patch
 
 	# This enables building the boost.random library with /dev/urandom support
 	if [[ -e /dev/urandom ]] ; then
-		mkdir -p libs/random/build
-		cp "${FILESDIR}/random-Jamfile" libs/random/build/Jamfile.v2
-		# yeah, we WANT it to work on non-Linux too
-		sed -i -e 's/#if defined(__linux__) || defined (__FreeBSD__)/#if 1/' \
-			libs/random/random_device.cpp || die
+		mkdir -p libs/random/build || die
+		cp "${FILESDIR}/random-Jamfile-${PV}" libs/random/build/Jamfile.v2 || die
 	fi
+
+	# Ensure that the include dir and the libraries always have X_Y in their name if the boost version is X.Y.Z.
+	# By default the build system changes this to X_Y_Z if Z > 0, which breaks eselect-boost and some ebuilds.
+	epatch "${FILESDIR}/point_release_naming_fix.patch"
 }
 
 src_configure() {
@@ -176,11 +178,12 @@ __EOF__
 	# for more infomration.
 
 	use icu && OPTIONS="-sICU_PATH=${EPREFIX}/usr"
+	use icu || OPTIONS="--disable-icu"
 	use mpi || OPTIONS="${OPTIONS} --without-mpi"
 	use python || OPTIONS="${OPTIONS} --without-python"
 
 	# https://svn.boost.org/trac/boost/attachment/ticket/2597/add-disable-long-double.patch
-	if use sparc || { use mips && [[ ${ABI} = "o32" ]]; } || use hppa || use arm || use x86-fbsd || use sh; then
+	if use sparc || use mips || use hppa || use arm || use x86-fbsd || use sh; then
 		OPTIONS="${OPTIONS} --disable-long-double"
 	fi
 
@@ -306,12 +309,13 @@ src_install () {
 		dohtml \
 			-A pdf,txt,cpp,hpp \
 			*.{htm,html,png,css} \
-			-r doc more people wiki || die
+			-r doc || die
 		dohtml \
 			-A pdf,txt \
 			-r tools || die
 		insinto /usr/share/doc/${PF}/html
 		doins -r libs || die
+		doins -r more || die
 
 		# To avoid broken links
 		insinto /usr/share/doc/${PF}/html
