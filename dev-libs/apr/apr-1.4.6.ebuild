@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.4.5.ebuild,v 1.8 2011/11/11 19:17:50 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.4.6.ebuild,v 1.1 2012/02/28 08:08:16 idl0r Exp $
 
 EAPI="4"
 
@@ -14,7 +14,6 @@ LICENSE="Apache-2.0"
 SLOT="1"
 KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc elibc_FreeBSD older-kernels-compatibility static-libs +urandom +uuid"
-RESTRICT="test"
 
 # NOTE: most UNIX systems have uuid functionality in their libc
 RDEPEND="uuid? (
