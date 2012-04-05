@@ -824,6 +824,11 @@ bootstrap_patch() {
 	bootstrap_gnu patch 2.6.1
 }
 
+# needed for OSX 10.6.x
+bootstrap_patch259() {
+	bootstrap_gnu patch 2.5.9
+}
+
 bootstrap_patch254() {
 	bootstrap_gnu patch 2.5.4
 }
