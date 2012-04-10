@@ -116,10 +116,11 @@ enewuser() {
 		die "Cannot call enewuser without a username"
 	fi
 
-	# in Prefix Portage, we may be unprivileged, such that we can't handle this
+	# in Gentoo Prefix, we may be unprivileged, such that we can't handle this
 	rootuid=$(python -c 'from portage.const import rootuid; print rootuid')
 	if [[ ${rootuid} != 0 ]] ; then
-		ewarn "'enewuser()' disabled in Prefixed Portage with non-root user"
+		ewarn "'enewuser()'  disabled in Gentoo Prefix with non-root user (by design)"
+		ewarn "    User: '$euser' not created"
 		return 0
 	fi
 
@@ -283,10 +284,11 @@ enewgroup() {
 		die "Cannot call enewgroup without a group"
 	fi
 
-	# in Prefix Portage, we may be unprivileged, such that we can't handle this
+	# in Gentoo Prefix, we may be unprivileged, such that we can't handle this
 	rootuid=$(python -c 'from portage.const import rootuid; print rootuid')
 	if [[ ${rootuid} != 0 ]] ; then
-		ewarn "'enewgroup()' disabled in Prefixed Portage with non root user"
+		ewarn "'enewgroup()' disabled in Gentoo Prefix with non-root user (by design)"
+		ewarn "    Group: '$egroup' not created"
 		return 0
 	fi
 
