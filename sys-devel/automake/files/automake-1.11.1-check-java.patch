@@ -1,0 +1,27 @@
+should be in upstream git now
+
+https://bugs.gentoo.org/362323
+http://debbugs.gnu.org/cgi/bugreport.cgi?bug=8234
+
+diff --git a/automake.in b/automake.in
+index d74730d..a8ec749 100755
+--- a/automake.in
++++ b/automake.in
+@@ -5121,8 +5121,14 @@ sub handle_java
+ 	$dir = $curs;
+       }
+ 
+-
+-    push (@all, 'class' . $dir . '.stamp');
++    if ($dir eq 'check')
++      {
++        push (@check, "class$dir.stamp");
++      }
++    else
++      {
++        push (@all, "class$dir.stamp");
++      }
+ }
+ 
+ 
+

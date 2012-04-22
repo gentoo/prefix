@@ -1,11 +1,11 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.9.6-r3.ebuild,v 1.7 2010/03/13 19:31:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.9.6-r3.ebuild,v 1.8 2012/01/19 20:55:45 slyfox Exp $
 
 inherit eutils
 
 DESCRIPTION="Used to generate Makefile.in from Makefile.am"
-HOMEPAGE="http://sources.redhat.com/automake/"
+HOMEPAGE="http://www.gnu.org/software/automake/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"

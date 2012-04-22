@@ -1,6 +1,53 @@
 # ChangeLog for sys-devel/automake
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.151 2010/05/31 19:20:31 josejx Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.160 2012/04/13 22:33:58 vapier Exp $
+
+*automake-1.11.5 (13 Apr 2012)
+
+  13 Apr 2012; Mike Frysinger <vapier@gentoo.org> +automake-1.11.5.ebuild:
+  Version bump.
+
+*automake-1.11.4 (03 Apr 2012)
+
+  03 Apr 2012; Mike Frysinger <vapier@gentoo.org> +automake-1.11.4.ebuild:
+  Version bump.
+
+*automake-1.11.3 (05 Feb 2012)
+
+  05 Feb 2012; Mike Frysinger <vapier@gentoo.org> +automake-1.11.3.ebuild:
+  Version bump.
+
+  19 Jan 2012; Sergei Trofimovich <slyfox@gentoo.org> automake-1.10.3.ebuild,
+  automake-1.11.1-r1.ebuild, automake-1.11.1.ebuild, automake-1.11.2-r1.ebuild,
+  automake-1.11.2.ebuild, automake-1.4_p6-r1.ebuild, automake-1.5-r1.ebuild,
+  automake-1.6.3-r1.ebuild, automake-1.7.9-r2.ebuild, automake-1.8.5-r4.ebuild,
+  automake-1.9.6-r3.ebuild, automake-9999.ebuild:
+  Change HOMEPAGE="http://sources.redhat.com/automake/" (404) to
+  "http://www.gnu.org/software/automake/".
+
+*automake-1.11.2-r1 (19 Jan 2012)
+
+  19 Jan 2012; Sergei Trofimovich <slyfox@gentoo.org>
+  +automake-1.11.2-r1.ebuild,
+  +files/automake-1.11.2-fix-pkglibexec_SCRIPTS.patch:
+  Add upstream fix by Dennis Schridde for pkglibexec_SCRIPTS handling.
+
+  19 Jan 2012; Mike Frysinger <vapier@gentoo.org> automake-9999.ebuild:
+  Execute bootstrap script as pointed out by Sergei Trofimovich.
+
+*automake-1.11.2 (31 Dec 2011)
+
+  31 Dec 2011; Mike Frysinger <vapier@gentoo.org> +automake-1.11.2.ebuild:
+  Version bump.
+
+  21 Sep 2011; Michał Górny <mgorny@gentoo.org> automake-9999.ebuild:
+  Migrate to git-2.
+
+*automake-1.11.1-r1 (08 Apr 2011)
+
+  08 Apr 2011; Mike Frysinger <vapier@gentoo.org> +automake-1.11.1-r1.ebuild,
+  +files/automake-1.11.1-check-java.patch:
+  Add fix by Petteri Räty for java handling #362323.
 
   31 May 2010; Joseph Jezak <josejx@gentoo.org> automake-1.11.1.ebuild:
   Marked ppc64 stable for bug #295947.
