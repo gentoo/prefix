@@ -21,9 +21,9 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linu
 RDEPEND="virtual/libiconv
 	virtual/libffi
 	sys-libs/zlib
-	|| (
+	!kernel_Darwin? ( || (
 		>=dev-libs/elfutils-0.142
-		>=dev-libs/libelf-0.8.11 )
+		>=dev-libs/libelf-0.8.11 ) )
 	x86-interix? ( sys-libs/itx-bind )
 	xattr? ( sys-apps/attr )
 	fam? ( virtual/fam )
