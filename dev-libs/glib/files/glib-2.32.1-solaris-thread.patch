@@ -1,3 +1,18 @@
+* Michael Haubenwallner
+  Thing is, one really should not link against both libthread and
+  libpthread, but use '-pthread' gcc-flag or '-mt' suncc-flag instead.
+
+  Don't know where glib-folks have information from found in that
+  comment.
+
+* Fabian Groffen
+  patch both configure and configure.in (in the right order) such that a
+  sudden autoreconf doesn't wipe out our changes.
+
+Multiple reports for these, but unfortunately all ignored/unfixed, e.g.:
+http://mail-index.netbsd.org/pkgsrc-users/2010/12/02/msg013239.html
+http://mail.gnome.org/archives/gtk-devel-list/2007-July/msg00060.html
+
 --- configure.ac
 +++ configure.ac
 @@ -1984,7 +1984,7 @@

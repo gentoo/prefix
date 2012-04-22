@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.516 2012/04/19 20:29:17 ranger Exp $
 
+  22 Apr 2012; Fabian Groffen <grobian@gentoo.org>
+  files/glib-2.32.1-solaris-thread.patch:
+  Readd comments from older patch
+
   19 Apr 2012; Brent Baude <ranger@gentoo.org> glib-2.30.3.ebuild:
   Marking glib-2.30.3 ppc64 stable for bug 410611
 
