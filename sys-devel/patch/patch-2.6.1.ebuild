@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/patch-2.6.1.ebuild,v 1.3 2010/01/22 20:15:54 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/patch-2.6.1.ebuild,v 1.11 2012/01/25 18:25:49 ssuominen Exp $
 
 inherit flag-o-matic eutils
 
@@ -35,12 +35,12 @@ src_compile() {
 
 	local myconf=""
 	[[ ${USERLAND} == "BSD" ]] && use !prefix && myconf="--program-prefix=g"
-	econf ${myconf} || die
+	econf ${myconf}
 
-	emake || die "emake failed"
+	emake || die
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog NEWS README
 }
