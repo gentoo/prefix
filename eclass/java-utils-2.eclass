@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.149 2011/12/27 17:55:12 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.150 2012/03/13 10:05:46 sera Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -113,6 +113,19 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 # @example Use sun-jdk-1.5 to emerge foo
 #	JAVA_PKG_FORCE_VM=sun-jdk-1.5 emerge foo
 #
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# @variable-external JAVA_PKG_WANT_BUILD_VM
+#
+# A list of VM handles to choose a build VM from. If the list contains the
+# currently active VM use that one, otherwise step through the list till a
+# usable/installed VM is found.
+#
+# This allows to use an explicit list of JDKs in DEPEND instead of a virtual.
+# Users of this variable must make sure at least one of the listed handles is
+# covered by DEPEND.
+# Requires JAVA_PKG_WANT_SOURCE and JAVA_PKG_WANT_TARGET to be set as well. 
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
@@ -2545,7 +2558,8 @@ java-pkg_setup-vm() {
 # ------------------------------------------------------------------------------
 # @internal-function java-pkg_needs-vm
 #
-# Does the current package depend on virtual/jdk?
+# Does the current package depend on virtual/jdk or does it set
+# JAVA_PKG_WANT_BUILD_VM?
 #
 # @return 0 - Package depends on virtual/jdk
 # @return 1 - Package does not depend on virtual/jdk
@@ -2556,6 +2570,8 @@ java-pkg_needs-vm() {
 	if [[ -n "$(echo ${JAVA_PKG_NV_DEPEND:-${DEPEND}} | sed -e '\:virtual/jdk:!d')" ]]; then
 		return 0
 	fi
+
+	[[ -n "${JAVA_PKG_WANT_BUILD_VM}" ]] && return 0
 
 	return 1
 }
@@ -2594,6 +2610,41 @@ java-pkg_get-vm-version() {
 }
 
 # ------------------------------------------------------------------------------
+# @internal-function java-pkg_build-vm-from-handle
+#
+# Selects a build vm from a list of vm handles. First checks for the system-vm
+# beeing usable, then steps through the listed handles till a suitable vm is
+# found.
+#
+# @return - VM handle of an available JDK
+# ------------------------------------------------------------------------------
+java-pkg_build-vm-from-handle() {
+	debug-print-function ${FUNCNAME} "$*"
+
+	local vm
+	vm=$(java-pkg_get-current-vm)
+	if [[ $? != 0 ]]; then
+		eerror "${FUNCNAME}: Failed to get active vm"
+		return 1
+	fi
+
+	if has ${vm} ${JAVA_PKG_WANT_BUILD_VM}; then
+		echo ${vm}
+		return 0
+	fi
+
+	for vm in ${JAVA_PKG_WANT_BUILD_VM}; do
+		if java-config-2 --select-vm=${vm} 2>/dev/null; then
+			echo ${vm}
+			return 0
+		fi
+	done
+
+	eerror "${FUNCNAME}: No vm found for handles: ${JAVA_PKG_WANT_BUILD_VM}"
+	return 1
+}
+
+# ------------------------------------------------------------------------------
 # @internal-function java-pkg_switch-vm
 #
 # Switch VM if we're allowed to (controlled by JAVA_PKG_ALLOW_VM_CHANGE), and
@@ -2611,15 +2662,35 @@ java-pkg_switch-vm() {
 			export GENTOO_VM="${JAVA_PKG_FORCE_VM}"
 		# if we're allowed to switch the vm...
 		elif [[ "${JAVA_PKG_ALLOW_VM_CHANGE}" == "yes" ]]; then
-			debug-print "depend-java-query:  NV_DEPEND:	${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
-			GENTOO_VM="$(depend-java-query --get-vm "${JAVA_PKG_NV_DEPEND:-${DEPEND}}")"
-			if [[ -z "${GENTOO_VM}" || "${GENTOO_VM}" == "None" ]]; then
-				eerror "Unable to determine VM for building from dependencies:"
-				echo "NV_DEPEND: ${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
-				die "Failed to determine VM for building."
+			# if there is an explicit list of handles to choose from
+			if [[ -n "${JAVA_PKG_WANT_BUILD_VM}" ]]; then
+				debug-print "JAVA_PKG_WANT_BUILD_VM used: ${JAVA_PKG_WANT_BUILD_VM}"
+				GENTOO_VM=$(java-pkg_build-vm-from-handle)
+				if [[ $? != 0 ]]; then
+					eerror "${FUNCNAME}: No VM found for handles: ${JAVA_PKG_WANT_BUILD_VM}"
+					die "${FUNCNAME}: Failed to determine VM for building"
+				fi
+				# JAVA_PKG_WANT_SOURCE and JAVA_PKG_WANT_TARGET are required as
+				# they can't be deduced from handles.
+				if [[ -z "${JAVA_PKG_WANT_SOURCE}" ]]; then
+					eerror "JAVA_PKG_WANT_BUILD_VM specified but not JAVA_PKG_WANT_SOURCE"
+					die "Specify JAVA_PKG_WANT_SOURCE"
+				fi
+				if [[ -z "${JAVA_PKG_WANT_TARGET}" ]]; then
+					eerror "JAVA_PKG_WANT_BUILD_VM specified but not JAVA_PKG_WANT_TARGET"
+					die "Specify JAVA_PKG_WANT_TARGET"
+				fi
+			# otherwise determine a vm from dep string
 			else
-				export GENTOO_VM
+				debug-print "depend-java-query:  NV_DEPEND:	${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
+				GENTOO_VM="$(depend-java-query --get-vm "${JAVA_PKG_NV_DEPEND:-${DEPEND}}")"
+				if [[ -z "${GENTOO_VM}" || "${GENTOO_VM}" == "None" ]]; then
+					eerror "Unable to determine VM for building from dependencies:"
+					echo "NV_DEPEND: ${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
+					die "Failed to determine VM for building."
+				fi
 			fi
+			export GENTOO_VM
 		# otherwise just make sure the current VM is sufficient
 		else
 			java-pkg_ensure-vm-version-sufficient

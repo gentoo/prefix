@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.122 2012/02/20 02:54:21 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.130 2012/03/22 19:16:22 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -37,11 +37,13 @@ inherit eutils libtool
 # @INTERNAL
 # @DESCRIPTION:
 # CONSTANT!
-# The latest major version/slot of automake available on each arch.
-# If a newer version is stable on any arch, and is NOT reflected in this list,
+# The latest major version/slot of automake available on each arch.  #312315
+# If a newer slot is stable on any arch, and is NOT reflected in this list,
 # then circular dependencies may arise during emerge @system bootstraps.
 # Do NOT change this variable in your ebuilds!
-_LATEST_AUTOMAKE='1.11'
+# If you want to force a newer minor version, you can specify the correct
+# WANT value by using a colon:  <PV>[:<WANT_AUTOMAKE>]
+_LATEST_AUTOMAKE=( 1.11.1:1.11 )
 
 _automake_atom="sys-devel/automake"
 _autoconf_atom="sys-devel/autoconf"
@@ -50,7 +52,14 @@ if [[ -n ${WANT_AUTOMAKE} ]]; then
 		none)   _automake_atom="" ;; # some packages don't require automake at all
 		# if you change the "latest" version here, change also autotools_run_tool
 		# this MUST reflect the latest stable major version for each arch!
-		latest) _automake_atom="|| ( `printf '=sys-devel/automake-%s* ' ${_LATEST_AUTOMAKE}` )" ;;
+		latest)
+			# Use SLOT deps if we can.  For EAPI=0, we get pretty close.
+			if [[ ${EAPI:-0} != 0 ]] ; then
+				_automake_atom="|| ( `printf '>=sys-devel/automake-%s:%s ' ${_LATEST_AUTOMAKE[@]/:/ }` )"
+			else
+				_automake_atom="|| ( `printf '>=sys-devel/automake-%s ' ${_LATEST_AUTOMAKE[@]/%:*}` )"
+			fi
+			;;
 		*)      _automake_atom="=sys-devel/automake-${WANT_AUTOMAKE}*" ;;
 	esac
 	export WANT_AUTOMAKE
@@ -98,26 +107,12 @@ unset _automake_atom _autoconf_atom
 # Additional options to pass to automake during
 # eautoreconf call.
 
-# @ECLASS-VARIABLE: AT_NOEACLOCAL
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# Don't run eaclocal command if set to 'yes',
-# useful when eaclocal needs to be ran with
-# particular options
-
-# @ECLASS-VARIABLE: AT_NOEAUTOCONF
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# Don't run eautoconf command if set to 'yes',
-# useful when eautoconf needs to be ran with
-# particular options
-
 # @ECLASS-VARIABLE: AT_NOEAUTOMAKE
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# Don't run eautomake command if set to 'yes',
-# useful when eautomake needs to be ran with
-# particular options
+# Don't run eautomake command if set to 'yes'; only used to workaround
+# broken packages.  Generally you should, instead, fix the package to
+# not call AM_INIT_AUTOMAKE if it doesn't actually use automake.
 
 # @ECLASS-VARIABLE: AT_NOELIBTOOLIZE
 # @DEFAULT_UNSET
@@ -163,19 +158,17 @@ eautoreconf() {
 
 	auxdir=$(autotools_get_auxdir)
 
-	if  [[ ${AT_NOEACLOCAL} != "yes" ]]; then
-		einfo "Running eautoreconf in '${PWD}' ..."
-		[[ -n ${auxdir} ]] && mkdir -p ${auxdir}
-		eaclocal
-	fi
+	einfo "Running eautoreconf in '${PWD}' ..."
+	[[ -n ${auxdir} ]] && mkdir -p ${auxdir}
+	eaclocal
 	[[ ${CHOST} == *-darwin* ]] && g=g
 	if ${LIBTOOLIZE:-${g}libtoolize} -n --install >& /dev/null ; then
 		_elibtoolize --copy --force --install
 	else
 		_elibtoolize --copy --force
 	fi
-	[[ ${AT_NOEAUTOCONF} != "yes" ]] && eautoconf
-	[[ ${AT_NOEAUTOHEADER} != "yes" ]] && eautoheader
+	eautoconf
+	eautoheader
 	[[ ${AT_NOEAUTOMAKE} != "yes" ]] && FROM_EAUTORECONF="yes" eautomake ${AM_OPTS}
 
 	[[ ${AT_NOELIBTOOLIZE} == "yes" ]] && return 0
@@ -285,7 +278,9 @@ eautomake() {
 	done
 
 	if [[ -z ${makefile_name} ]] ; then
-		if ! grep -qs AM_INIT_AUTOMAKE configure.?? ; then
+		# Really we should just use autotools_check_macro ...
+		local am_init_automake=$(sed -n '/AM_INIT_AUTOMAKE/{s:#.*::;s:\<dnl\>.*::;p}' configure.??)
+		if [[ ${am_init_automake} != *"AM_INIT_AUTOMAKE"* ]] ; then
 			return 0
 		fi
 
@@ -349,10 +344,10 @@ autotools_env_setup() {
 	if [[ ${WANT_AUTOMAKE} == "latest" ]] &&
 		ROOT=/ has_version "sys-devel/automake"; then
 		local pv
-		for pv in ${_LATEST_AUTOMAKE} ; do
+		for pv in ${_LATEST_AUTOMAKE[@]/#*:} ; do
 			# has_version respects ROOT, but in this case, we don't want it to,
 			# thus "ROOT=/" prefix:
-			ROOT=/ has_version "=sys-devel/automake-${pv}*" && export WANT_AUTOMAKE="$pv"
+			ROOT=/ has_version "=sys-devel/automake-${pv}*" && export WANT_AUTOMAKE="${pv}"
 		done
 		[[ ${WANT_AUTOMAKE} == "latest" ]] && \
 			die "Cannot find the latest automake! Tried ${_LATEST_AUTOMAKE}"

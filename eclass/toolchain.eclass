@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.524 2012/03/04 18:46:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.533 2012/04/14 17:00:35 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -11,15 +11,15 @@ RESTRICT="strip" # cross-compilers need controlled stripping
 
 inherit eutils versionator libtool toolchain-funcs flag-o-matic gnuconfig multilib fixheadtails pax-utils prefix
 
-if [[ ${PV} == *9999* ]] ; then
+if [[ ${PV} == *_pre9999* ]] ; then
 	EGIT_REPO_URI="git://gcc.gnu.org/git/gcc.git"
 	# naming style:
-	# gcc-9999 -> master
-	# gcc-4.7_pre9999 -> 4.7 branch
-	if [[ ${PV} == *_pre9999* ]] ; then
-		EGIT_BRANCH="${PN}_${PV%_pre9999}_branch"
-		EGIT_BRANCH=${EGIT_BRANCH//./_}
-	fi
+	# gcc-4.7.1_pre9999 -> gcc-4_7-branch
+	#  Note that the micro version is required or lots of stuff will break.
+	#  To checkout master set gcc_LIVE_BRANCH="master" in the ebuild before
+	#  inheriting this eclass.
+	EGIT_BRANCH="${PN}-${PV%.?_pre9999}-branch"
+	EGIT_BRANCH=${EGIT_BRANCH//./_}
 	inherit git-2
 fi
 
@@ -117,9 +117,7 @@ fi
 
 # Support upgrade paths here or people get pissed
 if use multislot ; then
-	SLOT="${CTARGET}-${GCC_CONFIG_VER}"
-elif is_crosscompile; then
-	SLOT="${CTARGET}-${GCC_BRANCH_VER}"
+	SLOT="${GCC_CONFIG_VER}"
 else
 	SLOT="${GCC_BRANCH_VER}"
 fi
@@ -176,7 +174,7 @@ if in_iuse gcj ; then
 	DEPEND+=" gcj? ( gtk? ( ${GCJ_GTK_DEPS} ) ${GCJ_DEPS} )"
 fi
 
-PDEPEND=">=sys-devel/gcc-config-1.4"
+PDEPEND=">=sys-devel/gcc-config-1.5"
 
 #----<< DEPEND >>----
 
@@ -729,14 +727,15 @@ do_gcc_rename_java_bins() {
 	done
 }
 toolchain_src_unpack() {
-	[[ ${PV} == *9999* ]] && git-2_src_unpack
-
-	export BRANDING_GCC_PKGVERSION="Gentoo ${GCC_PVR}"
-
 	[[ -z ${UCLIBC_VER} ]] && [[ ${CTARGET} == *-uclibc* ]] && die "Sorry, this version does not support uClibc"
 
-	gcc_quick_unpack
+	if [[ ${PV} == *9999* ]]; then
+		git-2_src_unpack
+	else
+		gcc_quick_unpack
+	fi
 
+	export BRANDING_GCC_PKGVERSION="Gentoo ${GCC_PVR}"
 	cd "${S}"
 
 	if ! use vanilla ; then
@@ -793,7 +792,12 @@ toolchain_src_unpack() {
 
 	gcc_version_patch
 	if tc_version_is_at_least 4.1 ; then
-		if [[ -n ${SNAPSHOT} || -n ${PRERELEASE} || -n ${GCC_SVN} ]] ; then
+		if [[ -n ${SNAPSHOT} || -n ${PRERELEASE} ]] ; then
+			# BASE-VER must be a three-digit version number
+			# followed by an optional -pre string
+			#   eg. 4.5.1, 4.6.2-pre20120213, 4.7.0-pre9999
+			# If BASE-VER differs from ${PV/_/-} then libraries get installed in
+			# the wrong directory.
 			echo ${PV/_/-} > "${S}"/gcc/BASE-VER
 		fi
 	fi
@@ -1560,7 +1564,9 @@ toolchain_src_install() {
 	# These should be symlinks
 	dodir /usr/bin
 	cd "${ED}"${BINPATH}
-	for x in cpp gcc g++ c++ g77 gcj gcjh gfortran gccgo ; do
+	# Ugh: we really need to auto-detect this list.
+	#      It's constantly out of date.
+	for x in cpp gcc g++ c++ gcov g77 gcj gcjh gfortran gccgo ; do
 		# For some reason, g77 gets made instead of ${CTARGET}-g77...
 		# this should take care of that
 		[[ -f ${x} ]] && mv ${x} ${CTARGET}-${x}

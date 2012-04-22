@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.75 2012/02/21 18:03:49 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.76 2012/04/01 19:19:40 floppym Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -154,7 +154,7 @@ ESVN_DISABLE_DEPENDENCIES="${ESVN_DISABLE_DEPENDENCIES:-}"
 # Set this variable to a non-empty value to disable the automatic updating of
 # an svn source tree. This is intended to be set outside the subversion source
 # tree by users.
-ESVN_OFFLINE="${ESVN_OFFLINE:-${ESCM_OFFLINE}}"
+ESVN_OFFLINE="${ESVN_OFFLINE:-${EVCS_OFFLINE}}"
 
 # @ECLASS-VARIABLE: ESVN_UMASK
 # @DESCRIPTION:

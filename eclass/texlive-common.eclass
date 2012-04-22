@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.16 2011/08/29 01:28:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.17 2012/03/30 13:50:39 aballier Exp $
 
 # @ECLASS: texlive-common.eclass
 # @MAINTAINER:
@@ -119,9 +119,7 @@ dobin_texmf_scripts() {
 	while [ $# -gt 0 ] ; do
 		local trg=$(basename ${1} | sed 's,\.[^/]*$,,' | tr '[:upper:]' '[:lower:]')
 		einfo "Installing ${1} as ${trg} bin wrapper"
-		if [ "${PV#2008}" = "${PV}" -a "${PV#2009}" = "${PV}" ] ; then
-			[ -x "${ED}/usr/share/${1}" ] || die "Trying to install a non existing or non executable symlink to /usr/bin: ${1}"
-		fi
+		[ -x "${ED}/usr/share/${1}" ] || die "Trying to install a non existing or non executable symlink to /usr/bin: ${1}"
 		dosym ../share/${1} /usr/bin/${trg} || die "failed to install ${1} as $trg"
 		shift
 	done

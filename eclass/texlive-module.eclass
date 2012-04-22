@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.60 2011/08/29 01:28:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.61 2012/03/22 12:03:54 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -27,21 +27,17 @@
 # @DESCRIPTION:
 # The list of packages that will be installed. This variable will be expanded to
 # SRC_URI:
-#
-# For TeX Live 2008: foo -> texlive-module-foo-${PV}.tar.lzma
-# For TeX Live 2009: foo -> texlive-module-foo-${PV}.tar.xz
+# foo -> texlive-module-foo-${PV}.tar.xz
 
 # @ECLASS-VARIABLE: TEXLIVE_MODULE_DOC_CONTENTS
 # @DESCRIPTION:
 # The list of packages that will be installed if the doc useflag is enabled.
-# Expansion to SRC_URI is the same as for TEXLIVE_MODULE_CONTENTS. This is only
-# valid for TeX Live 2008 and later.
+# Expansion to SRC_URI is the same as for TEXLIVE_MODULE_CONTENTS.
 
 # @ECLASS-VARIABLE: TEXLIVE_MODULE_SRC_CONTENTS
 # @DESCRIPTION:
 # The list of packages that will be installed if the source useflag is enabled.
-# Expansion to SRC_URI is the same as for TEXLIVE_MODULE_CONTENTS. This is only
-# valid for TeX Live 2008 and later.
+# Expansion to SRC_URI is the same as for TEXLIVE_MODULE_CONTENTS.
 
 # @ECLASS-VARIABLE: TEXLIVE_MODULE_BINSCRIPTS
 # @DESCRIPTION:
@@ -68,17 +64,10 @@ COMMON_DEPEND=">=app-text/texlive-core-${TL_PV:-${PV}}"
 
 IUSE="source"
 
-# TeX Live 2008 was providing .tar.lzma files of CTAN packages.
-# For 2009 and 2010 they are now .tar.xz
-if [ "${PV#2008}" != "${PV}" ]; then
-	PKGEXT=tar.lzma
-	DEPEND="${COMMON_DEPEND}
-		|| ( app-arch/xz-utils app-arch/lzma-utils )"
-else
-	PKGEXT=tar.xz
-	DEPEND="${COMMON_DEPEND}
-		app-arch/xz-utils"
-fi
+# Starting from TeX Live 2009, upstream provides .tar.xz modules.
+PKGEXT=tar.xz
+DEPEND="${COMMON_DEPEND}
+	app-arch/xz-utils"
 
 for i in ${TEXLIVE_MODULE_CONTENTS}; do
 	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.${PKGEXT}"
@@ -105,8 +94,6 @@ RDEPEND="${COMMON_DEPEND}"
 [ -z "${PN##*documentation*}" ] || IUSE="${IUSE} doc"
 
 S="${WORKDIR}"
-
-if [ "${PV#2008}" = "${PV}" ]; then
 
 # @FUNCTION: texlive-module_src_unpack
 # @DESCRIPTION:
@@ -143,8 +130,6 @@ texlive-module_src_unpack() {
 		mv "${i}" "${RELOC_TARGET}"/$(dirname "${i}") || die "failed to relocate ${i} to ${RELOC_TARGET}/$(dirname ${i})"
 	done
 }
-
-fi
 
 # @FUNCTION: texlive-module_add_format
 # @DESCRIPTION:
@@ -278,7 +263,7 @@ texlive-module_src_compile() {
 			AddHyphen)
 				texlive-module_make_language_def_lines "$parameter"
 				texlive-module_make_language_dat_lines "$parameter"
-				[ "${PV#2008}" = "${PV}" -a "${PV#2009}" = "${PV}" ] && texlive-module_make_language_lua_lines "$parameter"
+				texlive-module_make_language_lua_lines "$parameter"
 				;;
 			AddFormat)
 				texlive-module_add_format "$parameter";;
@@ -379,8 +364,4 @@ texlive-module_pkg_postrm() {
 	etexmf-update
 }
 
-if [ "${PV#2008}" != "${PV}" ]; then
-EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm
-else
 EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm
-fi

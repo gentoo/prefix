@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.274 2011/12/28 13:38:05 psomas Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.275 2012/03/17 00:01:59 mpagano Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -207,14 +207,10 @@ detect_version() {
 	if [[ ${#OKV_ARRAY[@]} -lt 3 ]]; then
 		KV_PATCH_ARR=(${KV_PATCH//\./ })
 
-		# at this point 080811, Linus is putting 3.1 kernels in 3.0 directory
-		# revisit when 3.1 is released
-		if [[ ${KV_PATCH} -gt 0 ]]; then
-			KERNEL_BASE_URI="mirror://kernel/linux/kernel/v${KV_MAJOR}.$((${KV_PATCH_ARR} - 1))"
-		else
-			KERNEL_BASE_URI="mirror://kernel/linux/kernel/v${KV_MAJOR}.${KV_PATCH_ARR}"
-		fi
-		# KERNEL_BASE_URI="mirror://kernel/linux/kernel/v${KV_MAJOR}.${KV_PATCH_ARR}"
+		# at this point 031412, Linus is putting all 3.x kernels in a 
+		# 3.x directory, may need to revisit when 4.x is released
+		KERNEL_BASE_URI="mirror://kernel/linux/kernel/v${KV_MAJOR}.x"
+
 		[[ -n "${K_LONGTERM}" ]] &&
 			KERNEL_BASE_URI="${KERNEL_BASE_URI}/longterm/v${KV_MAJOR}.${KV_PATCH_ARR}"
 	else
@@ -346,7 +342,7 @@ detect_version() {
 				OKV="${KV_MAJOR}.$((${KV_PATCH_ARR} - 1))"
 			fi
 			KERNEL_URI="${KERNEL_BASE_URI}/testing/patch-${CKV//_/-}.bz2
-						${KERNEL_BASE_URI}/testing/linux-${OKV}.tar.bz2"
+						${KERNEL_BASE_URI}/linux-${OKV}.tar.bz2"
 			UNIPATCH_LIST_DEFAULT="${DISTDIR}/patch-${CKV//_/-}.bz2"
 		fi
 
