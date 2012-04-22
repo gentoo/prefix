@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.2.ebuild,v 1.13 2012/03/27 03:16:18 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.2-r1.ebuild,v 1.6 2012/03/27 03:16:18 tetromino Exp $
 
 EAPI="4"
 PYTHON_DEPEND="utils? 2"
@@ -67,6 +67,9 @@ src_prepare() {
 
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.26.1-solaris-thread.patch
+
+	# Fix from upstream for building with C++ compilers.
+	epatch "${FILESDIR}"/${P}-missing-decls.patch
 
 	# Don't fail gio tests when ran without userpriv, upstream bug 552912
 	# This is only a temporary workaround, remove as soon as possible
@@ -247,12 +250,11 @@ src_install() {
 }
 
 src_test() {
-	gnome2_environment_reset
-
 	unset DBUS_SESSION_BUS_ADDRESS
 	export XDG_CONFIG_DIRS="${EPREFIX}"/etc/xdg
 	export XDG_DATA_DIRS="${EPREFIX}"/usr/local/share:"${EPREFIX}"/usr/share
 	export G_DBUS_COOKIE_SHA1_KEYRING_DIR="${T}/temp"
+	export XDG_DATA_HOME="${T}"
 	unset GSETTINGS_BACKEND # bug 352451
 
 	# Related test is a bit nitpicking
