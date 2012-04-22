@@ -1,6 +1,41 @@
 # ChangeLog for sys-devel/autoconf
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.157 2010/10/12 11:33:55 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.166 2011/09/21 08:36:01 mgorny Exp $
+
+  21 Sep 2011; Michał Górny <mgorny@gentoo.org> autoconf-9999.ebuild:
+  Migrate to git-2.
+
+  22 Jul 2011; Jeroen Roovers <jer@gentoo.org> autoconf-2.67.ebuild,
+  autoconf-2.68.ebuild:
+  Stable for HPPA (bug #372601).
+
+  17 Jul 2011; Raúl Porcel <armin76@gentoo.org> autoconf-2.67.ebuild,
+  autoconf-2.68.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #372601
+
+  17 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> autoconf-2.67.ebuild,
+  autoconf-2.68.ebuild:
+  ppc64 stable wrt #372601
+
+  10 Jul 2011; Markus Meier <maekke@gentoo.org> autoconf-2.67.ebuild,
+  autoconf-2.68.ebuild:
+  arm stable, bug #372601
+
+  02 Jul 2011; Markos Chandras <hwoarang@gentoo.org> autoconf-2.67.ebuild,
+  autoconf-2.68.ebuild:
+  Stable on amd64 wrt bug #372601
+
+  26 Jun 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> autoconf-2.67.ebuild,
+  autoconf-2.68.ebuild:
+  x86 stable wrt bug #372601
+
+  24 Jun 2011; Brent Baude <ranger@gentoo.org> autoconf-2.67.ebuild,
+  autoconf-2.68.ebuild:
+  Marking autoconf-2.6[7,8] ppc for bug 372601
+
+  15 Mar 2011; Mike Frysinger <vapier@gentoo.org> autoconf-2.13.ebuild:
+  Force C locale when running configure to work around old bugs fixed in newer
+  versions of autoconf #351982 by Priit Laes.
 
   12 Oct 2010; Raúl Porcel <armin76@gentoo.org> autoconf-2.65-r1.ebuild:
   sparc stable wrt #336381
