@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.ebuild,v 1.5 2011/06/27 09:19:45 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.2-r1.ebuild,v 1.1 2012/03/21 16:27:07 floppym Exp $
 
 EAPI="3"
 WANT_AUTOMAKE="none"
@@ -29,7 +29,7 @@ else
 		mirror://gentoo/python-gentoo-patches-${MY_PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
 fi
 
-LICENSE="PSF-2.2"
+LICENSE="PSF-2"
 SLOT="3.2"
 PYTHON_ABI="${SLOT}"
 # this ebuild isn't ready/verified/up-to-date at all
@@ -111,6 +111,11 @@ src_prepare() {
 	fi
 
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" epatch "${patchset_dir}"
+	# https://bugs.gentoo.org/show_bug.cgi?id=343721
+	epatch "${FILESDIR}"/python-3-distutils-egg-utf8.patch
+
+	# Linux-3 compat. Bug #374579 (upstream issue12571)
+	cp -r "${S}/Lib/plat-linux2" "${S}/Lib/plat-linux3" || die
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -122,6 +127,8 @@ src_prepare() {
 		Modules/Setup.dist \
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
+	# The setup.py file hardcodes /usr/lib64!
+	sed -i -e "s:/lib64:/$(get_libdir):g" setup.py || die
 
 	if ! use wininst; then
 		# Remove Microsoft Windows executables.
@@ -200,7 +207,8 @@ src_prepare() {
 		sed -e "s/\(-DSVNVERSION=\).*\( -o\)/\1\\\\\"${ESVN_REVISION}\\\\\"\2/" -i Makefile.pre.in || die "sed failed"
 	fi
 
-	eautoreconf
+	eautoconf
+	eautoheader
 }
 
 src_configure() {
@@ -501,6 +509,21 @@ EOF
 
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
+
+	if use kernel_linux; then
+		if [ -d "${ED}$(python_get_libdir)/plat-linux2" ];then
+			cp -r "${ED}$(python_get_libdir)/plat-linux2" \
+				"${ED}$(python_get_libdir)/plat-linux3" || die "copy plat-linux failed"
+		else
+			cp -r "${ED}$(python_get_libdir)/plat-linux3" \
+				"${ED}$(python_get_libdir)/plat-linux2" || die "copy plat-linux failed"
+		fi
+	fi
+
+	sed \
+		-e "s:@PYDOC_PORT_VARIABLE@:PYDOC${SLOT/./_}_PORT:" \
+		-e "s:@PYDOC@:pydoc${SLOT}:" \
+		-i "${ED}etc/conf.d/pydoc-${SLOT}" "${ED}etc/init.d/pydoc-${SLOT}" || die "sed failed"
 
 	# Remove .py[co] files from the installed image,
 	# python_mod_optimize will (re)generate them.  Removing

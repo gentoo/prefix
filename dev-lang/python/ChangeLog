@@ -1,6 +1,33 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.570 2012/02/18 16:09:29 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.576 2012/04/12 13:41:35 djc Exp $
+
+*python-2.7.3 (12 Apr 2012)
+
+  12 Apr 2012; Dirkjan Ochtman <djc@gentoo.org> +python-2.7.3.ebuild:
+  Version bump to 2.7.3, addressing bugs 368207, 301691.
+
+*python-3.1.4-r4 (21 Mar 2012)
+*python-3.2.2-r1 (21 Mar 2012)
+
+  21 Mar 2012; Mike Gilbert <floppym@gentoo.org>
+  +files/python-3-distutils-egg-utf8.patch, +python-3.1.4-r4.ebuild,
+  +python-3.2.2-r1.ebuild:
+  Resolve distutils issue with unicode characters in egg-info files. Patch
+  backported by mgorny. Bug 343721.
+
+  07 Mar 2012; Brent Baude <ranger@gentoo.org> python-3.2.2.ebuild:
+  Marking python-3.2.2 ppc for bug 403875
+
+  05 Mar 2012; Jeff Horelick <jdhore@gentoo.org> python-3.2.2.ebuild:
+  marked x86 per bug 403875
+
+  05 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> python-2.5.4-r4.ebuild:
+  Remove obsolete sys-devel/gcc[libffi] built_with_use check wrt #406927 by
+  Michael Weber
+
+  03 Mar 2012; Brent Baude <ranger@gentoo.org> python-3.2.2.ebuild:
+  Marking python-3.2.2 ppc64 for bug 403875
 
   01 Jan 2012; Fabian Groffen <grobian@gentoo.org> python-2.7.2-r3.ebuild:
   Drop -u PyMac_Error from LINKFORSHARED since it assumes a framework build,
