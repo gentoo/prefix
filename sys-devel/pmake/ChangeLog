@@ -1,6 +1,30 @@
 # ChangeLog for sys-devel/pmake
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.37 2009/09/23 20:42:21 patrick Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.44 2011/07/11 19:02:09 aballier Exp $
+
+  11 Jul 2011; Alexis Ballier <aballier@gentoo.org> -pmake-1.98.ebuild,
+  -pmake-1.111.1-r1.ebuild, -files/pmake-1.111.1-obsd-inttypes.patch:
+  remove old
+
+  10 Jul 2011; Raúl Porcel <armin76@gentoo.org> pmake-1.111.3.1.ebuild:
+  alpha/ia64/sparc stable wrt #367891
+
+  10 Jul 2011; Markos Chandras <hwoarang@gentoo.org> pmake-1.111.3.1.ebuild:
+  Stable on amd64 wrt bug #367891
+
+  10 Jul 2011; Markus Meier <maekke@gentoo.org> pmake-1.111.3.1.ebuild:
+  arm stable, bug #367891
+
+  09 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> pmake-1.111.3.1.ebuild:
+  ppc/ppc64 stable wrt #367891
+
+  08 Jul 2011; Thomas Kahle <tomka@gentoo.org> pmake-1.111.3.1.ebuild:
+  x86 stable per bug 367891
+
+*pmake-1.111.3.1 (07 Jul 2011)
+
+  07 Jul 2011; Alexis Ballier <aballier@gentoo.org> +pmake-1.111.3.1.ebuild:
+  bump to latest debian patchset, fix bug #367891
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> pmake-1.98.ebuild:
   Remove virtual/libc

@@ -1,12 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/pmake-1.111.1.ebuild,v 1.8 2008/02/29 03:23:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/pmake-1.111.3.1.ebuild,v 1.6 2011/07/10 14:29:24 armin76 Exp $
 
 inherit eutils toolchain-funcs versionator
 
 MY_P="${PN}-$(get_version_component_range 1-2)"
 DEBIAN_SOURCE="${PN}_$(get_version_component_range 1-2).orig.tar.gz"
-DEBIAN_PATCH="${PN}_$(replace_version_separator 2 '-').diff.gz"
+DEBIAN_PATCH="${PN}_$(replace_version_separator 2 '-').debian.tar.gz"
 
 DESCRIPTION="BSD build tool to create programs in parallel. Debian's version of NetBSD's make"
 HOMEPAGE="http://www.netbsd.org/"
@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
-RDEPEND="!sys-devel/bmake"
+RDEPEND=""
 DEPEND=""
 
 S="${WORKDIR}/${PN}"
@@ -27,18 +27,18 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${WORKDIR}/${DEBIAN_PATCH/.gz/}"
+	EPATCH_FORCE="yes" \
+		EPATCH_OPTS="-g0 -E --no-backup-if-mismatch -p1" \
+		EPATCH_SUFFIX="diff" \
+		epatch "${WORKDIR}/debian/patches"
 
 	# pmake makes the assumption that . and .. are the first two
 	# entries in a directory, which doesn't always appear to be the
 	# case on ext3...  (05 Apr 2004 agriffis)
 	epatch "${FILESDIR}/${PN}-1.98-skipdots.patch"
 
-	# Add inttypes.h header on OpenBSD
-	epatch "${FILESDIR}/${P}-obsd-inttypes.patch"
-
-	# Clean up headers to reduce warnings
-	sed -i -e 's|^#endif.*|#endif|' *.h */*.h
+	# Don't ignore ldflags
+	epatch "${FILESDIR}/${PN}-1.111.1-ldflags.patch"
 }
 
 src_compile() {
@@ -52,8 +52,11 @@ src_compile() {
 		-DMACHINE=\\\"gentoo\\\" -DMACHINE_ARCH=\\\"$(tc-arch-kernel)\\\" \
 		-D_PATH_DEFSHELLDIR=\\\"${EPREFIX}/bin\\\" \
 		-D_PATH_DEFSYSPATH=\\\"${EPREFIX}/usr/share/mk\\\""
+	if [[ "${USERLAND}" == "GNU" ]]; then
+		CFLAGS="${CFLAGS} -D_PATH_DEFSYSPATH=\\\"${EPREFIX}/usr/share/mk/${PN}\\\""
+	fi
 
-	make -f Makefile.boot \
+	emake -f Makefile.boot \
 		CC="$(tc-getCC)" \
 		CFLAGS="${CFLAGS}" \
 		|| die "make failed"
@@ -62,7 +65,7 @@ src_compile() {
 src_install() {
 	# Don't install these on BSD, else they conflict
 	if [[ "${USERLAND}" == "GNU" ]]; then
-		insinto /usr/share/mk
+		insinto /usr/share/mk/${PN}
 		doins mk/*
 	fi
 
