@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.0.1-r5.ebuild,v 1.8 2011/12/22 16:43:20 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.0.1-r6.ebuild,v 1.8 2012/03/15 02:29:18 ssuominen Exp $
 
 EAPI=4
 inherit eutils libtool toolchain-funcs autotools
@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/expat/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="elibc_FreeBSD examples static-libs"
+IUSE="elibc_FreeBSD examples static-libs unicode"
 
 src_prepare() {
 	epatch \
@@ -39,23 +39,35 @@ src_prepare() {
 src_configure() {
 	local myconf="$(use_enable static-libs static)"
 
-	local d
-	for d in build buildu buildw; do
-		pushd "${S}"-${d}
-		[[ ${d} == buildu ]] && export GENTOO_CPPFLAGS="-UXML_UNICODE"
-		[[ ${d} == buildw ]] && export GENTOO_CPPFLAGS="-UXML_UNICODE -DXML_UNICODE_WCHAR_T"
-		CPPFLAGS="${CPPFLAGS} ${GENTOO_CPPFLAGS}" ECONF_SOURCE="${S}" econf ${myconf}
-		popd
-	done
+	pushd "${S}"-build >/dev/null
+	ECONF_SOURCE="${S}" econf ${myconf}
+	popd >/dev/null
+
+	if use unicode; then
+		pushd "${S}"-buildu >/dev/null
+		CPPFLAGS="${CPPFLAGS} -DXML_UNICODE" ECONF_SOURCE="${S}" econf ${myconf}
+		popd >/dev/null
+
+		pushd "${S}"-buildw >/dev/null
+		CFLAGS="${CFLAGS} -fshort-wchar" CPPFLAGS="${CPPFLAGS} -DXML_UNICODE_WCHAR_T" ECONF_SOURCE="${S}" econf ${myconf}
+		popd >/dev/null
+	fi
 }
 
 src_compile() {
-	cd "${S}"-build
+	pushd "${S}"-build >/dev/null
 	emake
-	cd "${S}"-buildu
-	emake buildlib LIBRARY=libexpatu.la
-	cd "${S}"-buildw
-	emake buildlib LIBRARY=libexpatw.la
+	popd >/dev/null
+
+	if use unicode; then
+		pushd "${S}"-buildu >/dev/null
+		emake buildlib LIBRARY=libexpatu.la
+		popd >/dev/null
+
+		pushd "${S}"-buildw >/dev/null
+		emake buildlib LIBRARY=libexpatw.la
+		popd >/dev/null
+	fi
 }
 
 src_install() {
@@ -67,12 +79,19 @@ src_install() {
 		doins examples/*.c
 	fi
 
-	cd "${S}"-build
+	pushd "${S}"-build >/dev/null
 	emake install DESTDIR="${D}"
-	cd "${S}"-buildu
-	emake installlib DESTDIR="${D}" LIBRARY=libexpatu.la
-	cd "${S}"-buildw
-	emake installlib DESTDIR="${D}" LIBRARY=libexpatw.la
+	popd >/dev/null
+
+	if use unicode; then
+		pushd "${S}"-buildu >/dev/null
+		emake installlib DESTDIR="${D}" LIBRARY=libexpatu.la
+		popd >/dev/null
+
+		pushd "${S}"-buildw >/dev/null
+		emake installlib DESTDIR="${D}" LIBRARY=libexpatw.la
+		popd >/dev/null
+	fi
 
 	use static-libs || rm -f "${ED}"usr/lib*/libexpat{,u,w}.la
 

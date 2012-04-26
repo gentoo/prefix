@@ -1,6 +1,108 @@
 # ChangeLog for dev-libs/expat
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.108 2011/12/22 16:44:36 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.135 2012/04/21 12:16:46 maekke Exp $
+
+  21 Apr 2012; Markus Meier <maekke@gentoo.org> expat-2.1.0.ebuild:
+  arm stable, bug #412089
+
+*expat-2.1.0-r1 (18 Apr 2012)
+
+  18 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> +expat-2.1.0-r1.ebuild:
+  Install expatu.pc and expatw.pc pkg-config files with USE="unicode"
+
+  16 Apr 2012; Jeroen Roovers <jer@gentoo.org> expat-2.1.0.ebuild:
+  Stable for HPPA (bug #412089).
+
+  15 Apr 2012; Alexis Ballier <aballier@gentoo.org> expat-2.1.0.ebuild:
+  FreeBSD: only put libexpat in /, not libexpatu nor libexpatw which we do not
+  need there.
+
+  15 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> expat-2.1.0.ebuild:
+  amd64/ppc/ppc64/x86 stable wrt #412089
+
+  15 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> expat-2.1.0.ebuild:
+  Fix installation on Gentoo/FreeBSD with USE="-unicode" wrt #412085 by Yuta
+  SATOH
+
+  08 Apr 2012; Raúl Porcel <armin76@gentoo.org> expat-2.1.0_beta3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #407519
+
+  04 Apr 2012; Andreas Schuerch <nativemad@gentoo.org>
+  expat-2.1.0_beta3.ebuild:
+  x86 stable, see bug 407519
+
+*expat-2.1.0 (28 Mar 2012)
+
+  28 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> +expat-2.1.0.ebuild:
+  Version bump.
+
+  28 Mar 2012; Markus Meier <maekke@gentoo.org> expat-2.1.0_beta3.ebuild:
+  arm stable, bug #407519
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> expat-2.1.0_beta3.ebuild:
+  Marking expat-2.1.0_beta3 ppc64 for bug 407519
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> expat-2.1.0_beta3.ebuild:
+  Marking expat-2.1.0_beta3 ppc for bug 407519
+
+  23 Mar 2012; Agostino Sarubbo <ago@gentoo.org> expat-2.1.0_beta3.ebuild:
+  Stable for amd64, wrt bug #407519
+
+  21 Mar 2012; Jeroen Roovers <jer@gentoo.org> expat-2.1.0_beta3.ebuild:
+  Stable for HPPA (bug #407519).
+
+  15 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> -expat-2.0.1-r5.ebuild,
+  -expat-2.1.0_beta2.ebuild,
+  -files/expat-2.1.0_beta2-move_setContext_call.patch:
+  old
+
+  15 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> expat-2.0.1-r6.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #405915
+
+  15 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> expat-2.1.0_beta3.ebuild:
+  Release new expat into the wild for security wrt #407519
+
+*expat-2.1.0_beta3 (11 Mar 2012)
+
+  11 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +expat-2.1.0_beta3.ebuild:
+  Version bump.
+
+  10 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> expat-2.1.0_beta2.ebuild,
+  +files/expat-2.1.0_beta2-move_setContext_call.patch:
+  Move call to setContext right after the setting of salt wrt #407555 using
+  upstream patch. Thanks to Marien Zwart for bisecting the issue.
+
+*expat-2.1.0_beta2 (09 Mar 2012)
+
+  09 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +expat-2.1.0_beta2.ebuild:
+  Version bump wrt #407519 by Agostino Sarubbo
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> expat-2.0.1-r6.ebuild:
+  Marking expat-2.0.1-r6 ppc64 for bug 405915
+
+  05 Mar 2012; Jeff Horelick <jdhore@gentoo.org> expat-2.0.1-r6.ebuild:
+  marked x86 per bug 405915
+
+  01 Mar 2012; Brent Baude <ranger@gentoo.org> expat-2.0.1-r6.ebuild:
+  Marking expat-2.0.1-r6 ppc for bug 405915
+
+  28 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> expat-2.0.1-r6.ebuild:
+  Ensure system CFLAGS get respected also in the libexpatw build wrt #406059
+
+  27 Feb 2012; Agostino Sarubbo <ago@gentoo.org> expat-2.0.1-r6.ebuild:
+  Stable for amd64, wrt bug #405915
+
+  27 Feb 2012; Jeroen Roovers <jer@gentoo.org> expat-2.0.1-r6.ebuild:
+  Stable for HPPA (bug #405915).
+
+*expat-2.0.1-r6 (25 Feb 2012)
+
+  25 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> +expat-2.0.1-r6.ebuild:
+  USE="unicode" to control building libexpatu and libexpatw. Use correct CFLAGS
+  and CPPFLAGS in the src_configure() phase for configuring the unicode
+  libraries.
 
   22 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> -expat-2.0.1-r3.ebuild,
   -expat-2.0.1-r4.ebuild:
