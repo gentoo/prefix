@@ -1,6 +1,48 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.437 2012/03/29 19:49:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.448 2012/04/26 14:58:17 vapier Exp $
+
+*openssl-1.0.1b (26 Apr 2012)
+
+  26 Apr 2012; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.1b.ebuild:
+  Version bump.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> openssl-1.0.1a.ebuild:
+  keyword ~amd64-fbsd
+
+  26 Apr 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/openssl-1.0.1a-hmac-ia32cap.patch, openssl-1.0.1a.ebuild:
+  Add fix from upstream for building on non-x86 arches #413559 by Petr Pisar.
+
+*openssl-0.9.8w (24 Apr 2012)
+
+  24 Apr 2012; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8w.ebuild:
+  -q
+
+  21 Apr 2012; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0i.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #412643
+
+  20 Apr 2012; Mike Frysinger <vapier@gentoo.org> openssl-1.0.1a.ebuild:
+  Unmask now that openssh/neon fixes are in place.
+
+  19 Apr 2012; Jeff Horelick <jdhore@gentoo.org> openssl-0.9.8v.ebuild,
+  openssl-1.0.0i.ebuild:
+  marked amd64 per security bug 412643
+
+  19 Apr 2012; Jeff Horelick <jdhore@gentoo.org> openssl-0.9.8v.ebuild,
+  openssl-1.0.0i.ebuild:
+  marked x86 per security bug 412643
+
+  19 Apr 2012; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0i.ebuild:
+  Stable for HPPA (bug #412643).
+
+*openssl-1.0.1a (19 Apr 2012)
+*openssl-1.0.0i (19 Apr 2012)
+*openssl-0.9.8v (19 Apr 2012)
+
+  19 Apr 2012; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8v.ebuild,
+  +openssl-1.0.0i.ebuild, +openssl-1.0.1a.ebuild:
+  Version bump #412643 by Hanno Boeck.
 
   29 Mar 2012; Mike Frysinger <vapier@gentoo.org> openssl-1.0.1.ebuild,
   +files/openssl-1.0.1-ipv6.patch:
