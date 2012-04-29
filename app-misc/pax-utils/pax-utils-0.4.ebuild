@@ -1,15 +1,14 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.2.1.ebuild,v 1.8 2012/02/07 16:58:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.4.ebuild,v 1.1 2012/04/29 06:34:18 vapier Exp $
 
-inherit toolchain-funcs
+inherit eutils toolchain-funcs unpacker flag-o-matic
 
 DESCRIPTION="ELF related utils for ELF 32/64 binaries that can check files for security relevant properties"
 HOMEPAGE="http://hardened.gentoo.org/pax-utils.xml"
-SRC_URI="mirror://gentoo/pax-utils-${PV}.tar.bz2
-	http://dev.gentoo.org/~solar/pax/pax-utils-${PV}.tar.bz2
-	http://dev.gentoo.org/~vapier/dist/pax-utils-${PV}.tar.bz2"
-#SRC_URI="http://wh0rd.org/pax-utils-${PV}.tar.bz2"
+SRC_URI="mirror://gentoo/pax-utils-${PV}.tar.xz
+	http://dev.gentoo.org/~solar/pax/pax-utils-${PV}.tar.xz
+	http://dev.gentoo.org/~vapier/dist/pax-utils-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -17,9 +16,10 @@ KEYWORDS="~x64-freebsd ~x86-freebsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-lin
 IUSE="caps"
 #RESTRICT="mirror"
 
-DEPEND="caps? ( sys-libs/libcap )
-	ia64-hpux? ( dev-libs/gnulib )
-"
+RDEPEND="caps? ( sys-libs/libcap )
+	ia64-hpux? ( dev-libs/gnulib )"
+DEPEND="${RDEPEND}
+	app-arch/xz-utils"
 
 src_compile() {
 	local libs
@@ -28,10 +28,10 @@ src_compile() {
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
 		libs="-lgnu"
 	fi
-	emake CC="$(tc-getCC)" LIBS="${libs}" USE_CAP=$(use caps && echo yes) || die
+	emake CC="$(tc-getCC)" LIBS="${libs}" USE_CAP=$(usex caps) || die
 }
 
 src_install() {
-	emake DESTDIR="${D}${EPREFIX}" install || die
-	dodoc BUGS README TODO
+	emake DESTDIR="${D}${EPREFIX}" PKGDOCDIR='$(DOCDIR)'/${PF} install || die
+	prepalldocs
 }
