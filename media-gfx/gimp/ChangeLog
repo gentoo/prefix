@@ -1,6 +1,45 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.352 2012/02/02 00:59:17 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.361 2012/04/17 22:00:32 ranger Exp $
+
+  17 Apr 2012; Brent Baude <ranger@gentoo.org> gimp-2.6.12.ebuild:
+  Marking gimp-2.6.12 ppc64 for bug 410403
+
+  16 Apr 2012; Brent Baude <ranger@gentoo.org> gimp-2.6.12.ebuild:
+  Marking gimp-2.6.12 ppc for bug 410403
+
+  12 Apr 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.6.11-r1.ebuild,
+  gimp-2.6.11-r2.ebuild, gimp-2.6.11-r3.ebuild, gimp-2.6.11-r4.ebuild,
+  gimp-2.6.11-r5.ebuild, gimp-2.6.11-r6.ebuild, gimp-2.6.12.ebuild,
+  gimp-2.7.3.ebuild, gimp-2.7.3-r1.ebuild, gimp-2.7.4.ebuild,
+  gimp-2.7.5.ebuild:
+  Make sure only Gimp 2.8_rc1 is built against gegl 0.2 (bug #411673)
+
+*gimp-2.8.0_rc1 (12 Apr 2012)
+
+  12 Apr 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.8.0_rc1.ebuild,
+  gimp-9999.ebuild:
+  Bump to 2.8.0_rc1, sync live ebuild
+
+  05 Apr 2012; Thomas Kahle <tomka@gentoo.org> gimp-2.6.12.ebuild:
+  marked x86 per bug 410403
+
+  02 Apr 2012; Agostino Sarubbo <ago@gentoo.org> gimp-2.6.12.ebuild:
+  Stable for amd64, wrt bug #410403
+
+  02 Apr 2012; Jeroen Roovers <jer@gentoo.org> gimp-2.6.12.ebuild:
+  Stable for HPPA (bug #410403).
+
+  01 Apr 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.6.12.ebuild,
+  +files/gimp-2.6.12-potfiles-skip.patch:
+  Fix test execution (bug #406625), patch by Julian Ospald
+
+*gimp-2.7.5 (14 Mar 2012)
+
+  14 Mar 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.7.5.ebuild,
+  +files/gimp-2.7.5-configure-gs-bzip2.patch, metadata.xml:
+  Bump to 2.7.5, add new and missing dependencies, introduce use flags gs and
+  bzip2
 
   13 Feb 2012; Fabian Groffen <grobian@gentoo.org> gimp-2.7.4.ebuild:
   Marked ~x64-macos, only version that works here

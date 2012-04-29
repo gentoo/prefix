@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.7.4.ebuild,v 1.2 2012/01/02 18:49:04 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.7.4.ebuild,v 1.3 2012/04/12 04:40:01 sping Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2:2.5"
@@ -31,7 +31,7 @@ RDEPEND=">=dev-libs/glib-2.30.2:2
 	!aqua? ( x11-misc/xdg-utils )
 	x11-themes/hicolor-icon-theme
 	>=media-libs/babl-0.1.6
-	>=media-libs/gegl-0.1.8
+	>=media-libs/gegl-0.1.8 <media-libs/gegl-0.2
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
 	curl? ( net-misc/curl )

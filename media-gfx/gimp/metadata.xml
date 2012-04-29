@@ -9,11 +9,14 @@
 		<description>backup maintainer</description>
 	</maintainer>
 	<use>
-		<flag name="webkit">
-		Enable the webkit rendering engine
-	</flag>
+		<flag name="gs">
+			Enable Ghostscript support (<pkg>app-text/ghostscript-gpl</pkg>)
+		</flag>
 		<flag name="smp">
-		Enable support for multiprocessors
-	</flag>
+			Enable support for multiprocessors
+		</flag>
+		<flag name="webkit">
+			Enable the webkit rendering engine
+		</flag>
 	</use>
 </pkgmetadata>
