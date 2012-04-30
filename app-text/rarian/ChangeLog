@@ -1,6 +1,28 @@
 # ChangeLog for app-text/rarian
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.47 2010/07/20 15:07:11 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.53 2012/04/28 01:16:14 aballier Exp $
+
+  28 Apr 2012; Alexis Ballier <aballier@gentoo.org> rarian-0.8.1-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  23 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  rarian-0.8.1-r1.ebuild:
+  libtool eclass needed for elibtoolize (bug #388243). Thanks to Toralf
+  Förster <toralf.foerster@gmx.de> for reporting.
+
+  23 Oct 2011; Tomáš Chvátal <scarabeus@gentoo.org> -rarian-0.8.1.ebuild,
+  rarian-0.8.1-r1.ebuild:
+  Update the ebuild not to ship .la and .a archives, punt the overshadowed
+  version.
+
+  11 Sep 2010; Joseph Jezak <josejx@gentoo.org> rarian-0.8.1-r1.ebuild:
+  Marked ppc for bug #324077.
+
+  18 Aug 2010; Markus Meier <maekke@gentoo.org> rarian-0.8.1-r1.ebuild:
+  arm stable, bug #314899
+
+  14 Aug 2010; Raúl Porcel <armin76@gentoo.org> rarian-0.8.1-r1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #314899
 
   20 Jul 2010; Jeroen Roovers <jer@gentoo.org> rarian-0.8.1.ebuild,
   rarian-0.8.1-r1.ebuild:
