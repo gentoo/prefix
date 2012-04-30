@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.322 2012/04/29 16:21:22 maekke Exp $
 
+  30 Apr 2012; Fabian Groffen <grobian@gentoo.org>
+  files/vte-0.26.2-interix.patch, vte-0.28.2-r202.ebuild:
+  Avoid running eautoreconf by also patching configure in the interix patch, bug
+  #411081
+
   30 Apr 2012; Fabian Groffen <grobian@gentoo.org> vte-0.32.1.ebuild:
   Drop Interix patch, as it was applied upstream
 

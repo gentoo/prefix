@@ -7,7 +7,7 @@ GCONF_DEBUG="yes"
 GNOME2_LA_PUNT="yes"
 PYTHON_DEPEND="python? 2:2.5"
 
-inherit eutils gnome2 python autotools
+inherit eutils gnome2 python
 
 DESCRIPTION="GNOME terminal widget"
 HOMEPAGE="http://git.gnome.org/browse/vte"
@@ -67,7 +67,6 @@ src_prepare() {
 	# https://bugzilla.gnome.org/show_bug.cgi?id=652290
 	epatch "${FILESDIR}"/${PN}-0.26.2-interix.patch
 
-	eautoreconf
 	gnome2_src_prepare
 }
 
