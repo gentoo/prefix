@@ -1,6 +1,56 @@
 # ChangeLog for x11-libs/vte
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.307 2012/02/10 02:47:58 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.322 2012/04/29 16:21:22 maekke Exp $
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> vte-0.28.2-r203.ebuild:
+  x86 stable, bug #410611
+
+  25 Apr 2012; Markus Meier <maekke@gentoo.org> vte-0.28.2-r203.ebuild:
+  arm stable, bug #410611
+
+*vte-0.32.1 (20 Apr 2012)
+
+  20 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org> +vte-0.32.1.ebuild:
+  Version bump, fixes a memory leak.
+
+  19 Apr 2012; Brent Baude <ranger@gentoo.org> vte-0.28.2-r203.ebuild:
+  Marking vte-0.28.2-r203 ppc64 stable for bug 410611
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org> vte-0.28.2-r203.ebuild:
+  Stable for amd64, wrt bug #410611
+
+  01 Apr 2012; Raúl Porcel <armin76@gentoo.org> vte-0.30.1-r3.ebuild:
+  alpha/ia64/sh/sparc stable wrt #407643
+
+*vte-0.32.0 (27 Mar 2012)
+
+  27 Mar 2012; Alexandre Rostovtsev <tetromino@gentoo.org> -vte-0.30.1.ebuild,
+  -vte-0.30.1-r2.ebuild, +vte-0.32.0.ebuild:
+  Version bump with gtk+-3.4 support and urxvt mouse tracking mode. Drop old.
+
+  25 Mar 2012; Raúl Porcel <armin76@gentoo.org> vte-0.28.2-r202.ebuild:
+  alpha/ia64/sh/sparc stable wrt #393007
+
+  25 Mar 2012; Markus Meier <maekke@gentoo.org> vte-0.30.1-r3.ebuild:
+  arm stable, bug #407643
+
+  23 Mar 2012; Jeroen Roovers <jer@gentoo.org> vte-0.30.1-r3.ebuild:
+  Stable for HPPA (bug #407643).
+
+  16 Mar 2012; Jeff Horelick <jdhore@gentoo.org> vte-0.30.1-r3.ebuild:
+  marked x86 per bug 407643
+
+  13 Mar 2012; Agostino Sarubbo <ago@gentoo.org> vte-0.30.1-r3.ebuild:
+  Stable for amd64, wrt bug #407643
+
+  12 Mar 2012; Brent Baude <ranger@gentoo.org> vte-0.30.1-r3.ebuild:
+  Marking vte-0.30.1-r3 ppc64 stable for bug 407643
+
+  05 Mar 2012; Brent Baude <ranger@gentoo.org> vte-0.28.2-r202.ebuild:
+  Marking vte-0.28.2-r202 ppc stable for bug 393007
+
+  05 Mar 2012; Brent Baude <ranger@gentoo.org> vte-0.28.2-r202.ebuild:
+  Marking vte-0.28.2-r202 ppc64 stable for bug 393007
 
   10 Feb 2012; Patrick Lauer <patrick@gentoo.org> vte-0.28.1-r200.ebuild,
   vte-0.28.2-r200.ebuild, vte-0.28.2-r202.ebuild, vte-0.28.2-r203.ebuild:
