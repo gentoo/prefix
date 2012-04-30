@@ -57,8 +57,6 @@ pkg_setup() {
 src_prepare() {
 	# https://bugzilla.gnome.org/show_bug.cgi?id=663779
 	epatch "${FILESDIR}/${PN}-0.30.1-alt-meta.patch"
-	# https://bugzilla.gnome.org/show_bug.cgi?id=652290
-	epatch "${FILESDIR}"/${PN}-0.26.2-interix.patch
 
 	eautoreconf
 	gnome2_src_prepare

@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.322 2012/04/29 16:21:22 maekke Exp $
 
+  30 Apr 2012; Fabian Groffen <grobian@gentoo.org> vte-0.32.1.ebuild:
+  Drop Interix patch, as it was applied upstream
+
   29 Apr 2012; Markus Meier <maekke@gentoo.org> vte-0.28.2-r203.ebuild:
   x86 stable, bug #410611
 
