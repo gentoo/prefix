@@ -1,6 +1,33 @@
 # ChangeLog for dev-libs/libgamin
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.25 2010/06/16 18:43:43 arfrever Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.30 2012/04/26 17:30:26 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> libgamin-0.1.10-r2.ebuild:
+  keyword ~amd64-fbsd
+
+  22 Feb 2012; Patrick Lauer <patrick@gentoo.org> libgamin-0.1.10-r2.ebuild:
+  Restricting jython
+
+  03 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  libgamin-0.1.10-r2.ebuild:
+  Empty py-compile script instead of symlinking it wrt #397487 by Billy
+  DeVincentis
+
+  25 Sep 2011; Pacho Ramos <pacho@gentoo.org> libgamin-0.1.10-r2.ebuild,
+  +files/libgamin-0.1.10-G_CONST_RETURN-removal.patch,
+  +files/libgamin-0.1.10-armel-features.patch,
+  +files/libgamin-0.1.10-crosscompile-fix.patch:
+  Fix compilation with latest glib, bug #382783 by Maciej Piechotka; fix
+  crosscompilation issues, bug #267604 by Andrei Slavoiu; enable linux specific
+  features on armel, upstream bug #588338; drop DG_DISABLE_DEPRECATED; don't
+  try to even check for python, simplifying ebuild for people running python3
+  as main interpreter; use gnome.org eclass to set SRC_URI and use bz2 tarball
+  instead of gz.
+
+  11 Jul 2011; Samuli Suominen <ssuominen@gentoo.org>
+  libgamin-0.1.10-r2.ebuild:
+  Stop depending on dev-util/pkgconfig wrt #374775 by dragos240. USE="static-libs"
+  and remove libtool archive.
 
   16 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   libgamin-0.1.10-r2.ebuild,
