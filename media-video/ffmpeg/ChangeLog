@@ -1,6 +1,586 @@
 # ChangeLog for media-video/ffmpeg
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.390 2010/12/09 16:11:56 rich0 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.547 2012/04/24 13:17:12 aballier Exp $
+
+  24 Apr 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  fontconfig requires pkgconfig
+
+  24 Apr 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  drop dirac useflag per upstream drop
+
+  15 Apr 2012; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.10.2.ebuild:
+  alpha/arm/ia64/sparc stable wrt #411369
+
+  14 Apr 2012; Zac Medico <zmedico@gentoo.org> ffmpeg-0.10.2.ebuild,
+  ffmpeg-9999.ebuild:
+  Add ~amd64-linux keyword.
+
+  12 Apr 2012; Andreas Schuerch <nativemad@gentoo.org> ffmpeg-0.10.2.ebuild:
+  x86 stable, see bug 411369
+
+  11 Apr 2012; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.10.2.ebuild:
+  Stable for HPPA (bug #411369).
+
+  11 Apr 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  add fontconfig useflag
+
+  10 Apr 2012; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.2.ebuild:
+  Stable for amd64, wrt bug #411369
+
+  09 Apr 2012; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.ebuild:
+  Stable for amd64, wrt bug #401069
+
+  08 Apr 2012; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.10.ebuild,
+  ffmpeg-0.10.2.ebuild:
+  Add ~alpha/~arm/~ia64/~sparc wrt #392269
+
+  08 Apr 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.10.2.ebuild,
+  +files/freiordl.patch:
+  backport upstream patch to link with libdl when using frei0r, bug #409047
+
+  05 Apr 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.10.2.ebuild,
+  ffmpeg-9999.ebuild:
+  bump gnutls dep for bug #405083
+
+  31 Mar 2012; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.ebuild:
+  reverted to ~amd64
+
+  31 Mar 2012; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.ebuild:
+  Stable for amd64, wrt bug #401069
+
+  28 Mar 2012; Brent Baude <ranger@gentoo.org> ffmpeg-0.10.ebuild:
+  Marking ffmpeg-0.10 ppc64 for bug 401069
+
+  25 Mar 2012; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.10.ebuild:
+  Stable for HPPA (bug #401069).
+
+  22 Mar 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.10.2.ebuild,
+  ffmpeg-9999.ebuild, metadata.xml:
+  Make the extra tools useflags become USE_EXPAND per -dev discussion.
+
+  20 Mar 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  cws2fws requires zlib
+
+*ffmpeg-0.10.2 (18 Mar 2012)
+
+  18 Mar 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.10.2.ebuild:
+  version bump
+
+  14 Mar 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  drop iwmmxt useflag as it has been removed upstream
+
+  09 Mar 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add bluray useflag
+
+  28 Feb 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  Add various useflags, default-enabled, for the useful small programs in the
+  tools subdirectory.
+
+  19 Feb 2012; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.9.1.ebuild:
+  remove old
+
+  31 Jan 2012; Jeff Horelick <jdhore@gentoo.org> ffmpeg-0.10.ebuild,
+  ffmpeg-0.9.1.ebuild:
+  Keyword on ~x86 wrt bug 392269
+
+*ffmpeg-0.10 (28 Jan 2012)
+
+  28 Jan 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.10.ebuild:
+  version bump
+
+  28 Jan 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  avconv is gone in master
+
+  26 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> ffmpeg-0.9.1.ebuild:
+  Restore ~ppc and ~ppc64 keywording wrt #392269
+
+  06 Jan 2012; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.9.ebuild:
+  remove old
+
+*ffmpeg-0.9.1 (05 Jan 2012)
+
+  05 Jan 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.9.1.ebuild:
+  version bump
+
+  02 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> metadata.xml:
+  USE description for flag "neon" is in use.desc now.
+
+  19 Dec 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.7.7.ebuild,
+  -ffmpeg-0.8.7.ebuild:
+  remove old
+
+  18 Dec 2011; Mark Loeser <halcy0n@gentoo.org> ffmpeg-0.7.8.ebuild:
+  Stable for ppc/ppc64; bug #391421
+
+  17 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.9.ebuild,
+  ffmpeg-9999.ebuild:
+  search for libraries in libswresample too for tests
+
+  17 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.9.ebuild,
+  ffmpeg-9999.ebuild:
+  tests depend on encode and zlib, use eapi4 use constraints for this, fixes
+  bug #356691
+
+  15 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.9.ebuild,
+  ffmpeg-9999.ebuild:
+  set optflags to cflags, just in case
+
+  15 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  no need to prebuild version.h these days
+
+  15 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  feed configure with cxx and ar too
+
+  15 Dec 2011; Alexis Ballier <aballier@gentoo.org> metadata.xml:
+  fix celt usedesc
+
+  15 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add avconv useflag
+
+*ffmpeg-0.9 (15 Dec 2011)
+
+  15 Dec 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.9.ebuild:
+  version bump
+
+  15 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  disable all asm on x86 with pic, this should be much slower but, at least,
+  pic
+
+  15 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  remove x86 special handling, this should be handled automagically by the
+  build system nowadays
+
+  15 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  pass user cflags as extra-cflags, disable optflags as we assume user cflags
+  contain them, do not disable opimizations since optflags are empty, bug
+  #392451
+
+  09 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.8.7.ebuild,
+  ffmpeg-9999.ebuild:
+  add missing libXfixes dep for x11grab
+
+  06 Dec 2011; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.8.7.ebuild:
+  Marked ~hppa (bug #392269).
+
+  06 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  tests are now run with the fate makefile target
+
+  06 Dec 2011; Alexis Ballier <aballier@gentoo.org> metadata.xml:
+  improve vdpau usedesc, by Raúl Porcel
+
+  03 Dec 2011; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.7.8.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #391421
+
+  03 Dec 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  fix sdl automagic
+
+  02 Dec 2011; Steve Dibb <beandog@gentoo.org> ffmpeg-0.7.7.ebuild,
+  ffmpeg-0.7.8.ebuild, ffmpeg-0.8.7.ebuild, ffmpeg-9999.ebuild:
+  Build qt-faststart by default
+
+  01 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> ffmpeg-0.7.8.ebuild:
+  x86 stable wrt bug #391421
+
+  29 Nov 2011; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.7.8.ebuild:
+  Stable for HPPA (bug #391421).
+
+  28 Nov 2011; Tony Vroon <chainsaw@gentoo.org> ffmpeg-0.7.8.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armageddon" El Lazkani in security bug #391421.
+
+  28 Nov 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.8.7.ebuild:
+  drop keyword before unmasking 0.8, bug #392269
+
+  28 Nov 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.7.6.ebuild,
+  -ffmpeg-0.8.5.ebuild, -ffmpeg-0.8.6.ebuild:
+  remove old
+
+  27 Nov 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add libass useflag
+
+  25 Nov 2011; Kacper Kowalik <xarthisius@gentoo.org> ffmpeg-0.7.7.ebuild:
+  ppc/ppc64 stable wrt #389201
+
+*ffmpeg-0.8.7 (23 Nov 2011)
+
+  23 Nov 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.8.7.ebuild:
+  version bump
+
+*ffmpeg-0.7.8 (23 Nov 2011)
+
+  23 Nov 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.7.8.ebuild:
+  version bump
+
+  19 Nov 2011; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.7.7.ebuild:
+  alpha/ia64/sparc stable wrt #389807
+
+  13 Nov 2011; Markus Meier <maekke@gentoo.org> ffmpeg-0.7.7.ebuild:
+  arm stable, bug #389807
+
+  09 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> ffmpeg-0.7.7.ebuild:
+  x86 stable wrt bug #389807
+
+  09 Nov 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  add iwmmxt useflag, bug #349814
+
+  08 Nov 2011; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.7.7.ebuild:
+  Stable for HPPA (bug #389807).
+
+  08 Nov 2011; Richard Freeman <rich0@gentoo.org> ffmpeg-0.7.7.ebuild:
+  amd64 stable - 389807
+
+  07 Nov 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add libv4l useflag
+
+  07 Nov 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  add gnutls useflag
+
+  07 Nov 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add openssl useflag
+
+*ffmpeg-0.8.6 (07 Nov 2011)
+
+  07 Nov 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.8.6.ebuild:
+  version bump
+
+*ffmpeg-0.7.7 (07 Nov 2011)
+
+  07 Nov 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.7.7.ebuild:
+  version bump
+
+  02 Nov 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  add pulseaudio useflag
+
+  01 Nov 2011; Samuli Suominen <ssuominen@gentoo.org> ffmpeg-0.7.6.ebuild,
+  ffmpeg-0.8.5.ebuild, ffmpeg-9999.ebuild:
+  Rename USE="v4l2" to USE="v4l" while removing support for video4linux 1.x wrt
+  #385241
+
+  23 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  +files/ffmpeg-0.7.6-fix_ppc64_32ul.patch, ffmpeg-0.7.6.ebuild:
+  (non-maintainer commit) Backport patch that allows build system to properly
+  detect arch on ppc64 with 32ul. Fixes bug 341235 and 387207
+
+  21 Oct 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  bump x264 dep
+
+  15 Oct 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.7.5.ebuild,
+  -ffmpeg-0.8.4.ebuild:
+  remove old
+
+  12 Oct 2011; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.7.6.ebuild:
+  alpha/ia64/sparc stable wrt #385511
+
+  10 Oct 2011; Markus Meier <maekke@gentoo.org> ffmpeg-0.7.6.ebuild:
+  arm stable, bug #385511
+
+  09 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> ffmpeg-0.7.6.ebuild:
+  ppc/ppc64 stable wrt #385511
+
+  08 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> ffmpeg-0.7.6.ebuild:
+  x86 stable wrt security bug #385511
+
+  07 Oct 2011; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.7.6.ebuild:
+  Stable for HPPA (bug #385511).
+
+  06 Oct 2011; Steve Dibb <beandog@gentoo.org> ffmpeg-0.7.6.ebuild:
+  amd64 stable, bug 385511
+
+  05 Oct 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  add libmodplug support
+
+*ffmpeg-0.8.5 (05 Oct 2011)
+*ffmpeg-0.7.6 (05 Oct 2011)
+
+  05 Oct 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.7.6.ebuild,
+  +ffmpeg-0.8.5.ebuild:
+  version bump
+
+  05 Oct 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.7.3.ebuild,
+  -ffmpeg-0.7.4.ebuild, -ffmpeg-0.8.2.ebuild, -ffmpeg-0.8.3.ebuild:
+  remove old
+
+  02 Oct 2011; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.7.5.ebuild:
+  alpha/arm/ia64/sparc stable wrt #384095
+
+  28 Sep 2011; Kacper Kowalik <xarthisius@gentoo.org> ffmpeg-0.7.5.ebuild:
+  ppc/ppc64 stable wrt #384095
+
+  27 Sep 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add libaacplus support
+
+  27 Sep 2011; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.7.5.ebuild:
+  Stable for HPPA (bug #384095).
+
+  25 Sep 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> ffmpeg-0.7.5.ebuild:
+  x86 stable wrt security bug #384095
+
+  22 Sep 2011; Tony Vroon <chainsaw@gentoo.org> ffmpeg-0.7.5.ebuild:
+  Marked stable on based on arch testing by Agostino "ago" Sarubbo in security
+  bug #384095.
+
+*ffmpeg-0.8.4 (22 Sep 2011)
+*ffmpeg-0.7.5 (22 Sep 2011)
+
+  22 Sep 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.7.5.ebuild,
+  +ffmpeg-0.8.4.ebuild:
+  version bump
+
+  21 Sep 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add cdio useflag
+
+  17 Sep 2011; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.7.4.ebuild:
+  alpha/ia64/sparc stable wrt #382301
+
+  13 Sep 2011; Markos Chandras <hwoarang@gentoo.org> ffmpeg-0.7.4.ebuild:
+  Stable on amd64 wrt bug #382301
+
+  12 Sep 2011; Markus Meier <maekke@gentoo.org> ffmpeg-0.7.4.ebuild:
+  arm stable, bug #382301
+
+  11 Sep 2011; Markus Meier <maekke@gentoo.org> ffmpeg-0.7.4.ebuild:
+  x86 stable, bug #382301
+
+  10 Sep 2011; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.7.4.ebuild:
+  Stable for HPPA (bug #382301).
+
+*ffmpeg-0.7.4 (08 Sep 2011)
+
+  08 Sep 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.7.4.ebuild:
+  version bump
+
+*ffmpeg-0.8.3 (08 Sep 2011)
+
+  08 Sep 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.8.3.ebuild:
+  version bump
+
+  06 Sep 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.8.2.ebuild:
+  openal is not in 0.8.2, only 9999, bug #379187
+
+  06 Sep 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add neon useflag for arm simd, bug #349814
+
+  06 Sep 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add vis useflag for sparc simd, bug #349814
+
+  27 Aug 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.7_rc1.ebuild:
+  remove old
+
+  27 Aug 2011; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.7.3.ebuild:
+  alpha/ia64/sparc stable wrt #378801
+
+  24 Aug 2011; Markus Meier <maekke@gentoo.org> ffmpeg-0.7.3.ebuild:
+  arm stable, bug #378801
+
+  21 Aug 2011; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.7.3.ebuild:
+  Stable for HPPA (bug #378801).
+
+  19 Aug 2011; Thomas Kahle <tomka@gentoo.org> ffmpeg-0.7.3.ebuild:
+  x86 stable per bug 378801
+
+  18 Aug 2011; Tony Vroon <chainsaw@gentoo.org> ffmpeg-0.7.3.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo in
+  security bug #378801.
+
+  17 Aug 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.7_rc1.ebuild,
+  ffmpeg-0.7.3.ebuild, ffmpeg-0.8.2.ebuild, ffmpeg-9999.ebuild:
+  add missing pkgconfig deps, bug #379555 by bay
+
+  11 Aug 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.7.1.ebuild,
+  -ffmpeg-0.7.2.ebuild, -ffmpeg-0.8.ebuild, -ffmpeg-0.8.1.ebuild:
+  remove old
+
+*ffmpeg-0.8.2 (11 Aug 2011)
+*ffmpeg-0.7.3 (11 Aug 2011)
+
+  11 Aug 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.7.3.ebuild,
+  +ffmpeg-0.8.2.ebuild:
+  version bump
+
+*ffmpeg-0.8.1 (30 Jul 2011)
+
+  30 Jul 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.8.1.ebuild:
+  version bump
+
+  30 Jul 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.7.1.ebuild,
+  ffmpeg-0.7.2.ebuild, ffmpeg-0.8.ebuild:
+  bring back ~ppc/~ppc64 keywords as the deps are now keyworded...
+
+*ffmpeg-0.7.2 (30 Jul 2011)
+
+  30 Jul 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.7.2.ebuild:
+  version bump
+
+  10 Jul 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.6.ebuild,
+  -ffmpeg-0.6_p25767.ebuild, -ffmpeg-0.6.90_rc0-r2.ebuild,
+  -files/avparser.patch, -files/avutil_aes_sha_h.patch:
+  remove old
+
+  10 Jul 2011; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  ia64/sparc stable wrt #365273
+
+  10 Jul 2011; Markus Meier <maekke@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  arm stable, bug #365273
+
+  06 Jul 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  Factorise a bit the cpu features handling code and keep the declarations in
+  one place, a string that will be used to fill IUSE and convert them to
+  ./configure arguments. Do not default-enable them anymore.
+
+  06 Jul 2011; Mark Loeser <halcy0n@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  Mark stable for ppc64; bug 365273
+
+  29 Jun 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  drop the video_cards_nvidia guard for vdpau
+
+  29 Jun 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  drop custom-cflags useflag and always use ours
+
+  29 Jun 2011; Christoph Mende <angelos@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  Stable on amd64 wrt bug #365273
+
+  29 Jun 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  convert to eapi4, add eprefix stuff, make use of REQUIRED_USE
+
+  27 Jun 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  add openal useflag
+
+  26 Jun 2011; Brent Baude <ranger@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  marking ffmpeg-0.7_rc1 ppc for sec bug 365273
+
+  24 Jun 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.7.1.ebuild,
+  ffmpeg-0.8.ebuild, ffmpeg-9999.ebuild:
+  bump x264 dep, bug #372685
+
+  23 Jun 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  x86 stable wrt security bug #365273
+
+*ffmpeg-0.8 (23 Jun 2011)
+
+  23 Jun 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.8.ebuild:
+  version bump: same as 0.7.1 but with only the new api/abi
+
+*ffmpeg-0.7.1 (23 Jun 2011)
+
+  23 Jun 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.7.1.ebuild:
+  version bump
+
+  23 Jun 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  no need to strip the -sse3 suffix for gcc march flag, its now handled in
+  configure
+
+  22 Jun 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  use git-2.eclass
+
+  21 Jun 2011; Tobias Klausmann <klausman@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  Stable on alpha, bug #365273
+
+  16 Jun 2011; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  Stable for HPPA (bug #365273).
+
+  15 Jun 2011; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  Marked ~hppa (bug #365203).
+
+  24 May 2011; Thomas Kahle <tomka@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  ~x86 per bug 365203
+
+  15 May 2011; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.7_rc1.ebuild:
+  Add ~alpha/~ia64/~sparc wrt #365203
+
+*ffmpeg-0.7_rc1 (28 Apr 2011)
+
+  28 Apr 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.7_rc1.ebuild:
+  version bump
+
+  20 Apr 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  simplify tests handling, add celt decoding support
+
+  13 Apr 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.6.90_rc0.ebuild,
+  -ffmpeg-0.6.90_rc0-r1.ebuild:
+  remove old
+
+*ffmpeg-0.6.90_rc0-r2 (13 Apr 2011)
+
+  13 Apr 2011; Alexis Ballier <aballier@gentoo.org>
+  +ffmpeg-0.6.90_rc0-r2.ebuild, +files/avutil_aes_sha_h.patch:
+  New revision for installing avutil headers required by mplayer
+
+  13 Apr 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  Enable (L)GPL-3 only when needed
+
+*ffmpeg-0.6.90_rc0-r1 (12 Apr 2011)
+
+  12 Apr 2011; Alexis Ballier <aballier@gentoo.org>
+  +ffmpeg-0.6.90_rc0-r1.ebuild, +files/avparser.patch:
+  av_parser_parse is to be removed with the next major bump, bug #362949
+
+  12 Apr 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  no need to hack the LD_LIBRARY_PATH for libavcore since its no more
+
+  12 Apr 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  Add support for amrwb and aac encodings via the libvo libraries. Bump libvpx
+  dep.
+
+  12 Apr 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.5_p20373.ebuild:
+  remove old
+
+  10 Apr 2011; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.6_p25767.ebuild:
+  ia64 stable
+
+  05 Apr 2011; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.5_p22846.ebuild,
+  -ffmpeg-0.6_p25423.ebuild, -ffmpeg-0.6_p28715.ebuild:
+  remove old
+
+*ffmpeg-0.6.90_rc0 (05 Apr 2011)
+
+  05 Apr 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.6.90_rc0.ebuild,
+  ffmpeg-9999.ebuild:
+  version bump and adjust variables to fit with the rc style releases
+
+  01 Apr 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  disable-stripping option is back, we need to pass it
+
+  31 Mar 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.6_p28715.ebuild,
+  ffmpeg-9999.ebuild:
+  libva 0.32 is required now, bug #361373
+
+*ffmpeg-0.6_p28715 (30 Mar 2011)
+
+  30 Mar 2011; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.6_p28715.ebuild,
+  ffmpeg-9999.ebuild:
+  Change the way version is hardcoded to match the current git based one, bump
+  a new snapshot
+
+  30 Mar 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add truetype and avx useflags, by Alphat-PC, bug #359493
+
+  30 Mar 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  disable-stripping isnt needed anymore
+
+  21 Mar 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  fix git uri to the one pointed by http://ffmpeg.org/download.html
+
+  10 Mar 2011; Tim Harder <radhermit@gentoo.org> ffmpeg-0.6_p25423.ebuild,
+  ffmpeg-0.6_p25767.ebuild, ffmpeg-9999.ebuild:
+  Fix static-libs usage (bug #336431 by Nikoli).
+
+  29 Jan 2011; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  fix git URI
+
+  21 Jan 2011; Luca Barbato <lu_zero@gentoo.org> ffmpeg-9999.ebuild:
+  Update repository url, switch to git
 
   09 Dec 2010; Richard Freeman <rich0@gentoo.org> ffmpeg-0.6_p25767.ebuild:
   amd64 stable - 347625
