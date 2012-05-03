@@ -1,43 +1,49 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ssldump-0.9-r1.ebuild,v 1.4 2008/11/07 10:21:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ssldump-0.9-r1.ebuild,v 1.7 2011/12/09 16:15:55 jer Exp $
 
-inherit eutils autotools
+EAPI=2
+inherit autotools eutils
 
 MY_P=${PN}-0.9b3
-DESCRIPTION="A Tool for network monitoring and data acquisition"
-SRC_URI="http://www.rtfm.com/ssldump/${MY_P}.tar.gz"
-HOMEPAGE="http://www.rtfm.com/ssldump/"
-IUSE="ssl"
 
+DESCRIPTION="A Tool for network monitoring and data acquisition"
+HOMEPAGE="http://www.rtfm.com/ssldump/"
+SRC_URI="http://www.rtfm.com/ssldump/${MY_P}.tar.gz"
+
+LICENSE="openssl"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
-LICENSE="GPL-2"
+IUSE="ssl"
 
-DEPEND="net-libs/libpcap
-	ssl? ( >=dev-libs/openssl-0.6.9 )"
+RDEPEND="net-libs/libpcap
+	ssl? ( >=dev-libs/openssl-1 )"
+DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
-src_unpack() {
-	unpack ${A} ; cd ${S}
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-libpcap-header.patch \
+		"${FILESDIR}"/${P}-configure-dylib.patch \
+		"${FILESDIR}"/${P}-openssl-0.9.8.compile-fix.patch \
+		"${FILESDIR}"/${P}-DLT_LINUX_SLL.patch
 
-	epatch "${FILESDIR}/${P}"-libpcap-header.patch
-	epatch "${FILESDIR}/${P}"-openssl-0.9.8.compile-fix.patch
-	epatch "${FILESDIR}/${P}"-DLT_LINUX_SLL.patch
-	eautoreconf # fixes compiler detection
+	sed -i configure.in -e 's|libpcap.a|libpcap.so|g' || die
+
+	eautoreconf
 }
 
-src_compile() {
-	econf $(use_with ssl crypto) \
+src_configure() {
+	local myconf
+	use ssl || myconf="--without-openssl"
+
+	econf ${myconf} \
 		--with-pcap-inc="${EPREFIX}"/usr/include \
 		--with-pcap-lib="${EPREFIX}"/usr/$(get_libdir)
-	emake || die
 }
 
 src_install() {
-	into /usr
 	dosbin ssldump || die
 	doman ssldump.1 || die
-	dodoc COPYRIGHT CREDITS README FILES VERSION INSTALL ChangeLog
+	dodoc ChangeLog CREDITS README
 }

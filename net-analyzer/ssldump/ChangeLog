@@ -1,6 +1,17 @@
 # ChangeLog for net-analyzer/ssldump
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ChangeLog,v 1.20 2008/11/07 10:21:34 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ChangeLog,v 1.23 2011/12/09 16:15:55 jer Exp $
+
+  09 Dec 2011; Jeroen Roovers <jer@gentoo.org> ssldump-0.9-r1.ebuild:
+  sed must die().
+
+  08 Dec 2011; Jeroen Roovers <jer@gentoo.org> ssldump-0.9-r1.ebuild:
+  Fix broken configure hack looking for libpcap.a by Benjamin Peterson (bug
+  #393645).
+
+  18 Jan 2011; Samuli Suominen <ssuominen@gentoo.org> ssldump-0.9-r1.ebuild:
+  Fix LICENSE from GPL-2 to openssl. Fix econf argument --without-crypto to
+  --without-openssl.
 
   07 Nov 2008; Raúl Porcel <armin76@gentoo.org> ssldump-0.9-r1.ebuild:
   sparc stable wrt #244232
