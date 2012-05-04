@@ -620,7 +620,10 @@ bootstrap_gnu() {
 
 	# Don't do ACL stuff on Darwin, especially Darwin9 will make
 	# coreutils completely useless (install failing on everything)
-	[[ ${A%-*} == "coreutils" ]] && myconf="${myconf} --disable-acl"
+	# Don't try using gmp either, it may be that just the library is
+	# there, and if so, the buildsystem assumes the header exists too
+	[[ ${A%-*} == "coreutils" ]] && \
+		myconf="${myconf} --disable-acl --without-gmp"
 
 	if [[ ${A%-*} == "coreutils" && ${CHOST} == *-darwin11 ]] ; then
 		# something in the headers changed, which breaks gnulib
