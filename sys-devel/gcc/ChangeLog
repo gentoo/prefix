@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.871 2012/04/28 00:57:23 dirtyepic Exp $
 
+  04 May 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/solaris-i386-ld-emulation-4.2.patch, gcc-4.2.4-r01.4.ebuild:
+  Backport GNU ld 2.22 breakage patch to 4.2.2 since we need to bootstrap with
+  that GCC
+
 *gcc-4.6.3 (28 Apr 2012)
 
   28 Apr 2012; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.6.3.ebuild,
