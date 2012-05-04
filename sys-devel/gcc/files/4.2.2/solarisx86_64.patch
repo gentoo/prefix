@@ -9,14 +9,14 @@
 +
 +#undef TARGET_LD_EMULATION
 +#ifdef TARGET_GNU_LD
-+#define TARGET_LD_EMULATION "%{!m32:-m elf_x86_64}%{m32:-m elf_i386} "
++#define TARGET_LD_EMULATION "%{m64:-m elf_x86_64}%{m32:-m elf_i386} "
 +#else
 +#define TARGET_LD_EMULATION ""
 +#endif
 +
 +#undef LINK_ARCH_SPEC
 +#define LINK_ARCH_SPEC TARGET_LD_EMULATION \
-+		       "%{!m32:" LINK_ARCH64_SPEC "}%{m32:" LINK_ARCH32_SPEC "}"
++		       "%{m64:" LINK_ARCH64_SPEC "}%{m32:" LINK_ARCH32_SPEC "}"
 --- gcc/config.gcc
 +++ gcc/config.gcc
 @@ -1251,6 +1246,78 @@
