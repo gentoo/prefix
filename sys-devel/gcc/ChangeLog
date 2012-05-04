@@ -1,6 +1,102 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.841 2011/12/06 04:16:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.871 2012/04/28 00:57:23 dirtyepic Exp $
+
+*gcc-4.6.3 (28 Apr 2012)
+
+  28 Apr 2012; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.6.3.ebuild,
+  metadata.xml:
+  Version bump (bug #406571).
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> gcc-4.5.3-r2.ebuild:
+  keyword ~amd64-fbsd
+
+  15 Apr 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.5.3-r2.ebuild:
+  Fix from upstream for building gcj with glibc-2.15+.
+
+  28 Mar 2012; Markus Meier <maekke@gentoo.org> gcc-4.3.6-r1.ebuild:
+  arm stable, bug #405845
+
+*gcc-4.4.7 (27 Mar 2012)
+
+  27 Mar 2012; Mike Frysinger <vapier@gentoo.org> +gcc-4.4.7.ebuild:
+  Version bump #409033 by Mr. Anderson.
+
+  15 Mar 2012; Markus Meier <maekke@gentoo.org> gcc-4.4.6-r1.ebuild:
+  arm stable, bug #405849
+
+  15 Mar 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.6.0.ebuild,
+  gcc-4.6.1-r1.ebuild, gcc-4.6.2.ebuild:
+  Drop gcc-config dep now that the toolchain.eclass forces it.
+
+  10 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gcc-4.4.6-r1.ebuild:
+  x86 stable wrt bug #405849
+
+  09 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gcc-4.3.6-r1.ebuild:
+  x86 stable wrt bug #405845
+
+  03 Mar 2012; Brent Baude <ranger@gentoo.org> gcc-4.5.3-r2.ebuild:
+  Marking gcc-4.5.3-r2 ppc64 for bug 402847
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> gcc-4.4.6-r1.ebuild:
+  Marking gcc-4.4.6-r1 ppc64 for bug 405849
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> gcc-4.3.6-r1.ebuild:
+  Marking gcc-4.3.6-r1 ppc64 for bug 405845
+
+  29 Feb 2012; Markus Meier <maekke@gentoo.org> gcc-4.5.3-r2.ebuild:
+  arm stable, bug #402847
+
+  29 Feb 2012; Brent Baude <ranger@gentoo.org> gcc-4.5.3-r2.ebuild:
+  Marking gcc-4.5.3-r2 ppc for bug 402847
+
+  28 Feb 2012; Brent Baude <ranger@gentoo.org> gcc-4.4.6-r1.ebuild:
+  Marking gcc-4.4.6-r1 ppc for bug 405849
+
+  28 Feb 2012; Brent Baude <ranger@gentoo.org> gcc-4.3.6-r1.ebuild:
+  Marking gcc-4.3.6-r1 ppc for bug 405845
+
+  27 Feb 2012; Agostino Sarubbo <ago@gentoo.org> gcc-4.4.6-r1.ebuild:
+  Stable for amd64, wrt bug #405849
+
+  27 Feb 2012; Agostino Sarubbo <ago@gentoo.org> gcc-4.3.6-r1.ebuild:
+  Stable for amd64, wrt bug #405845
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gcc-4.5.3-r2.ebuild:
+  x86 stable wrt bug #402847
+
+  22 Feb 2012; Jeroen Roovers <jer@gentoo.org> gcc-4.5.3-r2.ebuild:
+  Stable for HPPA (bug #402847).
+
+  22 Feb 2012; Agostino Sarubbo <ago@gentoo.org> gcc-4.5.3-r2.ebuild:
+  Stable for AMD64, wrt bug #402847
+
+  20 Feb 2012; Ryan Hill <dirtyepic@gentoo.org> gcc-4.5.3-r2.ebuild:
+  Bump to p1.1. Fixes bug #388835 (ICE in move_insn, at haifa-sched.c).
+
+  20 Feb 2012; Ryan Hill <dirtyepic@gentoo.org> gcc-4.6.2.ebuild:
+  Bump to p1.4. Fixes bug #388835 (ICE in move_insn, at haifa-sched.c) and
+  bug #396005 (c-family plugin headers installed to incorrect location).
+
+  02 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org> +ChangeLog-2006:
+  Split ChangeLog.
+
+  30 Dec 2011; Magnus Granberg <zorry@gentoo.org> gcc-4.5.3-r2.ebuild:
+  Bump the piepatchset to 0.4.7 to fix 394821
+
+*gcc-4.5.3-r2 (13 Dec 2011)
+
+  13 Dec 2011; Magnus Granberg <zorry@gentoo.org> +gcc-4.5.3-r2.ebuild:
+  Bump piepatchset to 0.4.6 and fix bug 393321
+
+  08 Dec 2011; Mike Frysinger <vapier@gentoo.org> gcc-4.6.2.ebuild:
+  Update x32 snapshot for native x32 support.
+
+  07 Dec 2011; Magnus Granberg <zorry@gentoo.org gcc-4.6.2.ebuild:
+  Bump piepatchset to 0.5.0 to fix 380823 and 393321
+
+  06 Dec 2011; Mike Frysinger <vapier@gentoo.org> gcc-4.6.2.ebuild:
+  Add x32 ABI backport (for x86-64 targets) from gcc-4.7.
 
   17 Feb 2012; Fabian Groffen <grobian@gentoo.org>
   +files/solaris-i386-ld-emulation.patch, -gcc-4.5.1-r1.ebuild,

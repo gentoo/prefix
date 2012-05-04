@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.2.ebuild,v 1.7 2011/12/08 18:14:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.2.ebuild,v 1.9 2012/03/15 20:21:44 vapier Exp $
 
-PATCH_VER="1.3"
+PATCH_VER="1.4"
 UCLIBC_VER="1.0"
 
 # Hardened gcc 4 stuff
@@ -31,7 +31,6 @@ DEPEND="${RDEPEND}
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )
 	kernel_linux? ( >=${CATEGORY}/binutils-2.18 )"
-PDEPEND="go? ( >=sys-devel/gcc-config-1.5 )"
 
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )"
