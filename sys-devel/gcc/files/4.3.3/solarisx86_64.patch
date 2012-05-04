@@ -110,20 +110,9 @@
  	*-*-solaris2.1[0-9]*)
 --- gcc/config/i386/sol2-64.h
 +++ gcc/config/i386/sol2-64.h
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,5 @@
 +/* Definitions of target machine for GCC, for bi-arch i386
 +   running Solaris 2, defaulting to 64-bit code generation.  */
 +
 +#undef MULTILIB_DEFAULTS
 +#define MULTILIB_DEFAULTS { "m64" }
-+
-+#undef TARGET_LD_EMULATION
-+#ifdef TARGET_GNU_LD
-+#define TARGET_LD_EMULATION "%{m64:-m elf_x86_64}%{m32:-m elf_i386} "
-+#else
-+#define TARGET_LD_EMULATION ""
-+#endif
-+
-+#undef LINK_ARCH_SPEC
-+#define LINK_ARCH_SPEC TARGET_LD_EMULATION \
-+		       "%{m64:" LINK_ARCH64_SPEC "}%{m32:" LINK_ARCH32_SPEC "}"

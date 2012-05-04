@@ -4,6 +4,11 @@
 
   04 May 2012; Fabian Groffen <grobian@gentoo.org>
   files/4.2.2/solarisx86_64.patch, files/4.3.0/solarisx86_64.patch,
+  files/4.3.3/solarisx86_64.patch, files/4.5.1/solaris-x86_64.patch:
+  Use link_target_spec from sol2-10.h, instead of defining our own
+
+  04 May 2012; Fabian Groffen <grobian@gentoo.org>
+  files/4.2.2/solarisx86_64.patch, files/4.3.0/solarisx86_64.patch,
   files/4.3.3/solarisx86_64.patch, files/4.4.0/gcc-4.4.1-solaris-x86_64.patch,
   files/4.5.1/solaris-x86_64.patch:
   Fix Solaris GNU ld 2.22 problem not only for 32-bits x86, but also for 64-bits
