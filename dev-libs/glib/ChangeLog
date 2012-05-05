@@ -3,6 +3,10 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.516 2012/04/19 20:29:17 ranger Exp $
 
   05 May 2012; Fabian Groffen <grobian@gentoo.org>
+  files/glib-2.32.1-solaris-FIONREAD.patch:
+  Add upstream report URL
+
+  05 May 2012; Fabian Groffen <grobian@gentoo.org>
   +files/glib-2.32.1-solaris-FIONREAD.patch, glib-2.32.1.ebuild:
   Fix compilation on Solaris
 

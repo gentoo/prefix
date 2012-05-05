@@ -1,3 +1,5 @@
+https://bugzilla.gnome.org/show_bug.cgi?id=675524
+
 --- configure.ac
 +++ configure.ac
 @@ -882,7 +882,7 @@
