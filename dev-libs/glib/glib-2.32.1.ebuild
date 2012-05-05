@@ -68,6 +68,7 @@ src_prepare() {
 		fi
 	fi
 
+	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-FIONREAD.patch
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
 
