@@ -169,6 +169,15 @@ do_compile() {
 	need-libtool ||
 	sed -i -e '/^libdir/s:/usr/lib\(64\|\)$:/lib\1:' ncurses/Makefile || die "nlibdir"
 
+	# Don't mess with _XOPEN_SOURCE for C++ on (Open)Solaris.  The compiler
+	# defines a value for it, and depending on version, a different definition
+	# is used.  Defining this variable on these systems is dangerous any time,
+	# since the system headers do strict checks on compatability of flags and
+	# standards.
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		sed -i -e 's/-D_XOPEN_SOURCE=500//' c++/Makefile || die
+	fi
+
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
 	# non-parallel), we can then build the rest of the package

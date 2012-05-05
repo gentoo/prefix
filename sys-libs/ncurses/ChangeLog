@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.202 2012/05/03 20:36:20 maekke Exp $
 
+  05 May 2012; Fabian Groffen <grobian@gentoo.org> ncurses-5.9-r2.ebuild:
+  Fix compilation with GCC 4.6 on Solaris
+
   03 May 2012; Markus Meier <maekke@gentoo.org> ncurses-5.9-r2.ebuild:
   arm stable, bug #413897
 
