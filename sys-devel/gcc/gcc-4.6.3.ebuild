@@ -56,8 +56,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/solaris-i386-ld-emulation.patch
 
 	# add support for 64-bits native target on Solaris
-	#fails, wait until 4.7
-	#epatch "${FILESDIR}"/4.5.1/solaris-x86_64.patch
+	# 4.7 will have this built in
+	epatch "${FILESDIR}"/4.6.3/solaris-x86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/4.5.2/solaris-searchpath.patch

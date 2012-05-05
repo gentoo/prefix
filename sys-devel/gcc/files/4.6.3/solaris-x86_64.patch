@@ -1,0 +1,215 @@
+Sort of backport of
+http://gcc.gnu.org/ml/gcc-patches/2011-07/msg00327.html
+
+--- a/gcc/config.gcc
++++ b/gcc/config.gcc
+@@ -1364,7 +1364,7 @@
+ 	extra_parts="crtbegin.o crtend.o crti.o crtn.o"
+ 	tmake_file="${tmake_file} i386/t-rtems-i386 i386/t-crtstuff t-rtems"
+ 	;;
+-i[34567]86-*-solaris2*)
++i[34567]86-*-solaris2*|x86_64-*-solaris2*)
+ 	tm_file="${tm_file} i386/unix.h i386/att.h dbxelf.h elfos.h i386/sysv4.h sol2.h"
+ 	# Set default arch_32 to pentium4, tune_32 to generic like the other
+ 	# i386 targets, although config.guess defaults to i386-pc-solaris2*.
+@@ -1409,6 +1409,11 @@
+ 	case ${target} in
+ 	*-*-solaris2.1[0-9]*)
+ 		tm_file="${tm_file} i386/x86-64.h i386/sol2-10.h"
++		case ${target} in
++		x86_64-*)
++			tm_file="${tm_file} i386/sol2-64.h"
++		;;
++		esac
+ 		tm_defines="${tm_defines} TARGET_BI_ARCH=1"
+ 		tmake_file="$tmake_file i386/t-sol2-10"
+ 		# i386/t-crtstuff only affects libgcc.  Its inclusion
+@@ -3670,7 +3670,7 @@
+ 	  i[34567]86-*-gnu*)
+ 		tmake_file="${tmake_file} i386/t-fprules-softfp soft-fp/t-softfp i386/t-linux"
+ 		;;
+-	i[34567]86-*-solaris2*)
++	i[34567]86-*-solaris2*|x86_64-*-solaris2*)
+ 		tmake_file="${tmake_file} i386/t-fprules-softfp soft-fp/t-softfp"
+ 		;;
+ 	i[34567]86-*-cygwin* | i[34567]86-*-mingw* | x86_64-*-mingw*)
+--- a/gcc/config.host
++++ b/gcc/config.host
+@@ -197,7 +197,7 @@
+   i370-*-opened* | i370-*-mvs* ) # IBM 360/370/390 Architecture
+     host_xm_defines='FATAL_EXIT_CODE=12'
+     ;;
+-  i[34567]86-*-solaris2*)
++  i[34567]86-*-solaris2*|x86_64-*-solaris2*)
+     out_host_hook_obj=host-solaris.o
+     host_xmake_file="${host_xmake_file} x-solaris"
+     ;;
+--- a/gcc/config/host-solaris.c
++++ b/gcc/config/host-solaris.c
+@@ -73,7 +73,7 @@
+ #elif defined(__sparc__)
+ # define TRY_EMPTY_VM_SPACE	0x80000000
+ #elif defined(__x86_64__)
+-# define TRY_EMPTY_VM_SPACE	0x8000000000000000
++# define TRY_EMPTY_VM_SPACE	0x80000000000
+ #elif defined(__i386__)
+ # define TRY_EMPTY_VM_SPACE	0xB0000000
+ #else
+--- a/gcc/configure.ac
++++ b/gcc/configure.ac
+@@ -2136,7 +2136,7 @@
+ # Solaris 9/x86 as incorrectly emits an alias for a hidden symbol with
+ # STV_HIDDEN, so disable .hidden support if so.
+ case "${target}" in
+-  i?86-*-solaris2*)
++  i?86-*-solaris2*|x86_64-*-solaris2*)
+     if test x$gcc_cv_as != x && test x$gcc_cv_objdump != x; then
+       cat > conftest.s <<EOF
+ .globl hidden
+@@ -2367,7 +2367,7 @@
+ 	  gcc_cv_as_cfi_directive=no
+ 	else
+ 	  case "$target" in
+-	    i?86-*-solaris2.1[[0-9]]*)
++	    i?86-*-solaris2.1[[0-9]]*|x86_64-*-solaris2*)
+ 	      # On Solaris/x86, make sure that GCC and gas agree on using
+ 	      # read-only .eh_frame sections for 64-bit.
+ 	      if $gcc_cv_as --64 -o conftest.o conftest.s > /dev/null 2>&1 && \
+@@ -2716,6 +2716,10 @@
+ 	on_solaris=yes
+ 	tga_func=___tls_get_addr
+ 	;;
++      x86_64-*-solaris2*)
++	on_solaris=yes
++	tga_func=__tls_get_addr
++	;;
+       *)
+ 	on_solaris=no
+ 	;;
+--- a/gcc/config/i386/sol2-64.h
++++ b/gcc/config/i386/sol2-64.h
+@@ -0,0 +1,5 @@
++/* Definitions of target machine for GCC, for bi-arch i386
++   running Solaris 2, defaulting to 64-bit code generation.  */
++
++#undef MULTILIB_DEFAULTS
++#define MULTILIB_DEFAULTS { "m64" }
+--- a/gcc/configure
++++ b/gcc/configure
+@@ -21651,7 +21651,7 @@
+ # Solaris 9/x86 as incorrectly emits an alias for a hidden symbol with
+ # STV_HIDDEN, so disable .hidden support if so.
+ case "${target}" in
+-  i?86-*-solaris2*)
++  i?86-*-solaris2*|x86_64-*-solaris2*)
+     if test x$gcc_cv_as != x && test x$gcc_cv_objdump != x; then
+       cat > conftest.s <<EOF
+ .globl hidden
+@@ -21942,7 +21942,7 @@
+ 	  gcc_cv_as_cfi_directive=no
+ 	else
+ 	  case "$target" in
+-	    i?86-*-solaris2.1[0-9]*)
++	    i?86-*-solaris2.1[0-9]*|x86_64-*-solaris2*)
+ 	      # On Solaris/x86, make sure that GCC and gas agree on using
+ 	      # read-only .eh_frame sections for 64-bit.
+ 	      if $gcc_cv_as --64 -o conftest.o conftest.s > /dev/null 2>&1 && \
+@@ -22549,6 +22549,10 @@
+ 	on_solaris=yes
+ 	tga_func=___tls_get_addr
+ 	;;
++      x86_64-*-solaris2*)
++	on_solaris=yes
++	tga_func=__tls_get_addr
++	;;
+       *)
+ 	on_solaris=no
+ 	;;
+--- a/libgcc/config.host
++++ b/libgcc/config.host
+@@ -316,7 +316,7 @@
+ 	;;
+ i[34567]86-*-rtems*)
+ 	;;
+-i[34567]86-*-solaris2*)
++i[34567]86-*-solaris2*|x86_64-*-solaris2*)
+ 	tmake_file="${tmake_file} i386/t-sol2"
+ 	case ${host} in
+ 	*-*-solaris2.1[0-9]*)
+--- a/libgcc/configure.ac
++++ b/libgcc/configure.ac
+@@ -176,7 +176,7 @@
+ # Link with -nostartfiles -nodefaultlibs since neither are present while
+ # building libgcc.
+ case ${host} in
+-i?86-*-solaris2*)
++i?86-*-solaris2*|x86_64-*-solaris2*)
+   cat > conftest.s <<EOF
+ 	.section	.eh_frame,"a",@unwind
+ 	.zero	4
+--- a/libgcc/configure
++++ b/libgcc/configure
+@@ -3425,7 +3425,7 @@
+ # Link with -nostartfiles -nodefaultlibs since neither are present while
+ # building libgcc.
+ case ${host} in
+-i?86-*-solaris2*)
++i?86-*-solaris2*|x86_64-*-solaris2*)
+   cat > conftest.s <<EOF
+ 	.section	.eh_frame,"a",@unwind
+ 	.zero	4
+--- a/libcpp/configure.ac
++++ b/libcpp/configure.ac
+@@ -145,7 +145,7 @@
+ 	ia64-*-* | \
+ 	hppa*64*-*-* | \
+ 	i[34567]86-*-darwin* | \
+-	i[34567]86-*-solaris2.1[0-9]* | \
++	i[34567]86-*-solaris2.1[0-9]* | x86_64-*-solaris2.1[0-9]* | \
+ 	i[34567]86-w64-mingw* | \
+ 	mips*-*-* | \
+ 	mmix-*-* | \
+--- a/libcpp/configure
++++ b/libcpp/configure
+@@ -7095,7 +7095,7 @@
+ 	ia64-*-* | \
+ 	hppa*64*-*-* | \
+ 	i[34567]86-*-darwin* | \
+-	i[34567]86-*-solaris2.1[0-9]* | \
++	i[34567]86-*-solaris2.1[0-9]* | x86_64-*-solaris2.1[0-9]* | \
+ 	i[34567]86-w64-mingw* | \
+ 	mips*-*-* | \
+ 	mmix-*-* | \
+--- a/libgcc/config.host
++++ b/libgcc/config.host
+@@ -612,7 +612,7 @@
+   i[34567]86-*-kfreebsd*-gnu | x86_64-*-kfreebsd*-gnu | \
+   i[34567]86-*-linux* | x86_64-*-linux* | \
+   i[34567]86-*-gnu* | \
+-  i[34567]86-*-solaris2* | \
++  i[34567]86-*-solaris2* | x86_64-*-solaris2.1[0-9]* | \
+   i[34567]86-*-cygwin* | i[34567]86-*-mingw* | x86_64-*-mingw* | \
+   i[34567]86-*-freebsd* | x86_64-*-freebsd*)
+ 	if test "${host_address}" = 32; then
+--- a/configure.ac
++++ b/configure.ac
+@@ -870,7 +870,7 @@
+   i[[3456789]]86-*-sco*)
+     noconfigdirs="$noconfigdirs gprof target-libgloss ${libgcj}"
+     ;;
+-  i[[3456789]]86-*-solaris2*)
++  i[[3456789]]86-*-solaris2* | x86_64-*-solaris2.1?)
+     noconfigdirs="$noconfigdirs target-libgloss"
+     ;;
+   i[[3456789]]86-*-sysv4*)
+--- a/configure
++++ b/configure
+@@ -3449,7 +3449,7 @@
+   i[3456789]86-*-sco*)
+     noconfigdirs="$noconfigdirs gprof target-libgloss ${libgcj}"
+     ;;
+-  i[3456789]86-*-solaris2*)
++  i[3456789]86-*-solaris2* | x86_64-*-solaris2.1?)
+     noconfigdirs="$noconfigdirs target-libgloss"
+     ;;
+   i[3456789]86-*-sysv4*)

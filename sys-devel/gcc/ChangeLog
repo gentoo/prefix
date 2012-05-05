@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.871 2012/04/28 00:57:23 dirtyepic Exp $
 
+  05 May 2012; Fabian Groffen <grobian@gentoo.org> +files/4.6.3,
+  +files/4.6.3/solaris-x86_64.patch, gcc-4.6.3.ebuild:
+  Fix x86_64 Solaris patch for 4.6.3
+
   04 May 2012; Fabian Groffen <grobian@gentoo.org>
   files/4.2.2/solarisx86_64.patch, files/4.3.0/solarisx86_64.patch,
   files/4.3.3/solarisx86_64.patch, files/4.5.1/solaris-x86_64.patch:
