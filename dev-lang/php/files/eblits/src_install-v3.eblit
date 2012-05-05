@@ -40,13 +40,13 @@ eblit-php-src_install() {
 			if [[ "${sapi}" == "apache2" ]] ; then
 				# We're specifically not using emake install-sapi as libtool
 				# may cause unnecessary relink failures (see bug #351266)
-				insinto "${PHP_DESTDIR}/apache2/"
+				insinto "${PHP_DESTDIR#${EPREFIX}}/apache2/"
 				newins ".libs/libphp5$(get_libname)" "libphp${PHP_MV}$(get_libname)"
 				keepdir "/usr/$(get_libdir)/apache2/modules"
 			else
 				# needed each time, php_install_ini would reset it
-				into "${PHP_DESTDIR}"
-			    case "$sapi" in
+				into "${PHP_DESTDIR#${EPREFIX}}"
+				case "$sapi" in
 					cli)
 						source="sapi/cli/php"
 						;;
@@ -89,8 +89,8 @@ eblit-php-src_install() {
 	eprefixify "${ED}/etc/env.d/20php${SLOT}"
 	sed -e "s|/lib/|/$(get_libdir)/|g" -i \
 		"${ED}/etc/env.d/20php${SLOT}"
-  sed -e "s|php5|php${SLOT}|g" -i \
-    "${ED}/etc/env.d/20php${SLOT}"
+	sed -e "s|php5|php${SLOT}|g" -i \
+		"${ED}/etc/env.d/20php${SLOT}"
 
 	# set php-config variable correctly (bug #278439)
 	sed -e "s:^\(php_sapis=\)\".*\"$:\1\"${sapi_list}\":" -i \
@@ -119,40 +119,40 @@ php_install_ini() {
 	insinto "${PHP_INI_DIR#${EPREFIX}}"
 	newins "${phpinisrc}" "${PHP_INI_FILE}"
 
-  elog "Installing php.ini for ${phpsapi} into ${PHP_INI_DIR#${EPREFIX}}"
-  elog
+	elog "Installing php.ini for ${phpsapi} into ${PHP_INI_DIR#${EPREFIX}}"
+	elog
 
 	dodir "${PHP_EXT_INI_DIR#${EPREFIX}}"
 	dodir "${PHP_EXT_INI_DIR_ACTIVE#${EPREFIX}}"
 
 	# SAPI-specific handling
 	if [[ "${sapi}" == "apache2" ]] ; then
-    insinto "${APACHE_MODULES_CONFDIR#${EPREFIX}}"
-    newins "${FILESDIR}/70_mod_php${PHP_MV}.conf-apache2" \
-				"70_mod_php${PHP_MV}.conf"
+		insinto "${APACHE_MODULES_CONFDIR#${EPREFIX}}"
+		newins "${FILESDIR}/70_mod_php${PHP_MV}.conf-apache2" \
+			"70_mod_php${PHP_MV}.conf"
 	fi
 
 	if [[ "${sapi}" == "fpm" ]] ; then
-        [[ -z ${PHP_FPM_INIT_VER} ]] && PHP_FPM_INIT_VER=3
-        [[ -z ${PHP_FPM_CONF_VER} ]] && PHP_FPM_CONF_VER=0
+	[[ -z ${PHP_FPM_INIT_VER} ]] && PHP_FPM_INIT_VER=3
+	[[ -z ${PHP_FPM_CONF_VER} ]] && PHP_FPM_CONF_VER=0
 		einfo "Installing FPM CGI config file php-fpm.conf"
 		insinto "${PHP_INI_DIR#${EPREFIX}}"
 		newins "${FILESDIR}/php-fpm-r${PHP_FPM_CONF_VER}.conf" php-fpm.conf
 		dodir "/etc/init.d"
 		insinto "/etc/init.d"
 		newinitd "${FILESDIR}/php-fpm-r${PHP_FPM_INIT_VER}.init" "php-fpm"
-#		dosym "${PHP_DESTDIR#${EPREFIX}}/bin/php-fpm" "/usr/bin/php-fpm"
-  fi
+		# dosym "${PHP_DESTDIR#${EPREFIX}}/bin/php-fpm" "/usr/bin/php-fpm"
+	fi
 
-  # Install PHP ini files into /usr/share/php
-  if [[ ${SLOT} == '5.2' ]]; then
-    newdoc php.ini-dist php.ini-development
-    newdoc php.ini-recommended php.ini-production
-  fi
+	# Install PHP ini files into /usr/share/php
+	if [[ ${SLOT} == '5.2' ]]; then
+		newdoc php.ini-dist php.ini-development
+		newdoc php.ini-recommended php.ini-production
+	fi
 
-  if [[ ${SLOT} == '5.3' ]]; then
-    dodoc php.ini-development
-    dodoc php.ini-production
-  fi
+	if [[ ${SLOT} == '5.3' ]]; then
+		dodoc php.ini-development
+		dodoc php.ini-production
+	fi
 
 }
