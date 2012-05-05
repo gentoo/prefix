@@ -1359,7 +1359,10 @@ gcc_do_make() {
 
 	pushd "${WORKDIR}"/build
 
+	# we "undef" T because the GCC makefiles use this variable, and if it's set
+	# in the environment (like Portage does) the build fails, bug #286494
 	emake \
+		T= \
 		LDFLAGS="${LDFLAGS}" \
 		STAGE1_CFLAGS="${STAGE1_CFLAGS}" \
 		LIBPATH="${EPREFIX}${LIBPATH}" \
