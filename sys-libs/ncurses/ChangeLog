@@ -1,6 +1,24 @@
 # ChangeLog for sys-libs/ncurses
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.197 2011/12/28 19:26:42 halcy0n Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.202 2012/05/03 20:36:20 maekke Exp $
+
+  03 May 2012; Markus Meier <maekke@gentoo.org> ncurses-5.9-r2.ebuild:
+  arm stable, bug #413897
+
+  01 May 2012; Agostino Sarubbo <ago@gentoo.org> ncurses-5.9-r2.ebuild:
+  Stable for amd64, wrt bug #413897
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> ncurses-5.9-r2.ebuild:
+  keyword ~amd64-fbsd
+
+  11 Mar 2012; Mike Frysinger <vapier@gentoo.org> ncurses-5.9-r2.ebuild:
+  Make sure gpm is in RDEPEND too #407061 by Maxim Kammerer.
+
+*ncurses-5.9-r2 (29 Feb 2012)
+
+  29 Feb 2012; Alex Alexander <wired@gentoo.org> +ncurses-5.9-r2.ebuild,
+  +files/ncurses-5.9-rxvt-unicode-9.15.patch:
+  updated rxvt-unicode terminfo. fixes bug #383871. acked by robbat2
 
   31 Dec 2011; Fabian Groffen <grobian@gentoo.org> ncurses-5.9-r1.ebuild:
   Don't link non-existing shared libraries on static-only platforms, bug #394877
