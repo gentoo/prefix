@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.871 2012/04/28 00:57:23 dirtyepic Exp $
 
+  05 May 2012; Fabian Groffen <grobian@gentoo.org> gcc-4.2.4-r01.4.ebuild:
+  Make 4.2.4 request the *_sol2 targets from binutils, if >=2.21 is installed,
+  to ease bootstrapping
+
   05 May 2012; Fabian Groffen <grobian@gentoo.org> -gcc-4.5.2-r00.1.ebuild,
   -gcc-4.6.1-r1.ebuild, -gcc-4.6.2.ebuild:
   cleanup

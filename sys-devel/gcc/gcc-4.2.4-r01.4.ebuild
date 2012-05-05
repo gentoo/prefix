@@ -42,6 +42,17 @@ src_unpack() {
 
 	# add support for 64-bits native target on Solaris
 	epatch "${FILESDIR}"/4.2.2/solarisx86_64.patch
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# fix nasty bootstrap problem: we need 4.2 due to no deps of MPC, GMP,
+		# MPFR, but 4.2 doesn't know about *_sol2 ld targets of >=binutils-2.21
+		# we likely have that one installed, so if so, we patch it to *_sol2
+		if has_version '>=sys-devel/binutils-2.21' ; then
+			einfo "Patching specs to target elf_*_sol2 for newer binutils"
+			sed -i \
+				-e '/TARGET_LD_EMULATION/s/elf_\(x86_64\|i386\)/elf_\1_sol2/g' \
+				gcc/config/i386/sol2-10.h || die
+		fi
+	fi
 
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/solaris-searchpath.patch
