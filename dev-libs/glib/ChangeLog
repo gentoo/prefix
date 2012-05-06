@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.516 2012/04/19 20:29:17 ranger Exp $
 
+  06 May 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/glib-2.32.1-solaris-nsl.patch, glib-2.32.1.ebuild:
+  Add patch to pull in -lnsl for OpenIndiana
+
   05 May 2012; Fabian Groffen <grobian@gentoo.org>
   files/glib-2.32.1-solaris-FIONREAD.patch:
   Add upstream report URL
