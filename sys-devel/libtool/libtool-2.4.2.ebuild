@@ -69,6 +69,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-darwin-module-bundle.patch
 	epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-darwin-use-linux-version.patch
 	epatch "${FILESDIR}"/2.4/${PN}-2.4-interix.patch
+	epatch "${FILESDIR}"/2.4/${PN}-2.4.2-solaris_sol2.patch
 	cd ..
 	AT_NOELIBTOOLIZE=yes eautoreconf
 	cd ..
