@@ -1,6 +1,50 @@
 # ChangeLog for media-gfx/xfig
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/ChangeLog,v 1.65 2010/02/10 03:32:29 josejx Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/ChangeLog,v 1.76 2011/11/06 06:39:07 pva Exp $
+
+*xfig-3.2.5b-r2 (06 Nov 2011)
+
+  06 Nov 2011; Peter Volkov <pva@gentoo.org> +xfig-3.2.5b-r2.ebuild,
+  +files/xfig-3.2.5b-fix-eps-reading.patch:
+  Fix eps importing.
+
+  02 Aug 2011; Matt Turner <mattst88@gentoo.org> xfig-3.2.5b-r1.ebuild:
+  Renamed x11-libs/Xaw3d to x11-libs/libXaw3d.
+
+  01 May 2011; Peter Volkov <pva@gentoo.org> -xfig-3.2.5b.ebuild,
+  xfig-3.2.5b-r1.ebuild, +files/xfig-3.2.5b-libpng-1.5.patch:
+  Fix build issue with libpng-1.5, bug #356753 thank Alexis Ballier for this
+  patch. Drop old.
+
+  09 Jan 2011; Brent Baude <ranger@gentoo.org> xfig-3.2.5b-r1.ebuild:
+  Marking xfig-3.2.5b-r1 ppc for bug 348344
+
+  27 Dec 2010; Brent Baude <ranger@gentoo.org> xfig-3.2.5b-r1.ebuild:
+  Marking xfig-3.2.5b-r1 ppc64 for bug 348344
+
+  25 Dec 2010; Jeroen Roovers <jer@gentoo.org> xfig-3.2.5b-r1.ebuild:
+  Stable for HPPA (bug #348344).
+
+  25 Dec 2010; Raúl Porcel <armin76@gentoo.org> xfig-3.2.5b-r1.ebuild:
+  alpha/sparc stable wrt #348344
+
+  21 Dec 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  xfig-3.2.5b-r1.ebuild:
+  x86 stable wrt security bug #348344
+
+  21 Dec 2010; Peter Volkov <pva@gentoo.org> xfig-3.2.5b-r1.ebuild:
+  amd64 stable, security bug #348344, thank Agostino Sarubbo for testing.
+
+*xfig-3.2.5b-r1 (20 Dec 2010)
+
+  20 Dec 2010; Peter Volkov <pva@gentoo.org> -xfig-3.2.5-r3.ebuild,
+  +xfig-3.2.5b-r1.ebuild, +files/xfig-3.2.5b-CVE-2010-4262.patch:
+  Add patch to address stack-based buffer overflow, bug #348344, thank Tim
+  Sammut for report. Drop old.
+
+  24 Nov 2010; Peter Volkov <pva@gentoo.org> xfig-3.2.5-r3.ebuild,
+  xfig-3.2.5b.ebuild:
+  Updated jpeg dependencies on virtual/jpeg, thank Andre for report.
 
   10 Feb 2010; Joseph Jezak <josejx@gentoo.org> xfig-3.2.5b.ebuild:
   Marked ppc stable for bug #264575.

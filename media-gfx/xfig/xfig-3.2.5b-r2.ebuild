@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/xfig-3.2.5b.ebuild,v 1.8 2010/02/10 03:32:29 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/xfig-3.2.5b-r2.ebuild,v 1.1 2011/11/06 06:39:07 pva Exp $
 
-EAPI="2"
+EAPI="3"
 inherit eutils multilib
 
 MY_P=${PN}.${PV}
@@ -18,9 +18,9 @@ IUSE=""
 
 RDEPEND="x11-libs/libXaw
 		x11-libs/libXp
-		x11-libs/Xaw3d
+		x11-libs/libXaw3d
 		x11-libs/libXi
-		media-libs/jpeg
+		virtual/jpeg
 		media-libs/libpng
 		media-fonts/font-misc-misc
 		media-fonts/urw-fonts
@@ -53,8 +53,8 @@ sed_Imakefile() {
 		sed -i "s:^\(XCOMM\)*[[:space:]]*${varname}[[:space:]]*=.*$:${varname} = ${varval}:" "$@"
 	done
 	sed -i "s:^\(XCOMM\)*[[:space:]]*\(#define I18N\).*$:\2:" "$@"
-	if has_version '>=x11-libs/Xaw3d-1.5e'; then
-		einfo "x11-libs/Xaw3d 1.5e and abover installed"
+	if has_version '>=x11-libs/libXaw3d-1.5e'; then
+		einfo "x11-libs/libXaw3d 1.5e and abover installed"
 		sed -i "s:^\(XCOMM\)*[[:space:]]*\(#define XAW3D1_5E\).*$:\2:" "$@"
 	fi
 }
@@ -72,6 +72,11 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-zoom-during-edit.patch"
 	epatch "${FILESDIR}/${P}-urwfonts.patch"
 	epatch "${FILESDIR}/${P}-mkstemp.patch" #264575
+	epatch "${FILESDIR}/${P}-CVE-2010-4262.patch" #348344
+	epatch "${FILESDIR}/${P}-libpng-1.5.patch" #356753
+	#https://bugzilla.redhat.com/show_bug.cgi?id=657290
+	epatch "${FILESDIR}/xfig-3.2.5b-fix-eps-reading.patch"
+
 	sed_Imakefile Imakefile
 	sed -e "s:/usr/lib/X11/xfig:${EPREFIX}/usr/share/doc/${PF}:" \
 		-i Doc/xfig.man -i Doc/xfig_man.html || die
