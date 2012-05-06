@@ -2201,7 +2201,9 @@ java-pkg_init() {
 
 	java-pkg_init_paths_
 	java-pkg_switch-vm
-	PATH=${JAVA_HOME}/bin:${PATH}
+	# DON'T just prepend /bin to PATH ever in Prefix, it breaks more than can
+	# imagine
+	[[ -n ${JAVA_HOME} ]] && PATH=${JAVA_HOME}/bin:${PATH}
 
 	# TODO we will probably want to set JAVAC and JAVACFLAGS
 
