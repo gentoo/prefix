@@ -47,7 +47,7 @@
 +		need_64bit_hwint=yes
 +		# FIXME: -m64 for i[34567]86-*-* should be allowed just
 +		# like -m32 for x86_64-*-*.
-+		case X"${with_cpu}" in
++		case X"${with_cpu:-generic}" in
 +		Xgeneric|Xnocona|Xx86-64|Xk8|Xopteron|Xathlon64|Xathlon-fx)
 +			;;
 +		X)
