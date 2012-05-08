@@ -403,7 +403,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20120324"
+	local PV="20120507"
 	do_tree http://files.prefix.freens.org/distfiles prefix-overlay-${PV}.tar.bz2
 }
 
@@ -450,7 +450,7 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshop for bootstrap_tree.
-	STABLE_PV="2.2.01.20271"
+	STABLE_PV="2.2.01.20430"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
