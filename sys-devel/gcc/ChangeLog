@@ -3,6 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.871 2012/04/28 00:57:23 dirtyepic Exp $
 
   08 May 2012; Fabian Groffen <grobian@gentoo.org> gcc-4.6.3.ebuild:
+  Add remark gcc-4.6.3 ebuild is intentionally keyworded in Prefix
+
+  08 May 2012; Fabian Groffen <grobian@gentoo.org> gcc-4.6.3.ebuild:
   Add back keywords again
 
   07 May 2012; Fabian Groffen <grobian@gentoo.org>
