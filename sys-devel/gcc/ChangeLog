@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.871 2012/04/28 00:57:23 dirtyepic Exp $
 
+  08 May 2012; Fabian Groffen <grobian@gentoo.org> gcc-4.6.3.ebuild:
+  Add back keywords again
+
   07 May 2012; Fabian Groffen <grobian@gentoo.org>
   files/4.2.2/solarisx86_64.patch:
   Work around odd shell quirk for x86_64-pc-solaris2.* builds
