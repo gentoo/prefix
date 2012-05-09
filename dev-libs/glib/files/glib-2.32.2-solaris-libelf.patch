@@ -1,0 +1,22 @@
+https://bugzilla.gnome.org/show_bug.cgi?id=675743
+
+system libelf is not sufficient for glib (lacks elf_getshdrstrndx and
+elf_getshdrnum) so let's make sure we don't define HAVE_LIBELF
+
+--- configure.ac
++++ configure.ac
+@@ -1821,10 +1821,10 @@
+ PKG_CHECK_MODULES([LIBELF], [libelf], [have_libelf=yes], [have_libelf=maybe])
+ 
+ if test $have_libelf = maybe; then
+-  AC_CHECK_LIB([elf], [elf_begin], , [have_libelf=no])
+-  AC_CHECK_LIB([elf], [elf_getshdrstrndx], , [have_libelf=no])
+-  AC_CHECK_LIB([elf], [elf_getshdrnum], , [have_libelf=no])
+-  AC_CHECK_HEADER([libelf.h], , [have_libelf=no])
++  AC_CHECK_LIB([elf], [elf_begin], [:], [have_libelf=no])
++  AC_CHECK_LIB([elf], [elf_getshdrstrndx], [:], [have_libelf=no])
++  AC_CHECK_LIB([elf], [elf_getshdrnum], [:], [have_libelf=no])
++  AC_CHECK_HEADER([libelf.h], [:], [have_libelf=no])
+ 
+   if test $have_libelf != no; then
+     LIBELF_LIBS=-lelf

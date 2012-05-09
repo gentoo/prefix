@@ -1,6 +1,41 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.516 2012/04/19 20:29:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.523 2012/05/05 16:35:21 tetromino Exp $
+
+  09 May 2012; Fabian Groffen <grobian@gentoo.org> -glib-2.30.1-r2.ebuild,
+  -glib-2.30.2.ebuild, -glib-2.32.1.ebuild, +glib-2.32.2.ebuild,
+  +files/glib-2.32.2-solaris-libelf.patch, metadata.xml:
+  Add blocker for dev-libs/libelf on Solaris (it breaks the system) and add a
+  patch to avoid breakage caused by not using dev-libs/libelf.
+
+  05 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org> glib-2.32.1.ebuild,
+  glib-2.32.2.ebuild:
+  Restore forgotten cross-compile fix from 2.30.x (bug #414761, thanks to
+  Samuli Suominen).
+
+  05 May 2012; Samuli Suominen <ssuominen@gentoo.org> glib-2.30.2.ebuild,
+  glib-2.30.3.ebuild, glib-2.32.1.ebuild, glib-2.32.2.ebuild:
+  Move from dev-util/pkgconfig to virtual/pkgconfig for exporting the required
+  variables for ./configure to pass.
+
+*glib-2.32.2 (01 May 2012)
+
+  01 May 2012; Pacho Ramos <pacho@gentoo.org> +glib-2.32.2.ebuild,
+  -glib-2.28.8.ebuild, -glib-2.30.2-r1.ebuild, -glib-2.32.0.ebuild,
+  metadata.xml:
+  Version bump, remove old.
+
+  30 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> glib-2.32.1.ebuild:
+  Check for CONFIG_INOTIFY_USER wrt #413403
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> glib-2.30.3.ebuild:
+  x86 stable, bug #410611
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> glib-2.32.1.ebuild:
+  keyword ~amd64-fbsd
+
+  25 Apr 2012; Markus Meier <maekke@gentoo.org> glib-2.30.3.ebuild:
+  arm stable, bug #410611
 
   06 May 2012; Fabian Groffen <grobian@gentoo.org>
   +files/glib-2.32.1-solaris-nsl.patch, glib-2.32.1.ebuild:

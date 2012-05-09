@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.30.1-r2.ebuild,v 1.1 2011/11/11 17:35:20 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.32.2.ebuild,v 1.3 2012/05/05 16:35:21 tetromino Exp $
 
 EAPI="4"
 PYTHON_DEPEND="utils? 2"
 # Avoid runtime dependency on python when USE=test
 
-inherit autotools gnome.org libtool eutils flag-o-matic multilib pax-utils python virtualx
+inherit autotools gnome.org libtool eutils flag-o-matic gnome2-utils multilib pax-utils python toolchain-funcs virtualx linux-info
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
@@ -15,12 +15,17 @@ SRC_URI="${SRC_URI}
 
 LICENSE="LGPL-2"
 SLOT="2"
-IUSE="debug doc fam selinux +static-libs systemtap test utils xattr"
+IUSE="debug doc fam kernel_linux selinux static-libs systemtap test utils xattr"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
+# libelf blocker on Solaris is temporary to fix screwup done in 2.32.1
 RDEPEND="virtual/libiconv
 	virtual/libffi
 	sys-libs/zlib
+	kernel_linux? ( || (
+		>=dev-libs/elfutils-0.142
+		>=dev-libs/libelf-0.8.11 ) )
+	kernel_SunOS? ( !dev-libs/libelf )
 	x86-interix? ( sys-libs/itx-bind )
 	xattr? ( sys-apps/attr )
 	fam? ( virtual/fam )
@@ -30,6 +35,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/gtk-doc-am-1.15
 	doc? (
 		>=dev-libs/libxslt-1.0
+		>=dev-util/gdbus-codegen-${PV}
 		>=dev-util/gtk-doc-1.15
 		~app-text/docbook-xml-dtd-4.1.2 )
 	systemtap? ( >=dev-util/systemtap-1.3 )
@@ -37,16 +43,23 @@ DEPEND="${RDEPEND}
 		sys-devel/gdb
 		=dev-lang/python-2*
 		>=dev-util/gdbus-codegen-${PV}
-		>=sys-apps/dbus-1.4.16-r2 )
-	!<dev-util/gtk-doc-1.15-r2
-	!<sys-apps/dbus-1.4.16-r2"
-PDEPEND="!<gnome-base/gvfs-1.6.4-r990" # Earlier versions do not work with glib
+		>=sys-apps/dbus-1.2.14 )
+	!<dev-util/gtk-doc-1.15-r2"
+PDEPEND="x11-misc/shared-mime-info
+	!<gnome-base/gvfs-1.6.4-r990"
+# shared-mime-info needed for gio/xdgmime, bug #409481
+# Earlier versions of gvfs do not work with glib
 
 pkg_setup() {
 	# Needed for gio/tests/gdbus-testserver.py
 	if use test ; then
 		python_set_active_version 2
 		python_pkg_setup
+	fi
+
+	if use kernel_linux ; then
+		CONFIG_CHECK="~INOTIFY_USER"
+		linux-info_pkg_setup
 	fi
 }
 
@@ -62,30 +75,24 @@ src_prepare() {
 		fi
 	fi
 
+	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-FIONREAD.patch
+	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-nsl.patch
+	epatch "${FILESDIR}"/${PN}-2.32.2-solaris-libelf.patch
 	# patch avoids autoreconf necessity
-	epatch "${FILESDIR}"/${PN}-2.26.1-solaris-thread.patch
-
-	# Don't fail gio tests when ran without userpriv, upstream bug 552912
-	# This is only a temporary workaround, remove as soon as possible
-#	epatch "${FILESDIR}/${PN}-2.18.1-workaround-gio-test-failure-without-userpriv.patch"
+	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
 
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	# For MiNT, bug #324233
-	epatch "${FILESDIR}"/${PN}-2.22.5-nothreads.patch
-
-	# Fix test failure when upgrading from 2.22 to 2.24, upstream bug 621368
-	epatch "${FILESDIR}/${PN}-2.24-assert-test-failure.patch"
-
-	# Do not try to remove files on live filesystem, upstream bug #619274
-	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
-		-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
-
-	if ! use test; then
+	# need to build tests if USE=doc for bug #387385
+	if ! use test && ! use doc; then
 		# don't waste time building tests
 		sed 's/^\(.*\SUBDIRS .*\=.*\)tests\(.*\)$/\1\2/' -i $(find . -name Makefile.am -o -name Makefile.in) || die
 	else
+		# Do not try to remove files on live filesystem, upstream bug #619274
+		sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
+			-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
+
 		# Disable tests requiring dev-util/desktop-file-utils when not installed, bug #286629
 		if ! has_version dev-util/desktop-file-utils ; then
 			ewarn "Some tests will be skipped due dev-util/desktop-file-utils not being present on your system,"
@@ -113,16 +120,13 @@ src_prepare() {
 	fi
 
 	# gdbus-codegen is a separate package
-	epatch "${FILESDIR}/${PN}-2.30.1-external-gdbus-codegen.patch"
+	epatch "${FILESDIR}/${PN}-2.31.x-external-gdbus-codegen.patch"
 
-	# Handle the G_HOME environment variable to override the passwd entry, upstream bug #142568
-	epatch "${FILESDIR}/${PN}-2.30.1-homedir-env.patch"
-
-	# Fix hardcoded path to machine-id wrt #390143
-	sed -i -e '/g_file_get_contents/s:/var/lib/dbus/machine-id:/etc/machine-id:' gio/gdbusprivate.c || die
+	# https://bugzilla.gnome.org/show_bug.cgi?id=673132
+	epatch "${FILESDIR}/${PN}-2.32.1-fix-libelf-check.patch"
 
 	# disable pyc compiling
-	ln -sfn $(type -P true) py-compile
+	use test && python_clean_py-compile_files
 
 	# make default sane for us
 	if use prefix ; then
@@ -160,8 +164,10 @@ src_prepare() {
 }
 
 src_configure() {
-	# Avoid circular depend with dev-util/pkgconfig
-	if ! has_version dev-util/pkgconfig; then
+	# Avoid circular depend with dev-util/pkgconfig and
+	# native builds (cross-compiles won't need pkg-config
+	# in the target ROOT to work here)
+	if ! tc-is-cross-compiler && ! has_version virtual/pkgconfig; then
 		if has_version sys-apps/dbus; then
 			export DBUS1_CFLAGS="-I${EPREFIX}/usr/include/dbus-1.0 -I${EPREFIX}/usr/$(get_libdir)/dbus-1.0/include"
 			export DBUS1_LIBS="-ldbus-1"
@@ -208,7 +214,6 @@ src_configure() {
 		$(use_enable static-libs static) \
 		$(use_enable systemtap dtrace) \
 		$(use_enable systemtap systemtap) \
-		--enable-regex \
 		--with-pcre=internal \
 		--with-threads=${mythreads} \
 		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog
@@ -247,6 +252,7 @@ src_test() {
 	export G_DBUS_COOKIE_SHA1_KEYRING_DIR="${T}/temp"
 	export XDG_DATA_HOME="${T}"
 	unset GSETTINGS_BACKEND # bug 352451
+	export LC_TIME=C # bug #411967
 
 	# Related test is a bit nitpicking
 	mkdir "$G_DBUS_COOKIE_SHA1_KEYRING_DIR"
