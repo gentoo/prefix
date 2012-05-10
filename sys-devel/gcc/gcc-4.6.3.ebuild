@@ -86,17 +86,15 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
 	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
 
-	# libgcc's Makefiles reuses $T, work around that :(
-	# only necessary on x86/x64, breaks on sparc
-	#fails to apply, still necessary with 4.7?
-	#[[ ${CHOST} == *86-*-solaris* ]] && \
-	#	epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
-
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 }
 
 src_compile() {
 	case ${CTARGET}:" ${USE} " in
+		powerpc*-darwin*)
+			# bug #381179
+			filter-flags "-mcpu=*" "-mtune=*"
+		;;
 		*-mint*)
 			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
 		;;
@@ -144,7 +142,7 @@ src_compile() {
 	# least on Solaris, and AIX /bin/sh is ways too slow,
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
 	# in case that doesn't exist yet
-	export CONFIG_SHELL="${BASH}"
+	export CONFIG_SHELL="${CONFIG_SHELL:-${BASH}}"
 	gcc_src_compile
 }
 

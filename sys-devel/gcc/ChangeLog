@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.871 2012/04/28 00:57:23 dirtyepic Exp $
 
+  10 May 2012; Fabian Groffen <grobian@gentoo.org>
+  -files/4.4.1/gcc-4.4.1-T-namespace.patch,
+  -files/4.4.4/gcc-4.4.4-T-namespace.patch, gcc-4.4.6-r1.ebuild,
+  gcc-4.5.3-r1.ebuild, gcc-4.5.3-r2.ebuild, gcc-4.6.3.ebuild:
+  Strip -mcpu=/-mtune= flags on PowerPC/Darwin hosts, drop obsolete T-namespace
+  patch (handled better by eclass now), don't override CONFIG_SHELL if it's
+  already set by the user
+
   08 May 2012; Fabian Groffen <grobian@gentoo.org> gcc-4.6.3.ebuild:
   Add remark gcc-4.6.3 ebuild is intentionally keyworded in Prefix
 

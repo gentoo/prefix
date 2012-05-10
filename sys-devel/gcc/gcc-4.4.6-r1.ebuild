@@ -105,11 +105,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.4.4/aix-bnoerok.patch
 	epatch "${FILESDIR}"/4.2.2/aix-lineno.patch
 
-	# libgcc's Makefiles reuses $T, work around that :(
-	# only necessary on x86/x64, breaks on sparc
-	[[ ${CHOST} == *86-*-solaris* ]] && \
-		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
-
 	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
 	# but this does make sense in prefix only.
 	use prefix && epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
