@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.4.ebuild,v 1.2 2011/03/27 09:44:34 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.4.ebuild,v 1.3 2012/05/03 18:02:21 jdhore Exp $
 
 EAPI=2
 
@@ -24,7 +24,7 @@ RDEPEND="dev-libs/glib:2
 	ntlm? ( net-libs/libntlm )
 	X? ( x11-libs/gtk+:2 )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
 pkg_setup() {

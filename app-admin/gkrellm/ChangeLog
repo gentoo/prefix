@@ -1,6 +1,31 @@
 # ChangeLog for app-admin/gkrellm
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.180 2011/03/27 09:44:34 nirbheek Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.188 2012/05/03 18:02:21 jdhore Exp $
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> gkrellm-2.3.2.ebuild,
+  gkrellm-2.3.2-r1.ebuild, gkrellm-2.3.4.ebuild, gkrellm-2.3.5.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  15 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> gkrellm-2.3.5.ebuild:
+  ppc64 stable wrt #356973
+
+  26 Jun 2011; Brent Baude <ranger@gentoo.org> gkrellm-2.3.5.ebuild:
+  Marking gkrellm-2.3.5 ppc for bug 356973
+
+  06 Jun 2011; Jeroen Roovers <jer@gentoo.org> gkrellm-2.3.5.ebuild:
+  Stable for HPPA (bug #356973).
+
+  21 May 2011; Raúl Porcel <armin76@gentoo.org> gkrellm-2.3.5.ebuild:
+  alpha/ia64/sparc stable wrt #356973
+
+  20 May 2011; Markus Meier <maekke@gentoo.org> gkrellm-2.3.5.ebuild:
+  arm stable, bug #356973
+
+  13 May 2011; Thomas Kahle <tomka@gentoo.org> gkrellm-2.3.5.ebuild:
+  x86 stable per bug 356973
+
+  11 May 2011; Christoph Mende <angelos@gentoo.org> gkrellm-2.3.5.ebuild:
+  Stable on amd64 wrt bug #356973
 
   27 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> gkrellm-2.3.2.ebuild,
   gkrellm-2.3.2-r1.ebuild, gkrellm-2.3.4.ebuild, gkrellm-2.3.5.ebuild:
