@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.579 2012/04/26 16:31:30 floppym Exp $
 
+  11 May 2012; Fabian Groffen <grobian@gentoo.org> python-2.7.3-r1.ebuild:
+  Add fix from upstream to solve bug #413397 (on Darwin and FreeBSD platforms)
+
 *python-3.1.5 (26 Apr 2012)
 *python-2.7.3-r1 (26 Apr 2012)
 *python-3.2.3 (26 Apr 2012)

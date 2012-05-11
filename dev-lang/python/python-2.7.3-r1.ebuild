@@ -10,7 +10,7 @@ inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 
 MY_P="Python-${PV}"
 PATCHSET_REVISION="0"
-PREFIX_PATCHREV="-r0"
+PREFIX_PATCHREV="-r1"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
