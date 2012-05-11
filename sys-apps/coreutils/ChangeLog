@@ -1,6 +1,30 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.333 2012/02/02 15:23:23 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.338 2012/05/10 22:09:26 vapier Exp $
+
+*coreutils-8.17 (10 May 2012)
+
+  10 May 2012; Mike Frysinger <vapier@gentoo.org> +coreutils-8.17.ebuild:
+  Version bump.
+
+  28 Mar 2012; Mike Frysinger <vapier@gentoo.org> coreutils-8.16.ebuild:
+  Force mknod test to avoid dying when running as root #409919 by Paweł
+  Rumian.
+
+  27 Mar 2012; Mike Frysinger <vapier@gentoo.org> coreutils-8.5.ebuild,
+  coreutils-8.5-r1.ebuild, coreutils-8.7.ebuild, coreutils-8.8.ebuild,
+  coreutils-8.9.ebuild, coreutils-8.10.ebuild, coreutils-8.11.ebuild,
+  coreutils-8.12.ebuild, coreutils-8.13.ebuild, coreutils-8.14.ebuild,
+  coreutils-8.15.ebuild, coreutils-8.16.ebuild:
+  Migrate to gnu-alpha mirror.
+
+*coreutils-8.16 (27 Mar 2012)
+
+  27 Mar 2012; Mike Frysinger <vapier@gentoo.org> +coreutils-8.16.ebuild:
+  Version bump.
+
+  19 Feb 2012; Raúl Porcel <armin76@gentoo.org> coreutils-8.14.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #397929
 
   14 Feb 2012; Fabian Groffen <grobian@gentoo.org> coreutils-8.15.ebuild:
   Forcibly use bash, since e.g. dash seems to hang configure

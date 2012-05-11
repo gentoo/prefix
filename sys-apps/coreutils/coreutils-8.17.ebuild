@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.14.ebuild,v 1.10 2012/03/27 17:49:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.17.ebuild,v 1.1 2012/05/10 22:09:26 vapier Exp $
 
 EAPI="3"
 
@@ -26,6 +26,7 @@ RDEPEND="caps? ( sys-libs/libcap )
 	acl? ( sys-apps/acl )
 	xattr? ( sys-apps/attr )
 	nls? ( >=sys-devel/gettext-0.15 )
+	!app-misc/realpath
 	!<sys-apps/util-linux-2.13
 	!sys-apps/stat
 	!net-mail/base64
@@ -81,6 +82,9 @@ src_prepare() {
 }
 
 src_configure() {
+	# hangs when using dash before configure is even printing anything
+	export CONFIG_SHELL=${BASH}
+
 	if [[ ${CHOST} == *-interix* ]]; then
 		append-flags "-Dgetgrgid=getgrgid_nomembers"
 		append-flags "-Dgetgrent=getgrent_nomembers"
@@ -93,6 +97,7 @@ src_configure() {
 	# sort.c:(.text+0x4f25): undefined reference to `pthread_create'
 	[[ ${CHOST} == *-freebsd* ]] && export gl_cv_search_pthread_join=-pthread
 
+	export gl_cv_func_mknod_works=yes #409919
 	use static && append-ldflags -static && sed -i '/elf_sys=yes/s:yes:no:' configure #321821
 	use selinux || export ac_cv_{header_selinux_{context,flash,selinux}_h,search_setfilecon}=no #301782
 	# kill/uptime - procps
