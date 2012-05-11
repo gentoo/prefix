@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.3-r1.ebuild,v 1.1 2012/04/26 16:31:30 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.3-r1.ebuild,v 1.8 2012/05/03 02:41:39 jdhore Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
@@ -53,7 +53,7 @@ RDEPEND="app-arch/bzip2
 		)
 		!!<sys-apps/portage-2.1.9"
 DEPEND="${RDEPEND}
-		dev-util/pkgconfig
+		virtual/pkgconfig
 		>=sys-devel/autoconf-2.65
 		!sys-devel/gcc[libffi]"
 RDEPEND+=" !build? ( app-misc/mime-types )
@@ -270,7 +270,8 @@ src_configure() {
 src_compile() {
 	emake EPYTHON="python${PV%%.*}" || die "emake failed"
 
-	pax-mark m libpython${SLOT}.so.1.0 python
+	# Work around bug 329499. See also bug 413751.
+	pax-mark m python
 }
 
 src_test() {
@@ -513,7 +514,7 @@ pkg_postinst() {
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn "You have just upgraded from an older version of Python."
 		ewarn "You should switch active version of Python ${PV%%.*} and run"
-		ewarn "'python-updater \${options}' to rebuild Python modules."
+		ewarn "'python-updater [options]' to rebuild Python modules."
 	fi
 }
 
