@@ -1,6 +1,39 @@
 # ChangeLog for app-admin/gam-server
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/ChangeLog,v 1.9 2009/09/25 10:50:13 flameeyes Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/ChangeLog,v 1.15 2012/05/05 14:20:43 ssuominen Exp $
+
+  05 May 2012; Samuli Suominen <ssuominen@gentoo.org> gam-server-0.1.10.ebuild,
+  gam-server-0.1.10-r1.ebuild:
+  Move from dev-util/pkgconfig to virtual/pkgconfig for exporting the required
+  variables for ./configure to pass.
+
+*gam-server-0.1.10-r1 (04 May 2012)
+
+  04 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +gam-server-0.1.10-r1.ebuild,
+  +files/gam-server-0.1.10-ih_sub_cancel-deadlock.patch:
+  Fix hangs with glib-2.32 (bug #413331, thanks to Per Pomsel).
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> gam-server-0.1.10.ebuild:
+  keyword ~amd64-fbsd
+
+  28 Nov 2011; Samuli Suominen <ssuominen@gentoo.org> metadata.xml:
+  Maintained now by freedesktop-bugs@ which include prev. gnome@, kde@ and
+  xfce@.
+
+  25 Sep 2011; Pacho Ramos <pacho@gentoo.org> gam-server-0.1.10.ebuild,
+  +files/gam-server-0.1.10-G_CONST_RETURN-removal.patch,
+  +files/gam-server-0.1.10-armel-features.patch,
+  +files/gam-server-0.1.10-crosscompile-fix.patch:
+  Fix compilation with latest glib, bug #382783 by Maciej Piechotka; fix
+  crosscompilation issues, bug #267604 by Andrei Slavoiu; enable linux specific
+  features on armel, upstream bug #588338; drop DG_DISABLE_DEPRECATED; don't
+  try to even check for python, simplifying ebuild for people running python3
+  as main interpreter; use gnome.org eclass to set SRC_URI and use bz2 tarball
+  instead of gz.
+
+  11 Jul 2011; Samuli Suominen <ssuominen@gentoo.org> gam-server-0.1.10.ebuild:
+  Stop depending on dev-util/pkgconfig wrt #374775 by dragos240
 
   25 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   -files/gamin-0.1.9-freebsd.patch, gam-server-0.1.10.ebuild:

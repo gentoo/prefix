@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/gam-server-0.1.10.ebuild,v 1.13 2012/05/05 14:20:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/gam-server-0.1.10-r1.ebuild,v 1.2 2012/05/05 14:20:43 ssuominen Exp $
 
 EAPI="3"
 GNOME_ORG_MODULE="gamin"
@@ -45,6 +45,9 @@ src_prepare() {
 
 	# Enable linux specific features on armel, upstream bug #588338
 	epatch "${FILESDIR}/${P}-armel-features.patch"
+
+	# Fix deadlocks with glib-2.32, bug #413331, upstream #667230
+	epatch "${FILESDIR}/${P}-ih_sub_cancel-deadlock.patch"
 
 	# Drop DEPRECATED flags
 	sed -i -e 's:-DG_DISABLE_DEPRECATED:$(NULL):g' server/Makefile.am || die
