@@ -1,6 +1,20 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.160 2012/04/13 22:33:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.164 2012/05/09 15:38:15 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> automake-1.10.3.ebuild:
+  keyword ~amd64-fbsd
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> automake-1.9.6-r3.ebuild:
+  keyword ~amd64-fbsd
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> automake-1.11.5.ebuild:
+  keyword ~amd64-fbsd
+
+*automake-1.12 (26 Apr 2012)
+
+  26 Apr 2012; Mike Frysinger <vapier@gentoo.org> +automake-1.12.ebuild:
+  Version bump.
 
 *automake-1.11.5 (13 Apr 2012)
 
