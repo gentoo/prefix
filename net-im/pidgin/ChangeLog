@@ -1,6 +1,122 @@
 # ChangeLog for net-im/pidgin
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.246 2011/07/27 07:01:12 pva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.276 2012/05/06 18:57:00 halcy0n Exp $
+
+  06 May 2012; Mark Loeser <halcy0n@gentoo.org> pidgin-2.10.3.ebuild:
+  Stable for ppc64; bug #408117
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> pidgin-2.10.1.ebuild,
+  pidgin-2.10.3.ebuild, pidgin-2.10.3-r100.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  15 Apr 2012; Brent Baude <ranger@gentoo.org> pidgin-2.10.3.ebuild:
+  Marking pidgin-2.10.3 ppc for bug 408177
+
+  08 Apr 2012; Raúl Porcel <armin76@gentoo.org> pidgin-2.10.3.ebuild:
+  alpha/ia64/sparc stable wrt #408177
+
+  03 Apr 2012; Agostino Sarubbo <ago@gentoo.org> pidgin-2.10.3.ebuild:
+  Stable for amd64, wrt bug #408177
+
+  03 Apr 2012; Thomas Kahle <tomka@gentoo.org> pidgin-2.10.3.ebuild:
+  marked x86 per bug 408177
+
+  02 Apr 2012; Jeroen Roovers <jer@gentoo.org> pidgin-2.10.3.ebuild:
+  Stable for HPPA (bug #408177).
+
+*pidgin-2.10.3-r100 (31 Mar 2012)
+
+  31 Mar 2012; Olivier Crête <tester@gentoo.org>
+  +files/port-to-farstream-v5.patch, +pidgin-2.10.3-r100.ebuild:
+  Add package.masked version that uses farstream instead of farsight2
+
+*pidgin-2.10.3 (30 Mar 2012)
+
+  30 Mar 2012; Lars Wendler <polynomial-c@gentoo.org> -pidgin-2.10.0-r1.ebuild,
+  -pidgin-2.10.0-r2.ebuild, +pidgin-2.10.3.ebuild:
+  non-maintainer commit: Security bump wrt. bug #408177. Removed old versions.
+
+  27 Dec 2011; Mark Loeser <halcy0n@gentoo.org> pidgin-2.10.1.ebuild:
+  Stable for ppc/ppc64; bug #394239
+
+  18 Dec 2011; Raúl Porcel <armin76@gentoo.org> pidgin-2.10.1.ebuild:
+  alpha/ia64/sparc stable wrt #394239
+
+  17 Dec 2011; Agostino Sarubbo <ago@gentoo.org> pidgin-2.10.1.ebuild:
+  Stable for X86, wrt security bug #394239
+
+  13 Dec 2011; Jeroen Roovers <jer@gentoo.org> pidgin-2.10.1.ebuild:
+  Stable for HPPA (bug #394239).
+
+  12 Dec 2011; Agostino Sarubbo <ago@gentoo.org> pidgin-2.10.1.ebuild:
+  Stable for AMD64, wrt security bug #394239
+
+  12 Dec 2011; Peter Volkov <pva@gentoo.org>
+  +files/pidgin-2.10.0-networkmanager-0.9.patch:
+  Version bump, security bug #394239 by Agostino Sarubbo. Install pietray.py,
+  bug #393549 by Randy Barlow. Detect network with networkmanager-0.9, bug
+  #392193 by Pacho Ramos.
+
+*pidgin-2.10.0-r2 (27 Oct 2011)
+
+  27 Oct 2011; Justin Lecher <jlec@gentoo.org> +pidgin-2.10.0-r2.ebuild,
+  +files/pidgin-2.10.0-gold.patch, metadata.xml:
+  Fix for linking with gold, #386079
+
+  27 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  pidgin-2.10.0-r1.ebuild:
+  Slot gtkspell dependency to 2 in preparation for gtkspell-3.
+
+  12 Oct 2011; Peter Volkov <pva@gentoo.org> -pidgin-2.10.0.ebuild,
+  pidgin-2.10.0-r1.ebuild:
+  Drop old. Updated list of plugins.
+
+  08 Oct 2011; Raúl Porcel <armin76@gentoo.org> pidgin-2.10.0-r1.ebuild:
+  alpha/ia64/sparc stable wrt #385073
+
+  04 Oct 2011; Markos Chandras <hwoarang@gentoo.org> pidgin-2.10.0-r1.ebuild:
+  Stable on amd64 wrt bug #385073
+
+  04 Oct 2011; Jeroen Roovers <jer@gentoo.org> pidgin-2.10.0-r1.ebuild:
+  Stable for HPPA (bug #385073).
+
+  04 Oct 2011; Andreas Schuerch <nativemad@gentoo.org> pidgin-2.10.0-r1.ebuild:
+  x86 stable, Bug 385073
+
+  03 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> pidgin-2.10.0-r1.ebuild:
+  ppc/ppc64 stable wrt #385073
+
+*pidgin-2.10.0-r1 (02 Oct 2011)
+
+  02 Oct 2011; Peter Volkov <pva@gentoo.org> -files/pidgin-2.7.2-ldflags.patch,
+  -files/pidgin-2.7.3-ldflags.patch, -pidgin-2.7.11.ebuild,
+  -pidgin-2.8.0.ebuild, -pidgin-2.8.0-r1.ebuild,
+  -files/pidgin-2.8.0-finch-icq.patch, -pidgin-2.9.0.ebuild,
+  -pidgin-2.9.0-r1.ebuild, -files/pidgin-2.9.0-conversation.c.patch,
+  +pidgin-2.10.0-r1.ebuild, +files/pidgin-2.10.0-utf8-validation.patch,
+  metadata.xml:
+  Fix heap-based buffer overflow, bug #385073 thank Sean Amoss for report. Drop
+  old.
+
+  27 Aug 2011; Raúl Porcel <armin76@gentoo.org> pidgin-2.10.0.ebuild:
+  alpha/ia64/sparc stable wrt #380207
+
+  26 Aug 2011; Markos Chandras <hwoarang@gentoo.org> pidgin-2.10.0.ebuild:
+  Stable on amd64 wrt bug #380207
+
+  25 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> pidgin-2.10.0.ebuild:
+  ppc/ppc64 stable wrt #380207
+
+  25 Aug 2011; Jeroen Roovers <jer@gentoo.org> pidgin-2.10.0.ebuild:
+  Stable for HPPA (bug #380207).
+
+  25 Aug 2011; Thomas Kahle <tomka@gentoo.org> pidgin-2.10.0.ebuild:
+  x86 stable per bug 380207
+
+*pidgin-2.10.0 (25 Aug 2011)
+
+  25 Aug 2011; Peter Volkov <pva@gentoo.org> +pidgin-2.10.0.ebuild:
+  Version bump, fixes security issues bu #380207 thank tman for report.
 
 *pidgin-2.9.0-r1 (27 Jul 2011)
 

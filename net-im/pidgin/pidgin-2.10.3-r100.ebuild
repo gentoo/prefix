@@ -1,11 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.9.0-r1.ebuild,v 1.1 2011/07/27 07:01:12 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.10.3-r100.ebuild,v 1.2 2012/05/04 06:22:11 jdhore Exp $
 
-EAPI=3
+EAPI=4
 
 GENTOO_DEPEND_ON_PERL=no
-inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 python
+inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 python autotools
 
 DESCRIPTION="GTK Instant Messenger client"
 HOMEPAGE="http://pidgin.im/"
@@ -35,12 +35,12 @@ RDEPEND="
 		>=x11-libs/gtk+-2.10:2[aqua=]
 		x11-libs/libSM
 		xscreensaver? ( x11-libs/libXScrnSaver )
-		spell? ( >=app-text/gtkspell-2.0.2 )
+		spell? ( >=app-text/gtkspell-2.0.2:2 )
 		eds? ( gnome-extra/evolution-data-server )
 		prediction? ( >=dev-db/sqlite-3.3:3 ) )
 	gstreamer? ( =media-libs/gstreamer-0.10*
 		=media-libs/gst-plugins-good-0.10*
-		>=net-libs/farsight2-0.0.14
+		net-libs/farstream
 		media-plugins/gst-plugins-meta
 		media-plugins/gst-plugins-gconf )
 	zeroconf? ( net-dns/avahi[dbus] )
@@ -69,7 +69,7 @@ NLS_DEPEND=">=dev-util/intltool-0.41.1 sys-devel/gettext"
 DEPEND="$RDEPEND
 	dev-lang/perl
 	dev-perl/XML-Parser
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	gtk? ( x11-proto/scrnsaverproto
 		${NLS_DEPEND} )
 	dbus? ( <dev-lang/python-3 )
@@ -92,6 +92,7 @@ DYNAMIC_PRPLS="irc,jabber,oscar,yahoo,simple,msn,myspace"
 #   x11-plugins/pidgin-latex
 #   x11-plugins/pidgintex
 #   x11-plugins/pidgin-libnotify
+#	x11-plugins/pidgin-mbpurple
 #	x11-plugins/pidgin-bot-sentry
 #   x11-plugins/pidgin-otr
 #   x11-plugins/pidgin-rhythmbox
@@ -99,12 +100,17 @@ DYNAMIC_PRPLS="irc,jabber,oscar,yahoo,simple,msn,myspace"
 #   x11-themes/pidgin-smileys
 #	x11-plugins/pidgin-knotify
 # Plugins in Sunrise:
-#	x11-plugins/pidgimpd
-#	x11-plugins/pidgin-birthday
+#	x11-plugins/pidgin-audacious-remote
+#	x11-plugins/pidgin-autoanswer
+#	x11-plugins/pidgin-birthday-reminder
+#	x11-plugins/pidgin-blinklight
 #	x11-plugins/pidgin-convreverse
+#	x11-plugins/pidgin-embeddedvideo
 #	x11-plugins/pidgin-extended-blist-sort
+#	x11-plugins/pidgin-gfire
 #	x11-plugins/pidgin-lastfm
-#	x11-plugins/pidgin-mbpurple
+#	x11-plugins/pidgin-sendscreenshot
+#	x11-plugins/pidgimpd
 
 pkg_setup() {
 	if ! use gtk && ! use ncurses ; then
@@ -127,7 +133,9 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/pidgin-2.9.0-conversation.c.patch"
+	epatch "${FILESDIR}/${PN}-2.10.0-gold.patch"
+	epatch "${FILESDIR}/port-to-farstream-v5.patch"
+	eautoreconf
 }
 
 src_configure() {
@@ -183,7 +191,7 @@ src_configure() {
 		$(use_enable dbus) \
 		$(use_enable meanwhile) \
 		$(use_enable gstreamer) \
-		$(use_enable gstreamer farsight) \
+		$(use_enable gstreamer farstream) \
 		$(use_enable gstreamer vv) \
 		$(use_enable sasl cyrus-sasl ) \
 		$(use_enable doc doxygen) \
@@ -215,6 +223,9 @@ src_install() {
 		done
 	fi
 	use perl && fixlocalpod
+
+	dodoc finch/plugins/pietray.py
+	docompress -x /usr/share/doc/${PF}/pietray.py
 
 	find "${ED}" -type f -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
 }
