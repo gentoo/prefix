@@ -1,6 +1,49 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.448 2012/04/26 14:58:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.461 2012/05/13 19:51:52 halcy0n Exp $
+
+  13 May 2012; Mark Loeser <halcy0n@gentoo.org> openssl-1.0.0j.ebuild:
+  Stable for ppc/ppc64; bug #415435
+
+  13 May 2012; Agostino Sarubbo <ago@gentoo.org> openssl-1.0.0j.ebuild:
+  Stable for amd64, wrt bug #415435
+
+  13 May 2012; Agostino Sarubbo <ago@gentoo.org> openssl-0.9.8x.ebuild:
+  Stable for amd64, wrt bug #415435
+
+  12 May 2012; Raúl Porcel <armin76@gentoo.org> openssl-1.0.0j.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #415435
+
+  12 May 2012; Jeroen Roovers <jer@gentoo.org> openssl-1.0.0j.ebuild:
+  Stable for HPPA (bug #415435).
+
+  12 May 2012; Tobias Klausmann <klausman@gentoo.org> openssl-1.0.0j.ebuild:
+  Stable on alpha, bug #415435
+
+  11 May 2012; Jeff Horelick <jdhore@gentoo.org> openssl-0.9.8x.ebuild,
+  openssl-1.0.0j.ebuild:
+  marked x86 per bug 415435
+
+*openssl-1.0.1c (10 May 2012)
+*openssl-1.0.0j (10 May 2012)
+*openssl-0.9.8x (10 May 2012)
+
+  10 May 2012; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8x.ebuild,
+  +openssl-1.0.0j.ebuild, +openssl-1.0.1c.ebuild:
+  Version bumps.
+
+  10 May 2012; Brent Baude <ranger@gentoo.org> openssl-0.9.8v.ebuild,
+  openssl-1.0.0i.ebuild:
+  Marking openssl-0.9.8v and openssl-1.0.0i ppc64 for 412643
+
+  29 Apr 2012; Jeff Horelick <jdhore@gentoo.org> openssl-0.9.8w.ebuild:
+  marked x86 per bug 412643
+
+  28 Apr 2012; <nixnut@gentoo.org> openssl-1.0.0i.ebuild:
+  ppc stable #412643
+
+  28 Apr 2012; Agostino Sarubbo <ago@gentoo.org> openssl-0.9.8w.ebuild:
+  Stable for amd64, wrt bug #412643
 
 *openssl-1.0.1b (26 Apr 2012)
 
