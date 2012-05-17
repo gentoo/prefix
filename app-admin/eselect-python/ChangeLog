@@ -1,6 +1,17 @@
 # ChangeLog for app-admin/eselect-python
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.63 2010/06/19 17:06:00 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.65 2012/04/26 14:53:20 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org>
+  eselect-python-20111108.ebuild, eselect-python-99999999.ebuild:
+  keyword ~amd64-fbsd
+
+*eselect-python-20111108 (09 Nov 2011)
+
+  09 Nov 2011; Mike Frysinger <vapier@gentoo.org>
+  +eselect-python-20111108.ebuild, eselect-python-99999999.ebuild:
+  Rewrite the ebuilds to not require autotools/newer EAPI to make upgrading
+  simple.
 
   19 Jun 2010; Raúl Porcel <armin76@gentoo.org>
   eselect-python-20100321.ebuild:
