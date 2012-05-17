@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/xz-utils-5.0.3.ebuild,v 1.9 2011/12/29 21:18:03 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/xz-utils-5.0.3.ebuild,v 1.11 2012/05/17 04:05:19 vapier Exp $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -68,7 +68,7 @@ src_configure() {
 
 src_install() {
 	emake install DESTDIR="${D}" || die
-	rm "${ED}"/usr/*/liblzma.la || die # dependency_libs=''
+	find "${ED}"/usr/ -name liblzma.la -delete || die # dependency_libs=''
 	rm "${ED}"/usr/share/doc/xz/COPYING* || die
 	mv "${ED}"/usr/share/doc/{xz,${PF}} || die
 	prepalldocs

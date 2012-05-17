@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/xz-utils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.41 2011/12/29 21:18:03 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.43 2012/05/17 04:05:19 vapier Exp $
+
+  17 May 2012; Mike Frysinger <vapier@gentoo.org> xz-utils-5.0.3.ebuild,
+  xz-utils-9999.ebuild:
+  Use `find` to clean up .la file #409261 by Kevin Pyle.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> xz-utils-5.0.3.ebuild,
+  xz-utils-9999.ebuild:
+  keyword ~amd64-fbsd
 
   29 Dec 2011; Mark Loeser <halcy0n@gentoo.org> xz-utils-5.0.3.ebuild:
   Stable for ppc64; bug #379379
