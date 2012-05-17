@@ -1,6 +1,104 @@
 # ChangeLog for app-arch/libarchive
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.95 2011/05/07 16:51:11 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.122 2012/04/26 13:40:27 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> libarchive-3.0.4.ebuild:
+  keyword ~amd64-fbsd
+
+*libarchive-3.0.4 (07 Apr 2012)
+
+  07 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> +libarchive-3.0.4.ebuild:
+  Version bump.
+
+  22 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> metadata.xml:
+  Maintained now by ferringb@, me, and bsd@ (in this order)
+
+  22 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> -libarchive-2.8.5.ebuild:
+  old
+
+  18 Mar 2012; Raúl Porcel <armin76@gentoo.org> libarchive-3.0.3.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #403173
+
+  05 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> libarchive-3.0.3.ebuild,
+  +files/libarchive-3.0.3-nozlib.patch:
+  Fix building with USE="-zlib" wrt #403733 by Ben Kohler
+
+  25 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> libarchive-3.0.3.ebuild:
+  ppc64 stable wrt #403173
+
+  16 Feb 2012; Markus Meier <maekke@gentoo.org> libarchive-3.0.3.ebuild:
+  arm stable, bug #403173
+
+  15 Feb 2012; Jeroen Roovers <jer@gentoo.org> libarchive-3.0.3.ebuild:
+  Stable for HPPA (bug #403173).
+
+  14 Feb 2012; Brent Baude <ranger@gentoo.org> libarchive-3.0.3.ebuild:
+  Marking libarchive-3.0.3 ppc for bug 403173
+
+  13 Feb 2012; Jeff Horelick <jdhore@gentoo.org> libarchive-3.0.3.ebuild:
+  x86 stable per bug 403173
+
+  13 Feb 2012; Agostino Sarubbo <ago@gentoo.org> libarchive-3.0.3.ebuild:
+  Stable for amd64, wrt bug #403173
+
+  22 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -libarchive-2.8.4-r1.ebuild, -libarchive-3.0.2.ebuild,
+  -files/libarchive-disable-lzma-size-test.patch:
+  old
+
+  22 Jan 2012; Raúl Porcel <armin76@gentoo.org> libarchive-2.8.5.ebuild,
+  libarchive-3.0.2.ebuild, libarchive-3.0.3.ebuild:
+  Add ~s390
+
+  22 Jan 2012; Raúl Porcel <armin76@gentoo.org> libarchive-2.8.5.ebuild:
+  ia64/s390/sh/sparc stable wrt #366687
+
+  20 Jan 2012; Thomas Kahle <tomka@gentoo.org> libarchive-2.8.5.ebuild:
+  x86 stable per bug 366687
+
+  18 Jan 2012; Markus Meier <maekke@gentoo.org> libarchive-2.8.5.ebuild:
+  arm stable, bug #366687
+
+  17 Jan 2012; Jeroen Roovers <jer@gentoo.org> libarchive-2.8.5.ebuild:
+  Stable for HPPA (bug #366687).
+
+  16 Jan 2012; Mark Loeser <halcy0n@gentoo.org> libarchive-2.8.5.ebuild:
+  Stable for ppc/ppc64; bug #366687
+
+  15 Jan 2012; Tobias Klausmann <klausman@gentoo.org> libarchive-2.8.5.ebuild:
+  Stable on alpha, bug #366687
+
+  13 Jan 2012; Agostino Sarubbo <ago@gentoo.org> libarchive-2.8.5.ebuild:
+  Stable for AMD64, wrt security bug #366687
+
+*libarchive-3.0.3 (13 Jan 2012)
+
+  13 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> +libarchive-3.0.3.ebuild:
+  Version bump.
+
+  10 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -libarchive-2.7.1-r1.ebuild, -libarchive-2.8.3.ebuild,
+  -libarchive-2.8.3-r1.ebuild, -libarchive-2.8.4.ebuild:
+  old
+
+  10 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> libarchive-3.0.2.ebuild,
+  metadata.xml:
+  Optionalize sys-fs/e2fsprogs wrt #354923 by Robin Johnson
+
+*libarchive-3.0.2 (10 Jan 2012)
+
+  10 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> +libarchive-3.0.2.ebuild,
+  metadata.xml:
+  Version bump. Remove USE="static" and move everything back to /usr wrt #398047
+  by Michał Górny.
+
+  29 Oct 2011; Raúl Porcel <armin76@gentoo.org> libarchive-2.8.4-r1.ebuild:
+  s390 stable
+
+*libarchive-2.8.5 (06 Sep 2011)
+
+  06 Sep 2011; Brian Harring <ferringb@gentoo.org> +libarchive-2.8.5.ebuild:
+  bugfix release primarily
 
   07 May 2011; Raúl Porcel <armin76@gentoo.org> libarchive-2.8.4-r1.ebuild:
   ia64/sh/sparc stable wrt #357771
