@@ -1,6 +1,129 @@
 # ChangeLog for app-arch/unrar
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.137 2010/06/30 21:29:00 hanno Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.173 2012/05/05 12:20:06 ssuominen Exp $
+
+*unrar-4.2.1 (05 May 2012)
+
+  05 May 2012; Samuli Suominen <ssuominen@gentoo.org> +unrar-4.2.1.ebuild:
+  Version bump. Introduce unrar_make() function inside src_compile() to
+  simplify building.
+
+  19 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> -unrar-4.0.7.ebuild:
+  old
+
+  19 Mar 2012; Raúl Porcel <armin76@gentoo.org> unrar-4.1.4-r2.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #406665
+
+  07 Mar 2012; Brent Baude <ranger@gentoo.org> unrar-4.1.4-r2.ebuild:
+  Marking unrar-4.1.4-r2 ppc for bug 406665
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> unrar-4.1.4-r2.ebuild:
+  Marking unrar-4.1.4-r2 ppc64 for bug 406665
+
+  06 Mar 2012; Jeroen Roovers <jer@gentoo.org> unrar-4.1.4-r2.ebuild:
+  Stable for HPPA (bug #406665).
+
+  05 Mar 2012; Agostino Sarubbo <ago@gentoo.org> unrar-4.1.4-r2.ebuild:
+  Stable for amd64, wrt bug #406665
+
+  05 Mar 2012; Jeff Horelick <jdhore@gentoo.org> unrar-4.1.4-r2.ebuild:
+  marked x86 per bug 406665
+
+  15 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> -unrar-4.1.4-r1.ebuild:
+  old
+
+*unrar-4.1.4-r2 (15 Feb 2012)
+
+  15 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> +unrar-4.1.4-r2.ebuild:
+  Install rest of the headers as required by sys-fs/rar2fs. The line between
+  private and public headers is a bit unclear.
+
+  23 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> -unrar-4.1.4.ebuild:
+  old
+
+*unrar-4.1.4-r1 (18 Jan 2012)
+
+  18 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> +unrar-4.1.4-r1.ebuild:
+  Build libunrar shared library wrt #177402 by Josh Jackson
+
+*unrar-4.1.4 (18 Jan 2012)
+
+  18 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> +unrar-4.1.4.ebuild:
+  Version bump.
+
+  18 Dec 2011; Tim Harder <radhermit@gentoo.org> -unrar-3.9.10.ebuild,
+  -unrar-4.0.6.ebuild:
+  Remove old.
+
+  18 Dec 2011; Mark Loeser <halcy0n@gentoo.org> unrar-4.0.7.ebuild:
+  Stable for ppc64; bug #380653
+
+  22 Oct 2011; Raúl Porcel <armin76@gentoo.org> unrar-4.0.7.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #380653
+
+  20 Oct 2011; Brent Baude <ranger@gentoo.org> unrar-4.0.7.ebuild:
+  Marking unrar-4.0.7 ppc for bug 380653
+
+  04 Sep 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> unrar-4.0.7.ebuild:
+  x86 stable wrt bug #380653
+
+  29 Aug 2011; Jeroen Roovers <jer@gentoo.org> unrar-4.0.7.ebuild:
+  Stable for HPPA (bug #380653).
+
+  28 Aug 2011; Markus Meier <maekke@gentoo.org> unrar-4.0.7.ebuild:
+  arm stable, bug #380653
+
+  26 Aug 2011; Markos Chandras <hwoarang@gentoo.org> unrar-4.0.7.ebuild:
+  Stable on amd64 wrt bug #380653
+
+*unrar-4.0.7 (09 Mar 2011)
+
+  09 Mar 2011; Mike Frysinger <vapier@gentoo.org> +unrar-4.0.7.ebuild:
+  Version bump #357827 by Rafał Mużyło.
+
+  23 Feb 2011; Mike Frysinger <vapier@gentoo.org> unrar-4.0.6.ebuild:
+  Enable lfs flags #356155 by Rafał Mużyło.
+
+*unrar-4.0.6 (10 Feb 2011)
+
+  10 Feb 2011; Mike Frysinger <vapier@gentoo.org> +unrar-4.0.6.ebuild:
+  Version bump #353901 by Arseny Solokha.
+
+*unrar-4.0.3 (26 Dec 2010)
+
+  26 Dec 2010; Mike Frysinger <vapier@gentoo.org> +unrar-4.0.3.ebuild:
+  Version bump.
+
+*unrar-4.0.2 (13 Dec 2010)
+
+  13 Dec 2010; Mike Frysinger <vapier@gentoo.org> +unrar-4.0.2.ebuild:
+  Version bump #348588 by Chen Chen.
+
+  05 Dec 2010; Raúl Porcel <armin76@gentoo.org> unrar-3.9.10.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #345655
+
+  29 Nov 2010; Brent Baude <ranger@gentoo.org> unrar-3.9.10.ebuild:
+  stable ppc64, bug 345655
+
+  27 Nov 2010; nixnut <nixnut@gentoo.org> unrar-3.9.10.ebuild:
+  ppc stable #345655
+
+  21 Nov 2010; Markus Meier <maekke@gentoo.org> unrar-3.9.10.ebuild:
+  arm stable, bug #345655
+
+  19 Nov 2010; Jeroen Roovers <jer@gentoo.org> unrar-3.9.10.ebuild:
+  Stable for HPPA (bug #345655).
+
+  18 Nov 2010; Thomas Kahle <tomka@gentoo.org> unrar-3.9.10.ebuild:
+  x86 stable per bug 345655
+
+  17 Nov 2010; Markos Chandras <hwoarang@gentoo.org> unrar-3.9.10.ebuild:
+  Stable on amd64 wrt bug #345655
+
+*unrar-4.0.1 (15 Nov 2010)
+
+  15 Nov 2010; Mike Frysinger <vapier@gentoo.org> +unrar-4.0.1.ebuild:
+  Version bump #345603 by Arseny Solokha.
 
   30 Jun 2010; Hanno Boeck <hanno@gentoo.org> unrar-3.8.5.ebuild,
   unrar-3.9.7.ebuild, unrar-3.9.9.ebuild, unrar-3.9.10.ebuild:
