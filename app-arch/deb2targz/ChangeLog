@@ -1,6 +1,40 @@
 # ChangeLog for app-arch/deb2targz
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/deb2targz/ChangeLog,v 1.12 2009/06/19 22:07:35 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/deb2targz/ChangeLog,v 1.21 2012/03/02 20:39:13 ranger Exp $
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> deb2targz-1-r2.ebuild:
+  Marking deb2targz-1-r2 ppc64 for bug 399909
+
+  12 Feb 2012; Raúl Porcel <armin76@gentoo.org> deb2targz-1-r2.ebuild:
+  alpha/ia64/sparc stable wrt #399909
+
+  05 Feb 2012; Markus Meier <maekke@gentoo.org> deb2targz-1-r2.ebuild:
+  arm stable, bug #399909
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> deb2targz-1-r2.ebuild:
+  Marking deb2targz-1-r2 ppc for bug 399909
+
+  31 Jan 2012; Jeroen Roovers <jer@gentoo.org> deb2targz-1-r2.ebuild:
+  Stable for HPPA (bug #399909).
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> deb2targz-1-r2.ebuild:
+  x86 stable wrt bug #399909
+
+  27 Jan 2012; Agostino Sarubbo <ago@gentoo.org> deb2targz-1-r2.ebuild:
+  Stable for amd64, wrt bug #399909
+
+*deb2targz-1-r2 (23 Sep 2011)
+
+  23 Sep 2011; Mike Gilbert <floppym@gentoo.org> -deb2targz-1-r1.ebuild,
+  +deb2targz-1-r2.ebuild, +files/deb2targz-any-data.patch,
+  -files/deb2targz-lzma-support.patch, metadata.xml:
+  Support any compression format. Keep the correct file extension. Bug 384145.
+
+*deb2targz-1-r1 (30 Aug 2011)
+
+  30 Aug 2011; Tony Vroon <chainsaw@gentoo.org>
+  +files/deb2targz-lzma-support.patch, +deb2targz-1-r1.ebuild:
+  Support for LZMA as written by Oschtan in bug #357703. Ported to EAPI 4.
 
   19 Jun 2009; Brent Baude <ranger@gentoo.org> deb2targz-1.ebuild:
   keyworded ~arch for ppc64, bug 272587
