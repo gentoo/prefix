@@ -1,10 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/pdv-1.5.1-r2.ebuild,v 1.9 2010/10/10 17:02:53 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pdv/pdv-1.5.1-r2.ebuild,v 1.10 2010/12/02 16:27:02 flameeyes Exp $
 
 EAPI=1
-WANT_AUTOCONF=2.5
-WANT_AUTOMAKE=1.4
 
 inherit eutils autotools flag-o-matic
 
