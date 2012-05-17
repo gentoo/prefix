@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.4g.ebuild,v 1.8 2011/03/01 00:38:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.4g.ebuild,v 1.9 2012/04/26 20:49:30 aballier Exp $
 
 inherit toolchain-funcs eutils
 
@@ -22,6 +22,7 @@ src_unpack() {
 	sed -i '/^prefix =/s:=.*:= '"${EPREFIX}"'/usr:' Makefile
 
 	# necessary for Interix, Solaris and Darwin
+	# applied upstream/gx86: bug #397835
 	epatch "${FILESDIR}"/${PN}-9.0.0.3g-memmove.patch
 }
 
