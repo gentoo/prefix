@@ -1,6 +1,40 @@
 # ChangeLog for app-admin/eselect-xvmc
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-xvmc/ChangeLog,v 1.10 2008/10/29 14:37:29 cardoe Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-xvmc/ChangeLog,v 1.19 2012/05/10 17:14:36 aballier Exp $
+
+  10 May 2012; Alexis Ballier <aballier@gentoo.org> eselect-xvmc-0.3.ebuild:
+  keyword ~amd64-fbsd
+
+*eselect-xvmc-0.3 (29 Aug 2011)
+
+  29 Aug 2011; Doug Goldstein <cardoe@gentoo.org> +eselect-xvmc-0.3.ebuild,
+  +files/eselect-xvmc-0.3.eselect:
+  Bump version to support and fix the following:
+  * Newer Intel XvMC (i915). Based on patch from Otávio Cipriani
+  <otavio.n.cipriani@gmail.com> bug #378827
+  * Fix bad redirect. bug #314031
+  * Add unichrome support
+
+  29 Aug 2011; Jeroen Roovers <jer@gentoo.org> eselect-xvmc-0.2.ebuild:
+  Stable for HPPA (bug #376283).
+
+  07 Aug 2011; Raúl Porcel <armin76@gentoo.org> eselect-xvmc-0.2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #376283
+
+  07 Aug 2011; Markus Meier <maekke@gentoo.org> eselect-xvmc-0.2.ebuild:
+  arm stable, bug #376283
+
+  06 Aug 2011; Markus Meier <maekke@gentoo.org> eselect-xvmc-0.2.ebuild:
+  x86 stable, bug #376283
+
+  28 Jul 2011; Doug Goldstein <cardoe@gentoo.org> eselect-xvmc-0.2.ebuild:
+  amd64 ATs say its ok to go stable. bug #376283
+
+  26 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> eselect-xvmc-0.2.ebuild:
+  ppc/ppc64 stable wrt #376283
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> eselect-xvmc-0.1.ebuild:
+  Drop to ~mips
 
 *eselect-xvmc-0.2 (29 Oct 2008)
 
