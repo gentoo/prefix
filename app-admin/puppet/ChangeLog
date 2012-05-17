@@ -1,6 +1,201 @@
 # ChangeLog for app-admin/puppet
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.65 2010/08/01 01:12:11 matsuu Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.111 2012/04/28 19:00:10 armin76 Exp $
+
+  28 Apr 2012; Raúl Porcel <armin76@gentoo.org> puppet-2.7.13.ebuild:
+  sparc stable wrt #401857
+
+  16 Apr 2012; Jeff Horelick <jdhore@gentoo.org> puppet-2.7.13.ebuild:
+  marked x86 per bug 410857
+
+  16 Apr 2012; Brent Baude <ranger@gentoo.org> puppet-2.7.13.ebuild:
+  Marking puppet-2.7.13 ppc for bug 410857
+
+  16 Apr 2012; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.13.ebuild:
+  Stable for amd64, wrt bug #410857
+
+  16 Apr 2012; Jeroen Roovers <jer@gentoo.org> puppet-2.7.13.ebuild:
+  Stable for HPPA (bug #410857).
+
+  16 Apr 2012; MATSUU Takuto <matsuu@gentoo.org> puppet-2.7.13.ebuild:
+  Removed ruby19 and ree18 from USE_RUBY, bug #410857.
+
+*puppet-2.7.13 (12 Apr 2012)
+
+  12 Apr 2012; MATSUU Takuto <matsuu@gentoo.org> +puppet-2.7.13.ebuild:
+  Version bumped, wrt #410857.
+
+*puppet-2.7.12 (14 Mar 2012)
+
+  14 Mar 2012; MATSUU Takuto <matsuu@gentoo.org> -puppet-2.6.12.ebuild,
+  -puppet-2.7.9.ebuild, +puppet-2.7.12.ebuild:
+  Version bumped. Fixed emacs and xemacs related issue, bug #406053. Added
+  ruby19 and ree18 to USE_RUBY. Removed old versions.
+
+  03 Mar 2012; Raúl Porcel <armin76@gentoo.org> puppet-2.7.11.ebuild:
+  sparc stable wrt #403963
+
+  03 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> puppet-2.7.11.ebuild:
+  x86 stable wrt bug #403963
+
+  03 Mar 2012; MATSUU Takuto <matsuu@gentoo.org> files/puppetmaster-2.7.6.init:
+  Fixed checkpath args. The patch was submitted by Eric Martin, wrt bug
+  #406053.
+
+  03 Mar 2012; MATSUU Takuto <matsuu@gentoo.org> files/puppetmaster-2.7.6.init:
+  Fixed checkpath args. The patch was submitted by Eric Martin, wrt bug
+  #406053.
+
+  29 Feb 2012; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.11.ebuild:
+  Stable for AMD64, wrt security bug #403963
+
+  28 Feb 2012; Brent Baude <ranger@gentoo.org> puppet-2.7.11.ebuild:
+  Marking puppet-2.7.11 ppc for bug 403963
+
+  28 Feb 2012; Jeroen Roovers <jer@gentoo.org> puppet-2.7.11.ebuild:
+  Stable for HPPA (bug #403963).
+
+*puppet-2.7.11 (27 Feb 2012)
+
+  27 Feb 2012; MATSUU Takuto <matsuu@gentoo.org> -puppet-2.7.6.ebuild,
+  -puppet-2.7.6-r1.ebuild, +puppet-2.7.11.ebuild:
+  Version bumped, bug #403963. Removed old versions.
+
+*puppet-2.7.9 (15 Dec 2011)
+
+  15 Dec 2011; MATSUU Takuto <matsuu@gentoo.org> +puppet-2.7.9.ebuild:
+  Version bumped.
+
+*puppet-2.7.6-r1 (04 Dec 2011)
+
+  04 Dec 2011; MATSUU Takuto <matsuu@gentoo.org> -puppet-2.6.11.ebuild,
+  -puppet-2.7.5.ebuild, +puppet-2.7.6-r1.ebuild,
+  +files/puppetmaster-2.7.6.confd, +files/puppetmaster-2.7.6.init:
+  multiple puppetmasters support, bug #299799. Added minimal USE flag, bug
+  #385181.
+
+  06 Nov 2011; Brent Baude <ranger@gentoo.org> puppet-2.6.12.ebuild:
+  Marking puppet-2.6.12 ppc for bug 388161
+
+  05 Nov 2011; Raúl Porcel <armin76@gentoo.org> puppet-2.6.12.ebuild:
+  sparc stable wrt #388161
+
+  30 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> puppet-2.6.12.ebuild:
+  x86 stable wrt bug #388161
+
+  29 Oct 2011; Markos Chandras <hwoarang@gentoo.org> puppet-2.6.12.ebuild:
+  Stable on amd64 wrt bug #388161
+
+  28 Oct 2011; Jeroen Roovers <jer@gentoo.org> puppet-2.6.12.ebuild:
+  Stable for HPPA (bug #388161).
+
+*puppet-2.7.6 (26 Oct 2011)
+*puppet-2.6.12 (26 Oct 2011)
+
+  26 Oct 2011; MATSUU Takuto <matsuu@gentoo.org>
+  -files/puppet-0.25.4-r1-rrd.patch, -files/puppet-0.25.init,
+  -files/puppetmaster-0.25.init, +puppet-2.6.12.ebuild, +puppet-2.7.6.ebuild:
+  Version bumped, bug #388449.
+
+  12 Oct 2011; MATSUU Takuto <matsuu@gentoo.org> -puppet-0.25.5.ebuild,
+  -puppet-2.6.9.ebuild, -puppet-2.6.10.ebuild, -puppet-2.7.4.ebuild:
+  Removed old versions.
+
+  09 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> puppet-2.6.11.ebuild:
+  ppc stable wrt #385149
+
+  08 Oct 2011; Raúl Porcel <armin76@gentoo.org> puppet-2.6.11.ebuild:
+  sparc stable wrt #385149
+
+  06 Oct 2011; Markos Chandras <hwoarang@gentoo.org> puppet-2.6.11.ebuild:
+  Stable on amd64 wrt bug #385149
+
+  03 Oct 2011; Jeroen Roovers <jer@gentoo.org> puppet-2.6.11.ebuild:
+  Stable for HPPA (bug #385149).
+
+  01 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> puppet-2.6.11.ebuild:
+  x86 stable wrt security bug #385149
+
+*puppet-2.7.5 (30 Sep 2011)
+*puppet-2.6.11 (30 Sep 2011)
+
+  30 Sep 2011; MATSUU Takuto <matsuu@gentoo.org> +puppet-2.6.11.ebuild,
+  +puppet-2.7.5.ebuild:
+  Version bumped, bug #385149.
+
+  30 Sep 2011; Steve Dibb <beandog@gentoo.org> puppet-2.6.10.ebuild:
+  amd64 stable, security bug 384859
+
+*puppet-2.7.4 (29 Sep 2011)
+*puppet-2.6.10 (29 Sep 2011)
+
+  29 Sep 2011; MATSUU Takuto <matsuu@gentoo.org> -puppet-2.6.7.ebuild,
+  -puppet-2.6.8.ebuild, +puppet-2.6.10.ebuild, -puppet-2.7.1.ebuild,
+  -puppet-2.7.3.ebuild, +puppet-2.7.4.ebuild:
+  Version bumped, bug #384859. Removed old versions.
+
+  19 Sep 2011; Markus Meier <maekke@gentoo.org> puppet-2.6.9.ebuild:
+  x86 stable, bug #380529
+
+  31 Aug 2011; Tony Vroon <chainsaw@gentoo.org> puppet-2.6.9.ebuild:
+  Marked stable on AMD64 based on arch testing by Ian "idella" Delaney & Elijah
+  "Armageddon" El Lazkani in bug #380529 filed by Takuto Matsuu.
+
+*puppet-2.7.3 (24 Aug 2011)
+
+  24 Aug 2011; MATSUU Takuto <matsuu@gentoo.org> +puppet-2.7.3.ebuild:
+  Version bumped, bug #380431.
+
+*puppet-2.7.1 (29 Jun 2011)
+*puppet-2.6.9 (29 Jun 2011)
+
+  29 Jun 2011; MATSUU Takuto <matsuu@gentoo.org> +puppet-2.6.9.ebuild,
+  +puppet-2.7.1.ebuild:
+  Version bumped, bug #373163 and #373165. Added xemacs USE flag, bug #373141.
+
+*puppet-2.6.8 (29 Apr 2011)
+
+  29 Apr 2011; MATSUU Takuto <matsuu@gentoo.org> -puppet-2.6.2.ebuild,
+  -puppet-2.6.4.ebuild, +puppet-2.6.8.ebuild:
+  Version bumped. Fixed test issue, bug #363451. Removed old versions.
+
+*puppet-2.6.7 (11 Apr 2011)
+
+  11 Apr 2011; MATSUU Takuto <matsuu@gentoo.org> +puppet-2.6.7.ebuild,
+  metadata.xml:
+  Version bumped. The ebuild was submitted by William Van Hevelingen, bug
+  #362801. Added new USE flags.
+
+*puppet-2.6.4 (31 Dec 2010)
+
+  31 Dec 2010; MATSUU Takuto <matsuu@gentoo.org> -puppet-0.25.4-r1.ebuild,
+  -puppet-2.6.0.ebuild, -puppet-2.6.0-r1.ebuild, -puppet-2.6.1.ebuild,
+  +puppet-2.6.4.ebuild:
+  Version bumped, bug #349188. Removed old versions.
+
+*puppet-2.6.2 (04 Nov 2010)
+
+  04 Nov 2010; MATSUU Takuto <matsuu@gentoo.org> +puppet-2.6.2.ebuild:
+  Version bumped. Fixed puppet.conf, bug #338439.
+
+*puppet-2.6.1 (23 Sep 2010)
+
+  23 Sep 2010; MATSUU Takuto <matsuu@gentoo.org> +puppet-2.6.1.ebuild:
+  Version bumped.
+
+  20 Sep 2010; Guy Martin <gmsoft@gentoo.org> puppet-0.25.5.ebuild:
+  hppa stable wrt #325129
+
+  18 Sep 2010; Raúl Porcel <armin76@gentoo.org> puppet-0.25.5.ebuild:
+  sparc stable wrt #325129
+
+  15 Aug 2010; Diego E. Pettenò <flameeyes@gentoo.org> puppet-2.6.0.ebuild,
+  puppet-2.6.0-r1.ebuild:
+  Update to the new ruby_add_rdepend syntax (classic-style) and use
+  virtual/ruby-ssl rather than reimplementing it by hand.
+
+  13 Aug 2010; Joseph Jezak <josejx@gentoo.org> puppet-0.25.5.ebuild:
+  Marked ppc stable for bug #325129.
 
 *puppet-2.6.0-r1 (01 Aug 2010)
 
