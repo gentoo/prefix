@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
 <maintainer>
-  <email>bass@gentoo.org</email>
-  <name>José Alberto Suárez López</name>
+  <email>maintainer-needed@gentoo.org</email>
 </maintainer>
 <longdescription>
 Just a simple tool to erase all uneeded locale and man files usually generated for USE="nls"
