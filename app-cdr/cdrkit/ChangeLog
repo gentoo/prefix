@@ -1,6 +1,40 @@
 # ChangeLog for app-cdr/cdrkit
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.85 2010/02/07 15:56:51 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.95 2012/03/12 10:49:08 ssuominen Exp $
+
+  12 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> cdrkit-1.1.11.ebuild:
+  Missing dependencies of app-arch/bzip2, sys-apps/file, and sys-libs/zlib for
+  genisoimage wrt #407905 by "kensington"
+
+  16 Apr 2011; Raúl Porcel <armin76@gentoo.org> cdrkit-1.1.11.ebuild:
+  ia64/s390 stable wrt #356509
+
+  24 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> cdrkit-1.1.11.ebuild:
+  ppc64 stable wrt #356509
+
+  20 Mar 2011; Thomas Kahle <tomka@gentoo.org> cdrkit-1.1.11.ebuild:
+  x86 stable per bug 356509
+
+  12 Mar 2011; Tobias Klausmann <klausman@gentoo.org> cdrkit-1.1.11.ebuild:
+  Stable on alpha, bug #356509
+
+  05 Mar 2011; Michael Weber <xmw@gentoo.org> cdrkit-1.1.11.ebuild:
+  ppc/sparc stable (bug 356509)
+
+  05 Mar 2011; Jeroen Roovers <jer@gentoo.org> cdrkit-1.1.11.ebuild:
+  Stable for HPPA (bug #356509).
+
+  27 Feb 2011; Markos Chandras <hwoarang@gentoo.org> cdrkit-1.1.11.ebuild:
+  Stable on amd64 wrt bug #356509
+
+  28 Dec 2010; Fabio Erculiani <lxnay@gentoo.org> cdrkit-1.1.10.ebuild,
+  cdrkit-1.1.11.ebuild:
+  app-cdr/cdrtools conflict must be also in RDEPEND
+
+*cdrkit-1.1.11 (18 Dec 2010)
+
+  18 Dec 2010; Samuli Suominen <ssuominen@gentoo.org> +cdrkit-1.1.11.ebuild:
+  Version bump.
 
   07 Feb 2010; Raúl Porcel <armin76@gentoo.org> cdrkit-1.1.10.ebuild:
   alpha/ia64/s390/sparc stable wrt #299861
