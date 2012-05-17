@@ -1,6 +1,64 @@
 # ChangeLog for app-arch/rpm
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.125 2011/05/08 15:13:06 sochotnicky Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.139 2012/05/06 16:54:41 armin76 Exp $
+
+  06 May 2012; Raúl Porcel <armin76@gentoo.org> rpm-4.9.1.2.ebuild,
+  rpm-4.9.1.2-r2.ebuild:
+  Add ~alpha/~ia64/~s390/~sh/~sparc wrt #407029
+
+*rpm-4.9.1.2-r2 (19 Apr 2012)
+
+  19 Apr 2012; Tomáš Chvátal <scarabeus@gentoo.org> +rpm-4.9.1.2-r2.ebuild,
+  -rpm-4.9.1.2-r1.ebuild, files/rpm-4.9.1.2-libdir.patch:
+  Version bump the libexecdir patch as I forgot to update one more place that
+  uses /usr/lib hardcoded. Resolves bug#409729.
+
+  24 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> rpm-4.9.1.2.ebuild:
+  x86 stable wrt bug #406479
+
+*rpm-4.9.1.2-r1 (21 Mar 2012)
+
+  21 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/rpm-4.9.1.2-libdir.patch, +rpm-4.9.1.2-r1.ebuild:
+  Try to use libdir patch to be multilib strict wrt bug#365993. Also punt .la
+  files.
+
+  19 Mar 2012; Markus Meier <maekke@gentoo.org> rpm-4.9.1.2.ebuild:
+  arm stable, bug #406479
+
+  16 Mar 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  rpm-4.9.1.2.ebuild:
+  Fix #407939 (we need deprecated USE in dev-lang/lua)
+
+  11 Mar 2012; Agostino Sarubbo <ago@gentoo.org> rpm-4.9.1.2.ebuild:
+  Stable for amd64, wrt bug #406479
+
+  06 Mar 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  rpm-4.9.1.2.ebuild:
+  Marked ~mips (bug #407029).
+
+  06 Mar 2012; Jeroen Roovers <jer@gentoo.org> rpm-4.9.1.2.ebuild:
+  Marked ~hppa (bug #407029).
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> rpm-4.9.1.2.ebuild:
+  Marking rpm-4.9.1.2 ppc for bug 406479
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> rpm-4.9.1.2.ebuild:
+  Marking rpm-4.9.1.2 ppc64 for bug 406479
+
+  25 Feb 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -rpm-4.8.1-r2.ebuild:
+  Removed older unstable version. Use 4.9.1.2 please
+
+  20 Feb 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  rpm-4.9.1.2.ebuild:
+  Fix #404479 - failed installation when USE="doc" was used
+
+*rpm-4.9.1.2 (18 Feb 2012)
+
+  18 Feb 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org> -rpm-4.9.0.ebuild,
+  +rpm-4.9.1.2.ebuild:
+  Version bumped to latest release, dropped 4.9.0 ebuild (more to come)
 
 *rpm-4.9.0 (08 May 2011)
 *rpm-4.8.1-r2 (08 May 2011)
