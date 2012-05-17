@@ -1,4 +1,5 @@
 https://bugzilla.gnome.org/show_bug.cgi?id=675743
+http://git.gnome.org/browse/glib/commit/?id=431d3adacdd640141f83a6c3496760adc6aba5eb
 
 system libelf is not sufficient for glib (lacks elf_getshdrstrndx and
 elf_getshdrnum) so let's make sure we don't define HAVE_LIBELF
