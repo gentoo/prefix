@@ -1,6 +1,17 @@
 # ChangeLog for app-arch/bzip2
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.99 2011/11/02 03:28:17 mattst88 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.103 2012/04/26 12:04:38 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  keyword ~amd64-fbsd
+
+  12 Feb 2012; Tony Vroon <chainsaw@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  Marked stable on PPC64 as requested by Agostino "ago" Sarubbo in bug
+  #387333. Compiled & functionally tested on a PowerMac7,3 (64UL) with GCC
+  4.5.3.
+
+  17 Dec 2011; Raúl Porcel <armin76@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #387333
 
   02 Nov 2011; Matt Turner <mattst88@gentoo.org> bzip2-1.0.6-r3.ebuild:
   Stable on Alpha, bug 387333.
