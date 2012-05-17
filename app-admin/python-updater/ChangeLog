@@ -1,6 +1,53 @@
 # ChangeLog for app-admin/python-updater
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.66 2011/08/29 10:28:31 naota Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.77 2012/04/26 14:54:37 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org>
+  python-updater-0.10-r2.ebuild:
+  keyword ~amd64-fbsd
+
+*python-updater-0.10-r2 (03 Mar 2012)
+
+  03 Mar 2012; Marien Zwart <marienz@gentoo.org>
+  +files/python-updater-0.10-only-alias-sed-if-exists.patch,
+  +python-updater-0.10-r2.ebuild:
+  Fix regression from bug #370935 on non-prefix portages. Thanks to maksbotan
+  for reporting.
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> python-updater-0.10.ebuild:
+  Marking python-updater-0.10 ppc64 for bug 400861
+
+*python-updater-0.10-r1 (02 Mar 2012)
+
+  02 Mar 2012; Naohiro Aota <naota@gentoo.org> +python-updater-0.10-r1.ebuild,
+  +files/python-updater-0.10-expand-aliases.patch:
+  Add expand-aliases patch, bug #370935
+
+  08 Feb 2012; Jeroen Roovers <jer@gentoo.org> python-updater-0.10.ebuild:
+  Stable for HPPA (bug #400861).
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> python-updater-0.10.ebuild:
+  Marking python-updater-0.10 ppc for bug 400861
+
+  28 Jan 2012; Raúl Porcel <armin76@gentoo.org> python-updater-0.10.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #400861
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  python-updater-0.10.ebuild:
+  x86 stable wrt bug #400861
+
+  26 Jan 2012; Agostino Sarubbo <ago@gentoo.org> python-updater-0.10.ebuild:
+  Stable for amd64, wrt bug #400861
+
+  30 Dec 2011; Maxim Koltsov <maksbotan@gentoo.org> python-updater-9999.ebuild:
+  Synchronize live ebuild with other ebuilds. Patch by Arfrever.
+
+*python-updater-0.10 (30 Dec 2011)
+
+  30 Dec 2011; Maxim Koltsov <maksbotan@gentoo.org>
+  +python-updater-0.10.ebuild:
+  Version bump. Add support for PyPy. Add support for PYTHON_UPDATER_IGNORE.
+  Fix indentation of output (regression introduced in 0.9-r1).
 
   09 Dec 2011; Fabian Groffen <grobian@gentoo.org>
   files/python-updater-0.9-prefix.patch:

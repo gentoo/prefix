@@ -1,0 +1,194 @@
+--- /Library/Gentoo/var/tmp/portage/app-admin/python-updater-0.10-r2/work/python-updater-0.10/python-updater.orig	2012-05-17 13:27:42.704657000 +0200
++++ /Library/Gentoo/var/tmp/portage/app-admin/python-updater-0.10-r2/work/python-updater-0.10/python-updater	2012-05-17 14:02:38.209971000 +0200
+@@ -29,7 +29,7 @@
+ OLD_PYTHON_VERSIONS=""
+ OLD_PYTHON2_VERSIONS=""
+ OLD_PYTHON3_VERSIONS=""
+-NEW_PYTHON_VERSION="$(/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
++NEW_PYTHON_VERSION="$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
+ NEW_PYTHON2_VERSION=""
+ NEW_PYTHON3_VERSION=""
+ 
+@@ -62,10 +62,10 @@
+ CHECK_STATIC_LINKING="1"
+ 
+ # Load the Gentoo-style info macros, but hack to get around it thinking this is an rc script.
+-EBUILD="1" . /etc/init.d/functions.sh
++EBUILD="1" . "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh
+ 
+ # Portage variables.
+-PKG_DBDIR="/var/db/pkg"
++PKG_DBDIR="@GENTOO_PORTAGE_EPREFIX@/var/db/pkg"
+ 
+ shopt -s expand_aliases
+ 
+@@ -145,7 +145,7 @@
+ # has_version(cpv)
+ has_version() {
+ 	if [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "emerge" ]]; then
+-		/usr/bin/portageq has_version / "${1}"
++		"@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq has_version / "${1}"
+ 	elif [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "pmerge" ]]; then
+ 		pquery --vdb "${1}"
+ 	else
+@@ -156,7 +156,7 @@
+ # get_ebuild_path(CATEGORY, PN, SLOT)
+ get_ebuild_path() {
+ 	# These manual calls to Portage API are 2 times faster than 'portageq get_repo_path / "$(portageq metadata / ebuild "$(portageq best_visible / "${1}")" repository)"'.
+-	/usr/bin/python -c "
++	"@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python -c "
+ import sys
+ 
+ if '' in sys.path:
+@@ -240,7 +240,7 @@
+ 
+ 	local variable
+ 	for variable in "$@"; do
+-		if eval "[[ \${${variable}} == \$(env -u ${variable} /usr/bin/portageq envvar ${variable}) ]]"; then
++		if eval "[[ \${${variable}} == \$(env -u ${variable} "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq envvar ${variable}) ]]"; then
+ 			unset ${variable}
+ 		fi
+ 	done
+@@ -252,14 +252,14 @@
+ get_USE_PYTHON() {
+ 	if [[ "${PMS_COMMAND[${PMS_INDEX}]}" =~ ^(emerge|pmerge)$ ]]; then
+ 		if [[ -z "${global_USE_PYTHON}" ]]; then
+-			global_USE_PYTHON="$(/usr/bin/portageq envvar USE_PYTHON)"
++			global_USE_PYTHON="$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq envvar USE_PYTHON)"
+ 		fi
+ 		USE_PYTHON="${global_USE_PYTHON}"
+-		if [[ -f "/etc/portage/env/${1}/${2}" ]]; then
+-			USE_PYTHON="$(. "/etc/portage/env/${1}/${2}"; echo "${USE_PYTHON}")"
++		if [[ -f "@GENTOO_PORTAGE_EPREFIX@/etc/portage/env/${1}/${2}" ]]; then
++			USE_PYTHON="$(. "@GENTOO_PORTAGE_EPREFIX@/etc/portage/env/${1}/${2}"; echo "${USE_PYTHON}")"
+ 		fi
+-		if [[ -f "/etc/portage/env/${1}/${2}:${3}" ]]; then
+-			USE_PYTHON="$(. "/etc/portage/env/${1}/${2}:${3}"; echo "${USE_PYTHON}")"
++		if [[ -f "@GENTOO_PORTAGE_EPREFIX@/etc/portage/env/${1}/${2}:${3}" ]]; then
++			USE_PYTHON="$(. "@GENTOO_PORTAGE_EPREFIX@/etc/portage/env/${1}/${2}:${3}"; echo "${USE_PYTHON}")"
+ 		fi
+ 	else
+ 		USE_PYTHON="$(cave print-id-environment-variable "${1}/${2}${3:+:}${3}::/?" --best --format %v --variable-name USE_PYTHON)"
+@@ -493,23 +493,23 @@
+ # Prepending ebuild-helpers/ to $PATH uses too many tools from there.
+ # So alias sed to ebuild-helpers/sed if it exists:
+ if [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "emerge" ]]; then
+-	sed="$(/usr/bin/python -c "import os; print(os.path.dirname(os.path.realpath('$(type -p emerge)')))")/ebuild-helpers/sed"
++	sed="$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python -c "import os; print(os.path.dirname(os.path.realpath('$(type -p emerge)')))")/ebuild-helpers/sed"
+ 	if [[ -x "${sed}" ]]; then
+ 		alias sed="${sed}"
+ 	fi
+ fi
+ 
+ if has_version "=dev-lang/python-2*"; then
+-	if [[ "$(readlink /usr/bin/python2)" != "python2."* ]]; then
+-		die "'/usr/bin/python2' is not valid symlink"
++	if [[ "$(readlink "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python2)" != "python2."* ]]; then
++		die "'@GENTOO_PORTAGE_EPREFIX@/usr/bin/python2' is not valid symlink"
+ 	fi
+-	NEW_PYTHON2_VERSION="$(/usr/bin/python2 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
++	NEW_PYTHON2_VERSION="$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python2 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
+ fi
+ if has_version "=dev-lang/python-3*"; then
+-	if [[ "$(readlink /usr/bin/python3)" != "python3."* ]]; then
+-		die "'/usr/bin/python3' is not valid symlink"
++	if [[ "$(readlink "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python3)" != "python3."* ]]; then
++		die "'@GENTOO_PORTAGE_EPREFIX@/usr/bin/python3' is not valid symlink"
+ 	fi
+-	NEW_PYTHON3_VERSION="$(/usr/bin/python3 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
++	NEW_PYTHON3_VERSION="$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python3 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
+ fi
+ if [[ -z "${NEW_PYTHON2_VERSION}" && -z "${NEW_PYTHON3_VERSION}" ]]; then
+ 	die "Python 2 and Python 3 not installed"
+@@ -519,10 +519,15 @@
+ for python_version in ${PYTHON_VERSIONS}; do
+ 	if [[ "${python_version}" != "${NEW_PYTHON_VERSION}" ]]; then
+ 		OLD_PYTHON_VERSIONS+="${OLD_PYTHON_VERSIONS:+ }${python_version}"
+-		soname="$(readlink -n /usr/lib/libpython${python_version}.so)"
++		soname="$(readlink -n "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${python_version}.so)"
+ 		if [[ -z "${soname}" ]]; then
+ 			# Use relatively safe, default value.
+-			soname="libpython${python_version}.so.1.0"
++            if [[ -f "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${python_version}.dylib ]] ; then
++                # there is no versioned dylib on Darwin
++                soname="libpython${python_version}.dylib"
++            else
++                soname="libpython${python_version}.so.1.0"
++            fi
+ 		fi
+ 		OLD_PYTHON_SHARED_LIBRARIES_REGEX+="${OLD_PYTHON_SHARED_LIBRARIES_REGEX:+|}${soname//./\.}"
+ 	fi
+@@ -535,10 +540,15 @@
+ for python_version in ${PYTHON2_VERSIONS}; do
+ 	if [[ "${python_version}" != "${NEW_PYTHON2_VERSION}" ]]; then
+ 		OLD_PYTHON2_VERSIONS+="${OLD_PYTHON2_VERSIONS:+ }${python_version}"
+-		soname="$(readlink -n /usr/lib/libpython${python_version}.so)"
++		soname="$(readlink -n "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${python_version}.so)"
+ 		if [[ -z "${soname}" ]]; then
+ 			# Use relatively safe, default value.
+-			soname="libpython${python_version}.so.1.0"
++            if [[ -f "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${python_version}.dylib ]] ; then
++                # there is no versioned dylib on Darwin
++                soname="libpython${python_version}.dylib"
++            else
++                soname="libpython${python_version}.so.1.0"
++            fi
+ 		fi
+ 		OLD_PYTHON2_SHARED_LIBRARIES_REGEX+="${OLD_PYTHON2_SHARED_LIBRARIES_REGEX:+|}${soname//./\.}"
+ 	fi
+@@ -551,10 +561,15 @@
+ for python_version in ${PYTHON3_VERSIONS}; do
+ 	if [[ "${python_version}" != "${NEW_PYTHON3_VERSION}" ]]; then
+ 		OLD_PYTHON3_VERSIONS+="${OLD_PYTHON3_VERSIONS:+ }${python_version}"
+-		soname="$(readlink -n /usr/lib/libpython${python_version}.so)"
++		soname="$(readlink -n "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${python_version}.so)"
+ 		if [[ -z "${soname}" ]]; then
+ 			# Use relatively safe, default value.
+-			soname="libpython${python_version}.so.1.0"
++            if [[ -f "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${python_version}.dylib ]] ; then
++                # there is no versioned dylib on Darwin
++                soname="libpython${python_version}.dylib"
++            else
++                soname="libpython${python_version}.so.1.0"
++            fi
+ 		fi
+ 		OLD_PYTHON3_SHARED_LIBRARIES_REGEX+="${OLD_PYTHON3_SHARED_LIBRARIES_REGEX:+|}${soname//./\.}"
+ 	fi
+@@ -565,7 +580,7 @@
+ 
+ declare -A PYTHON_GLOBALLY_SUPPORTED_ABIS
+ if [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "emerge" ]]; then
+-	eval "$(/usr/bin/python -c \
++	eval "$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python -c \
+ "import re
+ import sys
+ 
+@@ -817,7 +832,7 @@
+ 	fi
+ 
+ 	if [[ "${CHECK_STATIC_LINKING}" -ne 0 ]]; then
+-		binaries="$(scanelf -qs +Py_Initialize < <(grep -E "^obj" "${contents_file}" | cut -d" " -f2 | grep -Ev "^/usr/lib(32|64)?/debug/") | sed "s/.* //")"
++		binaries="$(scanelf -qs +Py_Initialize < <(grep -E "^obj" "${contents_file}" | cut -d" " -f2 | grep -Ev "^@GENTOO_PORTAGE_EPREFIX@/usr/lib(32|64)?/debug/") | sed "s/.* //")"
+ 		if [[ -n "${binaries}" ]]; then
+ 			PKGS_TO_REMERGE+=" ${CATPKGVER}"
+ 			eindent
+@@ -876,7 +891,9 @@
+ 	fi
+ 
+ 	if [[ "${CHECK_SHARED_LINKING}" -ne 0 ]]; then
+-		binaries="$(scanelf -qF "%F %n" < <(grep -E "^obj" "${contents_file}" | cut -d" " -f2 | grep -Ev "^/usr/lib(32|64)?/debug/") | grep -E "( |,)$(get_OLD_PYTHON_SHARED_LIBRARIES_REGEX)(,|$)")"
++		binaries="$(scanelf -qF "%F %n" < <(grep -E "^obj" "${contents_file}" | cut -d" " -f2 | grep -Ev "^@GENTOO_PORTAGE_EPREFIX@/usr/lib(32|64)?/debug/") | grep -E "( |,)$(get_OLD_PYTHON_SHARED_LIBRARIES_REGEX)(,|$)")"
++        [[ -z ${binaries} ]] && \
++            binaries="$(scanmacho -qF "%F %n" < <(grep -E "^obj" "${contents_file}" | cut -d" " -f2) | grep -E "( |,)$(get_OLD_PYTHON_SHARED_LIBRARIES_REGEX)(,|$)")"
+ 		if [[ -n "${binaries}" ]]; then
+ 			PKGS_TO_REMERGE+=" ${CATPKGVER}"
+ 			eindent
+@@ -906,7 +923,7 @@
+ if [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "emerge" ]] ; then
+ 	# Filter out --getbinpkg, --getbinpkgonly, --usepkg and --usepkgonly options in EMERGE_DEFAULT_OPTS environment variable
+ 	emerge_default_opts=""
+-	for option in $(/usr/bin/portageq envvar EMERGE_DEFAULT_OPTS); do
++	for option in $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq envvar EMERGE_DEFAULT_OPTS); do
+ 		if [[ "${option}" == -[[:alnum:]]* ]]; then
+ 			[[ "${option//[gGkK]/}" != "-" ]] && emerge_default_opts+=" ${option//[gGkK]/}"
+ 		elif [[ "${option}" != "--getbinpkg" && "${option}" != "--getbinpkgonly" && "${option}" != "--usepkg" && "${option}" != "--usepkgonly" ]]; then
