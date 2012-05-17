@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/gzip
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/ChangeLog,v 1.110 2011/04/03 11:15:56 ulm Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/ChangeLog,v 1.112 2012/04/26 19:25:30 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> gzip-1.4.ebuild:
+  keyword ~amd64-fbsd
+
+  24 Apr 2012; Michał Górny <mgorny@gentoo.org> gzip-1.4.ebuild:
+  Update to use mirror://.
 
   03 Apr 2011; Ulrich Mueller <ulm@gentoo.org> gzip-1.4.ebuild:
   Don't provide virtual/gzip, bug 358829.
