@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/cpio
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.114 2010/10/10 00:04:57 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.115 2012/04/26 12:29:34 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> cpio-2.11.ebuild:
+  keyword ~amd64-fbsd
 
   10 Oct 2010; Mike Frysinger <vapier@gentoo.org> cpio-2.11.ebuild,
   +files/cpio-2.11-stat.patch:
