@@ -1,6 +1,42 @@
 # ChangeLog for app-admin/perl-cleaner
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.72 2010/11/13 15:54:32 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.80 2012/04/29 07:39:43 tove Exp $
+
+*perl-cleaner-2.12 (29 Apr 2012)
+
+  29 Apr 2012; Torsten Veller <tove@gentoo.org> -perl-cleaner-2.11.ebuild,
+  +perl-cleaner-2.12.ebuild:
+  Fix awk expression
+
+*perl-cleaner-2.11 (29 Apr 2012)
+
+  29 Apr 2012; Torsten Veller <tove@gentoo.org> +perl-cleaner-2.11.ebuild:
+  Support x32 (#413927). Thanks to Tim Harder. EAPI 4. Don't DEPEND on bash
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> perl-cleaner-2.10.ebuild:
+  keyword ~amd64-fbsd
+
+  06 Jan 2012; Mike Frysinger <vapier@gentoo.org> perl-cleaner-2.10.ebuild:
+  Allow newer coreutils to provide realpath.
+
+  06 Aug 2011; Torsten Veller <tove@gentoo.org> perl-cleaner-2.10.ebuild:
+  Use realpath or freebsd-bin (again #376489)
+
+*perl-cleaner-2.10 (05 Aug 2011)
+
+  05 Aug 2011; Torsten Veller <tove@gentoo.org> +perl-cleaner-2.10.ebuild:
+  Use realpath instead of readlink -f (#376489). Support -q/--quie. Check
+  link targets too.
+
+  06 Dec 2010; Torsten Veller <tove@gentoo.org> -perl-cleaner-1.05.ebuild,
+  -perl-cleaner-2.0.ebuild, -perl-cleaner-2.2.ebuild, -perl-cleaner-2.3.ebuild,
+  -perl-cleaner-2.4.ebuild, -perl-cleaner-2.5.ebuild, -perl-cleaner-2.6.ebuild:
+  Cleanup
+
+*perl-cleaner-2.8 (06 Dec 2010)
+
+  06 Dec 2010; Torsten Veller <tove@gentoo.org> +perl-cleaner-2.8.ebuild:
+  Use cave commandline client if paludis is chosen
 
   13 Nov 2010; Raúl Porcel <armin76@gentoo.org> perl-cleaner-2.7.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #340023

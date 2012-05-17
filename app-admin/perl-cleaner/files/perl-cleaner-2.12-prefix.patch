@@ -1,0 +1,61 @@
+--- perl-cleaner
++++ perl-cleaner
+@@ -27,10 +27,10 @@
+ PKGS_EXCEPTIONS="dev-lang/perl sys-devel/libperl app-emulation/emul-linux-x86-baselibs"
+ PKGS_MANUAL=""
+ 
+-PKG_DBDIR=/var/db/pkg
++PKG_DBDIR="@GENTOO_PORTAGE_EPREFIX@/var/db/pkg"
+ 
+-. /etc/init.d/functions.sh || {
+-    echo "$0: Could not source /etc/init.d/functions.sh!"
++. "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh" || {
++    echo "$0: Could not source @GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh!"
+     exit 1
+ }
+ 
+@@ -87,7 +87,7 @@
+ 
+     veinfo 1 "Locating ph files for removal"
+     eindent ""
+-    for i in /usr/lib{,64,x32}/perl5 ; do
++    for i in "@GENTOO_PORTAGE_EPREFIX@"/usr/lib{,64,x32}/perl5 ; do
+         [[ ! -d ${i} ]] && continue
+         veinfo 4 "...in ${i}"
+         while IFS= read -r -d $'\0' file ; do
+@@ -156,7 +156,7 @@
+             ewarn "--libperl is disbled."
+             LIBPERL=false
+         else
+-            SONAME="$(scanelf -qBS "$(realpath /usr/lib/libperl.so 2>/dev/null )" | awk '{ print $1 }')"
++            SONAME="$(scanelf -qBS "$(realpath "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libperl.so 2>/dev/null )" | awk '{ print $1 }')"
+             veinfo 4 SONAME="${SONAME}"
+         fi
+     fi
+@@ -214,7 +214,7 @@
+             while read -r type file ; do
+                 shopt -s extglob
+                 [[ ${type} == obj ]] || [[ ${type} == sym ]] || continue
+-                [[ ${file} =~ ^/usr/(share|lib(32|64|x32)?)/perl5 ]] || continue
++                [[ ${file} =~ ^"@GENTOO_PORTAGE_EPREFIX@"/usr/(share|lib(32|64|x32)?)/perl5 ]] || continue
+                 file=${file% +(!([[:space:]])) +([[:digit:]])}
+                 shopt -u extglob
+                 if ${FORCE} || outdated_path "${file}" ; then
+@@ -273,7 +273,7 @@
+         exit $?
+     fi
+ 
+-    if [[ ${PMS_COMMAND[${PMS_INDEX}]} == emerge && -x /usr/bin/portageq ]] ; then
++    if [[ ${PMS_COMMAND[${PMS_INDEX}]} == emerge && -x "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq ]] ; then
+         # Filter out --getbinpkg, --getbinpkgonly, --usepkg and --usepkgonly options in EMERGE_DEFAULT_OPTS
+         emerge_default_opts=""
+         for option in $(portageq envvar EMERGE_DEFAULT_OPTS ) ; do
+@@ -315,7 +315,7 @@
+     veinfo 1 "or edited. This script cannot deal with them."
+     vecho 1
+ 
+-    for i in /usr/{share,lib{,32,64,x32}}/perl5 ; do
++    for i in "@GENTOO_PORTAGE_EPREFIX@"/usr/{share,lib{,32,64,x32}}/perl5 ; do
+         [[ -d $i ]] && perlpath[${#perlpath[*]}]="$(realpath $i 2>/dev/null )"
+     done
+     [[ ${#perlpath[*]} == 0 ]] && return
