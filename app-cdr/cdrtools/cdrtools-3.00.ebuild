@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-3.00.ebuild,v 1.4 2010/07/20 19:05:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-3.00.ebuild,v 1.16 2012/04/28 17:12:59 billie Exp $
 
 EAPI=2
 
@@ -20,7 +20,6 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-sola
 IUSE="acl unicode"
 
 DEPEND="acl? ( virtual/acl )
-	!app-cdr/dvdrtools
 	!app-cdr/cdrkit"
 RDEPEND="${DEPEND}"
 
@@ -57,16 +56,22 @@ src_prepare() {
 		rules1.top || die "sed rules1.top"
 	sed -i -e "/^\(CC\|DYNLD\|LDCC\|MKDEP\)/s|gcc|${tcCC}|" \
 		-e "/^\(CC++\|DYNLDC++\|LDCC++\|MKC++DEP\)/s|g++|${tcCXX}|" \
+		-e "/COPTOPT=/s/-O//" \
+		-e 's/$(GCCOPTOPT)//' \
 		cc-gcc.rul || die "sed cc-gcc.rul"
 	sed -i -e "s|^#CONFFLAGS +=\t-cc=\$(XCC_COM)$|CONFFLAGS +=\t-cc=${tcCC}|g" \
 		rules.cnf || die "sed rules.cnf"
 
 	# Create additional symlinks needed for some archs.
 	local t
-	for t in ppc64 s390x; do
+	for t in armv4l armv4tl armv5l armv5tel armv6l armv7l ppc64 s390x; do
 		ln -s i586-linux-cc.rul ${t}-linux-cc.rul || die
 		ln -s i586-linux-gcc.rul ${t}-linux-gcc.rul || die
 	done
+
+	# amd64-fbsd support
+	ln -s i386-freebsd-cc.rul amd64-freebsd-cc.rul || die
+	ln -s i386-freebsd-gcc.rul amd64-freebsd-gcc.rul || die
 
 	# Schily make setup.
 	cd "${S}"/DEFAULTS

@@ -1,6 +1,122 @@
 # ChangeLog for app-cdr/cdrtools
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.265 2010/07/20 19:05:25 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.289 2012/04/28 17:12:59 billie Exp $
+
+  28 Apr 2012; Daniel Pielmeier <billie@gentoo.org> cdrtools-3.00.ebuild,
+  cdrtools-3.01_alpha07.ebuild:
+  Fix bug #410537 to respect CFLAGS. Thanks to Michael (kensington) for the
+  report and the ebuild patch.
+
+  05 Apr 2012; Daniel Pielmeier <billie@gentoo.org>
+  -cdrtools-3.01_alpha06.ebuild:
+  Remove old. Fix headers.
+
+  10 Mar 2012; Daniel Pielmeier <billie@gentoo.org>
+  -cdrtools-3.01_alpha05.ebuild, +cdrtools-3.01_alpha07.ebuild:
+  Version bump. Remove old.
+
+*cdrtools-3.01_alpha07 (10 Mar 2012)
+
+  10 Mar 2012; Daniel Pielmeier <billie@gentoo.org>
+  +cdrtools-3.01_alpha07.ebuild:
+  Version bump.
+
+  28 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -cdrtools-3.01_alpha06-r1.ebuild:
+  Revert last commit since according to Ulrich Mueller suid root is also used
+  for elevating scheduling priority.
+
+*cdrtools-3.01_alpha06-r1 (28 Jan 2012)
+
+  28 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +cdrtools-3.01_alpha06-r1.ebuild:
+  Change cdda2wav, cdrecord, readcd and rscsi from suid root to sgid disk for
+  udev users (note: tested with cdrecord -scanbus)
+
+*cdrtools-3.01_alpha06 (18 Oct 2011)
+
+  18 Oct 2011; Daniel Pielmeier <billie@gentoo.org>
+  +cdrtools-3.01_alpha06.ebuild:
+  Version bump.
+
+  28 Aug 2011; Daniel Pielmeier <billie@gentoo.org> cdrtools-3.00.ebuild,
+  cdrtools-3.01_alpha05.ebuild:
+  Remove useless blocker.
+
+  11 Jul 2011; Daniel Pielmeier <billie@gentoo.org> cdrtools-3.00.ebuild,
+  cdrtools-3.01_alpha05.ebuild:
+  Make cdrtools compile on Gentoo/FreeBSD (AMD64). This fixes bug #363743.
+  Thanks to Yuta SATOH for the patch.
+
+*cdrtools-3.01_alpha05 (09 Jun 2011)
+
+  09 Jun 2011; Daniel Pielmeier <billie@gentoo.org>
+  -cdrtools-3.01_alpha04.ebuild, +cdrtools-3.01_alpha05.ebuild:
+  Version bump. Switch to EAPI 4. Remove old.
+
+  12 Apr 2011; Daniel Pielmeier <billie@gentoo.org>
+  -cdrtools-3.01_alpha02.ebuild, -cdrtools-3.01_alpha03.ebuild:
+  Remove old.
+
+*cdrtools-3.01_alpha04 (12 Apr 2011)
+
+  12 Apr 2011; Daniel Pielmeier <billie@gentoo.org>
+  +cdrtools-3.01_alpha04.ebuild:
+  Version bump.
+
+*cdrtools-3.01_alpha03 (08 Mar 2011)
+
+  08 Mar 2011; Daniel Pielmeier <billie@gentoo.org>
+  +cdrtools-3.01_alpha03.ebuild:
+  Version bump.
+
+  13 Feb 2011; Daniel Pielmeier <billie@gentoo.org>
+  -cdrtools-3.01_alpha01.ebuild:
+  Remove old.
+
+*cdrtools-3.01_alpha02 (10 Jan 2011)
+
+  10 Jan 2011; Daniel Pielmeier <billie@gentoo.org>
+  -cdrtools-2.01.01_alpha75.ebuild, +cdrtools-3.01_alpha02.ebuild:
+  Version bump. Remove old.
+
+  05 Dec 2010; Raúl Porcel <armin76@gentoo.org> cdrtools-3.00.ebuild:
+  ia64/s390/sh stable wrt #328163
+
+  30 Nov 2010; Michael Weber <xmw@gentoo.org> cdrtools-3.00.ebuild:
+  sparc stable (bug 328163)
+
+*cdrtools-3.01_alpha01 (25 Nov 2010)
+
+  25 Nov 2010; Daniel Pielmeier <billie@gentoo.org> -cdrtools-3.00-r1.ebuild,
+  +cdrtools-3.01_alpha01.ebuild:
+  Versiom bump. Remove old.
+
+  20 Nov 2010; Raúl Porcel <armin76@gentoo.org> cdrtools-3.00.ebuild,
+  cdrtools-3.00-r1.ebuild:
+  Fix arm again
+
+  20 Nov 2010; Raúl Porcel <armin76@gentoo.org> cdrtools-3.00.ebuild,
+  cdrtools-3.00-r1.ebuild:
+  Fix arm
+
+*cdrtools-3.00-r1 (07 Nov 2010)
+
+  07 Nov 2010; Daniel Pielmeier <billie@gentoo.org>
+  +cdrtools-3.00-r1.ebuild:
+  Simplify SRC_URI. Remove man pages related to the build system.
+
+  15 Oct 2010; Brent Baude <ranger@gentoo.org> cdrtools-3.00.ebuild:
+  stable ppc, bug 328163
+
+  30 Sep 2010; Brent Baude <ranger@gentoo.org> cdrtools-3.00.ebuild:
+  stable ppc64, bug 328163
+
+  14 Sep 2010; Tobias Klausmann <klausman@gentoo.org> cdrtools-3.00.ebuild:
+  Stable on alpha, bug #328163
+
+  14 Aug 2010; Markus Meier <maekke@gentoo.org> cdrtools-3.00.ebuild:
+  arm stable, bug #328163
 
   20 Jul 2010; Jeroen Roovers <jer@gentoo.org> cdrtools-3.00.ebuild:
   Stable for HPPA (bug #328163).
