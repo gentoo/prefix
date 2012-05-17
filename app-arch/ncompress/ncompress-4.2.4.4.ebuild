@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ncompress-4.2.4.4.ebuild,v 1.1 2010/09/10 03:49:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ncompress-4.2.4.4.ebuild,v 1.7 2011/07/09 08:58:41 xarthisius Exp $
 
 inherit toolchain-funcs
 

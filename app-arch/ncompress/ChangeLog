@@ -1,6 +1,25 @@
 # ChangeLog for app-arch/ncompress
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ChangeLog,v 1.47 2010/09/10 03:49:02 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ncompress/ChangeLog,v 1.53 2011/07/09 08:58:41 xarthisius Exp $
+
+  09 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> ncompress-4.2.4.4.ebuild:
+  ppc64 stable wrt #367273
+
+  24 May 2011; Brent Baude <ranger@gentoo.org> ncompress-4.2.4.4.ebuild:
+  Marking ncompress-4.2.4.4 ppc for bug 367273
+
+  21 May 2011; Raúl Porcel <armin76@gentoo.org> ncompress-4.2.4.4.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #367273
+
+  18 May 2011; Jeroen Roovers <jer@gentoo.org> ncompress-4.2.4.4.ebuild:
+  Stable for HPPA (bug #367273).
+
+  17 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  ncompress-4.2.4.4.ebuild:
+  x86 stable wrt bug #367273
+
+  15 May 2011; Christoph Mende <angelos@gentoo.org> ncompress-4.2.4.4.ebuild:
+  Stable on amd64 wrt bug #367273
 
 *ncompress-4.2.4.4 (10 Sep 2010)
 
