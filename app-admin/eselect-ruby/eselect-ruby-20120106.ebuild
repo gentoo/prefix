@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/eselect-ruby-20091225.ebuild,v 1.6 2010/01/13 19:33:05 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/eselect-ruby-20120106.ebuild,v 1.2 2012/04/26 16:50:02 aballier Exp $
 
 DESCRIPTION="Manages multiple Ruby versions"
 HOMEPAGE="http://www.gentoo.org"

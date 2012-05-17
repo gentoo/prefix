@@ -1,6 +1,44 @@
 # ChangeLog for app-admin/eselect-ruby
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.35 2010/06/03 14:40:12 a3li Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.45 2012/04/26 16:50:02 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org>
+  eselect-ruby-20120106.ebuild:
+  keyword ~amd64-fbsd
+
+*eselect-ruby-20120106 (06 Jan 2012)
+
+  06 Jan 2012; Alex Legler <a3li@gentoo.org> +eselect-ruby-20120106.ebuild:
+  Additional prefix support, bug 396701
+
+  07 Sep 2010; Alex Legler <a3li@gentoo.org> -eselect-ruby-20091225.ebuild,
+  -eselect-ruby-20100402.ebuild:
+  Removing old ebuilds
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> eselect-ruby-20100603.ebuild:
+  Marking eselect-ruby-20100603 ppc64 for bug 332957
+
+  28 Aug 2010; Raúl Porcel <armin76@gentoo.org>
+  eselect-ruby-20100603.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #332957
+
+  23 Aug 2010; Markus Meier <maekke@gentoo.org>
+  eselect-ruby-20100603.ebuild:
+  arm stable, bug #332957
+
+  21 Aug 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  eselect-ruby-20100603.ebuild:
+  x86 stable wrt security bug #332957
+
+  21 Aug 2010; Markos Chandras <hwoarang@gentoo.org>
+  eselect-ruby-20100603.ebuild:
+  Stable on amd64 wrt bug #332957
+
+  21 Aug 2010; Jeroen Roovers <jer@gentoo.org> eselect-ruby-20100603.ebuild:
+  Stable for PPC (bug #332957).
+
+  21 Aug 2010; Jeroen Roovers <jer@gentoo.org> eselect-ruby-20100603.ebuild:
+  Stable for HPPA (bug #332957).
 
 *eselect-ruby-20100603 (03 Jun 2010)
 
