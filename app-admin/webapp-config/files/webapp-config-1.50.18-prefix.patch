@@ -1,0 +1,77 @@
+diff -ur webapp-config-1.50.18/WebappConfig.orig/config.py webapp-config-1.50.18/WebappConfig/config.py
+--- webapp-config-1.50.18/WebappConfig.orig/config.py	2012-05-17 14:14:13.522634000 +0200
++++ webapp-config-1.50.18/WebappConfig/config.py	2012-05-17 14:23:50.182686000 +0200
+@@ -215,7 +215,7 @@
+         self.__d = {
+             'config_protect'               : '',
+             # Necessary to load the config file
+-            'my_etcconfig'                 : '/etc/vhosts/webapp-config',
++            'my_etcconfig'                 : '@GENTOO_PORTAGE_EPREFIX@/etc/vhosts/webapp-config',
+             'my_dotconfig'                 : '.webapp',
+             'my_version'                   : WCVERSION,
+             'my_conf_version'              : '7',
+@@ -257,9 +257,9 @@
+             # -- wrobel
+             'vhost_server_uid'  : 'root',
+             'vhost_server_gid'  : 'root',
+-            'my_persistroot'    : '/var/db/webapps',
++            'my_persistroot'    : '@GENTOO_PORTAGE_EPREFIX@/var/db/webapps',
+             'wa_installsbase'   : 'installs',
+-            'vhost_root'        : '/var/www/%(vhost_hostname)s',
++            'vhost_root'        : '@GENTOO_PORTAGE_EPREFIX@/var/www/%(vhost_hostname)s',
+             'g_htdocsdir'       : '%(vhost_root)s/%(my_htdocsbase)s',
+             'my_appdir'         : '%(my_approot)s/%(my_appsuffix)s',
+             'my_htdocsdir'      : '%(my_appdir)s/htdocs',
+@@ -269,7 +269,7 @@
+             'my_iconsdir'       : '%(my_hostrootdir)s/%(my_iconsbase)s',
+             'my_errorsdir'      : '%(my_hostrootdir)s/%(my_errorsbase)s',
+             'g_cgibindir'      : '%(vhost_root)s/%(my_cgibinbase)s',
+-            'my_approot'        : '/usr/share/webapps',
++            'my_approot'        : '@GENTOO_PORTAGE_EPREFIX@/usr/share/webapps',
+             'package_manager'   : 'portage',
+             'allow_absolute'    : 'no',
+             'my_hostrootbase'   : 'hostroot',
+diff -ur webapp-config-1.50.18/WebappConfig.orig/db.py webapp-config-1.50.18/WebappConfig/db.py
+--- webapp-config-1.50.18/WebappConfig.orig/db.py	2007-04-28 00:09:30.000000000 +0200
++++ webapp-config-1.50.18/WebappConfig/db.py	2012-05-17 14:28:54.677158000 +0200
+@@ -262,7 +262,7 @@
+ 
+     def __init__(self,
+                  fs_root    = '/',
+-                 root       = '/var/db/webapps',
++                 root       = '@GENTOO_PORTAGE_EPREFIX@/var/db/webapps',
+                  category   = '',
+                  package    = '',
+                  version    = '',
+@@ -492,7 +492,7 @@
+ 
+     def __init__(self,
+                  fs_root    = '/',
+-                 root       = '/usr/share/webapps',
++                 root       = '@GENTOO_PORTAGE_EPREFIX@/usr/share/webapps',
+                  category   = '',
+                  package    = '',
+                  version    = '',
+diff -ur webapp-config-1.50.18/WebappConfig.orig/sandbox.py webapp-config-1.50.18/WebappConfig/sandbox.py
+--- webapp-config-1.50.18/WebappConfig.orig/sandbox.py	2007-04-27 21:55:31.000000000 +0200
++++ webapp-config-1.50.18/WebappConfig/sandbox.py	2012-05-17 14:33:46.715035000 +0200
+@@ -51,7 +51,7 @@
+                            'vhost_root']
+         self.__syswrite = ':/dev/tty:/dev/pts:/dev/null:/tmp'
+ 
+-        self.sandbox_binary = '/usr/bin/sandbox'
++        self.sandbox_binary = '@GENTOO_PORTAGE_EPREFIX@/usr/bin/sandbox'
+ 
+         self.env      = {'SANDBOX_WRITE' : self.get_write() }
+ 
+--- webapp-config-1.50.18/config/webapp-config.orig	2012-05-17 14:42:10.740402000 +0200
++++ webapp-config-1.50.18/config/webapp-config	2012-05-17 14:42:32.334041000 +0200
+@@ -42,7 +42,7 @@
+ # If you want to have fine grained control over the location the web
+ # applications get installed, you can use the third setting
+ 
+-vhost_root="/var/www/${vhost_hostname}"
++vhost_root="@GENTOO_PORTAGE_EPREFIX@/var/www/${vhost_hostname}"
+ #vhost_root="/srv/${vhost_hostname}/www"
+ #vhost_root="/var/www/${vhost_subdomain_1}/${vhost_subdomain_2}/${vhost_subdomain_3}"
+ 

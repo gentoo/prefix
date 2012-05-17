@@ -1,6 +1,39 @@
 # ChangeLog for app-admin/webapp-config
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/ChangeLog,v 1.65 2010/05/14 18:56:00 arfrever Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/ChangeLog,v 1.72 2012/04/27 19:43:57 blueness Exp $
+
+  27 Apr 2012; Anthony G. Basile <blueness@gentoo.org>
+  webapp-config-1.50.16-r1.ebuild, webapp-config-1.50.16-r4.ebuild,
+  webapp-config-1.50.18.ebuild:
+  Remove python_convert_shebangs, not needed on wrapper script
+
+  29 Dec 2011; Anthony G. Basile <blueness@gentoo.org> metadata.xml:
+  Added myself as maintainer
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> webapp-config-1.50.16-r1.ebuild:
+  Drop to ~mips
+
+*webapp-config-1.50.18 (04 Feb 2011)
+
+  04 Feb 2011; Robin H. Johnson <robbat2@gentoo.org>
+  +webapp-config-1.50.18.ebuild:
+  Bug #353231: Version bump.
+
+*webapp-config-1.50.16-r4 (19 Dec 2010)
+
+  19 Dec 2010; Rafael G. Martins <rafaelmartins@gentoo.org>
+  -webapp-config-1.50.16-r3.ebuild, +webapp-config-1.50.16-r4.ebuild,
+  +files/webapp-config-1.50.16-update-servers.patch:
+  Added support to www-servers/{nginx,gatling}. Thanks to Fernando V. (bug
+  #211996)
+
+  03 Oct 2010; Maciej Mrozowski <reavertm@gentoo.org>
+  webapp-config-1.50.16-r1.ebuild:
+  Remove webapp eclass manpage also in this version, bug 322759
+
+  03 Oct 2010; Maciej Mrozowski <reavertm@gentoo.org>
+  webapp-config-1.50.16-r3.ebuild:
+  Fix file collision on webapp.eclass manpage, bug 322759
 
   14 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   webapp-config-1.50.16-r1.ebuild, webapp-config-1.50.16-r3.ebuild:

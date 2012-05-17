@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/webapp-config-1.50.16-r3.ebuild,v 1.4 2010/05/14 18:56:00 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/webapp-config-1.50.18.ebuild,v 1.2 2012/04/27 19:43:57 blueness Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -10,7 +10,8 @@ inherit distutils eutils prefix
 
 DESCRIPTION="Gentoo's installer for web-based applications"
 HOMEPAGE="http://sourceforge.net/projects/webapp-config/"
-SRC_URI="mirror://gentoo/${P}.tar.gz"
+SRC_URI="mirror://gentoo/${P}.tar.gz
+		 mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -24,20 +25,24 @@ RESTRICT_PYTHON_ABIS="3.*"
 PYTHON_MODNAME="WebappConfig"
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-apache-move.patch"
-	epatch "${FILESDIR}/${P}-baselayout2.patch"
-	epatch "${FILESDIR}/${P}-htdocs-symlink.patch"
-	epatch "${FILESDIR}/${P}-absolute-paths.patch"
-	rm -f doc/webapp.eclass.5{,.html}
+	epatch "${FILESDIR}/${PN}-1.50.16-apache-move.patch"
+	epatch "${FILESDIR}/${PN}-1.50.16-baselayout2.patch"
+	epatch "${FILESDIR}/${PN}-1.50.16-htdocs-symlink.patch"
+	#UPSTREAM-MERGED#epatch "${FILESDIR}/${PN}-1.50.16-absolute-paths.patch"
+	epatch "${FILESDIR}/${PN}-1.50.16-update-servers.patch"
+	# Do not build nor install eclass manual, bug 322759
+	rm -f doc/webapp.eclass.5*
+	sed -e '/MAN_PAGES/s/webapp.eclass.5//' \
+		-e '/HTML_PAGES/s/webapp.eclass.5.html//' \
+		-i doc/Makefile || die
 
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.50.18-prefix.patch
 
 	eprefixify \
 		WebappConfig/config.py \
 		WebappConfig/db.py \
 		WebappConfig/sandbox.py \
 		WebappConfig/wrapper.py \
-		sbin/webapp-cleaner \
 		config/webapp-config
 }
 
@@ -48,8 +53,6 @@ src_install() {
 	# locations. Since we only install one script here the following should
 	# be ok
 	distutils_src_install --install-scripts="${EPREFIX}/usr/sbin"
-
-	python_convert_shebangs 2 "${ED}usr/sbin/webapp-config"
 
 	insinto /etc/vhosts
 	doins config/webapp-config
