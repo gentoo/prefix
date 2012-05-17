@@ -1,13 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: boost.eselect-0.3,v 1.3 2011/08/28 06:48:29 ulm Exp $
+# $Id: boost.eselect-0.4,v 1.1 2012/04/02 00:51:03 floppym Exp $
 
 # This eclass-module has been initially written by Łukasz Michalik <lmi@ift.uni.wroc.pl>
 # Corrections and extensions by Tiziano Müller <dev-zero@gentoo.org>
 
 DESCRIPTION="Manage boost installations"
 MAINTAINER="dev-zero@gentoo.org"
-VERSION="0.3"
+VERSION="0.4"
 
 _boost_tools="bcp bjam compiler_status inspect library_status process_jam_log quickbook wave"
 
@@ -38,8 +38,8 @@ remove_installation() {
 
 	pushd "${ROOT}/usr/%LIBDIR%" 1>/dev/null
 	local lib
-	for lib in libboost_*.{a,so,dylib} ; do
-		[[ -L "${lib}" && "${lib}" != libboost_*[[:digit:]]_[[:digit:]][[:digit:]]@(${_suffices}).@(a|so|dylib) ]] || continue
+	for lib in libboost_*.{a,so} ; do
+		[[ -L "${lib}" && "${lib}" != libboost_*[[:digit:]]_[[:digit:]][[:digit:]]@(${_suffices}).@(a|so) ]] || continue
 		rm "${lib}" || die -q "Unable to remove \"/usr/%LIBDIR%/${lib}\" symlink"
 	done
 	popd 1>/dev/null
@@ -51,6 +51,16 @@ remove_installation() {
 	done
 	popd 1>/dev/null
 
+	local python_module python_module_dir
+	for python_module in mpi.py mpi_debug.py ; do
+		for python_module_dir in "${ROOT}"usr/%LIBDIR%/python*/site-packages ; do
+			if [[ -e "${python_module_dir}/${python_module}" ]] ; then
+				rm "${python_module_dir}/${python_module}" || die -q "Unable to remove \"${python_module_dir}/${python_module}\""
+			fi
+		done
+	done
+
+	# Deprecated code for older versions of Boost.
 	local mod="mpi.so"
 	for moddir in "${ROOT}"/usr/%LIBDIR%/python*/site-packages ; do
 		if [ -L "${moddir}/${mod}" ] ; then
@@ -58,6 +68,13 @@ remove_installation() {
 		else
 			[[ -e "${moddir}/${mod}" ]] && die -q "\"${moddir}/${mod}\" exists and isn't a symlink"
 		fi
+	done
+
+	local python_module
+	for python_module in ${python_modules} ; do
+		local target_python_module="${python_module#*:}"
+		local wrapper_python_module="${python_module%:*}"
+		echo "from ${target_python_module} import *" > "${ROOT}${wrapper_python_module}" || die -q "Couldn't create wrapper python module \"$(pwd)/${wrapper_python_module}\""
 	done
 
 	if [ -L "${ROOT}/etc/eselect/boost/active" ] ; then
@@ -96,9 +113,17 @@ set_installation() {
 
 	[[ -d "${ROOT}${includes}" ]] || die -q "\"${includes}\" does not exist"
 	pushd "${ROOT}/usr/include" 1>/dev/null
-	ln -s ${includes#${EPREFIX}/usr/include/} boost || die -q "Couldn't create symlink \"/usr/include/boost\""
+	ln -s ${includes//\/usr\/include\/} boost || die -q "Couldn't create symlink \"/usr/include/boost\""
 	popd 1>/dev/null
 
+	local python_module
+	for python_module in ${python_modules} ; do
+		local target_python_module="${python_module#*:}"
+		local wrapper_python_module="${python_module%:*}"
+		echo "from ${target_python_module} import *" > "${ROOT}${wrapper_python_module}" || die -q "Couldn't create wrapper python module \"$(pwd)/${wrapper_python_module}\""
+	done
+
+	# Deprecated code for older versions of Boost.
 	for t in ${python} ; do
 		pushd "$(dirname ${ROOT}${t})/.." 1>/dev/null
 		local ts="$(basename $(dirname ${ROOT}${t}))/${t//*\/}"

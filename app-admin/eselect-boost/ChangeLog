@@ -1,6 +1,35 @@
 # ChangeLog for app-admin/eselect-boost
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.15 2010/03/21 15:10:05 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.23 2012/05/16 15:38:05 jer Exp $
+
+  16 May 2012; Jeroen Roovers <jer@gentoo.org> eselect-boost-0.4.ebuild:
+  Stable for HPPA (bug #413813).
+
+  12 May 2012; Markus Meier <maekke@gentoo.org> eselect-boost-0.4.ebuild:
+  arm stable, bug #413813
+
+  06 May 2012; Agostino Sarubbo <ago@gentoo.org> eselect-boost-0.4.ebuild:
+  Stable for amd64, wrt bug #413813
+
+  05 May 2012; Brent Baude <ranger@gentoo.org> eselect-boost-0.4.ebuild:
+  Marking eselect-boost-0.4 ppc for bug 413813
+
+  28 Apr 2012; Alexis Ballier <aballier@gentoo.org> eselect-boost-0.4.ebuild:
+  keyword ~amd64-fbsd
+
+*eselect-boost-0.4 (02 Apr 2012)
+
+  02 Apr 2012; Mike Gilbert <floppym@gentoo.org> +eselect-boost-0.4.ebuild,
+  +files/boost.eselect-0.4:
+  Support python_modules variable for improved handling of Python modules, which
+  will execute code from boost_*/__init__.py (bug #404253). Ebuild and updated
+  boost.eselect by Arfrever.
+
+  28 Aug 2011; Ulrich Mueller <ulm@gentoo.org> files/boost.eselect-0.3:
+  Fix spelling, bug 290968.
+
+  28 Jun 2011; Matt Turner <mattst88@gentoo.org> eselect-boost-0.3.ebuild:
+  Add ~mips
 
   21 Mar 2010; Brent Baude <ranger@gentoo.org> eselect-boost-0.3.ebuild:
   Marking eselect-boost-0.3 ppc64 for bug 306335

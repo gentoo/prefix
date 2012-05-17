@@ -1,12 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/eselect-boost-0.3.ebuild,v 1.12 2011/06/28 21:32:24 mattst88 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/eselect-boost-0.4.ebuild,v 1.6 2012/05/16 15:38:05 jer Exp $
 
 inherit multilib
 
 DESCRIPTION="boost module for eselect"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
 SRC_URI=""
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
@@ -21,8 +22,8 @@ src_install() {
 	sed -e "s|%LIBDIR%|$(get_libdir)|g" "${FILESDIR}/boost.eselect-${PVR%-r*}" > "${ED}${mdir}/boost.eselect" || die "failed to install"
 
 	sed -i \
-		-e 's:\${ROOT}:${ROOT}'"${EPREFIX}"':g' \
-		-e 's:\${ROOT}'"${EPREFIX}"'\${\(t\|includes\)}:${ROOT}${\1}:g' \
+		-e 's:${ROOT}:${EROOT}:g' \
+		-e 's:${EROOT}${\(t\|includes\)}:${ROOT}${\1}:g' \
 		"${ED}${mdir}/boost.eselect" || die
 
 	keepdir /etc/eselect/boost
