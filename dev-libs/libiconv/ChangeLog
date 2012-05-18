@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/libiconv
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.35 2009/12/16 10:13:12 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.38 2012/04/26 12:08:33 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> libiconv-1.14.ebuild:
+  keyword ~amd64-fbsd
+
+  09 Feb 2012; Mike Frysinger <vapier@gentoo.org> libiconv-1.14.ebuild:
+  Update to EAPI=4 and cleanup ebuild.
+
+*libiconv-1.14 (10 Nov 2011)
+
+  10 Nov 2011; Naohiro Aota <naota@gentoo.org> +libiconv-1.14.ebuild:
+  Version bumped.
 
   16 Dec 2009; Alexis Ballier <aballier@gentoo.org> -libiconv-1.11.ebuild,
   -libiconv-1.12.ebuild, -libiconv-1.13.ebuild:
