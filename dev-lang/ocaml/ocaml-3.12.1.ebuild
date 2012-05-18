@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.12.0.ebuild,v 1.2 2011/02/27 13:09:10 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.12.1.ebuild,v 1.10 2012/05/15 02:57:30 heroxbd Exp $
 
 EAPI="1"
 
@@ -44,7 +44,7 @@ src_unpack() {
 	cd "${S}"
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 #	epatch "${FILESDIR}"/${P}-doc-utf8.patch
-	epatch "${FILESDIR}"/${P}-solaris-gcc.patch
+	epatch "${FILESDIR}"/${PN}-3.12.0-solaris-gcc.patch
 }
 
 src_compile() {
@@ -59,8 +59,6 @@ src_compile() {
 
 	# It doesn't compile on alpha without this LDFLAGS
 	use alpha && append-ldflags "-Wl,--no-relax"
-	# Fails to build on arm if >O0 is used
-	use arm && replace-flags "-O?" -O0
 
 	use tk || myconf="${myconf} -no-tk"
 	use ncurses || myconf="${myconf} -no-curses"
@@ -117,8 +115,9 @@ src_install() {
 		doenvd "${T}"/99ocamldoc
 	fi
 
-	# Install ocaml-rebuild.sh script rather than keeping it in $PORTDIR
-	dosbin "${FILESDIR}/ocaml-rebuild.sh"
+	# Install ocaml-rebuild portage set
+	insinto /usr/share/portage/config/sets
+	doins "${FILESDIR}/ocaml.conf" || die
 }
 
 pkg_postinst() {
@@ -126,7 +125,7 @@ pkg_postinst() {
 	ewarn "OCaml is not binary compatible from version to version, so you"
 	ewarn "need to rebuild all packages depending on it, that are actually"
 	ewarn "installed on your system. To do so, you can run:"
-	ewarn "/usr/sbin/ocaml-rebuild.sh [-h | emerge options]"
-	ewarn "Which will call emerge on all old packages with the given options"
+	ewarn "emerge @ocaml-rebuild"
+	ewarn "Or, (almost) equivalently: emerge -1 /usr/$(get_libdir)/ocaml"
 	echo
 }

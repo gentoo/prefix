@@ -1,6 +1,55 @@
 # ChangeLog for dev-lang/ocaml
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.189 2011/02/27 13:09:10 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.202 2012/05/15 02:57:30 heroxbd Exp $
+
+  15 May 2012; Benda Xu <heroxbd@gentoo.org> ocaml-3.12.1.ebuild:
+  on arm, use user -O flags instead of hard coding -O0, as per bug 340607.
+  Thanks to Josh Parsons for investigating the issue.
+
+  06 Nov 2011; Brent Baude <ranger@gentoo.org> ocaml-3.12.1.ebuild:
+  Marking ocaml-3.12.1 ppc for bug 361767
+
+  17 Oct 2011; Jeroen Roovers <jer@gentoo.org> ocaml-3.12.1.ebuild:
+  Stable for HPPA (bug #361767).
+
+  09 Oct 2011; Raúl Porcel <armin76@gentoo.org> ocaml-3.12.1.ebuild:
+  alpha/ia64/sparc stable wrt #361767
+
+  20 Sep 2011; Tony Vroon <chainsaw@gentoo.org> ocaml-3.12.1.ebuild:
+  Marked stable on AMD64 based on arch testing by Ian "idella4" Delaney &
+  Agostino "ago" Sarubbo in bug #361767.
+
+  19 Sep 2011; Markus Meier <maekke@gentoo.org> ocaml-3.12.1.ebuild:
+  arm stable, bug #361767
+
+  18 Sep 2011; Andreas Schuerch <nativemad@gentoo.org> ocaml-3.12.1.ebuild:
+  x86 stable, thanks JD, bug 361767
+
+  06 Sep 2011; Alexis Ballier <aballier@gentoo.org> ocaml-3.12.1.ebuild:
+  suggest how to rebuild ocaml packages without the set
+
+  11 Jul 2011; Matt Turner <mattst88@gentoo.org> ocaml-3.12.1.ebuild:
+  Added ~mips, bug 319649
+
+  06 Jul 2011; Alexis Ballier <aballier@gentoo.org> -ocaml-3.12.0.ebuild,
+  -ocaml-3.12.0-r1.ebuild, -ocaml-3.12.1_rc1.ebuild:
+  remove old
+
+*ocaml-3.12.1 (04 Jul 2011)
+
+  04 Jul 2011; Alexis Ballier <aballier@gentoo.org> +ocaml-3.12.1.ebuild:
+  bump to 3.12.1
+
+*ocaml-3.12.1_rc1 (26 Jun 2011)
+
+  26 Jun 2011; Alexis Ballier <aballier@gentoo.org> +ocaml-3.12.1_rc1.ebuild:
+  bump to rc
+
+*ocaml-3.12.0-r1 (11 Jun 2011)
+
+  11 Jun 2011; Alexis Ballier <aballier@gentoo.org> +ocaml-3.12.0-r1.ebuild,
+  +files/ocaml.conf:
+  Install a portage set for @ocaml-rebuild to replace ocaml-rebuild.sh
 
   27 Feb 2011; Alexis Ballier <aballier@gentoo.org> ocaml-3.12.0.ebuild:
   Add a patch to pass libs as last argument to the linker when linking, fixes
