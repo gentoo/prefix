@@ -1,6 +1,47 @@
 # ChangeLog for app-portage/g-cpan
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/ChangeLog,v 1.54 2010/03/24 18:57:12 robbat2 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/ChangeLog,v 1.64 2011/01/24 23:36:12 robbat2 Exp $
+
+*g-cpan-0.16.4 (24 Jan 2011)
+
+  24 Jan 2011; Robin H. Johnson <robbat2@gentoo.org> +g-cpan-0.16.4.ebuild:
+  Bump. Bug #352561: Allow --cpan_reload without other arguments. Bug #350070:
+  failure to reset a file pointer caused creation of new packages where they
+  existed already.
+
+  24 Jan 2011; Robin H. Johnson <robbat2@gentoo.org> -g-cpan-0.13.01.ebuild,
+  -g-cpan-0.14.1_rc1.ebuild, -g-cpan-0.15.0.ebuild, -g-cpan-0.16.0.ebuild,
+  -g-cpan-0.16.1.ebuild:
+  Remove old versions, keeping the last stable of each major version.
+
+*g-cpan-0.16.3 (24 Jan 2011)
+
+  24 Jan 2011; Robin H. Johnson <robbat2@gentoo.org> +g-cpan-0.16.3.ebuild:
+  New release. Fixes bugs #313049 (distfile ext detection), #349329 (existence
+  of overlay directories), #344631, #339889 (underscores in package names),
+  #338116 (configure_requires dependencies).
+
+  23 Oct 2010; Samuli Suominen <ssuominen@gentoo.org> g-cpan-0.16.2.ebuild:
+  ppc64 stable wrt #337981
+
+  19 Oct 2010; Mart Raudsepp <leio@gentoo.org> g-cpan-0.13.01.ebuild,
+  g-cpan-0.13.02.ebuild, g-cpan-0.14.0.ebuild, g-cpan-0.15.0-r1.ebuild:
+  Drop to ~mips
+
+  16 Oct 2010; Brent Baude <ranger@gentoo.org> g-cpan-0.16.2.ebuild:
+  stable ppc, bug 337981
+
+  09 Oct 2010; Raúl Porcel <armin76@gentoo.org> g-cpan-0.16.2.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #337981
+
+  05 Oct 2010; Markus Meier <maekke@gentoo.org> g-cpan-0.16.2.ebuild:
+  x86 stable, bug #337981
+
+  29 Sep 2010; Jeroen Roovers <jer@gentoo.org> g-cpan-0.16.2.ebuild:
+  Stable for HPPA (bug #337981).
+
+  19 Sep 2010; Markos Chandras <hwoarang@gentoo.org> g-cpan-0.16.2.ebuild:
+  Stable on amd64 wrt bug #337981
 
   24 Mar 2010; Robin H. Johnson <robbat2@gentoo.org> g-cpan-0.16.2.ebuild:
   Add a note that g-cpan cannot get every ebuild right, as some CPAN

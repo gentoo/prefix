@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/g-cpan-0.16.1.ebuild,v 1.1 2010/02/15 07:38:50 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/g-cpan-0.16.4.ebuild,v 1.1 2011/01/24 23:36:12 robbat2 Exp $
 
 EAPI=2
 
@@ -8,8 +8,8 @@ inherit perl-module prefix
 
 DESCRIPTION="g-cpan: generate and install CPAN modules using portage"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/g-cpan.xml"
-SRC_URI="mirror://gentoo/${P}.tar.bz2
-		 http://dev.gentoo.org/~robbat2/${P}.tar.bz2"
+SRC_URI="mirror://gentoo/${P}.tar.gz
+		 http://dev.gentoo.org/~robbat2/distfiles/${P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
@@ -40,4 +40,6 @@ src_install() {
 pkg_postinst() {
 	elog "You may wish to adjust the permissions on /var/tmp/g-cpan"
 	elog "if you have users besides root expecting to use g-cpan."
+	einfo "Please note that some CPAN packages need additional manual"
+	einfo "parameters or tweaking, due to bugs in their build systems."
 }
