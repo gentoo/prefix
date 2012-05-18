@@ -1,6 +1,150 @@
 # ChangeLog for app-text/acroread
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.150 2010/07/12 17:18:24 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.184 2012/04/18 23:01:11 dilfridge Exp $
+
+  18 Apr 2012; Andreas K. Huettel <dilfridge@gentoo.org> acroread-9.5.1.ebuild:
+  It seems like it now also works with firefox-bin, bug 412467
+
+  17 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> acroread-9.5.1.ebuild:
+  Remove net-libs/xulrunner from alternative || ( ) dependency wrt #403415
+
+  14 Apr 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  -acroread-9.4.7.ebuild:
+  Remove old
+
+  13 Apr 2012; Agostino Sarubbo <ago@gentoo.org> acroread-9.5.1.ebuild:
+  Stable for amd64, wrt bug #411499
+
+  11 Apr 2012; Andreas Schuerch <nativemad@gentoo.org> acroread-9.5.1.ebuild:
+  x86 stable, see bug 411499
+
+*acroread-9.5.1 (10 Apr 2012)
+
+  10 Apr 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  +acroread-9.5.1.ebuild:
+  Version bump, wrt security bug 411499
+
+  31 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org> acroread-9.4.7.ebuild:
+  Added lingua-dependent RDEPEND on asian fontpack, bug 212625
+
+  30 Jan 2012; Christian Ruppert <idl0r@gentoo.org> acroread-9.4.7.ebuild:
+  Add QA_TEXTRELS for libsccore.so, bug 401319.
+
+  29 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  -acroread-9.4.2.ebuild:
+  Remove old
+
+  29 Jan 2012; Agostino Sarubbo <ago@gentoo.org> acroread-9.4.7.ebuild:
+  Stable for AMD64, wrt security bug #393481
+
+  29 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> acroread-9.4.7.ebuild:
+  x86 stable wrt bug #393481
+
+  28 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org> acroread-9.4.7.ebuild:
+  Add net-dns/libidn to dependencies on x86, bug 396079
+
+  28 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  -acroread-9.4.2-r1.ebuild, -acroread-9.4.2-r2.ebuild:
+  Cleanup
+
+*acroread-9.4.7 (28 Jan 2012)
+
+  28 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  +acroread-9.4.7.ebuild:
+  Version bump, unfortunately only english so far
+
+*acroread-9.4.2-r2 (28 Jan 2012)
+
+  28 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  +acroread-9.4.2-r2.ebuild:
+  Add URL parameter in desktop file, bug 386941
+
+*acroread-9.4.2-r1 (22 Jan 2012)
+
+  22 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  +acroread-9.4.2-r1.ebuild:
+  Remove bundled libraries, bug 340527
+
+  25 Jun 2011; Zac Medico <zmedico@gentoo.org> acroread-9.4.2.ebuild:
+  Fix firefox dep for rename from mozilla-firefox.
+
+  05 Jun 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  -acroread-9.4.1.ebuild:
+  Remove old
+
+  05 Jun 2011; Andreas K. Huettel <dilfridge@gentoo.org> acroread-9.4.2.ebuild:
+  Added QA_DT_HASH, bug 310387
+
+  27 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> acroread-9.4.1.ebuild,
+  acroread-9.4.2.ebuild:
+  Fix slot-dep on gtk+
+
+  26 Feb 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  acroread-9.4.2.ebuild:
+  x86 stable wrt security bug #354211
+
+  26 Feb 2011; Markos Chandras <hwoarang@gentoo.org> acroread-9.4.2.ebuild:
+  Stable on amd64 wrt bug #354211
+
+*acroread-9.4.2 (25 Feb 2011)
+
+  25 Feb 2011; Timo Gurr <tgurr@gentoo.org> -acroread-9.4.0.ebuild,
+  +acroread-9.4.2.ebuild:
+  Version bump wrt security bug #354211, remove old.
+
+  09 Dec 2010; Markos Chandras <hwoarang@gentoo.org> acroread-9.4.1.ebuild:
+  Stable on amd64 wrt bug #343091
+
+  08 Dec 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  acroread-9.4.1.ebuild:
+  x86 stable wrt security bug #343091
+
+*acroread-9.4.1 (07 Dec 2010)
+
+  07 Dec 2010; Timo Gurr <tgurr@gentoo.org> -acroread-9.3.3.ebuild,
+  -acroread-9.3.4.ebuild, +acroread-9.4.1.ebuild:
+  Version bump wrt security bug #343091, remove old.
+
+  11 Oct 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  acroread-9.4.0.ebuild:
+  x86 stable wrt security bug #336508
+
+  11 Oct 2010; Markos Chandras <hwoarang@gentoo.org> acroread-9.4.0.ebuild:
+  Stable on amd64 wrt bug #336508
+
+*acroread-9.4.0 (08 Oct 2010)
+
+  08 Oct 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  +acroread-9.4.0.ebuild:
+  Version bump. Fixes 23 security vulnerabilities. CVE-2010-2883,
+  CVE-2010-2884, CVE-2010-2887, CVE-2010-2888, CVE-2010-2889, CVE-2010-2890,
+  CVE-2010-3619, CVE-2010-3620, CVE-2010-3621, CVE-2010-3622, CVE-2010-3623,
+  CVE-2010-3624, CVE-2010-3625, CVE-2010-3626, CVE-2010-3627, CVE-2010-3628,
+  CVE-2010-3629, CVE-2010-3630, CVE-2010-3631, CVE-2010-3632, CVE-2010-3656,
+  CVE-2010-3657, and CVE-2010-3658.
+
+  24 Sep 2010; Zac Medico <zmedico@gentoo.org> acroread-9.3.3.ebuild,
+  acroread-9.3.4.ebuild:
+  Bug #331753 - Only pull in openssl-0.9.8* on x86 since it's provided by
+  app-emulation/emul-linux-x86-baselibs on amd64.
+
+  24 Sep 2010; Zac Medico <zmedico@gentoo.org> acroread-9.3.3.ebuild,
+  acroread-9.3.4.ebuild:
+  Bug #331753 - Add missing dependency on openssl-0.9.8*.
+
+  03 Sep 2010; Markos Chandras <hwoarang@gentoo.org> acroread-9.3.4.ebuild:
+  Stable on amd64 wrt bug #322857
+
+  01 Sep 2010; Christian Faulhammer <fauli@gentoo.org>
+  acroread-9.3.4.ebuild:
+  stable x86, security bug 322857
+
+*acroread-9.3.4 (26 Aug 2010)
+
+  26 Aug 2010; Timo Gurr <tgurr@gentoo.org> -acroread-9.3.2.ebuild,
+  +acroread-9.3.4.ebuild:
+  Version bump, fixing security issues CVE-2010-2862, CVE-2010-1240. Remove
+  old vulnerable version.
 
   12 Jul 2010; Markos Chandras <hwoarang@gentoo.org> acroread-9.3.3.ebuild:
   Stable on amd64 wrt bug #322857
