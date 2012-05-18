@@ -1,6 +1,19 @@
 # ChangeLog for dev-java/jython
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.70 2010/12/13 14:11:43 arfrever Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.73 2012/04/13 18:47:54 ulm Exp $
+
+  13 Apr 2012; Ulrich Müller <ulm@gentoo.org> jython-2.2.1-r1.ebuild,
+  jython-2.5.0-r1.ebuild, jython-2.5.1.ebuild, jython-2.5.1-r1.ebuild,
+  jython-2.5.1-r2.ebuild:
+  Move EAPI assignment to top of ebuild, bug 411875.
+
+  01 Jan 2012; Ralph Sennhauser <sera@gentoo.org> jython-2.1-r11.ebuild:
+  Drop ia64 support #345433
+
+  16 Nov 2011; Markos Chandras <hwoarang@gentoo.org> jython-2.2.1-r1.ebuild,
+  jython-2.5.0-r1.ebuild, jython-2.5.1-r1.ebuild, jython-2.5.1-r2.ebuild,
+  jython-2.5.1.ebuild:
+  Update LICENSE. Patch by Arfrever
 
 *jython-2.5.1-r2 (13 Dec 2010)
 
