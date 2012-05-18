@@ -1,6 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/epm/epm-1.33.ebuild,v 1.7 2012/05/16 15:46:54 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/epm/epm-1.33-r1.ebuild,v 1.2 2012/05/16 15:46:54 fuzzyray Exp $
+
+EAPI="4"
 
 inherit eutils prefix
 
@@ -16,9 +18,8 @@ IUSE=""
 DEPEND=">=dev-lang/perl-5"
 RDEPEND="${DEPEND}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
+	epatch "${FILESDIR}/${PV}-epm-310475.patch"
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify epm
 }
