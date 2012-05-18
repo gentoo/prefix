@@ -1,6 +1,62 @@
 # ChangeLog for dev-java/jna
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jna/ChangeLog,v 1.7 2011/01/25 17:47:14 fordfrog Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jna/ChangeLog,v 1.18 2012/05/13 09:41:50 sera Exp $
+
+*jna-3.4.0-r1 (13 May 2012)
+
+  13 May 2012; Ralph Sennhauser <sera@gentoo.org> +jna-3.4.0-r1.ebuild,
+  +files/jna-3.4.0-makefile-flags.patch:
+  Respect CC. #413277
+  Register optional dependency emul-linux-x86-jna for use with 32bit JVMs.
+  #313209
+  Cleanup.
+
+  07 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> jna-3.4.0.ebuild:
+  x86 stable wrt bug #413157
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> jna-3.0.3-r1.ebuild,
+  jna-3.2.4.ebuild, jna-3.4.0.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  23 Apr 2012; Agostino Sarubbo <ago@gentoo.org> jna-3.4.0.ebuild:
+  Stable for amd64, wrt bug #413157
+
+  25 Mar 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/3.2.7-build.xml.patch, -files/3.2.7-makefile-flags.patch,
+  -files/3.3.0-build.xml.patch, -jna-3.2.7.ebuild,
+  -files/3.3.0-makefile-flags.patch, -jna-3.3.0.ebuild:
+  Removed obsolete versions
+
+  23 Mar 2012; Ralph Sennhauser <sera@gentoo.org> jna-3.4.0.ebuild:
+  Fix running tests. #294289
+
+  23 Mar 2012; Ralph Sennhauser <sera@gentoo.org> jna-3.4.0.ebuild:
+  Use vcs-snapshot eclass for github download.
+  Don't use xargs and also remove bundled libffi.
+  Drop libffi symlink workaround.
+
+  22 Mar 2012; Ralph Sennhauser <sera@gentoo.org> jna-3.0.3-r1.ebuild,
+  jna-3.2.4.ebuild, jna-3.2.7.ebuild, jna-3.3.0.ebuild, jna-3.4.0.ebuild:
+  Add missing build dep dev-util/pkgconfig. #403577
+
+*jna-3.4.0 (25 Dec 2011)
+
+  25 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/3.4.0-build.xml.patch, +jna-3.4.0.ebuild,
+  +files/3.4.0-makefile-flags.patch, metadata.xml:
+  Version bump. Added new USE flags, awt and nio-buffers. awt USE flag should
+  require X USE flag on used JDK/JRE but we do not have this flag on virtuals
+  yet.
+
+*jna-3.3.0 (13 Dec 2011)
+
+  13 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/3.3.0-build.xml.patch, +files/3.3.0-makefile-flags.patch,
+  +jna-3.3.0.ebuild:
+  Version bump
+
+  18 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> jna-3.2.4.ebuild:
+  ppc stable wrt #311105
 
 *jna-3.2.7 (25 Jan 2011)
 
