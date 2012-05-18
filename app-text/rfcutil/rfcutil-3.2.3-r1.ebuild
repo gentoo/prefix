@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rfcutil/rfcutil-3.2.3.ebuild,v 1.28 2008/01/19 15:07:00 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rfcutil/rfcutil-3.2.3-r1.ebuild,v 1.6 2012/03/18 18:16:46 armin76 Exp $
+
+EAPI=4
 
 inherit eutils prefix
 
@@ -20,15 +22,16 @@ IUSE=""
 RDEPEND="dev-lang/perl
 	|| ( www-client/lynx virtual/w3m )"
 
-src_unpack() {
-	unpack ${A}
+src_prepare() {
+	epatch \
+		"${FILESDIR}"/${MY_P}.diff \
+		"${FILESDIR}"/${MY_P}-index.patch
 	epatch "${FILESDIR}"/${MY_P}-prefix.diff
-	cd "${S}"
 	eprefixify ${MY_P}
 }
 
 src_install() {
-	newbin ${MY_P} ${MY_PN} || die
+	newbin ${MY_P} ${MY_PN}
 	doman ${MY_PN}.1
 	dodoc CHANGELOG KNOWN_BUGS README
 	keepdir /var/cache/rfc
