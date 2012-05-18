@@ -1,6 +1,22 @@
 # ChangeLog for app-text/enscript
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/ChangeLog,v 1.60 2010/06/10 16:01:47 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/ChangeLog,v 1.64 2012/05/12 01:46:57 aballier Exp $
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> enscript-1.6.5.2-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  21 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  enscript-1.6.5.2-r1.ebuild:
+  x86 stable wrt bug #393991
+
+  16 Dec 2011; Agostino Sarubbo <ago@gentoo.org> enscript-1.6.5.2-r1.ebuild:
+  Stable for AMD64, wrt bug #393991
+
+*enscript-1.6.5.2-r1 (02 Jun 2011)
+
+  02 Jun 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  +enscript-1.6.5.2-r1.ebuild, +files/enscript-1.6.5.2-php.st.patch:
+  Add patch for php syntax highlighting, bug 244334
 
 *enscript-1.6.5.2 (10 Jun 2010)
 
