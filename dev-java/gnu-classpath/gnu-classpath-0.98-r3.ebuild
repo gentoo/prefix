@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.98-r3.ebuild,v 1.5 2010/11/06 17:17:53 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.98-r3.ebuild,v 1.6 2011/03/29 09:13:40 caster Exp $
 
 EAPI=2
 
@@ -26,10 +26,10 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 		gstreamer? (
 			>=media-libs/gstreamer-0.10.10
 			>=media-libs/gst-plugins-base-0.10.10
-			x11-libs/gtk+
+			x11-libs/gtk+:2
 		)
 		gtk? (
-				>=x11-libs/gtk+-2.8
+				>=x11-libs/gtk+-2.8:2
 				>=dev-libs/glib-2.0
 				media-libs/freetype
 				>=x11-libs/cairo-1.1.9

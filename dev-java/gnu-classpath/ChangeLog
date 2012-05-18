@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/gnu-classpath
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.115 2010/11/06 17:17:53 halcy0n Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.116 2011/03/29 09:13:40 caster Exp $
+
+  29 Mar 2011; Vlastimil Babka <caster@gentoo.org>
+  -gnu-classpath-0.98-r2.ebuild, gnu-classpath-0.98-r3.ebuild:
+  Slot GTK+ deps.
 
   06 Nov 2010; Mark Loeser <halcy0n@gentoo.org>
   gnu-classpath-0.98-r3.ebuild:
