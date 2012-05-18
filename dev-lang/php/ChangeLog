@@ -1,6 +1,34 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.583 2012/05/03 20:27:33 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.592 2012/05/12 16:34:22 armin76 Exp $
+
+  12 May 2012; Raúl Porcel <armin76@gentoo.org> php-5.3.13.ebuild:
+  ia64/s390/sh/sparc stable wrt #414553
+
+  12 May 2012; Markus Meier <maekke@gentoo.org> php-5.3.13.ebuild:
+  arm stable, bug #414553
+
+  12 May 2012; Tobias Klausmann <klausman@gentoo.org> php-5.3.13.ebuild:
+  Stable on alpha, bug #414553
+
+  10 May 2012; Brent Baude <ranger@gentoo.org> php-5.3.13.ebuild:
+  Marking php-5.3.13 ppc64 for bug 414553
+
+  10 May 2012; Jeroen Roovers <jer@gentoo.org> php-5.3.13.ebuild:
+  Stable for HPPA (bug #414553).
+
+  09 May 2012; Jeff Horelick <jdhore@gentoo.org> php-5.3.13.ebuild:
+  marked x86 per security bug 414553
+
+  08 May 2012; Markos Chandras <hwoarang@gentoo.org> php-5.3.13.ebuild:
+  Stable on amd64 wrt bug #414553
+
+*php-5.4.3 (08 May 2012)
+*php-5.3.13 (08 May 2012)
+
+  08 May 2012; Ole Markus With <olemarkus@gentoo.org> +php-5.3.13.ebuild,
+  +php-5.4.3.ebuild:
+  Version bump. Hopefully fixing the CGI SAPI vulnerability … Bug #414553
 
   03 May 2012; Markus Meier <maekke@gentoo.org> php-5.3.11.ebuild:
   arm stable, bug #410957

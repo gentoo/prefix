@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.4.0_rc7.ebuild,v 1.2 2012/02/06 13:41:27 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.4.3.ebuild,v 1.1 2012/05/08 17:22:11 olemarkus Exp $
 
 EAPI=4
 
@@ -28,7 +28,7 @@ function php_get_uri ()
 			echo "http://download.suhosin.org/${2}"
 		;;
 		"olemarkus")
-			echo "http://olemarkus.org/~olemarkus/gentoo/${2}"
+			echo "http://dev.gentoo.org/~olemarkus/php/${2}"
 		;;
 		"gentoo")
 			echo "mirror://gentoo/${2}"
@@ -40,22 +40,23 @@ function php_get_uri ()
 }
 
 PHP_MV="$(get_major_version)"
+SLOT="$(get_version_component_range 1-2)"
 
 # alias, so we can handle different types of releases (finals, rcs, alphas,
 # betas, ...) w/o changing the whole ebuild
 PHP_PV="${PV/_rc/RC}"
 PHP_PV="${PHP_PV/_alpha/alpha}"
 PHP_PV="${PHP_PV/_beta/beta}"
-PHP_RELEASE="php-stas"
+PHP_RELEASE="php"
 PHP_P="${PN}-${PHP_PV}"
 
 PHP_PATCHSET_LOC="olemarkus"
 
 PHP_SRC_URI="$(php_get_uri "${PHP_RELEASE}" "${PHP_P}.tar.bz2")"
 
-PHP_PATCHSET="0"
+PHP_PATCHSET="2"
 PHP_PATCHSET_URI="
-	$(php_get_uri "${PHP_PATCHSET_LOC}" "php-patchset-${PV}-r${PHP_PATCHSET}.tar.bz2")"
+	$(php_get_uri "${PHP_PATCHSET_LOC}" "php-patchset-$SLOT-${PHP_PATCHSET}.tar.bz2")"
 
 PHP_FPM_INIT_VER="4"
 PHP_FPM_CONF_VER="1"
@@ -86,7 +87,6 @@ DESCRIPTION="The PHP language runtime engine: CLI, CGI, FPM/FastCGI, Apache2 and
 HOMEPAGE="http://php.net/"
 LICENSE="PHP-3"
 
-SLOT="$(get_version_component_range 1-2)"
 S="${WORKDIR}/${PHP_P}"
 
 # We can build the following SAPIs in the given order
@@ -115,10 +115,9 @@ IUSE="${IUSE} bcmath berkdb bzip2 calendar cdb cjk
 # Enable suhosin if available
 [[ -n $SUHOSIN_VERSION ]] && IUSE="${IUSE} suhosin"
 
-DEPEND="!dev-lang/php:5
+DEPEND="
 	>=app-admin/eselect-php-0.6.2
 	>=dev-libs/libpcre-8.12[unicode]
-	<dev-libs/libpcre-8.30[unicode]
 	apache2? ( www-servers/apache[threads=] )
 	berkdb? ( =sys-libs/db-4* )
 	bzip2? ( app-arch/bzip2 )
@@ -225,13 +224,7 @@ REQUIRED_USE="
 
 	!cli? ( !cgi? ( !fpm? ( !apache2? ( !embed? ( cli ) ) ) ) )"
 
-DEPEND="${DEPEND}
-	enchant? ( !dev-php/pecl-enchant )
-	fileinfo? ( !<dev-php/pecl-fileinfo-1.0.4-r2 )
-	filter? ( !dev-php/pecl-filter )
-	json? ( !dev-php/pecl-json )
-	phar? ( !dev-php/pecl-phar )
-	zip? ( !dev-php/pecl-zip )"
+RDEPEND="${DEPEND}"
 
 [[ -n $SUHOSIN_VERSION ]] && RDEPEND="${RDEPEND} suhosin? (
 =${CATEGORY}/${PN}-${SLOT}*[unicode] )"
