@@ -1,6 +1,31 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.590 2012/05/03 02:41:39 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.597 2012/05/15 18:35:58 jer Exp $
+
+  15 May 2012; Jeroen Roovers <jer@gentoo.org> python-3.1.4-r3.ebuild,
+  python-3.1.5.ebuild, python-3.2.2.ebuild, python-3.2.3.ebuild:
+  Marked ~hppa until it is ready.
+
+  15 May 2012; Jeroen Roovers <jer@gentoo.org> python-2.6.8.ebuild,
+  python-3.1.5.ebuild, python-3.2.3.ebuild:
+  Stable for HPPA (bug #396329).
+
+  14 May 2012; Jeroen Roovers <jer@gentoo.org> python-2.7.3-r1.ebuild:
+  Stable for HPPA (bug #396329).
+
+  14 May 2012; Mark Loeser <halcy0n@gentoo.org> python-2.6.8.ebuild,
+  python-2.7.3-r1.ebuild, python-3.1.5.ebuild, python-3.2.3.ebuild:
+  Stable for ppc/ppc64; bug #369329
+
+  14 May 2012; Agostino Sarubbo <ago@gentoo.org> python-2.6.8.ebuild,
+  python-2.7.3-r1.ebuild, python-3.1.5.ebuild, python-3.2.3.ebuild:
+  Stable for amd64, wrt bug #396329
+
+  12 May 2012; Tobias Klausmann <klausman@gentoo.org> python-2.6.8.ebuild:
+  Stable on alpha, bug #396329
+
+  12 May 2012; Tobias Klausmann <klausman@gentoo.org> python-2.7.3-r1.ebuild:
+  Stable on alpha, bug #396329
 
   03 May 2012; Jeff Horelick <jdhore@gentoo.org> python-2.5.4-r4.ebuild,
   python-2.6.6-r2.ebuild, python-2.6.7-r2.ebuild, python-2.6.8.ebuild,
