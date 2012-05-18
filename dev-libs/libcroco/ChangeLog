@@ -1,6 +1,43 @@
 # ChangeLog for dev-libs/libcroco
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.63 2012/02/13 10:18:53 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.74 2012/05/16 14:55:50 jer Exp $
+
+  16 May 2012; Jeroen Roovers <jer@gentoo.org> libcroco-0.6.5.ebuild:
+  Stable for HPPA (bug #410611).
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> libcroco-0.6.5.ebuild:
+  keyword ~amd64-fbsd
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> libcroco-0.6.3.ebuild,
+  libcroco-0.6.4.ebuild, libcroco-0.6.5.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> libcroco-0.6.5.ebuild:
+  x86 stable, bug #410611
+
+  25 Apr 2012; Markus Meier <maekke@gentoo.org> libcroco-0.6.5.ebuild:
+  arm stable, bug #410611
+
+  19 Apr 2012; Brent Baude <ranger@gentoo.org> libcroco-0.6.5.ebuild:
+  Marking libcroco-0.6.5 ppc64 stable for bug 410611
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org> libcroco-0.6.5.ebuild:
+  Stable for amd64, wrt bug #410611
+
+*libcroco-0.6.5 (27 Mar 2012)
+
+  27 Mar 2012; Pacho Ramos <pacho@gentoo.org> +libcroco-0.6.5.ebuild,
+  -libcroco-0.6.2-r1.ebuild:
+  Version bump, remove old.
+
+  25 Mar 2012; Raúl Porcel <armin76@gentoo.org> libcroco-0.6.3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #393007
+
+  05 Mar 2012; Brent Baude <ranger@gentoo.org> libcroco-0.6.3.ebuild:
+  Marking libcroco-0.6.3 ppc stable for bug 393007
+
+  05 Mar 2012; Brent Baude <ranger@gentoo.org> libcroco-0.6.3.ebuild:
+  Marking libcroco-0.6.3 ppc64 stable for bug 393007
 
   01 Mar 2012; Fabian Groffen <grobian@gentoo.org> libcroco-0.6.4.ebuild:
   Fix configure on Darwin by passing --disable-Bsymbolic as it suggests itself

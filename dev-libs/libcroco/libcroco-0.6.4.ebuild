@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/libcroco-0.6.4.ebuild,v 1.1 2012/02/13 10:18:53 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/libcroco-0.6.4.ebuild,v 1.2 2012/05/04 18:35:47 jdhore Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -19,7 +19,7 @@ IUSE="doc test"
 RDEPEND="dev-libs/glib:2
 	>=dev-libs/libxml2-2.4.23"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1 )
 	x86-interix? ( >=dev-util/gtk-doc-am-1 )"
 

@@ -1,16 +1,15 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/libcroco-0.6.2-r1.ebuild,v 1.7 2011/10/30 15:05:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/libcroco-0.6.5.ebuild,v 1.8 2012/05/16 14:55:50 jer Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
-GNOME_TARBALL_SUFFIX="bz2"
 
 inherit gnome2 autotools
 
 DESCRIPTION="Generic Cascading Style Sheet (CSS) parsing and manipulation toolkit"
-HOMEPAGE="http://freshmeat.net/projects/libcroco"
+HOMEPAGE="http://git.gnome.org/browse/libcroco/"
 
 LICENSE="LGPL-2"
 SLOT="0.6"
@@ -20,7 +19,7 @@ IUSE="doc test"
 RDEPEND="dev-libs/glib:2
 	>=dev-libs/libxml2-2.4.23"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1 )
 	x86-interix? ( >=dev-util/gtk-doc-am-1 )"
 
@@ -43,4 +42,8 @@ src_prepare() {
 		sed 's/^\(SUBDIRS .*\=.*\)tests\(.*\)$/\1\2/' -i Makefile.am Makefile.in \
 			|| die "sed failed"
 	fi
+}
+
+src_configure() {
+	econf $([[ ${CHOST} == *-darwin* ]] && echo "--disable-Bsymbolic")
 }
