@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_p125.ebuild,v 1.2 2012/03/01 22:49:37 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_p194-r1.ebuild,v 1.1 2012/05/12 05:47:49 flameeyes Exp $
 
-EAPI=2
+EAPI=4
 
 #PATCHSET=
 
@@ -149,11 +149,11 @@ src_configure() {
 }
 
 src_compile() {
-	emake EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
+	emake V=1 EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
 }
 
 src_test() {
-	emake -j1 test || die "make test failed"
+	emake -j1 V=1 test || die "make test failed"
 
 	elog "Ruby's make test has been run. Ruby also ships with a make check"
 	elog "that cannot be run until after ruby has been installed."
@@ -183,7 +183,7 @@ src_install() {
 	done
 	export LD_LIBRARY_PATH RUBYLIB
 
-	emake DESTDIR="${D}" install || die "make install failed"
+	emake V=1 DESTDIR="${D}" install || die "make install failed"
 
 	# Remove installed rubygems copy
 	rm -r "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}/rubygems" || die "rm rubygems failed"
