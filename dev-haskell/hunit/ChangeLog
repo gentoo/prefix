@@ -1,6 +1,38 @@
 # ChangeLog for dev-haskell/hunit
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.40 2010/07/12 11:03:13 slyfox Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.49 2012/05/05 16:41:35 slyfox Exp $
+
+  05 May 2012; Sergei Trofimovich <slyfox@gentoo.org> hunit-1.2.4.2.ebuild:
+  alpha/ia64/ppc64/sparc stable (bug #404637)
+
+  16 Apr 2012; Brent Baude <ranger@gentoo.org> hunit-1.2.4.2.ebuild:
+  Marking hunit-1.2.4.2 ppc for bug 404637
+
+  05 Apr 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> hunit-1.2.4.2.ebuild:
+  x86 stable wrt bug #404637
+
+  28 Mar 2012; Agostino Sarubbo <ago@gentoo.org> hunit-1.2.4.2.ebuild:
+  Stable for amd64, wrt bug #404637
+
+*hunit-1.2.4.2 (04 Dec 2011)
+
+  04 Dec 2011; Sergei Trofimovich <slyfox@gentoo.org> +hunit-1.2.4.2.ebuild:
+  Version bump.
+
+  10 Nov 2011; Naohiro Aota <naota@gentoo.org> hunit-1.2.2.3.ebuild:
+  Add ~x86-fbsd
+
+*hunit-1.2.2.3 (02 Aug 2011)
+
+  02 Aug 2011; Sergei Trofimovich <slyfox@gentoo.org> +hunit-1.2.2.3.ebuild:
+  Version bump.
+
+  05 Jun 2011; Sergei Trofimovich <slyfox@gentoo.org> -hunit-1.1.ebuild,
+  -hunit-1.1-r1.ebuild, -hunit-1.1.1.ebuild, -hunit-1.2.0.0.ebuild:
+  Removed old.
+
+  25 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> hunit-1.2.0.3.ebuild:
+  ppc64 stable wrt #339580
 
   12 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org> hunit-1.2.0.3.ebuild:
   Really marked alpha stable for bug #279736
