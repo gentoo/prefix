@@ -1,6 +1,75 @@
 # ChangeLog for app-misc/linux-logo
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/ChangeLog,v 1.66 2010/07/05 10:38:08 spock Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/ChangeLog,v 1.83 2012/03/23 19:59:20 nimiux Exp $
+
+  23 Mar 2012; Chema Alonso <nimiux@gentoo.org> metadata.xml:
+  Removed Dane Smith (c1pher) as maintainer (Proxy)
+
+  06 Nov 2011; Brent Baude <ranger@gentoo.org> linux-logo-5.11-r1.ebuild:
+  Marking linux-logo-5.11-r1 ppc for bug 373493
+
+  25 Aug 2011; Jeroen Roovers <jer@gentoo.org> linux-logo-5.11-r1.ebuild:
+  Stable for HPPA (bug #373493).
+
+  07 Aug 2011; Raúl Porcel <armin76@gentoo.org> linux-logo-5.11-r1.ebuild:
+  sparc stable wrt #373493
+
+  01 Aug 2011; Markus Meier <maekke@gentoo.org> linux-logo-5.11-r1.ebuild:
+  amd64/x86 stable, bug #373493
+
+  09 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  linux-logo-5.10-r1.ebuild:
+  ppc stable wrt #367275
+
+*linux-logo-5.11-r1 (29 Jun 2011)
+
+  29 Jun 2011; Dane Smith <c1pher@gentoo.org> -linux-logo-5.04.ebuild,
+  -linux-logo-5.06.ebuild, -linux-logo-5.07.ebuild, -linux-logo-5.10.ebuild,
+  -linux-logo-5.11.ebuild, +linux-logo-5.11-r1.ebuild,
+  +files/linux-logo-5.11.conf, +files/linux-logo.init.d, metadata.xml:
+  Updated metadata to reflect new Maintainer/Proxy.
+  Removed old versions.
+  Added 5.11-r1. Uses new init script. Numerous cleanups. Moved to
+  EAPI4.
+
+  24 Jun 2011; Jeroen Roovers <jer@gentoo.org> linux-logo-5.11.ebuild,
+  +files/logo_config:
+  Put logo_config in FILESDIR. Die more often. Move ./configure to
+  src_configure().
+
+  24 Jun 2011; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Maintain.
+
+*linux-logo-5.11 (24 Jun 2011)
+
+  24 Jun 2011; Jeroen Roovers <jer@gentoo.org> +linux-logo-5.11.ebuild:
+  Version bump.
+
+  18 Jun 2011; Michał Januszewski <spock@gentoo.org> metadata.xml:
+  Reassigning to maintainer-needed.
+
+  21 May 2011; Raúl Porcel <armin76@gentoo.org> linux-logo-5.10-r1.ebuild:
+  sparc stable wrt #367275
+
+  19 May 2011; Jeroen Roovers <jer@gentoo.org> linux-logo-5.10-r1.ebuild:
+  Stable for HPPA (bug #367275).
+
+  18 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  linux-logo-5.10-r1.ebuild:
+  x86 stable wrt bug #367275
+
+  15 May 2011; Christoph Mende <angelos@gentoo.org> linux-logo-5.10-r1.ebuild:
+  Stable on amd64 wrt bug #367275
+
+  19 Oct 2010; Mart Raudsepp <leio@gentoo.org> linux-logo-5.02.ebuild:
+  Drop to ~mips
+
+*linux-logo-5.10-r1 (28 Aug 2010)
+
+  28 Aug 2010; Michał Januszewski <spock@gentoo.org>
+  +linux-logo-5.10-r1.ebuild, +files/linux_logo-5.10-makefile-tabs.patch:
+  Fix compilation problems with make 3.82 (bug #334713), switch to EAPI 2,
+  respect LDFLAGS.
 
 *linux-logo-5.10 (05 Jul 2010)
 

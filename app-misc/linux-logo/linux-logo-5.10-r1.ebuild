@@ -1,6 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/linux-logo-5.04.ebuild,v 1.1 2009/01/03 11:44:27 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/linux-logo-5.10-r1.ebuild,v 1.6 2011/07/09 09:03:27 xarthisius Exp $
+
+EAPI="2"
 
 inherit eutils toolchain-funcs
 
@@ -31,16 +33,20 @@ src_unpack() {
 	echo "./logos/classic.logo" >> logo_config
 	cp "${FILESDIR}"/gentoo{,2}.logo "${S}"/logos/
 	echo "NAME gentoo" >> "${S}"/logos/gentoo.logo
+}
+
+src_prepare() {
+	epatch "${FILESDIR}"/linux_logo-5.10-makefile-tabs.patch
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${P}-interix.patch
-		epatch "${FILESDIR}"/${P}-no-i18n.patch
+		epatch "${FILESDIR}"/${PN}-5.06-interix.patch
+		epatch "${FILESDIR}"/${PN}-5.06-no-i18n.patch
 	fi
 }
 
 src_compile() {
-	"${BASH}" ./configure --prefix="${ED}"/usr || die
-	emake CFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die
+	ARCH="" "${BASH}" ./configure --prefix="${ED}"/usr || die
+	emake CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" CC="$(tc-getCC)" || die
 }
 
 src_install() {

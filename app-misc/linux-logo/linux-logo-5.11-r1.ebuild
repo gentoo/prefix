@@ -1,8 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/linux-logo-5.06.ebuild,v 1.1 2009/10/17 21:05:32 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/linux-logo-5.11-r1.ebuild,v 1.5 2011/11/06 23:07:28 ranger Exp $
 
-inherit eutils toolchain-funcs
+EAPI="4"
+
+inherit toolchain-funcs
 
 MY_P=${PN/-/_}-${PV}
 S=${WORKDIR}/${MY_P}
@@ -19,40 +21,36 @@ RDEPEND="nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	echo "./logos/gentoo.logo" >> logo_config
-	echo "./logos/gentoo2.logo" >> logo_config
-	echo "./logos/banner-simplified.logo" >> logo_config
-	echo "./logos/banner.logo" >> logo_config
-	echo "./logos/classic-no_periods.logo" >> logo_config
-	echo "./logos/classic-no_periods_or_chars.logo" >> logo_config
-	echo "./logos/classic.logo" >> logo_config
-	cp "${FILESDIR}"/gentoo{,2}.logo "${S}"/logos/
+src_prepare() {
+	cp "${FILESDIR}"/logo_config "${S}/" || die
+	cp "${FILESDIR}"/gentoo{,2}.logo "${S}"/logos/ \
+		|| die "Unable to copy Gentoo logos"
 	echo "NAME gentoo" >> "${S}"/logos/gentoo.logo
+	# Remove warn_unused_result warning
+	sed -i -e 's/FILE \*fff;/FILE \*fff;\n   char *stemp;/' \
+	    -e 's/fgets/stemp=fgets/' "${S}"/load_logo.c || die "sed failed"
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${P}-interix.patch
-		epatch "${FILESDIR}"/${P}-no-i18n.patch
+		epatch "${FILESDIR}"/${PN}-5.06-interix.patch
+		epatch "${FILESDIR}"/${PN}-5.06-no-i18n.patch
 	fi
 }
 
+src_configure() {
+	ARCH="" ./configure --prefix="${ED}"/usr || die "configure failed"
+}
+
 src_compile() {
-	ARCH="" "${BASH}" ./configure --prefix="${ED}"/usr || die
-	emake CFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die
+	emake CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" CC="$(tc-getCC)"
 }
 
 src_install() {
-	make install || die
+	emake install
 
 	dodoc BUGS README README.CUSTOM_LOGOS TODO USAGE LINUX_LOGO.FAQ
 
-	cp "${FILESDIR}"/${PN}.conf "${WORKDIR}"
-	sed -i -e 's/-L 4 -f -u/-f -u/' "${WORKDIR}"/${PN}.conf
-
-	newinitd "${FILESDIR}"/${PN}.initscript ${PN}
-	newconfd "${WORKDIR}"/${PN}.conf ${PN}
+	newinitd "${FILESDIR}"/${PN}.init.d ${PN}
+	newconfd "${FILESDIR}"/${P}.conf ${PN}
 }
 
 pkg_postinst() {
@@ -68,4 +66,10 @@ pkg_postinst() {
 	elog "which uses the settings found in"
 	elog "   /etc/conf.d/linux-logo"
 	echo
+}
+
+pkg_prerm() {
+	# Restore issue files
+	mv /etc/issue.linux-logo.backup /etc/issue 2> /dev/null
+	mv /etc/issue.net.linux-logo.backup /etc/issue.net 2> /dev/null
 }
