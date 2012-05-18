@@ -1,6 +1,17 @@
 # ChangeLog for app-text/grutatxt
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/grutatxt/ChangeLog,v 1.14 2010/05/29 19:27:44 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/grutatxt/ChangeLog,v 1.17 2012/04/28 18:01:18 nixnut Exp $
+
+  28 Apr 2012; <nixnut@gentoo.org> grutatxt-2.0.16.ebuild:
+  ppc stable #413567
+
+  26 Apr 2012; Agostino Sarubbo <ago@gentoo.org> grutatxt-2.0.16.ebuild:
+  Stable for amd64, wrt bug #413567
+
+*grutatxt-2.0.16 (21 Jan 2012)
+
+  21 Jan 2012; Tim Harder <radhermit@gentoo.org> +grutatxt-2.0.16.ebuild:
+  Version bump.
 
   29 May 2010; Raúl Porcel <armin76@gentoo.org> grutatxt-2.0.5.ebuild,
   grutatxt-2.0.11.ebuild, grutatxt-2.0.13.ebuild, grutatxt-2.0.14.ebuild:
