@@ -1,5 +1,5 @@
---- /Library/Gentoo/var/tmp/portage/app-admin/python-updater-0.10-r2/work/python-updater-0.10/python-updater.orig	2012-05-17 13:27:42.704657000 +0200
-+++ /Library/Gentoo/var/tmp/portage/app-admin/python-updater-0.10-r2/work/python-updater-0.10/python-updater	2012-05-17 14:02:38.209971000 +0200
+--- python-updater-0.10-r2/work/python-updater-0.10/python-updater.orig	2012-05-17 13:27:42.704657000 +0200
++++ python-updater-0.10-r2/work/python-updater-0.10/python-updater	2012-05-17 14:02:38.209971000 +0200
 @@ -29,7 +29,7 @@
  OLD_PYTHON_VERSIONS=""
  OLD_PYTHON2_VERSIONS=""

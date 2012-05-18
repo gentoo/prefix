@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.77 2012/04/26 14:54:37 aballier Exp $
 
+  18 May 2012; Fabian Groffen <grobian@gentoo.org>
+  files/python-updater-0.10-prefix.patch:
+  Strip lots of useless directories from paths such that the patch applies with
+  epatch
+
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org>
   python-updater-0.10-r2.ebuild:
   keyword ~amd64-fbsd
