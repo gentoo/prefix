@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/pike/pike-7.8.352-r1.ebuild,v 1.2 2010/12/15 04:38:42 araujo Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/pike/pike-7.8.352-r2.ebuild,v 1.1 2012/05/10 00:20:10 araujo Exp $
 
 EAPI="2"
 
-inherit multilib
+inherit eutils  multilib
 
 DESCRIPTION="Pike programming language and runtime"
 HOMEPAGE="http://pike.ida.liu.se/"
@@ -13,25 +13,24 @@ SRC_URI="http://pike.ida.liu.se/pub/pike/all/${PV}/Pike-v${PV}.tar.gz"
 LICENSE="GPL-2 LGPL-2.1 MPL-1.1"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="bzip2 debug doc fftw gdbm glut gnome gtk hardened java jpeg kerberos mysql odbc opengl pcre pdf scanner sdl sqlite svg test tiff truetype zlib"
+IUSE="bzip2 debug doc fftw gdbm glut gnome gtk hardened java jpeg kerberos mysql odbc opengl pcre scanner sdl sqlite svg test tiff truetype zlib"
 
-DEPEND="<=dev-libs/nettle-2.0
+DEPEND=">=dev-libs/nettle-2.1
 	dev-libs/gmp
 	media-libs/giflib
 	bzip2? ( app-arch/bzip2 )
 	fftw? ( sci-libs/fftw )
 	gdbm? ( sys-libs/gdbm )
-	gtk? ( =x11-libs/gtk+-1.2* >x11-libs/gtk+-2 )
+	gtk? ( >=x11-libs/gtk+-1.2:1 >=x11-libs/gtk+-2.16:2 )
 	gtk? ( gnome? ( gnome-base/libgnome gnome-base/libgnomeui gnome-base/gnome-applets gnome-base/libglade ) )
-	gtk? ( opengl? ( x11-libs/gtkglarea ) )
+	gtk? ( opengl? ( x11-libs/gtkglarea:1 ) )
 	java? ( virtual/jdk virtual/libffi )
-	jpeg? ( media-libs/jpeg )
+	jpeg? ( virtual/jpeg )
 	kerberos? ( virtual/krb5 net-libs/libgssglue )
 	mysql? ( virtual/mysql )
 	odbc? ( dev-db/libiodbc )
 	opengl? ( virtual/opengl glut? ( media-libs/freeglut ) )
 	pcre? ( dev-libs/libpcre )
-	pdf? ( media-libs/pdflib )
 	!x86-fbsd? ( scanner? ( media-gfx/sane-backends ) )
 	sdl? ( media-libs/libsdl media-libs/sdl-mixer )
 	sqlite? ( dev-db/sqlite )
@@ -44,6 +43,10 @@ RDEPEND=""
 
 S=${WORKDIR}/Pike-v${PV}
 
+src_prepare(){
+	epatch "${FILESDIR}/nettle-2.1.patch"
+}
+
 src_compile() {
 	local myconf=""
 	# ffmpeg is broken atm #110136
@@ -52,7 +55,8 @@ src_compile() {
 	# otherwise let configure work it out for itself
 	use hardened && myconf="${myconf} --without-machine-code"
 
-	emake \
+	# Add '-j1' since parallel builds is a bit broken.
+	emake -j1 \
 		CONFIGUREARGS=" \
 			--prefix=/usr \
 			--libdir=/usr/$(get_libdir) \
@@ -61,6 +65,7 @@ src_compile() {
 			--without-cdebug \
 			--without-bundles \
 			--without-copt \
+			--without-libpdf \
 			--without-ssleay \
 			--with-crypt \
 			--with-gif \
@@ -80,7 +85,6 @@ src_compile() {
 			$(use opengl && use_with glut GLUT) \
 			$(use opengl || use_with opengl GLUT) \
 			$(use_with pcre _Regexp_PCRE) \
-			$(use_with pdf libpdf) \
 			$(use_with scanner sane) \
 			$(use_with sdl SDL) \
 			$(use_with sdl SDL_mixer) \
@@ -92,7 +96,7 @@ src_compile() {
 			" || die "compilation failed"
 
 	if use doc; then
-		PATH="${S}/bin:${PATH}" emake doc || die "doc failed"
+		PATH="${S}/bin:${PATH}" emake -j1 doc || die "doc failed"
 	fi
 }
 
@@ -104,11 +108,11 @@ src_install() {
 	sed -i s/rm\(mod\+\"\.o\"\)\;/break\;/ "${S}"/bin/install.pike || die "Failed to modify install.pike (1)"
 	sed -i 's/\(Array.map *( *files_to_delete *- *files_to_not_delete,*rm*);\)/; \/\/ \1/' "${S}"/bin/install.pike || die "Failed to modify install.pike (2)"
 	if use doc ; then
-		emake INSTALLARGS="--traditional" buildroot="${D}" install || die "emake failed"
+		emake -j1 INSTALLARGS="--traditional" buildroot="${D}" install || die "emake failed"
 		einfo "Installing 60MB of docs, this could take some time ..."
 		dohtml -r "${S}"/refdoc/traditional_manual "${S}"/refdoc/modref
 	else
-		emake INSTALLARGS="--traditional" buildroot="${D}" install_nodoc || die "emake failed"
+		emake -j1 INSTALLARGS="--traditional" buildroot="${D}" install_nodoc || die "emake failed"
 	fi
 	# Installation is a bit broken.. remove the doc sources.
 	rm -rf "${ED}/usr/doc"

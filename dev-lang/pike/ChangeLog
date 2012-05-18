@@ -1,6 +1,27 @@
 # ChangeLog for dev-lang/pike
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/pike/ChangeLog,v 1.38 2010/12/15 04:23:57 araujo Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/pike/ChangeLog,v 1.42 2012/05/10 00:20:10 araujo Exp $
+
+*pike-7.8.352-r2 (09 May 2012)
+
+  09 May 2012; Luis Araujo <araujo@gentoo.org> +files/nettle-2.1.patch,
+  -pike-7.8.352-r1.ebuild, +pike-7.8.352-r2.ebuild:
+  Revision bump. Fix bug #414995
+
+  23 Mar 2011; Gilles Dartiguelongue <eva@gentoo.org> pike-7.8.352-r1.ebuild:
+  Fix slot-deps on gnome libs, raise gtk:2 dependency to 2.16 to get the most
+  out of the bindings.
+
+  02 Mar 2011; Jeremy Olexa <darkside@gentoo.org> pike-7.6.86-r1.ebuild,
+  -pike-7.6.112.ebuild, -pike-7.6.112-r1.ebuild, -pike-7.8.316.ebuild,
+  pike-7.8.352-r1.ebuild:
+  Make libpdf non-optionally disabled due to media-libs/pdflib's pending
+  removal. Remove intermediate versions
+
+  25 Feb 2011; Kevin McCarthy <signals@gentoo.org> pike-7.6.86-r1.ebuild,
+  pike-7.6.112.ebuild, pike-7.6.112-r1.ebuild, pike-7.8.316.ebuild,
+  pike-7.8.352-r1.ebuild:
+  Update depends from media-libs/jpeg to virtual/jpeg
 
 *pike-7.8.352-r1 (15 Dec 2010)
 
