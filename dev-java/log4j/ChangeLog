@@ -1,6 +1,27 @@
 # ChangeLog for dev-java/log4j
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.82 2010/03/20 14:12:55 betelgeuse Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.90 2012/04/15 18:40:55 vapier Exp $
+
+  15 Apr 2012; Mike Frysinger <vapier@gentoo.org> log4j-1.2.16.ebuild:
+  Add back ia64 love #349020 by Dennis Schridde.
+
+  01 Jan 2012; Ralph Sennhauser <sera@gentoo.org> log4j-1.2.15-r2.ebuild,
+  log4j-1.2.16.ebuild:
+  Drop ia64 support #345433
+
+  25 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> log4j-1.2.16.ebuild:
+  ppc/ppc64 stable wrt #356935
+
+  02 Mar 2011; Thomas Kahle <tomka@gentoo.org> log4j-1.2.16.ebuild:
+  x86 stable per bug 356935
+
+  01 Mar 2011; Markos Chandras <hwoarang@gentoo.org> log4j-1.2.16.ebuild:
+  Stable on amd64 wrt bug #356935
+
+*log4j-1.2.16 (29 Jan 2011)
+
+  29 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> +log4j-1.2.16.ebuild:
+  Version bump
 
   20 Mar 2010; Petteri Räty <betelgeuse@gentoo.org>
   -log4j-1.2.14-r1.ebuild, -log4j-1.2.15-r1.ebuild:

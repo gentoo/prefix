@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15-r1.ebuild,v 1.6 2010/01/16 19:09:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.16.ebuild,v 1.8 2012/04/15 18:40:55 vapier Exp $
 
-EAPI=1
+EAPI=2
 JAVA_PKG_IUSE="doc javamail jms jmx source"
 
 inherit java-pkg-2 java-ant-2
@@ -13,35 +13,31 @@ SRC_URI="mirror://apache/logging/${PN}/${PV}/${MY_P}.tar.gz"
 HOMEPAGE="http://logging.apache.org/log4j/"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris"
 # jikes support disabled: bug #108819
 IUSE="doc javamail jms jmx source"
 
 CDEPEND="javamail? ( java-virtuals/javamail java-virtuals/jaf )
 		jmx? ( dev-java/sun-jmx:0 )
-		jms? ( =dev-java/openjms-bin-0.7.6 )"
+		jms? ( java-virtuals/jms )"
 
 RDEPEND=">=virtual/jre-1.4
 		${CDEPEND}"
-
-# We should get log4j working with openjms but at the moment that would bring
-# a circular dependency.
-#	jms? ( || (=dev-java/openjms-0.7.6* =dev-java/openjms-bin-0.7.6* ))"
 
 DEPEND=">=virtual/jdk-1.4
 		${CDEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+java_prepare() {
 	rm -rf dist/
 	java-pkg_filter-compiler jikes
+	rm -v *.jar || die
 }
 
 JAVA_ANT_REWRITE_CLASSPATH="true"
 JAVA_ANT_IGNORE_SYSTEM_CLASSES="true"
+EANT_BUILD_TARGET="log4j.jar"
 EANT_EXTRA_ARGS="-Djaxp-present=true"
 EANT_DOC_TARGET=""
 
@@ -56,13 +52,14 @@ src_compile() {
 		EANT_EXTRA_ARGS+=" -Djmx-present=true"
 	fi
 	if use jms; then
-		EANT_EXTRA_ARGS+=" -Djms-present=true -Djms.jar=/opt/openjms/lib/jms-1.0.2a.jar"
+		EANT_EXTRA_ARGS+=" -Djms-present=true -Djms.jar=$(java-pkg_getjars jms)"
 	fi
 	java-pkg-2_src_compile
 }
 
 src_install() {
-	java-pkg_newjar dist/lib/${P}.jar ${PN}.jar
+	# the build still builds files with older version in name
+	java-pkg_newjar dist/lib/${PN}-1.2.15.jar ${PN}.jar
 
 	if use doc ; then
 		java-pkg_dohtml -r site/*
