@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/shed
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/shed/ChangeLog,v 1.21 2008/02/08 19:32:02 coldwind Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/shed/ChangeLog,v 1.23 2011/08/13 07:01:53 hattya Exp $
+
+  13 Aug 2011; Akinori Hattori <hattya@gentoo.org> shed-1.12.ebuild,
+  shed-1.13.ebuild:
+  update to EAPI 4.
+
+*shed-1.15 (13 Aug 2011)
+
+  13 Aug 2011; Akinori Hattori <hattya@gentoo.org> +shed-1.15.ebuild:
+  new upstream release. fixes bug #377591.
 
   08 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> shed-1.13.ebuild:
   amd64 stable
