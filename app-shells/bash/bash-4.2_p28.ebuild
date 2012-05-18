@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.2_p20.ebuild,v 1.12 2012/03/28 18:13:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.2_p28.ebuild,v 1.1 2012/05/03 15:57:10 vapier Exp $
 
 EAPI="1"
 
@@ -35,11 +35,10 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-
-IUSE="afs bashlogger examples mem-scramble +net nls plugins vanilla"
+IUSE="afs bashlogger examples mem-scramble +net nls plugins +readline vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
-	>=sys-libs/readline-6.2
+	readline? ( >=sys-libs/readline-6.2 )
 	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}
 	!<sys-apps/portage-2.1.7.16
@@ -79,6 +78,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.2-execute-job-control.patch #383237
 	epatch "${FILESDIR}"/${PN}-4.2-parallel-build.patch
+	epatch "${FILESDIR}"/${PN}-4.2-no-readline.patch
 
 	# this adds additional prefixes
 	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
@@ -186,6 +186,9 @@ src_compile() {
 		--disable-profiling \
 		$(use_enable mem-scramble) \
 		$(use_with mem-scramble bash-malloc) \
+		$(use_enable readline) \
+		$(use_enable readline history) \
+		$(use_enable readline bang-history) \
 		${myconf}
 	emake || die
 

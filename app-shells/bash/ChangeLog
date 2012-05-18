@@ -1,6 +1,67 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.294 2011/11/24 00:06:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.311 2012/05/03 15:57:10 vapier Exp $
+
+*bash-4.2_p28 (03 May 2012)
+
+  03 May 2012; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p28.ebuild:
+  Version bump #414449 by Lars Wendler (Polynomial-C).
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> bash-4.2_p24-r1.ebuild:
+  keyword ~amd64-fbsd
+
+*bash-4.2_p24-r1 (23 Apr 2012)
+
+  23 Apr 2012; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p24-r1.ebuild,
+  +files/bash-4.2-extglob-multibyte.patch:
+  Add fix from upstream for multibyte string replaces in extglob mode #412867 by
+  mva.
+
+  03 Apr 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p24.ebuild,
+  +files/bash-4.2-no-readline.patch:
+  More USE=-readline fixes.
+
+  28 Mar 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p24.ebuild:
+  Make readline optional.
+
+  28 Mar 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p20.ebuild,
+  bash-4.2_p24.ebuild:
+  Fix cross-compiling after move to external readline.
+
+  28 Mar 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p20.ebuild:
+  Mark alpha/ia64/m68k/s390/sh/sparc stable #407937.
+
+  25 Mar 2012; Markus Meier <maekke@gentoo.org> bash-4.2_p20.ebuild:
+  arm stable, bug #407937
+
+  18 Mar 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p20.ebuild,
+  bash-4.2_p24.ebuild:
+  Use :alpha: rather than a-z in sed #408369 by step.
+
+  14 Mar 2012; Jeroen Roovers <jer@gentoo.org> bash-4.2_p20.ebuild:
+  Stable for HPPA (bug #407937).
+
+  13 Mar 2012; Jeff Horelick <jdhore@gentoo.org> bash-4.2_p20.ebuild:
+  marked x86 per bug 407937
+
+  13 Mar 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p20.ebuild,
+  bash-4.2_p24.ebuild:
+  Avoid regenerating bash info page #407985 by Jory A. Pratt.
+
+  13 Mar 2012; Brent Baude <ranger@gentoo.org> bash-4.2_p20.ebuild:
+  Marking bash-4.2_p20 ppc for bug 
+
+  13 Mar 2012; Agostino Sarubbo <ago@gentoo.org> bash-4.2_p20.ebuild:
+  Stable for amd64, wrt bug #407937
+
+  12 Mar 2012; Brent Baude <ranger@gentoo.org> bash-4.2_p20.ebuild:
+  Marking bash-4.2_p20 ppc64 for bug 407937
+
+*bash-4.2_p24 (12 Mar 2012)
+
+  12 Mar 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p20.ebuild,
+  +bash-4.2_p24.ebuild:
+  Version bump #407927 by Lars Wendler (Polynomial-C).
 
 *bash-4.2_p20 (24 Nov 2011)
 
