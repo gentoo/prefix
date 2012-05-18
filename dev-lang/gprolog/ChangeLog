@@ -1,6 +1,44 @@
 # ChangeLog for dev-lang/gprolog
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/ChangeLog,v 1.44 2010/11/08 07:30:59 keri Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/ChangeLog,v 1.55 2012/05/07 09:13:10 keri Exp $
+
+  05 May 2012; <keri@gentoo.org> gprolog-1.4.0.ebuild:
+  gplc generates its own native ASM; disable PIE. Closes #403693
+
+  01 Mar 2012; <keri@gentoo.org> -gprolog-1.3.1.ebuild,
+  -gprolog-1.3.1-r1.ebuild, -files/gprolog-1.3.1-CFLAGS_MACHINE.patch,
+  -files/gprolog-1.3.1-LDFLAGS.patch, -files/gprolog-1.3.1-TXT_FILES.patch:
+  Remove old versions
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> gprolog-1.4.0.ebuild:
+  Marking gprolog-1.4.0 ppc for bug 398837
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gprolog-1.4.0.ebuild:
+  x86 stable wrt bug #398837
+
+  14 Jan 2012; <keri@gentoo.org> gprolog-1.4.0.ebuild:
+  Use emake in src_install instead of make. Closes bug #398865
+
+  14 Jan 2012; Agostino Sarubbo <ago@gentoo.org> gprolog-1.4.0.ebuild:
+  Stable for AMD64, wrt bug #398837
+
+  05 Jul 2011; <keri@gentoo.org> gprolog-1.4.0.ebuild,
+  +files/gprolog-1.4.0-ma2asm-pllong.patch:
+  Fix Ma2Asm PlLong calls on ppc. Reported by Laurent G. in bug #373881
+
+  01 Jul 2011; <keri@gentoo.org> gprolog-1.4.0.ebuild,
+  +files/gprolog-1.4.0-nodocs.patch:
+  Simplify install - docs and examples are installed based on use_with()
+  parameters in src_configure()
+
+  01 Jul 2011; <keri@gentoo.org> gprolog-1.4.0.ebuild:
+  Split docs and html targets from system targets
+
+*gprolog-1.4.0 (01 Jul 2011)
+
+  01 Jul 2011; <keri@gentoo.org> +gprolog-1.4.0.ebuild,
+  +files/gprolog-1.4.0-ldflags.patch, +files/gprolog-1.4.0-txt-file.patch:
+  Version bump
 
   08 Nov 2010; <keri@gentoo.org> gprolog-1.3.1-r1.ebuild:
   QA - add die to dodoc function calls; remove die from econf call
