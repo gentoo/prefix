@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/libprelude-0.9.24.ebuild,v 1.2 2009/10/03 19:36:19 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/libprelude-0.9.24.ebuild,v 1.4 2011/07/26 07:47:59 xarthisius Exp $
 
 inherit perl-module flag-o-matic eutils
 

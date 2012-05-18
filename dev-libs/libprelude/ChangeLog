@@ -1,6 +1,34 @@
 # ChangeLog for dev-libs/libprelude
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.73 2011/01/10 20:53:36 tomka Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.80 2012/04/07 17:56:09 maekke Exp $
+
+  07 Apr 2012; Markus Meier <maekke@gentoo.org> libprelude-1.0.0-r1.ebuild:
+  x86 stable, bug #402165
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> libprelude-1.0.0-r1.ebuild:
+  Stable for amd64, wrt bug #383391
+
+  07 Feb 2012; Mike Gilbert <floppym@gentoo.org> libprelude-1.0.0-r1.ebuild:
+  Inherit multilib.
+
+  26 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  libprelude-0.9.15.2.ebuild, libprelude-0.9.22.ebuild,
+  libprelude-0.9.24.ebuild, libprelude-1.0.0-r1.ebuild:
+  Drop ppc keywords
+
+  29 May 2011; Raúl Porcel <armin76@gentoo.org> libprelude-0.9.15.2.ebuild,
+  libprelude-0.9.22.ebuild, libprelude-0.9.24.ebuild,
+  libprelude-1.0.0-r1.ebuild:
+  Drop alpha/arm/ia64/sparc keywords
+
+  31 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libprelude-1.0.0-r1.ebuild, +files/libprelude-1.0.0-ruby.patch:
+  Fix handling of bindings (bug #361195). Avoid warning about null runpaths in
+  Perl bindings (bug #350396).
+
+  29 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libprelude-1.0.0-r1.ebuild:
+  Set SUPPORT_PYTHON_ABIS (bug #361177).
 
   10 Jan 2011; Thomas Kahle <tomka@gentoo.org> libprelude-0.9.15.2.ebuild,
   libprelude-0.9.22.ebuild:
