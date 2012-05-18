@@ -1,6 +1,75 @@
 # ChangeLog for app-text/gv
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.82 2010/07/21 19:47:40 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.101 2012/05/04 03:33:17 jdhore Exp $
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> gv-3.7.3-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  24 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> -gv-3.7.3.ebuild:
+  old
+
+  24 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> gv-3.7.3-r1.ebuild:
+  Demote last commit to USE unicode
+
+*gv-3.7.3-r1 (23 Jan 2012)
+
+  23 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> +gv-3.7.3-r1.ebuild:
+  Enable the unicode codepath from libXaw3d wrt #372395 by Marco Paolone
+
+  22 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> -gv-3.7.1.ebuild,
+  -gv-3.7.2.ebuild:
+  old
+
+*gv-3.7.3 (22 Jan 2012)
+
+  22 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> +gv-3.7.3.ebuild,
+  +files/gv-3.7.3-libXaw3d-1.6.patch:
+  Version bump wrt #398225 by Pavel Sanda. Fix building with libXaw3d >= 1.6
+  wrt #399753 by Helmut Jarausch. Both gv-3.6.1-a0.patch and -dAlignToPixels=0
+  wrt #135354 dropped for testing (because they never went upstream).
+
+  06 Oct 2011; Jeroen Roovers <jer@gentoo.org> gv-3.7.1-r1.ebuild:
+  Stable for HPPA (bug #371807).
+
+  02 Aug 2011; Matt Turner <mattst88@gentoo.org> gv-3.7.1.ebuild,
+  gv-3.7.1-r1.ebuild, gv-3.7.2.ebuild:
+  Renamed x11-libs/Xaw3d to x11-libs/libXaw3d.
+
+  18 Jul 2011; Mark Loeser <halcy0n@gentoo.org> gv-3.7.1-r1.ebuild:
+  Stable for ppc/ppc64; bug #371807
+
+  25 Jun 2011; Raúl Porcel <armin76@gentoo.org> gv-3.7.1-r1.ebuild:
+  alpha/sparc stable wrt #371807
+
+  18 Jun 2011; Markos Chandras <hwoarang@gentoo.org> gv-3.7.1-r1.ebuild:
+  Stable on amd64 wrt bug #371807
+
+  16 Jun 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> gv-3.7.1-r1.ebuild:
+  x86 stable wrt bug #371807
+
+  12 Jun 2011; Markus Meier <maekke@gentoo.org> gv-3.7.2.ebuild:
+  add ~arm, bug #369731
+
+*gv-3.7.2 (05 Jun 2011)
+
+  05 Jun 2011; Andreas K. Huettel <dilfridge@gentoo.org> +gv-3.7.2.ebuild:
+  Version bump, bug 366145
+
+*gv-3.7.1-r1 (14 May 2011)
+
+  14 May 2011; Markos Chandras <hwoarang@gentoo.org> +gv-3.7.1-r1.ebuild,
+  +files/gv-3.7.1-aplinedel.patch:
+  Revbump to fix offended keysym. Thanks to Christian Speckner
+  <cnspeckn@physik.uni-wuerzburg.de> for the patch. Bug #339394
+
+  16 Aug 2010; Jeroen Roovers <jer@gentoo.org> gv-3.7.1.ebuild:
+  Stable for HPPA (bug #329125).
+
+  14 Aug 2010; Raúl Porcel <armin76@gentoo.org> gv-3.7.1.ebuild:
+  alpha/sparc stable wrt #329125
+
+  11 Aug 2010; Joseph Jezak <josejx@gentoo.org> gv-3.7.1.ebuild:
+  Marked ppc stable for bug #329125.
 
   21 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> gv-3.7.1.ebuild:
   amd64/ppc64 stable wrt #329125
