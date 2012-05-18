@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/expat
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.135 2012/04/21 12:16:46 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.137 2012/05/16 09:18:07 dev-zero Exp $
+
+*expat-2.1.0-r2 (16 May 2012)
+
+  16 May 2012; Tiziano Müller <dev-zero@gentoo.org> +expat-2.1.0-r2.ebuild:
+  Drop -fshort-wchar when building wchar_t expat since we're not building for
+  WINE-compatibility and need expatw with full wchar_t for amara.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> expat-2.1.0-r1.ebuild:
+  keyword ~amd64-fbsd
 
   21 Apr 2012; Markus Meier <maekke@gentoo.org> expat-2.1.0.ebuild:
   arm stable, bug #412089

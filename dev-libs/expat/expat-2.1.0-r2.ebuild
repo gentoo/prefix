@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.1.0-r1.ebuild,v 1.2 2012/04/26 12:16:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.1.0-r2.ebuild,v 1.1 2012/05/16 09:18:07 dev-zero Exp $
 
 EAPI=4
 inherit eutils libtool multilib toolchain-funcs autotools
@@ -44,7 +44,7 @@ src_configure() {
 		popd >/dev/null
 
 		pushd "${S}"-buildw >/dev/null
-		CFLAGS="${CFLAGS} -fshort-wchar" CPPFLAGS="${CPPFLAGS} -DXML_UNICODE_WCHAR_T" ECONF_SOURCE="${S}" econf ${myconf}
+		CPPFLAGS="${CPPFLAGS} -DXML_UNICODE_WCHAR_T" ECONF_SOURCE="${S}" econf ${myconf}
 		popd >/dev/null
 	fi
 }
