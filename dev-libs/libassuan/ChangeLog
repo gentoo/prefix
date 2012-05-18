@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/libassuan
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.81 2011/07/04 20:15:33 robbat2 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.84 2012/05/09 15:19:16 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> libassuan-2.0.3.ebuild:
+  keyword ~amd64-fbsd
+
+*libassuan-2.0.3 (26 Dec 2011)
+
+  26 Dec 2011; Tim Harder <radhermit@gentoo.org> +libassuan-2.0.3.ebuild:
+  Version bump.
+
+  10 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> libassuan-2.0.2.ebuild:
+  Remove libassuan.la in favour of libassuan-config --cflags and --libs wrt
+  #385849 by "albecasa"
 
 *libassuan-2.0.2 (04 Jul 2011)
 
