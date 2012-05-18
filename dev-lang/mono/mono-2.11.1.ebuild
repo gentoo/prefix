@@ -1,53 +1,41 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.9999.ebuild,v 1.5 2010/01/31 19:54:46 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.11.1.ebuild,v 1.1 2012/05/10 18:47:12 ali_bush Exp $
 
-EAPI=2
+EAPI="4"
 
-inherit linux-info mono eutils flag-o-matic multilib go-mono
+inherit linux-info mono eutils flag-o-matic multilib go-mono pax-utils
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
-HOMEPAGE="http://www.go-mono.com"
+HOMEPAGE="http://www.mono-project.com/Main_Page"
 
 LICENSE="MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
 SLOT="0"
 KEYWORDS=""
-IUSE="xen moonlight minimal"
+
+IUSE="minimal pax_kernel xen"
 
 #Bash requirement is for += operator
-COMMONDEPEND="!<dev-dotnet/pnet-0.6.12
-	!dev-util/monodoc
-	dev-libs/glib:2
-	!minimal? ( =dev-dotnet/libgdiplus-${GO_MONO_REL_PV}* )
-	ia64? (
-		sys-libs/libunwind
-	)"
+COMMONDEPEND="!dev-util/monodoc
+	!minimal? ( >=dev-dotnet/libgdiplus-2.10 )
+	ia64? (	sys-libs/libunwind )"
 RDEPEND="${COMMONDEPEND}
 	|| ( www-client/links www-client/lynx )"
 
 DEPEND="${COMMONDEPEND}
 	sys-devel/bc
-	>=app-shells/bash-3.2"
-PDEPEND="dev-dotnet/pe-format"
+	virtual/yacc
+	>=app-shells/bash-3.2
+	pax_kernel? ( sys-apps/paxctl )"
 
 MAKEOPTS="${MAKEOPTS} -j1"
 
 RESTRICT="test"
 
-PATCHES=(
-	"${WORKDIR}/mono-2.2-libdir126.patch"
-	"${FILESDIR}/mono-2.2-ppc-threading.patch"
-	"${FILESDIR}/mono-2.2-uselibdir.patch"
-)
+QA_FLAGS_IGNORED="/usr/lib64/mono/4.5/mcs.exe.so \
+	/usr/lib64/mono/4.5/mscorlib.dll.so"
 
 pkg_setup() {
-	if ! has_version dev-lang/mono
-	then
-		eerror "To compile the SVN version of mono, you must first have a working install of"
-		eerror "dev-lang/mono. Preferably one that is not too old relative to the branch you're"
-		eerror "trying to build."
-		die "A working install of dev-lang/mono is required for building the SVN version."
-	fi
 	if use kernel_linux
 	then
 		get_version
@@ -69,41 +57,50 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	subversion_fetch "${ESVN_REPO_URI}" mono || die "subversion_fetch mono failed"
-	subversion_fetch "${ESVN_REPO_URI%/mono}/mcs" mono/mcs || die "subversion_fetch mcs failed"
-	S="${WORKDIR}/${P}/mono"
-}
-
 src_prepare() {
-	sed -e "s:@MONOLIBDIR@:$(get_libdir):" \
-		< "${FILESDIR}"/mono-2.2-libdir126.patch \
-		> "${WORKDIR}"/mono-2.2-libdir126.patch ||
-		die "Sedding patch file failed"
 	go-mono_src_prepare
+
+	# we need to sed in the paxctl -mr in the runtime/mono-wrapper.in so it don't
+	# get killed in the build proces when MPROTEC is enable. #286280
+	# RANDMMAP kill the build proces to #347365
+	if use pax_kernel ; then
+		ewarn "We are disabling MPROTECT on the mono binary."
+		sed '/exec/ i\paxctl -mr "$r/@mono_runtime@"' -i "${S}"/runtime/mono-wrapper.in
+	fi
 }
 
 src_configure() {
 	# mono's build system is finiky, strip the flags
 	strip-flags
 
-	#Remove this at your own peril. Mono will barf in unexpected ways.
+	# Remove this at your own peril. Mono will barf in unexpected ways.
 	append-flags -fno-strict-aliasing
 
-	#NOTE: We need the static libs for now so mono-debugger works.
-	#See http://bugs.gentoo.org/show_bug.cgi?id=256264 for details
+	# NOTE: We need the static libs for now so mono-debugger works.
+	# See http://bugs.gentoo.org/show_bug.cgi?id=256264 for details
+	#
+	# --without-moonlight since www-plugins/moonlight is not the only one
+	# using mono: https://bugzilla.novell.com/show_bug.cgi?id=641005#c3
+	#
+	# --with-profile4 needs to be always enabled since it's used by default
+	# and, otherwise, problems like bug #340641 appear.
+	#
+	# sgen fails on ppc, bug #359515
+
+	local myconf=""
+	use ppc && myconf="${myconf} --with-sgen=no"
 	go-mono_src_configure \
+		--enable-system-aot=yes \
 		--enable-static \
 		--disable-quiet-build \
-		--with-preview \
-		--with-glib=system \
-		$(use_with moonlight) \
+		--without-moonlight \
 		--with-libgdiplus=$(use minimal && printf "no" || printf "installed" ) \
 		$(use_with xen xen_opt) \
 		--without-ikvm-native \
 		--with-jit \
-		--disable-dtrace
-
+		--disable-dtrace \
+		--with-profile4 \
+		${myconf}
 }
 
 src_test() {
@@ -121,11 +118,11 @@ src_test() {
 src_install() {
 	go-mono_src_install
 
-	#Bug 255610
-	sed -i -e "s:mono/2.0/mod.exe:mono/1.0/mod.exe:" \
-		"${ED}"/usr/bin/mod || die "Failed to fix mod."
-
-	find "${ED}"/usr/ -name '*nunit-docs*' -exec rm -rf '{}' '+' || die "Removing nunit .docs failed"
+	# Remove files not respecting LDFLAGS and that we are not supposed to provide, see Fedora
+	# mono.spec and http://www.mail-archive.com/mono-devel-list@lists.ximian.com/msg24870.html
+	# for reference.
+	rm -f "${ED}"/usr/$(get_libdir)/mono/2.0/mscorlib.dll.so
+	rm -f "${ED}"/usr/$(get_libdir)/mono/2.0/mcs.exe.so
 }
 
 #THINK!!!! Before touching postrm and postinst
@@ -149,10 +146,10 @@ pkg_preinst() {
 				einfo "be advised that this is a known problem, which will now be fixed:"
 				ebegin "Found broken symlinks created by $(best_version dev-lang/mono), fixing"
 				for symlink in						\
-				    "${EROOT}/${NUNIT_DIR}"				\
-				    "${EROOT}/usr/$(get_libdir)/pkgconfig/nunit.pc"	\
-				    "${EROOT}/usr/bin/nunit-console"			\
-				    "${EROOT}/usr/bin/nunit-console2"
+					"${EROOT}/${NUNIT_DIR}"				\
+					"${EROOT}/usr/$(get_libdir)/pkgconfig/nunit.pc"	\
+					"${EROOT}/usr/bin/nunit-console"			\
+					"${EROOT}/usr/bin/nunit-console2"
 				do
 					if [[ -L "${symlink}" ]]
 					then
@@ -182,21 +179,8 @@ pkg_postinst() {
 	elog "Also read:"
 	elog "http://www.mono-project.com/Firebird_Interbase"
 	elog ""
-	elog "=dev-dotnet/gluezilla-${GO_MONO_REL_PV}*"
-	elog "	Mono.Mozilla"
-	elog "	Mono.Mozilla.WebBrowser"
-	elog "	Mono.Mozilla.Widget"
-	elog "	Interop.SHDocVw"
-	elog "	AxInterop.SHDocVw"
-	elog "	Interop.mshtml.dll"
-	elog "	System.Windows.Forms.WebBrowser"
-	elog "	Microsoft.IE"
-	elog "Also read:"
-	elog "http://www.mono-project.com/WebBrowser"
-	elog ""
 	elog "dev-db/sqlite:3"
 	elog "	Mono.Data.Sqlite"
-	elog "	Mono.Data.SqliteClient"
 	elog "Also read:"
 	elog "http://www.mono-project.com/SQLite"
 	elog ""

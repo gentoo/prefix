@@ -2,12 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>dotnet</herd>
-	<use>
-		<flag name='moonlight'>Generate Moonlight 2.1 assemblies</flag>
-		<flag name='profile4'>Include partial support for C# 4.0 and
-		some of the upcoming .NET 4.0 APIs.</flag>
-		<flag name='xen'>Make mono generate code that is
-		considerably faster on xen VMs but slightly slower on for
-		normal systems.</flag>
-	</use>
+<use>
+	<flag name='pax_kernel'>Enable if the user plans to run the package under a pax enabled hardened kernel</flag>
+	<flag name='xen'>Make mono generate code that is considerably faster on xen VMs but slightly slower on for normal systems.</flag>
+</use>
 </pkgmetadata>
