@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.5.3.ebuild,v 1.1 2010/10/28 10:19:51 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.6.7.2.ebuild,v 1.1 2012/05/09 04:03:28 flameeyes Exp $
 
-EAPI="2"
+EAPI="4"
 JAVA_PKG_IUSE="doc source test"
 inherit eutils java-pkg-2 java-ant-2
 
@@ -16,27 +16,36 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="bsf ssl"
 
-CDEPEND=">=dev-java/bytelist-1.0.6:0
-	>=dev-java/constantine-0.6:0
+# jffi still needed? Or do we call that jnr-ffi?
+#  jnr-ffi depends on jffi which depends on libffi
+CDEPEND=">=dev-java/bytelist-1.0.8:0
 	>=dev-java/jline-0.9.94:0
 	>=dev-java/joni-1.1.3:0
-	>=dev-java/jnr-posix-1.1.3:0
 	>=dev-java/jnr-netdb-1.0:0
 	>=dev-java/jvyamlb-0.2.5:0
 	>=dev-java/asm-3.2:3
-	dev-java/jcodings:0
-	>=dev-java/jffi-0.7_pre:0.4
+	>=dev-java/jcodings-1.0.5:0
+	dev-java/jffi:1.0
+	dev-java/jnr-constants:0
+	dev-java/jnr-ffi:0.5
+	dev-java/jnr-posix:1.1
 	dev-java/joda-time:0
 	dev-util/jay:0[java]
 	dev-java/nailgun:0
-	dev-java/jaffl:0
 	dev-java/jgrapht:0
 	dev-java/ant-core:0
-	dev-java/bsf:2.3"
+	dev-java/bsf:2.3
+	dev-java/osgi-core-api:0
+	>=dev-java/snakeyaml-1.9:0
+	dev-java/jzlib:1.1"
 
 RDEPEND="${CDEPEND}
 	>=virtual/jre-1.6"
 
+# Is jna-posix still needed? Or has that been renamed to jnr-posix?
+#  jna-posix is the original project name which was abononed years ago.
+#  jnr-posix < 1.1.8 are from the original fork
+#  later jnr-posix are from the jnr umbrella project.
 DEPEND="${CDEPEND}
 	>=virtual/jdk-1.6
 	test? (
@@ -46,7 +55,6 @@ DEPEND="${CDEPEND}
 		java-virtuals/jdk-with-com-sun
 		dev-java/commons-logging:0
 		dev-java/xalan:0
-		>=dev-java/jna-posix-1.0.1:0
 	)
 	!!<dev-ruby/jruby-1.3.1-r1"
 
@@ -64,12 +72,14 @@ GEMS=${RUBY_HOME}/gems
 
 JAVA_ANT_REWRITE_CLASSPATH="true"
 JAVA_ANT_IGNORE_SYSTEM_CLASSES="true"
-EANT_GENTOO_CLASSPATH="ant-core asm-3 bsf-2.3 bytelist constantine jay \
-jcodings jffi-0.4 jline constantine \
-joda-time joni jnr-posix jnr-netdb jvyamlb nailgun jaffl jgrapht"
+EANT_GENTOO_CLASSPATH="ant-core asm-3 bsf-2.3 bytelist jnr-constants jay \
+jcodings jffi-1.0 jline \
+joda-time joni jnr-ffi-0.5 jnr-posix-1.1 jnr-netdb jvyamlb nailgun jgrapht osgi-core-api \
+snakeyaml jzlib-1.1"
 EANT_NEEDS_TOOLS="true"
 
 pkg_setup() {
+	unset RUBYOPT
 	java-pkg-2_pkg_setup
 
 	local fail
@@ -95,9 +105,8 @@ pkg_setup() {
 }
 
 java_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.5.0-system-jars.patch
+	epatch "${FILESDIR}"/${PN}-bash-launcher.patch
 	epatch "${FILESDIR}/1.5.1/build.xml.patch"
-	epatch "${FILESDIR}/1.5.1/testfixes.patch"
 
 	# We don't need to use Retroweaver. There is a jarjar and a regular jar
 	# target but even with jarjarclean, both are a pain. The latter target
@@ -105,27 +114,26 @@ java_prepare() {
 	sed -r -i \
 		-e 's/maxmemory="128m"/maxmemory="192m"/' \
 		-e "/RetroWeaverTask/d" \
-		-e "/<zipfileset .+\/>/d" \
+		-e "/yecht/! { /<zipfileset .+\/>/d }" \
 		build.xml || die
 
 	sed -i -e '/Arndt/d' src/org/jruby/RubyBigDecimal.java
 
 	# Delete the bundled JARs but keep invokedynamic.jar.
 	# No source is available and it's only a dummy anyway.
-	find build_lib -name "*.jar" ! -name "jsr292-mock.jar" -delete || die
-	rm lib/profile.jar || die
-
-	# change some defaults for Gentoo to work properly
-	cat - >> src/org/jruby/jruby.properties <<EOF
-jruby.bindir = /usr/bin
-EOF
+	find build_lib -name "*.jar" ! -name "jsr292-mock.jar" ! -name "yecht.jar" ! -name 'coro-mock-1.0-SNAPSHOT.jar' -delete || die
 }
 
 src_compile() {
-	local flags=""
+	# Avoid generating the ri cache since that currently fails.
+	local flags="-Dgenerate-ri-cache.hasrun=true"
+	#local flags=""
 	use bsf && flags="-Dbsf.present=true"
 
-	eant jar $(use_doc apidocs) -Djdk1.5+=true ${flags}
+	export RUBYOPT=""
+	einfo $RUBYOPT
+	#eant jar $(use_doc apidocs) -Djdk1.5+=true ${flags}
+	eant -Djdk1.5+=true ${flags}
 }
 
 src_test() {
@@ -160,41 +168,32 @@ src_test() {
 }
 
 src_install() {
-	local bin
-
 	java-pkg_dojar lib/${PN}.jar
 	dodoc README docs/{*.txt,README.*} || die
 
 	use doc && java-pkg_dojavadoc docs/api
 	use source && java-pkg_dosrc src/org
 
-	# We run the sed here in install so that we don't get the wrong
-	# data during the test phase!
-	sed \
-		-e '/++ebuild-cut-here++/, /--ebuild-cut-here--/ d' \
-		-e '/^JRUBY_HOME=/s:=:=/usr/share/jruby:' \
-		bin/jruby > "${T}"/jruby
+# Use the bash based launcher to preserve whitespace in arguments.
+# Ie allow >jruby -e "puts 'hello'"< to work otherwise
+# >jruby -e "\"puts 'hello'\""< is needed.
+#
+#	# We run the sed here in install so that we don't get the wrong
+#	# data during the test phase!
+#	sed \
+#		-e '/++ebuild-cut-here++/, /--ebuild-cut-here--/ d' \
+#		-e '/^JRUBY_HOME=/s:=:=/usr/share/jruby:' \
+#		bin/jruby.sh > "${T}"/jruby
 
-	dobin "${T}"/jruby "${S}"/bin/j{irb{,_swing},rubyc} || die
+	newbin bin/jruby.bash jruby
+	dobin bin/j{irb{,_swing},rubyc}
 
 	insinto "${RUBY_HOME}"
-	doins -r "${S}"/lib/ruby/{1.8,1.9,site_ruby} || die
+	doins -r "${S}"/lib/ruby/{1.8,1.9,site_ruby}
 
 	# Remove all the references to RubyGems as we're just going to
 	# install it through dev-ruby/rubygems.
 	find "${ED}${RUBY_HOME}" -type f \
 		'(' '(' -path '*rubygems*' -not -name 'jruby.rb' ')' -or -name 'ubygems.rb' -or -name 'datadir.rb' ')' \
 		-delete || die
-}
-
-pkg_postinst() {
-	ewarn "If you're updating from <=jruby-1.4.0, you're going to get errors related"
-	ewarn "to gentoo.rb load failure."
-	ewarn "This is due to a stray definition of JRUBY_OPTS variable from the previous ebuilds."
-	ewarn "To solve the problem, either login in a new shell, use 'env -i ${SHELL} --login'"
-	ewarn "or explicitly unset the variable before running jruby."
-	ewarn ""
-	ewarn "Currently this package introduces issues/bugs that are not present within upstream"
-	ewarn "releases.  Therefore if you are wanting a stable build of jruby please do not"
-	ewarn "use this package."
 }
