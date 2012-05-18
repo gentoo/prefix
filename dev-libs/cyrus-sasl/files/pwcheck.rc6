@@ -1,7 +1,7 @@
 #!/sbin/runscript
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/files/pwcheck.rc6,v 1.5 2007/04/07 13:03:55 chtekk Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/files/pwcheck.rc6,v 1.6 2011/08/05 07:21:46 eras Exp $
 
 depend() {
 	need localmount
@@ -10,12 +10,12 @@ depend() {
 
 start() {
 	ebegin "Starting sasl pwcheck daemon"
-	start-stop-daemon --start --quiet --oknodo --exec /usr/sbin/pwcheck
+	start-stop-daemon --start --quiet --exec /usr/sbin/pwcheck
 	eend $?
 }
 
 stop() {
 	ebegin "Stopping sasl pwcheck daemon"
-	start-stop-daemon --stop --quiet --oknodo --exec /usr/sbin/pwcheck
+	start-stop-daemon --stop --quiet --exec /usr/sbin/pwcheck
 	eend $?
 }

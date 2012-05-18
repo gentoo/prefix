@@ -1,6 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r2.ebuild,v 1.1 2011/01/10 20:08:26 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r6.ebuild,v 1.8 2012/03/08 15:01:53 ranger Exp $
+
+EAPI=2
 
 inherit eutils flag-o-matic multilib autotools pam java-pkg-opt-2 db-use
 
@@ -15,57 +17,59 @@ SRC_URI="ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/${P}.tar.gz
 LICENSE="as-is"
 SLOT="2"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
-IUSE="authdaemond berkdb crypt gdbm kerberos ldap mysql ntlm_unsupported_patch pam postgres sample sqlite srp ssl urandom"
+IUSE="authdaemond berkdb crypt gdbm kerberos openldap mysql ntlm_unsupported_patch pam postgres sample srp ssl urandom"
 
-RDEPEND="authdaemond? ( || ( >=net-mail/courier-imap-3.0.7 >=mail-mta/courier-0.46 ) )
+DEPEND="authdaemond? ( || ( >=net-mail/courier-imap-3.0.7 >=mail-mta/courier-0.46 ) )
 	berkdb? ( >=sys-libs/db-3.2 )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )
 	kerberos? ( virtual/krb5 )
-	ldap? ( >=net-nds/openldap-2.0.25 )
+	openldap? ( >=net-nds/openldap-2.0.25 )
 	mysql? ( virtual/mysql )
 	ntlm_unsupported_patch? ( >=net-fs/samba-3.0.9 )
 	pam? ( virtual/pam )
 	postgres? ( dev-db/postgresql-base )
-	sqlite? ( dev-db/sqlite )
-	ssl? ( >=dev-libs/openssl-0.9.6d )"
-DEPEND="${RDEPEND}
+	ssl? ( >=dev-libs/openssl-0.9.6d )
 	java? ( >=virtual/jdk-1.4 )"
-RDEPEND="${RDEPEND} java? ( >=virtual/jre-1.4 )"
+RDEPEND="${DEPEND}"
 
 pkg_setup() {
 	if use gdbm && use berkdb ; then
 		echo
-		ewarn "You have both the 'gdbm' and 'berkdb' USE flags enabled."
-		ewarn "Will default to GNU DB as your SASLdb database backend."
-		ewarn "If you want to build with BerkeleyDB support, hit Control-C now,"
-		ewarn "change your USE flags -gdbm and emerge again."
+		elog "You have both 'gdbm' and 'berkdb' USE flags enabled."
+		elog "gdbm will be selected."
 		echo
-		ewarn "Waiting 10 seconds before starting ..."
-		ewarn "(Control-C to abort) ..."
-		epause 10
 	fi
 	java-pkg-opt-2_pkg_setup
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# Fix default port name for rimap auth mechanism.
 	sed -e '/define DEFAULT_REMOTE_SERVICE/s:imap:imap2:' \
 		-i saslauthd/auth_rimap.c || die "sed failed"
 
 	# UNSUPPORTED ntlm patch #81342
 	use ntlm_unsupported_patch && epatch "${DISTDIR}/${ntlm_patch}"
-
 	epatch "${FILESDIR}"/${PN}-2.1.17-pgsql-include.patch
-	epatch "${FILESDIR}"/${PN}-2.1.22-as-needed.patch
 	use crypt && epatch "${FILESDIR}"/${PN}-2.1.19-checkpw.c.patch #45181
+	epatch "${FILESDIR}"/${PN}-2.1.22-as-needed.patch
+	epatch "${FILESDIR}/${PN}-2.1.21-keytab.patch"
 	epatch "${FILESDIR}"/${PN}-2.1.22-crypt.patch #152544
 	epatch "${FILESDIR}"/${PN}-2.1.22-qa.patch
 	epatch "${FILESDIR}/${PN}-2.1.22-gcc44.patch" #248738
 	epatch "${FILESDIR}"/${P}-authd-fix.patch
 	epatch "${FILESDIR}"/${P}+db-5.0.patch
+	epatch "${FILESDIR}/${PN}-0001_versioned_symbols.patch"
+	epatch "${FILESDIR}/${PN}-0002_testsuite.patch"
+	epatch "${FILESDIR}/${PN}-0006_library_mutexes.patch"
+	epatch "${FILESDIR}/${PN}-0008_one_time_sasl_set_alloc.patch"
+	epatch "${FILESDIR}/${PN}-0010_maintainer_mode.patch"
+	epatch "${FILESDIR}/${PN}-0011_saslauthd_ac_prog_libtool.patch"
+	epatch "${FILESDIR}/${PN}-0012_xopen_crypt_prototype.patch"
+	epatch "${FILESDIR}/${PN}-0014_avoid_pic_overwrite.patch"
+	epatch "${FILESDIR}/${PN}-0016_pid_file_lock_creation_mask.patch"
+	epatch "${FILESDIR}/${PN}-0026_drop_krb5support_dependency.patch"
+	epatch "${FILESDIR}"/${P}-rimap-loop.patch #381427
+	epatch "${FILESDIR}"/${P}-gss_c_nt_hostbased_service.patch #389349
 
 	sed -i -e '/for dbname in/s:db-4.* db:'$(db_libname)':' \
 		"${S}"/cmulocal/berkdb.m4
@@ -82,7 +86,7 @@ src_unpack() {
 	AT_M4DIR="${S}/cmulocal ${S}/config" eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	# Fix QA issues.
 	append-flags -fno-strict-aliasing
 	if [[ ${CHOST} == *-solaris* ]] ; then
@@ -108,7 +112,7 @@ src_compile() {
 		myconf="${myconf} --without-des"
 	fi
 
-	if use mysql || use postgres || use sqlite ; then
+	if use mysql || use postgres ; then
 		myconf="${myconf} --enable-sql"
 	else
 		myconf="${myconf} --disable-sql"
@@ -138,6 +142,7 @@ src_compile() {
 		--enable-auth-sasldb \
 		--disable-krb4 \
 		--disable-otp \
+		--without-sqlite \
 		--with-saslauthd="${EPREFIX}"/var/lib/sasl2 \
 		--with-pwcheck="${EPREFIX}"/var/lib/sasl2 \
 		--with-configdir="${EPREFIX}"/etc/sasl2 \
@@ -145,18 +150,19 @@ src_compile() {
 		--with-dbpath="${EPREFIX}"/etc/sasl2/sasldb2 \
 		$(use_with ssl openssl) \
 		$(use_with pam) \
-		$(use_with ldap) \
-		$(use_enable ldap ldapdb) \
+		$(use_with openldap ldap) \
+		$(use_enable openldap ldapdb) \
 		$(use_enable sample) \
 		$(use_enable kerberos gssapi) \
 		$(use_enable java) \
 		$(use_with java javahome ${JAVA_HOME}) \
 		$(use_with mysql) \
-		$(use_with postgres pgsql $(pg_config --libdir)) \
-		$(use_with sqlite) \
+		$(use_with postgres pgsql) \
 		$(use_enable srp) \
-		${myconf} || die "econf failed"
+		${myconf}
+}
 
+src_compile() {
 	# We force -j1 for bug #110066.
 	emake -j1 || die "emake failed"
 
