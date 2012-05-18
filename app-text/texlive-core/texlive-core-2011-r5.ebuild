@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2011-r5.ebuild,v 1.1 2011/11/02 21:08:48 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2011-r5.ebuild,v 1.10 2012/05/06 18:15:41 armin76 Exp $
 
 EAPI=3
 
@@ -95,7 +95,7 @@ COMMON_DEPEND="${MODULAR_X_DEPEND}
 	cjk? ( >=dev-libs/ptexenc-1.2.0_p20110705 )"
 
 DEPEND="${COMMON_DEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	sys-apps/ed
 	sys-devel/flex
 	app-arch/xz-utils"

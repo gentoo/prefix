@@ -1,6 +1,70 @@
 # ChangeLog for app-text/texlive-core
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.158 2011/11/07 13:55:14 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.176 2012/05/09 13:41:50 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2011-r6.ebuild:
+  keyword ~amd64-fbsd
+
+  06 May 2012; Raúl Porcel <armin76@gentoo.org> texlive-core-2011-r5.ebuild:
+  ia64/s390/sh/sparc stable wrt #395735
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> texlive-core-2010-r4.ebuild,
+  texlive-core-2011-r5.ebuild, texlive-core-2011-r6.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  30 Mar 2012; Markus Meier <maekke@gentoo.org> texlive-core-2011-r6.ebuild:
+  arm stable, bug #408993
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> texlive-core-2011-r6.ebuild:
+  Marking texlive-core-2011-r6 ppc64 for bug 408993
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> texlive-core-2011-r6.ebuild:
+  Marking texlive-core-2011-r6 ppc for bug 408993
+
+  23 Mar 2012; Jeroen Roovers <jer@gentoo.org> texlive-core-2011-r6.ebuild:
+  Stable for HPPA (bug #408993).
+
+  21 Mar 2012; Thomas Kahle <tomka@gentoo.org> texlive-core-2011-r6.ebuild:
+  marked x86 per bug 408993
+
+  21 Mar 2012; Agostino Sarubbo <ago@gentoo.org> texlive-core-2011-r6.ebuild:
+  Stable for amd64, wrt bug #408993
+
+  20 Mar 2012; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2011-r6.ebuild:
+  drop zlib minimal dep per
+  http://tug.org/pipermail/tldistro/2012q1/000182.html
+
+  04 Mar 2012; Tobias Klausmann <klausman@gentoo.org>
+  texlive-core-2011-r5.ebuild:
+  Stable on alpha, bug #395735
+
+  03 Mar 2012; Brent Baude <ranger@gentoo.org> texlive-core-2011-r5.ebuild:
+  Marking texlive-core-2011-r5 ppc64 stable for bug 395735
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> texlive-core-2011-r5.ebuild:
+  Marking texlive-core-2011-r5 ppc stable for bug 395735
+
+*texlive-core-2011-r6 (13 Feb 2012)
+
+  13 Feb 2012; Alexis Ballier <aballier@gentoo.org>
+  +texlive-core-2011-r6.ebuild:
+  import a patch from macports to fix xetex formats recognition with zlib
+  1.2.6, bug #401763
+
+  29 Jan 2012; Markus Meier <maekke@gentoo.org> texlive-core-2011-r5.ebuild:
+  arm stable, bug #395735
+
+  17 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  texlive-core-2011-r5.ebuild:
+  x86 stable wrt bug #395735
+
+  16 Jan 2012; Agostino Sarubbo <ago@gentoo.org> texlive-core-2011-r5.ebuild:
+  Stable for amd64, wrt bug #395735
+
+  28 Dec 2011; Jeroen Roovers <jer@gentoo.org> texlive-core-2011-r5.ebuild:
+  Stable for HPPA (bug #395735).
 
   07 Nov 2011; Alexis Ballier <aballier@gentoo.org> -files/texmf-update2008,
   -texlive-core-2008-r7.ebuild, -texlive-core-2008-r8.ebuild,

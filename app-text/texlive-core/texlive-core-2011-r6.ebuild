@@ -1,13 +1,15 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2010-r4.ebuild,v 1.10 2012/05/04 03:33:13 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2011-r6.ebuild,v 1.10 2012/05/09 13:41:50 aballier Exp $
 
 EAPI=3
 
+TL_UPSTREAM_PATCHLEVEL="1"
+PATCHLEVEL="32"
+TL_SOURCE_VERSION=20110705
+
 inherit eutils flag-o-matic toolchain-funcs libtool texlive-common prefix
 
-PATCHLEVEL="29"
-TL_SOURCE_VERSION=20100722
 MY_PV=${PN%-core}-${TL_SOURCE_VERSION}-source
 
 DESCRIPTION="A complete TeX distribution"
@@ -18,16 +20,30 @@ LICENSE="GPL-2 LPPL-1.3c TeX"
 SRC_URI="mirror://gentoo/${MY_PV}.tar.xz"
 
 # Fetch patches
-SRC_URI="${SRC_URI} mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.xz"
+SRC_URI="${SRC_URI} mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.xz
+	mirror://gentoo/texlive-core-upstream-patches-${TL_UPSTREAM_PATCHLEVEL}.tar.xz"
 
-TL_CORE_BINEXTRA_MODULES="a2ping asymptote bibtex8 bundledoc ctie cweb de-macro dtl dvi2tty dviasm dvicopy dvidvi dviljk dvipng dvipos findhyph fragmaster hyphenex installfont lacheck latex2man listings-ext mkjobtexmf patgen pdfcrop pdftools pkfix pkfix-helper purifyeps seetexk synctex texcount texdiff texdirflatten texdoc texloganalyser texware tie tpic2pdftex web collection-binextra"
+TL_CORE_BINEXTRA_MODULES="
+	a2ping asymptote bibtex8 bundledoc ctie cweb de-macro dtl dvi2tty dviasm
+	dvicopy dvidvi dviljk dvipng dvipos findhyph fragmaster hyphenex installfont
+	lacheck latex2man listings-ext mkjobtexmf patgen pdfcrop pdftools pkfix
+	pkfix-helper purifyeps seetexk sty2dtx synctex texcount texdef texdiff
+	texdirflatten texdoc texloganalyser texware tie tpic2pdftex web
+	collection-binextra
+	"
 TL_CORE_BINEXTRA_DOC_MODULES="
-a2ping.doc asymptote.doc bibtex8.doc bundledoc.doc ctie.doc cweb.doc de-macro.doc dvicopy.doc dviljk.doc dvipng.doc dvipos.doc findhyph.doc fragmaster.doc installfont.doc latex2man.doc listings-ext.doc mkjobtexmf.doc patgen.doc pdfcrop.doc pdftools.doc pkfix.doc pkfix-helper.doc purifyeps.doc synctex.doc texcount.doc texdiff.doc texdirflatten.doc texdoc.doc texloganalyser.doc texware.doc tie.doc tpic2pdftex.doc web.doc
-"
+	a2ping.doc asymptote.doc bibtex8.doc bundledoc.doc ctie.doc cweb.doc
+	de-macro.doc dvi2tty.doc dvicopy.doc dviljk.doc dvipng.doc dvipos.doc
+	findhyph.doc fragmaster.doc installfont.doc latex2man.doc listings-ext.doc
+	mkjobtexmf.doc patgen.doc pdfcrop.doc pdftools.doc pkfix.doc
+	pkfix-helper.doc purifyeps.doc sty2dtx.doc synctex.doc texcount.doc
+	texdef.doc texdiff.doc texdirflatten.doc texdoc.doc texloganalyser.doc
+	texware.doc tie.doc tpic2pdftex.doc web.doc
+	"
 TL_CORE_BINEXTRA_SRC_MODULES="hyphenex.source listings-ext.source mkjobtexmf.source"
 
-TL_CORE_EXTRA_MODULES="tetex hyphen-base texconfig gsftopk ${TL_CORE_BINEXTRA_MODULES}"
-TL_CORE_EXTRA_DOC_MODULES="tetex.doc texconfig.doc gsftopk.doc ${TL_CORE_BINEXTRA_DOC_MODULES}"
+TL_CORE_EXTRA_MODULES="tetex hyphen-base texconfig gsftopk texlive.infra ${TL_CORE_BINEXTRA_MODULES}"
+TL_CORE_EXTRA_DOC_MODULES="tetex.doc texconfig.doc gsftopk.doc texlive.infra.doc ${TL_CORE_BINEXTRA_DOC_MODULES}"
 TL_CORE_EXTRA_SRC_MODULES="${TL_CORE_BINEXTRA_SRC_MODULES}"
 
 for i in ${TL_CORE_EXTRA_MODULES}; do
@@ -64,6 +80,7 @@ COMMON_DEPEND="${MODULAR_X_DEPEND}
 	!<app-text/texlive-2007
 	!app-text/xetex
 	!<dev-texlive/texlive-basic-2009
+	!<dev-texlive/texlive-metapost-2011
 	!app-text/dvibook
 	sys-libs/zlib
 	>=media-libs/libpng-1.2.43-r2:0
@@ -74,8 +91,8 @@ COMMON_DEPEND="${MODULAR_X_DEPEND}
 		media-libs/freetype:2
 		media-libs/silgraphite
 	)
-	>=dev-libs/kpathsea-6.0.1_p20110627
-	cjk? ( dev-libs/ptexenc )"
+	>=dev-libs/kpathsea-6.0.1_p20110705
+	cjk? ( >=dev-libs/ptexenc-1.2.0_p20110705 )"
 
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
@@ -84,14 +101,15 @@ DEPEND="${COMMON_DEPEND}
 	app-arch/xz-utils"
 
 RDEPEND="${COMMON_DEPEND}
-	app-text/ps2pkm
-	app-text/dvipsk
-	dev-tex/bibtexu
+	>=app-text/ps2pkm-1.5_p20110705
+	>=app-text/dvipsk-5.991_p20110705
+	>=dev-tex/bibtexu-3.71_p20110705
+	virtual/perl-Getopt-Long
 	xetex? ( >=app-text/xdvipdfmx-0.7.8 )
 	tk? ( dev-perl/perl-tk )"
 
 # texdoc needs luatex.
-PDEPEND=">=dev-tex/luatex-0.63"
+PDEPEND=">=dev-tex/luatex-0.70"
 
 S="${WORKDIR}/${MY_PV}"
 
@@ -102,6 +120,7 @@ src_prepare() {
 	cd "${T}"; epatch "${FILESDIR}"/texmf-update2010-prefix.patch; cd "${S}"
 	eprefixify "${T}"/texmf-update2010
 
+	EPATCH_MULTI_MSG="Applying patches from upstream bugfix branch..." EPATCH_SUFFIX="patch" epatch "${WORKDIR}/gentoo_branch2011_patches"
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 
 	# don't use deprecated interfaces from MacFreetype
@@ -150,6 +169,7 @@ src_configure() {
 		--disable-psutils \
 		--disable-t1utils \
 		--enable-ipc \
+		--disable-biber \
 		--disable-bibtexu \
 		--disable-dvipng \
 		--disable-dvipsk \
@@ -170,11 +190,13 @@ src_configure() {
 		--disable-dvisvgm \
 		--disable-vlna \
 		--disable-xdvipdfmx \
+		--disable-xdv2pdf \
 		--enable-shared \
 		--disable-native-texlive-build \
 		--disable-largefile \
 		$(use_enable xetex) \
 		$(use_enable cjk ptex) \
+		$(use_enable cjk eptex) \
 		$(use_enable cjk mendexk) \
 		$(use_enable cjk makejvf) \
 		$(use_with X x)
@@ -211,9 +233,7 @@ src_install() {
 
 	dodir /usr/share # just in case
 	cp -pR texmf{,-dist} "${ED}/usr/share/" || die "failed to install texmf trees"
-	if use source ; then
-		cp -pR "${WORKDIR}"/tlpkg "${ED}/usr/share/" || die "failed to install tlpkg files"
-	fi
+	cp -pR "${WORKDIR}"/tlpkg "${ED}/usr/share/" || die "failed to install tlpkg files"
 
 	newsbin "${T}/texmf-update2010" texmf-update
 
