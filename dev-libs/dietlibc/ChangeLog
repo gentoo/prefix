@@ -1,6 +1,44 @@
 # ChangeLog for dev-libs/dietlibc
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dietlibc/ChangeLog,v 1.81 2010/06/26 06:06:55 hollow Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dietlibc/ChangeLog,v 1.89 2012/01/29 13:00:13 hollow Exp $
+
+  29 Jan 2012; Benedikt Böhm <hollow@gentoo.org>
+  -files/0.24-dirent-prototype.patch, -files/dietlibc-0.26-ssp.patch,
+  -dietlibc-0.28.ebuild, -files/dietlibc-0.28-Makefile.patch,
+  -dietlibc-0.30.ebuild, -dietlibc-0.33_pre20100626.ebuild,
+  -files/gcc-33-r3.patch, -files/dietlibc-sparc64-makefile.patch, -files/ssp.c:
+  remove obsolete ebuilds
+
+  20 Nov 2011; Kacper Kowalik <xarthisius@gentoo.org> dietlibc-0.28.ebuild,
+  dietlibc-0.30-r2.ebuild, dietlibc-0.30.ebuild,
+  dietlibc-0.33_pre20100626.ebuild, dietlibc-0.33_pre20110403.ebuild:
+  ppc/ppc64 keywords dropped wrt #364103
+
+  12 Jul 2011; Mike Frysinger <vapier@gentoo.org> dietlibc-0.28.ebuild:
+  Convert from old `test_flag` to new `test-flag`.
+
+  14 May 2011; Benedikt Böhm <hollow@gentoo.org>
+  dietlibc-0.33_pre20100626.ebuild:
+  use Gentoo mirrors for custom snapshot
+
+  06 May 2011; Guy Martin <gmsoft@gentoo.org>
+  dietlibc-0.33_pre20110403.ebuild:
+  Marking -hppa as it doesn't build.
+
+  02 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  dietlibc-0.33_pre20110403.ebuild:
+  x86 stable wrt bug #364103
+
+  01 May 2011; Markos Chandras <hwoarang@gentoo.org>
+  dietlibc-0.33_pre20110403.ebuild:
+  Stable on amd64 wrt bug #364103
+
+*dietlibc-0.33_pre20110403 (03 Apr 2011)
+
+  03 Apr 2011; Benedikt Böhm <hollow@gentoo.org>
+  -dietlibc-0.33_pre20090721.ebuild, +dietlibc-0.33_pre20110403.ebuild:
+  new snapshot with many fixes and clean cross compile support for previous
+  rename-patches
 
 *dietlibc-0.33_pre20100626 (26 Jun 2010)
 

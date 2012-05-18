@@ -1,12 +1,18 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dietlibc/dietlibc-0.33_pre20100626.ebuild,v 1.1 2010/06/26 06:06:55 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dietlibc/dietlibc-0.33_pre20110403.ebuild,v 1.5 2011/11/20 09:20:49 xarthisius Exp $
+
+EAPI="3"
 
 inherit eutils flag-o-matic toolchain-funcs
 
-DESCRIPTION="A minimal libc"
+GITHUB_AUTHOR="hollow"
+GITHUB_PROJECT="dietlibc"
+GITHUB_COMMIT="4e86d5e"
+
+DESCRIPTION="A libc optimized for small size"
 HOMEPAGE="http://www.fefe.de/dietlibc/"
-SRC_URI="http://bb.xnull.de/projects/dietlibc/dist/${P}.tar.bz2"
+SRC_URI="http://nodeload.github.com/${GITHUB_AUTHOR}/${GITHUB_PROJECT}/tarball/v${PV} -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -15,6 +21,8 @@ IUSE="debug"
 
 DEPEND=""
 RDEPEND=""
+
+S="${WORKDIR}"/${GITHUB_AUTHOR}-${GITHUB_PROJECT}-${GITHUB_COMMIT}
 
 DIETHOME=/usr/diet
 
@@ -31,20 +39,30 @@ pkg_setup() {
 	# Makefile does not append CFLAGS
 	append-flags -nostdinc -W -Wall -Wextra -Wchar-subscripts \
 		-Wmissing-prototypes -Wmissing-declarations -Wno-switch \
-		-Wno-unused -Wredundant-decls
+		-Wno-unused -Wredundant-decls -fno-strict-aliasing
 
 	# only use -nopie on archs that support it
 	gcc-specs-pie && append-flags -nopie
 }
 
 src_compile() {
-	emake prefix="${EPREFIX}"${DIETHOME} CC="$(tc-getCC)" CFLAGS="${CFLAGS}" -j1 || die "make failed"
+	emake prefix="${EPREFIX}"${DIETHOME} \
+		CC="$(tc-getCC)" \
+		CFLAGS="${CFLAGS}" \
+		STRIP=":" \
+		|| die "make failed"
 }
 
 src_install() {
-	emake prefix="${EPREFIX}"${DIETHOME} DESTDIR="${D}" -j1 install || die "make install failed"
+	emake prefix"${EPREFIX}"=${DIETHOME} \
+		DESTDIR="${ED}" \
+		install-bin \
+		install-headers \
+		|| die "make install failed"
+
 	dobin "${ED}"${DIETHOME}/bin/* || die "dobin failed"
 	doman "${ED}"${DIETHOME}/man/*/* || die "doman failed"
 	rm -r "${ED}"${DIETHOME}/{man,bin}
+
 	dodoc AUTHOR BUGS CAVEAT CHANGES README THANKS TODO PORTING
 }
