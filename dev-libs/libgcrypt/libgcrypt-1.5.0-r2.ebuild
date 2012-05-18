@@ -1,23 +1,26 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.6.ebuild,v 1.12 2011/01/29 17:32:34 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.5.0-r2.ebuild,v 1.2 2012/04/26 16:02:38 aballier Exp $
 
-EAPI="3"
+EAPI="4"
 
-inherit autotools eutils
+inherit autotools
 
 DESCRIPTION="General purpose crypto library based on the code used in GnuPG"
 HOMEPAGE="http://www.gnupg.org/"
 SRC_URI="mirror://gnupg/libgcrypt/${P}.tar.bz2
-	ftp://ftp.gnupg.org/gcrypt/${PN}/${P}.tar.bz2"
+	ftp://ftp.gnupg.org/gcrypt/${PN}/${P}.tar.bz2
+	mirror://gentoo/${P}-idea.patch.bz2"
 
-LICENSE="LGPL-2.1"
+LICENSE="LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static-libs"
 
-RDEPEND=">=dev-libs/libgpg-error-1.5"
+RDEPEND=">=dev-libs/libgpg-error-1.8"
 DEPEND="${RDEPEND}"
+
+DOCS=( AUTHORS ChangeLog NEWS README THANKS TODO )
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.4.0-interix.patch
@@ -29,9 +32,10 @@ src_prepare() {
 
 	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 	# Fix build failure with non-bash /bin/sh.
+	epatch "${FILESDIR}"/${P}-uscore.patch
+	epatch "${FILESDIR}"/${PN}-multilib-syspath.patch
+	epatch "${WORKDIR}"/${P}-idea.patch
 	#eautoreconf
-
-	epunt_cxx
 }
 
 src_configure() {
@@ -40,14 +44,15 @@ src_configure() {
 	econf \
 		--disable-padlock-support \
 		--disable-dependency-tracking \
-		--with-pic \
 		--enable-noexecstack \
+		--disable-O-flag-munging \
 		$(use_enable static-libs static) \
 		$(use_enable !mips-irix O-flag-munging)
 	
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc AUTHORS ChangeLog NEWS README* THANKS TODO || die "dodoc failed"
+	default
+
+	use static-libs || find "${ED}" -name '*.la' -delete
 }
