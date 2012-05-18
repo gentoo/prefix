@@ -1,6 +1,92 @@
 # ChangeLog for dev-libs/libtasn1
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.141 2011/01/15 15:24:59 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.167 2012/04/26 15:50:21 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> libtasn1-2.12.ebuild:
+  keyword ~amd64-fbsd
+
+  29 Mar 2012; Tim Harder <radhermit@gentoo.org> -libtasn1-2.11.ebuild:
+  Remove old.
+
+  28 Mar 2012; Brent Baude <ranger@gentoo.org> libtasn1-2.12.ebuild:
+  Marking libtasn1-2.12 ppc64 for bug 409031
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> libtasn1-2.12.ebuild:
+  Marking libtasn1-2.12 ppc for bug 409031
+
+  24 Mar 2012; Raúl Porcel <armin76@gentoo.org> libtasn1-2.12.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #409031
+
+  24 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> libtasn1-2.12.ebuild:
+  x86 stable wrt bug #409031
+
+  23 Mar 2012; Agostino Sarubbo <ago@gentoo.org> libtasn1-2.12.ebuild:
+  Stable for amd64, wrt bug #409031
+
+  22 Mar 2012; Jeroen Roovers <jer@gentoo.org> libtasn1-2.12.ebuild:
+  Stable for HPPA (bug #409031).
+
+  19 Mar 2012; Tim Harder <radhermit@gentoo.org> -libtasn1-2.9-r1.ebuild,
+  -libtasn1-2.10.ebuild:
+  Remove old.
+
+*libtasn1-2.12 (19 Mar 2012)
+
+  19 Mar 2012; Tim Harder <radhermit@gentoo.org> +libtasn1-2.12.ebuild:
+  Version bump.
+
+  18 Mar 2012; Raúl Porcel <armin76@gentoo.org> libtasn1-2.11.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #404653
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> libtasn1-2.11.ebuild:
+  Marking libtasn1-2.11 ppc64 for bug 404653
+
+  05 Mar 2012; Markus Meier <maekke@gentoo.org> libtasn1-2.11.ebuild:
+  arm stable, bug #404653
+
+  05 Mar 2012; Jeff Horelick <jdhore@gentoo.org> libtasn1-2.11.ebuild:
+  marked x86 per bug 404653
+
+  23 Feb 2012; Brent Baude <ranger@gentoo.org> libtasn1-2.11.ebuild:
+  Marking libtasn1-2.11 ppc for bug 404653
+
+  22 Feb 2012; Jeroen Roovers <jer@gentoo.org> libtasn1-2.11.ebuild:
+  Stable for HPPA (bug #404653).
+
+  22 Feb 2012; Agostino Sarubbo <ago@gentoo.org> libtasn1-2.11.ebuild:
+  Stable for amd64, wrt bug #404653
+
+*libtasn1-2.11 (28 Nov 2011)
+
+  28 Nov 2011; Tim Harder <radhermit@gentoo.org> +libtasn1-2.11.ebuild:
+  Version bump.
+
+  28 Nov 2011; Tim Harder <radhermit@gentoo.org> libtasn1-2.10.ebuild:
+  Use array for myeconfargs.
+
+  28 Nov 2011; Tim Harder <radhermit@gentoo.org> libtasn1-2.10.ebuild:
+  Fix autotools-utils usage (bug #392145).
+
+  27 Nov 2011; Tim Harder <radhermit@gentoo.org> libtasn1-2.10.ebuild:
+  Build in the source tree.
+
+*libtasn1-2.10 (25 Oct 2011)
+
+  25 Oct 2011; Tim Harder <radhermit@gentoo.org> +libtasn1-2.10.ebuild:
+  Version bump.
+
+  23 Oct 2011; Tomáš Chvátal <scarabeus@gentoo.org> libtasn1-2.9-r1.ebuild:
+  Do not install libtool archive and static library unconditionaly.
+
+  22 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -libtasn1-2.8.ebuild:
+  Delete.
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> libtasn1-2.9-r1.ebuild:
+  ppc64 stable wrt #350866
+
+  29 Jan 2011; Raúl Porcel <armin76@gentoo.org> libtasn1-2.9-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #350866
 
   15 Jan 2011; Markus Meier <maekke@gentoo.org> libtasn1-2.9-r1.ebuild:
   x86 stable, bug #350866
