@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/batik
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/ChangeLog,v 1.65 2010/06/04 12:03:24 caster Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/ChangeLog,v 1.66 2011/12/31 16:38:20 sera Exp $
+
+  31 Dec 2011; Ralph Sennhauser <sera@gentoo.org> batik-1.7-r2.ebuild:
+  Drop ia64 support #345433
 
   04 Jun 2010; Vlastimil Babka <caster@gentoo.org> batik-1.7-r2.ebuild:
   Change the typoed 256g maxmemory parameter to 512m. Bug #318323.

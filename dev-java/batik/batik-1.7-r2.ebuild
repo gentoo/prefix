@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/batik-1.7-r2.ebuild,v 1.7 2010/06/04 12:03:24 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/batik-1.7-r2.ebuild,v 1.8 2011/12/31 16:38:20 sera Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc"
