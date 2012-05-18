@@ -1,6 +1,36 @@
 # ChangeLog for app-text/lv
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.33 2010/01/23 11:29:38 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.41 2012/03/06 21:43:00 ranger Exp $
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> lv-4.51-r3.ebuild:
+  Marking lv-4.51-r3 ppc64 for bug 396839
+
+  12 Feb 2012; Raúl Porcel <armin76@gentoo.org> lv-4.51-r3.ebuild:
+  alpha/ia64/sh/sparc/x86 stable wrt #396839
+
+  03 Feb 2012; Brent Baude <ranger@gentoo.org> lv-4.51-r3.ebuild:
+  Marking lv-4.51-r3 ppc for bug 396839
+
+  02 Feb 2012; Agostino Sarubbo <ago@gentoo.org> lv-4.51-r3.ebuild:
+  Stable for amd64, wrt bug #396839
+
+  13 Aug 2011; Akinori Hattori <hattya@gentoo.org> -lv-4.51-r2.ebuild,
+  lv-4.51-r3.ebuild, files/lv-4.51-xz.diff:
+  update to EAPI 4.
+
+*lv-4.51-r3 (13 Jan 2011)
+
+  13 Jan 2011; MATSUU Takuto <matsuu@gentoo.org> +lv-4.51-r3.ebuild:
+  Added src_configure, bug #351473.
+
+*lv-4.51-r2 (11 Oct 2010)
+
+  11 Oct 2010; Akinori Hattori <hattya@gentoo.org> +lv-4.51-r2.ebuild,
+  +files/lv-4.51-xz.diff, metadata.xml:
+  add filter for .lzma and .xz.
+
+  25 Aug 2010; Markus Meier <maekke@gentoo.org> lv-4.51-r1.ebuild:
+  add ~arm, bug #333853
 
   23 Jan 2010; Alexis Ballier <aballier@gentoo.org> lv-4.51-r1.ebuild:
   keyword ~x86-fbsd thanks to Naohiro Aota <naota@elisp.net>, bug #301885

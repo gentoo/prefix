@@ -1,12 +1,13 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/lv-4.51-r1.ebuild,v 1.8 2010/08/25 18:16:10 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/lv-4.51-r3.ebuild,v 1.6 2012/03/06 21:43:00 ranger Exp $
 
-inherit eutils
+EAPI="4"
 
 inherit eutils toolchain-funcs
 
 MY_P="${PN}${PV//./}"
+
 DESCRIPTION="Powerful Multilingual File Viewer"
 HOMEPAGE="http://www.ff.iij4u.or.jp/~nrt/lv/"
 SRC_URI="http://www.ff.iij4u.or.jp/~nrt/freeware/${MY_P}.tar.gz"
@@ -20,28 +21,27 @@ RDEPEND="sys-libs/ncurses
 	!app-editors/levee"
 DEPEND="${RDEPEND}
 	dev-lang/perl"
-
 S="${WORKDIR}/${MY_P}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${P}-gentoo.patch
+	epatch "${FILESDIR}"/${P}-xz.diff
 
 	cd "${S}"/..
 	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
-src_compile() {
+src_configure() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_sigvec=no
+	ECONF_SOURCE=src econf
+}
 
-	ECONF_SOURCE=src econf || die
-	emake CC="$(tc-getCC)" || die
+src_compile() {
+	emake CC="$(tc-getCC)"
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
-
+	emake DESTDIR="${D}" install
 	dodoc README hello.sample
 	dohtml index.html relnote.html hello.sample.gif
 }
