@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/dash/dash-0.5.7.1.ebuild,v 1.1 2011/09/15 03:54:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/dash/dash-0.5.7.1.ebuild,v 1.2 2012/05/02 20:29:50 jdhore Exp $
 
 EAPI="3"
 
@@ -23,7 +23,7 @@ IUSE="libedit static"
 
 RDEPEND="!static? ( libedit? ( dev-libs/libedit ) )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	libedit? ( static? ( dev-libs/libedit[static-libs] ) )"
 
 S=${WORKDIR}/${MY_P}
