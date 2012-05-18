@@ -1,6 +1,72 @@
 # ChangeLog for dev-libs/libcdio
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.112 2010/02/03 16:08:05 scarabeus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.132 2012/05/15 13:49:23 aballier Exp $
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> libcdio-0.83.ebuild:
+  keyword ~amd64-fbsd
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> libcdio-0.82.ebuild,
+  libcdio-0.83.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  25 Mar 2012; Raúl Porcel <armin76@gentoo.org> libcdio-0.83.ebuild:
+  alpha/ia64/sh/sparc stable wrt #404649
+
+  25 Mar 2012; Tim Harder <radhermit@gentoo.org> libcdio-0.83.ebuild:
+  Only add ncurses dep when the minimal use flag is disabled (bug #409589).
+
+  08 Mar 2012; Brent Baude <ranger@gentoo.org> libcdio-0.83.ebuild:
+  Marking libcdio-0.83 ppc64 for bug 404649
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> libcdio-0.83.ebuild:
+  Marking libcdio-0.83 ppc for bug 404649
+
+  05 Mar 2012; Markus Meier <maekke@gentoo.org> libcdio-0.83.ebuild:
+  arm stable, bug #404649
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> libcdio-0.83.ebuild:
+  x86 stable wrt bug #404649
+
+  21 Feb 2012; Jeroen Roovers <jer@gentoo.org> libcdio-0.83.ebuild:
+  Stable for HPPA (bug #404649).
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> libcdio-0.83.ebuild:
+  Stable for amd64, wrt bug #404649
+
+  21 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> libcdio-0.83.ebuild:
+  Missing sys-libs/ncurses depend (as used by cdda-player from this package)
+  wrt #404649
+
+  28 Nov 2011; Tim Harder <radhermit@gentoo.org> libcdio-0.83.ebuild:
+  Fix autotools-utils usage (bug #392175).
+
+  26 Nov 2011; Tim Harder <radhermit@gentoo.org> libcdio-0.83.ebuild:
+  Build in the source tree.
+
+  03 Nov 2011; Tim Harder <radhermit@gentoo.org> -libcdio-0.80.ebuild,
+  -libcdio-0.80-r1.ebuild, -files/libcdio-0.80-fbsd.patch,
+  -files/libcdio-0.80-fix-pkgconfig.patch, -files/libcdio-0.80-minimal.patch:
+  Remove old.
+
+*libcdio-0.83 (03 Nov 2011)
+
+  03 Nov 2011; Tim Harder <radhermit@gentoo.org> +libcdio-0.83.ebuild:
+  Version bump. Update to EAPI 4.
+
+  09 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> libcdio-0.82.ebuild:
+  ppc/ppc64 stable wrt #369505
+
+  05 Jun 2011; Jeroen Roovers <jer@gentoo.org> libcdio-0.82.ebuild:
+  Stable for HPPA (bug #369505).
+
+  05 Jun 2011; Raúl Porcel <armin76@gentoo.org> libcdio-0.82.ebuild:
+  alpha/ia64/sh/sparc stable wrt #369505
+
+  02 Jun 2011; Markus Meier <maekke@gentoo.org> libcdio-0.82.ebuild:
+  amd64/arm/x86 stable, bug #369505
+
+  05 Apr 2011; Tomáš Chvátal <scarabeus@gentoo.org> libcdio-0.82.ebuild:
+  Use static-libs useflag. Punt .la files.
 
   03 Feb 2010; Tomáš Chvátal <scarabeus@gentoo.org> libcdio-0.82.ebuild:
   Fix automagic cddb again. And it looks this time it is in upstream repo.

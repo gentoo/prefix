@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.82.ebuild,v 1.2 2010/02/03 16:08:05 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.82.ebuild,v 1.8 2012/05/04 18:35:49 jdhore Exp $
 
 EAPI=2
 
@@ -13,13 +13,13 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="cddb minimal +cxx"
+IUSE="cddb +cxx minimal static-libs"
 
 RDEPEND="cddb? ( >=media-libs/libcddb-1.0.1 )
 	virtual/libintl"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.80-automagic-cddb.patch
@@ -36,6 +36,7 @@ src_prepare() {
 src_configure() {
 	econf \
 		$(use_enable cddb) \
+		$(use_enable static-libs static) \
 		$(use_with !minimal cd-drive) \
 		$(use_with !minimal cd-info) \
 		$(use_with !minimal cd-paranoia) \
@@ -49,6 +50,11 @@ src_configure() {
 		--disable-vcd-info \
 		--disable-dependency-tracking \
 		--disable-maintainer-mode
+}
+
+src_install() {
+	emake DESTDIR="${D}" install || die
+	find "${ED}" -name '*.la' -delete
 }
 
 pkg_postinst() {
