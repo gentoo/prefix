@@ -1,6 +1,31 @@
 # ChangeLog for dev-java/maven-bin
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.73 2011/03/10 15:27:23 fordfrog Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.76 2012/01/26 16:42:40 fordfrog Exp $
+
+*maven-bin-3.0.4 (26 Jan 2012)
+
+  26 Jan 2012; Miroslav Šulc <fordfrog@gentoo.org> +maven-bin-3.0.4.ebuild:
+  Version bump
+
+*maven-bin-3.0.3-r1 (14 Dec 2011)
+*maven-bin-2.2.1-r1 (14 Dec 2011)
+*maven-bin-2.1.0-r1 (14 Dec 2011)
+*maven-bin-2.0.11-r1 (14 Dec 2011)
+*maven-bin-1.1-r2 (14 Dec 2011)
+*maven-bin-1.0.2-r2 (14 Dec 2011)
+
+  14 Dec 2011; Ralph Sennhauser <sera@gentoo.org> -maven-bin-1.0.2-r1.ebuild,
+  +maven-bin-1.0.2-r2.ebuild, +maven-bin-1.1-r2.ebuild,
+  +maven-bin-2.0.11-r1.ebuild, +maven-bin-2.1.0-r1.ebuild,
+  +maven-bin-2.2.1-r1.ebuild, +maven-bin-3.0.3-r1.ebuild:
+  EAPI bump, make prefix aware.
+  Fix symlink name in slot 1.0 and 1.1.
+  Call eselect maven update when appropriate. #355507, thanks to Kasun
+  Gajasinghe <kasun.gajasinghe@gmail.com> for providing a series of patches.
+
+  18 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> maven-bin-2.0.11.ebuild,
+  maven-bin-2.1.0.ebuild, maven-bin-2.2.1.ebuild:
+  ppc stable wrt #310331
 
 *maven-bin-3.0.3 (10 Mar 2011)
 
