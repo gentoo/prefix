@@ -47,11 +47,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-20091230-mac.patch
-	epatch "${FILESDIR}"/${PN}-20091230-prefix.patch
-	epatch "${FILESDIR}"/${PN}-20091230-link-libs.patch
-	epatch "${FILESDIR}"/${PN}-20091230-plain-c.patch
-	eprefixify python.eselect
+	epatch "${FILESDIR}"/${PN}-20100321-prefix.patch
 	[[ -x configure ]] || eautoreconf
 }
 
