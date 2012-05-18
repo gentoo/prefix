@@ -1,6 +1,77 @@
 # ChangeLog for app-text/xdvipdfmx
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/ChangeLog,v 1.34 2010/11/01 22:21:46 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/ChangeLog,v 1.51 2012/05/16 16:05:18 jer Exp $
+
+  16 May 2012; Jeroen Roovers <jer@gentoo.org>
+  xdvipdfmx-0.7.8_p20110705.ebuild:
+  Stable for HPPA (bug #414965).
+
+  13 May 2012; Markus Meier <maekke@gentoo.org>
+  xdvipdfmx-0.7.8_p20110705.ebuild:
+  arm stable, bug #414965
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org>
+  xdvipdfmx-0.7.8_p20110705.ebuild:
+  keyword ~amd64-fbsd
+
+  07 May 2012; Agostino Sarubbo <ago@gentoo.org>
+  xdvipdfmx-0.7.8_p20110705.ebuild:
+  Stable for amd64, wrt bug #414965
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild, xdvipdfmx-0.7.8_p20110705.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  04 Oct 2011; Jeroen Roovers <jer@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  Stable for HPPA (bug #355085).
+
+  18 Sep 2011; Raúl Porcel <armin76@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  alpha/ia64/sparc stable wrt #355085
+
+  14 Aug 2011; Markus Meier <maekke@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  arm stable, bug #355085
+
+  12 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  ppc/ppc64 stable wrt #355085
+
+  12 Aug 2011; Thomas Kahle <tomka@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  x86 stable per bug 355085
+
+  09 Aug 2011; Markos Chandras <hwoarang@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  Stable on amd64 wrt bug #355085
+
+  07 Aug 2011; Raúl Porcel <armin76@gentoo.org>
+  xdvipdfmx-0.7.8_p20110705.ebuild:
+  Add ~arm/~ia64/~s390/~sh/~sparc wrt #376611
+
+*xdvipdfmx-0.7.8_p20110705 (27 Jul 2011)
+
+  27 Jul 2011; Alexis Ballier <aballier@gentoo.org>
+  +xdvipdfmx-0.7.8_p20110705.ebuild:
+  bump to xdvipdfmx from TeX Live 2011, rdepend on dvipdfmx for dvipdfmx.cfg,
+  bug #222869
+
+  11 Jul 2011; Alexis Ballier <aballier@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  keyword ~x86-fbsd
+
+  13 Jun 2011; Matt Turner <mattst88@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  Added ~mips, bug 342513
+
+  27 Feb 2011; Raúl Porcel <armin76@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  Add ~alpha/~ia64/~s390/~sh/~sparc wrt #342513
+
+  20 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  xdvipdfmx-0.7.8_p20100722.ebuild:
+  Marked ~ppc/~ppc64 wrt #342513
 
   01 Nov 2010; Markus Meier <maekke@gentoo.org>
   xdvipdfmx-0.7.8_p20100722.ebuild:

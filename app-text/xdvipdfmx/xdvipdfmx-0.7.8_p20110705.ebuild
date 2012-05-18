@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/xdvipdfmx-0.7.8_p20100722.ebuild,v 1.15 2012/05/04 03:33:12 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/xdvipdfmx-0.7.8_p20110705.ebuild,v 1.7 2012/05/16 16:05:18 jer Exp $
 
 EAPI="3"
 
@@ -23,6 +23,9 @@ RDEPEND="!<app-text/texlive-core-2010
 	app-text/libpaper"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
+# for dvipdfmx.cfg
+RDEPEND="${RDEPEND}
+	app-text/dvipdfmx"
 
 S=${WORKDIR}/texlive-${PV#*_p}-source/texk/${PN}
 
