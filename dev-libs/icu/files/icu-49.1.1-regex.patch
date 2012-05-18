@@ -1,0 +1,128 @@
+https://ssl.icu-project.org/trac/ticket/9283
+https://ssl.icu-project.org/trac/changeset/31782
+
+--- i18n/regexcmp.cpp
++++ i18n/regexcmp.cpp
+@@ -3306,10 +3306,31 @@
+             }
+ 
+         case URX_STRING_I:
+-            // TODO:  Is the case-folded string the longest?
+-            //        If so we can optimize this the same as URX_STRING.
+-            loc++;
+-            currentLen = INT32_MAX;
++            // TODO:  This code assumes that any user string that matches will be no longer
++            //        than our compiled string, with case insensitive matching.
++            //        Our compiled string has been case-folded already.
++            //
++            //        Any matching user string will have no more code points than our
++            //        compiled (folded) string.  Folding may add code points, but
++            //        not remove them.
++            //
++            //        There is a potential problem if a supplemental code point 
++            //        case-folds to a BMP code point.  In this case our compiled string
++            //        could be shorter (in code units) than a matching user string.
++            //
++            //        At this time (Unicode 6.1) there are no such characters, and this case
++            //        is not being handled.  A test, intltest regex/Bug9283, will fail if
++            //        any problematic characters are added to Unicode.
++            //
++            //        If this happens, we can make a set of the BMP chars that the
++            //        troublesome supplementals fold to, scan our string, and bump the
++            //        currentLen one extra for each that is found.
++            //
++            {
++                loc++;
++                int32_t stringLenOp = (int32_t)fRXPat->fCompiledPat->elementAti(loc);
++                currentLen = safeIncrement(currentLen, URX_VAL(stringLenOp));
++            }
+             break;
+ 
+         case URX_CTR_INIT:
+--- test/intltest/regextst.cpp
++++ test/intltest/regextst.cpp
+@@ -26,6 +26,7 @@
+ #include "unicode/regex.h"
+ #include "unicode/uchar.h"
+ #include "unicode/ucnv.h"
++#include "unicode/uniset.h"
+ #include "unicode/ustring.h"
+ #include "regextst.h"
+ #include "uvector.h"
+@@ -127,6 +128,9 @@
+         case 20: name = "CheckInvBufSize";
+             if (exec) CheckInvBufSize();
+             break;
++        case 21: name = "Bug 9283";
++            if (exec) Bug9283();
++            break;
+ 
+         default: name = "";
+             break; //needed to end loop
+@@ -5184,6 +5188,34 @@
+     delete pMatcher;
+ }
+ 
++// Bug 9283
++//   This test is checking for the existance of any supplemental characters that case-fold
++//   to a bmp character.  
++//
++//   At the time of this writing there are none. If any should appear in a subsequent release 
++//   of Unicode, the code in regular expressions compilation that determines the longest 
++//   posssible match for a literal string  will need to be enhanced.  
++//
++//   See file regexcmp.cpp, case URX_STRING_I in RegexCompile::maxMatchLength()
++//   for details on what to do in case of a failure of this test.
++//
++void RegexTest::Bug9283() {
++    UErrorCode status = U_ZERO_ERROR;
++    UnicodeSet supplementalsWithCaseFolding("[[:CWCF:]&[\\U00010000-\\U0010FFFF]]", status);
++    REGEX_CHECK_STATUS;
++    int32_t index;
++    UChar32 c;
++    for (index=0; ; index++) {
++        c = supplementalsWithCaseFolding.charAt(index);
++        if (c == -1) {
++            break;
++        }
++        UnicodeString cf = UnicodeString(c).foldCase();
++        REGEX_ASSERT(cf.length() >= 2);
++    }
++}
++
++
+ void RegexTest::CheckInvBufSize() {
+   if(inv_next>=INV_BUFSIZ) {
+     errln("%s: increase #define of INV_BUFSIZ ( is %d but needs to be at least %d )\n",
+--- test/intltest/regextst.h
++++ test/intltest/regextst.h
+@@ -1,6 +1,6 @@
+ /********************************************************************
+  * COPYRIGHT:
+- * Copyright (c) 2002-2011, International Business Machines Corporation and
++ * Copyright (c) 2002-2012, International Business Machines Corporation and
+  * others. All Rights Reserved.
+  ********************************************************************/
+ 
+@@ -45,6 +45,7 @@
+     virtual void Bug7740();
+     virtual void Bug8479();
+     virtual void Bug7029();
++    virtual void Bug9283();
+     virtual void CheckInvBufSize();
+     
+     // The following functions are internal to the regexp tests.
+--- test/testdata/regextst.txt
++++ test/testdata/regextst.txt
+@@ -1141,6 +1141,11 @@
+ "[\w]+"                           "  <0>abc\u200cdef\u200dghi</0>   "
+ "[\w]+"                         i "  <0>abc\u200cdef\u200dghi</0>   "
+ 
++# Bug 9283
++#  uregex_open fails for look-behind assertion + case-insensitive
++
++"(ab)?(?<=ab)cd|ef"             i  "<0><1>ab</1>cd</0>"
++
+ #  Random debugging, Temporary
+ #
+ #"^(?:a?b?)*$"	                  "a--"

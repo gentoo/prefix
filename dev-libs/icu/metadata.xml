@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+    <herd>proxy-maintainers</herd>
 	<maintainer>
 		<email>arfrever.fta@gmail.com</email>
 		<name>Arfrever Frehtes Taifersar Arahesis</name>
-		<description>Proxy maintainer. CC him on bugs</description>
-	</maintainer>
-	<maintainer>
-		<email>neurogeek@gentoo.org</email>
-		<name>Jesus Rivero</name>
 	</maintainer>
 </pkgmetadata>

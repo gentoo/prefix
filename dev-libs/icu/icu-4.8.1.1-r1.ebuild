@@ -1,24 +1,28 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.6.ebuild,v 1.11 2011/04/03 11:46:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.8.1.1-r1.ebuild,v 1.9 2012/04/01 14:47:47 armin76 Exp $
 
-EAPI="3"
+EAPI="4"
 
-inherit eutils versionator multilib
+inherit versionator
 
-MAJOR_MINOR_VERSION="$(get_version_component_range 1-2)"
-MICRO_VERSION="$(get_version_component_range 3)"
+MAJOR_VERSION="$(get_version_component_range 1)"
+MINOR_VERSION="$(get_version_component_range 2)"
+if [[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+(_rc[[:digit:]]*)?$ ]]; then
+	MICRO_VERSION="0"
+else
+	MICRO_VERSION="$(get_version_component_range 3)"
+fi
 
 DESCRIPTION="International Components for Unicode"
 HOMEPAGE="http://www.icu-project.org/"
 
-BASE_URI="http://download.icu-project.org/files/icu4c/${PV}"
-DOCS_BASE_URI="http://download.icu-project.org/files/icu4c/${MAJOR_MINOR_VERSION}"
+BASE_URI="http://download.icu-project.org/files/icu4c/${PV/_/}"
 SRC_ARCHIVE="icu4c-${PV//./_}-src.tgz"
-DOCS_ARCHIVE="icu4c-${MAJOR_MINOR_VERSION//./_}-docs.zip"
+DOCS_ARCHIVE="icu4c-${PV//./_}-docs.zip"
 
 SRC_URI="${BASE_URI}/${SRC_ARCHIVE}
-	doc? ( ${DOCS_BASE_URI}/${DOCS_ARCHIVE} )"
+	doc? ( ${BASE_URI}/${DOCS_ARCHIVE} )"
 
 LICENSE="BSD"
 SLOT="0"
@@ -30,7 +34,7 @@ RDEPEND=""
 
 S="${WORKDIR}/${PN}/source"
 
-QA_DT_NEEDED="/usr/lib.*/libicudata$(get_libname ${MAJOR_MINOR_VERSION/./}.${MICRO_VERSION:-0})"
+QA_DT_NEEDED="/usr/lib.*/libicudata\.so\.${MAJOR_VERSION}${MINOR_VERSION}\.${MICRO_VERSION}.*"
 
 src_unpack() {
 	unpack "${SRC_ARCHIVE}"
@@ -46,16 +50,19 @@ src_prepare() {
 	# Do not hardcode flags into icu-config.
 	# https://ssl.icu-project.org/trac/ticket/6102
 	local variable
-	for variable in ARFLAGS CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
+	for variable in CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
 		sed -i -e "/^${variable} =.*/s:@${variable}@::" config/Makefile.inc.in || die "sed failed"
 	done
 
 	# for correct install_names
-	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
+	epatch "${FILESDIR}"/${PN}-4.8.1-darwin.patch
 	# fix part 1 for echo_{t,c,n}
-	epatch "${FILESDIR}"/${P}-echo_t.patch
+	epatch "${FILESDIR}"/${PN}-4.6-echo_t.patch
 
-	epatch "${FILESDIR}/${P}-pkgdata.patch"
+	epatch \
+		"${FILESDIR}/icu-4.8.1-fix_binformat_fonts.patch" \
+		"${FILESDIR}/icu-4.8.1-fix_nan.patch" \
+		"${FILESDIR}/icu-4.8.1.1-fix_ltr.patch"
 }
 
 src_configure() {
@@ -112,16 +119,16 @@ src_test() {
 	# CINTLTST_OPTS: cintltst options
 	#   -e: Exhaustive testing
 	#   -v: Increased verbosity
-	emake -j1 check || die "emake check failed"
+	emake -j1 check
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake DESTDIR="${D}" install
 
 	dohtml ../readme.html
 	dodoc ../unicode-license.txt
 	if use doc; then
 		insinto /usr/share/doc/${PF}/html/api
-		doins -r "${WORKDIR}/docs/"* || die "doins failed"
+		doins -r "${WORKDIR}/docs/"*
 	fi
 }

@@ -1,17 +1,16 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.8.1.1.ebuild,v 1.1 2011/10/30 12:02:54 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-49.1.1-r1.ebuild,v 1.6 2012/05/12 16:18:20 klausman Exp $
 
 EAPI="4"
 
-inherit versionator
+inherit eutils versionator
 
 MAJOR_VERSION="$(get_version_component_range 1)"
-MINOR_VERSION="$(get_version_component_range 2)"
-if [[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+(_rc[[:digit:]]*)?$ ]]; then
-	MICRO_VERSION="0"
+if [[ "${PV}" =~ ^[[:digit:]]+_rc[[:digit:]]*$ ]]; then
+	MINOR_VERSION="0"
 else
-	MICRO_VERSION="$(get_version_component_range 3)"
+	MINOR_VERSION="$(get_version_component_range 2)"
 fi
 
 DESCRIPTION="International Components for Unicode"
@@ -34,7 +33,7 @@ RDEPEND=""
 
 S="${WORKDIR}/${PN}/source"
 
-QA_DT_NEEDED="/usr/lib.*/libicudata\.so\.${MAJOR_VERSION}${MINOR_VERSION}\.${MICRO_VERSION}.*"
+QA_DT_NEEDED="/usr/lib.*/libicudata\.so\.${MAJOR_VERSION}\.${MINOR_VERSION}.*"
 
 src_unpack() {
 	unpack "${SRC_ARCHIVE}"
@@ -60,7 +59,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.6-echo_t.patch
 
 	epatch "${FILESDIR}/${PN}-4.8.1-fix_binformat_fonts.patch"
-	epatch "${FILESDIR}/${PN}-4.8.1-fix_nan.patch"
+	epatch "${FILESDIR}/${PN}-4.8.1.1-fix_ltr.patch"
+	epatch "${FILESDIR}/${P}-regex.patch"
+	epatch "${FILESDIR}/${P}-bsd.patch"
 }
 
 src_configure() {

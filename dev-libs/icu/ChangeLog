@@ -1,6 +1,107 @@
 # ChangeLog for dev-libs/icu
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.165 2011/10/30 12:02:54 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.192 2012/05/12 16:18:20 klausman Exp $
+
+  12 May 2012; Tobias Klausmann <klausman@gentoo.org> icu-49.1.1-r1.ebuild:
+  Stable on alpha, bug #394201
+
+  10 May 2012; Mike Gilbert <floppym@gentoo.org> files/icu-49.1.1-bsd.patch,
+  files/icu-49.1.1-regex.patch:
+  icu-49.1.1-bsd.patch: Use patch from upstream. icu-49.1.1-regex.patch: Update
+  URLs. Patch by Arfrever.
+
+  10 May 2012; Brent Baude <ranger@gentoo.org> icu-49.1.1-r1.ebuild:
+  Marking icu-49.1.1-r1 ppc64 for bug 394201
+
+  09 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> icu-49.1.1-r1.ebuild:
+  x86 stable wrt security bug #394201
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> icu-49.1.1-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> icu-49.1.1-r1.ebuild,
+  +files/icu-49.1.1-bsd.patch:
+  Fix build of icu 49 on FreeBSD.
+
+  06 May 2012; Mike Gilbert <floppym@gentoo.org> -files/icu-4.6-pkgdata.patch,
+  -files/icu-4.6.1-parallel_installation.patch, -files/icu-4.8.1-fix_ltr.patch:
+  Remove old patches per Arfrever.
+
+  06 May 2012; Mike Gilbert <floppym@gentoo.org> -icu-4.6.ebuild:
+  Remove one more old version.
+
+  06 May 2012; Mike Gilbert <floppym@gentoo.org> -icu-4.8.1-r2.ebuild,
+  -icu-4.8.1-r3.ebuild, -icu-49.1.1.ebuild, -icu-49.1.ebuild:
+  Remove old versions. Requested by Arfrever.
+
+*icu-49.1.1-r1 (06 May 2012)
+
+  06 May 2012; Markos Chandras <hwoarang@gentoo.org>
+  +files/icu-49.1.1-regex.patch, +icu-49.1.1-r1.ebuild:
+  Fix support for regular expressions with look-behind assertions and case
+  insensitive matching. Ebuild by Arfrever.
+
+  05 May 2012; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  remove description from metadata
+
+  05 May 2012; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  remove neurogeek add proxy-maintainers
+
+*icu-49.1.1 (07 Apr 2012)
+
+  07 Apr 2012; Mike Gilbert <floppym@gentoo.org> +icu-49.1.1.ebuild:
+  Version bump. Ebuild by Arfrever.
+
+  01 Apr 2012; Raúl Porcel <armin76@gentoo.org> icu-4.8.1.1-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #405965
+
+*icu-49.1 (25 Mar 2012)
+
+  25 Mar 2012; Mike Gilbert <floppym@gentoo.org> +icu-49.1.ebuild:
+  Version bump. Ebuild by Arfrever.
+
+  25 Mar 2012; Mike Gilbert <floppym@gentoo.org>
+  files/icu-4.8.1-fix_binformat_fonts.patch, files/icu-4.8.1.1-fix_ltr.patch:
+  Add URLs in patches.
+
+  15 Mar 2012; Markus Meier <maekke@gentoo.org> icu-4.8.1.1-r1.ebuild:
+  arm stable, bug #405965
+
+  09 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> icu-4.8.1.1-r1.ebuild:
+  x86 stable wrt bug #405965
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> icu-4.8.1.1-r1.ebuild:
+  Marking icu-4.8.1.1-r1 ppc64 for bug 405965
+
+  01 Mar 2012; Brent Baude <ranger@gentoo.org> icu-4.8.1.1-r1.ebuild:
+  Marking icu-4.8.1.1-r1 ppc for bug 405965
+
+  29 Feb 2012; Jeroen Roovers <jer@gentoo.org> icu-4.8.1.1-r1.ebuild:
+  Stable for HPPA (bug #405965).
+
+  29 Feb 2012; Agostino Sarubbo <ago@gentoo.org> icu-4.8.1.1-r1.ebuild:
+  Stable for amd64, wrt bug #405965
+
+  27 Feb 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/icu-4.8.1.1-fix_ltr.patch, icu-4.8.1.1-r1.ebuild:
+  Ooops rebase the patch for 4.8.1.1.
+
+*icu-4.8.1.1-r1 (27 Feb 2012)
+*icu-4.8.1-r3 (27 Feb 2012)
+
+  27 Feb 2012; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/icu-4.8.1-fix_ltr.patch, +icu-4.8.1-r3.ebuild, +icu-4.8.1.1-r1.ebuild,
+  -icu-4.8.1-r1.ebuild, -icu-4.8.1.1.ebuild, -icu-4.8.ebuild:
+  Add patch to fix ltr ligatures issue. Wrt bug#405143.
+
+  28 Dec 2011; Mark Loeser <halcy0n@gentoo.org> icu-4.8.1-r2.ebuild:
+  Stable for ppc/ppc64; bug #387259
+
+  18 Dec 2011; Mark Loeser <halcy0n@gentoo.org> icu-4.8.1-r1.ebuild:
+  Stable for ppc; bug #387259
+
+  17 Dec 2011; Raúl Porcel <armin76@gentoo.org> icu-4.8.1-r2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #387259
 
 *icu-4.8.1.1 (30 Oct 2011)
 
