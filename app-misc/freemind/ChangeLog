@@ -1,6 +1,20 @@
 # ChangeLog for app-misc/freemind
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.51 2010/02/28 11:40:44 caster Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.54 2011/10/22 02:11:45 flameeyes Exp $
+
+  22 Oct 2011; Diego E. Pettenò <flameeyes@gentoo.org> freemind-0.9.0.ebuild:
+  QA: jsr173 seems to be missing in the dependencies (or at least it doesn't
+  install without it here).
+
+  22 Oct 2011; Diego E. Pettenò <flameeyes@gentoo.org> freemind-0.9.0.ebuild:
+  QA: fix usex usage.
+
+*freemind-0.9.0 (21 Oct 2011)
+
+  21 Oct 2011; Vlastimil Babka <caster@gentoo.org> +freemind-0.9.0.ebuild:
+  Version bump, bug #365179. Thanks to Christopher Robin Elmersson
+  <robin@girlplusboy.com> and Ralph Sennhauser <gentoo.sera@bluewin.ch> for the
+  contribution.
 
 *freemind-0.9.0_rc7 (28 Feb 2010)
 
