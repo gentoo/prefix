@@ -1,6 +1,15 @@
 # ChangeLog for dev-java/jaxp
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxp/ChangeLog,v 1.15 2009/03/29 17:35:02 betelgeuse Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxp/ChangeLog,v 1.18 2012/03/06 21:12:16 ranger Exp $
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> jaxp-1.4-r1.ebuild:
+  Marking jaxp-1.4-r1 ppc for bug 396875
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> jaxp-1.4-r1.ebuild:
+  x86 stable wrt bug #396875
+
+  23 Jan 2012; Agostino Sarubbo <ago@gentoo.org> jaxp-1.4-r1.ebuild:
+  Stable for amd64, wrt bug #396875
 
   29 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> jaxp-1.4-r1.ebuild:
   Use ln instead of dosym as dosym seems to be making the build fail.

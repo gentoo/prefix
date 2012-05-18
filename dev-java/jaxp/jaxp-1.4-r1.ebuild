@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxp/jaxp-1.4-r1.ebuild,v 1.2 2009/03/29 17:35:02 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxp/jaxp-1.4-r1.ebuild,v 1.5 2012/03/06 21:12:16 ranger Exp $
 
 JAVA_PKG_IUSE="doc source"
 
