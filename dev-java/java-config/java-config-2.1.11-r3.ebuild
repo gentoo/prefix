@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.11-r3.ebuild,v 1.6 2011/03/28 08:57:45 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.11-r3.ebuild,v 1.10 2012/05/10 18:33:56 aballier Exp $
 
 EAPI="2"
 PYTHON_DEPEND="*:2.6"
@@ -31,6 +31,10 @@ src_prepare() {
 	distutils_src_prepare
 	epatch "${FILESDIR}/${P}-python3.patch"
 	epatch "${FILESDIR}/python-abi-support.patch"
+
+	cp config/jdk-defaults-{x86,amd64}-fbsd.conf || die #415397
+	echo "*= icedtea-7 icedtea-6 icedtea-bin-7 icedtea-bin-6" \
+		> config/jdk-defaults-arm.conf || die #305773
 }
 
 src_test() {
