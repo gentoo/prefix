@@ -1,6 +1,44 @@
 # ChangeLog for app-text/openjade
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/ChangeLog,v 1.57 2010/07/31 16:39:22 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/ChangeLog,v 1.67 2012/04/26 22:37:01 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> openjade-1.3.2-r4.ebuild:
+  keyword ~amd64-fbsd
+
+  20 Apr 2012; Mike Gilbert <floppym@gentoo.org> openjade-1.3.2-r4.ebuild:
+  Unset INCLUDE, #412725.
+
+*openjade-1.3.2-r4 (15 Apr 2012)
+
+  15 Apr 2012; Mike Gilbert <floppym@gentoo.org>
+  +files/openjade-1.3.2-acinclude.m4, +openjade-1.3.2-r4.ebuild:
+  Call eautoreconf to refresh the build system for bug 412093.
+
+  14 May 2011; Christoph Mende <angelos@gentoo.org> openjade-1.3.2-r3.ebuild,
+  +files/openjade-1.3.2-gcc46.patch:
+  Fix compilation with gcc-4.6, thanks to Ryan Hill and Jean-Francis Roy (bug
+  #358021)
+
+  12 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -openjade-1.3.2-r1.ebuild, -openjade-1.3.2-r2.ebuild,
+  -files/openjade-1.3.2-lib64-fix.patch:
+  Delete.
+
+  12 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  openjade-1.3.2-r3.ebuild:
+  ppc64 stable wrt #329789
+
+  29 Aug 2010; Raúl Porcel <armin76@gentoo.org> openjade-1.3.2-r3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #329789
+
+  17 Aug 2010; Jeroen Roovers <jer@gentoo.org> openjade-1.3.2-r3.ebuild:
+  Stable for PPC (bug #329789).
+
+  17 Aug 2010; Jeroen Roovers <jer@gentoo.org> openjade-1.3.2-r3.ebuild:
+  Stable for HPPA (bug #329789).
+
+  15 Aug 2010; Markus Meier <maekke@gentoo.org> openjade-1.3.2-r3.ebuild:
+  arm stable, bug #329789
 
   31 Jul 2010; Markos Chandras <hwoarang@gentoo.org>
   openjade-1.3.2-r3.ebuild:

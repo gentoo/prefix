@@ -1,6 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/openjade-1.3.2-r1.ebuild,v 1.38 2009/04/22 21:59:35 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/openjade-1.3.2-r4.ebuild,v 1.3 2012/04/26 22:37:01 aballier Exp $
+
+EAPI=2
 
 inherit autotools sgml-catalog eutils flag-o-matic multilib
 
@@ -11,37 +13,28 @@ SRC_URI="mirror://sourceforge/openjade/${P}.tar.gz"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE=""
+IUSE="static-libs"
 
 RDEPEND="app-text/sgml-common
 	>=app-text/opensp-1.5.1"
 DEPEND="dev-lang/perl
 	${RDEPEND}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-msggen.pl.patch
-	epatch "${FILESDIR}"/${P}-ldflags.patch
-	epatch "${FILESDIR}"/${P}-lib64-fix.patch
+src_prepare() {
 	epatch "${FILESDIR}"/${P}-deplibs.patch
+	epatch "${FILESDIR}"/${P}-ldflags.patch
+	epatch "${FILESDIR}"/${P}-msggen.pl.patch
+	epatch "${FILESDIR}"/${P}-respect-ldflags.patch
+	epatch "${FILESDIR}"/${P}-libosp-la.patch
+	epatch "${FILESDIR}"/${P}-gcc46.patch
+
 	epatch "${FILESDIR}"/${P}-darwin.patch
 
 	if [[ ${CHOST} == *-interix* ]] ; then
-		# this adds a m4 file containing the two macros which are
-		# otherwise missing (to keep down dependencies).
-		EPATCH_OPTS="-p1" epatch "${FILESDIR}"/${P}-bootstrap.patch
-
 		# this one disables multi byte chars for interix (support broken)
 		epatch "${FILESDIR}"/${P}-interix.patch
-
-		ln -s config/configure.in configure.in
-		AT_M4DIR="jade spgrove style config" eautoreconf # need new libtool for interix
-		# NOTE: eautoreconf here breaks other platforms
 	fi
-}
 
-src_compile() {
 	# Please note!  Opts are disabled.  If you know what you're doing
 	# feel free to remove this line.  It may cause problems with
 	# docbook-sgml-utils among other things.
@@ -52,8 +45,17 @@ src_compile() {
 	# on hppa. Using -O1 works fine. So I force it here.
 	use hppa && replace-flags -O2 -O1
 
-	SGML_PREFIX="${EPREFIX}"/usr/share/sgml
+	ln -s config/configure.in configure.in || die
+	cp "${FILESDIR}"/${P}-acinclude.m4 acinclude.m4 || die
+	rm config/missing || die
 
+	AT_NOEAUTOMAKE=yes
+	eautoreconf
+
+	SGML_PREFIX="${EPREFIX}"/usr/share/sgml
+}
+
+src_configure() {
 	# Needed at least on Mac OS X 10.6, bug #287358
 	export CONFIG_SHELL="${EPREFIX}"/bin/bash
 	econf \
@@ -61,14 +63,19 @@ src_compile() {
 		--enable-default-catalog="${EPREFIX}"/etc/sgml/catalog \
 		--enable-default-search-path="${EPREFIX}"/usr/share/sgml \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		--datadir="${EPREFIX}"/usr/share/sgml/${P}
+		--datadir="${EPREFIX}"/usr/share/sgml/${P} \
+		$(use_enable static-libs static)
+}
 
-	emake || die "make failed"
+src_compile() {
+	# Bug 412725.
+	unset INCLUDE
+
+	emake -j1 || die "make failed"
 }
 
 src_install() {
-	dodir /usr
-	dodir /usr/$(get_libdir)
+	insinto /usr/$(get_libdir)
 
 	make DESTDIR="${D}" \
 		libdir="${EPREFIX}"/usr/$(get_libdir) \
