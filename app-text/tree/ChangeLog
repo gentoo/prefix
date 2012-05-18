@@ -1,6 +1,46 @@
 # ChangeLog for app-text/tree
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tree/ChangeLog,v 1.81 2010/03/15 19:58:30 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/tree/ChangeLog,v 1.93 2011/12/29 21:52:30 halcy0n Exp $
+
+  29 Dec 2011; Mark Loeser <halcy0n@gentoo.org> tree-1.6.0.ebuild:
+  Stable for ppc/ppc64; bug #380175
+
+  18 Dec 2011; Michael Sterrett <mr_bones_@gentoo.org> tree-1.6.0.ebuild:
+  make bash completion file naming consistent (bug #395101)
+
+  07 Dec 2011; Mike Frysinger <vapier@gentoo.org> tree-1.6.0.ebuild:
+  Respect env CPPFLAGS settings.
+
+  17 Nov 2011; Michael Sterrett <mr_bones_@gentoo.org> tree-1.6.0.ebuild:
+  use bash-completion-r1
+
+  17 Nov 2011; Michael Sterrett <mr_bones_@gentoo.org> tree-1.6.0.ebuild:
+  EAPI=4; fix lfs support (bug #390849)
+
+  17 Oct 2011; Jeroen Roovers <jer@gentoo.org> tree-1.6.0.ebuild:
+  Stable for HPPA (bug #380175).
+
+  25 Sep 2011; Raúl Porcel <armin76@gentoo.org> tree-1.6.0.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #380175
+
+  28 Aug 2011; Markus Meier <maekke@gentoo.org> tree-1.6.0.ebuild:
+  arm stable, bug #380175
+
+  24 Aug 2011; Markus Meier <maekke@gentoo.org> tree-1.6.0.ebuild:
+  x86 stable, bug #380175
+
+  22 Aug 2011; Tony Vroon <chainsaw@gentoo.org> tree-1.6.0.ebuild:
+  Marked stable on AMD64 based on arch testing by Ian "idella4" Delaney in bug
+  #380175.
+
+*tree-1.6.0 (21 Jul 2011)
+
+  21 Jul 2011; Michael Sterrett <mr_bones_@gentoo.org> tree-1.5.3.ebuild,
+  +tree-1.6.0.ebuild:
+  version bump (bug #375861)
+
+  06 Jan 2011; Justin Lecher <jlec@gentoo.org> tree-1.5.3.ebuild:
+  Some Clean up
 
   15 Mar 2010; Brent Baude <ranger@gentoo.org> tree-1.5.3.ebuild:
   stable ppc64, bug 306665
