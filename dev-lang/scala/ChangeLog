@@ -1,6 +1,43 @@
 # ChangeLog for dev-lang/scala
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/ChangeLog,v 1.21 2010/05/02 11:44:49 djc Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/ChangeLog,v 1.29 2012/01/31 09:22:41 ali_bush Exp $
+
+  31 Jan 2012; Alistair Bush <ali_bush@gentoo.org> scala-2.9.1.ebuild:
+  Update jdk dependency as errors building with jdk-1.7.
+
+  26 Jan 2012; Alistair Bush <ali_bush@gentoo.org> scala-2.9.1.ebuild:
+  Fix qa warning about old check_reqs function
+
+*scala-2.9.1 (25 Jan 2012)
+
+  25 Jan 2012; Alistair Bush <ali_bush@gentoo.org> -scala-2.8.1.ebuild,
+  -scala-2.9.0-r1.ebuild, +scala-2.9.1.ebuild:
+  Version Bump and cleanup.
+
+*scala-2.9.0.1 (03 Jun 2011)
+
+  03 Jun 2011; Alistair Bush <ali_bush@gentoo.org> -scala-2.7.7.ebuild,
+  -scala-2.9.0.ebuild, +scala-2.9.0.1.ebuild:
+  Version Bump and cleanup older versions.
+
+*scala-2.9.0-r1 (30 May 2011)
+
+  30 May 2011; Alistair Bush <ali_bush@gentoo.org> +scala-2.9.0-r1.ebuild:
+  Fix dependency issue by using bundled jline classes that have been refactored
+  into new packages and tty issues.
+
+*scala-2.9.0 (18 May 2011)
+
+  18 May 2011; Alistair Bush <ali_bush@gentoo.org> +scala-2.9.0.ebuild:
+  Version Bump.
+
+  06 May 2011; Alistair Bush <ali_bush@gentoo.org> scala-2.8.1.ebuild:
+  Remove deprecated ebeep and epause.
+
+*scala-2.8.1 (29 Apr 2011)
+
+  29 Apr 2011; Alistair Bush <ali_bush@gentoo.org> +scala-2.8.1.ebuild:
+  Version Bump.
 
   02 May 2010; Dirkjan Ochtman <djc@gentoo.org> -scala-2.7.2.ebuild,
   -scala-2.7.3.ebuild, -scala-2.7.3-r1.ebuild, -scala-2.7.4.ebuild,
