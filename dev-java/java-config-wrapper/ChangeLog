@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/java-config-wrapper
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.53 2010/11/27 02:01:11 xmw Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.54 2012/05/10 18:34:09 aballier Exp $
+
+  10 May 2012; Alexis Ballier <aballier@gentoo.org>
+  java-config-wrapper-0.16.ebuild:
+  keyword ~amd64-fbsd
 
   27 Nov 2010; Michael Weber <xmw@gentoo.org> java-config-wrapper-0.16.ebuild:
   Add ~sparc (bug 344659).
