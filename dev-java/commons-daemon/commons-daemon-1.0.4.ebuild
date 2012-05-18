@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-daemon/commons-daemon-1.0.4.ebuild,v 1.3 2010/12/18 21:02:32 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-daemon/commons-daemon-1.0.4.ebuild,v 1.4 2011/03/16 18:31:51 xarthisius Exp $
 
 EAPI="2"
 WANT_AUTOCONF=2.5

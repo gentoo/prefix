@@ -1,6 +1,51 @@
 # ChangeLog for dev-java/commons-daemon
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-daemon/ChangeLog,v 1.43 2010/12/18 21:02:32 ken69267 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-daemon/ChangeLog,v 1.54 2012/03/25 17:00:35 ago Exp $
+
+  25 Mar 2012; Agostino Sarubbo <ago@gentoo.org> commons-daemon-1.0.9.ebuild:
+  Stable for amd64, wrt bug #409609
+
+  09 Mar 2012; Brent Baude <ranger@gentoo.org> commons-daemon-1.0.7.ebuild:
+  Marking commons-daemon-1.0.7 ppc64 for bug 399995
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> commons-daemon-1.0.7.ebuild:
+  Marking commons-daemon-1.0.7 ppc for bug 399995
+
+*commons-daemon-1.0.9 (22 Feb 2012)
+
+  22 Feb 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +commons-daemon-1.0.9.ebuild:
+  Version bump
+
+  16 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  commons-daemon-1.0.7.ebuild:
+  x86 stable wrt bug #399995
+
+  30 Jan 2012; Ralph Sennhauser <sera@gentoo.org> commons-daemon-1.0.8.ebuild:
+  Fix installation of source files. Thanks to Krzysztof Magusiak
+  <chrmag@poczta.onet.pl>. #401271
+
+*commons-daemon-1.0.8 (28 Jan 2012)
+
+  28 Jan 2012; Ralph Sennhauser <sera@gentoo.org> +commons-daemon-1.0.8.ebuild:
+  Version bump.
+
+  28 Jan 2012; Ralph Sennhauser <sera@gentoo.org> commons-daemon-1.0.7.ebuild:
+  Add missing dep on sys-libs/libcap. Thanks to ago@gentoo.org for pointing it
+  out.
+
+  28 Jan 2012; Agostino Sarubbo <ago@gentoo.org> commons-daemon-1.0.7.ebuild:
+  Stable for amd64, wrt bug #399995
+
+*commons-daemon-1.0.7 (27 Sep 2011)
+
+  27 Sep 2011; Petteri Räty <betelgeuse@gentoo.org>
+  +commons-daemon-1.0.7.ebuild:
+  Version bump. Thanks to Chewi. Should also fix bug #38127.
+
+  16 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  commons-daemon-1.0.4.ebuild:
+  ppc/ppc64 stable wrt #348595
 
   18 Dec 2010; Kenneth Prugh <ken69267@gentoo.org>
   commons-daemon-1.0.4.ebuild:
