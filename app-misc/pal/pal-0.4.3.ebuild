@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pal/pal-0.4.3.ebuild,v 1.3 2009/08/15 13:00:06 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pal/pal-0.4.3.ebuild,v 1.7 2012/05/03 19:41:34 jdhore Exp $
 
 EAPI=2
 inherit toolchain-funcs eutils prefix
@@ -19,7 +19,7 @@ RDEPEND=">=dev-libs/glib-2.0
 	sys-libs/ncurses[unicode?]
 	nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	nls? ( sys-devel/gettext )"
 
 S=${WORKDIR}/${P}/src
