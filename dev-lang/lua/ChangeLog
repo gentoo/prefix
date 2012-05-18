@@ -1,6 +1,66 @@
 # ChangeLog for dev-lang/lua
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.150 2011/01/09 17:33:55 mabi Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.160 2012/03/19 20:49:45 mabi Exp $
+
+  19 Mar 2012; Matti Bickel <mabi@gentoo.org> lua-5.1.5.ebuild:
+  deprecated patch from 5.1.4 applies to 5.1.5, too (bug #408827)
+
+*lua-5.2.0-r1 (17 Mar 2012)
+
+  17 Mar 2012; Matti Bickel <mabi@gentoo.org>
+  +files/5.2.0/01_all_memory_hoarding.upstream.patch,
+  +files/5.2.0/02_all_hex_number_handling.upstream.patch, +lua-5.2.0-r1.ebuild:
+  new patches for lua-5.2, see http://www.lua.org/bugs.html#5.2.0 for details
+
+*lua-5.1.5 (17 Mar 2012)
+
+  17 Mar 2012; Matti Bickel <mabi@gentoo.org> +lua-5.1.5.ebuild:
+  version bump for lua-5.1
+
+  05 Mar 2012; Zac Medico <zmedico@gentoo.org> lua-5.2.0.ebuild:
+  Add missing newline escape in src_compile emake command.
+
+  05 Mar 2012; Matti Bickel <mabi@gentoo.org> lua-5.2.0.ebuild:
+  make lua respect LDFLAGS (bug #406997)
+
+  05 Mar 2012; Matti Bickel <mabi@gentoo.org>
+  -files/5.1.3/01_all_LUAI_MAXCSTACK.upstream.patch,
+  -files/5.1.3/02_all_coroutine.resume.upstream.patch,
+  -files/5.1.3/03_all_lua_checkstack.upstream.patch,
+  -files/5.1.3/04_all_unpack.upstream.patch,
+  -files/5.1.3/05_all_validator.upstream.patch,
+  -files/5.1.3/06_all_c_stack.upstream.patch,
+  -files/5.1.3/07_all_validator2.upstream.patch,
+  -files/5.1.3/08_all_code_injection.upstream.patch,
+  -files/5.1.3/09_all_string_byte_fix_upstream.patch,
+  -files/5.1.3/10_all_gc_loop_fix.upstream.patch,
+  -files/5.1.3/11_all_module.upstream.patch,
+  -files/5.1.3/12_all_svalue.upstream.patch, -lua-5.1.4.ebuild:
+  cleanup
+
+*lua-5.2.0 (04 Mar 2012)
+
+  04 Mar 2012; Matti Bickel <mabi@gentoo.org> +files/configure.in,
+  +files/lua-5.2-make.patch, +files/lua.pc, +lua-5.2.0.ebuild:
+  version bump (bug #395057). also now uses local libtool (bug #336167)
+
+*lua-5.1.4-r8 (24 Jan 2012)
+
+  24 Jan 2012; Matti Bickel <mabi@gentoo.org>
+  +files/5.1.4/07_all_boolean_expression.upstream.patch,
+  +files/5.1.4/08_all_metatable.upstream.patch,
+  +files/5.1.4/09_all_prototype_collection.upstream.patch, +lua-5.1.4-r8.ebuild,
+  -lua-5.1.4-r6.ebuild, -lua-5.1.4-r7.ebuild:
+  add three patches (see http://www.lua.org/bugs.html), bump to EAPI4, fix bug
+  #387771
+
+  17 Sep 2011; Diego E. Pettenò <flameeyes@gentoo.org> lua-5.1.4.ebuild,
+  lua-5.1.4-r4.ebuild, lua-5.1.4-r6.ebuild, lua-5.1.4-r7.ebuild:
+  QA: do not add libtool to _runtime_ dependencies.
+
+  11 Sep 2011; Rafael G. Martins <rafaelmartins@gentoo.org> lua-5.1.4.ebuild,
+  lua-5.1.4-r4.ebuild, lua-5.1.4-r6.ebuild, lua-5.1.4-r7.ebuild:
+  Added missing DEPEND sys-devel/libtool (bug #382501).
 
 *lua-5.1.4-r7 (09 Jan 2011)
 

@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.4-r6.ebuild,v 1.1 2010/06/19 17:04:05 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.4-r8.ebuild,v 1.1 2012/01/24 21:44:53 mabi Exp $
 
-EAPI=1
+EAPI=4
 
 inherit eutils multilib portability toolchain-funcs versionator
 
@@ -15,24 +15,23 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="+deprecated emacs readline static"
 
-DEPEND="readline? ( sys-libs/readline )"
-RDEPEND="${DEPEND}"
+RDEPEND="readline? ( sys-libs/readline )"
+DEPEND="${RDEPEND}
+	sys-devel/libtool"
 PDEPEND="emacs? ( app-emacs/lua-mode )"
 
-src_unpack() {
+src_prepare() {
 	local PATCH_PV=$(get_version_component_range 1-2)
-	unpack ${A}
-	cd "${S}"
 
 	if [[ ${CHOST} == *-winnt* ]]; then
 		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-no-libtool.patch
 	else
 		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-r1.patch
 
-		# Using dynamic linked lua is not recommended upstream for performance
+		# Using dynamic linked lua is not recommended for performance
 		# reasons. http://article.gmane.org/gmane.comp.lang.lua.general/18519
 		# Mainly, this is of concern if your arch is poor with GPRs, like x86
-		# Not that this only affects the interpreter binary (named lua), not the lua
+		# Note that this only affects the interpreter binary (named lua), not the lua
 		# compiler (built statically) nor the lua libraries (both shared and static
 		# are installed)
 		if use static ; then
@@ -73,6 +72,9 @@ src_unpack() {
 		etc/lua.pc src/luaconf.h || die
 }
 
+# no need for a configure phase
+src_configure() { true; }
+
 src_compile() {
 	tc-export CC
 	myflags=
@@ -97,7 +99,7 @@ src_compile() {
 
 	cd src
 	emake CC="${CC}" CFLAGS="${mycflags} ${CFLAGS}" \
-			RPATH="${EROOT}/usr/$(get_libdir)/" \
+			RPATH="${EPREFIX}/usr/$(get_libdir)/" \
 			LUA_LIBS="${mylibs}" \
 			LIB_LIBS="${liblibs}" \
 			V=${PV} \
@@ -107,7 +109,7 @@ src_compile() {
 }
 
 src_install() {
-	emake INSTALL_TOP="${ED}/usr/" INSTALL_LIB="${ED}/usr/$(get_libdir)/" \
+	emake INSTALL_TOP="${ED}/usr" INSTALL_LIB="${ED}/usr/$(get_libdir)" \
 			V=${PV} gentoo_install \
 	|| die "emake install gentoo_install failed"
 
