@@ -1,6 +1,49 @@
 # ChangeLog for app-shells/ksh
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.41 2010/01/24 19:11:19 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.53 2012/04/01 17:41:45 floppym Exp $
+
+  01 Apr 2012; Mike Gilbert <floppym@gentoo.org> -ksh-93.20071105.ebuild:
+  Drop old version.
+
+  01 Apr 2012; Raúl Porcel <armin76@gentoo.org> ksh-93.20110208.ebuild:
+  alpha/ia64/s390/sparc stable wrt #408675
+
+  28 Mar 2012; Markus Meier <maekke@gentoo.org> ksh-93.20110208.ebuild:
+  arm stable, bug #408675
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> ksh-93.20110208.ebuild:
+  Marking ksh-93.20110208 ppc for bug 408675
+
+  23 Mar 2012; Jeff Horelick <jdhore@gentoo.org> ksh-93.20110208.ebuild:
+  marked x86 per bug 408675
+
+  20 Mar 2012; Agostino Sarubbo <ago@gentoo.org> ksh-93.20110208.ebuild:
+  Stable for amd64, wrt bug #408675
+
+*ksh-93.20071105 (18 Mar 2012)
+
+  18 Mar 2012; Mike Gilbert <floppym@gentoo.org> +ksh-93.20071105.ebuild:
+  Restore last version with stable keywords.
+
+*ksh-93.20120229 (18 Mar 2012)
+
+  18 Mar 2012; Mike Gilbert <floppym@gentoo.org> +ksh-93.20120229.ebuild,
+  -ksh-93.20071105.ebuild, -ksh-93.20081104.ebuild, -ksh-93.20090505.ebuild:
+  Version bump. Remove old.
+
+  13 Feb 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml:
+  Add Dan Douglas as a maintainer.
+
+  13 Feb 2012; Mike Gilbert <floppym@gentoo.org> ksh-93.20110208.ebuild:
+  Build from the ast-base sources. Enable /etc/ksh.kshrc (SHOPT_SYSRC).
+
+*ksh-93.20110208 (13 Feb 2012)
+
+  13 Feb 2012; Mike Gilbert <floppym@gentoo.org> +ksh-93.20110208.ebuild:
+  Version bump / rewrite for bug 386339. Should also resolve bug 238906.
+
+  12 Feb 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml:
+  Add myself as maintainer.
 
   24 Jan 2010; Mike Frysinger <vapier@gentoo.org> ksh-93.20071105.ebuild,
   ksh-93.20081104.ebuild, ksh-93.20090505.ebuild:
