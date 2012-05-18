@@ -1,6 +1,200 @@
 # ChangeLog for dev-db/phpmyadmin
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/phpmyadmin/ChangeLog,v 1.413 2011/01/05 15:25:36 a3li Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/phpmyadmin/ChangeLog,v 1.467 2012/05/07 14:36:20 a3li Exp $
+
+*phpmyadmin-3.5.1 (07 May 2012)
+
+  07 May 2012; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.4.6.ebuild,
+  +phpmyadmin-3.5.1.ebuild:
+  Version bump for bug 414859, removing old version.
+
+*phpmyadmin-3.5.0 (09 Apr 2012)
+
+  09 Apr 2012; Robin H. Johnson <robbat2@gentoo.org> +phpmyadmin-3.5.0.ebuild:
+  Version bump, ready for MySQL conference.
+
+  01 Jan 2012; Raúl Porcel <armin76@gentoo.org> phpmyadmin-3.4.9.ebuild:
+  alpha/sparc/x86 stable wrt #395715
+
+  26 Dec 2011; Mark Loeser <halcy0n@gentoo.org> phpmyadmin-3.4.9.ebuild:
+  Stable for ppc/ppc64; bug #395715
+
+  24 Dec 2011; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.4.9.ebuild:
+  Stable for HPPA (bug #395715).
+
+  23 Dec 2011; Agostino Sarubbo <ago@gentoo.org> phpmyadmin-3.4.9.ebuild:
+  Stable for AMD64, wrt security bug #395715
+
+*phpmyadmin-3.4.9 (23 Dec 2011)
+
+  23 Dec 2011; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.4.5.ebuild,
+  -phpmyadmin-3.4.7.ebuild, +phpmyadmin-3.4.9.ebuild:
+  Version bump for security bugs 389427 and 395715. Removing unnneeded and
+  vulnerable versions. The setup script is now disabled by default.
+
+  05 Nov 2011; Raúl Porcel <armin76@gentoo.org> phpmyadmin-3.4.6.ebuild:
+  alpha/sparc stable wrt #387413
+
+*phpmyadmin-3.4.7 (02 Nov 2011)
+
+  02 Nov 2011; Alex Legler <a3li@gentoo.org> +phpmyadmin-3.4.7.ebuild:
+  Version bump, bugfix release
+
+  22 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> phpmyadmin-3.4.6.ebuild:
+  ppc/ppc64 stable wrt #387413
+
+  22 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> phpmyadmin-3.4.6.ebuild:
+  x86 stable wrt bug #387413
+
+  19 Oct 2011; Tony Vroon <chainsaw@gentoo.org> phpmyadmin-3.4.6.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo & Ian
+  "idella4" Delaney in security bug #387413.
+
+  19 Oct 2011; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.4.6.ebuild:
+  Stable for HPPA (bug #387413).
+
+*phpmyadmin-3.4.6 (18 Oct 2011)
+
+  18 Oct 2011; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.4.4.ebuild,
+  +phpmyadmin-3.4.6.ebuild:
+  Version bump for security bug 387413. Removing unneeded vulnerable versions
+
+  27 Sep 2011; Kacper Kowalik <xarthisius@gentoo.org> phpmyadmin-3.4.5.ebuild:
+  ppc/ppc64 stable wrt #383107
+
+  17 Sep 2011; Raúl Porcel <armin76@gentoo.org> phpmyadmin-3.4.5.ebuild:
+  alpha/sparc stable wrt #383107
+
+  16 Sep 2011; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.4.5.ebuild:
+  Stable for HPPA (bug #383107).
+
+  16 Sep 2011; Tony Vroon <chainsaw@gentoo.org> phpmyadmin-3.4.5.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armageddon" El Lazkani in bug #383107.
+
+  16 Sep 2011; Andreas Schuerch <nativemad@gentoo.org> phpmyadmin-3.4.5.ebuild:
+  x86 stable, security bug 383107
+
+*phpmyadmin-3.4.5 (15 Sep 2011)
+
+  15 Sep 2011; Alex Legler <a3li@gentoo.org> +phpmyadmin-3.4.5.ebuild:
+  Version bump for security bug 383107, fixing input sanitation flaws.
+
+  03 Sep 2011; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.4.3.2.ebuild:
+  Removing vunlerable ebuild
+
+  03 Sep 2011; Raúl Porcel <armin76@gentoo.org> phpmyadmin-3.4.4.ebuild:
+  alpha/sparc stable wrt #380601
+
+  02 Sep 2011; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.4.4.ebuild:
+  Stable for HPPA (bug #380601).
+
+  27 Aug 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> phpmyadmin-3.4.4.ebuild:
+  x86 stable wrt security bug #380601
+
+  27 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> phpmyadmin-3.4.4.ebuild:
+  ppc/ppc64 stable wrt #380601
+
+  27 Aug 2011; Markos Chandras <hwoarang@gentoo.org> phpmyadmin-3.4.4.ebuild:
+  Stable on amd64 wrt bug #380601
+
+*phpmyadmin-3.4.4 (26 Aug 2011)
+
+  26 Aug 2011; Alex Legler <a3li@gentoo.org> +phpmyadmin-3.4.4.ebuild:
+  Version bump for security bug 380601.
+
+  11 Aug 2011; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.4.3.1.ebuild:
+  Removing vulnerable versions
+
+  07 Aug 2011; Raúl Porcel <armin76@gentoo.org> phpmyadmin-3.4.3.2.ebuild:
+  alpha/sparc stable wrt #376369
+
+  02 Aug 2011; Markos Chandras <hwoarang@gentoo.org> phpmyadmin-3.4.3.2.ebuild:
+  Stable on amd64 wrt bug #376369
+
+  27 Jul 2011; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.4.3.2.ebuild:
+  Stable for HPPA (bug #376369).
+
+  26 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  phpmyadmin-3.4.3.2.ebuild:
+  ppc/ppc64 stable wrt #376369
+
+  26 Jul 2011; Thomas Kahle <tomka@gentoo.org> phpmyadmin-3.4.3.2.ebuild:
+  x86 stable per bug 376369
+
+*phpmyadmin-3.4.3.2 (25 Jul 2011)
+
+  25 Jul 2011; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.4.1.ebuild,
+  +phpmyadmin-3.4.3.2.ebuild:
+  Version bump for security bug 376369. Removing old vunlerable versions
+
+  11 Jul 2011; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.4.3.1.ebuild:
+  Stable for HPPA (bug #373951).
+
+  09 Jul 2011; Raúl Porcel <armin76@gentoo.org> phpmyadmin-3.4.3.1.ebuild:
+  alpha/sparc stable wrt #373951
+
+  09 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  phpmyadmin-3.4.3.1.ebuild:
+  ppc/ppc64 stable wrt #373951
+
+  08 Jul 2011; Thomas Kahle <tomka@gentoo.org> phpmyadmin-3.4.3.1.ebuild:
+  x86 stable per bug 373951
+
+  06 Jul 2011; Markos Chandras <hwoarang@gentoo.org> phpmyadmin-3.4.3.1.ebuild:
+  Stable on amd64 wrt bug #373951
+
+*phpmyadmin-3.4.3.1 (06 Jul 2011)
+
+  06 Jul 2011; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.4.0.ebuild,
+  +phpmyadmin-3.4.3.1.ebuild:
+  Version bump for security bug 373951. Removing unneeded vulnerable ebuilds.
+
+  28 May 2011; Raúl Porcel <armin76@gentoo.org> phpmyadmin-3.4.1.ebuild:
+  alpha/sparc stable wrt #368495
+
+  27 May 2011; Kacper Kowalik <xarthisius@gentoo.org> phpmyadmin-3.4.1.ebuild:
+  ppc/ppc64 stable wrt #368495
+
+  24 May 2011; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.4.1.ebuild:
+  Stable for HPPA (bug #368495).
+
+  24 May 2011; Markos Chandras <hwoarang@gentoo.org> phpmyadmin-3.4.1.ebuild:
+  Stable on amd64 wrt bug #368495
+
+  24 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> phpmyadmin-3.4.1.ebuild:
+  x86 stable wrt security bug #368495
+
+  22 May 2011; Alex Legler <a3li@gentoo.org> -phpmyadmin-3.3.8.1.ebuild,
+  -phpmyadmin-3.3.9.ebuild:
+  Removing vulnerable ebuilds, bug 354227
+
+  22 May 2011; Kacper Kowalik <xarthisius@gentoo.org> phpmyadmin-3.4.0.ebuild:
+  ppc/ppc64 stable wrt #354227
+
+*phpmyadmin-3.4.1 (22 May 2011)
+
+  22 May 2011; Alex Legler <a3li@gentoo.org> +phpmyadmin-3.4.1.ebuild:
+  Version bump
+
+  21 May 2011; Raúl Porcel <armin76@gentoo.org> phpmyadmin-3.4.0.ebuild:
+  alpha/sparc stable wrt #354227
+
+  21 May 2011; Jeroen Roovers <jer@gentoo.org> phpmyadmin-3.4.0.ebuild:
+  Stable for HPPA (bug #354227).
+
+  19 May 2011; Thomas Kahle <tomka@gentoo.org> phpmyadmin-3.4.0.ebuild:
+  x86 stable per bug 354227
+
+  19 May 2011; Markos Chandras <hwoarang@gentoo.org> phpmyadmin-3.4.0.ebuild:
+  Stable on amd64 wrt bug #354227
+
+*phpmyadmin-3.4.0 (15 May 2011)
+
+  15 May 2011; Alex Legler <a3li@gentoo.org> files/postinstall-en-3.1.txt,
+  +phpmyadmin-3.4.0.ebuild, metadata.xml:
+  Version bump. The installation of the PMA setup utility can now be controlled
+  via the 'setup' USE flag.
 
 *phpmyadmin-3.3.9 (05 Jan 2011)
 

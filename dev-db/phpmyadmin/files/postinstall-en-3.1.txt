@@ -2,12 +2,13 @@ If this is a new installation:
 
 1. Configure ${PN}:
 
-a) Create config.inc.php. You can use the web-based installer:
+a) Create config.inc.php. You can use the web-based installer
+   (this requires the 'setup' USE flag to be enabled):
 
    mkdir ${MY_INSTALLDIR}/config
    chown ${VHOST_SERVER_UID}:${VHOST_SERVER_UID} ${MY_INSTALLDIR}/config
 
-   then go to http://${VHOST_HOSTNAME}/${VHOST_APPDIR}/setup/
+   then go to http://${VHOST_HOSTNAME}${VHOST_APPDIR}/setup/
 
    once you've saved the configuration:
 
