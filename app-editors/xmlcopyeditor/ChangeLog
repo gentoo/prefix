@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/xmlcopyeditor
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.15 2010/07/25 18:39:22 tove Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/ChangeLog,v 1.19 2011/10/09 07:42:53 tove Exp $
+
+  09 Oct 2011; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove tove from metadata.xml
+
+  23 Aug 2010; Torsten Veller <tove@gentoo.org>
+  -xmlcopyeditor-1.2.0.1.ebuild, -xmlcopyeditor-1.2.0.2-r1.ebuild,
+  -xmlcopyeditor-1.2.0.2-r2.ebuild, -files/xmlcopyeditor-1.2.0.2-gcc44.patch:
+  Cleanup
+
+  23 Aug 2010; Torsten Veller <tove@gentoo.org>
+  xmlcopyeditor-1.2.0.6.ebuild:
+  Drop RDEPEND on dev-libs/boost (#293064)
 
 *xmlcopyeditor-1.2.0.6 (25 Jul 2010)
 

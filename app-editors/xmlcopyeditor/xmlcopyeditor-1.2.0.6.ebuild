@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/xmlcopyeditor-1.2.0.6.ebuild,v 1.1 2010/07/25 18:39:22 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/xmlcopyeditor-1.2.0.6.ebuild,v 1.2 2010/08/23 07:02:15 tove Exp $
 
 EAPI="2"
 
@@ -19,15 +19,15 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="aqua guidexml"
 
-DEPEND=">=dev-libs/libxml2-2.7.3-r1
+RDEPEND=">=dev-libs/libxml2-2.7.3-r1
 	dev-libs/libxslt
 	dev-libs/xerces-c
-	dev-libs/boost
 	dev-libs/libpcre
 	app-text/aspell
 	!aqua? ( x11-libs/wxGTK:2.8[X] )
 	aqua? ( x11-libs/wxGTK:2.8[aqua] )"
-RDEPEND=${DEPEND}
+DEPEND="${RDEPEND}
+	dev-libs/boost"
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
