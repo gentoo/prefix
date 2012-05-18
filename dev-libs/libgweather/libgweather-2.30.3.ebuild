@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.30.3.ebuild,v 1.6 2011/01/19 21:21:12 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.30.3.ebuild,v 1.14 2012/05/04 18:35:47 jdhore Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -19,18 +19,19 @@ IUSE="python doc"
 # libsoup-gnome is to be used because libsoup[gnome] might not
 # get libsoup-gnome installed by the time ${P} is built
 RDEPEND=">=x11-libs/gtk+-2.11:2
-	>=dev-libs/glib-2.13
-	>=gnome-base/gconf-2.8
+	>=dev-libs/glib-2.13:2
+	>=gnome-base/gconf-2.8:2
 	>=net-libs/libsoup-gnome-2.25.1:2.4
-	>=dev-libs/libxml2-2.6.0
+	>=dev-libs/libxml2-2.6.0:2
 	>=sys-libs/timezone-data-2010k
 	python? (
-		>=dev-python/pygobject-2
+		>=dev-python/pygobject-2:2
 		>=dev-python/pygtk-2 )
 	!<gnome-base/gnome-applets-2.22.0"
 DEPEND="${RDEPEND}
+	sys-devel/gettext
 	>=dev-util/intltool-0.40.3
-	>=dev-util/pkgconfig-0.19
+	virtual/pkgconfig
 	>=dev-util/gtk-doc-am-1.9
 	doc? ( >=dev-util/gtk-doc-1.9 )"
 
@@ -58,4 +59,6 @@ src_prepare() {
 src_install() {
 	gnome2_src_install
 	python_clean_installation_image
+
+	find "${ED}" -name '*.la' -exec rm -f {} +
 }

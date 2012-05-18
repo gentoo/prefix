@@ -1,6 +1,55 @@
 # ChangeLog for dev-libs/libgweather
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.73 2011/01/19 21:21:12 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.84 2012/05/06 07:26:57 tetromino Exp $
+
+*libgweather-3.4.1 (06 May 2012)
+
+  06 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  libgweather-3.2.1.ebuild, +libgweather-3.4.1.ebuild:
+  Version bump, remove unneeded gtk-doc-am dep.
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> libgweather-2.30.3.ebuild,
+  libgweather-3.2.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*libgweather-3.2.1 (30 Oct 2011)
+
+  30 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -libgweather-3.0.2.ebuild, +libgweather-3.2.1.ebuild:
+  Bump to 3.2.1 from the gnome overlay, drop old. Fixes fetching weather
+  updates for UK and Australia.
+
+  19 Oct 2011; Alexandre Rostovtsev <tetromino@gentoo.org>
+  libgweather-2.30.3.ebuild:
+  Depend on correct slot of pygobject.
+
+*libgweather-3.0.2 (18 Aug 2011)
+
+  18 Aug 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +libgweather-3.0.2.ebuild, metadata.xml:
+  Bump to 3.0.2, from gnome overlay for GNOME 3
+
+  04 Jun 2011; Pacho Ramos <pacho@gentoo.org> -libgweather-2.30.2.ebuild,
+  libgweather-2.30.3.ebuild:
+  DEPEND on sys-devel/gettext per bug #368527 by Cédric Jeanneret. Remove old.
+
+  10 Apr 2011; Samuli Suominen <ssuominen@gentoo.org>
+  libgweather-2.30.3.ebuild:
+  Punt useless libtool file.
+
+  22 Mar 2011; Brent Baude <ranger@gentoo.org> libgweather-2.30.3.ebuild:
+  Marking libgweather-2.30.3 ppc stable for bug 353436
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  libgweather-2.30.3.ebuild:
+  ppc64 stable wrt #353436
+
+  16 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  libgweather-2.30.2.ebuild, libgweather-2.30.3.ebuild:
+  Fix slot-deps on gtk+ and other libs
+
+  30 Jan 2011; Raúl Porcel <armin76@gentoo.org> libgweather-2.30.3.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #348987
 
   19 Jan 2011; Markos Chandras <hwoarang@gentoo.org> libgweather-2.30.3.ebuild:
   Stable on amd64 wrt bug #348987
