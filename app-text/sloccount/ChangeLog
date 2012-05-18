@@ -1,6 +1,11 @@
 # ChangeLog for app-text/sloccount
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sloccount/ChangeLog,v 1.22 2008/12/09 21:33:31 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/sloccount/ChangeLog,v 1.23 2010/10/12 20:52:02 jer Exp $
+
+*sloccount-2.26-r2 (12 Oct 2010)
+
+  12 Oct 2010; Jeroen Roovers <jer@gentoo.org> +sloccount-2.26-r2.ebuild:
+  Remove silly DEPEND. Respect CC (bug #243752), CFLAGS, LDFLAGS.
 
   09 Dec 2008; Raúl Porcel <armin76@gentoo.org> sloccount-2.26-r1.ebuild:
   Add ~alpha wrt #250343
