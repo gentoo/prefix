@@ -1,6 +1,72 @@
 # ChangeLog for dev-libs/check
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.57 2009/11/15 21:11:47 eva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.77 2012/04/26 22:22:04 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> check-0.9.8-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> check-0.9.8-r1.ebuild:
+  Marking check-0.9.8-r1 ppc64 for bug 392773
+
+  05 Jan 2012; Brent Baude <ranger@gentoo.org> check-0.9.8-r1.ebuild:
+  Marking check-0.9.8-r1 ppc for bug 392773
+
+  11 Dec 2011; Raúl Porcel <armin76@gentoo.org> check-0.9.8-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #392773
+
+  11 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> check-0.9.8-r1.ebuild:
+  x86 stable wrt bug #392773
+
+  08 Dec 2011; Markus Meier <maekke@gentoo.org> check-0.9.8-r1.ebuild:
+  arm stable, bug #392773
+
+  03 Dec 2011; Jeroen Roovers <jer@gentoo.org> check-0.9.8-r1.ebuild:
+  Stable for HPPA (bug #392773).
+
+  02 Dec 2011; Markos Chandras <hwoarang@gentoo.org> check-0.9.8-r1.ebuild:
+  Stable on amd64 wrt bug #392773
+
+  02 Dec 2011; Nathan Phillip Brink <binki@gentoo.org> check-0.9.8-r1.ebuild:
+  Add missing dependency on dev-python/subunit, noticed by jdhore.
+
+*check-0.9.8-r1 (29 Sep 2011)
+
+  29 Sep 2011; Nathan Phillip Brink <binki@gentoo.org> +check-0.9.8-r1.ebuild,
+  metadata.xml:
+  In a revbump, add subunit useflag to fix bug 354091 by flameeyes, bump to
+  EAPI=4, and move to using autotools-utils eclass (adding static-libs
+  useflag).
+
+  13 Sep 2011; Nathan Phillip Brink <binki@gentoo.org> metadata.xml:
+  Set myself (binki) as maintainer.
+
+  13 Sep 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #225633
+
+  26 Feb 2011; Raúl Porcel <armin76@gentoo.org> check-0.9.8.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #287514
+
+  25 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org> check-0.9.8.ebuild:
+  ppc/ppc64 stable wrt #287514
+
+  21 Feb 2011; Michael Weber <xmw@gentoo.org> check-0.9.8.ebuild:
+  sparc stable, bug 287514
+
+  21 Feb 2011; Jeroen Roovers <jer@gentoo.org> check-0.9.8.ebuild:
+  Stable for HPPA (bug #287514).
+
+  20 Feb 2011; Markos Chandras <hwoarang@gentoo.org> check-0.9.8.ebuild:
+  Stable on amd64 wrt bug #287514
+
+  19 Feb 2011; Markus Meier <maekke@gentoo.org> check-0.9.8.ebuild:
+  arm stable, bug #287514
+
+  16 Feb 2011; Samuli Suominen <ssuominen@gentoo.org> check-0.9.8.ebuild:
+  USE="static-libs" and punt useless libtool archive. Fix LICENSE from GPL-2 to
+  LGPL-2.1.
+
+  27 Jan 2011; Christian Faulhammer <fauli@gentoo.org> check-0.9.8.ebuild:
+  stable x86, bug 348987
 
 *check-0.9.8 (15 Nov 2009)
 
