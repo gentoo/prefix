@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/jakarta-oro
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jakarta-oro/ChangeLog,v 1.14 2007/07/03 10:46:01 betelgeuse Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jakarta-oro/ChangeLog,v 1.18 2012/05/03 18:05:52 sera Exp $
+
+*jakarta-oro-2.0.8-r3 (03 May 2012)
+
+  03 May 2012; Ralph Sennhauser <sera@gentoo.org> +jakarta-oro-2.0.8-r3.ebuild:
+  Fix various qa issues. #317943
+
+  01 Jan 2012; Ralph Sennhauser <sera@gentoo.org> jakarta-oro-2.0.8-r2.ebuild:
+  Drop ia64 support #345433
 
   03 Jul 2007; Petteri Räty <betelgeuse@gentoo.org>
   jakarta-oro-2.0.8-r2.ebuild:
