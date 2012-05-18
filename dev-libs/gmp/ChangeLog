@@ -1,6 +1,33 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.161 2012/01/03 10:21:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.168 2012/05/06 18:16:34 vapier Exp $
+
+*gmp-5.0.5 (06 May 2012)
+
+  06 May 2012; Mike Frysinger <vapier@gentoo.org> +gmp-5.0.5.ebuild:
+  Version bump.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> gmp-5.0.4.ebuild:
+  keyword ~amd64-fbsd
+
+  13 Feb 2012; Kacper Kowalik <xarthisius@gentoo.org> gmp-5.0.2_p1.ebuild:
+  ppc64 stable wrt #395193
+
+*gmp-5.0.4 (10 Feb 2012)
+
+  10 Feb 2012; Mike Frysinger <vapier@gentoo.org> +gmp-5.0.4.ebuild:
+  Version bump.
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> gmp-5.0.2_p1.ebuild:
+  Marking gmp-5.0.2_p1 ppc for bug 395193
+
+  28 Jan 2012; Mike Frysinger <vapier@gentoo.org> gmp-5.0.3.ebuild:
+  Fix unpack with USE=doc #401161 by Marien Zwart.
+
+*gmp-5.0.3 (27 Jan 2012)
+
+  27 Jan 2012; Mike Frysinger <vapier@gentoo.org> +gmp-5.0.3.ebuild:
+  Version bump.
 
   03 Jan 2012; Mike Frysinger <vapier@gentoo.org> gmp-5.0.2_p1.ebuild:
   Mung the libgmp.la references in libgmpxx.la #397389 by David Leverton.

@@ -1,15 +1,15 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.2_p1.ebuild,v 1.12 2012/02/13 10:42:49 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.5.ebuild,v 1.1 2012/05/06 18:16:34 vapier Exp $
 
-inherit flag-o-matic eutils libtool toolchain-funcs
+inherit flag-o-matic eutils libtool unpacker toolchain-funcs
 
 MY_PV=${PV/_p*}
 MY_P=${PN}-${MY_PV}
 PLEVEL=${PV/*p}
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
 HOMEPAGE="http://gmplib.org/"
-SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.bz2
+SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.xz
 	doc? ( http://gmplib.org/${PN}-man-${MY_PV}.pdf )"
 
 LICENSE="LGPL-3"
@@ -18,20 +18,18 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc cxx static-libs"
 
-DEPEND="sys-devel/m4"
+DEPEND="sys-devel/m4
+	app-arch/xz-utils"
 RDEPEND=""
 
 S=${WORKDIR}/${MY_P}
 
 src_unpack() {
-	unpack ${MY_P}.tar.bz2
+	unpacker_src_unpack
 	cd "${S}"
 	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
 
-	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
-	epatch "${FILESDIR}"/${PN}-5.0.0-s390.diff
-	epatch "${FILESDIR}"/${MY_P}-unnormalised-dividends.patch
-	has x32 $(get_all_abis) && epatch "${FILESDIR}"/${PN}-5.0.2*x32*.patch
+	epatch "${FILESDIR}"/${PN}-5.0.2-x32-support.patch
 
 	# disable -fPIE -pie in the tests for x86  #236054
 	if use x86 && gcc-specs-pie ; then
