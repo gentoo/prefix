@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/javacc-5.0.ebuild,v 1.2 2011/01/29 11:07:07 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/javacc-5.0.ebuild,v 1.3 2012/04/13 18:13:08 ulm Exp $
 
-JAVA_PKG_IUSE="doc examples source test"
 EAPI="2"
+JAVA_PKG_IUSE="doc examples source test"
 
 inherit java-pkg-2 java-ant-2 eutils
 
