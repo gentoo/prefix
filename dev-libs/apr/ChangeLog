@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/apr
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.183 2012/02/28 08:08:16 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.184 2012/05/09 15:43:48 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> apr-1.4.6.ebuild:
+  keyword ~amd64-fbsd
 
 *apr-1.4.6 (28 Feb 2012)
 
