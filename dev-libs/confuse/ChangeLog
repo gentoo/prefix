@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/confuse
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.48 2010/10/14 19:16:09 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.50 2012/05/04 18:35:53 jdhore Exp $
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> confuse-2.6-r3.ebuild,
+  confuse-2.7.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  07 Jan 2012; Ulrich Mueller <ulm@gentoo.org> confuse-2.6-r3.ebuild,
+  confuse-2.7.ebuild:
+  Fix LICENSE, it should be ISC instead of LGPL-2. Bug 372533.
 
   14 Oct 2010; Brent Baude <ranger@gentoo.org> confuse-2.7.ebuild:
   stable ppc, bug 327597
