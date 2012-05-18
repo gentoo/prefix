@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/genlop
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/ChangeLog,v 1.77 2009/03/26 12:33:09 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/ChangeLog,v 1.78 2010/10/19 11:47:35 leio Exp $
+
+  19 Oct 2010; Mart Raudsepp <leio@gentoo.org> genlop-0.30.5.ebuild,
+  genlop-0.30.7.ebuild, genlop-0.30.8-r1.ebuild:
+  Drop to ~mips
 
   26 Mar 2009; Raúl Porcel <armin76@gentoo.org> genlop-0.30.7.ebuild,
   genlop-0.30.8.ebuild, genlop-0.30.8-r1.ebuild, genlop-0.30.8-r2.ebuild:
