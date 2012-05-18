@@ -1,6 +1,19 @@
 # ChangeLog for dev-java/libreadline-java
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/libreadline-java/ChangeLog,v 1.35 2011/01/20 18:34:11 xarthisius Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/libreadline-java/ChangeLog,v 1.38 2012/05/04 18:49:51 sera Exp $
+
+  04 May 2012; Ralph Sennhauser <sera@gentoo.org>
+  libreadline-java-0.8.0-r3.ebuild,
+  +files/libreadline-java-0.8.0-respect-flags.patch:
+  Respect CC and CFLAGS. #296741
+
+  13 Apr 2012; Ulrich Müller <ulm@gentoo.org>
+  libreadline-java-0.8.0-r3.ebuild:
+  Move EAPI assignment to top of ebuild, bug 411875.
+
+  01 Jan 2012; Ralph Sennhauser <sera@gentoo.org>
+  libreadline-java-0.8.0-r2.ebuild, libreadline-java-0.8.0-r3.ebuild:
+  Drop ia64 support #345433
 
   20 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
   libreadline-java-0.8.0-r3.ebuild:
