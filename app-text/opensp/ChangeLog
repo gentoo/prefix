@@ -1,6 +1,43 @@
 # ChangeLog for app-text/opensp
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/opensp/ChangeLog,v 1.47 2010/07/30 14:57:31 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/opensp/ChangeLog,v 1.57 2012/04/26 22:37:06 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> opensp-1.5.2-r3.ebuild:
+  keyword ~amd64-fbsd
+
+  01 Apr 2012; Mike Gilbert <floppym@gentoo.org> opensp-1.5.2-r3.ebuild:
+  Depend on app-text/openjade for tests. Bug 290422.
+
+*opensp-1.5.2-r3 (30 Mar 2012)
+
+  30 Mar 2012; Mike Gilbert <floppym@gentoo.org>
+  +files/opensp-1.5.2-fix-segfault.patch, +opensp-1.5.2-r3.ebuild:
+  Fix segfault, bug 196230.
+
+  24 Jul 2011; Peter Volkov <pva@gentoo.org> opensp-1.5.2-r2.ebuild:
+  Add app-text/sgml-common as a test dependency, thank Jakub Januszkiewicz and
+  Nikoli for report in bug #273681.
+
+  08 Jan 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -opensp-1.5.1.ebuild, -files/opensp-1.5.1-gcc41.patch,
+  -opensp-1.5.2-r1.ebuild:
+  Delete.
+
+  07 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> opensp-1.5.2-r2.ebuild:
+  ppc64 stable wrt #329791
+
+  29 Aug 2010; Raúl Porcel <armin76@gentoo.org> opensp-1.5.2-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #329791
+
+  18 Aug 2010; Jeroen Roovers <jer@gentoo.org> opensp-1.5.2-r2.ebuild:
+  Remove HPPA compiler optimisation restriction as tests would fail. Stable
+  for HPPA (bug #329791).
+
+  17 Aug 2010; Jeroen Roovers <jer@gentoo.org> opensp-1.5.2-r2.ebuild:
+  Stable for PPC (bug #329791).
+
+  15 Aug 2010; Markus Meier <maekke@gentoo.org> opensp-1.5.2-r2.ebuild:
+  arm stable, bug #329791
 
   30 Jul 2010; Markos Chandras <hwoarang@gentoo.org> opensp-1.5.2-r2.ebuild:
   Stable on amd64 wrt bug #329791
