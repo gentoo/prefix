@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/hsqldb-1.8.0.10.ebuild,v 1.7 2010/06/30 20:36:28 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/hsqldb-1.8.1.3.ebuild,v 1.3 2012/04/15 18:42:08 vapier Exp $
 
 EAPI=1
 JAVA_PKG_IUSE="doc source test"
@@ -15,15 +15,13 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.zip"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="java6"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+IUSE=""
 
 CDEPEND="java-virtuals/servlet-api:2.3"
-RDEPEND="java6? ( >=virtual/jre-1.6 )
-	!java6? ( >=virtual/jre-1.4 )
+RDEPEND=">=virtual/jre-1.6
 	${CDEPEND}"
-DEPEND="java6? ( >=virtual/jdk-1.6 )
-	!java6? ( || ( =virtual/jdk-1.5* =virtual/jdk-1.4* ) )
+DEPEND="virtual/jdk:1.6
 	test? ( dev-java/junit:0 )
 	app-arch/unzip
 	${CDEPEND}"
@@ -51,10 +49,11 @@ src_unpack() {
 		-e "s#/etc/sysconfig#${EPREFIX}/etc/conf.d#g" \
 		bin/hsqldb || die
 
+	java-pkg_filter-compiler jikes
+
 	eant -q -f "${EANT_BUILD_XML}" cleanall > /dev/null
 
 	epatch "${FILESDIR}/resolve-config-softlinks.patch"
-	java-pkg_filter-compiler jikes
 
 	mkdir conf
 	sed -e "s/^HSQLDB_JAR_PATH=.*$/HSQLDB_JAR_PATH=${EPREFIX//\//\\/}${HSQLDB_JAR//\//\\/}/g" \
@@ -69,6 +68,7 @@ src_unpack() {
 	# http://hsqldb.cvs.sourceforge.net/*checkout*/hsqldb/hsqldb-dev/src/org/hsqldb/lib/StringComparator.java?revision=1.1&pathrev=hsqldb_1_8_0_10
 	# http://sourceforge.net/tracker/index.php?func=detail&aid=2008754&group_id=23316&atid=378131
 	cp "${FILESDIR}/StringComparator.java" src/org/hsqldb/lib || die
+	cp "${FILESDIR}/TestBug1191815.java" src/org/hsqldb/test/ || die
 }
 
 # EANT_BUILD_XML used also in src_unpack
@@ -91,13 +91,13 @@ src_install() {
 
 	if use doc; then
 		dodoc doc/*.txt
-		java-pkg_dohtml -r doc/guide
-		java-pkg_dohtml -r doc/src
+		dohtml -r doc/zaurus
+		dohtml -r doc/src
 	fi
 	use source && java-pkg_dosrc src/*
 
-	# Install env file for CONFIG_PROTECT support
-	doenvd "${FILESDIR}/35hsqldb" || die
+	echo "CONFIG_PROTECT=\"${HSQLDB_HOME}\"" > "${T}"/35hsqldb || die
+	doenvd "${T}"/35hsqldb || die
 
 	# Put init, configuration and authorization files in /etc
 	doinitd "${FILESDIR}/hsqldb" || die
@@ -167,14 +167,5 @@ pkg_postinst() {
 	elog "If you intend to run it in the Server mode, it is suggested to add the"
 	elog "init script to your start-up scripts, this should be done like this:"
 	elog "  \`rc-update add hsqldb default\`"
-	echo
-
-	# Enable CONFIG_PROTECT for hsqldb
-	env-update
-	elog "Hsqldb stores its database files in ${HSQLDB_HOME} and this directory"
-	elog "is added to the CONFIG_PROTECT list. In order to immediately activate"
-	elog "these settings please do:"
-	elog "  \`env-update && source /etc/profile\`"
-	elog "Otherwise the settings will become active next time you login"
 	echo
 }
