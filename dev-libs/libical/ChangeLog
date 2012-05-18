@@ -1,6 +1,33 @@
 # ChangeLog for dev-libs/libical
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.55 2010/08/19 19:52:24 dagger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.66 2012/03/18 15:29:51 armin76 Exp $
+
+  18 Mar 2012; Raúl Porcel <armin76@gentoo.org> libical-0.48.ebuild:
+  alpha/ia64/sparc stable wrt #401303
+
+  13 Feb 2012; Markus Meier <maekke@gentoo.org> libical-0.48.ebuild:
+  arm stable, bug #401303
+
+  10 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> -libical-0.26.7.ebuild,
+  -libical-0.27-r1.ebuild, -libical-0.33-r1.ebuild, -libical-0.44-r1.ebuild:
+  old
+
+  10 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> libical-0.48.ebuild:
+  ppc/ppc64/x86 stable wrt #401303
+
+  07 Feb 2012; Jeroen Roovers <jer@gentoo.org> libical-0.48.ebuild:
+  Stable for HPPA (bug #401303).
+
+  29 Jan 2012; Agostino Sarubbo <ago@gentoo.org> libical-0.48.ebuild:
+  Stable for amd64, wrt bug #401303
+
+  05 Jan 2012; Patrick Lauer <patrick@gentoo.org> libical-0.48.ebuild:
+  Fixing SRC_URI, see #350193
+
+*libical-0.48 (04 Jan 2012)
+
+  04 Jan 2012; Michele Noberasco <s4t4n@gentoo.org> +libical-0.48.ebuild:
+  Version bump. Closes bug #347883.
 
 *libical-0.44-r1 (19 Aug 2010)
 
