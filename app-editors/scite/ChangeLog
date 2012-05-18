@@ -1,6 +1,175 @@
 # ChangeLog for app-editors/scite
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/ChangeLog,v 1.97 2010/06/23 19:14:16 nelchael Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/ChangeLog,v 1.138 2012/05/06 08:53:11 ago Exp $
+
+  06 May 2012; Agostino Sarubbo <ago@gentoo.org> -scite-3.0.1.ebuild,
+  -scite-3.0.2.ebuild, -scite-3.0.3.ebuild:
+  Remove old
+
+  05 May 2012; Brent Baude <ranger@gentoo.org> scite-3.0.4.ebuild:
+  Marking scite-3.0.4 ppc for bug 412657
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> scite-3.0.1.ebuild,
+  scite-3.0.2.ebuild, scite-3.0.3.ebuild, scite-3.0.4.ebuild,
+  scite-3.1.0.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  30 Apr 2012; Agostino Sarubbo <ago@gentoo.org> scite-3.0.4.ebuild:
+  Stable for amd64, wrt bug #412657
+
+  30 Apr 2012; Agostino Sarubbo <ago@gentoo.org> scite-3.0.4.ebuild:
+  Stable for X86, wrt bug #412657
+
+*scite-3.1.0 (30 Apr 2012)
+
+  30 Apr 2012; Krzysztof Pawlik <nelchael@gentoo.org> +scite-3.1.0.ebuild:
+  Version bump.
+
+*scite-3.0.4 (10 Mar 2012)
+
+  10 Mar 2012; Justin Lecher <jlec@gentoo.org> +scite-3.0.4.ebuild:
+  Version BUmp, #407539
+
+*scite-3.0.3 (16 Feb 2012)
+
+  16 Feb 2012; Krzysztof Pawlik <nelchael@gentoo.org>
+  -files/scite-2.12-install.patch, -files/scite-2.12-no-lua.patch,
+  -scite-2.22.ebuild, -scite-2.25.ebuild, -scite-2.26.ebuild,
+  -scite-2.27.ebuild, -scite-2.28.ebuild, -files/scite-2.28-no-lua.patch,
+  +scite-3.0.3.ebuild:
+  Version bump, remove old versions.
+
+  16 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> scite-3.0.1.ebuild:
+  x86 stable wrt bug #401097
+
+  06 Feb 2012; Brent Baude <ranger@gentoo.org> scite-3.0.1.ebuild:
+  Marking scite-3.0.1 ppc for bug 401097
+
+  28 Jan 2012; Agostino Sarubbo <ago@gentoo.org> scite-3.0.1.ebuild:
+  Stable for amd64, wrt bug #401097
+
+  27 Jan 2012; Krzysztof Pawlik <nelchael@gentoo.org> scite-3.0.1.ebuild,
+  scite-3.0.2.ebuild:
+  Fix 401099: replace gcc with tc-getCC, fix dependencies.
+
+*scite-3.0.2 (27 Jan 2012)
+
+  27 Jan 2012; Krzysztof Pawlik <nelchael@gentoo.org> +scite-3.0.2.ebuild:
+  Version bump.
+
+  07 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> scite-2.28.ebuild:
+  x86 stable wrt bug #392577
+
+  03 Dec 2011; Markos Chandras <hwoarang@gentoo.org> scite-2.28.ebuild:
+  add missing pango,cairo,gdk-pixbuf,glib dependencies. Stable on amd64. Bug
+  #392577
+
+  30 Nov 2011; Krzysztof Pawlik <nelchael@gentoo.org> scite-3.0.1.ebuild:
+  Use ED instead of D as suggested by Agostino Sarubbo in bug #380061.
+
+*scite-3.0.1 (30 Nov 2011)
+
+  30 Nov 2011; Krzysztof Pawlik <nelchael@gentoo.org> +scite-3.0.1.ebuild,
+  +files/scite-3.0.1-no-lua.patch:
+  Version bump to 3.0.1, update to EAPI 4, see bug #380061 and bug #392485.
+
+*scite-2.28 (13 Aug 2011)
+
+  13 Aug 2011; Krzysztof Pawlik <nelchael@gentoo.org>
+  -files/scite-1.79-install.patch, -files/scite-1.79-no-lua.patch,
+  +scite-2.28.ebuild, +files/scite-2.28-no-lua.patch:
+  Version bump, remove old files.
+
+  07 Aug 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> scite-2.27.ebuild:
+  x86 stable wrt bug #377087
+
+  02 Aug 2011; Markos Chandras <hwoarang@gentoo.org> scite-2.27.ebuild:
+  Stable on amd64 wrt bug #377087
+
+  20 Jul 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #28480
+
+  02 Jul 2011; Markos Chandras <hwoarang@gentoo.org> scite-2.25.ebuild:
+  Stable on amd64 wrt bug #369805
+
+*scite-2.27 (28 Jun 2011)
+
+  28 Jun 2011; Krzysztof Pawlik <nelchael@gentoo.org> -scite-2.24.ebuild,
+  +scite-2.27.ebuild:
+  Version bump, remove old, obsolete version.
+
+  25 Jun 2011; Raúl Porcel <armin76@gentoo.org> scite-2.22.ebuild,
+  scite-2.24.ebuild, scite-2.25.ebuild, scite-2.26.ebuild:
+  Drop sparc keywords
+
+  08 Jun 2011; Markus Meier <maekke@gentoo.org> scite-2.25.ebuild:
+  x86 stable, bug #369805
+
+*scite-2.26 (06 Jun 2011)
+
+  06 Jun 2011; Krzysztof Pawlik <nelchael@gentoo.org> +scite-2.26.ebuild:
+  Version bump.
+
+*scite-2.25 (07 May 2011)
+
+  07 May 2011; Krzysztof Pawlik <nelchael@gentoo.org> +scite-2.25.ebuild:
+  Version bump.
+
+  27 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org> scite-2.22.ebuild,
+  scite-2.24.ebuild:
+  Fix slot-dep on gtk+
+
+*scite-2.24 (03 Mar 2011)
+
+  03 Mar 2011; Krzysztof Pawlik <nelchael@gentoo.org> -scite-2.23.ebuild,
+  +scite-2.24.ebuild:
+  Version bump.
+
+  06 Feb 2011; Krzysztof Pawlik <nelchael@gentoo.org> -scite-2.03.ebuild,
+  -scite-2.12.ebuild:
+  Remove old versions.
+
+  13 Jan 2011; Brent Baude <ranger@gentoo.org> scite-2.22.ebuild:
+  stable ppc, bug 348492
+
+  03 Jan 2011; Michael Weber <xmw@gentoo.org> scite-2.22.ebuild:
+  sparc stable (bug 348492)
+
+  13 Dec 2010; Thomas Kahle <tomka@gentoo.org> scite-2.22.ebuild:
+  x86 stable per bug 348492
+
+  12 Dec 2010; Markos Chandras <hwoarang@gentoo.org> scite-2.22.ebuild:
+  Stable on amd64 wrt bug #348492
+
+*scite-2.23 (12 Dec 2010)
+
+  12 Dec 2010; Krzysztof Pawlik <nelchael@gentoo.org> -scite-2.11.ebuild,
+  -scite-2.20.ebuild, -scite-2.21.ebuild, +scite-2.23.ebuild:
+  Version bump, remove old versions.
+
+*scite-2.22 (04 Nov 2010)
+
+  04 Nov 2010; Krzysztof Pawlik <nelchael@gentoo.org> +scite-2.22.ebuild:
+  Version bump.
+
+*scite-2.21 (08 Oct 2010)
+
+  08 Oct 2010; Krzysztof Pawlik <nelchael@gentoo.org> +scite-2.21.ebuild:
+  Version bump.
+
+  18 Sep 2010; Raúl Porcel <armin76@gentoo.org> scite-2.12.ebuild:
+  sparc stable wrt #333447
+
+  21 Aug 2010; Markos Chandras <hwoarang@gentoo.org> scite-2.12.ebuild:
+  Stable on amd64 wrt bug #333447
+
+  20 Aug 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> scite-2.12.ebuild:
+  x86 stable wrt bug #333447
+
+*scite-2.20 (19 Aug 2010)
+
+  19 Aug 2010; Krzysztof Pawlik <nelchael@gentoo.org> +scite-2.20.ebuild:
+  Version bump.
 
 *scite-2.12 (23 Jun 2010)
 

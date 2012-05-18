@@ -1,12 +1,14 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/scite-2.11.ebuild,v 1.1 2010/04/21 18:02:15 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/scite-3.1.0.ebuild,v 1.2 2012/05/03 18:33:01 jdhore Exp $
+
+EAPI="4"
 
 inherit toolchain-funcs eutils
 
 MY_PV=${PV//./}
 DESCRIPTION="A very powerful editor for programmers"
-HOMEPAGE="http://scintilla.sourceforge.net/SciTE.html"
+HOMEPAGE="http://www.scintilla.org/SciTE.html"
 SRC_URI="mirror://sourceforge/scintilla/${PN}${MY_PV}.tgz"
 
 LICENSE="Scintilla"
@@ -14,21 +16,25 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="lua"
 
-RDEPEND=">=x11-libs/gtk+-2
+RDEPEND="dev-libs/glib
+	x11-libs/cairo
+	x11-libs/gtk+:2
+	x11-libs/gdk-pixbuf
+	x11-libs/pango
 	lua? ( >=dev-lang/lua-5 )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	>=sys-apps/sed-4"
 
 S="${WORKDIR}/${PN}/gtk"
 
-src_unpack() {
-	unpack ${A}
+src_prepare() {
 	cd "${WORKDIR}/scintilla/gtk"
 	sed -i makefile \
 		-e "s#^CXXFLAGS=#CXXFLAGS=${CXXFLAGS} #" \
 		-e "s#^\(CXXFLAGS=.*\)-Os#\1#" \
 		-e "s#^CC =\(.*\)#CC = $(tc-getCXX)#" \
+		-e "s#^CCOMP =\(.*\)#CCOMP = $(tc-getCC)#" \
 		-e "s#-Os##" \
 		|| die "error patching makefile"
 
@@ -44,21 +50,21 @@ src_unpack() {
 		-e "s#^CXXFLAGS=#CXXFLAGS=${CXXFLAGS} #" \
 		-e "s#^\(CXXFLAGS=.*\)-Os#\1#" \
 		-e "s#^CC =\(.*\)#CC = $(tc-getCXX)#" \
+		-e "s#^CCOMP =\(.*\)#CCOMP = $(tc-getCC)#" \
 		-e 's#${ED}##' \
 		-e 's#-g root#-g 0#' \
 		-e "s#-Os##" \
 		|| die "error patching makefile"
 	cd "${WORKDIR}"
-	epatch "${FILESDIR}/${PN}-1.79-install.patch"
-	epatch "${FILESDIR}/${PN}-1.79-no-lua.patch"
+	epatch "${FILESDIR}/${PN}-3.0.1-no-lua.patch"
 }
 
 src_compile() {
-	make -C ../../scintilla/gtk || die "prep make failed"
+	emake -C ../../scintilla/gtk
 	if use lua; then
-		emake || die "make failed"
+		emake
 	else
-		emake NO_LUA=1 || die "make failed"
+		emake NO_LUA=1
 	fi
 }
 
@@ -69,12 +75,12 @@ src_install() {
 	make prefix="${ED}/usr" install || die
 
 	# we have to keep this because otherwise it'll break upgrading
-	mv "${ED}/usr/bin/SciTE" "${ED}/usr/bin/scite"
+	mv "${ED}/usr/bin/SciTE" "${ED}/usr/bin/scite" || die
 	dosym /usr/bin/scite /usr/bin/SciTE
 
 	# replace .desktop file with our own working version
-	insinto /usr/share/applications
 	rm -f "${ED}/usr/share/applications/SciTE.desktop"
+	insinto /usr/share/applications
 	doins "${FILESDIR}/scite.desktop"
 
 	doman ../doc/scite.1
