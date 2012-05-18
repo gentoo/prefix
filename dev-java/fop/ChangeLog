@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/fop
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/ChangeLog,v 1.67 2009/10/03 20:25:37 caster Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/ChangeLog,v 1.68 2011/12/31 15:33:32 sera Exp $
+
+  31 Dec 2011; Ralph Sennhauser <sera@gentoo.org> fop-0.95.ebuild:
+  Drop ia64 support #345433
 
   03 Oct 2009; Vlastimil Babka <caster@gentoo.org> -fop-0.93-r1.ebuild,
   -fop-0.94-r1.ebuild:
