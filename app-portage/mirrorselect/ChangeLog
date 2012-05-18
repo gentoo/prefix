@@ -1,6 +1,99 @@
 # ChangeLog for app-portage/mirrorselect
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/mirrorselect/ChangeLog,v 1.88 2009/12/08 04:53:44 idl0r Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/mirrorselect/ChangeLog,v 1.111 2012/02/22 17:17:25 zmedico Exp $
+
+  22 Feb 2012; Zac Medico <zmedico@gentoo.org> mirrorselect-2.1.0-r1.ebuild,
+  mirrorselect-2.1.0-r2.ebuild, mirrorselect-2.1.0-r3.ebuild:
+  Bug #405299: Require python2 in dependencies.
+
+  17 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  mirrorselect-2.1.0-r3.ebuild:
+  ppc64 stable wrt #350366
+
+  04 Jan 2011; Jeroen Roovers <jer@gentoo.org> mirrorselect-2.1.0-r3.ebuild:
+  Stable for HPPA PPC (bug #350366).
+
+  04 Jan 2011; Dane Smith <c1pher@gentoo.org> mirrorselect-2.1.0-r2.ebuild:
+  Fixed manifest wrt bug 350584.
+  Fixed the copyright in 2.1.0-r2 to make repoman happy.
+
+  04 Jan 2011; Raúl Porcel <armin76@gentoo.org> mirrorselect-2.1.0-r3.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #350366
+
+  04 Jan 2011; Markos Chandras <hwoarang@gentoo.org>
+  mirrorselect-2.1.0-r3.ebuild:
+  Stable on amd64 wrt bug #350366
+
+*mirrorselect-2.1.0-r3 (02 Jan 2011)
+
+  02 Jan 2011; Christian Ruppert <idl0r@gentoo.org>
+  +mirrorselect-2.1.0-r3.ebuild:
+  Use python_convert_shebangs, bug 350366
+
+  29 Dec 2010; Brent Baude <ranger@gentoo.org> mirrorselect-2.1.0-r2.ebuild:
+  stable ppc64, bug 344599
+
+  26 Nov 2010; Jeroen Roovers <jer@gentoo.org> mirrorselect-2.1.0-r2.ebuild:
+  Stable for HPPA (bug #344599).
+
+  14 Nov 2010; Raúl Porcel <armin76@gentoo.org>
+  mirrorselect-2.1.0-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #344599
+
+  09 Nov 2010; Markus Meier <maekke@gentoo.org>
+  mirrorselect-2.1.0-r2.ebuild:
+  arm stable, bug #344599
+
+  08 Nov 2010; Markos Chandras <hwoarang@gentoo.org>
+  mirrorselect-2.1.0-r2.ebuild:
+  Stable on amd64 wrt bug #344599
+
+  08 Nov 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  mirrorselect-2.1.0-r2.ebuild:
+  x86 stable wrt bug #344599
+
+  06 Sep 2010; Christian Ruppert <idl0r@gentoo.org> -mirrorselect-2.0.0.ebuild:
+  Remove old mirrorselect-2.0.0.ebuild.
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> mirrorselect-2.1.0-r1.ebuild:
+  Marking mirrorselect-2.1.0-r1 ppc64 for bug 312359
+
+*mirrorselect-2.1.0-r2 (01 Aug 2010)
+
+  01 Aug 2010; Christian Ruppert <idl0r@gentoo.org>
+  +files/0002-Check-for-a-valid-mirrorselect-test-file.patch,
+  +mirrorselect-2.1.0-r2.ebuild:
+  Check for a valid mirrorselect-test file, fixes bug 330611, thanks to
+  Soren Harward <stharward@gmail.com>.
+
+  08 May 2010; Raúl Porcel <armin76@gentoo.org>
+  mirrorselect-2.1.0-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh stable wrt #312359
+
+  16 Apr 2010; Brent Baude <ranger@gentoo.org> mirrorselect-2.1.0-r1.ebuild:
+  stable ppc, bug 312359
+
+  14 Apr 2010; Jeroen Roovers <jer@gentoo.org> mirrorselect-2.1.0-r1.ebuild:
+  Stable for HPPA (bug #312359).
+
+  09 Apr 2010; Tiago Cunha <tcunha@gentoo.org> mirrorselect-2.1.0-r1.ebuild:
+  stable sparc, bug 312359
+
+  05 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  mirrorselect-2.1.0-r1.ebuild:
+  x86 stable wrt bug #312359
+
+  04 Apr 2010; Markos Chandras <hwoarang@gentoo.org>
+  mirrorselect-2.1.0-r1.ebuild:
+  Stable on amd64 wrt bug #312359
+
+*mirrorselect-2.1.0-r1 (02 Apr 2010)
+
+  02 Apr 2010; Christian Ruppert <idl0r@gentoo.org>
+  +files/0001-Fix-rsync-mirror-selectection.patch,
+  -mirrorselect-2.1.0.ebuild, +mirrorselect-2.1.0-r1.ebuild:
+  Fix rsync mirror selection, bug 312753, thanks to Donald Wallace Rouse II
+  <gentoo-user-0d329vjsd8@dwr2.org>
 
 *mirrorselect-2.1.0 (08 Dec 2009)
 
