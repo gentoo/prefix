@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/gnu-crypto
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-crypto/ChangeLog,v 1.27 2007/10/24 04:38:11 wltjr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-crypto/ChangeLog,v 1.28 2012/01/01 18:05:56 sera Exp $
+
+  01 Jan 2012; Ralph Sennhauser <sera@gentoo.org> gnu-crypto-2.0.1-r2.ebuild:
+  Drop ia64 support #345433
 
   24 Oct 2007; William L. Thomson Jr. <wltjr@gentoo.org>
   -gnu-crypto-2.0.1.ebuild, -gnu-crypto-2.0.1-r1.ebuild,
