@@ -2,4 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>prolog</herd>
+<use>
+	<flag name='archive'>Use libarchive for extension packs</flag>
+</use>
 </pkgmetadata>

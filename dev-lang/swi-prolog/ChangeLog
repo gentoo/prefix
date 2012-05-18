@@ -1,6 +1,117 @@
 # ChangeLog for dev-lang/swi-prolog
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.299 2011/10/22 20:22:06 keri Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.325 2012/05/15 15:50:54 keri Exp $
+
+  15 May 2012; <keri@gentoo.org> swi-prolog-6.0.1.ebuild,
+  swi-prolog-6.1.4.ebuild:
+  Fix up failing JPL tests
+
+*swi-prolog-6.1.4 (13 May 2012)
+
+  13 May 2012; <keri@gentoo.org> +swi-prolog-6.1.4.ebuild, metadata.xml:
+  Bump -6.1 development version
+
+*swi-prolog-6.1.3 (04 Apr 2012)
+
+  04 Apr 2012; <keri@gentoo.org> +swi-prolog-6.1.3.ebuild:
+  Bump -6.1 development version
+
+  05 Mar 2012; <keri@gentoo.org> -swi-prolog-5.11.34.ebuild,
+  -swi-prolog-5.11.35.ebuild, -swi-prolog-5.11.36.ebuild,
+  -swi-prolog-5.11.37.ebuild:
+  Remove old development versions
+
+*swi-prolog-6.0.1 (02 Mar 2012)
+
+  02 Mar 2012; <keri@gentoo.org> +swi-prolog-6.0.1.ebuild:
+  Version bump
+
+*swi-prolog-6.1.2 (01 Mar 2012)
+*swi-prolog-6.1.1 (01 Mar 2012)
+
+  01 Mar 2012; <keri@gentoo.org> +swi-prolog-6.1.1.ebuild,
+  +swi-prolog-6.1.2.ebuild:
+  Bump -6.1 development version
+
+*swi-prolog-6.1.0 (01 Mar 2012)
+
+  01 Mar 2012; <keri@gentoo.org> +swi-prolog-6.1.0.ebuild:
+  Bump -6.1 development version
+
+*swi-prolog-6.0.0 (01 Mar 2012)
+
+  01 Mar 2012; <keri@gentoo.org> +swi-prolog-6.0.0.ebuild:
+  Version bump
+
+*swi-prolog-5.11.37 (01 Mar 2012)
+
+  01 Mar 2012; <keri@gentoo.org> +swi-prolog-5.11.37.ebuild:
+  Bump -5.11 development version
+
+  07 Feb 2012; <keri@gentoo.org> -swi-prolog-5.10.4.ebuild,
+  -swi-prolog-5.10.5.ebuild:
+  Remove old versions
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> swi-prolog-5.10.5-r1.ebuild:
+  Marking swi-prolog-5.10.5-r1 ppc for bug 399679
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  swi-prolog-5.10.5-r1.ebuild:
+  x86 stable wrt bug #399679
+
+  22 Jan 2012; Agostino Sarubbo <ago@gentoo.org> swi-prolog-5.10.5-r1.ebuild:
+  Stable for amd64, wrt bug #399679
+
+  16 Jan 2012; <keri@gentoo.org> swi-prolog-5.10.5-r1.ebuild:
+  Fix up JPL regression tests - use correct library search path
+
+*swi-prolog-5.11.36 (09 Jan 2012)
+
+  09 Jan 2012; <keri@gentoo.org> +swi-prolog-5.11.36.ebuild:
+  Bump -5.11 development version
+
+  27 Dec 2011; <keri@gentoo.org> -swi-prolog-5.11.31.ebuild,
+  -swi-prolog-5.11.32.ebuild, -swi-prolog-5.11.33.ebuild:
+  Remove old development versions
+
+*swi-prolog-5.11.35 (27 Dec 2011)
+
+  27 Dec 2011; <keri@gentoo.org> +swi-prolog-5.11.35.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.34 (20 Dec 2011)
+
+  20 Dec 2011; <keri@gentoo.org> +swi-prolog-5.11.34.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.33 (15 Dec 2011)
+
+  15 Dec 2011; <keri@gentoo.org> +swi-prolog-5.11.33.ebuild:
+  Bump -5.11 development version
+
+  18 Nov 2011; <keri@gentoo.org> -swi-prolog-5.11.27.ebuild,
+  -swi-prolog-5.11.28.ebuild, -swi-prolog-5.11.29.ebuild,
+  -swi-prolog-5.11.30.ebuild:
+  Remove old development versions
+
+*swi-prolog-5.11.32 (18 Nov 2011)
+
+  18 Nov 2011; <keri@gentoo.org> +swi-prolog-5.11.32.ebuild:
+  Bump -5.11 development version
+
+*swi-prolog-5.11.31 (13 Nov 2011)
+
+  13 Nov 2011; <keri@gentoo.org> +swi-prolog-5.11.31.ebuild:
+  Bump -5.11. development version
+
+  12 Nov 2011; <keri@gentoo.org> swi-prolog-5.10.5-r1.ebuild,
+  swi-prolog-5.11.30.ebuild:
+  Ensure SWIPL home points to build environment when running testsuite
+
+*swi-prolog-5.11.30 (12 Nov 2011)
+
+  12 Nov 2011; <keri@gentoo.org> +swi-prolog-5.11.30.ebuild:
+  Bump -5.11 development version
 
 *swi-prolog-5.11.29 (22 Oct 2011)
 

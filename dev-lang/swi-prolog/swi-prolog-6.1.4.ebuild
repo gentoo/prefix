@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.11.29.ebuild,v 1.1 2011/10/22 20:22:06 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-6.1.4.ebuild,v 1.2 2012/05/15 15:50:54 keri Exp $
 
 EAPI=2
 
 inherit eutils flag-o-matic java-pkg-opt-2
 
-PATCHSET_VER="0"
+PATCHSET_VER="1"
 
 DESCRIPTION="free, small, and standard compliant Prolog compiler"
 HOMEPAGE="http://www.swi-prolog.org/"
@@ -16,9 +16,10 @@ SRC_URI="http://www.swi-prolog.org/download/devel/src/pl-${PV}.tar.gz
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
-IUSE="debug doc gmp hardened java minimal odbc readline ssl static test zlib X"
+IUSE="archive debug doc gmp hardened java minimal odbc readline ssl static test zlib X"
 
 RDEPEND="sys-libs/ncurses
+	archive? ( app-arch/libarchive )
 	zlib? ( sys-libs/zlib )
 	odbc? ( dev-db/unixODBC )
 	readline? ( sys-libs/readline )
@@ -81,6 +82,7 @@ src_compile() {
 		cd "${S}/packages"
 		econf \
 			--libdir="${EPREFIX}"/usr/$(get_libdir) \
+			$(use_with archive) \
 			--with-chr \
 			--with-clib \
 			--with-clpqr \
@@ -90,6 +92,7 @@ src_compile() {
 			${jpltestconf} \
 			--with-nlp \
 			$(use_with odbc) \
+			--with-PDT \
 			--with-pldoc \
 			--with-plunit \
 			--with-protobufs \
@@ -100,6 +103,7 @@ src_compile() {
 			$(use_with ssl) \
 			--with-table \
 			--with-tipc \
+			--with-utf8proc \
 			$(use_with X xpce) \
 			$(use_with zlib) \
 			COFLAGS='"${CFLAGS}"'
