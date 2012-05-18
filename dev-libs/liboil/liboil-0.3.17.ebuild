@@ -1,9 +1,9 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.17.ebuild,v 1.7 2010/07/08 01:26:48 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.17.ebuild,v 1.8 2012/02/13 05:37:25 vapier Exp $
 
 EAPI=2
-inherit flag-o-matic
+inherit flag-o-matic multilib
 
 DESCRIPTION="library of simple functions that are optimized for various CPUs"
 HOMEPAGE="http://liboil.freedesktop.org/"
@@ -28,6 +28,8 @@ src_prepare() {
 		sed "s/^\(SUBDIRS =.*\)testsuite\(.*\)$/\1\2/" \
 			-i Makefile.am Makefile.in || die
 	fi
+
+	has x32 $(get_all_abis) && epatch "${FILESDIR}"/${PN}-0.3.17-x32.patch
 }
 
 src_configure() {

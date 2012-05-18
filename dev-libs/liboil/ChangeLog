@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/liboil
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.89 2010/07/08 01:26:48 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.90 2012/02/13 05:37:25 vapier Exp $
+
+  13 Feb 2012; Mike Frysinger <vapier@gentoo.org> liboil-0.3.17.ebuild,
+  +files/liboil-0.3.17-x32.patch:
+  Add patch for x32 systems.
 
   08 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> liboil-0.3.17.ebuild:
   ppc64 stable wrt #319969
