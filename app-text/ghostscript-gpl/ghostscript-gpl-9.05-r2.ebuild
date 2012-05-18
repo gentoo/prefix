@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.04-r4.ebuild,v 1.7 2012/05/04 03:33:15 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.05-r2.ebuild,v 1.1 2012/05/09 19:48:38 tgurr Exp $
 
 EAPI=3
 
@@ -14,7 +14,7 @@ GSDJVU_PV=1.5
 PVM=$(get_version_component_range 1-2)
 SRC_URI="
 	mirror://sourceforge/ghostscript/${MY_P}.tar.bz2
-	mirror://gentoo/${P}-patchset-3.tar.bz2
+	mirror://gentoo/${P}-patchset-2.tar.bz2
 	!bindist? ( djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.gz ) )"
 
 LICENSE="GPL-3 CPL-1.0"
@@ -26,7 +26,8 @@ COMMON_DEPEND="
 	app-text/libpaper
 	media-libs/fontconfig
 	>=media-libs/freetype-2.4.2:2
-	media-libs/lcms:0
+	media-libs/jbig2dec
+	media-libs/lcms:2
 	media-libs/libpng:0
 	media-libs/tiff:0
 	>=sys-libs/zlib-1.2.3
@@ -43,7 +44,7 @@ DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig"
 
 RDEPEND="${COMMON_DEPEND}
-	>=app-text/poppler-data-0.4.4
+	>=app-text/poppler-data-0.4.5-r1
 	>=media-fonts/urw-fonts-2.4.9
 	linguas_ja? ( media-fonts/kochi-substitute )
 	linguas_ko? ( media-fonts/baekmuk-fonts )
@@ -72,9 +73,11 @@ src_prepare() {
 	rm -rf "${S}"/expat
 	rm -rf "${S}"/freetype
 	rm -rf "${S}"/jasper
+	rm -rf "${S}"/jbig2dec
 	rm -rf "${S}"/jpeg
 	rm -rf "${S}"/lcms{,2}
 	rm -rf "${S}"/libpng
+	rm -rf "${S}"/openjpeg
 	rm -rf "${S}"/tiff
 	rm -rf "${S}"/zlib
 	# remove internal urw-fonts
@@ -93,6 +96,7 @@ src_prepare() {
 		cp gsdjvu-${GSDJVU_PV}/gsdjvu "${S}"
 		cp gsdjvu-${GSDJVU_PV}/gdevdjvu.c "${S}/base"
 		epatch "${WORKDIR}/patches-gsdjvu/gsdjvu-1.3-${PN}-8.64.patch"
+		epatch "${WORKDIR}/patches-gsdjvu/gsdjvu-1.5-${PN}-9.05.patch"
 		# hard-coding paths sucks for Prefix
 		epatch "${FILESDIR}"/${PN}-8.71-gsdjvu-1.3-partial-revert.patch
 		cp gsdjvu-${GSDJVU_PV}/ps2utf8.ps "${S}/lib"
@@ -119,16 +123,12 @@ src_prepare() {
 		-e 's: -g : :g' \
 		base/Makefile.in base/*.mak || die "sed failed"
 
-	epatch "${FILESDIR}"/${PN}-9.01-darwin.patch
-	epatch "${FILESDIR}"/${PN}-9.04-mint.patch
+	epatch "${FILESDIR}"/${PN}-9.05-darwin.patch
 
 	cd "${S}"
 	eautoreconf
 	# fails with non-bash on at least Solaris
 	sed -i -e '1c\#!'"${EPREFIX}"'/bin/bash' configure || die
-
-	cd "${S}/jbig2dec"
-	eautoreconf
 
 	cd "${S}/ijs"
 	eautoreconf
@@ -171,6 +171,7 @@ src_configure() {
 		--enable-freetype \
 		--enable-fontconfig \
 		--disable-compile-inits \
+		--disable-openjpeg \
 		--with-drivers=ALL \
 		--with-fontpath="$FONTPATH" \
 		--with-ijs \
@@ -206,12 +207,14 @@ src_compile() {
 }
 
 src_install() {
-	# -j1 -> see bug #356303
+	# workaround: -j1 -> see bug #356303
 	tc-is-static-only || emake -j1 DESTDIR="${D}" install-so || die "emake install failed"
 	emake -j1 DESTDIR="${D}" install || die "emake install failed"
 
-	# some printer drivers still require pstoraster, bug #383831
+	# workaround: some printer drivers still require pstoraster, bug #383831
 	use cups && dosym /usr/libexec/cups/filter/gstoraster /usr/libexec/cups/filter/pstoraster
+	# workaround: do the same for pstopxl as of gs 9.05
+	use cups && dosym /usr/libexec/cups/filter/gstopxl /usr/libexec/cups/filter/pstopxl
 
 	if ! use bindist && use djvu ; then
 		dobin gsdjvu || die "dobin gsdjvu install failed"
@@ -238,6 +241,9 @@ src_install() {
 			doins "${WORKDIR}/fontmaps/cidfmap.${X}" || die "doins cidfmap.${X} failed"
 		fi
 	done
+
+	# install the CMaps from poppler-data properly, bug 409361
+	dosym /usr/share/poppler/cMaps /usr/share/ghostscript/${PVM}/Resource/CMap
 
 	use static-libs || find "${ED}" -name '*.la' -delete
 }

@@ -1,9 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/Attic/ghostscript-gpl-9.04-r3.ebuild,v 1.6 2011/10/12 16:26:50 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.04-r6.ebuild,v 1.3 2012/05/04 03:33:15 jdhore Exp $
 
 EAPI=3
-inherit autotools eutils versionator flag-o-matic
+
+inherit autotools eutils versionator flag-o-matic toolchain-funcs
 
 DESCRIPTION="Ghostscript is an interpreter for the PostScript language and for PDF"
 HOMEPAGE="http://ghostscript.com/"
@@ -11,21 +12,24 @@ HOMEPAGE="http://ghostscript.com/"
 MY_P=${P/-gpl}
 GSDJVU_PV=1.5
 PVM=$(get_version_component_range 1-2)
-SRC_URI="!bindist? ( djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.gz ) )
+SRC_URI="
 	mirror://sourceforge/ghostscript/${MY_P}.tar.bz2
-	mirror://gentoo/${P}-patchset-3.tar.bz2"
+	mirror://gentoo/${P}-patchset-4.tar.bz2
+	!bindist? ( djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.gz ) )"
 
 LICENSE="GPL-3 CPL-1.0"
 SLOT="0"
-KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="bindist cups dbus djvu gtk idn jpeg2k static-libs X"
 
-COMMON_DEPEND="app-text/libpaper
+COMMON_DEPEND="
+	app-text/libpaper
 	media-libs/fontconfig
-	media-libs/freetype:2
+	>=media-libs/freetype-2.4.2:2
+	media-libs/jbig2dec
 	media-libs/lcms:0
-	>=media-libs/libpng-1.2.42
-	>=media-libs/tiff-3.9.2
+	media-libs/libpng:0
+	media-libs/tiff:0
 	>=sys-libs/zlib-1.2.3
 	virtual/jpeg
 	!bindist? ( djvu? ( app-text/djvu ) )
@@ -37,7 +41,7 @@ COMMON_DEPEND="app-text/libpaper
 	X? ( x11-libs/libXt x11-libs/libXext )"
 
 DEPEND="${COMMON_DEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 RDEPEND="${COMMON_DEPEND}
 	>=app-text/poppler-data-0.4.4
@@ -45,7 +49,10 @@ RDEPEND="${COMMON_DEPEND}
 	linguas_ja? ( media-fonts/kochi-substitute )
 	linguas_ko? ( media-fonts/baekmuk-fonts )
 	linguas_zh_CN? ( media-fonts/arphicfonts )
-	linguas_zh_TW? ( media-fonts/arphicfonts )"
+	linguas_zh_TW? ( media-fonts/arphicfonts )
+	!!media-fonts/gnu-gs-fonts-std
+	!!media-fonts/gnu-gs-fonts-other
+"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -71,6 +78,10 @@ src_prepare() {
 	rm -rf "${S}"/libpng
 	rm -rf "${S}"/tiff
 	rm -rf "${S}"/zlib
+
+	rm -rf "${S}"/jbig2dec
+	rm -f "${WORKDIR}"/patches/ghostscript-gpl-8.71-jbig2dec-nullderef.patch
+
 	# remove internal urw-fonts
 	rm -rf "${S}"/Resource/Font
 	# remove internal CMaps (CMaps from poppler-data are used instead)
@@ -114,14 +125,12 @@ src_prepare() {
 		base/Makefile.in base/*.mak || die "sed failed"
 
 	epatch "${FILESDIR}"/${PN}-9.01-darwin.patch
+	epatch "${FILESDIR}"/${PN}-9.04-mint.patch
 
 	cd "${S}"
 	eautoreconf
 	# fails with non-bash on at least Solaris
 	sed -i -e '1c\#!'"${EPREFIX}"'/bin/bash' configure || die
-
-	cd "${S}/jbig2dec"
-	eautoreconf
 
 	cd "${S}/ijs"
 	eautoreconf
@@ -137,6 +146,7 @@ src_prepare() {
 
 src_configure() {
 	local FONTPATH
+	local myconf ijsconf
 	for path in \
 		/usr/share/fonts/urw-fonts \
 		/usr/share/fonts/Type1 \
@@ -150,8 +160,16 @@ src_configure() {
 		FONTPATH="$FONTPATH${FONTPATH:+:}${EPREFIX}$path"
 	done
 
+	if tc-is-static-only ; then
+		myconf="--enable-dynamic=no"
+		ijsconf="--disable-shared"
+	else
+		myconf="--enable-dynamic=yes"
+		ijsconf="--enable-shared"
+	fi
+
 	econf \
-		--enable-dynamic \
+		${myconf} \
 		--enable-freetype \
 		--enable-fontconfig \
 		--disable-compile-inits \
@@ -177,12 +195,13 @@ src_configure() {
 
 	cd "${S}/ijs"
 	econf \
-		--enable-shared \
+		${ijsconf} \
 		$(use_enable static-libs static)
 }
 
 src_compile() {
-	emake -j1 so all || die "emake failed"
+	tc-is-static-only || emake -j1 so || die "emake failed"
+	emake -j1 all || die "emake failed"
 
 	cd "${S}/ijs"
 	emake || die "ijs emake failed"
@@ -190,7 +209,11 @@ src_compile() {
 
 src_install() {
 	# -j1 -> see bug #356303
-	emake -j1 DESTDIR="${D}" install-so install || die "emake install failed"
+	tc-is-static-only || emake -j1 DESTDIR="${D}" install-so || die "emake install failed"
+	emake -j1 DESTDIR="${D}" install || die "emake install failed"
+
+	# some printer drivers still require pstoraster, bug #383831
+	use cups && dosym /usr/libexec/cups/filter/gstoraster /usr/libexec/cups/filter/pstoraster
 
 	if ! use bindist && use djvu ; then
 		dobin gsdjvu || die "dobin gsdjvu install failed"

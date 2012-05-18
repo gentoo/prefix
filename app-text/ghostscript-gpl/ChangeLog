@@ -1,6 +1,89 @@
 # ChangeLog for app-text/ghostscript-gpl
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.125 2011/10/19 19:29:49 tgurr Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.143 2012/05/16 15:25:43 jer Exp $
+
+  16 May 2012; Jeroen Roovers <jer@gentoo.org> ghostscript-gpl-9.05-r1.ebuild:
+  Stable for HPPA (bug #414463).
+
+  13 May 2012; Markus Meier <maekke@gentoo.org> ghostscript-gpl-9.05-r1.ebuild:
+  arm stable, bug #414463
+
+*ghostscript-gpl-9.05-r2 (09 May 2012)
+
+  09 May 2012; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-9.04-r5.ebuild,
+  -ghostscript-gpl-9.05.ebuild, +ghostscript-gpl-9.05-r2.ebuild:
+  Fix segfaults, bug #410575 thanks to Marcus Spading. Add Fedora icc patch.
+  Remove old.
+
+  06 May 2012; Agostino Sarubbo <ago@gentoo.org>
+  ghostscript-gpl-9.05-r1.ebuild:
+  Stable for amd64, wrt bug #414463
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  ghostscript-gpl-9.04-r4.ebuild, ghostscript-gpl-9.04-r5.ebuild,
+  ghostscript-gpl-9.04-r6.ebuild, ghostscript-gpl-9.05.ebuild,
+  ghostscript-gpl-9.05-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*ghostscript-gpl-9.05-r1 (01 May 2012)
+
+  01 May 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  +ghostscript-gpl-9.05-r1.ebuild:
+  Add symlink for poppler-data integration, bug 409361
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org>
+  ghostscript-gpl-9.05.ebuild:
+  keyword ~amd64-fbsd
+
+  05 Apr 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  ghostscript-gpl-9.05.ebuild:
+  Restore keywords since jbig2dec has now all that it needs, bug 401853
+
+  17 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  ghostscript-gpl-9.04-r4.ebuild, ghostscript-gpl-9.04-r5.ebuild,
+  ghostscript-gpl-9.04-r6.ebuild:
+  Raise media-libs/freetype requirement to 2.4.2 wrt #408583 by Martin Mokrejš
+
+  19 Feb 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  ghostscript-gpl-9.05.ebuild:
+  Restore keywords after unbundling, see bug 206893 comment 15.
+
+*ghostscript-gpl-9.05 (09 Feb 2012)
+
+  09 Feb 2012; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-9.05.ebuild:
+  Version bump. Still favor jasper instead of openjpeg for now.
+
+*ghostscript-gpl-9.04-r6 (01 Feb 2012)
+
+  01 Feb 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  +ghostscript-gpl-9.04-r6.ebuild:
+  Unbundle media-libs/jbig2dec, bug 206893. Dropped some keywords until
+  jbig2dec is keyworded in bug 401853.
+
+  14 Jan 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  ghostscript-gpl-9.04-r4.ebuild, ghostscript-gpl-9.04-r5.ebuild:
+  Block media-fonts/gnu-gs-fonts-(std|other), bug 315629
+
+*ghostscript-gpl-9.04-r5 (21 Dec 2011)
+
+  21 Dec 2011; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-9.04-r5.ebuild:
+  Revbump adding upstream fixes, resolves bug #389309 thanks to László
+  Szalma. Also fixing bug #391749.
+
+  12 Nov 2011; Justin Lecher <jlec@gentoo.org> ghostscript-gpl-9.04-r4.ebuild:
+  Fixed slotting for media-libs/libpng
+
+  12 Nov 2011; Justin Lecher <jlec@gentoo.org> ghostscript-gpl-9.04-r4.ebuild,
+  metadata.xml:
+  Fixed slotting for media-libs/tiff
+
+  31 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
+  -ghostscript-gpl-8.71-r6.ebuild, -ghostscript-gpl-9.04-r3.ebuild:
+  old
+
+  31 Oct 2011; Raúl Porcel <armin76@gentoo.org>
+  ghostscript-gpl-9.04-r3.ebuild, ghostscript-gpl-9.04-r4.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #382951
 
   31 Oct 2011; Fabian Groffen <grobian@gentoo.org>
   ghostscript-gpl-9.04-r4.ebuild:
