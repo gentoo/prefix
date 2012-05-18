@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.523 2012/05/05 16:35:21 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.525 2012/05/16 14:53:57 jer Exp $
+
+  16 May 2012; Jeroen Roovers <jer@gentoo.org> glib-2.30.3.ebuild:
+  Stable for HPPA (bug #410611).
+
+*glib-2.32.3 (15 May 2012)
+
+  15 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org> -glib-2.32.1.ebuild,
+  -files/glib-2.32.1-gnustep-not-cocoa.patch, +glib-2.32.3.ebuild:
+  Version bump with a few bugfixes. Drop old.
 
   17 May 2012; Fabian Groffen <grobian@gentoo.org>
   files/glib-2.32.2-solaris-libelf.patch:
