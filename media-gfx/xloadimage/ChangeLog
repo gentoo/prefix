@@ -1,6 +1,51 @@
 # ChangeLog for media-gfx/xloadimage
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/ChangeLog,v 1.52 2010/05/30 10:13:02 xarthisius Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/ChangeLog,v 1.65 2012/01/22 20:16:27 ssuominen Exp $
+
+  22 Jan 2012; Samuli Suominen <ssuominen@gentoo.org>
+  xloadimage-4.1-r11.ebuild:
+  Fix building with media-libs/tiff >= 4.0.0_pre wrt #319383 by Helmut Jarausch
+
+  23 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
+  -xloadimage-4.1-r10.ebuild:
+  old
+
+  23 Oct 2011; Raúl Porcel <armin76@gentoo.org> xloadimage-4.1-r11.ebuild:
+  alpha/ia64/sh/sparc stable wrt #385789
+
+  15 Oct 2011; Markus Meier <maekke@gentoo.org> xloadimage-4.1-r11.ebuild:
+  arm stable, bug #385789
+
+  15 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  xloadimage-4.1-r11.ebuild:
+  ppc stable wrt #385789
+
+  11 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
+  xloadimage-4.1-r11.ebuild:
+  ppc64 stable wrt #385789
+
+  11 Oct 2011; Jeroen Roovers <jer@gentoo.org> xloadimage-4.1-r11.ebuild:
+  Stable for HPPA (bug #385789).
+
+  08 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  xloadimage-4.1-r11.ebuild:
+  x86 stable wrt bug #385789
+
+  06 Oct 2011; Markos Chandras <hwoarang@gentoo.org> xloadimage-4.1-r11.ebuild:
+  Stable on amd64 wrt bug #385789
+
+  17 Sep 2011; Samuli Suominen <ssuominen@gentoo.org>
+  xloadimage-4.1-r11.ebuild, +files/xloadimage-4.1-libpng15.patch:
+  Fix building with libpng15 wrt #383313 by Diego Elio Pettenò
+
+  25 Aug 2011; Andreas K. Huettel <dilfridge@gentoo.org>
+  xloadimage-4.1-r10.ebuild, xloadimage-4.1-r11.ebuild,
+  +files/xloadimage-4.1-bracket.patch:
+  Work around mis-placed bracket problem, bug 361993
+
+  08 Nov 2010; Markus Meier <maekke@gentoo.org> xloadimage-4.1-r10.ebuild,
+  xloadimage-4.1-r11.ebuild:
+  change jpeg dep to virtual/jpeg
 
 *xloadimage-4.1-r11 (29 May 2010)
 

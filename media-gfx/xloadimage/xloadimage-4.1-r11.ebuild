@@ -1,9 +1,9 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/xloadimage-4.1-r11.ebuild,v 1.1 2010/05/30 10:13:02 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/xloadimage-4.1-r11.ebuild,v 1.12 2012/01/22 20:16:27 ssuominen Exp $
 
 EAPI=2
-inherit autotools eutils toolchain-funcs
+inherit autotools eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="utility to view many different types of images under X11"
 HOMEPAGE="http://world.std.com/~jimf/xloadimage.html"
@@ -18,7 +18,7 @@ IUSE="tiff jpeg png"
 RDEPEND="x11-libs/libX11
 	tiff? ( media-libs/tiff )
 	png? ( media-libs/libpng )
-	jpeg? ( media-libs/jpeg:0 )"
+	jpeg? ( virtual/jpeg:0 )"
 DEPEND="${RDEPEND}
 	!media-gfx/xli"
 
@@ -48,15 +48,23 @@ src_prepare() {
 
 	sed -i -e "/^DEFS = /s:/etc:${EPREFIX}/etc:" Makefile.in
 
+	epatch "${FILESDIR}"/${P}-libpng15.patch
 	sed -i \
 		-e 's:png_set_gray_1_2_4_to_8:png_set_expand_gray_1_2_4_to_8:' \
 		png.c || die
+
+	# One of the previous patches screws up a bracket...
+	epatch "${FILESDIR}"/${P}-bracket.patch
 
 	chmod +x configure
 	eautoreconf
 }
 
 src_configure() {
+	# Set TIFFHeader to TIFFHeaderCommon wrt #319383
+	has_version '>=media-libs/tiff-4.0.0_pre' && \
+		append-flags -DTIFFHeader=TIFFHeaderCommon
+
 	tc-export CC
 	econf $(use_with jpeg) \
 		$(use_with png) \
