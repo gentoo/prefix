@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-3.0.1_p4-r1.ebuild,v 1.1 2011/08/25 19:44:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-3.0.1_p4-r1.ebuild,v 1.4 2012/04/26 14:02:23 aballier Exp $
 
 EAPI="3"
 
@@ -19,13 +19,12 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static-libs"
 
-RDEPEND=">=dev-libs/gmp-4.1.4-r2[static-libs=]"
+RDEPEND=">=dev-libs/gmp-4.1.4-r2[static-libs?]"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	[[ -d ${FILESDIR}/${PV} ]] && epatch "${FILESDIR}"/${PV}/*.patch
 	[[ ${PLEVEL} == ${PV} ]] && return 0
 	for ((i=1; i<=PLEVEL; ++i)) ; do
 		patch=patch$(printf '%02d' ${i})

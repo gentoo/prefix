@@ -1,6 +1,33 @@
 # ChangeLog for dev-libs/mpfr
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.144 2011/11/29 16:52:55 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.150 2012/05/07 13:07:36 aballier Exp $
+
+  07 May 2012; Alexis Ballier <aballier@gentoo.org> mpfr-3.1.0_p7.ebuild:
+  readd fbsd keywords to latest version as bug #390425 seems fixed
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> mpfr-3.0.1_p4-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  19 Apr 2012; Mike Frysinger <vapier@gentoo.org> mpfr-2.4.2_p3.ebuild,
+  mpfr-3.0.0_p3.ebuild, mpfr-3.0.1.ebuild, mpfr-3.0.1_p4.ebuild,
+  mpfr-3.0.1_p4-r1.ebuild, mpfr-3.1.0.ebuild, mpfr-3.1.0_p7.ebuild:
+  Drop old epatch call #412591 by Stevan Bajić.
+
+*mpfr-3.1.0_p7 (09 Mar 2012)
+
+  09 Mar 2012; Mike Frysinger <vapier@gentoo.org> +files/3.1.0/patch01,
+  +files/3.1.0/patch02, +files/3.1.0/patch03, +files/3.1.0/patch04,
+  +files/3.1.0/patch05, +files/3.1.0/patch06, +files/3.1.0/patch07,
+  +mpfr-3.1.0_p7.ebuild:
+  Version bump #407551 by Samuli Suominen.
+
+  29 Dec 2011; Mark Loeser <halcy0n@gentoo.org> mpfr-3.0.1_p4.ebuild:
+  Stable for ppc/ppc64; bug #380673
+
+  09 Dec 2011; Alexis Ballier <aballier@gentoo.org> mpfr-3.0.1_p4-r1.ebuild,
+  mpfr-3.1.0.ebuild:
+  require static-libs on gmp when building with static-libs but do not force to
+  disable them on gmp when not, bug #394141
 
   29 Nov 2011; Mike Frysinger <vapier@gentoo.org> mpfr-3.1.0.ebuild:
   Drop fbsd KEYWORDS as this breaks gcc #390425 by Tibor Vago.
