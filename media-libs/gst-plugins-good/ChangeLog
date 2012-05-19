@@ -1,6 +1,132 @@
 # ChangeLog for media-libs/gst-plugins-good
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.99 2010/08/03 21:52:50 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.128 2012/05/05 08:02:27 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  gst-plugins-good-0.10.23.ebuild, gst-plugins-good-0.10.28.ebuild,
+  gst-plugins-good-0.10.30.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  15 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  gst-plugins-good-0.10.30.ebuild:
+  ppc/ppc64 stable wrt #382225
+
+  11 Oct 2011; Jeroen Roovers <jer@gentoo.org> gst-plugins-good-0.10.30.ebuild:
+  Stable for HPPA (bug #382225).
+
+  09 Oct 2011; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-good-0.10.30.ebuild:
+  alpha/ia64/sh/sparc stable wrt #382225
+
+  03 Oct 2011; Markus Meier <maekke@gentoo.org>
+  gst-plugins-good-0.10.30.ebuild:
+  arm stable, bug #382225
+
+  25 Sep 2011; Tony Vroon <chainsaw@gentoo.org>
+  gst-plugins-good-0.10.30.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Tomáš "Mepho" Pružina in bug #382225.
+
+  20 Sep 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  gst-plugins-good-0.10.30.ebuild:
+  x86 stable wrt bug #382225
+
+*gst-plugins-good-0.10.30 (29 Jul 2011)
+
+  29 Jul 2011; Mart Raudsepp <leio@gentoo.org>
+  +gst-plugins-good-0.10.30.ebuild:
+  Version bump. Audioparsers and ISO MP4 muxers moved here from -bad,
+  signifying sufficient quality. New matroskaparse element. rtpsession
+  supports RTCP Early Feedback (the AVPF profile). Other bug fixes and
+  improvements.
+
+  25 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  gst-plugins-good-0.10.28.ebuild:
+  ppc/ppc64 stable wrt #368281
+
+  09 Jun 2011; Jeroen Roovers <jer@gentoo.org> gst-plugins-good-0.10.28.ebuild:
+  Stable for HPPA (bug #368281).
+
+  05 Jun 2011; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-good-0.10.28.ebuild:
+  alpha/ia64/sh/sparc stable wrt #368281
+
+  05 Jun 2011; Markus Meier <maekke@gentoo.org>
+  gst-plugins-good-0.10.28.ebuild:
+  arm stable, bug #368281
+
+  23 May 2011; Markos Chandras <hwoarang@gentoo.org>
+  gst-plugins-good-0.10.28.ebuild:
+  Stable on amd64 wrt bug #368281
+
+  23 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  gst-plugins-good-0.10.28.ebuild:
+  x86 stable wrt bug #368281
+
+  04 May 2011; Mart Raudsepp <leio@gentoo.org>
+  -gst-plugins-good-0.10.14.ebuild, -gst-plugins-good-0.10.16.ebuild,
+  -gst-plugins-good-0.10.17.ebuild, -gst-plugins-good-0.10.21.ebuild,
+  -gst-plugins-good-0.10.22.ebuild:
+  Remove old
+
+  29 Mar 2011; Mart Raudsepp <leio@gentoo.org> gst-plugins-good-0.10.28.ebuild:
+  Add ~mips keyword
+
+*gst-plugins-good-0.10.28 (20 Mar 2011)
+
+  20 Mar 2011; Mart Raudsepp <leio@gentoo.org> metadata.xml,
+  +gst-plugins-good-0.10.28.ebuild:
+  Version bump. Uses orc instead of liboil for CPU detection and new
+  optimizations (in deinterlace, videobox and videomixer). Disable examples
+  building (we do not install them anyway) to avoid bug #348623. Huge amount
+  of new upstream features, bug fixes and improvements that are too numerous
+  to summarize here - check upstream release notes from 0.10.24 through
+  0.10.28 if interested.
+
+  11 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  gst-plugins-good-0.10.23.ebuild:
+  ppc/ppc64 stable wrt #346981
+
+  18 Jan 2011; Jeroen Roovers <jer@gentoo.org> gst-plugins-good-0.10.23.ebuild:
+  Stable for HPPA (bug #346981).
+
+  06 Jan 2011; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-good-0.10.23.ebuild:
+  alpha/ia64/sh/sparc stable wrt #346981
+
+  25 Dec 2010; Markus Meier <maekke@gentoo.org>
+  gst-plugins-good-0.10.23.ebuild:
+  arm stable, bug #346981
+
+  20 Dec 2010; Markos Chandras <hwoarang@gentoo.org>
+  gst-plugins-good-0.10.23.ebuild:
+  Stable on amd64 wrt bug #346981
+
+  20 Dec 2010; Thomas Kahle <tomka@gentoo.org> gst-plugins-good-0.10.23.ebuild:
+  x86 stable per bug 346981
+
+  11 Sep 2010; <nixnut@gentoo.org> gst-plugins-good-0.10.22.ebuild:
+  ppc stable #329703
+
+  05 Sep 2010; Tobias Klausmann <klausman@gentoo.org>
+  gst-plugins-good-0.10.22.ebuild:
+  Stable on alpha, bug #329703
+
+  05 Sep 2010; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-good-0.10.22.ebuild:
+  ia64/sh/sparc stable wrt #329703
+
+  04 Sep 2010; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-good-0.10.21.ebuild:
+  alpha/ia64/sh/sparc stable wrt #324691
+
+  10 Aug 2010; Jeroen Roovers <jer@gentoo.org>
+  gst-plugins-good-0.10.22.ebuild:
+  Stable for HPPA (bug #329703).
+
+  05 Aug 2010; Samuli Suominen <ssuominen@gentoo.org>
+  gst-plugins-good-0.10.22.ebuild:
+  ppc64 stable wrt #324691
 
   03 Aug 2010; Markus Meier <maekke@gentoo.org>
   gst-plugins-good-0.10.22.ebuild:
