@@ -1,6 +1,39 @@
 # ChangeLog for dev-util/cscope
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.119 2009/05/11 21:03:59 ulm Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.129 2012/04/26 16:47:01 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> cscope-15.7a-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  02 Mar 2012; Tim Harder <radhermit@gentoo.org> -cscope-15.7a.ebuild:
+  Remove old.
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> cscope-15.7a-r1.ebuild:
+  Marking cscope-15.7a-r1 ppc64 for bug 391291
+
+  06 Jan 2012; Brent Baude <ranger@gentoo.org> cscope-15.7a-r1.ebuild:
+  Marking cscope-15.7a-r1 ppc for bug 391291
+
+  11 Dec 2011; Raúl Porcel <armin76@gentoo.org> cscope-15.7a-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #391291
+
+  03 Dec 2011; Markus Meier <maekke@gentoo.org> cscope-15.7a-r1.ebuild:
+  arm stable, bug #391291
+
+  29 Nov 2011; Jeroen Roovers <jer@gentoo.org> cscope-15.7a-r1.ebuild:
+  Stable for HPPA (bug #391291).
+
+  28 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> cscope-15.7a-r1.ebuild:
+  x86 stable wrt bug #391291
+
+  25 Nov 2011; Markos Chandras <hwoarang@gentoo.org> cscope-15.7a-r1.ebuild:
+  Stable on amd64 wrt bug #391291
+
+  21 Nov 2011; Ulrich Mueller <ulm@gentoo.org> cscope-15.7a-r1.ebuild:
+  Bump to EAPI=4.
+
+  21 Nov 2011; Ulrich Mueller <ulm@gentoo.org> cscope-15.7a-r1.ebuild:
+  Bump to EAPI=4.
 
 *cscope-15.7a-r1 (11 May 2009)
 

@@ -1,6 +1,3 @@
-
-;;; cscope site-lisp configuration
-
 (add-to-list 'load-path "@SITELISP@")
 
 (autoload 'cscope-minor-mode "xcscope")
