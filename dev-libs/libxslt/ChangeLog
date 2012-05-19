@@ -1,6 +1,94 @@
 # ChangeLog for dev-libs/libxslt
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.205 2010/12/31 23:53:28 arfrever Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.229 2012/04/26 17:11:48 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> libxslt-1.1.26-r3.ebuild:
+  keyword ~amd64-fbsd
+
+  02 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> libxslt-1.1.26-r3.ebuild:
+  ppc64 stable wrt #402861
+
+  28 Feb 2012; Brent Baude <ranger@gentoo.org> libxslt-1.1.26-r3.ebuild:
+  Marking libxslt-1.1.26-r3 ppc for bug 402861
+
+  11 Feb 2012; Raúl Porcel <armin76@gentoo.org> libxslt-1.1.26-r3.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #402861
+
+  10 Feb 2012; Jeff Horelick <jdhore@gentoo.org> libxslt-1.1.26-r3.ebuild:
+  x86 stable per security bug 402861
+
+  10 Feb 2012; Jeroen Roovers <jer@gentoo.org> libxslt-1.1.26-r3.ebuild:
+  Stable for HPPA (bug #402861).
+
+  10 Feb 2012; Agostino Sarubbo <ago@gentoo.org> libxslt-1.1.26-r3.ebuild:
+  Stable for AMD64, wrt security bug #402861
+
+*libxslt-1.1.26-r3 (09 Feb 2012)
+
+  09 Feb 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  -libxslt-1.1.26.ebuild, -libxslt-1.1.26-r1.ebuild, +libxslt-1.1.26-r3.ebuild,
+  +files/libxslt-1.1.26-pattern-out-of-bounds-read.patch:
+  Fix out-of-bounds read in xsltCompilePatternInternal (bug #402861,
+  CVE-2011-3970, thanks to Agostino Sarubbo for reporting). Update to EAPI4.
+  Drop old.
+
+  30 Oct 2011; Raúl Porcel <armin76@gentoo.org> libxslt-1.1.26-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #385699
+
+  28 Oct 2011; Markus Meier <maekke@gentoo.org> libxslt-1.1.26-r2.ebuild:
+  arm stable, bug #385699
+
+  21 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libxslt-1.1.26-r2.ebuild:
+  x86 stable wrt bug #385699
+
+  18 Oct 2011; Jeroen Roovers <jer@gentoo.org> libxslt-1.1.26-r2.ebuild:
+  Stable for HPPA (bug #385699).
+
+  16 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> libxslt-1.1.26-r2.ebuild:
+  ppc/ppc64 stable wrt #385699
+
+  14 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> libxslt-1.1.26-r2.ebuild:
+  amd64 stable wrt #385699
+
+*libxslt-1.1.26-r2 (14 Aug 2011)
+
+  14 Aug 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +libxslt-1.1.26-r2.ebuild:
+  USE=static-libs support, bug 378253
+
+  18 Mar 2011; Raúl Porcel <armin76@gentoo.org> libxslt-1.1.26-r1.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #358615
+
+  15 Mar 2011; Jeroen Roovers <jer@gentoo.org> libxslt-1.1.26-r1.ebuild:
+  Stable for HPPA (bug #358615).
+
+  13 Mar 2011; Tobias Klausmann <klausman@gentoo.org> libxslt-1.1.26-r1.ebuild:
+  Stable on alpha, bug #358615
+
+  13 Mar 2011; Markos Chandras <hwoarang@gentoo.org> libxslt-1.1.26-r1.ebuild:
+  Stable on amd64 wrt bug #358615
+
+  13 Mar 2011; Christian Faulhammer <fauli@gentoo.org>
+  libxslt-1.1.26-r1.ebuild:
+  stable x86, security bug 358615
+
+  13 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> libxslt-1.1.26-r1.ebuild:
+  ppc/ppc64 stable wrt #358615
+
+*libxslt-1.1.26-r1 (12 Mar 2011)
+
+  12 Mar 2011; Pacho Ramos <pacho@gentoo.org> +libxslt-1.1.26-r1.ebuild,
+  +files/libxslt-1.1.26-id-generation.patch:
+  Fix heap address leak (CVE-2011-1202).
+
+  26 Feb 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libxslt-1.1.26.ebuild, +files/libxslt-1.1.26-disable_static_modules.patch:
+  Don't install .a files in Python site-packages directories.
+
+  12 Feb 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libxslt-1.1.26.ebuild:
+  Link against correct Python library (bug #354593).
 
   31 Dec 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   libxslt-1.1.26.ebuild:

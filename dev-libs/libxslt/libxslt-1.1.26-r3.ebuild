@@ -1,11 +1,11 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.26.ebuild,v 1.14 2010/12/31 23:53:28 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.26-r3.ebuild,v 1.8 2012/04/26 17:11:48 aballier Exp $
 
-EAPI="2"
+EAPI="4"
 PYTHON_DEPEND="python? 2"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.* *-jython"
+RESTRICT_PYTHON_ABIS="3.* *-jython *-pypy-*"
 
 inherit autotools eutils python toolchain-funcs
 
@@ -16,25 +16,35 @@ SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="crypt debug python"
+IUSE="crypt debug python static-libs"
 
-DEPEND=">=dev-libs/libxml2-2.6.27
+DEPEND=">=dev-libs/libxml2-2.6.27:2
 	crypt?  ( >=dev-libs/libgcrypt-1.1.42 )"
+RDEPEND="${DEPEND}"
 
 pkg_setup() {
 	if use python; then
 		python_pkg_setup
 	fi
+	DOCS="AUTHORS ChangeLog FEATURES NEWS README TODO"
 }
 
 src_prepare() {
 	epatch "${FILESDIR}"/libxslt.m4-${P}.patch \
 		"${FILESDIR}"/${PN}-1.1.23-parallel-install.patch \
 		"${FILESDIR}"/${P}-undefined.patch \
-		"${FILESDIR}"/${P}-versionscript-solaris.patch
+		"${FILESDIR}"/${P}-disable_static_modules.patch
+
+	epatch "${FILESDIR}"/${P}-versionscript-solaris.patch
 
 	# Python bindings are built/tested/installed manually.
 	sed -e "s/@PYTHON_SUBDIR@//" -i Makefile.am || die "sed failed"
+
+	# Fix generate-id() to not expose object addresses, bug #358615
+	epatch "${FILESDIR}/${P}-id-generation.patch"
+
+	# Fix off-by-one in xsltCompilePatternInternal, bug #402861
+	epatch "${FILESDIR}/${P}-pattern-out-of-bounds-read.patch"
 
 	eautoreconf # also needed for new libtool on Interix
 	epunt_cxx
@@ -55,7 +65,8 @@ src_configure() {
 		$(use_with crypt crypto) \
 		$(use_with python) \
 		$(use_with debug) \
-		$(use_with debug mem-debug)
+		$(use_with debug mem-debug) \
+		$(use_enable static-libs static)
 }
 
 src_compile() {
@@ -65,7 +76,8 @@ src_compile() {
 		python_copy_sources python
 		building() {
 			emake PYTHON_INCLUDES="${EPREFIX}$(python_get_includedir)" \
-				PYTHON_SITE_PACKAGES="${EPREFIX}$(python_get_sitedir)"
+				PYTHON_SITE_PACKAGES="${EPREFIX}$(python_get_sitedir)" \
+				PYTHON_VERSION="$(python_get_version)"
 		}
 		python_execute_function -s --source-dir python building
 	fi
@@ -83,7 +95,7 @@ src_test() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	default
 
 	if use python; then
 		installation() {
@@ -98,7 +110,11 @@ src_install() {
 
 	mv -vf "${ED}"/usr/share/doc/${PN}-python-${PV} \
 		"${ED}"/usr/share/doc/${PF}/python
-	dodoc AUTHORS ChangeLog FEATURES NEWS README TODO || die
+
+	if ! use static-libs; then
+		# Remove useless .la files
+		find "${ED}" -name '*.la' -exec rm -f {} + || die "la file removal failed"
+	fi
 }
 
 pkg_postinst() {
