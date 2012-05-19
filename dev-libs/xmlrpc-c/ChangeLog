@@ -1,6 +1,89 @@
 # ChangeLog for dev-libs/xmlrpc-c
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.95 2010/01/15 12:25:42 scarabeus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.118 2012/04/05 21:20:48 phajdan.jr Exp $
+
+  05 Apr 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  xmlrpc-c-1.28.03-r1.ebuild:
+  x86 stable wrt bug #409549
+
+  03 Apr 2012; Jeroen Roovers <jer@gentoo.org> xmlrpc-c-1.28.03-r1.ebuild:
+  Stable for HPPA (bug #409549).
+
+  31 Mar 2012; Markus Meier <maekke@gentoo.org> xmlrpc-c-1.28.03-r1.ebuild:
+  arm stable, bug #409549
+
+  29 Mar 2012; Agostino Sarubbo <ago@gentoo.org> xmlrpc-c-1.28.03-r1.ebuild:
+  Stable for amd64, wrt bug #409549
+
+  28 Mar 2012; Brent Baude <ranger@gentoo.org> xmlrpc-c-1.28.03-r1.ebuild:
+  Marking xmlrpc-c-1.28.03-r1 ppc64 for bug 409549
+
+*xmlrpc-c-1.29.02 (25 Mar 2012)
+*xmlrpc-c-1.28.03-r1 (25 Mar 2012)
+
+  25 Mar 2012; Peter Volkov <pva@gentoo.org> -xmlrpc-c-1.06.27.ebuild,
+  -xmlrpc-c-1.18.02.ebuild, -xmlrpc-c-1.28.00.ebuild,
+  +xmlrpc-c-1.28.03-r1.ebuild, +xmlrpc-c-1.29.02.ebuild:
+  Version bump. Drop old. Drop optional libwww support, bug 409549 by Pacho
+  Ramos. Thank slepnoga for this work.
+
+  03 Mar 2012; Brent Baude <ranger@gentoo.org> xmlrpc-c-1.28.03.ebuild:
+  Marking xmlrpc-c-1.28.03 ppc64 for bug 393267
+
+  04 Feb 2012; Maxim Koltsov <maksbotan@gentoo.org> Manifest:
+  Fix maintainer's email in metadata
+
+  04 Feb 2012; Maxim Koltsov <maksbotan@gentoo.org> metadata.xml:
+  Fix maintainer's email in metadata
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> xmlrpc-c-1.28.03.ebuild:
+  Marking xmlrpc-c-1.28.03 ppc for bug 393267
+
+  01 Jan 2012; Raúl Porcel <armin76@gentoo.org> xmlrpc-c-1.28.03.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #393267
+
+  18 Dec 2011; Markus Meier <maekke@gentoo.org> xmlrpc-c-1.28.03.ebuild:
+  arm stable, bug #393267
+
+  18 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> xmlrpc-c-1.28.03.ebuild:
+  x86 stable wrt bug #393267
+
+  13 Dec 2011; Agostino Sarubbo <ago@gentoo.org> xmlrpc-c-1.28.03.ebuild:
+  Stable for AMD64, wrt bug #393267
+
+  13 Dec 2011; Jeroen Roovers <jer@gentoo.org> xmlrpc-c-1.28.03.ebuild:
+  Stable for HPPA (bug #393267).
+
+  12 Dec 2011; Peter Volkov <pva@gentoo.org> xmlrpc-c-1.28.00.ebuild,
+  xmlrpc-c-1.28.03.ebuild:
+  Add readline into deps, bug #393267 thank Agostino Sarubbo for report.
+
+  28 Nov 2011; Naohiro Aota <naota@gentoo.org> xmlrpc-c-1.28.03.ebuild:
+  Add ~x86-fbsd. Bug #267616
+
+  24 Nov 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #220219
+
+*xmlrpc-c-1.28.03 (20 Nov 2011)
+
+  20 Nov 2011; Peter Volkov <pva@gentoo.org> +xmlrpc-c-1.28.03.ebuild:
+  Version bump, thank slepnoga for report.
+
+*xmlrpc-c-1.28.00 (01 Oct 2011)
+
+  01 Oct 2011; Peter Volkov <pva@gentoo.org> +xmlrpc-c-1.28.00.ebuild,
+  +files/xmlrpc-c-1.28.00-advanced-test.patch, metadata.xml:
+  Version bump, bug #299011 wrt Arfrever Frehtes Taifersar Arahesis. Fixes
+  parallel build issue, bug 291881 wrt simon. Fixes build on BSD, bug #283751
+  wrt Henning Schild. Fixes installation of shared libraries, bug #274536 wrt
+  Ambroz Bizjak. Fixes build failure with specific USE flags combination, bug
+  301076 wrt Marco Clocchiatti. And thank Andreis_Vinogradovs (slepnoga) for
+  making me work on this version bump.
+
+  25 Jul 2011; Christoph Mende <angelos@gentoo.org> xmlrpc-c-1.06.27.ebuild,
+  +files/xmlrpc-c-1.06.27-curl-headers.patch, xmlrpc-c-1.18.02.ebuild,
+  +files/xmlrpc-c-1.18.02/curl-headers.patch:
+  Fix compilation against curl-7.21.7 (bug #376101)
 
   15 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org>
   xmlrpc-c-1.18.02.ebuild:
