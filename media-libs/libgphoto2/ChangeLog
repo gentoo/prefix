@@ -1,6 +1,151 @@
 # ChangeLog for media-libs/libgphoto2
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/ChangeLog,v 1.170 2010/05/08 11:23:30 pacho Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/ChangeLog,v 1.207 2012/05/16 15:09:40 jer Exp $
+
+  16 May 2012; Jeroen Roovers <jer@gentoo.org> libgphoto2-2.4.12.ebuild:
+  Stable for HPPA (bug #410611).
+
+  16 May 2012; Alexis Ballier <aballier@gentoo.org> libgphoto2-2.4.12.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libgphoto2-2.4.11-r1.ebuild,
+  libgphoto2-2.4.12.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> libgphoto2-2.4.12.ebuild:
+  x86 stable, bug #410611
+
+  19 Apr 2012; Brent Baude <ranger@gentoo.org> libgphoto2-2.4.12.ebuild:
+  Marking libgphoto2-2.4.12 ppc64 stable for bug 410611
+
+  18 Apr 2012; Agostino Sarubbo <ago@gentoo.org> libgphoto2-2.4.12.ebuild:
+  Stable for amd64, wrt bug #410611
+
+  23 Feb 2012; Pacho Ramos <pacho@gentoo.org> libgphoto2-2.4.12.ebuild:
+  Drop mDNSResponder support due its removal, bug #403537.
+
+*libgphoto2-2.4.12 (31 Jan 2012)
+
+  31 Jan 2012; Pacho Ramos <pacho@gentoo.org> +libgphoto2-2.4.12.ebuild,
+  -libgphoto2-2.4.10.ebuild, -libgphoto2-2.4.11.ebuild:
+  Version bump, drop no longer needed libusb fix and automagic patch, empty
+  dependency_libs in .la files (bug #386665 by Samuli Suominen). Drop old.
+
+  04 Nov 2011; Naohiro Aota <naota@gentoo.org> libgphoto2-2.4.11-r1.ebuild:
+  Add ~x86-fbsd
+
+  30 Oct 2011; Raúl Porcel <armin76@gentoo.org> libgphoto2-2.4.11-r1.ebuild:
+  alpha/ia64/sparc stable wrt #385699
+
+  21 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libgphoto2-2.4.11-r1.ebuild:
+  x86 stable wrt bug #385699
+
+  18 Oct 2011; Jeroen Roovers <jer@gentoo.org> libgphoto2-2.4.11-r1.ebuild:
+  Stable for HPPA (bug #385699).
+
+  16 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  libgphoto2-2.4.11-r1.ebuild:
+  ppc/ppc64 stable wrt #385699
+
+  14 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
+  libgphoto2-2.4.11-r1.ebuild:
+  amd64 stable wrt #385699
+
+*libgphoto2-2.4.11-r1 (18 Jul 2011)
+
+  18 Jul 2011; Pacho Ramos <pacho@gentoo.org> +libgphoto2-2.4.11-r1.ebuild,
+  +files/libgphoto2-2.4.11-fix-automagic.patch:
+  Fix automagic dependencies on jpeg and gd, bug #374371 by Enlik. Thanks also
+  to marcusmeissner.
+
+  13 Jul 2011; Pacho Ramos <pacho@gentoo.org> libgphoto2-2.4.11.ebuild:
+  Fix udev location rules, bug #374989 by Jonathan Callen.
+
+*libgphoto2-2.4.11 (20 Jun 2011)
+
+  20 Jun 2011; Pacho Ramos <pacho@gentoo.org> +libgphoto2-2.4.11.ebuild:
+  Version bump, fix doxygen detection with USE '-doc' (bug #360979 by Jeroen
+  Roovers).
+
+  27 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> libgphoto2-2.4.10.ebuild:
+  Remove support for sys-apps/hal wrt #313389.
+
+  22 Mar 2011; Brent Baude <ranger@gentoo.org> libgphoto2-2.4.10.ebuild:
+  Marking libgphoto2-2.4.10 ppc stable for bug 353436
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> libgphoto2-2.4.10.ebuild:
+  ppc64 stable wrt #353436
+
+  12 Mar 2011; Raúl Porcel <armin76@gentoo.org> libgphoto2-2.4.10.ebuild:
+  alpha/ia64/sparc stable wrt #353436
+
+  07 Mar 2011; Jeroen Roovers <jer@gentoo.org> libgphoto2-2.4.10.ebuild:
+  Stable for HPPA (bug #353436).
+
+  24 Feb 2011; Thomas Kahle <tomka@gentoo.org> libgphoto2-2.4.10.ebuild:
+  x86 stable per bug 353436
+
+  23 Feb 2011; Markos Chandras <hwoarang@gentoo.org> libgphoto2-2.4.10.ebuild:
+  Stable on amd64 wrt bug #353436
+
+  12 Jan 2011; Gilles Dartiguelongue <eva@gentoo.org> libgphoto2-2.4.10.ebuild:
+  Change selective cameras build logic. Builds all when CAMERAS is set to *,
+  nothing if empty and only the ones specified otherwise in order to not
+  violate package manager handling, bug #346491.
+
+*libgphoto2-2.4.10 (21 Nov 2010)
+
+  21 Nov 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  +libgphoto2-2.4.10.ebuild:
+  Version bump. Enable jl2005c driver since it is now considered stable. Move
+  udev rules to /$(get_libdir)/udev/rules.d, bug #345731.
+
+  14 Nov 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  -libgphoto2-2.4.6.ebuild, -libgphoto2-2.4.8.ebuild,
+  libgphoto2-2.4.9.ebuild:
+  Clean up old revisions. Avoid automagic dependency for ax203 and st2205
+  drivers, bug #345149. Re-add libtool to RDEPEND.
+
+  13 Nov 2010; Raúl Porcel <armin76@gentoo.org> libgphoto2-2.4.9.ebuild:
+  alpha/ia64/sparc stable wrt #339475
+
+  05 Nov 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libgphoto2-2.4.9.ebuild:
+  ppc64 stable wrt #339475
+
+  29 Oct 2010; Jeroen Roovers <jer@gentoo.org> libgphoto2-2.4.9.ebuild:
+  Stable for HPPA (bug #339475).
+
+  15 Oct 2010; Brent Baude <ranger@gentoo.org> libgphoto2-2.4.9.ebuild:
+  Marking libgphoto2-2.4.9 ppc for bug 339475
+
+  13 Oct 2010; Markus Meier <maekke@gentoo.org> libgphoto2-2.4.9.ebuild:
+  x86 stable, bug #339475
+
+  09 Oct 2010; Markos Chandras <hwoarang@gentoo.org>
+  libgphoto2-2.4.9.ebuild:
+  Stable on amd64 wrt bug #339475
+
+  02 Oct 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/libgphoto2-2.4.7-extra-dist.patch,
+  +files/libgphoto2-2.4.7-no-test-build.patch:
+  Re-add no-test-build patch and remove the one intended in the first place,
+  bug #339488.
+
+  02 Oct 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  libgphoto2-2.4.6.ebuild, -libgphoto2-2.4.7-r2.ebuild,
+  -files/libgphoto2-2.4.7-no-test-build.patch, libgphoto2-2.4.8.ebuild,
+  -libgphoto2-2.4.8-r1.ebuild, libgphoto2-2.4.9.ebuild:
+  Clean up old revisions. Rename bonjour to zeroconf, bug #283330.
+
+  10 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libgphoto2-2.4.9.ebuild, +files/libgphoto2-2.4.9-dnl.patch:
+  Fix building with Autoconf >= 2.66 wrt #336598 by S. Holzbach.
+
+  30 Aug 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  libgphoto2-2.4.9.ebuild:
+  Actually enable new drivers for compilation.
 
 *libgphoto2-2.4.9 (08 May 2010)
 
