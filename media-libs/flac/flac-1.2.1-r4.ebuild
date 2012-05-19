@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r3.ebuild,v 1.13 2012/05/05 08:02:39 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r4.ebuild,v 1.3 2012/05/15 13:39:06 aballier Exp $
 
 EAPI=2
 inherit autotools eutils
@@ -29,6 +29,7 @@ src_prepare() {
 		"${FILESDIR}"/${P}-dontbuild-tests.patch \
 		"${FILESDIR}"/${P}-dontbuild-examples.patch \
 		"${FILESDIR}"/${P}-gcc-4.3-includes.patch \
+		"${FILESDIR}"/${P}-ogg-m4.patch \
 		"${FILESDIR}"/${P}-irix.patch
 
 	cp "${WORKDIR}"/*.m4 m4 || die
