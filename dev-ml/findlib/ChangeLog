@@ -1,6 +1,44 @@
 # ChangeLog for dev-ml/findlib
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.73 2011/01/24 09:15:55 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/ChangeLog,v 1.83 2012/05/08 22:45:59 aballier Exp $
+
+*findlib-1.3.1 (08 May 2012)
+
+  08 May 2012; Alexis Ballier <aballier@gentoo.org> +findlib-1.3.1.ebuild:
+  version bump
+
+*findlib-1.3.0 (08 May 2012)
+
+  08 May 2012; Alexis Ballier <aballier@gentoo.org> +findlib-1.3.0.ebuild:
+  version bump
+
+*findlib-1.2.8 (25 Feb 2012)
+
+  25 Feb 2012; Alexis Ballier <aballier@gentoo.org> +findlib-1.2.8.ebuild:
+  version bump
+
+  11 Oct 2011; Alexis Ballier <aballier@gentoo.org> -findlib-1.2.6.ebuild:
+  remove old
+
+  11 Oct 2011; Jeroen Roovers <jer@gentoo.org> findlib-1.2.7.ebuild:
+  Stable for HPPA (bug #374967).
+
+  24 Jul 2011; Raúl Porcel <armin76@gentoo.org> findlib-1.2.7.ebuild:
+  alpha/ia64/sparc stable wrt #374967
+
+  23 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> findlib-1.2.7.ebuild:
+  ppc/ppc64 stable wrt #374967
+
+  23 Jul 2011; Markus Meier <maekke@gentoo.org> findlib-1.2.7.ebuild:
+  x86 stable, bug #374967
+
+  16 Jul 2011; Markos Chandras <hwoarang@gentoo.org> findlib-1.2.7.ebuild:
+  Stable on amd64 wrt bug #374967
+
+*findlib-1.2.7 (19 Apr 2011)
+
+  19 Apr 2011; Alexis Ballier <aballier@gentoo.org> +findlib-1.2.7.ebuild:
+  version bump
 
   24 Jan 2011; Alexis Ballier <aballier@gentoo.org> -findlib-1.2.3.ebuild,
   -findlib-1.2.5.ebuild:
