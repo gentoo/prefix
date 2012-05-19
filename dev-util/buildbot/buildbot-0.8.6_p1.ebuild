@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.8.3_p1.ebuild,v 1.7 2011/03/23 21:30:05 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.8.6_p1.ebuild,v 1.1 2012/04/23 05:47:05 patrick Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -29,6 +29,8 @@ RDEPEND=">=dev-python/jinja-2.1
 	|| ( dev-lang/python:2.7[sqlite] dev-lang/python:2.6[sqlite] dev-python/pysqlite:2 )
 	>=dev-python/twisted-8.0.0
 	dev-python/twisted-web
+	dev-python/sqlalchemy
+	dev-python/sqlalchemy-migrate
 	irc? ( dev-python/twisted-words )
 	mail? ( dev-python/twisted-mail )
 	manhole? ( dev-python/twisted-conch )"
@@ -49,13 +51,19 @@ pkg_setup() {
 	enewuser buildbot
 }
 
+src_prepare() {
+	distutils_src_prepare
+	# https://github.com/buildbot/buildbot/commit/a3abed70546b3742964994517bb27556e06f6e20
+	sed -e "s/sqlalchemy-migrate == 0.6/sqlalchemy-migrate ==0.6, ==0.7/" -i setup.py || die "sed failed"
+}
+
 src_compile() {
 	distutils_src_compile
 
 	if use doc; then
 		einfo "Generation of documentation"
 		pushd docs > /dev/null
-		emake buildbot.html buildbot.info || die "Generation of documentation failed"
+		emake buildbot.html buildbot.info
 		popd > /dev/null
 	fi
 }
@@ -63,20 +71,20 @@ src_compile() {
 src_install() {
 	distutils_src_install
 
-	doman docs/buildbot.1 || die "doman failed"
+	doman docs/buildbot.1
 
 	if use doc; then
-		dohtml -r docs/buildbot.html docs/images || die "dohtml failed"
-		doinfo docs/buildbot.info || die "doinfo failed"
+		dohtml -r docs/buildbot.html docs/images
+		doinfo docs/buildbot.info
 	fi
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}
-		doins -r contrib docs/examples || die "doins failed"
+		doins -r contrib docs/examples
 	fi
 
-	newconfd "${FILESDIR}/buildmaster.confd" buildmaster || die "newconfd failed"
-	newinitd "${FILESDIR}/buildmaster.initd" buildmaster || die "newinitd failed"
+	newconfd "${FILESDIR}/buildmaster.confd" buildmaster
+	newinitd "${FILESDIR}/buildmaster.initd" buildmaster
 }
 
 pkg_postinst() {
