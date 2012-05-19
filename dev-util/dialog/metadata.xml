@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
-<maintainer>
-<email>truedfx@gentoo.org</email>
-<name>Harald van Dĳk</name>
-</maintainer>
+<herd>livecd</herd>
 <use>
 <flag name="minimal">Disable library, install command-line program only</flag>
 </use>

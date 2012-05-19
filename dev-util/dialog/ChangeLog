@@ -1,6 +1,114 @@
 # ChangeLog for dev-util/dialog
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.123 2010/07/07 22:22:36 truedfx Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.152 2012/04/26 14:26:29 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> dialog-1.1.20120215.ebuild:
+  keyword ~amd64-fbsd
+
+  28 Mar 2012; Mike Frysinger <vapier@gentoo.org>
+  dialog-1.1.20110707-r1.ebuild, dialog-1.1.20111020-r1.ebuild,
+  dialog-1.1.20120215.ebuild:
+  Disable useless -rpath flags.
+
+  08 Mar 2012; Jeroen Roovers <jer@gentoo.org> -dialog-1.1.20100428.ebuild,
+  -files/dialog-1.1.20100428-shared.patch, -files/dialog-shared.patch:
+  Old.
+
+  08 Mar 2012; Brent Baude <ranger@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  Marking dialog-1.1.20110707-r1 ppc64 for bug 396161
+
+*dialog-1.1.20120215 (01 Mar 2012)
+
+  01 Mar 2012; Jeroen Roovers <jer@gentoo.org> +dialog-1.1.20120215.ebuild:
+  Version bump.
+
+  04 Feb 2012; Brent Baude <ranger@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  Marking dialog-1.1.20110707-r1 ppc for bug 396161
+
+  15 Jan 2012; Raúl Porcel <armin76@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #396161
+
+  08 Jan 2012; Markus Meier <maekke@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  arm stable, bug #396161
+
+  04 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  dialog-1.1.20110707-r1.ebuild:
+  x86 stable wrt bug #396161
+
+  30 Dec 2011; Jeroen Roovers <jer@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  Stable for HPPA (bug #396161).
+
+*dialog-1.1.20111020-r1 (28 Dec 2011)
+
+  28 Dec 2011; Jeroen Roovers <jer@gentoo.org> -dialog-1.1.20111020.ebuild,
+  +dialog-1.1.20111020-r1.ebuild:
+  Install samples properly by Ago (bug #396195).
+
+  28 Dec 2011; Agostino Sarubbo <ago@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  Stable for AMD64, wrt bug #396161
+
+*dialog-1.1.20111020 (27 Dec 2011)
+
+  27 Dec 2011; Jeroen Roovers <jer@gentoo.org> +dialog-1.1.20111020.ebuild:
+  Version bump.
+
+  10 Dec 2011; Naohiro Aota <naota@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  Does work with <FreeBSD-9; Add block. Bug #352455
+
+  23 Aug 2011; Jeroen Roovers <jer@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  Fix USE=minimal case thanks to nzqr and others (bug #379891).
+
+  17 Aug 2011; Mike Frysinger <vapier@gentoo.org> dialog-1.1.20100428.ebuild:
+  Pull in libtool in the stable ebuild too.
+
+  15 Aug 2011; Jeroen Roovers <jer@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  Do not inherit unused autotools-utils.eclass (bug #378761).
+
+  09 Aug 2011; Jeroen Roovers <jer@gentoo.org> dialog-1.1.20110707-r1.ebuild:
+  Add USE=static-libs by Agostino Sarubbo (bug #378301).
+
+*dialog-1.1.20110707-r1 (21 Jul 2011)
+
+  21 Jul 2011; Jeroen Roovers <jer@gentoo.org> -dialog-1.1.20110707.ebuild,
+  +dialog-1.1.20110707-r1.ebuild:
+  Respect LDFLAGS.
+
+*dialog-1.1.20110707 (20 Jul 2011)
+
+  20 Jul 2011; Jeroen Roovers <jer@gentoo.org> +dialog-1.1.20110707.ebuild,
+  metadata.xml:
+  Version bump. Add livecd herd (for livecd-tools).
+
+  20 Jul 2011; Pacho Ramos <pacho@gentoo.org> -dialog-1.1.20080316.ebuild,
+  -dialog-1.1.20080819.ebuild, -dialog-1.1.20080819-r1.ebuild, metadata.xml:
+  Drop maintainer due retirement, bug #81177; remove old.
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  dialog-1.1.20100428.ebuild:
+  ppc64 stable wrt #352092
+
+  19 Mar 2011; Raúl Porcel <armin76@gentoo.org> dialog-1.1.20100428.ebuild:
+  ia64/m68k/s390/sh stable wrt #352092
+
+  08 Mar 2011; Jeroen Roovers <jer@gentoo.org> dialog-1.1.20100428.ebuild:
+  Stable for HPPA (bug #352092).
+
+  08 Mar 2011; Tobias Klausmann <klausman@gentoo.org>
+  dialog-1.1.20100428.ebuild:
+  Stable on alpha, bug #352092
+
+  08 Mar 2011; Markos Chandras <hwoarang@gentoo.org>
+  dialog-1.1.20100428.ebuild:
+  Stable on amd64 wrt bug #352092
+
+  07 Mar 2011; Thomas Kahle <tomka@gentoo.org> dialog-1.1.20100428.ebuild:
+  x86 stable per bug 352092
+
+  06 Mar 2011; Michael Weber <xmw@gentoo.org> dialog-1.1.20100428.ebuild:
+  arm stable (bug 355649)
+
+  05 Mar 2011; Michael Weber <xmw@gentoo.org> dialog-1.1.20100428.ebuild:
+  ppc/sparc stable (bug 355649)
 
 *dialog-1.1.20100428 (07 Jul 2010)
 

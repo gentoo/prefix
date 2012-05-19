@@ -1,14 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20100428.ebuild,v 1.1 2010/07/07 22:22:36 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20120215.ebuild,v 1.3 2012/04/26 14:26:29 aballier Exp $
 
-# porting note:
-# manpages were installed in the wrong location (double prefix)
-# solution: replaced make install with einstall
+EAPI="4"
 
-EAPI=2
-
-inherit eutils
+inherit multilib
 
 MY_PV="${PV/1.1./1.1-}"
 S=${WORKDIR}/${PN}-${MY_PV}
@@ -19,19 +15,25 @@ SRC_URI="ftp://invisible-island.net/${PN}/${PN}-${MY_PV}.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="examples minimal nls unicode"
+IUSE="examples minimal nls static-libs unicode"
 
-RDEPEND=">=app-shells/bash-2.04-r3
+RDEPEND="
+	>=app-shells/bash-2.04-r3
 	!unicode? ( >=sys-libs/ncurses-5.2-r5 )
-	unicode? ( >=sys-libs/ncurses-5.2-r5[unicode] )"
-DEPEND="${RDEPEND}
-	nls? ( sys-devel/gettext )"
-
+	unicode? ( >=sys-libs/ncurses-5.2-r5[unicode] )
+"
+DEPEND="
+	${RDEPEND}
+	nls? ( sys-devel/gettext )
+	!minimal? ( sys-devel/libtool )
+	!<=sys-freebsd/freebsd-contrib-8.9999
+"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-shared.patch
+	sed -i configure -e '/LIB_CREATE=/s:${CC}:& ${LDFLAGS}:g' || die
 	# configure searches all over the world for some things...
-	epatch "${FILESDIR}"/${P}-no-path-invention.patch
+	sed -i configure \
+		-e 's:^test -d "\(/usr\|$prefix\|/usr/local\|/opt\|$HOME\):test -d "XnoX:' || die
 }
 
 src_configure() {
@@ -43,6 +45,7 @@ src_configure() {
 	[[ ${CHOST} == *-darwin* ]] && glibtool="glibtool"
 	export ac_cv_path_LIBTOOL="$(type -P ${glibtool})"
 	econf \
+		--disable-rpath-hack \
 		$(use_enable nls) \
 		$(use_with !minimal libtool) \
 		--with-ncurses${ncursesw}
@@ -50,15 +53,25 @@ src_configure() {
 
 src_install() {
 	if use minimal; then
-		emake DESTDIR="${D}" install || die "install failed"
+		emake DESTDIR="${D}" install
 	else
-		emake DESTDIR="${D}" install-full || die "install failed"
+		emake DESTDIR="${D}" install-full
 	fi
 
 	dodoc CHANGES README VERSION
 
 	if use examples; then
 		docinto samples
-		dodoc samples/*
+		dodoc $( find samples -maxdepth 1 -type f )
+		docinto samples/copifuncs
+		dodoc $( find samples/copifuncs -maxdepth 1 -type f )
+		docinto samples/install
+		dodoc $( find samples/install -type f )
+	fi
+
+	if ! use static-libs; then
+		rm -f \
+			"${ED}"usr/$(get_libdir)/libdialog.a \
+			"${ED}"usr/$(get_libdir)/libdialog.la
 	fi
 }
