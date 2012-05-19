@@ -1,7 +1,5 @@
-Index: libexif-0.6.13/libexif/libexif.pc.in
-===================================================================
---- libexif-0.6.13.orig/libexif/libexif.pc.in
-+++ libexif-0.6.13/libexif/libexif.pc.in
+--- libexif/libexif.pc.in
++++ libexif/libexif.pc.in
 @@ -1,7 +1,7 @@
  prefix=@prefix@
  exec_prefix=@exec_prefix@

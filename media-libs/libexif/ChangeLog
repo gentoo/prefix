@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/libexif
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.124 2012/01/06 20:05:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.128 2012/05/09 00:24:05 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> libexif-0.6.20.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libexif-0.6.20.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  02 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> -libexif-0.6.19.ebuild:
+  old
+
+  02 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> libexif-0.6.20.ebuild:
+  ppc64 stable wrt #390249
 
   06 Jan 2012; Brent Baude <ranger@gentoo.org> libexif-0.6.20.ebuild:
   Marking libexif-0.6.20 ppc for bug 390249
