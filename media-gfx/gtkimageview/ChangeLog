@@ -1,6 +1,19 @@
 # ChangeLog for media-gfx/gtkimageview
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gtkimageview/ChangeLog,v 1.19 2010/01/31 17:42:22 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gtkimageview/ChangeLog,v 1.23 2012/04/30 09:21:51 jlec Exp $
+
+  30 Apr 2012; Justin Lecher <jlec@gentoo.org> gtkimageview-1.6.4.ebuild:
+  Use GNOME2_LA_PUNT instead of manual punting
+
+  30 Apr 2012; Justin Lecher <jlec@gentoo.org> gtkimageview-1.6.4.ebuild:
+  Clean fix for virtualx.eclass usage, #294295
+
+  29 Apr 2012; Justin Lecher <jlec@gentoo.org> gtkimageview-1.6.4.ebuild:
+  Move to EAPI=4, handle static-libs, add fix for gold.ld, call Xemake #294295;
+  do not call elibtoolize twice, #411389
+
+  12 Mar 2011; Tim Harder <radhermit@gentoo.org> gtkimageview-1.6.4.ebuild:
+  Use slot dep for gtk+.
 
   31 Jan 2010; Raúl Porcel <armin76@gentoo.org> gtkimageview-1.6.4.ebuild:
   arm/ia64/sh/sparc stable wrt #293850
