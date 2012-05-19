@@ -1,6 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ladspa-sdk-1.13-r1.ebuild,v 1.8 2010/05/28 10:10:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ladspa-sdk-1.13-r1.ebuild,v 1.9 2011/06/07 07:28:15 radhermit Exp $
+
+EAPI=4
 
 inherit eutils toolchain-funcs portability flag-o-matic
 
@@ -21,32 +23,31 @@ DEPEND=">=sys-apps/sed-4"
 
 S="${WORKDIR}/${MY_PN}/src"
 
-src_unpack() {
-	unpack ${A}
-	epatch "${FILESDIR}/${P}-properbuild.patch"
-	epatch "${FILESDIR}/${P}-asneeded.patch"
-	epatch "${FILESDIR}/${P}-fbsd.patch"
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-properbuild.patch \
+		"${FILESDIR}"/${P}-asneeded.patch \
+		"${FILESDIR}"/${P}-fbsd.patch \
+		"${FILESDIR}"/${P}-no-LD.patch
+
 	epatch "${FILESDIR}/${P}-darwin.patch"
 	sed -i -e 's:-sndfile-play*:@echo Disabled \0:' \
-		"${S}/makefile" || die "sed makefile failed (sound playing tests)"
+		makefile || die "sed makefile failed (sound playing tests)"
 }
 
 src_compile() {
 	emake CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" \
-		RAW_LDFLAGS="$(raw-ldflags)" \
 		DYNAMIC_LD_LIBS="$(dlopen_lib)" \
-		CC="$(tc-getCC)" CXX="$(tc-getCXX)" LD="$(tc-getLD)" \
-		targets || die
+		CC="$(tc-getCC)" CXX="$(tc-getCXX)" \
+		targets
 }
 
 src_install() {
-	emake \
-		INSTALL_PLUGINS_DIR="/usr/$(get_libdir)/ladspa" \
+	emake INSTALL_PLUGINS_DIR="/usr/$(get_libdir)/ladspa" \
 		DESTDIR="${ED}" \
 		MKDIR_P="mkdir -p" \
-		install || die "make install failed"
+		install
 
-	dohtml ../doc/*.html || die "dohtml failed"
+	dohtml ../doc/*.html
 
 	# Needed for apps like rezound
 	dodir /etc/env.d

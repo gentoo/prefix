@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/ladspa-sdk
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.51 2010/05/28 10:10:16 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.52 2011/06/07 07:28:15 radhermit Exp $
+
+  07 Jun 2011; Tim Harder <radhermit@gentoo.org> ladspa-sdk-1.13-r1.ebuild,
+  +files/ladspa-sdk-1.13-no-LD.patch:
+  Apply fix to remove direct calls to $(LD) (bug #314913) and update to EAPI 4.
+  Thanks to Nathan Phillip Brink (binki).
 
   28 May 2010; Markus Meier <maekke@gentoo.org> ladspa-sdk-1.13-r1.ebuild:
   x86 stable, bug #304033
