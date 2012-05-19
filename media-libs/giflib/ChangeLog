@@ -1,6 +1,24 @@
 # ChangeLog for media-libs/giflib
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/giflib/ChangeLog,v 1.60 2008/12/08 18:52:29 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/giflib/ChangeLog,v 1.64 2012/05/09 00:23:21 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> giflib-4.1.6-r2.ebuild:
+  keyword ~amd64-fbsd
+
+*giflib-4.1.6-r2 (17 Jul 2011)
+
+  17 Jul 2011; Tomáš Chvátal <scarabeus@gentoo.org> -giflib-4.1.6-r1.ebuild,
+  +giflib-4.1.6-r2.ebuild:
+  Revision bump to add back .la file when using static libs. Preserve the
+  stable keywords as the former change might break stable static builds only.
+  Fixes bug #371173.
+
+  12 Jun 2011; Tomáš Chvátal <scarabeus@gentoo.org> giflib-4.1.6-r1.ebuild:
+  Introduce (add back) optional support for static libraries as per bug
+  #371173.
+
+  05 May 2011; Tomáš Chvátal <scarabeus@gentoo.org> giflib-4.1.6-r1.ebuild:
+  Punt static library and .la file archive.
 
   08 Dec 2008; Markus Meier <maekke@gentoo.org> -giflib-4.1.6.ebuild:
   old
