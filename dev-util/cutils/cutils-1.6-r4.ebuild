@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/cutils-1.6-r3.ebuild,v 1.2 2008/11/24 23:23:51 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/cutils-1.6-r4.ebuild,v 1.5 2012/03/18 17:50:44 armin76 Exp $
+
+EAPI=4
 
 inherit eutils toolchain-funcs
 
@@ -13,36 +15,36 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
-src_unpack() {
-	unpack ${A}
+RDEPEND=""
+DEPEND="sys-devel/flex"
 
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-infopage.patch
 
 	epatch "${FILESDIR}"/${P}-case-insensitive.patch
 
 	mv "${S}"/src/cdecl/cdecl.1 			\
-		"${S}"/src/cdecl/cutils-cdecl.1 || die "mv cdecl failed"
+		"${S}"/src/cdecl/cutils-cdecl.1 || die
 	# Force rebuild of cutils.info
-	rm -f "${S}"/doc/cutils.info
+	rm -f "${S}"/doc/cutils.info || die
 
 	sed -i "s/cdecl/cutils-cdecl/g"			\
-		"${S}"/doc/cutils.texi || die "sed cutils.info failed"
+		"${S}"/doc/cutils.texi || die
 	sed -i "/PROG/s/cdecl/cutils-cdecl/" 	\
-		"${S}"/src/cdecl/Makefile.in || die "sed cdecl failed"
+		"${S}"/src/cdecl/Makefile.in || die
 	sed -i "/Xr/s/cdecl/cutils-cdecl/"		\
-		"${S}"/src/cundecl/cundecl.1 || die "sed cundecl.1 failed"
+		"${S}"/src/cundecl/cundecl.1 || die
 	sed -i "/Nm/s/cdecl/cutils-cdecl/"		\
-		"${S}"/src/cdecl/cutils-cdecl.1 || die "sed cutils-cdecl.1 failed"
+		"${S}"/src/cdecl/cutils-cdecl.1 || die
 }
 
 src_compile() {
-	econf
-	emake CC="$(tc-getCC)" -j1 || die "emake failed"
+	emake CC="$(tc-getCC)" -j1
 }
 
 src_install () {
-	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc CREDITS HISTORY NEWS README || die "dodoc failed"
+	emake DESTDIR="${D}" install
+	dodoc CREDITS HISTORY NEWS README
 }
 
 pkg_postinst () {

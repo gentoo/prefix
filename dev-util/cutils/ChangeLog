@@ -1,6 +1,25 @@
 # ChangeLog for dev-util/cutils
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/ChangeLog,v 1.26 2009/09/23 17:42:34 patrick Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/ChangeLog,v 1.31 2012/03/18 17:50:43 armin76 Exp $
+
+  18 Mar 2012; Raúl Porcel <armin76@gentoo.org> cutils-1.6-r2.ebuild,
+  cutils-1.6-r4.ebuild:
+  Drop sparc keywords
+
+  24 Feb 2012; Brent Baude <ranger@gentoo.org> cutils-1.6-r4.ebuild:
+  Marking cutils-1.6-r4 ppc for bug 404729
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> cutils-1.6-r4.ebuild:
+  x86 stable wrt bug #404729
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> cutils-1.6-r4.ebuild:
+  Stable for amd64, wrt bug #404729
+
+*cutils-1.6-r4 (12 Nov 2011)
+
+  12 Nov 2011; Michael Weber <xmw@gentoo.org> -cutils-1.6-r3.ebuild,
+  +cutils-1.6-r4.ebuild:
+  Revbump to add sys-devel/flex (thanks to bay, bug 387651). EAPI-4, cleanups.
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> cutils-1.6-r2.ebuild:
   Remove virtual/libc
