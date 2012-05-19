@@ -1,6 +1,12 @@
 # ChangeLog for dev-tex/cjk-latex
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/cjk-latex/ChangeLog,v 1.44 2010/10/10 16:42:18 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/cjk-latex/ChangeLog,v 1.46 2012/05/09 16:48:34 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> cjk-latex-4.8.2.ebuild:
+  keyword ~amd64-fbsd
+
+  28 Jun 2011; Alexis Ballier <aballier@gentoo.org> cjk-latex-4.8.2.ebuild:
+  set TEXMFCNF so that texmf.cnf is found by kpathsea, bump to eapi3
 
   10 Oct 2010; Alexis Ballier <aballier@gentoo.org> cjk-latex-4.8.2.ebuild,
   +files/cjk-latex-4.8.2-kpathsea_version.patch:

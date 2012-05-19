@@ -1,6 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/cjk-latex/cjk-latex-4.8.2.ebuild,v 1.8 2010/10/10 16:42:18 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/cjk-latex/cjk-latex-4.8.2.ebuild,v 1.10 2012/05/09 16:48:34 aballier Exp $
+
+EAPI=3
 
 inherit latex-package elisp-common toolchain-funcs multilib eutils autotools
 
@@ -25,10 +27,7 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	for i in "${WORKDIR}"/CJK/*.tar.gz; do
 		tar -xzf ${i} || die "failed to unpack $i"
 	done
@@ -41,24 +40,32 @@ src_unpack() {
 	eautoreconf
 }
 
-src_compile() {
-	tc-export CC
+src_configure() {
 	cd utils
 	for d in *conv; do
 		cd $d
 		local f=`echo $d | tr '[:upper:]' '[:lower:]'`
 		echo "all: $f" >> Makefile
-		emake || die || die "building $f failed"
 		if [ $d = CEFconv ] ; then
 			echo "all: cef5conv cefsconv" >> Makefile
-			emake || die "building $d failed"
 		fi
 		cd -
 	done
 	cd hbf2gf
 	econf --with-kpathsea-lib="${EPREFIX}"/usr/$(get_libdir) \
 		--with-kpathsea-include="${EPREFIX}"/usr/include/kpathsea
-	emake || die "building hbf2gf failed!"
+}
+
+src_compile() {
+	tc-export CC
+	cd utils
+	for d in *conv; do
+		cd $d
+		emake || die
+		cd -
+	done
+	cd hbf2gf
+	emake || die
 	cd -
 
 	if use emacs ; then
@@ -73,7 +80,7 @@ src_compile() {
 	cd "${T}"
 
 	for f in "${S}"/texmf/hbf2gf/*.cfg ; do
-		env HBF_TARGET="${S}/texmf/fonts" "${S}/utils/hbf2gf/hbf2gf" $f || die
+	env TEXMFCNF="${EPREFIX}/etc/texmf/web2c" HBF_TARGET="${S}/texmf/fonts" "${S}/utils/hbf2gf/hbf2gf" $f || die
 	done
 
 	einfo "Generating pk fonts"
