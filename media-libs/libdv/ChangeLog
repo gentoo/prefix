@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libdv
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdv/ChangeLog,v 1.81 2008/01/03 14:02:26 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdv/ChangeLog,v 1.84 2012/05/05 08:02:44 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libdv-1.0.0-r2.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  11 Sep 2011; Tomáš Chvátal <scarabeus@gentoo.org> libdv-1.0.0-r2.ebuild:
+  Fix typo issue for static-libs line missing trailing backslash. Bug #382461.
+
+  09 Sep 2011; Tomáš Chvátal <scarabeus@gentoo.org> libdv-1.0.0-r2.ebuild:
+  Make static library optional and remove libtool archive. Move to eapi4.
 
   03 Jan 2008; Alexis Ballier <aballier@gentoo.org> libdv-1.0.0-r2.ebuild:
   Keyword ~x86-fbsd, working fine here
