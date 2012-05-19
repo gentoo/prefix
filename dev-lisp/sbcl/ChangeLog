@@ -1,6 +1,48 @@
 # ChangeLog for dev-lisp/sbcl
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.168 2010/12/17 20:19:14 ulm Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.174 2012/05/10 20:55:35 ulm Exp $
+
+  10 May 2012; Ulrich Müller <ulm@gentoo.org> sbcl-1.0.55-r1.ebuild:
+  Remove mirror restriction, remnant from the ebuild in the lisp overlay.
+
+  09 Apr 2012; Jesus Rivero <neurogeek@gentoo.org> +sbcl-1.0.55-r1.ebuild:
+  Version bump
+
+  07 Apr 2012; Jesus Rivero <neurogeek@gentoo.org>
+  -files/sbcl-1.0.36-fix_linux-os-c.patch,
+  +files/sbcl-1.0.55_no_doc_install.patch, +files/gentoo-fix_install_man.patch,
+  +files/gentoo-fix_linux-os-c.patch,
+  +files/gentoo-fix_nopie_for_hardened_toolchain.patch,
+  +files/gentoo_fix_waitpid_c.patch, -files/disable-tests-gentoo.patch,
+  -files/vanilla-module-install-source-gentoo.patch:
+  Removed older versions
+
+*sbcl-1.0.55-r1 (26 Mar 2012)
+
+  26 Mar 2012; Jesus Rivero <neurogeek@gentoo.org>
+  -files/sbcl-1.0.36-fix_linux-os-c.patch, +sbcl-1.0.55-r1.ebuild,
+  +files/sbcl-1.0.55_no_doc_install.patch, +files/gentoo-fix_install_man.patch,
+  +files/gentoo-fix_linux-os-c.patch,
+  +files/gentoo-fix_nopie_for_hardened_toolchain.patch,
+  +files/gentoo_fix_waitpid_c.patch, -files/disable-tests-gentoo.patch,
+  -files/vanilla-module-install-source-gentoo.patch:
+  Version bump. Removed unused patches
+
+  26 Mar 2012; Jesus Rivero <neurogeek@gentoo.org> -sbcl-1.0.26-r10.ebuild,
+  -sbcl-1.0.27-r10.ebuild, -sbcl-1.0.28.ebuild, -sbcl-1.0.31.ebuild,
+  -sbcl-1.0.36-r1.ebuild:
+  Getting rid of older versions
+
+  27 Mar 2011; Brent Baude <ranger@gentoo.org> sbcl-1.0.45.ebuild:
+  stable ppc, bug 326217
+
+*sbcl-1.0.45 (08 Feb 2011)
+
+  08 Feb 2011; Panagiotis Christopoulos <pchrist@gentoo.org>
+  +sbcl-1.0.45.ebuild, +files/sbcl-1.0.45-fix_install_man.patch,
+  +files/sbcl-1.0.45-fix_linux-os-c.patch, metadata.xml:
+  Version bump by Stelian Ionescu <sionescu+gentoo at cddr.org>, fixes bug
+  #154887, bug #338949 and build system (see patch). Many thanks to Stelian.
 
   17 Dec 2010; Ulrich Mueller <ulm@gentoo.org> sbcl-1.0.19.ebuild,
   sbcl-1.0.26-r10.ebuild, sbcl-1.0.27-r10.ebuild, sbcl-1.0.28.ebuild,
