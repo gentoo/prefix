@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.11-r6.ebuild,v 1.3 2012/04/12 04:40:01 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.11-r6.ebuild,v 1.4 2012/05/05 07:00:18 jdhore Exp $
 
 EAPI="3"
 
@@ -51,7 +51,7 @@ RDEPEND="
 	wmf? ( >=media-libs/libwmf-0.2.8 )"
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40
-	>=dev-util/pkgconfig-0.12.0
+	virtual/pkgconfig
 	>=sys-devel/gettext-0.17
 	doc? ( >=dev-util/gtk-doc-1 )"
 

@@ -1,6 +1,26 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.361 2012/04/17 22:00:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.365 2012/05/08 01:02:45 hasufell Exp $
+
+  08 May 2012; Julian Ospald <hasufell@gentoo.org> metadata.xml:
+  webkit is now global wrt #285743
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> gimp-2.6.11-r1.ebuild,
+  gimp-2.6.11-r2.ebuild, gimp-2.6.11-r3.ebuild, gimp-2.6.11-r4.ebuild,
+  gimp-2.6.11-r5.ebuild, gimp-2.6.11-r6.ebuild, gimp-2.6.12.ebuild,
+  gimp-2.7.3.ebuild, gimp-2.7.3-r1.ebuild, gimp-2.7.4.ebuild,
+  gimp-2.7.5.ebuild, gimp-2.8.0_rc1.ebuild, gimp-2.8.0.ebuild,
+  gimp-9999.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  04 May 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.8.0.ebuild,
+  +files/gimp-2.8.0-bzip2.patch, gimp-9999.ebuild:
+  Fix bzip2 use flag support, remove .la files (bug #414525)
+
+*gimp-2.8.0 (03 May 2012)
+
+  03 May 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.8.0.ebuild:
+  Bump to 2.8.0 (bug #414493)
 
   17 Apr 2012; Brent Baude <ranger@gentoo.org> gimp-2.6.12.ebuild:
   Marking gimp-2.6.12 ppc64 for bug 410403

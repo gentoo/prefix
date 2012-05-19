@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.7.4.ebuild,v 1.4 2012/05/05 07:00:18 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.8.0.ebuild,v 1.3 2012/05/05 07:00:18 jdhore Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2:2.5"
@@ -10,16 +10,16 @@ inherit versionator autotools eutils gnome2 fdo-mime multilib python
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
 SRC_URI="mirror://gimp/v$(get_version_component_range 1-2)/${P}.tar.bz2"
-
 LICENSE="GPL-3 LGPL-3"
 SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
-IUSE="aqua alsa aalib altivec curl dbus debug doc exif gnome jpeg jpeg2k lcms mmx mng pdf png python smp sse svg tiff udev webkit wmf xpm"
+IUSE="aqua alsa aalib altivec bzip2 curl dbus debug doc exif gnome gs jpeg jpeg2k lcms mmx mng pdf png python smp sse svg tiff udev webkit wmf xpm"
 
 RDEPEND=">=dev-libs/glib-2.30.2:2
-	>=x11-libs/gtk+-2.24.7:2
-	>=x11-libs/gdk-pixbuf-2.24:2
+	>=dev-libs/atk-2.2.0
+	>=x11-libs/gtk+-2.24.10:2
+	>=x11-libs/gdk-pixbuf-2.24.1:2
 	>=x11-libs/cairo-1.10.2
 	>=x11-libs/pango-1.29.4
 	xpm? ( x11-libs/libXpm )
@@ -30,8 +30,8 @@ RDEPEND=">=dev-libs/glib-2.30.2:2
 	dev-libs/libxslt
 	!aqua? ( x11-misc/xdg-utils )
 	x11-themes/hicolor-icon-theme
-	>=media-libs/babl-0.1.6
-	>=media-libs/gegl-0.1.8 <media-libs/gegl-0.2
+	>=media-libs/babl-0.1.10
+	>=media-libs/gegl-0.2.0
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
 	curl? ( net-misc/curl )
@@ -50,8 +50,12 @@ RDEPEND=">=dev-libs/glib-2.30.2:2
 	svg? ( >=gnome-base/librsvg-2.34.2:2 )
 	wmf? ( >=media-libs/libwmf-0.2.8 )
 	x11-libs/libXcursor
+	sys-libs/zlib
+	bzip2? ( app-arch/bzip2 )
+	gs? ( app-text/ghostscript-gpl )
 	udev? ( sys-fs/udev[gudev] )"
 DEPEND="${RDEPEND}
+	sys-apps/findutils
 	virtual/pkgconfig
 	>=dev-util/intltool-0.40.1
 	>=sys-devel/gettext-0.17
@@ -62,12 +66,15 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
 
+S="${WORKDIR}"/${P}
+
 pkg_setup() {
 	G2CONF="--enable-default-binary \
 		$(use_with !aqua x) \
 		$(use_with aalib aa) \
 		$(use_with alsa) \
 		$(use_enable altivec) \
+		$(use_with bzip2) \
 		$(use_with curl libcurl) \
 		$(use_with dbus) \
 		$(use_with gnome gvfs) \
@@ -76,6 +83,7 @@ pkg_setup() {
 		$(use_with jpeg2k libjasper) \
 		$(use_with exif libexif) \
 		$(use_with lcms) \
+		$(use_with gs) \
 		$(use_enable mmx) \
 		$(use_with mng libmng) \
 		$(use_with pdf poppler) \
@@ -98,7 +106,8 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-no-deprecation.patch  # bug 395695, comment 9 and 16
+	epatch "${FILESDIR}"/${PN}-2.7.4-no-deprecation.patch  # bug 395695, comment 9 and 16
+	epatch "${FILESDIR}"/${PN}-2.8.0-bzip2.patch  # bug 414525
 	eautoreconf  # If you remove this: remove dev-util/gtk-doc-am from DEPEND, too
 
 	echo '#!/bin/sh' > py-compile
@@ -116,6 +125,8 @@ src_install() {
 	# Workaround for bug #321111 to give GIMP the least
 	# precedence on PDF documents by default
 	mv "${ED}"/usr/share/applications/{,zzz-}gimp.desktop || die
+
+	find "${ED}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {
