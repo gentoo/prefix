@@ -1,6 +1,39 @@
 # ChangeLog for dev-util/ctags
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.74 2010/10/19 05:23:53 leio Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.84 2012/04/26 16:49:19 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> ctags-5.8.ebuild:
+  keyword ~amd64-fbsd
+
+  17 Mar 2012; Matt Turner <mattst88@gentoo.org> ctags-5.5.4-r2.ebuild,
+  ctags-5.6-r2.ebuild, ctags-5.6-r3.ebuild:
+  Drop ~mips from old versions.
+
+  12 Feb 2012; Tony Vroon <chainsaw@gentoo.org> ctags-5.8.ebuild:
+  Marked stable on PPC64 as requested by Denilson Sá in bug #387175.
+  Compile tested on a PowerMac7,3 (64UL) with GCC 4.5.3.
+
+  07 Nov 2011; Brent Baude <ranger@gentoo.org> ctags-5.8.ebuild:
+  Marking ctags-5.8 ppc for bug 387175
+
+  05 Nov 2011; Raúl Porcel <armin76@gentoo.org> ctags-5.8.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #387175
+
+  29 Oct 2011; Markus Meier <maekke@gentoo.org> ctags-5.8.ebuild:
+  arm stable, bug #387175
+
+  19 Oct 2011; Tony Vroon <chainsaw@gentoo.org> ctags-5.8.ebuild:
+  Marked stable on AMD64 based on arch testing by Elijah "Armageddon" El
+  Lazkani & Agostino "ago" Sarubbo in bug #387175.
+
+  18 Oct 2011; Jeroen Roovers <jer@gentoo.org> ctags-5.8.ebuild:
+  Stable for HPPA (bug #387175).
+
+  18 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> ctags-5.8.ebuild:
+  x86 stable wrt bug #387175
+
+  16 Oct 2011; Tim Harder <radhermit@gentoo.org> ctags-5.8.ebuild:
+  Update to EAPI 4 and other minor fixes (fixes bug #387261).
 
   19 Oct 2010; Mart Raudsepp <leio@gentoo.org> ctags-5.5.4-r2.ebuild:
   Drop to ~mips
