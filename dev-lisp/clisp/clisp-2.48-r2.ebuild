@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.48-r2.ebuild,v 1.3 2010/12/17 20:17:25 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.48-r2.ebuild,v 1.4 2011/03/29 12:17:01 angelos Exp $
 
 EAPI="2"
 
@@ -21,7 +21,7 @@ RDEPEND="virtual/libiconv
 		 dbus? ( sys-apps/dbus )
 		 fastcgi? ( dev-libs/fcgi )
 		 gdbm? ( sys-libs/gdbm )
-		 gtk? ( >=x11-libs/gtk+-2.10 >=gnome-base/libglade-2.6 )
+		 gtk? ( >=x11-libs/gtk+-2.10:2 >=gnome-base/libglade-2.6:2.0 )
 		 pari? ( >=sci-mathematics/pari-2.3.0 )
 		 postgres? ( >=dev-db/postgresql-base-8.0 )
 		 readline? ( >=sys-libs/readline-5.0 )

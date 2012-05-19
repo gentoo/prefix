@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/clisp
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.103 2010/12/17 20:17:25 ulm Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/ChangeLog,v 1.104 2011/03/29 12:17:01 angelos Exp $
+
+  29 Mar 2011; Christoph Mende <angelos@gentoo.org> clisp-2.47-r1.ebuild,
+  clisp-2.48-r1.ebuild, clisp-2.48-r2.ebuild:
+  Fixed slot deps
 
   17 Dec 2010; Ulrich Mueller <ulm@gentoo.org> clisp-2.47-r1.ebuild,
   clisp-2.48-r1.ebuild, clisp-2.48-r2.ebuild:
