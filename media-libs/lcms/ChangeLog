@@ -1,6 +1,59 @@
 # ChangeLog for media-libs/lcms
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.128 2011/06/12 16:41:53 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.143 2012/04/26 20:40:16 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> lcms-1.19.ebuild,
+  lcms-2.3.ebuild:
+  keyword ~amd64-fbsd
+
+  20 Feb 2012; Patrick Lauer <patrick@gentoo.org> lcms-1.19.ebuild:
+  Restricting pypy #403781
+
+  07 Feb 2012; Jeroen Roovers <jer@gentoo.org> lcms-2.3.ebuild:
+  Stable for HPPA (bug #399593).
+
+  22 Jan 2012; Raúl Porcel <armin76@gentoo.org> lcms-2.3.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #399593
+
+  21 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> -lcms-2.0a.ebuild:
+  old
+
+  21 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> lcms-2.3.ebuild:
+  amd64/ppc/ppc64/x86 stable wrt #399593
+
+  18 Dec 2011; Raúl Porcel <armin76@gentoo.org> lcms-2.2-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #390781
+
+  16 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> -lcms-2.1.ebuild,
+  -lcms-2.2.ebuild:
+  old
+
+*lcms-2.3 (16 Dec 2011)
+
+  16 Dec 2011; Samuli Suominen <ssuominen@gentoo.org> +lcms-2.3.ebuild:
+  Version bump.
+
+  03 Dec 2011; Markus Meier <maekke@gentoo.org> lcms-2.2-r1.ebuild:
+  arm stable, bug #390781
+
+  22 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> lcms-2.2-r1.ebuild:
+  x86 stable wrt bug #390781
+
+  18 Nov 2011; Tony Vroon <chainsaw@gentoo.org> lcms-2.2-r1.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armageddon" El Lazkani in bug #390781.
+
+  17 Nov 2011; Jeroen Roovers <jer@gentoo.org> lcms-2.2-r1.ebuild:
+  Stable for HPPA (bug #390781).
+
+  13 Nov 2011; Justin Lecher <jlec@gentoo.org> lcms-1.19.ebuild,
+  lcms-2.0a.ebuild, lcms-2.1.ebuild, lcms-2.2.ebuild, lcms-2.2-r1.ebuild:
+  Corrected Slotting of media-libs/tiff
+
+  12 Aug 2011; Sergei Trofimovich <slyfox@gentoo.org> lcms-2.2-r1.ebuild,
+  +files/lcms-2.2-fix-test-on-sparc.patch:
+  Fix FEATURES=test SIGBUS failure on sparc32. bug #371525 by Matt Turner,
+  patch is from upstream.
 
 *lcms-2.2-r1 (12 Jun 2011)
 

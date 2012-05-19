@@ -1,11 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-1.19.ebuild,v 1.10 2011/02/26 18:18:37 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-1.19.ebuild,v 1.13 2012/04/26 20:40:16 aballier Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.* *-jython"
+RESTRICT_PYTHON_ABIS="3.* *-jython 2.7-pypy-*"
 
 inherit autotools eutils multilib python
 
@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="jpeg python static-libs tiff zlib"
 
-RDEPEND="tiff? ( media-libs/tiff )
+RDEPEND="tiff? ( media-libs/tiff:0 )
 	jpeg? ( virtual/jpeg )
 	zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}

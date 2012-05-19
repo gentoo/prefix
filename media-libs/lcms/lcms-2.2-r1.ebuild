@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-2.2-r1.ebuild,v 1.1 2011/06/12 16:41:53 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-2.2-r1.ebuild,v 1.8 2011/12/18 15:25:09 armin76 Exp $
 
 EAPI=4
 inherit eutils
@@ -15,7 +15,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos 
 IUSE="doc jpeg static-libs test tiff zlib"
 
 RDEPEND="jpeg? ( virtual/jpeg )
-	tiff? ( media-libs/tiff )
+	tiff? ( media-libs/tiff:0 )
 	zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}"
 
@@ -24,7 +24,8 @@ S=${WORKDIR}/lcms2-${PV}
 src_prepare() {
 	epatch \
 		"${FILESDIR}"/${P}-header.patch \
-		"${FILESDIR}"/${P}-lm.patch
+		"${FILESDIR}"/${P}-lm.patch \
+		"${FILESDIR}"/${P}-fix-test-on-sparc.patch
 }
 
 src_configure() {
