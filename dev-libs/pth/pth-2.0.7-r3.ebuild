@@ -1,6 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r3.ebuild,v 1.5 2011/05/21 19:57:38 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r3.ebuild,v 1.7 2012/05/09 15:21:08 aballier Exp $
+
+EAPI=4
 
 inherit eutils fixheadtails libtool flag-o-matic autotools
 
@@ -11,14 +13,14 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug"
+IUSE="debug static-libs"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+DOCS="ANNOUNCE AUTHORS ChangeLog NEWS README THANKS USERS"
+
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.0.5-parallelfix.patch
 	epatch "${FILESDIR}"/${PN}-2.0.6-ldflags.patch
 	epatch "${FILESDIR}"/${PN}-2.0.6-sigstack.patch
@@ -32,7 +34,7 @@ src_unpack() {
 	elibtoolize
 }
 
-src_compile() {
+src_configure() {
 	# bug 350815
 	( use arm || use sh ) && append-flags -U_FORTIFY_SOURCE
 
@@ -45,13 +47,12 @@ src_compile() {
 
 	use debug && conf="${conf} --enable-debug"	# have a bug --disable-debug and shared
 
-	econf ${conf} || die
-	emake || die
+	econf \
+		${conf} \
+		$(use_enable static-libs static)
 }
 
 src_install() {
-	#Parallel install issuse fixed with parallel-install.patch.
-	#Submitted upstream on 12-13-2010.
-	emake DESTDIR="${D}" install || die
-	dodoc ANNOUNCE AUTHORS ChangeLog NEWS README THANKS USERS || die
+	default
+	find "${ED}" -name '*.la' -exec rm -f {} +
 }
