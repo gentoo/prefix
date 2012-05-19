@@ -1,6 +1,52 @@
 # ChangeLog for media-gfx/xv
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.101 2009/04/27 13:36:26 lavajoe Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.114 2012/03/21 06:27:25 ssuominen Exp $
+
+  21 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> xv-3.10a-r16.ebuild:
+  Use gentoo mirrors.
+
+  15 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> xv-3.10a-r16.ebuild,
+  -files/xv.png:
+  Move xv.png to mirrors wrt #370905 by Matt Turner
+
+  23 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> -xv-3.10a-r15.ebuild:
+  old
+
+  23 Oct 2011; Raúl Porcel <armin76@gentoo.org> xv-3.10a-r16.ebuild:
+  alpha/ia64/sparc stable wrt #386031
+
+  15 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> xv-3.10a-r16.ebuild:
+  ppc stable wrt #386031
+
+  13 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> xv-3.10a-r16.ebuild:
+  x86 stable wrt bug #386031
+
+  11 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> xv-3.10a-r16.ebuild:
+  ppc64 stable wrt #386031
+
+  11 Oct 2011; Jeroen Roovers <jer@gentoo.org> xv-3.10a-r16.ebuild:
+  Stable for HPPA (bug #386031).
+
+  09 Oct 2011; Markos Chandras <hwoarang@gentoo.org> xv-3.10a-r16.ebuild:
+  Stable on amd64 wrt bug #386031
+
+  15 Sep 2011; Samuli Suominen <ssuominen@gentoo.org> xv-3.10a-r16.ebuild,
+  files/xv-3.10a-libpng15.patch:
+  Enchance -libpng15.patch by _AxS_ from Freenode with some bits also from
+  NetBSD. Restore keywording as libpng15 is about to get unmasked and PNG
+  saving is working fine here (see bug #355883)
+
+  12 Aug 2011; Joe Peterson <lavajoe@gentoo.org> xv-3.10a-r16.ebuild:
+  Mask xv-3.10a-r16, since it breaks saving PNG files (see bug #355883)
+
+*xv-3.10a-r16 (07 Aug 2011)
+
+  07 Aug 2011; Samuli Suominen <ssuominen@gentoo.org> +xv-3.10a-r16.ebuild,
+  +files/xv-3.10a-libpng15.patch:
+  Fix building with libpng15 wrt #355883 by Mike Frysinger
+
+  26 Feb 2011; Kevin McCarthy <signals@gentoo.org> xv-3.10a-r15.ebuild:
+  Updated depends from media-libs/jpeg to virtual/jpeg
 
   27 Apr 2009; Joe Peterson <lavajoe@gentoo.org> xv-3.10a-r15:
   Set RDEPEND

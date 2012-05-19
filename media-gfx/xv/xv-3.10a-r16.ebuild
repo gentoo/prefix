@@ -1,13 +1,16 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r15.ebuild,v 1.12 2009/04/27 13:36:26 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r16.ebuild,v 1.11 2012/03/21 06:27:25 ssuominen Exp $
 
+EAPI=4
 inherit eutils flag-o-matic
 
 JUMBOV=20070520
 DESCRIPTION="An interactive image manipulation program that supports a wide variety of image formats"
 HOMEPAGE="http://www.trilon.com/xv/index.html http://www.sonic.net/~roelofs/greg_xv.html"
-SRC_URI="mirror://sourceforge/png-mng/${P}-jumbo-patches-${JUMBOV}.tar.gz ftp://ftp.cis.upenn.edu/pub/xv/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/png-mng/${P}-jumbo-patches-${JUMBOV}.tar.gz
+	ftp://ftp.cis.upenn.edu/pub/xv/${P}.tar.gz
+	mirror://gentoo/${P}.png.bz2"
 
 LICENSE="xv"
 SLOT="0"
@@ -15,32 +18,31 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="jpeg tiff png"
 
 DEPEND="x11-libs/libXt
-	jpeg? ( >=media-libs/jpeg-6b )
-	tiff? ( >=media-libs/tiff-3.6.1-r2 )
-	png? ( >=media-libs/libpng-1.2 >=sys-libs/zlib-1.1.4 )"
+	jpeg? ( virtual/jpeg )
+	tiff? ( media-libs/tiff:0 )
+	png? ( >=media-libs/libpng-1.2:0 sys-libs/zlib )"
 RDEPEND="${DEPEND}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# Apply the jumbo patch
-	epatch "${WORKDIR}/${P}"-jumbo-fix-enh-patch-${JUMBOV}.txt
+	epatch "${WORKDIR}"/${P}-jumbo-fix-enh-patch-${JUMBOV}.txt
 
 	# OSX and BSD xv.h define patches
-	epatch "${FILESDIR}/${P}"-osx-bsd-${JUMBOV}.patch
+	epatch "${FILESDIR}"/${P}-osx-bsd-${JUMBOV}.patch
 
 	# OSX malloc patch
-	epatch "${FILESDIR}/${P}"-vdcomp-osx-${JUMBOV}.patch
+	epatch "${FILESDIR}"/${P}-vdcomp-osx-${JUMBOV}.patch
 
 	# Disable JP2K (i.e. use system JPEG libs)
-	epatch "${FILESDIR}/${P}"-disable-jp2k-${JUMBOV}.patch
+	epatch "${FILESDIR}"/${P}-disable-jp2k-${JUMBOV}.patch
 
 	# Fix -wait option (do not rely on obsolete CLK_TCK)
-	epatch "${FILESDIR}/${P}"-fix-wait-${JUMBOV}.patch
+	epatch "${FILESDIR}"/${P}-fix-wait-${JUMBOV}.patch
 
 	# Use LDFLAGS on link lines
-	epatch "${FILESDIR}/${P}"-add-ldflags-${JUMBOV}.patch
+	epatch "${FILESDIR}"/${P}-add-ldflags-${JUMBOV}.patch
+
+	epatch "${FILESDIR}"/${P}-libpng15.patch
 
 	# Link with various image libraries depending on use flags
 	IMAGE_LIBS=""
@@ -71,7 +73,7 @@ src_compile() {
 		CC="$(tc-getCC)" CCOPTS="${CFLAGS}" LDFLAGS="${LDFLAGS}" \
 		PREFIX="${EPREFIX}"/usr \
 		DOCDIR="${EPREFIX}/usr/share/doc/${PF}" \
-		LIBDIR="${T}" || die
+		LIBDIR="${T}"
 }
 
 src_install() {
@@ -82,9 +84,9 @@ src_install() {
 		DESTDIR="${D}" \
 		PREFIX="${EPREFIX}"/usr \
 		DOCDIR="${EPREFIX}/usr/share/doc/${PF}" \
-		LIBDIR="${T}" install || die
+		LIBDIR="${T}" install
 
 	dodoc CHANGELOG BUGS IDEAS
-	doicon "${FILESDIR}"/${PN}.png
+	newicon "${WORKDIR}"/${P}.png ${PN}.png
 	make_desktop_entry xv "" "" "Graphics;Viewer"
 }
