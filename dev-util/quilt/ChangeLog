@@ -1,6 +1,44 @@
 # ChangeLog for dev-util/quilt
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.49 2011/01/04 01:29:30 xmw Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.58 2012/04/01 17:15:59 armin76 Exp $
+
+  01 Apr 2012; Raúl Porcel <armin76@gentoo.org> quilt-0.50.ebuild:
+  sparc stable wrt #408755
+
+  28 Mar 2012; Markus Meier <maekke@gentoo.org> quilt-0.50.ebuild:
+  arm stable, bug #408755
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> quilt-0.50.ebuild:
+  Marking quilt-0.50 ppc64 for bug 408755
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> quilt-0.50.ebuild:
+  Marking quilt-0.50 ppc for bug 408755
+
+  24 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> quilt-0.50.ebuild:
+  x86 stable wrt bug #408755
+
+*quilt-0.60 (20 Mar 2012)
+
+  20 Mar 2012; Michael Pagano <mpagano@gentoo.org> +quilt-0.60.ebuild,
+  +files/quilt-0.60-no-graphviz.patch:
+  Version bump
+
+  20 Mar 2012; Agostino Sarubbo <ago@gentoo.org> quilt-0.50.ebuild:
+  Stable for amd64, wrt bug #408755
+
+  29 Dec 2011; Michael Pagano <mpagano@gentoo.org> -quilt-0.42-r1.ebuild,
+  -files/quilt-0.42-no-graphviz.patch,
+  -files/quilt-0.42-prevent-stripping.patch, -quilt-0.45-r1.ebuild,
+  -files/quilt-0.45-no-graphviz.patch, -quilt-0.46.ebuild,
+  -files/quilt-0.46-no-graphviz.patch, -quilt-0.47.ebuild,
+  -quilt-0.47-r1.ebuild, -files/quilt-0.47-no-graphviz.patch:
+  Drop old versions
+
+*quilt-0.50 (29 Dec 2011)
+
+  29 Dec 2011; Michael Pagano <mpagano@gentoo.org> +quilt-0.50.ebuild,
+  +files/quilt-0.50-no-graphviz.patch:
+  Version bump. bug #396323. Thanks to Marco Paolone.
 
   04 Jan 2011; Michael Weber <xmw@gentoo.org> quilt-0.48.ebuild:
   arm stable (bug 327625)
