@@ -1,6 +1,25 @@
 # ChangeLog for media-libs/gd
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.79 2011/12/15 17:08:03 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.85 2012/05/05 08:02:43 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> gd-2.0.35-r3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> gd-2.0.35-r3.ebuild:
+  keyword ~amd64-fbsd
+
+  23 Apr 2012; Mike Frysinger <vapier@gentoo.org> gd-2.0.35-r3.ebuild:
+  Stub out AM_ICONV if gettext is not installed.
+
+  05 Mar 2012; Mike Frysinger <vapier@gentoo.org> gd-2.0.35-r3.ebuild:
+  Restore sed -r flag after refactor in previous commit lost it #406933 by
+  Drake Donahue.
+
+  02 Mar 2012; Ulrich Müller <ulm@gentoo.org> gd-2.0.35-r3.ebuild:
+  Fix LICENSE, "||" would mean dual licensing which is not the case here.
+
+  27 Feb 2012; Mike Frysinger <vapier@gentoo.org> gd-2.0.35-r3.ebuild:
+  DEPEND on pkg-config #406057 by cyberbat.
 
   15 Dec 2011; Mike Frysinger <vapier@gentoo.org> gd-2.0.35-r3.ebuild:
   Pass --without-x to avoid useless system -I/-L paths.

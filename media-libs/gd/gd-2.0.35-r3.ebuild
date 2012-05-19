@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35-r3.ebuild,v 1.12 2011/12/15 17:08:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35-r3.ebuild,v 1.18 2012/05/05 08:02:43 jdhore Exp $
 
 EAPI="2"
 
@@ -10,7 +10,7 @@ DESCRIPTION="A graphics library for fast image creation"
 HOMEPAGE="http://libgd.org/ http://www.boutell.com/gd/"
 SRC_URI="http://libgd.org/releases/${P}.tar.bz2"
 
-LICENSE="|| ( as-is BSD )"
+LICENSE="as-is BSD"
 SLOT="2"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="fontconfig jpeg png static-libs truetype xpm zlib"
@@ -22,7 +22,8 @@ RDEPEND="fontconfig? ( media-libs/fontconfig )
 	xpm? ( x11-libs/libXpm x11-libs/libXt )
 	zlib? ( sys-libs/zlib )
 	x86-interix? ( sys-devel/gettext )"
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-libpng14.patch #305101
@@ -34,7 +35,11 @@ src_prepare() {
 	local make_sed=( -e '/^noinst_PROGRAMS/s:noinst:check:' )
 	use png || make_sed+=( -e '/_PROGRAMS/s:(gdparttopng|gdtopng|gd2topng|pngtogd|pngtogd2|webpng)::g' )
 	use zlib || make_sed+=( -e '/_PROGRAMS/s:(gd2topng|gd2copypal|gd2togif|giftogd2|gdparttopng|pngtogd2)::g' )
-	sed -i "${make_sed[@]}" Makefile.am || die
+	sed -i -r "${make_sed[@]}" Makefile.am || die
+
+	cat <<-EOF > acinclude.m4
+	m4_ifndef([AM_ICONV],[m4_define([AM_ICONV],[:])])
+	EOF
 
 	# also needed for new libtool for interix
 	eautoreconf
