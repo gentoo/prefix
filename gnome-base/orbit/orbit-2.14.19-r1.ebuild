@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.19-r1.ebuild,v 1.7 2011/08/13 17:30:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.19-r1.ebuild,v 1.12 2012/05/09 01:35:12 aballier Exp $
 
 EAPI="3"
 GCONF_DEBUG="yes"
@@ -20,7 +20,8 @@ RDEPEND=">=dev-libs/glib-2.8:2
 	>=dev-libs/libIDL-0.8.2"
 
 DEPEND="
-	>=dev-util/pkgconfig-0.18
+	virtual/pkgconfig
+	dev-util/gtk-doc-am
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 pkg_setup() {
@@ -34,8 +35,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	gnome2_src_prepare
-
 	epatch "${FILESDIR}"/${PN}-2.14.14-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.14.16-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.14.17-interix.patch
@@ -65,6 +64,7 @@ src_prepare() {
 	sed -i -e 's/test-mem //' test/Makefile.am || die
 
 	eautoreconf
+	gnome2_src_prepare
 }
 
 src_configure() {
