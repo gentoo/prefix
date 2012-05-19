@@ -1,6 +1,39 @@
 # ChangeLog for media-libs/aalib
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/ChangeLog,v 1.40 2008/12/14 10:43:30 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/ChangeLog,v 1.46 2012/05/09 13:18:37 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> aalib-1.4_rc5-r4.ebuild:
+  keyword ~amd64-fbsd
+
+*aalib-1.4_rc5-r4 (11 Feb 2012)
+
+  11 Feb 2012; Sergei Trofimovich <slyfox@gentoo.org> +aalib-1.4_rc5-r4.ebuild,
+  +files/aalib-1.4_rc5-fix-aarender.patch, -aalib-1.4_rc5-r3.ebuild:
+  Fix bug #214142 in aarender() reported and fixed by Reimar Döffinger. The
+  patch also fixes resizing of 'mplayer -vo aa' for me.
+
+*aalib-1.4_rc5-r3 (11 Feb 2012)
+
+  11 Feb 2012; Sergei Trofimovich <slyfox@gentoo.org> +aalib-1.4_rc5-r3.ebuild,
+  -aalib-1.4_rc5-r2.ebuild:
+  Fix USE=gmp feature selection. It's a bug #369685 spotted by Jan Vereecke and
+  #385681 by Alec M. aka alecm_88 hosted on yahoo dotcom.
+
+*aalib-1.4_rc5-r2 (09 Feb 2012)
+
+  09 Feb 2012; Sergei Trofimovich <slyfox@gentoo.org> +aalib-1.4_rc5-r2.ebuild,
+  -aalib-1.4_rc5-r1.ebuild:
+  Added USE=static-libs, switched to EAPI=4.
+
+*aalib-1.4_rc5-r1 (06 Feb 2012)
+
+  06 Feb 2012; Sergei Trofimovich <slyfox@gentoo.org> +aalib-1.4_rc5-r1.ebuild,
+  +files/aalib-1.4_rc5-fix-protos.patch, metadata.xml:
+  Fixed bug #224267 by Peter Hüwe (missing function prototypes). Added myself to
+  maintainers.
+
+  06 Feb 2011; Mart Raudsepp <leio@gentoo.org> aalib-1.4_rc5.ebuild:
+  Drop to ~mips
 
   14 Dec 2008; Fabian Groffen <grobian@gentoo.org> aalib-1.4_rc5.ebuild:
   Fix quoting n00bness
