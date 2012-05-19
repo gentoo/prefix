@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/splint
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/splint/ChangeLog,v 1.25 2008/02/27 11:11:01 coldwind Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/splint/ChangeLog,v 1.26 2012/03/21 16:54:18 jer Exp $
+
+  21 Mar 2012; Jeroen Roovers <jer@gentoo.org> splint-3.1.2.ebuild:
+  Add some DEPEND requirements.
 
   27 Feb 2008; Santiago M. Mola <coldwind@gentoo.org> splint-3.1.2.ebuild:
   amd64 stable wrt bug #210010
