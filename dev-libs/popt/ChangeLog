@@ -1,6 +1,30 @@
 # ChangeLog for dev-libs/popt
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.92 2010/12/24 22:41:58 mattst88 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.100 2012/04/26 14:04:24 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> popt-1.16-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  01 May 2011; Kacper Kowalik <xarthisius@gentoo.org> popt-1.16-r1.ebuild:
+  ppc64 stable wrt #361409
+
+  23 Apr 2011; Raúl Porcel <armin76@gentoo.org> popt-1.16-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc/x86 stable wrt #361409
+
+  14 Apr 2011; Brent Baude <ranger@gentoo.org> popt-1.16-r1.ebuild:
+  stable ppc, bug 361409
+
+  12 Apr 2011; Markus Meier <maekke@gentoo.org> popt-1.16-r1.ebuild:
+  arm stable, bug #361409
+
+  05 Apr 2011; Jeroen Roovers <jer@gentoo.org> popt-1.16-r1.ebuild:
+  Stable for HPPA (bug #361409).
+
+  02 Apr 2011; Christoph Mende <angelos@gentoo.org> popt-1.16-r1.ebuild:
+  Stable on amd64 wrt bug #361409
+
+  17 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> popt-1.16-r1.ebuild:
+  USE="static-libs" and stop installing unrequired libtool archive.
 
 *popt-1.16-r1 (24 Dec 2010)
 
