@@ -1,6 +1,10 @@
 # ChangeLog for dev-tex/tex4ht
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/tex4ht/ChangeLog,v 1.76 2010/07/18 12:35:15 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/tex4ht/ChangeLog,v 1.77 2012/05/12 03:29:58 aballier Exp $
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org>
+  tex4ht-20090611_p1038-r1.ebuild:
+  keyword ~amd64-fbsd
 
   18 Jul 2010; Alexis Ballier <aballier@gentoo.org>
   -tex4ht-20090611_p1038.ebuild:
