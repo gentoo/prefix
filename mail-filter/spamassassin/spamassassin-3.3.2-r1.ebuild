@@ -1,16 +1,16 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.3.1-r2.ebuild,v 1.3 2010/07/06 21:01:14 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.3.2-r1.ebuild,v 1.8 2012/05/08 16:04:27 ranger Exp $
 
-EAPI="2"
+EAPI=4
 
-inherit perl-module eutils
+inherit perl-module toolchain-funcs eutils
 
 MY_P=Mail-SpamAssassin-${PV//_/-}
 S=${WORKDIR}/${MY_P}
-DESCRIPTION="SpamAssassin is an extensible email filter which is used to identify spam."
+DESCRIPTION="SpamAssassin is an extensible email filter which is used to identify spam"
 HOMEPAGE="http://spamassassin.apache.org/"
-SRC_URI="http://apache.osuosl.org/spamassassin/source/${MY_P}.tar.bz2"
+SRC_URI="mirror://apache/spamassassin/source/${MY_P}.tar.bz2"
 
 LICENSE="Apache-2.0"
 SLOT="0"
@@ -57,13 +57,22 @@ DEPEND=">=dev-lang/perl-5.8.8-r8
 	ipv6? (
 		dev-perl/IO-Socket-INET6
 	)"
-
 RDEPEND="${DEPEND}"
 
-# - Disable tests as they will fail
-# - Please see http://www.cpantesters.org/distro/M/Mail-SpamAssassin.html#Mail-SpamAssassin-3.3.1
-# - for more info, upstream problem not specific to Gentoo
-SRC_TEST="skip"
+SRC_TEST="do"
+
+src_prepare() {
+	# http://old.nabble.com/Migrating-bayes-to-mysql-fails-with-parsing-errors-td31889789i20.html
+
+	# https://issues.apache.org/SpamAssassin/show_bug.cgi?id=6624
+	epatch "${FILESDIR}/${P}-mysql_count_rows.patch"
+
+	#https://issues.apache.org/SpamAssassin/show_bug.cgi?id=6625
+	epatch "${FILESDIR}/${P}-binary_token.patch"
+
+	# https://issues.apache.org/SpamAssassin/show_bug.cgi?id=6626
+	epatch "${FILESDIR}/${P}-innodb.patch"
+}
 
 src_configure() {
 	# - Set SYSCONFDIR explicitly so we can't get bitten by bug 48205 again
@@ -94,17 +103,18 @@ src_configure() {
 
 	# Setting the following env var ensures that no questions are asked.
 	perl-module_src_configure
+	# Configure spamc
+	emake CC="$(tc-getCC)" LDFLAGS="${LDFLAGS}" spamc/Makefile
 }
 
 src_compile() {
 	export PERL_MM_USE_DEFAULT=1
-	emake spamc/Makefile  || die "emake failed"
 
 	# Now compile all the stuff selected.
 	perl-module_src_compile
 
 	if use qmail; then
-		emake spamc/qmail-spamc || die "building qmail-spamc emake failed"
+		emake spamc/qmail-spamc
 	fi
 }
 
@@ -112,57 +122,65 @@ src_install () {
 	perl-module_src_install
 
 	# Create the stub dir used by sa-update and friends
-	dodir /var/lib/spamassassin || die
+	dodir /var/lib/spamassassin
 
 	# Move spamd to sbin where it belongs.
 	dodir /usr/sbin
 	mv "${ED}"/usr/bin/spamd "${ED}"/usr/sbin/spamd  || die "move spamd failed"
 
 	if use qmail; then
-		dobin spamc/qmail-spamc || die
+		dobin spamc/qmail-spamc
 	fi
 
-	dosym /etc/mail/spamassassin /etc/spamassassin || die
+	ln -s mail/spamassassin "${ED}"/etc/spamassassin || die
 
 	# Disable plugin by default
 	sed -i -e 's/^loadplugin/\#loadplugin/g' "${ED}"/etc/mail/spamassassin/init.pre || die
 
 	# Add the init and config scripts.
-	newinitd "${FILESDIR}"/3.3.1-spamd.init spamd || die
-	newconfd "${FILESDIR}"/3.0.0-spamd.conf spamd || die
+	newinitd "${FILESDIR}"/3.3.1-spamd.init spamd
+	newconfd "${FILESDIR}"/3.0.0-spamd.conf spamd
 
-	use postgres && \
-		sed -i -e 's:@USEPOSTGRES@::' "${ED}/etc/init.d/spamd" || \
+	if use postgres; then
+		sed -i -e 's:@USEPOSTGRES@::' "${ED}/etc/init.d/spamd"
+
+		dodoc sql/*_pg.sql
+	else
 		sed -i -e '/@USEPOSTGRES@/d' "${ED}/etc/init.d/spamd"
+	fi
 
-	use mysql && \
-		sed -i -e 's:@USEMYSQL@::' "${ED}/etc/init.d/spamd" || \
+	if use mysql; then
+		sed -i -e 's:@USEMYSQL@::' "${ED}/etc/init.d/spamd"
+
+		dodoc sql/*_mysql.sql
+	else
 		sed -i -e '/@USEMYSQL@/d' "${ED}/etc/init.d/spamd"
+	fi
 
 	dodoc NOTICE TRADEMARK CREDITS INSTALL.VMS UPGRADE USAGE \
 		sql/README.bayes sql/README.awl procmailrc.example sample-nonspam.txt \
-		sample-spam.txt spamassassin.spec spamd/PROTOCOL spamd/README.vpopmail \
-		spamd-apache2/README.apache || die
+		sample-spam.txt spamd/PROTOCOL spamd/README.vpopmail \
+		spamd-apache2/README.apache
 
 	# Rename some docu files so they don't clash with others
-	newdoc spamd/README README.spamd || die
-	newdoc sql/README README.sql || die
-	newdoc ldap/README README.ldap || die
+	newdoc spamd/README README.spamd
+	newdoc sql/README README.sql
+	newdoc ldap/README README.ldap
 
 	if use qmail; then
-		dodoc spamc/README.qmail || die
+		dodoc spamc/README.qmail
 	fi
 
 	cp "${FILESDIR}"/secrets.cf "${ED}"/etc/mail/spamassassin/secrets.cf.example || die
 	fperms 0400 /etc/mail/spamassassin/secrets.cf.example
 
-	cat <<EOF > "${T}/local.cf.example"
-# Sensitive data, such as database connection info, should be stored in
-# /etc/mail/spamassassin/secrets.cf with appropriate permissions
+	cat <<-EOF > "${T}/local.cf.example"
+		# Sensitive data, such as database connection info, should be stored in
+		# /etc/mail/spamassassin/secrets.cf with appropriate permissions
 EOF
 
 	insinto /etc/mail/spamassassin/
-	doins "${T}/local.cf.example" || die
+	doins "${T}/local.cf.example"
 }
 
 pkg_postinst() {
