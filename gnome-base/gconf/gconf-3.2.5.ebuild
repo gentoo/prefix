@@ -1,10 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.32.3.ebuild,v 1.1 2011/04/29 19:10:34 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-3.2.5.ebuild,v 1.3 2012/05/09 01:36:04 aballier Exp $
 
-EAPI="3"
+EAPI="4"
 GCONF_DEBUG="yes"
 GNOME_ORG_MODULE="GConf"
+GNOME2_LA_PUNT="yes"
 
 inherit eutils gnome2
 
@@ -14,20 +15,21 @@ HOMEPAGE="http://projects.gnome.org/gconf/"
 LICENSE="LGPL-2"
 SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug doc +introspection ldap policykit"
+IUSE="debug doc +introspection ldap orbit policykit"
 
-RDEPEND=">=dev-libs/glib-2.25.9:2
-	>=x11-libs/gtk+-2.14:2
+RDEPEND=">=dev-libs/glib-2.31:2
+	>=x11-libs/gtk+-2.90:3
 	>=dev-libs/dbus-glib-0.74
 	>=sys-apps/dbus-1
-	>=gnome-base/orbit-2.4:2
 	>=dev-libs/libxml2-2:2
 	introspection? ( >=dev-libs/gobject-introspection-0.9.5 )
 	ldap? ( net-nds/openldap )
+	orbit? ( >=gnome-base/orbit-2.4:2 )
 	policykit? ( sys-auth/polkit )"
 DEPEND="${RDEPEND}
+	dev-libs/libxslt
 	>=dev-util/intltool-0.35
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 pkg_setup() {
@@ -36,14 +38,14 @@ pkg_setup() {
 		--enable-gtk
 		--disable-static
 		--enable-gsettings-backend
-		--with-gtk=2.0
+		--with-gtk=3.0
 		$(use_enable introspection)
 		$(use_with ldap openldap)
-		$(use_enable policykit defaults-service)"
+		$(use_enable orbit)
+		$(use_enable policykit defaults-service)
+		ORBIT_IDL=$(type -P orbit-idl-2)"
+		# Need host's IDL compiler for cross or native build, bug #262747
 	kill_gconf
-
-	# Need host's IDL compiler for cross or native build, bug #262747
-	export EXTRA_EMAKE="${EXTRA_EMAKE} ORBIT_IDL=${EPREFIX}/usr/bin/orbit-idl-2"
 }
 
 src_prepare() {
@@ -86,6 +88,15 @@ pkg_postinst() {
 
 	einfo "changing permissions for gconf files"
 	find  "${EPREFIX}"/etc/gconf/ -type f -exec chmod ugo+r "{}" \;
+
+	if ! use orbit; then
+		ewarn "You are using dbus for GConf's IPC. If you are upgrading from"
+		ewarn "<=gconf-3.2.3, or were previously using gconf with USE=orbit,"
+		ewarn "you will need to now restart your desktop session (for example,"
+		ewarn "by logging out and then back in)."
+		ewarn "Otherwise, gconf-based applications may crash with 'Method ..."
+		ewarn "on interface \"org.gnome.GConf.Server\" doesn't exist' errors."
+	fi
 }
 
 kill_gconf() {

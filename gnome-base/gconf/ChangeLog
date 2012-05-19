@@ -1,6 +1,81 @@
 # ChangeLog for gnome-base/gconf
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.249 2011/04/29 19:10:34 nirbheek Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.268 2012/05/09 01:36:04 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> gconf-3.2.5.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> gconf-2.32.4.ebuild,
+  gconf-3.2.3.ebuild, gconf-3.2.3-r1.ebuild, gconf-3.2.5.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*gconf-3.2.5 (12 Apr 2012)
+
+  12 Apr 2012; Gilles Dartiguelongue <eva@gentoo.org> -gconf-2.32.3.ebuild,
+  +gconf-3.2.5.ebuild:
+  Version bump. Drop old revisions.
+
+  11 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gconf-3.2.3-r1.ebuild:
+  Add warning message to pkg_postinst() asking users to restart their desktop
+  session after upgrading to gconf-3.2.3-r1 to prevent 'Method ... on interface
+  "org.gnome.GConf.Server" doesn't exist' errors (bug #411587, thanks to
+  Juergen Rose and Rafał Mużyło).
+
+*gconf-3.2.3-r1 (11 Apr 2012)
+
+  11 Apr 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +gconf-3.2.3-r1.ebuild, +files/gconf-3.2.3-shutdown-crash.patch:
+  Have USE=-orbit by default to work around bug #411237 (enormously overgrown
+  ~/.gconfd/saved_state). Fix a crash when USE=-orbit.
+
+*gconf-3.2.3 (07 Nov 2011)
+
+  07 Nov 2011; Alexandre Rostovtsev <tetromino@gentoo.org> +gconf-3.2.3.ebuild:
+  Bump to 3.2.3 from the gnome overlay. Notable changes: optional support for
+  the new dbus-based IPC (build with USE=-orbit to enable it). Note that the
+  traditional orbit IPC is still the default choice since it has received far
+  more testing.
+
+  30 Oct 2011; Raúl Porcel <armin76@gentoo.org> gconf-2.32.4.ebuild:
+  alpha/ia64/sh/sparc stable wrt #385699
+
+  28 Oct 2011; Markus Meier <maekke@gentoo.org> gconf-2.32.4.ebuild:
+  arm stable, bug #385699
+
+  21 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> gconf-2.32.4.ebuild:
+  x86 stable wrt bug #385699
+
+  16 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> gconf-2.32.4.ebuild:
+  ppc/ppc64 stable wrt #385699
+
+  14 Oct 2011; Samuli Suominen <ssuominen@gentoo.org> gconf-2.32.4.ebuild:
+  amd64 stable wrt #385699
+
+  10 Oct 2011; Pacho Ramos <pacho@gentoo.org> -gconf-2.32.0-r1.ebuild,
+  gconf-2.32.4.ebuild:
+  Drop .la files, bug #386665 by Ago. Drop old.
+
+  05 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> gconf-2.32.3.ebuild:
+  ppc/ppc64 stable wrt #369909
+
+  13 Aug 2011; Raúl Porcel <armin76@gentoo.org> gconf-2.32.3.ebuild:
+  alpha/ia64/sh/sparc stable wrt #369909
+
+  17 Jul 2011; Markus Meier <maekke@gentoo.org> gconf-2.32.3.ebuild:
+  arm stable, bug #369909
+
+  14 Jul 2011; Thomas Kahle <tomka@gentoo.org> gconf-2.32.3.ebuild:
+  x86 stable per bug 369909
+
+  01 Jul 2011; Markos Chandras <hwoarang@gentoo.org> gconf-2.32.3.ebuild:
+  Stable on amd64 wrt bug #278255
+
+*gconf-2.32.4 (20 Jun 2011)
+
+  20 Jun 2011; Pacho Ramos <pacho@gentoo.org> -gconf-2.32.2.ebuild,
+  +gconf-2.32.4.ebuild:
+  Version bump, remove old.
 
 *gconf-2.32.3 (29 Apr 2011)
 
