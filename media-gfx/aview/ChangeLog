@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/aview
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/aview/ChangeLog,v 1.15 2009/05/29 14:08:56 rbu Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/aview/ChangeLog,v 1.17 2011/12/15 22:54:11 pacho Exp $
+
+  15 Dec 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #353461
+
+*aview-1.3.0_rc1-r2 (23 Feb 2011)
+
+  23 Feb 2011; Kevin McCarthy <signals@gentoo.org> +aview-1.3.0_rc1-r2.ebuild,
+  +files/aview-1.3.0_rc1-asciiview.patch:
+  Fixed multiple filename bug and keyboard input problem. (Bug #293654)
 
   29 May 2009; Robert Buchholz <rbu@gentoo.org> -aview-1.3.0_rc1.ebuild:
   Remove ebuild that is vulnerable to GLSA 200812-14, bug #271762.
