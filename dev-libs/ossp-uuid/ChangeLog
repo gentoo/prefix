@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/ossp-uuid
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.28 2011/08/21 13:49:33 olemarkus Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.29 2012/05/12 18:30:44 aballier Exp $
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> ossp-uuid-1.6.2-r1.ebuild:
+  keyword ~amd64-fbsd
 
   21 Aug 2011; Ole Markus With <olemarkus@gentoo.org> -ossp-uuid-1.6.1.ebuild,
   -ossp-uuid-1.6.2.ebuild:
