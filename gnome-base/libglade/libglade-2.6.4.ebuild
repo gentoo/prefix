@@ -1,13 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/libglade-2.6.4.ebuild,v 1.12 2011/09/29 16:50:18 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/libglade-2.6.4.ebuild,v 1.15 2012/05/12 20:19:54 aballier Exp $
 
 EAPI="3"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 PYTHON_DEPEND="2"
 
-inherit eutils gnome2 python virtualx flag-o-matic autotools
+inherit autotools eutils gnome2 python virtualx flag-o-matic autotools
 
 DESCRIPTION="Library to construct graphical interfaces at runtime"
 HOMEPAGE="http://library.gnome.org/devel/libglade/stable/"
@@ -22,7 +22,7 @@ RDEPEND=">=dev-libs/glib-2.10:2
 	>=dev-libs/atk-1.9
 	>=dev-libs/libxml2-2.4.10"
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.9
+	virtual/pkgconfig
 	gnome-base/gnome-common
 	doc? ( >=dev-util/gtk-doc-1 )"
 
@@ -40,6 +40,9 @@ src_prepare() {
 	# patch to not throw a warning with gtk+-2.14 during tests, as it triggers abort
 	epatch "${FILESDIR}/${PN}-2.6.3-fix_tests-page_size.patch"
 
+	# Fails with gold due to recent changes in glib-2.32's pkg-config files
+	epatch "${FILESDIR}/${P}-gold-glib-2.32.patch"
+
 	sed -i -e 's:-D[A-Z_]*DISABLE_DEPRECATED:$(NULL):g' \
 		glade/Makefile.am glade/Makefile.in || die
 
@@ -47,10 +50,14 @@ src_prepare() {
 		sed 's/ tests//' -i Makefile.am Makefile.in || die "sed failed"
 	fi
 
-	AT_M4DIR=m4 eautoreconf # need new libtool for interix
+	#eautoreconf # need new libtool for interix
 
 	# Needed for solaris, else gcc finds a syntax error in /usr/include/signal.h
+
 	[[ ${CHOST} == *-solaris* ]] && append-flags "-D__EXTENSIONS__"
+
+	gnome2_src_prepare
+	AT_NOELIBTOOLIZE=yes eautoreconf
 }
 
 src_test() {

@@ -1,6 +1,16 @@
 # ChangeLog for gnome-base/libglade
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.135 2011/09/29 16:50:18 pacho Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.138 2012/05/12 20:19:54 aballier Exp $
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> libglade-2.6.4.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libglade-2.6.4.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  30 Apr 2012; Justin Lecher <jlec@gentoo.org> libglade-2.6.4.ebuild,
+  +files/libglade-2.6.4-gold-glib-2.32.patch, metadata.xml:
+  Add fix for problems with glib-2.32 and gold linker, #414111
 
   29 Sep 2011; Pacho Ramos <pacho@gentoo.org> libglade-2.6.4.ebuild:
   Drop DEPRECATED flags, bug #384775 by Ian Abbott.
