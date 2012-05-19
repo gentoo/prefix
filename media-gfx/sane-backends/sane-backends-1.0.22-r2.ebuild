@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/sane-backends-1.0.21.ebuild,v 1.2 2010/05/11 20:31:16 phosphan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/sane-backends-1.0.22-r2.ebuild,v 1.5 2012/05/05 07:00:26 jdhore Exp $
 
-EAPI="1"
+EAPI="4"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic multilib
 
 # gphoto and v4l are handled by their usual USE flags.
 # The pint backend was disabled because I could not get it to compile.
@@ -51,9 +51,11 @@ IUSE_SANE_BACKENDS="
 	ibm
 	kodak
 	kvs1025
+	kvs20xx
 	leo
 	lexmark
 	ma1509
+	magicolor
 	matsushita
 	microtek
 	microtek2
@@ -68,6 +70,7 @@ IUSE_SANE_BACKENDS="
 	pixma
 	plustek
 	plustek_pp
+	pnm
 	qcam
 	ricoh
 	rts8891
@@ -94,78 +97,91 @@ IUSE_SANE_BACKENDS="
 IUSE="avahi usb gphoto2 ipv6 v4l doc"
 
 for backend in ${IUSE_SANE_BACKENDS}; do
-	IUSE="${IUSE} +sane_backends_${backend}"
+	if [ ${backend} = pnm ]; then
+		IUSE="${IUSE} -sane_backends_pnm"
+	else
+		IUSE="${IUSE} +sane_backends_${backend}"
+	fi
 done
 
 DESCRIPTION="Scanner Access Now Easy - Backends"
 HOMEPAGE="http://www.sane-project.org/"
 
 RDEPEND="
-	sane_backends_dc210? ( >=media-libs/jpeg-6b )
-	sane_backends_dc240? ( >=media-libs/jpeg-6b )
-	sane_backends_dell1600n_net? ( >=media-libs/jpeg-6b )
+	sane_backends_dc210? ( virtual/jpeg )
+	sane_backends_dc240? ( virtual/jpeg )
+	sane_backends_dell1600n_net? ( virtual/jpeg )
 	avahi? ( >=net-dns/avahi-0.6.24 )
 	sane_backends_canon_pp? ( sys-libs/libieee1284 )
 	sane_backends_hpsj5s? ( sys-libs/libieee1284 )
 	sane_backends_mustek_pp? ( sys-libs/libieee1284 )
 	usb? ( virtual/libusb:0 )
 	gphoto2? (
-				media-libs/libgphoto2
-				>=media-libs/jpeg-6b
-			)
+		media-libs/libgphoto2
+		virtual/jpeg
+	)
 	v4l? ( media-libs/libv4l )"
 
 DEPEND="${RDEPEND}
 	v4l? ( sys-kernel/linux-headers )
 	doc? (
 		virtual/latex-base
-		|| ( dev-texlive/texlive-latexextra app-text/tetex app-text/ptex )
+		dev-texlive/texlive-latexextra
 	)
-	>=sys-apps/sed-4"
+	>=sys-apps/sed-4
+	virtual/pkgconfig"
 
 # We now use new syntax construct (SUBSYSTEMS!="usb|usb_device)
 RDEPEND="${RDEPEND}
 	!<sys-fs/udev-114"
 
-# Could not access via ftp on 2006-07-20
-SRC_URI="http://alioth.debian.org/frs/download.php/3258/${P}.tar.gz
-	ftp://ftp.sane-project.org/pub/sane/${P}/${P}.tar.gz
-	ftp://ftp.sane-project.org/pub/sane/old-versions/${P}/${P}.tar.gz
-	ftp://ftp.sane-project.org/pub/sane/${P}/${P}-i18n.patch"
+SRC_URI="ftp://ftp.sane-project.org/pub/sane/${P}/${P}.tar.gz
+	ftp://ftp.sane-project.org/pub/sane/old-versions/${P}/${P}.tar.gz"
 SLOT="0"
 LICENSE="GPL-2 public-domain"
 KEYWORDS="~amd64-linux ~x86-linux"
 
-# the blank is intended - an empty string would result in building ALL backends.
-BACKENDS=" "
-
 pkg_setup() {
 	enewgroup scanner
+}
+
+src_prepare() {
+	cat >> backend/dll.conf.in <<-EOF
+	# Add support for the HP-specific backend.  Needs net-print/hplip installed.
+	hpaio
+	# Add support for the Epson-specific backend.  Needs media-gfx/iscan installed.
+	epkowa
+	EOF
+	#epatch "${DISTDIR}/${P}-i18n.patch"
+
+	# Bug #368083
+	epatch "${FILESDIR}"/${P}-xerox_mfp-usb.patch
+	# Bug #356919
+	epatch "${FILESDIR}"/${P}-libv4l-0.8.3.patch
+	# Bug #329047
+	epatch "${FILESDIR}"/niash_array_index.patch
+	epatch "${FILESDIR}"/${P}-freebsd.patch
+}
+
+src_configure() {
+	append-flags -fno-strict-aliasing
+
+	# the blank is intended - an empty string would result in building ALL backends.
+	local BACKENDS=" "
 
 	use gphoto2 && BACKENDS="gphoto2"
 	use v4l && BACKENDS="${BACKENDS} v4l"
 	for backend in ${IUSE_SANE_BACKENDS}; do
-		if use "sane_backends_${backend}"; then
+		if use "sane_backends_${backend}" && [ ${backend} != pnm ]; then
 			BACKENDS="${BACKENDS} ${backend}"
 		fi
 	done
-}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	cat >> backend/dll.conf.in <<-EOF
-	# Add support for the HP-specific backend.  Needs net-print/hplip installed.
-	hpaio
-	EOF
-	epatch "${DISTDIR}/${P}-i18n.patch"
-}
-
-src_compile() {
-	append-flags -fno-strict-aliasing
-
-	myconf=$(use_enable usb libusb)
+	local myconf=$(use_enable usb libusb)
+	# you can only enable this backend, not disable it...
+	if use sane_backends_pnm; then
+		myconf="${myconf} --enable-pnm-backend"
+	fi
 	if ! use doc; then
 		myconf="${myconf} --disable-latex"
 	fi
@@ -175,13 +191,24 @@ src_compile() {
 	if ! ( use sane_backends_canon_pp || use sane_backends_hpsj5s || use sane_backends_mustek_pp ); then
 		myconf="${myconf} sane_cv_use_libieee1284=no"
 	fi
+	# if LINGUAS is set, just use the listed and supported localizations.
+	if [ "${LINGUAS-NoLocalesSet}" != NoLocalesSet ]; then
+		echo > po/LINGUAS
+		for lang in ${LINGUAS}; do
+			if [ -a po/${lang}.po ]; then
+				echo ${lang} >> po/LINGUAS
+			fi
+		done
+	fi
 	SANEI_JPEG="sanei_jpeg.o" SANEI_JPEG_LO="sanei_jpeg.lo" \
 	BACKENDS="${BACKENDS}" econf \
 		$(use_with gphoto2) \
 		$(use_enable ipv6) \
 		$(use_enable avahi) \
-		${myconf} || die "econf failed"
+		${myconf}
+}
 
+src_compile() {
 	emake VARTEXFONTS="${T}/fonts" || die
 
 	if use usb; then
@@ -192,27 +219,24 @@ src_compile() {
 }
 
 src_install () {
-	make INSTALL_LOCKPATH="" DESTDIR="${D}" install \
-		docdir="${EPREFIX}"/usr/share/doc/${PF}
+	emake INSTALL_LOCKPATH="" DESTDIR="${D}" install \
+		docdir="${EPREFIX}"/usr/share/doc/${PF} || die
 	keepdir /var/lib/lock/sane
 	fowners root:scanner /var/lib/lock/sane
 	fperms g+w /var/lib/lock/sane
 	dodir /etc/env.d
 	if use usb; then
-		cd tools/hotplug
 		insinto /etc/hotplug/usb
 		exeinto /etc/hotplug/usb
-		doins libsane.usermap
-		doexe libusbscanner
-		newdoc README README.hotplug
+		doins tools/hotplug/libsane.usermap
+		doexe tools/hotplug/libusbscanner
+		newdoc tools/hotplug/README README.hotplug
 		echo >> "${ED}"/etc/env.d/30sane "USB_DEVFS_PATH=/dev/bus/usb"
-		cd ../..
 	fi
-	cd tools/udev
-	dodir /etc/udev/rules.d
-	insinto /etc/udev/rules.d
-	newins libsane.rules 39-libsane.rules
-	cd ../..
+	insinto /lib/udev/rules.d
+	newins tools/udev/libsane.rules 41-libsane.rules
+
 	dodoc NEWS AUTHORS ChangeLog* README README.linux
 	echo "SANE_CONFIG_DIR=${EPREFIX}/etc/sane.d" >> "${ED}"/etc/env.d/30sane
+	find "${ED}" -name "*.la" | while read file; do rm "${file}"; done
 }
