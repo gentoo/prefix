@@ -1,10 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.46.1.ebuild,v 1.9 2011/12/28 19:22:06 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.49.0.ebuild,v 1.2 2012/04/28 02:58:31 aballier Exp $
 
-EAPI="2"
+EAPI="4"
+PYTHON_DEPEND="python? *"
 
-inherit eutils flag-o-matic toolchain-funcs versionator
+inherit eutils flag-o-matic python toolchain-funcs versionator
 
 MY_PV=$(replace_all_version_separators _)
 MAJOR_PV="$(replace_all_version_separators _ $(get_version_component_range 1-2))"
@@ -12,14 +13,14 @@ MAJOR_PV="$(replace_all_version_separators _ $(get_version_component_range 1-2))
 DESCRIPTION="A system for large project software construction, which is simple to use and powerful."
 HOMEPAGE="http://www.boost.org/doc/tools/build/index.html"
 SRC_URI="mirror://sourceforge/boost/boost_${MY_PV}.tar.bz2"
+
 LICENSE="Boost-1.0"
 SLOT="$(get_version_component_range 1-2)"
 KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="examples python"
 
 DEPEND="!<dev-libs/boost-1.34.0
-	!<=dev-util/boost-build-1.35.0-r1
-	python? ( dev-lang/python )"
+	!<=dev-util/boost-build-1.35.0-r1"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/boost_${MY_PV}/tools/build/v2"
@@ -29,17 +30,10 @@ src_unpack() {
 }
 
 src_prepare() {
-	# TODO:
-	#	epatch "${FILESDIR}/boost-1.42-fix-mpich2-detection.patch"
+	epatch "${FILESDIR}/${PN}-1.48.0-support_dots_in_python-buildid.patch"
+	epatch "${FILESDIR}/${PN}-1.48.0-disable_python_rpath.patch"
 
 	epatch "${FILESDIR}"/boost-1.46.1-darwin-sanitise.patch
-
-	cd "${S}/engine"
-	epatch "${FILESDIR}/${PN}-1.42-env-whitespace.patch" # 293652
-
-	# adds support for boosting with parity ...
-#fails
-#	epatch "${FILESDIR}"/1.39.0-winnt.patch
 
 	# needed by multiple platforms - how can this work anywhere?
 	# the symptom is "${CHOST}-gcc: not found", however this
@@ -47,12 +41,12 @@ src_prepare() {
 	epatch "${FILESDIR}"/1.39.0-build_jam-quoting.patch
 
 	# Remove stripping option
-	cd "${S}/engine/src"
+	cd "${S}/engine"
 	sed -i -e 's|-s\b||' \
 		build.jam || die "sed failed"
 
 	# Force regeneration
-	rm jambase.c
+	rm jambase.c || die
 
 	# This patch allows us to fully control optimization
 	# and stripping flags when bjam is used as build-system
@@ -66,7 +60,7 @@ src_prepare() {
 }
 
 src_compile() {
-	cd engine/src
+	cd engine
 	local toolset
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
@@ -75,8 +69,6 @@ src_compile() {
 		# Using boost's generic toolset here, which respects CC and CFLAGS
 		toolset=cc
 	fi
-
-	append-flags -fno-strict-aliasing
 
 	# For slotting
 	sed -i \
@@ -100,7 +92,8 @@ src_compile() {
 }
 
 src_install() {
-	newbin engine/src/bin.*/bjam bjam-${MAJOR_PV}
+	newbin engine/bin.*/bjam bjam-${MAJOR_PV}
+	newbin engine/bin.*/b2 b2-${MAJOR_PV}
 
 	cd "${S}"
 	insinto /usr/share/boost-build-${MAJOR_PV}
@@ -117,6 +110,10 @@ src_install() {
 }
 
 src_test() {
-	cd engine/test
-	./test.sh || die "tests failed"
+	cd test/engine
+
+	# FIXME: Replace the ls call with the proper way of doing this.
+
+	BJAM_BIN=$(ls ../../engine/bin.*/b2)
+	${BJAM_BIN} -f test.jam "-sBJAM=${BJAM_BIN}" || die "tests failed"
 }
