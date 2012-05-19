@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/libart_lgpl-2.3.21-r1.ebuild,v 1.5 2010/07/20 05:20:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/libart_lgpl-2.3.21-r1.ebuild,v 1.12 2012/05/15 23:31:32 aballier Exp $
 
 EAPI="3"
 GCONF_DEBUG="no"
@@ -16,7 +16,7 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 IUSE=""
 
 RDEPEND=""
-DEPEND="dev-util/pkgconfig"
+DEPEND="virtual/pkgconfig"
 
 # The provided tests are interactive only
 RESTRICT="test"
@@ -33,5 +33,5 @@ pkg_setup() {
 src_prepare() {
 	gnome2_src_prepare
 
-	eautoreconf
+	AT_NOELIBTOOLIZE=yes eautoreconf
 }
