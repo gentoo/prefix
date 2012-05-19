@@ -1,6 +1,50 @@
 # ChangeLog for media-gfx/exiv2
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.89 2010/07/20 20:51:35 sbriesen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.98 2012/05/05 07:00:18 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> exiv2-0.19.ebuild,
+  exiv2-0.21.1-r1.ebuild, exiv2-0.21.1-r2.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  10 Jan 2012; Brent Baude <ranger@gentoo.org> exiv2-0.21.1-r2.ebuild:
+  Marking exiv2-0.21.1-r2 ppc for bug 396359
+
+*exiv2-0.21.1-r2 (09 Sep 2011)
+
+  09 Sep 2011; Tomáš Chvátal <scarabeus@gentoo.org> -exiv2-0.20.ebuild,
+  -exiv2-0.21.ebuild, -exiv2-0.21-r1.ebuild, -exiv2-0.21.1.ebuild,
+  exiv2-0.21.1-r1.ebuild, +exiv2-0.21.1-r2.ebuild,
+  -files/exiv2-0.21-xmp-fix.patch:
+  Revision bump to punt libtool archive and static library. Punt older
+  overshadowed versions.
+
+  15 Aug 2011; Markus Meier <maekke@gentoo.org> exiv2-0.21.1-r1.ebuild:
+  x86 stable, bug #377465
+
+  09 Aug 2011; Markos Chandras <hwoarang@gentoo.org> exiv2-0.21.1-r1.ebuild:
+  Stable on amd64 wrt bug #377465
+
+*exiv2-0.21.1-r1 (09 Jul 2011)
+
+  09 Jul 2011; Stefan Briesenick <sbriesen@gentoo.org> +exiv2-0.21.1-r1.ebuild,
+  +files/exiv2-0.21.1-time-fix.patch:
+  added patch for off by 1 hour date error (bug #368419).
+
+*exiv2-0.21.1 (02 Apr 2011)
+
+  02 Apr 2011; Stefan Briesenick <sbriesen@gentoo.org> +exiv2-0.21.1.ebuild:
+  version bump (bug #358161) + boost fixes (bug #357605)
+
+*exiv2-0.21-r1 (21 Dec 2010)
+
+  21 Dec 2010; Stefan Briesenick <sbriesen@gentoo.org> +exiv2-0.21-r1.ebuild,
+  +files/exiv2-0.21-xmp-fix.patch:
+  fixes compile-problems with USE=-xmp, solves (partially) bug #349091.
+
+*exiv2-0.21 (19 Dec 2010)
+
+  19 Dec 2010; Stefan Briesenick <sbriesen@gentoo.org> +exiv2-0.21.ebuild:
+  version bump, apply utf-8 conversion unconditionally.
 
   20 Jul 2010; Stefan Briesenick <sbriesen@gentoo.org> -exiv2-0.18.1.ebuild:
   removed old version
