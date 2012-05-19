@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/procmail-3.22-r10.ebuild,v 1.11 2011/03/16 10:34:58 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/procmail-3.22-r10.ebuild,v 1.12 2011/06/08 13:04:39 eras Exp $
 
 inherit eutils flag-o-matic toolchain-funcs prefix
 
@@ -83,7 +83,7 @@ src_install() {
 
 	doins lockfile || die
 	fowners root:mail /usr/bin/lockfile
-	fperms 2775 /usr/bin/lockfile
+	fperms 2755 /usr/bin/lockfile
 
 	dobin formail mailstat || die
 	insopts -m 0644
