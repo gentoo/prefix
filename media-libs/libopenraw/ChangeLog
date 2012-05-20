@@ -1,6 +1,53 @@
 # ChangeLog for media-libs/libopenraw
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.47 2010/11/07 22:32:57 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.60 2012/05/05 08:02:43 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libopenraw-0.0.9.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  19 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> -libopenraw-0.0.8.ebuild,
+  -libopenraw-0.0.8-r1.ebuild,
+  -files/libopenraw-0.0.8-fix_gdk-pixbuf_path.patch:
+  old
+
+  18 Mar 2012; Raúl Porcel <armin76@gentoo.org> libopenraw-0.0.9.ebuild:
+  alpha/ia64/sparc stable wrt #404793
+
+  05 Mar 2012; Markus Meier <maekke@gentoo.org> libopenraw-0.0.9.ebuild:
+  arm stable, bug #404793
+
+  02 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> libopenraw-0.0.9.ebuild:
+  ppc64 stable wrt #404793
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> libopenraw-0.0.9.ebuild:
+  x86 stable wrt bug #404793
+
+  23 Feb 2012; Brent Baude <ranger@gentoo.org> libopenraw-0.0.9.ebuild:
+  Marking libopenraw-0.0.9 ppc for bug 404793
+
+  21 Feb 2012; Jeroen Roovers <jer@gentoo.org> libopenraw-0.0.9.ebuild:
+  Stable for HPPA (bug #404793).
+
+  21 Feb 2012; Agostino Sarubbo <ago@gentoo.org> libopenraw-0.0.9.ebuild:
+  Stable for amd64, wrt bug #404793
+
+  19 Dec 2011; Nirbheek Chauhan <nirbheek@gentoo.org> libopenraw-0.0.9.ebuild:
+  Remove unused exempi dep
+
+*libopenraw-0.0.9 (19 Nov 2011)
+
+  19 Nov 2011; Samuli Suominen <ssuominen@gentoo.org> +libopenraw-0.0.9.ebuild:
+  Version bump.
+
+*libopenraw-0.0.8-r1 (15 Sep 2011)
+
+  15 Sep 2011; Samuli Suominen <ssuominen@gentoo.org>
+  +libopenraw-0.0.8-r1.ebuild,
+  +files/libopenraw-0.0.8-fix_gdk-pixbuf_path.patch:
+  Fix gdk-pixbuf path wrt #383045 by Priit Laes
+
+  28 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> libopenraw-0.0.8.ebuild:
+  Remove useless libtool archive files.
 
   07 Nov 2010; Samuli Suominen <ssuominen@gentoo.org>
   libopenraw-0.0.8.ebuild:
