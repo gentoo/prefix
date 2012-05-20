@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/libtheora
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.104 2010/02/25 18:38:25 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.107 2012/05/15 13:09:16 aballier Exp $
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> libtheora-1.1.1.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libtheora-1.1.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  25 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libtheora-1.1.1.ebuild:
+  USE="static-libs" and punt .la files.
 
   25 Feb 2010; Raúl Porcel <armin76@gentoo.org> libtheora-1.1.1.ebuild:
   alpha/arm/ia64/sh/sparc stable wrt #298039

@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.1.1.ebuild,v 1.7 2010/02/25 18:38:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.1.1.ebuild,v 1.10 2012/05/15 13:09:16 aballier Exp $
 
 EAPI=2
 inherit autotools eutils flag-o-matic
@@ -12,7 +12,7 @@ SRC_URI="http://downloads.xiph.org/releases/theora/${P/_}.tar.bz2"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="doc +encode examples"
+IUSE="doc +encode examples static-libs"
 
 RDEPEND="media-libs/libogg
 	encode? ( media-libs/libvorbis )
@@ -21,7 +21,7 @@ RDEPEND="media-libs/libogg
 		>=media-libs/libsdl-0.11.0 )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 VARTEXFONTS=${T}/fonts
 S=${WORKDIR}/${P/_}
@@ -41,6 +41,7 @@ src_configure() {
 	# --disable-spec because LaTeX documentation has been prebuilt
 	econf \
 		--disable-dependency-tracking \
+		$(use_enable static-libs static) \
 		--disable-spec \
 		$(use_enable encode) \
 		$(use_enable examples) \
@@ -65,4 +66,6 @@ src_install() {
 			newbin examples/.libs/${bin} theora_${bin} || die "newbin failed"
 		done
 	fi
+
+	find "${ED}" -name '*.la' -exec rm -f '{}' +
 }
