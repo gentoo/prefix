@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.25.ebuild,v 1.7 2011/09/27 19:39:02 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.25.ebuild,v 1.9 2012/05/15 13:44:21 aballier Exp $
 
 EAPI=4
 inherit autotools eutils flag-o-matic multilib
@@ -26,7 +26,7 @@ RDEPEND="!minimal? ( >=media-libs/flac-1.2.1
 	alsa? ( media-libs/alsa-lib )
 	sqlite? ( >=dev-db/sqlite-3.2 )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 S=${WORKDIR}/${MY_P}
 
