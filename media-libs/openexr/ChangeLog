@@ -1,6 +1,34 @@
 # ChangeLog for media-libs/openexr
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openexr/ChangeLog,v 1.78 2010/07/24 16:23:27 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openexr/ChangeLog,v 1.87 2012/05/09 17:00:17 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> openexr-1.7.0.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> openexr-1.7.0.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  06 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org> openexr-1.7.0.ebuild:
+  Stable for ppc64 wrt bug 277202
+
+  08 Dec 2010; Jeroen Roovers <jer@gentoo.org> openexr-1.7.0.ebuild:
+  Stable for PPC (bug #277202).
+
+  04 Dec 2010; Raúl Porcel <armin76@gentoo.org> openexr-1.7.0.ebuild:
+  alpha/ia64/sparc stable wrt #277202
+
+  04 Dec 2010; Raúl Porcel <armin76@gentoo.org> openexr-1.6.1.ebuild,
+  openexr-1.7.0.ebuild:
+  Drop s390/sh
+
+  26 Nov 2010; Christian Faulhammer <fauli@gentoo.org> openexr-1.7.0.ebuild:
+  stable x86, security bug 277202
+
+  26 Nov 2010; Markos Chandras <hwoarang@gentoo.org> openexr-1.7.0.ebuild:
+  Stable on amd64 wrt bug #277202
+
+  25 Nov 2010; Jeroen Roovers <jer@gentoo.org> openexr-1.7.0.ebuild:
+  Stable for HPPA (bug #277202).
 
 *openexr-1.7.0 (24 Jul 2010)
 
