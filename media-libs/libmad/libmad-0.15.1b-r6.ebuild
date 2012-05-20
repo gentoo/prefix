@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/libmad-0.15.1b-r6.ebuild,v 1.1 2010/04/30 08:21:51 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/libmad-0.15.1b-r6.ebuild,v 1.7 2010/10/26 09:12:43 jer Exp $
 
 inherit eutils autotools libtool flag-o-matic
 

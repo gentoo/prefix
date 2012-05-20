@@ -1,6 +1,50 @@
 # ChangeLog for media-libs/libmad
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.55 2010/04/30 08:21:51 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.68 2012/04/01 16:56:50 armin76 Exp $
+
+  01 Apr 2012; Raúl Porcel <armin76@gentoo.org> libmad-0.15.1b-r7.ebuild:
+  alpha/ia64/sh/sparc stable wrt #408383
+
+  25 Mar 2012; Brent Baude <ranger@gentoo.org> libmad-0.15.1b-r7.ebuild:
+  Marking libmad-0.15.1b-r7 ppc64 for bug 408383
+
+  25 Mar 2012; Markus Meier <maekke@gentoo.org> libmad-0.15.1b-r7.ebuild:
+  arm stable, bug #408383
+
+  22 Mar 2012; Jeroen Roovers <jer@gentoo.org> libmad-0.15.1b-r7.ebuild:
+  Stable for HPPA (bug #408383).
+
+  15 Mar 2012; Tomáš Chvátal <scarabeus@gentoo.org> libmad-0.15.1b-r7.ebuild:
+  Slightly polish the ebuild as it is supposed to be eapi4 so it does not need
+  to contain most of the stuff.
+
+  21 Aug 2011; Matt Turner <mattst88@gentoo.org> libmad-0.15.1b-r7.ebuild:
+  Added USE=static-libs (bug 378325), also bump to EAPI4.
+
+*libmad-0.15.1b-r7 (09 Nov 2010)
+
+  09 Nov 2010; Jeroen Roovers <jer@gentoo.org> +libmad-0.15.1b-r7.ebuild:
+  Fix white noise output for PPC (bug #288708).
+
+  26 Oct 2010; Jeroen Roovers <jer@gentoo.org> libmad-0.15.1b-r6.ebuild:
+  Stable for HPPA (bug #338665).
+
+  24 Oct 2010; Brent Baude <ranger@gentoo.org> libmad-0.15.1b-r6.ebuild:
+  stable ppc, bug 338665
+
+  12 Oct 2010; Raúl Porcel <armin76@gentoo.org> libmad-0.15.1b-r6.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #338665
+
+  30 Sep 2010; Markus Meier <maekke@gentoo.org> libmad-0.15.1b-r6.ebuild:
+  x86 stable, bug #338665
+
+  27 Sep 2010; Markos Chandras <hwoarang@gentoo.org>
+  libmad-0.15.1b-r6.ebuild:
+  Stable on amd64 wrt bug #338665
+
+  26 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libmad-0.15.1b-r6.ebuild:
+  ppc64 stable wrt #338665
 
 *libmad-0.15.1b-r6 (30 Apr 2010)
 
