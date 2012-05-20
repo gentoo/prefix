@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/t1lib
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.80 2010/01/31 16:07:27 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.83 2012/05/09 14:00:02 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> t1lib-5.1.2.ebuild:
+  keyword ~amd64-fbsd
+
+  23 Oct 2011; Tomáš Chvátal <scarabeus@gentoo.org> t1lib-5.1.2.ebuild:
+  Remove useless blank lines.
+
+  23 Oct 2011; Tomáš Chvátal <scarabeus@gentoo.org> -t1lib-5.0.2-r1.ebuild,
+  -files/t1lib-5.0.2-SA26241_buffer_overflow.patch,
+  -files/t1lib-5.0.2-asneeded.patch, -files/t1lib-5.0.2-gentoo.diff,
+  t1lib-5.1.2.ebuild:
+  Update to eapi4, punt static libs and libtool archive.
 
   31 Jan 2010; Raúl Porcel <armin76@gentoo.org> t1lib-5.1.2.ebuild:
   ia64/s390/sh/sparc stable wrt #297690
