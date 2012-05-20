@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/qhull
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.42 2010/12/29 01:28:40 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.45 2012/01/14 10:48:44 xarthisius Exp $
+
+  14 Jan 2012; Kacper Kowalik <xarthisius@gentoo.org> qhull-2010.1-r2.ebuild:
+  Fix quotes
+
+  14 Jan 2012; Kacper Kowalik <xarthisius@gentoo.org>
+  -files/qhull-2003.1-makefile.patch, -qhull-2003.1-r1.ebuild,
+  qhull-2010.1-r2.ebuild:
+  Drop old, add prefix keywords
+
+  28 Jun 2011; Brent Baude <ranger@gentoo.org> qhull-2010.1-r2.ebuild:
+  Marking qhull-2010.1-r2 ppc for bug 345279
 
   29 Dec 2010; Brent Baude <ranger@gentoo.org> qhull-2010.1-r2.ebuild:
   stable ppc64, bug 345279

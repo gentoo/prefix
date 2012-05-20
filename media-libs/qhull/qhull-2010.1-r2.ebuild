@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/qhull-2010.1-r2.ebuild,v 1.5 2010/12/29 01:28:40 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/qhull-2010.1-r2.ebuild,v 1.8 2012/01/14 10:48:44 xarthisius Exp $
 
 EAPI=3
 
@@ -22,8 +22,8 @@ PATCHES=( "${FILESDIR}/${P}-cmake-install.patch" "${FILESDIR}/${P}-overflows.pat
 src_configure() {
 	append-flags -fno-strict-aliasing
 	mycmakeargs="
-		-DLIB_INSTALL_DIR=${EPREFIX}/usr/$(get_libdir)
-		-DDOC_INSTALL_DIR=${EPREFIX}/usr/share/doc/${PF}
+		-DLIB_INSTALL_DIR="${EPREFIX}"/usr/$(get_libdir)
+		-DDOC_INSTALL_DIR="${EPREFIX}"/usr/share/doc/${PF}
 		$(cmake-utils_use_with static-libs STATIC_LIBS)
 		$(cmake-utils_use_with doc DOCS)"
 	cmake-utils_src_configure
