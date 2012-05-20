@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/plotutils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.58 2011/03/23 17:55:05 xarthisius Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/ChangeLog,v 1.60 2012/05/09 18:09:39 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> plotutils-2.6.ebuild:
+  keyword ~amd64-fbsd
+
+  31 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
+  -plotutils-2.4.1-r4.ebuild, -files/plotutils-2.4.1-correct_test.patch,
+  -files/plotutils-2.4.1-gentoo.patch, -files/plotutils-2.4.1-rangecheck.patch,
+  -plotutils-2.5.ebuild, -plotutils-2.5.1.ebuild,
+  -files/plotutils-2.5.1-fix-tests.patch,
+  -files/plotutils-2.5-rangecheck.patch:
+  old
 
   23 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> plotutils-2.6.ebuild:
   ppc/ppc64 stable wrt #353433
