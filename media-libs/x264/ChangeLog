@@ -1,6 +1,170 @@
 # ChangeLog for media-libs/x264
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/ChangeLog,v 1.35 2010/06/06 10:37:33 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/ChangeLog,v 1.73 2012/05/15 13:12:19 aballier Exp $
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> x264-0.0.20120327.ebuild,
+  x264-9999.ebuild:
+  keyword ~amd64-fbsd
+
+  07 May 2012; Tomáš Chvátal <scarabeus@gentoo.org> -files/x264-altivec.patch,
+  -files/x264-onlylib-20100605.patch, -x264-0.0.20100605.ebuild,
+  -x264-0.0.20101029.ebuild, -x264-0.0.20110223.ebuild,
+  -x264-0.0.20110825-r1.ebuild, -x264-0.0.20111017.ebuild,
+  -x264-0.0.20111218.ebuild:
+  Lower the number of available versions a bit.
+
+  15 Apr 2012; Raúl Porcel <armin76@gentoo.org> x264-0.0.20111220.ebuild:
+  alpha/sparc stable wrt #411396
+
+  12 Apr 2012; Andreas Schuerch <nativemad@gentoo.org>
+  x264-0.0.20111220.ebuild:
+  x86 stable, see bug 411369
+
+  09 Apr 2012; Agostino Sarubbo <ago@gentoo.org> x264-0.0.20111220.ebuild:
+  Stable for amd64, wrt bug #401069
+
+  31 Mar 2012; Agostino Sarubbo <ago@gentoo.org> x264-0.0.20111220.ebuild:
+  reverted to ~amd64
+
+  31 Mar 2012; Agostino Sarubbo <ago@gentoo.org> x264-0.0.20111220.ebuild:
+  Stable for amd64, wrt bug #401069
+
+*x264-0.0.20120327 (28 Mar 2012)
+
+  28 Mar 2012; Luca Barbato <lu_zero@gentoo.org> +x264-0.0.20120327.ebuild:
+  New snapshot
+
+  04 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> x264-0.0.20111220.ebuild,
+  x264-9999.ebuild:
+  Pull in more recent yasm wrt #402143 by Rafal Rzepecki
+
+*x264-0.0.20111220 (21 Dec 2011)
+
+  21 Dec 2011; Luca Barbato <lu_zero@gentoo.org> +x264-0.0.20111220.ebuild:
+  New version using the 120 api
+
+*x264-0.0.20111218 (19 Dec 2011)
+
+  19 Dec 2011; Alexis Ballier <aballier@gentoo.org> +x264-0.0.20111218.ebuild:
+  new snapshot
+
+*x264-0.0.20111017 (19 Oct 2011)
+
+  19 Oct 2011; Luca Barbato <lu_zero@gentoo.org> +x264-0.0.20111117.ebuild:
+  New version using the 118 api
+
+*x264-0.0.20110825-r1 (07 Sep 2011)
+
+  07 Sep 2011; Patrick McLean <chutzpah@gentoo.org> -x264-0.0.20110825.ebuild,
+  +x264-0.0.20110825-r1.ebuild, metadata.xml:
+  Revision bump, merge in 9999 ebuild stuff from multimedia overlay, add 10bit
+  USE flag and use stable tarball rather than the unstable one.
+
+  07 Sep 2011; Patrick McLean <chutzpah@gentoo.org> x264-0.0.20110825.ebuild,
+  metadata.xml:
+  Add enabled-by-default "interlaced" USE flag to allow disabling of
+  interlacing support. This can speed up encoding by up to 2%.
+
+  07 Sep 2011; Diego E. Pettenò <flameeyes@gentoo.org>
+  x264-0.0.20110825.ebuild:
+  QA: stop failing when using -ggdb in CFLAGS.
+
+*x264-0.0.20110825 (07 Sep 2011)
+
+  07 Sep 2011; Patrick McLean <chutzpah@gentoo.org> +x264-0.0.20110825.ebuild:
+  Version bump, pull a lot of fixes by Nikoli <nikoli@lavabit.com> from the
+  live ebuild. Add custom-cflags USE flag with workaround for bug #376925. Also
+  contains fix for bug #378303.
+
+  03 Sep 2011; Maxim Koltsov <maksbotan@gentoo.org> x264-9999.ebuild:
+  Fix SRC_URI & some cosmetic change. Thanks to Nikoli <nikoli@lavabit.com>
+
+  27 Aug 2011; Raúl Porcel <armin76@gentoo.org> x264-0.0.20110426.ebuild:
+  alpha/sparc stable wrt #378801
+
+  19 Aug 2011; Thomas Kahle <tomka@gentoo.org> x264-0.0.20110426.ebuild:
+  x86 stable per bug 378801
+
+  18 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> x264-0.0.20110426.ebuild:
+  ppc/ppc64 stable wrt #378801
+
+  18 Aug 2011; Tony Vroon <chainsaw@gentoo.org> x264-0.0.20110426.ebuild:
+  Marked stable on AMD64 as a dependency of media-video/ffmpeg based on arch
+  testing by Agostino "ago" Sarubbo in security bug #378801.
+
+  10 Jul 2011; Raúl Porcel <armin76@gentoo.org> x264-0.0.20101029.ebuild:
+  sparc stable wrt #365273
+
+  21 Jun 2011; Tobias Klausmann <klausman@gentoo.org> x264-0.0.20101029.ebuild:
+  Stable on alpha, bug #365273
+
+*x264-9999 (28 May 2011)
+
+  28 May 2011; Tim Harder <radhermit@gentoo.org> +x264-9999.ebuild:
+  Import live ebuild from the multimedia overlay (requested by Nikoli).
+
+*x264-0.0.20110426 (27 Apr 2011)
+
+  27 Apr 2011; Alexis Ballier <aballier@gentoo.org> +x264-0.0.20110426.ebuild,
+  +files/x264-onlylib-20110425.patch:
+  new snapshot
+
+*x264-0.0.20110223 (24 Feb 2011)
+
+  24 Feb 2011; Alexis Ballier <aballier@gentoo.org> +x264-0.0.20110223.ebuild:
+  bump a new snapshot
+
+  24 Feb 2011; Alexis Ballier <aballier@gentoo.org> x264-0.0.20101029.ebuild:
+  Do not feed configure script with an unknown --enable-pthread option, bug
+  #356147 by Marcin Mirosław <bug@mejor.pl>
+
+  26 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  +files/x264-altivec.patch, x264-0.0.20101029.ebuild:
+  Fix compilation on PPC with some recent GCCs wrt bug 343893. Thanks to
+  Andrew John Hughes <gnu_andrew@member.fsf.org> for salvaging patch and
+  Alex Buell <alex.buell@munted.org.uk> for testing.
+
+  22 Dec 2010; Alexis Ballier <aballier@gentoo.org> -x264-0.0.20081006.ebuild,
+  -x264-0.0.20090502.ebuild, -x264-0.0.20090629.ebuild,
+  -x264-0.0.20090908.ebuild, -x264-0.0.20091021.ebuild,
+  -x264-0.0.20091124.ebuild, -x264-0.0.20100118.ebuild,
+  -x264-0.0.20100423.ebuild, -files/x264-onlylib-20080406.patch,
+  -files/x264-onlylib-20090408.patch:
+  remove old
+
+  09 Dec 2010; Richard Freeman <rich0@gentoo.org> x264-0.0.20101029.ebuild:
+  amd64 stable - 347625
+
+  09 Dec 2010; Christian Faulhammer <fauli@gentoo.org>
+  x264-0.0.20101029.ebuild:
+  stable x86, security bug 347625
+
+  14 Nov 2010; Raúl Porcel <armin76@gentoo.org> x264-0.0.20100605.ebuild:
+  sparc stable wrt #332361
+
+*x264-0.0.20101029 (30 Oct 2010)
+
+  30 Oct 2010; Alexis Ballier <aballier@gentoo.org>
+  +x264-0.0.20101029.ebuild:
+  version bump
+
+  08 Oct 2010; Brent Baude <ranger@gentoo.org> x264-0.0.20100605.ebuild:
+  Marking x264-0.0.20100605 ppc for bug 332361
+
+  08 Oct 2010; Brent Baude <ranger@gentoo.org> x264-0.0.20100605.ebuild:
+  Marking x264-0.0.20100605 ppc64 for bug 332361
+
+  24 Sep 2010; Markos Chandras <hwoarang@gentoo.org>
+  x264-0.0.20100605.ebuild:
+  Stable on amd64 wrt bug #332361
+
+  17 Sep 2010; Christian Faulhammer <fauli@gentoo.org>
+  x264-0.0.20100605.ebuild:
+  stable x86, security bug 332361
+
+  13 Sep 2010; Tobias Klausmann <klausman@gentoo.org>
+  x264-0.0.20100605.ebuild:
+  Stable on alpha, bug #332361
 
 *x264-0.0.20100605 (06 Jun 2010)
 

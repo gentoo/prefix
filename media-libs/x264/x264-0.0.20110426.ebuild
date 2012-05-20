@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/x264-0.0.20091124.ebuild,v 1.1 2009/11/26 03:50:14 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/x264-0.0.20110426.ebuild,v 1.5 2011/08/27 17:47:04 armin76 Exp $
 
 EAPI=2
 inherit eutils multilib toolchain-funcs versionator
@@ -9,11 +9,11 @@ MY_P=x264-snapshot-$(get_version_component_range 3)-2245
 
 DESCRIPTION="A free library for encoding X264/AVC streams"
 HOMEPAGE="http://www.videolan.org/developers/x264.html"
-SRC_URI="ftp://ftp.videolan.org/pub/videolan/x264/snapshots/${MY_P}.tar.bz2"
+SRC_URI="http://ftp.videolan.org/pub/videolan/x264/snapshots/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug +threads pic"
 
 RDEPEND=""
@@ -21,6 +21,7 @@ DEPEND="amd64? ( >=dev-lang/yasm-0.6.2 )
 	x86? ( >=dev-lang/yasm-0.6.2 )
 	x86-fbsd? ( >=dev-lang/yasm-0.6.2 )
 	x86-macos? ( >=dev-lang/yasm-0.6.2 )
+	x64-macos? ( >=dev-lang/yasm-0.6.2 )
 	x86-solaris? ( >=dev-lang/yasm-0.6.2 )
 	x64-solaris? ( >=dev-lang/yasm-0.6.2 )"
 
@@ -28,7 +29,7 @@ S=${WORKDIR}/${MY_P}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-nostrip.patch \
-		"${FILESDIR}"/${PN}-onlylib-20090408.patch
+		"${FILESDIR}"/${PN}-onlylib-20110425.patch
 
 	# Solaris' /bin/sh doesn't grok the syntax in these files
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
@@ -53,9 +54,11 @@ src_configure() {
 	./configure \
 		--prefix="${EPREFIX}"/usr \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		--disable-avis-input \
-		--disable-mp4-output \
-		$(use_enable threads pthread) \
+		--disable-avs \
+		--disable-lavf \
+		--disable-swscale \
+		--disable-gpac \
+		$(use threads || echo "--disable-thread") \
 		--enable-pic \
 		--enable-shared \
 		--extra-asflags="${ASFLAGS}" \
