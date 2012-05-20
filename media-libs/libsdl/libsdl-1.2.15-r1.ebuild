@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.14-r2.ebuild,v 1.1 2010/04/08 20:25:47 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.15-r1.ebuild,v 1.2 2012/05/09 13:15:36 aballier Exp $
 
 EAPI=2
 inherit flag-o-matic multilib toolchain-funcs eutils libtool
@@ -11,11 +11,10 @@ SRC_URI="http://www.libsdl.org/release/SDL-${PV}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 # WARNING:
-# if you disable the audio, video, joystick use flags or turn on the custom-cflags use flag
-# in USE and something breaks, you pick up the pieces.  Be prepared for
-# bug reports to be marked INVALID.
+# If you turn on the custom-cflags use flag in USE and something breaks,
+# you pick up the pieces.  Be prepared for bug reports to be marked INVALID.
 IUSE="oss alsa nas X dga xv xinerama fbcon directfb ggi svga tslib aalib opengl libcaca +audio +video +joystick custom-cflags pulseaudio ps3 static-libs"
 
 RDEPEND="audio? ( >=media-libs/audiofile-0.1.9 )
@@ -55,13 +54,6 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/SDL-${PV}
 
 pkg_setup() {
-	if use !audio || use !video || use !joystick ; then
-		ewarn "Since you've chosen to turn off some of libsdl's functionality,"
-		ewarn "don't bother filing libsdl-related bugs until trying to remerge"
-		ewarn "libsdl with the audio, video, and joystick flags in USE."
-		ewarn "You need to know what you're doing to selectively turn off parts of libsdl."
-		epause 30
-	fi
 	if use custom-cflags ; then
 		ewarn "Since you've chosen to use possibly unsafe CFLAGS,"
 		ewarn "don't bother filing libsdl-related bugs until trying to remerge"
@@ -72,8 +64,8 @@ pkg_setup() {
 
 src_prepare() {
 	epatch \
-		"${FILESDIR}"/${PN}-1.2.13-sdl-config.patch \
-		"${FILESDIR}"/${P}-click.patch
+		"${FILESDIR}"/${P}-sdl-config.patch \
+		"${FILESDIR}"/${P}-resizing.patch
 
 	# darwin uses dlopen too
 	epatch "${FILESDIR}"/${PN}-1.2.13-darwin-loadobj.patch
@@ -133,7 +125,6 @@ src_configure() {
 		--disable-pulseaudio-shared \
 		--disable-arts-shared \
 		--disable-nas-shared \
-		--disable-x11-shared \
 		--disable-osmesa-shared \
 		$(use_enable oss) \
 		$(use_enable alsa) \
@@ -162,6 +153,6 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	use static-libs || rm -f "${ED}"/usr/$(get_libdir)/lib*.la
-	dodoc BUGS CREDITS README README-SDL.txt README.CVS TODO WhatsNew
+	dodoc BUGS CREDITS README README-SDL.txt README.HG TODO WhatsNew
 	dohtml -r ./
 }

@@ -1,9 +1,9 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.14-r1.ebuild,v 1.1 2010/03/15 18:27:56 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.14-r6.ebuild,v 1.6 2011/05/22 23:59:29 josejx Exp $
 
 EAPI=2
-inherit flag-o-matic toolchain-funcs eutils libtool
+inherit flag-o-matic multilib toolchain-funcs eutils libtool
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
@@ -11,12 +11,12 @@ SRC_URI="http://www.libsdl.org/release/SDL-${PV}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 # WARNING:
 # if you disable the audio, video, joystick use flags or turn on the custom-cflags use flag
 # in USE and something breaks, you pick up the pieces.  Be prepared for
 # bug reports to be marked INVALID.
-IUSE="oss alsa nas X dga xv xinerama fbcon directfb ggi svga tslib aalib opengl libcaca +audio +video +joystick custom-cflags pulseaudio ps3"
+IUSE="oss alsa nas X dga xv xinerama fbcon directfb ggi svga tslib aalib opengl libcaca +audio +video +joystick custom-cflags pulseaudio ps3 static-libs"
 
 RDEPEND="audio? ( >=media-libs/audiofile-0.1.9 )
 	alsa? ( media-libs/alsa-lib )
@@ -71,7 +71,11 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.2.13-sdl-config.patch
+	epatch \
+		"${FILESDIR}"/${PN}-1.2.13-sdl-config.patch \
+		"${FILESDIR}"/${P}-click.patch \
+		"${FILESDIR}"/${P}-joystick.patch \
+		"${FILESDIR}"/${P}-glibc213.patch
 
 	# darwin uses dlopen too
 	epatch "${FILESDIR}"/${PN}-1.2.13-darwin-loadobj.patch
@@ -131,7 +135,6 @@ src_configure() {
 		--disable-pulseaudio-shared \
 		--disable-arts-shared \
 		--disable-nas-shared \
-		--disable-x11-shared \
 		--disable-osmesa-shared \
 		$(use_enable oss) \
 		$(use_enable alsa) \
@@ -152,12 +155,14 @@ src_configure() {
 		$(use_enable ps3 video-ps3) \
 		$(use_enable tslib input-tslib) \
 		$(use_with X x) \
+		$(use_enable static-libs static) \
 		--disable-video-x11-xme \
 		${myconf}
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+	use static-libs || rm -f "${ED}"/usr/$(get_libdir)/lib*.la
 	dodoc BUGS CREDITS README README-SDL.txt README.CVS TODO WhatsNew
 	dohtml -r ./
 }
