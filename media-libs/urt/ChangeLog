@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/urt
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/ChangeLog,v 1.31 2009/12/26 17:40:18 pva Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/ChangeLog,v 1.32 2012/05/09 00:22:54 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> urt-3.1b-r1.ebuild:
+  keyword ~amd64-fbsd
 
   26 Dec 2009; Peter Volkov <pva@gentoo.org> urt-3.1b-r1.ebuild:
   virtual/ghostscript->app-text/ghostscript-gpl: ghostscript-gpl is the only
