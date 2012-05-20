@@ -1,6 +1,56 @@
 # ChangeLog for media-libs/libsoundtouch
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.40 2010/07/17 17:26:16 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.54 2012/03/08 03:30:07 radhermit Exp $
+
+  08 Mar 2012; Tim Harder <radhermit@gentoo.org> -libsoundtouch-1.5.0.ebuild,
+  -files/libsoundtouch-1.5.0-flags_and_version.patch:
+  Remove old.
+
+  07 Mar 2012; Brent Baude <ranger@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Marking libsoundtouch-1.6.0 ppc for bug 387769
+
+  14 Feb 2012; Ulrich Müller <ulm@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  QA: Fix ebuild header, bug 398773.
+
+  12 Feb 2012; Tony Vroon <chainsaw@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Marked stable on PPC64 as requested by Tim "radhermit" Harder in bug
+  #387769. Compile tested on a PowerMac7,3 (64UL) with GCC 4.5.3.
+
+  18 Dec 2011; Raúl Porcel <armin76@gentoo.org> libsoundtouch-1.5.0.ebuild,
+  libsoundtouch-1.6.0.ebuild:
+  Drop sparc keywords
+
+  28 Nov 2011; Tim Harder <radhermit@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Revert to autotools eclass (fixes bug #392103).
+
+  27 Nov 2011; Tim Harder <radhermit@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Build in the source tree.
+
+  02 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libsoundtouch-1.6.0.ebuild:
+  x86 stable wrt bug #387769
+
+  28 Oct 2011; Jeroen Roovers <jer@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Stable for HPPA (bug #387769).
+
+  25 Oct 2011; Tim Harder <radhermit@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Update sed line (fixes bug #380489) and use D instead of ED.
+
+  20 Oct 2011; Samuli Suominen <ssuominen@gentoo.org>
+  libsoundtouch-1.6.0.ebuild:
+  amd64 stable wrt #387769
+
+  20 Oct 2011; Tim Harder <radhermit@gentoo.org> libsoundtouch-1.6.0.ebuild:
+  Use remove_libtool_files to remove libtool archives.
+
+*libsoundtouch-1.6.0 (22 Aug 2011)
+
+  22 Aug 2011; Tim Harder <radhermit@gentoo.org> +libsoundtouch-1.6.0.ebuild,
+  +files/libsoundtouch-1.6.0-flags.patch:
+  Version bump (bug #376261 by Alex Barker). Add static-libs USE flag.
+
+  15 Oct 2010; Brent Baude <ranger@gentoo.org> libsoundtouch-1.5.0.ebuild:
+  stable ppc, bug 325875
 
   17 Jul 2010; Raúl Porcel <armin76@gentoo.org> libsoundtouch-1.5.0.ebuild:
   sparc stable wrt #325875
