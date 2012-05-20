@@ -20,6 +20,7 @@ DEPEND=""
 
 src_prepare() {
 	sed -i -e "/^\(ROOTCONFDIR\|DOCBOOKDIR\)=/s:=/:=${EPREFIX}/:" build-docbook-catalog || die
+	sed -i -e "/^\(SYSCONFDIR\|PREFIX\) = /s:= /:= ${EPREFIX}/:" Makefile || die
 }
 
 pkg_postinst() {
