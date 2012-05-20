@@ -1,6 +1,49 @@
 # ChangeLog for media-libs/libvorbis
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.134 2010/07/25 15:27:43 klausman Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.146 2012/05/15 12:55:40 aballier Exp $
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> libvorbis-1.3.3.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libvorbis-1.3.1.ebuild,
+  libvorbis-1.3.2.ebuild, libvorbis-1.3.3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  19 Feb 2012; Raúl Porcel <armin76@gentoo.org> libvorbis-1.3.2.ebuild:
+  alpha/ia64/sh/sparc stable wrt #400387
+
+  08 Feb 2012; Markus Meier <maekke@gentoo.org> libvorbis-1.3.2.ebuild:
+  arm stable, bug #400387
+
+  07 Feb 2012; Jeroen Roovers <jer@gentoo.org> libvorbis-1.3.2.ebuild:
+  Stable for HPPA (bug #400387).
+
+*libvorbis-1.3.3 (04 Feb 2012)
+
+  04 Feb 2012; Tim Harder <radhermit@gentoo.org> +libvorbis-1.3.3.ebuild:
+  Version bump.
+
+  03 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> libvorbis-1.3.2.ebuild:
+  ppc/ppc64 stable wrt #400387
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> libvorbis-1.3.2.ebuild:
+  x86 stable wrt bug #400387
+
+  27 Jan 2012; Agostino Sarubbo <ago@gentoo.org> libvorbis-1.3.2.ebuild:
+  Stable for amd64, wrt bug #400387
+
+*libvorbis-1.3.2 (11 Nov 2010)
+
+  11 Nov 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +libvorbis-1.3.2.ebuild:
+  Version bump.
+
+  24 Sep 2010; Raúl Porcel <armin76@gentoo.org> libvorbis-1.3.1.ebuild:
+  ia64/sh/sparc stable wrt #324263
+
+  23 Aug 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libvorbis-1.3.1.ebuild:
+  Remove .la files (same as in media-libs/libogg).
 
   25 Jul 2010; Tobias Klausmann <klausman@gentoo.org>
   libvorbis-1.3.1.ebuild:
