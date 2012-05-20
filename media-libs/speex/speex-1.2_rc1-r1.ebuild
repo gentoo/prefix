@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/speex-1.2_rc1.ebuild,v 1.11 2012/05/05 08:02:36 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/speex-1.2_rc1-r1.ebuild,v 1.3 2012/05/15 13:10:33 aballier Exp $
 
 EAPI=2
 inherit autotools eutils flag-o-matic
@@ -23,7 +23,7 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-configure.patch
+	epatch "${FILESDIR}"/${PF}-configure.patch
 
 	sed -i \
 		-e 's:noinst_PROGRAMS:check_PROGRAMS:' \

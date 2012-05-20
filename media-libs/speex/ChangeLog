@@ -1,6 +1,25 @@
 # ChangeLog for media-libs/speex
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.94 2009/12/11 19:59:55 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.99 2012/05/15 13:10:33 aballier Exp $
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> speex-1.2_rc1-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> speex-1.2_rc1.ebuild,
+  speex-1.2_rc1-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*speex-1.2_rc1-r1 (10 Aug 2011)
+
+  10 Aug 2011; Patrick McLean <chutzpah@gentoo.org> +speex-1.2_rc1-r1.ebuild,
+  +files/speex-1.2_rc1-r1-configure.patch:
+  Revision bump, add workaround to bug #332861
+
+  19 Jul 2011; Samuli Suominen <ssuominen@gentoo.org> speex-1.2_rc1.ebuild:
+  Missing dev-util/pkgconfig DEPEND wrt #373617 by Malte Starostik
+
+  24 Aug 2010; Samuli Suominen <ssuominen@gentoo.org> speex-1.2_rc1.ebuild:
+  Use append-lfs-flags. USE static-libs and punt .la files.
 
   11 Dec 2009; Brent Baude <ranger@gentoo.org> speex-1.2_rc1.ebuild:
   Marking speex-1.2_rc1 ppc64 for bug 289701
