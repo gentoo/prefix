@@ -1,6 +1,8 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/smpeg/smpeg-0.4.4-r9.ebuild,v 1.11 2009/08/21 20:18:22 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/smpeg/smpeg-0.4.4-r9.ebuild,v 1.13 2011/10/23 11:49:12 scarabeus Exp $
+
+EAPI=4
 
 inherit eutils toolchain-funcs autotools flag-o-matic
 
@@ -12,21 +14,20 @@ SRC_URI="ftp://ftp.lokigames.com/pub/open-source/smpeg/${P}.tar.gz
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
-IUSE="X debug mmx opengl"
+IUSE="X debug mmx opengl static-libs"
 
 DEPEND=">=media-libs/libsdl-1.2.0
-	opengl? (
-		virtual/opengl
-		virtual/glu )
+	opengl? ( virtual/opengl )
 	X? (
 		x11-libs/libXext
 		x11-libs/libXi
 		x11-libs/libX11
 	)"
+RDEPEND="${DEPEND}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+DOCS=( CHANGES README README.SDL_mixer TODO )
+
+src_prepare() {
 	epatch "${FILESDIR}"/${P}-m4.patch \
 		"${FILESDIR}"/${P}-gnu-stack.patch \
 		"${FILESDIR}"/${P}-config.patch \
@@ -46,7 +47,7 @@ src_unpack() {
 	AT_M4DIR="${S}/m4" eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	[[ ${CHOST} == *-solaris* ]] && append-libs -lnsl -lsocket
 	tc-export CC CXX RANLIB AR
 
@@ -55,16 +56,14 @@ src_compile() {
 	econf \
 		--enable-debug \
 		--disable-gtk-player \
+		$(use_enable static-libs static) \
 		$(use_enable debug assertions) \
 		$(use_with X x) \
 		$(use_enable opengl opengl-player) \
-		$(use_enable mmx) \
-		|| die
-
-	emake || die "emake failed"
+		$(use_enable mmx)
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc CHANGES README* TODO
+	default
+	use static-libs || find "${ED}" -name '*.la' -exec rm -f {} +
 }
