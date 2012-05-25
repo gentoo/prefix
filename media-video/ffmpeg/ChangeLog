@@ -1,6 +1,46 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.547 2012/04/24 13:17:12 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.556 2012/05/17 20:45:16 aballier Exp $
+
+  17 May 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.10.2.ebuild,
+  ffmpeg-0.10.3.ebuild, ffmpeg-9999.ebuild:
+  block libpostproc as should have been done from the beginning
+
+  17 May 2012; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.10.3-r1.ebuild,
+  ffmpeg-9999.ebuild:
+  revert previous commit that came as a surprise, standalone postproc is not
+  worth it yet, at least not without a release and a stable candidate
+
+*ffmpeg-0.10.3-r1 (17 May 2012)
+
+  17 May 2012; Tomáš Chvátal <scarabeus@gentoo.org> +ffmpeg-0.10.3-r1.ebuild,
+  ffmpeg-9999.ebuild:
+  Disable postproc in here and use the common library that will be used by both
+  libav and ffmpeg (eases dependency writting).
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.10.3.ebuild,
+  ffmpeg-9999.ebuild:
+  keyword ~amd64-fbsd
+
+  15 May 2012; Alexis Ballier <aballier@gentoo.org>
+  -files/ffmpeg-0.7.6-fix_ppc64_32ul.patch, -ffmpeg-0.7.8.ebuild,
+  -ffmpeg-0.10.ebuild:
+  remove old
+
+  13 May 2012; Mark Loeser <halcy0n@gentoo.org> ffmpeg-0.10.2.ebuild:
+  Stable for ppc/ppc64; bug #411369
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  libvorbis encoder is back, reflect the change into the ebuild
+
+*ffmpeg-0.10.3 (08 May 2012)
+
+  08 May 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.10.3.ebuild:
+  version bump
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> ffmpeg-0.7.8.ebuild,
+  ffmpeg-0.10.ebuild, ffmpeg-0.10.2.ebuild, ffmpeg-9999.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   24 Apr 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
   fontconfig requires pkgconfig
