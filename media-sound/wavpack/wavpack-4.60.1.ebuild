@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/wavpack-4.60.1.ebuild,v 1.1 2009/12/16 14:13:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/wavpack-4.60.1.ebuild,v 1.9 2012/02/25 17:45:44 armin76 Exp $
 
-EAPI=2
+EAPI=4
 inherit eutils libtool
 
 DESCRIPTION="WavPack audio compression tools"
@@ -14,20 +14,26 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="mmx"
 
+RDEPEND="virtual/libiconv"
+DEPEND="${RDEPEND}"
+
+DOCS=( ChangeLog README )
+
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.41.0-interix.patch
 	epatch "${FILESDIR}"/${PN}-4.50.0-interix.patch
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
-# you still do?	eautoreconf # need new libtool for interix
 
 	elibtoolize
 }
 
 src_configure() {
-	econf $(use_enable mmx)
+	econf \
+		--disable-static \
+		$(use_enable mmx)
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc ChangeLog README
+	default
+	find "${ED}" -name '*.la' -exec rm -f {} +
 }

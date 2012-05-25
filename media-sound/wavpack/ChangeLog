@@ -1,6 +1,35 @@
 # ChangeLog for media-sound/wavpack
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/ChangeLog,v 1.54 2009/12/16 14:13:29 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/ChangeLog,v 1.63 2012/02/25 19:36:03 ssuominen Exp $
+
+  25 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> -wavpack-4.50.1.ebuild,
+  -wavpack-4.50.1-r1.ebuild, -files/wavpack-4.50.1-gcc44.patch,
+  -wavpack-4.60.0.ebuild:
+  old
+
+  25 Feb 2012; Raúl Porcel <armin76@gentoo.org> wavpack-4.60.1.ebuild:
+  alpha/ia64/sparc stable wrt #400411
+
+  08 Feb 2012; Markus Meier <maekke@gentoo.org> wavpack-4.60.1.ebuild:
+  arm stable, bug #400411
+
+  07 Feb 2012; Jeroen Roovers <jer@gentoo.org> wavpack-4.60.1.ebuild:
+  Stable for HPPA (bug #400411).
+
+  31 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> wavpack-4.60.1.ebuild:
+  ppc/ppc64 stable wrt #400411
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> wavpack-4.60.1.ebuild:
+  x86 stable wrt bug #400411
+
+  27 Jan 2012; Agostino Sarubbo <ago@gentoo.org> wavpack-4.60.1.ebuild:
+  Stable for amd64, wrt bug #400411
+
+  20 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> wavpack-4.60.1.ebuild:
+  Missing libiconv depend wrt #214962 by Sergey Dryabzhinsky
+
+  26 Apr 2011; Tomáš Chvátal <scarabeus@gentoo.org> wavpack-4.60.1.ebuild:
+  Disable building of not-required static libs
 
 *wavpack-4.60.1 (16 Dec 2009)
 
