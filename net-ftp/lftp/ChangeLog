@@ -1,6 +1,153 @@
 # ChangeLog for net-ftp/lftp
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.316 2011/08/13 17:33:57 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.358 2012/05/08 15:51:51 ranger Exp $
+
+  08 May 2012; Brent Baude <ranger@gentoo.org> lftp-4.3.6.ebuild:
+  Marking lftp-4.3.6 ppc64 for bug 414253
+
+  05 May 2012; Brent Baude <ranger@gentoo.org> lftp-4.3.6.ebuild:
+  Marking lftp-4.3.6 ppc for bug 414253
+
+  03 May 2012; Markus Meier <maekke@gentoo.org> lftp-4.3.6.ebuild:
+  arm stable, bug #414253
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> lftp-4.3.5.ebuild,
+  lftp-4.3.6.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  03 May 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.6.ebuild:
+  Stable for HPPA (bug #414253).
+
+  02 May 2012; Jeff Horelick <jdhore@gentoo.org> lftp-4.3.6.ebuild:
+  marked x86 per bug 414253
+
+  01 May 2012; Agostino Sarubbo <ago@gentoo.org> lftp-4.3.6.ebuild:
+  Stable for amd64, wrt bug #414253
+
+*lftp-4.3.6 (02 Apr 2012)
+
+  02 Apr 2012; Jeroen Roovers <jer@gentoo.org> -lftp-4.3.3.ebuild,
+  -lftp-4.3.4-r1.ebuild, +lftp-4.3.6.ebuild:
+  Version bump.
+
+  01 Apr 2012; Raúl Porcel <armin76@gentoo.org> lftp-4.3.5.ebuild:
+  alpha/ia64/s390/sparc stable wrt #405981
+
+  15 Mar 2012; Markus Meier <maekke@gentoo.org> lftp-4.3.5.ebuild:
+  arm stable, bug #405981
+
+  09 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> lftp-4.3.5.ebuild:
+  x86 stable wrt bug #405981
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> lftp-4.3.5.ebuild:
+  Marking lftp-4.3.5 ppc for bug 405981
+
+  06 Mar 2012; Jeroen Roovers <jer@gentoo.org> -lftp-4.3.1.ebuild:
+  Old.
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> lftp-4.3.5.ebuild:
+  Marking lftp-4.3.5 ppc64 for bug 405981
+
+  28 Feb 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.5.ebuild:
+  Stable for HPPA (bug #405981).
+
+  27 Feb 2012; Agostino Sarubbo <ago@gentoo.org> lftp-4.3.5.ebuild:
+  Stable for amd64, wrt bug #405981
+
+  27 Feb 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.1.ebuild:
+  Drop PPC.
+
+*lftp-4.3.5 (25 Jan 2012)
+
+  25 Jan 2012; Jeroen Roovers <jer@gentoo.org> +lftp-4.3.5.ebuild:
+  Version bump.
+
+  23 Jan 2012; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Remove accidental tag addition.
+
+  23 Jan 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.3.ebuild,
+  lftp-4.3.4-r1.ebuild, metadata.xml:
+  Encourage USE=ssl.
+
+*lftp-4.3.4-r1 (20 Jan 2012)
+
+  20 Jan 2012; Jeroen Roovers <jer@gentoo.org> -lftp-4.3.4.ebuild,
+  +lftp-4.3.4-r1.ebuild, +files/lftp-4.3.4-empty-local.patch:
+  Fix segfault when running `local' command without arguments by Marcin
+  Mirosław (bug #398513).
+
+  09 Jan 2012; Brent Baude <ranger@gentoo.org> lftp-4.3.3.ebuild:
+  Marking lftp-4.3.3 ppc for bug 393513
+
+  02 Jan 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.3.ebuild,
+  lftp-4.3.4.ebuild:
+  Do not set LINGUAS.
+
+  02 Jan 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.3.ebuild:
+  Add LINGUAS support (bug #396629).
+
+  02 Jan 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.4.ebuild:
+  Add LINGUAS support (bug #396629).
+
+*lftp-4.3.4 (31 Dec 2011)
+
+  31 Dec 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.3.4.ebuild:
+  Version bump.
+
+  21 Dec 2011; Jeroen Roovers <jer@gentoo.org> lftp-4.3.1.ebuild,
+  -lftp-4.3.2.ebuild:
+  Old.
+
+  17 Dec 2011; Raúl Porcel <armin76@gentoo.org> lftp-4.3.3.ebuild:
+  alpha/ia64/s390/sparc stable wrt #393513
+
+  14 Dec 2011; Markus Meier <maekke@gentoo.org> lftp-4.3.3.ebuild:
+  arm stable, bug #393513
+
+  14 Dec 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> lftp-4.3.3.ebuild:
+  x86 stable wrt bug #393513
+
+  11 Dec 2011; Jeroen Roovers <jer@gentoo.org> lftp-4.3.3.ebuild:
+  Stable for HPPA (bug #393513).
+
+  11 Dec 2011; Agostino Sarubbo <ago@gentoo.org> lftp-4.3.3.ebuild:
+  Stable for AMD64, wrt bug #393513
+
+  10 Dec 2011; Jeroen Roovers <jer@gentoo.org> lftp-4.3.3.ebuild:
+  Add missing sys-libs/expat dependency by Ago (bug #393513 comment #1).
+
+*lftp-4.3.3 (24 Oct 2011)
+
+  24 Oct 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.3.3.ebuild:
+  Version bump.
+
+  23 Oct 2011; Raúl Porcel <armin76@gentoo.org> lftp-4.3.2.ebuild:
+  alpha/arm/ia64/s390/sparc stable wrt #387221
+
+  18 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> lftp-4.3.2.ebuild:
+  x86 stable wrt bug #387221
+
+  17 Oct 2011; Jeroen Roovers <jer@gentoo.org> lftp-4.3.2.ebuild:
+  Stable for HPPA (bug #387221).
+
+  16 Oct 2011; Tony Vroon <chainsaw@gentoo.org> lftp-4.3.2.ebuild:
+  Marked stable on AMD64 based on arch testing by Elijah "Armageddon" El
+  Lazkani, Ian "idella4" Delaney & Agostino "ago" Sarubbo in bug #387221.
+
+  26 Sep 2011; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Remove empty tag.
+
+*lftp-4.3.2 (16 Sep 2011)
+
+  16 Sep 2011; Jeroen Roovers <jer@gentoo.org> +lftp-4.3.2.ebuild:
+  Version bump.
+
+  28 Aug 2011; Jeroen Roovers <jer@gentoo.org> -lftp-4.2.3.ebuild,
+  -lftp-4.3.0.ebuild:
+  ^
+
+  28 Aug 2011; Raúl Porcel <armin76@gentoo.org> lftp-4.3.1.ebuild:
+  alpha/ia64/s390/sparc stable wrt #377341
 
   13 Aug 2011; Markus Meier <maekke@gentoo.org> lftp-4.3.1.ebuild:
   arm stable, bug #377341
