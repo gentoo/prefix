@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/fetchmail-6.3.21.ebuild,v 1.6 2011/08/27 11:30:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/fetchmail-6.3.21.ebuild,v 1.7 2011/11/06 20:13:45 eras Exp $
 
 EAPI=3
 
@@ -8,7 +8,7 @@ PYTHON_DEPEND="tk? 2"
 PYTHON_USE_WITH_OPT="tk"
 PYTHON_USE_WITH="tk"
 
-inherit python eutils prefix
+inherit python eutils autotools prefix
 
 DESCRIPTION="the legendary remote-mail retrieval and forwarding utility"
 HOMEPAGE="http://fetchmail.berlios.de"
@@ -39,6 +39,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}/${PN}-gss_c_nt_hostbased_service.patch"
+	eautoreconf
 	# dont compile during src_install
 	: > "${S}"/py-compile
 }
