@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.109.2-r1.ebuild,v 1.10 2008/12/20 14:36:56 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.109.2-r1.ebuild,v 1.11 2012/05/05 08:31:44 mgorny Exp $
 
 inherit flag-o-matic eutils multilib linux-info autotools multilib
 
@@ -22,7 +22,7 @@ RDEPEND=">=media-libs/libsndfile-1.0.0
 	netjack? ( media-libs/libsamplerate )
 	!media-sound/jack-cvs"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? ( app-doc/doxygen )
 	netjack? ( dev-util/scons )"
 

@@ -1,6 +1,100 @@
 # ChangeLog for media-sound/jack-audio-connection-kit
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.126 2010/06/12 17:15:24 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.145 2012/05/05 08:31:44 mgorny Exp $
+
+  05 May 2012; Michał Górny <mgorny@gentoo.org>
+  jack-audio-connection-kit-0.109.2-r1.ebuild,
+  jack-audio-connection-kit-0.121.3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  23 Apr 2012; Alexis Ballier <aballier@gentoo.org>
+  -jack-audio-connection-kit-0.116.2.ebuild,
+  -jack-audio-connection-kit-0.118.0.ebuild,
+  -files/jack-audio-connection-kit-0.118.0-debug.patch,
+  -jack-audio-connection-kit-0.120.1.ebuild,
+  -jack-audio-connection-kit-0.120.2.ebuild,
+  -jack-audio-connection-kit-0.121.2.ebuild:
+  remove old
+
+  13 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  ppc64 stable wrt #388171
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  Marking jack-audio-connection-kit-0.121.3 ppc for bug 388171
+
+  03 Mar 2012; Tobias Klausmann <klausman@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  Stable on alpha, bug #388171
+
+  03 Mar 2012; Markus Meier <maekke@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  arm stable, bug #388171
+
+  23 Feb 2012; Agostino Sarubbo <ago@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  Stable for AMD64 per Tim Harder(radhermit) test. wrt bug #388171
+
+  26 Dec 2011; Markus Meier <maekke@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  x86 stable, bug #388171
+
+  20 Dec 2011; Jeroen Roovers <jer@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  Stable for HPPA (bug #388171).
+
+  23 Oct 2011; Raúl Porcel <armin76@gentoo.org>
+  jack-audio-connection-kit-0.120.2.ebuild,
+  jack-audio-connection-kit-0.121.2.ebuild,
+  jack-audio-connection-kit-0.121.3.ebuild:
+  Add ~alpha/~ia64/~sh/~sparc wrt #370859
+
+  15 Oct 2011; Alexis Ballier <aballier@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  propagate ~x86 keywords, most likely forgotten when rekeywording
+
+  11 Oct 2011; Jeroen Roovers <jer@gentoo.org>
+  jack-audio-connection-kit-0.120.2.ebuild,
+  jack-audio-connection-kit-0.121.2.ebuild,
+  jack-audio-connection-kit-0.121.3.ebuild:
+  Marked ~hppa (bug #370859).
+
+*jack-audio-connection-kit-0.121.3 (05 Oct 2011)
+
+  05 Oct 2011; Alexis Ballier <aballier@gentoo.org>
+  +jack-audio-connection-kit-0.121.3.ebuild:
+  version bump
+
+  10 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  jack-audio-connection-kit-0.121.2.ebuild:
+  Marked ~ppc/~ppc64 wrt #370859
+
+  21 Jul 2011; Thomas Kahle <tomka@gentoo.org>
+  jack-audio-connection-kit-0.120.2.ebuild:
+  ~x86 per bug 370859
+
+  12 Jul 2011; Markus Meier <maekke@gentoo.org>
+  jack-audio-connection-kit-0.121.2.ebuild:
+  add ~arm, bug #370859
+
+*jack-audio-connection-kit-0.121.2 (06 Jul 2011)
+
+  06 Jul 2011; Alexis Ballier <aballier@gentoo.org>
+  +jack-audio-connection-kit-0.121.2.ebuild:
+  version bump
+
+*jack-audio-connection-kit-0.120.2 (09 Jun 2011)
+
+  09 Jun 2011; Alexis Ballier <aballier@gentoo.org>
+  +jack-audio-connection-kit-0.120.2.ebuild, metadata.xml:
+  version bump, install sys-auth/realtime-base for basic realtime setup via pam
+
+*jack-audio-connection-kit-0.120.1 (03 Apr 2011)
+
+  03 Apr 2011; Alexis Ballier <aballier@gentoo.org>
+  +jack-audio-connection-kit-0.120.1.ebuild:
+  version bump
 
   12 Jun 2010; Alexis Ballier <aballier@gentoo.org>
   jack-audio-connection-kit-0.118.0.ebuild,

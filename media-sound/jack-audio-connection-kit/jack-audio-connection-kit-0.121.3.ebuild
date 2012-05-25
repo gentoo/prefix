@@ -1,6 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.118.0.ebuild,v 1.4 2010/06/12 17:15:24 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.121.3.ebuild,v 1.12 2012/05/05 08:31:44 mgorny Exp $
+
+EAPI=2
 
 inherit flag-o-matic eutils multilib multilib
 
@@ -11,7 +13,7 @@ SRC_URI="http://www.jackaudio.org/downloads/${P}.tar.gz"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~ppc-macos"
-IUSE="3dnow altivec alsa coreaudio doc debug examples mmx oss sse cpudetection"
+IUSE="3dnow altivec alsa coreaudio doc debug examples mmx oss sse cpudetection pam"
 
 RDEPEND=">=media-libs/libsndfile-1.0.0
 	sys-libs/ncurses
@@ -20,17 +22,16 @@ RDEPEND=">=media-libs/libsndfile-1.0.0
 	media-libs/libsamplerate
 	!media-sound/jack-cvs"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? ( app-doc/doxygen )"
+RDEPEND="${RDEPEND}
+	pam? ( sys-auth/realtime-base )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}/${PN}-sparc-cpuinfo.patch"
-	epatch "${FILESDIR}/${P}-debug.patch"
 }
 
-src_compile() {
+src_configure() {
 	local myconf=""
 
 	# CPU Detection (dynsimd) uses asm routines which requires 3dnow, mmx and sse.
@@ -54,7 +55,6 @@ src_compile() {
 		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF} \
 		--disable-dependency-tracking \
 		${myconf} || die "configure failed"
-	emake || die "compilation failed"
 }
 
 src_install() {
