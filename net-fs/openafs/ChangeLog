@@ -1,6 +1,78 @@
 # ChangeLog for net-fs/openafs
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.165 2010/06/23 18:22:05 halcy0n Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.179 2012/04/05 00:19:30 vapier Exp $
+
+*openafs-1.6.1 (05 Apr 2012)
+
+  05 Apr 2012; Mike Frysinger <vapier@gentoo.org> +openafs-1.6.1.ebuild:
+  Version bump #410633 by Andrej Filipcic.
+
+*openafs-1.6.1_pre1 (07 Jan 2012)
+
+  07 Jan 2012; Mike Frysinger <vapier@gentoo.org> -openafs-1.6.0_pre7.ebuild,
+  +openafs-1.6.1_pre1.ebuild:
+  Version bump #397845 by Andrej Filipcic.
+
+*openafs-1.6.0 (18 Sep 2011)
+*openafs-1.4.14.1 (18 Sep 2011)
+
+  18 Sep 2011; Mike Frysinger <vapier@gentoo.org> +openafs-1.4.14.1.ebuild,
+  +openafs-1.6.0.ebuild:
+  Version bump #383473 by Andrej Filipcic.
+
+  18 Sep 2011; Mike Frysinger <vapier@gentoo.org> -openafs-1.4.9.ebuild,
+  -openafs-1.4.12.1-r2.ebuild, -openafs-1.4.14.ebuild, -openafs-1.5.34.ebuild,
+  -openafs-1.6.0_pre2.ebuild, -openafs-1.6.0_pre3.ebuild,
+  -openafs-1.6.0_pre6.ebuild:
+  Drop old ebuilds per Andrej Filipcic #383473.
+
+  18 Sep 2011; Mike Frysinger <vapier@gentoo.org> openafs-1.4.14-r1.ebuild:
+  Mark stable for amd64/x86 #383473 by Andrej Filipcic.
+
+  13 Sep 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, bug #99651
+
+*openafs-1.6.0_pre7 (07 Aug 2011)
+
+  07 Aug 2011; Mike Frysinger <vapier@gentoo.org> +openafs-1.6.0_pre7.ebuild:
+  Version bump #376317 by Bernd Feige.
+
+*openafs-1.6.0_pre6 (17 Jun 2011)
+
+  17 Jun 2011; Mike Frysinger <vapier@gentoo.org> +openafs-1.6.0_pre6.ebuild:
+  Version bump #371274 by Andrej Filipcic.
+
+*openafs-1.6.0_pre3 (20 Mar 2011)
+
+  20 Mar 2011; <stefaan@gentoo.org> openafs-1.6.0_pre2.ebuild,
+  +openafs-1.6.0_pre3.ebuild:
+  Bump to openafs-1.6.0_pre3, backport one fix to pre2
+
+*openafs-1.6.0_pre2 (19 Mar 2011)
+
+  19 Mar 2011; <stefaan@gentoo.org> +openafs-1.6.0_pre2.ebuild:
+  Add new 1.6 release candidate
+
+*openafs-1.4.14-r1 (25 Jan 2011)
+
+  25 Jan 2011; Mike Frysinger <vapier@gentoo.org> +openafs-1.4.14-r1.ebuild:
+  Add fix from upstream for ptserver segfaults #352356 by Andrian Nord and
+  Andrej Filipcic.
+
+*openafs-1.4.14 (08 Jan 2011)
+
+  08 Jan 2011; Mike Frysinger <vapier@gentoo.org> +openafs-1.4.14.ebuild:
+  Version bump #350935 by Andrej Filipcic.
+
+*openafs-1.4.12.1-r2 (23 Aug 2010)
+
+  23 Aug 2010; Mike Frysinger <vapier@gentoo.org> +openafs-1.4.12.1-r2.ebuild:
+  Tweak lwp install a bit more #330061 by Andrew Savchenko.
+
+*openafs-1.4.12.1-r1 (21 Aug 2010)
+
+  21 Aug 2010; Mike Frysinger <vapier@gentoo.org> +openafs-1.4.12.1-r1.ebuild:
+  Add -lresolv linking fix by Andrej Filipcic #305823 by Sébastien Fabbro.
 
   23 Jun 2010; Mark Loeser <halcy0n@gentoo.org> -openafs-1.4.6.ebuild,
   openafs-1.4.9.ebuild, openafs-1.4.10.ebuild, openafs-1.4.11.ebuild,
