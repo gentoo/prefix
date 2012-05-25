@@ -9,6 +9,5 @@
   <use>
     <flag name="pidgin">install support script for <pkg>net-im/pidgin</pkg></flag>
     <flag name="wma">add support for Windows Media Audio</flag>
-    <flag name="zsh-completion">enable zsh completion support</flag>
   </use>
 </pkgmetadata>

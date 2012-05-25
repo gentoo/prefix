@@ -1,9 +1,9 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.3.3.ebuild,v 1.1 2010/07/18 17:13:46 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.4.3.ebuild,v 1.4 2012/05/16 08:30:50 scarabeus Exp $
 
-EAPI=2
-inherit multilib
+EAPI=4
+inherit eutils multilib
 
 MY_P=${PN}-v${PV}
 
@@ -17,21 +17,23 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="aac alsa ao debug examples flac mad mikmod modplug mp4 musepack oss
 pidgin pulseaudio unicode vorbis wavpack wma zsh-completion"
 
-DEPEND="sys-libs/ncurses[unicode?]
+CDEPEND="sys-libs/ncurses[unicode?]
 	aac? ( media-libs/faad2 )
 	alsa? ( >=media-libs/alsa-lib-1.0.11 )
 	ao? (  media-libs/libao )
 	flac? ( media-libs/flac )
 	mad? ( >=media-libs/libmad-0.14 )
-	mikmod? ( media-libs/libmikmod )
+	mikmod? ( media-libs/libmikmod:0 )
 	modplug? ( >=media-libs/libmodplug-0.7 )
 	mp4? ( >=media-libs/libmp4v2-1.9 )
 	musepack? ( >=media-sound/musepack-tools-444 )
 	pulseaudio? ( media-sound/pulseaudio )
 	vorbis? ( >=media-libs/libvorbis-1.0 )
 	wavpack? ( media-sound/wavpack )
-	wma? ( >=media-video/ffmpeg-0.4.9_p20080326 )"
-RDEPEND="${DEPEND}
+	wma? ( >=virtual/ffmpeg-0.10.2-r1 )"
+DEPEND="${CDEPEND}
+	virtual/pkgconfig"
+RDEPEND="${CDEPEND}
 	zsh-completion? ( app-shells/zsh )
 	pidgin? ( net-im/pidgin
 		dev-python/dbus-python )"
@@ -40,7 +42,7 @@ S=${WORKDIR}/${MY_P}
 
 my_config() {
 	local value
-	use ${1} && value=y || value=n
+	use ${1} && value=a || value=n
 	myconf="${myconf} ${2}=${value}"
 }
 
@@ -73,17 +75,16 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
-	dodoc AUTHORS README TODO
+	default
 
 	use examples || rm -rf "${ED}"/usr/share/doc/${PF}/examples
 
 	if use zsh-completion; then
 		insinto /usr/share/zsh/site-functions
-		doins contrib/_cmus || die
+		doins contrib/_cmus
 	fi
 
 	if use pidgin; then
-		newbin contrib/cmus-updatepidgin.py cmus-updatepidgin || die
+		newbin contrib/cmus-updatepidgin.py cmus-updatepidgin
 	fi
 }

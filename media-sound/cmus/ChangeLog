@@ -1,6 +1,82 @@
 # ChangeLog for media-sound/cmus
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.38 2010/07/19 08:39:12 fauli Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.56 2012/05/16 08:30:50 scarabeus Exp $
+
+  16 May 2012; Tomáš Chvátal <scarabeus@gentoo.org> -cmus-2.4.2.ebuild,
+  -files/cmus-2.4.2-ffmpeg.patch, cmus-2.4.3.ebuild:
+  Stable on amd64 and x86. Depend on new ffmpeg as it uses new api.
+
+  05 May 2012; Michał Górny <mgorny@gentoo.org> cmus-2.4.2.ebuild,
+  cmus-2.4.3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  20 Jan 2012; Agostino Sarubbo <ago@gentoo.org> cmus-2.4.2.ebuild,
+  cmus-2.4.3.ebuild:
+  force libmikmod to slot 0, as ssuominen suggested
+
+*cmus-2.4.3 (01 Dec 2011)
+
+  01 Dec 2011; Tim Harder <radhermit@gentoo.org> +cmus-2.4.3.ebuild:
+  Version bump.
+
+  02 Nov 2011; Tim Harder <radhermit@gentoo.org> -cmus-2.3.2.ebuild,
+  -files/cmus-2.3.4-detect_mp4.h.patch, -cmus-2.4.0.ebuild, -cmus-2.4.1.ebuild:
+  Remove old.
+
+  02 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> cmus-2.4.2.ebuild:
+  x86 stable wrt bug #389059
+
+  01 Nov 2011; Tony Vroon <chainsaw@gentoo.org> cmus-2.4.2.ebuild:
+  Marked stable on AMD64 based on arch testing by Elijah "Armageddon" El
+  Lazkani & Ian "idella4" Delaney in bug #389059.
+
+  19 Oct 2011; Tim Harder <radhermit@gentoo.org> files/cmus-2.4.2-ffmpeg.patch:
+  Simplify ffmpeg patch (fixes bug #387017).
+
+*cmus-2.4.2 (30 Sep 2011)
+
+  30 Sep 2011; Tim Harder <radhermit@gentoo.org> +cmus-2.4.2.ebuild,
+  +files/cmus-2.4.2-ffmpeg.patch:
+  Version bump (bug #378445).
+
+*cmus-2.4.1 (17 Jul 2011)
+
+  17 Jul 2011; Christian Faulhammer <fauli@gentoo.org> -cmus-2.3.4.ebuild,
+  +cmus-2.4.1.ebuild:
+  version bump for bug 375413 from radhermit, clean up
+
+  10 Jul 2011; Christian Faulhammer <fauli@gentoo.org> cmus-2.4.0.ebuild:
+  Add dev-util/pkgconfig to DEPEND as reported in bug 373755 by nzqr
+  <candysnell DOT ya DOT ru>
+
+*cmus-2.4.0 (25 Apr 2011)
+
+  25 Apr 2011; Christian Faulhammer <fauli@gentoo.org> +cmus-2.4.0.ebuild:
+  version bump
+
+  23 Apr 2011; Christian Faulhammer <fauli@gentoo.org> cmus-2.3.4.ebuild,
+  +files/cmus-2.3.4-detect_mp4.h.patch:
+  Fix detection of mp4.h as reported by Johannes Weißl via email
+
+  23 Apr 2011; Christian Faulhammer <fauli@gentoo.org> cmus-2.3.4.ebuild:
+  Fix configure handling of variables as pointed out by Johannes Weißl via
+  email
+
+  10 Apr 2011; Christian Faulhammer <fauli@gentoo.org> cmus-2.3.2.ebuild,
+  cmus-2.3.4.ebuild:
+  switch to virtual/ffmpeg, see bug 362111
+
+  10 Apr 2011; Christian Faulhammer <fauli@gentoo.org> -cmus-2.3.3.ebuild:
+  clean up
+
+*cmus-2.3.4 (27 Feb 2011)
+
+  27 Feb 2011; Christian Faulhammer <fauli@gentoo.org> +cmus-2.3.4.ebuild:
+  version bump, fixes bug 356667 by radhermit
+
+  12 Oct 2010; Christian Faulhammer <fauli@gentoo.org> metadata.xml:
+  remove zsh-completion USE flag description as it is the same as the global
+  one, reported by radhermit in bug 339832
 
   19 Jul 2010; Christian Faulhammer <fauli@gentoo.org> metadata.xml:
   add myself as maintainer
