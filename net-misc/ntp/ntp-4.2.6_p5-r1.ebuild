@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.6_p3.ebuild,v 1.7 2011/06/03 17:51:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.6_p5-r1.ebuild,v 1.8 2012/05/13 19:37:55 aballier Exp $
 
 EAPI="2"
 
@@ -15,16 +15,17 @@ SRC_URI="http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-${PV:0:3}/${MY_P}.tar
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~m68k-mint"
-IUSE="caps debug ipv6 openntpd parse-clocks selinux snmp ssl vim-syntax zeroconf"
+IUSE="caps debug ipv6 openntpd parse-clocks samba selinux snmp ssl vim-syntax zeroconf"
 
 DEPEND=">=sys-libs/ncurses-5.2
 	>=sys-libs/readline-4.1
 	kernel_linux? ( caps? ( sys-libs/libcap ) )
-	zeroconf? ( || ( net-dns/avahi[mdnsresponder-compat] net-misc/mDNSResponder ) )
+	zeroconf? ( net-dns/avahi[mdnsresponder-compat] )
 	!openntpd? ( !net-misc/openntpd )
 	snmp? ( net-analyzer/net-snmp )
 	ssl? ( dev-libs/openssl )
-	selinux? ( sec-policy/selinux-ntp )"
+	selinux? ( sec-policy/selinux-ntp )
+	parse-clocks? ( net-misc/pps-tools )"
 RDEPEND="${DEPEND}
 	vim-syntax? ( app-vim/ntp-syntax )"
 PDEPEND="openntpd? ( net-misc/openntpd )"
@@ -47,7 +48,7 @@ src_configure() {
 	export ac_cv_search_MD5Init=no ac_cv_header_md5_h=no
 	export ac_cv_lib_elf_nlist=no
 	# blah, no real configure options #176333
-	export ac_cv_header_dns_sd_h=$(use zeroconf && echo yes || echo no)
+	export ac_cv_header_dns_sd_h=$(usex zeroconf)
 	export ac_cv_lib_dns_sd_DNSServiceRegister=${ac_cv_header_dns_sd_h}
 	econf \
 		--with-lineeditlibs=readline,edit,editline \
@@ -55,6 +56,7 @@ src_configure() {
 		$(use_enable parse-clocks) \
 		$(use_enable ipv6) \
 		$(use_enable debug debugging) \
+		$(use_enable samba ntp-signd) \
 		$(use_with snmp ntpsnmpd) \
 		$(use_with ssl crypto)
 }
