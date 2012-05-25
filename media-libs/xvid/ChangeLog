@@ -1,6 +1,48 @@
 # ChangeLog for media-libs/xvid
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.120 2010/05/24 18:57:59 pacho Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.133 2012/03/06 20:52:32 ranger Exp $
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> xvid-1.3.2.ebuild:
+  Marking xvid-1.3.2 ppc for bug 399849
+
+  19 Feb 2012; Raúl Porcel <armin76@gentoo.org> xvid-1.3.2.ebuild:
+  alpha/ia64/sparc stable wrt #399849
+
+  08 Feb 2012; Jeroen Roovers <jer@gentoo.org> xvid-1.3.2.ebuild:
+  Stable for HPPA (bug #399849).
+
+  05 Feb 2012; Markus Meier <maekke@gentoo.org> xvid-1.3.2.ebuild:
+  arm stable, bug #399849
+
+  28 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> xvid-1.3.2.ebuild:
+  x86 stable wrt bug #399849
+
+  26 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> xvid-1.3.2.ebuild:
+  ppc64 stable wrt #399849
+
+  23 Jan 2012; Agostino Sarubbo <ago@gentoo.org> xvid-1.3.2.ebuild:
+  Stable for amd64, wrt bug #399849
+
+*xvid-1.3.2 (06 Jun 2011)
+
+  06 Jun 2011; Alexis Ballier <aballier@gentoo.org> +xvid-1.3.2.ebuild:
+  version bump
+
+  25 Apr 2011; Samuli Suominen <ssuominen@gentoo.org> xvid-1.3.1.ebuild:
+  append-cflags -mno-vis for sparc wrt #357149 by Alex Buell
+
+*xvid-1.3.1 (31 Mar 2011)
+
+  31 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> +xvid-1.3.1.ebuild:
+  Version bump.
+
+*xvid-1.3.0 (01 Mar 2011)
+
+  01 Mar 2011; Samuli Suominen <ssuominen@gentoo.org> +xvid-1.3.0.ebuild:
+  Version bump.
+
+  18 Aug 2010; Jeroen Roovers <jer@gentoo.org> xvid-1.2.2-r2.ebuild:
+  Stable for HPPA (bug #318319).
 
   24 May 2010; Pacho Ramos <pacho@gentoo.org> xvid-1.2.2-r2.ebuild:
   stable amd64, bug 318319
