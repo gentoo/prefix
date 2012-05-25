@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/Attic/bind-tools-9.8.0.ebuild,v 1.2 2011/06/02 10:54:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.9.0.ebuild,v 1.2 2012/04/07 18:16:21 idl0r Exp $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils autotools flag-o-matic toolchain-funcs
 
@@ -18,38 +18,28 @@ SRC_URI="ftp://ftp.isc.org/isc/bind9/${MY_PV}/${MY_P}.tar.gz"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc idn ipv6 ssl urandom xml"
+IUSE="doc gssapi idn ipv6 pkcs11 readline ssl urandom xml"
 
 DEPEND="ssl? ( dev-libs/openssl )
 	xml? ( dev-libs/libxml2 )
-	idn? (
-		virtual/libiconv
-		net-dns/idnkit
-		)"
+	idn? ( net-dns/idnkit )
+	gssapi? ( virtual/krb5 )
+	readline? ( sys-libs/readline )"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	# bug 122597
-	use idn && {
-		cd "${S}"/contrib/idn/idnkit-1.0-src
-		epatch "${FILESDIR}"/${PN}-configure.patch
-		cd "${S}"
-	}
-
 	# bug 231247
 	epatch "${FILESDIR}"/${PN}-9.5.0_p1-lwconfig.patch
-	# bug #380955
-	epatch "${FILESDIR}"/${P}-darwin11.patch
 
+	# bug #220361
+	rm {aclocal,libtool}.m4
 	eautoreconf
 }
 
 src_configure() {
 	local myconf=
-
-	has_version sys-libs/glibc || myconf="${myconf} --with-iconv"
 
 	# bind hardcoded refers to /usr/lib when looking for openssl, since the
 	# ebuild doesn't depend on ssl, disable it
@@ -64,13 +54,17 @@ src_configure() {
 	# bug 344029
 	append-cflags "-DDIG_SIGCHASE"
 
+	# localstatedir for nsupdate -l, bug 395785
 	tc-export BUILD_CC
 	econf \
+		--localstatedir=/var \
 		$(use_enable ipv6) \
-		$(use_enable kernel_linux epoll) \
 		$(use_with idn) \
 		$(use_with ssl openssl) \
 		$(use_with xml libxml2) \
+		$(use_with gssapi) \
+		$(use_with pkcs11) \
+		$(use_with readline) \
 		${myconf}
 
 	# bug #151839
@@ -85,23 +79,23 @@ src_compile() {
 }
 
 src_install() {
-	dodoc README CHANGES FAQ || die
+	dodoc README CHANGES FAQ
 
 	cd "${S}"/bin/dig
-	dobin dig host nslookup || die
-	doman {dig,host,nslookup}.1 || die
+	dobin dig host nslookup
+	doman {dig,host,nslookup}.1
 
 	cd "${S}"/bin/nsupdate
-	dobin nsupdate || die
-	doman nsupdate.1 || die
+	dobin nsupdate
+	doman nsupdate.1
 	if use doc; then
-		dohtml nsupdate.html || die
+		dohtml nsupdate.html
 	fi
 
 	cd "${S}"/bin/dnssec
-	dobin dnssec-keygen || die
-	doman dnssec-keygen.8 || die
+	dobin dnssec-keygen
+	doman dnssec-keygen.8
 	if use doc; then
-		dohtml dnssec-keygen.html || die
+		dohtml dnssec-keygen.html
 	fi
 }

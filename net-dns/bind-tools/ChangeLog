@@ -1,6 +1,51 @@
 # ChangeLog for net-dns/bind-tools
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.196 2011/06/02 10:54:16 flameeyes Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.207 2012/04/07 18:16:21 idl0r Exp $
+
+*bind-tools-9.8.2 (07 Apr 2012)
+*bind-tools-9.7.5 (07 Apr 2012)
+
+  07 Apr 2012; Christian Ruppert <idl0r@gentoo.org> +bind-tools-9.7.5.ebuild,
+  +bind-tools-9.8.2.ebuild, bind-tools-9.9.0.ebuild:
+  Version bumps.
+
+*bind-tools-9.9.0 (29 Feb 2012)
+
+  29 Feb 2012; Christian Ruppert <idl0r@gentoo.org> +bind-tools-9.9.0.ebuild:
+  Version bump to 9.9.0
+
+  05 Jan 2012; Michael Weber <xmw@gentoo.org> bind-tools-9.8.1.ebuild:
+  ppc/ppc64 stable (bug 391411)
+
+  24 Dec 2011; Christian Ruppert <idl0r@gentoo.org> bind-tools-9.8.1.ebuild:
+  Define localstatedir for e.g. default sessions.key used by nsupdate, bug
+  395785.
+
+  11 Dec 2011; Raúl Porcel <armin76@gentoo.org> bind-tools-9.8.1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #391411
+
+  03 Dec 2011; Markus Meier <maekke@gentoo.org> bind-tools-9.8.1.ebuild:
+  arm stable, bug #391411
+
+  28 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> bind-tools-9.8.1.ebuild:
+  x86 stable wrt bug #391411
+
+  26 Nov 2011; Markos Chandras <hwoarang@gentoo.org> bind-tools-9.8.1.ebuild:
+  Stable on amd64 wrt bug #391411
+
+  22 Nov 2011; Jeroen Roovers <jer@gentoo.org> bind-tools-9.8.1.ebuild:
+  Stable for HPPA (bug #391411).
+
+  22 Oct 2011; Diego E. Pettenò <flameeyes@gentoo.org>
+  bind-tools-9.8.1.ebuild, metadata.xml:
+  QA: make sure not to automagic depend on gssapi (copy code and description
+  from bind itself).
+
+*bind-tools-9.8.1 (02 Sep 2011)
+
+  02 Sep 2011; Christian Ruppert <idl0r@gentoo.org> -bind-tools-9.8.0.ebuild,
+  +bind-tools-9.8.1.ebuild, metadata.xml:
+  Version bump to 9.8.1. Some cleanup.
 
   02 Jun 2011; Diego E. Pettenò <flameeyes@gentoo.org>
   bind-tools-9.8.0.ebuild:
