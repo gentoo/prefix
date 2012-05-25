@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/librsync/librsync-0.9.7-r2.ebuild,v 1.1 2011/04/09 16:24:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/librsync/librsync-0.9.7-r2.ebuild,v 1.3 2011/11/28 11:48:59 phajdan.jr Exp $
 
 EAPI="3"
 
@@ -14,6 +14,8 @@ LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="static-libs"
+
+RDEPEND="dev-libs/popt"
 
 src_prepare() {
 	# Bug #142945
