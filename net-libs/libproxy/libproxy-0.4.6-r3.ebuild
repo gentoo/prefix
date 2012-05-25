@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.4.6-r3.ebuild,v 1.10 2011/08/06 09:05:25 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.4.6-r3.ebuild,v 1.11 2012/05/05 02:54:29 jdhore Exp $
 
 EAPI=3
 PYTHON_DEPEND="python? 2:2.6"
@@ -29,7 +29,7 @@ RDEPEND="gnome? ( gnome-base/gconf:2 )
 #	xulrunner? ( >=net-libs/xulrunner-1.9.1:1.9 )
 #	webkit? ( net-libs/webkit-gtk:2 )
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 pkg_setup() {
 	PATCHES=( "${FILESDIR}"/${P}-mozjs-link_directory.patch

@@ -1,6 +1,34 @@
 # ChangeLog for net-libs/libproxy
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.69 2011/10/18 19:05:58 pacho Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.78 2012/05/05 02:54:29 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libproxy-0.4.6-r3.ebuild,
+  libproxy-0.4.7.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  01 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> libproxy-0.4.7.ebuild:
+  ppc64 stable wrt #394363
+
+  30 Jan 2012; Nirbheek Chauhan <nirbheek@gentoo.org> libproxy-0.4.7.ebuild:
+  Add note about bug 373397 so it doesn't get forgotten
+
+  10 Jan 2012; Brent Baude <ranger@gentoo.org> libproxy-0.4.7.ebuild:
+  Marking libproxy-0.4.7 ppc for bug 394363
+
+  01 Jan 2012; Raúl Porcel <armin76@gentoo.org> libproxy-0.4.7.ebuild:
+  alpha/ia64/sh/sparc stable wrt #394363
+
+  26 Dec 2011; Markus Meier <maekke@gentoo.org> libproxy-0.4.7.ebuild:
+  x86 stable, bug #394363
+
+  18 Dec 2011; Markus Meier <maekke@gentoo.org> libproxy-0.4.7.ebuild:
+  arm stable, bug #394363
+
+  15 Dec 2011; Agostino Sarubbo <ago@gentoo.org> libproxy-0.4.7.ebuild:
+  Stable for AMD64, wrt bug #394363
+
+  12 Dec 2011; Jeroen Roovers <jer@gentoo.org> libproxy-0.4.7.ebuild:
+  Stable for HPPA (bug #394363).
 
   07 Nov 2011; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
   Fix cmakefile not to omit pkgconfig file on Darwin
