@@ -1,6 +1,51 @@
 # ChangeLog for net-libs/libtorrent
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.158 2011/06/09 20:31:45 slyfox Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.169 2012/05/05 02:54:28 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> libtorrent-0.12.5.ebuild,
+  libtorrent-0.12.6.ebuild, libtorrent-0.12.7.ebuild,
+  libtorrent-0.12.7-r1.ebuild, libtorrent-0.12.9.ebuild,
+  libtorrent-0.13.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*libtorrent-0.13.1 (08 Apr 2012)
+
+  08 Apr 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -libtorrent-0.13.0.ebuild, +libtorrent-0.13.1.ebuild:
+  Version bump (#411041)
+
+  10 Mar 2012; Brent Baude <ranger@gentoo.org> libtorrent-0.12.9.ebuild:
+  Marking libtorrent-0.12.9 ppc for bug 389817
+
+*libtorrent-0.13.0 (08 Mar 2012)
+
+  08 Mar 2012; Patrick Lauer <patrick@gentoo.org> +libtorrent-0.13.0.ebuild:
+  Bump for #396243
+
+  07 Mar 2012; Brent Baude <ranger@gentoo.org> libtorrent-0.12.9.ebuild:
+  Marking libtorrent-0.12.9 ppc64 for bug 389817
+
+  11 Dec 2011; Markus Meier <maekke@gentoo.org> libtorrent-0.12.9.ebuild:
+  x86 stable, bug #389817
+
+  28 Nov 2011; Tony Vroon <chainsaw@gentoo.org> libtorrent-0.12.9.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armageddon" El Lazkani in bug #389817.
+
+  25 Nov 2011; Jeroen Roovers <jer@gentoo.org> libtorrent-0.12.9.ebuild:
+  Stable for HPPA (bug #389817).
+
+  18 Sep 2011; Michał Górny <mgorny@gentoo.org> libtorrent-0.12.9.ebuild:
+  Drop unnecessary USE=static-libs resulting in implicit configure args.
+
+  18 Sep 2011; Michał Górny <mgorny@gentoo.org> libtorrent-0.12.9.ebuild:
+  Fix implicit $(use_enable debug).
+
+*libtorrent-0.12.9 (10 Sep 2011)
+
+  10 Sep 2011; Michał Górny <mgorny@gentoo.org> +libtorrent-0.12.9.ebuild:
+  Version bump per bug #366623. Bump EAPI, migrate to autotools-utils, add
+  USE=static-libs and dependencies for tests.
 
 *libtorrent-0.12.7-r1 (09 Jun 2011)
 

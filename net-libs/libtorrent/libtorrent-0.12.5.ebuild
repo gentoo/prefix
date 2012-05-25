@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.5.ebuild,v 1.7 2009/12/28 20:34:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.5.ebuild,v 1.8 2012/05/05 02:54:28 jdhore Exp $
 
 inherit base eutils toolchain-funcs flag-o-matic libtool
 
@@ -15,7 +15,7 @@ IUSE="debug ipv6"
 
 RDEPEND=">=dev-libs/libsigc++-2.2.2"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 PATCHES=( "${FILESDIR}"/${P}-solaris-madvise.patch )
 

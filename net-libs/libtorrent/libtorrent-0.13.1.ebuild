@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.6.ebuild,v 1.9 2012/05/05 02:54:28 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.13.1.ebuild,v 1.2 2012/05/05 02:54:28 jdhore Exp $
 
-EAPI=2
+EAPI=4
 inherit eutils libtool toolchain-funcs
 
 DESCRIPTION="BitTorrent library written in C++ for *nix"
@@ -21,8 +21,7 @@ DEPEND="${RDEPEND}
 
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-gcc44.patch
-	epatch "${FILESDIR}"/${PN}-0.12.5-solaris-madvise.patch
+#	epatch "${FILESDIR}"/download_constructor.diff
 	elibtoolize
 }
 
