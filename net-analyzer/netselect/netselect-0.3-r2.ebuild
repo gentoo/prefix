@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netselect/netselect-0.3-r2.ebuild,v 1.9 2008/08/27 10:03:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/netselect/netselect-0.3-r2.ebuild,v 1.10 2010/08/16 16:55:20 truedfx Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -32,7 +32,7 @@ src_compile() {
 		Makefile \
 		|| die "sed Makefile failed"
 
-	emake CC=$(tc-getCC) || die "emake failed"
+	emake CC="$(tc-getCC)" || die "emake failed"
 }
 
 src_install () {
