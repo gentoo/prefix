@@ -1,12 +1,12 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.3.3-r1.ebuild,v 1.2 2010/06/23 12:42:10 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.5.3.ebuild,v 1.6 2012/05/03 05:37:16 jdhore Exp $
 
 EAPI=2
 
 WX_GTK_VER="2.8"
 
-inherit eutils multilib wxwidgets
+inherit autotools eutils flag-o-matic multilib wxwidgets
 
 MY_PV=${PV/_/-}
 MY_P="FileZilla_${MY_PV}"
@@ -21,22 +21,27 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE="aqua dbus nls test"
 
 RDEPEND=">=app-admin/eselect-wxwidgets-0.7-r1
-	dev-libs/tinyxml[-stl]
+	>=dev-db/sqlite-3.7
+	>=dev-libs/tinyxml-2.6.1-r1[stl]
 	net-dns/libidn
 	>=net-libs/gnutls-2.8.3
-	aqua? ( >=x11-libs/wxGTK-2.8.9[aqua?] )
-	!aqua? ( >=x11-libs/wxGTK-2.8.9[X] )
+	aqua? ( >=x11-libs/wxGTK-2.8.12:2.8[aqua] )
+	!aqua? ( >=x11-libs/wxGTK-2.8.12:2.8[X]
+	x11-misc/xdg-utils )
 	dbus? ( sys-apps/dbus )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	>=sys-devel/libtool-1.4
 	nls? ( >=sys-devel/gettext-0.11 )
 	test? ( dev-util/cppunit )"
 
 S="${WORKDIR}"/${PN}-${MY_PV}
 
-# for Tiger, can use this patch:
-# http://code.technoplaza.net/filezilla/filezilla-3.2.7-tiger-power-management-r1.patch
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-3.3.5.1-debug.patch
+	append-flags -DTIXML_USE_STL
+	eautoreconf
+}
 
 src_configure() {
 	econf $(use_with dbus) $(use_enable nls locales) \

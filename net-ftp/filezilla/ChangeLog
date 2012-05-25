@@ -1,6 +1,105 @@
 # ChangeLog for net-ftp/filezilla
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.67 2010/06/23 12:42:10 voyageur Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.89 2012/05/03 05:37:16 jdhore Exp $
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> filezilla-3.3.4.1.ebuild,
+  filezilla-3.5.1.ebuild, filezilla-3.5.2.ebuild, filezilla-3.5.3.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  16 Apr 2012; Brent Baude <ranger@gentoo.org> filezilla-3.5.3.ebuild:
+  Marking filezilla-3.5.3 ppc for bug 398285
+
+  04 Apr 2012; Jeff Horelick <jdhore@gentoo.org> filezilla-3.5.3.ebuild:
+  marked x86 per bug 398285
+
+  02 Apr 2012; Agostino Sarubbo <ago@gentoo.org> filezilla-3.5.3.ebuild:
+  Stable for amd64, wrt bug #398285
+
+  10 Jan 2012; Bernard Cafarelli <voyageur@gentoo.org> filezilla-3.5.3.ebuild:
+  wxGTK minimum version is now 2.18.12, thanks scytheman666@gmail.com in bug
+  #398371
+
+*filezilla-3.5.3 (09 Jan 2012)
+
+  09 Jan 2012; Bernard Cafarelli <voyageur@gentoo.org> +filezilla-3.5.3.ebuild:
+  Version bump
+
+*filezilla-3.5.2 (09 Nov 2011)
+
+  09 Nov 2011; Bernard Cafarelli <voyageur@gentoo.org> +filezilla-3.5.2.ebuild:
+  Version bump, updated translations
+
+  03 Oct 2011; Bernard Cafarelli <voyageur@gentoo.org>
+  -filezilla-3.3.0.1.ebuild, -filezilla-3.4.0.ebuild, -filezilla-3.5.0.ebuild,
+  filezilla-3.5.1.ebuild:
+  Use tinyxml[stl], bug #383335. Drop some versions
+
+*filezilla-3.5.1 (29 Aug 2011)
+
+  29 Aug 2011; Bernard Cafarelli <voyageur@gentoo.org> +filezilla-3.5.1.ebuild:
+  Version bump, bug #380215
+
+  12 Aug 2011; Kacper Kowalik <xarthisius@gentoo.org> filezilla-3.3.4.1.ebuild:
+  ppc stable wrt #343711
+
+*filezilla-3.5.0 (23 May 2011)
+
+  23 May 2011; Bernard Cafarelli <voyageur@gentoo.org> +filezilla-3.5.0.ebuild:
+  Version bump, mostly performance improvements and bugfixes
+
+  26 Apr 2011; Bernard Cafarelli <voyageur@gentoo.org>
+  filezilla-3.3.4.1.ebuild, -filezilla-3.3.5.1.ebuild, filezilla-3.4.0.ebuild:
+  Add xdg-utils dependency, thanks Felix Leimbach <felix.leimbach@gmx.net> in
+  bug #364643
+
+  28 Mar 2011; Bernard Cafarelli <voyageur@gentoo.org> filezilla-3.4.0.ebuild:
+  Fix the new version, bug #360915
+
+*filezilla-3.4.0 (28 Mar 2011)
+
+  28 Mar 2011; Bernard Cafarelli <voyageur@gentoo.org> -filezilla-3.3.3.ebuild,
+  -filezilla-3.3.3-r1.ebuild, -filezilla-3.3.5.ebuild, +filezilla-3.4.0.ebuild:
+  Version bump, switch to system tinyxml, drop some versions
+
+  28 Feb 2011; Sebastian Pipping <sping@gentoo.org> filezilla-3.3.5.1.ebuild,
+  +files/filezilla-3.3.5.1-debug.patch:
+  No longer append "-g" to compile flags (bug #356173)
+
+  12 Feb 2011; Raúl Porcel <armin76@gentoo.org> filezilla-3.3.4.1.ebuild:
+  sparc stable wrt #343711
+
+*filezilla-3.3.5.1 (21 Nov 2010)
+
+  21 Nov 2010; Bernard Cafarelli <voyageur@gentoo.org>
+  +filezilla-3.3.5.1.ebuild:
+  Version bump, bugfixes on certificates and downloading symbolic links
+
+*filezilla-3.3.5 (15 Nov 2010)
+
+  15 Nov 2010; Bernard Cafarelli <voyageur@gentoo.org>
+  +filezilla-3.3.5.ebuild:
+  Version bump, FTP over TLS enhancements, improved SFTP transfer speeds
+
+  04 Nov 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  filezilla-3.3.4.1.ebuild:
+  x86 stable wrt bug #343711
+
+  03 Nov 2010; Markos Chandras <hwoarang@gentoo.org>
+  filezilla-3.3.4.1.ebuild:
+  Stable on amd64 wrt bug #343711
+
+*filezilla-3.3.4.1 (19 Aug 2010)
+
+  19 Aug 2010; Bernard Cafarelli <voyageur@gentoo.org>
+  +filezilla-3.3.4.1.ebuild:
+  Version bump
+
+  19 Aug 2010; Bernard Cafarelli <voyageur@gentoo.org>
+  -files/filezilla-3.2.4.1-gnutls-2.7.patch, filezilla-3.3.0.1.ebuild,
+  -filezilla-3.3.1.ebuild, -filezilla-3.3.2.ebuild,
+  -filezilla-3.3.2.1.ebuild, filezilla-3.3.3.ebuild,
+  filezilla-3.3.3-r1.ebuild:
+  Fix depend on wxGTK:2.8, bug #332709 by Martin Wegner <public@mroot.net>
 
   23 Jun 2010; Bernard Cafarelli <voyageur@gentoo.org>
   filezilla-3.3.0.1.ebuild, filezilla-3.3.1.ebuild, filezilla-3.3.2.ebuild,
