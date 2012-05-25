@@ -1,6 +1,24 @@
 # ChangeLog for media-sound/ecasound
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.58 2010/06/23 14:19:23 arfrever Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.62 2012/05/05 08:22:08 mgorny Exp $
+
+  05 May 2012; Michał Górny <mgorny@gentoo.org> ecasound-2.8.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  20 Jan 2012; Agostino Sarubbo <ago@gentoo.org> ecasound-2.6.0.ebuild,
+  ecasound-2.8.1.ebuild:
+  force libmikmod to slot 0, as ssuominen suggested
+
+  24 Jul 2011; Raúl Porcel <armin76@gentoo.org> ecasound-2.6.0.ebuild:
+  Drop sparc keyword
+
+*ecasound-2.8.1 (28 Jun 2011)
+
+  28 Jun 2011; Tim Harder <radhermit@gentoo.org> +ecasound-2.8.1.ebuild,
+  +files/ecasound-2.8.1-ldflags.patch, metadata.xml:
+  Version bump (fixes bug #313033). Add oil, osc, and static-libs USE flags,
+  fix documentation install (bug #299097, thanks to Christophe LEFEBVRE), and
+  improve python support (bug #313945).
 
   23 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   ecasound-2.6.0.ebuild:

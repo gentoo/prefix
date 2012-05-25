@@ -2,7 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>proaudio</herd>
-
 <longdescription>
 	Ecasound is a software package designed for multitrack audio 
 	processing. It can be used for simple tasks like audio playback,
@@ -14,5 +13,7 @@
 	objects like oscillators and MIDI-CCs. A versatile console mode 
 	user-interface is included in the package.
 </longdescription>
-
+<use>
+	<flag name="oil">Use <pkg>dev-libs/liboil</pkg> for inner loop optimizations</flag>
+</use>
 </pkgmetadata>

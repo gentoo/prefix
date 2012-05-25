@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.7 2010/06/23 14:19:23 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.9 2012/01/20 12:29:31 ago Exp $
 
 EAPI=3
 
@@ -22,7 +22,7 @@ RDEPEND="python? ( dev-lang/python )
 	alsa? ( media-libs/alsa-lib )
 	vorbis? ( media-libs/libvorbis )
 	libsamplerate? ( media-libs/libsamplerate )
-	mikmod? ( media-libs/libmikmod )
+	mikmod? ( media-libs/libmikmod:0 )
 	ruby? ( dev-lang/ruby )
 	python? ( dev-lang/python )
 	ncurses? ( sys-libs/ncurses )
