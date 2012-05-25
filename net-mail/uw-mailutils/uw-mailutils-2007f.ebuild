@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007f.ebuild,v 1.1 2011/09/12 20:49:28 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007f.ebuild,v 1.8 2012/03/08 14:59:57 ranger Exp $
 
 EAPI=4
 
@@ -28,6 +28,9 @@ src_prepare() {
 
 	epatch "${FILESDIR}/${PN}-2004g.patch"
 	epatch "${FILESDIR}/${PN}-ssl.patch"
+
+	# no interactive build
+	sed -i -e "/read x; case/s/^/#/" Makefile || die
 
 	sed -i -e "s|\`cat \$C/CFLAGS\`|${CFLAGS}|g" \
 		src/mailutil/Makefile \
