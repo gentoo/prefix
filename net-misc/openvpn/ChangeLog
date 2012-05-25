@@ -1,6 +1,209 @@
 # ChangeLog for net-misc/openvpn
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.172 2010/02/28 16:21:33 cedk Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.229 2012/05/14 15:58:57 ago Exp $
+
+  14 May 2012; Agostino Sarubbo <ago@gentoo.org> openvpn-2.2.2.ebuild:
+  Stable for amd64, wrt bug #415847
+
+  14 May 2012; Dirkjan Ochtman <djc@gentoo.org> -openvpn-2.2.0-r1.ebuild:
+  Remove old version.
+
+  14 May 2012; Dirkjan Ochtman <djc@gentoo.org> openvpn-9999.ebuild:
+  Update live ebuild to deal with new build system (thanks Alon Bar-Lev, bug
+  409577).
+
+  14 Apr 2012; Zac Medico <zmedico@gentoo.org> openvpn-2.2.2.ebuild:
+  Add ~amd64-linux keyword.
+
+  01 Mar 2012; Dirkjan Ochtman <djc@gentoo.org> openvpn-9999.ebuild:
+  Fix CVS header in live ebuild.
+
+*openvpn-9999 (01 Mar 2012)
+
+  01 Mar 2012; Dirkjan Ochtman <djc@gentoo.org> +openvpn-9999.ebuild,
+  +files/openvpn-9999-pkcs11.patch:
+  Add live ebuild (bug 385375). Thanks to Marcel Pennewiß.
+
+  23 Feb 2012; Christian Faulhammer <fauli@gentoo.org>
+  files/openvpn-2.1_rc20-pkcs11.patch, +files/openvpn-2.2.0-pkcs11.patch:
+  Make patch application work again, see bug 404269
+
+  17 Feb 2012; Dirkjan Ochtman <djc@gentoo.org> openvpn-2.2.2.ebuild:
+  Remove reference to old ipv6 use flag, bug 404137.
+
+  17 Feb 2012; Dirkjan Ochtman <djc@gentoo.org> -openvpn-2.2.0.ebuild:
+  Remove old version, fixing bug 401747.
+
+  16 Feb 2012; Dirkjan Ochtman <djc@gentoo.org> openvpn-2.2.2.ebuild:
+  Make 2.2.2 have +ssl (bug 404111).
+
+*openvpn-2.2.2 (16 Feb 2012)
+
+  16 Feb 2012; Dirkjan Ochtman <djc@gentoo.org>
+  files/openvpn-2.1_rc20-pkcs11.patch, +openvpn-2.2.2.ebuild,
+  +files/openvpn-2.2.2-pkcs11.patch:
+  Version bump to 2.2.2 (bug 383537), some cleanups from darkside.
+
+  29 Jul 2011; Zac Medico <zmedico@gentoo.org> openvpn-2.2.0-r1.ebuild:
+  Add ~x86-linux keyword.
+
+  28 Jul 2011; Zac Medico <zmedico@gentoo.org> openvpn-2.2.0-r1.ebuild:
+  Fix for prefix.
+
+*openvpn-2.2.0-r1 (01 May 2011)
+
+  01 May 2011; Dirkjan Ochtman <djc@gentoo.org> +openvpn-2.2.0-r1.ebuild:
+  Fix issues with docdir and remaining eurephia mentions (bug 365487).
+
+  30 Apr 2011; Dirkjan Ochtman <djc@gentoo.org> openvpn-2.2.0.ebuild:
+  Upgrade to EAPI=4 for 2.2.0, get rid of prepalldocs.
+
+  30 Apr 2011; Dirkjan Ochtman <djc@gentoo.org> -openvpn-2.1.2.ebuild,
+  -openvpn-2.1.3.ebuild:
+  Remove old versions.
+
+*openvpn-2.2.0 (30 Apr 2011)
+
+  30 Apr 2011; Dirkjan Ochtman <djc@gentoo.org> +openvpn-2.2.0.ebuild:
+  Version bump to 2.2.0, add ipv6 payload support (bug 335563).
+
+  21 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> openvpn-2.1.4.ebuild:
+  ppc/ppc64 stable wrt #354661
+
+  20 Mar 2011; Raúl Porcel <armin76@gentoo.org> openvpn-2.1.4.ebuild:
+  s390/sh/sparc stable wrt #354661
+
+  13 Mar 2011; Markus Meier <maekke@gentoo.org> openvpn-2.1.4.ebuild:
+  arm stable, bug #354661
+
+  08 Mar 2011; Tobias Klausmann <klausman@gentoo.org> openvpn-2.1.4.ebuild:
+  Stable on alpha, bug #354661
+
+  03 Mar 2011; Thomas Kahle <tomka@gentoo.org> openvpn-2.1.4.ebuild:
+  x86 stable per bug 354661
+
+  21 Feb 2011; Jeroen Roovers <jer@gentoo.org> openvpn-2.1.4.ebuild:
+  Stable for HPPA (bug #354661).
+
+  13 Feb 2011; Markos Chandras <hwoarang@gentoo.org> openvpn-2.1.4.ebuild:
+  Stable on amd64 wrt bug #354661
+
+  10 Jan 2011; Brent Baude <ranger@gentoo.org> openvpn-2.1.3.ebuild:
+  stable ppc, bug 342897
+
+  28 Dec 2010; Brent Baude <ranger@gentoo.org> openvpn-2.1.3.ebuild:
+  stable ppc64, bug 342897
+
+*openvpn-2.1.4 (14 Dec 2010)
+
+  14 Dec 2010; Dirkjan Ochtman <djc@gentoo.org> +openvpn-2.1.4.ebuild:
+  Version bump to 2.1.4.
+
+  05 Dec 2010; Raúl Porcel <armin76@gentoo.org> openvpn-2.1.3.ebuild:
+  alpha/s390/sh/sparc stable wrt #342897
+
+  03 Nov 2010; Markus Meier <maekke@gentoo.org> openvpn-2.1.3.ebuild:
+  arm stable, bug #342897
+
+  03 Nov 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> openvpn-2.1.3.ebuild:
+  x86 stable wrt bug #342897
+
+  29 Oct 2010; Jeroen Roovers <jer@gentoo.org> openvpn-2.1.3.ebuild:
+  Stable for HPPA (bug #342897).
+
+  28 Oct 2010; Markos Chandras <hwoarang@gentoo.org> openvpn-2.1.3.ebuild:
+  Stable on amd64 wrt bug #342897
+
+  28 Oct 2010; Dirkjan Ochtman <djc@gentoo.org> openvpn-2.1.3.ebuild:
+  Fix QA issues for bug 342933.
+
+  27 Oct 2010; Dirkjan Ochtman <djc@gentoo.org> +files/65openvpn,
+  openvpn-2.1.3.ebuild:
+  Add CONFIG_PROTECT for /usr/share/openvpn/easy-rsa, as suggested by
+  hwoarang.
+
+  19 Oct 2010; Dirkjan Ochtman <djc@gentoo.org>
+  -files/openvpn-2.0.9-pam.patch, -files/openvpn-2.0.9-persistent.patch,
+  -openvpn-2.1.0-r1.ebuild:
+  Clean up cruft from old versions.
+
+  19 Oct 2010; Dirkjan Ochtman <djc@gentoo.org> openvpn-2.1.3.ebuild:
+  Update ebuild to use new path_exists function.
+
+  19 Oct 2010; Jeroen Roovers <jer@gentoo.org> openvpn-2.1.2.ebuild:
+  Stable for HPPA (bug #338919).
+
+  15 Oct 2010; Brent Baude <ranger@gentoo.org> openvpn-2.1.2.ebuild:
+  stable ppc, bug 338919
+
+  12 Oct 2010; Dirkjan Ochtman <djc@gentoo.org> openvpn-2.1.3.ebuild:
+  Improved 2.1.3 ebuild; thanks to pva for the review.
+
+  12 Oct 2010; Raúl Porcel <armin76@gentoo.org> openvpn-2.1.2.ebuild:
+  alpha/arm/s390/sh/sparc stable wrt #338919
+
+  06 Oct 2010; Markus Meier <maekke@gentoo.org> openvpn-2.1.2.ebuild:
+  x86 stable, bug #338919
+
+  30 Sep 2010; Brent Baude <ranger@gentoo.org> openvpn-2.1.2.ebuild:
+  stable ppc64, bug 338919
+
+  28 Sep 2010; Markos Chandras <hwoarang@gentoo.org> openvpn-2.1.2.ebuild:
+  Stable on amd64 wrt bug #338919
+
+*openvpn-2.1.3 (27 Sep 2010)
+
+  27 Sep 2010; Dirkjan Ochtman <djc@gentoo.org> +openvpn-2.1.3.ebuild:
+  Version bump to 2.1.3.
+
+  27 Sep 2010; Dirkjan Ochtman <djc@gentoo.org> -openvpn-2.0.9.ebuild,
+  -openvpn-2.1_rc15.ebuild:
+  Clean up old versions.
+
+  07 Sep 2010; Joseph Jezak <josejx@gentoo.org> openvpn-2.1.0-r1.ebuild,
+  openvpn-2.1.2.ebuild:
+  Change altivec fix to work on ppc64 as well.
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> openvpn-2.1.0-r1.ebuild:
+  Marking openvpn-2.1.0-r1 ppc64 for bug 293894
+
+  04 Sep 2010; Raúl Porcel <armin76@gentoo.org> openvpn-2.1.0-r1.ebuild:
+  alpha/s390/sh/sparc stable wrt #293894
+
+  28 Aug 2010; Markus Meier <maekke@gentoo.org> openvpn-2.1.0-r1.ebuild:
+  arm stable, bug #293894
+
+  25 Aug 2010; Jeroen Roovers <jer@gentoo.org> openvpn-2.1.0-r1.ebuild:
+  Stable for HPPA PPC (bug #293894).
+
+  24 Aug 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  openvpn-2.1.0-r1.ebuild:
+  x86 stable wrt security bug #293894
+
+  23 Aug 2010; Markos Chandras <hwoarang@gentoo.org>
+  openvpn-2.1.0-r1.ebuild:
+  Stable on amd64 wrt bug #293894
+
+  23 Aug 2010; Dirkjan Ochtman <djc@gentoo.org> openvpn-2.1.0-r1.ebuild,
+  openvpn-2.1.2.ebuild:
+  Get rid of useless threads flag.
+
+*openvpn-2.1.2 (23 Aug 2010)
+
+  23 Aug 2010; Dirkjan Ochtman <djc@gentoo.org> +openvpn-2.1.2.ebuild:
+  Version bump to 2.1.2.
+
+  23 Aug 2010; Dirkjan Ochtman <djc@gentoo.org> openvpn-2.1.0-r1.ebuild:
+  Remove built_with_use, upgrade to EAPI=2.
+
+  23 Aug 2010; Dirkjan Ochtman <djc@gentoo.org> -openvpn-2.0.6.ebuild,
+  -openvpn-2.0.7-r2.ebuild, -files/openvpn-2.0.7-pam.patch,
+  -files/openvpn-2.0.7-persistent.patch, -openvpn-2.1_rc19.ebuild,
+  -openvpn-2.1_rc20.ebuild, -openvpn-2.1_rc21.ebuild:
+  Clean up old versions.
+
+  23 Aug 2010; Dirkjan Ochtman <djc@gentoo.org> metadata.xml:
+  Add myself as a maintainer.
 
   28 Feb 2010; Cédric Krier <cedk@gentoo.org> files/openvpn-2.1.init,
   files/openvpn.init:
