@@ -1,6 +1,91 @@
 # ChangeLog for net-misc/openssh
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.426 2011/09/26 17:04:20 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.446 2012/05/23 19:32:16 vapier Exp $
+
+  23 May 2012; Mike Frysinger <vapier@gentoo.org> openssh-5.5_p1-r2.ebuild,
+  openssh-5.6_p1-r2.ebuild, openssh-5.7_p1-r1.ebuild, openssh-5.8_p1-r1.ebuild,
+  openssh-5.8_p2-r1.ebuild, openssh-5.8_p2.ebuild, openssh-5.9_p1-r3.ebuild,
+  openssh-5.9_p1-r4.ebuild, openssh-6.0_p1.ebuild:
+  Inherit user eclass for enewuser/etc...
+
+  17 May 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-6.0_p1-test.patch, openssh-6.0_p1.ebuild:
+  Add fix for POSIX test compat #391011.
+
+  08 May 2012; Brent Baude <ranger@gentoo.org> openssh-5.9_p1-r4.ebuild:
+  Marking openssh-5.9_p1-r4 ppc64 for bug 396075
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> openssh-5.5_p1-r2.ebuild,
+  openssh-5.6_p1-r2.ebuild, openssh-5.7_p1-r1.ebuild, openssh-5.8_p1-r1.ebuild,
+  openssh-5.8_p2.ebuild, openssh-5.8_p2-r1.ebuild, openssh-5.9_p1-r3.ebuild,
+  openssh-5.9_p1-r4.ebuild, openssh-6.0_p1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  03 May 2012; Mike Frysinger <vapier@gentoo.org> openssh-6.0_p1.ebuild:
+  Enable locale env var passing by default #367017 by Michael.
+
+*openssh-6.0_p1 (30 Apr 2012)
+
+  30 Apr 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-6.0_p1-hpn-progressmeter.patch,
+  +files/openssh-6.0_p1-x509-glue.patch,
+  +files/openssh-6.0_p1-x509-hpn-glue.patch, +openssh-6.0_p1.ebuild:
+  Version bump with work from Robin #414071 by Michael Weber.
+
+  16 Apr 2012; Markus Meier <maekke@gentoo.org> openssh-5.9_p1-r4.ebuild:
+  arm stable, bug #396075
+
+  16 Apr 2012; Brent Baude <ranger@gentoo.org> openssh-5.9_p1-r4.ebuild:
+  Marking openssh-5.9_p1-r4 ppc for bug 396075
+
+  10 Apr 2012; Jeroen Roovers <jer@gentoo.org> openssh-5.9_p1-r4.ebuild:
+  Stable for HPPA (bug #396075).
+
+  09 Apr 2012; Jeff Horelick <jdhore@gentoo.org> openssh-5.9_p1-r4.ebuild:
+  marked x86 per bug 396075
+
+  09 Apr 2012; Agostino Sarubbo <ago@gentoo.org> openssh-5.9_p1-r4.ebuild:
+  Stable for amd64, wrt bug #396075
+
+*openssh-5.9_p1-r4 (15 Mar 2012)
+
+  15 Mar 2012; Mike Frysinger <vapier@gentoo.org> +openssh-5.9_p1-r4.ebuild,
+  +files/openssh-5.9_p1-drop-openssl-check.patch:
+  Drop openssl version checking.
+
+  13 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  openssh-5.5_p1-r2.ebuild, openssh-5.6_p1-r2.ebuild, openssh-5.7_p1-r1.ebuild,
+  openssh-5.8_p1-r1.ebuild, openssh-5.8_p2.ebuild, openssh-5.8_p2-r1.ebuild,
+  openssh-5.9_p1-r3.ebuild:
+  Switch to virtual/shadow.
+
+  13 Feb 2012; Robin H. Johnson <robbat2@gentoo.org> openssh-5.9_p1-r3.ebuild:
+  Bug #352083: install LPK schema.
+
+  06 Feb 2012; Jeremy Olexa <darkside@gentoo.org> openssh-5.9_p1-r3.ebuild:
+  [Bug 402441] net-misc/openssh: Add output to say that ECDSA will not work
+  when openssl[bindist] is present
+
+  14 Dec 2011; Michał Górny <mgorny@gentoo.org> openssh-5.9_p1-r3.ebuild,
+  +files/sshd.service, +files/sshd.socket, +files/sshd_at.service:
+  Install systemd unit files.
+
+  04 Dec 2011; Sven Wegener <swegener@gentoo.org> files/sshd.rc6,
+  files/sshd.rc6.1, files/sshd.rc6.2:
+  move reload to extra_started_commands
+
+  26 Nov 2011; Mike Frysinger <vapier@gentoo.org> openssh-5.9_p1-r3.ebuild:
+  Move enew{user,group} to pkg_preinst so `die` works.
+
+  03 Nov 2011; Mike Frysinger <vapier@gentoo.org> openssh-5.5_p1-r2.ebuild,
+  openssh-5.6_p1-r2.ebuild, openssh-5.7_p1-r1.ebuild, openssh-5.8_p1-r1.ebuild,
+  openssh-5.8_p2.ebuild, openssh-5.8_p2-r1.ebuild, openssh-5.9_p1-r3.ebuild:
+  Use new egetshell helper rather than calling getent directly.
+
+  02 Nov 2011; Mike Frysinger <vapier@gentoo.org> openssh-5.5_p1-r2.ebuild,
+  openssh-5.6_p1-r2.ebuild, openssh-5.7_p1-r1.ebuild, openssh-5.8_p1-r1.ebuild,
+  openssh-5.8_p2.ebuild, openssh-5.8_p2-r1.ebuild, openssh-5.9_p1-r3.ebuild:
+  Use egetent rather than getent.
 
 *openssh-5.9_p1-r3 (26 Sep 2011)
 

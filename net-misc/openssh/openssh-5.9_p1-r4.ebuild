@@ -1,17 +1,17 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.8_p2.ebuild,v 1.7 2012/05/23 19:32:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.9_p1-r4.ebuild,v 1.9 2012/05/23 19:32:16 vapier Exp $
 
 EAPI="2"
-inherit eutils user flag-o-matic multilib autotools pam
+inherit eutils user flag-o-matic multilib autotools pam systemd
 
 # Make it more portable between straight releases
 # and _p? releases.
-PARCH=${P/_/}
+PARCH=${P/_}
 
-HPN_PATCH="${PARCH/p2/p1}-hpn13v11.diff.gz"
+HPN_PATCH="${PARCH}-hpn13v11.diff.gz"
 LDAP_PATCH="${PARCH/-/-lpk-}-0.3.14.patch.gz"
-X509_VER="6.2.4" X509_PATCH="${PARCH/p2/p1}+x509-${X509_VER}.diff.gz"
+X509_VER="7.0" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
@@ -73,7 +73,15 @@ src_prepare() {
 	# this file.
 	cp version.h version.h.pristine
 
+	# don't break .ssh/authorized_keys2 for fun
+	sed -i '/^AuthorizedKeysFile/s:^:#:' sshd_config || die
+
+	epatch "${FILESDIR}"/${PN}-5.9_p1-drop-openssl-check.patch
+	epatch "${FILESDIR}"/${PN}-5.9_p1-sshd-gssapi-multihomed.patch #378361
 	if use X509 ; then
+		pushd .. >/dev/null
+		epatch "${FILESDIR}"/${PN}-5.9_p1-x509-glue.patch
+		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
 		epatch "${FILESDIR}"/${PN}-5.8_p1-x509-hpn-glue.patch
 	fi
@@ -90,7 +98,6 @@ src_prepare() {
 	fi
 	epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	if [[ -n ${HPN_PATCH} ]] && use hpn; then
-		sed -i '/SSH_PORTABLE/s:p1:p2:' "${WORKDIR}"/${HPN_PATCH%.*}
 		epatch "${WORKDIR}"/${HPN_PATCH%.*}
 		epatch "${FILESDIR}"/${PN}-5.6_p1-hpn-progressmeter.patch
 		# version.h patch conflict avoidence
@@ -113,12 +120,11 @@ src_prepare() {
 
 	sed -i "s:-lcrypto:$(pkg-config --libs openssl):" configure{,.ac} || die
 
-	epatch "${FILESDIR}"/${PN}-5.5_p1-interix.patch
-	epatch "${FILESDIR}"/${P}-pkcs11-null-impl.patch
+	#epatch "${FILESDIR}"/${PN}-5.5_p1-interix.patch # fails to apply
 
 	# setting setuid bit may fail as non-priviledged user (prefix).
 	if [[ $(id -u) != 0 ]]; then
-		epatch "${FILESDIR}"/${PN}-5.5_p1-setuid.patch
+		sed -i -e 's/-m 4711/-m 0711/' "${S}"/Makefile.in || die
 	fi
 
 	# Disable PATH reset, trust what portage gives us. bug 254615
@@ -184,13 +190,14 @@ src_install() {
 	emake install-nokeys DESTDIR="${D}" || die
 	fperms 600 /etc/ssh/sshd_config
 	dobin contrib/ssh-copy-id || die
-	newinitd "${FILESDIR}"/sshd.rc6.2 sshd
+	newinitd "${FILESDIR}"/sshd.rc6.3 sshd
 	newconfd "${FILESDIR}"/sshd.confd sshd
 	keepdir /var/empty
 	keepdir /var/run
 
 	# not all openssl installs support ecc, or are functional #352645
 	if ! grep -q '#define OPENSSL_HAS_ECC 1' config.h ; then
+		elog "dev-libs/openssl was built with 'bindist' - disabling ecdsa support"
 		dosed 's:&& gen_key ecdsa::' /etc/init.d/sshd || die
 	fi
 
@@ -210,11 +217,19 @@ src_install() {
 		keepdir /var/empty/dev
 	fi
 
+	if use ldap ; then
+		insinto /etc/openldap/schema/
+		newins openssh-lpk_openldap.schema openssh-lpk.schema
+	fi
+
 	doman contrib/ssh-copy-id.1
 	dodoc ChangeLog CREDITS OVERVIEW README* TODO sshd_config
 
 	diropts -m 0700
 	dodir /etc/skel/.ssh
+
+	systemd_dounit "${FILESDIR}"/sshd.{service,socket} || die
+	systemd_newunit "${FILESDIR}"/sshd_at.service 'sshd@.service' || die
 }
 
 src_test() {
@@ -231,8 +246,12 @@ src_test() {
 	else
 		tests="${tests} tests"
 	fi
+	# It will also attempt to write to the homedir .ssh
+	local sshhome=${T}/homedir
+	mkdir -p "${sshhome}"/.ssh
 	for t in ${tests} ; do
 		# Some tests read from stdin ...
+		HOMEDIR="${sshhome}" \
 		emake -k -j1 ${t} </dev/null \
 			&& passed="${passed}${t} " \
 			|| failed="${failed}${t} "
@@ -248,10 +267,12 @@ src_test() {
 	fi
 }
 
-pkg_postinst() {
+pkg_preinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
+}
 
+pkg_postinst() {
 	elog "Starting with openssh-5.8p1, the server will default to a newer key"
 	elog "algorithm (ECDSA).  You are encouraged to manually update your stored"
 	elog "keys list as servers update theirs.  See ssh-keyscan(1) for more info."

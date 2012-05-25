@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.9_p1-r3.ebuild,v 1.1 2011/09/26 17:04:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.9_p1-r3.ebuild,v 1.10 2012/05/23 19:32:16 vapier Exp $
 
 EAPI="2"
-inherit eutils flag-o-matic multilib autotools pam
+inherit eutils user flag-o-matic multilib autotools pam systemd
 
 # Make it more portable between straight releases
 # and _p? releases.
@@ -36,9 +36,9 @@ RDEPEND="pam? ( virtual/pam )
 	>=sys-libs/zlib-1.2.3
 	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )
 	X? ( x11-apps/xauth )
-	userland_GNU? ( sys-apps/shadow )"
+	userland_GNU? ( virtual/shadow )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	virtual/os-headers
 	sys-devel/autoconf"
 RDEPEND="${RDEPEND}
@@ -196,6 +196,7 @@ src_install() {
 
 	# not all openssl installs support ecc, or are functional #352645
 	if ! grep -q '#define OPENSSL_HAS_ECC 1' config.h ; then
+		elog "dev-libs/openssl was built with 'bindist' - disabling ecdsa support"
 		dosed 's:&& gen_key ecdsa::' /etc/init.d/sshd || die
 	fi
 
@@ -215,11 +216,19 @@ src_install() {
 		keepdir /var/empty/dev
 	fi
 
+	if use ldap ; then
+		insinto /etc/openldap/schema/
+		newins openssh-lpk_openldap.schema openssh-lpk.schema
+	fi
+
 	doman contrib/ssh-copy-id.1
 	dodoc ChangeLog CREDITS OVERVIEW README* TODO sshd_config
 
 	diropts -m 0700
 	dodir /etc/skel/.ssh
+
+	systemd_dounit "${FILESDIR}"/sshd.{service,socket} || die
+	systemd_newunit "${FILESDIR}"/sshd_at.service 'sshd@.service' || die
 }
 
 src_test() {
@@ -227,7 +236,7 @@ src_test() {
 	local t tests skipped failed passed shell
 	tests="interop-tests compat-tests"
 	skipped=""
-	shell=$(getent passwd ${UID} | cut -d: -f7)
+	shell=$(egetshell ${UID})
 	if [[ ${shell} == */nologin ]] || [[ ${shell} == */false ]] ; then
 		elog "Running the full OpenSSH testsuite"
 		elog "requires a usable shell for the 'portage'"
@@ -257,10 +266,12 @@ src_test() {
 	fi
 }
 
-pkg_postinst() {
+pkg_preinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
+}
 
+pkg_postinst() {
 	elog "Starting with openssh-5.8p1, the server will default to a newer key"
 	elog "algorithm (ECDSA).  You are encouraged to manually update your stored"
 	elog "keys list as servers update theirs.  See ssh-keyscan(1) for more info."

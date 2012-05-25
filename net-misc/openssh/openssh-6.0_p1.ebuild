@@ -1,17 +1,17 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.8_p2.ebuild,v 1.7 2012/05/23 19:32:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-6.0_p1.ebuild,v 1.5 2012/05/23 19:32:16 vapier Exp $
 
 EAPI="2"
-inherit eutils user flag-o-matic multilib autotools pam
+inherit eutils user flag-o-matic multilib autotools pam systemd
 
 # Make it more portable between straight releases
 # and _p? releases.
-PARCH=${P/_/}
+PARCH=${P/_}
 
-HPN_PATCH="${PARCH/p2/p1}-hpn13v11.diff.gz"
+HPN_PATCH="${PARCH}-hpn13v12.diff.gz"
 LDAP_PATCH="${PARCH/-/-lpk-}-0.3.14.patch.gz"
-X509_VER="6.2.4" X509_PATCH="${PARCH/p2/p1}+x509-${X509_VER}.diff.gz"
+X509_VER="7.1" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
@@ -65,6 +65,12 @@ pkg_setup() {
 	fi
 }
 
+save_version() {
+	# version.h patch conflict avoidence
+	mv version.h version.h.$1
+	cp -f version.h.pristine version.h
+}
+
 src_prepare() {
 	sed -i \
 		-e "/_PATH_XAUTH/s:/usr/X11R6/bin/xauth:${EPREFIX}/usr/bin/xauth:" \
@@ -73,29 +79,32 @@ src_prepare() {
 	# this file.
 	cp version.h version.h.pristine
 
+	# don't break .ssh/authorized_keys2 for fun
+	sed -i '/^AuthorizedKeysFile/s:^:#:' sshd_config || die
+
+	epatch "${FILESDIR}"/${PN}-5.9_p1-sshd-gssapi-multihomed.patch #378361
 	if use X509 ; then
+		pushd .. >/dev/null
+		epatch "${FILESDIR}"/${PN}-6.0_p1-x509-glue.patch
+		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
-		epatch "${FILESDIR}"/${PN}-5.8_p1-x509-hpn-glue.patch
+		epatch "${FILESDIR}"/${PN}-6.0_p1-x509-hpn-glue.patch
+		save_version X509
 	fi
 	if ! use X509 ; then
 		if [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 			epatch "${WORKDIR}"/${LDAP_PATCH%.*}
-			#epatch "${FILESDIR}"/${PN}-5.2p1-ldap-stdargs.diff #266654 - merged
-			# version.h patch conflict avoidence
-			mv version.h version.h.lpk
-			cp -f version.h.pristine version.h
+			save_version LPK
 		fi
 	else
 		use ldap && ewarn "Sorry, X509 and LDAP conflict internally, disabling LDAP"
 	fi
+	epatch "${FILESDIR}"/${PN}-6.0_p1-test.patch #391011
 	epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	if [[ -n ${HPN_PATCH} ]] && use hpn; then
-		sed -i '/SSH_PORTABLE/s:p1:p2:' "${WORKDIR}"/${HPN_PATCH%.*}
 		epatch "${WORKDIR}"/${HPN_PATCH%.*}
-		epatch "${FILESDIR}"/${PN}-5.6_p1-hpn-progressmeter.patch
-		# version.h patch conflict avoidence
-		mv version.h version.h.hpn
-		cp -f version.h.pristine version.h
+		epatch "${FILESDIR}"/${PN}-6.0_p1-hpn-progressmeter.patch
+		save_version HPN
 		# The AES-CTR multithreaded variant is broken, and causes random hangs
 		# when combined background threading and control sockets. To avoid
 		# this, we change the internal table to use the non-multithread version
@@ -113,12 +122,11 @@ src_prepare() {
 
 	sed -i "s:-lcrypto:$(pkg-config --libs openssl):" configure{,.ac} || die
 
-	epatch "${FILESDIR}"/${PN}-5.5_p1-interix.patch
-	epatch "${FILESDIR}"/${P}-pkcs11-null-impl.patch
+	#epatch "${FILESDIR}"/${PN}-5.5_p1-interix.patch # fails to apply
 
 	# setting setuid bit may fail as non-priviledged user (prefix).
 	if [[ $(id -u) != 0 ]]; then
-		epatch "${FILESDIR}"/${PN}-5.5_p1-setuid.patch
+		sed -i -e 's/-m 4711/-m 0711/' "${S}"/Makefile.in || die
 	fi
 
 	# Disable PATH reset, trust what portage gives us. bug 254615
@@ -127,9 +135,9 @@ src_prepare() {
 	# Now we can build a sane merged version.h
 	(
 		sed '/^#define SSH_RELEASE/d' version.h.* | sort -u
-		printf '#define SSH_RELEASE SSH_VERSION SSH_PORTABLE %s %s\n' \
-			"$([ -e version.h.hpn ] && echo SSH_HPN)" \
-			"$([ -e version.h.lpk ] && echo SSH_LPK)"
+		macros=()
+		for p in HPN LPK X509 ; do [ -e version.h.${p} ] && macros+=( SSH_${p} ) ; done
+		printf '#define SSH_RELEASE SSH_VERSION SSH_PORTABLE %s\n' "${macros}"
 	) > version.h
 
 	eautoreconf
@@ -184,13 +192,14 @@ src_install() {
 	emake install-nokeys DESTDIR="${D}" || die
 	fperms 600 /etc/ssh/sshd_config
 	dobin contrib/ssh-copy-id || die
-	newinitd "${FILESDIR}"/sshd.rc6.2 sshd
+	newinitd "${FILESDIR}"/sshd.rc6.3 sshd
 	newconfd "${FILESDIR}"/sshd.confd sshd
 	keepdir /var/empty
 	keepdir /var/run
 
 	# not all openssl installs support ecc, or are functional #352645
 	if ! grep -q '#define OPENSSL_HAS_ECC 1' config.h ; then
+		elog "dev-libs/openssl was built with 'bindist' - disabling ecdsa support"
 		dosed 's:&& gen_key ecdsa::' /etc/init.d/sshd || die
 	fi
 
@@ -204,10 +213,27 @@ src_install() {
 			"${ED}"/etc/ssh/sshd_config || die "sed of configuration file failed"
 	fi
 
+	# Gentoo tweaks to default config files
+	cat <<-EOF >> "${ED}"/etc/ssh/sshd_config
+
+	# Allow client to pass locale environment variables #367017
+	AcceptEnv LANG LC_*
+	EOF
+	cat <<-EOF >> "${ED}"/etc/ssh/ssh_config
+
+	# Send locale environment variables #367017
+	SendEnv LANG LC_*
+	EOF
+
 	# This instruction is from the HPN webpage,
 	# Used for the server logging functionality
 	if [[ -n ${HPN_PATCH} ]] && use hpn ; then
 		keepdir /var/empty/dev
+	fi
+
+	if use ldap ; then
+		insinto /etc/openldap/schema/
+		newins openssh-lpk_openldap.schema openssh-lpk.schema
 	fi
 
 	doman contrib/ssh-copy-id.1
@@ -215,6 +241,9 @@ src_install() {
 
 	diropts -m 0700
 	dodir /etc/skel/.ssh
+
+	systemd_dounit "${FILESDIR}"/sshd.{service,socket} || die
+	systemd_newunit "${FILESDIR}"/sshd_at.service 'sshd@.service' || die
 }
 
 src_test() {
@@ -231,8 +260,12 @@ src_test() {
 	else
 		tests="${tests} tests"
 	fi
+	# It will also attempt to write to the homedir .ssh
+	local sshhome=${T}/homedir
+	mkdir -p "${sshhome}"/.ssh
 	for t in ${tests} ; do
 		# Some tests read from stdin ...
+		HOMEDIR="${sshhome}" \
 		emake -k -j1 ${t} </dev/null \
 			&& passed="${passed}${t} " \
 			|| failed="${failed}${t} "
@@ -248,10 +281,12 @@ src_test() {
 	fi
 }
 
-pkg_postinst() {
+pkg_preinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
+}
 
+pkg_postinst() {
 	elog "Starting with openssh-5.8p1, the server will default to a newer key"
 	elog "algorithm (ECDSA).  You are encouraged to manually update your stored"
 	elog "keys list as servers update theirs.  See ssh-keyscan(1) for more info."

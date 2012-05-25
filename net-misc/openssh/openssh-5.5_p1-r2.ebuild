@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.5_p1-r2.ebuild,v 1.9 2011/04/16 19:27:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.5_p1-r2.ebuild,v 1.14 2012/05/23 19:32:16 vapier Exp $
 
 EAPI="2"
-inherit eutils flag-o-matic multilib autotools pam
+inherit eutils user flag-o-matic multilib autotools pam
 
 # Make it more portable between straight releases
 # and _p? releases.
@@ -39,9 +39,9 @@ RDEPEND="pam? ( virtual/pam )
 	>=sys-libs/zlib-1.2.3
 	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )
 	X? ( x11-apps/xauth )
-	userland_GNU? ( sys-apps/shadow )"
+	userland_GNU? ( virtual/shadow )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	virtual/os-headers
 	sys-devel/autoconf"
 RDEPEND="${RDEPEND}
@@ -244,7 +244,7 @@ src_test() {
 	local t tests skipped failed passed shell
 	tests="interop-tests compat-tests"
 	skipped=""
-	shell=$(getent passwd ${UID} | cut -d: -f7)
+	shell=$(egetshell ${UID})
 	if [[ ${shell} == */nologin ]] || [[ ${shell} == */false ]] ; then
 		elog "Running the full OpenSSH testsuite"
 		elog "requires a usable shell for the 'portage'"
