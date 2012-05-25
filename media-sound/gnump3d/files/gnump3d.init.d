@@ -1,9 +1,9 @@
 #!/sbin/runscript
-# Copyright 1999-2004 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/files/gnump3d.init.d,v 1.4 2008/06/03 14:52:33 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/files/gnump3d.init.d,v 1.5 2011/12/13 23:11:35 radhermit Exp $
 
-opts="start stop index"
+extra_commands="index"
 
 depend() {
 	need net
