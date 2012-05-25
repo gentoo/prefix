@@ -1,6 +1,150 @@
 # ChangeLog for net-dns/libidn
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.124 2010/07/19 19:36:55 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.166 2012/04/26 17:03:44 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> libidn-1.24.ebuild:
+  keyword ~amd64-fbsd
+
+  05 Apr 2012; Jeroen Roovers <jer@gentoo.org> -libidn-1.23.ebuild:
+  Old.
+
+  01 Apr 2012; Raúl Porcel <armin76@gentoo.org> libidn-1.24.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #407303
+
+  25 Mar 2012; Markus Meier <maekke@gentoo.org> libidn-1.24.ebuild:
+  arm stable, bug #407303
+
+  24 Mar 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> libidn-1.24.ebuild:
+  x86 stable wrt bug #407303
+
+  13 Mar 2012; Agostino Sarubbo <ago@gentoo.org> libidn-1.24.ebuild:
+  Stable for amd64, wrt bug #407303
+
+  13 Mar 2012; Jeroen Roovers <jer@gentoo.org> libidn-1.24.ebuild:
+  Stable for HPPA (bug #407303).
+
+  09 Mar 2012; Brent Baude <ranger@gentoo.org> libidn-1.24.ebuild:
+  Marking libidn-1.24 ppc64 for bug 407303
+
+  07 Mar 2012; Brent Baude <ranger@gentoo.org> libidn-1.24.ebuild:
+  Marking libidn-1.24 ppc for bug 407303
+
+  03 Mar 2012; Jeroen Roovers <jer@gentoo.org> -libidn-1.22.ebuild,
+  -libidn-1.22-r1.ebuild:
+  Old.
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> libidn-1.23.ebuild:
+  Marking libidn-1.23 ppc64 for bug 398849
+
+  14 Feb 2012; Brent Baude <ranger@gentoo.org> libidn-1.23.ebuild:
+  Marking libidn-1.23 ppc for bug 398849
+
+  22 Jan 2012; Raúl Porcel <armin76@gentoo.org> libidn-1.23.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #398849
+
+  15 Jan 2012; Jeroen Roovers <jer@gentoo.org> libidn-1.23.ebuild:
+  Stable for HPPA (bug #398849).
+
+  14 Jan 2012; Jeroen Roovers <jer@gentoo.org> libidn-1.23.ebuild,
+  libidn-1.24.ebuild:
+  Replace dodoc with DOCS by Agostino Sarubbo.
+
+  14 Jan 2012; Agostino Sarubbo <ago@gentoo.org> libidn-1.23.ebuild:
+  Stable for AMD64, wrt bug #398849
+
+  13 Jan 2012; Jeroen Roovers <jer@gentoo.org> libidn-1.24.ebuild:
+  Update LICENSE.
+
+*libidn-1.24 (12 Jan 2012)
+
+  12 Jan 2012; Jeroen Roovers <jer@gentoo.org> +libidn-1.24.ebuild:
+  Version bump.
+
+  28 Nov 2011; Jeroen Roovers <jer@gentoo.org> libidn-1.22-r1.ebuild,
+  libidn-1.23.ebuild:
+  Restore virtual/jdk deps.
+
+*libidn-1.23 (27 Nov 2011)
+
+  27 Nov 2011; Jeroen Roovers <jer@gentoo.org> libidn-1.22-r1.ebuild,
+  +libidn-1.23.ebuild:
+  Version bump. Do not use autotools-utils.eclass (bug #392161).
+
+*libidn-1.22-r1 (18 Oct 2011)
+
+  18 Oct 2011; Jeroen Roovers <jer@gentoo.org> +libidn-1.22-r1.ebuild:
+  Remove .la file when USE=-static-libs by Hans (bug #386929).
+
+  01 Aug 2011; Jeroen Roovers <jer@gentoo.org> -libidn-1.19.ebuild,
+  -libidn-1.20.ebuild, -libidn-1.21.ebuild:
+  ^
+
+  18 Jul 2011; Mark Loeser <halcy0n@gentoo.org> libidn-1.22.ebuild:
+  Stable for ppc64; bug #371169
+
+  25 Jun 2011; Raúl Porcel <armin76@gentoo.org> libidn-1.22.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #371169
+
+  23 Jun 2011; Brent Baude <ranger@gentoo.org> libidn-1.22.ebuild:
+  Marking libidn-1.22 ppc for bug 371169
+
+  19 Jun 2011; Markus Meier <maekke@gentoo.org> libidn-1.22.ebuild:
+  arm stable, bug #371169
+
+  18 Jun 2011; Markos Chandras <hwoarang@gentoo.org> libidn-1.22.ebuild:
+  Stable on amd64 wrt bug #371169
+
+  14 Jun 2011; Jeroen Roovers <jer@gentoo.org> libidn-1.22.ebuild:
+  Stable for HPPA (bug #371169).
+
+  13 Jun 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> libidn-1.22.ebuild:
+  x86 stable wrt bug #371169
+
+  03 Jun 2011; Raúl Porcel <armin76@gentoo.org> libidn-1.20.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #364847
+
+  15 May 2011; Markus Meier <maekke@gentoo.org> libidn-1.20.ebuild:
+  arm stable, bug #364847
+
+  07 May 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> libidn-1.20.ebuild:
+  x86 stable wrt bug #364847
+
+*libidn-1.22 (05 May 2011)
+
+  05 May 2011; Jeroen Roovers <jer@gentoo.org> +libidn-1.22.ebuild:
+  Version bump.
+
+  02 May 2011; Jeroen Roovers <jer@gentoo.org> libidn-1.20.ebuild:
+  Stable for HPPA (bug #364847).
+
+  28 Apr 2011; Markos Chandras <hwoarang@gentoo.org> libidn-1.20.ebuild:
+  Stable on amd64 wrt bug #364847
+
+*libidn-1.21 (25 Apr 2011)
+
+  25 Apr 2011; Jeroen Roovers <jer@gentoo.org> +libidn-1.21.ebuild:
+  Version bump.
+
+*libidn-1.20 (01 Mar 2011)
+
+  01 Mar 2011; Jeroen Roovers <jer@gentoo.org> +libidn-1.20.ebuild:
+  Version bump.
+
+  09 Jan 2011; Jeroen Roovers <jer@gentoo.org> libidn-1.19.ebuild:
+  Do not run valgrind tests (bug #335301).
+
+  11 Oct 2010; Jeroen Roovers <jer@gentoo.org> libidn-1.19.ebuild:
+  Make dev-java/gjdoc DEPEND depend on USE=doc by Michel Ganguin (bug
+  #340435).
+
+  03 Oct 2010; Raúl Porcel <armin76@gentoo.org> libidn-1.19.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #327485
+
+  12 Sep 2010; Tobias Klausmann <klausman@gentoo.org> libidn-1.19.ebuild:
+  Stable on alpha, bug #327485
+
+  14 Aug 2010; Markus Meier <maekke@gentoo.org> libidn-1.19.ebuild:
+  arm stable, bug #327485
 
   19 Jul 2010; Jeroen Roovers <jer@gentoo.org> libidn-1.19.ebuild:
   Stable for PPC (bug #327485).
