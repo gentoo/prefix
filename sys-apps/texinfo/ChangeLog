@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/texinfo
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.113 2011/04/23 12:10:31 dirtyepic Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.114 2012/04/26 13:34:18 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> texinfo-4.13-r1.ebuild:
+  keyword ~amd64-fbsd
 
   04 Nov 2011; Fabian Groffen <grobian@gentoo.org> texinfo-4.13-r1.ebuild:
   Move up Prefix patches, since they cause regeneration of manpages too
