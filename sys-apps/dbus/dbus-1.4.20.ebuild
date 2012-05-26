@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.20.ebuild,v 1.8 2012/05/05 21:51:18 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.20.ebuild,v 1.9 2012/05/16 15:18:08 jer Exp $
 
 EAPI=4
 inherit autotools eutils multilib flag-o-matic python systemd virtualx linux-info prefix

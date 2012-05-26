@@ -1,39 +1,40 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.8-r1.ebuild,v 1.1 2011/05/05 16:44:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.5.12.ebuild,v 1.2 2012/05/15 21:17:47 ssuominen Exp $
 
-EAPI=2
-inherit autotools eutils multilib flag-o-matic python systemd virtualx prefix
+EAPI=4
+inherit autotools linux-info flag-o-matic python systemd virtualx prefix
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
 SRC_URI="http://dbus.freedesktop.org/releases/dbus/${P}.tar.gz"
 
-LICENSE="|| ( GPL-2 AFL-2.1 )"
+LICENSE="|| ( AFL-2.1 GPL-2 )"
 SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="debug doc selinux static-libs test X"
+IUSE="debug doc selinux static-libs systemd test X"
 
-RDEPEND="
+RDEPEND=">=dev-libs/expat-2
+	selinux? (
+		sec-policy/selinux-dbus
+		sys-libs/libselinux
+		)
+	systemd? ( >=sys-apps/systemd-32 )
 	X? (
 		x11-libs/libX11
 		x11-libs/libXt
-	)
-	selinux? (
-		sys-libs/libselinux
-		sec-policy/selinux-dbus
-	)
-	>=dev-libs/expat-1.95.8
-"
+		)"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? (
 		app-doc/doxygen
 		app-text/docbook-xml-dtd:4.1.2
 		app-text/xmlto
-	)
-	test? ( =dev-lang/python-2* )
-"
+		)
+	test? (
+		>=dev-libs/glib-2.24
+		dev-lang/python:2.7
+		)"
 
 # out of sources build directory
 BD=${WORKDIR}/${P}-build
@@ -42,11 +43,16 @@ TBD=${WORKDIR}/${P}-tests-build
 
 pkg_setup() {
 	enewgroup messagebus
-	enewuser messagebus -1 "-1" -1 messagebus
+	enewuser messagebus -1 -1 -1 messagebus
 
 	if use test; then
 		python_set_active_version 2
 		python_pkg_setup
+	fi
+
+	if use kernel_linux; then
+		CONFIG_CHECK="~EPOLL"
+		linux-info_pkg_setup
 	fi
 }
 
@@ -57,14 +63,7 @@ src_prepare() {
 		-e '/"dispatch"/d' \
 		bus/test-main.c || die
 
-	epatch "${FILESDIR}"/${PN}-1.4.0-asneeded.patch
-
-	# Doesn't build with PIE support
-	if [[ ${CHOST} == *-freebsd7.1 ]]; then
-		epatch "${FILESDIR}"/${PN}-1.2.3-freebsd71.patch
-	fi
-
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.4.8-interix.patch
 
 	# required for asneeded patch but also for bug 263909, cross-compile so
 	# don't remove eautoreconf
@@ -72,10 +71,10 @@ src_prepare() {
 }
 
 src_configure() {
-	local my_conf
+	local myconf
 	local syssocket="${EPREFIX}"/var/run/dbus/system_bus_socket
 	local socketdir="${EPREFIX}"/tmp
-	local myconf=""
+	local myconf=()
 
 	if [[ ${CHOST} == *-interix5* ]]; then
 		# interix 5.2 socket paths may not be longer than 14
@@ -83,7 +82,7 @@ src_configure() {
 		syssocket="/tmp/dbus_ss"
 		socketdir="/tmp"
 
-		myconf="${myconf} --with-test-socket-dir=/tmp"
+		myconf=( "${myconf[@]}" "--with-test-socket-dir=/tmp" )
 	fi
 
 	if [[ ${CHOST} != *-interix* ]]; then
@@ -96,47 +95,58 @@ src_configure() {
 	fi
 
 	if [[ ${CHOST} == *-darwin* ]]; then
-		myconf="${myconf} --enable-launchd --with-launchd-agent-dir=${EPREFIX}/Library/LaunchAgents"
+		myconf=( "${myconf[@]}"
+			"--enable-launchd"
+			"--with-launchd-agent-dir=${EPREFIX}/Library/LaunchAgents"
+		)
 	fi
 
 	# libaudit is *only* used in DBus wrt SELinux support, so disable it, if
 	# not on an SELinux profile.
-	my_conf="$(use_with X x)
+	myconf=(
+		--localstatedir="${EPREFIX}"/var
+		--docdir="${EPREFIX}"/usr/share/doc/${PF}
+		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html
+		$(use_enable static-libs static)
 		$(use_enable debug verbose-mode)
-		$(use_enable debug asserts)
-		$(use_enable kernel_linux inotify)
-		$(use_enable kernel_FreeBSD kqueue)
-		$(use_enable kernel_Darwin kqueue) \
-		$(use_enable kernel_Darwin launchd) \
+		--disable-asserts
+		--disable-checks
 		$(use_enable selinux)
 		$(use_enable selinux libaudit)
-		$(use_enable static-libs static)
-		--enable-shared
+		$(use_enable kernel_linux inotify)
+		$(use_enable kernel_FreeBSD kqueue)
+		$(use_enable kernel_Darwin kqueue)
+		$(use_enable kernel_Darwin launchd)
+		$(use_enable systemd)
+		--disable-embedded-tests
+		--disable-modular-tests
+		$(use_enable debug stats)
 		--with-xml=expat
+		--with-session-socket-dir="${socketdir}"
 		--with-system-pid-file=${EPREFIX}/var/run/dbus.pid
 		--with-system-socket="${syssocket}"
-		--with-session-socket-dir="${socketdir}"
-		--with-dbus-user=${PORTAGE_USER:-portage}
-		$(systemd_with_unitdir)
-		--localstatedir=${EPREFIX}/var
-		${myconf}"
+		--with-dbus-user=${PORTAGE_USER:-messagebus}
+		$(use_with X x)
+		"$(systemd_with_unitdir)"
+		"${myconf[@]}"
+		)
 
 	mkdir "${BD}"
 	cd "${BD}"
 	einfo "Running configure in ${BD}"
-	ECONF_SOURCE="${S}" econf ${my_conf} \
-		$(use_enable doc doxygen-docs) \
-		$(use_enable doc xml-docs)
+	ECONF_SOURCE="${S}" econf "${myconf[@]}" \
+		$(use_enable doc xml-docs) \
+		$(use_enable doc doxygen-docs)
 
 	if use test; then
 		mkdir "${TBD}"
 		cd "${TBD}"
 		einfo "Running configure in ${TBD}"
-		ECONF_SOURCE="${S}" econf \
-			${my_conf} \
+		ECONF_SOURCE="${S}" econf "${myconf[@]}" \
+			$(use_enable test asserts) \
 			$(use_enable test checks) \
-			$(use_enable test tests) \
-			$(use_enable test asserts)
+			$(use_enable test embedded-tests) \
+			$(has_version dev-libs/dbus-glib && echo --enable-modular-tests)
 	fi
 }
 
@@ -147,59 +157,42 @@ src_compile() {
 
 	cd "${BD}"
 	einfo "Running make in ${BD}"
-	emake || die
-
-	if use doc; then
-		doxygen || die
-	fi
+	emake
 
 	if use test; then
 		cd "${TBD}"
 		einfo "Running make in ${TBD}"
-		emake || die
+		emake
 	fi
 }
 
 src_test() {
 	cd "${TBD}"
-	DBUS_VERBOSE=1 Xemake -j1 check || die
+	DBUS_VERBOSE=1 Xemake -j1 check
 }
 
 src_install() {
-	# initscript
-	newinitd "${FILESDIR}"/dbus.init-1.0 dbus || die
+	newinitd "${FILESDIR}"/dbus.initd dbus
 
-	if use X ; then
+	if use X; then
 		# dbus X session script (#77504)
 		# turns out to only work for GDM (and startx). has been merged into
 		# other desktop (kdm and such scripts)
-		exeinto /etc/X11/xinit/xinitrc.d/
-		doexe "${FILESDIR}"/80-dbus || die
+		exeinto /etc/X11/xinit/xinitrc.d
+		doexe "${FILESDIR}"/80-dbus
 	fi
 
-	# needs to exist for the system socket
-	keepdir /var/run/dbus
-	# needs to exist for machine id
-	keepdir /var/lib/dbus
 	# needs to exist for dbus sessions to launch
-
-	keepdir /usr/lib/dbus-1.0/services
 	keepdir /usr/share/dbus-1/services
-	keepdir /etc/dbus-1/system.d/
-	keepdir /etc/dbus-1/session.d/
+	keepdir /etc/dbus-1/{session,system}.d
+	# machine-id symlink from pkg_postinst()
+	keepdir /var/lib/dbus
 
-	dodoc AUTHORS ChangeLog HACKING NEWS README doc/TODO || die
+	dodoc AUTHORS ChangeLog HACKING NEWS README doc/TODO
 
 	cd "${BD}"
-	# FIXME: split dtd's in dbus-dtd ebuild
-	emake DESTDIR="${D}" install || die
-	if use doc; then
-		dohtml -p api/ doc/api/html/* || die
-		cd "${S}"
-		dohtml doc/*.html || die
-	fi
+	emake DESTDIR="${D}" install
 
-	# Remove .la files
 	find "${ED}" -type f -name '*.la' -exec rm -f {} +
 }
 
@@ -215,8 +208,11 @@ pkg_postinst() {
 	ewarn "the new version of the daemon."
 	ewarn "Don't do this while X is running because it will restart your X as well."
 
-	# Ensure unique id is generated
-	dbus-uuidgen --ensure="${EROOT}"/var/lib/dbus/machine-id
+	# Ensure unique id is generated and put it in /etc wrt #370451 but symlink
+	# for DBUS_MACHINE_UUID_FILE (see tools/dbus-launch.c) and reverse
+	# dependencies with hardcoded paths (although the known ones got fixed already)
+	dbus-uuidgen --ensure="${EROOT}"/etc/machine-id
+	ln -sf "${EROOT}"/etc/machine-id "${EROOT}"/var/lib/dbus/machine-id
 
 	if [[ ${CHOST} == *-darwin* ]]; then
 		local plist="org.freedesktop.dbus-session.plist"
