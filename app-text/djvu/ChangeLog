@@ -1,6 +1,89 @@
 # ChangeLog for app-text/djvu
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.107 2010/07/23 20:57:40 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.130 2012/04/26 21:02:42 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> djvu-3.5.24-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  21 Apr 2012; Samuli Suominen <ssuominen@gentoo.org> djvu-3.5.24-r1.ebuild:
+  Cleanup pkg_postinst() message from app-text/djview4 references.
+
+  13 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> -djvu-3.5.22-r1.ebuild,
+  -djvu-3.5.23.ebuild, -djvu-3.5.24.ebuild:
+  old
+
+*djvu-3.5.24-r1 (13 Mar 2012)
+
+  13 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> +djvu-3.5.24-r1.ebuild:
+  Revision bump for last change wrt #407989. To stable in purpose since it's
+  trivial.
+
+  11 Mar 2012; Samuli Suominen <ssuominen@gentoo.org>
+  files/djvu-3.5.24-gcc46.patch:
+  Include stddef.h in the installed headers to fix building of reverse
+  dependencies.
+
+  13 Nov 2011; Justin Lecher <jlec@gentoo.org> djvu-3.5.22-r1.ebuild,
+  djvu-3.5.23.ebuild, djvu-3.5.24.ebuild:
+  Corrected Slotting of media-libs/tiff
+
+  27 Aug 2011; Jeroen Roovers <jer@gentoo.org> djvu-3.5.24.ebuild:
+  Stable for HPPA (bug #372593).
+
+  24 Jul 2011; Raúl Porcel <armin76@gentoo.org> djvu-3.5.24.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #372593
+
+  23 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> djvu-3.5.24.ebuild:
+  ppc/ppc64 stable wrt #372593
+
+  15 Jul 2011; Markus Meier <maekke@gentoo.org> djvu-3.5.24.ebuild:
+  x86 stable, bug #372593
+
+  26 Jun 2011; Markus Meier <maekke@gentoo.org> djvu-3.5.24.ebuild:
+  arm stable, bug #372593
+
+  22 Jun 2011; Markos Chandras <hwoarang@gentoo.org> djvu-3.5.24.ebuild:
+  Stable on amd64 wrt bug #372593
+
+*djvu-3.5.24 (30 Apr 2011)
+
+  30 Apr 2011; Peter Volkov <pva@gentoo.org> +djvu-3.5.24.ebuild,
+  +files/djvu-3.5.24-gcc46.patch:
+  Version bump. Fixes gcc46 build issue, bug #361057, thank Vladimir for report
+  and Ryan Hill for fix.
+
+  16 Apr 2011; Raúl Porcel <armin76@gentoo.org> djvu-3.5.23.ebuild:
+  ia64/s390/sh stable wrt #358193
+
+  11 Apr 2011; Jeroen Roovers <jer@gentoo.org> djvu-3.5.23.ebuild:
+  Stable for HPPA (bug #358193).
+
+  08 Apr 2011; Thomas Kahle <tomka@gentoo.org> djvu-3.5.23.ebuild:
+  x86 stable per bug 358193
+
+  04 Apr 2011; Michael Weber <xmw@gentoo.org> djvu-3.5.23.ebuild:
+  arm/sparc stable (bug 358193)
+
+  31 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org> djvu-3.5.23.ebuild:
+  ppc/ppc64 stable wrt #358193
+
+  27 Mar 2011; Tobias Klausmann <klausman@gentoo.org> djvu-3.5.23.ebuild:
+  Stable on alpha, bug #358193
+
+  13 Mar 2011; Markos Chandras <hwoarang@gentoo.org> djvu-3.5.23.ebuild:
+  Stable on amd64 wrt bug #358193
+
+  09 Feb 2011; Tomáš Chvátal <scarabeus@gentoo.org> djvu-3.5.23.ebuild:
+  QA: Use pretty loop instead of repeating the same commands.
+
+*djvu-3.5.23 (15 Oct 2010)
+
+  15 Oct 2010; Peter Volkov <pva@gentoo.org> -djvu-3.5.21_p20090103.ebuild,
+  +djvu-3.5.23.ebuild:
+  Version bump, drop old.
+
+  18 Aug 2010; Jeroen Roovers <jer@gentoo.org> djvu-3.5.22-r1.ebuild:
+  Stable for HPPA (bug #299574).
 
   23 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> djvu-3.5.22-r1.ebuild:
   Use virtual/jpeg.

@@ -1,14 +1,14 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.22-r1.ebuild,v 1.7 2010/07/23 20:57:40 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.24-r1.ebuild,v 1.3 2012/04/26 21:02:42 aballier Exp $
 
-EAPI="2"
-inherit fdo-mime autotools flag-o-matic
+EAPI=4
+inherit eutils fdo-mime autotools flag-o-matic
 
 MY_P="${PN}libre-${PV#*_p}"
 
 DESCRIPTION="DjVu viewers, encoders and utilities"
-HOMEPAGE="http://djvu.sourceforge.net"
+HOMEPAGE="http://djvu.sourceforge.net/"
 SRC_URI="mirror://sourceforge/djvu/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
@@ -17,22 +17,21 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-solari
 IUSE="debug doc jpeg nls tiff xml"
 
 RDEPEND="jpeg? ( virtual/jpeg )
-	tiff? ( media-libs/tiff )"
+	tiff? ( media-libs/tiff:0 )"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
 # No gui, only manual pages left and only on ja...
 LANGS="ja"
-for X in ${LANGS}; do
-	IUSE="${IUSE} linguas_${X}"
-done
+IUSE+=" $(printf "linguas_%s" ${LANGS})"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.5.21-interix-atomic.patch
 
 	sed 's/AC_CXX_OPTIMIZE/OPTS=;AC_SUBST(OPTS)/' -i configure.ac || die #263688
 	rm aclocal.m4 config/{libtool.m4,ltmain.sh,install-sh}
+	epatch "${FILESDIR}/${P}-gcc46.patch"
 	AT_M4DIR="config" eautoreconf
 }
 
@@ -72,20 +71,23 @@ src_install() {
 	emake DESTDIR="${D}" install || die
 
 	dodoc README TODO NEWS
-
-	use doc && cp -r doc/ "${ED}"/usr/share/doc/${PF}
+	use doc && dodoc -r doc
 
 	# Install desktop files.
 	cd desktopfiles
-	insinto /usr/share/icons/hicolor/22x22/mimetypes && newins hi22-djvu.png image-vnd.djvu.png || die
-	insinto	/usr/share/icons/hicolor/32x32/mimetypes && newins hi32-djvu.png image-vnd.djvu.png || die
-	insinto	/usr/share/icons/hicolor/48x48/mimetypes && newins hi48-djvu.png image-vnd.djvu.png || die
-	insinto	/usr/share/mime/packages && doins djvulibre-mime.xml || die
+	for i in {22,32,48,64}; do
+		insinto /usr/share/icons/hicolor/${i}x${i}/mimetypes
+		newins hi${i}-djvu.png image-vnd.djvu.png
+	done
+	insinto /usr/share/mime/packages
+	doins djvulibre-mime.xml
 }
 
 pkg_postinst() {
 	fdo-mime_mime_database_update
-	elog "For djviewer or browser plugin, emerge app-text/djview4."
+	if ! has_version app-text/djview; then
+		elog "For djviewer or browser plugin, emerge app-text/djview."
+	fi
 }
 
 pkg_postrm() {
