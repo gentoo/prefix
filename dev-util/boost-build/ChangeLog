@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.85 2012/05/16 15:39:46 jer Exp $
 
+  26 May 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/boost-build-1.48.0-disable_python_rpath.patch,
+  +files/boost-build-1.48.0-support_dots_in_python-buildid.patch:
+  Add missing patches
+
   16 May 2012; Jeroen Roovers <jer@gentoo.org> boost-build-1.48.0-r1.ebuild:
   Stable for HPPA (bug #413815).
 
