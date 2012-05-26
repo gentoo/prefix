@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/aria2-1.14.1.ebuild,v 1.2 2012/01/15 14:13:50 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/aria2-1.14.1.ebuild,v 1.4 2012/05/05 03:20:39 jdhore Exp $
 
 EAPI="4"
 
@@ -38,7 +38,7 @@ CDEPEND="sys-libs/zlib
 #			!gnutls? ( dev-libs/openssl ) ) )"
 
 DEPEND="${CDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? ( app-text/asciidoc )
 	nls? ( sys-devel/gettext )
 	test? ( >=dev-util/cppunit-1.12.0 )"
@@ -57,9 +57,9 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf="--without-gnutls --without-openssl"
+	local myconf="--without-gnutls --without-libgcrypt --without-openssl"
 	use ssl && \
-		myconf="$(use_with gnutls) \
+		myconf="$(use_with gnutls) $(use_with gnutls libgcrypt) \
 		$(use_with !gnutls openssl) \
 		$(use_with !gnutls openssl-prefix "${EPREFIX}")"
 
