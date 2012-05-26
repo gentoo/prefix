@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/imlib2
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.105 2011/03/19 19:26:15 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.109 2012/05/09 16:20:44 aballier Exp $
+
+  09 May 2012; Alexis Ballier <aballier@gentoo.org> imlib2-1.4.5.ebuild:
+  keyword ~amd64-fbsd
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> imlib2-1.4.4.ebuild,
+  imlib2-1.4.5.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*imlib2-1.4.5 (21 Feb 2012)
+
+  21 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> +imlib2-1.4.5.ebuild:
+  Version bump with USE="static-libs" and removed libtool files.
+
+  21 Jul 2011; Mike Frysinger <vapier@gentoo.org> imlib2-1.4.4.ebuild:
+  Pull in pkg-config for png support #375195.
 
   19 Mar 2011; Mike Frysinger <vapier@gentoo.org> imlib2-1.4.4.ebuild:
   Fix EAPI=2 porting #359315 by A. Clark.
