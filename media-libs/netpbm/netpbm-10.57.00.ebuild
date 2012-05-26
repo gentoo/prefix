@@ -42,7 +42,7 @@ netpbm_libsuffix() {
 netpbm_ldshlib() {
 	# ultra dirty Darwin hack, but hey... in the end this is all it needs...
 	case ${CHOST} in
-		*-darwin*) echo '$(LDFLAGS) -dynamiclib -install_name ${EPREFIX}/usr/lib/libnetpbm.10.dylib';;
+		*-darwin*) echo '$(LDFLAGS) -dynamiclib -install_name ${EPREFIX}/usr/lib/libnetpbm.$(MAJ).dylib';;
 		*)         echo '$(LDFLAGS) -shared -Wl,-soname,$(SONAME)';;
 	esac
 }
@@ -57,12 +57,9 @@ netpbm_config() {
 src_prepare() {
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
 
-	epatch "${FILESDIR}"/${PN}-10.46.00-darwin.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-solaris.patch
 	epatch "${FILESDIR}"/${PN}-10.48.00-solaris.patch
-	epatch "${FILESDIR}"/${PN}-10.51.00-solaris.patch
 	epatch "${FILESDIR}"/${PN}-10.48.00-interix.patch
-	epatch "${FILESDIR}"/${PN}-10.49.00-darwin-signals.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 		editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}

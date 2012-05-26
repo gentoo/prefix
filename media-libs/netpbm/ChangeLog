@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.263 2012/01/03 01:37:19 vapier Exp $
 
+  26 May 2012; Fabian Groffen <grobian@gentoo.org> netpbm-10.57.00.ebuild:
+  Drop failing patches, fix install_name on Darwin
+
 *netpbm-10.57.00 (03 Jan 2012)
 
   03 Jan 2012; Mike Frysinger <vapier@gentoo.org> +netpbm-10.57.00.ebuild:
