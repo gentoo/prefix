@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/usbutils-004.ebuild,v 1.1 2011/08/26 11:34:05 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/usbutils-004.ebuild,v 1.8 2012/05/04 09:17:26 jdhore Exp $
 
 EAPI="3"
 
@@ -20,7 +20,7 @@ IUSE="network-cron python zlib"
 RDEPEND="virtual/libusb:1
 	zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 pkg_setup() {
 	if use python; then
