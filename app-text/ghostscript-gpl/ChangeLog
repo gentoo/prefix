@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.143 2012/05/16 15:25:43 jer Exp $
 
+  26 May 2012; Fabian Groffen <grobian@gentoo.org>
+  files/ghostscript-gpl-9.05-darwin.patch:
+  Fix Darwin patch to perform proper linking
+
   16 May 2012; Jeroen Roovers <jer@gentoo.org> ghostscript-gpl-9.05-r1.ebuild:
   Stable for HPPA (bug #414463).
 
