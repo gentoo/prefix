@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/xerces-c
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.92 2011/01/12 14:53:58 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.95 2012/05/13 18:03:11 pacho Exp $
+
+*xerces-c-3.1.1-r1 (13 May 2012)
+
+  13 May 2012; Pacho Ramos <pacho@gentoo.org> +xerces-c-3.1.1-r1.ebuild:
+  Drop libwww support, #409545.
+
+  26 Feb 2011; Raúl Porcel <armin76@gentoo.org> xerces-c-3.1.0.ebuild:
+  alpha stable wrt #308009
+
+  25 Feb 2011; Michael Weber <xmw@gentoo.org> xerces-c-3.1.0.ebuild:
+  Stable sparc wrt bug 308009, thanks Alex Buell.
 
   12 Jan 2011; Jeroen Roovers <jer@gentoo.org> xerces-c-3.1.0.ebuild:
   Stable for HPPA (bug #308009).

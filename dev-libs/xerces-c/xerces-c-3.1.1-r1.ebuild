@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.1.0.ebuild,v 1.7 2011/02/26 13:13:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.1.1-r1.ebuild,v 1.1 2012/05/13 18:03:11 pacho Exp $
 
 EAPI=2
 
@@ -12,11 +12,10 @@ SRC_URI="mirror://apache/xerces/c/3/sources/${P}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris ~x86-winnt"
-IUSE="curl doc iconv icu libwww sse2 static-libs threads elibc_Darwin elibc_FreeBSD"
+IUSE="curl doc iconv icu sse2 static-libs threads elibc_Darwin elibc_FreeBSD"
 
 RDEPEND="icu? ( >=dev-libs/icu-4.2 )
 	curl? ( net-misc/curl )
-	libwww? ( net-libs/libwww )
 	virtual/libiconv"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
@@ -31,6 +30,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	use threads || epatch "${FILESDIR}/${PV}-disable-thread-tests.patch"
+
 	sed -i \
 		-e 's|$(prefix)/msg|$(DESTDIR)/$(prefix)/share/xerces-c/msg|' \
 		src/xercesc/util/MsgLoaders/MsgCatalog/Makefile.in || die "sed failed"
@@ -51,7 +52,6 @@ src_configure() {
 	# But the docs aren't clear about it, so we would need some testing...
 	local netaccessor="socket"
 	use elibc_Darwin && netaccessor="cfurl"
-	use libwww && netaccessor="libwww"
 	use curl && netaccessor="curl"
 
 	econf \
@@ -78,7 +78,7 @@ src_compile() {
 src_install () {
 	emake DESTDIR="${D}" install || die "emake failed"
 
-	use static-libs || rm "${ED}"/lib*/*.la
+	use static-libs || rm "${ED}"/usr/lib*/*.la
 
 	# To make sure an appropriate NLS msg file is around when using the iconv msgloader
 	# ICU has the messages compiled in.
