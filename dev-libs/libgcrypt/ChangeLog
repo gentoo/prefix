@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.154 2012/04/26 16:02:38 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.155 2012/05/21 18:52:09 xarthisius Exp $
+
+  21 May 2012; Kacper Kowalik <xarthisius@gentoo.org> libgcrypt-1.5.0-r1.ebuild,
+  libgcrypt-1.5.0-r2.ebuild, libgcrypt-1.5.0.ebuild:
+  Add missing inheritance of eutils.eclass
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> libgcrypt-1.5.0-r2.ebuild:
   keyword ~amd64-fbsd
