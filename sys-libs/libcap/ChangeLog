@@ -1,6 +1,50 @@
 # ChangeLog for sys-libs/libcap
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.106 2011/01/26 03:31:49 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.118 2012/03/20 23:52:44 flameeyes Exp $
+
+  20 Mar 2012; Diego E. Pettenò <flameeyes@gentoo.org> libcap-2.22.ebuild:
+  Clarify license statement.
+
+  18 Dec 2011; Mark Loeser <halcy0n@gentoo.org> libcap-2.22.ebuild:
+  Stable for ppc64; bug #389201
+
+  26 Nov 2011; Raúl Porcel <armin76@gentoo.org> libcap-2.22.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #389201
+
+  12 Nov 2011; Mike Frysinger <vapier@gentoo.org> libcap-2.22.ebuild,
+  +files/libcap-2.22-no-perl.patch:
+  Do not require perl to build #390263 by Bruno.
+
+  06 Nov 2011; Brent Baude <ranger@gentoo.org> libcap-2.22.ebuild:
+  Marking libcap-2.22 ppc for bug 389201
+
+  06 Nov 2011; Markus Meier <maekke@gentoo.org> libcap-2.22.ebuild:
+  arm stable, bug #389201
+
+  06 Nov 2011; Andreas Schuerch <nativemad@gentoo.org> libcap-2.22.ebuild:
+  x86 stable, bug 389201. Thanks JD and Myckel.
+
+  05 Nov 2011; Mike Frysinger <vapier@gentoo.org> libcap-2.22.ebuild:
+  Trim spurious pam lib in /usr, and touchup ebuild.
+
+  03 Nov 2011; Tony Vroon <chainsaw@gentoo.org> libcap-2.22.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo & Ian
+  "idella4" Delaney in security bug #389201.
+
+  02 Nov 2011; Jeroen Roovers <jer@gentoo.org> libcap-2.22.ebuild:
+  Stable for HPPA (bug #389201).
+
+*libcap-2.22 (01 Nov 2011)
+
+  01 Nov 2011; Mike Frysinger <vapier@gentoo.org> +libcap-2.22.ebuild,
+  +files/libcap-2.22-build-system-fixes.patch:
+  Version bump #389201 by Jack Szpot.
+
+*libcap-2.21 (15 Jun 2011)
+
+  15 Jun 2011; Jeroen Roovers <jer@gentoo.org> +libcap-2.21.ebuild,
+  +files/libcap-2.21-include.patch:
+  Version bump. Fix one compiler warning.
 
   26 Jan 2011; Mike Frysinger <vapier@gentoo.org>
   files/libcap-2.20-build-system-fixes.patch:
