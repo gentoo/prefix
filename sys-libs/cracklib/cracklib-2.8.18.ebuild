@@ -1,11 +1,11 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.18.ebuild,v 1.1 2010/09/29 22:35:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.18.ebuild,v 1.3 2012/02/22 00:59:51 patrick Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.*"
+RESTRICT_PYTHON_ABIS="3.* 2.7-pypy-* *-jython"
 
 inherit eutils distutils libtool toolchain-funcs
 

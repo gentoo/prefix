@@ -1,6 +1,26 @@
 # ChangeLog for sys-libs/cracklib
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.157 2010/09/29 22:35:57 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.162 2012/02/22 00:59:51 patrick Exp $
+
+  22 Feb 2012; Patrick Lauer <patrick@gentoo.org> cracklib-2.8.16.ebuild,
+  cracklib-2.8.18-r1.ebuild, cracklib-2.8.18.ebuild:
+  Restricting jython
+
+  20 Feb 2012; Torsten Veller <tove@gentoo.org> cracklib-2.8.18-r1.ebuild:
+  Fix broken header
+
+  20 Feb 2012; Patrick Lauer <patrick@gentoo.org> cracklib-2.8.16.ebuild,
+  cracklib-2.8.18-r1.ebuild, cracklib-2.8.18.ebuild:
+  Restricting pypy
+
+  16 Feb 2012; Mike Frysinger <vapier@gentoo.org> cracklib-2.8.18-r1.ebuild,
+  +files/cracklib-2.8.18-python-stat.patch:
+  Pull in sys/stat.h in python code to fix build #403777 by Patrick Lauer.
+
+*cracklib-2.8.18-r1 (20 Nov 2011)
+
+  20 Nov 2011; Mike Frysinger <vapier@gentoo.org> +cracklib-2.8.18-r1.ebuild:
+  Add USE=static-libs support #378291 by Agostino Sarubbo.
 
 *cracklib-2.8.18 (29 Sep 2010)
 

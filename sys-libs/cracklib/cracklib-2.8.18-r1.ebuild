@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.16.ebuild,v 1.15 2012/02/22 00:59:51 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.18-r1.ebuild,v 1.5 2012/02/22 00:59:51 patrick Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2"
@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/cracklib/${MY_P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint"
-IUSE="nls python"
+IUSE="nls python static-libs"
 
 RDEPEND="sys-libs/zlib"
 DEPEND="${RDEPEND}
@@ -44,8 +44,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.8.16-no-nls.patch
-	epatch "${FILESDIR}"/${P}-python.patch
+	epatch "${FILESDIR}"/${P}-python-stat.patch #403777
 	elibtoolize #269003
 	use python && do_python
 }
@@ -54,7 +53,8 @@ src_configure() {
 	econf \
 		--with-default-dict='$(libdir)/cracklib_dict' \
 		--without-python \
-		$(use_enable nls)
+		$(use_enable nls) \
+		$(use_enable static-libs static)
 }
 
 src_compile() {
@@ -63,7 +63,8 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake DESTDIR="${D}" install || die
+	use static-libs || rm -f "${ED}"/usr/lib*/libcrack.la
 	rm -r "${ED}"/usr/share/cracklib
 
 	use python && do_python
@@ -72,7 +73,7 @@ src_install() {
 	gen_usr_ldscript -a crack
 
 	insinto /usr/share/dict
-	doins dicts/cracklib-small || die "word dict"
+	doins dicts/cracklib-small || die
 
 	dodoc AUTHORS ChangeLog NEWS README*
 }
