@@ -1,6 +1,23 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.871 2012/04/28 00:57:23 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.875 2012/05/15 18:53:37 vapier Exp $
+
+  15 May 2012; Mike Frysinger <vapier@gentoo.org> files/fix_libtool_files.sh:
+  Use awk file in /usr/share/gcc-data and tweak the code to be POSIX since it is
+  so simple. #415947 by Jim Faulkner.
+
+  11 May 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.5.3-r2.ebuild,
+  gcc-4.6.3.ebuild:
+  Push out FreeBSD PIE fix #415185 by Alexis Ballier.
+
+  10 May 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.5.3-r2.ebuild,
+  gcc-4.6.3.ebuild:
+  Push out hppa 64bit fix #382075 by Jeroen Roovers, and new arm hardfp ldso
+  path.
+
+  06 May 2012; Raúl Porcel <armin76@gentoo.org> gcc-4.3.6-r1.ebuild,
+  gcc-4.4.6-r1.ebuild, gcc-4.5.3-r2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #405845, #405849, #402847
 
   10 May 2012; Fabian Groffen <grobian@gentoo.org>
   -files/4.4.1/gcc-4.4.1-T-namespace.patch,
