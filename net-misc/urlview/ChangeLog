@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/urlview
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/urlview/ChangeLog,v 1.22 2008/02/03 15:43:44 grobian Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/urlview/ChangeLog,v 1.23 2012/04/05 18:21:59 nimiux Exp $
+
+  05 Apr 2012; Chema Alonso <nimiux@gentoo.org> metadata.xml:
+  Added myself as maintainer
 
   03 Feb 2008; Fabian Groffen <grobian@gentoo.org> urlview-0.9.ebuild:
   Dropped ppc-macos keyword, see you in prefix
