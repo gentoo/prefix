@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.111 2012/03/05 18:55:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.114 2012/05/03 02:32:23 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -48,7 +48,7 @@ snap)
 	;;
 esac
 
-inherit eutils libtool flag-o-matic gnuconfig multilib versionator ${extra_eclass}
+inherit eutils libtool flag-o-matic gnuconfig multilib versionator unpacker ${extra_eclass}
 EXPORT_FUNCTIONS src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
 
 export CTARGET=${CTARGET:-${CHOST}}
@@ -69,25 +69,32 @@ HOMEPAGE="http://sources.redhat.com/binutils/"
 case ${BTYPE} in
 	cvs|git) SRC_URI="" ;;
 	snap) SRC_URI="ftp://gcc.gnu.org/pub/binutils/snapshots/binutils-${BVER}.tar.bz2" ;;
-	hjlu) SRC_URI="mirror://kernel/linux/devel/binutils/binutils-${BVER}.tar.bz2" ;;
+	hjlu)
+		SRC_URI="mirror://kernel/linux/devel/binutils/binutils-${BVER}.tar."
+		version_is_at_least 2.21.51.0.5 && SRC_URI+="xz" || SRC_URI+="bz2" ;;
 	rel) SRC_URI="mirror://gnu/binutils/binutils-${BVER}.tar.bz2" ;;
 esac
 add_src_uri() {
 	[[ -z $2 ]] && return
 	local a=$1
+	if [[ ${BTYPE} == "hjlu" ]] && version_is_at_least 2.22.52.0.2 ; then
+		a+=".xz"
+	else
+		a+=".bz2"
+	fi
 	set -- mirror://gentoo http://dev.gentoo.org/~vapier/dist
 	SRC_URI="${SRC_URI} ${@/%//${a}}"
 }
-add_src_uri binutils-${BVER}-patches-${PATCHVER}.tar.bz2 ${PATCHVER}
-add_src_uri binutils-${BVER}-uclibc-patches-${UCLIBC_PATCHVER}.tar.bz2 ${UCLIBC_PATCHVER}
-add_src_uri elf2flt-${ELF2FLT_VER}.tar.bz2 ${ELF2FLT_VER}
+add_src_uri binutils-${BVER}-patches-${PATCHVER}.tar ${PATCHVER}
+add_src_uri binutils-${BVER}-uclibc-patches-${UCLIBC_PATCHVER}.tar ${UCLIBC_PATCHVER}
+add_src_uri elf2flt-${ELF2FLT_VER}.tar ${ELF2FLT_VER}
 
 if version_is_at_least 2.18 ; then
 	LICENSE="|| ( GPL-3 LGPL-3 )"
 else
 	LICENSE="|| ( GPL-2 LGPL-2 )"
 fi
-IUSE="nls multitarget multislot static-libs test vanilla"
+IUSE="cxx nls multitarget multislot static-libs test vanilla"
 if version_is_at_least 2.19 ; then
 	IUSE+=" zlib"
 fi
@@ -125,7 +132,7 @@ tc-binutils_unpack() {
 	case ${BTYPE} in
 	cvs) cvs_src_unpack ;;
 	git) git-2_src_unpack ;;
-	*)   unpack ${A} ;;
+	*)   unpacker ${A} ;;
 	esac
 	mkdir -p "${MY_BUILDDIR}"
 	[[ -d ${WORKDIR}/patch ]] && mkdir "${WORKDIR}"/patch/skip
@@ -224,16 +231,21 @@ toolchain-binutils_src_compile() {
 	set --
 
 	# enable gold if available (installed as ld.gold)
-	# PREFIX LOCAL: Linux only (fails to compile on Solaris)
-	if [[ ${CHOST} == *-linux* ]] ; then
+	if use cxx ; then
+		# PREFIX LOCAL: Linux only (fails to compile on Solaris)
+		if [[ ${CHOST} == *-linux* ]] ; then
 		if grep -q 'enable-gold=default' "${S}"/configure ; then
 			set -- "$@" --enable-gold
-	fi
-	# old ways - remove when 2.21 is stable
-	elif grep -q 'enable-gold=both/ld' "${S}"/configure ; then
-		set -- "$@" --enable-gold=both/ld
-	elif grep -q 'enable-gold=both/bfd' "${S}"/configure ; then
-		set -- "$@" --enable-gold=both/bfd
+		fi
+		# old ways - remove when 2.21 is stable
+		elif grep -q 'enable-gold=both/ld' "${S}"/configure ; then
+			set -- "$@" --enable-gold=both/ld
+		elif grep -q 'enable-gold=both/bfd' "${S}"/configure ; then
+			set -- "$@" --enable-gold=both/bfd
+		fi
+		if grep -q -e '--enable-plugins' "${S}"/ld/configure ; then
+			set -- "$@" --enable-plugins
+		fi
 	fi
 	if [[ ${CHOST} != *"-mint"* ]]; then  #353410
 		if grep -q -e '--enable-plugins' "${S}"/ld/configure ; then
