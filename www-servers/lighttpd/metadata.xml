@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>www-servers</herd>
 	<maintainer>
-		<email>hoffie@gentoo.org</email>
+		<email>wired@gentoo.org</email>
+		<name>Alex Alexander</name>
+	</maintainer>
+	<maintainer>
+		<email>hwoarang@gentoo.org</email>
+		<name>Markos Chandras</name>
 	</maintainer>
 	<longdescription lang="en">
 		lighttpd a secure, fast, compliant and very flexible web-server
@@ -14,9 +18,11 @@
 		for every server that is suffering load problems.
 	</longdescription>
 	<use>
+		<flag name='libev'>Enable fdevent handler</flag>
 		<flag name='memcache'>Enable memcache support for mod_cml and
 			mod_trigger_b4_dl</flag>
 		<flag name='rrdtool'>Enable rrdtool support via mod_rrdtool</flag>
+		<flag name='uploadprogress'>Apply experimental patch for upload progress module</flag>
 		<flag name='webdav'>Enable webdav properties</flag>
 	</use>
 </pkgmetadata>
