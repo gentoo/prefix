@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.267 2012/04/26 14:00:40 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.269 2012/05/16 21:58:46 vapier Exp $
+
+  16 May 2012; Mike Frysinger <vapier@gentoo.org> timezone-data-2012c.ebuild:
+  Update HOMEPAGE/SRC_URI to include new IANA site #416311 by Larry Gilbert.
+
+  27 Apr 2012; Mike Frysinger <vapier@gentoo.org> timezone-data-2012c.ebuild:
+  Stabilize for everyone.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> timezone-data-2012c.ebuild:
   keyword ~amd64-fbsd
