@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-3,v 1.7 2012/03/01 21:37:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-3,v 1.8 2012/03/02 23:12:09 vapier Exp $
 
 # Format of /etc/env.d/binutils/:
 #  config-TARGET:	CURRENT=version for TARGET
@@ -265,6 +265,8 @@ switch_profile() {
 }
 
 uninstall_target() {
+	: ${TARGET:=${UARG}}
+
 	if [[ ${TARGET} == ${HOST} ]] ; then
 		die "refusing to uninstall native binutils"
 	fi
@@ -283,11 +285,15 @@ uninstall_target() {
 	rm -f "${ENV_D}"/config-${TARGET} "${ROOT}"/etc/ld.so.conf.d/05binutils.conf
 
 	# XXX: we still leave behind FAKE_TARGETS in /usr/bin ...
+	local x
 	for x in addr2line ar as c++filt elf2flt flthdr gprof ld ld.real \
 	         nm objcopy objdump ranlib readelf size strings strip ; do
-		rm -f "${EROOT}"/usr/bin/${TARGET}-${x}
-		rm -f "${EROOT}"/usr/{${HOST}/,}${TARGET}/bin/${x}
-		rm -f "${EROOT}"/usr/libexec/gcc/${TARGET}/${x}
+		x=(
+			"${EROOT}"/usr/bin/${TARGET}-${x}
+			"${EROOT}"/usr/{${HOST}/,}${TARGET}/bin/${x}
+			"${EROOT}"/usr/libexec/gcc/${TARGET}/${x}
+		)
+		rm -f "${x[@]}"
 	done
 	for x in ansidecl.h bfd.h bfdlink.h dis-asm.h symcat.h ; do
 		rm -f "${EROOT}"/usr/{${HOST}/,}${TARGET}/{usr/,}include/${x}
@@ -433,7 +439,7 @@ while [[ $# -gt 0 ]] ; do
 		-h|--help)                 usage 0 ;;
 		-V|--version)
 			unset Header
-			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-3,v 1.7 2012/03/01 21:37:11 vapier Exp $"
+			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-3,v 1.8 2012/03/02 23:12:09 vapier Exp $"
 			cvsver=${cvsver##*binutils-config-}
 			bver=${cvsver%%,v *}
 			cvsver=${cvsver#* }
