@@ -1,81 +1,59 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17-r1.ebuild,v 1.8 2010/03/30 23:22:10 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.18.1.1-r3.ebuild,v 1.4 2012/05/23 02:12:54 vapier Exp $
 
-inherit flag-o-matic eutils multilib toolchain-funcs mono autotools
+EAPI="2"
+
+inherit flag-o-matic eutils multilib toolchain-funcs mono libtool java-pkg-opt-2 autotools
 
 DESCRIPTION="GNU locale utilities"
-HOMEPAGE="http://www.gnu.org/software/gettext/gettext.html"
+HOMEPAGE="http://www.gnu.org/software/gettext/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3 LGPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="acl doc emacs nls nocxx openmp elibc_glibc"
+IUSE="acl doc emacs +git java nls +cxx openmp static-libs elibc_glibc"
 
 DEPEND="virtual/libiconv
 	dev-libs/libxml2
 	!x86-winnt? ( sys-libs/ncurses )
 	dev-libs/expat
-	acl? ( virtual/acl )"
+	acl? ( virtual/acl )
+	java? ( >=virtual/jdk-1.4 )"
+RDEPEND="${DEPEND}
+	git? ( dev-vcs/git )
+	java? ( >=virtual/jre-1.4 )"
 PDEPEND="emacs? ( app-emacs/po-mode )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
+	java-pkg-opt-2_src_prepare
+	if use m68k-mint ; then #334671
+		export AT_NO_RECURSIVE=yes
+		cd "${S}"/gettext-runtime || die
+		AT_M4DIR="m4 gnulib-m4" eautoreconf
+		cd "${S}"/gettext-runtime/libasprintf || die
+		AT_M4DIR="../../m4 ../m4" eautoreconf
+	fi
+	# this script uses syntax that Solaris /bin/sh doesn't grok
+	sed -i -e '1c\#!/usr/bin/env sh' \
+		"${S}"/gettext-tools/misc/convert-archive.in || die
+
+	# work around problem in gnulib on OSX Lion
+	if [[ ${CHOST} == *-darwin11 ]] ; then
+		sed -i -e '/^#ifndef weak_alias$/a\# undef __stpncpy' \
+			gettext-tools/gnulib-lib/stpncpy.c || die
+		sed -i -e '/^# undef __stpncpy$/a\# undef stpncpy' \
+			gettext-tools/gnulib-lib/stpncpy.c || die
+	fi
 
 	epunt_cxx
-
-	epatch "${FILESDIR}"/${PN}-0.14.1-lib-path-tests.patch #81628
-	epatch "${FILESDIR}"/${PN}-0.14.2-fix-race.patch #85054
-	epatch "${FILESDIR}"/${PN}-0.15-expat-no-dlopen.patch #146211
-	epatch "${FILESDIR}"/${PN}-0.17-open-args.patch #232081
-	epatch "${FILESDIR}"/${P}-gnuinfo.patch #249167
-	epatch "${FILESDIR}"/${P}-x-python.patch #299658
-
-	# bundled libtool seems to be broken so skip certain rpath tests
-	# http://lists.gnu.org/archive/html/bug-libtool/2005-03/msg00070.html
-	sed -i \
-		-e '2iexit 77' \
-		autoconf-lib-link/tests/rpath-3*[ef] || die "sed tests"
-
-	# until upstream pulls a new gnulib/acl, we have to hack around it
-	if ! use acl ; then
-		eval export ac_cv_func_acl{,delete_def_file,extended_file,free,from_{mode,text},{g,s}et_{fd,file}}=no
-		export ac_cv_header_acl_libacl_h=no
-		export ac_cv_header_sys_acl_h=no
-		export ac_cv_search_acl_get_file=no
-		export gl_cv_func_working_acl_get_file=no
-		sed -i -e 's:use_acl=1:use_acl=0:' gettext-tools/configure
-	fi
-
-	# we need this for FreeMiNT, bug #277285
-	sed -i -e 's/LDADD = /LDADD = @LIBMULTITHREAD@ /' \
-		gettext-runtime/src/Makefile.am \
-		gettext-runtime/src/Makefile.in \
-		gettext-tools/src/Makefile.am \
-		gettext-tools/src/Makefile.in \
-		gettext-tools/tests/Makefile.am \
-		gettext-tools/tests/Makefile.in \
-		|| die "FreeMiNT sed fix failed"
-
-	if [[ ${CHOST} == *-winnt* ]]; then
-		epatch "${FILESDIR}"/${P}-winnt.patch
-		epatch "${FILESDIR}"/${P}-winnt-vs9.patch
-		# avoid file locking problems by finishing a pipe read, so that
-		# processes don't get SIGPIPE - somehow the windows compiler has
-		# problems with this ;)
-		epatch "${FILESDIR}"/${P}-winnt-pipe.patch
-
-		cp -f "$(dirname "$(type -P libtoolize)")"/../share/aclocal/libtool.m4 "${S}"/m4/libtool.m4
-		eautoreconf # required for winnt
-	fi
+	elibtoolize
+	epatch "${FILESDIR}"/${P}-uclibc-sched_param-def.patch
+	epatch "${FILESDIR}"/${P}-no-gets.patch
 }
 
-src_compile() {
-
-	elibtoolize
-
+src_configure() {
 	local myconf=""
 	# Build with --without-included-gettext (on glibc systems)
 	if use elibc_glibc ; then
@@ -83,26 +61,33 @@ src_compile() {
 	else
 		myconf="${myconf} --with-included-gettext --enable-nls"
 	fi
-	use nocxx && export CXX=$(tc-getCC)
+	use cxx || export CXX=$(tc-getCC)
 
 	# --without-emacs: Emacs support is now in a separate package
 	# --with-included-glib: glib depends on us so avoid circular deps
 	# --with-included-libcroco: libcroco depends on glib which ... ^^^
+	#
+	# --with-included-libunistring will _disable_ libunistring (since
+	# --it's not bundled), see bug #326477
 	econf \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--without-emacs \
-		--disable-java \
+		--without-lispdir \
+		$(use_enable java) \
 		--with-included-glib \
 		--with-included-libcroco \
+		--with-included-libunistring \
+		$(use_enable acl) \
 		$(use_enable openmp) \
-		${myconf} \
-		|| die
-	emake || die
+		$(use_enable static-libs static) \
+		$(use_with git) \
+		--without-cvs
 }
 
 src_install() {
 	emake install DESTDIR="${D}" || die "install failed"
 	use nls || rm -r "${ED}"/usr/share/locale
+	use static-libs || rm -f "${ED}"/usr/lib*/*.la
 	dosym msgfmt /usr/bin/gmsgfmt #43435
 	dobin gettext-tools/misc/gettextize || die "gettextize"
 
@@ -121,6 +106,16 @@ src_install() {
 		gen_usr_ldscript ${libname}
 	fi
 
+	if use java ; then
+		java-pkg_dojar "${ED}"/usr/share/${PN}/*.jar
+		rm -f "${ED}"/usr/share/${PN}/*.jar
+		rm -f "${ED}"/usr/share/${PN}/*.class
+		if use doc ; then
+			java-pkg_dojavadoc "${ED}"/usr/share/doc/${PF}/javadoc2
+			rm -rf "${ED}"/usr/share/doc/${PF}/javadoc2
+		fi
+	fi
+
 	if use doc ; then
 		dohtml "${ED}"/usr/share/doc/${PF}/*.html
 	else
@@ -136,6 +131,8 @@ pkg_preinst() {
 	# need to keep the linked version or the system
 	# could die (things like sed link against it :/)
 	preserve_old_lib /{,usr/}$(get_libdir)/libintl$(get_libname 7)
+
+	java-pkg-opt-2_pkg_preinst
 }
 
 pkg_postinst() {
