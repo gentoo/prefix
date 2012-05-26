@@ -1,6 +1,23 @@
 # ChangeLog for sys-apps/sed
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.111 2010/11/28 17:21:42 ranger Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.116 2012/04/26 14:11:12 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> sed-4.2.1-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  19 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> sed-4.2.1-r1.ebuild:
+  Revert last commit in favour of using m4/selinux-selinux-h.m4.
+
+  15 Mar 2012; Samuli Suominen <ssuominen@gentoo.org> sed-4.2.1-r1.ebuild:
+  Pull in libselinux for selinux/selinux.h wrt #408213 by Markus Knetschke
+
+  03 Jan 2012; Mike Frysinger <vapier@gentoo.org> sed-4.2.1.ebuild,
+  sed-4.2.1-r1.ebuild:
+  Fix handling of selinux searching cache vars #397443 by Amadeusz Sławiński.
+
+  31 Dec 2011; Mike Frysinger <vapier@gentoo.org> sed-4.2.1.ebuild,
+  sed-4.2.1-r1.ebuild:
+  Use new usex() helper.
 
   24 Oct 2011; Fabian Groffen <grobian@gentoo.org> sed-4.2.1-r1.ebuild:
   Drop regex-nobool as it seems no longer necessary
