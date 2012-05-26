@@ -1,6 +1,10 @@
 # ChangeLog for sys-process/pidof-bsd
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/pidof-bsd/ChangeLog,v 1.8 2009/07/18 10:22:42 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/pidof-bsd/ChangeLog,v 1.9 2012/04/26 14:27:02 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org>
+  pidof-bsd-20050501-r3.ebuild:
+  keyword ~amd64-fbsd
 
   18 Jul 2009; Alexis Ballier <aballier@gentoo.org>
   pidof-bsd-20050501-r3.ebuild:
