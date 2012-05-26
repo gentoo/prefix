@@ -1,6 +1,33 @@
 # ChangeLog for net-p2p/bittorrent
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.141 2011/09/15 07:37:24 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/ChangeLog,v 1.150 2012/03/06 21:55:50 ranger Exp $
+
+  06 Mar 2012; Brent Baude <ranger@gentoo.org> bittorrent-4.4.0-r2.ebuild:
+  Marking bittorrent-4.4.0-r2 ppc64 for bug 390591
+
+  01 Feb 2012; Brent Baude <ranger@gentoo.org> bittorrent-4.4.0-r2.ebuild:
+  Marking bittorrent-4.4.0-r2 ppc for bug 390591
+
+  04 Dec 2011; Raúl Porcel <armin76@gentoo.org> bittorrent-4.4.0-r2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #390591
+
+  23 Nov 2011; Markus Meier <maekke@gentoo.org> bittorrent-4.4.0-r2.ebuild:
+  arm stable, bug #390591
+
+  19 Nov 2011; Markos Chandras <hwoarang@gentoo.org> bittorrent-4.4.0-r2.ebuild:
+  Stable on amd64 wrt bug #390591
+
+  17 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  bittorrent-4.4.0-r2.ebuild:
+  x86 stable wrt bug #390591
+
+  17 Nov 2011; Jeroen Roovers <jer@gentoo.org> bittorrent-4.4.0-r2.ebuild:
+  Stable for HPPA (bug #390591).
+
+  15 Nov 2011; Ryan Hill <dirtyepic@gentoo.org> +bittorrent-4.4.0-r1.ebuild,
+  -bittorrent-5.2.2-r1.ebuild:
+  Restore latest stable 4.4 ebuild. Remove 5.2.2-r1 for bug #336166 (removal of
+  5.x series).
 
   15 Sep 2011; Samuli Suominen <ssuominen@gentoo.org>
   -bittorrent-4.4.0-r1.ebuild, -bittorrent-5.0.9-r1.ebuild,
