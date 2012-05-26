@@ -1,10 +1,13 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.15.ebuild,v 1.11 2010/07/11 08:20:51 lxnay Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.4.2.ebuild,v 1.1 2012/04/20 03:58:46 patrick Exp $
+
+EAPI="2"
 
 # latest gentoo apache files
-GENTOO_PATCHSTAMP="20100307"
-GENTOO_DEVELOPER="hollow"
+GENTOO_PATCHSTAMP="20120401"
+GENTOO_DEVELOPER="patrick"
+GENTOO_PATCHNAME="gentoo-apache-2.4.1"
 
 # IUSE/USE_EXPAND magic
 IUSE_MPMS_FORK="itk peruser prefork"
@@ -15,9 +18,14 @@ authn_dbd authn_dbm authn_default authn_file authz_dbm authz_default
 authz_groupfile authz_host authz_owner authz_user autoindex cache cern_meta
 charset_lite cgi cgid dav dav_fs dav_lock dbd deflate dir disk_cache dumpio
 env expires ext_filter file_cache filter headers ident imagemap include info
-log_config log_forensic logio mem_cache mime mime_magic negotiation proxy proxy_ajp
-proxy_balancer proxy_connect proxy_ftp proxy_http rewrite setenvif speling
-status substitute unique_id userdir usertrack version vhost_alias"
+log_config log_forensic logio mem_cache mime mime_magic negotiation proxy
+proxy_ajp proxy_balancer proxy_connect proxy_ftp proxy_http proxy_scgi rewrite
+reqtimeout setenvif speling status substitute unique_id userdir usertrack
+version vhost_alias"
+# The following are also in the source as of this version, but are not available
+# for user selection:
+# bucketeer case_filter case_filter_in echo http isapi optional_fn_export
+# optional_fn_import optional_hook_export optional_hook_import
 
 # inter-module dependencies
 # TODO: this may still be incomplete
@@ -37,6 +45,7 @@ MODULE_DEPENDS="
 	proxy_connect:proxy
 	proxy_ftp:proxy
 	proxy_http:proxy
+	proxy_scgi:proxy
 	substitute:filter
 "
 
@@ -88,6 +97,34 @@ DEPEND="${DEPEND}
 	>=dev-libs/openssl-0.9.8m
 	apache2_modules_deflate? ( sys-libs/zlib )"
 
+# dependency on >=dev-libs/apr-1.4.5 for bug #368651
 RDEPEND="${RDEPEND}
+	>=dev-libs/apr-1.4.5
 	>=dev-libs/openssl-0.9.8m
 	apache2_modules_mime? ( app-misc/mime-types )"
+
+# init script fixup - should be rolled into next tarball #389965
+src_prepare() {
+	apache-2_src_prepare
+	sed -i -e 's/! test -f/test -f/' "${GENTOO_PATCHDIR}"/init/apache2.initd || die "Failed to fix init script"
+}
+
+src_install() {
+	apache-2_src_install
+	for i in /usr/bin/{htdigest,logresolve,htpasswd,htdbm,ab,httxt2dbm}; do
+		rm "${ED}"/$i || die "Failed to prune apache-tools bits"
+	done
+	for i in /usr/share/man/man8/{rotatelogs.8,htcacheclean.8}; do
+		rm "${ED}"/$i || die "Failed to prune apache-tools bits"
+	done
+	for i in /usr/share/man/man1/{logresolve.1,htdbm.1,htdigest.1,htpasswd.1,dbmmanage.1,ab.1}; do
+		rm "${ED}"/$i || die "Failed to prune apache-tools bits"
+	done
+	for i in /usr/sbin/{checkgid,fcgistarter,htcacheclean,rotatelogs}; do
+		rm "${ED}/"$i || die "Failed to prune apache-tools bits"
+	done
+
+	# well, actually installing things makes them more installed, I guess?
+	cp "${S}"/support/apxs "${ED}"/usr/sbin/apxs || die "Failed to install apxs"
+	chmod 0755 "${ED}"/usr/sbin/apxs
+}
