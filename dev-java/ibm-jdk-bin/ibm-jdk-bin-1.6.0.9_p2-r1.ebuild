@@ -1,6 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ibm-jdk-bin/ibm-jdk-bin-1.6.0.4.ebuild,v 1.3 2009/04/22 21:37:47 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ibm-jdk-bin/ibm-jdk-bin-1.6.0.9_p2-r1.ebuild,v 1.2 2011/12/12 13:49:10 sera Exp $
+
+EAPI="4"
 
 inherit java-vm-2 versionator eutils
 
@@ -9,9 +11,22 @@ JDK_RELEASE=$(get_version_component_range 2-3)
 JAVACOMM_RELEASE=$(get_version_component_range 3)
 SERVICE_RELEASE=$(get_version_component_range 4)
 SERVICE_RELEASE_LINK="${SERVICE_RELEASE}"
-TGZ_PV="${JDK_RELEASE}-${SERVICE_RELEASE}.0"
+
+# versions ending with _pX translate to .X in distfile and fpX in SRC_URI
+if [[ $(get_version_component_count) == 5 ]]; then
+	FP_VERSION="$(get_version_component_range 5)"
+	FP_VERSION="${FP_VERSION#p}"
+	FP_WEB="-FP${FP_VERSION}"
+	FP_LINK="fp${FP_VERSION}"
+	TGZ_PV="${JDK_RELEASE}-${SERVICE_RELEASE}.${FP_VERSION}"
+else
+	FP_WEB=""
+	FP_LINK=""
+	TGZ_PV="${JDK_RELEASE}-${SERVICE_RELEASE}.0"
+fi
+
 #JAVACOMM_PV="3.${JAVACOMM_RELEASE}-${SERVICE_RELEASE}.0"
-# looks like they didn't bump javacomm
+# looks like they don't bump javacomm in service releases anymore
 JAVACOMM_PV_ORIG="3.${JAVACOMM_RELEASE}-0.0"
 JAVACOMM_PV="${JDK_RELEASE}-${SERVICE_RELEASE}.0"
 
@@ -37,63 +52,25 @@ PPC64_JAVACOMM_DIST_ORIG="${JAVACOMM_DIST_PREFIX_ORIG}-ppc64.tgz"
 
 PPC_AIX_JDK_DIST="j${JDK_MAJOR}32redist-${TGZ_PV}.tar.gz"
 
-if use x86; then
-	JDK_DIST=${X86_JDK_DIST}
-	JAVACOMM_DIST=${X86_JAVACOMM_DIST}
-	JAVACOMM_DIST_ORIG=${X86_JAVACOMM_DIST_ORIG}
-	S="${WORKDIR}/ibm-java-i386-60"
-	LINK_ARCH="intel"
-elif use amd64; then
-	JDK_DIST=${AMD64_JDK_DIST}
-	JAVACOMM_DIST=${AMD64_JAVACOMM_DIST}
-	JAVACOMM_DIST_ORIG=${AMD64_JAVACOMM_DIST_ORIG}
-	S="${WORKDIR}/ibm-java-x86_64-60"
-	LINK_ARCH="amd64"
-elif use ppc; then
-	JDK_DIST=${PPC_JDK_DIST}
-	JAVACOMM_DIST=${PPC_JAVACOMM_DIST}
-	JAVACOMM_DIST_ORIG=${PPC_JAVACOMM_DIST_ORIG}
-	S="${WORKDIR}/ibm-java-ppc-60"
-	LINK_ARCH="ipseries32"
-elif use ppc64; then
-	JDK_DIST=${PPC64_JDK_DIST}
-	JAVACOMM_DIST=${PPC64_JAVACOMM_DIST}
-	JAVACOMM_DIST_ORIG=${PPC64_JAVACOMM_DIST_ORIG}
-	S="${WORKDIR}/ibm-java-ppc64-60"
-	LINK_ARCH="ipseries64"
-elif use ppc-aix; then
-	JDK_DIST=${PPC_AIX_JDK_DIST}
-	S="${WORKDIR}/sdk"
-	LINK_ARCH=aix32
-fi
-
-DIRECT_DOWNLOAD="https://www14.software.ibm.com/webapp/iwm/web/preLogin.do?source=swg-sdk6&S_PKG=${LINK_ARCH}_6sr${SERVICE_RELEASE}&S_TACT=105AGX05&S_CMP=JDK"
-use ppc-aix &&
-DIRECT_DOWNLOAD="https://www14.software.ibm.com/webapp/iwm/web/preLogin.do?source=dka&S_PKG=${LINK_ARCH}j${JDK_MAJOR}b&S_TACT=105AGX05&S_CMP=JDK#60"
-SLOT="1.6"
-DESCRIPTION="IBM Java Development Kit ${SLOT}"
+DESCRIPTION="IBM Java SE Development Kit"
 HOMEPAGE="http://www.ibm.com/developerworks/java/jdk/"
-DOWNLOADPAGE="${HOMEPAGE}linux/download.html"
-use ppc-aix &&
-DOWNLOADPAGE="${HOMEPAGE}aix/service.html"
-# bug #125178
-ALT_DOWNLOADPAGE="${HOMEPAGE}linux/older_download.html"
-use ppc-aix &&
-ALT_DOWNLOADPAGE="${HOMEPAGE}aix/outofservice.html"
 
 SRC_URI="
 	x86? ( ${X86_JDK_DIST} )
 	amd64? ( ${AMD64_JDK_DIST} )
 	ppc? ( ${PPC_JDK_DIST} )
 	ppc64? ( ${PPC64_JDK_DIST} )
-	ppc-aix? ( ${PPC_AIX_JDK_DIST} )
 	javacomm? (
 		x86? ( ${X86_JAVACOMM_DIST} )
 		amd64? ( ${AMD64_JAVACOMM_DIST} )
 		ppc? ( ${PPC_JAVACOMM_DIST} )
 		ppc64? ( ${PPC64_JAVACOMM_DIST} )
 	)"
+# until someone downloads this thing so it can be added to the Manifest
+#	ppc-aix? ( ${PPC_AIX_JDK_DIST} )
+
 LICENSE="IBM-J1.6"
+SLOT="1.6"
 KEYWORDS="-* ~ppc-aix"
 RESTRICT="fetch"
 IUSE="X alsa doc examples javacomm nsplugin odbc"
@@ -108,13 +85,11 @@ RDEPEND="
 		x11-libs/libXp
 		x11-libs/libXtst
 		x11-libs/libX11
-		amd64? ( x11-libs/libXt )
+		x11-libs/libXt
 	)
 	alsa? ( media-libs/alsa-lib )
 	doc? ( =dev-java/java-sdk-docs-1.6.0* )
 	odbc? ( dev-db/unixODBC )"
-
-DEPEND=""
 
 QA_TEXTRELS_x86="opt/${P}/jre/lib/i386/libj9jvmti24.so
 opt/${P}/jre/lib/i386/libj9vm24.so
@@ -159,6 +134,7 @@ opt/${P}/jre/lib/amd64/default/libj9dbg24.so
 opt/${P}/jre/lib/amd64/default/libj9shr24.so
 opt/${P}/jre/lib/amd64/default/libj9gc24.so
 opt/${P}/jre/lib/amd64/default/libj9bcv24.so
+opt/${P}/jre/lib/amd64/default/libj9ute24.so
 opt/${P}/jre/lib/amd64/compressedrefs/libjvm.so
 opt/${P}/jre/lib/amd64/compressedrefs/libj9jvmti24.so
 opt/${P}/jre/lib/amd64/compressedrefs/libj9hookable24.so
@@ -174,9 +150,52 @@ opt/${P}/jre/lib/amd64/compressedrefs/libj9trc24.so
 opt/${P}/jre/lib/amd64/compressedrefs/libj9dbg24.so
 opt/${P}/jre/lib/amd64/compressedrefs/libj9shr24.so
 opt/${P}/jre/lib/amd64/compressedrefs/libj9gc24.so
-opt/${P}/jre/lib/amd64/compressedrefs/libj9bcv24.so"
+opt/${P}/jre/lib/amd64/compressedrefs/libj9bcv24.so
+opt/${P}/jre/lib/amd64/compressedrefs/libj9ute24.so"
+
+_init_at_vars() {
+	if use x86; then
+		JDK_DIST=${X86_JDK_DIST}
+		JAVACOMM_DIST=${X86_JAVACOMM_DIST}
+		JAVACOMM_DIST_ORIG=${X86_JAVACOMM_DIST_ORIG}
+		S="${WORKDIR}/ibm-java-i386-60"
+		LINK_ARCH="intel"
+	elif use amd64; then
+		JDK_DIST=${AMD64_JDK_DIST}
+		JAVACOMM_DIST=${AMD64_JAVACOMM_DIST}
+		JAVACOMM_DIST_ORIG=${AMD64_JAVACOMM_DIST_ORIG}
+		S="${WORKDIR}/ibm-java-x86_64-60"
+		LINK_ARCH="amd64"
+	elif use ppc; then
+		JDK_DIST=${PPC_JDK_DIST}
+		JAVACOMM_DIST=${PPC_JAVACOMM_DIST}
+		JAVACOMM_DIST_ORIG=${PPC_JAVACOMM_DIST_ORIG}
+		S="${WORKDIR}/ibm-java-ppc-60"
+		LINK_ARCH="ipseries32"
+	elif use ppc64; then
+		JDK_DIST=${PPC64_JDK_DIST}
+		JAVACOMM_DIST=${PPC64_JAVACOMM_DIST}
+		JAVACOMM_DIST_ORIG=${PPC64_JAVACOMM_DIST_ORIG}
+		S="${WORKDIR}/ibm-java-ppc64-60"
+		LINK_ARCH="ipseries64"
+	elif use ppc-aix; then
+		JDK_DIST=${PPC_AIX_JDK_DIST}
+		S="${WORKDIR}/sdk"
+		LINK_ARCH=aix32
+	fi
+}
 
 pkg_nofetch() {
+	_init_at_vars
+
+	DIRECT_DOWNLOAD="https://www14.software.ibm.com/webapp/iwm/web/preLogin.do?source=swg-sdk6"
+	use ppc-aix && DIRECT_DOWNLOAD="https://www14.software.ibm.com/webapp/iwm/web/preLogin.do?source=dka&S_PKG=${LINK_ARCH}j${JDK_MAJOR}b&S_TACT=105AGX05&S_CMP=JDK#60"
+	DIRECT_DOWNLOAD+="&S_PKG=${LINK_ARCH}_6sr${SERVICE_RELEASE}${FP_LINK}&S_TACT=105AGX05&S_CMP=JDK"
+	DOWNLOADPAGE="${HOMEPAGE}linux/download.html"
+	use ppc-aix && DOWNLOADPAGE="${HOMEPAGE}aix/service.html"
+	# bug #125178
+	ALT_DOWNLOADPAGE="${HOMEPAGE}linux/older_download.html"
+
 	einfo "Due to license restrictions, we cannot redistribute or fetch the distfiles"
 	einfo "Please visit: ${DOWNLOADPAGE}"
 
@@ -185,7 +204,7 @@ pkg_nofetch() {
 		einfo "download 'j${JDK_MAJOR}${LINK_ARCH#aix}redist.tar.gz' from section"
 		einfo "'NON-AIX installp / NON-smit install format' and save it as"
 	else
-		einfo "Under Java SE 6, download SR${SERVICE_RELEASE} for your arch:"
+		einfo "Under Java SE 6, download SR${SERVICE_RELEASE}${FP_WEB} for your arch:"
 	fi
 	einfo "${JDK_DIST}"
 	if use ppc-aix; then
@@ -208,7 +227,7 @@ pkg_nofetch() {
 		einfo "updated their version, so this ebuild doesn't work any more."
 		einfo "In this case, check for newer ebuilds of ${PN} or file a bug."
 	else
-		einfo "Note: if SR${SERVICE_RELEASE} is not available at ${DOWNLOADPAGE}"
+		einfo "Note: if SR${SERVICE_RELEASE}${FP_WEB} is not available at ${DOWNLOADPAGE}"
 		einfo "it may have been moved to ${ALT_DOWNLOADPAGE}. Lately that page"
 		einfo "isn't updated, but the files should still available through the"
 		einfo "direct link to arch download page. If it doesn't work, file a bug."
@@ -216,14 +235,17 @@ pkg_nofetch() {
 }
 
 src_unpack() {
+	_init_at_vars
+
 	unpack ${JDK_DIST}
 	if use javacomm; then
 		mkdir "${WORKDIR}/javacomm/" || die
 		cd "${WORKDIR}/javacomm/"
 		unpack ${JAVACOMM_DIST}
 	fi
-	cd "${S}"
+}
 
+src_prepare() {
 	# bug #126105
 	epatch "${FILESDIR}/${PN}-jawt.h.patch"
 }
@@ -233,10 +255,10 @@ src_compile() { :; }
 src_install() {
 	# Copy all the files to the designated directory
 	dodir /opt/${P}
-	cp -pR "${S}"/{bin,jre,lib,include,src.zip} "${ED}/opt/${P}/" || die
+	cp -pPR bin jre lib include src.zip "${ED}/opt/${P}" || die
 
 	if use examples; then
-		cp -pPR "${S}"/demo "${ED}"/opt/${P}/ || die
+		cp -pPR demo "${ED}"/opt/${P} || die
 	fi
 	if use javacomm; then
 		chmod -x "${WORKDIR}"/javacomm/*/jar/*.jar "${WORKDIR}"/javacomm/*/lib/*.properties || die
@@ -249,31 +271,27 @@ src_install() {
 	fi
 
 	if use x86 || use ppc || use ppc-aix; then
+		local plugin="/opt/${P}/jre/plugin/$(get_system_arch)/ns7/libjavaplugin_oji.so"
 		if use nsplugin; then
-			local plugin="/opt/${P}/jre/plugin/$(get_system_arch)/ns7/libjavaplugin_oji.so"
 			install_mozilla_plugin "${plugin}"
+		else
+			rm "${ED}${plugin}" || die
 		fi
 	fi
 
-	local desktop_in="${ED}/opt/${P}/jre/plugin/desktop/sun_java.desktop"
-	if [[ -f "${desktop_in}" ]]; then
-		local desktop_out="${T}/ibm_jdk-${SLOT}.desktop"
-		# install control panel for Gnome/KDE
-		# The jre also installs these so make sure that they do not have the same
-		# Name
-		sed -e "s/\(Name=\)Java/\1 Java Control Panel for IBM JDK ${SLOT}/" \
-			-e "s#Exec=.*#Exec=${EPREFIX}/opt/${P}/jre/bin/jcontrol#" \
-			-e "s#Icon=.*#Icon=${EPREFIX}/opt/${P}/jre/plugin/desktop/sun_java.png#" \
-			"${desktop_in}" > \
-			"${desktop_out}" || die
+	# Install desktop file for the Java Control Panel. Using VMHANDLE as file
+	# name to prevent file collision with jre and or other slots.
+	sed -e "s/\(Name=\)Java/\1 Java Control Panel for IBM JDK ${SLOT}/" \
+		-e "s#Exec=.*#Exec=${EPREFIX}/opt/${P}/jre/bin/jcontrol#" \
+		-e "s#Icon=.*#Icon=${EPREFIX}/opt/${P}/jre/plugin/desktop/sun_java.png#" \
+		"${ED}"/opt/${P}/jre/plugin/desktop/sun_java.desktop \
+		> "${T}"/${VMHANDLE}.desktop || die
+	domenu "${T}"/${VMHANDLE}.desktop || die
 
-		domenu "${desktop_out}" || die
-	fi
-
-	dohtml -a html,htm,HTML -r docs || die
+	dohtml -a html,htm,HTML -r docs
 	local docarch=lnx
 	use ppc-aix && docarch=${LINK_ARCH}
-	dodoc "${S}"/{copyright,notices.txt,readmefirst.${docarch}.txt} || die
+	dodoc copyright notices.txt readmefirst.${docarch}.txt
 
 	set_java_env
 
@@ -287,5 +305,7 @@ src_install() {
 		sed -i -e "s|vm.jar|ppc64/default/jclSC160/vm.jar|g" "${ED}${JAVA_VM_CONFIG_DIR}/${VMHANDLE}" || die "sed failed"
 	fi
 
+	java-vm_set-pax-markings "${ED}"/opt/${P}
 	java-vm_revdep-mask
+	java-vm_sandbox-predict	/proc/cpuinfo /proc/self/coredump_filter /proc/self/maps
 }

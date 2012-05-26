@@ -1,6 +1,241 @@
 # ChangeLog for dev-java/ibm-jdk-bin
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ibm-jdk-bin/ChangeLog,v 1.201 2009/05/01 14:20:21 maekke Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ibm-jdk-bin/ChangeLog,v 1.248 2011/12/21 07:31:45 josejx Exp $
+
+  21 Dec 2011; Joseph Jezak <josejx@gentoo.org> ibm-jdk-bin-1.5.0.12_p5.ebuild,
+  ibm-jdk-bin-1.6.0.9_p2.ebuild:
+  Marked ppc/ppc64 stable (bug #377623).
+
+  12 Dec 2011; Ralph Sennhauser <sera@gentoo.org>
+  ibm-jdk-bin-1.6.0.9_p2-r1.ebuild:
+  Fix USE=-nsplugin. Bug 394421.
+
+*ibm-jdk-bin-1.6.0.9_p2-r1 (23 Nov 2011)
+*ibm-jdk-bin-1.5.0.12_p5-r1 (23 Nov 2011)
+
+  23 Nov 2011; Ralph Sennhauser <sera@gentoo.org>
+  +ibm-jdk-bin-1.5.0.12_p5-r1.ebuild, files/ibm-jdk-bin-1.5.env,
+  +ibm-jdk-bin-1.6.0.9_p2-r1.ebuild, files/ibm-jdk-bin-1.6.env:
+  Bump to EAPI 4.
+  Prefixify.
+  Add sandbox controle file. Bug #388937
+  Set pax markings. Bug #389751
+  Dont call 'use' in global scope.
+
+  27 Aug 2011; Markos Chandras <hwoarang@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p5.ebuild, ibm-jdk-bin-1.6.0.9_p2.ebuild:
+  Stable on amd64 wrt bug #377623
+
+  19 Aug 2011; Thomas Kahle <tomka@gentoo.org> ibm-jdk-bin-1.5.0.12_p5.ebuild,
+  ibm-jdk-bin-1.6.0.9_p2.ebuild:
+  x86 stable per bug 377623
+
+  19 Aug 2011; Thomas Kahle <tomka@gentoo.org> ibm-jdk-bin-1.5.0.12_p5.ebuild,
+  ibm-jdk-bin-1.6.0.9_p2.ebuild:
+  x86 stable per bug 377623
+
+*ibm-jdk-bin-1.6.0.9_p2 (03 Aug 2011)
+*ibm-jdk-bin-1.5.0.12_p5 (03 Aug 2011)
+
+  03 Aug 2011; Vlastimil Babka <caster@gentoo.org>
+  -ibm-jdk-bin-1.5.0.12_p3.ebuild, +ibm-jdk-bin-1.5.0.12_p5.ebuild,
+  -ibm-jdk-bin-1.6.0.9.ebuild, +ibm-jdk-bin-1.6.0.9_p2.ebuild:
+  Version bump, security bug #377623.
+
+  26 Mar 2011; Brent Baude <ranger@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p4.ebuild, ibm-jdk-bin-1.6.0.9_p1.ebuild:
+  Marking ibm-jdk-bin-1.5.0.12_p4 ibm-jdk-bin-1.6.0.9_p1 ppc and ppc64
+  stable for bug 360431
+
+  26 Mar 2011; Christian Faulhammer <fauli@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p4.ebuild, ibm-jdk-bin-1.6.0.9_p1.ebuild:
+  stable x86, security bug 360431
+
+  26 Mar 2011; Christoph Mende <angelos@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p4.ebuild, ibm-jdk-bin-1.6.0.9_p1.ebuild:
+  Stable on amd64 wrt bug #360431
+
+*ibm-jdk-bin-1.5.0.12_p4 (25 Mar 2011)
+
+  25 Mar 2011; Vlastimil Babka <caster@gentoo.org>
+  -ibm-jdk-bin-1.5.0.12_p1.ebuild, +ibm-jdk-bin-1.5.0.12_p4.ebuild:
+  Version bump, security bug #360431.
+
+*ibm-jdk-bin-1.6.0.9_p1 (25 Mar 2011)
+
+  25 Mar 2011; Vlastimil Babka <caster@gentoo.org>
+  -ibm-jdk-bin-1.6.0.8_p1-r1.ebuild, +ibm-jdk-bin-1.6.0.9_p1.ebuild:
+  Version bump, security bug #360431.
+
+  25 Jan 2011; Christian Faulhammer <fauli@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p3.ebuild:
+  stable x86, security bug 352603
+
+  25 Jan 2011; Christian Faulhammer <fauli@gentoo.org>
+  ibm-jdk-bin-1.6.0.9.ebuild:
+  stable x86, security bug 352603
+
+  25 Jan 2011; Markos Chandras <hwoarang@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p3.ebuild, ibm-jdk-bin-1.6.0.9.ebuild:
+  Stable on amd64 wrt bug #352603
+
+  24 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p3.ebuild, ibm-jdk-bin-1.6.0.9.ebuild:
+  ppc/ppc64 stable wrt #352603
+
+*ibm-jdk-bin-1.6.0.9 (24 Jan 2011)
+*ibm-jdk-bin-1.5.0.12_p3 (24 Jan 2011)
+
+  24 Jan 2011; Vlastimil Babka <caster@gentoo.org>
+  +ibm-jdk-bin-1.5.0.12_p3.ebuild, -ibm-jdk-bin-1.6.0.8_p1.ebuild,
+  +ibm-jdk-bin-1.6.0.9.ebuild:
+  Version bump, security bug #352603.
+
+*ibm-jdk-bin-1.6.0.8_p1-r1 (01 Nov 2010)
+
+  01 Nov 2010; Vlastimil Babka <caster@gentoo.org>
+  -ibm-jdk-bin-1.5.0.11_p1.ebuild, -ibm-jdk-bin-1.6.0.7.ebuild,
+  -ibm-jdk-bin-1.6.0.8.ebuild, +ibm-jdk-bin-1.6.0.8_p1-r1.ebuild:
+  Revbump to add sandbox.d file to suppress sandbox violations of
+  /proc/self/coredump_filter when ibm-jdk-bin is used to build a package.
+  Fixes bug #321695.
+
+  05 Oct 2010; Markus Meier <maekke@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p1.ebuild, ibm-jdk-bin-1.6.0.8_p1.ebuild:
+  x86 stable, bug #330663
+
+  28 Sep 2010; Brent Baude <ranger@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p1.ebuild, ibm-jdk-bin-1.6.0.8_p1.ebuild:
+  marking ibm-jdk-bin-1.6.0.8_p1 and ibm-jdk-bin-1.5.0.12_p1 for ppc and
+  ppc64 for bug 330663
+
+  26 Sep 2010; Markos Chandras <hwoarang@gentoo.org>
+  ibm-jdk-bin-1.5.0.12_p1.ebuild, ibm-jdk-bin-1.6.0.8_p1.ebuild:
+  Stable on amd64 wrt bug #330663
+
+*ibm-jdk-bin-1.6.0.8_p1 (16 Sep 2010)
+*ibm-jdk-bin-1.5.0.12_p1 (16 Sep 2010)
+
+  16 Sep 2010; Vlastimil Babka <caster@gentoo.org>
+  -ibm-jdk-bin-1.5.0.11.ebuild, +ibm-jdk-bin-1.5.0.12_p1.ebuild,
+  +ibm-jdk-bin-1.6.0.8_p1.ebuild:
+  Version bump, security bug #330663.
+
+*ibm-jdk-bin-1.6.0.8 (14 May 2010)
+
+  14 May 2010; Vlastimil Babka <caster@gentoo.org>
+  +ibm-jdk-bin-1.6.0.8.ebuild:
+  Version bump, bug #319533.
+
+  09 Mar 2010; Joseph Jezak <josejx@gentoo.org>
+  ibm-jdk-bin-1.5.0.11_p1.ebuild:
+  Marked ppc stable for bug #306583.
+
+  08 Mar 2010; Markus Meier <maekke@gentoo.org>
+  ibm-jdk-bin-1.5.0.11_p1.ebuild:
+  amd64 stable, bug #306583
+
+  28 Feb 2010; Brent Baude <ranger@gentoo.org>
+  ibm-jdk-bin-1.5.0.11_p1.ebuild:
+  Marking ibm-jdk-bin-1.5.0.11_p1 ppc64 for bug 306583
+
+  24 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  ibm-jdk-bin-1.5.0.11_p1.ebuild:
+  stable x86, security bug 306583
+
+*ibm-jdk-bin-1.5.0.11_p1 (23 Feb 2010)
+
+  23 Feb 2010; Vlastimil Babka <caster@gentoo.org>
+  +ibm-jdk-bin-1.5.0.11_p1.ebuild:
+  Version bump, security bug #306583.
+
+  22 Feb 2010; Vlastimil Babka <caster@gentoo.org>
+  -ibm-jdk-bin-1.4.2.13.ebuild, -files/ibm-jdk-bin-1.4.env,
+  -ibm-jdk-bin-1.5.0.10.ebuild, -ibm-jdk-bin-1.6.0.6.ebuild, -files/cpuinfo:
+  Removal of 1.4 per bug #287615.
+
+  31 Dec 2009; Markus Meier <maekke@gentoo.org> ibm-jdk-bin-1.5.0.11.ebuild,
+  ibm-jdk-bin-1.6.0.7.ebuild:
+  amd64 stable, bug #287490
+
+  29 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  ibm-jdk-bin-1.5.0.11.ebuild:
+  stable x86, security bug 287490
+
+  29 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  ibm-jdk-bin-1.6.0.7.ebuild:
+  stable x86, security bug 287490
+
+  28 Dec 2009; Joseph Jezak <josejx@gentoo.org> ibm-jdk-bin-1.5.0.11.ebuild,
+  ibm-jdk-bin-1.6.0.7.ebuild:
+  Marked ppc/ppc64 stable for bug #287490.
+
+*ibm-jdk-bin-1.6.0.7 (24 Dec 2009)
+*ibm-jdk-bin-1.5.0.11 (24 Dec 2009)
+
+  24 Dec 2009; Vlastimil Babka <caster@gentoo.org>
+  -ibm-jdk-bin-1.5.0.9-r1.ebuild, +ibm-jdk-bin-1.5.0.11.ebuild,
+  -ibm-jdk-bin-1.6.0.5.ebuild, +ibm-jdk-bin-1.6.0.7.ebuild:
+  Version bump, security bug #287490.
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org> ibm-jdk-bin-1.6.0.6.ebuild:
+  Marking ibm-jdk-bin-1.6.0.6 ppc64 for bug 287490
+
+  09 Nov 2009; Markus Meier <maekke@gentoo.org> ibm-jdk-bin-1.6.0.6.ebuild:
+  amd64 stable, bug #287490
+
+  09 Nov 2009; Markus Meier <maekke@gentoo.org> ibm-jdk-bin-1.5.0.10.ebuild:
+  amd64 stable, bug #287490
+
+  03 Nov 2009; Vlastimil Babka <caster@gentoo.org>
+  ibm-jdk-bin-1.6.0.6.ebuild:
+  Pull libXt on all arches, bug #290506.
+
+  25 Oct 2009; Mounir Lamouri <volkmar@gentoo.org>
+  ibm-jdk-bin-1.6.0.6.ebuild:
+  Stable for ppc, bug 287490
+
+*ibm-jdk-bin-1.6.0.6 (18 Oct 2009)
+
+  18 Oct 2009; Vlastimil Babka <caster@gentoo.org>
+  -ibm-jdk-bin-1.6.0.0.ebuild, -ibm-jdk-bin-1.6.0.4.ebuild,
+  +ibm-jdk-bin-1.6.0.6.ebuild:
+  Version bump, security bug #287490.
+
+  15 Oct 2009; Mounir Lamouri <volkmar@gentoo.org>
+  ibm-jdk-bin-1.5.0.10.ebuild:
+  Stabilizing for ppc, bug 287490
+
+  03 Oct 2009; Christian Faulhammer <fauli@gentoo.org>
+  ibm-jdk-bin-1.5.0.10.ebuild:
+  stable x86, security bug 287490
+
+  03 Oct 2009; Brent Baude <ranger@gentoo.org> ibm-jdk-bin-1.5.0.10.ebuild:
+  Marking ibm-jdk-bin-1.5.0.10 ppc64 for bug 287490
+
+  06 Sep 2009; Brent Baude <ranger@gentoo.org> ibm-jdk-bin-1.6.0.5.ebuild:
+  Marking ibm-jdk-bin-1.6.0.5 ppc64 for bug 278315
+
+  09 Aug 2009; nixnut <nixnut@gentoo.org> ibm-jdk-bin-1.6.0.5.ebuild:
+  ppc stable #278315
+
+*ibm-jdk-bin-1.5.0.10 (01 Aug 2009)
+
+  01 Aug 2009; Vlastimil Babka <caster@gentoo.org>
+  +ibm-jdk-bin-1.5.0.10.ebuild:
+  Version bump.
+
+*ibm-jdk-bin-1.6.0.5 (19 Jun 2009)
+
+  19 Jun 2009; Vlastimil Babka <caster@gentoo.org>
+  +ibm-jdk-bin-1.6.0.5.ebuild:
+  Version bump.
+
+  29 May 2009; Vlastimil Babka <caster@gentoo.org>
+  ibm-jdk-bin-1.4.2.13.ebuild, -ibm-jdk-bin-1.5.0.9.ebuild,
+  ibm-jdk-bin-1.5.0.9-r1.ebuild, ibm-jdk-bin-1.6.0.0.ebuild,
+  ibm-jdk-bin-1.6.0.4.ebuild:
+  Remove old versions, remove version from DESCRIPTION - bug #186276.
 
   01 May 2009; Markus Meier <maekke@gentoo.org>
   ibm-jdk-bin-1.5.0.9-r1.ebuild:
