@@ -1,6 +1,35 @@
 # ChangeLog for sys-apps/gawk
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.137 2011/08/05 19:08:07 jer Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.146 2012/04/28 17:45:47 nixnut Exp $
+
+  28 Apr 2012; <nixnut@gentoo.org> gawk-4.0.0.ebuild:
+  ppc stable #413117
+
+  26 Apr 2012; Jeroen Roovers <jer@gentoo.org> gawk-4.0.0.ebuild:
+  Stable for HPPA (bug #413117).
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> gawk-4.0.1.ebuild:
+  keyword ~amd64-fbsd
+
+  25 Apr 2012; Markus Meier <maekke@gentoo.org> gawk-4.0.0.ebuild:
+  arm stable, bug #413117
+
+  24 Apr 2012; Jeff Horelick <jdhore@gentoo.org> gawk-4.0.0.ebuild:
+  marked x86 per bug 413117
+
+  23 Apr 2012; Brent Baude <ranger@gentoo.org> gawk-4.0.0.ebuild:
+  Marking gawk-4.0.0 ppc64 for bug 413117
+
+  23 Apr 2012; Agostino Sarubbo <ago@gentoo.org> gawk-4.0.0.ebuild:
+  Stable for amd64, wrt bug #413117
+
+*gawk-4.0.1 (22 Apr 2012)
+
+  22 Apr 2012; Mike Frysinger <vapier@gentoo.org> +gawk-4.0.1.ebuild:
+  Version bump #413017 by teidakankan.
+
+  30 Nov 2011; Mike Frysinger <vapier@gentoo.org> gawk-4.0.0.ebuild:
+  Control readline support via USE=readline.
 
   22 Oct 2011; Fabian Groffen <grobian@gentoo.org> gawk-4.0.0.ebuild:
   Drop failing patches
