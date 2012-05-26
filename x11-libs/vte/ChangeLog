@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/vte
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.322 2012/04/29 16:21:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.324 2012/05/16 15:11:48 jer Exp $
+
+  16 May 2012; Jeroen Roovers <jer@gentoo.org> vte-0.28.2-r203.ebuild:
+  Stable for HPPA (bug #410611).
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> vte-0.28.1-r200.ebuild,
+  vte-0.28.1-r300.ebuild, vte-0.28.2-r200.ebuild, vte-0.28.2-r202.ebuild,
+  vte-0.28.2-r203.ebuild, vte-0.28.2-r300.ebuild, vte-0.28.2-r301.ebuild,
+  vte-0.30.1-r3.ebuild, vte-0.32.0.ebuild, vte-0.32.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   30 Apr 2012; Fabian Groffen <grobian@gentoo.org>
   files/vte-0.26.2-interix.patch, vte-0.28.2-r202.ebuild:
