@@ -3,10 +3,15 @@
 <pkgmetadata>
   <herd>net-p2p</herd>
   <maintainer>
-  	<email>pva@gentoo.org</email>
-	<name>Peter Volkov</name>
-  </maintainer>	
+    <email>pva@gentoo.org</email>
+    <name>Peter Volkov</name>
+  </maintainer>
+  <maintainer>
+    <email>ssuominen@gentoo.org</email>
+    <name>Samuli Suominen</name>
+  </maintainer>
   <use>
-	<flag name="sound">Enable sound event support with <pkg>media-libs/libcanberra</pkg></flag>
+    <flag name='lightweight'>Optimize transmission for low-resource systems (smaller cache size, prefer unencrypted peer connections, etc.)</flag>
+    <flag name='xfs'>Enable XFS filesystem capabilities by using <pkg>sys-fs/xfsprogs</pkg> headers (in building of fdlimit(.c))</flag>
   </use>
 </pkgmetadata>
