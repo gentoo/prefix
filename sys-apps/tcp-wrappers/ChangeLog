@@ -1,6 +1,20 @@
 # ChangeLog for sys-apps/tcp-wrappers
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/tcp-wrappers/ChangeLog,v 1.40 2010/10/08 02:20:06 leio Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/tcp-wrappers/ChangeLog,v 1.42 2012/04/26 12:20:58 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> tcp-wrappers-7.6.22.ebuild:
+  keyword ~amd64-fbsd
+
+*tcp-wrappers-7.6.22 (01 Jan 2012)
+
+  01 Jan 2012; Mike Frysinger <vapier@gentoo.org> +tcp-wrappers-7.6.22.ebuild,
+  +files/tcp-wrappers-7.6-headers.patch,
+  +files/tcp-wrappers-7.6-redhat-bug11881.patch, metadata.xml:
+  Migrate to Debian patchset which includes a lot more patches #158036 by
+  Wolfram Schlich and #269833 by Jason. Tweak fix_options func definition
+  #360749 by Alexander Kolesen. Add USE=netgroups so people can optionally
+  enable @netgroups syntax. Add USE=static-libs support #378271 by Agostino
+  Sarubbo.
 
   08 Oct 2010; Mart Raudsepp <leio@gentoo.org> tcp-wrappers-7.6-r8.ebuild:
   Drop to ~mips
