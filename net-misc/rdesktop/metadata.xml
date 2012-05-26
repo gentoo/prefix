@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <herd>no-herd</herd>
   <maintainer>
     <email>voyageur@gentoo.org</email>
     <name>Bernard Cafarelli</name>
@@ -11,6 +10,5 @@ An open source client for Windows NT Terminal Server and Windows 2000/2003 Termi
 </longdescription>
   <use>
 	  <flag name="pcsc-lite">Enable smartcard support with <pkg>sys-apps/pcsc-lite</pkg> driver</flag>
-	  <flag name="rdpusb">Enable USB redirection support for <pkg>app-emulation/virtualbox-bin</pkg></flag>
   </use>
 </pkgmetadata>

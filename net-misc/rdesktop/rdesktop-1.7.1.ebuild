@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.6.0-r3.ebuild,v 1.1 2009/07/05 14:26:22 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.7.1.ebuild,v 1.2 2012/05/05 03:20:43 jdhore Exp $
 
-EAPI=2
+EAPI=4
 
 inherit autotools eutils
 
@@ -12,7 +12,7 @@ DESCRIPTION="A Remote Desktop Protocol Client"
 HOMEPAGE="http://rdesktop.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${PN}-${MY_PV}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="alsa ao debug ipv6 libsamplerate oss pcsc-lite"
@@ -27,8 +27,9 @@ RDEPEND=">=dev-libs/openssl-0.9.6b
 	alsa? ( media-libs/alsa-lib )
 	ao? ( >=media-libs/libao-0.8.6 )
 	libsamplerate? ( media-libs/libsamplerate )
-	pcsc-lite? ( sys-apps/pcsc-lite )"
+	pcsc-lite? ( >=sys-apps/pcsc-lite-1.6.6 )"
 DEPEND="${RDEPEND}
+	virtual/pkgconfig
 	x11-libs/libXt"
 
 src_prepare() {
@@ -38,9 +39,12 @@ src_prepare() {
 		|| die "sed failed in Makefile.in"
 
 	# Automagic dependency on libsamplerate
-	epatch "${FILESDIR}"/${P}-sound_configure.patch
+	epatch "${FILESDIR}"/${PN}-1.6.0-sound_configure.patch
 	# Fix --enable-smartcard logic
-	epatch "${FILESDIR}"/${P}-smartcard_configure.patch
+	epatch "${FILESDIR}"/${PN}-1.6.0-smartcard_configure.patch
+	# bug #280923
+	epatch "${FILESDIR}"/${PN}-1.7.0-libao_crash.patch
+
 	eautoreconf
 }
 
@@ -60,14 +64,11 @@ src_configure() {
 		$(use_with ipv6) \
 		$(use_with libsamplerate) \
 		$(use_enable pcsc-lite smartcard) \
-		${sound_conf} \
-		|| die "configuration failed"
-
-	emake || die "compilation failed"
+		${sound_conf}
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "installation failed"
+	emake DESTDIR="${D}" install
 	dodoc doc/HACKING doc/TODO doc/keymapping.txt
 
 	# For #180313 - applies to versions >= 1.5.0

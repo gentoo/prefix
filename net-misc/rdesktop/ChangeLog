@@ -1,6 +1,79 @@
 # ChangeLog for net-misc/rdesktop
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.114 2010/03/09 10:21:43 voyageur Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.133 2012/05/05 03:20:43 jdhore Exp $
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> rdesktop-1.7.0.ebuild,
+  rdesktop-1.7.0-r1.ebuild, rdesktop-1.7.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*rdesktop-1.7.1 (10 Jan 2012)
+
+  10 Jan 2012; Bernard Cafarelli <voyageur@gentoo.org> +rdesktop-1.7.1.ebuild:
+  Version bump, mostly bugfixes
+
+  22 Aug 2011; Bernard Cafarelli <voyageur@gentoo.org> rdesktop-1.7.0.ebuild,
+  rdesktop-1.7.0-r1.ebuild:
+  Add pkgconfig to DEPEND, thanks to alex3255@mail.ru in bug #379459
+
+*rdesktop-1.7.0-r1 (30 May 2011)
+
+  30 May 2011; Bernard Cafarelli <voyageur@gentoo.org>
+  +rdesktop-1.7.0-r1.ebuild, +files/rdesktop-1.7.0-libao_crash.patch:
+  EAPI4, fix crash with libao and pulseaudio, thanks everyone in bug #280923
+
+  26 Apr 2011; Bernard Cafarelli <voyageur@gentoo.org>
+  -rdesktop-1.6.0-r4.ebuild, -files/rdesktop-1.6.0+pcsc-lite-1.6.6.patch,
+  metadata.xml:
+  Remove vulnerable version bug #364191
+
+  26 Apr 2011; Kacper Kowalik <xarthisius@gentoo.org> rdesktop-1.7.0.ebuild:
+  ppc64 stable wrt #364191
+
+  25 Apr 2011; Raúl Porcel <armin76@gentoo.org> rdesktop-1.7.0.ebuild:
+  alpha/ia64/sparc stable wrt #364191
+
+  25 Apr 2011; Markos Chandras <hwoarang@gentoo.org> rdesktop-1.7.0.ebuild:
+  Stable on amd64 wrt bug #364191
+
+  24 Apr 2011; Joseph Jezak <josejx@gentoo.org> rdesktop-1.7.0.ebuild:
+  Marked ppc stable for bug #364191.
+
+  22 Apr 2011; Bernard Cafarelli <voyageur@gentoo.org> rdesktop-1.7.0.ebuild:
+  Update pcsc-lite dependency to stable 1.6.6, bug #364433
+
+  22 Apr 2011; Jeroen Roovers <jer@gentoo.org> rdesktop-1.7.0.ebuild:
+  Stable for HPPA (bug #364191).
+
+  21 Apr 2011; Thomas Kahle <tomka@gentoo.org> rdesktop-1.7.0.ebuild:
+  x86 stable per bug 364191
+
+*rdesktop-1.7.0 (20 Apr 2011)
+
+  20 Apr 2011; Bernard Cafarelli <voyageur@gentoo.org> -rdesktop-1.6.0.ebuild,
+  -rdesktop-1.6.0-r3.ebuild, +rdesktop-1.7.0.ebuild,
+  +files/rdesktop-1.7.0+pcsc-lite-1.6.6.patch:
+  Version bump with some important bugfixes, update license, drop rdpusb patch.
+  Drop previous 1.6.0 ebuilds
+
+  10 Jan 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  rdesktop-1.6.0-r4.ebuild:
+  ppc64 stable wrt #349835
+
+  01 Jan 2011; Raúl Porcel <armin76@gentoo.org> rdesktop-1.6.0-r4.ebuild:
+  alpha/ia64/sparc stable wrt #349561
+
+  29 Dec 2010; Thomas Kahle <tomka@gentoo.org> rdesktop-1.6.0-r4.ebuild:
+  x86 stable per bug 349835
+
+  29 Dec 2010; Jeroen Roovers <jer@gentoo.org> rdesktop-1.6.0-r4.ebuild:
+  Stable for HPPA PPC (bug #349835).
+
+  29 Dec 2010; Markos Chandras <hwoarang@gentoo.org> rdesktop-1.6.0-r4.ebuild:
+  Stable on amd64 wrt bug #349835
+
+  26 Dec 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  rdesktop-1.6.0-r4.ebuild, +files/rdesktop-1.6.0+pcsc-lite-1.6.6.patch:
+  Add patch to allow building against modern pcsc-lite (bug #349813 by me).
 
 *rdesktop-1.6.0-r4 (09 Mar 2010)
 
