@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/preload
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.21 2011/02/27 20:48:25 hwoarang Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.22 2012/05/04 09:17:27 jdhore Exp $
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> preload-0.6.4-r2.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   27 Feb 2011; Markos Chandras <hwoarang@gentoo.org> preload-0.6.4-r2.ebuild:
   Stable on amd64 wrt bug #356309
