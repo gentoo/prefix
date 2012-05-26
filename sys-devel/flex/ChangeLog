@@ -1,6 +1,50 @@
 # ChangeLog for sys-devel/flex
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.84 2010/11/16 20:32:45 flameeyes Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.97 2012/04/26 13:12:45 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> flex-2.5.35_p10.ebuild:
+  keyword ~amd64-fbsd
+
+  31 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> flex-2.5.35_p10.ebuild:
+  ppc64 stable wrt #384221
+
+  27 Nov 2011; Mike Frysinger <vapier@gentoo.org> flex-2.5.35_p10.ebuild:
+  Add comment about needing bison and not general yacc.
+
+  20 Oct 2011; Brent Baude <ranger@gentoo.org> flex-2.5.35_p10.ebuild:
+  Marking flex-2.5.35_p10 ppc for bug 384221
+
+  12 Oct 2011; Raúl Porcel <armin76@gentoo.org> flex-2.5.35_p10.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #384221
+
+  09 Oct 2011; Jeroen Roovers <jer@gentoo.org> flex-2.5.35_p10.ebuild:
+  Stable for HPPA (bug #384221).
+
+  08 Oct 2011; Markus Meier <maekke@gentoo.org> flex-2.5.35_p10.ebuild:
+  arm stable, bug #384221
+
+  01 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> flex-2.5.35_p10.ebuild:
+  x86 stable wrt bug #384221
+
+  24 Sep 2011; Tony Vroon <chainsaw@gentoo.org> flex-2.5.35_p10.ebuild:
+  Marked stable on AMD64 based on arch testing by Blain "doc235" Anderson &
+  Agostino "ago" Sarubbo in bug #384221.
+
+  23 Sep 2011; Mike Frysinger <vapier@gentoo.org> flex-2.5.35_p10.ebuild:
+  Upgrade to EAPI 3 for prefix users #353066 by Jeremy Olexa.
+
+  06 Sep 2011; Matt Turner <mattst88@gentoo.org> flex-2.5.35.ebuild,
+  flex-2.5.35_p10.ebuild:
+  Add test? ( sys-devel/bison ) to DEPEND (plain dev-util/yacc doesn't work),
+  bug 381273.
+
+  17 Aug 2011; Matt Turner <mattst88@gentoo.org> flex-2.5.35.ebuild,
+  flex-2.5.35_p10.ebuild:
+  Add m4 to RDEPEND as well, bug 379355.
+
+  31 Jul 2011; Matt Turner <mattst88@gentoo.org> flex-2.5.35.ebuild,
+  flex-2.5.35_p10.ebuild:
+  Add missing sys-devel/m4 dependency, bug 376119.
 
 *flex-2.5.35_p10 (16 Nov 2010)
 
