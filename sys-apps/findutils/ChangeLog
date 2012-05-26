@@ -1,6 +1,40 @@
 # ChangeLog for sys-apps/findutils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.198 2011/07/05 21:12:54 aballier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.208 2012/04/26 21:35:56 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> findutils-4.5.10-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  27 Mar 2012; Mike Frysinger <vapier@gentoo.org> findutils-4.4.2.ebuild,
+  findutils-4.4.2-r1.ebuild, findutils-4.5.8.ebuild, findutils-4.5.9.ebuild,
+  findutils-4.5.10.ebuild, findutils-4.5.10-r1.ebuild:
+  Migrate to gnu-alpha mirror.
+
+  18 Mar 2012; Raúl Porcel <armin76@gentoo.org> findutils-4.4.2-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #404199
+
+  03 Mar 2012; Markus Meier <maekke@gentoo.org> findutils-4.4.2-r1.ebuild:
+  arm stable, bug #404199
+
+  02 Mar 2012; Brent Baude <ranger@gentoo.org> findutils-4.4.2-r1.ebuild:
+  Marking findutils-4.4.2-r1 ppc64 for bug 404199
+
+  24 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  findutils-4.4.2-r1.ebuild:
+  x86 stable wrt bug #404199
+
+  22 Feb 2012; Brent Baude <ranger@gentoo.org> findutils-4.4.2-r1.ebuild:
+  Marking findutils-4.4.2-r1 ppc for bug 404199
+
+  17 Feb 2012; Jeroen Roovers <jer@gentoo.org> findutils-4.4.2-r1.ebuild:
+  Stable for HPPA (bug #404199).
+
+  17 Feb 2012; Agostino Sarubbo <ago@gentoo.org> findutils-4.4.2-r1.ebuild:
+  Stable for amd64, wrt bug #404199
+
+  16 Feb 2012; Mike Frysinger <vapier@gentoo.org> findutils-4.4.2-r1.ebuild,
+  +files/findutils-4.4.2-gnulib-date-x32.patch:
+  Add minor patch for building for x32 targets.
 
   07 Nov 2011; Fabian Groffen <grobian@gentoo.org> findutils-4.5.10-r1.ebuild:
   Fix compilation on platforms with SElinux, but without SElinux in the right

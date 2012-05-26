@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.5.10-r1.ebuild,v 1.3 2011/07/05 21:12:54 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.5.10-r1.ebuild,v 1.5 2012/04/26 21:35:56 aballier Exp $
 
 EAPI="3"
 
@@ -8,7 +8,7 @@ inherit eutils flag-o-matic toolchain-funcs multilib
 
 DESCRIPTION="GNU utilities for finding files"
 HOMEPAGE="http://www.gnu.org/software/findutils/"
-SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.gz"
+SRC_URI="mirror://gnu-alpha/${PN}/${P}.tar.gz"
 #	mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
