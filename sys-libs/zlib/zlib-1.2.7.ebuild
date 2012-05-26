@@ -1,57 +1,40 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.5.1-r2.ebuild,v 1.5 2012/05/06 20:39:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.7.ebuild,v 1.2 2012/05/03 19:08:41 vapier Exp $
 
 AUTOTOOLS_AUTO_DEPEND="no"
-inherit autotools eutils toolchain-funcs
+inherit autotools toolchain-funcs
 
 DESCRIPTION="Standard (de)compression library"
 HOMEPAGE="http://www.zlib.net/"
-SRC_URI="http://www.gzip.org/zlib/${P}.tar.gz
-	http://www.zlib.net/current/beta/${P}.tar.gz"
+SRC_URI="http://zlib.net/${P}.tar.gz
+	http://www.gzip.org/zlib/${P}.tar.gz
+ 	http://www.zlib.net/current/beta/${P}.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="minizip static-libs"
 
+DEPEND="minizip? ( ${AUTOTOOLS_DEPEND} )"
 RDEPEND="!<dev-libs/libxml2-2.7.7" #309623
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# trust exit status of the compiler rather than stderr #55434
-	# -if test "`(...) 2>&1`" = ""; then
-	# +if (...) 2>/dev/null; then
-	sed -i 's|\<test "`\([^"]*\) 2>&1`" = ""|\1 2>/dev/null|' configure || die
 
-	epatch "${FILESDIR}"/${P}-version.patch
-	epatch "${FILESDIR}"/${P}-symlinks.patch
-	EPATCH_OPTS=-p1 epatch "${FILESDIR}"/${PN}-1.2.4-minizip-autotools.patch
 	if use minizip ; then
 		pushd contrib/minizip > /dev/null || die
-		sed -i "s:@ZLIB_VER@:${PV}:" configure.ac || die
-		ln -s ../../minigzip.c || die
 		eautoreconf
 		popd > /dev/null
 	fi
 
-	epatch "${FILESDIR}"/${P}-aix-soname.patch #213277
+	epatch "${FILESDIR}"/${PN}-1.2.7-aix-soname.patch #213277
 
-	# also set soname and stuff on Solaris (with CHOST compensation fix as below)
+	# set soname on Solaris for GNU toolchain
 	sed -i -e 's:Linux\* | linux\*:Linux\* | linux\* | SunOS\* | solaris\*:' configure || die
-	# and compensate for our ebuild env having CHOST set
-	sed -i -e 's:Darwin\*):Darwin\* | darwin\*):' configure || die
-
-	# configure script isn't really /bin/sh, breaks on Solaris
-	sed -i -e '1c\#!/usr/bin/env bash' configure || die
-
-	# put libz.so.1 into libz.a on AIX
-# fails, still necessary?
-#	epatch "${FILESDIR}"/${PN}-1.2.3-shlib-aix.patch
 }
 
-usex() { use $1 && echo ${2:-yes} || echo ${3:-no} ; }
 echoit() { echo "$@"; "$@"; }
 src_compile() {
 	tc-export CC
@@ -104,9 +87,9 @@ src_install() {
 	*)
 		emake install DESTDIR="${D}" LDCONFIG=: || die
 		gen_usr_ldscript -a z
-		sed_macros "${ED}"/usr/include/*.h
 		;;
 	esac
+	sed_macros "${ED}"/usr/include/*.h
 
 	dodoc FAQ README ChangeLog doc/*.txt
 
