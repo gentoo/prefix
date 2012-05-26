@@ -1,13 +1,13 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.6-r2.ebuild,v 1.15 2010/08/15 05:22:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.6-r2.ebuild,v 1.17 2012/03/30 15:58:53 aballier Exp $
 
 #
 # don't monkey with this ebuild unless contacting portage devs.
 # period.
 #
 
-inherit eutils flag-o-matic toolchain-funcs multilib
+inherit eutils flag-o-matic toolchain-funcs multilib unpacker
 
 DESCRIPTION="sandbox'd LD_PRELOAD hack"
 HOMEPAGE="http://www.gentoo.org/"
@@ -32,11 +32,7 @@ sandbox_death_notice() {
 }
 
 src_unpack() {
-	unpack ${A}
-	if [[ ! -d ${S} ]] ; then
-		# When upgrading from older version, lzma unpack may not work #271543
-		lzma -dc "${DISTDIR}/${A}" | tar xf - || die
-	fi
+	unpacker_src_unpack
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-disable-qa-static.patch
 	epatch "${FILESDIR}"/${P}-disable-pthread.patch
