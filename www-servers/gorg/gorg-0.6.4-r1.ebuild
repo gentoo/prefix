@@ -1,40 +1,41 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/gorg-0.6.3-r3.ebuild,v 1.3 2010/08/22 07:52:00 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/gorg-0.6.4-r1.ebuild,v 1.5 2012/03/07 20:29:10 ranger Exp $
 
-EAPI=2
+EAPI=3
+USE_RUBY="ruby18"
 
-inherit ruby eutils prefix
+inherit ruby-ng eutils prefix
 
 DESCRIPTION="Back-end XSLT processor for an XML-based web site"
-HOMEPAGE="http://gentoo.neysx.org/mystuff/gorg/gorg.xml"
+HOMEPAGE="http://www.gentoo.org/proj/en/gdp/doc/gorg.xml"
 SRC_URI="http://gentoo.neysx.org/mystuff/gorg/${P}.tgz"
 IUSE="fastcgi mysql"
 
 SLOT="0"
-USE_RUBY="ruby18"
 LICENSE="GPL-2"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
-DEPEND="
+CDEPEND="
 	>=dev-libs/libxml2-2.6.16
 	>=dev-libs/libxslt-1.1.12"
-RDEPEND="${DEPEND}
+DEPEND="${DEPEND} ${CDEPEND}"
+RDEPEND="${RDEPEND} ${CDEPEND}
+		fastcgi? ( virtual/httpd-fastcgi )"
+
+ruby_add_rdepend "
 	mysql? ( >=dev-ruby/ruby-dbi-0.0.21[mysql] )
-	fastcgi? (
-		virtual/httpd-fastcgi
-		>=dev-ruby/ruby-fcgi-0.8.5-r1
-	)"
+	fastcgi? ( >=dev-ruby/ruby-fcgi-0.8.5-r1 )"
 
 pkg_setup() {
 	enewgroup gorg
 	enewuser  gorg -1 -1 -1 gorg
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	
+all_ruby_prepare() {
+	epatch "${FILESDIR}/${P}-ruby19.patch"
+	epatch "${FILESDIR}/${P}-ruby19-date.patch"
+
 	epatch "${FILESDIR}/${P}-prefix.patch"
 	eprefixify bin/gorg etc/gorg/gorg.conf.sample \
 		etc/gorg/lighttpd.conf.sample etc/gorg/vhost.sample lib/gorg/base.rb \
@@ -42,21 +43,25 @@ src_unpack() {
 		lib/gorg/fcgi-bin/gorg.fcgi
 }
 
-src_compile() {
-	# Fix listen issue w/ webrick
-	sed -i -e 's/WEBrick::HTTPServer.new(/WEBrick::HTTPServer.new( :BindAddress=>"127.0.0.1",/' lib/gorg/www.rb
-
-	ruby_src_compile
+each_ruby_configure() {
+	${RUBY} setup.rb config --prefix="${EPREFIX}"/usr || die
 }
 
-src_install() {
-	ruby_einstall
+each_ruby_compile() {
+	${RUBY} setup.rb setup || die
+}
+
+each_ruby_install() {
+	${RUBY} setup.rb config --prefix="${ED}"/usr || die
+	${RUBY} setup.rb install                    || die
 
 	# install doesn't seem to chmod these correctly, forcing it here
-	SITE_LIB_DIR=`$RUBY -r rbconfig -e 'puts Config::CONFIG["sitelibdir"]'`
+	SITE_LIB_DIR=$(ruby_rbconfig_value 'sitelibdir')
 	chmod +x "${D}"/${SITE_LIB_DIR}/gorg/cgi-bin/*.cgi
 	chmod +x "${D}"/${SITE_LIB_DIR}/gorg/fcgi-bin/*.fcgi
+}
 
+all_ruby_install() {
 	keepdir /etc/gorg; insinto /etc/gorg ; doins etc/gorg/*
 
 	if use prefix; then

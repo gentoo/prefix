@@ -1,6 +1,40 @@
 # ChangeLog for www-servers/gorg
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.24 2010/08/22 07:52:00 hollow Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.33 2012/03/08 06:30:51 graaff Exp $
+
+  08 Mar 2012; Hans de Graaff <graaff@gentoo.org> -gorg-0.6.3-r2.ebuild,
+  -gorg-0.6.4.ebuild:
+  Remove old versions.
+
+  07 Mar 2012; Brent Baude <ranger@gentoo.org> gorg-0.6.4-r1.ebuild:
+  Marking gorg-0.6.4-r1 ppc for bug 403103
+
+  17 Feb 2012; Agostino Sarubbo <ago@gentoo.org> gorg-0.6.4-r1.ebuild:
+  Stable for amd64, wrt bug #403103
+
+  16 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gorg-0.6.4-r1.ebuild:
+  x86 stable wrt bug #403103
+
+  10 Dec 2011; Hans de Graaff <graaff@gentoo.org> gorg-0.6.4-r1.ebuild:
+  Drop ruby19 until all dependencies are also marked for ruby19.
+
+*gorg-0.6.4-r1 (04 Dec 2011)
+
+  04 Dec 2011; Hans de Graaff <graaff@gentoo.org> +gorg-0.6.4-r1.ebuild,
+  +files/gorg-0.6.4-ruby19-date.patch, +files/gorg-0.6.4-ruby19.patch:
+  Convert to ruby-ng.eclass. Add ruby19 support. Thanks to naota for patches
+  and testing in bug 315487.
+
+  09 Apr 2011; Hans de Graaff <graaff@gentoo.org> gorg-0.6.3-r2.ebuild,
+  gorg-0.6.4.ebuild:
+  Update HOMEPAGE to point to a Gentoo-hosted version. Thanks to tove for
+  the suggestion. Fixes bug 317611.
+
+  09 Apr 2011; Hans de Graaff <graaff@gentoo.org> -gorg-0.6.3-r3.ebuild:
+  Remove old version.
+
+  10 Nov 2010; Lance Albertson <ramereth@gentoo.org> metadata.xml:
+  transfer maintainership over to robbat2
 
   22 Aug 2010; Benedikt Böhm <hollow@gentoo.org> gorg-0.6.3-r2.ebuild,
   gorg-0.6.3-r3.ebuild, gorg-0.6.4.ebuild:

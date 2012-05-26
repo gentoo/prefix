@@ -2,14 +2,10 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>ruby</herd>
-	<maintainer>
-		<email>neysx@gentoo.org</email>
-		<name>Xavier Neys</name>
-	</maintainer>
-	<maintainer>
-		<email>ramereth@gentoo.org</email>
-		<name>Lance Albertson</name>
-	</maintainer>
+    <maintainer>
+        <email>robbat2@gentoo.org</email>
+        <name>Robin H. Johnson</name>
+    </maintainer>
 	<longdescription lang="en">
 		Gorg serves as a back-end XSLT processor for an XML-based web site.
 		Gorg was developed with http://www.gentoo.org in mind and it allows you
