@@ -1,0 +1,22 @@
+--- tools/darwin.jam.orig	2012-05-26 09:51:49.000000000 +0200
++++ tools/darwin.jam	2012-05-26 09:56:44.000000000 +0200
+@@ -227,6 +227,9 @@
+         }
+     }
+     
++	# leave compiler flags etc. up to the toolchain
++	return $(version-feature) ;
++
+     if $(version-feature)
+     {
+         if $(.debug-configuration)
+@@ -387,7 +390,8 @@
+             support-ppc64 = ;
+         }
+     }
+-    switch $(arch)
++	# Gentoo Prefix toolchain doesn't grok -arch stuff
++    switch $(donotaddarchpleaseXXXarch)
+     {
+         case combined : 
+         {

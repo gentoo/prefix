@@ -33,12 +33,8 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.48.0-support_dots_in_python-buildid.patch"
 	epatch "${FILESDIR}/${PN}-1.48.0-disable_python_rpath.patch"
 
-	epatch "${FILESDIR}"/boost-1.46.1-darwin-sanitise.patch
+	epatch "${FILESDIR}"/${PN}-1.49.0-darwin-sanitise.patch
 
-	# needed by multiple platforms - how can this work anywhere?
-	# the symptom is "${CHOST}-gcc: not found", however this
-	# can be caused by quoting of _arguments_ ... ?
-	epatch "${FILESDIR}"/1.39.0-build_jam-quoting.patch
 
 	# Remove stripping option
 	cd "${S}/engine"

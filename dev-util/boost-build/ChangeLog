@@ -3,6 +3,10 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.85 2012/05/16 15:39:46 jer Exp $
 
   26 May 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/boost-build-1.49.0-darwin-sanitise.patch, boost-build-1.49.0.ebuild:
+  Updated darwin-sanitise patch
+
+  26 May 2012; Fabian Groffen <grobian@gentoo.org>
   +files/boost-build-1.48.0-disable_python_rpath.patch,
   +files/boost-build-1.48.0-support_dots_in_python-buildid.patch:
   Add missing patches
