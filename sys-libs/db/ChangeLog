@@ -1,6 +1,20 @@
 # ChangeLog for sys-libs/db
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.322 2011/11/13 20:38:10 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.326 2012/04/26 14:45:42 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> db-4.8.30.ebuild:
+  keyword ~amd64-fbsd
+
+  03 Mar 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop pauldv from metadata as talked with him.
+
+*db-5.1.29 (10 Feb 2012)
+
+  10 Feb 2012; Robin H. Johnson <robbat2@gentoo.org> +db-5.1.29.ebuild:
+  Verison bump.
+
+  18 Dec 2011; Mark Loeser <halcy0n@gentoo.org> db-4.8.30.ebuild:
+  Stable for ppc; bug #387187
 
   03 Dec 2011; Fabian Groffen <grobian@gentoo.org> db-5.2.36.ebuild:
   Comment out Interix patch as it fails to apply

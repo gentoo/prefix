@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.8.30.ebuild,v 1.5 2011/11/13 20:38:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.8.30.ebuild,v 1.7 2012/04/26 14:45:42 aballier Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 

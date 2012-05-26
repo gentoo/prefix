@@ -2,14 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>base-system</herd>
-<maintainer restrict="&gt;=sys-libs/db-3.2.9-r5">
-  <!-- I'm currently working on making db 4 work with gentoo, but am not
-        maintaining general db -->
-  <email>pauldv@gentoo.org</email>
-  <name>Paul de Vrieze</name>
-  <description>Making db4 work with gentoo</description>
-</maintainer>
-
 <longdescription>The Berkeley Database (Berkeley DB) is a programmatic toolkit
 that provides embedded database support for both traditional and client/server
 applications. Berkeley DB includes b+tree, queue, extended linear hashing,
