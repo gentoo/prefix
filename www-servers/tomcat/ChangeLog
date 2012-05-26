@@ -1,6 +1,320 @@
 # ChangeLog for www-servers/tomcat
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.232 2010/07/25 17:31:33 betelgeuse Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.291 2012/05/02 17:17:22 ago Exp $
+
+  02 May 2012; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.27.ebuild:
+  Stable for amd64, wrt bug #414375
+
+*tomcat-7.0.27 (05 Apr 2012)
+
+  05 Apr 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.27-build-xml.patch, +tomcat-7.0.27.ebuild:
+  Version bump
+
+  25 Mar 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/7/7.0.25-build-xml.patch, -tomcat-6.0.32-r1.ebuild,
+  -tomcat-7.0.25.ebuild:
+  Removed obsolete versions
+
+  25 Mar 2012; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.26.ebuild:
+  Stable for amd64, wrt bug #409609
+
+  12 Mar 2012; Brent Baude <ranger@gentoo.org> tomcat-6.0.35.ebuild:
+  Marking tomcat-6.0.35 ppc64 for bug 395933
+
+  12 Mar 2012; Brent Baude <ranger@gentoo.org> tomcat-7.0.23-r3.ebuild:
+  Marking tomcat-7.0.23-r3 ppc64 for bug 395933
+
+  10 Mar 2012; Brent Baude <ranger@gentoo.org> tomcat-6.0.35.ebuild:
+  Marking tomcat-6.0.35 ppc for bug 395933
+
+  10 Mar 2012; Brent Baude <ranger@gentoo.org> tomcat-7.0.23-r3.ebuild:
+  Marking tomcat-7.0.23-r3 ppc for bug 395923
+
+  23 Feb 2012; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.25.ebuild:
+  Stable for amd64, wrt bug #405307
+
+*tomcat-7.0.26 (22 Feb 2012)
+
+  22 Feb 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.26-build-xml.patch, +tomcat-7.0.26.ebuild:
+  Version bump
+
+*tomcat-7.0.25 (21 Jan 2012)
+
+  21 Jan 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.25-build-xml.patch, +tomcat-7.0.25.ebuild:
+  Version bump
+
+  06 Jan 2012; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-6.0.33.ebuild:
+  Removed old version
+
+  04 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> tomcat-6.0.35.ebuild:
+  x86 stable wrt bug #395933
+
+  30 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/7/7.0.22-build-xml.patch, -tomcat-7.0.22-r1.ebuild:
+  Removed old version
+
+  24 Dec 2011; Agostino Sarubbo <ago@gentoo.org> tomcat-6.0.35.ebuild:
+  Stable for AMD64, wrt bug #395933
+
+  24 Dec 2011; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.23-r3.ebuild:
+  Stable for AMD64, wrt bug #395923
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/5.5/26-main_tomcat_catalina_jasper_build_xml.patch,
+  -tomcat-5.5.27-r5.ebuild, -files/5.5/5.5.27-dynamic-JSSE13Factory.patch,
+  -files/5.5/build-jspc-classpath.patch, -files/5.5/catalina.policy,
+  -files/5.5/examples-cal.patch,
+  -files/5.5/jsr152_jsr154_examples_build_xml.patch, -files/5.5/tomcat.conf.2,
+  -files/5.5/tomcat.init.2, -tomcat-5.5.27-r4.ebuild, metadata.xml:
+  Tomcat 5.5 moved from main tree to java-overlay because it's heading towards
+  its EOL in 2012-09-30. Also the current version (5.5.27) is affected by
+  several security issues and it is unmaintained in our main tree. If you need
+  to use Tomcat 5.5, please use the ebuilds from java-overlay.
+
+*tomcat-7.0.23-r3 (24 Dec 2011)
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.23-r2.ebuild,
+  +tomcat-7.0.23-r3.ebuild:
+  Removed the doc symlink because copying of doc is handled in post_inst.
+
+*tomcat-6.0.35 (24 Dec 2011)
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> +files/6/tomcat.init.4,
+  +tomcat-6.0.35.ebuild:
+  Version bump. This release fixes CVE-2011-3190. Also fixed issue with
+  documentation installation (bug #357437, thanks to Matt O
+  <locke105@gmail.com> for the fix). Also fixed warnings from init script.
+
+*tomcat-7.0.23-r2 (24 Dec 2011)
+
+  24 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.23-r1.ebuild,
+  +tomcat-7.0.23-r2.ebuild:
+  Fixed installation of documentation (bug #393511, thanks to ron widler
+  <ron@einfach.org> for the fix). Also added symlink to docs to catalina base
+  webapps which fixes display of documentation from Tomcat default web app.
+
+*tomcat-7.0.23-r1 (15 Dec 2011)
+
+  15 Dec 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.23.ebuild,
+  +tomcat-7.0.23-r1.ebuild:
+  Fixed bug with storing SESSIONS.ser in work directory. It cannot be symlink
+  because tomcat by default does not allow working with symlink paths.
+
+  14 Dec 2011; Agostino Sarubbo <ago@gentoo.org> tomcat-7.0.22-r1.ebuild:
+  Stable for AMD64, wrt bug #392393
+
+*tomcat-7.0.23 (29 Nov 2011)
+
+  29 Nov 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.23-build-xml.patch, +tomcat-7.0.23.ebuild:
+  Version bump
+
+  13 Nov 2011; Markus Meier <maekke@gentoo.org> tomcat-6.0.33.ebuild:
+  x86 stable, bug #388131
+
+  03 Nov 2011; Mike Frysinger <vapier@gentoo.org> tomcat-5.5.27-r4.ebuild,
+  tomcat-5.5.27-r5.ebuild:
+  Use new egethome helper rather than calling getent directly.
+
+  27 Oct 2011; Tony Vroon <chainsaw@gentoo.org> tomcat-6.0.33.ebuild:
+  Marked stable on AMD64 based on arch testing by Ian "idella4" Delaney &
+  Agostino "ago" Sarubbo in bug #388131.
+
+  22 Oct 2011; Miroslav Šulc <fordfrog@gentoo.org> -files/6/build-xml.patch,
+  -files/6/examples-cal.patch, -files/6/tomcat.init,
+  -files/7/7.0.21-build-xml.patch, -tomcat-6.0.26.ebuild,
+  -files/7/build-xml.patch, -tomcat-6.0.26-r2.ebuild,
+  -files/7/examples-cal.patch, -tomcat-6.0.28-r1.ebuild,
+  -tomcat-6.0.29-r1.ebuild, -tomcat-6.0.32-r2.ebuild, -tomcat-7.0.21-r1.ebuild:
+  Removed obsolete files
+
+*tomcat-7.0.22-r1 (19 Oct 2011)
+
+  19 Oct 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.22.ebuild,
+  +tomcat-7.0.22-r1.ebuild:
+  In tomcat 7 switched to ecj 3.7 which is finally in tree
+
+*tomcat-7.0.22 (18 Oct 2011)
+
+  18 Oct 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.22-build-xml.patch, +tomcat-7.0.22.ebuild:
+  Version bump
+
+*tomcat-7.0.21-r1 (18 Oct 2011)
+
+  18 Oct 2011; Miroslav Šulc <fordfrog@gentoo.org> files/7/tomcat.init,
+  -tomcat-7.0.21.ebuild, +tomcat-7.0.21-r1.ebuild:
+  Changed opts to extra_commands in initd script (bug #386753). Also replaced
+  deprecated --chuid with --user.
+
+  07 Sep 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/7/7.0.20-build-xml.patch, -tomcat-7.0.20.ebuild:
+  Removed slot 7 version affected by CVE-2011-3190
+
+  02 Sep 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/7/7.0.14-build-xml.patch, -files/7/7.0.16-build-xml.patch,
+  -files/7/7.0.19-build-xml.patch, -tomcat-7.0.14.ebuild,
+  -tomcat-7.0.16.ebuild, -tomcat-7.0.19.ebuild:
+  Removed old versions
+
+*tomcat-7.0.21 (02 Sep 2011)
+
+  02 Sep 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.21-build-xml.patch, +tomcat-7.0.21.ebuild:
+  Version bump
+
+*tomcat-6.0.33 (22 Aug 2011)
+
+  22 Aug 2011; Miroslav Šulc <fordfrog@gentoo.org> +tomcat-6.0.33.ebuild:
+  Version bump
+
+*tomcat-7.0.20 (15 Aug 2011)
+
+  15 Aug 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.20-build-xml.patch, +tomcat-7.0.20.ebuild:
+  Version bump
+
+*tomcat-7.0.19 (19 Jul 2011)
+
+  19 Jul 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.19-build-xml.patch, +tomcat-7.0.19.ebuild:
+  Version bump. Upstream tomcat depends on ecj 3.7 now, but we do not have this
+  version in tree yet, so our 7.0.19 still depends on ecj 3.6.
+
+*tomcat-7.0.16 (22 Jun 2011)
+
+  22 Jun 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.16-build-xml.patch, -files/7/7.0.12-build-xml.patch,
+  +tomcat-7.0.16.ebuild:
+  Version bump
+
+  17 May 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.12.ebuild:
+  Removing version 7.0.12, affected by CVE-2011-1582
+
+*tomcat-7.0.14 (14 May 2011)
+
+  14 May 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.14-build-xml.patch, +tomcat-7.0.14.ebuild:
+  Version bump
+
+  08 Apr 2011; <elvanor@gentoo.org> files/6/tomcat.init.2,
+  files/6/tomcat.init.3:
+  Fixed again init scripts so that catalina.out is not empty if running
+  without OpenRC.
+
+*tomcat-7.0.12 (07 Apr 2011)
+
+  07 Apr 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.12-build-xml.patch, -files/7/7.0.8-build-xml.patch,
+  -files/7/7.0.10-build-xml.patch, -files/7/7.0.11-build-xml.patch,
+  -tomcat-7.0.11.ebuild, +tomcat-7.0.12.ebuild:
+  Bumped to latest version. Removed older version as it contains security
+  issue. Also removed orphaned files.
+
+  05 Apr 2011; <elvanor@gentoo.org> files/6/tomcat.init.2:
+  Modified init script for bug #361235 / #191611. Removed the --startas
+  /bin/bash which was apparently causing the problems.
+
+  13 Mar 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-7.0.8.ebuild,
+  -tomcat-7.0.10.ebuild:
+  Removed tomcat 7.x versions affected by security vulnerability as stated in
+  bug #358607
+
+  11 Mar 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  -files/7/7.0.6-build-xml.patch, -tomcat-7.0.5-r1.ebuild,
+  -tomcat-7.0.6.ebuild:
+  Removed old versions
+
+*tomcat-7.0.11 (11 Mar 2011)
+
+  11 Mar 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.11-build-xml.patch, +tomcat-7.0.11.ebuild:
+  Version bump
+
+*tomcat-7.0.10 (08 Mar 2011)
+
+  08 Mar 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.10-build-xml.patch, +tomcat-7.0.10.ebuild:
+  Version bump
+
+*tomcat-6.0.32-r2 (14 Feb 2011)
+
+  14 Feb 2011; Miroslav Šulc <fordfrog@gentoo.org> +files/6/tomcat.init.3,
+  +tomcat-6.0.32-r2.ebuild:
+  Fixed bug #326979 (thanks to Pavel Goran <via-gentoo@pvgoran.name> for the
+  fix)
+
+  13 Feb 2011; Markos Chandras <hwoarang@gentoo.org> tomcat-6.0.32-r1.ebuild:
+  Stable on amd64 wrt bug #329937
+
+  13 Feb 2011; Christian Faulhammer <fauli@gentoo.org>
+  tomcat-6.0.32-r1.ebuild:
+  stable x86, security bug 329937
+
+  12 Feb 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  tomcat-6.0.32-r1.ebuild:
+  ppc/ppc64 stable wrt #329937
+
+*tomcat-6.0.32-r1 (12 Feb 2011)
+
+  12 Feb 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-6.0.32.ebuild,
+  +tomcat-6.0.32-r1.ebuild:
+  Fixed problem with JSP compilation (bug #354447)
+
+  10 Feb 2011; Miroslav Šulc <fordfrog@gentoo.org> metadata.xml:
+  Removing mike@weisso.com (Mike Weissman) from maintainer as I did not see any
+  activity from him lately. If the removal is not correct then please re-add
+  him.
+
+*tomcat-6.0.32 (10 Feb 2011)
+
+  10 Feb 2011; Miroslav Šulc <fordfrog@gentoo.org> +tomcat-6.0.32.ebuild:
+  Version bump
+
+*tomcat-7.0.8 (10 Feb 2011)
+
+  10 Feb 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.8-build-xml.patch, +tomcat-7.0.8.ebuild:
+  Version bump
+
+*tomcat-7.0.6 (30 Jan 2011)
+
+  30 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.6-build-xml.patch, +tomcat-7.0.6.ebuild:
+  Version bump
+
+*tomcat-5.5.27-r5 (19 Jan 2011)
+
+  19 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/5.5/build-jspc-classpath.patch, +tomcat-5.5.27-r5.ebuild:
+  Fixed bug #339603, thanks to Isaac Richter <LaughingJudge@gmail.com>
+
+*tomcat-7.0.5-r1 (18 Jan 2011)
+*tomcat-6.0.29-r1 (18 Jan 2011)
+*tomcat-6.0.28-r1 (18 Jan 2011)
+*tomcat-6.0.26-r2 (18 Jan 2011)
+
+  18 Jan 2011; Miroslav Šulc <fordfrog@gentoo.org> -tomcat-6.0.26-r1.ebuild,
+  +tomcat-6.0.26-r2.ebuild, -tomcat-6.0.28.ebuild, +tomcat-6.0.28-r1.ebuild,
+  -tomcat-6.0.29.ebuild, +tomcat-6.0.29-r1.ebuild, -tomcat-7.0.5.ebuild,
+  +tomcat-7.0.5-r1.ebuild:
+  Fixed bug #350645 in all versions except 5.5.27 where it does not seem to
+  occur, thanks to gentoo@ddrs.ath.cx pointing it out and for the fix
+
+*tomcat-7.0.5 (21 Dec 2010)
+
+  21 Dec 2010; Alistair Bush <ali_bush@gentoo.org> +files/7/build-xml.patch,
+  +files/7/examples-cal.patch, +files/7/tomcat.init, +tomcat-7.0.5.ebuild,
+  +files/7/tomcat.conf:
+  Version Bump. Thanks to wltjr for all the work.
+
+*tomcat-6.0.29 (31 Aug 2010)
+
+  31 Aug 2010; Krzysztof Pawlik <nelchael@gentoo.org> +tomcat-6.0.29.ebuild:
+  Version bump.
 
   25 Jul 2010; Petteri Räty <betelgeuse@gentoo.org> tomcat-6.0.28.ebuild:
   Block tomcat-native older than 1.1.20. Fixes bug #316545.

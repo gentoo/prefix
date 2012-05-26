@@ -1,0 +1,138 @@
+diff --git a/apache-tomcat-7.0.25-src/build.xml b/apache-tomcat-7.0.25-src/build.xml
+index c7d4669..d8dc2c5 100644
+--- a/apache-tomcat-7.0.25-src/build.xml
++++ b/apache-tomcat-7.0.25-src/build.xml
+@@ -163,6 +163,7 @@
+ 
+   <!-- Classpaths -->
+   <path id="compile.classpath">
++    <pathelement location="${ant.jar}"/>
+     <pathelement location="${jdt.jar}"/>
+   </path>
+ 
+@@ -309,6 +310,7 @@
+     <exclude name="org/apache/catalina/mbeans/JmxRemote*" />
+     <exclude name="org/apache/catalina/tribes/**" />
+     <exclude name="org/apache/naming/factory/webservices/**" />
++    <exclude name="javax/servlet/**" />
+   </patternset>
+ 
+   <patternset id="files.catalina-tribes">
+@@ -438,7 +440,7 @@
+     
+   </target>
+ 
+-  <target name="validate" depends="download-validate" if="${execute.validate}">
++  <target name="validate" if="${execute.validate}">
+     <!-- Required so we can cache checkstyle results -->
+     <mkdir dir="${tomcat.output}/res/checkstyle"/>
+ 
+@@ -497,7 +499,7 @@
+     </copy>
+   </target>
+ 
+-  <target name="compile" depends="build-prepare,download-compile,compile-prepare,validate">
++  <target name="compile" depends="build-prepare,compile-prepare,validate">
+     <!-- Compile internal server components -->
+     <javac srcdir="java" destdir="${tomcat.classes}"
+            debug="${compile.debug}"
+@@ -559,7 +561,7 @@
+       filesId="files.annotations-api"
+       manifest="${tomcat.manifests}/annotations-api.jar.manifest" />
+ 
+-    <!-- Servlet 3.0 Implementation JAR File -->
++<!-- Servlet 3.0 Implementation JAR File
+     <jarIt jarfile="${servlet-api.jar}"
+       filesDir="${tomcat.classes}"
+       filesId="files.servlet-api"
+@@ -567,7 +569,7 @@
+       notice="${tomcat.manifests}/servlet-api.jar.notice"
+       license="${tomcat.manifests}/servlet-api.jar.license" />
+ 
+-    <!-- JSP 2.2 Implementation JAR File -->
++    JSP 2.2 Implementation JAR File
+     <jarIt jarfile="${jsp-api.jar}"
+       filesDir="${tomcat.classes}"
+       filesId="files.jsp-api"
+@@ -575,12 +577,12 @@
+       notice="${tomcat.manifests}/jsp-api.jar.notice"
+       license="${tomcat.manifests}/jsp-api.jar.license" />
+ 
+-    <!-- JSP 2.2 EL Implementation JAR File -->
++    JSP 2.2 EL Implementation JAR File
+     <jarIt jarfile="${el-api.jar}"
+       filesDir="${tomcat.classes}"
+       filesId="files.el-api"
+       manifest="${tomcat.manifests}/el-api.jar.manifest" />
+-
++-->
+     <!-- Bootstrap JAR File -->
+     <jarIt jarfile="${bootstrap.jar}"
+       filesDir="${tomcat.classes}"
+@@ -671,7 +673,7 @@
+ 
+   </target>
+ 
+-  <target name="build-docs" depends="compile-prepare" description="Builds all documentation from XML sources">
++  <target name="build-docs" depends="compile-prepare" unless="nobuild.docs" description="Builds all documentation from XML sources">
+ 
+     <copy todir="${tomcat.build}/webapps">
+       <fileset dir="webapps">
+@@ -779,14 +781,14 @@
+ 
+   <target name="deploy" depends="package,build-docs"
+           description="Default. Builds a working Tomcat instance">
+-
++<!--
+     <copy tofile="${tomcat.build}/bin/tomcat-native.tar.gz"
+             file="${tomcat-native.tar.gz}" />
+     <copy tofile="${tomcat.build}/bin/commons-daemon-native.tar.gz"
+             file="${commons-daemon.native.src.tgz}" />
+ 
+     <copy tofile="${tomcat.build}/bin/commons-daemon.jar" file="${commons-daemon.jar}" />
+-
++-->
+     <!-- Copy scripts -->
+     <copy todir="${tomcat.build}/bin">
+       <fileset dir="bin">
+@@ -843,7 +845,7 @@
+              source="${compile.source}"
+              target="${compile.target}"
+              optimize="${compile.optimize}"
+-             classpath="${tomcat.classes}"
++             classpath="${tomcat.classes}:${jsp-api.jar}"
+              excludes="**/CVS/**,**/.svn/**"
+              encoding="ISO-8859-1"
+              includeantruntime="false">
+@@ -855,7 +857,7 @@
+              source="${compile.source}"
+              target="${compile.target}"
+              optimize="${compile.optimize}"
+-             classpath="$tomcat.lcasses}"
++             classpath="${tomcat.classes}:${jsp-api.jar}"
+              excludes="**/CVS/**,**/.svn/**"
+              encoding="ISO-8859-1"
+              includeantruntime="false">
+@@ -863,11 +865,11 @@
+ 
+     <!-- Add sources for examples -->
+     <antcall target="examples-sources" />
+-
++<!--
+     <copy file="${tomcat-dbcp.jar}" todir="${tomcat.build}/lib"
+       failonerror="false"/>
+     <copy file="${jdt.jar}" todir="${tomcat.build}/lib" />
+-
++-->
+     <!-- build the jdbc-pool jar and source jar-->
+     <echo message="Building Tomcat JDBC pool libraries"/>
+     <ant antfile="${tomcat.jdbc.dir}/build.xml" dir="${tomcat.jdbc.dir}" inheritall="false" target="build">
+@@ -1051,7 +1053,7 @@
+ 
+   </target>
+ 
+-  <target name="test-compile" depends="compile,download-test-compile" >
++  <target name="test-compile" depends="compile" >
+     <mkdir dir="${test.classes}"/>
+     <!-- Compile -->
+     <javac srcdir="test" destdir="${test.classes}"
