@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/eterm
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/eterm/ChangeLog,v 1.73 2009/08/16 20:21:57 nerdboy Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/eterm/ChangeLog,v 1.74 2012/02/23 20:28:34 vapier Exp $
+
+*eterm-0.9.6 (23 Feb 2012)
+
+  23 Feb 2012; Mike Frysinger <vapier@gentoo.org> +eterm-0.9.6.ebuild,
+  eterm-9999.ebuild:
+  Version bump and clean up library install #403105 by David.
 
   16 Aug 2009; Steve Arnold <nerdboy@gentoo.org> eterm-0.9.5.ebuild,
   eterm-9999.ebuild:

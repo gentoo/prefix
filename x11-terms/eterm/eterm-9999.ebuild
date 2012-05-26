@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/eterm/eterm-9999.ebuild,v 1.18 2009/08/16 20:21:57 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/eterm/eterm-9999.ebuild,v 1.19 2012/02/23 20:28:34 vapier Exp $
 
 EAPI="2"
 inherit eutils autotools
@@ -14,9 +14,7 @@ if [[ ${PV} == "9999" ]] ; then
 	KEYWORDS=""
 else
 	SRC_URI="http://www.eterm.org/download/${MY_P}.tar.gz
-		!minimal? ( http://www.eterm.org/download/Eterm-bg-${PV}.tar.gz )
-		mirror://sourceforge/eterm/${MY_P}.tar.gz
-		!minimal? ( mirror://sourceforge/eterm/Eterm-bg-${PV}.tar.gz )"
+		!minimal? ( http://www.eterm.org/download/Eterm-bg-${PV}.tar.gz )"
 	KEYWORDS="~amd64-linux ~ppc-macos ~x86-macos"
 fi
 
@@ -61,6 +59,7 @@ src_unpack() {
 src_configure() {
 	export TIC="true"
 	econf \
+		--disable-static \
 		$(use_enable escreen) \
 		--with-imlib \
 		--enable-trans \
@@ -72,8 +71,11 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "install failed"
+	emake DESTDIR="${D}" install || die
 	dodoc ChangeLog README ReleaseNotes
 	use escreen && dodoc doc/README.Escreen
 	dodoc bg/README.backgrounds
+
+	# We don't install headers to link against this library
+	rm -f "${ED}"/usr/*/libEterm.{so,la}
 }
