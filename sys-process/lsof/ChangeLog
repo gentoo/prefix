@@ -1,6 +1,55 @@
 # ChangeLog for sys-process/lsof
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.78 2010/08/29 18:12:39 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.90 2012/05/24 05:43:53 vapier Exp $
+
+  24 May 2012; Mike Frysinger <vapier@gentoo.org> lsof-4.84-r1.ebuild:
+  Move to usex() from eutils.eclass.
+
+  29 Apr 2012; Markus Meier <maekke@gentoo.org> lsof-4.85-r2.ebuild:
+  arm stable, bug #413273
+
+  28 Apr 2012; <nixnut@gentoo.org> lsof-4.85-r2.ebuild:
+  ppc stable #413273
+
+  24 Apr 2012; Jeroen Roovers <jer@gentoo.org> lsof-4.85-r2.ebuild:
+  Stable for HPPA (bug #413273).
+
+  24 Apr 2012; Agostino Sarubbo <ago@gentoo.org> lsof-4.85-r2.ebuild:
+  Stable for amd64, wrt bug #413273
+
+  24 Apr 2012; Jeff Horelick <jdhore@gentoo.org> lsof-4.85-r2.ebuild:
+  marked x86 per bug 413273
+
+  23 Apr 2012; Brent Baude <ranger@gentoo.org> lsof-4.85-r2.ebuild:
+  Marking lsof-4.85-r2 ppc64 for bug 413273
+
+  23 Apr 2012; Mike Frysinger <vapier@gentoo.org> lsof-4.84-r1.ebuild,
+  lsof-4.85-r1.ebuild, lsof-4.85-r2.ebuild, lsof-4.85.ebuild:
+  We need -DHASNORPC_H too to disable rpc support.
+
+*lsof-4.85-r2 (15 Nov 2011)
+
+  15 Nov 2011; Mike Frysinger <vapier@gentoo.org> +lsof-4.85-r2.ebuild:
+  Put example scripts behind USE=examples.
+
+*lsof-4.85-r1 (30 Oct 2011)
+
+  30 Oct 2011; Mike Frysinger <vapier@gentoo.org> +lsof-4.85-r1.ebuild,
+  +files/lsof-4.85-arg.c.patch:
+  Add fix from upstream #388555 by Lars Wendler (Polynomial-C).
+
+*lsof-4.85 (29 Sep 2011)
+
+  29 Sep 2011; Mike Frysinger <vapier@gentoo.org> +lsof-4.85.ebuild:
+  Version bump.
+
+*lsof-4.84-r1 (17 Sep 2011)
+
+  17 Sep 2011; Mike Frysinger <vapier@gentoo.org> +lsof-4.84-r1.ebuild,
+  +files/lsof-4.84-rpc.patch, metadata.xml:
+  Clean up build logic by testing the compiler rather than poking around the
+  filesystem. Support USE=ipv6. Support building with libtirpc rather than
+  glibc and do so with USE=rpc #370833 by kabel.
 
   29 Aug 2010; Raúl Porcel <armin76@gentoo.org> lsof-4.83.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #331143
