@@ -18,14 +18,12 @@ SLOT="2"
 IUSE="debug doc fam kernel_linux selinux static-libs systemtap test utils xattr"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
-# libelf blocker on Solaris is temporary to fix screwup done in 2.32.1
 RDEPEND="virtual/libiconv
 	virtual/libffi
 	sys-libs/zlib
 	kernel_linux? ( || (
 		>=dev-libs/elfutils-0.142
 		>=dev-libs/libelf-0.8.11 ) )
-	kernel_SunOS? ( !dev-libs/libelf )
 	x86-interix? ( sys-libs/itx-bind )
 	xattr? ( sys-apps/attr )
 	fam? ( virtual/fam )
@@ -77,7 +75,6 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-FIONREAD.patch
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-nsl.patch
-	epatch "${FILESDIR}"/${PN}-2.32.2-solaris-libelf.patch
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
 
