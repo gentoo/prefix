@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.202 2012/05/03 20:36:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.203 2012/05/06 20:01:02 vapier Exp $
+
+  06 May 2012; Mike Frysinger <vapier@gentoo.org> ncurses-5.9-r2.ebuild:
+  Mark ia64/m68k/s390/sh stable #413897.
 
   05 May 2012; Fabian Groffen <grobian@gentoo.org> ncurses-5.9-r2.ebuild:
   Fix compilation with GCC 4.6 on Solaris
