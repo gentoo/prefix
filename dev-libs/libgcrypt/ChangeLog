@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.155 2012/05/21 18:52:09 xarthisius Exp $
 
+*libgcrypt-1.5.0-r02.1 (26 May 2012)
+
+  26 May 2012; Fabian Groffen <grobian@gentoo.org>
+  +libgcrypt-1.5.0-r02.1.ebuild, -libgcrypt-1.5.0-r2.ebuild:
+  Disable ASM on OSX Intel since it breaks the library (unresolved symbols)
+
   21 May 2012; Kacper Kowalik <xarthisius@gentoo.org> libgcrypt-1.5.0-r1.ebuild,
   libgcrypt-1.5.0-r2.ebuild, libgcrypt-1.5.0.ebuild:
   Add missing inheritance of eutils.eclass

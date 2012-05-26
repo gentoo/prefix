@@ -41,13 +41,14 @@ src_prepare() {
 src_configure() {
 	# --disable-padlock-support for bug #201917
 	# O-flag-mungling: https://bugs.g10code.com/gnupg/issue992
+	# --disable-asm: http://trac.videolan.org/vlc/ticket/620
 	econf \
 		--disable-padlock-support \
 		--disable-dependency-tracking \
 		--enable-noexecstack \
 		--disable-O-flag-munging \
 		$(use_enable static-libs static) \
-		$(use_enable !mips-irix O-flag-munging)
+		$([[ ${CHOST} == *x86*-darwin* ]] && echo "--disable-asm")
 	
 }
 
