@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/crossdev-20110819.ebuild,v 1.1 2011/08/19 18:12:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/crossdev-20120305.ebuild,v 1.1 2012/03/05 23:36:08 vapier Exp $
 
-EAPI="3"
+EAPI="4"
 
 if [[ ${PV} == "99999999" ]] ; then
 	EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/crossdev.git"
@@ -12,7 +12,7 @@ if [[ ${PV} == "99999999" ]] ; then
 else
 	SRC_URI="mirror://gentoo/${P}.tar.xz
 		http://dev.gentoo.org/~vapier/dist/${P}.tar.xz"
-	#KEYWORDS=""
+	KEYWORDS=""
 fi
 
 DESCRIPTION="Gentoo Cross-toolchain generator"
@@ -28,5 +28,8 @@ RDEPEND=">=sys-apps/portage-2.1
 DEPEND="app-arch/xz-utils"
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	default
+	if [[ "${PV}" == "99999999" ]] ; then
+		sed -i "s:@CDEVPV@:${EGIT_VERSION}:" "${ED}"/usr/bin/crossdev || die
+	fi
 }

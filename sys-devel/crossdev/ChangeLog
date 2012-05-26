@@ -1,6 +1,67 @@
 # ChangeLog for sys-devel/crossdev
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.81 2011/08/19 18:12:57 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.94 2012/03/05 23:36:08 vapier Exp $
+
+*crossdev-20120305 (05 Mar 2012)
+
+  05 Mar 2012; Mike Frysinger <vapier@gentoo.org> +crossdev-20120305.ebuild:
+  Version bump.
+
+*crossdev-20120301 (01 Mar 2012)
+
+  01 Mar 2012; Mike Frysinger <vapier@gentoo.org> +crossdev-20120301.ebuild:
+  Version bump.
+
+*crossdev-20120229 (29 Feb 2012)
+
+  29 Feb 2012; Mike Frysinger <vapier@gentoo.org> +crossdev-20120229.ebuild:
+  Version bump.
+
+*crossdev-20120228 (28 Feb 2012)
+
+  28 Feb 2012; Mike Frysinger <vapier@gentoo.org> +crossdev-20120228.ebuild:
+  Version bump.
+
+*crossdev-20120227 (28 Feb 2012)
+
+  28 Feb 2012; Mike Frysinger <vapier@gentoo.org> +crossdev-20120227.ebuild,
+  crossdev-99999999.ebuild:
+  Update to EAPI=4 and version bump.
+
+*crossdev-20120214 (14 Feb 2012)
+
+  14 Feb 2012; Mike Frysinger <vapier@gentoo.org> +crossdev-20120214.ebuild:
+  Version bump.
+
+  14 Feb 2012; Mike Frysinger <vapier@gentoo.org> crossdev-20111221.ebuild:
+  Stabilize for all.
+
+*crossdev-20111221 (21 Dec 2011)
+
+  21 Dec 2011; Mike Frysinger <vapier@gentoo.org> +crossdev-20111221.ebuild:
+  Add support for msp430 targets by Tim Harder.
+
+  21 Dec 2011; Mike Frysinger <vapier@gentoo.org> crossdev-20111018.ebuild,
+  crossdev-20111118.ebuild:
+  Mark stable for gcc cxx/nocxx changes #394665 by Andrey Hippo.
+
+*crossdev-20111118 (18 Nov 2011)
+
+  18 Nov 2011; Mike Frysinger <vapier@gentoo.org> +crossdev-20111118.ebuild:
+  Version bump with USE=cxx updates. #390637 by Stefan Zwanenburg.
+
+*crossdev-20111018 (18 Oct 2011)
+
+  18 Oct 2011; Mike Frysinger <vapier@gentoo.org> +crossdev-20111018.ebuild:
+  Version bump.
+
+*crossdev-20111011 (11 Oct 2011)
+
+  11 Oct 2011; Mike Frysinger <vapier@gentoo.org> +crossdev-20111011.ebuild:
+  Version bump.
+
+  11 Oct 2011; Mike Frysinger <vapier@gentoo.org> crossdev-20110819.ebuild:
+  Stabilize for all.
 
 *crossdev-20110819 (19 Aug 2011)
 
