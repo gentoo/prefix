@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r5.ebuild,v 1.3 2010/02/11 16:06:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r5.ebuild,v 1.6 2012/02/16 19:17:30 phajdan.jr Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -23,7 +23,7 @@ RDEPEND="app-text/rman
 	x11-libs/libxkbfile
 	x11-libs/libXaw
 	x11-libs/libXp
-	Xaw3d? ( x11-libs/Xaw3d )"
+	Xaw3d? ( x11-libs/libXaw3d )"
 DEPEND="${RDEPEND}
 	x11-misc/gccmakedep
 	x11-misc/imake"
