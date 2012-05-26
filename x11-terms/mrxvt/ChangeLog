@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/mrxvt
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.76 2010/05/30 18:40:58 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.77 2010/11/08 12:35:28 nelchael Exp $
+
+  08 Nov 2010; Krzysztof Pawlik <nelchael@gentoo.org> mrxvt-0.5.4.ebuild:
+  Change dependency: media-libs/jpeg -> virtual/jpeg.
 
   30 May 2010; Raúl Porcel <armin76@gentoo.org> mrxvt-0.5.4.ebuild:
   alpha stable wrt #315809
