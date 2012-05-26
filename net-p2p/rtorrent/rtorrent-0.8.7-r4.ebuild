@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.7-r4.ebuild,v 1.1 2011/08/15 19:44:03 sochotnicky Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.7-r4.ebuild,v 1.3 2012/05/04 06:33:35 jdhore Exp $
 
 EAPI=2
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris"
 IUSE="color daemon debug ipv6 test xmlrpc"
 
-COMMON_DEPEND=">=net-libs/libtorrent-0.12.${PV##*.}
+COMMON_DEPEND="~net-libs/libtorrent-0.12.${PV##*.}
 	>=dev-libs/libsigc++-2.2.2:2
 	>=net-misc/curl-7.19.1
 	sys-libs/ncurses
@@ -24,7 +24,7 @@ RDEPEND="${COMMON_DEPEND}
 	daemon? ( app-misc/screen )"
 DEPEND="${COMMON_DEPEND}
 	test? ( dev-util/cppunit )
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_prepare() {
 	# bug #358271

@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/files/rtorrentd.init,v 1.7 2011/05/09 21:34:21 sochotnicky Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/files/rtorrentd.init,v 1.8 2011/11/07 15:46:30 darkside Exp $
 
 depend() {
 	use net ypbind nis
@@ -19,7 +19,6 @@ start() {
 			--pidfile /var/run/rtorrentd.pid \
 			--background \
 			--user $USER \
-			--chuid $USER \
 			--env HOME="${PWHOME:-/home/$USER}" \
 			--name rtorrent \
 			--exec /usr/bin/screen -- -D -m -S rtorrentd /usr/bin/rtorrent

@@ -1,6 +1,72 @@
 # ChangeLog for net-p2p/rtorrent
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.162 2011/08/15 19:44:03 sochotnicky Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.176 2012/05/04 06:33:35 jdhore Exp $
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> rtorrent-0.8.6-r1.ebuild,
+  rtorrent-0.8.6-r4.ebuild, rtorrent-0.8.7-r4.ebuild, rtorrent-0.8.9.ebuild,
+  rtorrent-0.9.1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  10 Apr 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  rtorrent-0.8.9.ebuild, rtorrent-0.9.1.ebuild:
+  Fix to depend on exact minor version of net-libs/libtorrent to prevent
+  incompatible versions. Each minor version of rtorrent has minor version of
+  net-libs/libtorrent associated with it
+
+*rtorrent-0.9.1 (08 Apr 2012)
+
+  08 Apr 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  -rtorrent-0.9.0.ebuild, -files/rtorrent-0.9.0-canvas-fix.patch,
+  -files/rtorrent-0.9.0-clang.patch, -files/rtorrent-0.9.0-gold.patch,
+  +rtorrent-0.9.1.ebuild, +files/rtorrent-0.9.1-ncurses.patch:
+  Version bump (#411041), drop upstreamed patches and support for color. Too
+  much work to keep working and delays updates.
+
+  09 Mar 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  rtorrent-0.9.0.ebuild, +files/rtorrent-0.9.0-clang.patch:
+  Fix build problems with clang
+
+  08 Mar 2012; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  rtorrent-0.9.0.ebuild:
+  Add correct minimal version of net-libs/libtorrent
+
+  08 Mar 2012; Justin Lecher <jlec@gentoo.org> rtorrent-0.9.0.ebuild,
+  +files/rtorrent-0.9.0-gold.patch:
+  Add patch to link with gold
+
+*rtorrent-0.9.0 (08 Mar 2012)
+
+  08 Mar 2012; Patrick Lauer <patrick@gentoo.org>
+  +files/rtorrent-0.9.0-canvas-fix.patch, +files/rtorrent-0.9.0-ncurses.patch,
+  +rtorrent-0.9.0.ebuild:
+  Bump for #396243
+
+  07 Mar 2012; Brent Baude <ranger@gentoo.org> rtorrent-0.8.9.ebuild:
+  Marking rtorrent-0.8.9 ppc64 for bug 389817
+
+  11 Dec 2011; Markus Meier <maekke@gentoo.org> rtorrent-0.8.9.ebuild:
+  x86 stable, bug #389817
+
+  28 Nov 2011; Tony Vroon <chainsaw@gentoo.org> rtorrent-0.8.9.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armageddon" El Lazkani in bug #389817.
+
+  25 Nov 2011; Jeroen Roovers <jer@gentoo.org> rtorrent-0.8.9.ebuild:
+  Stable for HPPA (bug #389817).
+
+  07 Nov 2011; Jeremy Olexa <darkside@gentoo.org> files/rtorrentd.init:
+  remove deprecated init option, bug 384541 (no revbump on purpose)
+
+  18 Sep 2011; Michał Górny <mgorny@gentoo.org> rtorrent-0.8.9.ebuild:
+  Fix implicit $(use_enable debug).
+
+*rtorrent-0.8.9 (10 Sep 2011)
+
+  10 Sep 2011; Michał Górny <mgorny@gentoo.org> rtorrent-0.8.7-r4.ebuild,
+  +rtorrent-0.8.9.ebuild, +files/rtorrent-0.8.9-canvas-fix.patch,
+  +files/rtorrent-0.8.9-ncurses.patch:
+  Version bump per bug #366623. Bump EAPI, migrate to autotools-utils. Fix
+  libtorrent dep in previous version
 
 *rtorrent-0.8.7-r4 (15 Aug 2011)
 
