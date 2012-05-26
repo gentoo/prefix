@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/ChangeLog,v 1.53 2011/02/25 13:56:46 dilfridge Exp $
 
+  26 May 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/latex2html-extract-major-version-2.patch:
+  Add missing patch
+
 *latex2html-2008-r1 (25 Feb 2011)
 
   25 Feb 2011; Andreas K. Huettel <dilfridge@gentoo.org>
