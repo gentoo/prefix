@@ -1,19 +1,19 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.21.53.0.2.ebuild,v 1.1 2011/08/11 02:15:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.22.52.0.3.ebuild,v 1.2 2012/05/22 19:58:59 vapier Exp $
 
 PATCHVER="1.0"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+#KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack
 	cd "${S}"
 	[[ $SYMLINK_LIB == yes ]] &&
 	epatch "${FILESDIR}"/${PN}-2.20.51.0.1-linux-x86-on-amd64.patch
-	epatch "${FILESDIR}"/${PN}-2.21.53.0.2-mint.patch
+	epatch "${FILESDIR}"/${PN}-2.22-mint.patch
 	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
 }
 

@@ -1,6 +1,33 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.437 2012/02/06 04:29:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.443 2012/05/22 19:58:59 vapier Exp $
+
+  22 May 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.22-r1.ebuild,
+  binutils-2.22.52.0.1.ebuild, binutils-2.22.52.0.2.ebuild,
+  binutils-2.22.52.0.3.ebuild:
+  Drop patch-2.6 requirement now that the profile pulls it in.
+
+*binutils-2.22.52.0.3 (09 May 2012)
+
+  09 May 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.22.52.0.3.ebuild:
+  Version bump.
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> binutils-2.20.1-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  26 Apr 2012; Mike Frysinger <vapier@gentoo.org> -binutils-2.21.1.ebuild,
+  -binutils-2.21.52.0.1.ebuild, -binutils-2.21.52.0.2.ebuild,
+  -binutils-2.21.53.0.1.ebuild, -binutils-2.21.53.0.2.ebuild,
+  -binutils-2.21.ebuild, -binutils-2.22.ebuild:
+  Move older versions to the toolchain overlay.
+
+*binutils-2.22.52.0.2 (26 Apr 2012)
+
+  26 Apr 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.22.52.0.2.ebuild:
+  Version bump.
+
+  04 Mar 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.22-r1.ebuild:
+  Add fix from upstream for hppa/plt handling #406349 by Jeroen Roovers.
 
   06 Feb 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.22.52.0.1.ebuild:
   Drop KEYWORDS -- didn't mean to add those.
