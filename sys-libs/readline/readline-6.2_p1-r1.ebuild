@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.1_p2.ebuild,v 1.9 2011/09/26 02:37:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.2_p1-r1.ebuild,v 1.4 2012/04/30 01:36:43 vapier Exp $
 
 inherit eutils multilib toolchain-funcs flag-o-matic
 
@@ -33,13 +33,10 @@ SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz $(patches)"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE=""
+IUSE="static-libs"
 
-# We must be certain that we have a bash that is linked
-# to its internal readline, else we may get problems.
 RDEPEND=">=sys-libs/ncurses-5.2-r2"
-DEPEND="${RDEPEND}
-	>=app-shells/bash-2.05b-r2"
+DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
@@ -51,7 +48,6 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
 	epatch "${FILESDIR}"/${PN}-5.2-no-ignore-shlib-errors.patch #216952
-	epatch "${FILESDIR}"/${PN}-6.1-rlfe-freebsd.patch # 301508
 
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
@@ -60,7 +56,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
-	epatch "${FILESDIR}"/${PN}-6.1-mint.patch
 	epatch "${FILESDIR}"/${PN}-6.1-darwin-shlib-versioning.patch
 	epatch "${FILESDIR}"/${PN}-6.1-aix-expfull.patch
 	epatch "${FILESDIR}"/${PN}-6.1-aix-soname.patch
@@ -79,21 +74,29 @@ src_unpack() {
 }
 
 src_compile() {
+	# fix implicit decls with widechar funcs
 	append-cppflags -D_GNU_SOURCE
+	# http://lists.gnu.org/archive/html/bug-readline/2010-07/msg00013.html
+	append-cppflags -Dxrealloc=_rl_realloc -Dxmalloc=_rl_malloc -Dxfree=_rl_free
 
-	econf --with-curses || die
+	# This is for rlfe, but we need to make sure LDFLAGS doesn't change
+	# so we can re-use the config cache file between the two.
+	append-ldflags -L.
+	econf \
+		--cache-file="${S}"/config.cache \
+		--with-curses \
+		$(use_enable static-libs static)
 	emake || die
 
 	if ! tc-is-cross-compiler ; then
 		# code is full of AC_TRY_RUN()
 		cd examples/rlfe
-		append-ldflags -L.
 		local l
 		for l in readline history ; do
 			ln -s ../../shlib/lib${l}*$(get_libname)* lib${l}$(get_libname)
 			ln -sf ../../lib${l}.a lib${l}.a
 		done
-		econf || die
+		econf --cache-file="${S}"/config.cache
 		emake || die
 	fi
 }

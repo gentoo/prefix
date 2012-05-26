@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.2_p1.ebuild,v 1.1 2011/03/01 00:48:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.2_p1.ebuild,v 1.10 2012/03/28 21:07:52 vapier Exp $
 
-inherit autotools eutils multilib toolchain-funcs flag-o-matic
+inherit eutils multilib toolchain-funcs flag-o-matic
 
 # Official patches
 # See ftp://ftp.cwru.edu/pub/bash/readline-6.0-patches/
@@ -35,11 +35,8 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
-# We must be certain that we have a bash that is linked
-# to its internal readline, else we may get problems.
 RDEPEND=">=sys-libs/ncurses-5.2-r2"
-DEPEND="${RDEPEND}
-	>=app-shells/bash-2.05b-r2"
+DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
