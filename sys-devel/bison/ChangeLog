@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/bison
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.108 2011/08/17 03:43:40 mattst88 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/ChangeLog,v 1.109 2012/04/26 12:58:13 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> bison-2.5.ebuild:
+  keyword ~amd64-fbsd
 
   17 Aug 2011; Matt Turner <mattst88@gentoo.org> bison-2.4.2.ebuild,
   bison-2.4.3.ebuild, bison-2.5.ebuild:
