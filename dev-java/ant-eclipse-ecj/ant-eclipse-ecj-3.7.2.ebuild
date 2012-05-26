@@ -1,19 +1,21 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.6.ebuild,v 1.1 2010/12/21 07:39:29 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.7.2.ebuild,v 1.1 2012/03/03 22:15:57 caster Exp $
+
+EAPI=4
 
 inherit java-pkg-2
 
-DMF="R-${PV}-201006080911"
+DMF="R-${PV}-201202080800"
 S="${WORKDIR}"
 
 DESCRIPTION="Ant Compiler Adapter for Eclipse Java Compiler"
 HOMEPAGE="http://www.eclipse.org/"
-SRC_URI="http://download.eclipse.org/eclipse/downloads/drops/${DMF/.0}/ecjsrc-${PV}.zip"
+SRC_URI="http://download.eclipse.org/eclipse/downloads/drops/${DMF/.0}/ecjsrc-${PV}.jar"
 
 LICENSE="EPL-1.0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
-SLOT="3.6"
+SLOT="3.7"
 IUSE=""
 
 RDEPEND=">=virtual/jre-1.4
@@ -45,6 +47,6 @@ src_compile() {
 src_install() {
 	java-pkg_dojar ${PN}.jar
 	insinto /usr/share/java-config-2/compiler
-	newins "${FILESDIR}/compiler-settings-${SLOT}" ecj-${SLOT}
+	doins "${FILESDIR}/ecj-${SLOT}"
 	dosed "/^JAVAC/s:/usr/bin/ecj:${EPREFIX}/usr/bin/ecj" /usr/share/java-config-2/compiler/ecj-${SLOT}
 }
