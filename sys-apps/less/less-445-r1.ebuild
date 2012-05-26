@@ -1,8 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-444.ebuild,v 1.8 2012/01/31 16:07:49 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-445-r1.ebuild,v 1.3 2012/04/26 14:17:35 aballier Exp $
 
-inherit eutils autotools
+EAPI="2"
+
+inherit eutils
 
 DESCRIPTION="Excellent text file viewer"
 HOMEPAGE="http://www.greenwoodsoftware.com/less/"
@@ -12,25 +14,32 @@ SRC_URI="http://www.greenwoodsoftware.com/less/${P}.tar.gz
 LICENSE="|| ( GPL-3 BSD-2 )"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="unicode"
+IUSE="pcre unicode"
 
-DEPEND=">=sys-libs/ncurses-5.7-r7"
+DEPEND=">=app-misc/editor-wrapper-3
+	>=sys-libs/ncurses-5.2
+	pcre? ( dev-libs/libpcre )"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${P}.tar.gz
-	cd "${S}"
 	cp "${DISTDIR}"/code2color "${S}"/
-	epatch "${FILESDIR}"/code2color.patch
-	epatch "${FILESDIR}"/${P}-regcmp-libs.patch
-	eautoreconf
 }
 
-yesno() { use $1 && echo yes || echo no ; }
-src_compile() {
-	export ac_cv_lib_ncursesw_initscr=$(yesno unicode)
-	export ac_cv_lib_ncurses_initscr=$(yesno !unicode)
-	econf || die
-	emake || die
+src_prepare() {
+	epatch "${FILESDIR}"/code2color.patch
+}
+
+src_configure() {
+	export ac_cv_lib_ncursesw_initscr=$(usex unicode)
+	export ac_cv_lib_ncurses_initscr=$(usex !unicode)
+
+	local regex="posix"
+	use pcre && regex="pcre"
+
+	econf \
+		--with-regex=${regex} \
+		--with-editor="${EPREFIX}"/usr/libexec/editor
 }
 
 src_install() {

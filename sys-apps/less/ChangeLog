@@ -1,6 +1,47 @@
 # ChangeLog for sys-apps/less
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.130 2011/10/09 19:19:07 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.142 2012/04/26 14:17:35 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> less-445-r1.ebuild:
+  keyword ~amd64-fbsd
+
+  31 Jan 2012; Samuli Suominen <ssuominen@gentoo.org> less-444.ebuild:
+  ppc64 stable wrt #389995
+
+  04 Jan 2012; Brent Baude <ranger@gentoo.org> less-444.ebuild:
+  Marking less-444 ppc for bug 389995
+
+  07 Dec 2011; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
+  Also check for `7zr` when processing 7z archives.
+
+  03 Dec 2011; Raúl Porcel <armin76@gentoo.org> less-444.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #389995
+
+  17 Nov 2011; Ulrich Mueller <ulm@gentoo.org> less-445-r1.ebuild:
+  Fix dependency on app-misc/editor-wrapper.
+
+  13 Nov 2011; Markus Meier <maekke@gentoo.org> less-444.ebuild:
+  arm stable, bug #389995
+
+  11 Nov 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> less-444.ebuild:
+  x86 stable wrt bug #389995
+
+  10 Nov 2011; Jeroen Roovers <jer@gentoo.org> less-444.ebuild:
+  Stable for HPPA (bug #389995).
+
+  10 Nov 2011; Tony Vroon <chainsaw@gentoo.org> less-444.ebuild:
+  Marked stable on AMD64 based on arch testing by Agostino "ago" Sarubbo &
+  Elijah "Armageddon" El Lazkani in bug #389995.
+
+*less-445-r1 (09 Nov 2011)
+
+  09 Nov 2011; Mike Frysinger <vapier@gentoo.org> +less-445-r1.ebuild:
+  Update to EAPI=2, add editor-wrapper support, and USE=pcre support #389935.
+
+*less-445 (28 Oct 2011)
+
+  28 Oct 2011; Tim Harder <radhermit@gentoo.org> +less-445.ebuild:
+  Version bump.
 
   23 Oct 2011; Fabian Groffen <grobian@gentoo.org>
   files/less-444-regcmp-libs.patch:

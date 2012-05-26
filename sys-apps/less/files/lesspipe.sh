@@ -123,7 +123,7 @@ lesspipe() {
 	*.cab)        cabextract -l -- "$1" ;;
 	*.lha|*.lzh)  lha v "$1" ;;
 	*.zoo)        zoo -list "$1" || unzoo -l "$1" ;;
-	*.7z|*.exe)   7z l -- "$1" || 7za l -- "$1" ;;
+	*.7z|*.exe)   7z l -- "$1" || 7za l -- "$1" || 7zr l -- "$1" ;;
 	*.a)          ar tv "$1" ;;
 	*.elf)        readelf -a -- "$1" ;;
 	*.so)         readelf -h -d -s -- "$1" ;;
@@ -233,7 +233,7 @@ if [[ -z $1 ]] ; then
 elif [[ $1 == "-V" || $1 == "--version" ]] ; then
 	Id="cvsid"
 	cat <<-EOF
-		$Id: lesspipe.sh,v 1.46 2011/10/09 19:19:07 vapier Exp $
+		$Id: lesspipe.sh,v 1.47 2011/12/07 20:29:25 vapier Exp $
 		Copyright 2001-2010 Gentoo Foundation
 		Mike Frysinger <vapier@gentoo.org>
 		     (with plenty of ideas stolen from other projects/distros)
