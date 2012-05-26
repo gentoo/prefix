@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r6.ebuild,v 1.1 2012/01/09 13:29:10 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r6.ebuild,v 1.2 2012/05/04 07:24:15 jdhore Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
@@ -30,7 +30,7 @@ RDEPEND="dev-libs/popt
 		x11-libs/gtk+:2
 	)"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 RDEPEND="${RDEPEND}
 	!net-misc/pump
 	>=sys-devel/gcc-config-1.4.1
