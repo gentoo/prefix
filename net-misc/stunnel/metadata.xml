@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
 	<maintainer>
 		<email>ramereth@gentoo.org</email>
 		<name>Lance Albertson</name>
@@ -15,5 +14,6 @@
 	</longdescription>
 	<use>
 		<flag name="xforward">Enable X-Forwarded-For support for Stunnel</flag>
+		<flag name="listen-queue">Enable Listen Queue support for Stunnel</flag>
 	</use>
 </pkgmetadata>

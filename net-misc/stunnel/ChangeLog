@@ -1,6 +1,84 @@
 # ChangeLog for net-misc/stunnel
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.114 2010/07/07 05:41:40 ramereth Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.130 2012/05/13 21:13:57 ramereth Exp $
+
+  13 May 2012; Lance Albertson <ramereth@gentoo.org>
+  -files/stunnel-4.21-libwrap.patch, -stunnel-4.25.ebuild,
+  -files/stunnel-4.31-x-forwarded-for.patch, -stunnel-4.33.ebuild,
+  -files/stunnel-4.34-listen-queue.diff, -stunnel-4.35.ebuild,
+  -files/stunnel-4.35-libwrap.patch, -files/stunnel-4.35-xforwarded-for.diff,
+  -stunnel-4.36.ebuild, -files/stunnel-4.36-listen-queue.diff,
+  -files/stunnel-4.36-xforwarded-for.diff:
+  Ebuild cleanup; fixes #373713
+
+*stunnel-4.44-r1 (13 May 2012)
+
+  13 May 2012; Lance Albertson <ramereth@gentoo.org> +stunnel-4.44-r1.ebuild,
+  +files/stunnel.initd-start-stop-daemon:
+  Simplify init script to use start-stop-daemon; fixes #379673
+
+  Without using start-stop-daemon the init script has no idea if stunnel has
+  crashed. Thanks to Marcel Pennewiß <gentoo@pennewiss.de> for submitting the
+  init script.
+
+  29 Oct 2011; Raúl Porcel <armin76@gentoo.org> stunnel-4.44.ebuild:
+  alpha/ia64/s390/sparc stable wrt #379859
+
+  24 Oct 2011; Jeroen Roovers <jer@gentoo.org> stunnel-4.44.ebuild:
+  Stable for HPPA (bug #379859).
+
+  23 Oct 2011; Markus Meier <maekke@gentoo.org> stunnel-4.44.ebuild:
+  arm stable, bug #379859
+
+  22 Oct 2011; Markos Chandras <hwoarang@gentoo.org> stunnel-4.44.ebuild:
+  Stable on amd64 wrt bug #379859
+
+  22 Oct 2011; Kacper Kowalik <xarthisius@gentoo.org> stunnel-4.44.ebuild:
+  ppc/ppc64 stable wrt #379859
+
+  22 Oct 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org> stunnel-4.44.ebuild:
+  x86 stable wrt bug #379859
+
+  11 Oct 2011; Robin H. Johnson <robbat2@gentoo.org> stunnel-4.44.ebuild,
+  +files/stunnel-4.44-listen-queue.diff,
+  +files/stunnel-4.44-xforwarded-for.diff:
+  Respin x-forwarded-for and listen-queue patches.
+
+*stunnel-4.44 (11 Oct 2011)
+
+  11 Oct 2011; Robin H. Johnson <robbat2@gentoo.org> +stunnel-4.44.ebuild:
+  Bug #379859: version bump for security
+
+  28 May 2011; Raúl Porcel <armin76@gentoo.org> stunnel-4.35.ebuild:
+  alpha/arm/ia64/sparc stable wrt #353955
+
+  27 May 2011; Kacper Kowalik <xarthisius@gentoo.org> stunnel-4.35.ebuild:
+  ppc/ppc64 stable wrt #353955
+
+  26 May 2011; Jeroen Roovers <jer@gentoo.org> stunnel-4.35.ebuild:
+  Stable for HPPA (bug #353955).
+
+*stunnel-4.36 (26 May 2011)
+
+  26 May 2011; Lance Albertson <ramereth@gentoo.org>
+  -files/stunnel-4.29-x-forwarded-for.patch, +stunnel-4.36.ebuild,
+  +files/stunnel-4.36-listen-queue.diff,
+  +files/stunnel-4.36-xforwarded-for.diff:
+  Version bump
+
+  26 May 2011; Lance Albertson <ramereth@gentoo.org> -stunnel-4.29-r1.ebuild,
+  -stunnel-4.31-r1.ebuild, stunnel-4.33.ebuild, stunnel-4.35.ebuild:
+  Stablize on x86/amd64 (resolves #349074, #353955), cleanup
+
+*stunnel-4.35 (02 Mar 2011)
+
+  02 Mar 2011; Lance Albertson <ramereth@gentoo.org>
+  +files/stunnel-4.34-listen-queue.diff, +stunnel-4.35.ebuild,
+  +files/stunnel-4.35-libwrap.patch,
+  +files/stunnel-4.35-xforwarded-for.diff, metadata.xml:
+  Version bump, resolves #344117
+
+  Thanks to Stefan Behte for contributing new patches/ebuild.
 
   07 Jul 2010; Lance Albertson <ramereth@gentoo.org> stunnel-4.33.ebuild:
   Fix missing xforward patch, resolves bug #324997
