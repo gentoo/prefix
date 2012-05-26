@@ -1,6 +1,27 @@
 # ChangeLog for sys-process/procps
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.59 2011/12/08 06:23:58 vapier Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.64 2012/05/03 04:54:03 jdhore Exp $
+
+  03 May 2012; Jeff Horelick <jdhore@gentoo.org> procps-3.3.2_p2-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  01 Feb 2012; Samuli Suominen <ssuominen@gentoo.org> procps-3.2.8_p11.ebuild:
+  ppc64 stable wrt #390003
+
+*procps-3.3.2_p2-r1 (24 Jan 2012)
+
+  24 Jan 2012; Mike Frysinger <vapier@gentoo.org> -procps-3.3.2_p2.ebuild,
+  +procps-3.3.2_p2-r1.ebuild, +files/procps-3.3.2-ncurses.patch, metadata.xml:
+  Add some ncurses configure cleanups #400555.
+
+*procps-3.3.2_p2 (24 Jan 2012)
+
+  24 Jan 2012; Mike Frysinger <vapier@gentoo.org> +procps-3.3.2_p2.ebuild,
+  +files/procps-3.3.2-headers.patch, +files/procps-3.3.2-noproc.patch:
+  Version bump #399377 by Samuli Suominen.
+
+  04 Jan 2012; Brent Baude <ranger@gentoo.org> procps-3.2.8_p11.ebuild:
+  Marking procps-3.2.8_p11 ppc for bug 390003
 
   08 Dec 2011; Mike Frysinger <vapier@gentoo.org> procps-3.2.8_p11.ebuild,
   +files/procps-3.2.8-time_t.patch:
