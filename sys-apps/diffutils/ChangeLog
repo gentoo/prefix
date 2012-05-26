@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/diffutils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.65 2011/09/04 03:50:29 radhermit Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.67 2012/04/26 13:57:04 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> diffutils-3.2.ebuild:
+  keyword ~amd64-fbsd
+
+  27 Mar 2012; Mike Frysinger <vapier@gentoo.org> diffutils-2.8.7-r2.ebuild,
+  diffutils-2.9.ebuild, diffutils-2.9-r1.ebuild, diffutils-3.0.ebuild,
+  diffutils-3.1.ebuild, diffutils-3.2.ebuild:
+  Migrate to gnu-alpha mirror.
 
 *diffutils-3.2 (04 Sep 2011)
 

@@ -1,12 +1,12 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/diffutils-2.9.ebuild,v 1.1 2010/02/14 00:36:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/diffutils-2.9.ebuild,v 1.2 2012/03/27 17:52:39 vapier Exp $
 
 inherit flag-o-matic
 
 DESCRIPTION="Tools to make diffs and compare files"
 HOMEPAGE="http://www.gnu.org/software/diffutils/"
-SRC_URI="ftp://alpha.gnu.org/gnu/diffutils/${P}.tar.gz
+SRC_URI="mirror://gnu-alpha/diffutils/${P}.tar.gz
 	mirror://gnu/diffutils/${P}.tar.gz"
 
 LICENSE="GPL-2"
