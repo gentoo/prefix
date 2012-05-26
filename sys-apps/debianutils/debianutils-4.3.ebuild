@@ -1,6 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-4.0.3.ebuild,v 1.1 2011/10/10 08:46:14 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-4.3.ebuild,v 1.2 2012/04/26 13:55:48 aballier Exp $
+
+EAPI=4
 
 inherit eutils flag-o-matic autotools
 
@@ -15,29 +17,26 @@ IUSE="kernel_linux static"
 
 PDEPEND="|| ( >=sys-apps/coreutils-6.10-r1 sys-freebsd/freebsd-ubin )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.4.2-no-bs-namespace.patch
 	epatch "${FILESDIR}"/${PN}-4-nongnu.patch
 	eautoreconf || die
 }
 
-src_compile() {
+src_configure() {
 	use static && append-ldflags -static
-	econf || die
-	emake || die
+	default
 }
 
 src_install() {
 	into /
-	dobin tempfile run-parts || die
+	dobin tempfile run-parts
 	if use kernel_linux ; then
-		dosbin installkernel || die "installkernel failed"
+		dosbin installkernel
 	fi
 
 	into /usr
-	dosbin savelog || die "savelog failed"
+	dosbin savelog
 
 	doman tempfile.1 run-parts.8 savelog.8
 	use kernel_linux && doman installkernel.8

@@ -1,6 +1,40 @@
 # ChangeLog for sys-apps/debianutils
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.165 2011/10/10 08:46:14 radhermit Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.172 2012/04/26 13:55:48 aballier Exp $
+
+  26 Apr 2012; Alexis Ballier <aballier@gentoo.org> debianutils-4.3.ebuild:
+  keyword ~amd64-fbsd
+
+*debianutils-4.3 (28 Mar 2012)
+
+  28 Mar 2012; Tim Harder <radhermit@gentoo.org> +debianutils-4.3.ebuild:
+  Version bump.
+
+*debianutils-4.2.2 (26 Mar 2012)
+
+  26 Mar 2012; Tim Harder <radhermit@gentoo.org> +debianutils-4.2.2.ebuild:
+  Version bump.
+
+  04 Feb 2012; Tim Harder <radhermit@gentoo.org> -debianutils-3.4.5.ebuild,
+  -debianutils-3.4.6.ebuild, -debianutils-4.ebuild, -debianutils-4.0.1.ebuild,
+  -debianutils-4.0.2.ebuild, -debianutils-4.0.3.ebuild,
+  -debianutils-4.0.4.ebuild:
+  Remove old.
+
+*debianutils-4.2.1 (04 Feb 2012)
+
+  04 Feb 2012; Tim Harder <radhermit@gentoo.org> +debianutils-4.2.1.ebuild:
+  Version bump.
+
+*debianutils-4.1 (05 Dec 2011)
+
+  05 Dec 2011; Tim Harder <radhermit@gentoo.org> +debianutils-4.1.ebuild:
+  Version bump.
+
+*debianutils-4.0.4 (05 Nov 2011)
+
+  05 Nov 2011; Tim Harder <radhermit@gentoo.org> +debianutils-4.0.4.ebuild:
+  Version bump. Update to EAPI 4.
 
   22 Oct 2011; Fabian Groffen <grobian@gentoo.org> debianutils-4.0.3.ebuild:
   Reduce diff with gx86
