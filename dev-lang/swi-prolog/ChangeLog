@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.325 2012/05/15 15:50:54 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.326 2012/05/18 19:19:12 keri Exp $
+
+  18 May 2012; <keri@gentoo.org> swi-prolog-6.0.1.ebuild,
+  swi-prolog-6.1.4.ebuild:
+  Enable xpce to run from build directory; this allows the xpce test-suite to
+  run
 
   15 May 2012; <keri@gentoo.org> swi-prolog-6.0.1.ebuild,
   swi-prolog-6.1.4.ebuild:
