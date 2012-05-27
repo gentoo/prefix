@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/sh
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/fix_libtool_files.sh,v 1.15 2012/05/15 18:53:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/fix_libtool_files.sh,v 1.16 2012/05/18 21:28:56 vapier Exp $
 
 usage() {
 cat << "USAGE_END"
@@ -37,8 +37,8 @@ ARGV1=$1
 ARGV2=$2
 ARGV3=$3
 
-source "@GENTOO_PORTAGE_EPREFIX@"/etc/profile || exit 1
-source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh || exit 1
+. "@GENTOO_PORTAGE_EPREFIX@"/etc/profile || exit 1
+. "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh || exit 1
 
 # Prefix: no!
 #if [ ${EUID:-0} -ne 0 ] ; then

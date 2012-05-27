@@ -1,6 +1,23 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.875 2012/05/15 18:53:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.879 2012/05/25 17:27:30 vapier Exp $
+
+  25 May 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.6.2.ebuild,
+  gcc-4.6.3.ebuild, gcc-4.7.0.ebuild:
+  Update x32 support.
+
+  22 May 2012; Ryan Hill <dirtyepic@gentoo.org> gcc-4.6.0.ebuild,
+  gcc-4.6.1-r1.ebuild, gcc-4.6.2.ebuild, gcc-4.6.3.ebuild:
+  Keyword for all but amd64.
+
+*gcc-4.7.0 (22 May 2012)
+
+  22 May 2012; Ryan Hill <dirtyepic@gentoo.org> -gcc-4.5.3-r1.ebuild,
+  +gcc-4.7.0.ebuild:
+  Version bump (bug #409315).
+
+  18 May 2012; Mike Frysinger <vapier@gentoo.org> files/fix_libtool_files.sh:
+  Use `.` rather than `source` now that we use /bin/sh as pointed out by pesa.
 
   15 May 2012; Mike Frysinger <vapier@gentoo.org> files/fix_libtool_files.sh:
   Use awk file in /usr/share/gcc-data and tweak the code to be POSIX since it is
