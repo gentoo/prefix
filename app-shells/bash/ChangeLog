@@ -1,6 +1,15 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.311 2012/05/03 15:57:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.312 2012/05/23 01:13:17 zmedico Exp $
+
+  23 May 2012; Zac Medico <zmedico@gentoo.org> bash-4.1_p10.ebuild,
+  bash-4.1_p11.ebuild, bash-4.1_p7.ebuild, bash-4.1_p9.ebuild,
+  bash-4.2_p10.ebuild, bash-4.2_p20.ebuild, bash-4.2_p24-r1.ebuild,
+  bash-4.2_p24.ebuild, bash-4.2_p28.ebuild, bash-4.2_p8-r1.ebuild:
+  Adjust the portage blocker from bug #297933 to play nicely with
+  portage-2.1.6.7_p1 (which has a backported fix for this bug). This should not
+  hurt people upgrading from later portage-2.1.6.x or 2.1.7.x releases, since
+  the message about BASHOPTS being readonly is only cosmetic.
 
 *bash-4.2_p28 (03 May 2012)
 
