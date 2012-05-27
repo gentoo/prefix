@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.21.1-r2.ebuild,v 1.3 2012/05/05 07:00:18 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.21.1-r2.ebuild,v 1.4 2012/05/17 16:31:08 aballier Exp $
 
 EAPI=3
 PYTHON_DEPEND="2"
