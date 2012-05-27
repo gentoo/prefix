@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4-r1.ebuild,v 1.8 2011/11/13 20:38:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4-r1.ebuild,v 1.9 2012/05/24 05:34:44 vapier Exp $
 
-inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
+inherit eutils db flag-o-matic java-pkg-opt-2 autotools multilib
 
 #Number of official patches
 #PATCHNO=`echo ${PV}|sed -e "s,\(.*_p\)\([0-9]*\),\2,"`

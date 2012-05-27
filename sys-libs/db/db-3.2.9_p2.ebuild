@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-3.2.9_p2.ebuild,v 1.11 2009/07/30 11:01:33 pauldv Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-3.2.9_p2.ebuild,v 1.12 2012/05/24 05:34:44 vapier Exp $
 
-inherit eutils db
+inherit eutils db multilib
 
 #Number of official patches
 #PATCHNO=`echo ${PV}|sed -e "s,\(.*_p\)\([0-9]*\),\2,"`

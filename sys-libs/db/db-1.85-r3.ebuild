@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-1.85-r3.ebuild,v 1.15 2011/02/06 21:34:37 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-1.85-r3.ebuild,v 1.16 2012/05/24 05:34:44 vapier Exp $
 
-inherit eutils toolchain-funcs multilib
+inherit eutils toolchain-funcs multilib multilib
 
 DESCRIPTION="old berk db kept around for really old packages"
 HOMEPAGE="http://www.oracle.com/technology/software/products/berkeley-db/db/index.html"
