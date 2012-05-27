@@ -1,6 +1,27 @@
 # ChangeLog for net-dns/bind-tools
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.207 2012/04/07 18:16:21 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.211 2012/05/22 12:47:06 idl0r Exp $
+
+*bind-tools-9.8.3 (22 May 2012)
+*bind-tools-9.7.6 (22 May 2012)
+
+  22 May 2012; Christian Ruppert <idl0r@gentoo.org> -bind-tools-9.7.5.ebuild,
+  +bind-tools-9.7.6.ebuild, -bind-tools-9.8.2.ebuild, +bind-tools-9.8.3.ebuild:
+  Version bump
+
+  22 May 2012; Christian Ruppert <idl0r@gentoo.org> metadata.xml:
+  Remove bind herd.. It's "empty" for years anyway, bug 417001.
+
+*bind-tools-9.9.1 (21 May 2012)
+
+  21 May 2012; Christian Ruppert <idl0r@gentoo.org> -bind-tools-9.9.0.ebuild,
+  +bind-tools-9.9.1.ebuild:
+  Version bump
+
+  17 May 2012; Christian Ruppert <idl0r@gentoo.org> bind-tools-9.7.5.ebuild,
+  bind-tools-9.8.1.ebuild, bind-tools-9.8.2.ebuild, bind-tools-9.9.0.ebuild:
+  Disable PKCS11 temporary as it requires OpenSSL to be patched, also see bug
+  409687.
 
 *bind-tools-9.8.2 (07 Apr 2012)
 *bind-tools-9.7.5 (07 Apr 2012)
