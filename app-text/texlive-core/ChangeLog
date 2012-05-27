@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.176 2012/05/09 13:41:50 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.177 2012/05/25 18:27:02 aballier Exp $
+
+  25 May 2012; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2011-r6.ebuild:
+  Add patch by Rafał Mużyło to build with poppler 0.20, bug #416989
 
   09 May 2012; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2011-r6.ebuild:
