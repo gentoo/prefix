@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.3-r1.ebuild,v 1.12 2012/05/14 21:17:26 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.3-r1.ebuild,v 1.15 2012/05/26 17:27:12 armin76 Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
