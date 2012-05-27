@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-2.7.13.ebuild,v 1.7 2012/04/28 19:00:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-2.7.13.ebuild,v 1.8 2012/05/19 16:26:07 ulm Exp $
 
 EAPI="4"
 # ruby19: dev-ruby/ruby-ldap has no ruby19
@@ -11,12 +11,7 @@ RUBY_FAKEGEM_TASK_DOC=""
 RUBY_FAKEGEM_TASK_TEST="test"
 RUBY_FAKEGEM_EXTRADOC="CHANGELOG* README*"
 
-# bug #406053
-inherit elisp-common
-EMACS_SITELISP="${SITELISP}"
-inherit xemacs-elisp-common
-XEMACS_SITELISP="${SITELISP}"
-inherit eutils ruby-fakegem
+inherit elisp-common xemacs-elisp-common eutils ruby-fakegem
 
 DESCRIPTION="A system automation and configuration management software"
 HOMEPAGE="http://puppetlabs.com/"
@@ -117,13 +112,11 @@ all_ruby_install() {
 	fi
 
 	if use emacs ; then
-		SITELISP="${EMACS_SITELISP}"
 		elisp-install ${PN} ext/emacs/puppet-mode.el*
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	fi
 
 	if use xemacs ; then
-		SITELISP="${XEMACS_SITELISP}"
 		xemacs-elisp-install ${PN} ext/xemacs/puppet-mode.el*
 		xemacs-elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	fi
@@ -171,11 +164,11 @@ pkg_postinst() {
 		elog
 	fi
 
-	use emacs && SITELISP="${EMACS_SITELISP}" elisp-site-regen
-	use xemacs && SITELISP="${XEMACS_SITELISP}" xemacs-elisp-site-regen
+	use emacs && elisp-site-regen
+	use xemacs && xemacs-elisp-site-regen
 }
 
 pkg_postrm() {
-	use emacs && SITELISP="${EMACS_SITELISP}" elisp-site-regen
-	use xemacs && SITELISP="${XEMACS_SITELISP}" xemacs-elisp-site-regen
+	use emacs && elisp-site-regen
+	use xemacs && xemacs-elisp-site-regen
 }

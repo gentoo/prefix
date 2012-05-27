@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/puppet
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.111 2012/04/28 19:00:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.112 2012/05/19 16:26:07 ulm Exp $
+
+  19 May 2012; Ulrich Müller <ulm@gentoo.org> puppet-2.7.12.ebuild,
+  puppet-2.7.13.ebuild:
+  Names of emacs and xemacs eclass variables have changed, bug 406053.
 
   28 Apr 2012; Raúl Porcel <armin76@gentoo.org> puppet-2.7.13.ebuild:
   sparc stable wrt #401857
