@@ -1,6 +1,12 @@
 # ChangeLog for sys-process/procps
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.64 2012/05/03 04:54:03 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.65 2012/05/20 10:35:39 vapier Exp $
+
+*procps-3.3.3 (20 May 2012)
+
+  20 May 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/procps-3.3.3-watch-8bit.patch, +procps-3.3.3.ebuild:
+  Version bump.
 
   03 May 2012; Jeff Horelick <jdhore@gentoo.org> procps-3.3.2_p2-r1.ebuild:
   dev-util/pkgconfig -> virtual/pkgconfig
