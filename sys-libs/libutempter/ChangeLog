@@ -1,6 +1,15 @@
 # ChangeLog for sys-libs/libutempter
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/ChangeLog,v 1.35 2011/04/05 11:46:34 ulm Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/ChangeLog,v 1.37 2012/05/24 05:37:41 vapier Exp $
+
+*libutempter-1.1.5-r1 (24 May 2012)
+
+  24 May 2012; Mike Frysinger <vapier@gentoo.org> +libutempter-1.1.5-r1.ebuild:
+  Rewrite ebuild to EAPI=4, and add static-libs support #378295 by Agostino
+  Sarubbo.
+
+  24 May 2012; Mike Frysinger <vapier@gentoo.org> libutempter-1.1.5.ebuild:
+  Update inherits to match what is used.
 
   05 Apr 2011; Ulrich Mueller <ulm@gentoo.org> libutempter-1.1.5.ebuild:
   Don't PROVIDE virtual/utempter and update blocker, bug 361117.

@@ -1,6 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/libutempter-1.1.5.ebuild,v 1.13 2012/05/24 05:35:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/libutempter-1.1.5-r1.ebuild,v 1.1 2012/05/24 05:37:41 vapier Exp $
+
+EAPI="4"
 
 inherit user multilib flag-o-matic
 
@@ -11,7 +13,7 @@ SRC_URI="ftp://ftp.altlinux.org/pub/people/ldv/${PN}/${P}.tar.bz2"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="elibc_FreeBSD"
+IUSE="static-libs elibc_FreeBSD"
 
 RDEPEND="!sys-apps/utempter"
 
@@ -19,39 +21,41 @@ pkg_setup() {
 	enewgroup utmp 406
 }
 
-src_compile() {
-	use elibc_FreeBSD && append-flags -lutil
-	emake \
-		CC="$(tc-getCC)" \
-		RPM_OPT_FLAGS="${CFLAGS}" \
-		libdir="${EPREFIX}"/usr/$(get_libdir) \
-		libexecdir="${EPREFIX}"/usr/$(get_libdir)/misc || die
+src_prepare() {
+	local args=(
+		-e "/^libdir /s:/usr/lib:${EPREFIX}/usr/$(get_libdir):"
+		-e '/^libexecdir /s:=.*:= $(libdir)/misc:'
+		-e '/^CFLAGS = $(RPM_OPT_FLAGS)/d'
+		-e 's:,-stats::'
+	)
+	use static-libs || args+=(
+			-e '/^STATICLIB/d'
+			-e '/INSTALL.*STATICLIB/d'
+		)
+	sed -i "${args[@]}" Makefile || die
+}
+
+src_configure() {
+	use elibc_FreeBSD && append-libs -lutil
+	tc-export CC
 }
 
 src_install() {
-	make \
-		DESTDIR="${D}" \
-		libdir="${EPREFIX}"/usr/$(get_libdir) \
-		libexecdir="${EPREFIX}"/usr/$(get_libdir)/misc \
-		includedir="${EPREFIX}"/usr/include \
-		install || die
+	default
 
 	use prefix && fowners root:utmp /usr/$(get_libdir)/misc/utempter/utempter
 	fperms 2755 /usr/$(get_libdir)/misc/utempter/utempter
 	dodir /usr/sbin
 	dosym ../$(get_libdir)/misc/utempter/utempter /usr/sbin/utempter
-	dodoc README
 }
 
 pkg_postinst() {
-	if [ -f "${EROOT}/var/log/wtmp" ]
-	then
+	if [ -f "${EROOT}/var/log/wtmp" ] ; then
 		chown root:utmp "${EROOT}/var/log/wtmp"
 		chmod 664 "${EROOT}/var/log/wtmp"
 	fi
 
-	if [ -f "${EROOT}/var/run/utmp" ]
-	then
+	if [ -f "${EROOT}/var/run/utmp" ] ; then
 		chown root:utmp "${EROOT}/var/run/utmp"
 		chmod 664 "${EROOT}/var/run/utmp"
 	fi
