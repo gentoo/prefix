@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/qhull
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.45 2012/01/14 10:48:44 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.46 2012/05/23 17:09:27 bicatali Exp $
+
+*qhull-2012.1 (23 May 2012)
+
+  23 May 2012; Sébastien Fabbro <bicatali@gentoo.org> +qhull-2012.1.ebuild:
+  Version bump
 
   14 Jan 2012; Kacper Kowalik <xarthisius@gentoo.org> qhull-2010.1-r2.ebuild:
   Fix quotes
