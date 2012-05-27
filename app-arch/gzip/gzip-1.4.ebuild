@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.4.ebuild,v 1.10 2012/04/26 19:25:30 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.4.ebuild,v 1.11 2012/05/22 22:04:35 vapier Exp $
 
 inherit eutils flag-o-matic prefix
 
@@ -25,6 +25,7 @@ src_unpack() {
 	#epatch "${FILESDIR}"/${PN}-1.3.5-rsync.patch
 	epatch "${FILESDIR}"/${PN}-1.3.8-install-symlinks.patch
 	epatch "${FILESDIR}"/${P}-assembler.patch #309079
+	epatch "${FILESDIR}"/${P}-no-gets.patch
 
 	epatch "${FILESDIR}"/${P}-asmv.patch
 	epatch "${FILESDIR}"/${PN}-1.3.12-prefix.patch
