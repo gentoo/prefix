@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.533 2012/04/14 17:00:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.539 2012/05/22 05:08:29 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -605,41 +605,20 @@ toolchain_pkg_postinst() {
 		echo
 	fi
 
-	# If our gcc-config version doesn't like '-' in it's version string,
-	# tell our users that gcc-config will yell at them, but it's all good.
-	if ! has_version '>=sys-devel/gcc-config-1.3.10-r1' && [[ ${GCC_CONFIG_VER/-/} != ${GCC_CONFIG_VER} ]] ; then
-		ewarn "Your version of gcc-config will issue about having an invalid profile"
-		ewarn "when switching to this profile.	It is safe to ignore this warning,"
-		ewarn "and this problem has been corrected in >=sys-devel/gcc-config-1.3.10-r1."
-	fi
-
-	if ! is_crosscompile && ! use multislot && [[ ${GCCMAJOR}.${GCCMINOR} == 3.4 ]] ; then
-		echo
-		ewarn "You should make sure to rebuild all your C++ packages when"
-		ewarn "upgrading between different versions of gcc.	 For example,"
-		ewarn "when moving to gcc-3.4 from gcc-3.3, emerge gentoolkit and run:"
-		ewarn "	 # revdep-rebuild --library libstdc++.so.5"
-		echo
-	fi
-
 	if ! is_crosscompile ; then
-		# hack to prevent collisions between SLOT
-		[[ ! -d ${EROOT}/$(get_libdir)/rcscripts/awk ]] \
-			&& mkdir -p "${EROOT}"/$(get_libdir)/rcscripts/awk
-		[[ ! -d ${EROOT}/sbin ]] \
-			&& mkdir -p "${EROOT}"/sbin
-		cp "${EROOT}/${DATAPATH}"/fixlafiles.awk "${EROOT}"/$(get_libdir)/rcscripts/awk/ || die "installing fixlafiles.awk"
-		cp "${EROOT}/${DATAPATH}"/fix_libtool_files.sh "${EROOT}"/sbin/ || die "installing fix_libtool_files.sh"
+		# hack to prevent collisions between SLOTs
 
-		[[ ! -d ${EROOT}/usr/bin ]] \
-			&& mkdir -p "${EROOT}"/usr/bin
+		# Clean up old paths
+		rm -f "${EROOT}"/*/rcscripts/awk/fixlafiles.awk "${EROOT}"/sbin/fix_libtool_files.sh
+		rmdir "${EROOT}"/*/rcscripts{/awk,} 2>/dev/null
+
+		mkdir -p "${EROOT}"/usr/{share/gcc-data,sbin,bin}
+		cp "${EROOT}/${DATAPATH}"/fixlafiles.awk "${EROOT}"/usr/share/gcc-data/ || die
+		cp "${EROOT}/${DATAPATH}"/fix_libtool_files.sh "${EROOT}"/usr/sbin/ || die
+
 		# Since these aren't critical files and portage sucks with
 		# handling of binpkgs, don't require these to be found
-		for x in "${EROOT}/${DATAPATH}"/c{89,99} ; do
-			if [[ -e ${x} ]]; then
-				cp ${x} "${EROOT}"/usr/bin/ || die "installing c89/c99"
-			fi
-		done
+		cp "${EROOT}/${DATAPATH}"/c{89,99} "${EROOT}"/usr/bin/ 2>/dev/null
 	fi
 }
 
@@ -892,12 +871,7 @@ gcc-multilib-configure() {
 	if [[ -n ${list} ]] ; then
 		case ${CTARGET} in
 		x86_64*)
-			# drop the 4.6.2 stuff once 4.7 goes stable
-			if tc_version_is_at_least 4.7 ||
-			   ( tc_version_is_at_least 4.6.2 && has x32 $(get_all_abis) )
-			then
-				confgcc+=" --with-multilib-list=${list:1}"
-			fi
+			tc_version_is_at_least 4.7 && confgcc+=" --with-multilib-list=${list:1}"
 			;;
 		esac
 	fi
@@ -993,22 +967,35 @@ gcc-compiler-configure() {
 
 	local with_abi_map=()
 	case $(tc-arch) in
-		arm)	#264534
-			local arm_arch="${CTARGET%%-*}"
-			# Only do this if arm_arch is armv*
-			if [[ ${arm_arch} == armv* ]] ; then
-				# Convert armv7{a,r,m} to armv7-{a,r,m}
-				[[ ${arm_arch} == armv7? ]] && arm_arch=${arm_arch/7/7-}
-				# Remove endian ('l' / 'eb')
-				[[ ${arm_arch} == *l  ]] && arm_arch=${arm_arch%l}
-				[[ ${arm_arch} == *eb ]] && arm_arch=${arm_arch%eb}
+		arm)	#264534 #414395
+			local a arm_arch=${CTARGET%%-*}
+			# Remove trailing endian variations first: eb el be bl b l
+			for a in e{b,l} {b,l}e b l ; do
+				if [[ ${arm_arch} == *${a} ]] ; then
+					arm_arch=${arm_arch%${a}}
+					break
+				fi
+			done
+			# Convert armv7{a,r,m} to armv7-{a,r,m}
+			[[ ${arm_arch} == armv7? ]] && arm_arch=${arm_arch/7/7-}
+			# See if this is a valid --with-arch flag
+			if (srcdir=${S}/gcc target=${CTARGET} with_arch=${arm_arch};
+			    . "${srcdir}"/config.gcc) &>/dev/null
+			then
 				confgcc+=" --with-arch=${arm_arch}"
 			fi
 
 			# Enable hardvfp
-			if [[ ${CTARGET##*-} == *eabi ]] && [[ $(tc-is-hardfloat) == yes ]] && \
-			    tc_version_is_at_least "4.5" ; then
-			        confgcc+=" --with-float=hard"
+			if [[ $(tc-is-softfloat) == no ]] && \
+			   [[ ${CTARGET} == armv[67]* ]] && \
+			   tc_version_is_at_least "4.5"
+			then
+				# Follow the new arm hardfp distro standard by default
+				confgcc+=" --with-float=hard"
+				case ${CTARGET} in
+				armv6*) confgcc+=" --with-fpu=vfp" ;;
+				armv7*) confgcc+=" --with-fpu=vfpv3-d16" ;;
+				esac
 			fi
 			;;
 		# Add --with-abi flags to set default ABI
@@ -1018,7 +1005,7 @@ gcc-compiler-configure() {
 		amd64)
 			# drop the older/ABI checks once this get's merged into some
 			# version of gcc upstream
-			if [[ ${PV} == "4.6.2" ]] && has x32 $(get_all_abis) ; then
+			if tc_version_is_at_least 4.7 && has x32 $(get_all_abis) ; then
 				confgcc+=" --with-abi=$(gcc-abi-map ${DEFAULT_ABI})"
 			fi
 			;;
@@ -1886,7 +1873,7 @@ do_gcc_PIE_patches() {
 should_we_gcc_config() {
 	# we always want to run gcc-config if we're bootstrapping, otherwise
 	# we might get stuck with the c-only stage1 compiler
-	use bootstrap && return 0
+	use_if_iuse bootstrap && return 0
 	use build && return 0
 
 	# if the current config is invalid, we definitely want a new one
@@ -2010,10 +1997,7 @@ setup_multilib_osdirnames() {
 
 	if [[ ${SYMLINK_LIB} == "yes" ]] ; then
 		einfo "updating multilib directories to be: ${libdirs}"
-		# drop the 4.6.2 stuff once 4.7 goes stable
-		if tc_version_is_at_least 4.7 ||
-		   ( tc_version_is_at_least 4.6.2 && has x32 $(get_all_abis) )
-		then
+		if tc_version_is_at_least 4.7 ; then
 			set -- -e '/^MULTILIB_OSDIRNAMES.*lib32/s:[$][(]if.*):../lib32:'
 		else
 			set -- -e "/^MULTILIB_OSDIRNAMES/s:=.*:= ${libdirs}:"
