@@ -1,6 +1,11 @@
 # ChangeLog for net-dns/libidn
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.166 2012/04/26 17:03:44 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.167 2012/05/23 16:11:48 jer Exp $
+
+*libidn-1.25 (23 May 2012)
+
+  23 May 2012; Jeroen Roovers <jer@gentoo.org> +libidn-1.25.ebuild:
+  Version bump.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> libidn-1.24.ebuild:
   keyword ~amd64-fbsd
