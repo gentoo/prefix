@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.17.ebuild,v 1.1 2012/05/10 22:09:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.17.ebuild,v 1.2 2012/05/24 02:33:02 vapier Exp $
 
 EAPI="3"
 
@@ -91,7 +91,10 @@ src_configure() {
 		append-flags "-Dgetgrnam=getgrnam_nomembers"
 	fi
 
-	tc-is-cross-compiler && [[ ${CHOST} == *linux* ]] && export fu_cv_sys_stat_statfs2_bsize=yes #311569
+	if tc-is-cross-compiler && [[ ${CHOST} == *linux* ]] ; then
+		export fu_cv_sys_stat_statfs2_bsize=yes #311569
+		export gl_cv_func_realpath_works=yes #416629
+	fi
 
 	# m4/pthread.m4 on FreeBSD thinks pthread_join doesn't need any libaries
 	# sort.c:(.text+0x4f25): undefined reference to `pthread_create'
