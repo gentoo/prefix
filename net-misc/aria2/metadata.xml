@@ -8,9 +8,8 @@
   <use>
     <flag name="ares">Enables support for asynchronous DNS using the c-ares library</flag>
 	<flag name="bittorrent">Enables support for the bittorrent protocol</flag>
-	<!--<flag name="nettle">Use <pkg>dev-libs/nettle</pkg> and <pkg>dev-libs/gmp</pkg>
-		for bittorrent crypto instead of <pkg>net-libs/gnutls</pkg>+<pkg>dev-libs/libgcrypt</pkg> or
-		<pkg>dev-libs/openssl</pkg>. For HTTPS either <pkg>net-libs/gnutls</pkg> or <pkg>dev-libs/openssl</pkg> is still required.</flag>-->
+	<flag name="nettle">Use <pkg>dev-libs/nettle</pkg> and <pkg>dev-libs/gmp</pkg>
+		for bittorrent/metalink crypto instead of <pkg>dev-libs/libgcrypt</pkg> when using <pkg>net-libs/gnutls</pkg> for SSL or without SSL support at all.</flag>
     <flag name="metalink">Enables support for metalink</flag>
     <flag name="scripts">Install additional scripts which use aria2's xmlrpc functionality</flag>
   </use>
