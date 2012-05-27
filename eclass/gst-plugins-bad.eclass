@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.41 2011/12/27 17:55:12 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.42 2012/05/02 18:31:42 jdhore Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -71,7 +71,7 @@ RDEPEND="=media-libs/gstreamer-0.10*
 		>=dev-libs/glib-2.6"
 DEPEND="${RDEPEND}
 		sys-apps/sed
-		dev-util/pkgconfig
+		virtual/pkgconfig
 		sys-devel/gettext"
 
 # -bad-0.10.20 uses orc optionally instead of liboil unconditionally.
