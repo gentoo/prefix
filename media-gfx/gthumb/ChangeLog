@@ -1,6 +1,16 @@
 # ChangeLog for media-gfx/gthumb
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.149 2012/05/05 07:00:18 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.151 2012/05/25 08:48:03 pacho Exp $
+
+*gthumb-2.14.4 (25 May 2012)
+
+  25 May 2012; Pacho Ramos <pacho@gentoo.org> +gthumb-2.14.4.ebuild,
+  -gthumb-2.14.0.ebuild, gthumb-3.0.0.ebuild:
+  Version bump, drop old. Rekeyword on ppc/ppc64 as looks it makes repoman happy
+  (and don't remember why were dropped).
+
+  24 May 2012; Samuli Suominen <ssuominen@gentoo.org> gthumb-2.14.3.ebuild:
+  ppc stable wrt #410611
 
   05 May 2012; Jeff Horelick <jdhore@gentoo.org> gthumb-2.14.0.ebuild,
   gthumb-2.14.3.ebuild, gthumb-3.0.0.ebuild:
