@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/libproxy
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.78 2012/05/05 02:54:29 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.79 2012/05/26 08:57:11 tetromino Exp $
+
+  26 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  libproxy-0.4.7.ebuild, +files/libproxy-0.4.7-gcc-4.7.patch:
+  Fix building with gcc-4.7 (bug #412363, thanks to Alphat-PC, Philipp Richter
+  et al.)
 
   05 May 2012; Jeff Horelick <jdhore@gentoo.org> libproxy-0.4.6-r3.ebuild,
   libproxy-0.4.7.ebuild:

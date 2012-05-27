@@ -1,11 +1,11 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.4.7.ebuild,v 1.10 2012/05/05 02:54:29 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.4.7.ebuild,v 1.11 2012/05/26 08:57:11 tetromino Exp $
 
 EAPI=4
 PYTHON_DEPEND="python? 2:2.6"
 
-inherit cmake-utils mono python
+inherit cmake-utils eutils mono python
 
 DESCRIPTION="Library for automatic proxy configuration management"
 HOMEPAGE="http://code.google.com/p/libproxy/"
@@ -45,6 +45,10 @@ pkg_setup() {
 src_prepare() {
 	# fix stupidity preventing a pkgconfig file to be installed
 	sed -i -e 's/AND NOT APPLE//' libproxy/cmake/{pkgconfig,devfiles}.cmk || die
+}
+
+src_prepare() {
+	epatch "${FILESDIR}/${P}-gcc-4.7.patch"
 }
 
 src_configure() {
