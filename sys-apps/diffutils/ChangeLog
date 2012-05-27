@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/diffutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.67 2012/04/26 13:57:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.69 2012/05/23 23:05:12 vapier Exp $
+
+  23 May 2012; Mike Frysinger <vapier@gentoo.org> diffutils-3.2.ebuild:
+  Inherit eutils eclass for epatch.
+
+  22 May 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/diffutils-3.2-no-gets.patch, diffutils-3.2.ebuild:
+  Fix building with glibc-2.16+.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> diffutils-3.2.ebuild:
   keyword ~amd64-fbsd
