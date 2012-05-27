@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/ossp-uuid
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.29 2012/05/12 18:30:44 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.30 2012/05/24 20:07:50 dev-zero Exp $
+
+*ossp-uuid-1.6.2-r2 (24 May 2012)
+
+  24 May 2012; Tiziano Müller <dev-zero@gentoo.org>
+  -files/ossp-uuid-1.6.1-gentoo.patch, +ossp-uuid-1.6.2-r2.ebuild,
+  +files/ossp-uuid-1.6.2-gentoo-perl.patch, +files/ossp-uuid-1.6.2-php.patch:
+  Add support for perl bindings (bug #350558, thanks to Scott Thomson). Added
+  static-libs USE flag. Support for building with php-5.4.
 
   12 May 2012; Alexis Ballier <aballier@gentoo.org> ossp-uuid-1.6.2-r1.ebuild:
   keyword ~amd64-fbsd
