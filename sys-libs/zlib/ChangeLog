@@ -1,6 +1,21 @@
 # ChangeLog for sys-libs/zlib
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.103 2012/05/06 20:39:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.108 2012/05/26 10:11:59 maekke Exp $
+
+  26 May 2012; Markus Meier <maekke@gentoo.org> zlib-1.2.5.1-r2.ebuild:
+  arm stable, bug #384483
+
+  24 May 2012; Matt Turner <mattst88@gentoo.org> zlib-1.2.5.1-r2.ebuild:
+  Stable on alpha, bug 384483.
+
+  22 May 2012; Jeff Horelick <jdhore@gentoo.org> zlib-1.2.5.1-r2.ebuild:
+  marked x86 per bug 384483
+
+  20 May 2012; Agostino Sarubbo <ago@gentoo.org> zlib-1.2.5.1-r2.ebuild:
+  Stable for amd64, wrt bug #384483
+
+  19 May 2012; Samuli Suominen <ssuominen@gentoo.org> zlib-1.2.5.1-r2.ebuild:
+  ppc64 stable wrt #384483
 
   06 May 2012; Brent Baude <ranger@gentoo.org> zlib-1.2.5.1-r2.ebuild:
   Marking zlib-1.2.5.1-r2 ppc for bug 384483
