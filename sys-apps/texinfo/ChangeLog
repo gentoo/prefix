@@ -1,6 +1,16 @@
 # ChangeLog for sys-apps/texinfo
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.114 2012/04/26 13:34:18 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.116 2012/05/24 02:02:37 flameeyes Exp $
+
+*texinfo-4.13-r2 (24 May 2012)
+
+  24 May 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  +files/texinfo-4.13-docbook.patch, +texinfo-4.13-r2.ebuild:
+  Add a patch to fix docbook output; will be sent upstream as soon as I have the
+  form signed.
+
+  23 May 2012; Mike Frysinger <vapier@gentoo.org> texinfo-4.13-r1.ebuild:
+  Inherit eutils eclass for epatch.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> texinfo-4.13-r1.ebuild:
   keyword ~amd64-fbsd

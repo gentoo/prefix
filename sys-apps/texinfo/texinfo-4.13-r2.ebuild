@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.13-r1.ebuild,v 1.5 2012/05/23 23:05:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.13-r2.ebuild,v 1.1 2012/05/24 02:02:37 flameeyes Exp $
 
 EAPI="2"
 
@@ -31,6 +31,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-texi2dvi-regexp-range.patch #311885
 	touch doc/{texi2dvi,texi2pdf,pdftexi2dvi}.1 #354589
 	epatch "${FILESDIR}"/${P}-accentenc-test.patch
+	# waiting to be sent upstream for my copyright assignment form to be
+	# ready - Flameeyes
+	epatch "${FILESDIR}"/${P}-docbook.patch
 }
 
 src_configure() {
