@@ -1,6 +1,14 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.358 2012/05/08 15:51:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.360 2012/05/22 15:48:49 jer Exp $
+
+  22 May 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.5.ebuild,
+  +files/lftp-4.3.5-autopoint.patch, lftp-4.3.6.ebuild:
+  Set AM_GNU_GETTEXT_VERSION by Lars Wendler (bug #417039).
+
+  22 May 2012; Jeroen Roovers <jer@gentoo.org>
+  -files/lftp-4.3.4-empty-local.patch:
+  Old.
 
   08 May 2012; Brent Baude <ranger@gentoo.org> lftp-4.3.6.ebuild:
   Marking lftp-4.3.6 ppc64 for bug 414253
