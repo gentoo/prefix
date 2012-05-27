@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.7 2011/08/04 19:31:38 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.8 2012/04/23 07:16:34 mr_bones_ Exp $
 
 inherit base
 
@@ -20,9 +20,11 @@ SRC_URI="mirror://ggz/${PV}/${P}.tar.gz"
 GGZ_MODDIR="/usr/share/ggz/modules"
 
 games-ggz_src_configure() {
+	local reg="--enable-noregistry=\"${EPREFIX}${GGZ_MODDIR}\""
+	[[ ${PN} == ggz-client-libs ]] && reg=''
 	econf \
 		--disable-dependency-tracking \
-		--enable-noregistry="${EPREFIX}${GGZ_MODDIR}" \
+		$reg \
 		$(has debug ${IUSE} && ! use debug && echo --disable-debug) \
 		"$@"
 }
