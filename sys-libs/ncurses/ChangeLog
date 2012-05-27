@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.203 2012/05/06 20:01:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.205 2012/05/21 09:43:32 phajdan.jr Exp $
+
+  21 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> ncurses-5.9-r2.ebuild:
+  x86 stable wrt bug #413897
+
+  17 May 2012; Jeroen Roovers <jer@gentoo.org> ncurses-5.9-r2.ebuild:
+  Stable for HPPA (bug #413897).
 
   06 May 2012; Mike Frysinger <vapier@gentoo.org> ncurses-5.9-r2.ebuild:
   Mark ia64/m68k/s390/sh stable #413897.
