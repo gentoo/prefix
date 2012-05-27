@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.5.ebuild,v 1.1 2012/05/06 18:16:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.5.ebuild,v 1.2 2012/05/22 23:12:49 vapier Exp $
 
 inherit flag-o-matic eutils libtool unpacker toolchain-funcs
 
@@ -28,8 +28,8 @@ src_unpack() {
 	unpacker_src_unpack
 	cd "${S}"
 	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
-
-	epatch "${FILESDIR}"/${PN}-5.0.2-x32-support.patch
+ 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
+	epatch "${FILESDIR}"/${PN}-5.0.5-x32-support.patch
 
 	# disable -fPIE -pie in the tests for x86  #236054
 	if use x86 && gcc-specs-pie ; then
