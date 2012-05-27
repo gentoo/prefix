@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.124 2011/12/27 17:55:13 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.125 2012/05/02 18:31:45 jdhore Exp $
 #
 # @DEPRECATED
 # This eclass has been superseded by xorg-2
@@ -179,7 +179,7 @@ if [[ -z "${FONT}" ]] \
 fi
 
 DEPEND="${DEPEND}
-	>=dev-util/pkgconfig-0.18"
+	virtual/pkgconfig"
 
 if [[ "${PN/util-macros}" = "${PN}" ]]; then
 	DEPEND="${DEPEND}
