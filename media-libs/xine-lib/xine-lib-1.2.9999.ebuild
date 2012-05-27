@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.2.1-r1.ebuild,v 1.11 2012/05/22 18:10:32 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.2.9999.ebuild,v 1.16 2012/05/22 18:10:32 ssuominen Exp $
 
 EAPI=4
 
@@ -8,20 +8,20 @@ unset _live_inherits
 
 if [[ ${PV} == *9999* ]]; then
 	EHG_REPO_URI="http://hg.debian.org/hg/xine-lib/xine-lib-1.2"
-	_live_inherits="autotools mercurial"
+	_live_inherits="autotools mercurial eutils"
 else
-	#KEYWORDS="amd64 hppa ppc ppc64 x86 ~x86-fbsd"
+	#KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~x86 ~x86-fbsd"
 	SRC_URI="mirror://sourceforge/xine/${P}.tar.xz"
 fi
 
-inherit eutils libtool multilib ${_live_inherits}
+inherit libtool multilib ${_live_inherits}
 
 DESCRIPTION="Core libraries for Xine movie player"
 HOMEPAGE="http://xine.sourceforge.net/"
 
 LICENSE="GPL-2"
 SLOT="1"
-IUSE="a52 aac aalib +alsa altivec bluray +css directfb dts dvb dxr3 fbcon flac fusion gtk imagemagick ipv6 jack libcaca mad +mmap mng modplug musepack nls opengl oss pulseaudio real samba sdl speex theora truetype v4l vcd vdpau vdr vidix +vis vorbis wavpack win32codecs +X +xcb xinerama +xv xvmc"
+IUSE="a52 aac aalib +alsa altivec bluray +css directfb dts dvb dxr3 fbcon flac fusion gtk imagemagick ipv6 jack libcaca mad +mmap mng modplug musepack opengl oss pulseaudio real samba sdl speex theora truetype v4l vcd vdpau vdr vidix +vis vorbis wavpack win32codecs +X +xcb xinerama +xv xvmc"
 
 RDEPEND="dev-libs/libxdg-basedir
 	media-libs/libdvdnav
@@ -29,6 +29,7 @@ RDEPEND="dev-libs/libxdg-basedir
 	|| ( media-video/ffmpeg media-libs/libpostproc <media-video/libav-0.8.2-r1 )
 	virtual/ffmpeg
 	virtual/libiconv
+	virtual/libintl
 	a52? ( media-libs/a52dec )
 	aac? ( media-libs/faad2 )
 	aalib? ( media-libs/aalib )
@@ -48,7 +49,6 @@ RDEPEND="dev-libs/libxdg-basedir
 	mng? ( media-libs/libmng )
 	modplug? ( >=media-libs/libmodplug-0.8.8.1 )
 	musepack? ( >=media-sound/musepack-tools-444 )
-	nls? ( virtual/libintl )
 	opengl? (
 		virtual/glu
 		virtual/opengl
@@ -96,9 +96,9 @@ RDEPEND="dev-libs/libxdg-basedir
 DEPEND="${RDEPEND}
 	app-arch/xz-utils
 	virtual/pkgconfig
+	sys-devel/gettext
 	>=sys-devel/libtool-2.2.6b
 	bluray? ( !media-libs/libbluray-xine )
-	nls? ( sys-devel/gettext )
 	oss? ( virtual/os-headers )
 	v4l? ( virtual/os-headers )
 	X? (
@@ -114,14 +114,11 @@ REQUIRED_USE="vidix? ( || ( X fbcon ) )
 	xinerama? ( X )"
 
 src_prepare() {
-	epatch \
-		"${FILESDIR}"/${P}-ffmpeg-git.patch \
-		"${FILESDIR}"/${P}-fix_dvb_crc_checking.patch \
-		"${FILESDIR}"/${P}-freebsd.patch
-
 	sed -i -e '/define VDR_ABS_FIFO_DIR/s|".*"|"/var/vdr/xine"|' src/vdr/input_vdr.c || die
 
 	if [[ ${PV} == *9999* ]]; then
+		epatch_user
+
 		eautopoint
 		eautoreconf
 	else
@@ -139,7 +136,6 @@ src_configure() {
 
 	econf \
 		$(use_enable ipv6) \
-		$(use_enable nls) \
 		$(use_enable altivec) \
 		$(use_enable vis) \
 		--disable-optimizations \
