@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.169 2012/02/26 12:09:44 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.170 2012/05/26 02:55:02 vapier Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -182,6 +182,10 @@ append-lfs-flags() {
 # Add extra <flags> to your current {C,CXX,F,FC}FLAGS.
 append-flags() {
 	[[ $# -eq 0 ]] && return 0
+	case " $* " in
+	*' '-[DIU]*) eqawarn 'please use append-cppflags for preprocessor flags' ;;
+	*' '-L*)     eqawarn 'please use append-ldflags for linker flags' ;;
+	esac
 	append-cflags "$@"
 	append-cxxflags "$@"
 	append-fflags "$@"
