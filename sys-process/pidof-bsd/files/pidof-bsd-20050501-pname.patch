@@ -7,10 +7,10 @@
 +	char *pname = NULL;
 +
 +	if (process_name == NULL)
-+		return;
++		return 0;
 +
 +	if ((pname = strdup(basename(process_name))) == NULL)
-+		return;
++		return 0;
  	
 -	if ((kd = kvm_open("/dev/null", "/dev/null", "/dev/null", O_RDONLY, "kvm_open")) == NULL) 
 -			 (void)errx(1, "%s", kvm_geterr(kd));
