@@ -1,0 +1,25 @@
+From b4d36f60f68b87ee0bea6fb0b5e5437d12f5f894 Mon Sep 17 00:00:00 2001
+From: Alexis Ballier <aballier@gentoo.org>
+Date: Sat, 26 May 2012 14:06:12 -0400
+Subject: [PATCH] Fix tests without fate samples.
+
+---
+ tests/fate/video.mak |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/tests/fate/video.mak b/tests/fate/video.mak
+index 8c42332..0e043dc 100644
+--- a/tests/fate/video.mak
++++ b/tests/fate/video.mak
+@@ -97,7 +97,7 @@ fate-dxa-scummvm: CMD = framecrc -i $(SAMPLES)/dxa/scummvm.dxa -pix_fmt rgb24
+ FATE_VIDEO += $(FATE_DXA)
+ fate-dxa: $(FATE_DXA)
+ 
+-FATE_PCM += fate-film-cvid
++FATE_SAMPLES_PCM += fate-film-cvid
+ fate-film-cvid: CMD = framecrc -i $(SAMPLES)/film/logo-capcom.cpk -an
+ 
+ FATE_FLIC += fate-flic-af11-palette-change
+-- 
+1.7.8.6
+
