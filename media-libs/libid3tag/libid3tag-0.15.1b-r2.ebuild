@@ -1,9 +1,9 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/libid3tag-0.15.1b-r2.ebuild,v 1.9 2012/05/09 16:20:13 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/libid3tag-0.15.1b-r2.ebuild,v 1.10 2012/05/17 14:50:26 aballier Exp $
 
 EAPI=2
-inherit eutils multilib autotools
+inherit eutils multilib libtool autotools
 
 DESCRIPTION="The MAD id3tag library"
 HOMEPAGE="http://www.underbit.com/products/mad/"
@@ -19,9 +19,10 @@ DEPEND="${RDEPEND}
 	dev-util/gperf"
 
 src_prepare() {
-	eautoreconf # need new libtool for interix
+	[[ ${CHOST} == *-interix* ]] && eautoreconf # need new libtool for interix
 	epunt_cxx #74489
 	epatch "${FILESDIR}/${PV}"/*.patch
+	elibtoolize #sane .so versionning on fbsd and .so -> .so.version symlink
 }
 
 src_configure() {
