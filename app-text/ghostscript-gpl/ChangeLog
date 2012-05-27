@@ -1,6 +1,17 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.143 2012/05/16 15:25:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.146 2012/05/23 13:22:42 ranger Exp $
+
+  23 May 2012; Brent Baude <ranger@gentoo.org> ghostscript-gpl-9.05-r1.ebuild:
+  Marking ghostscript-gpl-9.05-r1 ppc64 for bug 414463
+
+  18 May 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  -ghostscript-gpl-9.04-r6.ebuild:
+  Remove old
+
+  18 May 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  ghostscript-gpl-9.05-r2.ebuild:
+  Remove german manpages if not needed by user, bug 407197
 
   26 May 2012; Fabian Groffen <grobian@gentoo.org>
   files/ghostscript-gpl-9.05-darwin.patch:
