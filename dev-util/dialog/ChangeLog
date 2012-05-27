@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/dialog
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.152 2012/04/26 14:26:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.153 2012/05/26 20:30:06 jdhore Exp $
+
+  26 May 2012; Jeff Horelick <jdhore@gentoo.org> dialog-1.1.20120215.ebuild:
+  marked x86 per bug 417669
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> dialog-1.1.20120215.ebuild:
   keyword ~amd64-fbsd
