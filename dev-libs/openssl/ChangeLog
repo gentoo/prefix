@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.461 2012/05/13 19:51:52 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.463 2012/05/25 17:41:49 vapier Exp $
+
+  25 May 2012; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8u.ebuild,
+  openssl-0.9.8v.ebuild, openssl-0.9.8w.ebuild, openssl-0.9.8x.ebuild,
+  openssl-1.0.0h.ebuild, openssl-1.0.0i.ebuild, openssl-1.0.0j.ebuild,
+  openssl-1.0.1a.ebuild, openssl-1.0.1b.ebuild, openssl-1.0.1c.ebuild:
+  Inherit multilib for get_libdir.
+
+  20 May 2012; Mike Frysinger <vapier@gentoo.org> -openssl-0.9.8r.ebuild,
+  -openssl-0.9.8s-r1.ebuild, -openssl-0.9.8s.ebuild, -openssl-0.9.8t.ebuild,
+  -openssl-1.0.0d.ebuild, -openssl-1.0.0e-r1.ebuild, -openssl-1.0.0e.ebuild,
+  -openssl-1.0.0f-r1.ebuild, -openssl-1.0.0f.ebuild, -openssl-1.0.0g.ebuild,
+  -openssl-1.0.1.ebuild, openssl-1.0.0h.ebuild, openssl-1.0.0i.ebuild,
+  openssl-1.0.0j.ebuild, openssl-1.0.1a.ebuild, openssl-1.0.1b.ebuild,
+  openssl-1.0.1c.ebuild:
+  Have c_rehash default to /etc/ssl #416717 by Marc Schiffbauer.
 
   13 May 2012; Mark Loeser <halcy0n@gentoo.org> openssl-1.0.0j.ebuild:
   Stable for ppc/ppc64; bug #415435

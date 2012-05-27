@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1c.ebuild,v 1.1 2012/05/10 22:33:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1c.ebuild,v 1.3 2012/05/25 17:41:49 vapier Exp $
 
 EAPI="4"
 
@@ -38,7 +38,11 @@ PDEPEND="app-misc/ca-certificates"
 
 src_unpack() {
 	unpack ${P}.tar.gz
-	cp "${DISTDIR}"/${PN}-c_rehash.sh.${REV} "${WORKDIR}"/c_rehash || die
+	SSL_CNF_DIR="/etc/ssl"
+	sed \
+		-e "/^DIR=/s:=.*:=${EPREFIX}${SSL_CNF_DIR}:" \
+		"${DISTDIR}"/${PN}-c_rehash.sh.${REV} \
+		> "${WORKDIR}"/c_rehash || die #416717
 }
 
 src_prepare() {
@@ -172,7 +176,7 @@ src_configure() {
 		$(use_ssl rfc3779) \
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
-		--openssldir="${EPREFIX}"/etc/ssl \
+		--openssldir="${EPREFIX}"${SSL_CNF_DIR} \
 		--libdir=$(get_libdir) \
 		shared threads ${confopts} \
 		|| die
@@ -232,9 +236,9 @@ src_install() {
 	use static-libs || rm -f "${ED}"/usr/lib*/lib*.a
 
 	# create the certs directory
-	dodir /etc/ssl/certs
-	cp -RP certs/* "${ED}"/etc/ssl/certs/ || die
-	rm -r "${ED}"/etc/ssl/certs/{demo,expired}
+	dodir ${SSL_CNF_DIR}/certs
+	cp -RP certs/* "${ED}"${SSL_CNF_DIR}/certs/ || die
+	rm -r "${ED}"${SSL_CNF_DIR}/certs/{demo,expired}
 
 	# Namespace openssl programs to prevent conflicts with other man pages
 	cd "${ED}"/usr/share/man
@@ -262,7 +266,7 @@ src_install() {
 	echo 'SANDBOX_PREDICT="/dev/crypto"' > "${ED}"/etc/sandbox.d/10openssl
 
 	diropts -m0700
-	keepdir /etc/ssl/private
+	keepdir ${SSL_CNF_DIR}/private
 }
 
 pkg_preinst() {
@@ -271,8 +275,8 @@ pkg_preinst() {
 }
 
 pkg_postinst() {
-	ebegin "Running 'c_rehash ${EROOT}etc/ssl/certs/' to rebuild hashes #333069"
-	c_rehash "${EROOT}etc/ssl/certs" >/dev/null
+	ebegin "Running 'c_rehash ${EROOT%/}${SSL_CNF_DIR}/certs/' to rebuild hashes #333069"
+	c_rehash "${EROOT%/}${SSL_CNF_DIR}/certs" >/dev/null
 	eend $?
 
 	has_version ${CATEGORY}/${PN}:0.9.8 && return 0
