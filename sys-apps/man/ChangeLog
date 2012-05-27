@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.173 2012/04/26 15:13:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.174 2012/05/24 02:55:26 vapier Exp $
+
+  24 May 2012; Mike Frysinger <vapier@gentoo.org> man-1.6f-r4.ebuild,
+  man-1.6f-r5.ebuild, man-1.6g.ebuild:
+  Inherit user for enewuser/etc...
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> man-1.6g.ebuild:
   keyword ~amd64-fbsd

@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6g.ebuild,v 1.9 2012/04/26 15:13:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6g.ebuild,v 1.10 2012/05/24 02:55:26 vapier Exp $
 
 EAPI="2"
 
-inherit eutils toolchain-funcs flag-o-matic prefix
+inherit eutils toolchain-funcs user flag-o-matic prefix
 
 DESCRIPTION="Standard commands to read man pages"
 HOMEPAGE="http://primates.ximian.com/~flucifredi/man/"
