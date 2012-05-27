@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_p125.ebuild,v 1.2 2012/03/01 22:49:37 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_p125.ebuild,v 1.3 2012/05/20 20:56:14 ago Exp $
 
 EAPI=2
 
