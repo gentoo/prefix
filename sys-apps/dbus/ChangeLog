@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.338 2012/05/16 15:18:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.339 2012/05/24 04:21:00 vapier Exp $
+
+  24 May 2012; Mike Frysinger <vapier@gentoo.org> dbus-1.4.16-r2.ebuild,
+  dbus-1.4.16.ebuild, dbus-1.4.18.ebuild, dbus-1.4.20.ebuild,
+  dbus-1.5.12.ebuild:
+  Inherit user for enewuser/etc...
 
   16 May 2012; Jeroen Roovers <jer@gentoo.org> dbus-1.4.20.ebuild:
   Stable for HPPA (bug #412535).
