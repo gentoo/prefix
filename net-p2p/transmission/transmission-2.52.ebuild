@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-2.51.ebuild,v 1.5 2012/05/20 21:06:32 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-2.52.ebuild,v 1.1 2012/05/24 01:55:29 ssuominen Exp $
 
 EAPI=4
 LANGS="en es kk lt pt_BR ru"
@@ -12,7 +12,7 @@ if [[ ${PV} == *9999* ]]; then
 	_live_inherits=subversion
 else
 	SRC_URI="http://download.transmissionbt.com/${PN}/files/${P}.tar.xz"
-	#KEYWORDS="amd64 ~arm ppc ppc64 x86 ~x86-fbsd"
+	#KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86 ~x86-fbsd"
 fi
 
 inherit autotools eutils fdo-mime gnome2-utils qt4-r2 ${_live_inherits}
@@ -21,21 +21,21 @@ DESCRIPTION="A Fast, Easy and Free BitTorrent client"
 HOMEPAGE="http://www.transmissionbt.com/"
 
 LICENSE="GPL-2 MIT"
-SLOT="0"
+SLOT=0
 IUSE="ayatana gtk lightweight qt4 xfs"
 
 RDEPEND="
 	>=dev-libs/libevent-2.0.10
 	dev-libs/openssl:0
 	net-libs/libnatpmp
-	>=net-libs/miniupnpc-1.6
+	>=net-libs/miniupnpc-1.6.20120509
 	>=net-misc/curl-7.16.3[ssl]
 	sys-libs/zlib
 	gtk? (
 		>=dev-libs/dbus-glib-0.98
 		>=dev-libs/glib-2.28
 		>=x11-libs/gtk+-3.2:3
-		ayatana? ( dev-libs/libappindicator:3 )
+		ayatana? ( >=dev-libs/libappindicator-0.4.90:3 )
 		)
 	qt4? (
 		x11-libs/qt-core:4
@@ -72,15 +72,19 @@ src_prepare() {
 		./update-version-h.sh
 	fi
 
-	epatch "${FILESDIR}"/${P}-fbsd.patch #400929
-
 	sed -i -e '/CFLAGS/s:-ggdb3::' configure.ac
 	use ayatana || sed -i -e '/^LIBAPPINDICATOR_MINIMUM/s:=.*:=9999:' configure.ac
 
 	# http://trac.transmissionbt.com/ticket/4324
 	sed -i -e 's|noinst\(_PROGRAMS = $(TESTS)\)|check\1|' lib${PN}/Makefile.am || die
 
-	intltoolize --copy --force --automake || die
+	# http://bugs.gentoo.org/400929 ->
+	# http://trac.transmissionbt.com/ticket/4915 ->
+	# http://github.com/bittorrent/libutp/issues/35
+	if ! grep -qs include.*netinet.*in.h third-party/libutp/utp.h; then
+		epatch "${FILESDIR}"/${PN}-2.51-fbsd.patch
+	fi
+
 	eautoreconf
 
 	if use qt4; then

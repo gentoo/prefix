@@ -1,6 +1,31 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.189 2012/05/04 06:33:34 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.194 2012/05/24 01:55:29 ssuominen Exp $
+
+*transmission-2.52 (24 May 2012)
+
+  24 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  +transmission-2.52.ebuild, transmission-9999.ebuild:
+  Version bump. Remove call to intltoolize --force --copy --automake because
+  autotools.eclass runs it on it's own. Require more recent net-libs/miniupnpc
+  and dev-libs/libappindicator.
+
+  20 May 2012; Samuli Suominen <ssuominen@gentoo.org> transmission-2.51.ebuild,
+  +files/transmission-2.51-fbsd.patch:
+  Fix building for ~x86-fbsd wrt #400929 by Naohiro Aota
+
+  20 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  -transmission-2.50-r1.ebuild, -transmission-2.50-r2.ebuild,
+  -files/transmission-2.50-build-with-natpmp1.patch,
+  -files/transmission-2.50-punt_broken_CXX_check.patch,
+  -files/transmission-2.50-segfault.patch:
+  old
+
+  20 May 2012; Samuli Suominen <ssuominen@gentoo.org> transmission-2.51.ebuild:
+  ppc/ppc64/x86 stable wrt #416591
+
+  19 May 2012; Agostino Sarubbo <ago@gentoo.org> transmission-2.51.ebuild:
+  Stable for AMD64, wrt bug #416591
 
   04 May 2012; Jeff Horelick <jdhore@gentoo.org> transmission-2.50-r1.ebuild,
   transmission-2.50-r2.ebuild, transmission-2.51.ebuild,
