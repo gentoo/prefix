@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/fcgi
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.48 2011/10/08 06:12:58 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.51 2012/05/26 09:50:44 maekke Exp $
+
+  26 May 2012; Markus Meier <maekke@gentoo.org>
+  fcgi-2.4.1_pre0910052249.ebuild:
+  arm stable, bug #415433
+
+  21 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  fcgi-2.4.1_pre0910052249.ebuild:
+  x86 stable wrt bug #415433
+
+  18 May 2012; Agostino Sarubbo <ago@gentoo.org>
+  fcgi-2.4.1_pre0910052249.ebuild:
+  Stable for amd64, wrt bug #415433
 
   08 Oct 2011; Hans de Graaff <graaff@gentoo.org> -fcgi-2.4.0-r2.ebuild:
   Remove old version.
