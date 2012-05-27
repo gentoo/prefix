@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.11-r6.ebuild,v 1.4 2012/05/05 07:00:18 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.11-r6.ebuild,v 1.5 2012/05/18 22:32:00 sping Exp $
 
 EAPI="3"
 
@@ -31,7 +31,6 @@ RDEPEND="
 	x11-libs/libXpm
 	>=x11-libs/pango-1.18.0
 	sys-libs/zlib
-	!aqua? ( x11-misc/xdg-utils )
 	x11-themes/hicolor-icon-theme
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
