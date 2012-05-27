@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.4.3.ebuild,v 1.4 2012/05/16 08:30:50 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.4.3.ebuild,v 1.5 2012/05/19 09:03:33 ssuominen Exp $
 
 EAPI=4
 inherit eutils multilib
@@ -25,7 +25,7 @@ CDEPEND="sys-libs/ncurses[unicode?]
 	mad? ( >=media-libs/libmad-0.14 )
 	mikmod? ( media-libs/libmikmod:0 )
 	modplug? ( >=media-libs/libmodplug-0.7 )
-	mp4? ( >=media-libs/libmp4v2-1.9 )
+	mp4? ( >=media-libs/libmp4v2-1.9:0 )
 	musepack? ( >=media-sound/musepack-tools-444 )
 	pulseaudio? ( media-sound/pulseaudio )
 	vorbis? ( >=media-libs/libvorbis-1.0 )
