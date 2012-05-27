@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libmad
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.68 2012/04/01 16:56:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.69 2012/05/17 14:46:58 aballier Exp $
+
+  17 May 2012; Alexis Ballier <aballier@gentoo.org> libmad-0.15.1b-r7.ebuild:
+  keyword ~amd64-fbsd
 
   01 Apr 2012; Raúl Porcel <armin76@gentoo.org> libmad-0.15.1b-r7.ebuild:
   alpha/ia64/sh/sparc stable wrt #408383
