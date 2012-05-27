@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gconf
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.268 2012/05/09 01:36:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.269 2012/05/22 08:20:39 jlec Exp $
+
+  22 May 2012; Justin Lecher <jlec@gentoo.org> gconf-3.2.5.ebuild:
+  Add small prefix fix, drop unnecessary die
 
   09 May 2012; Alexis Ballier <aballier@gentoo.org> gconf-3.2.5.ebuild:
   keyword ~amd64-fbsd

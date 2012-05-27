@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-3.2.5.ebuild,v 1.3 2012/05/09 01:36:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-3.2.5.ebuild,v 1.4 2012/05/22 08:20:39 jlec Exp $
 
 EAPI="4"
 GCONF_DEBUG="yes"
@@ -71,8 +71,8 @@ src_install() {
 
 	echo 'CONFIG_PROTECT_MASK="/etc/gconf"' > 50gconf
 	echo 'GSETTINGS_BACKEND="gconf"' >> 50gconf
-	doenvd 50gconf || die "doenv failed"
-	dodir /root/.gconfd || die
+	doenvd 50gconf
+	dodir /root/.gconfd
 }
 
 pkg_preinst() {
