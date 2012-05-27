@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.244 2012/05/16 15:40:36 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.246 2012/05/23 20:37:20 ago Exp $
+
+  23 May 2012; Agostino Sarubbo <ago@gentoo.org> boost-1.48.0-r2.ebuild:
+  Stable for amd64, wrt bug #413815
+
+  20 May 2012; Mike Gilbert <floppym@gentoo.org> boost-1.48.0-r2.ebuild,
+  boost-1.49.0-r1.ebuild:
+  Fix paths to commands in src_test() (bug #415719). Patch by Arfrever.
+  Backported from Progress Overlay.
 
   16 May 2012; Jeroen Roovers <jer@gentoo.org> boost-1.48.0-r2.ebuild:
   Stable for HPPA (bug #413815).
