@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-process/pidof-bsd/ChangeLog,v 1.10 2012/05/24 13:10:40 ryao Exp $
 
+  28 May 2012; Fabian Groffen <grobian@gentoo.org>
+  files/pidof-bsd-20050501-darwin.patch, files/pidof-bsd-20050501-netbsd.patch,
+  pidof-bsd-20050501-r4.ebuild:
+  Fix patches for updated pname patch
+
 *pidof-bsd-20050501-r4 (24 May 2012)
 
   24 May 2012; Richard Yao <ryao@gentoo.org> +pidof-bsd-20050501-r4.ebuild,

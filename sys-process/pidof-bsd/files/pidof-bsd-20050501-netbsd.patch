@@ -11,7 +11,7 @@
  	char *pname = NULL;
 @@ -61,23 +61,24 @@ get_pid_of_process(const char *process_n
  	if ((pname = strdup(basename(process_name))) == NULL)
- 		return;
+ 		return 0;
  	
 -	if ((kd = kvm_open("/dev/null", "/dev/null", "/dev/null", O_RDONLY, NULL)) == NULL) {
 +	if ((kd = kvm_open(NULL, NULL, NULL, KVM_NO_FILES, NULL)) == NULL) {
