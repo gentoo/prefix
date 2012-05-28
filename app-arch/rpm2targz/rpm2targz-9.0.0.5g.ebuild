@@ -22,10 +22,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i '/^prefix =/s:=.*:= '"${EPREFIX}"'/usr:' Makefile
-
-	# necessary for Interix, Solaris and Darwin
-	# applied upstream/gx86: bug #397835
-	epatch "${FILESDIR}"/${PN}-9.0.0.3g-memmove.patch
 }
 
 src_compile() {

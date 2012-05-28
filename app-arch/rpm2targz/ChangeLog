@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.88 2012/05/17 05:03:23 vapier Exp $
 
+  28 May 2012; Fabian Groffen <grobian@gentoo.org> rpm2targz-9.0.0.5g.ebuild:
+  Drop no longer necessary local patch, bug #397835
+
 *rpm2targz-9.0.0.5g (17 May 2012)
 
   17 May 2012; Mike Frysinger <vapier@gentoo.org> +rpm2targz-9.0.0.5g.ebuild:
