@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1b.ebuild,v 1.3 2012/05/25 17:41:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.0j.ebuild,v 1.9 2012/05/25 17:41:49 vapier Exp $
 
 EAPI="4"
 
@@ -15,21 +15,15 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz
 LICENSE="openssl"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-
-IUSE="bindist gmp kerberos rfc3779 sse2 static-libs test vanilla zlib"
+IUSE="bindist gmp kerberos rfc3779 sse2 static-libs test zlib"
 
 # Have the sub-libs in RDEPEND with [static-libs] since, logically,
 # our libssl.a depends on libz.a/etc... at runtime.
 LIB_DEPEND="gmp? ( dev-libs/gmp[static-libs(+)] )
 	zlib? ( sys-libs/zlib[static-libs(+)] )
 	kerberos? ( app-crypt/mit-krb5 )"
-# The blocks are temporary just to make sure people upgrade to a
-# version that lack runtime version checking.  We'll drop them in
-# the future.
 RDEPEND="static-libs? ( ${LIB_DEPEND} )
-	!static-libs? ( ${LIB_DEPEND//\[static-libs(+)]} )
-	!<net-misc/openssh-5.9_p1-r4
-	!<net-libs/neon-0.29.6-r1"
+	!static-libs? ( ${LIB_DEPEND//\[static-libs(+)]} )"
 DEPEND="${RDEPEND}
 	sys-apps/diffutils
 	>=dev-lang/perl-5
@@ -51,16 +45,13 @@ src_prepare() {
 	# that gets blown away anyways by the Configure script in src_configure
 	rm -f Makefile
 
-	if ! use vanilla ; then
-		epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
-		epatch "${FILESDIR}"/${PN}-1.0.0d-fbsd-amd64.patch #363089
-		epatch "${FILESDIR}"/${PN}-1.0.0d-windres.patch #373743
-		epatch "${FILESDIR}"/${PN}-1.0.0h-pkg-config.patch
-		epatch "${FILESDIR}"/${PN}-1.0.1-parallel-build.patch
-		epatch "${FILESDIR}"/${PN}-1.0.1-x32.patch
-		epatch "${FILESDIR}"/${PN}-1.0.1-ipv6.patch
-		epatch_user #332661
-	fi
+	epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
+	epatch "${FILESDIR}"/${PN}-1.0.0d-fbsd-amd64.patch #363089
+	epatch "${FILESDIR}"/${PN}-1.0.0d-windres.patch #373743
+	epatch "${FILESDIR}"/${PN}-1.0.0h-pkg-config.patch
+	epatch "${FILESDIR}"/${PN}-1.0.0e-parallel-build.patch
+	epatch "${FILESDIR}"/${PN}-1.0.0e-x32.patch
+	epatch_user #332661
 
 	# disable fips in the build
 	# make sure the man pages are suffixed #302165
@@ -211,20 +202,20 @@ src_compile() {
 
 	# depend is needed to use $confopts; it also doesn't matter
 	# that it's -j1 as the code itself serializes subdirs
-	emake -j1 depend
-	emake all
+	emake -j1 depend || die
+	emake all || die
 	# rehash is needed to prep the certs/ dir; do this
 	# separately to avoid parallel build issues.
-	emake rehash
+	emake rehash || die
 }
 
 src_test() {
-	emake -j1 test
+	emake -j1 test || die
 }
 
 src_install() {
-	emake INSTALL_PREFIX="${D}" install
-	dobin "${WORKDIR}"/c_rehash #333117
+	emake INSTALL_PREFIX="${D}" install || die
+	dobin "${WORKDIR}"/c_rehash || die #333117
 	dodoc CHANGES* FAQ NEWS README doc/*.txt doc/c-indentation.el
 	dohtml -r doc/*
 	use rfc3779 && dodoc engines/ccgost/README.gost

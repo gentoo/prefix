@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.463 2012/05/25 17:41:49 vapier Exp $
 
+*openssl-1.0.0j (29 May 2012)
+
+  29 May 2012; Fabian Groffen <grobian@gentoo.org> +openssl-1.0.0j.ebuild,
+  openssl-1.0.1b.ebuild, openssl-1.0.1c.ebuild:
+  Pull in latest 1.0.0 version, and add keywords to 1.0.1 versions, bug #418119
+
   25 May 2012; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8u.ebuild,
   openssl-0.9.8v.ebuild, openssl-0.9.8w.ebuild, openssl-0.9.8x.ebuild,
   openssl-1.0.0h.ebuild, openssl-1.0.0i.ebuild, openssl-1.0.0j.ebuild,
