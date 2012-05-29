@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.7.ebuild,v 1.2 2012/05/03 19:08:41 vapier Exp $
 
 AUTOTOOLS_AUTO_DEPEND="no"
-inherit autotools toolchain-funcs
+inherit autotools toolchain-funcs eutils
 
 DESCRIPTION="Standard (de)compression library"
 HOMEPAGE="http://www.zlib.net/"

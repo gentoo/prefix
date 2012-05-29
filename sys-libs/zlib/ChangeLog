@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.108 2012/05/26 10:11:59 maekke Exp $
 
+  29 May 2012; Fabian Groffen <grobian@gentoo.org> zlib-1.2.7.ebuild:
+  Add missing inherit eutils, bug #418105
+
   26 May 2012; Markus Meier <maekke@gentoo.org> zlib-1.2.5.1-r2.ebuild:
   arm stable, bug #384483
 
