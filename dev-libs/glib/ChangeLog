@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.526 2012/05/24 13:36:15 ssuominen Exp $
 
+  29 May 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/glib-2.32.3-solaris-libelf.patch, glib-2.32.3.ebuild:
+  Add forward port of libelf patch, by Palmer Dabbelt in bug #416951
+
   24 May 2012; Samuli Suominen <ssuominen@gentoo.org> glib-2.30.3.ebuild:
   ppc stable wrt #410611
 
