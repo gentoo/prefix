@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.147 2011/12/27 17:55:12 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.148 2012/05/30 06:35:43 slyfox Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -15,7 +15,7 @@ inherit base multilib toolchain-funcs eutils user
 
 case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst pkg_postinst ;;
-	2|3) EXPORT_FUNCTIONS pkg_setup src_configure src_compile pkg_preinst pkg_postinst ;;
+	2|3|4) EXPORT_FUNCTIONS pkg_setup src_configure src_compile pkg_preinst pkg_postinst ;;
 	*) die "no support for EAPI=${EAPI} yet" ;;
 esac
 

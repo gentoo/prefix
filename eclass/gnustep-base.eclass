@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.24 2012/02/20 10:14:44 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.25 2012/05/29 08:05:05 phajdan.jr Exp $
 
 # @ECLASS: gnustep-base.eclass
 # @MAINTAINER:
@@ -194,14 +194,14 @@ egnustep_install() {
 
 # Make and install docs using GNUstep Makefiles
 egnustep_doc() {
-	if [[ -d ./Documentation ]] ; then
+	if [[ -d "${S}"/Documentation ]] ; then
 		# Check documentation presence
-		cd "${S}"/Documentation
+		pushd "${S}"/Documentation || die
 		if [[ -f ./[mM]akefile || -f ./GNUmakefile ]] ; then
 			emake "${GS_ENV[@]}" all || die "doc make failed"
 			emake "${GS_ENV[@]}" install || die "doc install failed"
 		fi
-		cd ..
+		popd || die
 	fi
 }
 
