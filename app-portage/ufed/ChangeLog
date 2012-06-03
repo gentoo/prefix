@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/ufed
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.82 2011/07/20 16:24:43 pacho Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.83 2012/06/02 07:01:30 zmedico Exp $
+
+  02 Jun 2012; Zac Medico <zmedico@gentoo.org> ufed-0.40.1.ebuild:
+  inherit multilib for get_libdir
 
   20 Jul 2011; Pacho Ramos <pacho@gentoo.org> metadata.xml:
   Drop maintainer due retirement, bug #81177
