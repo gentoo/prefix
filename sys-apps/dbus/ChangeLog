@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.339 2012/05/24 04:21:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.340 2012/05/29 15:21:15 ssuominen Exp $
+
+*dbus-1.5.12-r1 (29 May 2012)
+
+  29 May 2012; Samuli Suominen <ssuominen@gentoo.org> dbus-1.4.20.ebuild,
+  +dbus-1.5.12-r1.ebuild,
+  +files/dbus-1.5.12-selinux-when-dropping-capabilities-only-include-AUDI.patch:
+  When dropping capabilities only include AUDIT caps if we have them wrt
+  #405975. This makes audit/selinux enabled D-Bus work in a Linux container.
+  Thanks to Jory A. Pratt and Hinnerk van Bruinehsen.
 
   24 May 2012; Mike Frysinger <vapier@gentoo.org> dbus-1.4.16-r2.ebuild,
   dbus-1.4.16.ebuild, dbus-1.4.18.ebuild, dbus-1.4.20.ebuild,

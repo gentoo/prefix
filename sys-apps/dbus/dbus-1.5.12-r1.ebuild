@@ -1,24 +1,25 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.20.ebuild,v 1.11 2012/05/29 15:21:15 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.5.12-r1.ebuild,v 1.1 2012/05/29 15:21:15 ssuominen Exp $
 
 EAPI=4
-inherit autotools eutils multilib flag-o-matic python systemd virtualx user prefix
+inherit autotools eutils linux-info flag-o-matic python systemd virtualx user prefix
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
 SRC_URI="http://dbus.freedesktop.org/releases/dbus/${P}.tar.gz"
 
-LICENSE="|| ( GPL-2 AFL-2.1 )"
+LICENSE="|| ( AFL-2.1 GPL-2 )"
 SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="debug doc selinux static-libs test X"
+IUSE="debug doc selinux static-libs systemd test X"
 
 RDEPEND=">=dev-libs/expat-2
 	selinux? (
 		sec-policy/selinux-dbus
 		sys-libs/libselinux
 		)
+	systemd? ( >=sys-apps/systemd-32 )
 	X? (
 		x11-libs/libX11
 		x11-libs/libXt
@@ -44,36 +45,27 @@ pkg_setup() {
 	enewgroup messagebus
 	enewuser messagebus -1 -1 -1 messagebus
 
-	# FIXME: Test suite fails with Python 3.2 (last checked: 1.4.20)
 	if use test; then
 		python_set_active_version 2
 		python_pkg_setup
 	fi
+
+	if use kernel_linux; then
+		CONFIG_CHECK="~EPOLL"
+		linux-info_pkg_setup
+	fi
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-selinux-when-dropping-capabilities-only-include-AUDI.patch
+
 	# Tests were restricted because of this
 	sed -i \
 		-e 's/.*bus_dispatch_test.*/printf ("Disabled due to excess noise\\n");/' \
 		-e '/"dispatch"/d' \
 		bus/test-main.c || die
 
-	epatch \
-		"${FILESDIR}"/${PN}-1.4.0-asneeded.patch \
-		"${FILESDIR}"/${PN}-1.5.12-selinux-when-dropping-capabilities-only-include-AUDI.patch
-
-	# Doesn't build with PIE support
-	if [[ ${CHOST} == *-freebsd7.1 ]]; then
-		epatch "${FILESDIR}"/${PN}-1.2.3-freebsd71.patch
-	fi
-
 	epatch "${FILESDIR}"/${PN}-1.4.8-interix.patch
-
-	if kernel_is lt 2 6 13; then
-		ewarn "Warning: Detected old kernel that doesn't support inotify,
-		disabling function now (see Gentoo bug 343601)"
-		epatch "${FILESDIR}"/no-notify-oldkernel.patch
-	fi
 
 	# required for asneeded patch but also for bug 263909, cross-compile so
 	# don't remove eautoreconf
@@ -111,38 +103,33 @@ src_configure() {
 		)
 	fi
 
-#	if [[ ${CHOST} == *-solaris* ]] ; then
-#		# we need more flag trickery as before just to have struct msg_header
-#		# and f->_dd, bug #378707
-#		append-flags -D__EXTENSIONS__ -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED=1
-#	fi
-
 	# libaudit is *only* used in DBus wrt SELinux support, so disable it, if
 	# not on an SELinux profile.
 	myconf=(
-		--disable-asserts
-		--disable-checks
-		--disable-embedded-tests
-		--disable-modular-tests
-		$(use_with X x)
-		$(use_enable debug verbose-mode)
-		$(use_enable kernel_linux inotify)
-		$(use_enable kernel_FreeBSD kqueue)
-		$(use_enable kernel_Darwin kqueue) \
-		$(use_enable kernel_Darwin launchd) \
-		$(use_enable selinux)
-		$(use_enable selinux libaudit)
-		$(use_enable static-libs static)
-		--enable-shared
-		--with-xml=expat
-		--with-system-pid-file=${EPREFIX}/var/run/dbus.pid
-		--with-system-socket="${syssocket}"
-		--with-session-socket-dir="${socketdir}"
-		--with-dbus-user=${PORTAGE_USER:-portage}
-		"$(systemd_with_unitdir)"
 		--localstatedir="${EPREFIX}"/var
 		--docdir="${EPREFIX}"/usr/share/doc/${PF}
 		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html
+		$(use_enable static-libs static)
+		$(use_enable debug verbose-mode)
+		--disable-asserts
+		--disable-checks
+		$(use_enable selinux)
+		$(use_enable selinux libaudit)
+		$(use_enable kernel_linux inotify)
+		$(use_enable kernel_FreeBSD kqueue)
+		$(use_enable kernel_Darwin kqueue)
+		$(use_enable kernel_Darwin launchd)
+		$(use_enable systemd)
+		--disable-embedded-tests
+		--disable-modular-tests
+		$(use_enable debug stats)
+		--with-xml=expat
+		--with-session-socket-dir="${socketdir}"
+		--with-system-pid-file=${EPREFIX}/var/run/dbus.pid
+		--with-system-socket="${syssocket}"
+		--with-dbus-user=${PORTAGE_USER:-messagebus}
+		$(use_with X x)
+		"$(systemd_with_unitdir)"
 		"${myconf[@]}"
 		)
 
@@ -150,17 +137,17 @@ src_configure() {
 	cd "${BD}"
 	einfo "Running configure in ${BD}"
 	ECONF_SOURCE="${S}" econf "${myconf[@]}" \
-		$(use_enable doc doxygen-docs) \
-		$(use_enable doc xml-docs)
+		$(use_enable doc xml-docs) \
+		$(use_enable doc doxygen-docs)
 
 	if use test; then
 		mkdir "${TBD}"
 		cd "${TBD}"
 		einfo "Running configure in ${TBD}"
 		ECONF_SOURCE="${S}" econf "${myconf[@]}" \
+			$(use_enable test asserts) \
 			$(use_enable test checks) \
 			$(use_enable test embedded-tests) \
-			$(use_enable test asserts) \
 			$(has_version dev-libs/dbus-glib && echo --enable-modular-tests)
 	fi
 }
@@ -199,9 +186,9 @@ src_install() {
 
 	# needs to exist for dbus sessions to launch
 	keepdir /usr/share/dbus-1/services
-	keepdir /etc/dbus-1/system.d
-	keepdir /etc/dbus-1/session.d
-	keepdir /var/lib/dbus # See pkg_postinst() for symlink creation
+	keepdir /etc/dbus-1/{session,system}.d
+	# machine-id symlink from pkg_postinst()
+	keepdir /var/lib/dbus
 
 	dodoc AUTHORS ChangeLog HACKING NEWS README doc/TODO
 
