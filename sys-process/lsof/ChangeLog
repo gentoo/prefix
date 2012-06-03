@@ -1,6 +1,9 @@
 # ChangeLog for sys-process/lsof
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.90 2012/05/24 05:43:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.91 2012/05/28 16:22:19 armin76 Exp $
+
+  28 May 2012; Raúl Porcel <armin76@gentoo.org> lsof-4.85-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #413273
 
   24 May 2012; Mike Frysinger <vapier@gentoo.org> lsof-4.84-r1.ebuild:
   Move to usex() from eutils.eclass.

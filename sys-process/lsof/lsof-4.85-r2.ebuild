@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.85-r2.ebuild,v 1.8 2012/04/29 16:37:32 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.85-r2.ebuild,v 1.9 2012/05/28 16:22:19 armin76 Exp $
 
 EAPI="2"
 
