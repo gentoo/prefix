@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.233 2012/05/23 14:44:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.235 2012/06/01 04:02:16 zmedico Exp $
+
+  01 Jun 2012; Zac Medico <zmedico@gentoo.org> openvpn-2.1.4.ebuild,
+  openvpn-2.2.2.ebuild, openvpn-9999.ebuild:
+  inherit user for enewgroup and enewuser
+
+  27 May 2012; Markus Meier <maekke@gentoo.org> openvpn-2.2.2.ebuild:
+  arm stable, bug #415847
 
   23 May 2012; Jeroen Roovers <jer@gentoo.org> openvpn-2.2.2.ebuild:
   Stable for HPPA (bug #415847).
