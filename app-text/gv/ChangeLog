@@ -1,6 +1,9 @@
 # ChangeLog for app-text/gv
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.101 2012/05/04 03:33:17 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.102 2012/06/02 23:42:03 hwoarang Exp $
+
+  02 Jun 2012; Markos Chandras <hwoarang@gentoo.org> gv-3.7.3-r1.ebuild:
+  Stable on amd64 wrt bug #418471
 
   04 May 2012; Jeff Horelick <jdhore@gentoo.org> gv-3.7.3-r1.ebuild:
   dev-util/pkgconfig -> virtual/pkgconfig
