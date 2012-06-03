@@ -14,6 +14,7 @@
 	<flag name="ass">Enables <pkg>media-libs/libass</pkg> based subtitle renderer.</flag>
     <flag name="aacplus">AAC+ encoding via <pkg>media-libs/libaacplus</pkg>.</flag>
     <flag name="amr">Enables Adaptive Multi-Rate Audio support</flag>
+	<flag name="avresample">Enables libavresample, <pkg>media-video/libav</pkg> version of libswresample (which installed and makes libavresample redundant): A conversion library between uncompressed audio formats.</flag>
     <flag name="avx">Adds support for Advanced Vector Extensions instructions (Intel Sandy Bridge, AMD Bulldozer and later chips)</flag>
 	<flag name="bluray">Enable playback of Blu-ray filesystems</flag>
     <flag name="cdio">Enables audio CD grabbing with <pkg>dev-libs/libcdio</pkg>.</flag>
