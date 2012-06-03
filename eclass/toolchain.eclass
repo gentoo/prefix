@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.539 2012/05/22 05:08:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.545 2012/06/02 20:40:09 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -23,7 +23,7 @@ if [[ ${PV} == *_pre9999* ]] ; then
 	inherit git-2
 fi
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test pkg_preinst src_install pkg_postinst pkg_prerm pkg_postrm
+EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_postinst
 DESCRIPTION="The GNU Compiler Collection"
 
 FEATURES=${FEATURES/multilib-strict/}
@@ -565,14 +565,6 @@ toolchain_pkg_setup() {
 	# TPREFIX is the prefix of the CTARGET installation
 	export TPREFIX=${TPREFIX:-${EPREFIX}}
 
-	# Setup variables which would normally be in the profile
-	if is_crosscompile ; then
-		multilib_env ${CTARGET}
-		if ! is_multilib ; then
-			MULTILIB_ABIS=${DEFAULT_ABI}
-		fi
-	fi
-
 	# we dont want to use the installed compiler's specs to build gcc!
 	unset GCC_SPECS
 
@@ -585,10 +577,6 @@ toolchain_pkg_setup() {
 	want_minispecs
 
 	unset LANGUAGES #265283
-}
-
-toolchain_pkg_preinst() {
-	:
 }
 
 toolchain_pkg_postinst() {
@@ -620,12 +608,6 @@ toolchain_pkg_postinst() {
 		# handling of binpkgs, don't require these to be found
 		cp "${EROOT}/${DATAPATH}"/c{89,99} "${EROOT}"/usr/bin/ 2>/dev/null
 	fi
-}
-
-toolchain_pkg_prerm() {
-	# Don't let these files be uninstalled #87647
-	touch -c "${EROOT}"/sbin/fix_libtool_files.sh \
-		"${EROOT}"/$(get_libdir)/rcscripts/awk/fixlafiles.awk
 }
 
 toolchain_pkg_postrm() {
@@ -1146,6 +1128,7 @@ gcc_do_configure() {
 	# reasonably sane globals (hopefully)
 	confgcc+=" \
 		--with-system-zlib \
+		--enable-obsolete \
 		--disable-werror \
 		--enable-secureplt"
 
@@ -1163,7 +1146,9 @@ gcc_do_configure() {
 			*-gnu*)			 needed_libc=glibc;;
 			*-klibc)		 needed_libc=klibc;;
 			*-uclibc*)		 needed_libc=uclibc;;
-			*-cygwin)        needed_libc=cygwin;;
+			*-cygwin)		 needed_libc=cygwin;;
+			x86_64-*-mingw*|\
+			*-w64-mingw*)	 needed_libc=mingw64-runtime;;
 			mingw*|*-mingw*) needed_libc=mingw-runtime;;
 			avr)			 confgcc+=" --enable-shared --disable-threads";;
 			*-apple-darwin*) confgcc+=" --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
@@ -1458,7 +1443,6 @@ gcc_do_filter_flags() {
 }
 
 toolchain_src_compile() {
-	multilib_env ${CTARGET}
 	gcc_do_filter_flags
 	einfo "CFLAGS=\"${CFLAGS}\""
 	einfo "CXXFLAGS=\"${CXXFLAGS}\""

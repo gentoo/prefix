@@ -14,9 +14,9 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.53 2011/12/27 17:55:12 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.54 2012/06/02 19:16:31 zmedico Exp $
 
-inherit java-utils-2
+inherit java-utils-2 multilib
 
 # This eclass provides functionality for Java packages which use
 # ant to build. In particular, it will attempt to fix build.xml files, so that

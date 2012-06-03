@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.21 2012/05/02 18:31:42 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.22 2012/06/02 19:02:42 zmedico Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -14,7 +14,7 @@
 # Gentoo developers responsible for gstreamer <gnome@gentoo.org>, the application developer
 # or the gstreamer team.
 
-inherit eutils gst-plugins10
+inherit eutils gst-plugins10 multilib
 
 GST_EXPF="src_unpack src_compile src_install"
 case ${EAPI:-0} in

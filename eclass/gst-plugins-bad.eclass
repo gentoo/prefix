@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.42 2012/05/02 18:31:42 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.43 2012/06/02 19:16:31 zmedico Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -9,7 +9,7 @@
 # plugin rather than in a single package.
 #
 
-inherit eutils versionator gst-plugins10
+inherit eutils multilib versionator gst-plugins10
 
 # This list is current for gst-plugins-bad-0.10.21.
 my_gst_plugins_bad="directsound directdraw osx_video quicktime vcd
