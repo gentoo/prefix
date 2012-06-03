@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.443 2012/05/22 19:58:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.444 2012/05/31 04:45:38 vapier Exp $
+
+  31 May 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.20.1-r1.ebuild:
+  Push out fix for POSIX test behavior #417549 by Richard Yao.
 
   22 May 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.22-r1.ebuild,
   binutils-2.22.52.0.1.ebuild, binutils-2.22.52.0.2.ebuild,
