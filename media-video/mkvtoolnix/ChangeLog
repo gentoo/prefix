@@ -1,6 +1,24 @@
 # ChangeLog for media-video/mkvtoolnix
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/ChangeLog,v 1.164 2012/05/10 07:08:49 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/ChangeLog,v 1.168 2012/05/31 11:28:17 radhermit Exp $
+
+  31 May 2012; Tim Harder <radhermit@gentoo.org> mkvtoolnix-5.6.0.ebuild:
+  Drop arches that need to keyword dev-libs/pugixml.
+
+  31 May 2012; Tim Harder <radhermit@gentoo.org> -mkvtoolnix-5.0.1.ebuild,
+  -mkvtoolnix-5.5.0.ebuild:
+  Remove old.
+
+*mkvtoolnix-5.0.1-r1 (29 May 2012)
+
+  29 May 2012; Tim Harder <radhermit@gentoo.org> +mkvtoolnix-5.0.1-r1.ebuild:
+  Revision bump to properly install GUI help files (bug #398041 by Chris Mayo).
+
+*mkvtoolnix-5.6.0 (29 May 2012)
+
+  29 May 2012; Tim Harder <radhermit@gentoo.org> +mkvtoolnix-5.6.0.ebuild,
+  +files/mkvtoolnix-5.6.0-system-pugixml.patch:
+  Version bump.
 
   10 May 2012; Tim Harder <radhermit@gentoo.org> -mkvtoolnix-4.4.0.ebuild,
   -mkvtoolnix-5.4.0.ebuild:

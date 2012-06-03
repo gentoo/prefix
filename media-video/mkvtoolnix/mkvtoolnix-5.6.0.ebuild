@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/mkvtoolnix-5.5.0.ebuild,v 1.2 2012/05/05 08:58:56 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/mkvtoolnix-5.6.0.ebuild,v 1.2 2012/05/31 11:28:17 radhermit Exp $
 
 EAPI=4
 
@@ -61,6 +61,7 @@ src_configure() {
 		$(use_enable qt4 qt) \
 		$(use_enable wxwidgets) \
 		${myconf} \
+		--docdir=/usr/share/doc/${PF} \
 		--with-boost-regex=boost_regex \
 		--with-boost-filesystem=boost_filesystem \
 		--with-boost-system=boost_system \
@@ -79,4 +80,6 @@ src_install() {
 
 	dodoc AUTHORS ChangeLog README TODO
 	doman doc/man/*.1
+
+	docompress -x /usr/share/doc/${PF}/guide
 }
