@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libtasn1
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.167 2012/04/26 15:50:21 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.168 2012/06/01 00:36:51 radhermit Exp $
+
+*libtasn1-2.13 (01 Jun 2012)
+
+  01 Jun 2012; Tim Harder <radhermit@gentoo.org> +libtasn1-2.13.ebuild:
+  Version bump.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> libtasn1-2.12.ebuild:
   keyword ~amd64-fbsd
