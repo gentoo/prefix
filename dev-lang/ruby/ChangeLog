@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.534 2012/05/20 20:56:14 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.535 2012/05/27 17:54:00 maekke Exp $
+
+  27 May 2012; Markus Meier <maekke@gentoo.org> ruby-1.9.3_p125.ebuild:
+  arm stable, bug #411507
 
   20 May 2012; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p125.ebuild:
   Stable for amd64, wrt bug #411507
