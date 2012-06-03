@@ -1,6 +1,13 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.146 2012/05/23 13:22:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.148 2012/06/02 08:08:27 zmedico Exp $
+
+  02 Jun 2012; Zac Medico <zmedico@gentoo.org> ghostscript-gpl-9.04-r4.ebuild,
+  ghostscript-gpl-9.05-r1.ebuild, ghostscript-gpl-9.05-r2.ebuild:
+  inherit multilib for get_libdir
+
+  29 May 2012; Brent Baude <ranger@gentoo.org> ghostscript-gpl-9.05-r1.ebuild:
+  Marking ghostscript-gpl-9.05-r1 ppc for bug 414463
 
   23 May 2012; Brent Baude <ranger@gentoo.org> ghostscript-gpl-9.05-r1.ebuild:
   Marking ghostscript-gpl-9.05-r1 ppc64 for bug 414463
