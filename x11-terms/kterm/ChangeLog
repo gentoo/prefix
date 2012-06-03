@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/kterm
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/ChangeLog,v 1.30 2012/02/16 19:17:30 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/ChangeLog,v 1.32 2012/05/31 08:27:25 ago Exp $
+
+  31 May 2012; Agostino Sarubbo <ago@gentoo.org> kterm-6.2.0-r5.ebuild:
+  Stable for amd64, wrt bug #418261
+
+  31 May 2012; Agostino Sarubbo <ago@gentoo.org> -kterm-6.2.0-r4.ebuild:
+  Remove old
 
   16 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> kterm-6.2.0-r5.ebuild:
   x86 stable wrt bug #397295
