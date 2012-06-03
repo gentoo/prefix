@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.4.3.ebuild,v 1.1 2012/05/08 17:22:11 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.4.3.ebuild,v 1.2 2012/05/29 16:56:46 aballier Exp $
 
 EAPI=4
 
