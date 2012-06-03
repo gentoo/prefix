@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-5.0.21-r1.ebuild,v 1.4 2012/05/24 05:34:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-5.0.21-r1.ebuild,v 1.5 2012/05/29 10:42:37 ryao Exp $
 
 EAPI=2
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools multilib
@@ -54,6 +54,7 @@ src_prepare() {
 	done
 	epatch "${FILESDIR}"/${PN}-4.8-libtool.patch
 	epatch "${FILESDIR}"/${PN}-4.8.24-java-manifest-location.patch
+	epatch "${FILESDIR}"/${PN}-4.8.30-rename-atomic-compare-exchange.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6-interix.patch
 
