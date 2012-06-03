@@ -108,7 +108,6 @@ src_prepare() {
 
 	# fixup c_rehash script, bug #350601
 	sed -i \
-		-e "s:DIR=/etc:DIR=${EPREFIX}/etc:" \
 		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
 		"${WORKDIR}"/c_rehash || die
 

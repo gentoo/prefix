@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.463 2012/05/25 17:41:49 vapier Exp $
 
+  03 Jun 2012; Fabian Groffen <grobian@gentoo.org> -openssl-1.0.1b.ebuild,
+  openssl-1.0.0j.ebuild, openssl-1.0.1c.ebuild:
+  Cleanup, remove redundant c_rehash DIR fix
+
   03 Jun 2012; Fabian Groffen <grobian@gentoo.org>
   +files/openssl-1.0.1-gethostbyname2-solaris.patch, openssl-1.0.1c.ebuild:
   Add patch to fix compilation on Solaris
