@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.55-r1.ebuild,v 1.4 2012/05/22 20:54:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.55-r1.ebuild,v 1.5 2012/05/31 01:59:54 ssuominen Exp $
 
 EAPI=3
 inherit multilib eutils flag-o-matic pax-utils
@@ -36,11 +36,11 @@ SRC_URI="mirror://sourceforge/sbcl/${P}-source.tar.bz2
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="+asdf ldb source +threads +unicode debug doc cobalt"
+IUSE="+asdf ldb source +threads +unicode debug doc cobalt pax_kernel"
 
-DEPEND="doc? ( sys-apps/texinfo || ( >=media-gfx/graphviz-2.20[png] >=media-gfx/graphviz-2.24.0 ) )"
-RDEPEND="!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.3 || ( <sys-libs/glibc-2.6[nptl] >=sys-libs/glibc-2.6 ) ) )
-		asdf? ( >=dev-lisp/gentoo-init-0.1 )"
+DEPEND="doc? ( sys-apps/texinfo >=media-gfx/graphviz-2.26.0 )
+	pax_kernel? ( sys-apps/paxctl )"
+RDEPEND="asdf? ( >=dev-lisp/gentoo-init-0.1 )"
 
 # Disable warnings about executable stacks, as this won't be fixed soon by upstream
 QA_EXECSTACK="usr/bin/sbcl"
@@ -133,7 +133,7 @@ src_compile() {
 
 	strip-unsupported-flags ; filter-flags -fomit-frame-pointer
 
-	if host-is-pax ; then
+	if use pax_kernel ; then
 		# To disable PaX on hardened systems
 		pax-mark -C "${bindir}"/src/runtime/sbcl
 		pax-mark -mr "${bindir}"/src/runtime/sbcl
@@ -216,10 +216,4 @@ EOF
 	echo "SBCL_HOME=${EPREFIX}/usr/$(get_libdir)/${PN}" > "${ENVD}"
 	echo "SBCL_SOURCE_ROOT=${EPREFIX}/usr/$(get_libdir)/${PN}/src" >> "${ENVD}"
 	doenvd "${ENVD}"
-}
-
-pkg_postinst() {
-	einfo "If you are upgrading from versions <1.0.55, remember"
-	einfo "to run:"
-	einfo 'source /etc/profile && env-update'
 }
