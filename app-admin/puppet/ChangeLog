@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/puppet
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.112 2012/05/19 16:26:07 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.113 2012/05/31 02:36:58 zmedico Exp $
+
+  31 May 2012; Zac Medico <zmedico@gentoo.org> puppet-2.7.11.ebuild,
+  puppet-2.7.12.ebuild, puppet-2.7.13.ebuild:
+  inherit user for enewgroup and enewuser
 
   19 May 2012; Ulrich Müller <ulm@gentoo.org> puppet-2.7.12.ebuild,
   puppet-2.7.13.ebuild:
