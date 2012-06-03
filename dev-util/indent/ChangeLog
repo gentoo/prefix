@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/indent
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.61 2012/05/16 14:19:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.63 2012/05/28 18:44:00 jer Exp $
+
+  28 May 2012; Jeroen Roovers <jer@gentoo.org> -indent-2.2.11.ebuild:
+  Old.
+
+  28 May 2012; Raúl Porcel <armin76@gentoo.org> indent-2.2.11-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #414947
 
   16 May 2012; Jeroen Roovers <jer@gentoo.org> indent-2.2.11-r1.ebuild:
   Stable for HPPA (bug #414947).
