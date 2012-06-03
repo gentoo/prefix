@@ -1,20 +1,18 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.2.9999.ebuild,v 1.16 2012/05/22 18:10:32 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.2.9999.ebuild,v 1.17 2012/06/01 02:41:52 zmedico Exp $
 
 EAPI=4
 
-unset _live_inherits
+inherit libtool multilib
 
 if [[ ${PV} == *9999* ]]; then
 	EHG_REPO_URI="http://hg.debian.org/hg/xine-lib/xine-lib-1.2"
-	_live_inherits="autotools mercurial eutils"
+	inherit autotools mercurial eutils
 else
 	#KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~x86 ~x86-fbsd"
 	SRC_URI="mirror://sourceforge/xine/${P}.tar.xz"
 fi
-
-inherit libtool multilib ${_live_inherits}
 
 DESCRIPTION="Core libraries for Xine movie player"
 HOMEPAGE="http://xine.sourceforge.net/"
