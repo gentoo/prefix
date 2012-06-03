@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.879 2012/05/25 17:27:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.881 2012/06/02 19:27:41 zorry Exp $
+
+  02 Jun 2012; Magnus Granberg <zorry@gentoo.org> gcc-4.6.3.ebuild,
+  gcc-4.7.0.ebuild:
+  Add support for ssp on uclibc and it need to be >= 0.9.33
+
+  31 May 2012; Ryan Hill <dirtyepic@gentoo.org> gcc-4.6.0.ebuild,
+  gcc-4.6.1-r1.ebuild, gcc-4.6.2.ebuild, gcc-4.6.3.ebuild:
+  Keyword 4.6.* for amd64.
 
   25 May 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.6.2.ebuild,
   gcc-4.6.3.ebuild, gcc-4.7.0.ebuild:

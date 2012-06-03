@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.3.ebuild,v 1.5 2012/05/25 17:27:30 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.3.ebuild,v 1.7 2012/06/02 19:27:41 zorry Exp $
 
 PATCH_VER="1.3"
 UCLIBC_VER="1.0"
@@ -14,7 +14,8 @@ PIE_GLIBC_STABLE="x86 amd64 ppc ppc64 arm ia64"
 PIE_UCLIBC_STABLE="x86 arm amd64 ppc ppc64"
 SSP_STABLE="amd64 x86 ppc ppc64 arm
 # uclibc need tls and nptl support for SSP support"
-SSP_UCLIBC_STABLE=""
+# uclibc need to be >= 0.8.33
+SSP_UCLIBC_STABLE="x86 amd64 ppc ppc64 arm"
 #end Hardened stuff
 
 inherit toolchain flag-o-matic
