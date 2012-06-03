@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-wxwidgets
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/ChangeLog,v 1.57 2011/01/22 07:13:19 dirtyepic Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/ChangeLog,v 1.58 2012/05/29 14:26:28 aballier Exp $
+
+  29 May 2012; Alexis Ballier <aballier@gentoo.org>
+  eselect-wxwidgets-1.4.ebuild:
+  keyword ~amd64-fbsd
 
   22 Jan 2011; Ryan Hill <dirtyepic@gentoo.org> -files/wxwidgets.eselect-0.8,
   -files/wx-config-1.1, -files/wxrc-1.1, -eselect-wxwidgets-1.1.ebuild,
