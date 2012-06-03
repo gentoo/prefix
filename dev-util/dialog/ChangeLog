@@ -1,6 +1,18 @@
 # ChangeLog for dev-util/dialog
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.153 2012/05/26 20:30:06 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.157 2012/05/30 19:26:55 maekke Exp $
+
+  30 May 2012; Markus Meier <maekke@gentoo.org> dialog-1.1.20120215.ebuild:
+  arm stable, bug #417669
+
+  30 May 2012; Jeroen Roovers <jer@gentoo.org> dialog-1.1.20120215.ebuild:
+  Stable for HPPA (bug #417669).
+
+  29 May 2012; Brent Baude <ranger@gentoo.org> dialog-1.1.20120215.ebuild:
+  Marking dialog-1.1.20120215 ppc64 for bug 417669
+
+  27 May 2012; Markos Chandras <hwoarang@gentoo.org> dialog-1.1.20120215.ebuild:
+  Stable on amd64 wrt bug #417669
 
   26 May 2012; Jeff Horelick <jdhore@gentoo.org> dialog-1.1.20120215.ebuild:
   marked x86 per bug 417669
