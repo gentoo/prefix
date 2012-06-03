@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libopenraw
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.60 2012/05/05 08:02:43 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.61 2012/05/30 13:27:58 aballier Exp $
+
+  30 May 2012; Alexis Ballier <aballier@gentoo.org> libopenraw-0.0.9.ebuild:
+  keyword ~amd64-fbsd
 
   05 May 2012; Jeff Horelick <jdhore@gentoo.org> libopenraw-0.0.9.ebuild:
   dev-util/pkgconfig -> virtual/pkgconfig
