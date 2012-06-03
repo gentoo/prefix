@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-6.0_p1.ebuild,v 1.5 2012/05/23 19:32:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-6.0_p1.ebuild,v 1.7 2012/05/29 12:37:53 aballier Exp $
 
 EAPI="2"
 inherit eutils user flag-o-matic multilib autotools pam systemd
@@ -100,6 +100,7 @@ src_prepare() {
 		use ldap && ewarn "Sorry, X509 and LDAP conflict internally, disabling LDAP"
 	fi
 	epatch "${FILESDIR}"/${PN}-6.0_p1-test.patch #391011
+	epatch "${FILESDIR}"/${PN}-6.0_p1-fix-freebsd-compilation.patch #391011
 	epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	if [[ -n ${HPN_PATCH} ]] && use hpn; then
 		epatch "${WORKDIR}"/${HPN_PATCH%.*}
