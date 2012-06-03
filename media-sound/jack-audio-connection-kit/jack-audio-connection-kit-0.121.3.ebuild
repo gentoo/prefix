@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.121.3.ebuild,v 1.12 2012/05/05 08:31:44 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.121.3.ebuild,v 1.13 2012/05/29 15:20:20 aballier Exp $
 
 EAPI=2
 
@@ -29,6 +29,7 @@ RDEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-sparc-cpuinfo.patch"
+	epatch "${FILESDIR}/${PN}-freebsd.patch"
 }
 
 src_configure() {

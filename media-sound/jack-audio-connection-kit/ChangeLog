@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/jack-audio-connection-kit
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.145 2012/05/05 08:31:44 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.146 2012/05/29 15:20:20 aballier Exp $
+
+  29 May 2012; Alexis Ballier <aballier@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild,
+  +files/jack-audio-connection-kit-freebsd.patch:
+  update freebsd support and keyword ~amd64-fbsd
 
   05 May 2012; Michał Górny <mgorny@gentoo.org>
   jack-audio-connection-kit-0.109.2-r1.ebuild,
