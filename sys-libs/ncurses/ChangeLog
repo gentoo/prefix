@@ -1,6 +1,16 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.205 2012/05/21 09:43:32 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.208 2012/05/29 18:03:06 ranger Exp $
+
+  29 May 2012; Brent Baude <ranger@gentoo.org> ncurses-5.9-r2.ebuild:
+  Marking ncurses-5.9-r2 ppc for bug 413897
+
+  29 May 2012; Brent Baude <ranger@gentoo.org> ncurses-5.9-r2.ebuild:
+  Marking ncurses-5.9-r2 ppc64 for bug 413897
+
+  29 May 2012; Richard Yao <ryao@gentoo.org>
+  +files/ncurses-5.9-fix-clang-build.patch, ncurses-5.9-r2.ebuild:
+  Fix illegal C++ code, bug #417763, approved by Chainsaw
 
   21 May 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> ncurses-5.9-r2.ebuild:
   x86 stable wrt bug #413897

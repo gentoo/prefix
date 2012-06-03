@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r2.ebuild,v 1.8 2012/05/21 09:43:32 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r2.ebuild,v 1.12 2012/05/29 18:48:28 mr_bones_ Exp $
 
 EAPI="1"
 AUTOTOOLS_AUTO_DEPEND="no"
@@ -43,6 +43,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.8-gfbsd.patch
 	epatch "${FILESDIR}"/${PN}-5.7-nongnu.patch
 	epatch "${FILESDIR}"/${PN}-5.9-rxvt-unicode-9.15.patch #192083 #383871
+	#not in prefix epatch "${FILESDIR}"/${PN}-5.9-fix-clang-build.patch #417763
 	sed -i \
 		-e '/^PKG_CONFIG_LIBDIR/s:=.*:=$(libdir)/pkgconfig:' \
 		misc/Makefile.in || die
