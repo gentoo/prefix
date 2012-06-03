@@ -1,6 +1,13 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.90 2012/03/25 14:25:09 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.91 2012/06/02 03:36:51 gienah Exp $
+
+*haddock-2.10.0-r1 (02 Jun 2012)
+
+  02 Jun 2012; Mark Wright <gienah@gentoo.org>
+  +files/haddock-2.10.0-dont-crash-on-unicode-strings-in-doc-comments.patch,
+  +haddock-2.10.0-r1.ebuild:
+  Apply patch from upstream: Don't crash on unicode strings in doc comments.
 
   25 Mar 2012; Sergei Trofimovich <slyfox@gentoo.org>
   +files/haddock-2.10.0-drop-tools.patch, haddock-2.10.0.ebuild:
