@@ -1,6 +1,12 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.177 2012/05/25 18:27:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.178 2012/05/30 23:42:52 aballier Exp $
+
+*texlive-core-2011-r7 (30 May 2012)
+
+  30 May 2012; Alexis Ballier <aballier@gentoo.org>
+  +texlive-core-2011-r7.ebuild:
+  import upstream patch to improve DE guessing in texdoc, bug #418183
 
   25 May 2012; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2011-r6.ebuild:
