@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.8.0.ebuild,v 1.5 2012/06/02 21:42:28 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.8.0-r1.ebuild,v 1.4 2012/06/02 21:42:28 sping Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2:2.5"
@@ -14,7 +14,12 @@ LICENSE="GPL-3 LGPL-3"
 SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
+LANGS="am ar ast az be bg br ca ca@valencia cs csb da de dz el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja ka kk km kn ko lt lv mk ml ms my nb nds ne nl nn oc pa pl pt pt_BR ro ru rw si sk sl sr sr@latin sv ta te th tr tt uk vi xh yi zh_CN zh_HK zh_TW"
 IUSE="aqua alsa aalib altivec bzip2 curl dbus debug doc exif gnome gs jpeg jpeg2k lcms mmx mng pdf png python smp sse svg tiff udev webkit wmf xpm"
+
+for lang in ${LANGS}; do
+	IUSE+=" linguas_${lang}"
+done
 
 RDEPEND=">=dev-libs/glib-2.30.2:2
 	>=dev-libs/atk-2.2.0
@@ -113,6 +118,17 @@ src_prepare() {
 	gnome2_src_prepare
 }
 
+_clean_up_locales() {
+	elog "Cleaning up locales..."
+	for lang in ${LANGS}; do
+		use "linguas_${lang}" && {
+			elog "- keeping ${lang}"
+			continue
+		}
+		rm -Rf "${ED}"/usr/share/locale/"${lang}" || die
+	done
+}
+
 src_install() {
 	gnome2_src_install
 
@@ -126,6 +142,8 @@ src_install() {
 	mv "${ED}"/usr/share/applications/{,zzz-}gimp.desktop || die
 
 	find "${ED}" -name '*.la' -delete || die
+
+	_clean_up_locales
 }
 
 pkg_postinst() {
