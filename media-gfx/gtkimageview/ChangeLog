@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gtkimageview
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gtkimageview/ChangeLog,v 1.23 2012/04/30 09:21:51 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gtkimageview/ChangeLog,v 1.24 2012/05/29 16:42:31 aballier Exp $
+
+  29 May 2012; Alexis Ballier <aballier@gentoo.org> gtkimageview-1.6.4.ebuild:
+  keyword ~amd64-fbsd
 
   30 Apr 2012; Justin Lecher <jlec@gentoo.org> gtkimageview-1.6.4.ebuild:
   Use GNOME2_LA_PUNT instead of manual punting
