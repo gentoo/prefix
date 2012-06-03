@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/boehm-gc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.79 2012/01/10 19:18:00 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/ChangeLog,v 1.80 2012/05/29 19:17:13 jlec Exp $
+
+*boehm-gc-7.2_alpha6 (29 May 2012)
+
+  29 May 2012; Justin Lecher <jlec@gentoo.org> boehm-gc-7.2_alpha4-r1.ebuild,
+  +boehm-gc-7.2_alpha6.ebuild, metadata.xml:
+  Version Bump, handling of static libs
 
   13 Nov 2011; Mike Frysinger <vapier@gentoo.org> boehm-gc-6.8.ebuild,
   boehm-gc-7.0-r1.ebuild, boehm-gc-7.1-r1.ebuild,

@@ -1,8 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-7.2_alpha4-r1.ebuild,v 1.3 2012/05/29 19:17:13 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-7.2_alpha6.ebuild,v 1.1 2012/05/29 19:17:13 jlec Exp $
 
 EAPI=4
+
+AUTOTOOLS_AUTORECONF=yes
 
 inherit autotools-utils
 
@@ -27,7 +29,10 @@ DOCS=( README.QUICK doc/README{,.environment,.linux,.macros} doc/barrett_diagram
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-7.2-darwin.patch
 	sed '/Cflags/s:$:/gc:g' -i bdw-gc.pc.in || die
-	rm -rvf libatomic_ops || die
+	sed \
+		-e '/gc_allocator.h/d' \
+		-i Makefile.am || die
+	rm -rf libatomic_ops || die
 	autotools-utils_src_prepare
 }
 
