@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/ChangeLog,v 1.37 2012/05/24 05:37:41 vapier Exp $
 
+  04 Jun 2012; Fabian Groffen <grobian@gentoo.org> libutempter-1.1.5-r1.ebuild:
+  Fix out of Prefix errors by Justin Lecher in bug #418109
+
 *libutempter-1.1.5-r1 (24 May 2012)
 
   24 May 2012; Mike Frysinger <vapier@gentoo.org> +libutempter-1.1.5-r1.ebuild:

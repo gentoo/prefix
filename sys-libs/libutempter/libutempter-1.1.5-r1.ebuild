@@ -27,6 +27,7 @@ src_prepare() {
 		-e '/^libexecdir /s:=.*:= $(libdir)/misc:'
 		-e '/^CFLAGS = $(RPM_OPT_FLAGS)/d'
 		-e 's:,-stats::'
+		-e "/^includedir /s:/usr/include:${EPREFIX}/usr/include:"
 	)
 	use static-libs || args+=(
 			-e '/^STATICLIB/d'
