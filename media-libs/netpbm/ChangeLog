@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.263 2012/01/03 01:37:19 vapier Exp $
 
+  04 Jun 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/netpbm-10.57.00-solaris-xopensource.patch, netpbm-10.57.00.ebuild:
+  Fix compilation on Solaris, based on patch by Palmer Dabbelt
+
   26 May 2012; Fabian Groffen <grobian@gentoo.org> netpbm-10.57.00.ebuild:
   Drop failing patches, fix install_name on Darwin
 
