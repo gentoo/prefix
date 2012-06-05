@@ -717,7 +717,7 @@ bootstrap_python() {
 	# just make sure Python won't find it
 	export HOME="${S}"
 
-	export PYTHON_DISABLE_MODULES="_ctypes_test readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _elementtree _locale _sqlite3 bsddb185"
+	export PYTHON_DISABLE_MODULES="_ctypes_test readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _elementtree _locale _sqlite3 bsddb185 bz2"
 	export PYTHON_DISABLE_SSL=1
 	export OPT="${CFLAGS}"
 
