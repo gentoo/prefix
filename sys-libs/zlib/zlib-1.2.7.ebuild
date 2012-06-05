@@ -34,7 +34,7 @@ src_unpack() {
 	# set soname on Solaris for GNU toolchain
 	sed -i -e 's:Linux\* | linux\*:Linux\* | linux\* | SunOS\* | solaris\*:' configure || die
 	# make sure we don't use host libtool on Darwin #419499
-	sed -i -e 's:AR="/usr/bin/libtool":AR=libtool' configure || die
+	sed -i -e 's:AR="/usr/bin/libtool":AR=libtool:' configure || die
 }
 
 echoit() { echo "$@"; "$@"; }

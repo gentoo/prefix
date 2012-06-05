@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.108 2012/05/26 10:11:59 maekke Exp $
 
+  05 Jun 2012; Fabian Groffen <grobian@gentoo.org> zlib-1.2.7.ebuild:
+  Add missing colon, thanks Richard Freeman in bug #419499
+
   04 Jun 2012; Fabian Groffen <grobian@gentoo.org> zlib-1.2.7.ebuild:
   Fix compilation on Darwin <10.7 by using Prefix libtool (which matches ld),
   bug #419499
