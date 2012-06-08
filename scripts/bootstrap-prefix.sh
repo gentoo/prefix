@@ -386,6 +386,10 @@ HOSTCC='gcc -m64'
 	# This will be wiped upon emerge --sync and back to normal.
 	echo '[[ ${PN} == "bash" ]] && EXTRA_ECONF="--without-curses"' >> \
 		"${PORTDIR}/profiles/prefix/profile.bashrc"
+	# Some people will hit bug 262653 with gcc-4.2 and elfutils. Let's skip it
+	# here and bring it in AFTER the --sync
+	echo "dev-libs/elfutils-0.153" >> \
+		"${PORTDIR}/profiles/prefix/package.provided"
 }
 
 do_tree() {
