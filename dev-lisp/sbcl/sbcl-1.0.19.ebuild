@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.19.ebuild,v 1.10 2010/12/17 20:19:14 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.19.ebuild,v 1.11 2012/06/07 19:01:45 zmedico Exp $
 
-inherit eutils flag-o-matic
+inherit common-lisp-common-3 eutils flag-o-matic multilib
 
 #same order as http://www.sbcl.org/platform-table.html
 BV_X86=1.0.15
