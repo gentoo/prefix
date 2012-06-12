@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.148 2012/05/30 06:35:43 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.149 2012/06/09 22:14:03 hasufell Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -92,8 +92,11 @@ prepgamesdirs() {
 				fowners root:root "${dir}"
 				fperms 755 "${dir}"
 				for d in $(get_libdir) bin ; do
-					fowners root:root "${dir}/${d}"
-					fperms 755 "${dir}/${d}"
+					# check if dirs exist to avoid "nonfatal" option
+					if [[ -e ${d} ]] ; then
+						fowners root:root "${dir}/${d}"
+						fperms 755 "${dir}/${d}"
+					fi
 				done
 			fi
 		) &>/dev/null

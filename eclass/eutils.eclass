@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.393 2012/05/28 16:45:57 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.396 2012/06/07 05:59:20 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -18,7 +18,7 @@
 if [[ ${___ECLASS_ONCE_EUTILS} != "recur -_+^+_- spank" ]] ; then
 ___ECLASS_ONCE_EUTILS="recur -_+^+_- spank"
 
-inherit multilib user
+inherit multilib toolchain-funcs user
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
@@ -944,45 +944,122 @@ newmenu() {
 	)
 }
 
-# @FUNCTION: doicon
-# @USAGE: <list of icons>
+# @FUNCTION: _iconins
+# @INTERNAL
 # @DESCRIPTION:
-# Install the list of icons into the icon directory (/usr/share/pixmaps).
-# This is useful in conjunction with creating desktop/menu files.
-doicon() {
+# function for use in doicon and newicon
+_iconins() {
 	(
 	# wrap the env here so that the 'insinto' call
 	# doesn't corrupt the env of the caller
-	local i j ret
-	insinto /usr/share/pixmaps
-	for i in "$@" ; do
-		if [[ -f ${i} ]] ; then
-			doins "${i}"
-			((ret+=$?))
-		elif [[ -d ${i} ]] ; then
-			for j in "${i}"/*.png ; do
-				doins "${j}"
-				((ret+=$?))
-			done
-		else
-			((++ret))
-		fi
+	local funcname=$1; shift
+	local size dir
+	local context=apps
+	local theme=hicolor
+
+	while [[ $# -gt 0 ]] ; do
+		case $1 in
+		-s|--size)
+			if [[ ${2%%x*}x${2%%x*} == "$2" ]] ; then
+				size=${2%%x*}
+			else
+				size=${2}
+			fi
+			case ${size} in
+			16|22|24|32|36|48|64|72|96|128|192|256)
+				size=${size}x${size};;
+			scalable)
+				;;
+			*)
+				eerror "${size} is an unsupported icon size!"
+				exit 1;;
+			esac
+			shift 2;;
+		-t|--theme)
+			theme=${2}
+			shift 2;;
+		-c|--context)
+			context=${2}
+			shift 2;;
+		*)
+			if [[ -z ${size} ]] ; then
+				insinto /usr/share/pixmaps
+			else
+				insinto /usr/share/icons/${theme}/${size}/${context}
+			fi
+
+			if [[ ${funcname} == doicon ]] ; then
+				if [[ -f $1 ]] ; then
+					doins "${1}"
+				elif [[ -d $1 ]] ; then
+					shopt -s nullglob
+					doins "${1}"/*.{png,svg}
+					shopt -u nullglob
+				else
+					eerror "${1} is not a valid file/directory!"
+					exit 1
+				fi
+			else
+				break
+			fi
+			shift 1;;
+		esac
 	done
-	exit ${ret}
-	)
+	if [[ ${funcname} == newicon ]] ; then
+		newins "$@"
+	fi
+	) || die
+}
+
+# @FUNCTION: doicon
+# @USAGE: [options] <icons>
+# @DESCRIPTION:
+# Install icon into the icon directory /usr/share/icons or into
+# /usr/share/pixmaps if "--size" is not set.
+# This is useful in conjunction with creating desktop/menu files.
+#
+# @CODE
+#  options:
+#  -s, --size
+#    !!! must specify to install into /usr/share/icons/... !!!
+#    size of the icon, like 48 or 48x48
+#    supported icon sizes are:
+#    16 22 24 32 36 48 64 72 96 128 192 256 scalable
+#  -c, --context
+#    defaults to "apps"
+#  -t, --theme
+#    defaults to "hicolor"
+#
+# icons: list of icons
+#
+# example 1: doicon foobar.png fuqbar.svg
+# results in: insinto /usr/share/pixmaps
+#             doins foobar.png fuqbar.svg
+#
+# example 2: doicon -s 48 foobar.png fuqbar.png
+# results in: insinto /usr/share/icons/hicolor/48x48/apps
+#             doins foobar.png fuqbar.png
+# @CODE
+doicon() {
+	_iconins ${FUNCNAME} "$@"
 }
 
 # @FUNCTION: newicon
-# @USAGE: <icon> <newname>
+# @USAGE: [options] <icon> <newname>
 # @DESCRIPTION:
-# Like all other new* functions, install the specified icon as newname.
+# Like doicon, install the specified icon as newname.
+#
+# @CODE
+# example 1: newicon foobar.png NEWNAME.png
+# results in: insinto /usr/share/pixmaps
+#             newins foobar.png NEWNAME.png
+#
+# example 2: newicon -s 48 foobar.png NEWNAME.png 
+# results in: insinto /usr/share/icons/hicolor/48x48/apps
+#             newins foobar.png NEWNAME.png
+# @CODE
 newicon() {
-	(
-	# wrap the env here so that the 'insinto' call
-	# doesn't corrupt the env of the caller
-	insinto /usr/share/pixmaps
-	newins "$@"
-	)
+	_iconins ${FUNCNAME} "$@"
 }
 
 # @FUNCTION: strip-linguas
@@ -1314,24 +1391,98 @@ use_if_iuse() {
 # otherwise echo [false output][false suffix] (defaults to "no").
 usex() { use "$1" && echo "${2-yes}$4" || echo "${3-no}$5" ; } #382963
 
-# @FUNCTION: makeopts_jobs
-# @USAGE: [${MAKEOPTS}]
+# @FUNCTION: prune_libtool_files
+# @USAGE: [--all]
 # @DESCRIPTION:
-# Searches the arguments (defaults to ${MAKEOPTS}) and extracts the jobs number
-# specified therein.  Useful for running non-make tools in parallel too.
-# i.e. if the user has MAKEOPTS=-j9, this will show "9".
-# We can't return the number as bash normalizes it to [0, 255].  If the flags
-# haven't specified a -j flag, then "1" is shown as that is the default `make`
-# uses.  Since there's no way to represent infinity, we return 999 if the user
-# has -j without a number.
-makeopts_jobs() {
-	[[ $# -eq 0 ]] && set -- ${MAKEOPTS}
-	# This assumes the first .* will be more greedy than the second .*
-	# since POSIX doesn't specify a non-greedy match (i.e. ".*?").
-	local jobs=$(echo " $* " | sed -r -n \
-		-e 's:.*[[:space:]](-j|--jobs[=[:space:]])[[:space:]]*([0-9]+).*:\2:p' \
-		-e 's:.*[[:space:]](-j|--jobs)[[:space:]].*:999:p')
-	echo ${jobs:-1}
+# Locate unnecessary libtool files (.la) and libtool static archives
+# (.a) and remove them from installation image.
+#
+# By default, .la files are removed whenever the static linkage can
+# either be performed using pkg-config or doesn't introduce additional
+# flags.
+#
+# If '--all' argument is passed, all .la files are removed. This is
+# usually useful when the package installs plugins and does not use .la
+# files for loading them.
+#
+# The .a files are only removed whenever corresponding .la files state
+# that they should not be linked to, i.e. whenever these files
+# correspond to plugins.
+#
+# Note: if your package installs any .pc files, this function implicitly
+# calls pkg-config. You should add it to your DEPEND in that case.
+prune_libtool_files() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	local removing_all opt
+	for opt; do
+		case "${opt}" in
+			--all)
+				removing_all=1
+				;;
+			*)
+				die "Invalid argument to ${FUNCNAME}(): ${opt}"
+		esac
+	done
+
+	# Create a list of all .pc-covered libs.
+	local pc_libs=()
+	if [[ ! ${removing_all} ]]; then
+		local f
+		local tf=${T}/prune-lt-files.pc
+		local pkgconf=$(tc-getPKG_CONFIG)
+
+		while IFS= read -r -d '' f; do # for all .pc files
+			local arg
+
+			sed -e '/^Requires:/d' "${f}" > "${tf}"
+			for arg in $("${pkgconf}" --libs "${tf}"); do
+				[[ ${arg} == -l* ]] && pc_libs+=( lib${arg#-l}.la )
+			done
+		done < <(find "${ED}" -type f -name '*.pc' -print0)
+
+		rm -f "${tf}"
+	fi
+
+	local f
+	while IFS= read -r -d '' f; do # for all .la files
+		local archivefile=${f/%.la/.a}
+
+		[[ ${f} != ${archivefile} ]] || die 'regex sanity check failed'
+
+		# Remove static libs we're not supposed to link against.
+		if grep -q '^shouldnotlink=yes$' "${f}"; then
+			einfo "Removing unnecessary ${archivefile#${D%/}}"
+			rm -f "${archivefile}"
+
+			# The .la file may be used by a module loader, so avoid removing it
+			# unless explicitly requested.
+			[[ ${removing_all} ]] || continue
+		fi
+
+		# Remove .la files when:
+		# - user explicitly wants us to remove all .la files,
+		# - respective static archive doesn't exist,
+		# - they are covered by a .pc file already,
+		# - they don't provide any new information (no libs & no flags).
+		local reason
+		if [[ ${removing_all} ]]; then
+			reason='requested'
+		elif [[ ! -f ${archivefile} ]]; then
+			reason='no static archive'
+		elif has "${f##*/}" "${pc_libs[@]}"; then
+			reason='covered by .pc'
+		elif [[ ! $(sed -nre \
+				"s/^(dependency_libs|inherited_linker_flags)='(.*)'$/\2/p" \
+				"${f}") ]]; then
+			reason='no libs & flags'
+		fi
+
+		if [[ ${reason} ]]; then
+			einfo "Removing unnecessary ${f#${D%/}} (${reason})"
+			rm -f "${f}"
+		fi
+	done < <(find "${ED}" -type f -name '*.la' -print0)
 }
 
 check_license() { die "you no longer need this as portage supports ACCEPT_LICENSE itself"; }

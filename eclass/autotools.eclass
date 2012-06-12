@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.143 2012/06/05 18:31:54 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.147 2012/06/08 04:55:39 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -16,7 +16,7 @@
 if [[ ${___ECLASS_ONCE_AUTOTOOLS} != "recur -_+^+_- spank" ]] ; then
 ___ECLASS_ONCE_AUTOTOOLS="recur -_+^+_- spank"
 
-inherit libtool
+inherit libtool multiprocessing
 
 # @ECLASS-VARIABLE: WANT_AUTOCONF
 # @DESCRIPTION:
@@ -42,8 +42,8 @@ inherit libtool
 # then circular dependencies may arise during emerge @system bootstraps.
 # Do NOT change this variable in your ebuilds!
 # If you want to force a newer minor version, you can specify the correct
-# WANT value by using a colon:  <PV>[:<WANT_AUTOMAKE>]
-_LATEST_AUTOMAKE=( 1.11.1:1.11 )
+# WANT value by using a colon:  <PV>:<WANT_AUTOMAKE>
+_LATEST_AUTOMAKE=( 1.11.1:1.11 1.12:1.12 )
 
 _automake_atom="sys-devel/automake"
 _autoconf_atom="sys-devel/autoconf"
@@ -144,14 +144,20 @@ unset _automake_atom _autoconf_atom
 # Should do a full autoreconf - normally what most people will be interested in.
 # Also should handle additional directories specified by AC_CONFIG_SUBDIRS.
 eautoreconf() {
-	local x g
+	local x g multitop
 
-	if [[ -z ${AT_NO_RECURSIVE} ]]; then
+	if [[ -z ${AT_TOPLEVEL_EAUTORECONF} ]] ; then
+		AT_TOPLEVEL_EAUTORECONF="yes"
+		multitop="yes"
+		multijob_init
+	fi
+
+	if [[ -z ${AT_NO_RECURSIVE} ]] ; then
 		# Take care of subdirs
 		for x in $(autotools_check_macro_val AC_CONFIG_SUBDIRS) ; do
 			if [[ -d ${x} ]] ; then
 				pushd "${x}" >/dev/null
-				AT_NOELIBTOOLIZE="yes" eautoreconf
+				AT_NOELIBTOOLIZE="yes" multijob_child_init eautoreconf || die
 				popd >/dev/null
 			fi
 		done
@@ -165,10 +171,13 @@ eautoreconf() {
 	# Run all the tools before aclocal so we can gather the .m4 files.
 	local i tools=(
 		# <tool> <was run> <command>
-		gettext  false "eautopoint --force"
+		glibgettext false "autotools_run_tool glib-gettextize --copy --force"
+		gettext     false "autotools_run_tool --at-missing autopoint --force"
 		# intltool must come after autopoint.
-		intltool false "autotools_run_tool intltoolize --automake --copy --force"
-		libtool  false "_elibtoolize --install --copy --force"
+		intltool    false "autotools_run_tool intltoolize --automake --copy --force"
+		gtkdoc      false "autotools_run_tool --at-missing gtkdocize --copy"
+		gnomedoc    false "autotools_run_tool --at-missing gnome-doc-prepare --copy --force"
+		libtool     false "_elibtoolize --install --copy --force"
 	)
 	for (( i = 0; i < ${#tools[@]}; i += 3 )) ; do
 		if _at_uses_${tools[i]} ; then
@@ -196,11 +205,16 @@ eautoreconf() {
 	eautoheader
 	[[ ${AT_NOEAUTOMAKE} != "yes" ]] && FROM_EAUTORECONF="yes" eautomake ${AM_OPTS}
 
-	[[ ${AT_NOELIBTOOLIZE} == "yes" ]] && return 0
+	if [[ ${AT_NOELIBTOOLIZE} != "yes" ]] ; then
+		# Call it here to prevent failures due to elibtoolize called _before_
+		# eautoreconf.  We set $S because elibtoolize runs on that #265319
+		S=${PWD} elibtoolize --force
+	fi
 
-	# Call it here to prevent failures due to elibtoolize called _before_
-	# eautoreconf.  We set $S because elibtoolize runs on that #265319
-	S=${PWD} elibtoolize --force
+	if [[ -n ${multitop} ]] ; then
+		unset AT_TOPLEVEL_EAUTORECONF
+		multijob_finish || die
+	fi
 
 	return 0
 }
@@ -222,11 +236,14 @@ _at_uses_pkg() {
 		egrep -q "${args[@]}" configure.??
 	fi
 }
-_at_uses_autoheader() { _at_uses_pkg AC_CONFIG_HEADERS; }
-_at_uses_automake()   { _at_uses_pkg AM_INIT_AUTOMAKE; }
-_at_uses_gettext()    { _at_uses_pkg AM_GNU_GETTEXT_VERSION; }
-_at_uses_intltool()   { _at_uses_pkg {AC,IT}_PROG_INTLTOOL; }
-_at_uses_libtool()    { _at_uses_pkg A{C,M}_PROG_LIBTOOL LT_INIT; }
+_at_uses_autoheader()  { _at_uses_pkg AC_CONFIG_HEADERS; }
+_at_uses_automake()    { _at_uses_pkg AM_INIT_AUTOMAKE; }
+_at_uses_gettext()     { _at_uses_pkg AM_GNU_GETTEXT_VERSION; }
+_at_uses_glibgettext() { _at_uses_pkg AM_GLIB_GNU_GETTEXT; }
+_at_uses_intltool()    { _at_uses_pkg {AC,IT}_PROG_INTLTOOL; }
+_at_uses_gtkdoc()      { _at_uses_pkg GTK_DOC_CHECK; }
+_at_uses_gnomedoc()    { _at_uses_pkg GNOME_DOC_INIT; }
+_at_uses_libtool()     { _at_uses_pkg A{C,M}_PROG_LIBTOOL LT_INIT; }
 
 # @FUNCTION: eaclocal_amflags
 # @DESCRIPTION:
@@ -400,18 +417,19 @@ autotools_env_setup() {
 }
 
 # @FUNCTION: autotools_run_tool
-# @USAGE: [--at-no-fail] [--at-m4flags] <autotool> [tool-specific flags]
+# @USAGE: [--at-no-fail] [--at-m4flags] [--at-missing] <autotool> [tool-specific flags]
 # @INTERNAL
 # @DESCRIPTION:
 # Run the specified autotool helper, but do logging and error checking
 # around it in the process.
 autotools_run_tool() {
 	# Process our own internal flags first
-	local autofail=true m4flags=false
+	local autofail=true m4flags=false missing_ok=false
 	while [[ -n $1 ]] ; do
 		case $1 in
 		--at-no-fail) autofail=false;;
 		--at-m4flags) m4flags=true;;
+		--at-missing) missing_ok=true;;
 		# whatever is left goes to the actual tool
 		*) break;;
 		esac
@@ -420,6 +438,11 @@ autotools_run_tool() {
 
 	if [[ ${EBUILD_PHASE} != "unpack" && ${EBUILD_PHASE} != "prepare" ]]; then
 		ewarn "QA Warning: running $1 in ${EBUILD_PHASE} phase"
+	fi
+
+	if ${missing_ok} && ! type -P ${1} >/dev/null ; then
+		einfo "Skipping '$*' due $1 not installed"
+		return 0
 	fi
 
 	autotools_env_setup
@@ -466,8 +489,11 @@ ALL_AUTOTOOLS_MACROS=(
 	AC_CONFIG_SUBDIRS
 	AC_CONFIG_AUX_DIR AC_CONFIG_MACRO_DIR
 	AM_INIT_AUTOMAKE
+	AM_GLIB_GNU_GETTEXT
 	AM_GNU_GETTEXT_VERSION
 	{AC,IT}_PROG_INTLTOOL
+	GTK_DOC_CHECK
+	GNOME_DOC_INIT
 )
 autotools_check_macro() {
 	[[ -f configure.ac || -f configure.in ]] || return 0

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.275 2012/03/17 00:01:59 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.276 2012/06/06 17:00:09 mpagano Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -578,19 +578,6 @@ universal_unpack() {
 	# remove all backup files
 	find . -iname "*~" -exec rm {} \; 2> /dev/null
 
-	# fix a problem on ppc where TOUT writes to /usr/src/linux breaking sandbox
-	# only do this for kernel < 2.6.27 since this file does not exist in later
-	# kernels
-	if [[ -n ${KV_MINOR} &&  ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} < 2.6.27 ]]
-	then
-		sed -i \
-			-e 's|TOUT	:= .tmp_gas_check|TOUT	:= $(T).tmp_gas_check|' \
-			"${S}"/arch/ppc/Makefile
-	else
-		sed -i \
-			-e 's|TOUT	:= .tmp_gas_check|TOUT	:= $(T).tmp_gas_check|' \
-			"${S}"/arch/powerpc/Makefile
-	fi
 }
 
 unpack_set_extraversion() {
@@ -1154,6 +1141,20 @@ kernel-2_src_unpack() {
 		cp "${DISTDIR}/${DEBLOB_A}" "${T}" || die "cp ${DEBLOB_A} failed"
 		cp "${DISTDIR}/${DEBLOB_CHECK_A}" "${T}/deblob-check" || die "cp ${DEBLOB_CHECK_A} failed"
 		chmod +x "${T}/${DEBLOB_A}" "${T}/deblob-check" || die "chmod deblob scripts failed"
+	fi
+
+	# fix a problem on ppc where TOUT writes to /usr/src/linux breaking sandbox
+	# only do this for kernel < 2.6.27 since this file does not exist in later
+	# kernels
+	if [[ -n ${KV_MINOR} &&  ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} < 2.6.27 ]]
+	then
+		sed -i \
+			-e 's|TOUT	:= .tmp_gas_check|TOUT	:= $(T).tmp_gas_check|' \
+			"${S}"/arch/ppc/Makefile
+	else
+		sed -i \
+			-e 's|TOUT	:= .tmp_gas_check|TOUT	:= $(T).tmp_gas_check|' \
+			"${S}"/arch/powerpc/Makefile
 	fi
 }
 
