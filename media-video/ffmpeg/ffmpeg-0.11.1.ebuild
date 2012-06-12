@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.10.3.ebuild,v 1.4 2012/06/11 13:10:52 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.11.1.ebuild,v 1.1 2012/06/08 00:32:13 aballier Exp $
 
 EAPI="4"
 
@@ -29,11 +29,11 @@ if [ "${PV#9999}" = "${PV}" ] ; then
 	KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 fi
 IUSE="
-	aac aacplus alsa amr ass bindist +bzip2 cdio celt cpudetection debug
-	dirac doc +encode faac frei0r gnutls gsm +hardcoded-tables ieee1394 jack
-	jpeg2k libv4l modplug mp3 network openal openssl oss pic pulseaudio
-	rtmp schroedinger sdl speex static-libs test theora threads
-	truetype v4l vaapi vdpau vorbis vpx X x264 xvid +zlib
+	aac aacplus alsa amr ass avresample bindist bluray +bzip2 cdio celt
+	cpudetection debug doc +encode faac fontconfig frei0r gnutls gsm
+	+hardcoded-tables ieee1394 jack jpeg2k libv4l modplug mp3 network openal
+	openssl oss pic pulseaudio rtmp schroedinger sdl speex static-libs test
+	theora threads truetype v4l vaapi vdpau vorbis vpx X x264 xvid +zlib
 	"
 
 # String for CPU features in the useflag[:configure_option] form
@@ -54,10 +54,10 @@ RDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	amr? ( media-libs/opencore-amr )
 	ass? ( media-libs/libass )
+	bluray? ( media-libs/libbluray )
 	bzip2? ( app-arch/bzip2 )
 	cdio? ( dev-libs/libcdio )
 	celt? ( >=media-libs/celt-0.11.1 )
-	dirac? ( media-video/dirac )
 	encode? (
 		aac? ( media-libs/vo-aacenc )
 		aacplus? ( media-libs/libaacplus )
@@ -65,10 +65,10 @@ RDEPEND="
 		faac? ( media-libs/faac )
 		mp3? ( >=media-sound/lame-3.98.3 )
 		theora? ( >=media-libs/libtheora-1.1.1[encode] media-libs/libogg )
-		vorbis? ( media-libs/libvorbis media-libs/libogg )
 		x264? ( >=media-libs/x264-0.0.20111017 )
 		xvid? ( >=media-libs/xvid-1.1.0 )
 	)
+	fontconfig? ( media-libs/fontconfig )
 	frei0r? ( media-plugins/frei0r-plugins )
 	gnutls? ( >=net-libs/gnutls-2.12.16 )
 	gsm? ( >=media-sound/gsm-1.0.12-r1 )
@@ -86,6 +86,7 @@ RDEPEND="
 	truetype? ( media-libs/freetype:2 )
 	vaapi? ( >=x11-libs/libva-0.32 )
 	vdpau? ( x11-libs/libvdpau )
+	vorbis? ( media-libs/libvorbis media-libs/libogg )
 	vpx? ( >=media-libs/libvpx-0.9.6 )
 	X? ( x11-libs/libX11 x11-libs/libXext x11-libs/libXfixes )
 	zlib? ( sys-libs/zlib )
@@ -95,8 +96,8 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	>=sys-devel/make-3.81
-	dirac? ( virtual/pkgconfig )
 	doc? ( app-text/texi2html )
+	fontconfig? ( virtual/pkgconfig )
 	gnutls? ( virtual/pkgconfig )
 	ieee1394? ( virtual/pkgconfig )
 	libv4l? ( virtual/pkgconfig )
@@ -119,8 +120,6 @@ src_prepare() {
 	if [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
 		export revision=git-N-${FFMPEG_REVISION}
 	fi
-	epatch "${FILESDIR}/freiordl.patch"
-
 	# /bin/sh on at least Solaris can't cope very will with these scripts
 	sed -i -e '1c\#!/usr/bin/env bash' version.sh libavcodec/codec_names.sh || die
 	# the version script on Solaris causes invalid symbol version problems
@@ -152,7 +151,7 @@ src_configure() {
 		use mp3 && myconf="${myconf} --enable-libmp3lame"
 		use aac && { myconf="${myconf} --enable-libvo-aacenc" ; version3=" --enable-version3" ; }
 		use amr && { myconf="${myconf} --enable-libvo-amrwbenc" ; version3=" --enable-version3" ; }
-		for i in theora vorbis x264 xvid; do
+		for i in theora x264 xvid; do
 			use ${i} && myconf="${myconf} --enable-lib${i}"
 		done
 		use aacplus && myconf="${myconf} --enable-libaacplus --enable-nonfree"
@@ -180,7 +179,9 @@ src_configure() {
 		use ${i} || myconf="${myconf} --disable-outdev=${i}"
 	done
 	# libavfilter options
-	use frei0r && myconf="${myconf} --enable-frei0r"
+	for i in frei0r fontconfig ; do
+		use ${i} && myconf="${myconf} --enable-${i}"
+	done
 	use truetype && myconf="${myconf} --enable-libfreetype"
 	use ass && myconf="${myconf} --enable-libass"
 
@@ -189,7 +190,7 @@ src_configure() {
 
 	# Decoders
 	use amr && { myconf="${myconf} --enable-libopencore-amrwb --enable-libopencore-amrnb" ; version3=" --enable-version3" ; }
-	for i in celt gsm dirac modplug rtmp schroedinger speex vpx; do
+	for i in bluray celt gsm modplug rtmp schroedinger speex vorbis vpx; do
 		use ${i} && myconf="${myconf} --enable-lib${i}"
 	done
 	use jpeg2k && myconf="${myconf} --enable-libopenjpeg"
@@ -240,6 +241,9 @@ src_configure() {
 				;;
 		esac
 	fi
+
+	# avresample support for libav compatibility
+	use avresample && myconf="${myconf} --enable-avresample"
 
 	# Misc stuff
 	use hardcoded-tables && myconf="${myconf} --enable-hardcoded-tables"
