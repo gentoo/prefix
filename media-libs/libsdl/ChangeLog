@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.189 2012/05/09 13:15:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.191 2012/06/07 21:55:08 mr_bones_ Exp $
+
+  07 Jun 2012; Michael Sterrett <mr_bones_@gentoo.org> libsdl-1.2.15-r2.ebuild:
+  use prune_libtool_files instead of rolling our own
+
+*libsdl-1.2.15-r2 (06 Jun 2012)
+
+  06 Jun 2012; Michael Sterrett <mr_bones_@gentoo.org>
+  +libsdl-1.2.15-r2.ebuild, +files/libsdl-1.2.15-joystick.patch:
+  Add upstream patch to fix regression in joystick axis detection (bug #413839)
 
   09 May 2012; Alexis Ballier <aballier@gentoo.org> libsdl-1.2.15-r1.ebuild:
   keyword ~amd64-fbsd
