@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.340 2012/05/29 15:21:15 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.342 2012/06/06 10:54:54 ssuominen Exp $
+
+  06 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> -dbus-1.4.16-r2.ebuild,
+  -dbus-1.4.18.ebuild, -dbus-1.5.12.ebuild, -dbus-1.5.12-r1.ebuild:
+  old
+
+*dbus-1.6.0 (06 Jun 2012)
+
+  06 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> +dbus-1.6.0.ebuild:
+  Version bump.
 
 *dbus-1.5.12-r1 (29 May 2012)
 
