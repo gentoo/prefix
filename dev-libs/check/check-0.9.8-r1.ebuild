@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/check-0.9.8-r1.ebuild,v 1.10 2012/04/26 22:22:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/check-0.9.8-r1.ebuild,v 1.11 2012/06/10 03:26:38 binki Exp $
 
 EAPI=4
 inherit autotools autotools-utils eutils
@@ -27,6 +27,9 @@ src_prepare() {
 	# fix out-of-sourcedir build having inconsistent check.h files, for
 	# example breaks USE=subunit.
 	rm src/check.h || die
+
+	# Fix automake warnings being treated as errors, bug #420373
+	sed -i -e s/-Werror// configure.ac || die
 
 	eautoreconf
 }
