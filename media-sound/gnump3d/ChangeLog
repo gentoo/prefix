@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/gnump3d
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/ChangeLog,v 1.72 2012/05/15 19:47:12 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/ChangeLog,v 1.73 2012/06/09 23:08:40 zmedico Exp $
+
+  09 Jun 2012; Zac Medico <zmedico@gentoo.org> gnump3d-3.0-r1.ebuild,
+  gnump3d-3.0.ebuild:
+  inherit user for enewuser
 
   15 May 2012; Mark Loeser <halcy0n@gentoo.org> gnump3d-3.0-r1.ebuild:
   Stable for ppc64; bug #392857
