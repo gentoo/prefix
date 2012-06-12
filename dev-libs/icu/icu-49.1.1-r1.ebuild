@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-49.1.1-r1.ebuild,v 1.9 2012/05/29 12:07:41 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-49.1.1-r1.ebuild,v 1.11 2012/06/05 20:57:37 jer Exp $
 
 EAPI="4"
 
-inherit eutils versionator
+inherit eutils versionator flag-o-matic
 
 MAJOR_VERSION="$(get_version_component_range 1)"
 if [[ "${PV}" =~ ^[[:digit:]]+_rc[[:digit:]]*$ ]]; then
@@ -65,6 +65,11 @@ src_prepare() {
 }
 
 src_configure() {
+	# Fails without this on hppa/s390/sparc
+	if use hppa || use s390 || use sparc; then
+		append-flags "-DU_IS_BIG_ENDIAN=1"
+	fi
+
 	if [[ ${CHOST} == *-irix* ]]; then
 		if [[ -n "${LD_LIBRARYN32_PATH}" || -n "${LD_LIBRARY64_PATH}" ]]; then
 			case "${ABI:-$DEFAULT_ABI}" in
