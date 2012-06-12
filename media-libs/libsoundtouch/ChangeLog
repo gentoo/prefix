@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libsoundtouch
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.54 2012/03/08 03:30:07 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.55 2012/06/03 13:59:18 blueness Exp $
+
+  03 Jun 2012; Anthony G. Basile <blueness@gentoo.org>
+  libsoundtouch-1.6.0.ebuild:
+  Keyword ~mips
 
   08 Mar 2012; Tim Harder <radhermit@gentoo.org> -libsoundtouch-1.5.0.ebuild,
   -files/libsoundtouch-1.5.0-flags_and_version.patch:
