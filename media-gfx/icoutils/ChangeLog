@@ -1,6 +1,13 @@
 # ChangeLog for media-gfx/icoutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/icoutils/ChangeLog,v 1.24 2012/01/15 15:19:10 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/icoutils/ChangeLog,v 1.26 2012/06/03 18:05:06 hwoarang Exp $
+
+*icoutils-0.29.1-r2 (03 Jun 2012)
+
+  03 Jun 2012; Markos Chandras <hwoarang@gentoo.org>
+  +files/icoutils-0.29.1-gettext.patch, +icoutils-0.29.1-r2.ebuild:
+  Fix building with newer gettext. Bug #418111. Thanks to Fabio Scaccabarozzi
+  <fsvm88@gmail.com> for the patch.
 
   15 Jan 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
   icoutils-0.29.1-r1.ebuild:
