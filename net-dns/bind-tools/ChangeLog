@@ -1,6 +1,23 @@
 # ChangeLog for net-dns/bind-tools
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.211 2012/05/22 12:47:06 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.214 2012/06/05 14:57:41 idl0r Exp $
+
+  05 Jun 2012; Christian Ruppert <idl0r@gentoo.org> bind-tools-9.8.3_p1.ebuild,
+  bind-tools-9.9.1_p1.ebuild:
+  Disable tests for now, bug 406399
+
+  04 Jun 2012; Christian Ruppert <idl0r@gentoo.org>
+  -files/bind-tools-configure.patch:
+  Remove unused patch
+
+*bind-tools-9.9.1_p1 (04 Jun 2012)
+*bind-tools-9.8.3_p1 (04 Jun 2012)
+
+  04 Jun 2012; Christian Ruppert <idl0r@gentoo.org> -bind-tools-9.7.3.ebuild,
+  -bind-tools-9.7.6.ebuild, -bind-tools-9.8.3.ebuild,
+  +bind-tools-9.8.3_p1.ebuild, -bind-tools-9.9.1.ebuild,
+  +bind-tools-9.9.1_p1.ebuild:
+  Version bumps, CVE-2012-1667. Remove old versions
 
 *bind-tools-9.8.3 (22 May 2012)
 *bind-tools-9.7.6 (22 May 2012)

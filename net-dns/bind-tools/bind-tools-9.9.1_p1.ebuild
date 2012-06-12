@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.9.0.ebuild,v 1.2 2012/04/07 18:16:21 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.9.1_p1.ebuild,v 1.2 2012/06/05 14:57:41 idl0r Exp $
 
 EAPI="4"
 
@@ -18,7 +18,8 @@ SRC_URI="ftp://ftp.isc.org/isc/bind9/${MY_PV}/${MY_P}.tar.gz"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc gssapi idn ipv6 pkcs11 readline ssl urandom xml"
+IUSE="doc gssapi idn ipv6 readline ssl urandom xml"
+# no PKCS11 currently as it requires OpenSSL to be patched, also see bug 409687
 
 DEPEND="ssl? ( dev-libs/openssl )
 	xml? ( dev-libs/libxml2 )
@@ -32,6 +33,9 @@ S="${WORKDIR}/${MY_P}"
 src_prepare() {
 	# bug 231247
 	epatch "${FILESDIR}"/${PN}-9.5.0_p1-lwconfig.patch
+
+	# Disable tests for now, bug 406399
+	sed -i '/^SUBDIRS/s:tests::' bin/Makefile.in lib/Makefile.in || die
 
 	# bug #220361
 	rm {aclocal,libtool}.m4
@@ -63,7 +67,6 @@ src_configure() {
 		$(use_with ssl openssl) \
 		$(use_with xml libxml2) \
 		$(use_with gssapi) \
-		$(use_with pkcs11) \
 		$(use_with readline) \
 		${myconf}
 
