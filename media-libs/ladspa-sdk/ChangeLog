@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/ladspa-sdk
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.53 2012/05/29 14:54:50 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ChangeLog,v 1.54 2012/06/08 23:51:44 zmedico Exp $
+
+  08 Jun 2012; Zac Medico <zmedico@gentoo.org> ladspa-sdk-1.12-r2.ebuild,
+  ladspa-sdk-1.13-r1.ebuild, ladspa-sdk-1.13.ebuild:
+  inherit multilib for get_libdir
 
   29 May 2012; Alexis Ballier <aballier@gentoo.org> ladspa-sdk-1.13-r1.ebuild:
   keyword ~amd64-fbsd
