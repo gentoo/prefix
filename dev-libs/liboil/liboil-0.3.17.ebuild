@@ -1,9 +1,9 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.17.ebuild,v 1.8 2012/02/13 05:37:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.17.ebuild,v 1.9 2012/06/06 03:34:34 zmedico Exp $
 
 EAPI=2
-inherit flag-o-matic multilib
+inherit eutils flag-o-matic multilib
 
 DESCRIPTION="library of simple functions that are optimized for various CPUs"
 HOMEPAGE="http://liboil.freedesktop.org/"

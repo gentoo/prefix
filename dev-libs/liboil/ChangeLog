@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/liboil
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.90 2012/02/13 05:37:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.91 2012/06/06 03:34:34 zmedico Exp $
+
+  06 Jun 2012; Zac Medico <zmedico@gentoo.org> liboil-0.3.17.ebuild:
+  inherit eutils for epatch
 
   13 Feb 2012; Mike Frysinger <vapier@gentoo.org> liboil-0.3.17.ebuild,
   +files/liboil-0.3.17-x32.patch:
