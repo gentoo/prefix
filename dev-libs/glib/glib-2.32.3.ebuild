@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.32.3.ebuild,v 1.1 2012/05/15 06:22:46 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.32.3.ebuild,v 1.2 2012/06/07 18:12:41 ssuominen Exp $
 
 EAPI="4"
 PYTHON_DEPEND="utils? 2"
@@ -162,7 +162,7 @@ src_configure() {
 	# Avoid circular depend with dev-util/pkgconfig and
 	# native builds (cross-compiles won't need pkg-config
 	# in the target ROOT to work here)
-	if ! tc-is-cross-compiler && ! has_version virtual/pkgconfig; then
+	if ! tc-is-cross-compiler && ! $(tc-getPKG_CONFIG) --version >& /dev/null; then
 		if has_version sys-apps/dbus; then
 			export DBUS1_CFLAGS="-I${EPREFIX}/usr/include/dbus-1.0 -I${EPREFIX}/usr/$(get_libdir)/dbus-1.0/include"
 			export DBUS1_LIBS="-ldbus-1"
