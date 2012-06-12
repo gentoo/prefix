@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.150 2012/05/07 13:07:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.151 2012/06/06 03:41:44 zmedico Exp $
+
+  06 Jun 2012; Zac Medico <zmedico@gentoo.org> mpfr-3.0.0_p3.ebuild,
+  mpfr-3.0.1.ebuild, mpfr-3.0.1_p4.ebuild:
+  inherit multilib for get_libdir
 
   07 May 2012; Alexis Ballier <aballier@gentoo.org> mpfr-3.1.0_p7.ebuild:
   readd fbsd keywords to latest version as bug #390425 seems fixed
