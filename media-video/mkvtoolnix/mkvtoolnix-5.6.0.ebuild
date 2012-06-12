@@ -1,10 +1,9 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/mkvtoolnix-5.6.0.ebuild,v 1.2 2012/05/31 11:28:17 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/mkvtoolnix-5.6.0.ebuild,v 1.4 2012/06/04 00:21:14 ssuominen Exp $
 
 EAPI=4
-
-inherit wxwidgets eutils
+inherit eutils toolchain-funcs versionator wxwidgets
 
 DESCRIPTION="Tools to create, alter, and inspect Matroska files"
 HOMEPAGE="http://www.bunkus.org/videotools/mkvtoolnix"
@@ -38,6 +37,16 @@ DEPEND="${RDEPEND}
 	dev-ruby/rake
 	virtual/pkgconfig
 "
+
+pkg_setup() {
+	# http://bugs.gentoo.org/419257
+	local ver=4.6
+	local msg="You need at least GCC ${ver}.x for C++11 range-based 'for' and nullptr support."
+	if ! version_is_at_least ${ver} $(gcc-version); then
+		eerror ${msg}
+		die ${msg}
+	fi
+}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-system-pugixml.patch

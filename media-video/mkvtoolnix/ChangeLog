@@ -1,6 +1,10 @@
 # ChangeLog for media-video/mkvtoolnix
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/ChangeLog,v 1.168 2012/05/31 11:28:17 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/ChangeLog,v 1.169 2012/06/04 00:18:43 ssuominen Exp $
+
+  04 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> mkvtoolnix-5.6.0.ebuild:
+  Ensure GCC is at least 4.6.0 for C++11 range-based 'for' and nullptr support
+  wrt #419257 by "RazrFalcon"
 
   31 May 2012; Tim Harder <radhermit@gentoo.org> mkvtoolnix-5.6.0.ebuild:
   Drop arches that need to keyword dev-libs/pugixml.
