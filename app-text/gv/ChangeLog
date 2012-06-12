@@ -1,6 +1,15 @@
 # ChangeLog for app-text/gv
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.102 2012/06/02 23:42:03 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.105 2012/06/08 11:41:31 phajdan.jr Exp $
+
+  08 Jun 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gv-3.7.3-r1.ebuild:
+  x86 stable wrt bug #418471
+
+  07 Jun 2012; Brent Baude <ranger@gentoo.org> gv-3.7.3-r1.ebuild:
+  Marking gv-3.7.3-r1 ppc for bug 418471
+
+  05 Jun 2012; Brent Baude <ranger@gentoo.org> gv-3.7.3-r1.ebuild:
+  Marking gv-3.7.3-r1 ppc64 for bug 418471
 
   02 Jun 2012; Markos Chandras <hwoarang@gentoo.org> gv-3.7.3-r1.ebuild:
   Stable on amd64 wrt bug #418471
