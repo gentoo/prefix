@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-6.1.4.ebuild,v 1.3 2012/05/18 19:19:12 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-6.1.4.ebuild,v 1.4 2012/06/04 20:55:00 zmedico Exp $
 
 EAPI=2
 
-inherit eutils flag-o-matic java-pkg-opt-2
+inherit eutils flag-o-matic multilib java-pkg-opt-2
 
 PATCHSET_VER="2"
 
