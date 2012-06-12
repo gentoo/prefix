@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.7.0.ebuild,v 1.3 2012/06/02 19:27:41 zorry Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.7.0.ebuild,v 1.4 2012/06/03 22:59:41 vapier Exp $
 
 PATCH_VER="1.1"
 UCLIBC_VER="1.0"
@@ -45,7 +45,7 @@ src_unpack() {
 	fi
 
 	# drop the x32 stuff once 4.7 goes stable
-	if [[ ${CTARGET} != x86_64* ]] || ! has x32 $(get_all_abis) ; then
+	if [[ ${CTARGET} != x86_64* ]] || ! has x32 $(get_all_abis TARGET) ; then
 		EPATCH_EXCLUDE+=" 90_all_gcc-4.7-x32.patch"
 	fi
 
