@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.169 2012/05/05 02:54:28 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.170 2012/06/09 15:57:43 jlec Exp $
+
+*libtorrent-0.13.2 (09 Jun 2012)
+
+  09 Jun 2012; Justin Lecher <jlec@gentoo.org> +libtorrent-0.13.2.ebuild:
+  Version BUmp, move to EAPI=4
 
   05 May 2012; Jeff Horelick <jdhore@gentoo.org> libtorrent-0.12.5.ebuild,
   libtorrent-0.12.6.ebuild, libtorrent-0.12.7.ebuild,
