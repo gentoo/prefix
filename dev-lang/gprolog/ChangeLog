@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/gprolog
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/ChangeLog,v 1.55 2012/05/07 09:13:10 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/ChangeLog,v 1.56 2012/06/06 03:08:10 zmedico Exp $
+
+  06 Jun 2012; Zac Medico <zmedico@gentoo.org> gprolog-1.4.0.ebuild:
+  inherit multilib for get_libdir
 
   05 May 2012; <keri@gentoo.org> gprolog-1.4.0.ebuild:
   gplc generates its own native ASM; disable PIE. Closes #403693
