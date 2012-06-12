@@ -1,6 +1,10 @@
 # ChangeLog for dev-db/hsqldb
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.66 2012/04/15 18:42:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.67 2012/06/04 06:32:37 zmedico Exp $
+
+  04 Jun 2012; Zac Medico <zmedico@gentoo.org> hsqldb-1.8.1.2-r1.ebuild,
+  hsqldb-1.8.1.3.ebuild:
+  inherit user for enewgroup and enewuser
 
   15 Apr 2012; Mike Frysinger <vapier@gentoo.org> hsqldb-1.8.1.3.ebuild:
   Add ia64 love #349020 by Dennis Schridde.

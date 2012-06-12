@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/hsqldb-1.8.1.2-r1.ebuild,v 1.7 2012/02/07 12:26:05 sera Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/hsqldb-1.8.1.2-r1.ebuild,v 1.8 2012/06/04 06:32:37 zmedico Exp $
 
 EAPI=1
 JAVA_PKG_IUSE="doc source test"
-inherit eutils versionator java-pkg-2 java-ant-2
+inherit eutils user versionator java-pkg-2 java-ant-2
 
 MY_PV=$(replace_all_version_separators _ )
 MY_P="${PN}_${MY_PV}"
