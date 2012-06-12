@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.15.0.ebuild,v 1.2 2012/05/03 02:41:39 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.15.0.ebuild,v 1.3 2012/06/06 02:50:20 zmedico Exp $
 
 EAPI=4
 
-inherit bash-completion-r1 autotools eutils flag-o-matic fortran-2 versionator
+inherit bash-completion-r1 autotools eutils flag-o-matic fortran-2 multilib versionator
 
 DESCRIPTION="Language and environment for statistical computing and graphics"
 HOMEPAGE="http://www.r-project.org/"
