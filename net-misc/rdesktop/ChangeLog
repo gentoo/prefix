@@ -1,6 +1,18 @@
 # ChangeLog for net-misc/rdesktop
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.133 2012/05/05 03:20:43 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.137 2012/06/08 11:58:44 phajdan.jr Exp $
+
+  08 Jun 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> rdesktop-1.7.1.ebuild:
+  x86 stable wrt bug #419553
+
+  07 Jun 2012; Brent Baude <ranger@gentoo.org> rdesktop-1.7.1.ebuild:
+  Marking rdesktop-1.7.1 ppc for bug 419553
+
+  05 Jun 2012; Brent Baude <ranger@gentoo.org> rdesktop-1.7.1.ebuild:
+  Marking rdesktop-1.7.1 ppc64 for bug 419553
+
+  04 Jun 2012; Agostino Sarubbo <ago@gentoo.org> rdesktop-1.7.1.ebuild:
+  Stable for amd64, wrt bug #419553
 
   05 May 2012; Jeff Horelick <jdhore@gentoo.org> rdesktop-1.7.0.ebuild,
   rdesktop-1.7.0-r1.ebuild, rdesktop-1.7.1.ebuild:
