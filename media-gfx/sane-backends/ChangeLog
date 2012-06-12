@@ -1,6 +1,17 @@
 # ChangeLog for media-gfx/sane-backends
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/ChangeLog,v 1.202 2012/05/05 07:00:26 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/ChangeLog,v 1.204 2012/06/08 03:01:10 zmedico Exp $
+
+  08 Jun 2012; Zac Medico <zmedico@gentoo.org> sane-backends-1.0.17.ebuild,
+  sane-backends-1.0.18-r6.ebuild, sane-backends-1.0.19-r2.ebuild,
+  sane-backends-1.0.20-r3.ebuild, sane-backends-1.0.21-r1.ebuild,
+  sane-backends-1.0.22-r1.ebuild, sane-backends-1.0.22-r2.ebuild:
+  inherit user for enewgroup
+
+  22 May 2012; Samuli Suominen <ssuominen@gentoo.org>
+  sane-backends-1.0.17.ebuild, sane-backends-1.0.18-r6.ebuild,
+  sane-backends-1.0.19-r2.ebuild:
+  Use virtual/libusb instead of dev-libs/libusb.
 
   05 May 2012; Jeff Horelick <jdhore@gentoo.org>
   sane-backends-1.0.22-r1.ebuild, sane-backends-1.0.22-r2.ebuild:
