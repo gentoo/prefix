@@ -3,6 +3,8 @@
 <pkgmetadata>
 <herd>base-system</herd>
 <use>
+ <flag name="cvs">When running `autopoint`, use cvs to store the internal development files;
+                  this requires cvs at runtime, but will be faster/smaller than raw archives</flag>
  <flag name="git">When running `autopoint`, use git to store the internal development files;
                   this requires git at runtime, but will be faster/smaller than raw archives</flag>
 </use>

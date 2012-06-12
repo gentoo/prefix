@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.18.1.1-r3.ebuild,v 1.4 2012/05/23 02:12:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.18.1.1-r3.ebuild,v 1.6 2012/06/06 16:08:47 vapier Exp $
 
 EAPI="2"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 LICENSE="GPL-3 LGPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="acl doc emacs +git java nls +cxx openmp static-libs elibc_glibc"
+IUSE="acl -cvs doc emacs git java nls +cxx openmp static-libs elibc_glibc"
 
 DEPEND="virtual/libiconv
 	dev-libs/libxml2
@@ -22,6 +22,7 @@ DEPEND="virtual/libiconv
 	acl? ( virtual/acl )
 	java? ( >=virtual/jdk-1.4 )"
 RDEPEND="${DEPEND}
+	!git? ( cvs? ( dev-vcs/cvs ) )
 	git? ( dev-vcs/git )
 	java? ( >=virtual/jre-1.4 )"
 PDEPEND="emacs? ( app-emacs/po-mode )"
@@ -70,6 +71,7 @@ src_configure() {
 	# --with-included-libunistring will _disable_ libunistring (since
 	# --it's not bundled), see bug #326477
 	econf \
+		--cache-file="${S}"/config.cache \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--without-emacs \
 		--without-lispdir \
@@ -81,7 +83,7 @@ src_configure() {
 		$(use_enable openmp) \
 		$(use_enable static-libs static) \
 		$(use_with git) \
-		--without-cvs
+		$(usex git --without-cvs $(use_with cvs))
 }
 
 src_install() {

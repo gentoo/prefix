@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.200 2012/05/23 23:19:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.202 2012/06/06 16:08:47 vapier Exp $
+
+  06 Jun 2012; Mike Frysinger <vapier@gentoo.org> gettext-0.18.1.1-r3.ebuild:
+  Fix typo with USE=git and cvs handling #419887 by Bernd Lommerzheim.
+
+  05 Jun 2012; Mike Frysinger <vapier@gentoo.org> gettext-0.18.1.1-r1.ebuild,
+  gettext-0.18.1.1-r2.ebuild, gettext-0.18.1.1-r3.ebuild, metadata.xml:
+  Drop USE=git from the default as the overall size of the git package is larger
+  than the space savings of the raw tarballs, and the latest gettext versions no
+  longer require cvs or git but support raw tarballs #339547 by Jared B..
 
   23 May 2012; Mike Frysinger <vapier@gentoo.org> gettext-0.18.1.1-r1.ebuild:
   Call elibtoolize since we inherit libtool eclass.
