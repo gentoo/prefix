@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.4.0.ebuild,v 1.3 2012/03/06 08:05:46 olemarkus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.4.4_rc2.ebuild,v 1.1 2012/06/05 17:34:32 olemarkus Exp $
 
 EAPI=4
 
@@ -48,13 +48,14 @@ PHP_PV="${PV/_rc/RC}"
 PHP_PV="${PHP_PV/_alpha/alpha}"
 PHP_PV="${PHP_PV/_beta/beta}"
 PHP_RELEASE="php"
+[[ ${PV} == ${PV/_rc/} ]] || PHP_RELEASE="php-stas"
 PHP_P="${PN}-${PHP_PV}"
 
 PHP_PATCHSET_LOC="olemarkus"
 
 PHP_SRC_URI="$(php_get_uri "${PHP_RELEASE}" "${PHP_P}.tar.bz2")"
 
-PHP_PATCHSET="1"
+PHP_PATCHSET="2"
 PHP_PATCHSET_URI="
 	$(php_get_uri "${PHP_PATCHSET_LOC}" "php-patchset-$SLOT-${PHP_PATCHSET}.tar.bz2")"
 
