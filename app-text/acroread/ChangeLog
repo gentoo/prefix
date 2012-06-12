@@ -1,6 +1,16 @@
 # ChangeLog for app-text/acroread
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.184 2012/04/18 23:01:11 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.186 2012/06/03 20:30:59 dilfridge Exp $
+
+  03 Jun 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  acroread-9.5.1-r1.ebuild:
+  Quote what should be quoted
+
+*acroread-9.5.1-r1 (03 Jun 2012)
+
+  03 Jun 2012; Andreas K. Huettel <dilfridge@gentoo.org>
+  +acroread-9.5.1-r1.ebuild:
+  Patch C:\nppdf32Log\debuglog.txt sillyness into /dev/null. Bug 412051
 
   18 Apr 2012; Andreas K. Huettel <dilfridge@gentoo.org> acroread-9.5.1.ebuild:
   It seems like it now also works with firefox-bin, bug 412467
