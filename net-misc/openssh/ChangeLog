@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.449 2012/06/02 18:07:02 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.450 2012/06/08 05:43:01 vapier Exp $
+
+*openssh-6.0_p1-r1 (08 Jun 2012)
+
+  08 Jun 2012; Mike Frysinger <vapier@gentoo.org> +openssh-6.0_p1-r1.ebuild:
+  Back hpn patch back down to v11 as v12 does not want to work for us #414401 by
+  Sean McGovern.
 
   02 Jun 2012; Mike Frysinger <vapier@gentoo.org> openssh-5.9_p1-r4.ebuild:
   Mark alpha/ia64/s390/sh/sparc stable #396075.
