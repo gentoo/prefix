@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.3.6-r1.ebuild,v 1.2 2010/06/17 19:09:52 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.3.6-r1.ebuild,v 1.3 2012/06/04 06:47:41 zmedico Exp $
 
 EAPI="1"
 
-inherit eutils versionator
+inherit eutils multilib versionator
 
 DESCRIPTION="Geographic Objects for PostgreSQL"
 HOMEPAGE="http://postgis.refractions.net"
