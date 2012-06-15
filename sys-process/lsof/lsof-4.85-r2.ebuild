@@ -24,6 +24,12 @@ DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}/${MY_P}_src
 
+src_unpack() {
+	unpack ${A}
+	cd ${MY_P}
+	unpack ./${MY_P}_src.tar
+}
+
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-arg.c.patch #388555
 	# convert `test -r header.h` into a compile test

@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.91 2012/05/28 16:22:19 armin76 Exp $
 
+  15 Jun 2012; Fabian Groffen <grobian@gentoo.org> lsof-4.85-r2.ebuild:
+  Add back missing bit to unpack the sources
+
   28 May 2012; Raúl Porcel <armin76@gentoo.org> lsof-4.85-r2.ebuild:
   alpha/ia64/m68k/s390/sh/sparc stable wrt #413273
 
