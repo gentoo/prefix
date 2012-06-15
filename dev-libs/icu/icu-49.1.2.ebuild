@@ -53,6 +53,9 @@ src_prepare() {
 		sed -i -e "/^${variable} =.*/s:@${variable}@::" config/Makefile.inc.in || die "sed failed"
 	done
 
+	# fix compilation on Solaris due to enabling of conflicting standards
+	sed -i -e '/define _XOPEN_SOURCE_EXTENDED/s/_XOPEN/no_XOPEN/' \
+		common/uposixdefs.h || die
 	# for correct install_names
 	epatch "${FILESDIR}"/${PN}-4.8.1-darwin.patch
 	# fix part 1 for echo_{t,c,n}
@@ -64,38 +67,13 @@ src_prepare() {
 }
 
 src_configure() {
-	if [[ ${CHOST} == *-irix* ]]; then
-		if [[ -n "${LD_LIBRARYN32_PATH}" || -n "${LD_LIBRARY64_PATH}" ]]; then
-			case "${ABI:-$DEFAULT_ABI}" in
-				mips32)
-					if [[ -z "${LD_LIBRARY_PATH}" ]]; then
-						LD_LIBRARY_PATH="${LD_LIBRARYN32_PATH}"
-					else
-						LD_LIBRARY_PATH="${LD_LIBRARYN32_PATH}:${LD_LIBRARY_PATH}"
-					fi
-					;;
-				mips64)
-					if [[ -z "${LD_LIBRARY_PATH}" ]]; then
-						LD_LIBRARY_PATH="${LD_LIBRARY64_PATH}"
-					else
-						LD_LIBRARY_PATH="${LD_LIBRARY64_PATH}:${LD_LIBRARY_PATH}"
-					fi
-					;;
-				mipso32|*)
-					:
-					;;
-			esac
-		fi
-		export LD_LIBRARY_PATH
-		unset  LD_LIBRARYN32_PATH
-		unset  LD_LIBRARY64_PATH
-	fi
-
 	# make sure we configure with the same shell as we run icu-config
 	# with, or ECHO_N, ECHO_T and ECHO_C will be wrongly defined
 	# (this is part 2 from the echo_{t,c,n} fix)
-	export CONFIG_SHELL=${EPREFIX}/bin/sh
+	export CONFIG_SHELL=${CONFIG_SHELL:-${EPREFIX}/bin/sh}
+	# http://bugs.icu-project.org/trac/ticket/8551: --disable-strict
 	econf \
+		--disable-strict \
 		$(use_enable debug) \
 		$(use_enable examples samples) \
 		$(use_enable static-libs static)
