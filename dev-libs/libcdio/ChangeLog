@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.132 2012/05/15 13:49:23 aballier Exp $
 
+  16 Jun 2012; Fabian Groffen <grobian@gentoo.org> libcdio-0.83.ebuild:
+  Drop non-existant, and no longer necessary patch
+
   15 May 2012; Alexis Ballier <aballier@gentoo.org> libcdio-0.83.ebuild:
   keyword ~amd64-fbsd
 

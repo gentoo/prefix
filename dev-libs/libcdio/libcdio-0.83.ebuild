@@ -22,10 +22,6 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig"
 
-PATCHES=(
-	"${FILESDIR}"/${P}-solaris.patch
-)
-
 AUTOTOOLS_IN_SOURCE_BUILD=1
 
 DOCS=( AUTHORS ChangeLog NEWS README THANKS TODO )
