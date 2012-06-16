@@ -26,7 +26,9 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/boost_${MY_PV}/tools/build/v2"
 
 src_unpack() {
-	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/build/v2 || die "unpacking tar failed"
+	# don't die here, due to
+	# Archive value 4294967295 is out of gid_t range -2147483648..2147483647
+	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/build/v2 #|| die "unpacking tar failed"
 }
 
 src_prepare() {

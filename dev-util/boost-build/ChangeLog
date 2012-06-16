@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.92 2012/06/14 18:50:29 jdhore Exp $
 
+  16 Jun 2012; Fabian Groffen <grobian@gentoo.org> boost-build-1.49.0.ebuild:
+  Don't die on tar errors, because we'll get lots on e.g. Solaris where gid_t is
+  less than 32-bits
+
   14 Jun 2012; Jeff Horelick <jdhore@gentoo.org> boost-build-1.48.0-r1.ebuild:
   marked x86 per bug 413815
 
