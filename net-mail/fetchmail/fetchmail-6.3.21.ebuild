@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/fetchmail-6.3.21.ebuild,v 1.7 2011/11/06 20:13:45 eras Exp $
 
@@ -46,10 +46,6 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf=""
-	use ssl \
-		&& myconf="${myconf} --with-ssl=${EPREFIX}/usr" \
-		|| myconf="${myconf} --without-ssl"
 	if use tk ; then
 		export PYTHON=$(PYTHON -a )
 	else
@@ -60,8 +56,8 @@ src_configure() {
 		--enable-NTLM \
 		--enable-SDPS \
 		$(use_enable nls) \
-		$(use_with ssl) \
-		$(use kerberos && echo "--with-ssl" ) \
+		$(use_with ssl ssl ${EPREFIX}/usr) \
+		$(use kerberos && echo "--with-ssl=${EPREFIX}/usr" ) \
 		$(use_with kerberos gssapi) \
 		$(use_with kerberos kerberos5) \
 		$(use_with hesiod) \

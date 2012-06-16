@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.224 2011/11/06 20:13:45 eras Exp $
 
+  16 Jun 2012; Fabian Groffen <grobian@gentoo.org> fetchmail-6.3.21.ebuild:
+  Cleanup, fix openssl detection
+
   06 Nov 2011; Eray Aslan <eras@gentoo.org> fetchmail-6.3.21.ebuild,
   +files/fetchmail-gss_c_nt_hostbased_service.patch:
   Fix compiling against >=heimdal-1.4 - bug #389347. Thanks to Rafał Mużyło.
