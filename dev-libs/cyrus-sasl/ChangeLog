@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.245 2012/05/29 16:36:08 aballier Exp $
 
+  20 Jun 2012; Fabian Groffen <grobian@gentoo.org> cyrus-sasl-2.1.25-r2.ebuild:
+  Look for sqlite in the Prefix
+
   29 May 2012; Alexis Ballier <aballier@gentoo.org>
   cyrus-sasl-2.1.25-r2.ebuild:
   keyword ~amd64-fbsd

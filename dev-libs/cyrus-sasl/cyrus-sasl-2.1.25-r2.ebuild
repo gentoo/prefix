@@ -130,7 +130,7 @@ src_configure() {
 		$(use_with java javahome ${JAVA_HOME}) \
 		$(use_with mysql) \
 		$(use_with postgres pgsql) \
-		$(use_with sqlite sqlite3 /usr/$(get_libdir)) \
+		$(use_with sqlite sqlite3 "${EPREFIX}"/usr/$(get_libdir)) \
 		$(use_enable srp) \
 		$(use_enable static-libs static) \
 		${myconf}
