@@ -56,8 +56,8 @@ src_prepare() {
 }
 
 src_configure() {
-	# Needed at least on Mac OS X 10.6, bug #287358
-	export CONFIG_SHELL="${EPREFIX}"/bin/bash
+	# We need Prefix env, bug #287358
+	export CONFIG_SHELL="${CONFIG_SHELL:-${BASH}}"
 	econf \
 		--enable-http \
 		--enable-default-catalog="${EPREFIX}"/etc/sgml/catalog \
