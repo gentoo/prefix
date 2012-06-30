@@ -292,8 +292,7 @@ eaclocal() {
 #
 # Note the '_' prefix .. to not collide with elibtoolize() from libtool.eclass.
 _elibtoolize() {
-	local LIBTOOLIZE=${LIBTOOLIZE:-libtoolize}
-	type -P glibtoolize > /dev/null && LIBTOOLIZE=glibtoolize
+	local LIBTOOLIZE=${LIBTOOLIZE:-$(type -P glibtoolize > /dev/null && echo glibtoolize || echo libtoolize)}
 
 	[[ -f GNUmakefile.am || -f Makefile.am ]] && set -- "$@" --automake
 	if [[ $1 == "--install" ]] ; then
