@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.396 2012/06/07 05:59:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.400 2012/06/20 09:26:50 mgorny Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1032,13 +1032,13 @@ _iconins() {
 #
 # icons: list of icons
 #
-# example 1: doicon foobar.png fuqbar.svg
+# example 1: doicon foobar.png fuqbar.svg suckbar.png
 # results in: insinto /usr/share/pixmaps
-#             doins foobar.png fuqbar.svg
+#             doins foobar.png fuqbar.svg suckbar.png
 #
-# example 2: doicon -s 48 foobar.png fuqbar.png
+# example 2: doicon -s 48 foobar.png fuqbar.png blobbar.png
 # results in: insinto /usr/share/icons/hicolor/48x48/apps
-#             doins foobar.png fuqbar.png
+#             doins foobar.png fuqbar.png blobbar.png
 # @CODE
 doicon() {
 	_iconins ${FUNCNAME} "$@"
@@ -1171,8 +1171,6 @@ preserve_old_lib_notify() {
 			ewarn "helper program, simply emerge the 'gentoolkit' package."
 			ewarn
 		fi
-		# temp hack for #348634 #357225
-		[[ ${PN} == "mpfr" ]] && lib=${lib##*/}
 		ewarn "  # revdep-rebuild --library '${lib}' && rm '${lib}'"
 	done
 }
@@ -1452,8 +1450,10 @@ prune_libtool_files() {
 
 		# Remove static libs we're not supposed to link against.
 		if grep -q '^shouldnotlink=yes$' "${f}"; then
-			einfo "Removing unnecessary ${archivefile#${D%/}}"
-			rm -f "${archivefile}"
+			if [[ -f ${archivefile} ]]; then
+				einfo "Removing unnecessary ${archivefile#${D%/}} (static plugin)"
+				rm -f "${archivefile}"
+			fi
 
 			# The .la file may be used by a module loader, so avoid removing it
 			# unless explicitly requested.

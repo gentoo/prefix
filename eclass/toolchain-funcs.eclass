@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.111 2012/06/09 06:56:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.112 2012/06/14 03:38:51 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -215,6 +215,19 @@ tc-is-static-only() {
 	return $([[ ${host} == *-mint* ]])
 }
 
+# @FUNCTION: tc-export_build_env
+# @USAGE: [compiler variables]
+# @DESCRIPTION:
+# Export common build related compiler settings.
+tc-export_build_env() {
+	tc-export "$@"
+	: ${BUILD_CFLAGS:=-O1 -pipe}
+	: ${BUILD_CXXFLAGS:=-O1 -pipe}
+	: ${BUILD_CPPFLAGS:=}
+	: ${BUILD_LDFLAGS:=}
+	export BUILD_{C,CXX,CPP,LD}FLAGS
+}
+
 # @FUNCTION: tc-env_build
 # @USAGE: <command> [command args]
 # @INTERNAL
@@ -224,8 +237,9 @@ tc-is-static-only() {
 # all of the semi-[non-]standard env vars like $BUILD_CC which often
 # the target build system does not check.
 tc-env_build() {
-	CFLAGS=${BUILD_CFLAGS:--O1 -pipe} \
-	CXXFLAGS=${BUILD_CXXFLAGS:--O1 -pipe} \
+	tc-export_build_env
+	CFLAGS=${BUILD_CFLAGS} \
+	CXXFLAGS=${BUILD_CXXFLAGS} \
 	CPPFLAGS=${BUILD_CPPFLAGS} \
 	LDFLAGS=${BUILD_LDFLAGS} \
 	AR=$(tc-getBUILD_AR) \

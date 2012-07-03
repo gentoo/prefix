@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/user.eclass,v 1.18 2011/12/10 20:03:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/user.eclass,v 1.22 2012/06/22 19:18:24 axs Exp $
 
 # @ECLASS: user.eclass
 # @MAINTAINER:
@@ -401,6 +401,82 @@ egetshell() {
 	esac
 
 	egetent passwd "$1" | cut -d: -f${pos}
+}
+
+# @FUNCTION: esethome
+# @USAGE: <user> <homedir>
+# @DESCRIPTION:
+# Update the home directory in a platform-agnostic way.
+# Required parameters is the username and the new home directory.
+# Specify -1 if you want to set home to the enewuser default 
+# of /dev/null.
+# If the new home directory does not exist, it is created.
+# Any previously existing home directory is NOT moved.
+esethome() {
+	_assert_pkg_ebuild_phase ${FUNCNAME}
+
+	# get the username
+	local euser=$1; shift
+	if [[ -z ${euser} ]] ; then
+		eerror "No username specified !"
+		die "Cannot call esethome without a username"
+	fi
+
+	# lets see if the username already exists
+	if [[ -z $(egetent passwd "${euser}") ]] ; then
+		ewarn "User does not exist, cannot set home dir -- skipping."
+		return 1
+	fi
+
+	# handle homedir
+	local ehome=$1; shift
+	if [[ -z ${ehome} ]] ; then
+		eerror "No home directory specified !"
+		die "Cannot call esethome without a home directory or '-1'"
+	fi
+
+	if [[ ${ehome} == "-1" ]] ; then
+		ehome="/dev/null"
+	fi
+
+	# exit with no message if home dir is up to date
+	if [[ $(egethome "${euser}") == ${ehome} ]]; then
+		return 0
+	fi
+
+	einfo "Updating home for user '${euser}' ..."
+	einfo " - Home: ${ehome}"
+
+	# ensure home directory exists, otherwise update will fail
+	if [[ ! -e ${EROOT}/${ehome} ]] ; then
+		einfo " - Creating ${ehome} in ${EROOT}"
+		mkdir -p "${EROOT}/${ehome}"
+		chown "${euser}" "${EROOT}/${ehome}"
+		chmod 755 "${EROOT}/${ehome}"
+	fi
+
+	# update the home directory
+	case ${CHOST} in
+	*-darwin*)
+		dscl . change "/users/${euser}" home "${ehome}"
+		;;
+
+	*-freebsd*|*-dragonfly*)
+		pw usermod "${euser}" -d "${ehome}" && return 0
+		[[ $? == 8 ]] && eerror "${euser} is in use, cannot update home"
+		eerror "There was an error when attempting to update the home directory for ${euser}"
+		eerror "Please update it manually on your system:"
+		eerror "\t pw usermod \"${euser}\" -d \"${ehome}\""
+		;;
+
+	*)
+		usermod -d "${ehome}" "${euser}" && return 0
+		[[ $? == 8 ]] && eerror "${euser} is in use, cannot update home"
+		eerror "There was an error when attempting to update the home directory for ${euser}"
+		eerror "Please update it manually on your system (as root):"
+		eerror "\t usermod -d \"${ehome}\" \"${euser}\""
+		;;
+	esac
 }
 
 fi

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.43 2012/06/02 19:16:31 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.44 2012/06/20 08:49:27 scarabeus Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -10,6 +10,16 @@
 #
 
 inherit eutils multilib versionator gst-plugins10
+
+GSTBAD_EXPF="src_unpack src_compile src_install"
+case "${EAPI:-0}" in
+	2|3|4) GSTBAD_EXPF+=" src_prepare src_configure" ;;
+	0|1) ;;
+	*) die "EAPI=\"${EAPI}\" is not supported yet" ;;
+esac
+
+
+EXPORT_FUNCTIONS ${GSTBAD_EXPF}
 
 # This list is current for gst-plugins-bad-0.10.21.
 my_gst_plugins_bad="directsound directdraw osx_video quicktime vcd
@@ -90,7 +100,10 @@ gst-plugins-bad_src_unpack() {
 #	local makefiles
 
 	unpack ${A}
+	has src_prepare ${GSTBAD_EXPF} || gst-plugins-bad_src_prepare
+}
 
+gst-plugins-bad_src_prepare() {
 	# Link with the syswide installed gst-libs if needed
 	gst-plugins10_find_plugin_dir
 	sed -e "s:\$(top_builddir)/gst-libs/gst/interfaces/libgstphotography:${EROOT}/usr/$(get_libdir)/libgstphotography:" \
@@ -116,19 +129,19 @@ gst-plugins-bad_src_configure() {
 	einfo "Configuring to build ${GST_PLUGINS_BUILD} plugin(s) ..."
 
 	for plugin in ${my_gst_plugins_bad} ; do
-		gst_conf="${gst_conf} --disable-${plugin}"
+		gst_conf+=" --disable-${plugin}"
 	done
 
 	for plugin in ${GST_PLUGINS_BUILD} ; do
-		gst_conf="${gst_conf} --enable-${plugin}"
+		gst_conf+=" --enable-${plugin}"
 	done
 
 	cd ${S}
-	econf ${@} --with-package-name="Gentoo GStreamer Ebuild" --with-package-origin="http://www.gentoo.org" ${gst_conf} || die "configure failed"
+	econf ${@} --with-package-name="Gentoo GStreamer Ebuild" --with-package-origin="http://www.gentoo.org" ${gst_conf}
 }
 
 gst-plugins-bad_src_compile() {
-	gst-plugins-bad_src_configure ${@}
+	has src_configure ${GSTBAD_EXPF} || gst-plugins-bad_src_configure ${@}
 
 	gst-plugins10_find_plugin_dir
 	emake || die "compile failure"
@@ -140,5 +153,3 @@ gst-plugins-bad_src_install() {
 
 	[[ -e README ]] && dodoc README
 }
-
-EXPORT_FUNCTIONS src_unpack src_compile src_install
