@@ -73,7 +73,7 @@ all_ruby_compile() {
 }
 
 each_fakegem_install() {
-	${RUBY} install.rb --destdir="${ED}" install
+	${RUBY} install.rb --configdir="${EPREFIX}"/etc --destdir="${D}" install
 }
 
 all_ruby_install() {
