@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.165 2012/06/02 06:23:41 vapier Exp $
 
+  07 Jul 2012; Fabian Groffen <grobian@gentoo.org> -automake-1.11.1-r1.ebuild,
+  -automake-1.11.1.ebuild, -automake-1.12.ebuild, automake-1.12.1.ebuild:
+  Cleanup, enable 1.12 series
+
 *automake-1.12.1 (02 Jun 2012)
 
   02 Jun 2012; Mike Frysinger <vapier@gentoo.org> +automake-1.12.1.ebuild:
