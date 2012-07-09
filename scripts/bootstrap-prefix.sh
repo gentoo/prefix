@@ -371,7 +371,7 @@ HOSTCC='gcc -m64'
 		# shoving this USE line into make.defaults, we can ensure that the
 		# end-user always avoids circular deps while bootstrapping and it gets
 		# wiped after a --sync. Also simplifies bootstrapping instructions.
-		echo "USE=\"-berkdb -fortran -gdbm -git -nls -pcre -ssl -python bootstrap\"" >> "${profile}"/make.defaults
+		echo "USE=\"-berkdb -fortran -gdbm -git -nls -pcre -ssl -python -readline bootstrap\"" >> "${profile}"/make.defaults
 		# and we don't need to spam the user about news until after a --sync
 		# because the tools aren't available to read the news item yet anyway.
 		echo 'FEATURES="${FEATURES} -news"' >> "${profile}"/make.defaults
