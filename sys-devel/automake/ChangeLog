@@ -1,6 +1,17 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.165 2012/06/02 06:23:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.166 2012/07/10 06:10:56 vapier Exp $
+
+*automake-1.11.6 (10 Jul 2012)
+*automake-1.12.2 (10 Jul 2012)
+
+  10 Jul 2012; Mike Frysinger <vapier@gentoo.org> +automake-1.11.6.ebuild,
+  +automake-1.12.2.ebuild, -automake-1.11.1-r1.ebuild,
+  -automake-1.11.2-r1.ebuild, -automake-1.11.2.ebuild, -automake-1.11.3.ebuild,
+  -automake-1.11.4.ebuild, -automake-1.11.5.ebuild, -automake-1.12.1.ebuild,
+  -automake-1.12.ebuild, -files/automake-1.11.1-check-java.patch,
+  -files/automake-1.11.2-fix-pkglibexec_SCRIPTS.patch:
+  Version bump for security.
 
   07 Jul 2012; Fabian Groffen <grobian@gentoo.org> -automake-1.11.1-r1.ebuild,
   -automake-1.11.1.ebuild, -automake-1.12.ebuild, automake-1.12.1.ebuild:
