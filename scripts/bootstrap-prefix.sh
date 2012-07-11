@@ -819,6 +819,11 @@ bootstrap_coreutils() {
 	bootstrap_gnu coreutils 8.16
 }
 
+# bug 415439
+bootstrap_coreutils812() {
+	bootstrap_gnu coreutils 8.12
+}
+
 bootstrap_tar() {
 	bootstrap_gnu tar 1.26
 }
