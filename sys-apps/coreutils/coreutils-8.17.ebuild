@@ -17,7 +17,7 @@ SRC_URI="mirror://gnu-alpha/coreutils/${P}.tar.xz
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="acl caps gmp nls selinux static unicode userland_BSD vanilla xattr"
 
 RDEPEND="caps? ( sys-libs/libcap )
@@ -35,8 +35,7 @@ RDEPEND="caps? ( sys-libs/libcap )
 	!<net-fs/netatalk-2.0.3-r4
 	!<sci-chemistry/ccp4-6.1.1"
 DEPEND="${RDEPEND}
-	app-arch/xz-utils
-	dev-util/gperf"
+	app-arch/xz-utils"
 
 src_prepare() {
 	if ! use vanilla ; then
@@ -48,23 +47,6 @@ src_prepare() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
-	epatch "${FILESDIR}"/${PN}-8.8-hppa-hpux.patch
-
-	# interix has no setgroups, so this won't work.
-	epatch "${FILESDIR}"/${PN}-7.5-interix-setgroups.patch
-
-	# interix has no method to determine mounted filesystems
-	# recently, support was added to gnulib, so the following
-	# two patches can be removed in the next version containing
-	# a new gnulib.
-	epatch "${FILESDIR}"/${PN}-8.5-interix-warn-mount.patch
-	epatch "${FILESDIR}"/${PN}-8.8-interix.patch
-
-	# interix has very very very broken long double support in libc :(
-	# this patch should not do much harm on other platforms, still it changes
-	# the behaviour of the 'seq' program, so it's conditional here.
-	[[ ${CHOST} == *-interix* ]] &&
-		epatch "${FILESDIR}"/${PN}-8.5-interix-double.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
@@ -83,24 +65,10 @@ src_prepare() {
 
 src_configure() {
 	local myconf=''
-
-	# hangs when using dash before configure is even printing anything
-	export CONFIG_SHELL=${BASH}
-
-	if [[ ${CHOST} == *-interix* ]]; then
-		append-flags "-Dgetgrgid=getgrgid_nomembers"
-		append-flags "-Dgetgrent=getgrent_nomembers"
-		append-flags "-Dgetgrnam=getgrnam_nomembers"
-	fi
-
 	if tc-is-cross-compiler && [[ ${CHOST} == *linux* ]] ; then
 		export fu_cv_sys_stat_statfs2_bsize=yes #311569
 		export gl_cv_func_realpath_works=yes #416629
 	fi
-
-	# m4/pthread.m4 on FreeBSD thinks pthread_join doesn't need any libaries
-	# sort.c:(.text+0x4f25): undefined reference to `pthread_create'
-	[[ ${CHOST} == *-freebsd* ]] && export gl_cv_search_pthread_join=-pthread
 
 	export gl_cv_func_mknod_works=yes #409919
 	use static && append-ldflags -static && sed -i '/elf_sys=yes/s:yes:no:' configure #321821
@@ -112,9 +80,6 @@ src_configure() {
 	if [[ ${CHOST} == *-mint* ]]; then
 		myconf="${myconf} --enable-install-program=arch,hostname,kill,uptime"
 		myconf="${myconf} --enable-no-install-program=groups,su"
-	elif [[ ${CHOST} == *-interix* ]]; then
-		myconf="${myconf} --enable-install-program=arch,hostname,kill,uptime,groups"
-		myconf="${myconf} --enable-no-install-program=su"
 	else
 		myconf="${myconf} --enable-install-program=arch"
 		myconf="${myconf} --enable-no-install-program=groups,hostname,kill,su,uptime"
@@ -175,12 +140,8 @@ src_install() {
 		cd "${ED}"/usr/bin
 		dodir /bin
 		# move critical binaries into /bin (required by FHS)
-		local fhs="cat chgrp chmod chown cp date dd echo false ln ls
+		local fhs="cat chgrp chmod chown cp date dd df echo false ln ls
 		           mkdir mknod mv pwd rm rmdir stty sync true uname"
-
-		# on interix "df" is not built, since there are no means of
-		# getting a list of mounted filesystems.
-		[[ ${CHOST} != *-interix* ]] && fhs="${fhs} df"
 
 		[[ ${CHOST} == *-mint* ]] && fhs="${fhs} hostname"
 
@@ -199,8 +160,6 @@ src_install() {
 		rm -rf "${ED}"/usr/share/man
 	fi
 
-	# collision with libiconv
-	rm -rf "${ED}"/usr/$(get_libdir)/charset.alias
 }
 
 pkg_postinst() {
