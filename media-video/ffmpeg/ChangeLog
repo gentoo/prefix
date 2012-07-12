@@ -1,6 +1,29 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.561 2012/06/11 13:10:52 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.568 2012/07/09 05:19:58 xmw Exp $
+
+  09 Jul 2012; Michael Weber <xmw@gentoo.org> ffmpeg-0.10.3.ebuild:
+  ppc stable (bug 420305)
+
+  06 Jul 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add iec61883 useflag
+
+  23 Jun 2012; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.10.3.ebuild:
+  alpha/ia64/sparc stable wrt #420305
+
+  17 Jun 2012; Markus Meier <maekke@gentoo.org> ffmpeg-0.10.3.ebuild:
+  arm stable, bug #420305
+
+  17 Jun 2012; Ben de Groot <yngwin@gentoo.org> ffmpeg-0.10.2.ebuild,
+  ffmpeg-0.10.3.ebuild, ffmpeg-0.11.1.ebuild, ffmpeg-9999.ebuild, metadata.xml:
+  Move USE=ass usage to new global libass useflag (bug #328245)
+
+  13 Jun 2012; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.10.3.ebuild:
+  Stable for HPPA (bug #420305).
+
+  13 Jun 2012; Andreas Schuerch <nativemad@gentoo.org> ffmpeg-0.10.3.ebuild:
+  x86 stable, see bug 420305
 
   11 Jun 2012; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.3.ebuild:
   Stable for amd64, wrt bug #420305

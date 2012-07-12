@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.11.1.ebuild,v 1.1 2012/06/08 00:32:13 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.11.1.ebuild,v 1.2 2012/06/17 04:56:29 yngwin Exp $
 
 EAPI="4"
 
@@ -29,11 +29,11 @@ if [ "${PV#9999}" = "${PV}" ] ; then
 	KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 fi
 IUSE="
-	aac aacplus alsa amr ass avresample bindist bluray +bzip2 cdio celt
+	aac aacplus alsa amr avresample bindist bluray +bzip2 cdio celt
 	cpudetection debug doc +encode faac fontconfig frei0r gnutls gsm
-	+hardcoded-tables ieee1394 jack jpeg2k libv4l modplug mp3 network openal
-	openssl oss pic pulseaudio rtmp schroedinger sdl speex static-libs test
-	theora threads truetype v4l vaapi vdpau vorbis vpx X x264 xvid +zlib
+	+hardcoded-tables ieee1394 jack jpeg2k libass libv4l modplug mp3 network
+	openal openssl oss pic pulseaudio rtmp schroedinger sdl speex static-libs
+	test theora threads truetype v4l vaapi vdpau vorbis vpx X x264 xvid +zlib
 	"
 
 # String for CPU features in the useflag[:configure_option] form
@@ -53,7 +53,6 @@ done
 RDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	amr? ( media-libs/opencore-amr )
-	ass? ( media-libs/libass )
 	bluray? ( media-libs/libbluray )
 	bzip2? ( app-arch/bzip2 )
 	cdio? ( dev-libs/libcdio )
@@ -75,6 +74,7 @@ RDEPEND="
 	ieee1394? ( media-libs/libdc1394 sys-libs/libraw1394 )
 	jack? ( media-sound/jack-audio-connection-kit )
 	jpeg2k? ( >=media-libs/openjpeg-1.3-r2 )
+	libass? ( media-libs/libass )
 	libv4l? ( media-libs/libv4l )
 	modplug? ( media-libs/libmodplug )
 	openal? ( >=media-libs/openal-1.1 )
@@ -179,11 +179,10 @@ src_configure() {
 		use ${i} || myconf="${myconf} --disable-outdev=${i}"
 	done
 	# libavfilter options
-	for i in frei0r fontconfig ; do
+	for i in frei0r fontconfig libass ; do
 		use ${i} && myconf="${myconf} --enable-${i}"
 	done
 	use truetype && myconf="${myconf} --enable-libfreetype"
-	use ass && myconf="${myconf} --enable-libass"
 
 	# Threads; we only support pthread for now but ffmpeg supports more
 	use threads && myconf="${myconf} --enable-pthreads"

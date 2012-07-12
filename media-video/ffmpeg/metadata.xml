@@ -11,7 +11,6 @@
       instruction set, present in modern AMD CPUs.  (Check for
       3dnowext in /proc/cpuinfo to know whether your CPU supports it).
     </flag>
-	<flag name="ass">Enables <pkg>media-libs/libass</pkg> based subtitle renderer.</flag>
     <flag name="aacplus">AAC+ encoding via <pkg>media-libs/libaacplus</pkg>.</flag>
     <flag name="amr">Enables Adaptive Multi-Rate Audio support</flag>
 	<flag name="avresample">Enables libavresample, <pkg>media-video/libav</pkg> version of libswresample (which installed and makes libavresample redundant): A conversion library between uncompressed audio formats.</flag>
@@ -24,6 +23,7 @@
 	<flag name="faac">Use external faac library for AAC encoding</flag>
 	<flag name="frei0r">Enable frei0r wrapping in libavfilter</flag>
     <flag name="hardcoded-tables">Use pre-calculated tables rather than calculating them on the fly.</flag>
+	<flag name="iec61883"> Support for FireWire DV/HDV input device using <pkg>media-libs/libiec61883</pkg>.</flag>
 	<flag name="libv4l">Uses <pkg>media-libs/libv4l</pkg> for video4linux instead of direct calls. Adds support for more devices via the userspace library.</flag>
     <flag name="mmxext">Enables mmx2 support</flag>
     <flag name="network">Enables network streaming support</flag>
