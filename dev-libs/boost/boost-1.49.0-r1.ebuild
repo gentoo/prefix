@@ -71,7 +71,7 @@ create_user-config.jam() {
 	fi
 
 	if use python; then
-		python_configuration="using python : $(python_get_version) : /usr : $(python_get_includedir) : /usr/$(get_libdir) ;"
+		python_configuration="using python : $(python_get_version) : ${EPREFIX}/usr : ${EPREFIX}$(python_get_includedir) : ${EPREFIX}/usr/$(get_libdir) ;"
 	fi
 
 	# The debug-symbols=none and optimization=none are not official upstream flags but a Gentoo
