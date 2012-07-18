@@ -1,6 +1,16 @@
 # ChangeLog for app-admin/eselect-boost
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.26 2012/06/08 11:18:06 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.27 2012/07/08 18:43:35 floppym Exp $
+
+*eselect-boost-0.4-r00.1 (18 Jul 2012)
+
+  18 Jul 2012; Fabian Groffen <grobian@gentoo.org> files/boost.eselect-0.4,
+  -eselect-boost-0.4.ebuild, +eselect-boost-0.4-r00.1.ebuild, metadata.xml:
+  Add changes to boost.eselect file instead of sed statements, fix for Darwin's
+  dylibs, fix install location, by XU Benda in bug #413447
+
+  08 Jul 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml:
+  Add Arfrever as a maintainer.
 
   08 Jun 2012; Michael Weber <xmw@gentoo.org> eselect-boost-0.4.ebuild:
   ppc stable (bug 413815)

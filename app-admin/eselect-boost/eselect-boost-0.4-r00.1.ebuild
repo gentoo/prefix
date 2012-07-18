@@ -21,11 +21,6 @@ src_install() {
 	dodir ${mdir}
 	sed -e "s|%LIBDIR%|$(get_libdir)|g" "${FILESDIR}/boost.eselect-${PVR%-r*}" > "${ED}${mdir}/boost.eselect" || die "failed to install"
 
-	sed -i \
-		-e 's:${ROOT}:${EROOT}:g' \
-		-e 's:${EROOT}${\(t\|includes\)}:${ROOT}${\1}:g' \
-		"${ED}${mdir}/boost.eselect" || die
-
 	keepdir /etc/eselect/boost
 	keepdir /usr/share/boost-eselect/profiles
 }
