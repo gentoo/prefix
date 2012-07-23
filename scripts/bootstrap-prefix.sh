@@ -821,7 +821,8 @@ bootstrap_coreutils() {
 
 # bug 415439
 bootstrap_coreutils812() {
-	bootstrap_gnu coreutils 8.12
+	bootstrap_gnu coreutils 8.12 \
+		"http://ftp.gnu.org/gnu/coreutils/coreutils-8.12.tar.gz"
 }
 
 bootstrap_tar() {
