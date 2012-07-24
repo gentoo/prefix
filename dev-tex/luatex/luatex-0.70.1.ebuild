@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.70.1.ebuild,v 1.12 2012/05/09 13:27:50 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.70.1.ebuild,v 1.13 2012/07/09 13:15:20 aballier Exp $
 
 EAPI="2"
 
@@ -31,6 +31,7 @@ PRELIBS="libs/obsdcompat"
 
 src_prepare() {
 	has_version '>=app-text/poppler-0.18.0:0' && epatch "${FILESDIR}/poppler018.patch"
+	has_version '>=app-text/poppler-0.20.0:0' && epatch "${FILESDIR}/poppler020.patch"
 	S="${S}/build-aux" elibtoolize --shallow
 }
 
