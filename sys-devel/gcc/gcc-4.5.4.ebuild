@@ -1,21 +1,20 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.3.ebuild,v 1.11 2012/07/23 16:13:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.5.4.ebuild,v 1.1 2012/07/15 06:44:51 dirtyepic Exp $
 
-PATCH_VER="1.5"
+PATCH_VER="1.0"
 UCLIBC_VER="1.0"
 
 # Hardened gcc 4 stuff
-PIE_VER="0.5.2"
+PIE_VER="0.4.7"
 SPECS_VER="0.2.0"
 SPECS_GCC_VER="4.4.3"
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
-PIE_GLIBC_STABLE="x86 amd64 mips ppc ppc64 arm ia64"
+PIE_GLIBC_STABLE="x86 amd64 ppc ppc64 arm ia64"
 PIE_UCLIBC_STABLE="x86 arm amd64 ppc ppc64"
-SSP_STABLE="amd64 x86 mips ppc ppc64 arm"
+SSP_STABLE="amd64 x86 ppc ppc64 arm
 # uclibc need tls and nptl support for SSP support"
-# uclibc need to be >= 0.9.32
-SSP_UCLIBC_STABLE="x86 amd64 ppc ppc64 arm"
+SSP_UCLIBC_STABLE=""
 #end Hardened stuff
 
 inherit toolchain flag-o-matic
@@ -23,38 +22,35 @@ inherit toolchain flag-o-matic
 DESCRIPTION="The GNU Compiler Collection."
 
 LICENSE="GPL-3 LGPL-3 || ( GPL-3 libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.2"
-# YES this ebuild is keyworded and unmasked, /because we're worth it/.
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
-!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )
+	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )
-	kernel_linux? ( >=${CATEGORY}/binutils-2.18 )"
-
+	kernel_linux? (
+		ppc? ( >=${CATEGORY}/binutils-2.17 )
+		ppc64? ( >=${CATEGORY}/binutils-2.17 )
+		>=${CATEGORY}/binutils-2.15.94
+	)"
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )"
 fi
 
 src_unpack() {
-	if has_version '<sys-libs/glibc-2.12' ; then
-		ewarn "Your host glibc is too old; disabling automatic fortify."
-		ewarn "Please rebuild gcc after upgrading to >=glibc-2.12 #362315"
-		EPATCH_EXCLUDE+=" 10_all_default-fortify-source.patch"
-	fi
-
 	toolchain_src_unpack
-
 	use vanilla && return 0
+
+	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
+	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
 
 	# call the linker without explicit target like on sparc
 	epatch "${FILESDIR}"/solaris-i386-ld-emulation.patch
 
 	# add support for 64-bits native target on Solaris
-	# 4.7 will have this built in
-	epatch "${FILESDIR}"/4.6.3/solaris-x86_64.patch
+	epatch "${FILESDIR}"/4.5.1/solaris-x86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/4.5.2/solaris-searchpath.patch
@@ -71,10 +67,10 @@ src_unpack() {
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
-		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint1.patch
 		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint3.patch
 		epatch "${FILESDIR}"/4.5.1/${PN}-4.5.1-mint1.patch
 		epatch "${FILESDIR}"/4.5.2/${PN}-4.5.2-mint1.patch
+		epatch "${FILESDIR}"/4.5.2/${PN}-4.5.2-mint2.patch
 		epatch "${FILESDIR}"/4.5.2/m68k-coldfire.patch
 	fi
 
@@ -82,14 +78,31 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
 	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
 
+	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
+	epatch "${FILESDIR}"/4.5.2/solaris-pthread.patch
+
+	sed -i 's/use_fixproto=yes/:/' gcc/config.gcc #PR33200
+
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
+}
+
+pkg_setup() {
+	toolchain_pkg_setup
+
+	if use lto ; then
+		ewarn
+		ewarn "LTO support is still experimental and unstable."
+		ewarn "Any bugs resulting from the use of LTO will not be fixed."
+		ewarn
+	fi
 }
 
 src_compile() {
 	case ${CTARGET}:" ${USE} " in
 		powerpc*-darwin*)
-			# bug #381179
-			filter-flags "-mcpu=*" "-mtune=*"
+			# Altivec instructions cause an ICE, reduce flags here
+			# TODO: m64/powerpc64 implies -maltivec
+			filter-flags -m*
 		;;
 		*-mint*)
 			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
@@ -138,7 +151,7 @@ src_compile() {
 	# least on Solaris, and AIX /bin/sh is ways too slow,
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
 	# in case that doesn't exist yet
-	export CONFIG_SHELL="${CONFIG_SHELL:-${BASH}}"
+	export CONFIG_SHELL="${BASH}"
 	gcc_src_compile
 }
 
@@ -187,11 +200,3 @@ src_install() {
 
 }
 
-pkg_setup() {
-	toolchain_pkg_setup
-
-	ewarn
-	ewarn "LTO support is still experimental and unstable."
-	ewarn "Any bugs resulting from the use of LTO will not be fixed."
-	ewarn
-}

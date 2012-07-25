@@ -1,20 +1,20 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.6.3.ebuild,v 1.11 2012/07/23 16:13:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.7.1.ebuild,v 1.3 2012/07/23 16:13:51 vapier Exp $
 
-PATCH_VER="1.5"
+PATCH_VER="1.2"
 UCLIBC_VER="1.0"
 
 # Hardened gcc 4 stuff
-PIE_VER="0.5.2"
+PIE_VER="0.5.3"
 SPECS_VER="0.2.0"
 SPECS_GCC_VER="4.4.3"
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
-PIE_GLIBC_STABLE="x86 amd64 mips ppc ppc64 arm ia64"
+PIE_GLIBC_STABLE="x86 amd64 ppc ppc64 arm ia64"
 PIE_UCLIBC_STABLE="x86 arm amd64 ppc ppc64"
-SSP_STABLE="amd64 x86 mips ppc ppc64 arm"
+SSP_STABLE="amd64 x86 ppc ppc64 arm
 # uclibc need tls and nptl support for SSP support"
-# uclibc need to be >= 0.9.32
+# uclibc need to be >= 0.9.33
 SSP_UCLIBC_STABLE="x86 amd64 ppc ppc64 arm"
 #end Hardened stuff
 
@@ -23,8 +23,7 @@ inherit toolchain flag-o-matic
 DESCRIPTION="The GNU Compiler Collection."
 
 LICENSE="GPL-3 LGPL-3 || ( GPL-3 libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.2"
-# YES this ebuild is keyworded and unmasked, /because we're worth it/.
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -45,16 +44,17 @@ src_unpack() {
 		EPATCH_EXCLUDE+=" 10_all_default-fortify-source.patch"
 	fi
 
+	# drop the x32 stuff once 4.7 goes stable
+	if [[ ${CTARGET} != x86_64* ]] || ! has x32 $(get_all_abis TARGET) ; then
+		EPATCH_EXCLUDE+=" 90_all_gcc-4.7-x32.patch"
+	fi
+
 	toolchain_src_unpack
 
 	use vanilla && return 0
 
 	# call the linker without explicit target like on sparc
 	epatch "${FILESDIR}"/solaris-i386-ld-emulation.patch
-
-	# add support for 64-bits native target on Solaris
-	# 4.7 will have this built in
-	epatch "${FILESDIR}"/4.6.3/solaris-x86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/4.5.2/solaris-searchpath.patch

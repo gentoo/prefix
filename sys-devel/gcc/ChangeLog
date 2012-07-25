@@ -1,6 +1,32 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.883 2012/06/04 22:48:18 zorry Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.890 2012/07/23 16:13:51 vapier Exp $
+
+  23 Jul 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.6.3.ebuild,
+  gcc-4.7.1.ebuild:
+  Drop -Werror while building go #423153 by Tiziano Müller.
+
+  23 Jul 2012; Mike Frysinger <vapier@gentoo.org> gcc-3.3.6-r1.ebuild:
+  Fix building with newer glibc and siginfo changes #427220 by Martin Jansa.
+
+  23 Jul 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.7.1.ebuild:
+  Fix for building libitm on x86 #421305 by Rafał Mużyło.
+
+  23 Jul 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.6.3.ebuild:
+  Fix building with glibc-2.16 #424970 by Chris Smith.
+
+*gcc-4.5.4 (15 Jul 2012)
+
+  15 Jul 2012; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.5.4.ebuild:
+  Version bump.
+
+  28 Jun 2012; Anthony G. Basile <blueness@gentoo.org> gcc-4.6.3.ebuild:
+  PIE and SSP work on mips glibc systems, tested on lemote yeeloong
+
+*gcc-4.7.1 (15 Jun 2012)
+
+  15 Jun 2012; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.7.1.ebuild:
+  Version bump.
 
   04 Jun 2012; Magnus Granberg <zorry@gentoo.org> gcc-4.6.3.ebuild:
   Bump of the piepatchset for gcc-4.6.3 to 0.5.2
