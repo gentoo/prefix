@@ -124,6 +124,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-solaris-mlib.patch
 	epatch "${FILESDIR}"/${P}-solaris-xmltest.patch
 	epatch "${FILESDIR}"/${P}-solaris-sundga-cppflags-typo.patch
+	epatch "${FILESDIR}"/${P}-darwin-ar.patch
+	epatch "${FILESDIR}"/${P}-darwin-coreaudio.patch
 	eautoreconf # most of the solaris patches touch the build-system
 	if [[ ${PV} == *9999* ]]; then
 		epatch_user

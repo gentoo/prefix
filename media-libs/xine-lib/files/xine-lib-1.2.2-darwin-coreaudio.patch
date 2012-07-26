@@ -1,0 +1,13 @@
+https://bugs.xine-project.org/show_bug.cgi?id=274
+
+--- src/audio_out/audio_coreaudio_out.c
++++ src/audio_out/audio_coreaudio_out.c
+@@ -51,6 +51,7 @@
+ #include <AudioUnit/AudioUnitProperties.h>
+ #include <AudioUnit/AudioUnitParameters.h>
+ #include <AudioUnit/AudioOutputUnit.h>
++#include <CoreServices/CoreServices.h>
+
+ #define AO_OUT_COREAUDIO_IFACE_VERSION 8
+
+

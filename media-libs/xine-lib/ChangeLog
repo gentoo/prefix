@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/ChangeLog,v 1.686 2012/07/06 01:11:41 lu_zero Exp $
 
+  26 Jul 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/xine-lib-1.2.2-darwin-ar.patch,
+  +files/xine-lib-1.2.2-darwin-coreaudio.patch, xine-lib-1.2.2.ebuild:
+  Fix compilation on Darwin, patches sent upstream
+
   06 Jul 2012; Luca Barbato <lu_zero@gentoo.org>
   files/xine-lib-1.2.1-ffmpeg-git.patch, xine-lib-1.2.2.ebuild,
   +files/xine-lib-1.2.2-libav.patch:
@@ -2211,4 +2216,3 @@
   later versions. Not stable as I haven't been able to test it yet. Removed
   IUSE=pic for conditionally applying the pic fix as it should always be
   applied.
-

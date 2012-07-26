@@ -1,0 +1,20 @@
+Darwin ar doesn't like creating empty archives, so give it a dummy
+object to archive.
+
+https://bugs.xine-project.org/show_bug.cgi?id=456
+
+--- src/xine-engine/Makefile.am
++++ src/xine-engine/Makefile.am
+@@ -49,7 +49,7 @@
+ 	-weak libxine-interface.la \
+ 	-version-info $(XINE_LT_CURRENT):$(XINE_LT_REVISION):$(XINE_LT_AGE)
+ 
+-libxine_interface_la_SOURCES =
++libxine_interface_la_SOURCES = dummy.c
+ 
+ libxine_interface_la_LDFLAGS = $(AM_LDFLAGS) $(def_ldflags) \
+ 	-version-info $(XINE_LT_CURRENT):$(XINE_LT_REVISION):$(XINE_LT_AGE)
+--- /dev/null
++++ src/xine-engine/dummy.c
+@@ -0,0 +1,1 @@
++void dummy(void) {}
