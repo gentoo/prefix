@@ -1,0 +1,42 @@
+Add back timeradd/timersub replacements from older xine releases
+
+--- include/xine/xineutils.h
++++ include/xine/xineutils.h
+@@ -460,6 +460,37 @@
+ #endif /* _MSC_VER */
+ #endif /* __GNUC__ */
+ 
++
++/*
++ * timeradd/timersub is missing on solaris' sys/time.h, provide
++ * some fallback macros
++ */
++#ifndef	timeradd
++#define timeradd(a, b, result)                                                \
++  do {                                                                        \
++    (result)->tv_sec = (a)->tv_sec + (b)->tv_sec;                             \
++    (result)->tv_usec = (a)->tv_usec + (b)->tv_usec;                          \
++    if ((result)->tv_usec >= 1000000)                                         \
++      {                                                                       \
++        ++(result)->tv_sec;                                                   \
++        (result)->tv_usec -= 1000000;                                         \
++      }                                                                       \
++  } while (0)
++#endif
++
++#ifndef timersub
++#define timersub(a, b, result)                                                \
++  do {                                                                        \
++    (result)->tv_sec = (a)->tv_sec - (b)->tv_sec;                             \
++    (result)->tv_usec = (a)->tv_usec - (b)->tv_usec;                          \
++    if ((result)->tv_usec < 0) {                                              \
++      --(result)->tv_sec;                                                     \
++      (result)->tv_usec += 1000000;                                           \
++    }                                                                         \
++  } while (0)
++#endif
++
++
+ /* time measuring macros for profiling tasks */
+ 
+ #ifdef DEBUG

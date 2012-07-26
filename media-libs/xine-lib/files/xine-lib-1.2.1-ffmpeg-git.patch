@@ -68,7 +68,7 @@ diff -r 61f51ebc2659 -r 69983efb1c92 src/combined/ffmpeg/ffmpeg_compat.h
  #endif
  
 +/* AVFrame.age */
-+#if !(LIBAVCODEC_VERSION_MAJOR >= 53 && LIBAVCODEC_VERSION_MAJOR >= 28 && LIBAVCODEC_VERSION_MICRO >= 1)
++#if !(LIBAVCODEC_VERSION_MAJOR > 53 || LIBAVCODEC_VERSION_MAJOR == 53 && LIBAVCODEC_VERSION_MINOR >= 28)
 +#  define AVFRAMEAGE 1
 +#endif
  

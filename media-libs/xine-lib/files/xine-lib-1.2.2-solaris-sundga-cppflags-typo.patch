@@ -1,0 +1,16 @@
+only SUNDGA_CPPFLAGS is AC_SUBSTed, so better define that one instead of
+a non-used SUNDGA_CFLAGS
+
+https://bugs.xine-project.org/show_bug.cgi?id=487
+
+--- m4/video_out.m4
++++ m4/video_out.m4
+@@ -254,7 +254,7 @@
+         saved_LDFLAGS="$LDFLAGS" LDFLAGS="$LDFLAGS -L/usr/openwin/lib"
+         AC_CHECK_LIB([dga], [XDgaGrabDrawable],
+                      [AC_CHECK_HEADER([dga/dga.h],
+-                                      [SUNDGA_CFLAGS="-I/usr/openwin/include"
++                                      [SUNDGA_CPPFLAGS="-I/usr/openwin/include"
+                                        SUNDGA_LIBS="-L/usr/openwin/lib -R/usr/openwin/lib -ldga"
+                                        have_sundga=yes])])
+         CPPFLAGS="$saved_CPPFLAGS" LDFLAGS="$saved_LDFLAGS"

@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.2.9999.ebuild,v 1.18 2012/06/16 19:49:12 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.2.2.ebuild,v 1.2 2012/07/06 01:11:41 lu_zero Exp $
 
 EAPI=4
 
-inherit libtool multilib
+inherit eutils libtool multilib autotools
 
 if [[ ${PV} == *9999* ]]; then
 	EHG_REPO_URI="http://hg.debian.org/hg/xine-lib/xine-lib-1.2"
@@ -13,7 +13,7 @@ if [[ ${PV} == *9999* ]]; then
 	NLS_DEPEND="sys-devel/gettext"
 	NLS_RDEPEND="virtual/libintl"
 else
-	KEYWORDS=""
+	KEYWORDS="~x86-solaris"
 	SRC_URI="mirror://sourceforge/xine/${P}.tar.xz"
 	NLS_IUSE="nls"
 	NLS_DEPEND="nls? ( sys-devel/gettext )"
@@ -118,7 +118,13 @@ REQUIRED_USE="vidix? ( || ( X fbcon ) )
 
 src_prepare() {
 	sed -i -e '/define VDR_ABS_FIFO_DIR/s|".*"|"/var/vdr/xine"|' src/vdr/input_vdr.c || die
-
+	epatch "${FILESDIR}"/${P}-libav.patch
+	epatch "${FILESDIR}"/${P}-solaris-timeradd.patch
+	epatch "${FILESDIR}"/${P}-solaris-hstrerror.patch
+	epatch "${FILESDIR}"/${P}-solaris-mlib.patch
+	epatch "${FILESDIR}"/${P}-solaris-xmltest.patch
+	epatch "${FILESDIR}"/${P}-solaris-sundga-cppflags-typo.patch
+	eautoreconf # most of the solaris patches touch the build-system
 	if [[ ${PV} == *9999* ]]; then
 		epatch_user
 		eautoreconf

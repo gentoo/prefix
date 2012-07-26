@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/xine-lib
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/ChangeLog,v 1.684 2012/06/01 02:41:55 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/ChangeLog,v 1.686 2012/07/06 01:11:41 lu_zero Exp $
+
+  06 Jul 2012; Luca Barbato <lu_zero@gentoo.org>
+  files/xine-lib-1.2.1-ffmpeg-git.patch, xine-lib-1.2.2.ebuild,
+  +files/xine-lib-1.2.2-libav.patch:
+  Fix mistake in the version check for AVFrame.age
+
+*xine-lib-1.2.2 (16 Jun 2012)
+
+  16 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> +xine-lib-1.2.2.ebuild,
+  xine-lib-1.2.9999.ebuild:
+  Version bump -- with 1.2.9999 update so it can be copied over as 1.2.x again.
 
   01 Jun 2012; Zac Medico <zmedico@gentoo.org> xine-lib-1.2.1-r1.ebuild,
   xine-lib-1.2.9999.ebuild:

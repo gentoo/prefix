@@ -1,0 +1,39 @@
+to check if hstrerror is in netdb.h, we need NETLIBS (as determined
+before) on platforms where NETLIBS != "", such as Solaris
+
+https://bugs.xine-project.org/show_bug.cgi?id=483
+
+--- configure.ac
++++ configure.ac
+@@ -908,9 +908,12 @@
+ AC_REPLACE_FUNCS([asprintf basename gettimeofday setenv strcasestr strndup strpbrk strsep strtok_r timegm unsetenv memmem])
+ 
+ AC_LIBSOURCE([hstrerror.c])
++saveLIBS="${LIBS}"
++LIBS="${LIBS} ${NET_LIBS}"
+ AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <netdb.h>]], [[hstrerror(0)]])],
+                [AC_DEFINE([HAVE_HSTRERROR], 1, [Define to 1 if you have 'hstrerror' in <netdb.h>])],
+                [AC_LIBOBJ([hstrerror])])
++LIBS="${saveLIBS}"
+ 
+ AC_LIBSOURCE([dirent_msvc.c])
+ AC_CHECK_FUNC([opendir],
+--- configure
++++ configure
+@@ -21437,6 +21437,8 @@
+ 
+ 
+ 
++saveLIBS="${LIBS}"
++LIBS="${LIBS} ${NET_LIBS}"
+ 
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+@@ -21464,6 +21466,7 @@
+ rm -f core conftest.err conftest.$ac_objext \
+     conftest$ac_exeext conftest.$ac_ext
+ 
++LIBS="${saveLIBS}"
+ 
+ ac_fn_c_check_func "$LINENO" "opendir" "ac_cv_func_opendir"
+ if test "x$ac_cv_func_opendir" = xyes; then :

@@ -1,0 +1,12 @@
+xmltest on Solaris needs the asprintf implementation from
+AC_REPLACE_FUNCS(), so link against libxineposix.la.
+
+https://bugs.xine-project.org/show_bug.cgi?id=486
+
+--- src/xine-utils/Makefile.am
++++ src/xine-utils/Makefile.am
+@@ -37,3 +37,4 @@
+ noinst_PROGRAMS = xmltest
+ xmltest_SOURCES = xmllexer.c xmlparser.c
+ xmltest_CFLAGS = -DLOG -DXINE_XML_PARSER_TEST $(AM_CFLAGS)
++xmltest_LDADD = $(top_srcdir)/lib/libxineposix.la
