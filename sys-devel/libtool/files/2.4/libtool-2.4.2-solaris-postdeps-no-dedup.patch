@@ -1,9 +1,9 @@
 On Solaris, catch code for C++ exceptions is in libgcc_s.  The libc has
-default catch code as well, that does an abort.  For this reason, GCC
-emits on purpose -lgcc_s -lc -lgcc_s.  libtool's de-duplication magic
-turns this into -lc -lgcc_s, which unsurprisingly is the wrong order,
-since exceptions will be seen by libc first.  Disable de-duplication for
-this reason, such that we can have working C++ libtool built libraries.
+default catch code as well, that does an abort.  GCC by default emits on
+purpose -lgcc_s -lc -lgcc_s.  libtool's de-duplication magic turns this
+into -lc -lgcc_s, which unsurprisingly is the wrong order, since
+exceptions will be seen by libc first.  Disable de-duplication for this
+reason, such that we can have working C++ libtool built libraries.
 
 --- libltdl/config/ltmain.m4sh
 +++ libltdl/config/ltmain.m4sh
