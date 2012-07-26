@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.199 2012/04/26 13:07:54 aballier Exp $
 
+  26 Jul 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/2.4/libtool-2.4.2-solaris-postdeps-no-dedup.patch,
+  libtool-2.4.2.ebuild:
+  Add fix for Solaris and C++ libraries built by libtool generating aborts as
+  soon as an exception is thrown.
+
   06 May 2012; Fabian Groffen <grobian@gentoo.org>
   +files/2.4/libtool-2.4.2-solaris_sol2.patch, libtool-2.4.2.ebuild:
   Add patch to fix libtool bug causing linker to be transformed into ld_sol2 on

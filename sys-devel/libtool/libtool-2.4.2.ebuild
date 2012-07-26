@@ -52,6 +52,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-winnt.patch
 	epatch "${FILESDIR}"/2.2.6b/${PN}-2.2.6b-mint.patch
 	epatch "${FILESDIR}"/2.2.6b/${PN}-2.2.6b-irix.patch
+	epatch "${FILESDIR}"/2.4/${PN}-2.4.2-solaris-postdeps-no-dedup.patch
 
 	# seems that libtool has to know about EPREFIX a little bit better,
 	# since it fails to find prefix paths to search libs from, resulting in
