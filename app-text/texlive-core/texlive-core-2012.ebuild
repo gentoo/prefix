@@ -1,13 +1,15 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2010-r4.ebuild,v 1.10 2012/05/04 03:33:13 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2012.ebuild,v 1.2 2012/07/27 12:41:25 aballier Exp $
 
 EAPI=3
 
+#TL_UPSTREAM_PATCHLEVEL="1"
+PATCHLEVEL="36"
+TL_SOURCE_VERSION=20120701
+
 inherit eutils flag-o-matic toolchain-funcs libtool texlive-common prefix
 
-PATCHLEVEL="29"
-TL_SOURCE_VERSION=20100722
 MY_PV=${PN%-core}-${TL_SOURCE_VERSION}-source
 
 DESCRIPTION="A complete TeX distribution"
@@ -19,15 +21,32 @@ SRC_URI="mirror://gentoo/${MY_PV}.tar.xz"
 
 # Fetch patches
 SRC_URI="${SRC_URI} mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.xz"
+#	mirror://gentoo/texlive-core-upstream-patches-${TL_UPSTREAM_PATCHLEVEL}.tar.xz"
 
-TL_CORE_BINEXTRA_MODULES="a2ping asymptote bibtex8 bundledoc ctie cweb de-macro dtl dvi2tty dviasm dvicopy dvidvi dviljk dvipng dvipos findhyph fragmaster hyphenex installfont lacheck latex2man listings-ext mkjobtexmf patgen pdfcrop pdftools pkfix pkfix-helper purifyeps seetexk synctex texcount texdiff texdirflatten texdoc texloganalyser texware tie tpic2pdftex web collection-binextra"
+TL_CORE_BINEXTRA_MODULES="
+	a2ping asymptote bibtex8 bundledoc ctanify ctanupload ctie cweb de-macro dtl
+	dvi2tty dviasm dvicopy dvidvi dviljk dvipng dvipos findhyph fragmaster
+	hyphenex installfont lacheck latex2man latexfileversion latexpand
+	listings-ext match_parens mkjobtexmf patgen pdfcrop pdftools pkfix
+	pkfix-helper purifyeps seetexk sty2dtx synctex texcount texdef texdiff
+	texdirflatten texdoc texliveonfly texloganalyser texware tie tpic2pdftex
+	typeoutfileinfo web	collection-binextra
+	"
 TL_CORE_BINEXTRA_DOC_MODULES="
-a2ping.doc asymptote.doc bibtex8.doc bundledoc.doc ctie.doc cweb.doc de-macro.doc dvicopy.doc dviljk.doc dvipng.doc dvipos.doc findhyph.doc fragmaster.doc installfont.doc latex2man.doc listings-ext.doc mkjobtexmf.doc patgen.doc pdfcrop.doc pdftools.doc pkfix.doc pkfix-helper.doc purifyeps.doc synctex.doc texcount.doc texdiff.doc texdirflatten.doc texdoc.doc texloganalyser.doc texware.doc tie.doc tpic2pdftex.doc web.doc
-"
-TL_CORE_BINEXTRA_SRC_MODULES="hyphenex.source listings-ext.source mkjobtexmf.source"
+	a2ping.doc asymptote.doc bibtex8.doc bundledoc.doc ctanify.doc
+	ctanupload.doc ctie.doc cweb.doc de-macro.doc dvi2tty.doc dvicopy.doc
+	dviljk.doc dvipng.doc dvipos.doc findhyph.doc fragmaster.doc installfont.doc
+	latex2man.doc latexfileversion.doc latexpand.doc listings-ext.doc
+	match_parens.doc mkjobtexmf.doc patgen.doc pdfcrop.doc pdftools.doc
+	pkfix.doc pkfix-helper.doc purifyeps.doc sty2dtx.doc synctex.doc
+	texcount.doc texdef.doc texdiff.doc texdirflatten.doc texdoc.doc
+	texliveonfly.doc texloganalyser.doc texware.doc tie.doc tpic2pdftex.doc
+	typeoutfileinfo web.doc
+	"
+TL_CORE_BINEXTRA_SRC_MODULES="hyphenex.source listings-ext.source mkjobtexmf.source texdef.source"
 
-TL_CORE_EXTRA_MODULES="tetex hyphen-base texconfig gsftopk ${TL_CORE_BINEXTRA_MODULES}"
-TL_CORE_EXTRA_DOC_MODULES="tetex.doc texconfig.doc gsftopk.doc ${TL_CORE_BINEXTRA_DOC_MODULES}"
+TL_CORE_EXTRA_MODULES="tetex hyphen-base texconfig gsftopk texlive.infra ${TL_CORE_BINEXTRA_MODULES}"
+TL_CORE_EXTRA_DOC_MODULES="tetex.doc texconfig.doc gsftopk.doc texlive.infra.doc ${TL_CORE_BINEXTRA_DOC_MODULES}"
 TL_CORE_EXTRA_SRC_MODULES="${TL_CORE_BINEXTRA_SRC_MODULES}"
 
 for i in ${TL_CORE_EXTRA_MODULES}; do
@@ -64,6 +83,7 @@ COMMON_DEPEND="${MODULAR_X_DEPEND}
 	!<app-text/texlive-2007
 	!app-text/xetex
 	!<dev-texlive/texlive-basic-2009
+	!<dev-texlive/texlive-metapost-2011
 	!app-text/dvibook
 	sys-libs/zlib
 	>=media-libs/libpng-1.2.43-r2:0
@@ -74,8 +94,8 @@ COMMON_DEPEND="${MODULAR_X_DEPEND}
 		media-libs/freetype:2
 		media-libs/silgraphite
 	)
-	>=dev-libs/kpathsea-6.0.1_p20110627
-	cjk? ( dev-libs/ptexenc )"
+	>=dev-libs/kpathsea-6.1.0_p20120701
+	cjk? ( >=dev-libs/ptexenc-1.2.0_p20120701 )"
 
 DEPEND="${COMMON_DEPEND}
 	virtual/pkgconfig
@@ -84,28 +104,30 @@ DEPEND="${COMMON_DEPEND}
 	app-arch/xz-utils"
 
 RDEPEND="${COMMON_DEPEND}
-	app-text/ps2pkm
-	app-text/dvipsk
-	dev-tex/bibtexu
-	xetex? ( >=app-text/xdvipdfmx-0.7.8 )
+	>=app-text/ps2pkm-1.5_p20120701
+	>=app-text/dvipsk-5.992_p20120701
+	>=dev-tex/bibtexu-3.71_p20120701
+	virtual/perl-Getopt-Long
+	xetex? ( >=app-text/xdvipdfmx-0.7.8_p20120701 )
 	tk? ( dev-perl/perl-tk )"
 
 # texdoc needs luatex.
-PDEPEND=">=dev-tex/luatex-0.63"
+PDEPEND=">=dev-tex/luatex-0.70"
 
-S="${WORKDIR}/${MY_PV}"
+S="${WORKDIR}/${P}_build"
+B="${WORKDIR}/${MY_PV}"
 
 src_prepare() {
-	mv "${WORKDIR}"/texmf* "${S}" || die "failed to move texmf files"
+	mkdir -p "${S}" || die "failed to create build dir"
+	mv "${WORKDIR}"/texmf* "${B}" || die "failed to move texmf files"
 
 	cp "${FILESDIR}"/texmf-update2010 "${T}" || die
 	cd "${T}"; epatch "${FILESDIR}"/texmf-update2010-prefix.patch; cd "${S}"
 	eprefixify "${T}"/texmf-update2010
 
+	cd "${B}"
+	#EPATCH_MULTI_MSG="Applying patches from upstream bugfix branch..." EPATCH_SUFFIX="patch" epatch "${WORKDIR}/gentoo_branch2011_patches"
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
-
-	# don't use deprecated interfaces from MacFreetype
-#	epatch "${FILESDIR}"/2009/${PN}-2009-nomacfreetype.patch
 
 	elibtoolize
 }
@@ -120,9 +142,10 @@ src_configure() {
 	export LC_ALL=C
 	tc-export CC CXX AR
 
-	export CONFIG_SHELL="${EPREFIX}"/bin/bash
+#	export CONFIG_SHELL="${BASH}"
 
-	econf -C \
+	ECONF_SOURCE="${B}" \
+		econf -C \
 		--bindir="${EPREFIX}"/usr/bin \
 		--datadir="${S}" \
 		--with-system-freetype2 \
@@ -131,6 +154,7 @@ src_configure() {
 		--with-system-zlib \
 		--with-system-libpng \
 		--with-system-xpdf \
+		--with-system-poppler \
 		--with-system-teckit \
 		--with-teckit-includes="${EPREFIX}"/usr/include/teckit \
 		--with-system-graphite \
@@ -150,6 +174,7 @@ src_configure() {
 		--disable-psutils \
 		--disable-t1utils \
 		--enable-ipc \
+		--disable-biber \
 		--disable-bibtexu \
 		--disable-dvipng \
 		--disable-dvipsk \
@@ -170,11 +195,15 @@ src_configure() {
 		--disable-dvisvgm \
 		--disable-vlna \
 		--disable-xdvipdfmx \
+		--disable-xdv2pdf \
 		--enable-shared \
 		--disable-native-texlive-build \
 		--disable-largefile \
 		$(use_enable xetex) \
 		$(use_enable cjk ptex) \
+		$(use_enable cjk eptex) \
+		$(use_enable cjk uptex) \
+		$(use_enable cjk euptex) \
 		$(use_enable cjk mendexk) \
 		$(use_enable cjk makejvf) \
 		$(use_with X x)
@@ -183,6 +212,7 @@ src_configure() {
 src_compile() {
 	emake SHELL="${EPREFIX}"/bin/sh texmf="${EPREFIX}"${TEXMF_PATH:-/usr/share/texmf} || die "emake failed"
 
+	cd "${B}"
 	# Mimic updmap --syncwithtrees to enable only fonts installed
 	# Code copied from updmap script
 	for i in `egrep '^(Mixed)?Map' "texmf/web2c/updmap.cfg" | sed 's@.* @@'`; do
@@ -209,11 +239,10 @@ src_install() {
 	dodir ${TEXMF_PATH:-/usr/share/texmf}/web2c
 	emake DESTDIR="${D}" texmf="${ED}${TEXMF_PATH:-/usr/share/texmf}" run_texlinks="true" run_mktexlsr="true" install || die "install failed"
 
+	cd "${B}"
 	dodir /usr/share # just in case
 	cp -pR texmf{,-dist} "${ED}/usr/share/" || die "failed to install texmf trees"
-	if use source ; then
-		cp -pR "${WORKDIR}"/tlpkg "${ED}/usr/share/" || die "failed to install tlpkg files"
-	fi
+	cp -pR "${WORKDIR}"/tlpkg "${ED}/usr/share/" || die "failed to install tlpkg files"
 
 	newsbin "${T}/texmf-update2010" texmf-update
 
@@ -222,19 +251,19 @@ src_install() {
 	use X || dosym mf /usr/bin/mf-nowin
 
 	docinto texk
-	cd "${S}/texk"
+	cd "${B}/texk"
 	dodoc ChangeLog README || die "failed to install texk docs"
 
 	docinto dviljk
-	cd "${S}/texk/dviljk"
+	cd "${B}/texk/dviljk"
 	dodoc ChangeLog README NEWS || die "failed to install dviljk docs"
 
 	docinto makeindexk
-	cd "${S}/texk/makeindexk"
-	dodoc ChangeLog NEWS NOTES README || die "failed to install makeindexk docs"
+	cd "${B}/texk/makeindexk"
+	dodoc ChangeLog NOTES README || die "failed to install makeindexk docs"
 
 	docinto web2c
-	cd "${S}/texk/web2c"
+	cd "${B}/texk/web2c"
 	dodoc ChangeLog NEWS PROJECTS README || die "failed to install web2c docs"
 
 	use doc || rm -rf "${ED}/usr/share/texmf/doc"
@@ -253,12 +282,12 @@ src_install() {
 	# Remove fmtutil.cnf, it will be regenerated from /etc/texmf/fmtutil.d files
 	# by texmf-update
 	rm -f "${ED}${TEXMF_PATH}/web2c/fmtutil.cnf"
+	# Remove bundled and invalid updmap.cfg
+	rm -f "${ED}/usr/share/texmf-dist/web2c/updmap.cfg"
 
 	texlive-common_handle_config_files
 
 	keepdir /usr/share/texmf-site
-
-	dosym /etc/texmf/web2c/updmap.cfg ${TEXMF_PATH}/web2c/updmap.cfg
 
 	# the virtex symlink is not installed
 	# The links has to be relative, since the targets

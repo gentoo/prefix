@@ -1,6 +1,25 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.178 2012/05/30 23:42:52 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.183 2012/07/27 12:41:25 aballier Exp $
+
+  27 Jul 2012; Alexis Ballier <aballier@gentoo.org> texlive-core-2012.ebuild:
+  disable uptex and euptex without USE=cjk too, bug #428258
+
+*texlive-core-2012 (27 Jul 2012)
+
+  27 Jul 2012; Alexis Ballier <aballier@gentoo.org> +texlive-core-2012.ebuild:
+  bump to TeX Live 2012
+
+  26 Jul 2012; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2010-r4.ebuild, -texlive-core-2011-r5.ebuild:
+  remove old
+
+  26 Jul 2012; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2011-r7.ebuild:
+  Add patch from upstream to build with kpathsea from TeX Live 2012.
+
+  17 Jun 2012; Raúl Porcel <armin76@gentoo.org> texlive-core-2011-r6.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #408993
 
 *texlive-core-2011-r7 (30 May 2012)
 
