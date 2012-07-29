@@ -5,6 +5,8 @@ into -lc -lgcc_s, which unsurprisingly is the wrong order, since
 exceptions will be seen by libc first.  Disable de-duplication for this
 reason, such that we can have working C++ libtool built libraries.
 
+http://lists.gnu.org/archive/html/libtool-patches/2012-07/msg00006.html
+
 --- libltdl/config/ltmain.m4sh
 +++ libltdl/config/ltmain.m4sh
 @@ -398,7 +398,7 @@

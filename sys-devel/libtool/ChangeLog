@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.199 2012/04/26 13:07:54 aballier Exp $
 
+  29 Jul 2012; Fabian Groffen <grobian@gentoo.org>
+  files/2.4/libtool-2.4.2-solaris-postdeps-no-dedup.patch,
+  files/2.4/libtool-2.4.2-solaris_sol2.patch:
+  Add refs to upstream posts of the Solaris patches
+
   26 Jul 2012; Fabian Groffen <grobian@gentoo.org>
   files/2.4/libtool-2.4.2-solaris-postdeps-no-dedup.patch:
   Update patch comments, I'm not sure what the reason is for GCC to emit double
