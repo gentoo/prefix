@@ -25,7 +25,7 @@ econf() {
 		--sysconfdir="${ROOT}"/etc \
 		--localstatedir="${ROOT}"/var/lib \
 		--build=${CHOST} \
-		"$@" || exit 1
+		"$@" || return 1
 }
 
 efetch() {
@@ -55,10 +55,11 @@ efetch() {
 		${FETCH_COMMAND} "$1"
 		if [[ ! -f ${1##*/} ]] ; then
 			eerror "downloading ${1} failed!"
-			exit 1
+			return 1
 		fi
 		popd > /dev/null
 	fi
+	return 0
 }
 
 # template
@@ -67,23 +68,23 @@ efetch() {
 # 	A=
 # 	einfo "Bootstrapping ${A%-*}"
 
-# 	efetch ${A}
+# 	efetch ${A} || return 1
 
 # 	einfo "Unpacking ${A%-*}"
 # 	export S="${PORTAGE_TMPDIR}/${PN}"
 # 	rm -rf ${S}
 # 	mkdir -p ${S}
 # 	cd ${S}
-# 	$TAR -zxf ${DISTDIR}/${A} || exit 1
+# 	$TAR -zxf ${DISTDIR}/${A} || return 1
 # 	S=${S}/${PN}-${PV}
 # 	cd ${S}
 
 # 	einfo "Compiling ${A%-*}"
-# 	econf
-# 	$MAKE ${MAKEOPTS} || exit 1
+# 	econf || return 1
+# 	$MAKE ${MAKEOPTS} || return 1
 
 # 	einfo "Installing ${A%-*}"
-# 	$MAKE install || exit 1
+# 	$MAKE install || return 1
 
 # 	einfo "${A%-*} successfully bootstrapped"
 # }
@@ -359,10 +360,10 @@ do_tree() {
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
 	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
-		efetch "$1/$2"
+		efetch "$1/$2" || return 1
 		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
 		einfo "Unpacking, this may take awhile"
-		bzip2 -dc ${DISTDIR}/$2 | $TAR -xf - -C ${PORTDIR%portage} || exit 1
+		bzip2 -dc ${DISTDIR}/$2 | $TAR -xf - -C ${PORTDIR%portage} || return 1
 		touch ${PORTDIR}/.unpacked
 	fi
 }
@@ -396,7 +397,7 @@ bootstrap_startscript() {
 	if ! emerge -u ${theshell} ; then
 		eerror "Your shell is not available in portage, hence we cannot" > /dev/stderr
 		eerror "automate starting your prefix, set SHELL and rerun this script" > /dev/stderr
-		exit -1
+		return -1
 	fi
 	einfo "Creating the Prefix start script (startprefix)"
 	# currently I think right into the prefix is the best location, as
@@ -421,7 +422,7 @@ bootstrap_portage() {
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
-	efetch ${DISTFILES_URL}/${A}
+	efetch ${DISTFILES_URL}/${A} || return 1
 
 	einfo "Unpacking ${A%-*}"
 	export S="${PORTAGE_TMPDIR}"/portage-${PV}
@@ -429,14 +430,14 @@ bootstrap_portage() {
 	rm -rf "${S}" >& /dev/null
 	mkdir -p "${S}" >& /dev/null
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}/${A}" | $TAR -xf - || exit 1
+	bzip2 -dc "${DISTDIR}/${A}" | $TAR -xf - || return 1
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
 		-i pym/_emerge/AbstractEbuildProcess.py || \
-		exit 1
+		return 1
 
 	einfo "Compiling ${A%-*}"
 	econf \
@@ -444,11 +445,12 @@ bootstrap_portage() {
 		--with-portage-user="`id -un`" \
 		--with-portage-group="`id -gn`" \
 		--mandir="${ROOT}/automatically-removed" \
-		--with-extra-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}"
-	$MAKE ${MAKEOPTS} || exit 1
+		--with-extra-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}" \
+		|| return 1
+	$MAKE ${MAKEOPTS} || return 1
 
  	einfo "Installing ${A%-*}"
-	$MAKE install || exit 1
+	$MAKE install || return 1
 
 	bootstrap_setup
 
@@ -475,7 +477,7 @@ prep_gcc-apple() {
 	GCC_A="gcc-${GCC_PV}.tar.gz"
 	TAROPTS="-zxf"
 
-	efetch ${GCC_APPLE_URL}/${GCC_A}
+	efetch ${GCC_APPLE_URL}/${GCC_A} || return 1
 
 }
 
@@ -485,7 +487,7 @@ prep_gcc-fsf() {
 	GCC_A=gcc-${GCC_PV}.tar.bz2	
 	TAROPTS="-jxf"
 
-	efetch ${GENTOO_MIRRORS}/${GCC_A}
+	efetch ${GENTOO_MIRRORS}/${GCC_A} || return 1
 
 }
 
@@ -511,7 +513,7 @@ bootstrap_gcc() {
 	mkdir -p "${S}"
 	cd "${S}"
 	einfo "Unpacking ${GCC_A}"
-	$TAR ${TAROPTS} "${DISTDIR}"/${GCC_A} || exit 1
+	$TAR ${TAROPTS} "${DISTDIR}"/${GCC_A} || return 1
 
 	rm -rf "${S}"/build
 	mkdir -p "${S}"/build
@@ -528,11 +530,11 @@ bootstrap_gcc() {
 		--with-system-zlib \
 		--enable-languages=${GCC_LANG} \
 		${GCC_EXTRA_OPTS} \
-		|| exit 1
+		|| return 1
 
-	$MAKE ${MAKEOPTS} bootstrap-lean || exit 1
+	$MAKE ${MAKEOPTS} bootstrap-lean || return 1
 
-	$MAKE install || exit 1
+	$MAKE install || return 1
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
@@ -548,7 +550,11 @@ bootstrap_gnu() {
 	einfo "Bootstrapping ${A%-*}"
 
 	URL=${3-${GENTOO_MIRRORS}/${A}}
-	efetch ${URL}
+	if ! efetch ${URL} && [[ -z $3 ]] ; then
+		einfo "download failed, retrying at GNU mirror"
+		bootstrap_gnu ${PN} ${PV} ${GNU_URL}/${PN}/${A} || return 1
+		return 0
+	fi
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
@@ -556,9 +562,9 @@ bootstrap_gnu() {
 	mkdir -p "${S}"
 	cd "${S}"
 	if [[ $PN == "gzip" ]]; then
-		$TAR -xf "${DISTDIR}"/${A} || exit 1
+		$TAR -xf "${DISTDIR}"/${A} || return 1
 	else
-		gzip -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || exit 1
+		gzip -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || return 1
 	fi
 	S="${S}"/${PN}-${PV}
 	cd "${S}"
@@ -618,18 +624,18 @@ bootstrap_gnu() {
 	[[ ${A%-*} == "wget" ]] && myconf="${myconf} --without-ssl"
 
 	einfo "Compiling ${A%-*}"
-	econf ${myconf}
+	econf ${myconf} || return 1
 	if [[ ${A%-*} == "make" && $(type -t $MAKE) != "file" ]]; then
-		./build.sh || exit 1
+		./build.sh || return 1
 	else
-		$MAKE ${MAKEOPTS} || exit 1
+		$MAKE ${MAKEOPTS} || return 1
 	fi
 
 	einfo "Installing ${A%-*}"
 	if [[ ${A%-*} == "make" && $(type -t $MAKE) != "file" ]]; then
-		./make install || exit 1
+		./make install || return 1
 	else
-		$MAKE install || exit 1
+		$MAKE install || return 1
 	fi
 
 	cd "${ROOT}"
@@ -644,14 +650,14 @@ bootstrap_python() {
 
 	# don't really want to put this on the mirror, since they are
 	# non-vanilla sources, bit specific for us
-	efetch ${DISTFILES_URL}/${A}
+	efetch ${DISTFILES_URL}/${A} || return 1
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
 	S="${S}"/Python-${PV}
 	cd "${S}"
 
@@ -692,8 +698,8 @@ bootstrap_python() {
 		--disable-toolbox-glue \
 		--disable-ipv6 \
 		--disable-shared \
-		${myconf}
-	$MAKE ${MAKEOPTS} || exit 1
+		${myconf} || return 1
+	$MAKE ${MAKEOPTS} || return 1
 
 	einfo "Installing ${A%-*}"
 	$MAKE -k install || echo "??? Python failed to install *sigh* continuing anyway"
@@ -707,21 +713,21 @@ bootstrap_python() {
 	einfo "${A%-*} bootstrapped"
 }
 
-bootstrap_zlib() {
+bootstrap_zlib_core() {
 	# use 1.2.5 by default, current bootstrap guides
 	PV="${1:-1.2.5}"
 	A=zlib-${PV}.tar.bz2
 
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GENTOO_MIRRORS}/${A}
+	efetch ${GENTOO_MIRRORS}/${A} || return 1
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
 	S="${S}"/zlib-${PV}
 	cd "${S}"
 
@@ -733,22 +739,34 @@ bootstrap_zlib() {
 		export CC="gcc -m64"
 	fi
 	einfo "Compiling ${A%-*}"
-	CHOST= ./configure --prefix="${ROOT}"/usr || exit 1
-	$MAKE ${MAKEOPTS} || exit 1
+	CHOST= ./configure --prefix="${ROOT}"/usr || return 1
+	$MAKE ${MAKEOPTS} || return 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE install || exit 1
+	$MAKE install || return 1
 
 	# this lib causes issues when emerging python again on Solaris
 	# because the tmp lib path is in the library search path there
-	rm -Rf "${ROOT}"/usr/lib/libpython*.a
+	rm -Rf "${ROOT}"/usr/lib/libz*.a
 
 	einfo "${A%-*} bootstrapped"
 }
 
+bootstrap_zlib125() {
+	bootstrap_zlib_core 1.2.5
+}
+
 bootstrap_zlib126() {
 	# bug 407215
-	bootstrap_zlib 1.2.6
+	bootstrap_zlib_core 1.2.6
+}
+
+bootstrap_zlib127() {
+	bootstrap_zlib_core 1.2.7
+}
+
+bootstrap_zlib() {
+	bootstrap_zlib127 || bootstrap_zlib126 || bootstrap_zlib125
 }
 
 bootstrap_sed() {
@@ -765,8 +783,12 @@ bootstrap_findutils4() {
 		"http://dev.gentoo.org/~grobian/distfiles/findutils-4.4.0-patched.tar.gz"
 }
 
-bootstrap_findutils() {
+bootstrap_findutils5() {
 	bootstrap_gnu findutils 4.5.10
+}
+
+bootstrap_findutils() {
+	bootstrap_findutils5 || bootstrap_findutils4 || bootstrap_findutils3
 }
 
 bootstrap_wget() {
@@ -774,17 +796,13 @@ bootstrap_wget() {
 }
 
 bootstrap_grep() {
-	bootstrap_gnu grep 2.11
+	bootstrap_gnu grep 2.13 || bootstrap_gnu grep 2.11
 }
 
 bootstrap_coreutils() {
-	bootstrap_gnu coreutils 8.16
-}
-
-# bug 415439
-bootstrap_coreutils812() {
-	bootstrap_gnu coreutils 8.12 \
-		"http://ftp.gnu.org/gnu/coreutils/coreutils-8.12.tar.gz"
+	# 8.12 for FreeBSD 9.1, bug #415439
+	bootstrap_gnu coreutils 8.17 || bootstrap_gnu coreutils 8.16 || \
+	bootstrap_gnu coreutils 8.12 
 }
 
 bootstrap_tar() {
@@ -796,24 +814,14 @@ bootstrap_make() {
 }
 
 bootstrap_patch() {
-	bootstrap_gnu patch 2.6.1
-}
-
-# needed for OSX 10.6.x
-bootstrap_patch259() {
-	bootstrap_gnu patch 2.5.9
-}
-
-bootstrap_patch254() {
-	bootstrap_gnu patch 2.5.4
+	# 2.5.9 needed for OSX 10.6.x
+	bootstrap_gnu patch 2.6.1 || bootstrap_gnu patch 2.5.9 || \
+		bootstrap_gnu patch 2.5.4
 }
 
 bootstrap_gawk() {
-	bootstrap_gnu gawk 3.1.8
-}
-
-bootstrap_gawk4() {
-	bootstrap_gnu gawk 4.0.0
+	bootstrap_gnu gawk 4.0.1 || bootstrap_gnu gawk 4.0.0 || \
+		bootstrap_gnu gawk 3.1.8
 }
 
 bootstrap_binutils() {
@@ -829,7 +837,8 @@ bootstrap_bash() {
 }
 
 bootstrap_bison() {
-	bootstrap_gnu bison 2.4
+	bootstrap_gnu bison 2.6 || bootstrap_gnu bison 2.5.1 || \
+		bootstrap_gnu bison 2.4
 }
 
 bootstrap_m4() {
@@ -847,22 +856,22 @@ bootstrap_bzip2() {
 	A=${PN}-${PV}.tar.gz
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GENTOO_MIRRORS}/${A}
+	efetch ${GENTOO_MIRRORS}/${A} || return 1
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
 	S="${S}"/${PN}-${PV}
 	cd "${S}"
 
 	einfo "Compiling ${A%-*}"
-	$MAKE || exit 1
+	$MAKE || return 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE PREFIX="${ROOT}"/usr install || exit 1
+	$MAKE PREFIX="${ROOT}"/usr install || return 1
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
@@ -1126,4 +1135,4 @@ then
 fi
 
 einfo "ready to bootstrap ${TODO}"
-bootstrap_${TODO}
+bootstrap_${TODO} || exit 1
