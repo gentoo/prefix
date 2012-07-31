@@ -100,29 +100,14 @@ bootstrap_setup() {
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.3"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
-		powerpc-apple-darwin8)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.4/ppc"
+		powerpc-apple-darwin[89])
+			rev=${CHOST##*darwin}
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/ppc"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
-		powerpc64-apple-darwin8)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.4/ppc64"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
-			;;
-		i*86-apple-darwin8)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.4/x86"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
-			;;
-		powerpc-apple-darwin9)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/ppc"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
-			;;
-		powerpc64-apple-darwin9)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/ppc64"
+		powerpc64-apple-darwin[89])
+			rev=${CHOST##*darwin}
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/ppc64"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			extra_make_globals="
 CC='gcc -m64'
@@ -130,21 +115,14 @@ CXX='g++ -m64'
 HOSTCC='gcc -m64'
 "
 			;;
-		i*86-apple-darwin9)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x86"
+		i*86-apple-darwin[89])
+			rev=${CHOST##*darwin}
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
-		x86_64-apple-darwin9)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x64"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
-			;;
-		i*86-apple-darwin10)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.6/x86"
+		i*86-apple-darwin1[12])
+			rev=${CHOST##*darwin}
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			extra_make_globals="
 CC='gcc -m32'
@@ -152,26 +130,9 @@ CXX='g++ -m32'
 HOSTCC='gcc -m32'
 "
 			;;
-		x86_64-apple-darwin10)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.6/x64"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
-			;;
-		i*86-apple-darwin11)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.7/x86"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
-			extra_make_globals="
-CC='gcc -m32'
-CXX='g++ -m32'
-HOSTCC='gcc -m32'
-"
-			;;
-		x86_64-apple-darwin11)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.7/x64"
+		x86_64-apple-darwin9|x86_64-apple-darwin1[12])
+			rev=${CHOST##*darwin}
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x64"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			extra_make_globals="
 CC='gcc -m64'
