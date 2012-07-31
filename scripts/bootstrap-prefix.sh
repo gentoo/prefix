@@ -384,17 +384,18 @@ bootstrap_tree_arm() {
 bootstrap_startscript() {
 	theshell=${SHELL##*/}
 	if [[ ${theshell} == "sh" ]] ; then
-		einfo "sh is a prehistoric shell not available in Gentoo, switching to bash instead."
+		einfo "sh is a generic shell, using bash instead"
 		theshell="bash"
 	fi
 	if [[ ${theshell} == "csh" ]] ; then
-		einfo "csh is a prehistoric shell not available in Gentoo, switching to tcsh instead."
+		einfo "csh is a prehistoric shell not available in Gentoo, switching to tcsh instead"
 		theshell="tcsh"
 	fi
 	einfo "Trying to emerge the shell you use, if necessary by running:"
 	einfo "emerge -u ${theshell}"
 	if ! emerge -u ${theshell} ; then
-		eerror "Your shell is not available in portage, hence we cannot automate starting your prefix" > /dev/stderr
+		eerror "Your shell is not available in portage, hence we cannot" > /dev/stderr
+		eerror "automate starting your prefix, set SHELL and rerun this script" > /dev/stderr
 		exit -1
 	fi
 	einfo "Creating the Prefix start script (startprefix)"
