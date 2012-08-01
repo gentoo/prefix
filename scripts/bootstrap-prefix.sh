@@ -796,7 +796,8 @@ bootstrap_wget() {
 }
 
 bootstrap_grep() {
-	bootstrap_gnu grep 2.13 || bootstrap_gnu grep 2.11
+	# don't use 2.13, it contains a bug that bites, bug #425668
+	bootstrap_gnu grep 2.12 || bootstrap_gnu grep 2.11
 }
 
 bootstrap_coreutils() {
