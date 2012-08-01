@@ -1,6 +1,22 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.568 2012/07/09 05:19:58 xmw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.572 2012/07/23 22:44:14 blueness Exp $
+
+  23 Jul 2012; Anthony G. Basile <blueness@gentoo.org> ffmpeg-0.11.1.ebuild,
+  ffmpeg-9999.ebuild:
+  Keyword ~mips
+
+  23 Jul 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  add libcaca useflag/support
+
+  23 Jul 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add opus useflag/support
+
+*ffmpeg-0.10.4 (23 Jul 2012)
+
+  23 Jul 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.10.4.ebuild:
+  version bump for the 0.10 branch
 
   12 Jul 2012; Fabian Groffen <grobian@gentoo.org> -ffmpeg-0.11.ebuild:
   cleanup
