@@ -53,17 +53,15 @@ src_unpack() {
 
 	use vanilla && return 0
 
-	# call the linker without explicit target like on sparc
-	epatch "${FILESDIR}"/solaris-i386-ld-emulation.patch
-
 	# make sure 64-bits native targets don't screw up the linker paths
-	epatch "${FILESDIR}"/4.5.2/solaris-searchpath.patch
+	epatch "${FILESDIR}"/4.7.1/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
 	if use prefix; then
 		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
 		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
 		# --enable-multilib), but this does make sense in prefix only
-		epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
+# fails: likely still necessary
+#		epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
 	fi
 
 	# make it have correct install_names on Darwin
@@ -79,8 +77,9 @@ src_unpack() {
 	fi
 
 	# Always behave as if -pthread were passed on AIX and HPUX (#266548)
-	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
-	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
+# fails, likely still necessary though
+#	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
+#	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 }
