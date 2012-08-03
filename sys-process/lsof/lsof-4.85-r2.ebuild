@@ -67,10 +67,11 @@ src_configure() {
 
 	# Set LSOF_INCLUDE to a dummy location so the script doesn't poke
 	# around in it and mix /usr/include paths with cross-compile/etc.
+	# except that is breaks Darwin badly
 	touch .neverInv
 	touch .neverCust
 	LINUX_HASSELINUX=$(usex selinux y n) \
-	LSOF_INCLUDE=${T} \
+	LSOF_INCLUDE=$([[ ${CHOST} == *-darwin* ]] && echo "" || echo ${T}) \
 	LSOF_CC=$(tc-getCC) \
 	LSOF_AR="$(ar)" \
 	LSOF_RANLIB=$(tc-getRANLIB) \
