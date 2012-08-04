@@ -776,22 +776,8 @@ bootstrap_sed() {
 	bootstrap_gnu sed 4.2.1
 }
 
-bootstrap_findutils3() {
-	bootstrap_gnu findutils 4.2.33
-}
-
-bootstrap_findutils4() {
-	# distfile with included patches for IRIX and Interix
-	bootstrap_gnu findutils 4.4.0 \
-		"http://dev.gentoo.org/~grobian/distfiles/findutils-4.4.0-patched.tar.gz"
-}
-
-bootstrap_findutils5() {
-	bootstrap_gnu findutils 4.5.10
-}
-
 bootstrap_findutils() {
-	bootstrap_findutils5 || bootstrap_findutils4 || bootstrap_findutils3
+	bootstrap_gnu findutils 4.5.10 || bootstrap_gnu findutils 4.2.33
 }
 
 bootstrap_wget() {
