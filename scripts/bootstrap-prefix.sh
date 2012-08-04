@@ -545,32 +545,41 @@ bootstrap_gnu() {
 	local PN PV A S
 	PN=$1
 	PV=$2
-	A=${PN}-${PV}.tar.gz
-	[[ $PN == "gzip" ]] && A=${PN}-${PV}.tar
-	einfo "Bootstrapping ${A%-*}"
 
-	URL=${3-${GENTOO_MIRRORS}/${A}}
-	if ! efetch ${URL} && [[ -z $3 ]] ; then
-		einfo "download failed, retrying at GNU mirror"
-		bootstrap_gnu ${PN} ${PV} ${GNU_URL}/${PN}/${A} || return 1
-		return 0
-	fi
+	einfo "Bootstrapping ${PN}"
 
-	einfo "Unpacking ${A%-*}"
-	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
-	rm -rf "${S}"
-	mkdir -p "${S}"
-	cd "${S}"
-	if [[ $PN == "gzip" ]]; then
-		$TAR -xf "${DISTDIR}"/${A} || return 1
-	else
-		gzip -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || return 1
-	fi
+	for t in tar.gz tar.xz tar ; do
+		A=${PN}-${PV}.${t}
+
+		URL=${GENTOO_MIRRORS}/${A}
+		if ! efetch ${URL} ; then
+			einfo "download failed, retrying at GNU mirror"
+			URL=${GNU_URL}/${PN}/${A}
+			efetch ${URL} || continue
+		fi
+
+		einfo "Unpacking ${A%-*}"
+		S="${PORTAGE_TMPDIR}/${PN}-${PV}"
+		rm -rf "${S}"
+		mkdir -p "${S}"
+		cd "${S}"
+		if [[ ${t} == "tar.gz" ]] ; then
+			gzip -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || continue
+		elif [[ ${t} == "tar.xz" ]] ; then
+			xz -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || continue
+		elif [[ ${t} == "tar" ]] ; then
+			$TAR -xf "${DISTDIR}"/${A} || continue
+		else
+			einfo "unhandled extension: $t"
+			return 1
+		fi
+		break
+	done
 	S="${S}"/${PN}-${PV}
-	cd "${S}"
+	cd "${S}" || return 1
 
 	local myconf=""
-	if [[ ${A%-*} == "grep" ]] ; then
+	if [[ ${PN} == "grep" ]] ; then
 		# Solaris, AIX and OSX don't like it when --disable-nls is set,
 		# so just don't set it at all.
 		# Solaris 11 has a messed up prce installation.  We don't need
@@ -588,22 +597,16 @@ bootstrap_gnu() {
 
 	# Darwin9 in particular doesn't compile when using system readline,
 	# but we don't need any groovy input at all, so just disable it
-	[[ ${A%-*} == "bash" ]] && myconf="${myconf} --disable-readline"
+	[[ ${PN} == "bash" ]] && myconf="${myconf} --disable-readline"
 
 	# Don't do ACL stuff on Darwin, especially Darwin9 will make
 	# coreutils completely useless (install failing on everything)
 	# Don't try using gmp either, it may be that just the library is
 	# there, and if so, the buildsystem assumes the header exists too
-	[[ ${A%-*} == "coreutils" ]] && \
+	[[ ${PN} == "coreutils" ]] && \
 		myconf="${myconf} --disable-acl --without-gmp"
 
-	if [[ ${A%-*} == "coreutils" && ${CHOST} == *-darwin11 ]] ; then
-		# something in the headers changed, which breaks gnulib
-		sed -i -e '/^#ifndef weak_alias$/a\# undef __stpncpy' lib/stpncpy.c
-		sed -i -e '/^# undef __stpncpy$/a\# undef stpncpy' lib/stpncpy.c
-	fi
-	
-	if [[ ${A%-*} == "coreutils" && ${CHOST} == *-interix* ]] ; then
+	if [[ ${PN} == "coreutils" && ${CHOST} == *-interix* ]] ; then
 		# Interix doesn't have filesystem listing stuff, but that means all
 		# other utilities but df aren't useless at all, so don't die
 		sed -i -e '/^if test -z "$ac_list_mounted_fs"; then$/c\if test 1 = 0; then' configure
@@ -615,24 +618,24 @@ bootstrap_gnu() {
 		sed -i -e '/^#include "fcntl-safer.h"$/a\#define ESTALE -1' lib/savewd.c
 	fi
 
-	if [[ ${A%-*} == "tar" && ${CHOST} == *-hpux* ]] ; then
+	if [[ ${PN} == "tar" && ${CHOST} == *-hpux* ]] ; then
 		# Fix a compilation error due to a missing definition
 		export CPPFLAGS="${CPPFLAGS} -DCHAR_BIT=8"
 	fi
 
 	# Gentoo Bug 400831, fails on Ubuntu with libssl-dev installed
-	[[ ${A%-*} == "wget" ]] && myconf="${myconf} --without-ssl"
+	[[ ${PN} == "wget" ]] && myconf="${myconf} --without-ssl"
 
-	einfo "Compiling ${A%-*}"
+	einfo "Compiling ${PN}"
 	econf ${myconf} || return 1
-	if [[ ${A%-*} == "make" && $(type -t $MAKE) != "file" ]]; then
+	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
 		./build.sh || return 1
 	else
 		$MAKE ${MAKEOPTS} || return 1
 	fi
 
-	einfo "Installing ${A%-*}"
-	if [[ ${A%-*} == "make" && $(type -t $MAKE) != "file" ]]; then
+	einfo "Installing ${PN}"
+	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
 		./make install || return 1
 	else
 		$MAKE install || return 1
@@ -640,7 +643,7 @@ bootstrap_gnu() {
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
-	einfo "${A%-*} successfully bootstrapped"
+	einfo "${PN}-${PV} successfully bootstrapped"
 }
 
 bootstrap_python() {
