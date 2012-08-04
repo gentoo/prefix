@@ -676,14 +676,20 @@ bootstrap_python() {
 			CFLAGS="${CFLAGS} -D_BSD_SOURCE=1"
 		;;
 		*-linux*)
-			# python refuses to find the zlib headers that are built in the
-			# offset
 			# Bug 382263: make sure Python will know about the libdir in use for
 			# the current arch
-			libdir="/usr/lib/$(gcc -print-multi-os-directory)"
+			libdir="-L/usr/lib/$(gcc -print-multi-os-directory)"
+		;;
+	esac
 
-			export CPPFLAGS="-I$EPREFIX/tmp/usr/include"
-			export LDFLAGS="-L$EPREFIX/tmp/usr/lib -Wl,-rpath,$EPREFIX/tmp/usr/lib -L${libdir}"
+	# python refuses to find the zlib headers that are built in the
+	# offset
+	export CPPFLAGS="-I$EPREFIX/tmp/usr/include"
+	export LDFLAGS="-L$EPREFIX/tmp/usr/lib"
+	# set correct flags for runtime for ELF platforms
+	case $CHOST in
+		*-*bsd*|*-solaris*|*-linux*)
+			export LDFLAGS="${LDFLAGS} -Wl,-rpath,$EPREFIX/tmp/usr/lib ${libdir}"
 		;;
 	esac
 
