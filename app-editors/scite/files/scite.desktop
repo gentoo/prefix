@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=SciTE Text Editor
-Comment=Text Editor
-Exec=scite
-Icon=Sci48M.png
-Terminal=false
-Type=Application
-Categories=Application;Development;
