@@ -400,6 +400,21 @@ bootstrap_startscript() {
 	chmod 755 "${ROOT}"/startprefix
 	einfo "To start Gentoo Prefix, run the script ${ROOT}/startprefix"
 	einfo "You can copy this file to a more convenient place if you like."
+
+	# see if PATH is kept/respected
+	export PATH="preamble:${BASH%/*}:postlude"
+	theirPATH=$(${BASH%/*}/${theshell} -c 'echo $PATH')
+	if [[ ${theirPATH} != *"preamble:"*":postlude"* ]] ; then
+		einfo "WARNING: your shell initialisation (.cshrc, .bashrc, .profile)"
+		einfo "         seems to overwrite your PATH, this effectively kills"
+		einfo "         your Prefix.  Change this to only append to your PATH"
+	elif [[ ${theirPATH} != "preamble:"* ]] ; then
+		einfo "WARNING: your shell initialisation (.cshrc, .bashrc, .profile)"
+		einfo "         seems to prepend to your PATH, this might kill your"
+		einfo "         Prefix:"
+		einfo "         ${theirPATH%%:preamble:*}"
+		einfo "         You better fix this, YOU HAVE BEEN WARNED!"
+	fi
 }
 
 bootstrap_portage() {
