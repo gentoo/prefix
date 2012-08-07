@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright 2006-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 2006-2012 Gentoo Foundation; Distributed under the GPL v2
 
 # *BSD bash installer
 #
@@ -12,6 +12,7 @@
 
 [ -z "$1" ] && exit -1
 
+mkdir -p "$1"
 cd "$1"
 mkdir bash-build
 cd bash-build
