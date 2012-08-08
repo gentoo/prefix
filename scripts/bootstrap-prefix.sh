@@ -121,7 +121,7 @@ HOSTCC='gcc -m64'
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
-		i*86-apple-darwin1[12])
+		i*86-apple-darwin1[012])
 			rev=${CHOST##*darwin}
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
@@ -131,7 +131,7 @@ CXX='g++ -m32'
 HOSTCC='gcc -m32'
 "
 			;;
-		x86_64-apple-darwin9|x86_64-apple-darwin1[12])
+		x86_64-apple-darwin9|x86_64-apple-darwin1[012])
 			rev=${CHOST##*darwin}
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x64"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
