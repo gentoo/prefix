@@ -915,6 +915,19 @@ bootstrap_stage1() {
 	einfo "stage1 successfully finished"
 }
 
+bootstrap_stage2() {
+	if [[ ${ROOT} == */tmp ]] ; then
+		eerror "stage2 cannot be used for paths that end in '/tmp'"
+		return 1
+	fi
+
+	# checks itself if things need to be done still
+	bootstrap_tree || return 1
+	[[ -e ${ROOT}/etc/make.globals ]] || bootstrap_portage || return 1
+
+	einfo "stage2 successfully finished"
+}
+
 ## End Functions
 
 ## some vars
