@@ -802,6 +802,7 @@ bootstrap_grep() {
 
 bootstrap_coreutils() {
 	# 8.12 for FreeBSD 9.1, bug #415439
+	# 8.16 is the last version released as tar.gz
 	bootstrap_gnu coreutils 8.17 || bootstrap_gnu coreutils 8.16 || \
 	bootstrap_gnu coreutils 8.12 
 }
