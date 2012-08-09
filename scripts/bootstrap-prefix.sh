@@ -928,6 +928,126 @@ bootstrap_stage2() {
 	einfo "stage2 successfully finished"
 }
 
+bootstrap_stage3() {
+	if [[ ${ROOT} == */tmp ]] ; then
+		eerror "stage3 cannot be used for paths that end in '/tmp'"
+		return 1
+	fi
+
+	if ! type -P emerge > /dev/null ; then
+		eerror "emerge not found, did you bootstrap stage1 and stage2?"
+		return 1
+	fi
+
+	# --oneshot --nodeps
+	local pkgs=(
+		sys-apps/sed
+		app-shells/bash
+		sys-apps/baselayout-prefix
+		app-arch/xz-utils
+		sys-devel/m4
+		sys-devel/flex
+		sys-devel/bison
+		sys-devel/binutils-config
+		sys-devel/gcc-config
+	)
+
+	case ${CHOST} in
+		*-darwin*)
+			case "$(gcc --version)" in
+				*"(GCC) 4.2.1 "*)
+					pkgs=( ${pkgs[@]} sys-devel/binutils-apple )
+					;;
+				*"(GCC) 4.0.1 "*)
+					pkgs=( ${pkgs[@]} "=sys-devel/binutils-apple-3.2" )
+					;;
+				*)
+					eerror "unknown GCC compiler"
+					return 1
+					;;
+			esac
+			pkgs=( ${pkgs[@]} sys-devel/gcc-apple )
+			;;
+		*)
+			pkgs=(
+				${pkgs[@]}
+				sys-devel/binutils
+				"=sys-devel/gcc-4.2*"
+			)
+			;;
+	esac
+
+	local pkg
+	local vdb
+	for pkg in "${pkgs[@]}"; do
+		vdb=${pkg}
+		if [[ ${vdb} == "="* ]] ; then
+			vdb=${vdb#=}
+			vdb=${vdb%-*}
+		fi
+		[[ -d ${ROOT}/var/db/pkg/${vdb}-* ]] \
+			|| emerge --oneshot --nodeps "${pkg}" || return 1
+	done
+
+	# --oneshot
+	local pkgs=(
+		sys-apps/coreutils
+		sys-apps/findutils
+		"<app-arch/tar-1.26-r1"
+		sys-apps/grep
+		sys-devel/patch
+		sys-apps/gawk
+		sys-devel/make
+		sys-libs/zlib
+	)
+
+	for pkg in "${pkgs[@]}"; do
+		vdb=${pkg}
+		if [[ ${vdb} == "<"* ]] ; then
+			vdb=${vdb#<}
+			vdb=${vdb%-*-r*}
+		fi
+		[[ -d ${ROOT}/var/db/pkg/${vdb}-* ]] \
+			|| emerge --oneshot "${pkg}" || return 1
+	done
+
+	# --oneshot --nodeps
+	local pkgs=(
+		sys-apps/file
+		app-admin/eselect
+	)
+
+	for pkg in "${pkgs[@]}"; do
+		[[ -d ${ROOT}/var/db/pkg/${pkg}-* ]] \
+			|| emerge --oneshot --nodeps "${pkg}" || return 1
+	done
+
+	# --oneshot
+	local pkgs=(
+		app-misc/pax-utils
+		"<net-misc/wget-1.13.4-r1" # until we fix #393277
+		virtual/os-headers
+	)
+
+	for pkg in "${pkgs[@]}"; do
+		vdb=${pkg}
+		if [[ ${vdb} == "<"* ]] ; then
+			vdb=${vdb#<}
+			vdb=${vdb%-*-r*}
+		fi
+		[[ -d ${ROOT}/var/db/pkg/${vdb}-* ]] \
+			|| emerge --oneshot "${pkg}" || return 1
+	done
+
+	if [[ ! -d ${ROOT}/var/db/pkg/sys-apps/portage-* ]] ; then
+		# disable collision-protect to overwrite the bootstrapped portage
+		FEATURES="-collision-protect" emerge --oneshot sys-apps/portage \
+			|| return 1
+	fi
+
+	einfo "stage3 successfully finished"
+}
+
 ## End Functions
 
 ## some vars
