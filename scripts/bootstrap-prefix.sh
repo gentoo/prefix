@@ -1001,7 +1001,7 @@ bootstrap_stage3() {
 			;;
 	esac
 
-	emerge_pkgs --nodeps "${pkgs[@]}"
+	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 	# --oneshot
 	local pkgs=(
@@ -1014,14 +1014,14 @@ bootstrap_stage3() {
 		sys-devel/make
 		sys-libs/zlib
 	)
-	emerge_pkgs "" "${pkgs[@]}"
+	emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# --oneshot --nodeps
 	local pkgs=(
 		sys-apps/file
 		app-admin/eselect
 	)
-	emerge_pkgs --nodeps "${pkgs[@]}"
+	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 	# --oneshot
 	local pkgs=(
@@ -1029,9 +1029,9 @@ bootstrap_stage3() {
 		"<net-misc/wget-1.13.4-r1" # until we fix #393277
 		virtual/os-headers
 	)
-	emerge_pkgs "" "${pkgs[@]}"
+	emerge_pkgs "" "${pkgs[@]}" || return 1
 
-	if [[ ! -L ${ROOT}/etc/make.profile ]] ; then
+	if [[ ! -L ${ROOT}/etc/make.conf ]] ; then
 		# disable collision-protect to overwrite the bootstrapped portage
 		FEATURES="-collision-protect" emerge --oneshot sys-apps/portage \
 			|| return 1
