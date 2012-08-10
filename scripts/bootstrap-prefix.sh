@@ -942,8 +942,7 @@ bootstrap_stage3() {
 
 	emerge_pkgs() {
 		local opts=$1 ; shift
-		local pkg
-		local vdb
+		local pkg vdb pvdb evdb
 		for pkg in "$@"; do
 			vdb=${pkg}
 			if [[ ${vdb} == "="* ]] ; then
@@ -955,12 +954,17 @@ bootstrap_stage3() {
 				vdb=${vdb%-r*}
 				vdb=${vdb%-*}
 			fi
-			for vdb in ${ROOT}/var/db/pkg/${vdb}-* ; do
-				[[ -e ${vdb} ]] && break
-				vdb=
+			for pvdb in ${ROOT}/var/db/pkg/${vdb}-* ; do
+				if [[ -d ${pvdb} ]] ; then
+					evdb=${pvdb##*/}
+					evdb=${evdb%-r*}
+					evdb=${evdb%_p*}
+					evdb=${evdb%-*}
+					[[ ${evdb} == ${vdb#*/} ]] && break
+				fi
+				pvdb=
 			done
-			[[ -n ${vdb} && -d ${vdb} ]] \
-				|| emerge --oneshot ${opts} "${pkg}" || return 1
+			[[ -n ${pvdb} ]] || emerge --oneshot ${opts} "${pkg}" || return 1
 		done
 	}
 
