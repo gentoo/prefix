@@ -978,6 +978,7 @@ bootstrap_stage3() {
 
 	case ${CHOST} in
 		*-darwin*)
+			pkgs=( ${pkgs[@]} sys-apps/darwin-miscutils )
 			case "$(gcc --version)" in
 				*"(GCC) 4.2.1 "*)
 					pkgs=( ${pkgs[@]} sys-devel/binutils-apple )
