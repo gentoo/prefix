@@ -307,13 +307,14 @@ HOSTCC='gcc -m64'
 			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		*)	
-			einfo "You need to set up a make.profile symlink to a"
+			einfo "UNKNOWN ARCH: You need to set up a make.profile symlink to a"
 			einfo "profile in ${PORTDIR} for your CHOST ${CHOST}"
 			;;
 	esac
-	if [[ -n ${profile} && ! -e ${ROOT}/etc/make.profile ]] ; then
-		ln -s "${profile}" "${ROOT}"/etc/make.profile
+	if [[ -n ${profile} && ! -e ${ROOT}/etc/portage/make.profile ]] ; then
+		ln -s "${profile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${profile}."
+		# make.globals is used for GCC overrides
 		echo "${extra_make_globals}" >> "${ROOT}"/etc/make.globals
 		# this is darn ugly, but we can't use the make.globals hack,
 		# since the profiles overwrite CFLAGS/LDFLAGS in numerous cases
