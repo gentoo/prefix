@@ -1071,6 +1071,23 @@ bootstrap_stage3() {
 	einfo "stage3 successfully finished"
 }
 
+bootstrap_bootstrap() {
+	cat <<"EOF"
+                                             .
+       .vir.                                d$b
+    .d$$$$$$b.    .cd$$b.     .d$$b.   d$$$$$$$$$$$b  .d$$b.      .d$$b.
+    $$$$( )$$$b d$$$()$$$.   d$$$$$$$b Q$$$$$$$P$$$P.$$$$$$$b.  .$$$$$$$b.
+    Q$$$$$$$$$$B$$$$$$$$P"  d$$$PQ$$$$b.   $$$$.   .$$$P' `$$$ .$$$P' `$$$
+      "$$$$$$$P Q$$$$$$$b  d$$$P   Q$$$$b  $$$$b   $$$$b..d$$$ $$$$b..d$$$
+     d$$$$$$P"   "$$$$$$$$ Q$$$     Q$$$$  $$$$$   `Q$$$$$$$P  `Q$$$$$$$P
+    $$$$$$$P       `"""""   ""        ""   Q$$$P     "Q$$$P"     "Q$$$P"
+    `Q$$P"                                  """
+
+             Welcome to the Gentoo Prefix interactive installer!
+
+EOF
+}
+
 ## End Functions
 
 ## some vars
