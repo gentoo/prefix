@@ -939,10 +939,34 @@ bootstrap_stage3() {
 		return 1
 	fi
 
+	emerge_pkgs() {
+		local opts=$1 ; shift
+		local pkg
+		local vdb
+		for pkg in "$@"; do
+			vdb=${pkg}
+			if [[ ${vdb} == "="* ]] ; then
+				vdb=${vdb#=}
+				vdb=${vdb%-*}
+			fi
+			if [[ ${vdb} == "<"* ]] ; then
+				vdb=${vdb#<}
+				vdb=${vdb%-r*}
+				vdb=${vdb%-*}
+			fi
+			for vdb in ${ROOT}/var/db/pkg/${vdb}-* ; do
+				[[ -e ${vdb} ]] && break
+				vdb=
+			done
+			[[ -n ${vdb} && -d ${vdb} ]] \
+				|| emerge --oneshot ${opts} "${pkg}" || return 1
+		done
+	}
+
 	# --oneshot --nodeps
 	local pkgs=(
 		sys-apps/sed
-		app-shells/bash
+		"<app-shells/bash-4.2_p20"  # higher versions require readline
 		sys-apps/baselayout-prefix
 		app-arch/xz-utils
 		sys-devel/m4
@@ -977,17 +1001,7 @@ bootstrap_stage3() {
 			;;
 	esac
 
-	local pkg
-	local vdb
-	for pkg in "${pkgs[@]}"; do
-		vdb=${pkg}
-		if [[ ${vdb} == "="* ]] ; then
-			vdb=${vdb#=}
-			vdb=${vdb%-*}
-		fi
-		[[ -d ${ROOT}/var/db/pkg/${vdb}-* ]] \
-			|| emerge --oneshot --nodeps "${pkg}" || return 1
-	done
+	emerge_pkgs --nodeps "${pkgs[@]}"
 
 	# --oneshot
 	local pkgs=(
@@ -1000,27 +1014,14 @@ bootstrap_stage3() {
 		sys-devel/make
 		sys-libs/zlib
 	)
-
-	for pkg in "${pkgs[@]}"; do
-		vdb=${pkg}
-		if [[ ${vdb} == "<"* ]] ; then
-			vdb=${vdb#<}
-			vdb=${vdb%-*-r*}
-		fi
-		[[ -d ${ROOT}/var/db/pkg/${vdb}-* ]] \
-			|| emerge --oneshot "${pkg}" || return 1
-	done
+	emerge_pkgs "" "${pkgs[@]}"
 
 	# --oneshot --nodeps
 	local pkgs=(
 		sys-apps/file
 		app-admin/eselect
 	)
-
-	for pkg in "${pkgs[@]}"; do
-		[[ -d ${ROOT}/var/db/pkg/${pkg}-* ]] \
-			|| emerge --oneshot --nodeps "${pkg}" || return 1
-	done
+	emerge_pkgs --nodeps "${pkgs[@]}"
 
 	# --oneshot
 	local pkgs=(
@@ -1028,18 +1029,9 @@ bootstrap_stage3() {
 		"<net-misc/wget-1.13.4-r1" # until we fix #393277
 		virtual/os-headers
 	)
+	emerge_pkgs "" "${pkgs[@]}"
 
-	for pkg in "${pkgs[@]}"; do
-		vdb=${pkg}
-		if [[ ${vdb} == "<"* ]] ; then
-			vdb=${vdb#<}
-			vdb=${vdb%-*-r*}
-		fi
-		[[ -d ${ROOT}/var/db/pkg/${vdb}-* ]] \
-			|| emerge --oneshot "${pkg}" || return 1
-	done
-
-	if [[ ! -d ${ROOT}/var/db/pkg/sys-apps/portage-* ]] ; then
+	if [[ ! -L ${ROOT}/etc/make.profile ]] ; then
 		# disable collision-protect to overwrite the bootstrapped portage
 		FEATURES="-collision-protect" emerge --oneshot sys-apps/portage \
 			|| return 1
