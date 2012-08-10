@@ -312,7 +312,6 @@ HOSTCC='gcc -m64'
 			;;
 	esac
 	if [[ -n ${profile} && ! -e ${ROOT}/etc/portage/make.profile ]] ; then
-		[[ -d ${ROOT}/etc/portage ]] || mkdir ${ROOT}/etc/portage
 		ln -s "${profile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${profile}."
 		# make.globals is used for GCC overrides
@@ -347,7 +346,7 @@ HOSTCC='gcc -m64'
 }
 
 do_tree() {
-	for x in etc {,usr/}{,s}bin var/tmp var/lib/portage var/log/portage var/db;
+	for x in etc{,/portage} {,usr/}{,s}bin var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
@@ -1038,11 +1037,8 @@ bootstrap_stage3() {
 	)
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
-	if [[ ! -d ${ROOT}/etc/portage ]] ; then
-		# disable collision-protect to overwrite the bootstrapped portage
-		FEATURES="-collision-protect" emerge --oneshot sys-apps/portage \
-			|| return 1
-	fi
+	# disable collision-protect to overwrite the bootstrapped portage
+	FEATURES="-collision-protect" emerge_pkgs "" "sys-apps/portage" || return 1
 
 	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
 		rm -Rf "${ROOT}"/tmp || return 1
