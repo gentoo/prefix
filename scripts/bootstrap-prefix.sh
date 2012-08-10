@@ -1031,11 +1031,41 @@ bootstrap_stage3() {
 	)
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
-	if [[ ! -L ${ROOT}/etc/make.conf ]] ; then
+	if [[ ! -d ${ROOT}/etc/portage ]] ; then
 		# disable collision-protect to overwrite the bootstrapped portage
 		FEATURES="-collision-protect" emerge --oneshot sys-apps/portage \
 			|| return 1
 	fi
+
+	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
+		rm -Rf "${ROOT}"/tmp || return 1
+		mkdir -p "${ROOT}"/tmp || return 1
+	fi
+	treedate=$(date -f ${ROOT}/usr/portage/metadata/timestamp +%s)
+	nowdate=$(date +%s)
+	[[ $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || return 1
+
+	local cpuflags=
+	case ${CHOST} in
+		*-darwin*)
+			: # gcc-apple is 4.2, so mpfr/mpc/gmp are not necessary
+			;;
+		*)
+			emerge_pkgs "" "<dev-libs/mpc-0.9" || return 1
+			;;
+	esac
+
+	# Portage should figure out itself what it needs to do, if anything
+	USE=-git emerge -u system
+
+	if [[ ! -f $EPREFIX/etc/portage/make.conf ]] ; then
+		echo 'USE="unicode nls"' >> $EPREFIX/etc/portage/make.conf
+		echo 'CFLAGS="${CFLAGS} -O2 -pipe"' >> $EPREFIX/etc/portage/make.conf
+		echo 'CXXFLAGS="${CFLAGS}"' >> $EPREFIX/etc/portage/make.conf
+	fi
+
+	# activate last compiler
+	gcc-config $(gcc-config -l | wc -l)
 
 	einfo "stage3 successfully finished"
 }
