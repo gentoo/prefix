@@ -1005,6 +1005,7 @@ bootstrap_stage3() {
 
 	# --oneshot
 	local pkgs=(
+		app-misc/pax-utils  # need this early for OSX (before libiconv - gen_usr_ldscript)
 		sys-apps/coreutils
 		sys-apps/findutils
 		"<app-arch/tar-1.26-r1"
@@ -1025,7 +1026,6 @@ bootstrap_stage3() {
 
 	# --oneshot
 	local pkgs=(
-		app-misc/pax-utils
 		"<net-misc/wget-1.13.4-r1" # until we fix #393277
 		virtual/os-headers
 	)
