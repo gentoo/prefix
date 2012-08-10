@@ -312,6 +312,7 @@ HOSTCC='gcc -m64'
 			;;
 	esac
 	if [[ -n ${profile} && ! -e ${ROOT}/etc/portage/make.profile ]] ; then
+		[[ -d ${ROOT}/etc/portage ]] || mkdir ${ROOT}/etc/portage
 		ln -s "${profile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${profile}."
 		# make.globals is used for GCC overrides
