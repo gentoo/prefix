@@ -635,6 +635,8 @@ gen_usr_ldscript() {
 
 	tc-is-static-only && return
 
+	[[ -n ${PREFIX_DISABLE_GEN_USR_LDSCRIPT} ]] && return
+
 	# Just make sure it exists
 	dodir /usr/${libdir}
 
