@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.32.2.ebuild,v 1.3 2012/05/05 16:35:21 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.32.4.ebuild,v 1.1 2012/07/16 04:27:23 tetromino Exp $
 
 EAPI="4"
 PYTHON_DEPEND="utils? 2"
@@ -18,14 +18,12 @@ SLOT="2"
 IUSE="debug doc fam kernel_linux selinux static-libs systemtap test utils xattr"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
-# libelf blocker on Solaris is temporary to fix screwup done in 2.32.1
 RDEPEND="virtual/libiconv
 	virtual/libffi
 	sys-libs/zlib
 	kernel_linux? ( || (
 		>=dev-libs/elfutils-0.142
-		>=dev-libs/libelf-0.8.11 ) )
-	kernel_SunOS? ( !dev-libs/libelf )
+		>=dev-libs/libelf-0.8.12 ) )
 	x86-interix? ( sys-libs/itx-bind )
 	xattr? ( sys-apps/attr )
 	fam? ( virtual/fam )
@@ -77,7 +75,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-FIONREAD.patch
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-nsl.patch
-	epatch "${FILESDIR}"/${PN}-2.32.2-solaris-libelf.patch
+	epatch "${FILESDIR}"/${PN}-2.32.3-solaris-libelf.patch
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
 
@@ -122,8 +120,8 @@ src_prepare() {
 	# gdbus-codegen is a separate package
 	epatch "${FILESDIR}/${PN}-2.31.x-external-gdbus-codegen.patch"
 
-	# https://bugzilla.gnome.org/show_bug.cgi?id=673132
-	epatch "${FILESDIR}/${PN}-2.32.1-fix-libelf-check.patch"
+	# bashcomp goes in /usr/share/bash-completion
+	epatch "${FILESDIR}/${PN}-2.32.4-bashcomp.patch"
 
 	# disable pyc compiling
 	use test && python_clean_py-compile_files
@@ -167,7 +165,7 @@ src_configure() {
 	# Avoid circular depend with dev-util/pkgconfig and
 	# native builds (cross-compiles won't need pkg-config
 	# in the target ROOT to work here)
-	if ! tc-is-cross-compiler && ! has_version virtual/pkgconfig; then
+	if ! tc-is-cross-compiler && ! $(tc-getPKG_CONFIG) --version >& /dev/null; then
 		if has_version sys-apps/dbus; then
 			export DBUS1_CFLAGS="-I${EPREFIX}/usr/include/dbus-1.0 -I${EPREFIX}/usr/$(get_libdir)/dbus-1.0/include"
 			export DBUS1_LIBS="-ldbus-1"
@@ -233,12 +231,6 @@ src_install() {
 	rm -rf "${ED}/usr/share/gdb/" "${ED}/usr/share/glib-2.0/gdb/"
 
 	dodoc AUTHORS ChangeLog* NEWS* README
-
-	insinto /usr/share/bash-completion
-	for f in gdbus gsettings; do
-		newins "${ED}/etc/bash_completion.d/${f}-bash-completion.sh" ${f}
-	done
-	rm -rf "${ED}/etc"
 
 	# Completely useless with or without USE static-libs, people need to use
 	# pkg-config
