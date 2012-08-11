@@ -8,9 +8,9 @@
 # applications that start login shells to work, such as `screen`.
 
 # if you come from a substantially polluted environment (another
-# Prefix), calling this script as follows resolves most oddities I've
-# ever seen:
-# env -i HOME=$HOME TERM=$TERM USER=$USER /path/to/startprefix
+# Prefix), a cleanup as follows resolves most oddities I've ever seen:
+# env -i HOME=$HOME TERM=$TERM USER=$USER $SHELL -l
+# hence this script starts the Prefix shell like this
 
 
 # What is our prefix?
