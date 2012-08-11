@@ -1005,6 +1005,13 @@ bootstrap_stage3() {
 			esac
 			pkgs=( ${pkgs[@]} sys-devel/gcc-apple )
 			;;
+		i?86-*-solaris*)
+			pkgs=(
+				${pkgs[@]}
+				sys-devel/binutils
+				"=sys-devel/gcc-4.1*"  # 4.2/x86 can't cope with Sun ld/as
+			)
+			;;
 		*)
 			pkgs=(
 				${pkgs[@]}
