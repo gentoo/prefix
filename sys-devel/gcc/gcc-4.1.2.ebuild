@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.1.2.ebuild,v 1.31 2011/12/02 23:43:54 vapier Exp $
 
@@ -39,6 +39,18 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-freebsd.patch
 	epatch "${FILESDIR}"/${P}-darwin-fpic.patch
+
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# fix nasty bootstrap problem: we need 4.1 due to no deps of MPC, GMP,
+		# MPFR, but 4.1 doesn't know about *_sol2 ld targets of >=binutils-2.21
+		# we likely have that one installed, so if so, we patch it to *_sol2
+		if has_version '>=sys-devel/binutils-2.21' ; then
+			einfo "Patching specs to target elf_*_sol2 for newer binutils"
+			sed -i \
+				-e '/TARGET_LD_EMULATION/s/elf_\(x86_64\|i386\)/elf_\1_sol2/g' \
+				gcc/config/i386/sol2-10.h || die
+		fi
+	fi
 }
 
 src_compile() {

@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.890 2012/07/23 16:13:51 vapier Exp $
 
+  11 Aug 2012; Fabian Groffen <grobian@gentoo.org> gcc-4.1.2.ebuild:
+  backport >=binutils-2.21 backport from 4.2 (4.5) to 4.1
+
   11 Aug 2012; Fabian Groffen <grobian@gentoo.org>
   +files/4.2.2/solarisx86.patch, gcc-4.2.4-r01.4.ebuild:
   Add patch to fix configuring on Solaris x86 working around a weird shell
