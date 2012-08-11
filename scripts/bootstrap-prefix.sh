@@ -694,8 +694,13 @@ bootstrap_python() {
 	export LDFLAGS="-L$EPREFIX/tmp/usr/lib"
 	# set correct flags for runtime for ELF platforms
 	case $CHOST in
-		*-*bsd*|*-solaris*|*-linux*)
+		*-*bsd*|*-linux*)
+			# GNU ld
 			export LDFLAGS="${LDFLAGS} -Wl,-rpath,$EPREFIX/tmp/usr/lib ${libdir}"
+		;;
+		*-solaris*)
+			# Sun ld
+			export LDFLAGS="${LDFLAGS} -R$EPREFIX/tmp/usr/lib ${libdir}"
 		;;
 	esac
 
