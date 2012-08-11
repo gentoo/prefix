@@ -984,6 +984,7 @@ bootstrap_stage3() {
 		sys-devel/m4
 		sys-devel/flex
 		sys-devel/bison
+		sys-devel/patch
 		sys-devel/binutils-config
 		sys-devel/gcc-config
 	)
@@ -1023,7 +1024,6 @@ bootstrap_stage3() {
 		sys-apps/findutils
 		"<app-arch/tar-1.26-r1"
 		sys-apps/grep
-		sys-devel/patch
 		sys-apps/gawk
 		sys-devel/make
 		sys-libs/zlib
