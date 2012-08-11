@@ -895,7 +895,6 @@ bootstrap_stage1() {
 
 	# don't rely on $MAKE, if make == gmake packages that call 'make' fail
 	[[ $(make --version 2>&1) == *GNU* ]] || bootstrap_make || return 1
-	export MAKE=make  # use our make
 	type -P wget > /dev/null || bootstrap_wget || return 1
 	[[ $(sed --version 2>&1) == *GNU* ]] || bootstrap_sed || return 1
 	[[ $(m4 --version 2>&1) == *GNU* ]] || bootstrap_m4 || return 1
