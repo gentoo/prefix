@@ -40,7 +40,10 @@ src_unpack() {
 	# call the linker without explicit target like on sparc
 	epatch "${FILESDIR}"/solaris-i386-ld-emulation-4.2.patch
 
-	# add support for 64-bits native target on Solaris
+	# fix configure problem, bug #416577
+	epatch "${FILESDIR}"/4.2.2/solarisx86.patch
+
+	# add support for 64-bits native target on Solaris (includes fix for #416577)
 	epatch "${FILESDIR}"/4.2.2/solarisx86_64.patch
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		# fix nasty bootstrap problem: we need 4.2 due to no deps of MPC, GMP,
