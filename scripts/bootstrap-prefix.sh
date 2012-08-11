@@ -1050,8 +1050,16 @@ bootstrap_stage3() {
 	)
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
+	# ugly hack to make sure we can compile glib, which is depended upon
+	# by shared-mime-info in case an ancient pkg-config is available on
+	# the system that glib doesn't grok (e.g. Solaris 10)
+	export LIBFFI_CFLAGS="-I$(echo ${ROOT}/usr/lib*/libffi-*/include)"
+	export LIBFFI_LIBS="-lffi"
+
 	# disable collision-protect to overwrite the bootstrapped portage
 	FEATURES="-collision-protect" emerge_pkgs "" "sys-apps/portage" || return 1
+
+	unset LIBFFI_CFLAGS LIBFFI_LIBS 
 
 	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
 		rm -Rf "${ROOT}"/tmp || return 1
