@@ -40,8 +40,8 @@ src_prepare() {
 	sed -i -e '1c\#!/usr/bin/env sh' \
 		"${S}"/gettext-tools/misc/convert-archive.in || die
 
-	# work around problem in gnulib on OSX Lion
-	if [[ ${CHOST} == *-darwin11 ]] ; then
+	# work around problem in gnulib on OSX Lion and Mountain Lion
+	if [[ ${CHOST} == *-darwin1[12] ]] ; then
 		sed -i -e '/^#ifndef weak_alias$/a\# undef __stpncpy' \
 			gettext-tools/gnulib-lib/stpncpy.c || die
 		sed -i -e '/^# undef __stpncpy$/a\# undef stpncpy' \
