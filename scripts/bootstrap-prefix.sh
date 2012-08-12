@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2006-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 2006-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
@@ -1094,8 +1094,10 @@ bootstrap_stage3() {
 	einfo "stage3 successfully finished"
 }
 
-bootstrap_bootstrap() {
+bootstrap_interactive() {
 	cat <<"EOF"
+
+
                                              .
        .vir.                                d$b
     .d$$$$$$b.    .cd$$b.     .d$$b.   d$$$$$$$$$$$b  .d$$b.      .d$$b.
@@ -1108,6 +1110,435 @@ bootstrap_bootstrap() {
 
              Welcome to the Gentoo Prefix interactive installer!
 
+
+    I will attempt to install Gentoo Prefix on your system.  To do so, I'll
+    ask  you some questions first.    After that,  you'll have to  practise
+    patience as your computer and I try to figure out a way to get a lot of
+    software  packages  compiled.    If everything  goes according to plan,
+    you'll end up with what we call  "a Prefix install",  but by that time,
+    I'll tell you more.
+
+
+EOF
+	read -p "Do you want me to start off now? [Yn] " ans
+	case "${ans}" in
+		[Yy][Ee][Ss]|[Yy]|"")
+			: ;;
+		*)
+			echo "Right.  Aborting..."
+			exit 1
+			;;
+	esac
+
+	echo
+	if [[ ${UID} == 0 ]] ; then
+		cat << EOF
+Hmmm, you appear to be root, or at least someone with UID 0.  I really
+don't like that.  The Gentoo Prefix people really discourage anyone
+running Gentoo Prefix as root.  As a matter of fact, I'm just refusing
+to help you any further here.
+If you insist, you'll have go without my help, or bribe me.
+EOF
+		exit 1
+	fi
+	echo "It seems to me you are '${USER}' (${UID}), that looks cool to me."
+
+	echo
+	echo "I'm going to check for some variables in your environment now:"
+	local flag dvar badflags=
+	for flag in CPPFLAGS CFLAGS CXXFLAGS LDFLAGS ASFLAGS LD_LIBRARY_PATH DYLD_LIBRARY_PATH ; do
+		# starting on purpose a shell here iso ${!flag} because I want
+		# to know if the shell initialisation files trigger this
+		# note that this code is so complex because it handles both
+		# C-shell as sh
+		dvar="echo \"((${flag}=\${${flag}}))\""
+		dvar="$(echo "${dvar}" | $SHELL -l 2>/dev/null)"
+		if [[ ${dvar} == *"((${flag}="?*"))" ]] ; then
+			badflags="${badflags} ${flag}"
+			dvar=${dvar#*((${flag}=}
+			dvar=${dvar%%))*}
+			echo "  uh oh, ${flag}=${dvar} :("
+		else
+			echo "  it appears ${flag} is not set :)"
+		fi
+	done
+	if [[ -n ${badflags} ]] ; then
+		cat << EOF
+
+Ahem, your shell environment contains some variables I'm allergic to:
+ ${badflags}
+These flags can and will influence the way in which packages compile.
+In fact, they have a long standing tradition to break things.  I really
+prefer to be on my own here.  So please make sure you disable these
+environment variables in your shell initialisation files.  After you've
+done that, you can run me again.
+EOF
+		exit 1
+	fi
+	echo "I'm excited!  Seems we can finally do something productive now."
+
+	echo
+	cat << EOF
+Ok, I'm going to do a little bit of guesswork here.  Thing is, your
+machine appears to be identified by CHOST=${CHOST}.
+
+EOF
+	case "${CHOST}" in
+		powerpc*|ppc*|sparc*)
+			cat << EOF
+To me, it seems to be a big-endian machine.  I told you before you need
+patience, but with your machine, regardless how many CPUs you have, you
+need some more.  Context switches are just expensive, and guess what
+fork/execs result in all the time.  I'm going to make it even worse for
+you, configure and make typically are fork/exec bombs.
+I'm going to assume you're actually used to having patience with this
+machine, which is good, because I really love a box like yours!
+
+EOF
+			;;
+	esac
+
+	# the standard path we want to start with, override anything from
+	# the user on purpose
+	PATH="/usr/bin:/bin"
+	case "${CHOST}" in
+		*-solaris*)
+			cat << EOF
+Ok, this is Solaris, or a derivative like OpenSolaris or OpenIndiana.
+Sometimes, useful tools necessary at this stage are hidden.  I'm going
+to check if that's the case for your system too, and if so, add those
+locations to your PATH.
+
+EOF
+			# could do more "smart" CHOST deductions here, but brute
+			# force is most likely as quick, but simpler
+			[[ -d /usr/sfw/bin ]] \
+				&& PATH="${PATH}:/usr/sfw/bin"
+			[[ -d /usr/sfw/i386-sun-solaris${CHOST##*-solaris}/bin ]] \
+				&& PATH="${PATH}:/usr/sfw/i386-sun-solaris${CHOST##*-solaris}/bin"
+			[[ -d /usr/sfw/sparc-sun-solaris${CHOST##*-solaris}/bin ]] \
+				&& PATH="${PATH}:/usr/sfw/sparc-sun-solaris${CHOST##*-solaris}/bin"
+			;;
+	esac
+
+	# TODO: should we better use cc here? or check both?
+	if ! type -P gcc > /dev/null ; then
+		case "${CHOST}" in
+			*-darwin*)
+				cat << EOF
+Uh oh... a Mac OS X system, but without compiler.  You must have
+forgotten to install Xcode tools.  If your Mac didn't come with an
+install DVD (pre Lion) you can find it in the Mac App Store, or download
+the Xcode command line tools from Apple Developer Connection.  If you
+did get a CD/DVD with your Mac, there is a big chance you can find Xcode
+on it, and install it right away.
+Please do so, and try me again!
+EOF
+				exit 1
+				;;
+			*-solaris2.[789]|*-solaris2.10)
+				cat << EOF
+Yikes!  Your Solaris box doesn't come with gcc in /usr/sfw/blabla/bin?
+What good is it to me then?  I can't find a compiler!  I'm affraid
+you'll have to find a way to install the Sun FreeWare tools somehow, is
+it on the Companion disc perhaps?
+See me again when you figured it out.
+EOF
+				exit 1
+				;;
+			*-solaris)
+				cat << EOF
+Sigh.  This is Solaris 11, OpenSolaris or OpenIndiana?  I can't tell the
+difference without looking more closely.  What I DO know, is that there
+is no compiler, at least not where I was just looking, so how do we
+continue from here, eh?  I just think you didn't install one.  I know it
+can be tricky on OpenIndiana, for instance, so won't blame you.
+In the meanwhile, I'll wait here until you run me again, with a compiler.
+EOF
+				exit 1
+				;;
+			*)
+				cat << EOF
+Well, well... let's make this painful situation as short as it can be:
+you don't appear to have a compiler around for me to play with.
+Go get one, then run me again.
+EOF
+				exit 1
+			;;
+		esac
+	else
+		echo "Great!  You appear to have a compiler in your PATH"
+	fi
+
+	echo
+	local ncpu=
+    case "${CHOST}" in
+		*-darwin*)     ncpu=$(/usr/sbin/sysctl -n hw.ncpu)                 ;;
+		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
+		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
+        *-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
+        *)             ncpu=1                                              ;;
+    esac
+	# Suggest usage of 100% to 60% of the available CPUs in the range
+	# from 1 to 14.  We limit to no more than 8, since we easily flood
+	# the bus on those heavy-core systems and only slow down in that
+	# case anyway.
+	local tcpu=$((ncpu / 2 + 1))
+	[[ ${tcpu} -gt 8 ]] && tcpu=8
+	cat << EOF
+I did my utmost best, and found that your have ${ncpu} cpu cores.  If
+this looks wrong to you, you can happily ignore me.  Based on the number
+of cores you have, I came up with the idea of parallelising compilation
+work where possible with ${tcpu} parallel make threads.  If you have no
+clue what this means, you should go with my excellent default I've
+chosen below, really!
+EOF
+	read -p "How many parallel make jobs do you want? [${tcpu}] " ans
+	case "${ans}" in
+		"")
+			MAKEOPTS="-j${tcpu}"
+			;;
+		*)
+			if [[ ${ans} -le 0 ]] ; then
+				echo "You should have entered a non-zero integer number, obviously..."
+				exit 1
+			elif [[ ${ans} -gt ${tcpu} && ${tcpu} -ne 1 ]] ; then
+				if [[ ${ans} -gt ${ncpu} ]] ; then
+					cat << EOF
+Want to push it very hard?  I already feel sorry for your poor box with
+its mere ${ncpu} cpu cores.
+EOF
+				elif [[ $((ans - tcpu)) -gt 1 ]] ; then
+					cat << EOF
+So you think you can stress your system a bit more than my extremely
+well thought out formula suggested you?  Hmmpf, I'll take it you know
+what you're doing then.
+EOF
+					sleep 1
+					echo "(are you?)"
+				fi
+				MAKEOPTS="-j${ans}"
+			fi
+			;;
+	esac
+	export MAKEOPTS
+
+	#32/64 bits, multilib
+	local candomultilib=no
+	local t64 t32
+	case "${CHOST}" in
+		*86*-darwin9|*86*-darwin1[012])
+			# PPC/Darwin only works in 32-bits mode, so this is Intel
+			# only, and only starting from Leopard (10.5, darwin9)
+			candomultilib=yes
+			t64=x86_64-${CHOST#*-}
+			t32=i686-${CHOST#*-}
+			;;
+		*-solaris*)
+			# Solaris is a true multilib system from as long as it does
+			# 64-bits, we only need to know if the CPU we use is capable
+			# of doing 64-bits mode
+			[[ $(/usr/bin/isainfo | tr ' ' '\n' | wc -l) -ge 2 ]] \
+				&& candomultilib=yes
+			if [[ ${CHOST} == sparc* ]] ; then
+				t64=sparcv9-${CHOST#*-}
+				t32=sparc-${CHOST#*-}
+			else
+				t64=x86_64-${CHOST#*-}
+				t32=i386-${CHOST#*-}
+			fi
+			;;
+	esac
+	if [[ ${candomultilib} == yes ]] ; then
+		cat << EOF
+
+Your system appears to be a multilib system, that is in fact also
+capable of doing multilib right here, right now.  Multilib means
+something like "being able to run multiple kinds of binaries".  The most
+interesting kind for you now is 32-bits versus 64-bits binaries.  I can
+create both a 32-bits as well as a 64-bits Prefix for you, but do you
+actually know what I'm talking about here?  If not, just accept the
+default here.  Honestly, you don't want to change it if you can't name
+one advantage of 64-bits over 32-bits other than that 64 is a higher
+number and when you buy a car or washing machine, you also always choose
+the one with the highest number.
+EOF
+		case "${CHOST}" in
+			x86_64-*|sparcv9-*)  # others can't do multilib, so don't bother
+				# 64-bits native
+				read -p "How many bits do you want your Prefix to target? [64] " ans
+				;;
+			*)
+				# 32-bits native
+				read -p "How many bits do you want your Prefix to target? [32] " ans
+				;;
+		esac
+		case "${ans}" in
+			"")
+				: ;;
+			32)
+				CHOST=${t32}
+				;;
+			64)
+				CHOST=${t64}
+				;;
+			*)
+				cat << EOF
+${ans}? Yeah Right(tm)!  You obviously don't know what you're talking
+about, so I'll take the default instead.
+EOF
+				;;
+		esac
+	fi
+
+	# choose EPREFIX, we do this last, since we have to actually write
+	# to the filesystem here to check that the EPREFIX is sane
+	echo
+	cat << EOF
+Each and every Prefix has a home.  That is, a place where everything is
+supposed to be in.  That place must be fully writable by you (duh), but
+should also be able to hold some fair amount of data and preferably be
+reasonably fast.  In terms of space, I advise something around 2GiB
+(it's less if you're lucky).  I suggest a reasonably fast place because
+we're going to compile a lot, and that generates a fair bit of IO.  If
+some networked filesystem like NFS is the only option for you, then
+you're just going to have to wait a fair bit longer.
+This place which is your Prefix' home, is often referred to by a
+variable called EPREFIX.
+EOF
+	echo
+	while true ; do
+		if [[ -z ${EPREFIX} ]] ; then
+			# Make the default for Mac users a bit more "native feel"
+			[[ ${CHOST} == *-darwin* ]] \
+				&& EPREFIX=$HOME/Gentoo \
+				|| EPREFIX=$HOME/gentoo
+		fi
+		read -p "What do you want EPREFIX to be? [$EPREFIX] " ans
+		case "${ans}" in
+			"")
+				: ;;
+			*)
+				EPREFIX=${ans}
+				;;
+		esac
+		if [[ ! -d ${EPREFIX} ]] && ! mkdir -p "${EPREFIX}" ; then
+			echo "It seems I cannot create ${EPREFIX}."
+			echo "I'll forgive you this time, try again."
+			EPREFIX=
+			continue
+		fi
+		if ! touch "${EPREFIX}"/.canihaswrite >& /dev/null ; then
+			echo "I cannot write to ${EPREFIX}!"
+			echo "You want some fun, but without me?  Try another location."
+			EPREFIX=
+			continue
+		fi
+		# don't really expect this one to fail
+		rm -f "${EPREFIX}"/.canihaswrite || exit 1
+		# location seems ok
+		break;
+	done
+	export EPREFIX
+	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$PATH"
+
+	echo
+	cat << EOF
+OK!  I'm going to give it a try, this is what I have collected sofar:
+  EPREFIX=${EPREFIX}
+  CHOST=${CHOST}
+  PATH=${PATH}
+  MAKEOPTS=${MAKEOPTS}
+
+I'm now going to make an awful lot of noise going through a sequence of
+stages to make your box as groovy as I am myself, setting up your
+Prefix.  In short, I'm going to run stage1, stage2, stage3, followed by
+emerge -e system.  If any of these stages fail, both you and me are in
+deep trouble.  So let's hope that doesn't happen.
+
+EOF
+	read -p "Type here what you want to wish me [luck] " ans
+	if [[ -n ${ans} && ${ans} != "luck" ]] ; then
+		echo "Huh?  You're not serious, are you?"
+		sleep 3
+	fi
+	echo
+
+	if ! ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1 ; then
+		# stage 1 fail
+		cat << EOF
+I tried running
+  ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1
+but that failed :(  I have no clue, really.  Please find friendly folks
+in #gentoo-prefix on freenet, gentoo-alt@lists.gentoo.org mailing list,
+or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
+Sorry that I have failed you master.  I shall now return to my humble cave.
+EOF
+		exit 1
+	fi
+
+	if ! ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
+		# stage 2 fail
+		cat << EOF
+Odd!  Running
+  ${BASH_SOURCE[0]} "${EPREFIX}" stage2
+failed! :(  I have no clue, really.  Please find friendly folks in
+#gentoo-prefix on freenet, gentoo-alt@lists.gentoo.org mailing list, or
+file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
+I am defeated.  I am of no use here any more.
+EOF
+		exit 1
+	fi
+
+	if ! ${BASH_SOURCE[0]} "${EPREFIX}" stage3 ; then
+		# stage 3 fail
+		cat << EOF
+Hmmmm, I was already affraid of this to happen.  Running
+  ${BASH_SOURCE[0]} "${EPREFIX}" stage3
+somewhere failed :(  I have no clue, really.  Please find friendly folks
+in #gentoo-prefix on freenet, gentoo-alt@lists.gentoo.org mailing list,
+or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
+This is most inconvenient, and it crushed my ego.  Sorry, I give up.
+EOF
+		exit 1
+	fi
+	
+	if ! emerge -e system ; then
+		# emerge -e system fail
+		cat << EOF
+Oh yeah, I thought I was almost there, and then this!  I did
+  emerge -e system
+and it failed at some point :(  I have no clue, really.  Please find
+friendly folks in #gentoo-prefix on freenet, gentoo-alt@lists.gentoo.org
+mailing list, or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix
+Support.
+You know, I got the feeling you just started to like me, but I guess
+that's all gone now.  I'll bother you no longer.
+EOF
+		exit 1
+	fi
+
+	if ! ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
+		# startscript fail?
+		cat << EOF
+Ok, let's be honest towards each other.  If
+  ${BASH_SOURCE[0]} "${EPREFIX}" startscript
+fails, then who cheated on who?  Either you use an obscure shell, or
+your PATH isn't really sane afterall.  Despite, I can't really
+congratulate you here, you basically made it to the end.
+Please find friendly folks in #gentoo-prefix on freenet,
+gentoo-alt@lists.gentoo.org mailing list, or file a bug at
+bugs.gentoo.org under Gentoo/Alt, Prefix Support.
+It's sad we have to leave each other this way.  Just an inch away...
+EOF
+		exit 1
+	fi
+
+	echo
+	cat << EOF
+Woah!  Everything just worked!  Now YOU should run
+  ${EPREFIX}/startprefix
+and enjoy!  Thanks for using me, it was a pleasure to work with you.
 EOF
 }
 
@@ -1314,8 +1745,7 @@ esac
 # scary, we force the user to give the prefix location here.  This also
 # makes the script a bit less dangerous as it will die when just run to
 # "see what happens".
-if [ -z "$1" ];
-then
+if [[ -n $1 && -z $2 ]] ; then
 	echo "usage: $0 <prefix-path> [action]"
 	echo
 	echo "You need to give the path offset for your Gentoo prefixed"
@@ -1325,6 +1755,9 @@ then
 	echo
 	echo "$0: insufficient number of arguments" 1>&2
 	exit 1
+elif [[ -z $1 ]] ; then
+	bootstrap_interactive
+	exit 0
 fi
 
 ROOT="$1"
