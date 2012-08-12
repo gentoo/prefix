@@ -329,6 +329,7 @@ HOSTCC='gcc -m64'
 		# because the tools aren't available to read the news item yet anyway.
 		echo 'FEATURES="${FEATURES} -news"' >> "${profile}"/make.defaults
 		# Disable the STALE warning because the snapshot frequently gets stale.
+		# DON'T REMOVE this one, stage3's tree check relies on this one
 		echo 'PORTAGE_SYNC_STALE=0' >> "${profile}"/make.defaults
 		# Set correct PYTHONPATH for Portage, since our Python lives in
 		# $EPREFIX/tmp, bug #407573
