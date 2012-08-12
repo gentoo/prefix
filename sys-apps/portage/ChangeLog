@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  12 Aug 2012; Fabian Groffen <grobian@gentoo.org> portage-2.2.01.20837.ebuild:
+  Remove /etc/make.globals symlink code (bug #427862)
+
 *portage-2.2.01.20837 (12 Aug 2012)
 
   12 Aug 2012; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.20837.ebuild,

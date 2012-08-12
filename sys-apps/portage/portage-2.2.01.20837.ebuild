@@ -283,10 +283,6 @@ pkg_preinst() {
 		ewarn "to enable RMD160 hash support."
 		ewarn "See bug #198398 for more information."
 	fi
-	if [[ ! -L "${EROOT}/etc/make.globals" &&
-		-f "${EROOT}/etc/make.globals" ]]; then
-		rm "${EROOT}/etc/make.globals"
-	fi
 
 	has_version "<=${CATEGORY}/${PN}-2.2.00.13346"
 	EAPIPREFIX_UPGRADE=$?
