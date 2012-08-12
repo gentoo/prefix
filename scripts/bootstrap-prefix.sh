@@ -1390,6 +1390,7 @@ EOF
 				;;
 		esac
 	fi
+	export CHOST
 
 	# choose EPREFIX, we do this last, since we have to actually write
 	# to the filesystem here to check that the EPREFIX is sane
