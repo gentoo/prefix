@@ -1080,7 +1080,7 @@ bootstrap_stage3() {
 	esac
 
 	# Portage should figure out itself what it needs to do, if anything
-	USE=-git emerge -u system
+	USE=-git emerge -u system || return 1
 
 	if [[ ! -f $EPREFIX/etc/portage/make.conf ]] ; then
 		echo 'USE="unicode nls"' >> $EPREFIX/etc/portage/make.conf
