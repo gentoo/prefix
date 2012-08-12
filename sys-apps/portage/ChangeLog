@@ -3,6 +3,9 @@
 # $Id$
 
   12 Aug 2012; Fabian Groffen <grobian@gentoo.org> portage-2.2.01.20837.ebuild:
+  Add sys-devel/patch to DEPEND for bug #429746
+
+  12 Aug 2012; Fabian Groffen <grobian@gentoo.org> portage-2.2.01.20837.ebuild:
   Remove /etc/make.globals symlink code (bug #427862)
 
 *portage-2.2.01.20837 (12 Aug 2012)
