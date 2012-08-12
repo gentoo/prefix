@@ -1149,7 +1149,7 @@ EOF
 	echo
 	echo "I'm going to check for some variables in your environment now:"
 	local flag dvar badflags=
-	for flag in CPPFLAGS CFLAGS CXXFLAGS LDFLAGS ASFLAGS LD_LIBRARY_PATH DYLD_LIBRARY_PATH ; do
+	for flag in CPPFLAGS CFLAGS CXXFLAGS LDFLAGS ASFLAGS LD_LIBRARY_PATH DYLD_LIBRARY_PATH PKG_CONFIG_PATH ; do
 		# starting on purpose a shell here iso ${!flag} because I want
 		# to know if the shell initialisation files trigger this
 		# note that this code is so complex because it handles both
@@ -1164,6 +1164,8 @@ EOF
 		else
 			echo "  it appears ${flag} is not set :)"
 		fi
+		# unset for the current environment
+		unset ${flag}
 	done
 	if [[ -n ${badflags} ]] ; then
 		cat << EOF
@@ -1807,6 +1809,13 @@ fi
 if [[ -n ${LD_LIBARY_PATH} || -n ${DYLD_LIBRARY_PATH} ]] ; then
 	eerror "EEEEEK!  You have LD_LIBRARY_PATH or DYLD_LIBRARY_PATH set"
 	eerror "in your environment.  This is a guarantee for TROUBLE."
+	eerror "Cowardly refusing to operate any further this way!"
+	exit 1
+fi
+
+if [[ -n ${PKG_CONFIG_PATH} ]] ; then
+	eerror "YUK!  You have PKG_CONFIG_PATH set in your environment."
+	eerror "This is a guarantee for TROUBLE."
 	eerror "Cowardly refusing to operate any further this way!"
 	exit 1
 fi
