@@ -914,6 +914,18 @@ bootstrap_stage1() {
 	[[ $(awk --version < /dev/null 2>&1) == *GNU* ]] || bootstrap_gawk || return 1
 	[[ $(bash --version 2>&1) == "GNU bash, version 4"* ]] \
 		|| bootstrap_bash || return 1
+	if type -P pkg-config > /dev/null ; then
+		# hide an existing pkg-config for glib, which first checks
+		# pkg-config for libffi, and only then the LIBFFI_* vars
+		# this resolves nasty problems like bug #426302
+		# note that an existing pkg-config can be ancient, which glib
+		# doesn't grok (e.g. Solaris 10) => error
+		{
+			echo "#!/bin/sh"
+			echo "exit 1"
+		} > "${ROOT}"/usr/bin/pkg-config
+		chmod 755 "${ROOT}"/usr/bin/pkg-config
+	fi
 	# important to have our own (non-flawed one) since Python and
 	# binutils use it
 	for zlib in ${ROOT}/usr/lib/libz.* ; do
@@ -1055,9 +1067,8 @@ bootstrap_stage3() {
 	)
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
-	# ugly hack to make sure we can compile glib, which is depended upon
-	# by shared-mime-info in case an ancient pkg-config is available on
-	# the system that glib doesn't grok (e.g. Solaris 10)
+	# ugly hack to make sure we can compile glib without pkg-config,
+	# which is depended upon by shared-mime-info
 	export LIBFFI_CFLAGS="-I$(echo ${ROOT}/usr/lib*/libffi-*/include)"
 	export LIBFFI_LIBS="-lffi"
 
