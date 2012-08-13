@@ -1074,7 +1074,7 @@ bootstrap_stage3() {
 	# carry on the polluted profile!
 	treedate=$(date -f ${ROOT}/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
-	[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || return 1
+	[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
 
 	local cpuflags=
 	case ${CHOST} in
