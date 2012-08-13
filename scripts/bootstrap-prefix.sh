@@ -758,6 +758,10 @@ bootstrap_zlib_core() {
 		# 64-bits (in contrast to the tools which we don't care if they
 		# are 32-bits)
 		export CC="gcc -m64"
+	elif [[ ${CHOST} == i?86-apple-darwin1[12] ]] ; then
+		# Lion and up default to a 64-bits userland, so force the
+		# compiler to 32-bits code generation if requested here
+		export CC="gcc -m32"
 	fi
 	einfo "Compiling ${A%-*}"
 	CHOST= ./configure --prefix="${ROOT}"/usr || return 1
