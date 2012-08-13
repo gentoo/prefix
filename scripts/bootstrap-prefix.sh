@@ -1270,9 +1270,30 @@ EOF
 				cat << EOF
 Well, well... let's make this painful situation as short as it can be:
 you don't appear to have a compiler around for me to play with.
-Go get one, then run me again.
+Since I like your PATH to be as minimal as possible, I threw away
+everything you put in it, and started from scratch.  Perhaps, the almost
+impossible happened that I was wrong in doing so.
+Ok, I'll give you a chance.  You can now enter what you think is
+necessary to add to PATH for me to find a compiler.  I start off with
+PATH=${PATH} and will add anything you give me here.
 EOF
-				exit 1
+				read -p "Where can I find your compiler? [] " ans
+				case "${ans}" in
+					"")
+						: ;;
+					*)
+						PATH="${PATH}:${ans}"
+						;;
+				esac
+				if ! type -P gcc > /dev/null ; then
+					cat << EOF
+Are you sure you have a compiler?  I didn't find one.  I think you
+better first go get one, then run me again.
+EOF
+					exit 1
+				else
+					echo "Pfff, ok, it seems you were right.  Can we move on now?"
+				fi
 			;;
 		esac
 	else
