@@ -1424,8 +1424,13 @@ EOF
 		case "${ans}" in
 			"")
 				: ;;
-			*)
+			/*)
 				EPREFIX=${ans}
+				;;
+			*)
+				echo "EPREFIX must be an absolute path!"
+				EPREFIX=
+				continue
 				;;
 		esac
 		if [[ ! -d ${EPREFIX} ]] && ! mkdir -p "${EPREFIX}" ; then
