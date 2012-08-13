@@ -1485,7 +1485,7 @@ EOF
 I tried running
   ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1
 but that failed :(  I have no clue, really.  Please find friendly folks
-in #gentoo-prefix on freenet, gentoo-alt@lists.gentoo.org mailing list,
+in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
 or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 Sorry that I have failed you master.  I shall now return to my humble cave.
 EOF
@@ -1498,7 +1498,7 @@ EOF
 Odd!  Running
   ${BASH_SOURCE[0]} "${EPREFIX}" stage2
 failed! :(  I have no clue, really.  Please find friendly folks in
-#gentoo-prefix on freenet, gentoo-alt@lists.gentoo.org mailing list, or
+#gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or
 file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 I am defeated.  I am of no use here any more.
 EOF
@@ -1511,7 +1511,7 @@ EOF
 Hmmmm, I was already affraid of this to happen.  Running
   ${BASH_SOURCE[0]} "${EPREFIX}" stage3
 somewhere failed :(  I have no clue, really.  Please find friendly folks
-in #gentoo-prefix on freenet, gentoo-alt@lists.gentoo.org mailing list,
+in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
 or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 This is most inconvenient, and it crushed my ego.  Sorry, I give up.
 EOF
@@ -1524,7 +1524,7 @@ EOF
 Oh yeah, I thought I was almost there, and then this!  I did
   emerge -e system
 and it failed at some point :(  I have no clue, really.  Please find
-friendly folks in #gentoo-prefix on freenet, gentoo-alt@lists.gentoo.org
+friendly folks in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org
 mailing list, or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix
 Support.
 You know, I got the feeling you just started to like me, but I guess
@@ -1541,7 +1541,7 @@ Ok, let's be honest towards each other.  If
 fails, then who cheated on who?  Either you use an obscure shell, or
 your PATH isn't really sane afterall.  Despite, I can't really
 congratulate you here, you basically made it to the end.
-Please find friendly folks in #gentoo-prefix on freenet,
+Please find friendly folks in #gentoo-prefix on irc.gentoo.org,
 gentoo-alt@lists.gentoo.org mailing list, or file a bug at
 bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 It's sad we have to leave each other this way.  Just an inch away...
