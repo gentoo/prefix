@@ -1291,7 +1291,7 @@ EOF
 	local tcpu=$((ncpu / 2 + 1))
 	[[ ${tcpu} -gt 8 ]] && tcpu=8
 	cat << EOF
-I did my utmost best, and found that your have ${ncpu} cpu cores.  If
+I did my utmost best, and found that you have ${ncpu} cpu cores.  If
 this looks wrong to you, you can happily ignore me.  Based on the number
 of cores you have, I came up with the idea of parallelising compilation
 work where possible with ${tcpu} parallel make threads.  If you have no
