@@ -555,10 +555,19 @@ bootstrap_gnu() {
 
 	einfo "Bootstrapping ${PN}"
 
-	for t in tar.gz tar.xz tar ; do
-		type -P gzip > /dev/null || continue
-		type -P xz > /dev/null || continue
+	for t in tar.gz tar.xz tar.bz2 tar ; do
 		A=${PN}-${PV}.${t}
+
+		# save the user some useless downloading
+		if [[ ${t} == tar.gz ]] ; then
+			type -P gzip > /dev/null || continue
+		fi
+		if [[ ${t} == tar.xz ]] ; then
+			type -P xz > /dev/null || continue
+		fi
+		if [[ ${t} == tar.bz2 ]] ; then
+			type -P bzip2 > /dev/null || continue
+		fi
 
 		URL=${GENTOO_MIRRORS}/${A}
 		if ! efetch ${URL} ; then
@@ -576,6 +585,8 @@ bootstrap_gnu() {
 			gzip -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || continue
 		elif [[ ${t} == "tar.xz" ]] ; then
 			xz -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || continue
+		elif [[ ${t} == "tar.bz2" ]] ; then
+			bzip2 -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || continue
 		elif [[ ${t} == "tar" ]] ; then
 			$TAR -xf "${DISTDIR}"/${A} || continue
 		else
