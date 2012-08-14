@@ -556,6 +556,8 @@ bootstrap_gnu() {
 	einfo "Bootstrapping ${PN}"
 
 	for t in tar.gz tar.xz tar ; do
+		type -P gzip > /dev/null || continue
+		type -P xz > /dev/null || continue
 		A=${PN}-${PV}.${t}
 
 		URL=${GENTOO_MIRRORS}/${A}
