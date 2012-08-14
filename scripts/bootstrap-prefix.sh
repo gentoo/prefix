@@ -1275,7 +1275,7 @@ EOF
 			*-solaris2.[789]|*-solaris2.10)
 				cat << EOF
 Yikes!  Your Solaris box doesn't come with gcc in /usr/sfw/blabla/bin?
-What good is it to me then?  I can't find a compiler!  I'm affraid
+What good is it to me then?  I can't find a compiler!  I'm afraid
 you'll have to find a way to install the Sun FreeWare tools somehow, is
 it on the Companion disc perhaps?
 See me again when you figured it out.
@@ -1556,7 +1556,7 @@ EOF
 	if ! ${BASH_SOURCE[0]} "${EPREFIX}" stage3 ; then
 		# stage 3 fail
 		cat << EOF
-Hmmmm, I was already affraid of this to happen.  Running
+Hmmmm, I was already afraid of this to happen.  Running
   ${BASH_SOURCE[0]} "${EPREFIX}" stage3
 somewhere failed :(  I have no clue, really.  Please find friendly folks
 in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
