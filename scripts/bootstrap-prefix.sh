@@ -1048,7 +1048,7 @@ bootstrap_stage3() {
 		app-misc/pax-utils  # see note above
 		sys-apps/coreutils
 		sys-apps/findutils
-		"<app-arch/tar-1.26-r1"
+		"<app-arch/tar-1.26-r1" # bug 406131
 		sys-apps/grep
 		sys-apps/gawk
 		sys-devel/make
