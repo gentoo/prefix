@@ -1040,9 +1040,12 @@ bootstrap_stage3() {
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
+	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
+	# but also for perl, which uses scanelf/scanmacho to find compatible
+	# lib-dirs
 	# --oneshot
 	local pkgs=(
-		app-misc/pax-utils  # need this early for OSX (before libiconv - gen_usr_ldscript)
+		app-misc/pax-utils  # see note above
 		sys-apps/coreutils
 		sys-apps/findutils
 		"<app-arch/tar-1.26-r1"
