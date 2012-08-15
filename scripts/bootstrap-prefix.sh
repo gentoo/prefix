@@ -700,6 +700,11 @@ bootstrap_python() {
 			# the current arch
 			libdir="-L/usr/lib/$(gcc -print-multi-os-directory)"
 		;;
+		x86_64-*-solaris*|sparcv9-*-solaris*)
+			# Like above, make Python know where GCC's 64-bits
+			# libgcc_s.so is on Solaris
+			libdir="-L/usr/sfw/lib/64"
+		;;
 	esac
 
 	# python refuses to find the zlib headers that are built in the
