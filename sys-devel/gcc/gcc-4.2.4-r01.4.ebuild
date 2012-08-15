@@ -54,6 +54,9 @@ src_unpack() {
 			sed -i \
 				-e '/TARGET_LD_EMULATION/s/elf_\(x86_64\|i386\)/elf_\1_sol2/g' \
 				gcc/config/i386/sol2-10.h || die
+			sed -i \
+				-e 's/elf\(32\|64\)_sparc/&_sol2/g' \
+				gcc/config/sparc/sol2-gld-bi.h || die
 		fi
 	fi
 
