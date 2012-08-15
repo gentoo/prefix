@@ -1336,6 +1336,8 @@ EOF
         *-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
         *)             ncpu=1                                              ;;
     esac
+	# get rid of excess spaces (at least Solaris wc does)
+	ncpu=$((ncpu + 0))
 	# Suggest usage of 100% to 60% of the available CPUs in the range
 	# from 1 to 14.  We limit to no more than 8, since we easily flood
 	# the bus on those heavy-core systems and only slow down in that
