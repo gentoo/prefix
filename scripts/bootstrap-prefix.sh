@@ -1562,6 +1562,7 @@ EOF
 
 	if ! ${BASH_SOURCE[0]} "${EPREFIX}" stage3 ; then
 		# stage 3 fail
+		hash -r  # previous cat (tmp/usr/bin/cat) may have been removed
 		cat << EOF
 Hmmmm, I was already afraid of this to happen.  Running
   ${BASH_SOURCE[0]} "${EPREFIX}" stage3
@@ -1572,6 +1573,7 @@ This is most inconvenient, and it crushed my ego.  Sorry, I give up.
 EOF
 		exit 1
 	fi
+	hash -r  # tmp/* stuff is removed in stage3
 	
 	if ! emerge -e system ; then
 		# emerge -e system fail
