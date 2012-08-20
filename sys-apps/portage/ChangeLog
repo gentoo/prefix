@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  20 Aug 2012; Fabian Groffen <grobian@gentoo.org> portage-2.2.01.20837.ebuild:
+  Up the requirement for bash to 4.1, since redirect_alloc_fd better relies on
+  bash' built-in to find a free filedescriptor than a rather Linux-specific way
+  to figure one out.
+
   12 Aug 2012; Fabian Groffen <grobian@gentoo.org> portage-2.2.01.20837.ebuild:
   Add sys-devel/patch to DEPEND for bug #429746
 

@@ -40,9 +40,11 @@ DEPEND="${python_dep}
 # to python-3.3 / pyxattr. Also, xattr support is only tested with Linux, so
 # for now, don't pull in xattr deps for other kernels.
 # For whirlpool hash, require python[ssl] or python-mhash (bug #425046).
+# bash-4.1 necessary for redirect_alloc_fd, which fails on non-Linux if bash
+# doesn't have a builtin for finding a random filedescriptor
 RDEPEND="${python_dep} || ( ${python_dep_ssl} dev-python/python-mhash )
 	!build? ( >=sys-apps/sed-4.0.5
-		>=app-shells/bash-3.2_p17
+		>=app-shells/bash-4.1
 		>=app-admin/eselect-1.2 )
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
