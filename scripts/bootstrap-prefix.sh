@@ -930,7 +930,7 @@ bootstrap_stage1() {
 	[[ $(patch --version 2>&1) == *GNU* ]] || bootstrap_patch || return 1
 	[[ $(grep --version 2>&1) == *GNU* ]] || bootstrap_grep || return 1
 	[[ $(awk --version < /dev/null 2>&1) == *GNU* ]] || bootstrap_gawk || return 1
-	[[ $(bash --version 2>&1) == "GNU bash, version 4"* ]] \
+	[[ $(bash --version 2>&1) == "GNU bash, version 4."[123456789]* ]] \
 		|| bootstrap_bash || return 1
 	if type -P pkg-config > /dev/null ; then
 		# hide an existing pkg-config for glib, which first checks
