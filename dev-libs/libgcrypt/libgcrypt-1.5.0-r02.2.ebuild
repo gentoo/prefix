@@ -48,7 +48,7 @@ src_configure() {
 		--enable-noexecstack \
 		--disable-O-flag-munging \
 		$(use_enable static-libs static) \
-		$([[ ${CHOST} == *x86*-darwin* ]] && echo "--disable-asm")
+		$([[ ${CHOST} == *86*-darwin* ]] && echo "--disable-asm")
 	
 }
 
