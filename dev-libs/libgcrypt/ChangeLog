@@ -1,6 +1,25 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.155 2012/05/21 18:52:09 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.161 2012/08/19 16:59:12 armin76 Exp $
+
+  19 Aug 2012; Raúl Porcel <armin76@gentoo.org> libgcrypt-1.5.0-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #418391
+
+  14 Jul 2012; Markus Meier <maekke@gentoo.org> libgcrypt-1.5.0-r2.ebuild:
+  arm stable, bug #418391
+
+  29 Jun 2012; Jeroen Roovers <jer@gentoo.org> libgcrypt-1.5.0-r2.ebuild:
+  Stable for HPPA (bug #418391).
+
+  25 Jun 2012; Jeff Horelick <jdhore@gentoo.org> libgcrypt-1.5.0-r2.ebuild:
+  marked x86 per bug 418391
+
+  24 Jun 2012; Agostino Sarubbo <ago@gentoo.org> libgcrypt-1.5.0-r2.ebuild:
+  Stable for amd64, wrt bug #418391
+
+  24 Jun 2012; Kacper Kowalik <xarthisius.kk@gmail.com>
+  libgcrypt-1.5.0-r2.ebuild:
+  ppc/ppc64 stable wrt #418391
 
 *libgcrypt-1.5.0-r02.2 (21 Aug 2012)
 
