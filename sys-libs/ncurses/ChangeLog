@@ -1,6 +1,17 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.208 2012/05/29 18:03:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.211 2012/07/29 16:50:07 armin76 Exp $
+
+  29 Jul 2012; Raúl Porcel <armin76@gentoo.org> ncurses-5.9-r2.ebuild:
+  alpha/sparc stable wrt #413897
+
+  24 Jun 2012; Mike Frysinger <vapier@gentoo.org> ncurses-5.7-r7.ebuild,
+  ncurses-5.9-r1.ebuild, ncurses-5.9-r2.ebuild, ncurses-5.9.ebuild:
+  Do not delete C++ libs when USE=-static-libs since there are only static libs
+  for that #421241 by Keepun.
+
+  14 Jun 2012; Mike Frysinger <vapier@gentoo.org> ncurses-5.9-r2.ebuild:
+  Export all BUILD_xxx variables for cross-compiling #391363 by Marcin Mirosław.
 
   29 May 2012; Brent Baude <ranger@gentoo.org> ncurses-5.9-r2.ebuild:
   Marking ncurses-5.9-r2 ppc for bug 413897

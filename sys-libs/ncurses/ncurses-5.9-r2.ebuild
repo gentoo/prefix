@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r2.ebuild,v 1.12 2012/05/29 18:48:28 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r2.ebuild,v 1.15 2012/07/29 16:50:07 armin76 Exp $
 
 EAPI="1"
 AUTOTOOLS_AUTO_DEPEND="no"
-inherit eutils flag-o-matic toolchain-funcs multilib autotools
+inherit eutils flag-o-matic toolchain-funcs autotools
 
 MY_PV=${PV:0:3}
 PV_SNAP=${PV:4}
@@ -43,7 +43,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.8-gfbsd.patch
 	epatch "${FILESDIR}"/${PN}-5.7-nongnu.patch
 	epatch "${FILESDIR}"/${PN}-5.9-rxvt-unicode-9.15.patch #192083 #383871
-	#not in prefix epatch "${FILESDIR}"/${PN}-5.9-fix-clang-build.patch #417763
+	epatch "${FILESDIR}"/${PN}-5.9-fix-clang-build.patch #417763
 	sed -i \
 		-e '/^PKG_CONFIG_LIBDIR/s:=.*:=$(libdir)/pkgconfig:' \
 		misc/Makefile.in || die
@@ -77,8 +77,8 @@ src_compile() {
 	fi
 
 	unset TERMINFO #115036
-	tc-export BUILD_CC
-	export BUILD_CPPFLAGS+=" -D_GNU_SOURCE" #214642
+	tc-export_build_env BUILD_{CC,CPP}
+	BUILD_CPPFLAGS+=" -D_GNU_SOURCE" #214642
 
 	# when cross-compiling, we need to build up our own tic
 	# because people often don't keep matching host/target
@@ -96,7 +96,6 @@ src_compile() {
 	make_flags=""
 	do_compile narrowc
 	use unicode && do_compile widec --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
-
 }
 do_compile() {
 	ECONF_SOURCE=${S}
@@ -132,7 +131,7 @@ do_compile() {
 	# We need the basic terminfo files in /etc, bug #37026.  We will
 	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
 	# src_install() ...
-#		$(use_with berkdb hashed-db) \
+#		$(use_with berkdb hashed-db)
 	econf \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
 		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo" \
@@ -219,14 +218,12 @@ src_install() {
 	cd "${ED}"/$(get_libdir)
 	mv *.a "${ED}"/usr/$(get_libdir)/
 	fi
-	gen_usr_ldscript lib{,n}curses$(get_libname)
-	if use unicode ; then
-		gen_usr_ldscript libncursesw$(get_libname)
-	fi
+	gen_usr_ldscript -a ncurses
+	use unicode && gen_usr_ldscript -a ncursesw
 	if ! tc-is-static-only ; then
 		ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname) || die
 	fi
-	use static-libs || rm "${ED}"/usr/$(get_libdir)/*.a
+	use static-libs || find "${D}"/usr/ -name '*.a' -a '!' -name '*curses++*.a' -delete
 
 #	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026

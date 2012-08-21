@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r7.ebuild,v 1.9 2011/05/22 18:19:56 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r7.ebuild,v 1.10 2012/06/24 00:24:08 vapier Exp $
 
 EAPI="1"
 AUTOTOOLS_AUTO_DEPEND="no"
@@ -216,11 +216,9 @@ src_install() {
 	mv *.a "${ED}"/usr/$(get_libdir)/
 	fi
 	gen_usr_ldscript lib{,n}curses$(get_libname)
-	if use unicode ; then
-		gen_usr_ldscript libncursesw$(get_libname)
-	fi
+	use unicode && gen_usr_ldscript libncursesw$(get_libname)
 	ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname) || die
-	use static-libs || rm "${ED}"/usr/$(get_libdir)/*.a
+	use static-libs || find "${ED}"/usr/ -name '*.a' -a '!' -name '*curses++*.a' -delete
 
 #	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026
