@@ -375,7 +375,7 @@ bootstrap_tree_arm() {
 }
 
 bootstrap_startscript() {
-	theshell=${SHELL##*/}
+	local theshell=${SHELL##*/}
 	if [[ ${theshell} == "sh" ]] ; then
 		einfo "sh is a generic shell, using bash instead"
 		theshell="bash"
@@ -404,8 +404,8 @@ bootstrap_startscript() {
 	einfo "You can copy this file to a more convenient place if you like."
 
 	# see if PATH is kept/respected
-	export PATH="preamble:${BASH%/*}:postlude"
-	theirPATH=$(${BASH%/*}/${theshell} -c 'echo $PATH')
+	local minPATH="preamble:${BASH%/*}:postlude"
+	local theirPATH="$(echo 'echo "${PATH}"' | env LS_COLORS= PATH="${minPATH}" $SHELL -l 2>/dev/null | grep "preamble:.*:postlude")"
 	if [[ ${theirPATH} != *"preamble:"*":postlude"* ]] ; then
 		einfo "WARNING: your shell initialisation (.cshrc, .bashrc, .profile)"
 		einfo "         seems to overwrite your PATH, this effectively kills"
@@ -414,7 +414,7 @@ bootstrap_startscript() {
 		einfo "WARNING: your shell initialisation (.cshrc, .bashrc, .profile)"
 		einfo "         seems to prepend to your PATH, this might kill your"
 		einfo "         Prefix:"
-		einfo "         ${theirPATH%%:preamble:*}"
+		einfo "         ${theirPATH%%preamble:*}"
 		einfo "         You better fix this, YOU HAVE BEEN WARNED!"
 	fi
 }
@@ -1191,7 +1191,7 @@ EOF
 		# note that this code is so complex because it handles both
 		# C-shell as sh
 		dvar="echo \"((${flag}=\${${flag}}))\""
-		dvar="$(echo "${dvar}" | $SHELL -l 2>/dev/null)"
+		dvar="$(echo "${dvar}" | env LS_COLORS= $SHELL -l 2>/dev/null)"
 		if [[ ${dvar} == *"((${flag}="?*"))" ]] ; then
 			badflags="${badflags} ${flag}"
 			dvar=${dvar#*((${flag}=}
