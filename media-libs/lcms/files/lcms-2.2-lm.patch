@@ -1,8 +1,0 @@
---- lcms2.pc.in
-+++ lcms2.pc.in
-@@ -7,4 +7,5 @@
- Description: LCMS Color Management Library
- Version: @VERSION@
- Libs: -L${libdir} -llcms2
-+Libs.private: @LIB_MATH@
- Cflags: -I${includedir}
