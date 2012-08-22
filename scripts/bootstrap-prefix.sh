@@ -928,6 +928,9 @@ bootstrap_stage1() {
 	[[ $(bash --version 2>&1) == "GNU bash, version 4."[123456789]* ]] \
 		|| bootstrap_bash || return 1
 	if type -P pkg-config > /dev/null ; then
+		# it IS possible to get here without installing anything in
+		# tmp/usr/bin, which makes the below fail to happen
+		mkdir -p "${ROOT}"/usr/bin/
 		# hide an existing pkg-config for glib, which first checks
 		# pkg-config for libffi, and only then the LIBFFI_* vars
 		# this resolves nasty problems like bug #426302
