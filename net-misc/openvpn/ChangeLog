@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.235 2012/06/01 04:02:16 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.237 2012/08/23 03:49:47 ottxor Exp $
+
+  23 Aug 2012; Christoph Junghans <ottxor@gentoo.org> openvpn-2.2.2.ebuild:
+  added prefix keywords (bug #417519)
+
+  29 Jul 2012; Raúl Porcel <armin76@gentoo.org> openvpn-2.2.2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #415847
 
   01 Jun 2012; Zac Medico <zmedico@gentoo.org> openvpn-2.1.4.ebuild,
   openvpn-2.2.2.ebuild, openvpn-9999.ebuild:
