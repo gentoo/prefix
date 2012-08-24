@@ -234,22 +234,18 @@ toolchain-binutils_src_compile() {
 	local myconf=()
 
 	# enable gold if available (installed as ld.gold)
-	if use cxx ; then
-		# PREFIX LOCAL: Linux only (fails to compile on Solaris)
-		if [[ ${CHOST} == *-linux* ]] ; then
+	# PREFIX LOCAL: Linux only (fails to compile on Solaris, MiNT #353410)
+	if [[ ${CHOST} == *-linux* ]] && use cxx ; then
 		if grep -q 'enable-gold=default' "${S}"/configure ; then
 			myconf+=( --enable-gold )
-		fi
 		# old ways - remove when 2.21 is stable
 		elif grep -q 'enable-gold=both/ld' "${S}"/configure ; then
 			myconf+=( --enable-gold=both/ld )
 		elif grep -q 'enable-gold=both/bfd' "${S}"/configure ; then
 			myconf+=( --enable-gold=both/bfd )
 		fi
-		if [[ ${CHOST} != *"-mint"* ]]; then  #353410
 		if grep -q -e '--enable-plugins' "${S}"/ld/configure ; then
 			myconf+=( --enable-plugins )
-		fi
 		fi
 	fi
 
