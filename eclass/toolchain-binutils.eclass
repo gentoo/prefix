@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.115 2012/05/31 17:45:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.118 2012/07/27 17:05:08 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -21,6 +21,7 @@ else
 	99999999)  BTYPE="cvs";;
 	9999)      BTYPE="git";;
 	9999_pre*) BTYPE="snap";;
+	*.*.90)    BTYPE="snap";;
 	*.*.*.*.*) BTYPE="hjlu";;
 	*)         BTYPE="rel";;
 	esac
@@ -68,7 +69,9 @@ HOMEPAGE="http://sources.redhat.com/binutils/"
 
 case ${BTYPE} in
 	cvs|git) SRC_URI="" ;;
-	snap) SRC_URI="ftp://gcc.gnu.org/pub/binutils/snapshots/binutils-${BVER}.tar.bz2" ;;
+	snap)
+		SRC_URI="ftp://gcc.gnu.org/pub/binutils/snapshots/binutils-${BVER}.tar.bz2
+			ftp://sourceware.org/pub/binutils/snapshots/binutils-${BVER}.tar.bz2" ;;
 	hjlu)
 		SRC_URI="mirror://kernel/linux/devel/binutils/binutils-${BVER}.tar."
 		version_is_at_least 2.21.51.0.5 && SRC_URI+="xz" || SRC_URI+="bz2" ;;
@@ -77,7 +80,7 @@ esac
 add_src_uri() {
 	[[ -z $2 ]] && return
 	local a=$1
-	if [[ ${BTYPE} == "hjlu" ]] && version_is_at_least 2.22.52.0.2 ; then
+	if version_is_at_least 2.22.52.0.2 ; then
 		a+=".xz"
 	else
 		a+=".bz2"
@@ -228,72 +231,70 @@ toolchain-binutils_src_compile() {
 	echo
 
 	cd "${MY_BUILDDIR}"
-	set --
+	local myconf=()
 
 	# enable gold if available (installed as ld.gold)
 	if use cxx ; then
 		# PREFIX LOCAL: Linux only (fails to compile on Solaris)
 		if [[ ${CHOST} == *-linux* ]] ; then
 		if grep -q 'enable-gold=default' "${S}"/configure ; then
-			set -- "$@" --enable-gold
+			myconf+=( --enable-gold )
 		fi
 		# old ways - remove when 2.21 is stable
 		elif grep -q 'enable-gold=both/ld' "${S}"/configure ; then
-			set -- "$@" --enable-gold=both/ld
+			myconf+=( --enable-gold=both/ld )
 		elif grep -q 'enable-gold=both/bfd' "${S}"/configure ; then
-			set -- "$@" --enable-gold=both/bfd
+			myconf+=( --enable-gold=both/bfd )
 		fi
+		if [[ ${CHOST} != *"-mint"* ]]; then  #353410
 		if grep -q -e '--enable-plugins' "${S}"/ld/configure ; then
-			set -- "$@" --enable-plugins
+			myconf+=( --enable-plugins )
 		fi
-	fi
-	if [[ ${CHOST} != *"-mint"* ]]; then  #353410
-		if grep -q -e '--enable-plugins' "${S}"/ld/configure ; then
-			set -- "$@" --enable-plugins
 		fi
 	fi
 
 	use nls \
-		&& set -- "$@" --without-included-gettext \
-		|| set -- "$@" --disable-nls
+		&& myconf+=( --without-included-gettext ) \
+		|| myconf+=( --disable-nls )
 
 	if in_iuse zlib ; then
 		# older versions did not have an explicit configure flag
 		export ac_cv_search_zlibVersion=$(usex zlib -lz no)
-		set -- "$@" $(use_with zlib)
+		myconf+=( $(use_with zlib) )
 	fi
 
 	[[ ${CHOST} == *"-solaris"* ]] && use nls && append-libs -lintl
-	use multitarget && set -- "$@" --enable-targets=all
-	[[ -n ${CBUILD} ]] && set -- "$@" --build=${CBUILD}
-	is_cross && set -- "$@" --with-sysroot=${EPREFIX}/usr/${CTARGET}
+	use multitarget && myconf+=( --enable-targets=all )
+	[[ -n ${CBUILD} ]] && myconf+=( --build=${CBUILD} )
+	is_cross && myconf+=( --with-sysroot=${EPREFIX}/usr/${CTARGET} )
 
 	# glibc-2.3.6 lacks support for this ... so rather than force glibc-2.5+
 	# on everyone in alpha (for now), we'll just enable it when possible
-	has_version ">=${CATEGORY}/glibc-2.5" && set -- "$@" --enable-secureplt
-	has_version ">=sys-libs/glibc-2.5" && set -- "$@" --enable-secureplt
+	has_version ">=${CATEGORY}/glibc-2.5" && myconf+=( --enable-secureplt )
+	has_version ">=sys-libs/glibc-2.5" && myconf+=( --enable-secureplt )
 
-	set -- "$@" \
-		--prefix=${EPREFIX}/usr \
-		--host=${CHOST} \
-		--target=${CTARGET} \
-		--datadir=${EPREFIX}${DATAPATH} \
-		--infodir=${EPREFIX}${DATAPATH}/info \
-		--mandir=${EPREFIX}${DATAPATH}/man \
-		--bindir=${EPREFIX}${BINPATH} \
-		--libdir=${EPREFIX}${LIBPATH} \
-		--libexecdir=${EPREFIX}${LIBPATH} \
-		--includedir=${EPREFIX}${INCPATH} \
-		--enable-64-bit-bfd \
-		--enable-obsolete \
-		--enable-shared \
-		--enable-threads \
-		--disable-werror \
-		--with-bugurl=http://bugs.gentoo.org/ \
-		$(use_enable static-libs static) \
+	myconf+=(
+		--prefix=${EPREFIX}/usr
+		--host=${CHOST}
+		--target=${CTARGET}
+		--datadir=${EPREFIX}${DATAPATH}
+		--infodir=${EPREFIX}${DATAPATH}/info
+		--mandir=${EPREFIX}${DATAPATH}/man
+		--bindir=${EPREFIX}${BINPATH}
+		--libdir=${EPREFIX}${LIBPATH}
+		--libexecdir=${EPREFIX}${LIBPATH}
+		--includedir=${EPREFIX}${INCPATH}
+		--enable-64-bit-bfd
+		--enable-obsolete
+		--enable-shared
+		--enable-threads
+		--disable-werror
+		--with-bugurl=http://bugs.gentoo.org/
+		$(use_enable static-libs static)
 		${EXTRA_ECONF}
-	echo ./configure "$@"
-	"${S}"/configure "$@" || die
+	)
+	echo ./configure "${myconf[@]}"
+	"${S}"/configure "${myconf[@]}" || die
 
 	emake all || die "emake failed"
 
@@ -317,13 +318,14 @@ toolchain-binutils_src_compile() {
 
 		if [[ ${x} != "UNSUPPORTED" ]] ; then
 			append-flags -I"${S}"/include
-			set -- "$@" \
-				--with-bfd-include-dir=${MY_BUILDDIR}/bfd \
-				--with-libbfd=${MY_BUILDDIR}/bfd/libbfd.a \
-				--with-libiberty=${MY_BUILDDIR}/libiberty/libiberty.a \
+			myconf+=(
+				--with-bfd-include-dir=${MY_BUILDDIR}/bfd
+				--with-libbfd=${MY_BUILDDIR}/bfd/libbfd.a
+				--with-libiberty=${MY_BUILDDIR}/libiberty/libiberty.a
 				--with-binutils-ldscript-dir=${EPREFIX}/${LIBPATH}/ldscripts
-			echo ./configure "$@"
-			./configure "$@" || die
+			)
+			echo ./configure "${myconf[@]}"
+			./configure "${myconf[@]}" || die
 			emake || die "make elf2flt failed"
 		fi
 	fi
