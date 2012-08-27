@@ -362,11 +362,18 @@ do_tree() {
 
 bootstrap_tree() {
 	local PV="20120817"
-	do_tree http://files.prefix.freens.org/distfiles prefix-overlay-${PV}.tar.bz2
+	if [[ -n ${LATEST_TREE_YES} ]]; then
+		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
+	else
+		do_tree http://files.prefix.freens.org/distfiles prefix-overlay-${PV}.tar.bz2
+	fi
 }
 
 bootstrap_latest_tree() {
-	do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
+	# kept here for compatibility reasons
+	einfo "This function 'latest_tree' is deprecated and will be"
+	einfo "removed in the future, please set LATEST_TREE_YES=1 in the env"
+	LATEST_TREE_YES=1 bootstrap_tree
 }
 
 bootstrap_startscript() {
