@@ -1539,7 +1539,7 @@ EOF
 	fi
 	echo
 
-	if ! ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1 ; then
+	if ! -x ${EPREFIX}/usr/lib/portage/bin/emerge && ! ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1 ; then
 		# stage 1 fail
 		cat << EOF
 I tried running
