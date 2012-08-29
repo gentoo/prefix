@@ -1539,7 +1539,7 @@ EOF
 	fi
 	echo
 
-	if ! -x ${EPREFIX}/usr/lib/portage/bin/emerge && ! ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1 ; then
+	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1 ; then
 		# stage 1 fail
 		cat << EOF
 I tried running
@@ -1552,7 +1552,7 @@ EOF
 		exit 1
 	fi
 
-	if ! -x ${EPREFIX}/usr/lib/portage/bin/emerge && ! ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
+	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
 		# stage 2 fail
 		cat << EOF
 Odd!  Running
