@@ -1552,7 +1552,7 @@ EOF
 		exit 1
 	fi
 
-	if ! ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
+	if ! -x ${EPREFIX}/usr/lib/portage/bin/emerge && ! ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
 		# stage 2 fail
 		cat << EOF
 Odd!  Running
