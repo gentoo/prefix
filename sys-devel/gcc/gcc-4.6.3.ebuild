@@ -75,7 +75,6 @@ src_unpack() {
 		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint3.patch
 		epatch "${FILESDIR}"/4.5.1/${PN}-4.5.1-mint1.patch
 		epatch "${FILESDIR}"/4.5.2/${PN}-4.5.2-mint1.patch
-		epatch "${FILESDIR}"/4.5.2/m68k-coldfire.patch
 	fi
 
 	# Always behave as if -pthread were passed on AIX and HPUX (#266548)
