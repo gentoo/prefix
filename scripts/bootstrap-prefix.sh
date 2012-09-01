@@ -918,22 +918,26 @@ bootstrap_stage1() {
 		return 1
 	fi
 
+	# run all bootstrap_* commands in a subshell since the targets
+	# frequently pollute the environment using exports which affect
+	# packages following (e.g. zlib builds 64-bits)
+
 	# don't rely on $MAKE, if make == gmake packages that call 'make' fail
-	[[ $(make --version 2>&1) == *GNU* ]] || bootstrap_make || return 1
-	type -P wget > /dev/null || bootstrap_wget || return 1
-	[[ $(sed --version 2>&1) == *GNU* ]] || bootstrap_sed || return 1
-	[[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] || bootstrap_m4 || return 1
+	[[ $(make --version 2>&1) == *GNU* ]] || (bootstrap_make) || return 1
+	type -P wget > /dev/null || (bootstrap_wget) || return 1
+	[[ $(sed --version 2>&1) == *GNU* ]] || (bootstrap_sed) || return 1
+	[[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] || (bootstrap_m4) || return 1
 	[[ $(bison --version 2>&1) == *"(GNU Bison) 2."[345678]* ]] \
-		|| bootstrap_bison || return 1
+		|| (bootstrap_bison) || return 1
 	[[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]] \
-		|| bootstrap_coreutils || return 1
-	[[ $(find --version 2>&1) == *GNU* ]] || bootstrap_findutils || return 1
-	[[ $(tar --version 2>&1) == *GNU* ]] || bootstrap_tar || return 1
-	[[ $(patch --version 2>&1) == *GNU* ]] || bootstrap_patch || return 1
-	[[ $(grep --version 2>&1) == *GNU* ]] || bootstrap_grep || return 1
+		|| (bootstrap_coreutils) || return 1
+	[[ $(find --version 2>&1) == *GNU* ]] || (bootstrap_findutils) || return 1
+	[[ $(tar --version 2>&1) == *GNU* ]] || (bootstrap_tar) || return 1
+	[[ $(patch --version 2>&1) == *GNU* ]] || (bootstrap_patch) || return 1
+	[[ $(grep --version 2>&1) == *GNU* ]] || (bootstrap_grep) || return 1
 	[[ $(awk --version < /dev/null 2>&1) == *GNU* ]] || bootstrap_gawk || return 1
 	[[ $(bash --version 2>&1) == "GNU bash, version 4."[123456789]* ]] \
-		|| bootstrap_bash || return 1
+		|| (bootstrap_bash) || return 1
 	if type -P pkg-config > /dev/null ; then
 		# it IS possible to get here without installing anything in
 		# tmp/usr/bin, which makes the below fail to happen
@@ -949,15 +953,15 @@ bootstrap_stage1() {
 		} > "${ROOT}"/usr/bin/pkg-config
 		chmod 755 "${ROOT}"/usr/bin/pkg-config
 	fi
-	# important to have our own (non-flawed one) since Python and
-	# binutils use it
+	# important to have our own (non-flawed one) since Python (from
+	# Portage) and binutils use it
 	for zlib in ${ROOT}/usr/lib/libz.* ; do
 		[[ -e ${zlib} ]] && break
 		zlib=
 	done
-	[[ -n ${zlib} ]] || bootstrap_zlib || return 1
+	[[ -n ${zlib} ]] || (bootstrap_zlib) || return 1
 	# too vital to rely on a host-provided one
-	[[ -x ${ROOT}/usr/bin/python ]] || bootstrap_python || return 1
+	[[ -x ${ROOT}/usr/bin/python ]] || (bootstrap_python) || return 1
 
 	einfo "stage1 successfully finished"
 }
