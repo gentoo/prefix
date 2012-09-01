@@ -1264,6 +1264,8 @@ EOF
 				&& PATH="${PATH}:/usr/sfw/i386-sun-solaris${CHOST##*-solaris}/bin"
 			[[ -d /usr/sfw/sparc-sun-solaris${CHOST##*-solaris}/bin ]] \
 				&& PATH="${PATH}:/usr/sfw/sparc-sun-solaris${CHOST##*-solaris}/bin"
+			# OpenIndiana 151a5
+			[[ -d /usr/gnu/bin ]] && PATH="${PATH}:/usr/gnu/bin"
 			;;
 	esac
 
@@ -1292,13 +1294,17 @@ See me again when you figured it out.
 EOF
 				exit 1
 				;;
-			*-solaris)
+			*-solaris*)
 				cat << EOF
 Sigh.  This is Solaris 11, OpenSolaris or OpenIndiana?  I can't tell the
 difference without looking more closely.  What I DO know, is that there
 is no compiler, at least not where I was just looking, so how do we
 continue from here, eh?  I just think you didn't install one.  I know it
-can be tricky on OpenIndiana, for instance, so won't blame you.
+can be tricky on OpenIndiana, for instance, so won't blame you.  In case
+you're on OpenIndiana, I'll help you a bit.  Perform the following as
+super-user:
+  pkg set-publisher -p http://pkg.openindiana.org/sfe/
+  pkg install sfe/developer/gcc developer/library/lint system/header
 In the meanwhile, I'll wait here until you run me again, with a compiler.
 EOF
 				exit 1
