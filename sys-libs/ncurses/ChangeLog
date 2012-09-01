@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.211 2012/07/29 16:50:07 armin76 Exp $
 
+  01 Sep 2012; Fabian Groffen <grobian@gentoo.org> ncurses-5.9-r02.1.ebuild:
+  Fix fix for bug #431352, verified on OpenIndiana 151a5 and Solaris 10
+
   29 Jul 2012; Raúl Porcel <armin76@gentoo.org> ncurses-5.9-r2.ebuild:
   alpha/sparc stable wrt #413897
 

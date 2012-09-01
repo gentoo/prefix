@@ -71,9 +71,17 @@ src_unpack() {
 	# defines a value for it, and depending on version, a different definition
 	# is used.  Defining this variable on these systems is dangerous any time,
 	# since the system headers do strict checks on compatability of flags and
-	# standards.  Bug #431352
+	# standards.
+	# Defining _XOPEN_SOURCE_EXTENDED together with _XOPEN_SOURCE leads to
+	# pre-_XOPEN_SOURCE=500 stuff, so only do it for non-C++ code.
+	# See also bug #431352
 	if [[ ${CHOST} == *-solaris* ]] ; then
-		sed -i -e '/-D__EXTENSIONS__/ s/-D_XOPEN_SOURCE=\$cf_XOPEN_SOURCE//' configure || die
+		sed -i \
+			-e '/-D__EXTENSIONS__/ s/-D_XOPEN_SOURCE=\$cf_XOPEN_SOURCE//' \
+			-e '/CPPFLAGS="$CPPFLAGS/s/ -D_XOPEN_SOURCE_EXTENDED//' \
+			configure || die
+		# ONLY in C-mode, NOT C++
+		append-cflags -D_XOPEN_SOURCE_EXTENDED
 	fi
 }
 
