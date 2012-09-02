@@ -43,6 +43,14 @@ src_unpack() {
 		ewarn "Please rebuild gcc after upgrading to >=glibc-2.12 #362315"
 		EPATCH_EXCLUDE+=" 10_all_default-fortify-source.patch"
 	fi
+	# Fedora/RedHat ships glibc-2.15+ with some nasty warnings that cause
+	# configure checks for most system headers to fail, resulting in bugs
+	# compiling e.g. gcc itself, bug #433333
+	if [[ -e /usr/include/features.h ]] ; then
+		grep -qF "_FORTIFY_SOURCE requires compiling with optimization" \
+			/usr/include/features.h && \
+				EPATCH_EXCLUDE+=" 10_all_default-fortify-source.patch"
+	fi
 
 	# drop the x32 stuff once 4.7 goes stable
 	if [[ ${CTARGET} != x86_64* ]] || ! has x32 $(get_all_abis TARGET) ; then
