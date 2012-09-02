@@ -334,6 +334,14 @@ HOSTCC='gcc -m64'
 		# Set correct PYTHONPATH for Portage, since our Python lives in
 		# $EPREFIX/tmp, bug #407573
 		echo "PYTHONPATH=${ROOT}/usr/lib/portage/pym" >> "${profile}"/make.defaults
+		# Most binary Linux distributions seem to fancy toolchains that
+		# do not do c++ support (need to install a separate package).
+		# Since we don't check for g++, just make sure binutils won't
+		# try to build gold (needs c++), it will get there once we built
+		# our own GCC with c++ support.  For that reason we cannot
+		# globally mask cxx, because then GCC will be built without c++
+		# support too.
+		echo "sys-devel/binutils cxx" >> ${PORTDIR}/profiles/prefix/package.use.mask
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
 	# Hack for bash because curses is not always available (linux).
