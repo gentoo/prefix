@@ -1548,6 +1548,62 @@ EOF
 	export EPREFIX
 	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$PATH"
 
+	# immediately die on platforms that we know are impossible due to
+	# brain-deadness (Ubuntu) or extremely hard dependency chains
+	case ${CHOST} in
+		*-linux-gnu)
+			# Figure out if this is Ubuntu...
+			if [[ $(lsb_release -is 2>/dev/null) == "Ubuntu" ]] ; then
+				cat << EOF
+Oh My!  UBUNTU!  AAAAAAAAAAAAAAAAAAAAARGH!  HELL comes over me!
+
+EOF
+				echo -n "..."
+				sleep 1
+				echo -n "."
+				sleep 1
+				echo -n "."
+				sleep 1
+				echo -n "."
+				sleep 1
+				echo
+				echo
+				cat << EOF
+I gave it a thought.  You should be prepared that you're on the worst
+Linux distribution from a developer's (and so Gentoo Prefix)
+perspective.  I'm likely to fail, but I will give it a shot.  You should
+know one thing, however.  If I fail, I will still tell you to ask for
+help, but YOU BETTER NOT.  Gentoo Prefix people do not support this
+repugnant Linux distribution at all.
+
+I'm going to perform some abhorrent hacks now to give both you and me
+just a very little bit of a chance to get anywhere.
+
+EOF
+				read -p "Please swear that you won't complain if I fail [YES, I swear I won't complain] " ans
+				if [[ -n ${ans} && ${ans} != "YES, I swear I won't complain" ]] ; then
+					echo "I'm not going to stick my head above the grass for you."
+					exit 1
+				fi
+
+				# Ubuntu has seriously fscked up their toolchain to support
+				# their multi-arch crap that noone really wants, and
+				# certainly not upstream.  Some details:
+				# https://bugs.launchpad.net/ubuntu/+source/binutils/+bug/738098
+				# As workaround, we're going to copy some essential libs to
+				# our Prefix, so we have a chance surviving Ubuntu madness.
+				# NOTE: this fails in multilib if we want a different
+				# arch, fortunately the installer doesn't offer that
+				# option on Linux, because it's hard to see if it will
+				# work.
+				mkdir -p "${EPREFIX}"/lib
+				for lib in $(dpkg -L libc6-dev | grep '\.so$') ; do
+					cp "${lib}" "${EPREFIX}"/lib/
+				done
+			fi
+			;;
+	esac
+
 	echo
 	cat << EOF
 OK!  I'm going to give it a try, this is what I have collected sofar:
