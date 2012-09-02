@@ -1164,6 +1164,57 @@ bootstrap_stage3() {
 }
 
 bootstrap_interactive() {
+	# immediately die on platforms that we know are impossible due to
+	# brain-deadness (Ubuntu) or extremely hard dependency chains (TODO
+	# NetBSD/OpenBSD)
+	case ${CHOST} in
+		*-linux-gnu)
+			# Figure out if this is Ubuntu...
+			if [[ $(lsb_release -is 2>/dev/null) == "Ubuntu" ]] ; then
+				# Ubuntu has seriously fscked up their toolchain to support
+				# their multi-arch crap that noone really wants, and
+				# certainly not upstream.  Some details:
+				# https://bugs.launchpad.net/ubuntu/+source/binutils/+bug/738098
+				# In short, it's impossible for us to compile a
+				# compiler, since 1) gcc picks up our ld, which doesn't
+				# support sysroot (can work around with a wrapper
+				# script), 2) headers and libs aren't found (symlink
+				# them to Prefix), 3) stuff like crtX.i isn't found
+				# during bootstrap, since the bootstrap compiler doesn't
+				# get any of our flags and doesn't know where to find
+				# them (even if we copied them).  So we cannot do this,
+				# unless we use the Ubuntu patches in our ebuilds, which
+				# is a NO-GO area.
+				cat << EOF
+Oh My!  UBUNTU!  AAAAAAAAAAAAAAAAAAAAARGH!  HELL comes over me!
+
+EOF
+				echo -n "..."
+				sleep 1
+				echo -n "."
+				sleep 1
+				echo -n "."
+				sleep 1
+				echo -n "."
+				sleep 1
+				echo
+				echo
+				cat << EOF
+and over you.  You're on the worst Linux distribution from a developer's
+(and so Gentoo Prefix) perspective.
+Due to repugnant decisions that this abhorrent Linux distribution has
+made, it is IMPOSSIBLE for Gentoo Prefix to bootstrap a compiler without
+using Ubuntu patches, which is an absolute NO-GO area!  GCC and binutils
+upstreams didn't just reject those patches for fun.
+
+You better find yourself a decent system, such as Solaris, OpenIndiana,
+FreeBSD, Mac OS X, etc.
+EOF
+				exit 1
+			fi
+			;;
+	esac
+
 	cat <<"EOF"
 
 
@@ -1547,62 +1598,6 @@ EOF
 	done
 	export EPREFIX
 	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$PATH"
-
-	# immediately die on platforms that we know are impossible due to
-	# brain-deadness (Ubuntu) or extremely hard dependency chains
-	case ${CHOST} in
-		*-linux-gnu)
-			# Figure out if this is Ubuntu...
-			if [[ $(lsb_release -is 2>/dev/null) == "Ubuntu" ]] ; then
-				cat << EOF
-Oh My!  UBUNTU!  AAAAAAAAAAAAAAAAAAAAARGH!  HELL comes over me!
-
-EOF
-				echo -n "..."
-				sleep 1
-				echo -n "."
-				sleep 1
-				echo -n "."
-				sleep 1
-				echo -n "."
-				sleep 1
-				echo
-				echo
-				cat << EOF
-I gave it a thought.  You should be prepared that you're on the worst
-Linux distribution from a developer's (and so Gentoo Prefix)
-perspective.  I'm likely to fail, but I will give it a shot.  You should
-know one thing, however.  If I fail, I will still tell you to ask for
-help, but YOU BETTER NOT.  Gentoo Prefix people do not support this
-repugnant Linux distribution at all.
-
-I'm going to perform some abhorrent hacks now to give both you and me
-just a very little bit of a chance to get anywhere.
-
-EOF
-				read -p "Please swear that you won't complain if I fail [YES, I swear I won't complain] " ans
-				if [[ -n ${ans} && ${ans} != "YES, I swear I won't complain" ]] ; then
-					echo "I'm not going to stick my head above the grass for you."
-					exit 1
-				fi
-
-				# Ubuntu has seriously fscked up their toolchain to support
-				# their multi-arch crap that noone really wants, and
-				# certainly not upstream.  Some details:
-				# https://bugs.launchpad.net/ubuntu/+source/binutils/+bug/738098
-				# As workaround, we're going to copy some essential libs to
-				# our Prefix, so we have a chance surviving Ubuntu madness.
-				# NOTE: this fails in multilib if we want a different
-				# arch, fortunately the installer doesn't offer that
-				# option on Linux, because it's hard to see if it will
-				# work.
-				mkdir -p "${EPREFIX}"/lib
-				for lib in $(dpkg -L libc6-dev | grep '\.s\?o$') ; do
-					cp "${lib}" "${EPREFIX}"/lib/
-				done
-			fi
-			;;
-	esac
 
 	echo
 	cat << EOF
