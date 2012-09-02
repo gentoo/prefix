@@ -1165,12 +1165,12 @@ bootstrap_stage3() {
 
 bootstrap_interactive() {
 	# immediately die on platforms that we know are impossible due to
-	# brain-deadness (Ubuntu) or extremely hard dependency chains (TODO
-	# NetBSD/OpenBSD)
+	# brain-deadness (Debian/Ubuntu) or extremely hard dependency chains
+	# (TODO NetBSD/OpenBSD)
 	case ${CHOST} in
 		*-linux-gnu)
 			# Figure out if this is Ubuntu...
-			if [[ $(lsb_release -is 2>/dev/null) == "Ubuntu" ]] ; then
+			if [[ $(lsb_release -is 2>/dev/null) == "Ubuntu" || -e /etc/debian_release ]] ; then
 				# Ubuntu has seriously fscked up their toolchain to support
 				# their multi-arch crap that noone really wants, and
 				# certainly not upstream.  Some details:
@@ -1186,7 +1186,7 @@ bootstrap_interactive() {
 				# unless we use the Ubuntu patches in our ebuilds, which
 				# is a NO-GO area.
 				cat << EOF
-Oh My!  UBUNTU!  AAAAAAAAAAAAAAAAAAAAARGH!  HELL comes over me!
+Oh My!  DEBUNTU!  AAAAAAAAAAAAAAAAAAAAARGH!  HELL comes over me!
 
 EOF
 				echo -n "..."
@@ -1201,10 +1201,10 @@ EOF
 				echo
 				cat << EOF
 and over you.  You're on the worst Linux distribution from a developer's
-(and so Gentoo Prefix) perspective.
+(and so Gentoo Prefix) perspective since http://wiki.debian.org/Multiarch/.
 Due to repugnant decisions that this abhorrent Linux distribution has
 made, it is IMPOSSIBLE for Gentoo Prefix to bootstrap a compiler without
-using Ubuntu patches, which is an absolute NO-GO area!  GCC and binutils
+using Debuntu patches, which is an absolute NO-GO area!  GCC and binutils
 upstreams didn't just reject those patches for fun.
 
 You better find yourself a decent system, such as Solaris, OpenIndiana,
