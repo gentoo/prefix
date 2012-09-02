@@ -1597,7 +1597,7 @@ EOF
 				# option on Linux, because it's hard to see if it will
 				# work.
 				mkdir -p "${EPREFIX}"/lib
-				for lib in $(dpkg -L libc6-dev | grep '\.so$') ; do
+				for lib in $(dpkg -L libc6-dev | grep '\.s\?o$') ; do
 					cp "${lib}" "${EPREFIX}"/lib/
 				done
 			fi
