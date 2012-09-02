@@ -778,8 +778,10 @@ bootstrap_zlib_core() {
 		# 64-bits (in contrast to the tools which we don't care if they
 		# are 32-bits)
 		export CC="gcc -m64"
-	elif [[ ${CHOST} == i?86-apple-darwin1[12] ]] ; then
-		# Lion and up default to a 64-bits userland, so force the
+	elif [[ ${CHOST} == i?86-*-* ]] ; then
+		# This is important for bootstraps which are 64-native, but we
+		# want 32-bits, such as most Linuxes, and more recent OSX.
+		# OS X Lion and up default to a 64-bits userland, so force the
 		# compiler to 32-bits code generation if requested here
 		export CC="gcc -m32"
 	fi
@@ -917,6 +919,17 @@ bootstrap_stage1() {
 		eerror "stage1 can only be used for paths that end in '/tmp'"
 		return 1
 	fi
+
+	# NOTE: stage1 compiles all tools (no libraries) in the native
+	# bits-size of the compiler, which needs not to match what we're
+	# bootstrapping for.  This is no problem since they're just tools,
+	# for which it really doesn't matter how they run, as long AS they
+	# run.  For libraries, this is different, since they are relied on
+	# by packages we emerge lateron.
+	# Changing this to compile the tools for the bits the bootstrap is
+	# for, is a BAD idea, since we're extremely fragile here, so
+	# whatever the native toolchain is here, is what in general works
+	# best.
 
 	# run all bootstrap_* commands in a subshell since the targets
 	# frequently pollute the environment using exports which affect
