@@ -492,7 +492,7 @@ prep_gcc-apple() {
 
 prep_gcc-fsf() {
 
-	GCC_PV=4.1.1
+	GCC_PV=4.1.2
 	GCC_A=gcc-${GCC_PV}.tar.bz2	
 	TAROPTS="-jxf"
 
