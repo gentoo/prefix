@@ -1169,12 +1169,37 @@ bootstrap_interactive() {
 	# (TODO NetBSD/OpenBSD)
 	case ${CHOST} in
 		*-linux-gnu)
+			local toolchain_impossible=
 			# Figure out if this is Ubuntu...
-			if [[ $(lsb_release -is 2>/dev/null) == "Ubuntu" || -e /etc/debian_release ]] ; then
-				# Ubuntu has seriously fscked up their toolchain to support
-				# their multi-arch crap that noone really wants, and
-				# certainly not upstream.  Some details:
-				# https://bugs.launchpad.net/ubuntu/+source/binutils/+bug/738098
+			if [[ $(lsb_release -is 2>/dev/null) == "Ubuntu" ]] ; then
+				case "$(lsb_release -sr)" in
+					[456789].*|10.*)
+						: # good versions
+						;;
+					*)
+						# Debian/Ubuntu have seriously fscked up their
+						# toolchain to support their multi-arch crap
+						# since Natty (11.04) that noone really wants,
+						# and certainly not upstream.  Some details:
+						# https://bugs.launchpad.net/ubuntu/+source/binutils/+bug/738098
+						toolchain_impossible="Ubuntu >= 11.04 (Natty)"
+						;;
+				esac
+			fi
+			# Figure out if this is Debian
+			if [[ -e /etc/debian_release ]] ; then
+				case "$(< /etc/debian_release)" in
+					hamm/*|slink/*|potato/*|woody/*|sarge/*|etch/*|lenny/*|squeeze/*)
+						: # good versions
+						;;
+					*)
+						# Debian introduced their big crap since Wheezy
+						# (7.0), like for Ubuntu, see above
+						toolchain_impossible="Debian >= 7.0 (Wheezy)"
+						;;
+				esac
+			fi
+			if [[ -n ${toolchain_impossible} ]] ; then
 				# In short, it's impossible for us to compile a
 				# compiler, since 1) gcc picks up our ld, which doesn't
 				# support sysroot (can work around with a wrapper
@@ -1186,7 +1211,7 @@ bootstrap_interactive() {
 				# unless we use the Ubuntu patches in our ebuilds, which
 				# is a NO-GO area.
 				cat << EOF
-Oh My!  DEBUNTU!  AAAAAAAAAAAAAAAAAAAAARGH!  HELL comes over me!
+Oh My!  ${toolchain_impossible}!  AAAAAAAAAAAAAAAAAAAAARGH!  HELL comes over me!
 
 EOF
 				echo -n "..."
@@ -1202,13 +1227,13 @@ EOF
 				cat << EOF
 and over you.  You're on the worst Linux distribution from a developer's
 (and so Gentoo Prefix) perspective since http://wiki.debian.org/Multiarch/.
-Due to repugnant decisions that this abhorrent Linux distribution has
-made, it is IMPOSSIBLE for Gentoo Prefix to bootstrap a compiler without
-using Debuntu patches, which is an absolute NO-GO area!  GCC and binutils
-upstreams didn't just reject those patches for fun.
+Due to this multi-arch idea, it is IMPOSSIBLE for Gentoo Prefix to
+bootstrap a compiler without using Debuntu patches, which is an absolute
+NO-GO area!  GCC and binutils upstreams didn't just reject those patches
+for fun.
 
-You better find yourself a decent system, such as Solaris, OpenIndiana,
-FreeBSD, Mac OS X, etc.
+I really can't help you, and won't waste any of your time either.  The
+story simply ends here.  Sorry.
 EOF
 				exit 1
 			fi
