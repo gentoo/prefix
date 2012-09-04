@@ -37,7 +37,9 @@ fi
 # give a small notice
 echo "Entering Gentoo Prefix ${EPREFIX}"
 # start the login shell, clean the entire environment but what's needed
-env -i HOME=$HOME TERM=$TERM USER=$USER $SHELL -l
+# PROFILEREAD is necessary on SUSE not to wipe the env on shell start
+[[ -n ${PROFILEREAD} ]] && DOPROFILEREAD="PROFILEREAD=${PROFILEREAD}"
+env -i HOME=$HOME TERM=$TERM USER=$USER SHELL=$SHELL $DOPROFILEREAD $SHELL -l
 # and leave a message when we exit... the shell might return non-zero
 # without having real problems, so don't send alarming messages about
 # that
