@@ -1286,7 +1286,7 @@ If you insist, you'll have go without my help, or bribe me.
 EOF
 		exit 1
 	fi
-	echo "It seems to me you are '${USER}' (${UID}), that looks cool to me."
+	echo "It seems to me you are '${USER:-$(whoami 2> /dev/null)}' (${UID}), that looks cool to me."
 
 	echo
 	echo "I'm going to check for some variables in your environment now:"
