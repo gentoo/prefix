@@ -1524,6 +1524,13 @@ EOF
 				t32=i386-${CHOST#*-}
 			fi
 			;;
+		# Even though multilib on Linux is often supported in some way,
+		# it's hardly ever installed by default (it seems)
+		# Since it's non-trivial to figure out if such system (binary
+		# packages can report to be multilib, but lack all necessary
+		# libs) is truely multilib capable, we don't bother here.  The
+		# user can override if he/she is really convinced the system can
+		# do it.
 	esac
 	if [[ ${candomultilib} == yes ]] ; then
 		cat << EOF
