@@ -15,7 +15,7 @@ SRC_URI="http://www.swi-prolog.org/download/devel/src/pl-${PV}.tar.gz
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
 IUSE="archive debug doc gmp hardened java minimal odbc readline ssl static test zlib X"
 
 RDEPEND="sys-libs/ncurses
