@@ -1275,9 +1275,9 @@ EOF
 			;;
 	esac
 
-	echo
 	if [[ ${UID} == 0 ]] ; then
 		cat << EOF
+
 Hmmm, you appear to be root, or at least someone with UID 0.  I really
 don't like that.  The Gentoo Prefix people really discourage anyone
 running Gentoo Prefix as root.  As a matter of fact, I'm just refusing
@@ -1286,6 +1286,7 @@ If you insist, you'll have go without my help, or bribe me.
 EOF
 		exit 1
 	fi
+	echo
 	echo "It seems to me you are '${USER:-$(whoami 2> /dev/null)}' (${UID}), that looks cool to me."
 
 	echo
@@ -1322,17 +1323,18 @@ done that, you can run me again.
 EOF
 		exit 1
 	fi
+	echo
 	echo "I'm excited!  Seems we can finally do something productive now."
 
-	echo
 	cat << EOF
+
 Ok, I'm going to do a little bit of guesswork here.  Thing is, your
 machine appears to be identified by CHOST=${CHOST}.
-
 EOF
 	case "${CHOST}" in
 		powerpc*|ppc*|sparc*)
 			cat << EOF
+
 To me, it seems to be a big-endian machine.  I told you before you need
 patience, but with your machine, regardless how many CPUs you have, you
 need some more.  Context switches are just expensive, and guess what
@@ -1340,7 +1342,6 @@ fork/execs result in all the time.  I'm going to make it even worse for
 you, configure and make typically are fork/exec bombs.
 I'm going to assume you're actually used to having patience with this
 machine, which is good, because I really love a box like yours!
-
 EOF
 			;;
 	esac
@@ -1351,11 +1352,11 @@ EOF
 	case "${CHOST}" in
 		*-solaris*)
 			cat << EOF
+
 Ok, this is Solaris, or a derivative like OpenSolaris or OpenIndiana.
 Sometimes, useful tools necessary at this stage are hidden.  I'm going
 to check if that's the case for your system too, and if so, add those
 locations to your PATH.
-
 EOF
 			# could do more "smart" CHOST deductions here, but brute
 			# force is most likely as quick, but simpler
@@ -1375,6 +1376,7 @@ EOF
 		case "${CHOST}" in
 			*-darwin*)
 				cat << EOF
+
 Uh oh... a Mac OS X system, but without compiler.  You must have
 forgotten to install Xcode tools.  If your Mac didn't come with an
 install DVD (pre Lion) you can find it in the Mac App Store, or download
@@ -1387,6 +1389,7 @@ EOF
 				;;
 			*-solaris2.[789]|*-solaris2.10)
 				cat << EOF
+
 Yikes!  Your Solaris box doesn't come with gcc in /usr/sfw/blabla/bin?
 What good is it to me then?  I can't find a compiler!  I'm afraid
 you'll have to find a way to install the Sun FreeWare tools somehow, is
@@ -1397,6 +1400,7 @@ EOF
 				;;
 			*-solaris*)
 				cat << EOF
+
 Sigh.  This is Solaris 11, OpenSolaris or OpenIndiana?  I can't tell the
 difference without looking more closely.  What I DO know, is that there
 is no compiler, at least not where I was just looking, so how do we
@@ -1412,6 +1416,7 @@ EOF
 				;;
 			*)
 				cat << EOF
+
 Well, well... let's make this painful situation as short as it can be:
 you don't appear to have a compiler around for me to play with.
 Since I like your PATH to be as minimal as possible, I threw away
@@ -1431,16 +1436,19 @@ EOF
 				esac
 				if ! type -P gcc > /dev/null ; then
 					cat << EOF
+
 Are you sure you have a compiler?  I didn't find one.  I think you
 better first go get one, then run me again.
 EOF
 					exit 1
 				else
+					echo
 					echo "Pfff, ok, it seems you were right.  Can we move on now?"
 				fi
 			;;
 		esac
 	else
+		echo
 		echo "Great!  You appear to have a compiler in your PATH"
 	fi
 
@@ -1462,6 +1470,7 @@ EOF
 	local tcpu=$((ncpu / 2 + 1))
 	[[ ${tcpu} -gt 8 ]] && tcpu=8
 	cat << EOF
+
 I did my utmost best, and found that you have ${ncpu} cpu cores.  If
 this looks wrong to you, you can happily ignore me.  Based on the number
 of cores you have, I came up with the idea of parallelising compilation
@@ -1476,16 +1485,19 @@ EOF
 			;;
 		*)
 			if [[ ${ans} -le 0 ]] ; then
+				echo
 				echo "You should have entered a non-zero integer number, obviously..."
 				exit 1
 			elif [[ ${ans} -gt ${tcpu} && ${tcpu} -ne 1 ]] ; then
 				if [[ ${ans} -gt ${ncpu} ]] ; then
 					cat << EOF
+
 Want to push it very hard?  I already feel sorry for your poor box with
 its mere ${ncpu} cpu cores.
 EOF
 				elif [[ $((ans - tcpu)) -gt 1 ]] ; then
 					cat << EOF
+
 So you think you can stress your system a bit more than my extremely
 well thought out formula suggested you?  Hmmpf, I'll take it you know
 what you're doing then.
@@ -1567,6 +1579,7 @@ EOF
 				;;
 			*)
 				cat << EOF
+
 ${ans}? Yeah Right(tm)!  You obviously don't know what you're talking
 about, so I'll take the default instead.
 EOF
@@ -1577,8 +1590,8 @@ EOF
 
 	# choose EPREFIX, we do this last, since we have to actually write
 	# to the filesystem here to check that the EPREFIX is sane
-	echo
 	cat << EOF
+
 Each and every Prefix has a home.  That is, a place where everything is
 supposed to be in.  That place must be fully writable by you (duh), but
 should also be able to hold some fair amount of data and preferably be
@@ -1590,7 +1603,6 @@ you're just going to have to wait a fair bit longer.
 This place which is your Prefix' home, is often referred to by a
 variable called EPREFIX.
 EOF
-	echo
 	while true ; do
 		if [[ -z ${EPREFIX} ]] ; then
 			# Make the default for Mac users a bit more "native feel"
@@ -1598,6 +1610,7 @@ EOF
 				&& EPREFIX=$HOME/Gentoo \
 				|| EPREFIX=$HOME/gentoo
 		fi
+		echo
 		read -p "What do you want EPREFIX to be? [$EPREFIX] " ans
 		case "${ans}" in
 			"")
@@ -1606,18 +1619,21 @@ EOF
 				EPREFIX=${ans}
 				;;
 			*)
+				echo
 				echo "EPREFIX must be an absolute path!"
 				EPREFIX=
 				continue
 				;;
 		esac
 		if [[ ! -d ${EPREFIX} ]] && ! mkdir -p "${EPREFIX}" ; then
+			echo
 			echo "It seems I cannot create ${EPREFIX}."
 			echo "I'll forgive you this time, try again."
 			EPREFIX=
 			continue
 		fi
 		if ! touch "${EPREFIX}"/.canihaswrite >& /dev/null ; then
+			echo
 			echo "I cannot write to ${EPREFIX}!"
 			echo "You want some fun, but without me?  Try another location."
 			EPREFIX=
@@ -1631,8 +1647,8 @@ EOF
 	export EPREFIX
 	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$PATH"
 
-	echo
 	cat << EOF
+
 OK!  I'm going to give it a try, this is what I have collected sofar:
   EPREFIX=${EPREFIX}
   CHOST=${CHOST}
@@ -1644,8 +1660,8 @@ stages to make your box as groovy as I am myself, setting up your
 Prefix.  In short, I'm going to run stage1, stage2, stage3, followed by
 emerge -e system.  If any of these stages fail, both you and me are in
 deep trouble.  So let's hope that doesn't happen.
-
 EOF
+	echo
 	read -p "Type here what you want to wish me [luck] " ans
 	if [[ -n ${ans} && ${ans} != "luck" ]] ; then
 		echo "Huh?  You're not serious, are you?"
