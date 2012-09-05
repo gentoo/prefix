@@ -1712,10 +1712,18 @@ EOF
 
 Hmmmm, I was already afraid of this to happen.  Running
   ${BASH_SOURCE[0]} "${EPREFIX}" stage3
-somewhere failed :(  I have no clue, really.  Please find friendly folks
-in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
-or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
-This is most inconvenient, and it crushed my ego.  Sorry, I give up.
+somewhere failed :(  Details might be found in the build log:
+EOF
+		for log in "${EPREFIX}"/var/tmp/portage/*/*/temp/build.log ; do
+			[[ -e ${log} ]] || continue
+			echo "  ${log}"
+		done
+		[[ -e ${log} ]] || echo "  (no build logs found?!?)"
+		cat << EOF
+I have no clue, really.  Please find friendly folks in #gentoo-prefix on
+irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
+at bugs.gentoo.org under Gentoo/Alt, Prefix Support.  This is most
+inconvenient, and it crushed my ego.  Sorry, I give up.
 EOF
 		exit 1
 	fi
@@ -1727,10 +1735,17 @@ EOF
 
 Oh yeah, I thought I was almost there, and then this!  I did
   emerge -e system
-and it failed at some point :(  I have no clue, really.  Please find
-friendly folks in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org
-mailing list, or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix
-Support.
+and it failed at some point :(  Details might be found in the build log:
+EOF
+		for log in "${EPREFIX}"/var/tmp/portage/*/*/temp/build.log ; do
+			[[ -e ${log} ]] || continue
+			echo "  ${log}"
+		done
+		[[ -e ${log} ]] || echo "  (no build logs found?!?)"
+		cat << EOF
+I have no clue, really.  Please find friendly folks in #gentoo-prefix on
+irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
+at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 You know, I got the feeling you just started to like me, but I guess
 that's all gone now.  I'll bother you no longer.
 EOF
