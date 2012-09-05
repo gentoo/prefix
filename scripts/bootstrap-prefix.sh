@@ -1011,6 +1011,14 @@ bootstrap_stage3() {
 		return 1
 	fi
 
+	# stage2 as set a profile, which defines CHOST, so unset any CHOST
+	# we've got here to avoid cross-compilation due to slight
+	# differences caused by our guessing vs. what the profile sets.
+	# This happens at least on 32-bits Darwin, with i386 and i686.
+	# https://bugs.gentoo.org/show_bug.cgi?id=433948
+	local bootstrapCHOST=${CHOST}
+	unset CHOST
+
 	emerge_pkgs() {
 		local opts=$1 ; shift
 		local pkg vdb pvdb evdb
@@ -1053,7 +1061,7 @@ bootstrap_stage3() {
 		sys-devel/gcc-config
 	)
 
-	case ${CHOST} in
+	case ${bootstrapCHOST} in
 		*-darwin*)
 			pkgs=( ${pkgs[@]} sys-apps/darwin-miscutils )
 			case "$(gcc --version)" in
@@ -1139,7 +1147,7 @@ bootstrap_stage3() {
 	[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
 
 	local cpuflags=
-	case ${CHOST} in
+	case ${bootstrapCHOST} in
 		*-darwin*)
 			: # gcc-apple is 4.2, so mpfr/mpc/gmp are not necessary
 			;;
