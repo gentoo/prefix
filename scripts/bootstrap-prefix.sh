@@ -1728,7 +1728,10 @@ EOF
 		exit 1
 	fi
 	hash -r  # tmp/* stuff is removed in stage3
-	
+
+	# Don't confuse Portage with a possibly slightly differing CHOST
+	unset CHOST
+
 	if ! emerge -e system ; then
 		# emerge -e system fail
 		cat << EOF
