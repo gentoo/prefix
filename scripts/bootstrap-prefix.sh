@@ -1680,6 +1680,7 @@ EOF
 	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1 ; then
 		# stage 1 fail
 		cat << EOF
+
 I tried running
   ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1
 but that failed :(  I have no clue, really.  Please find friendly folks
@@ -1693,6 +1694,7 @@ EOF
 	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
 		# stage 2 fail
 		cat << EOF
+
 Odd!  Running
   ${BASH_SOURCE[0]} "${EPREFIX}" stage2
 failed! :(  I have no clue, really.  Please find friendly folks in
@@ -1707,6 +1709,7 @@ EOF
 		# stage 3 fail
 		hash -r  # previous cat (tmp/usr/bin/cat) may have been removed
 		cat << EOF
+
 Hmmmm, I was already afraid of this to happen.  Running
   ${BASH_SOURCE[0]} "${EPREFIX}" stage3
 somewhere failed :(  I have no clue, really.  Please find friendly folks
@@ -1721,6 +1724,7 @@ EOF
 	if ! emerge -e system ; then
 		# emerge -e system fail
 		cat << EOF
+
 Oh yeah, I thought I was almost there, and then this!  I did
   emerge -e system
 and it failed at some point :(  I have no clue, really.  Please find
@@ -1736,6 +1740,7 @@ EOF
 	if ! ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
 		# startscript fail?
 		cat << EOF
+
 Ok, let's be honest towards each other.  If
   ${BASH_SOURCE[0]} "${EPREFIX}" startscript
 fails, then who cheated on who?  Either you use an obscure shell, or
@@ -1751,6 +1756,7 @@ EOF
 
 	echo
 	cat << EOF
+
 Woah!  Everything just worked!  Now YOU should run
   ${EPREFIX}/startprefix
 and enjoy!  Thanks for using me, it was a pleasure to work with you.
