@@ -31,7 +31,7 @@ python_dep="${python_dep//ssl,}"
 
 # The pysqlite blocker is for bug #282760.
 DEPEND="${python_dep}
-	!build? ( >=sys-apps/sed-4.0.5 )
+	>=sys-apps/sed-4.0.5 sys-devel/patch
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
 	epydoc? ( >=dev-python/epydoc-2.0 !<=dev-python/pysqlite-2.4.1 )"
 # Require sandbox-2.2 for bug #288863.
@@ -40,9 +40,11 @@ DEPEND="${python_dep}
 # to python-3.3 / pyxattr. Also, xattr support is only tested with Linux, so
 # for now, don't pull in xattr deps for other kernels.
 # For whirlpool hash, require python[ssl] or python-mhash (bug #425046).
+# bash-4.1 necessary for redirect_alloc_fd, which fails on non-Linux if bash
+# doesn't have a builtin for finding a random filedescriptor
 RDEPEND="${python_dep} || ( ${python_dep_ssl} dev-python/python-mhash )
 	!build? ( >=sys-apps/sed-4.0.5
-		>=app-shells/bash-3.2_p17
+		>=app-shells/bash-4.1
 		>=app-admin/eselect-1.2 )
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
@@ -242,7 +244,7 @@ src_install() {
 	dodir /usr/lib/portage/bin
 
 	if use userland_GNU; then
-		rm "${ED}"${portage_base}/bin/ebuild-helpers/sed || die "Failed to remove sed wrapper"
+		rm "${ED}"${portage_base}/bin/ebuild-helpers/bsd/sed || die "Failed to remove sed wrapper"
 	fi
 
 	# This allows config file updates that are applied for package
@@ -282,10 +284,6 @@ pkg_preinst() {
 		ewarn "enable the ssl USE flag for >=dev-lang/python-2.6 in order"
 		ewarn "to enable RMD160 hash support."
 		ewarn "See bug #198398 for more information."
-	fi
-	if [[ ! -L "${EROOT}/etc/make.globals" &&
-		-f "${EROOT}/etc/make.globals" ]]; then
-		rm "${EROOT}/etc/make.globals"
 	fi
 
 	has_version "<=${CATEGORY}/${PN}-2.2.00.13346"
