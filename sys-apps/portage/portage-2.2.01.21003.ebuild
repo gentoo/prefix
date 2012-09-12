@@ -244,7 +244,7 @@ src_install() {
 	dodir /usr/lib/portage/bin
 
 	if use userland_GNU; then
-		rm "${ED}"${portage_base}/bin/ebuild-helpers/sed || die "Failed to remove sed wrapper"
+		rm "${ED}"${portage_base}/bin/ebuild-helpers/bsd/sed || die "Failed to remove sed wrapper"
 	fi
 
 	# This allows config file updates that are applied for package
