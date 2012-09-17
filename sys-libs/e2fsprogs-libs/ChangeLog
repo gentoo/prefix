@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.86 2012/05/22 19:44:22 vapier Exp $
 
+  17 Sep 2012; Fabian Groffen <grobian@gentoo.org> e2fsprogs-libs-1.42.3.ebuild:
+  Marked ~x86-solaris
+
 *e2fsprogs-libs-1.42.3 (22 May 2012)
 
   22 May 2012; Mike Frysinger <vapier@gentoo.org> +e2fsprogs-libs-1.42.3.ebuild:
