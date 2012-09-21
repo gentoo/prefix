@@ -666,7 +666,7 @@ bootstrap_gnu() {
 
 	einfo "Installing ${PN}"
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
-		./make install || return 1
+		./make install MAKE="${S}/make" || return 1
 	else
 		$MAKE install || return 1
 	fi
