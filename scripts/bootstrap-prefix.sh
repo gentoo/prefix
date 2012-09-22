@@ -974,6 +974,7 @@ bootstrap_stage1() {
 		} > "${ROOT}"/usr/bin/pkg-config
 		chmod 755 "${ROOT}"/usr/bin/pkg-config
 	fi
+	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
 	# important to have our own (non-flawed one) since Python (from
 	# Portage) and binutils use it
 	for zlib in ${ROOT}/usr/lib/libz.* ; do
