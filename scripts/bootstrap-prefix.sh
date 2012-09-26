@@ -2023,8 +2023,14 @@ PORTAGE_TMPDIR=${ROOT}/var/tmp
 DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
 SNAPSHOT_URL="http://files.prefix.freens.org/snapshots"
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
-GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org/distfiles"}
+GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
+
+# Append /distfiles to GENTOO_MIRRORS for ease of use in the rest of
+# this script
+GENTOO_MIRRORS=${GENTOO_MIRRORS%/}
+[[ ${GENTOO_MIRRORS} == */distfiles ]] || \
+	GENTOO_MIRRORS=${GENTOO_MIRRORS}/distfiles
 
 export MAKE
 
