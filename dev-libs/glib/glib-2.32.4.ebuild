@@ -78,6 +78,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.32.3-solaris-libelf.patch
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
+	epatch "${FILESDIR}"/${PN}-2.32.4-interix.patch
 
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
@@ -144,8 +145,6 @@ src_prepare() {
 	fi
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${P}-interix.patch
-
 		# activate the itx-bind package...
 		append-flags "-I${EPREFIX}/usr/include/bind"
 		append-ldflags "-L${EPREFIX}/usr/lib/bind"

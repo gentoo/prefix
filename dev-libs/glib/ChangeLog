@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.529 2012/07/16 04:27:23 tetromino Exp $
 
+  29 Sep 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/glib-2.32.4-interix.patch, glib-2.32.4.ebuild:
+  Add updated Interix patch, by David Holm, bug #435382
+
 *glib-2.32.4 (16 Jul 2012)
 
   16 Jul 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
