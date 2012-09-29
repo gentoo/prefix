@@ -1,0 +1,1259 @@
+diff -aurN gcc-4.6.3/config-ml.in gcc-4.6.3-mint-20120503/config-ml.in
+--- gcc-4.6.3/config-ml.in	2010-11-19 21:25:49.000000000 +0100
++++ gcc-4.6.3-mint-20120503/config-ml.in	2012-05-03 18:23:00.890625000 +0200
+@@ -351,6 +351,23 @@
+ 	    esac
+ 	  done
+ 	fi
++	case "${host}" in
++	  *-*-mint*)
++	    case "${srcdir}" in
++	      */libgcc ) : ;;
++	      *)
++	        old_multidirs="${multidirs}"
++	        multidirs=""
++	        for x in ${old_multidirs}; do
++		  case "$x" in
++		    *mshort ) : ;;
++		    *) multidirs="${multidirs} ${x}" ;;
++		  esac
++		done
++		;;
++	    esac
++	    ;;
++	esac
+ 	;;
+ mips*-*-*)
+ 	if [ x$enable_single_float = xno ]
+diff -aurN gcc-4.6.3/configure gcc-4.6.3-mint-20120503/configure
+--- gcc-4.6.3/configure	2011-12-18 11:03:44.000000000 +0100
++++ gcc-4.6.3-mint-20120503/configure	2012-05-03 18:23:00.937500000 +0200
+@@ -3077,6 +3077,9 @@
+     *-*-freebsd*)
+         # Enable libmudflap by default in FreeBSD.
+ 	;;
++    *-*-mint*)
++        # Enable libmudflap by default in MiNT.
++	;;
+     *)
+         # Disable it by default everywhere else.
+ 	noconfigdirs="$noconfigdirs target-libmudflap"
+@@ -3449,6 +3452,9 @@
+   m68k-*-coff*)
+     noconfigdirs="$noconfigdirs ${libgcj}"
+     ;;
++  m68k-*-mint*)
++    noconfigdirs="$noconfigdirs target-libiberty ${libgcj}"
++    ;;
+   m68*-*-* | fido-*-*)
+     libgloss_dir=m68k
+     ;;
+diff -aurN gcc-4.6.3/configure.ac gcc-4.6.3-mint-20120503/configure.ac
+--- gcc-4.6.3/configure.ac	2011-11-18 12:45:44.000000000 +0100
++++ gcc-4.6.3-mint-20120503/configure.ac	2012-05-03 18:23:00.937500000 +0200
+@@ -523,6 +523,9 @@
+     *-*-freebsd*)
+         # Enable libmudflap by default in FreeBSD.
+ 	;;
++    *-*-mint*)
++        # Enable libmudflap by default in MiNT.
++	;;
+     *)
+         # Disable it by default everywhere else.
+ 	noconfigdirs="$noconfigdirs target-libmudflap"
+@@ -895,6 +898,9 @@
+   m68k-*-coff*)
+     noconfigdirs="$noconfigdirs ${libgcj}"
+     ;;
++  m68k-*-mint*)
++    noconfigdirs="$noconfigdirs target-libiberty ${libgcj}"
++    ;;
+   m68*-*-* | fido-*-*)
+     libgloss_dir=m68k
+     ;;
+diff -aurN gcc-4.6.3/gcc/config/m68k/lb1sf68.asm gcc-4.6.3-mint-20120503/gcc/config/m68k/lb1sf68.asm
+--- gcc-4.6.3/gcc/config/m68k/lb1sf68.asm	2009-10-02 13:20:51.000000000 +0200
++++ gcc-4.6.3-mint-20120503/gcc/config/m68k/lb1sf68.asm	2012-05-03 18:23:00.953125000 +0200
+@@ -666,7 +666,9 @@
+ 	.globl SYM (__negdf2)
+ 	.globl SYM (__cmpdf2)
+ 	.globl SYM (__cmpdf2_internal)
++#ifdef __ELF__
+ 	.hidden SYM (__cmpdf2_internal)
++#endif
+ 
+ 	.text
+ 	.even
+@@ -2581,7 +2583,9 @@
+ 	.globl SYM (__negsf2)
+ 	.globl SYM (__cmpsf2)
+ 	.globl SYM (__cmpsf2_internal)
++#ifdef __ELF__
+ 	.hidden SYM (__cmpsf2_internal)
++#endif
+ 
+ | These are common routines to return and signal exceptions.	
+ 
+diff -aurN gcc-4.6.3/gcc/config/m68k/m68k.h gcc-4.6.3-mint-20120503/gcc/config/m68k/m68k.h
+--- gcc-4.6.3/gcc/config/m68k/m68k.h	2010-11-22 02:57:50.000000000 +0100
++++ gcc-4.6.3-mint-20120503/gcc/config/m68k/m68k.h	2012-05-03 18:23:00.953125000 +0200
+@@ -138,7 +138,10 @@
+ 	}								\
+ 									\
+       if (TARGET_68881)							\
+-	builtin_define ("__HAVE_68881__");				\
++	{								\
++	  builtin_define ("__HAVE_68881__");				\
++	  builtin_define ("__M68881__"); /* Non-standard */		\
++	}								\
+ 									\
+       if (TARGET_COLDFIRE)						\
+ 	{								\
+diff -aurN gcc-4.6.3/gcc/config/m68k/math-68881.h gcc-4.6.3-mint-20120503/gcc/config/m68k/math-68881.h
+--- gcc-4.6.3/gcc/config/m68k/math-68881.h	2004-02-09 01:48:13.000000000 +0100
++++ gcc-4.6.3-mint-20120503/gcc/config/m68k/math-68881.h	2012-05-03 18:23:00.953125000 +0200
+@@ -44,6 +44,16 @@
+ 
+ #include <errno.h>
+ 
++/* GCC 4.3 and above with -std=c99 or -std=gnu99 implements ISO C99
++   inline semantics, unless -fgnu89-inline is used.  */
++#ifdef __cplusplus
++# define __MATH_68881_INLINE inline
++#elif defined __GNUC_STDC_INLINE__
++# define __MATH_68881_INLINE extern __inline __attribute__ ((__gnu_inline__))
++#else
++# define __MATH_68881_INLINE extern __inline
++#endif
++
+ #undef HUGE_VAL
+ #ifdef __sun__
+ /* The Sun assembler fails to handle the hex constant in the usual defn.  */
+@@ -64,7 +74,7 @@
+ })
+ #endif
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ sin (double x)
+ {
+   double value;
+@@ -75,7 +85,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ cos (double x)
+ {
+   double value;
+@@ -86,7 +96,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ tan (double x)
+ {
+   double value;
+@@ -97,7 +107,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ asin (double x)
+ {
+   double value;
+@@ -108,7 +118,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ acos (double x)
+ {
+   double value;
+@@ -119,7 +129,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ atan (double x)
+ {
+   double value;
+@@ -130,7 +140,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ atan2 (double y, double x)
+ {
+   double pi, pi_over_2;
+@@ -187,7 +197,7 @@
+     }
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ sinh (double x)
+ {
+   double value;
+@@ -198,7 +208,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ cosh (double x)
+ {
+   double value;
+@@ -209,7 +219,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ tanh (double x)
+ {
+   double value;
+@@ -220,7 +230,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ atanh (double x)
+ {
+   double value;
+@@ -231,7 +241,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ exp (double x)
+ {
+   double value;
+@@ -242,7 +252,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ expm1 (double x)
+ {
+   double value;
+@@ -253,7 +263,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ log (double x)
+ {
+   double value;
+@@ -264,7 +274,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ log1p (double x)
+ {
+   double value;
+@@ -275,7 +285,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ log10 (double x)
+ {
+   double value;
+@@ -286,7 +296,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ sqrt (double x)
+ {
+   double value;
+@@ -297,13 +307,13 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ hypot (double x, double y)
+ {
+   return sqrt (x*x + y*y);
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ pow (double x, double y)
+ {
+   if (x > 0)
+@@ -352,7 +362,7 @@
+     }
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ fabs (double x)
+ {
+   double value;
+@@ -363,7 +373,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ ceil (double x)
+ {
+   int rounding_mode, round_up;
+@@ -385,7 +395,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ floor (double x)
+ {
+   int rounding_mode, round_down;
+@@ -408,7 +418,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ rint (double x)
+ {
+   int rounding_mode, round_nearest;
+@@ -430,7 +440,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ fmod (double x, double y)
+ {
+   double value;
+@@ -442,7 +452,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ drem (double x, double y)
+ {
+   double value;
+@@ -454,7 +464,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ scalb (double x, int n)
+ {
+   double value;
+@@ -466,7 +476,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ logb (double x)
+ {
+   double exponent;
+@@ -477,7 +487,7 @@
+   return exponent;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ ldexp (double x, int n)
+ {
+   double value;
+@@ -489,7 +499,7 @@
+   return value;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ frexp (double x, int *exp)
+ {
+   double float_exponent;
+@@ -514,7 +524,7 @@
+   return mantissa;
+ }
+ 
+-__inline extern double
++__MATH_68881_INLINE double
+ modf (double x, double *ip)
+ {
+   double temp;
+diff -aurN gcc-4.6.3/gcc/config/m68k/mint.h gcc-4.6.3-mint-20120503/gcc/config/m68k/mint.h
+--- gcc-4.6.3/gcc/config/m68k/mint.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-4.6.3-mint-20120503/gcc/config/m68k/mint.h	2012-05-03 18:23:00.968750000 +0200
+@@ -0,0 +1,176 @@
++/* Definitions of target machine for GNU compiler.
++   Atari ST TOS/MiNT.
++   Copyright (C) 1994, 1995, 2007, 2008, 2009, 2010, 2011
++   Free Software Foundation, Inc.
++
++This file is part of GCC.
++
++GCC is free software; you can redistribute it and/or modify
++it under the terms of the GNU General Public License as published by
++the Free Software Foundation; either version 3, or (at your option)
++any later version.
++
++GCC is distributed in the hope that it will be useful,
++but WITHOUT ANY WARRANTY; without even the implied warranty of
++MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++GNU General Public License for more details.
++
++You should have received a copy of the GNU General Public License
++along with GCC; see the file COPYING3.  If not see
++<http://www.gnu.org/licenses/>.  */
++
++/* Here are four prefixes that are used by asm_fprintf to
++   facilitate customization for alternate assembler syntaxes.
++   Machines with no likelihood of an alternate syntax need not
++   define these and need not use asm_fprintf.  */
++
++/* The prefix for register names.  Note that REGISTER_NAMES
++   is supposed to include this prefix. Also note that this is NOT an
++   fprintf format string, it is a literal string */
++
++#undef REGISTER_PREFIX
++#define REGISTER_PREFIX "%"
++
++/* The prefix for local (compiler generated) labels.
++   These labels will not appear in the symbol table.  */
++
++#undef LOCAL_LABEL_PREFIX
++#define LOCAL_LABEL_PREFIX "."
++
++#undef ASM_COMMENT_START
++#define ASM_COMMENT_START "|"
++
++#undef WCHAR_TYPE
++#define WCHAR_TYPE "short unsigned int"
++
++#undef WCHAR_TYPE_SIZE
++#define WCHAR_TYPE_SIZE SHORT_TYPE_SIZE
++
++#undef TARGET_OS_CPP_BUILTINS
++#define TARGET_OS_CPP_BUILTINS()		\
++  do						\
++    {						\
++      builtin_define ("__MINT__");		\
++      builtin_define_std ("atarist");		\
++      builtin_assert ("machine=atari");		\
++      builtin_assert ("system=mint");		\
++    }						\
++  while (0)
++
++/* The following defines are nonstandard
++   and are kept only for compatibility
++   with older versions of GCC for MiNT.  */
++
++#undef CPP_SPEC
++#define CPP_SPEC			\
++  "%{m68000:-D__M68000__} "		\
++  "%{mc68020:-D__M68020__} "		\
++  "%{m68020:-D__M68020__} "		\
++  "%{m68030:-D__M68020__} "		\
++  "%{m68040:-D__M68020__} "		\
++  "%{m68060:-D__M68020__} "		\
++  "%{m68020-40:-D__M68020__} "		\
++  "%{m68020-60:-D__M68020__} "		\
++  "%{!m680*:%{!mc680*:-D__M68000__}} "	\
++  "%{mshort:-D__MSHORT__}"
++
++#define STARTFILE_SPEC	"%{pg|p|profile:gcrt0.o%s;:crt0.o%s}"
++#define LIB_SPEC	"-lc"
++
++/* Every structure or union's size must be a multiple of 2 bytes.  */
++#define STRUCTURE_SIZE_BOUNDARY 16
++
++/* The -g option generates stabs debug information.  */
++#define DBX_DEBUGGING_INFO 1
++
++/* This is the assembler directive to equate two values.  */
++#undef SET_ASM_OP
++#define SET_ASM_OP		"\t.set\t"
++
++/* This is how we tell the assembler that a symbol is weak.  */
++#undef ASM_WEAKEN_LABEL
++#define ASM_WEAKEN_LABEL(FILE,NAME) \
++  do { fputs ("\t.weak\t", FILE); assemble_name (FILE, NAME); \
++       fputc ('\n', FILE); } while (0)
++
++/* Don't default to pcc-struct-return, because gcc is the only compiler, and
++   we want to retain compatibility with older gcc versions.  */
++#define DEFAULT_PCC_STRUCT_RETURN 0
++
++/* The system headers are C++-aware.  */
++#define NO_IMPLICIT_EXTERN_C
++
++/* By default, the vtable entries are void pointers, the so the alignment
++   is the same as pointer alignment.  The value of this macro specifies
++   the alignment of the vtable entry in bits.  It should be defined only
++   when special alignment is necessary.
++
++   MiNT: The default value of 32 is too much and unsupported by a.out-mintprg.
++*/
++#define TARGET_VTABLE_ENTRY_ALIGN 16
++
++/* If we have a definition of INCOMING_RETURN_ADDR_RTX, assume that
++   the rest of the DWARF 2 frame unwind support is also provided.
++   
++   MiNT: DWARF 2 frame unwind is not supported by a.out-mint.
++*/
++#define DWARF2_UNWIND_INFO 0
++
++/* config/m68k.md has an explicit reference to the program counter,
++   prefix this by the register prefix.  */
++
++#define ASM_RETURN_CASE_JUMP				\
++  do {							\
++    if (TARGET_COLDFIRE)				\
++      {							\
++	if (ADDRESS_REG_P (operands[0]))		\
++	  return "jmp %%pc@(2,%0:l)";			\
++	else						\
++	  return "ext%.l %0\n\tjmp %%pc@(2,%0:l)";	\
++      }							\
++    else						\
++      return "jmp %%pc@(2,%0:w)";			\
++  } while (0)
++
++/* The ADDR_DIFF_VEC must exactly follow the previous instruction.  */
++
++#undef ADDR_VEC_ALIGN
++#define ADDR_VEC_ALIGN(ADDR_VEC) 0
++
++/* If defined, a C expression whose value is a string containing the
++   assembler operation to identify the following data as uninitialized global
++   data.  */
++
++#define BSS_SECTION_ASM_OP "\t.bss"
++
++/* A C statement (sans semicolon) to output to the stdio stream
++   FILE the assembler definition of uninitialized global DECL named
++   NAME whose size is SIZE bytes and alignment is ALIGN bytes.
++   Try to use asm_output_aligned_bss to implement this macro.  */
++
++#define ASM_OUTPUT_ALIGNED_BSS(FILE, DECL, NAME, SIZE, ALIGN) \
++  asm_output_aligned_bss (FILE, DECL, NAME, SIZE, ALIGN)
++
++/* Disable -fpic and -fPIC since bsr.l _label@PLTPC
++   is unsupported by the assembler.  */
++
++#undef  SUBTARGET_OVERRIDE_OPTIONS
++#define SUBTARGET_OVERRIDE_OPTIONS					\
++do {									\
++  if (flag_pic && !TARGET_PCREL)					\
++      error ("-f%s is not supported on this target",			\
++	       (flag_pic > 1) ? "PIC" : "pic");				\
++} while (0)
++
++
++/* Workaround for GCC bug #35067 about multiple thunks.  */
++
++#undef MAKE_DECL_ONE_ONLY
++#define MAKE_DECL_ONE_ONLY(DECL) (DECL_WEAK (DECL) = 1)
++
++/* Avoid requiring -static with -fmudflap like in config/bfin/uclinux.h */
++#define MFWRAP_SPEC " %{fmudflap|fmudflapth: \
++ --wrap=malloc --wrap=free --wrap=calloc --wrap=realloc\
++ --wrap=mmap --wrap=munmap --wrap=alloca\
++ %{fmudflapth: --wrap=pthread_create\
++}} %{fmudflap|fmudflapth: --wrap=main}"
+diff -aurN gcc-4.6.3/gcc/config/m68k/t-mint gcc-4.6.3-mint-20120503/gcc/config/m68k/t-mint
+--- gcc-4.6.3/gcc/config/m68k/t-mint	1970-01-01 01:00:00.000000000 +0100
++++ gcc-4.6.3-mint-20120503/gcc/config/m68k/t-mint	2012-05-03 18:23:00.968750000 +0200
+@@ -0,0 +1,27 @@
++# 
++# Use multiple libraries
++# 
++
++MULTILIB_OPTIONS = m68020-60 mshort
++
++MULTILIB_DIRNAMES = m68020-60 mshort
++
++MULTILIB_MATCHES = \
++	m68020-60=m68881 \
++	m68020-60=m68020 \
++	m68020-60=m68020-40 \
++	m68020-60=mc68020 \
++	m68020-60=m68030 \
++	m68020-60=m68040 \
++	m68020-60=m68060 \
++	m68020-60=mcpu?68020 \
++	m68020-60=mcpu?68030 \
++	m68020-60=mcpu?68040 \
++	m68020-60=mcpu?68060 \
++	m68020-60=march?68020 \
++	m68020-60=march?68030 \
++	m68020-60=march?68040 \
++	m68020-60=march?68060
++
++LIBGCC = stmp-multilib
++INSTALL_LIBGCC = install-multilib
+diff -aurN gcc-4.6.3/gcc/config.gcc gcc-4.6.3-mint-20120503/gcc/config.gcc
+--- gcc-4.6.3/gcc/config.gcc	2011-07-22 18:44:50.000000000 +0200
++++ gcc-4.6.3-mint-20120503/gcc/config.gcc	2012-05-03 18:23:00.968750000 +0200
+@@ -1805,6 +1805,15 @@
+ 	    tmake_file="$tmake_file m68k/t-slibgcc-elf-ver"
+ 	fi
+ 	;;
++m68k-*-mint*)
++	default_m68k_cpu=68000
++	default_cf_cpu=5475
++	tm_file="${tm_file} m68k/mint.h"
++	tm_defines="${tm_defines} MOTOROLA=1"
++	tmake_file="m68k/t-floatlib m68k/t-mint"
++	gas=yes
++	gnu_ld=yes
++	;;
+ m68k-*-rtems*)
+ 	default_m68k_cpu=68020
+ 	default_cf_cpu=5206
+diff -aurN gcc-4.6.3/gcc/df-problems.c gcc-4.6.3-mint-20120503/gcc/df-problems.c
+--- gcc-4.6.3/gcc/df-problems.c	2011-07-07 21:10:01.000000000 +0200
++++ gcc-4.6.3-mint-20120503/gcc/df-problems.c	2012-05-03 18:23:00.968750000 +0200
+@@ -4024,7 +4024,10 @@
+ 	  if (bitmap_intersect_p (merge_set, test_use)
+ 	      || bitmap_intersect_p (merge_use, test_set))
+ 	    break;
+-	  max_to = insn;
++#ifdef HAVE_cc0
++	  if (!sets_cc0_p (insn))
++#endif
++	    max_to = insn;
+ 	}
+       next = NEXT_INSN (insn);
+       if (insn == to)
+@@ -4061,7 +4064,11 @@
+     {
+       if (NONDEBUG_INSN_P (insn))
+ 	{
+-	  if (!bitmap_intersect_p (test_set, local_merge_live))
++	  if (!bitmap_intersect_p (test_set, local_merge_live)
++#ifdef HAVE_cc0
++	      && !sets_cc0_p (insn)
++#endif
++	      )
+ 	    {
+ 	      max_to = insn;
+ 	      break;
+diff -aurN gcc-4.6.3/libdecnumber/decNumberLocal.h gcc-4.6.3-mint-20120503/libdecnumber/decNumberLocal.h
+--- gcc-4.6.3/libdecnumber/decNumberLocal.h	2009-04-09 17:00:19.000000000 +0200
++++ gcc-4.6.3-mint-20120503/libdecnumber/decNumberLocal.h	2012-05-03 18:23:00.984375000 +0200
+@@ -188,7 +188,7 @@
+   #if (DECNUMMAXE != DEC_MAX_EMAX)
+     #error Maximum exponent mismatch
+   #endif
+-  #if (DECNUMMINE != DEC_MIN_EMIN)
++  #if !(DECNUMMINE == DEC_MIN_EMIN) /* gcc 2.95.3 has bug in '!=' operator for negative constants */
+     #error Minimum exponent mismatch
+   #endif
+ 
+diff -aurN gcc-4.6.3/libgcc/config.host gcc-4.6.3-mint-20120503/libgcc/config.host
+--- gcc-4.6.3/libgcc/config.host	2011-11-23 23:15:54.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libgcc/config.host	2012-05-03 18:23:00.984375000 +0200
+@@ -387,6 +387,8 @@
+ 				# with ELF format using glibc 2
+ 				# aka the GNU/Linux C library 6.
+ 	;;
++m68k-*-mint*)
++	;;
+ m68k-*-rtems*)
+ 	;;
+ mcore-*-elf)
+diff -aurN gcc-4.6.3/libiberty/configure gcc-4.6.3-mint-20120503/libiberty/configure
+--- gcc-4.6.3/libiberty/configure	2010-11-21 04:29:27.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libiberty/configure	2012-05-03 18:23:01.031250000 +0200
+@@ -4850,6 +4850,7 @@
+ if [ "${shared}" = "yes" ]; then
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)		;;
+     alpha*-*-linux*)	PICFLAG=-fPIC ;;
+     arm*-*-*)		PICFLAG=-fPIC ;;
+     hppa*-*-*)		PICFLAG=-fPIC ;;
+diff -aurN gcc-4.6.3/libiberty/configure.ac gcc-4.6.3-mint-20120503/libiberty/configure.ac
+--- gcc-4.6.3/libiberty/configure.ac	2010-11-21 04:29:27.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libiberty/configure.ac	2012-05-03 18:23:01.031250000 +0200
+@@ -201,6 +201,7 @@
+ if [[ "${shared}" = "yes" ]]; then
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)		;;
+     alpha*-*-linux*)	PICFLAG=-fPIC ;;
+     arm*-*-*)		PICFLAG=-fPIC ;;
+     hppa*-*-*)		PICFLAG=-fPIC ;;
+diff -aurN gcc-4.6.3/libiberty/hex.c gcc-4.6.3-mint-20120503/libiberty/hex.c
+--- gcc-4.6.3/libiberty/hex.c	2007-01-31 21:05:50.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libiberty/hex.c	2012-05-03 18:23:01.031250000 +0200
+@@ -24,7 +24,7 @@
+ #include "libiberty.h"
+ #include "safe-ctype.h" /* for HOST_CHARSET_ASCII */
+ 
+-#if EOF != -1
++#if !(EOF == -1)	/* gcc 2.95.3 has bug in '!=' operator for negative constants */
+  #error "hex.c requires EOF == -1"
+ #endif
+ 
+diff -aurN gcc-4.6.3/libiberty/safe-ctype.c gcc-4.6.3-mint-20120503/libiberty/safe-ctype.c
+--- gcc-4.6.3/libiberty/safe-ctype.c	2005-05-10 17:33:18.000000000 +0200
++++ gcc-4.6.3-mint-20120503/libiberty/safe-ctype.c	2012-05-03 18:23:01.031250000 +0200
+@@ -119,7 +119,7 @@
+ #include <safe-ctype.h>
+ #include <stdio.h>  /* for EOF */
+ 
+-#if EOF != -1
++#if !(EOF == -1)	/* gcc 2.95.3 has bug in '!=' operator for negative constants */
+  #error "<safe-ctype.h> requires EOF == -1"
+ #endif
+ 
+diff -aurN gcc-4.6.3/libmudflap/mf-hooks2.c gcc-4.6.3-mint-20120503/libmudflap/mf-hooks2.c
+--- gcc-4.6.3/libmudflap/mf-hooks2.c	2009-04-09 17:00:19.000000000 +0200
++++ gcc-4.6.3-mint-20120503/libmudflap/mf-hooks2.c	2012-05-03 18:23:01.031250000 +0200
+@@ -1668,6 +1668,8 @@
+ }
+ 
+ 
++#ifdef HAVE_DLFCN_H
++
+ WRAPPER2(void *, dlopen, const char *path, int flags)
+ {
+   void *p;
+@@ -1735,6 +1737,8 @@
+   return p;
+ }
+ 
++#endif /* HAVE_DLFCN_H */
++
+ 
+ #if defined (HAVE_SYS_IPC_H) && defined (HAVE_SYS_SEM_H) && defined (HAVE_SYS_SHM_H)
+ 
+diff -aurN gcc-4.6.3/libmudflap/mf-runtime.h gcc-4.6.3-mint-20120503/libmudflap/mf-runtime.h
+--- gcc-4.6.3/libmudflap/mf-runtime.h	2009-04-09 17:00:19.000000000 +0200
++++ gcc-4.6.3-mint-20120503/libmudflap/mf-runtime.h	2012-05-03 18:23:01.046875000 +0200
+@@ -97,6 +97,7 @@
+    instrumented modules are meant to be affected.  */
+ 
+ #ifdef _MUDFLAP
++#ifndef __USER_LABEL_PREFIX__
+ #pragma redefine_extname memcpy __mfwrap_memcpy
+ #pragma redefine_extname memmove __mfwrap_memmove
+ #pragma redefine_extname memset __mfwrap_memset
+@@ -230,6 +231,141 @@
+ #pragma redefine_extname getprotoent __mfwrap_getprotoent
+ #pragma redefine_extname getprotobyname __mfwrap_getprotobyname
+ #pragma redefine_extname getprotobynumber __mfwrap_getprotobynumber
++#else
++#pragma redefine_extname memcpy ___mfwrap_memcpy
++#pragma redefine_extname memmove ___mfwrap_memmove
++#pragma redefine_extname memset ___mfwrap_memset
++#pragma redefine_extname memcmp ___mfwrap_memcmp
++#pragma redefine_extname memchr ___mfwrap_memchr
++#pragma redefine_extname memrchr ___mfwrap_memrchr
++#pragma redefine_extname strcpy ___mfwrap_strcpy
++#pragma redefine_extname strncpy ___mfwrap_strncpy
++#pragma redefine_extname strcat ___mfwrap_strcat
++#pragma redefine_extname strncat ___mfwrap_strncat
++#pragma redefine_extname strcmp ___mfwrap_strcmp
++#pragma redefine_extname strcasecmp ___mfwrap_strcasecmp
++#pragma redefine_extname strncmp ___mfwrap_strncmp
++#pragma redefine_extname strncasecmp ___mfwrap_strncasecmp
++#pragma redefine_extname strdup ___mfwrap_strdup
++#pragma redefine_extname strndup ___mfwrap_strndup
++#pragma redefine_extname strchr ___mfwrap_strchr
++#pragma redefine_extname strrchr ___mfwrap_strrchr
++#pragma redefine_extname strstr ___mfwrap_strstr
++#pragma redefine_extname memmem ___mfwrap_memmem
++#pragma redefine_extname strlen ___mfwrap_strlen
++#pragma redefine_extname strnlen ___mfwrap_strnlen
++#pragma redefine_extname bzero ___mfwrap_bzero
++#pragma redefine_extname bcopy ___mfwrap_bcopy
++#pragma redefine_extname bcmp ___mfwrap_bcmp
++#pragma redefine_extname index ___mfwrap_index
++#pragma redefine_extname rindex ___mfwrap_rindex
++#pragma redefine_extname asctime ___mfwrap_asctime
++#pragma redefine_extname ctime ___mfwrap_ctime
++#pragma redefine_extname gmtime ___mfwrap_gmtime
++#pragma redefine_extname localtime ___mfwrap_localtime
++#pragma redefine_extname time ___mfwrap_time
++#pragma redefine_extname strerror ___mfwrap_strerror
++#pragma redefine_extname fopen ___mfwrap_fopen
++#pragma redefine_extname fdopen ___mfwrap_fdopen
++#pragma redefine_extname freopen ___mfwrap_freopen
++#pragma redefine_extname fclose ___mfwrap_fclose
++#pragma redefine_extname fread ___mfwrap_fread
++#pragma redefine_extname fwrite ___mfwrap_fwrite
++#pragma redefine_extname fgetc ___mfwrap_fgetc
++#pragma redefine_extname fgets ___mfwrap_fgets
++#pragma redefine_extname getc ___mfwrap_getc
++#pragma redefine_extname gets ___mfwrap_gets
++#pragma redefine_extname ungetc ___mfwrap_ungetc
++#pragma redefine_extname fputc ___mfwrap_fputc
++#pragma redefine_extname fputs ___mfwrap_fputs
++#pragma redefine_extname putc ___mfwrap_putc
++#pragma redefine_extname puts ___mfwrap_puts
++#pragma redefine_extname clearerr ___mfwrap_clearerr
++#pragma redefine_extname feof ___mfwrap_feof
++#pragma redefine_extname ferror ___mfwrap_ferror
++#pragma redefine_extname fileno ___mfwrap_fileno
++#pragma redefine_extname printf ___mfwrap_printf
++#pragma redefine_extname fprintf ___mfwrap_fprintf
++#pragma redefine_extname sprintf ___mfwrap_sprintf
++#pragma redefine_extname snprintf ___mfwrap_snprintf
++#pragma redefine_extname vprintf ___mfwrap_vprintf
++#pragma redefine_extname vfprintf ___mfwrap_vfprintf
++#pragma redefine_extname vsprintf ___mfwrap_vsprintf
++#pragma redefine_extname vsnprintf ___mfwrap_vsnprintf
++#pragma redefine_extname access ___mfwrap_access
++#pragma redefine_extname remove ___mfwrap_remove
++#pragma redefine_extname fflush ___mfwrap_fflush
++#pragma redefine_extname fseek ___mfwrap_fseek
++#pragma redefine_extname ftell ___mfwrap_ftell
++#pragma redefine_extname rewind ___mfwrap_rewind
++#pragma redefine_extname fgetpos ___mfwrap_fgetpos
++#pragma redefine_extname fsetpos ___mfwrap_fsetpos
++#pragma redefine_extname stat ___mfwrap_stat
++#pragma redefine_extname fstat ___mfwrap_fstat
++#pragma redefine_extname lstat ___mfwrap_lstat
++#pragma redefine_extname mkfifo ___mfwrap_mkfifo
++#pragma redefine_extname setvbuf ___mfwrap_setvbuf
++#pragma redefine_extname setbuf ___mfwrap_setbuf
++#pragma redefine_extname setbuffer ___mfwrap_setbuffer
++#pragma redefine_extname setlinebuf ___mfwrap_setlinebuf
++#pragma redefine_extname opendir ___mfwrap_opendir
++#pragma redefine_extname closedir ___mfwrap_closedir
++#pragma redefine_extname readdir ___mfwrap_readdir
++#pragma redefine_extname recv ___mfwrap_recv
++#pragma redefine_extname recvfrom ___mfwrap_recvfrom
++#pragma redefine_extname recvmsg ___mfwrap_recvmsg
++#pragma redefine_extname send ___mfwrap_send
++#pragma redefine_extname sendto ___mfwrap_sendto
++#pragma redefine_extname sendmsg ___mfwrap_sendmsg
++#pragma redefine_extname setsockopt ___mfwrap_setsockopt
++#pragma redefine_extname getsockopt ___mfwrap_getsockopt
++#pragma redefine_extname accept ___mfwrap_accept
++#pragma redefine_extname bind ___mfwrap_bind
++#pragma redefine_extname connect ___mfwrap_connect
++#pragma redefine_extname gethostname ___mfwrap_gethostname
++#pragma redefine_extname sethostname ___mfwrap_sethostname
++#pragma redefine_extname gethostbyname ___mfwrap_gethostbyname
++#pragma redefine_extname wait ___mfwrap_wait
++#pragma redefine_extname waitpid ___mfwrap_waitpid
++#pragma redefine_extname popen ___mfwrap_popen
++#pragma redefine_extname pclose ___mfwrap_pclose
++#pragma redefine_extname execve ___mfwrap_execve
++#pragma redefine_extname execv ___mfwrap_execv
++#pragma redefine_extname execvp ___mfwrap_execvp
++#pragma redefine_extname system ___mfwrap_system
++#pragma redefine_extname dlopen ___mfwrap_dlopen
++#pragma redefine_extname dlerror ___mfwrap_dlerror
++#pragma redefine_extname dlsym ___mfwrap_dlsym
++#pragma redefine_extname dlclose ___mfwrap_dlclose
++#pragma redefine_extname fopen64 ___mfwrap_fopen64
++#pragma redefine_extname freopen64 ___mfwrap_freopen64
++#pragma redefine_extname stat64 ___mfwrap_stat64
++#pragma redefine_extname fseeko64 ___mfwrap_fseeko64
++#pragma redefine_extname ftello64 ___mfwrap_ftello64
++#pragma redefine_extname semop ___mfwrap_semop
++#pragma redefine_extname semctl ___mfwrap_semctl
++#pragma redefine_extname shmctl ___mfwrap_shmctl
++#pragma redefine_extname shmat ___mfwrap_shmat
++#pragma redefine_extname shmdt ___mfwrap_shmdt
++#pragma redefine_extname __ctype_b_loc ___mfwrap___ctype_b_loc
++#pragma redefine_extname __ctype_toupper_loc ___mfwrap___ctype_toupper_loc
++#pragma redefine_extname __ctype_tolower_loc ___mfwrap___ctype_tolower_loc
++#pragma redefine_extname getlogin ___mfwrap_getlogin
++#pragma redefine_extname cuserid ___mfwrap_cuserid
++#pragma redefine_extname getpwnam ___mfwrap_getpwnam
++#pragma redefine_extname getpwuid ___mfwrap_getpwuid
++#pragma redefine_extname getgrnam ___mfwrap_getgrnam
++#pragma redefine_extname getgrgid ___mfwrap_getgrgid
++#pragma redefine_extname getservent ___mfwrap_getservent
++#pragma redefine_extname getservbyname ___mfwrap_getservbyname
++#pragma redefine_extname getservbyport ___mfwrap_getservbyport
++#pragma redefine_extname gai_strerror ___mfwrap_gai_strerror
++#pragma redefine_extname getmntent ___mfwrap_getmntent
++#pragma redefine_extname inet_ntoa ___mfwrap_inet_ntoa
++#pragma redefine_extname getprotoent ___mfwrap_getprotoent
++#pragma redefine_extname getprotobyname ___mfwrap_getprotobyname
++#pragma redefine_extname getprotobynumber ___mfwrap_getprotobynumber
++#endif
+ 
+ /* Disable glibc macros.  */
+ #define __NO_STRING_INLINES
+diff -aurN gcc-4.6.3/libssp/ssp.c gcc-4.6.3-mint-20120503/libssp/ssp.c
+--- gcc-4.6.3/libssp/ssp.c	2009-04-13 12:37:17.000000000 +0200
++++ gcc-4.6.3-mint-20120503/libssp/ssp.c	2012-05-03 18:23:01.046875000 +0200
+@@ -63,6 +63,9 @@
+ #ifdef HAVE_SYSLOG_H
+ # include <syslog.h>
+ #endif
++#ifdef __MINT__
++#include <mint/osbind.h>
++#endif
+ 
+ void *__stack_chk_guard = 0;
+ 
+@@ -98,6 +101,9 @@
+ {
+ #ifdef __GNU_LIBRARY__
+   extern char * __progname;
++#elif defined (__MINT__)
++  extern char * program_invocation_short_name;
++  #define __progname program_invocation_short_name
+ #else
+   static const char __progname[] = "";
+ #endif
+@@ -139,6 +145,9 @@
+     syslog (LOG_CRIT, msg3);
+ #endif /* HAVE_SYSLOG_H */
+ 
++#ifdef __MINT__
++    Pterm(127);
++#else
+   /* Try very hard to exit.  Note that signals may be blocked preventing
+      the first two options from working.  The use of volatile is here to
+      prevent optimizers from "knowing" that __builtin_trap is called first,
+@@ -160,6 +169,7 @@
+           break;
+         }
+   }
++#endif
+ }
+ 
+ void
+diff -aurN gcc-4.6.3/libstdc++-v3/config/os/mint/ctype_base.h gcc-4.6.3-mint-20120503/libstdc++-v3/config/os/mint/ctype_base.h
+--- gcc-4.6.3/libstdc++-v3/config/os/mint/ctype_base.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libstdc++-v3/config/os/mint/ctype_base.h	2012-05-03 18:23:01.046875000 +0200
+@@ -0,0 +1,59 @@
++// Locale support -*- C++ -*-
++
++// Copyright (C) 1997, 1998, 1999, 2003, 2009, 2010
++// Free Software Foundation, Inc.
++//
++// This file is part of the GNU ISO C++ Library.  This library is free
++// software; you can redistribute it and/or modify it under the
++// terms of the GNU General Public License as published by the
++// Free Software Foundation; either version 3, or (at your option)
++// any later version.
++
++// This library is distributed in the hope that it will be useful,
++// but WITHOUT ANY WARRANTY; without even the implied warranty of
++// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++// GNU General Public License for more details.
++
++// Under Section 7 of GPL version 3, you are granted additional
++// permissions described in the GCC Runtime Library Exception, version
++// 3.1, as published by the Free Software Foundation.
++
++// You should have received a copy of the GNU General Public License and
++// a copy of the GCC Runtime Library Exception along with this program;
++// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
++// <http://www.gnu.org/licenses/>.
++
++//
++// ISO C++ 14882: 22.1  Locales
++//
++
++// Mint C types, taken from mintlib-0.57.3/include/ctype.h
++
++namespace std _GLIBCXX_VISIBILITY(default)
++{
++_GLIBCXX_BEGIN_NAMESPACE_VERSION
++
++  /// @brief  Base class for ctype.
++  struct ctype_base
++  {
++    // Non-standard typedefs.
++    typedef const int* 		__to_type;
++
++    // NB: Offsets into ctype<char>::_M_table force a particular size
++    // on the mask type. Because of this, we don't use an enum.
++    typedef unsigned int 	mask;
++    static const mask upper    	= _CTu;
++    static const mask lower 	= _CTl;
++    static const mask alpha 	= _CTu | _CTl;
++    static const mask digit 	= _CTd;
++    static const mask xdigit 	= _CTx;
++    static const mask space 	= _CTs;
++    static const mask print 	= _CTP;
++    static const mask graph 	= _CTg;
++    static const mask cntrl 	= _CTc;
++    static const mask punct 	= _CTp;
++    static const mask alnum 	= _CTd | _CTu | _CTl ;
++  };
++
++_GLIBCXX_END_NAMESPACE_VERSION
++} // namespace
+diff -aurN gcc-4.6.3/libstdc++-v3/config/os/mint/ctype_inline.h gcc-4.6.3-mint-20120503/libstdc++-v3/config/os/mint/ctype_inline.h
+--- gcc-4.6.3/libstdc++-v3/config/os/mint/ctype_inline.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libstdc++-v3/config/os/mint/ctype_inline.h	2012-05-03 18:23:01.046875000 +0200
+@@ -0,0 +1,76 @@
++// Locale support -*- C++ -*-
++
++// Copyright (C) 2000, 2003, 2009, 2010 Free Software Foundation, Inc.
++//
++// This file is part of the GNU ISO C++ Library.  This library is free
++// software; you can redistribute it and/or modify it under the
++// terms of the GNU General Public License as published by the
++// Free Software Foundation; either version 3, or (at your option)
++// any later version.
++
++// This library is distributed in the hope that it will be useful,
++// but WITHOUT ANY WARRANTY; without even the implied warranty of
++// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++// GNU General Public License for more details.
++
++// Under Section 7 of GPL version 3, you are granted additional
++// permissions described in the GCC Runtime Library Exception, version
++// 3.1, as published by the Free Software Foundation.
++
++// You should have received a copy of the GNU General Public License and
++// a copy of the GCC Runtime Library Exception along with this program;
++// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
++// <http://www.gnu.org/licenses/>.
++
++/** @file bits/ctype_inline.h
++ *  This is an internal header file, included by other library headers.
++ *  Do not attempt to use it directly. @headername{locale}
++ */
++
++//
++// ISO C++ 14882: 22.1  Locales
++//
++  
++// ctype bits to be inlined go here. Non-inlinable (ie virtual do_*)
++// functions go in ctype.cc
++  
++// Mint C types, taken from mintlib-0.57.3/include/ctype.h
++
++namespace std _GLIBCXX_VISIBILITY(default)
++{
++_GLIBCXX_BEGIN_NAMESPACE_VERSION
++
++  bool
++  ctype<char>::
++  is(mask __m, char __c) const
++  { return _ctype[(unsigned char)((__c) + 1)] & __m; }
++
++  const char*
++  ctype<char>::
++  is(const char* __low, const char* __high, mask* __vec) const
++  {
++    while (__low < __high)
++      *__vec++ = _ctype[(*__low++) + 1] ;
++    return __high;
++  }
++
++  const char*
++  ctype<char>::
++  scan_is(mask __m, const char* __low, const char* __high) const
++  {
++    while (__low < __high && !this->is(__m, *__low))
++      ++__low;
++    return __low;
++  }
++
++  const char*
++  ctype<char>::
++  scan_not(mask __m, const char* __low, const char* __high) const
++  {
++    while (__low < __high && this->is(__m, *__low) != 0)
++      ++__low;
++    return __low;
++  }
++
++_GLIBCXX_END_NAMESPACE_VERSION
++} // namespace
+diff -aurN gcc-4.6.3/libstdc++-v3/config/os/mint/ctype_noninline.h gcc-4.6.3-mint-20120503/libstdc++-v3/config/os/mint/ctype_noninline.h
+--- gcc-4.6.3/libstdc++-v3/config/os/mint/ctype_noninline.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libstdc++-v3/config/os/mint/ctype_noninline.h	2012-05-03 18:23:01.046875000 +0200
+@@ -0,0 +1,92 @@
++// Locale support -*- C++ -*-
++
++// Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2009, 2010
++//  Free Software Foundation, Inc.
++//
++// This file is part of the GNU ISO C++ Library.  This library is free
++// software; you can redistribute it and/or modify it under the
++// terms of the GNU General Public License as published by the
++// Free Software Foundation; either version 3, or (at your option)
++// any later version.
++
++// This library is distributed in the hope that it will be useful,
++// but WITHOUT ANY WARRANTY; without even the implied warranty of
++// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++// GNU General Public License for more details.
++
++// Under Section 7 of GPL version 3, you are granted additional
++// permissions described in the GCC Runtime Library Exception, version
++// 3.1, as published by the Free Software Foundation.
++
++// You should have received a copy of the GNU General Public License and
++// a copy of the GCC Runtime Library Exception along with this program;
++// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
++// <http://www.gnu.org/licenses/>.
++
++/** @file bits/ctype_noninline.h
++ *  This is an internal header file, included by other library headers.
++ *  Do not attempt to use it directly. @headername{locale}
++ */
++
++//
++// ISO C++ 14882: 22.1  Locales
++//
++  
++// Information as gleaned from /usr/include/ctype.h
++
++  const ctype_base::mask*
++  ctype<char>::classic_table() throw()
++  { return 0; }
++
++  ctype<char>::ctype(__c_locale, const mask* __table, bool __del, 
++		     size_t __refs) 
++  : facet(__refs), _M_del(__table != 0 && __del), 
++  _M_toupper(NULL), _M_tolower(NULL), 
++  _M_table(__table ? __table : classic_table()) 
++  { 
++    memset(_M_widen, 0, sizeof(_M_widen));
++    _M_widen_ok = 0;
++    memset(_M_narrow, 0, sizeof(_M_narrow));
++    _M_narrow_ok = 0;
++  }
++
++  ctype<char>::ctype(const mask* __table, bool __del, size_t __refs) 
++  : facet(__refs), _M_del(__table != 0 && __del), 
++  _M_toupper(NULL), _M_tolower(NULL), 
++  _M_table(__table ? __table : classic_table())
++  { 
++    memset(_M_widen, 0, sizeof(_M_widen));
++    _M_widen_ok = 0;
++    memset(_M_narrow, 0, sizeof(_M_narrow));
++    _M_narrow_ok = 0;
++  }
++
++  char
++  ctype<char>::do_toupper(char __c) const
++  { return ::toupper((int) __c); }
++
++  const char*
++  ctype<char>::do_toupper(char* __low, const char* __high) const
++  {
++    while (__low < __high)
++      {
++	*__low = ::toupper((int) *__low);
++	++__low;
++      }
++    return __high;
++  }
++
++  char
++  ctype<char>::do_tolower(char __c) const
++  { return ::tolower((int) __c); }
++
++  const char* 
++  ctype<char>::do_tolower(char* __low, const char* __high) const
++  {
++    while (__low < __high)
++      {
++	*__low = ::tolower((int) *__low);
++	++__low;
++      }
++    return __high;
++  }
+diff -aurN gcc-4.6.3/libstdc++-v3/config/os/mint/os_defines.h gcc-4.6.3-mint-20120503/libstdc++-v3/config/os/mint/os_defines.h
+--- gcc-4.6.3/libstdc++-v3/config/os/mint/os_defines.h	1970-01-01 01:00:00.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libstdc++-v3/config/os/mint/os_defines.h	2012-05-03 18:23:01.046875000 +0200
+@@ -0,0 +1,36 @@
++// Specific definitions for generic platforms  -*- C++ -*-
++
++// Copyright (C) 2000, 2009, 2010 Free Software Foundation, Inc.
++//
++// This file is part of the GNU ISO C++ Library.  This library is free
++// software; you can redistribute it and/or modify it under the
++// terms of the GNU General Public License as published by the
++// Free Software Foundation; either version 3, or (at your option)
++// any later version.
++
++// This library is distributed in the hope that it will be useful,
++// but WITHOUT ANY WARRANTY; without even the implied warranty of
++// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++// GNU General Public License for more details.
++
++// Under Section 7 of GPL version 3, you are granted additional
++// permissions described in the GCC Runtime Library Exception, version
++// 3.1, as published by the Free Software Foundation.
++
++// You should have received a copy of the GNU General Public License and
++// a copy of the GCC Runtime Library Exception along with this program;
++// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
++// <http://www.gnu.org/licenses/>.
++
++/** @file bits/os_defines.h
++ *  This is an internal header file, included by other library headers.
++ *  Do not attempt to use it directly. @headername{iosfwd}
++ */
++
++#ifndef _GLIBCXX_OS_DEFINES
++#define _GLIBCXX_OS_DEFINES 1
++
++// System-specific #define, typedefs, corrections, etc, go here.  This
++// file will come before all others.
++
++#endif
+diff -aurN gcc-4.6.3/libstdc++-v3/configure gcc-4.6.3-mint-20120503/libstdc++-v3/configure
+--- gcc-4.6.3/libstdc++-v3/configure	2011-11-20 22:24:07.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libstdc++-v3/configure	2012-05-03 18:23:01.125000000 +0200
+@@ -44640,7 +44640,7 @@
+ 	;;
+     esac
+     ;;
+-  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu)
++  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu | *-mint*)
+ 
+   # All these tests are for C++; save the language and the compiler flags.
+   # The CXXFLAGS thing is suspicious, but based on similar bits previously
+diff -aurN gcc-4.6.3/libstdc++-v3/configure.host gcc-4.6.3-mint-20120503/libstdc++-v3/configure.host
+--- gcc-4.6.3/libstdc++-v3/configure.host	2010-12-06 01:50:04.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libstdc++-v3/configure.host	2012-05-03 18:23:01.125000000 +0200
+@@ -258,6 +258,10 @@
+     error_constants_dir="os/mingw32"
+     OPT_LDFLAGS="${OPT_LDFLAGS} \$(lt_host_flags)"
+     ;;
++  mint*)
++    SECTION_FLAGS="${SECTION_FLAGS} -D_GNU_SOURCE"
++    os_include_dir="os/mint"
++    ;;
+   netbsd*)
+     os_include_dir="os/bsd/netbsd"
+     ;;
+diff -aurN gcc-4.6.3/libstdc++-v3/crossconfig.m4 gcc-4.6.3-mint-20120503/libstdc++-v3/crossconfig.m4
+--- gcc-4.6.3/libstdc++-v3/crossconfig.m4	2011-02-04 08:26:57.000000000 +0100
++++ gcc-4.6.3-mint-20120503/libstdc++-v3/crossconfig.m4	2012-05-03 18:23:01.125000000 +0200
+@@ -141,7 +141,7 @@
+ 	;;
+     esac
+     ;;
+-  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu)
++  *-linux* | *-uclinux* | *-gnu* | *-kfreebsd*-gnu | *-knetbsd*-gnu | *-mint*)
+     GLIBCXX_CHECK_COMPILER_FEATURES
+     GLIBCXX_CHECK_LINKER_FEATURES
+     GLIBCXX_CHECK_MATH_SUPPORT
