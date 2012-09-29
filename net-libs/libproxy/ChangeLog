@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.79 2012/05/26 08:57:11 tetromino Exp $
 
+  29 Sep 2012; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
+  Fix build on Darwin
+
   26 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
   libproxy-0.4.7.ebuild, +files/libproxy-0.4.7-gcc-4.7.patch:
   Fix building with gcc-4.7 (bug #412363, thanks to Alphat-PC, Philipp Richter
@@ -319,4 +322,3 @@
   +libproxy-0.2.3.ebuild:
   libproxy is a library for automatic proxy configuration management, initial
   ebuild by nirbheek, closes bug #244028.
-
