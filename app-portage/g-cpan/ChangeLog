@@ -1,6 +1,13 @@
 # ChangeLog for app-portage/g-cpan
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/ChangeLog,v 1.64 2011/01/24 23:36:12 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/ChangeLog,v 1.65 2012/06/17 12:49:58 flameeyes Exp $
+
+*g-cpan-0.16.4-r1 (17 Jun 2012)
+
+  17 Jun 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  +files/g-cpan-0.16.4-misc.patch, +g-cpan-0.16.4-r1.ebuild:
+  Patch g-cpan to work with Perl 5.16 (bug #421247), also support
+  /etc/portage/make.conf (bug #420617).
 
 *g-cpan-0.16.4 (24 Jan 2011)
 
