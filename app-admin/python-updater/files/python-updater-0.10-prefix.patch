@@ -1,5 +1,5 @@
---- python-updater-0.10-r2/work/python-updater-0.10/python-updater.orig	2012-05-17 13:27:42.704657000 +0200
-+++ python-updater-0.10-r2/work/python-updater-0.10/python-updater	2012-05-17 14:02:38.209971000 +0200
+--- python-updater-0.10/python-updater
++++ python-updater-0.10/python-updater
 @@ -29,7 +29,7 @@
  OLD_PYTHON_VERSIONS=""
  OLD_PYTHON2_VERSIONS=""
@@ -27,7 +27,7 @@
  has_version() {
  	if [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "emerge" ]]; then
 -		/usr/bin/portageq has_version / "${1}"
-+		"@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq has_version / "${1}"
++		"@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq has_version "@GENTOO_PORTAGE_EPREFIX@"/ "${1}"
  	elif [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "pmerge" ]]; then
  		pquery --vdb "${1}"
  	else
@@ -40,6 +40,15 @@
  import sys
  
  if '' in sys.path:
+@@ -164,7 +165,7 @@
+ 
+ import portage
+ 
+-dbapi = portage.db['/']['porttree'].dbapi
++dbapi = portage.db['@GENTOO_PORTAGE_EPREFIX@/']['porttree'].dbapi
+ pkg_list = dbapi.match('${1}/${2}${3:+:}${3}')
+ if pkg_list:
+ 	best_visible = portage.best(pkg_list)
 @@ -240,7 +240,7 @@
  
  	local variable
@@ -163,6 +172,15 @@
  "import re
  import sys
  
+@@ -599,7 +600,7 @@
+ for variable in variables:
+ 	exec('%(variable)s_regex = re.compile(r\'^%(variable)s=\((.*)\)\')' % {'variable': variable})
+ 
+-dbapi = portage.db['/']['porttree'].dbapi
++dbapi = portage.db['@GENTOO_PORTAGE_EPREFIX@/']['porttree'].dbapi
+ python_eclass_locations = {}
+ 
+ if hasattr(dbapi.repositories.mainRepo(), 'eclass_db'):
 @@ -817,7 +832,7 @@
  	fi
  

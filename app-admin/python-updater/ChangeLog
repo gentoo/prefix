@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.78 2012/05/28 16:14:43 xarthisius Exp $
 
+*python-updater-0.10-r02.1 (29 Sep 2012)
+
+  29 Sep 2012; Fabian Groffen <grobian@gentoo.org>
+  +python-updater-0.10-r02.1.ebuild, -python-updater-0.10-r2.ebuild,
+  files/python-updater-0.10-prefix.patch:
+  Update Prefix patch to actually make it work, thanks Greg Turner, bug #433499
+
   28 May 2012; Kacper Kowalik <xarthisius@gentoo.org>
   -files/python-updater-0.9-sed.patch, -python-updater-0.10-r1.ebuild,
   -python-updater-0.9-r1.ebuild, -python-updater-0.9.ebuild:
@@ -317,4 +324,3 @@
   06 May 2007; Bryan Østergaard <kloeri@gentoo.org>
   +python-updater-0.1.ebuild:
   Initial import of stand-alone python-updater.
-
