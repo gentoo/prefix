@@ -43,6 +43,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}/${P}-gcc-4.7.patch"
+
 	# fix stupidity preventing a pkgconfig file to be installed
 	sed -i -e 's/AND NOT APPLE//' libproxy/cmake/{pkgconfig,devfiles}.cmk || die
 	# fix build due to feature macros stupidity
@@ -50,10 +52,6 @@ src_prepare() {
 		sed -i -e 's/-D_POSIX_C_SOURCE=1/-D_POSIX_C_SOURCE=200112L/' \
 			libproxy/CMakeLists.txt || die
 	fi
-}
-
-src_prepare() {
-	epatch "${FILESDIR}/${P}-gcc-4.7.patch"
 }
 
 src_configure() {

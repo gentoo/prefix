@@ -3,6 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.79 2012/05/26 08:57:11 tetromino Exp $
 
   29 Sep 2012; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
+  A single src_prepare is enough
+
+  29 Sep 2012; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
   Fix build on Darwin
 
   26 May 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
