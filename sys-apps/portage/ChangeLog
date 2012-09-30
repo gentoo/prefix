@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.21165 (30 Sep 2012)
+
+  30 Sep 2012; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.21165.ebuild,
+  -portage-2.2.01.20972.ebuild:
+  Version bump, matches 2.2.0_alpha134+, includes updated seatbelt/macosx
+  sandbox support
+
 *portage-2.2.01.21143 (26 Sep 2012)
 
   26 Sep 2012; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.21143.ebuild,
