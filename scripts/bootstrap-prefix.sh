@@ -504,7 +504,7 @@ prep_gcc-fsf() {
 	GCC_A=gcc-${GCC_PV}.tar.bz2	
 	TAROPTS="-jxf"
 
-	efetch ${GENTOO_MIRRORS}/${GCC_A} || return 1
+	efetch ${GENTOO_MIRRORS}/distfiles/${GCC_A} || return 1
 
 }
 
@@ -579,7 +579,7 @@ bootstrap_gnu() {
 			type -P bzip2 > /dev/null || continue
 		fi
 
-		URL=${GENTOO_MIRRORS}/${A}
+		URL=${GENTOO_MIRRORS}/distfiles/${A}
 		if ! efetch ${URL} ; then
 			einfo "download failed, retrying at GNU mirror"
 			URL=${GNU_URL}/${PN}/${A}
@@ -769,7 +769,7 @@ bootstrap_zlib_core() {
 
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GENTOO_MIRRORS}/${A} || return 1
+	efetch ${GENTOO_MIRRORS}/distfiles/${A} || return 1
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
@@ -900,7 +900,7 @@ bootstrap_bzip2() {
 	A=${PN}-${PV}.tar.gz
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GENTOO_MIRRORS}/${A} || return 1
+	efetch ${GENTOO_MIRRORS}/distfiles/${A} || return 1
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
@@ -2025,7 +2025,7 @@ PORTAGE_TMPDIR=${ROOT}/var/tmp
 DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
 SNAPSHOT_URL="http://files.prefix.freens.org/snapshots"
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
-GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org/distfiles"}
+GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 
 export MAKE
