@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.129 2012/05/17 13:48:34 aballier Exp $
 
+  01 Oct 2012; Fabian Groffen <grobian@gentoo.org>
+  gst-plugins-good-0.10.30.ebuild:
+  Marked ~x64-macos
+
   17 May 2012; Alexis Ballier <aballier@gentoo.org>
   gst-plugins-good-0.10.30.ebuild:
   keyword ~amd64-fbsd
@@ -600,4 +604,3 @@
   02 Dec 2005; <zaheer@gentoo.org> +metadata.xml,
   +gst-plugins-good-0.9.7.ebuild:
   0.10 Prerelease
-
