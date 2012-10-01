@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.79 2012/05/26 08:57:11 tetromino Exp $
 
+  01 Oct 2012; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
+  Marked ~x64-macos
+
   29 Sep 2012; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
   A single src_prepare is enough
 
