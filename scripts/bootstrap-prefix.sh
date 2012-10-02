@@ -55,7 +55,7 @@ efetch() {
 		# try for mirrors first, then try given location
 		${FETCH_COMMAND} "${GENTOO_MIRRORS}/distfiles/${1##*/}"
 		[[ ! -f ${1##*/} && ${1} != ${GENTOO_MIRRORS}/distfiles/${1##*/} ]] \
-			&& ${FETCHCOMMAND} "$1"
+			&& ${FETCH_COMMAND} "$1"
 		if [[ ! -f ${1##*/} ]] ; then
 			eerror "downloading ${1} failed!"
 			return 1
