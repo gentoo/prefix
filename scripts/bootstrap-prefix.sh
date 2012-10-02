@@ -1680,12 +1680,12 @@ EOF
 	fi
 	echo
 
-	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1 ; then
+	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1 ; then
 		# stage 1 fail
 		cat << EOF
 
 I tried running
-  ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1
+  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1
 but that failed :(  I have no clue, really.  Please find friendly folks
 in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
 or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
@@ -1694,12 +1694,12 @@ EOF
 		exit 1
 	fi
 
-	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
+	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
 		# stage 2 fail
 		cat << EOF
 
 Odd!  Running
-  ${BASH_SOURCE[0]} "${EPREFIX}" stage2
+  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2
 failed! :(  I have no clue, really.  Please find friendly folks in
 #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or
 file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
@@ -1708,13 +1708,13 @@ EOF
 		exit 1
 	fi
 
-	if ! ${BASH_SOURCE[0]} "${EPREFIX}" stage3 ; then
+	if ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage3 ; then
 		# stage 3 fail
 		hash -r  # previous cat (tmp/usr/bin/cat) may have been removed
 		cat << EOF
 
 Hmmmm, I was already afraid of this to happen.  Running
-  ${BASH_SOURCE[0]} "${EPREFIX}" stage3
+  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage3
 somewhere failed :(  Details might be found in the build log:
 EOF
 		for log in "${EPREFIX}"/var/tmp/portage/*/*/temp/build.log ; do
@@ -1758,12 +1758,12 @@ EOF
 		exit 1
 	fi
 
-	if ! ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
+	if ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
 		# startscript fail?
 		cat << EOF
 
 Ok, let's be honest towards each other.  If
-  ${BASH_SOURCE[0]} "${EPREFIX}" startscript
+  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" startscript
 fails, then who cheated on who?  Either you use an obscure shell, or
 your PATH isn't really sane afterall.  Despite, I can't really
 congratulate you here, you basically made it to the end.
