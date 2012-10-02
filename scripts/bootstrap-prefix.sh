@@ -52,7 +52,10 @@ efetch() {
 		mkdir -p "${DISTDIR}" >& /dev/null
 		einfo "Fetching ${1##*/}"
 		pushd "${DISTDIR}" > /dev/null
-		${FETCH_COMMAND} "$1"
+		# try for mirrors first, then try given location
+		${FETCH_COMMAND} "${GENTOO_MIRRORS}/distfiles/${1##*/}"
+		[[ ! -f ${1##*/} && ${1} != ${GENTOO_MIRRORS}/distfiles/${1##*/} ]] \
+			&& ${FETCHCOMMAND} "$1"
 		if [[ ! -f ${1##*/} ]] ; then
 			eerror "downloading ${1} failed!"
 			return 1
@@ -579,12 +582,8 @@ bootstrap_gnu() {
 			type -P bzip2 > /dev/null || continue
 		fi
 
-		URL=${GENTOO_MIRRORS}/distfiles/${A}
-		if ! efetch ${URL} ; then
-			einfo "download failed, retrying at GNU mirror"
-			URL=${GNU_URL}/${PN}/${A}
-			efetch ${URL} || continue
-		fi
+		URL=${GNU_URL}/${PN}/${A}
+		efetch ${URL} || continue
 
 		einfo "Unpacking ${A%-*}"
 		S="${PORTAGE_TMPDIR}/${PN}-${PV}"
