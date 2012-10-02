@@ -837,7 +837,10 @@ bootstrap_wget() {
 
 bootstrap_grep() {
 	# don't use 2.13, it contains a bug that bites, bug #425668
-	bootstrap_gnu grep 2.12 || bootstrap_gnu grep 2.11
+	# 2.9 is the last version provided as tar.gz (platforms without xz)
+	# 2.7 is necessary for Solaris/OpenIndiana (2.8, 2.9 fail to configure)
+	bootstrap_gnu grep 2.14 || bootstrap_gnu grep 2.12 || \
+		bootstrap_gnu grep 2.9 || bootstrap_gnu grep 2.7
 }
 
 bootstrap_coreutils() {
