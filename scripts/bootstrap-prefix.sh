@@ -605,6 +605,7 @@ bootstrap_gnu() {
 		break
 	done
 	S="${S}"/${PN}-${PV}
+	[[ -d ${S} ]] || return 1
 	cd "${S}" || return 1
 
 	local myconf=""
