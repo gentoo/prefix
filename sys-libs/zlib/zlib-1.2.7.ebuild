@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.7.ebuild,v 1.2 2012/05/03 19:08:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.7.ebuild,v 1.11 2012/09/28 13:37:32 johu Exp $
 
 AUTOTOOLS_AUTO_DEPEND="no"
 inherit autotools toolchain-funcs eutils
@@ -52,12 +52,14 @@ src_compile() {
 			-e 's|@VERSION@|'${PV}'|g' \
 			zlib.pc.in > zlib.pc || die
 		;;
-	*-mint*)
-		echoit ./configure --static --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) || die
-		emake || die
-		;;
 	*)	# not an autoconf script, so can't use econf
-		echoit ./configure --shared --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) || die
+		local uname=$("${EPREFIX}"/usr/share/gnuconfig/config.sub "${CHOST}" | cut -d- -f3) #347167
+		echoit ./configure \
+			$(tc-is-static-only && echo "--static" || echo "--shared") \
+			--prefix="${EPREFIX}"/usr \
+			--libdir="${EPREFIX}"/usr/$(get_libdir) \
+			${uname:+--uname=${uname}} \
+			|| die
 		emake || die
 		;;
 	esac
@@ -108,5 +110,5 @@ src_install() {
 		dodoc *.txt
 	fi
 
-	use static-libs || rm -f "${ED}"/usr/$(get_libdir)/*.{a,la}
+	use static-libs || rm -f "${ED}"/usr/$(get_libdir)/lib{z,minizip}.{a,la} #419645
 }

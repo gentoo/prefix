@@ -1,6 +1,41 @@
 # ChangeLog for sys-libs/zlib
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.108 2012/05/26 10:11:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.119 2012/09/28 13:37:32 johu Exp $
+
+  28 Sep 2012; Johannes Huber <johu@gentoo.org> zlib-1.2.7.ebuild:
+  Stable for x86, wrt bug #435754
+
+  28 Sep 2012; Matt Turner <mattst88@gentoo.org> zlib-1.2.7.ebuild:
+  Stable on alpha, bug 435754.
+
+  26 Sep 2012; Anthony G. Basile <blueness@gentoo.org> zlib-1.2.7.ebuild:
+  stable arm, bug #435754
+
+  26 Sep 2012; Jeroen Roovers <jer@gentoo.org> zlib-1.2.7.ebuild:
+  Stable for HPPA (bug #435754).
+
+  25 Sep 2012; Anthony G. Basile <blueness@gentoo.org> zlib-1.2.7.ebuild:
+  stable ppc64, bug #435754
+
+  25 Sep 2012; Anthony G. Basile <blueness@gentoo.org> zlib-1.2.7.ebuild:
+  stable ppc, bug #435754
+
+  23 Sep 2012; Agostino Sarubbo <ago@gentoo.org> zlib-1.2.7.ebuild:
+  Stable for amd64, wrt bug #435754
+
+  18 Aug 2012; Mike Frysinger <vapier@gentoo.org> zlib-1.2.7.ebuild:
+  Extract host os field via config.sub #347167 by Diego Elio Pettenò.
+
+  18 Aug 2012; Mike Frysinger <vapier@gentoo.org> zlib-1.2.7.ebuild:
+  Remove libz/libminizip static files by name to avoid deleting files for
+  targets that need more #419645 by Maciej Szmigiero.
+
+  08 Jul 2012; Raúl Porcel <armin76@gentoo.org> zlib-1.2.5.1-r1.ebuild,
+  zlib-1.2.5.1-r2.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #384483
+
+  17 Jun 2012; Raúl Porcel <armin76@gentoo.org> zlib-1.2.5.1-r1.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #384483
 
   05 Jun 2012; Fabian Groffen <grobian@gentoo.org> zlib-1.2.7.ebuild:
   Add missing colon, thanks Richard Freeman in bug #419499
