@@ -807,21 +807,9 @@ bootstrap_zlib_core() {
 	einfo "${A%-*} bootstrapped"
 }
 
-bootstrap_zlib125() {
-	bootstrap_zlib_core 1.2.5
-}
-
-bootstrap_zlib126() {
-	# bug 407215
-	bootstrap_zlib_core 1.2.6
-}
-
-bootstrap_zlib127() {
-	bootstrap_zlib_core 1.2.7
-}
-
 bootstrap_zlib() {
-	bootstrap_zlib127 || bootstrap_zlib126 || bootstrap_zlib125
+	bootstrap_zlib_core 1.2.7 || bootstrap_zlib_core 1.2.6 || \
+		bootstrap_zlib_core 1.2.5
 }
 
 bootstrap_sed() {
