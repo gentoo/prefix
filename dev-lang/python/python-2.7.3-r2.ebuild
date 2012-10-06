@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.3-r2.ebuild,v 1.5 2012/06/11 09:23:12 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.3-r2.ebuild,v 1.12 2012/07/30 18:09:26 vapier Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
@@ -218,6 +218,9 @@ src_configure() {
 
 	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
 	tc-export CXX
+	# The configure script fails to use pkg-config correctly.
+	# http://bugs.python.org/issue15506
+	export ac_cv_path_PKG_CONFIG=$(tc-getPKG_CONFIG)
 
 	# Set LDFLAGS so we link modules with -lpython2.7 correctly.
 	# Needed on FreeBSD unless Python 2.7 is already installed.
