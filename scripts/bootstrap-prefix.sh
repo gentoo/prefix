@@ -1123,10 +1123,20 @@ bootstrap_stage3() {
 	export LIBFFI_CFLAGS="-I$(echo ${ROOT}/usr/lib*/libffi-*/include)"
 	export LIBFFI_LIBS="-lffi"
 
+	# for some yet unknown reason, libxml2 has a problem with zlib, but
+	# only during this stage, in the emerge -e system phase it is fine
+	# it boils down to zlib headers replacing gzopen with gzopen64, but
+	# no gzopen64 prototype being defined, due to libxml.h messing with
+	# FILE_OFFSET_BITS
+	# we can work around this by defining NO_LARGEFILE_SOURCE for libxml.h
+	# since we have the compiler emerged, it's no problem we wipe out
+	# the -I directions set by the profile
+	export CPPFLAGS="${CPPFLAGS} -DNO_LARGEFILE_SOURCE"
+
 	# disable collision-protect to overwrite the bootstrapped portage
 	FEATURES="-collision-protect" emerge_pkgs "" "sys-apps/portage" || return 1
 
-	unset LIBFFI_CFLAGS LIBFFI_LIBS 
+	unset LIBFFI_CFLAGS LIBFFI_LIBS CPPFLAGS
 
 	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
 		rm -Rf "${ROOT}"/tmp || return 1
