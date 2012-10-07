@@ -1709,13 +1709,18 @@ EOF
 		exit 1
 	fi
 
-	if ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage3 ; then
+	# after stage1 and stage2 we should have a bash of our own, which
+	# is preferably over the host-provided one, because we know it can
+	# deal with the bash-constructs we use in stage3 and onwards
+	hash -r
+
+	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" stage3 ; then
 		# stage 3 fail
 		hash -r  # previous cat (tmp/usr/bin/cat) may have been removed
 		cat << EOF
 
 Hmmmm, I was already afraid of this to happen.  Running
-  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage3
+  $(type -P bash) ${BASH_SOURCE[0]} "${EPREFIX}" stage3
 somewhere failed :(  Details might be found in the build log:
 EOF
 		for log in "${EPREFIX}"/var/tmp/portage/*/*/temp/build.log ; do
@@ -1759,12 +1764,12 @@ EOF
 		exit 1
 	fi
 
-	if ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
+	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
 		# startscript fail?
 		cat << EOF
 
 Ok, let's be honest towards each other.  If
-  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" startscript
+  $(type -P bash) ${BASH_SOURCE[0]} "${EPREFIX}" startscript
 fails, then who cheated on who?  Either you use an obscure shell, or
 your PATH isn't really sane afterall.  Despite, I can't really
 congratulate you here, you basically made it to the end.
