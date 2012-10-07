@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.3-r2.ebuild,v 1.12 2012/07/30 18:09:26 vapier Exp $
 
-EAPI="2"
+EAPI="3"
 WANT_AUTOMAKE="none"
 WANT_LIBTOOL="none"
 
@@ -100,10 +100,6 @@ src_prepare() {
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
 		epatch "${WORKDIR}"/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}
 
-	# need this to have _NSGetEnviron being used, which by default isn't, also
-	# in a non-Framework build (use !aqua)   upstream doesn't build like this
-	[[ ${CHOST} == *-darwin* ]] && use !aqua && \
-		append-flags -DWITH_NEXT_FRAMEWORK
 	if use aqua ; then
 		# make sure we don't get a framework reference here
 		sed -i -e '/-DPREFIX=/s:$(prefix):$(FRAMEWORKUNIXTOOLSPREFIX):' \
@@ -190,7 +186,7 @@ src_configure() {
 	if use prefix ; then
 		# for Python's setup.py not to do false assumptions (only looking in
 		# host paths) we need to make explicit where Prefix stuff is
-		append-flags -I${EPREFIX}/usr/include
+		append-cppflags -I${EPREFIX}/usr/include
 		append-ldflags -L${EPREFIX}/$(get_libdir)
 		append-ldflags -L${EPREFIX}/usr/$(get_libdir)
 		# fix compilation on some 64-bits Linux hosts, #381163
