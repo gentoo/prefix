@@ -1380,6 +1380,8 @@ EOF
 				&& PATH="${PATH}:/usr/sfw/sparc-sun-solaris${CHOST##*-solaris}/bin"
 			# OpenIndiana 151a5
 			[[ -d /usr/gnu/bin ]] && PATH="${PATH}:/usr/gnu/bin"
+			# SmartOS
+			[[ -d /opt/local/gcc47/bin ]] && PATH="${PATH}:/opt/local/gcc47/bin"
 			;;
 	esac
 
