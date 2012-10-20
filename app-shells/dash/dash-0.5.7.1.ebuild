@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/dash/dash-0.5.7.1.ebuild,v 1.8 2012/05/28 18:16:50 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/dash/dash-0.5.7.1.ebuild,v 1.9 2012/06/17 18:15:42 armin76 Exp $
 
 EAPI="3"
 
