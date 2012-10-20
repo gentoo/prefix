@@ -1,6 +1,42 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.314 2012/07/11 13:18:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.325 2012/09/13 21:46:48 vapier Exp $
+
+  13 Sep 2012; Mike Frysinger <vapier@gentoo.org> files/bashrc:
+  Add egrep/fgrep colour aliases too #434170 by Dave Kemper.
+
+  02 Sep 2012; Raúl Porcel <armin76@gentoo.org> bash-4.2_p37.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #431850
+
+  28 Aug 2012; Brent Baude <ranger@gentoo.org> bash-4.2_p37.ebuild:
+  Marking bash-4.2_p37 ppc64 for bug 431850
+
+  28 Aug 2012; Anthony G. Basile <blueness@gentoo.org> bash-4.2_p37.ebuild:
+  Stable ppc, bug #431850
+
+  23 Aug 2012; Markus Meier <maekke@gentoo.org> bash-4.2_p37.ebuild:
+  arm stable, bug #431850
+
+  23 Aug 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p37.ebuild:
+  Disable readline-specific options in bashrc when USE=-readline #432338 by
+  Agostino Sarubbo.
+
+  20 Aug 2012; Jeroen Roovers <jer@gentoo.org> bash-4.2_p37.ebuild:
+  Stable for HPPA (bug #431850).
+
+  18 Aug 2012; Johannes Huber <johu@gentoo.org> bash-4.2_p37.ebuild:
+  Stable for x86, wrt bug #431850
+
+  18 Aug 2012; Agostino Sarubbo <ago@gentoo.org> bash-4.2_p37.ebuild:
+  Stable for amd64, wrt bug #431850
+
+  29 Jul 2012; Mike Frysinger <vapier@gentoo.org> bash-4.2_p37.ebuild:
+  Call epatch_user #428288 by Sergey Popov.
+
+*bash-4.2_p37 (19 Jul 2012)
+
+  19 Jul 2012; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p37.ebuild:
+  Version bump #427168 by Lars Wendler.
 
 *bash-4.2_p36 (11 Jul 2012)
 
