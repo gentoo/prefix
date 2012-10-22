@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.18 2011/12/27 17:55:12 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/embassy.eclass,v 1.19 2012/09/15 16:16:53 zmedico Exp $
 
 # Author Olivier Fisette <ribosome@gentoo.org>
 
@@ -19,7 +19,6 @@ EN=${PN:8}
 # revision number)
 EF="$(echo ${EN} | tr "[:lower:]" "[:upper:]")-${PV}"
 
-DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://emboss.sourceforge.net/"
 LICENSE="LGPL-2 GPL-2"
 SRC_URI="ftp://emboss.open-bio.org/pub/EMBOSS/EMBOSS-${EBOV}.tar.gz

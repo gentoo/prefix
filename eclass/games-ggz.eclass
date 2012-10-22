@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.8 2012/04/23 07:16:34 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-ggz.eclass,v 1.9 2012/09/27 16:35:41 axs Exp $
 
 inherit base
 
@@ -8,7 +8,7 @@ inherit base
 
 GAMES_GGZ_EXPF="src_compile src_install pkg_postinst pkg_postrm"
 case "${EAPI:-0}" in
-	2|3|4) GAMES_GGZ_EXPF+=" src_configure" ;;
+	2|3|4|5) GAMES_GGZ_EXPF+=" src_configure" ;;
 	0|1) : ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac

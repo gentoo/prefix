@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.550 2012/06/11 21:07:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.552 2012/10/01 05:03:17 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -171,7 +171,9 @@ if in_iuse gcj ; then
 		x11-libs/libXtst
 		x11-proto/xproto
 		x11-proto/xextproto
-		=x11-libs/gtk+-2*"
+		=x11-libs/gtk+-2*
+		virtual/pkgconfig
+	"
 	tc_version_is_at_least 3.4 && GCJ_GTK_DEPS+=" x11-libs/pango"
 	GCJ_DEPS=">=media-libs/libart_lgpl-2.1"
 	tc_version_is_at_least 4.2 && GCJ_DEPS+=" app-arch/zip app-arch/unzip"
@@ -923,6 +925,10 @@ gcc-compiler-configure() {
 			confgcc+=" --with-python-dir=${DATAPATH/$PREFIX/}/python"
 		fi
 	fi
+
+	# Enable build warnings by default with cross-compilers when system
+	# paths are included (e.g. via -I flags).
+	is_crosscompile && confgcc+=" --enable-poison-system-directories"
 
 	# For newer versions of gcc, use the default ("release"), because no
 	# one (even upstream apparently) tests with it disabled. #317217

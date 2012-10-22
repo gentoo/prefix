@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.149 2012/06/09 22:14:03 hasufell Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.153 2012/09/27 16:35:41 axs Exp $
 
-# devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
+# devlist: games@gentoo.org
 #
 # This is the games eclass for standardizing the install of games ...
 # you better have a *good* reason why you're *not* using games.eclass
@@ -15,11 +15,9 @@ inherit base multilib toolchain-funcs eutils user
 
 case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst pkg_postinst ;;
-	2|3|4) EXPORT_FUNCTIONS pkg_setup src_configure src_compile pkg_preinst pkg_postinst ;;
+	2|3|4|5) EXPORT_FUNCTIONS pkg_setup src_configure src_compile pkg_preinst pkg_postinst ;;
 	*) die "no support for EAPI=${EAPI} yet" ;;
 esac
-
-DESCRIPTION="Based on the ${ECLASS} eclass"
 
 export GAMES_PREFIX=${GAMES_PREFIX:-/usr/games}
 export GAMES_PREFIX_OPT=${GAMES_PREFIX_OPT:-/opt}
@@ -93,7 +91,7 @@ prepgamesdirs() {
 				fperms 755 "${dir}"
 				for d in $(get_libdir) bin ; do
 					# check if dirs exist to avoid "nonfatal" option
-					if [[ -e ${d} ]] ; then
+					if [[ -e ${ED}/${dir}/${d} ]] ; then
 						fowners root:root "${dir}/${d}"
 						fperms 755 "${dir}/${d}"
 					fi
@@ -134,7 +132,7 @@ games_pkg_setup() {
 		ED=${D}
 	fi
 
-	tc-export CC CXX
+	tc-export CC CXX LD AR RANLIB
 
 	enewgroup "${GAMES_GROUP}" 35
 	[[ ${GAMES_USER} != "root" ]] \

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.147 2012/06/08 04:55:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.149 2012/09/20 18:04:59 scarabeus Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -500,7 +500,7 @@ autotools_check_macro() {
 	# We can run in multiple dirs, so we have to cache the trace
 	# data in $PWD rather than an env var.
 	local trace_file=".__autoconf_trace_data"
-	if [[ ! -e ${trace_file} ]] || [[ aclocal.m4 -nt ${trace_file} ]] ; then
+	if [[ ! -e ${trace_file} ]] || [[ ! aclocal.m4 -ot ${trace_file} ]] ; then
 		WANT_AUTOCONF="2.5" autoconf \
 			$(autotools_m4dir_include) \
 			${ALL_AUTOTOOLS_MACROS[@]/#/--trace=} > ${trace_file} 2>/dev/null

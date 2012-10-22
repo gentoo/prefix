@@ -1,7 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/db.eclass,v 1.46 2012/06/02 19:16:31 zmedico Exp $
-# 
+# $Header: /var/cvsroot/gentoo-x86/eclass/db.eclass,v 1.47 2012/10/08 19:59:59 robbat2 Exp $
 # This is a common location for functions used in the sys-libs/db ebuilds
 #
 # Bugs: pauldv@gentoo.org
@@ -196,7 +195,7 @@ db_src_test() {
 			[[ -f "${t}" ]] && testbase="${t}" && break
 		done
 		echo "source ${t}" > testrunner.tcl
-		echo "run_parallel $(makeopts_job) run_std" >> testrunner.tcl
+		echo "run_parallel $(makeopts_jobs) run_std" >> testrunner.tcl
 
 		tclsh testrunner.tcl
 		egrep -qs '^FAIL' ALL.OUT* && die "Some tests failed, please see ${S}/ALL.OUT*"

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.44 2012/06/20 08:49:27 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.45 2012/09/27 16:35:41 axs Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -13,7 +13,7 @@ inherit eutils multilib versionator gst-plugins10
 
 GSTBAD_EXPF="src_unpack src_compile src_install"
 case "${EAPI:-0}" in
-	2|3|4) GSTBAD_EXPF+=" src_prepare src_configure" ;;
+	2|3|4|5) GSTBAD_EXPF+=" src_prepare src_configure" ;;
 	0|1) ;;
 	*) die "EAPI=\"${EAPI}\" is not supported yet" ;;
 esac

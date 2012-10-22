@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.76 2010/08/25 19:57:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.77 2012/09/09 07:03:28 ulm Exp $
 
 # @ECLASS: cvs.eclass
 # @MAINTAINER:
@@ -65,7 +65,7 @@ inherit eutils
 # Set this variable to a non-empty value to disable the automatic updating of
 # a CVS source tree. This is intended to be set outside the cvs source
 # tree by users.
-: ${ECVS_OFFLINE:=${ESCM_OFFLINE}}
+: ${ECVS_OFFLINE:=${EVCS_OFFLINE}}
 
 # @ECLASS-VARIABLE: ECVS_LOCAL
 # @DEFAULT_UNSET
@@ -552,7 +552,6 @@ cvs_src_unpack() {
 
 	# Not exactly perfect, but should be pretty close #333773
 	export ECVS_VERSION=$(find "$ECVS_TOP_DIR/$ECVS_LOCALNAME/" -ipath '*/CVS/Entries' -exec cat {} + | LC_ALL=C sort | sha1sum | awk '{print $1}')
-	export ESCM_VERSION=${ECVS_VERSION}
 
 	# If the directory is empty, remove it; empty directories cannot
 	# exist in cvs.  This happens when, for example, kde-source

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.22 2012/06/02 19:02:42 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.23 2012/10/21 07:48:32 tetromino Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -17,7 +17,10 @@
 inherit eutils gst-plugins10 multilib
 
 GST_EXPF="src_unpack src_compile src_install"
+GST_TARBALL_SUFFIX="bz2"
 case ${EAPI:-0} in
+	4)	GST_EXPF="${GST_EXPF} src_prepare src_configure"
+		GST_TARBALL_SUFFIX="xz" ;;
 	2|3) GST_EXPF="${GST_EXPF} src_prepare src_configure" ;;
 	1|0) ;;
 	*) die "Unknown EAPI" ;;
@@ -38,7 +41,8 @@ gio libvisual ogg oggtest theora ivorbis vorbis vorbistest examples
 freetypetest pango"
 
 #SRC_URI="mirror://gnome/sources/gst-plugins/${PV_MAJ_MIN}/${MY_P}.tar.bz2"
-SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-base/${MY_P}.tar.bz2"
+SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-base/${MY_P}.tar.${GST_TARBALL_SUFFIX}"
+[[ ${GST_TARBALL_SUFFIX} = "xz" ]] && DEPEND="${DEPEND} app-arch/xz-utils"
 
 S=${WORKDIR}/${MY_P}
 
@@ -47,6 +51,7 @@ S=${WORKDIR}/${MY_P}
 if [ "${PN}" != "${MY_PN}" ]; then
 RDEPEND=">=media-libs/gst-plugins-base-${PV}"
 DEPEND="${RDEPEND}
+	${DEPEND}
 	~media-libs/gst-plugins-base-${PV}
 	>=sys-apps/sed-4
 	virtual/pkgconfig"

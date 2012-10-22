@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.17 2012/03/30 13:50:39 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.19 2012/10/17 13:16:31 aballier Exp $
 
 # @ECLASS: texlive-common.eclass
 # @MAINTAINER:
@@ -132,11 +132,32 @@ dobin_texmf_scripts() {
 # function helps in factorizing some code.
 
 etexmf-update() {
-	if [ "$ROOT" = "/" ] && [ -x "${EPREFIX}"/usr/sbin/texmf-update ] ; then
-		"${EPREFIX}"/usr/sbin/texmf-update
-	else
-		ewarn "Cannot run texmf-update for some reason."
-		ewarn "Your texmf tree might be inconsistent with your configuration"
-		ewarn "Please try to figure what has happened"
+	if has_version 'app-text/texlive-core' ; then
+		if [ "$ROOT" = "/" ] && [ -x "${EPREFIX}"/usr/sbin/texmf-update ] ; then
+			"${EPREFIX}"/usr/sbin/texmf-update
+		else
+			ewarn "Cannot run texmf-update for some reason."
+			ewarn "Your texmf tree might be inconsistent with your configuration"
+			ewarn "Please try to figure what has happened"
+		fi
+	fi
+}
+
+# @FUNCTION: efmtutil-sys
+# @USAGE: In ebuilds' pkg_postinst to force a rebuild of TeX formats.
+# @DESCRIPTION:
+# Runs fmtutil-sys if it is available and prints a warning otherwise. This
+# function helps in factorizing some code.
+
+efmtutil-sys() {
+	if has_version 'app-text/texlive-core' ; then
+		if [ "$ROOT" = "/" ] && [ -x "${EPREFIX}"/usr/bin/fmtutil-sys ] ; then
+			einfo "Rebuilding formats"
+			"${EPREFIX}"/usr/bin/fmtutil-sys --all &> /dev/null
+		else
+			ewarn "Cannot run fmtutil-sys for some reason."
+			ewarn "Your formats might be inconsistent with your installed ${PN} version"
+			ewarn "Please try to figure what has happened"
+		fi
 	fi
 }

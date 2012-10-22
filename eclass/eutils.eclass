@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.400 2012/06/20 09:26:50 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.408 2012/10/11 16:52:05 mgorny Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -19,8 +19,6 @@ if [[ ${___ECLASS_ONCE_EUTILS} != "recur -_+^+_- spank" ]] ; then
 ___ECLASS_ONCE_EUTILS="recur -_+^+_- spank"
 
 inherit multilib toolchain-funcs user
-
-DESCRIPTION="Based on the ${ECLASS} eclass"
 
 if has "${EAPI:-0}" 0 1 2; then
 
@@ -553,7 +551,7 @@ epatch() {
 # @USAGE:
 # @DESCRIPTION:
 # Applies user-provided patches to the source tree. The patches are
-# taken from /etc/portage/patches/<CATEGORY>/<PF|P|PN>/, where the first
+# taken from /etc/portage/patches/<CATEGORY>/<PF|P|PN>[:SLOT]/, where the first
 # of these three directories to exist will be the one to use, ignoring
 # any more general directories which might exist as well. They must end
 # in ".patch" to be applied.
@@ -585,7 +583,7 @@ epatch_user() {
 
 	# don't clobber any EPATCH vars that the parent might want
 	local EPATCH_SOURCE check base=${PORTAGE_CONFIGROOT%/}/etc/portage/patches
-	for check in ${CATEGORY}/{${P}-${PR},${P},${PN}}; do
+	for check in ${CATEGORY}/{${P}-${PR},${P},${PN}}{,:${SLOT}}; do
 		EPATCH_SOURCE=${base}/${CTARGET}/${check}
 		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${CHOST}/${check}
 		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${check}
@@ -658,7 +656,7 @@ edos2unix() {
 # @CODE
 # binary:   what command does the app run with ?
 # name:     the name that will show up in the menu
-# icon:     give your little like a pretty little icon ...
+# icon:     the icon to use in the menu entry
 #           this can be relative (to /usr/share/pixmaps) or
 #           a full path to an icon
 # type:     what kind of application is this?
@@ -1385,12 +1383,16 @@ use_if_iuse() {
 # @FUNCTION: usex
 # @USAGE: <USE flag> [true output] [false output] [true suffix] [false suffix]
 # @DESCRIPTION:
+# Proxy to declare usex for package managers or EAPIs that do not provide it
+# and use the package manager implementation when available (i.e. EAPI >= 5).
 # If USE flag is set, echo [true output][true suffix] (defaults to "yes"),
 # otherwise echo [false output][false suffix] (defaults to "no").
-usex() { use "$1" && echo "${2-yes}$4" || echo "${3-no}$5" ; } #382963
+if has "${EAPI:-0}" 0 1 2 3 4; then
+	usex() { use "$1" && echo "${2-yes}$4" || echo "${3-no}$5" ; } #382963
+fi
 
 # @FUNCTION: prune_libtool_files
-# @USAGE: [--all]
+# @USAGE: [--all|--modules]
 # @DESCRIPTION:
 # Locate unnecessary libtool files (.la) and libtool static archives
 # (.a) and remove them from installation image.
@@ -1399,90 +1401,110 @@ usex() { use "$1" && echo "${2-yes}$4" || echo "${3-no}$5" ; } #382963
 # either be performed using pkg-config or doesn't introduce additional
 # flags.
 #
-# If '--all' argument is passed, all .la files are removed. This is
-# usually useful when the package installs plugins and does not use .la
-# files for loading them.
+# If '--modules' argument is passed, .la files for modules (plugins) are
+# removed as well. This is usually useful when the package installs
+# plugins and the plugin loader does not use .la files.
+#
+# If '--all' argument is passed, all .la files are removed without
+# performing any heuristic on them. You shouldn't ever use that,
+# and instead report a bug in the algorithm instead.
 #
 # The .a files are only removed whenever corresponding .la files state
 # that they should not be linked to, i.e. whenever these files
 # correspond to plugins.
 #
-# Note: if your package installs any .pc files, this function implicitly
-# calls pkg-config. You should add it to your DEPEND in that case.
+# Note: if your package installs both static libraries and .pc files,
+# you need to add pkg-config to your DEPEND.
 prune_libtool_files() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local removing_all opt
+	local removing_all removing_modules opt
 	for opt; do
 		case "${opt}" in
 			--all)
 				removing_all=1
+				removing_modules=1
+				;;
+			--modules)
+				removing_modules=1
 				;;
 			*)
 				die "Invalid argument to ${FUNCNAME}(): ${opt}"
 		esac
 	done
 
-	# Create a list of all .pc-covered libs.
-	local pc_libs=()
-	if [[ ! ${removing_all} ]]; then
-		local f
-		local tf=${T}/prune-lt-files.pc
-		local pkgconf=$(tc-getPKG_CONFIG)
-
-		while IFS= read -r -d '' f; do # for all .pc files
-			local arg
-
-			sed -e '/^Requires:/d' "${f}" > "${tf}"
-			for arg in $("${pkgconf}" --libs "${tf}"); do
-				[[ ${arg} == -l* ]] && pc_libs+=( lib${arg#-l}.la )
-			done
-		done < <(find "${ED}" -type f -name '*.pc' -print0)
-
-		rm -f "${tf}"
-	fi
-
 	local f
+	local queue=()
 	while IFS= read -r -d '' f; do # for all .la files
 		local archivefile=${f/%.la/.a}
 
 		[[ ${f} != ${archivefile} ]] || die 'regex sanity check failed'
 
+		local reason pkgconfig_scanned
+
 		# Remove static libs we're not supposed to link against.
 		if grep -q '^shouldnotlink=yes$' "${f}"; then
 			if [[ -f ${archivefile} ]]; then
 				einfo "Removing unnecessary ${archivefile#${D%/}} (static plugin)"
-				rm -f "${archivefile}"
+				queue+=( "${archivefile}" )
 			fi
 
 			# The .la file may be used by a module loader, so avoid removing it
 			# unless explicitly requested.
-			[[ ${removing_all} ]] || continue
-		fi
+			if [[ ${removing_modules} ]]; then
+				reason='module'
+			fi
 
 		# Remove .la files when:
 		# - user explicitly wants us to remove all .la files,
 		# - respective static archive doesn't exist,
 		# - they are covered by a .pc file already,
 		# - they don't provide any new information (no libs & no flags).
-		local reason
-		if [[ ${removing_all} ]]; then
+
+		elif [[ ${removing_all} ]]; then
 			reason='requested'
 		elif [[ ! -f ${archivefile} ]]; then
 			reason='no static archive'
-		elif has "${f##*/}" "${pc_libs[@]}"; then
-			reason='covered by .pc'
 		elif [[ ! $(sed -nre \
 				"s/^(dependency_libs|inherited_linker_flags)='(.*)'$/\2/p" \
 				"${f}") ]]; then
 			reason='no libs & flags'
+		else
+			if [[ ! ${pkgconfig_scanned} ]]; then
+				# Create a list of all .pc-covered libs.
+				local pc_libs=()
+				if [[ ! ${removing_all} ]]; then
+					local f
+					local tf=${T}/prune-lt-files.pc
+					local pkgconf=$(tc-getPKG_CONFIG)
+
+					while IFS= read -r -d '' f; do # for all .pc files
+						local arg
+
+						sed -e '/^Requires:/d' "${f}" > "${tf}"
+						for arg in $("${pkgconf}" --libs "${tf}"); do
+							[[ ${arg} == -l* ]] && pc_libs+=( lib${arg#-l}.la )
+						done
+					done < <(find "${ED}" -type f -name '*.pc' -print0)
+
+					rm -f "${tf}"
+				fi
+
+				pkgconfig_scanned=1
+			fi
+
+			has "${f##*/}" "${pc_libs[@]}" && reason='covered by .pc'
 		fi
 
 		if [[ ${reason} ]]; then
 			einfo "Removing unnecessary ${f#${D%/}} (${reason})"
-			rm -f "${f}"
+			queue+=( "${f}" )
 		fi
-	done < <(find "${ED}" -type f -name '*.la' -print0)
+	done < <(find "${ED}" -xtype f -name '*.la' -print0)
+
+	if [[ ${queue[@]} ]]; then
+		rm -f "${queue[@]}"
+	fi
 }
 
 check_license() { die "you no longer need this as portage supports ACCEPT_LICENSE itself"; }
