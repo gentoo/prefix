@@ -2,16 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>hanno@gentoo.org</email>
-	</maintainer>
-	<maintainer>
 		<email>sping@gentoo.org</email>
-		<description>backup maintainer</description>
 	</maintainer>
 	<use>
-		<flag name="gs">
-			Enable Ghostscript support (<pkg>app-text/ghostscript-gpl</pkg>)
-		</flag>
 		<flag name="smp">
 			Enable support for multiprocessors
 		</flag>

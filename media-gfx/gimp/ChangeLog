@@ -1,6 +1,119 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.372 2012/06/02 21:42:28 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.398 2012/09/29 20:14:22 sping Exp $
+
+  29 Sep 2012; Sebastian Pipping <sping@gentoo.org> -gimp-2.6.12-r2.ebuild,
+  -gimp-2.6.12-r4.ebuild:
+  Remove vulnerable 2.6.12-r{2,4} ebuilds with a newer 2.6.12-r5 version stable
+  on all arches
+
+  29 Sep 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.6.12-r2.ebuild,
+  gimp-2.6.12-r4.ebuild, gimp-2.6.12-r5.ebuild, gimp-2.8.2.ebuild:
+  Use einfo() rather than elog() to report about cleaning of locales (bug
+  #436616)
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> gimp-2.6.12-r5.ebuild:
+  alpha/ia64/sparc stable wrt #434580
+
+  29 Sep 2012; Anthony G. Basile <blueness@gentoo.org> gimp-2.6.12-r5.ebuild:
+  stable ppc, bug #434580
+
+  28 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org> gimp-2.6.12-r5.ebuild:
+  ppc64 stable wrt #434580
+
+  26 Sep 2012; Hanno Boeck <hanno@gentoo.org> metadata.xml:
+  Remove myself as maintainer, sping is now responsible.
+
+  24 Sep 2012; Andreas Schuerch <nativemad@gentoo.org> gimp-2.6.12-r5.ebuild:
+  x86 stable, see bug 434580
+
+  24 Sep 2012; Jeroen Roovers <jer@gentoo.org> gimp-2.6.12-r5.ebuild:
+  Stable for HPPA (bug #434580).
+
+  23 Sep 2012; Richard Freeman <rich0@gentoo.org> gimp-2.6.12-r5.ebuild:
+  amd64 stable - 434580
+
+*gimp-2.6.12-r5 (22 Sep 2012)
+
+  22 Sep 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.6.12-r5.ebuild,
+  +files/gimp-2.6.12-CVE-2012-3236.patch:
+  Apply upstream patch for CVE-2012-3236 (bug #428708)
+
+  22 Sep 2012; Sebastian Pipping <sping@gentoo.org> -gimp-2.6.11-r5.ebuild,
+  -gimp-2.6.11-r6.ebuild, -gimp-2.7.3.ebuild, -gimp-2.7.3-r1.ebuild,
+  -gimp-2.7.4.ebuild, -gimp-2.7.5.ebuild, -gimp-2.8.0_rc1.ebuild,
+  -gimp-2.8.0-r1.ebuild:
+  Remove everything but (1) latest stable and testing 2.6.x (2.6.12-r{2,4}),
+  (2) latest 2.8.x (2.8.2) and (3) live ebuild (9999)
+
+  22 Sep 2012; Sebastian Pipping <sping@gentoo.org> -gimp-2.6.11-r1.ebuild,
+  -gimp-2.6.11-r2.ebuild, -gimp-2.6.11-r3.ebuild, -gimp-2.6.11-r4.ebuild,
+  -gimp-2.6.12.ebuild, -gimp-2.6.12-r1.ebuild, -gimp-2.8.0.ebuild:
+  Remove some old revisions with newer stuff stable
+
+  20 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org> gimp-2.6.12-r2.ebuild:
+  ppc64 stable wrt #418425
+
+*gimp-2.6.12-r4 (15 Sep 2012)
+
+  15 Sep 2012; Sebastian Pipping <sping@gentoo.org> -gimp-2.6.12-r3.ebuild,
+  +gimp-2.6.12-r4.ebuild, +files/gimp-2.6.12-CVE-2012-3403.patch,
+  +files/gimp-2.6.12-CVE-2012-3481.patch,
+  -files/gimp-2.6.12-fix-type-overflow-CVE-2012-3481.patch,
+  -files/gimp-2.6.12-limit-len-and-height-CVE-2012-3481.patch:
+  Apply patch for CVE-2012-3403 and single-file patch for CVE-2012-3481 (both
+  from Fedora, Gentoo bug #434580)
+
+*gimp-2.6.12-r3 (14 Sep 2012)
+
+  14 Sep 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.6.12-r3.ebuild,
+  +files/gimp-2.6.12-fix-type-overflow-CVE-2012-3481.patch,
+  +files/gimp-2.6.12-limit-len-and-height-CVE-2012-3481.patch:
+  Add patches for CVE-2012-3481 to 2.6.12 (bug #434580), 2.8.2 is patched by
+  upstream already
+
+  03 Sep 2012; Sebastian Pipping <sping@gentoo.org> gimp-9999.ebuild:
+  Bump dependencies of live ebuild on GEGL and BABL to actual but out-of-tree
+  versions (bug #395065)
+
+  03 Sep 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.8.2.ebuild:
+  Prevent dead symlink gimp-console.1 (bug #433527)
+
+*gimp-2.8.2 (24 Aug 2012)
+
+  24 Aug 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.8.2.ebuild:
+  Bump to 2.8.2 (bug #432574)
+
+  09 Aug 2012; Brent Baude <ranger@gentoo.org> gimp-2.6.12-r2.ebuild:
+  Marking gimp-2.6.12-r2 ppc for bug 418425
+
+  14 Jul 2012; Raúl Porcel <armin76@gentoo.org> gimp-2.6.12-r2.ebuild:
+  alpha/ia64/sparc stable wrt #418425
+
+  12 Jul 2012; Jeroen Roovers <jer@gentoo.org> gimp-2.6.12-r2.ebuild:
+  Stable for HPPA (bug #418425).
+
+  11 Jul 2012; Richard Freeman <rich0@gentoo.org> gimp-2.6.12-r2.ebuild:
+  amd64 stable - 418425
+
+  11 Jul 2012; Jeff Horelick <jdhore@gentoo.org> gimp-2.6.12-r2.ebuild:
+  marked x86 per bug 418425
+
+*gimp-2.6.12-r2 (08 Jul 2012)
+
+  08 Jul 2012; Sebastian Pipping <sping@gentoo.org> +gimp-2.6.12-r2.ebuild,
+  +files/gimp-2.6.12-CVE-2012-2763.patch:
+  Add backport of patch to CVE-2012-2763 by mancha
+
+  20 Jun 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.8.0-r1.ebuild:
+  Make use of --disable-silent-rules configure parameter to make build logs
+  tell more
+
+  16 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> gimp-2.7.5.ebuild,
+  gimp-2.8.0_rc1.ebuild, gimp-2.8.0.ebuild, gimp-2.8.0-r1.ebuild,
+  gimp-9999.ebuild, metadata.xml:
+  Use global USE flag "postscript" instead of local USE flag "gs" for
+  PostScript support
 
   02 Jun 2012; Sebastian Pipping <sping@gentoo.org> gimp-2.8.0.ebuild,
   gimp-2.8.0-r1.ebuild:

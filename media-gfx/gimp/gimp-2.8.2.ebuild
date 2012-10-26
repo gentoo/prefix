@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.7.4.ebuild,v 1.5 2012/05/18 22:32:00 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.8.2.ebuild,v 1.3 2012/09/29 20:10:26 sping Exp $
 
 EAPI="3"
 PYTHON_DEPEND="python? 2:2.5"
@@ -10,16 +10,21 @@ inherit versionator autotools eutils gnome2 fdo-mime multilib python
 DESCRIPTION="GNU Image Manipulation Program"
 HOMEPAGE="http://www.gimp.org/"
 SRC_URI="mirror://gimp/v$(get_version_component_range 1-2)/${P}.tar.bz2"
-
 LICENSE="GPL-3 LGPL-3"
 SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 
-IUSE="aqua alsa aalib altivec curl dbus debug doc exif gnome jpeg jpeg2k lcms mmx mng pdf png python smp sse svg tiff udev webkit wmf xpm"
+LANGS="am ar ast az be bg br ca ca@valencia cs csb da de dz el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja ka kk km kn ko lt lv mk ml ms my nb nds ne nl nn oc pa pl pt pt_BR ro ru rw si sk sl sr sr@latin sv ta te th tr tt uk vi xh yi zh_CN zh_HK zh_TW"
+IUSE="aqua alsa aalib altivec bzip2 curl dbus debug doc exif gnome postscript jpeg jpeg2k lcms mmx mng pdf png python smp sse svg tiff udev webkit wmf xpm"
+
+for lang in ${LANGS}; do
+	IUSE+=" linguas_${lang}"
+done
 
 RDEPEND=">=dev-libs/glib-2.30.2:2
-	>=x11-libs/gtk+-2.24.7:2
-	>=x11-libs/gdk-pixbuf-2.24:2
+	>=dev-libs/atk-2.2.0
+	>=x11-libs/gtk+-2.24.10:2
+	>=x11-libs/gdk-pixbuf-2.24.1:2
 	>=x11-libs/cairo-1.10.2
 	>=x11-libs/pango-1.29.4
 	xpm? ( x11-libs/libXpm )
@@ -29,8 +34,8 @@ RDEPEND=">=dev-libs/glib-2.30.2:2
 	dev-libs/libxml2
 	dev-libs/libxslt
 	x11-themes/hicolor-icon-theme
-	>=media-libs/babl-0.1.6
-	>=media-libs/gegl-0.1.8 <media-libs/gegl-0.2
+	>=media-libs/babl-0.1.10
+	>=media-libs/gegl-0.2.0
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
 	curl? ( net-misc/curl )
@@ -46,11 +51,15 @@ RDEPEND=">=dev-libs/glib-2.30.2:2
 	png? ( >=media-libs/libpng-1.2.37:0 )
 	python?	( >=dev-python/pygtk-2.10.4:2 )
 	tiff? ( >=media-libs/tiff-3.5.7:0 )
-	svg? ( >=gnome-base/librsvg-2.34.2:2 )
+	svg? ( >=gnome-base/librsvg-2.36.0:2 )
 	wmf? ( >=media-libs/libwmf-0.2.8 )
 	x11-libs/libXcursor
+	sys-libs/zlib
+	bzip2? ( app-arch/bzip2 )
+	postscript? ( app-text/ghostscript-gpl )
 	udev? ( sys-fs/udev[gudev] )"
 DEPEND="${RDEPEND}
+	sys-apps/findutils
 	virtual/pkgconfig
 	>=dev-util/intltool-0.40.1
 	>=sys-devel/gettext-0.17
@@ -61,12 +70,16 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
 
+S="${WORKDIR}"/${P}
+
 pkg_setup() {
 	G2CONF="--enable-default-binary \
+		--disable-silent-rules \
 		$(use_with !aqua x) \
 		$(use_with aalib aa) \
 		$(use_with alsa) \
 		$(use_enable altivec) \
+		$(use_with bzip2) \
 		$(use_with curl libcurl) \
 		$(use_with dbus) \
 		$(use_with gnome gvfs) \
@@ -75,6 +88,7 @@ pkg_setup() {
 		$(use_with jpeg2k libjasper) \
 		$(use_with exif libexif) \
 		$(use_with lcms) \
+		$(use_with postscript gs) \
 		$(use_enable mmx) \
 		$(use_with mng libmng) \
 		$(use_with pdf poppler) \
@@ -97,11 +111,22 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-no-deprecation.patch  # bug 395695, comment 9 and 16
+	epatch "${FILESDIR}"/${PN}-2.7.4-no-deprecation.patch  # bug 395695, comment 9 and 16
 	eautoreconf  # If you remove this: remove dev-util/gtk-doc-am from DEPEND, too
 
 	echo '#!/bin/sh' > py-compile
 	gnome2_src_prepare
+}
+
+_clean_up_locales() {
+	einfo "Cleaning up locales..."
+	for lang in ${LANGS}; do
+		use "linguas_${lang}" && {
+			einfo "- keeping ${lang}"
+			continue
+		}
+		rm -Rf "${ED}"/usr/share/locale/"${lang}" || die
+	done
 }
 
 src_install() {
@@ -115,6 +140,14 @@ src_install() {
 	# Workaround for bug #321111 to give GIMP the least
 	# precedence on PDF documents by default
 	mv "${ED}"/usr/share/applications/{,zzz-}gimp.desktop || die
+
+	find "${ED}" -name '*.la' -delete || die
+
+	# Prevent dead symlink gimp-console.1 from downstream man page compression (bug #433527)
+	local gimp_app_version=$(get_version_component_range 1-2)
+	mv "${ED}"/usr/share/man/man1/gimp-console{-${gimp_app_version},}.1 || die
+
+	_clean_up_locales
 }
 
 pkg_postinst() {
