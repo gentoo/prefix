@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.6.0.ebuild,v 1.14 2012/08/06 00:52:47 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.7.0.ebuild,v 1.1 2012/09/09 21:48:36 radhermit Exp $
 
 EAPI=4
 inherit autotools eutils flag-o-matic
@@ -16,25 +16,21 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="sse2 static-libs"
 
+DEPEND="virtual/pkgconfig"
+
 S=${WORKDIR}/${MY_PN}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-flags.patch
 	sed -i -e "s:^\(pkgdoc_DATA=\)COPYING.TXT :\1:" Makefile.am || die
 	eautoreconf
-
-	if use sse2; then
-		append-flags -msse2
-	else
-		sed -i -e '/#define SOUNDTOUCH_ALLOW_X86_OPTIMIZATIONS/d' \
-			include/STTypes.h || die
-	fi
 }
 
 src_configure() {
 	econf \
 		--enable-shared \
 		--disable-integer-samples \
+		--enable-x86-optimizations=$(usex sse2) \
 		$(use_enable static-libs static)
 }
 
@@ -43,6 +39,6 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" pkgdocdir="${EPREFIX}/usr/share/doc/${PF}/html" install
-	find "${ED}" -name '*.la' -exec rm -f {} +
+	emake DESTDIR="${D}" pkgdocdir="${EPREFIX}"/usr/share/doc/${PF}/html install
+	prune_libtool_files
 }
