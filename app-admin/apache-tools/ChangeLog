@@ -1,6 +1,171 @@
 # ChangeLog for app-admin/apache-tools
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.84 2010/09/19 17:40:01 gmsoft Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.126 2012/10/20 16:32:41 armin76 Exp $
+
+  20 Oct 2012; Raúl Porcel <armin76@gentoo.org> apache-tools-2.2.23.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #432284
+
+  16 Oct 2012; Andreas Schuerch <nativemad@gentoo.org>
+  apache-tools-2.2.23.ebuild:
+  x86 stable, see bug 432284
+
+  15 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  apache-tools-2.2.23.ebuild:
+  stable arm, bug #432284
+
+  14 Oct 2012; Jeroen Roovers <jer@gentoo.org> apache-tools-2.2.23.ebuild:
+  Stable for HPPA (bug #432284).
+
+  13 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  apache-tools-2.2.23.ebuild:
+  stable ppc ppc64, bug #432284
+
+  13 Oct 2012; Agostino Sarubbo <ago@gentoo.org> apache-tools-2.2.23.ebuild:
+  Stable for amd64, wrt bug #432284
+
+*apache-tools-2.4.3 (12 Oct 2012)
+
+  12 Oct 2012; Patrick Lauer <patrick@gentoo.org> +apache-tools-2.4.3.ebuild,
+  -apache-tools-2.4.2.ebuild:
+  Bump
+
+*apache-tools-2.2.23 (12 Oct 2012)
+
+  12 Oct 2012; Patrick Lauer <patrick@gentoo.org> +apache-tools-2.2.23.ebuild:
+  Bump for #432284
+
+  12 May 2012; Alexis Ballier <aballier@gentoo.org> apache-tools-2.2.22.ebuild:
+  keyword ~amd64-fbsd
+
+  20 Apr 2012; Patrick Lauer <patrick@gentoo.org> -apache-tools-2.2.14.ebuild,
+  -apache-tools-2.2.15.ebuild, -apache-tools-2.2.16.ebuild,
+  -apache-tools-2.2.17.ebuild, -apache-tools-2.2.20.ebuild,
+  -apache-tools-2.2.21.ebuild, -apache-tools-2.4.1.ebuild:
+  Cleanup
+
+*apache-tools-2.4.2 (20 Apr 2012)
+
+  20 Apr 2012; Patrick Lauer <patrick@gentoo.org> +apache-tools-2.4.2.ebuild:
+  Bump (but leave masked) for #412481
+
+  17 Apr 2012; Brent Baude <ranger@gentoo.org> apache-tools-2.2.22.ebuild:
+  Marking apache-tools-2.2.22 ppc64 for bug 401761
+
+  17 Apr 2012; Brent Baude <ranger@gentoo.org> apache-tools-2.2.22.ebuild:
+  Marking apache-tools-2.2.22 ppc for bug 401761
+
+  08 Apr 2012; Raúl Porcel <armin76@gentoo.org> apache-tools-2.2.22.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #401761
+
+  07 Apr 2012; Jeff Horelick <jdhore@gentoo.org> apache-tools-2.2.22.ebuild:
+  marked x86 per bug 401761
+
+  06 Apr 2012; Markus Meier <maekke@gentoo.org> apache-tools-2.2.22.ebuild:
+  arm stable, bug #401761
+
+  04 Apr 2012; Jeroen Roovers <jer@gentoo.org> apache-tools-2.2.22.ebuild:
+  Stable for HPPA (bug #401761).
+
+*apache-tools-2.4.1 (01 Apr 2012)
+
+  01 Apr 2012; Patrick Lauer <patrick@gentoo.org> +apache-tools-2.4.1.ebuild:
+  Bump for #405767
+
+  29 Mar 2012; Agostino Sarubbo <ago@gentoo.org> apache-tools-2.2.22.ebuild:
+  Stable for amd64, wrt bug #401761
+
+  28 Mar 2012; Patrick Lauer <patrick@gentoo.org> metadata.xml:
+  Adding Gerrit as proxy-maintainer
+
+*apache-tools-2.2.22 (28 Mar 2012)
+
+  28 Mar 2012; Patrick Lauer <patrick@gentoo.org> +apache-tools-2.2.22.ebuild:
+  Bump for #401761
+
+  14 Oct 2011; Steve Dibb <beandog@gentoo.org> apache-tools-2.2.14.ebuild,
+  apache-tools-2.2.15.ebuild, apache-tools-2.2.16.ebuild,
+  apache-tools-2.2.17.ebuild, apache-tools-2.2.20.ebuild,
+  apache-tools-2.2.21.ebuild:
+  Add sys-devel/libtool to DPEEND, bug 381787
+
+  27 Sep 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  apache-tools-2.2.21.ebuild:
+  ppc/ppc64 stable wrt #382971
+
+  17 Sep 2011; Raúl Porcel <armin76@gentoo.org> apache-tools-2.2.21.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #382971
+
+  16 Sep 2011; Jeroen Roovers <jer@gentoo.org> apache-tools-2.2.21.ebuild:
+  Stable for HPPA (bug #382971).
+
+  16 Sep 2011; Tony Vroon <chainsaw@gentoo.org> apache-tools-2.2.21.ebuild:
+  Marked stable as a dependency of www-servers/apache-2.2.21 based on arch
+  testing by Tomáš "Mepho" Pružina, Agostino "ago" Sarubbo, Ian "idella4"
+  Delaney & Elijah "Armageddon" El Lazkani in bug #382971.
+
+  16 Sep 2011; Andreas Schuerch <nativemad@gentoo.org>
+  apache-tools-2.2.21.ebuild:
+  x86 stable, thanks JD, bug 382871
+
+*apache-tools-2.2.21 (15 Sep 2011)
+
+  15 Sep 2011; Peter Volkov <pva@gentoo.org> +apache-tools-2.2.21.ebuild,
+  metadata.xml:
+  Version bump, bug #382971 wrt Agostino Sarubbo.
+
+  03 Sep 2011; Raúl Porcel <armin76@gentoo.org> apache-tools-2.2.20.ebuild:
+  arm/ia64/s390/sh/sparc/x86 stable wrt #380475
+
+  03 Sep 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  apache-tools-2.2.20.ebuild:
+  ppc/ppc64 stable wrt #380475
+
+  02 Sep 2011; Jeroen Roovers <jer@gentoo.org> apache-tools-2.2.20.ebuild:
+  Stable for HPPA (bug #380475).
+
+  02 Sep 2011; Tobias Klausmann <klausman@gentoo.org>
+  apache-tools-2.2.20.ebuild:
+  Stable on alpha, bug #380475
+
+  02 Sep 2011; Tony Vroon <chainsaw@gentoo.org> apache-tools-2.2.20.ebuild:
+  Marked stable on AMD64 based on arch testing by Elijah "Armageddon" El
+  Lazkani & Agostino "ago" Sarubbo in security bug #380475 filed by Alex "a3li"
+  Legler.
+
+*apache-tools-2.2.20 (01 Sep 2011)
+
+  01 Sep 2011; Peter Volkov <pva@gentoo.org> +apache-tools-2.2.20.ebuild,
+  +files/apache-tools-2.2.20-Makefile.patch:
+  Version bump, bug #368743 wrt Max Nokhrin and Denis Kaganovich
+
+  22 Jul 2011; Jeroen Roovers <jer@gentoo.org> apache-tools-2.2.17.ebuild:
+  Stable for HPPA (bug #360625).
+
+  20 May 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  apache-tools-2.2.17.ebuild:
+  ppc64 stable wrt #360625
+
+  23 Apr 2011; Raúl Porcel <armin76@gentoo.org> apache-tools-2.2.17.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #360625
+
+  11 Apr 2011; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  apache-tools-2.2.17.ebuild:
+  x86 stable wrt bug #360625
+
+  10 Apr 2011; Markus Meier <maekke@gentoo.org> apache-tools-2.2.17.ebuild:
+  arm stable, bug #360625
+
+  04 Apr 2011; Brent Baude <ranger@gentoo.org> apache-tools-2.2.17.ebuild:
+  Marking apache-tools-2.2.17 ppc for bug 360625
+
+  26 Mar 2011; Christoph Mende <angelos@gentoo.org> apache-tools-2.2.17.ebuild:
+  Stable on amd64 wrt bug #360625
+
+*apache-tools-2.2.17 (18 Feb 2011)
+
+  18 Feb 2011; Benedikt Böhm <hollow@gentoo.org>
+  +apache-tools-2.2.17.ebuild:
+  version bump wrt #342055
 
   19 Sep 2010; Guy Martin <gmsoft@gentoo.org> apache-tools-2.2.16.ebuild:
   hppa stable wrt #330195

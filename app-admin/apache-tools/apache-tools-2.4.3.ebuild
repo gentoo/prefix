@@ -1,7 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.16.ebuild,v 1.7 2010/09/19 17:40:01 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.4.3.ebuild,v 1.1 2012/10/12 06:05:18 patrick Exp $
 
+EAPI="3"
 inherit flag-o-matic eutils
 
 DESCRIPTION="Useful Apache tools - htdigest, htpasswd, ab, htdbm"
@@ -17,35 +18,20 @@ RESTRICT="test"
 RDEPEND="=dev-libs/apr-1*
 	=dev-libs/apr-util-1*
 	dev-libs/libpcre
-	ssl? ( dev-libs/openssl )
-	!<www-servers/apache-2.2.4"
+	ssl? ( dev-libs/openssl )"
 
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	sys-devel/libtool"
 
 S="${WORKDIR}/httpd-${PV}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# Apply these patches:
-	# (1)	apache-tools-Makefile.patch:
-	#		- fix up the `make install' for support/
-	#		- remove envvars from `make install'
-	epatch "${FILESDIR}"/${PN}-Makefile.patch
-}
-
-src_compile() {
+src_configure() {
 	local myconf=""
-	cd "${S}"
 
 	# Instead of filtering --as-needed (bug #128505), append --no-as-needed
-	# Thanks to Harald van Dijk
 	append-ldflags $(no-as-needed)
 
-	if use ssl ; then
-		myconf="${myconf} --with-ssl=${EPREFIX}/usr --enable-ssl"
-	fi
+	use ssl && myconf+=" --with-ssl=${EPREFIX}/usr --enable-ssl"
 
 	# econf overwrites the stuff from config.layout, so we have to put them into
 	# our myconf line too
@@ -57,30 +43,34 @@ src_compile() {
 		--with-apr="${EPREFIX}"/usr \
 		--with-apr-util="${EPREFIX}"/usr \
 		--with-pcre="${EPREFIX}"/usr \
-		${myconf} || die "econf failed!"
+		${myconf}
+}
 
-	cd support
-	emake || die "emake support/ failed!"
+src_compile() {
+	cd support || die
+	emake
 }
 
 src_install () {
-	cd "${S}"/support
+	cd support || die
 
-	make DESTDIR="${D}" install || die "make install failed!"
+	make DESTDIR="${D}" install
 
 	# install manpages
-	doman "${S}"/docs/man/{dbmmanage,htdigest,htpasswd,htdbm}.1 \
-		"${S}"/docs/man/{ab,htcacheclean,logresolve,rotatelogs}.8
+	doman "${S}"/docs/man/{dbmmanage,htdigest,htpasswd,htdbm,ab,logresolve}.1 \
+		"${S}"/docs/man/{htcacheclean,rotatelogs}.8
 
 	# Providing compatiblity symlinks for #177697 (which we'll stop to install
 	# at some point).
 
-	for i in $(ls "${ED}"/usr/sbin 2>/dev/null); do
+	pushd "${ED}"/usr/sbin/ >/dev/null
+	for i in *; do
 		dosym /usr/sbin/${i} /usr/sbin/${i}2
 	done
+	popd "${ED}"/usr/sbin/ >/dev/null
 
 	# Provide a symlink for ab-ssl
-	if use ssl ; then
+	if use ssl; then
 		dosym /usr/sbin/ab /usr/sbin/ab-ssl
 		dosym /usr/sbin/ab /usr/sbin/ab2-ssl
 	fi
