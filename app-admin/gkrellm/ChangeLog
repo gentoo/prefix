@@ -1,6 +1,18 @@
 # ChangeLog for app-admin/gkrellm
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.189 2012/05/31 02:30:55 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.191 2012/06/27 17:54:53 lack Exp $
+
+  27 Jun 2012; Jim Ramsay <jim_ramsay@gentoo.org> -gkrellm-2.3.2-r1.ebuild,
+  -gkrellm-2.3.2.ebuild, -gkrellm-2.3.4.ebuild, gkrellm-2.3.5.ebuild:
+  Version cleanup
+
+*gkrellm-2.3.5-r1 (27 Jun 2012)
+
+  27 Jun 2012; Jim Ramsay <jim_ramsay@gentoo.org>
+  +files/gkrellm-2.3.5-autofs.patch, +files/gkrellm-2.3.5-cifs.patch,
+  +gkrellm-2.3.5-r1.ebuild, gkrellm-2.3.5.ebuild:
+  Bug #416141: User-supplied patch to respect autofs and cifs (patches also sent
+  upstream, expected to land in 2.3.6)
 
   31 May 2012; Zac Medico <zmedico@gentoo.org> gkrellm-2.3.2-r1.ebuild,
   gkrellm-2.3.2.ebuild, gkrellm-2.3.4.ebuild, gkrellm-2.3.5.ebuild:

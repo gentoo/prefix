@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.4.ebuild,v 1.4 2012/05/31 02:30:55 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.5-r1.ebuild,v 1.1 2012/06/27 17:52:13 lack Exp $
 
-EAPI=2
+EAPI=4
 
 inherit eutils multilib toolchain-funcs user
 
@@ -47,6 +47,9 @@ src_prepare() {
 	sed -e "s:/usr/lib:${EPREFIX}/usr/$(get_libdir):" \
 		-e "s:/usr/local/lib:${EPREFIX}/usr/local/$(get_libdir):" \
 		-i src/${PN}.h || die "sed ${PN}.h failed"
+
+	epatch "${FILESDIR}/${P}-autofs.patch"
+	epatch "${FILESDIR}/${P}-cifs.patch"
 }
 
 src_compile() {
@@ -62,7 +65,6 @@ src_compile() {
 
 		emake ${TARGET} \
 			CC="$(tc-getCC)" \
-			LINK_FLAGS="$LDFLAGS -Wl,-E" \
 			STRIP="" \
 			INSTALLROOT="${EPREFIX}/usr" \
 			INCLUDEDIR="${EPREFIX}/usr/include/gkrellm2" \
@@ -115,11 +117,4 @@ src_install() {
 	doins server/gkrellmd.conf || die "doins failed"
 
 	dodoc Changelog CREDITS README
-}
-
-pkg_postinst() {
-	if use X ; then
-		ewarn "The old executable name 'gkrellm2' has been removed."
-		ewarn "Run 'gkrellm' instead."
-	fi
 }
