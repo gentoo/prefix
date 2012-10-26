@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.11.ebuild,v 1.9 2012/04/26 12:29:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.11.ebuild,v 1.10 2012/07/06 04:17:46 vapier Exp $
 
 EAPI="2"
 
@@ -17,6 +17,7 @@ IUSE="nls"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-stat.patch #328531
+	epatch "${FILESDIR}"/${P}-no-gets.patch #424974
 	epatch "${FILESDIR}"/${PN}-2.10-irix.patch
 }
 

@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/cpio
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.115 2012/04/26 12:29:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.116 2012/07/06 04:17:46 vapier Exp $
+
+  06 Jul 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/cpio-2.11-no-gets.patch, cpio-2.11.ebuild:
+  Fix building with glibc-2.16 #424974 by Stevan Bajić.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> cpio-2.11.ebuild:
   keyword ~amd64-fbsd
