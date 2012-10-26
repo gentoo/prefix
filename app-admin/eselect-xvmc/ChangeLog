@@ -1,6 +1,27 @@
 # ChangeLog for app-admin/eselect-xvmc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-xvmc/ChangeLog,v 1.19 2012/05/10 17:14:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-xvmc/ChangeLog,v 1.26 2012/08/27 17:33:27 armin76 Exp $
+
+  27 Aug 2012; Raúl Porcel <armin76@gentoo.org> eselect-xvmc-0.3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #424017
+
+  08 Aug 2012; Brent Baude <ranger@gentoo.org> eselect-xvmc-0.3.ebuild:
+  Marking eselect-xvmc-0.3 ppc for bug 424017
+
+  06 Aug 2012; Brent Baude <ranger@gentoo.org> eselect-xvmc-0.3.ebuild:
+  Marking eselect-xvmc-0.3 ppc64 for bug 424017
+
+  25 Jul 2012; Jeroen Roovers <jer@gentoo.org> eselect-xvmc-0.3.ebuild:
+  Stable for HPPA (bug #424017).
+
+  23 Jul 2012; Markus Meier <maekke@gentoo.org> eselect-xvmc-0.3.ebuild:
+  arm stable, bug #424017
+
+  17 Jul 2012; Jeff Horelick <jdhore@gentoo.org> eselect-xvmc-0.3.ebuild:
+  marked x86 per bug 424017
+
+  15 Jul 2012; Agostino Sarubbo <ago@gentoo.org> eselect-xvmc-0.3.ebuild:
+  Stable for amd64, wrt bug #424017
 
   10 May 2012; Alexis Ballier <aballier@gentoo.org> eselect-xvmc-0.3.ebuild:
   keyword ~amd64-fbsd
