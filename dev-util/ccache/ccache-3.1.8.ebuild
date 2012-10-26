@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-3.1.7.ebuild,v 1.9 2012/07/01 16:39:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-3.1.8.ebuild,v 1.1 2012/08/11 16:04:33 vapier Exp $
 
 EAPI="4"
 
@@ -8,7 +8,7 @@ inherit multilib eutils
 
 DESCRIPTION="fast compiler cache"
 HOMEPAGE="http://ccache.samba.org/"
-SRC_URI="http://samba.org/ftp/ccache/${P}.tar.gz"
+SRC_URI="http://samba.org/ftp/ccache/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -33,11 +33,7 @@ src_install() {
 
 	dobin ccache-config
 
-	if use !prefix ; then
-		diropts -m0700
-		dodir /root/.ccache
-		keepdir /root/.ccache
-	else
+	if use prefix ; then
 		sed -i -e "s:/usr/:${EPREFIX}/usr/:" \
 			${ED}/usr/bin/ccache-config || die
 		sed -i -e "s:/etc/:${EPREFIX}/etc/:" \
