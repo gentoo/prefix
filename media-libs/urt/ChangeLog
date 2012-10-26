@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/urt
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/ChangeLog,v 1.32 2012/05/09 00:22:54 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/ChangeLog,v 1.33 2012/06/16 16:32:52 ssuominen Exp $
+
+  16 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> urt-3.1b-r1.ebuild,
+  metadata.xml:
+  Use global USE flag "postscript" instead of local USE flag "gs" for
+  PostScript support
 
   09 May 2012; Alexis Ballier <aballier@gentoo.org> urt-3.1b-r1.ebuild:
   keyword ~amd64-fbsd
