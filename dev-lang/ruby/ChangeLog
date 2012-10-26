@@ -1,6 +1,69 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.535 2012/05/27 17:54:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.553 2012/10/23 20:57:31 jer Exp $
+
+  23 Oct 2012; Jeroen Roovers <jer@gentoo.org> ruby-1.9.3_p194-r1.ebuild,
+  ruby-1.9.3_p286.ebuild:
+  Remove HPPA target hack (bug #342819).
+
+  21 Oct 2012; Raúl Porcel <armin76@gentoo.org> ruby-1.9.3_p194-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #411507
+
+  20 Oct 2012; Jeroen Roovers <jer@gentoo.org> ruby-1.8.7_p370.ebuild:
+  Stable for HPPA (bug #434480).
+
+*ruby-1.9.3_p286 (15 Oct 2012)
+
+  15 Oct 2012; Hans de Graaff <graaff@gentoo.org> +ruby-1.9.3_p286.ebuild:
+  Version bump. Fixes bugs #437264 and #437264.
+
+  19 Sep 2012; Anthony G. Basile <blueness@gentoo.org> ruby-1.8.7_p370.ebuild:
+  stable arm, bug #434480
+
+  18 Sep 2012; Anthony G. Basile <blueness@gentoo.org> ruby-1.8.7_p370.ebuild:
+  stable ppc ppc64, bug #434480
+
+  18 Sep 2012; Johannes Huber <johu@gentoo.org> ruby-1.8.7_p370.ebuild:
+  Stable for x86, wrt bug #434480
+
+  16 Sep 2012; Ulrich Müller <ulm@gentoo.org> ruby-1.9.3_p125.ebuild,
+  ruby-1.9.3_p194-r1.ebuild:
+  Update LICENSE, bug 434332.
+
+  15 Sep 2012; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p370.ebuild:
+  Stable for amd64, wrt bug #434480
+
+  04 Aug 2012; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p194-r1.ebuild:
+  Stable for amd64, wrt bug #427774
+
+  02 Aug 2012; Markus Meier <maekke@gentoo.org> ruby-1.9.3_p194-r1.ebuild:
+  arm stable, bug #427774
+
+  25 Jul 2012; Anthony G. Basile <blueness@gentoo.org>
+  ruby-1.9.3_p194-r1.ebuild:
+  Stable ppc64, bug #411507
+
+  24 Jul 2012; Jeff Horelick <jdhore@gentoo.org> ruby-1.9.3_p194-r1.ebuild:
+  marked x86 per bug 427774
+
+  23 Jul 2012; Hans de Graaff <graaff@gentoo.org> -ruby-1.9.3_p0.ebuild,
+  -ruby-1.9.3_p194.ebuild:
+  Cleanup.
+
+  22 Jul 2012; <nixnut@gentoo.org> ruby-1.9.3_p125.ebuild:
+  ppc stable #411507
+
+  07 Jul 2012; Hans de Graaff <graaff@gentoo.org> ruby-1.9.3_p194-r1.ebuild:
+  PDEPEND on rubygems since 1.9.x won't work without it installed. Fixes bug
+  424611.
+
+*ruby-1.8.7_p370 (07 Jul 2012)
+
+  07 Jul 2012; Hans de Graaff <graaff@gentoo.org> +ruby-1.8.7_p370.ebuild:
+  Version bump. Fix bug 378567 thanks to slyfox.
+
+  25 Jun 2012; Andreas Schuerch <nativemad@gentoo.org> ruby-1.9.3_p125.ebuild:
+  x86 stable, see bug 411507
 
   27 May 2012; Markus Meier <maekke@gentoo.org> ruby-1.9.3_p125.ebuild:
   arm stable, bug #411507
