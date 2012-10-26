@@ -1,6 +1,9 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.183 2012/07/27 12:41:25 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.184 2012/07/30 20:30:04 jer Exp $
+
+  30 Jul 2012; Jeroen Roovers <jer@gentoo.org> texlive-core-2012.ebuild:
+  Fix building on HPPA (big-endian problem, see bug #265232 and bug #414271).
 
   27 Jul 2012; Alexis Ballier <aballier@gentoo.org> texlive-core-2012.ebuild:
   disable uptex and euptex without USE=cjk too, bug #428258

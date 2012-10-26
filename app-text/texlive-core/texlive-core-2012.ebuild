@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2012.ebuild,v 1.2 2012/07/27 12:41:25 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2012.ebuild,v 1.3 2012/07/30 20:30:04 jer Exp $
 
 EAPI=3
 
@@ -135,6 +135,11 @@ src_prepare() {
 src_configure() {
 	# It fails on alpha without this
 	use alpha && append-ldflags "-Wl,--no-relax"
+
+	# Bug #265232 and bug #414271:
+	if use hppa; then
+		append-cppflags "-DU_IS_BIG_ENDIAN=1"
+	fi
 
 	# Too many regexps use A-Z a-z constructs, what causes problems with locales
 	# that don't have the same alphabetical order than ascii. Bug #242430
