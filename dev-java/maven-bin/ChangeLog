@@ -1,6 +1,25 @@
 # ChangeLog for dev-java/maven-bin
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.76 2012/01/26 16:42:40 fordfrog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.78 2012/06/12 12:24:33 sera Exp $
+
+  12 Jun 2012; Ralph Sennhauser <sera@gentoo.org> -maven-bin-1.0.2-r2.ebuild,
+  -maven-bin-1.1-r2.ebuild, -maven-bin-2.0.10.ebuild,
+  -maven-bin-2.0.11-r1.ebuild, -maven-bin-2.1.0.ebuild,
+  -maven-bin-2.1.0-r1.ebuild, -maven-bin-2.2.1-r1.ebuild,
+  -maven-bin-3.0.ebuild, -maven-bin-3.0.2.ebuild, -maven-bin-3.0.3.ebuild,
+  -maven-bin-3.0.3-r1.ebuild, -maven-bin-3.0.4.ebuild:
+  Drop slots 1.0 and 2.1 as no longer offered upstream.
+  Remove old.
+
+*maven-bin-3.0.4-r1 (12 Jun 2012)
+*maven-bin-2.2.1-r2 (12 Jun 2012)
+*maven-bin-2.0.11-r2 (12 Jun 2012)
+*maven-bin-1.1-r3 (12 Jun 2012)
+
+  12 Jun 2012; Ralph Sennhauser <sera@gentoo.org> +maven-bin-1.1-r3.ebuild,
+  +maven-bin-2.0.11-r2.ebuild, +maven-bin-2.2.1-r2.ebuild,
+  +maven-bin-3.0.4-r1.ebuild:
+  Add app-admin/eselect-java as preferred provider of eselect maven.
 
 *maven-bin-3.0.4 (26 Jan 2012)
 
