@@ -1,6 +1,67 @@
 # ChangeLog for dev-util/boost-build
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.92 2012/06/14 18:50:29 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.105 2012/10/25 21:55:36 floppym Exp $
+
+*boost-build-1.51.0 (25 Oct 2012)
+
+  25 Oct 2012; Mike Gilbert <floppym@gentoo.org> +boost-build-1.51.0.ebuild:
+  Version bump. Ebuild by Arfrever.
+
+  21 Oct 2012; Markus Meier <maekke@gentoo.org> boost-build-1.49.0.ebuild:
+  x86 stable, bug #425354
+
+  23 Sep 2012; Agostino Sarubbo <ago@gentoo.org> boost-build-1.49.0.ebuild:
+  Stable for amd64, wrt bug #425354
+
+  06 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  boost-build-1.49.0.ebuild:
+  Stable ppc, bug #425354
+
+  05 Sep 2012; Anthony G. Basile <blueness@gentoo.org>
+  boost-build-1.49.0.ebuild:
+  Stable ppc64, bug #425354
+
+  27 Aug 2012; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  remove myself from maintainers
+
+*boost-build-1.50.0-r3 (21 Aug 2012)
+
+  21 Aug 2012; Tiziano Müller <dev-zero@gentoo.org>
+  +boost-build-1.50.0-r3.ebuild, -boost-build-1.50.0-r1.ebuild,
+  -boost-build-1.50.0-r2.ebuild:
+  Fix false python-files removal. Fix minorsyn.
+
+*boost-build-1.50.0-r2 (20 Aug 2012)
+
+  20 Aug 2012; Tiziano Müller <dev-zero@gentoo.org>
+  +boost-build-1.50.0-r2.ebuild, +files/site-config.jam:
+  Install site-config.jam with our variants (gentoorelease & -debug) to ease
+  usage. Remove unneeded code. Fix python-code removal. Simplify call to
+  python_mod_{cleanup,optimize}.
+
+*boost-build-1.50.0-r1 (19 Aug 2012)
+
+  19 Aug 2012; Tiziano Müller <dev-zero@gentoo.org>
+  +boost-build-1.50.0-r1.ebuild, +files/boost-build-1.50.0-fix-test.patch,
+  +files/boost-build-1.50.0-respect-c_ld-flags.patch:
+  Fix tests. Fix installation of boost-build python-rewrite and optimize/cleanup
+  installed .py files (bug #324375). Rechecked build regarding LDFLAGS (bug
+  #334467), replaced workaround with a patch and added verbosity flag to the
+  bjam-call.
+
+  21 Jul 2012; Jeroen Roovers <jer@gentoo.org> boost-build-1.49.0.ebuild:
+  Stable for HPPA (bug #425354).
+
+  19 Jul 2012; Markus Meier <maekke@gentoo.org> boost-build-1.49.0.ebuild:
+  arm stable, bug #425354
+
+  08 Jul 2012; Mike Gilbert <floppym@gentoo.org> metadata.xml:
+  Add Arfrever as a maintainer.
+
+*boost-build-1.50.0 (06 Jul 2012)
+
+  06 Jul 2012; Mike Gilbert <floppym@gentoo.org> +boost-build-1.50.0.ebuild:
+  Version bump by Arfrever.
 
   16 Jun 2012; Fabian Groffen <grobian@gentoo.org> boost-build-1.49.0.ebuild:
   Don't die on tar errors, because we'll get lots on e.g. Solaris where gid_t is

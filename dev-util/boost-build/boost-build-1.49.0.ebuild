@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.49.0.ebuild,v 1.2 2012/04/28 02:58:31 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.49.0.ebuild,v 1.8 2012/10/21 09:07:19 maekke Exp $
 
 EAPI="4"
 PYTHON_DEPEND="python? *"
