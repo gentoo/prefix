@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/xine-lib
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/ChangeLog,v 1.686 2012/07/06 01:11:41 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/ChangeLog,v 1.687 2012/08/02 13:21:16 ssuominen Exp $
+
+  02 Aug 2012; Samuli Suominen <ssuominen@gentoo.org> xine-lib-1.2.2.ebuild,
+  xine-lib-1.2.9999.ebuild:
+  Pass -fomit-frame-pointer based on CHOST to gain one free register wrt
+  #422519 by Bob Raitz
 
   26 Jul 2012; Fabian Groffen <grobian@gentoo.org>
   +files/xine-lib-1.2.2-darwin-ar.patch,

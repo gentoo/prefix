@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.2.2.ebuild,v 1.2 2012/07/06 01:11:41 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.2.2.ebuild,v 1.4 2012/08/02 13:22:31 ssuominen Exp $
 
 EAPI=4
 
-inherit eutils libtool multilib autotools
+inherit eutils flag-o-matic libtool multilib
 
 if [[ ${PV} == *9999* ]]; then
 	EHG_REPO_URI="http://hg.debian.org/hg/xine-lib/xine-lib-1.2"
@@ -136,6 +136,8 @@ src_prepare() {
 }
 
 src_configure() {
+	[[ ${CHOST} == i?86-* ]] && append-flags -fomit-frame-pointer #422519
+
 	local win32dir #197236
 	if has_multilib_profile; then
 		win32dir=${EPREFIX}/usr/$(ABI="x86" get_libdir)/win32
