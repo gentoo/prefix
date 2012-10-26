@@ -1,6 +1,27 @@
 # ChangeLog for media-gfx/sam2p
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.49 2012/05/09 16:36:51 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.56 2012/09/09 16:55:29 armin76 Exp $
+
+  09 Sep 2012; Raúl Porcel <armin76@gentoo.org> sam2p-0.49.1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #419071
+
+  22 Aug 2012; Michael Weber <xmw@gentoo.org> sam2p-0.49.1.ebuild:
+  ppc stable (bug 419071).
+
+  11 Aug 2012; Markus Meier <maekke@gentoo.org> sam2p-0.49.1.ebuild:
+  x86 stable, bug #419071
+
+  06 Aug 2012; Brent Baude <ranger@gentoo.org> sam2p-0.49.1.ebuild:
+  Marking sam2p-0.49.1 ppc64 for bug 419071
+
+  05 Aug 2012; Markus Meier <maekke@gentoo.org> sam2p-0.49.1.ebuild:
+  arm stable, bug #419071
+
+  03 Aug 2012; Agostino Sarubbo <ago@gentoo.org> sam2p-0.49.1.ebuild:
+  Stable for amd64, wrt bug #419071
+
+  02 Aug 2012; Jeroen Roovers <jer@gentoo.org> sam2p-0.49.1.ebuild:
+  Stable for HPPA (bug #419071).
 
   09 May 2012; Alexis Ballier <aballier@gentoo.org> sam2p-0.49.1.ebuild:
   keyword ~amd64-fbsd
