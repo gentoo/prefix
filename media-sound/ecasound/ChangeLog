@@ -1,6 +1,20 @@
 # ChangeLog for media-sound/ecasound
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.62 2012/05/05 08:22:08 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.65 2012/06/18 08:36:51 radhermit Exp $
+
+  18 Jun 2012; Tim Harder <radhermit@gentoo.org> ecasound-2.9.0.ebuild:
+  Fix build with python enabled (bug #421167), use native python implementation
+  (C implementation is deprecated), and force lv2 support when tests are
+  enabled.
+
+*ecasound-2.9.0 (14 Jun 2012)
+
+  14 Jun 2012; Tim Harder <radhermit@gentoo.org> +ecasound-2.9.0.ebuild,
+  metadata.xml:
+  Version bump. Add lv2 use flag and update to EAPI 4.
+
+  14 Jun 2012; Tim Harder <radhermit@gentoo.org> ecasound-2.8.1.ebuild:
+  Fix conditional sed line (bug #387819) and use prune_libtool_files.
 
   05 May 2012; Michał Górny <mgorny@gentoo.org> ecasound-2.8.1.ebuild:
   dev-util/pkgconfig -> virtual/pkgconfig

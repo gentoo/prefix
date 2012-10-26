@@ -1,27 +1,29 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.8.1.ebuild,v 1.4 2012/06/14 05:55:53 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.9.0.ebuild,v 1.2 2012/06/18 08:36:51 radhermit Exp $
 
-EAPI=3
+EAPI=4
 PYTHON_DEPEND="python? 2"
 
 inherit eutils python autotools
 
 DESCRIPTION="a package for multitrack audio processing"
 HOMEPAGE="http://ecasound.seul.org/ecasound"
-SRC_URI="http://${PN}.seul.org/download/${P}.tar.gz"
+SRC_URI="http://ecasound.seul.org/download/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="alsa audiofile debug doc jack libsamplerate mikmod ncurses oil osc oss
-+python ruby sndfile static-libs"
+IUSE="alsa audiofile debug doc jack libsamplerate lv2 mikmod ncurses oil osc oss
+python ruby sndfile static-libs test"
+REQUIRED_USE="test? ( lv2 )"
 
 RDEPEND="sys-libs/readline
 	alsa? ( media-libs/alsa-lib )
 	audiofile? ( media-libs/audiofile )
 	jack? ( media-sound/jack-audio-connection-kit )
 	libsamplerate? ( media-libs/libsamplerate )
+	lv2? ( >=media-libs/lilv-0.5.0 )
 	media-libs/ladspa-sdk
 	mikmod? ( media-libs/libmikmod:0 )
 	ncurses? ( sys-libs/ncurses )
@@ -33,17 +35,17 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 pkg_setup() {
-	use python && python_set_active_version 2
+	if use python ; then
+		python_set_active_version 2
+		python_pkg_setup
+	fi
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-ldflags.patch
+	epatch "${FILESDIR}"/${PN}-2.8.1-ldflags.patch
 	epatch "${FILESDIR}"/${PN}-2.4.5-prefix.patch
-
-	if use python ; then
-		sed -i -e "s:\$(ecasoundc_libs):\0 $(python_get_library -l):" \
-			pyecasound/Makefile.am || die "sed failed"
-	fi
+	use python && sed -i -e "s:\$(ecasoundc_libs):\0 $(python_get_library -l):" \
+		pyecasound/Makefile.am || die "sed failed"
 
 	eautoreconf
 }
@@ -52,11 +54,8 @@ src_configure() {
 	local pyconf
 
 	if use python ; then
-		pyconf="--enable-pyecasound=c
-			--with-python-includes=${EPREFIX}$(python_get_includedir)
+		pyconf="--with-python-includes=${EPREFIX}$(python_get_includedir)
 			--with-python-modules=${EPREFIX}$(python_get_libdir)"
-	else
-		pyconf="--disable-pyecasound"
 	fi
 
 	econf \
@@ -69,10 +68,12 @@ src_configure() {
 		$(use_enable debug) \
 		$(use_enable jack) \
 		$(use_enable libsamplerate) \
+		$(use_enable lv2 liblilv) \
 		$(use_enable ncurses) \
 		$(use_enable oil liboil) \
 		$(use_enable osc liblo) \
 		$(use_enable oss) \
+		$(use_enable python pyecasound) \
 		$(use_enable ruby rubyecasound) \
 		$(use_enable sndfile) \
 		$(use_enable static-libs static) \
@@ -80,12 +81,11 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
-	dodoc AUTHORS BUGS NEWS README TODO || die
+	default
 
 	if use doc ; then
-		dohtml Documentation/*.html || die
-		dodoc Documentation/programmers_guide/ecasound_programmers_guide.txt || die
+		dohtml Documentation/*.html
+		dodoc Documentation/programmers_guide/ecasound_programmers_guide.txt
 	fi
 
 	prune_libtool_files
