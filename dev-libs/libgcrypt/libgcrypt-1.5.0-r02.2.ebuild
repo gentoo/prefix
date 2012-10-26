@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.5.0-r2.ebuild,v 1.9 2012/08/19 16:59:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.5.0-r2.ebuild,v 1.10 2012/09/23 22:28:11 vapier Exp $
 
 EAPI="4"
 
@@ -33,6 +33,7 @@ src_prepare() {
 	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 	# Fix build failure with non-bash /bin/sh.
 	epatch "${FILESDIR}"/${P}-uscore.patch
+	epatch "${FILESDIR}"/${PN}-1.5.0-x32.patch
 	epatch "${FILESDIR}"/${PN}-multilib-syspath.patch
 	epatch "${WORKDIR}"/${P}-idea.patch
 	#eautoreconf
