@@ -1,6 +1,32 @@
 # ChangeLog for media-libs/libexif
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.128 2012/05/09 00:24:05 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/ChangeLog,v 1.136 2012/09/20 15:02:43 ssuominen Exp $
+
+  20 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> -libexif-0.6.20.ebuild:
+  old
+
+  20 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org> libexif-0.6.21.ebuild:
+  ppc64 stable wrt #426366
+
+  23 Aug 2012; Michael Weber <xmw@gentoo.org> libexif-0.6.21.ebuild:
+  ppc stable (bug 426366).
+
+  17 Jul 2012; Jeroen Roovers <jer@gentoo.org> libexif-0.6.21.ebuild:
+  Stable for HPPA (bug #426366).
+
+  15 Jul 2012; Raúl Porcel <armin76@gentoo.org> libexif-0.6.21.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #426366
+
+  14 Jul 2012; Jeff Horelick <jdhore@gentoo.org> libexif-0.6.21.ebuild:
+  marked x86 per bug 426366
+
+  14 Jul 2012; Agostino Sarubbo <ago@gentoo.org> libexif-0.6.21.ebuild:
+  Stable for amd64, wrt bug #426366
+
+*libexif-0.6.21 (13 Jul 2012)
+
+  13 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> +libexif-0.6.21.ebuild:
+  Version bump wrt #426366 by Dan Fandrich
 
   09 May 2012; Alexis Ballier <aballier@gentoo.org> libexif-0.6.20.ebuild:
   keyword ~amd64-fbsd

@@ -1,9 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.20.ebuild,v 1.13 2012/05/09 00:24:05 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.21.ebuild,v 1.7 2012/09/20 13:22:29 xarthisius Exp $
 
 EAPI=4
-
 inherit eutils autotools
 
 DESCRIPTION="Library for parsing, editing, and saving EXIF data"
@@ -23,10 +22,8 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.6.13-pkgconfig.patch
-	elibtoolize # FreeBSD .so version
-
-	# remove -g from FLAGS bug (#390249)
-	sed -i -e '/FLAGS=/s:-g::' configure || die
+	sed -i -e '/FLAGS=/s:-g::' configure || die #390249
+	elibtoolize # For *-bsd
 }
 
 src_configure() {
@@ -41,6 +38,6 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install
-	find "${ED}" -name '*.la' -exec rm -f {} +
-	rm -f "${ED}"usr/share/doc/${PF}/{ABOUT-NLS,COPYING}
+	prune_libtool_files
+	rm -f "${ED}"/usr/share/doc/${PF}/{ABOUT-NLS,COPYING}
 }
