@@ -1,0 +1,15 @@
+https://bugs.gentoo.org/show_bug.cgi?id=420335
+
+diff --git a/configure.in b/configure.in
+index 756003d..46e8e8f 100644
+--- a/configure.in
++++ b/configure.in
+@@ -130,7 +130,7 @@ dnl
+ VERSION_SCRIPT_FLAGS=
+ $(/usr/bin/ld --help 2>&1 | grep -- --version-script >/dev/null) && \
+     VERSION_SCRIPT_FLAGS=-Wl,--version-script=
+-test "`uname`" == "SunOS" && \
++test "`uname`" = "SunOS" && \
+     VERSION_SCRIPT_FLAGS="-Wl,-M -Wl,"
+ AC_SUBST(VERSION_SCRIPT_FLAGS)
+ AM_CONDITIONAL([USE_VERSION_SCRIPT], [test -n "$VERSION_SCRIPT_FLAGS"])

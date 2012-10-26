@@ -1,8 +1,11 @@
-http://bugs.gentoo.org/show_bug.cgi?id=246748
+http://bugs.gentoo.org/246748
 
-diff -ur libxslt-1.1.26.orig/python/Makefile.am libxslt-1.1.26/python/Makefile.am
---- libxslt-1.1.26.orig/python/Makefile.am	2009-05-12 09:29:34.000000000 +0300
-+++ libxslt-1.1.26/python/Makefile.am	2009-10-07 18:27:35.000000000 +0300
+This patch can be removed for next release as per:
+
+http://bugzilla.gnome.org/show_bug.cgi?id=610666#c2
+
+--- python/Makefile.am
++++ python/Makefile.am
 @@ -36,7 +36,7 @@
  python_LTLIBRARIES = libxsltmod.la
  
