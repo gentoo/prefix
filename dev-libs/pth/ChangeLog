@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/pth
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.71 2012/05/09 15:21:08 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.74 2012/09/18 04:50:29 radhermit Exp $
+
+  18 Sep 2012; Tim Harder <radhermit@gentoo.org> metadata.xml:
+  Remove redundant maintainer from metadata.
+
+  08 Aug 2012; Raúl Porcel <armin76@gentoo.org>
+  files/pth-2.0.7-kernel-3.patch:
+  Update patch replacing it with the line from fedora
+
+  08 Aug 2012; Raúl Porcel <armin76@gentoo.org> pth-2.0.7-r3.ebuild,
+  +files/pth-2.0.7-kernel-3.patch:
+  Add patch to fix building in some arches with kernel-3
 
   09 May 2012; Alexis Ballier <aballier@gentoo.org> pth-2.0.7-r3.ebuild:
   keyword ~amd64-fbsd

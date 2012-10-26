@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r3.ebuild,v 1.7 2012/05/09 15:21:08 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r3.ebuild,v 1.8 2012/08/08 15:01:43 armin76 Exp $
 
 EAPI=4
 
@@ -26,6 +26,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.0.6-sigstack.patch
 	epatch "${FILESDIR}"/${PN}-2.0.7-parallel-install.patch
 	epatch "${FILESDIR}"/${PN}-2.0.7-ia64.patch
+	epatch "${FILESDIR}"/${PN}-2.0.7-kernel-3.patch
 	epatch "${FILESDIR}"/${PN}-2.0.7-mint.patch
 
 	ht_fix_file aclocal.m4 configure
