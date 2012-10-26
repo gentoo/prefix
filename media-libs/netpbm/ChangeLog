@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.263 2012/01/03 01:37:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.265 2012/07/18 21:50:27 vapier Exp $
+
+*netpbm-10.59.00 (18 Jul 2012)
+
+  18 Jul 2012; Mike Frysinger <vapier@gentoo.org> +netpbm-10.59.00.ebuild:
+  Version bump #426582 by Bernd Feige.
+
+*netpbm-10.58.00 (03 Jul 2012)
+
+  03 Jul 2012; Mike Frysinger <vapier@gentoo.org> +netpbm-10.58.00.ebuild,
+  files/make-tarball.sh:
+  Version bump, and include mangled userguide.
 
   04 Jun 2012; Fabian Groffen <grobian@gentoo.org>
   +files/netpbm-10.57.00-solaris-xopensource.patch, netpbm-10.57.00.ebuild:
