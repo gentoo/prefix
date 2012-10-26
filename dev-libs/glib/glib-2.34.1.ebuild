@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.32.4.ebuild,v 1.7 2012/10/10 07:35:08 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.34.1.ebuild,v 1.1 2012/10/17 07:37:32 tetromino Exp $
 
 EAPI="4"
 PYTHON_DEPEND="utils? 2"
@@ -11,7 +11,6 @@ inherit autotools gnome.org libtool eutils flag-o-matic gnome2-utils multilib pa
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
 SRC_URI="${SRC_URI}
-	http://dev.gentoo.org/~tetromino/distfiles/glib/${P}-AS_IF-patches.tar.xz
 	http://pkgconfig.freedesktop.org/releases/pkg-config-0.26.tar.gz" # pkg.m4 for eautoreconf
 
 LICENSE="LGPL-2+"
@@ -30,6 +29,8 @@ RDEPEND="virtual/libiconv
 	fam? ( virtual/fam )
 	utils? ( >=dev-util/gdbus-codegen-${PV} )"
 DEPEND="${RDEPEND}
+	app-text/docbook-xml-dtd:4.1.2
+	>=dev-libs/libxslt-1.0
 	>=sys-devel/gettext-0.11
 	>=dev-util/gtk-doc-am-1.15
 	systemtap? ( >=dev-util/systemtap-1.3 )
@@ -46,7 +47,7 @@ PDEPEND="x11-misc/shared-mime-info
 
 pkg_setup() {
 	# Needed for gio/tests/gdbus-testserver.py
-	if use test ; then
+	if use test; then
 		python_set_active_version 2
 		python_pkg_setup
 	fi
@@ -58,7 +59,16 @@ pkg_setup() {
 }
 
 src_prepare() {
-	mv -f "${WORKDIR}"/pkg-config-*/pkg.m4 "${WORKDIR}"/ || die
+	mv -vf "${WORKDIR}"/pkg-config-*/pkg.m4 "${WORKDIR}"/ || die
+
+	if use ia64 ; then
+		# Only apply for < 4.1
+		local major=$(gcc-major-version)
+		local minor=$(gcc-minor-version)
+		if (( major < 4 || ( major == 4 && minor == 0 ) )); then
+			epatch "${FILESDIR}/glib-2.10.3-ia64-atomic-ops.patch"
+		fi
+	fi
 
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-FIONREAD.patch
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-nsl.patch
@@ -70,10 +80,7 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	if ! use test; then
-		# don't waste time building tests
-		sed 's/^\(.*\SUBDIRS .*\=.*\)tests\(.*\)$/\1\2/' -i $(find . -name Makefile.am -o -name Makefile.in) || die
-	else
+	if use test; then
 		# Do not try to remove files on live filesystem, upstream bug #619274
 		sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
 			-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
@@ -89,8 +96,8 @@ src_prepare() {
 		fi
 
 		# Disable tests requiring dbus-python and pygobject; bugs #349236, #377549, #384853
-		if ! has_version dev-python/dbus-python || ! has_version 'dev-python/pygobject:2' ; then
-			ewarn "Some tests will be skipped due to dev-python/dbus-python or dev-python/pygobject:2"
+		if ! has_version dev-python/dbus-python || ! has_version 'dev-python/pygobject:3' ; then
+			ewarn "Some tests will be skipped due to dev-python/dbus-python or dev-python/pygobject:3"
 			ewarn "not being present on your system, think on installing them to get these tests run."
 			sed -i -e "/connection\/filter/d" gio/tests/gdbus-connection.c || die
 			sed -i -e "/connection\/large_message/d" gio/tests/gdbus-connection-slow.c || die
@@ -110,8 +117,10 @@ src_prepare() {
 	# bashcomp goes in /usr/share/bash-completion
 	epatch "${FILESDIR}/${PN}-2.32.4-bashcomp.patch"
 
-	# AS_IF fixes from 2.33.x, needed for cross-compiling, bug #434770
-	epatch ../AS_IF-patches/*.patch
+	# https://bugzilla.gnome.org/show_bug.cgi?id=679306
+	epatch "${FILESDIR}/${PN}-2.34.0-testsuite-skip-thread4.patch"
+	# https://bugzilla.gnome.org/show_bug.cgi?id=679308
+	epatch "${FILESDIR}/${PN}-2.34.0-testsuite-skip-gdbus-auth-tests.patch"
 
 	# disable pyc compiling
 	use test && python_clean_py-compile_files
@@ -190,6 +199,17 @@ src_configure() {
 	# without this, AIX defines EEXIST and ENOTEMPTY to the same value
 	[[ ${CHOST} == *-aix* ]] && append-cppflags -D_LINUX_SOURCE_COMPAT
 
+	if use test; then
+		myconf="${myconf} --enable-modular-tests"
+	else
+		if [[ ${PV} = 9999 ]] && use doc; then
+			# need to build tests if USE=doc for bug #387385
+			myconf="${myconf} --enable-modular-tests"
+		else
+			myconf="${myconf} --disable-modular-tests"
+		fi
+	fi
+
 	# Always use internal libpcre, bug #254659
 	econf ${myconf} \
 		$(use_enable xattr) \
@@ -198,6 +218,7 @@ src_configure() {
 		$(use_enable static-libs static) \
 		$(use_enable systemtap dtrace) \
 		$(use_enable systemtap systemtap) \
+		--enable-man \
 		--with-pcre=internal \
 		--with-threads=${mythreads} \
 		--with-xml-catalog="${EPREFIX}"/etc/xml/catalog

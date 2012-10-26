@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.32.3.ebuild,v 1.2 2012/06/07 18:12:41 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.32.4-r1.ebuild,v 1.10 2012/10/23 06:21:15 tetromino Exp $
 
 EAPI="4"
 PYTHON_DEPEND="utils? 2"
@@ -11,11 +11,12 @@ inherit autotools gnome.org libtool eutils flag-o-matic gnome2-utils multilib pa
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
 SRC_URI="${SRC_URI}
+	http://dev.gentoo.org/~tetromino/distfiles/glib/${P}-AS_IF-patches.tar.xz
 	http://pkgconfig.freedesktop.org/releases/pkg-config-0.26.tar.gz" # pkg.m4 for eautoreconf
 
-LICENSE="LGPL-2"
+LICENSE="LGPL-2+"
 SLOT="2"
-IUSE="debug doc fam kernel_linux selinux static-libs systemtap test utils xattr"
+IUSE="debug fam kernel_linux selinux static-libs systemtap test utils xattr"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="virtual/libiconv
@@ -23,7 +24,7 @@ RDEPEND="virtual/libiconv
 	sys-libs/zlib
 	kernel_linux? ( || (
 		>=dev-libs/elfutils-0.142
-		>=dev-libs/libelf-0.8.11 ) )
+		>=dev-libs/libelf-0.8.12 ) )
 	x86-interix? ( sys-libs/itx-bind )
 	xattr? ( sys-apps/attr )
 	fam? ( virtual/fam )
@@ -31,11 +32,6 @@ RDEPEND="virtual/libiconv
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.11
 	>=dev-util/gtk-doc-am-1.15
-	doc? (
-		>=dev-libs/libxslt-1.0
-		>=dev-util/gdbus-codegen-${PV}
-		>=dev-util/gtk-doc-1.15
-		~app-text/docbook-xml-dtd-4.1.2 )
 	systemtap? ( >=dev-util/systemtap-1.3 )
 	test? (
 		sys-devel/gdb
@@ -62,6 +58,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-CVE-2012-3524.patch
+
 	mv -vf "${WORKDIR}"/pkg-config-*/pkg.m4 "${WORKDIR}"/ || die
 
 	if use ia64 ; then
@@ -78,6 +76,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.32.3-solaris-libelf.patch
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
+	epatch "${FILESDIR}"/${PN}-2.32.4-interix.patch
 
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
@@ -120,6 +119,15 @@ src_prepare() {
 	# gdbus-codegen is a separate package
 	epatch "${FILESDIR}/${PN}-2.31.x-external-gdbus-codegen.patch"
 
+	# bashcomp goes in /usr/share/bash-completion
+	epatch "${FILESDIR}/${PN}-2.32.4-bashcomp.patch"
+
+	# AS_IF fixes from 2.33.x, needed for cross-compiling, bug #434770
+	epatch ../AS_IF-patches/*.patch
+
+	# https://bugzilla.gnome.org/show_bug.cgi?id=679306
+	epatch "${FILESDIR}/${PN}-2.34.0-testsuite-skip-thread4.patch"
+
 	# disable pyc compiling
 	use test && python_clean_py-compile_files
 
@@ -141,8 +149,6 @@ src_prepare() {
 	fi
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${P}-interix.patch
-
 		# activate the itx-bind package...
 		append-flags "-I${EPREFIX}/usr/include/bind"
 		append-ldflags "-L${EPREFIX}/usr/lib/bind"
@@ -202,8 +208,6 @@ src_configure() {
 	# Always use internal libpcre, bug #254659
 	econf ${myconf} \
 		$(use_enable xattr) \
-		$(use_enable doc man) \
-		$(use_enable doc gtk-doc) \
 		$(use_enable fam) \
 		$(use_enable selinux) \
 		$(use_enable static-libs static) \
@@ -228,12 +232,6 @@ src_install() {
 	rm -rf "${ED}/usr/share/gdb/" "${ED}/usr/share/glib-2.0/gdb/"
 
 	dodoc AUTHORS ChangeLog* NEWS* README
-
-	insinto /usr/share/bash-completion
-	for f in gdbus gsettings; do
-		newins "${ED}/etc/bash_completion.d/${f}-bash-completion.sh" ${f}
-	done
-	rm -rf "${ED}/etc"
 
 	# Completely useless with or without USE static-libs, people need to use
 	# pkg-config

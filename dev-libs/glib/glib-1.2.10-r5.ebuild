@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.54 2011/06/05 13:12:30 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.55 2012/09/25 11:40:57 tetromino Exp $
 
 inherit autotools libtool flag-o-matic eutils portability
 
@@ -10,7 +10,7 @@ SRC_URI="ftp://ftp.gtk.org/pub/gtk/v1.2/${P}.tar.gz
 	 ftp://ftp.gnome.org/pub/GNOME/stable/sources/glib/${P}.tar.gz
 	 mirror://gentoo/glib-1.2.10-r1-as-needed.patch.bz2"
 
-LICENSE="LGPL-2.1"
+LICENSE="LGPL-2.1+"
 SLOT="1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris"
 IUSE="hardened"
