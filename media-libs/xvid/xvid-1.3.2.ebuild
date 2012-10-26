@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.3.2.ebuild,v 1.8 2012/03/06 20:52:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.3.2.ebuild,v 1.9 2012/09/11 06:57:39 vapier Exp $
 
 EAPI=2
 inherit flag-o-matic multilib
@@ -31,7 +31,9 @@ src_configure() {
 	use sparc && append-cflags -mno-vis #357149
 
 	local myconf
-	use pic && myconf="--disable-assembly"
+	if use pic || [[ ${ABI} == "x32" ]] ; then #421841
+		myconf="--disable-assembly"
+	fi
 
 	econf ${myconf} \
 		$(use_enable threads pthread)
