@@ -1,6 +1,34 @@
 # ChangeLog for dev-libs/expat
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.137 2012/05/16 09:18:07 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.145 2012/10/07 10:05:20 ssuominen Exp $
+
+  07 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> -expat-2.1.0.ebuild:
+  old
+
+  06 Oct 2012; Raúl Porcel <armin76@gentoo.org> expat-2.1.0-r2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #437036
+
+  03 Oct 2012; Jeroen Roovers <jer@gentoo.org> expat-2.1.0-r2.ebuild:
+  Stable for HPPA (bug #437036).
+
+  03 Oct 2012; Anthony G. Basile <blueness@gentoo.org> expat-2.1.0-r2.ebuild:
+  stable arm, bug #437036
+
+  03 Oct 2012; Samuli Suominen <ssuominen@gentoo.org> expat-2.1.0-r2.ebuild:
+  amd64/x86 stable wrt #437036
+
+  03 Oct 2012; Anthony G. Basile <blueness@gentoo.org> expat-2.1.0-r2.ebuild:
+  stable ppc ppc64, bug #437036
+
+  28 May 2012; Samuli Suominen <ssuominen@gentoo.org> -expat-2.0.1-r6.ebuild,
+  -files/expat-2.0.1-CVE-2009-3560-revised.patch,
+  -files/expat-2.0.1-check_stopped_parser.patch,
+  -files/expat-2.0.1-fix_bug_1990430.patch, -expat-2.1.0_beta3.ebuild,
+  -expat-2.1.0-r1.ebuild:
+  old
+
+  28 May 2012; Raúl Porcel <armin76@gentoo.org> expat-2.1.0.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #412089
 
 *expat-2.1.0-r2 (16 May 2012)
 
