@@ -1,6 +1,19 @@
 # ChangeLog for dev-java/javatoolkit
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/ChangeLog,v 1.66 2012/05/12 03:11:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/ChangeLog,v 1.68 2012/07/31 20:43:10 sera Exp $
+
+*javatoolkit-0.3.0-r8 (31 Jul 2012)
+
+  31 Jul 2012; Ralph Sennhauser <sera@gentoo.org> -javatoolkit-0.3.0-r7.ebuild,
+  +javatoolkit-0.3.0-r8.ebuild:
+  Don't quote EPRIFIX, Portage doesn't like it. Thanks to PhobosK
+  <phobosk@fastmail.fm>. #429092
+
+*javatoolkit-0.3.0-r7 (31 Jul 2012)
+
+  31 Jul 2012; Ralph Sennhauser <sera@gentoo.org> +javatoolkit-0.3.0-r7.ebuild:
+  Fix building with jython. #428586
+  Migrate to python-distutils-ng.eclass
 
   12 May 2012; Alexis Ballier <aballier@gentoo.org>
   javatoolkit-0.3.0-r6.ebuild:
