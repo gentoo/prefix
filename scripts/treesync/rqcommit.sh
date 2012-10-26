@@ -18,7 +18,6 @@ lockfile /tmp/rqcommit.lock
 
 ts=$(stat --format="%y" eupdate.updates)
 rm eupdate.updates || die "failed to remove eupdate.updates"
-ecleankw > /dev/null || die "failed to run ecleankw"
 ekeyword *.ebuild > /dev/null || die "failed to run ekeyword"
 msg=$(<eupdate.msg)
 rm -f eupdate.msg || die "failed to remove eupdate.msg"
