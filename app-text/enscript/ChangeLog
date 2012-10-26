@@ -1,6 +1,21 @@
 # ChangeLog for app-text/enscript
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/ChangeLog,v 1.64 2012/05/12 01:46:57 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/ChangeLog,v 1.68 2012/09/30 17:35:03 armin76 Exp $
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> enscript-1.6.5.2-r1.ebuild:
+  alpha/ia64/sparc stable wrt #393991
+
+  30 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org>
+  enscript-1.6.5.2-r1.ebuild:
+  ppc/ppc64 stable wrt #393991
+
+  26 Sep 2012; Jeroen Roovers <jer@gentoo.org> enscript-1.6.5.2-r1.ebuild:
+  Stable for HPPA (bug #393991).
+
+*enscript-1.6.6 (26 Sep 2012)
+
+  26 Sep 2012; Jeroen Roovers <jer@gentoo.org> +enscript-1.6.6.ebuild:
+  Version bump. Fix obsolete tail option in src/tests/passthrough.test.
 
   12 May 2012; Alexis Ballier <aballier@gentoo.org> enscript-1.6.5.2-r1.ebuild:
   keyword ~amd64-fbsd

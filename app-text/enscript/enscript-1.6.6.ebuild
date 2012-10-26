@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/enscript-1.6.5.2-r1.ebuild,v 1.7 2012/09/30 17:35:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/enscript-1.6.6.ebuild,v 1.1 2012/09/26 14:27:26 jer Exp $
 
 EAPI="2"
 
@@ -23,11 +23,11 @@ DEPEND="
 RDEPEND="nls? ( virtual/libintl )"
 
 src_prepare() {
-	epatch "${FILESDIR}"/enscript-1.6.3-language.patch
 	epatch "${FILESDIR}"/enscript-1.6.4-ebuild.st.patch
 	epatch "${FILESDIR}"/enscript-1.6.5.2-php.st.patch
 	use ruby && epatch "${FILESDIR}"/enscript-1.6.2-ruby.patch
 	epatch "${FILESDIR}"/enscript-1.6.4-fsf-gcc-darwin.patch
+	sed -i src/tests/passthrough.test -e 's|tail +2|tail -n +2|g' || die
 }
 
 src_configure() {
