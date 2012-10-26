@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/herrie
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.38 2012/05/05 08:31:04 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.39 2012/07/29 18:39:29 armin76 Exp $
+
+  29 Jul 2012; Raúl Porcel <armin76@gentoo.org> herrie-2.2.ebuild:
+  Drop sparc keywords
 
   05 May 2012; Michał Górny <mgorny@gentoo.org> herrie-2.2.ebuild:
   dev-util/pkgconfig -> virtual/pkgconfig
