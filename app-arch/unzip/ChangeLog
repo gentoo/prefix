@@ -1,6 +1,24 @@
 # ChangeLog for app-arch/unzip
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.82 2012/04/26 16:34:58 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.88 2012/09/30 17:27:20 armin76 Exp $
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> unzip-6.0-r3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #420727
+
+  28 Sep 2012; Johannes Huber <johu@gentoo.org> unzip-6.0-r3.ebuild:
+  Stable for x86, wrt bug #420727
+
+  22 Sep 2012; Agostino Sarubbo <ago@gentoo.org> unzip-6.0-r3.ebuild:
+  Stable for amd64, wrt bug #420727
+
+  20 Sep 2012; Anthony G. Basile <blueness@gentoo.org> unzip-6.0-r3.ebuild:
+  stable arm, bug #420727
+
+  20 Sep 2012; Anthony G. Basile <blueness@gentoo.org> unzip-6.0-r3.ebuild:
+  stable ppc ppc64, bug #420727
+
+  19 Sep 2012; Jeroen Roovers <jer@gentoo.org> unzip-6.0-r3.ebuild:
+  Stable for HPPA (bug #420727).
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> unzip-6.0-r3.ebuild:
   keyword ~amd64-fbsd

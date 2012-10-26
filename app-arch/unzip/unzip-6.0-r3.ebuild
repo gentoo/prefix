@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/unzip-6.0-r3.ebuild,v 1.2 2012/04/26 16:34:58 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/unzip-6.0-r3.ebuild,v 1.8 2012/09/30 17:27:20 armin76 Exp $
 
 EAPI="2"
 inherit eutils toolchain-funcs flag-o-matic
