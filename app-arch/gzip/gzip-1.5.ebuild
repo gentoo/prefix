@@ -1,14 +1,14 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.4.ebuild,v 1.12 2012/07/06 17:58:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.5.ebuild,v 1.8 2012/09/09 15:56:45 armin76 Exp $
 
-inherit eutils flag-o-matic prefix
+inherit eutils flag-o-matic unpacker prefix
 
 DESCRIPTION="Standard GNU compressor"
 HOMEPAGE="http://www.gnu.org/software/gzip/"
-SRC_URI="mirror://gnu-alpha/gzip/${P}.tar.gz
-	mirror://gnu/gzip/${P}.tar.gz
-	mirror://gentoo/${P}.tar.gz"
+SRC_URI="mirror://gnu-alpha/gzip/${P}.tar.xz
+	mirror://gnu/gzip/${P}.tar.xz
+	mirror://gentoo/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -20,14 +20,12 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_unpack() {
-	unpack ${A}
+	unpacker
 	cd "${S}"
 	#epatch "${FILESDIR}"/${PN}-1.3.5-rsync.patch
 	epatch "${FILESDIR}"/${PN}-1.3.8-install-symlinks.patch
-	epatch "${FILESDIR}"/${P}-assembler.patch #309079
-	epatch "${FILESDIR}"/${P}-no-gets.patch
 
-	epatch "${FILESDIR}"/${P}-asmv.patch
+	epatch "${FILESDIR}"/${PN}-1.4-asmv.patch
 	epatch "${FILESDIR}"/${PN}-1.3.12-prefix.patch
 	eprefixify gzexe.in
 }
