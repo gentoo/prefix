@@ -1,6 +1,55 @@
 # ChangeLog for app-portage/euses
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.57 2010/06/06 14:32:16 armin76 Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.72 2012/10/25 19:58:33 ken69267 Exp $
+
+  25 Oct 2012; Kenneth Prugh <ken69267@gentoo.org> euses-2.5.9.ebuild:
+  amd64 stable, bug #434778
+
+  10 Oct 2012; Jeroen Roovers <jer@gentoo.org> -euses-2.5.7.ebuild:
+  Old.
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> euses-2.5.9.ebuild:
+  alpha/sparc stable wrt #434778
+
+  18 Sep 2012; Johannes Huber <johu@gentoo.org> euses-2.5.9.ebuild:
+  Stable for x86, wrt bug #434778
+
+  12 Sep 2012; Jeroen Roovers <jer@gentoo.org> euses-2.5.9.ebuild:
+  Stable for HPPA (bug #434778).
+
+  12 Sep 2012; Anthony G. Basile <blueness@gentoo.org> euses-2.5.9.ebuild:
+  stable arm, bug #434778
+
+  12 Sep 2012; Anthony G. Basile <blueness@gentoo.org> euses-2.5.9.ebuild:
+  stable ppc, bug #434778
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> euses-2.5.8.ebuild:
+  alpha/sparc stable wrt #429532
+
+*euses-2.5.9 (13 Aug 2012)
+
+  13 Aug 2012; Jeroen Roovers <jer@gentoo.org> +euses-2.5.9.ebuild:
+  Version bump.
+
+  04 Aug 2012; Agostino Sarubbo <ago@gentoo.org> euses-2.5.8.ebuild:
+  Stable for amd64, wrt bug #429532
+
+  04 Aug 2012; Anthony G. Basile <blueness@gentoo.org> euses-2.5.8.ebuild:
+  Stable arm, bug #429532
+
+  04 Aug 2012; Anthony G. Basile <blueness@gentoo.org> euses-2.5.8.ebuild:
+  Stable ppc, keyword ~ppc64, bug #429532
+
+  04 Aug 2012; Jeroen Roovers <jer@gentoo.org> euses-2.5.8.ebuild:
+  Stable for HPPA (bug #429532).
+
+  03 Aug 2012; Jeff Horelick <jdhore@gentoo.org> euses-2.5.8.ebuild:
+  marked x86 per bug 429532
+
+*euses-2.5.8 (02 Jul 2012)
+
+  02 Jul 2012; Jeroen Roovers <jer@gentoo.org> +euses-2.5.8.ebuild:
+  Version bump.
 
   06 Jun 2010; Raúl Porcel <armin76@gentoo.org> euses-2.5.7.ebuild:
   arm stable wrt #283101

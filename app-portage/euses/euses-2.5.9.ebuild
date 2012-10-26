@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/euses-2.5.6.ebuild,v 1.7 2009/11/23 04:10:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/euses-2.5.9.ebuild,v 1.7 2012/10/25 19:58:33 ken69267 Exp $
 
-inherit autotools
+EAPI=4
 
 DESCRIPTION="look up USE flag descriptions fast"
 HOMEPAGE="http://www.xs4all.nl/~rooversj/gentoo"
@@ -21,26 +21,20 @@ DEPEND="
 	x64-solaris? ( dev-libs/gnulib )
 "
 
-S="${WORKDIR}"
+S=${WORKDIR}
 
-src_unpack() {
-	unpack ${A}
-	eautoconf
-}
-
-src_compile() {
+src_configure() {
 	if [[ ${CHOST} == *-aix* || ${CHOST} == *-solaris* ]]; then
 		append-cppflags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
 		export LIBS="-lgnu"
 	fi
 
-	econf || die
-	emake || die
+	econf
 }
 
 src_install() {
-	dobin ${PN} || die
-	doman ${PN}.1 || die
-	dodoc ChangeLog || die
+	dobin ${PN}
+	doman ${PN}.1
+	dodoc ChangeLog
 }
