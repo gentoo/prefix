@@ -1,6 +1,28 @@
 # ChangeLog for app-text/build-docbook-catalog
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.30 2012/04/26 17:20:54 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.35 2012/10/06 17:15:54 armin76 Exp $
+
+  06 Oct 2012; Raúl Porcel <armin76@gentoo.org>
+  build-docbook-catalog-1.19.1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc/x86 stable wrt #437024
+
+  04 Oct 2012; Anthony G. Basile <blueness@gentoo.org>
+  build-docbook-catalog-1.19.1.ebuild:
+  stable arm ppc ppc64, bug #437024
+
+  03 Oct 2012; Jeroen Roovers <jer@gentoo.org>
+  build-docbook-catalog-1.19.1.ebuild:
+  Stable for HPPA (bug #437024).
+
+  03 Oct 2012; Agostino Sarubbo <ago@gentoo.org>
+  build-docbook-catalog-1.19.1.ebuild:
+  Stable for amd64, wrt bug #437024
+
+*build-docbook-catalog-1.19.1 (02 Oct 2012)
+
+  02 Oct 2012; Mike Gilbert <floppym@gentoo.org>
+  +build-docbook-catalog-1.19.1.ebuild:
+  Version bump for bug 437004. Don't install /etc/xml/.keep.
 
   20 May 2012; Fabian Groffen <grobian@gentoo.org>
   build-docbook-catalog-1.19.ebuild:
