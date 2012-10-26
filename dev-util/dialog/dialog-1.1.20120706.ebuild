@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20120215.ebuild,v 1.10 2012/07/08 15:09:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20120706.ebuild,v 1.1 2012/07/18 17:25:40 jer Exp $
 
 EAPI="4"
 
@@ -58,7 +58,7 @@ src_install() {
 		emake DESTDIR="${D}" install-full
 	fi
 
-	dodoc CHANGES README VERSION
+	dodoc CHANGES README
 
 	if use examples; then
 		docinto samples

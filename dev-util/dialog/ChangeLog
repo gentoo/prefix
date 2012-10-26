@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/dialog
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.158 2012/06/07 21:27:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.160 2012/07/18 17:25:40 jer Exp $
+
+*dialog-1.1.20120706 (18 Jul 2012)
+
+  18 Jul 2012; Jeroen Roovers <jer@gentoo.org> +dialog-1.1.20120706.ebuild:
+  Version bump. Do not install VERSION.
+
+  08 Jul 2012; Raúl Porcel <armin76@gentoo.org> dialog-1.1.20120215.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #417669
 
   07 Jun 2012; Brent Baude <ranger@gentoo.org> dialog-1.1.20120215.ebuild:
   Marking dialog-1.1.20120215 ppc for bug 417669
