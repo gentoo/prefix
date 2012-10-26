@@ -1,14 +1,14 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-49.1.1-r1.ebuild,v 1.11 2012/06/05 20:57:37 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-50_rc.ebuild,v 1.1 2012/10/25 18:53:59 floppym Exp $
 
-EAPI="4"
+EAPI="5"
 
-inherit eutils versionator flag-o-matic
+inherit eutils versionator
 
 MAJOR_VERSION="$(get_version_component_range 1)"
 if [[ "${PV}" =~ ^[[:digit:]]+_rc[[:digit:]]*$ ]]; then
-	MINOR_VERSION="0"
+	MINOR_VERSION="1"
 else
 	MINOR_VERSION="$(get_version_component_range 2)"
 fi
@@ -24,7 +24,7 @@ SRC_URI="${BASE_URI}/${SRC_ARCHIVE}
 	doc? ( ${BASE_URI}/${DOCS_ARCHIVE} )"
 
 LICENSE="BSD"
-SLOT="0"
+SLOT="0/50"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc examples static-libs"
 
@@ -34,6 +34,7 @@ RDEPEND=""
 S="${WORKDIR}/${PN}/source"
 
 QA_DT_NEEDED="/usr/lib.*/libicudata\.so\.${MAJOR_VERSION}\.${MINOR_VERSION}.*"
+QA_FLAGS_IGNORED="/usr/lib.*/libicudata\.so\.${MAJOR_VERSION}\.${MINOR_VERSION}.*"
 
 src_unpack() {
 	unpack "${SRC_ARCHIVE}"
@@ -53,6 +54,11 @@ src_prepare() {
 		sed -i -e "/^${variable} =.*/s:@${variable}@::" config/Makefile.inc.in || die "sed failed"
 	done
 
+	sed -e "s/#define U_DISABLE_RENAMING 0/#define U_DISABLE_RENAMING 1/" -i common/unicode/uconfig.h
+
+	# fix compilation on Solaris due to enabling of conflicting standards
+	sed -i -e '/define _XOPEN_SOURCE_EXTENDED/s/_XOPEN/no_XOPEN/' \
+		common/uposixdefs.h || die
 	# for correct install_names
 	epatch "${FILESDIR}"/${PN}-4.8.1-darwin.patch
 	# fix part 1 for echo_{t,c,n}
@@ -60,48 +66,18 @@ src_prepare() {
 
 	epatch "${FILESDIR}/${PN}-4.8.1-fix_binformat_fonts.patch"
 	epatch "${FILESDIR}/${PN}-4.8.1.1-fix_ltr.patch"
-	epatch "${FILESDIR}/${P}-regex.patch"
-	epatch "${FILESDIR}/${P}-bsd.patch"
+	epatch "${FILESDIR}/${P}-platforms.patch"
 }
 
 src_configure() {
-	# Fails without this on hppa/s390/sparc
-	if use hppa || use s390 || use sparc; then
-		append-flags "-DU_IS_BIG_ENDIAN=1"
-	fi
-
-	if [[ ${CHOST} == *-irix* ]]; then
-		if [[ -n "${LD_LIBRARYN32_PATH}" || -n "${LD_LIBRARY64_PATH}" ]]; then
-			case "${ABI:-$DEFAULT_ABI}" in
-				mips32)
-					if [[ -z "${LD_LIBRARY_PATH}" ]]; then
-						LD_LIBRARY_PATH="${LD_LIBRARYN32_PATH}"
-					else
-						LD_LIBRARY_PATH="${LD_LIBRARYN32_PATH}:${LD_LIBRARY_PATH}"
-					fi
-					;;
-				mips64)
-					if [[ -z "${LD_LIBRARY_PATH}" ]]; then
-						LD_LIBRARY_PATH="${LD_LIBRARY64_PATH}"
-					else
-						LD_LIBRARY_PATH="${LD_LIBRARY64_PATH}:${LD_LIBRARY_PATH}"
-					fi
-					;;
-				mipso32|*)
-					:
-					;;
-			esac
-		fi
-		export LD_LIBRARY_PATH
-		unset  LD_LIBRARYN32_PATH
-		unset  LD_LIBRARY64_PATH
-	fi
-
 	# make sure we configure with the same shell as we run icu-config
 	# with, or ECHO_N, ECHO_T and ECHO_C will be wrongly defined
 	# (this is part 2 from the echo_{t,c,n} fix)
-	export CONFIG_SHELL=${EPREFIX}/bin/sh
+	export CONFIG_SHELL=${CONFIG_SHELL:-${EPREFIX}/bin/sh}
+	# http://bugs.icu-project.org/trac/ticket/8551: --disable-strict
 	econf \
+		--disable-renaming \
+		--disable-strict \
 		$(use_enable debug) \
 		$(use_enable examples samples) \
 		$(use_enable static-libs static)
@@ -109,7 +85,7 @@ src_configure() {
 
 src_compile() {
 	# Darwin/x86 needs an object index
-	emake ARFLAGS="sr" || die
+	emake VERBOSE="1" ARFLAGS="sr"
 }
 
 src_test() {
@@ -123,11 +99,11 @@ src_test() {
 	# CINTLTST_OPTS: cintltst options
 	#   -e: Exhaustive testing
 	#   -v: Increased verbosity
-	emake -j1 check
+	emake -j1 VERBOSE="1" check
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
+	emake DESTDIR="${D}" VERBOSE="1" install
 
 	dohtml ../readme.html
 	dodoc ../unicode-license.txt

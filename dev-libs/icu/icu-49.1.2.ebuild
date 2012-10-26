@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-49.1.2.ebuild,v 1.1 2012/06/07 00:42:54 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-49.1.2.ebuild,v 1.8 2012/09/30 16:19:09 armin76 Exp $
 
 EAPI="4"
 
@@ -63,7 +63,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}/${PN}-4.8.1-fix_binformat_fonts.patch"
 	epatch "${FILESDIR}/${PN}-4.8.1.1-fix_ltr.patch"
-	epatch "${FILESDIR}/${PN}-49.1.1-bsd.patch"
+	epatch "${FILESDIR}/${P}-platforms.patch"
 }
 
 src_configure() {

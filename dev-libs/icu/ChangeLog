@@ -1,6 +1,37 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.200 2012/06/07 00:42:54 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.209 2012/10/25 18:53:59 floppym Exp $
+
+*icu-50_rc (25 Oct 2012)
+
+  25 Oct 2012; Mike Gilbert <floppym@gentoo.org> +icu-50_rc.ebuild:
+  Version bump. Ebuild by Arfrever.
+
+  30 Sep 2012; Mike Gilbert <floppym@gentoo.org> -files/icu-49.1.1-bsd.patch,
+  -files/icu-49.1.1-regex.patch, -icu-49.1.1-r1.ebuild:
+  Remove old per Arfrever.
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> icu-49.1.2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #428074
+
+  04 Aug 2012; Agostino Sarubbo <ago@gentoo.org> icu-49.1.2.ebuild:
+  Stable for amd64, wrt bug #428074
+
+  01 Aug 2012; Jeroen Roovers <jer@gentoo.org> icu-49.1.2.ebuild:
+  Stable for HPPA (bug #428074).
+
+  30 Jul 2012; Anthony G. Basile <blueness@gentoo.org> icu-49.1.2.ebuild:
+  Stable arm, bug #428074
+
+  29 Jul 2012; Anthony G. Basile <blueness@gentoo.org> icu-49.1.2.ebuild:
+  Stable ppc/ppc64, bug #428074
+
+  26 Jul 2012; Jeff Horelick <jdhore@gentoo.org> icu-49.1.2.ebuild:
+  marked x86 per bug 428074
+
+  23 Jul 2012; Mike Gilbert <floppym@gentoo.org>
+  +files/icu-49.1.2-platforms.patch, icu-49.1.2.ebuild:
+  Fix detection of some platforms. Patch by Arfrever.
 
   15 Jun 2012; Fabian Groffen <grobian@gentoo.org> icu-49.1.2.ebuild:
   Fix compilation on Solaris
