@@ -1,6 +1,52 @@
 # ChangeLog for app-admin/webapp-config
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/ChangeLog,v 1.72 2012/04/27 19:43:57 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/ChangeLog,v 1.84 2012/07/15 17:17:09 armin76 Exp $
+
+  15 Jul 2012; Raúl Porcel <armin76@gentoo.org>
+  webapp-config-1.50.16-r4.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #392329
+
+  28 Jun 2012; Anthony G. Basile <blueness@gentoo.org>
+  webapp-config-1.50.19.ebuild:
+  Temporary workaround for parallel build in doc/Makefile
+
+  28 Jun 2012; Mike Gilbert <floppym@gentoo.org> webapp-config-1.50.19.ebuild:
+  Restrict python 2.5 based on advice from Arfrever.
+
+  28 Jun 2012; Anthony G. Basile <blueness@gentoo.org>
+  webapp-config-1.50.19.ebuild:
+  Add DEPEND=app-text/xmlto for generating the docs
+
+*webapp-config-1.50.19 (28 Jun 2012)
+
+  28 Jun 2012; Anthony G. Basile <blueness@gentoo.org>
+  +webapp-config-1.50.19.ebuild:
+  Version bump, incorporate patches from FILESDIR, address bug #243260
+
+  27 Jun 2012; Agostino Sarubbo <ago@gentoo.org>
+  webapp-config-1.50.16-r4.ebuild:
+  Stable for amd64, wrt bug #392329
+
+  27 Jun 2012; Jeroen Roovers <jer@gentoo.org> webapp-config-1.50.16-r4.ebuild:
+  Stable for HPPA (bug #392329).
+
+  22 Jun 2012; Brent Baude <ranger@gentoo.org> webapp-config-1.50.16-r4.ebuild:
+  Marking webapp-config-1.50.16-r4 ppc64 for bug 392329
+
+  19 Jun 2012; Michael Weber <xmw@gentoo.org> webapp-config-1.50.16-r4.ebuild:
+  arm stable (bug 392329)
+
+  17 Jun 2012; Anthony G. Basile <blueness@gentoo.org>
+  webapp-config-1.50.16-r4.ebuild,
+  +files/webapp-config-1.50.16-fix-unicode-tests.patch:
+  Fix tests, thanks prometheanfire, bug #421091
+
+  14 Jun 2012; Jeff Horelick <jdhore@gentoo.org>
+  webapp-config-1.50.16-r4.ebuild:
+  marked x86 per bug 392329
+
+  14 Jun 2012; Michael Weber <xmw@gentoo.org> webapp-config-1.50.16-r4.ebuild:
+  ppc stable (bug 392329)
 
   27 Apr 2012; Anthony G. Basile <blueness@gentoo.org>
   webapp-config-1.50.16-r1.ebuild, webapp-config-1.50.16-r4.ebuild,

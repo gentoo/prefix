@@ -1,50 +1,44 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/webapp-config-1.50.16-r4.ebuild,v 1.10 2012/07/15 17:17:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/webapp-config-1.50.19.ebuild,v 1.4 2012/06/28 23:28:24 blueness Exp $
 
 EAPI="3"
-PYTHON_DEPEND="2"
+
+PYTHON_DEPEND="2:2.6"
 SUPPORT_PYTHON_ABIS="1"
 
-inherit distutils eutils prefix
+inherit distutils prefix
 
 DESCRIPTION="Gentoo's installer for web-based applications"
 HOMEPAGE="http://sourceforge.net/projects/webapp-config/"
-SRC_URI="mirror://gentoo/${P}.tar.gz"
+SRC_URI="http://dev.gentoo.org/~blueness/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE=""
 
-DEPEND=""
+DEPEND="app-text/xmlto"
 RDEPEND=""
-RESTRICT_PYTHON_ABIS="3.*"
+RESTRICT_PYTHON_ABIS="2.5 3.*"
 
 PYTHON_MODNAME="WebappConfig"
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-apache-move.patch"
-	epatch "${FILESDIR}/${P}-baselayout2.patch"
-	epatch "${FILESDIR}/${P}-htdocs-symlink.patch"
-	epatch "${FILESDIR}/${P}-absolute-paths.patch"
-	epatch "${FILESDIR}/${P}-update-servers.patch"
-	epatch "${FILESDIR}/${P}-fix-unicode-tests.patch"
-	# Do not build nor install eclass manual, bug 322759
-	rm -f doc/webapp.eclass.5*
-	sed -e '/MAN_PAGES/s/webapp.eclass.5//' \
-		-e '/HTML_PAGES/s/webapp.eclass.5.html//' \
-		-i doc/Makefile || die
-
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.50.18-prefix.patch
 
 	eprefixify \
 		WebappConfig/config.py \
 		WebappConfig/db.py \
 		WebappConfig/sandbox.py \
 		WebappConfig/wrapper.py \
-		sbin/webapp-cleaner \
 		config/webapp-config
+}
+
+src_compile() {
+	distutils_src_compile
+	#parallel build fixed in next release
+	emake -j1 -C doc/
 }
 
 src_install() {
@@ -61,7 +55,7 @@ src_install() {
 	keepdir /usr/share/webapps
 	keepdir /var/db/webapps
 
-	dodoc examples/phpmyadmin-2.5.4-r1.ebuild AUTHORS.txt CHANGES.txt examples/postinstall-en.txt
+	dodoc AUTHORS TODO
 	doman doc/*.[58]
 	dohtml doc/*.[58].html
 }
