@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/duma
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.14 2010/04/04 07:41:06 nerdboy Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.16 2012/10/07 08:58:56 pacho Exp $
+
+  07 Oct 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop maintainer due retirement, #24135.
+
+  31 May 2012; Kacper Kowalik <xarthisius@gentoo.org> -duma-2.4.27.ebuild,
+  -duma-2.5.14-r1.ebuild, -duma-2.5.8.ebuild, -files/duma-2.4.27-make.patch,
+  -files/duma-2.4.27-types.patch, -files/duma-2.5.8-soname.patch:
+  Drop old
 
 *duma-2.5.15-r1 (04 Apr 2010)
 
