@@ -1,6 +1,136 @@
 # ChangeLog for dev-python/wxpython
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.139 2011/01/23 01:12:36 dirtyepic Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.173 2012/09/05 09:36:33 jlec Exp $
+
+  05 Sep 2012; Justin Lecher <jlec@gentoo.org> wxpython-2.8.12.1.ebuild,
+  wxpython-2.9.3.1.ebuild, wxpython-2.9.4.1.ebuild:
+  Use doicon instead insinto + doins to install icon files
+
+  05 Sep 2012; Justin Lecher <jlec@gentoo.org> wxpython-2.8.12.1.ebuild,
+  wxpython-2.9.3.1.ebuild, wxpython-2.9.4.1.ebuild:
+  Use domenu instead insinto + doins to install .desktop files
+
+  08 Aug 2012; Ryan Hill <dirtyepic@gentoo.org>
+  +files/wxpython-2.8.11-drop-editra.patch:
+  Restore lost patch (bug #430288).
+
+*wxpython-2.9.4.1 (28 Jul 2012)
+
+  28 Jul 2012; Ryan Hill <dirtyepic@gentoo.org> +wxpython-2.9.4.1.ebuild,
+  +files/wxpython-2.9.4.1-wxversion-scripts.patch:
+  Version bump.
+
+  28 Jul 2012; Ryan Hill <dirtyepic@gentoo.org> -wxpython-2.8.11.0.ebuild,
+  -files/wxpython-2.8.11-drop-editra.patch, -wxpython-2.8.12.0.ebuild,
+  -wxpython-2.9.1.1.ebuild:
+  Remove old.
+
+  29 May 2012; Alexis Ballier <aballier@gentoo.org> wxpython-2.8.12.1.ebuild:
+  keyword ~amd64-fbsd
+
+  06 May 2012; Justin Lecher <jlec@gentoo.org> wxpython-2.8.11.0.ebuild,
+  wxpython-2.8.12.0.ebuild, wxpython-2.8.12.1.ebuild:
+  Add workaround to respect CXXFLAGS
+
+  04 May 2012; Patrick Lauer <patrick@gentoo.org> wxpython-2.8.11.0.ebuild,
+  wxpython-2.8.12.0.ebuild, wxpython-2.8.12.1.ebuild, wxpython-2.9.1.1.ebuild,
+  wxpython-2.9.3.1.ebuild:
+  Migrating dev-util/pkgconfig -> virtual/pkgconfig
+
+  25 Mar 2012; Raúl Porcel <armin76@gentoo.org> wxpython-2.8.12.1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #403235
+
+  08 Mar 2012; Brent Baude <ranger@gentoo.org> wxpython-2.8.12.1.ebuild:
+  Marking wxpython-2.8.12.1 ppc64 for bug 403235
+
+  28 Feb 2012; Brent Baude <ranger@gentoo.org> wxpython-2.8.12.1.ebuild:
+  Marking wxpython-2.8.12.1 ppc for bug 403235
+
+  22 Feb 2012; Jeroen Roovers <jer@gentoo.org> wxpython-2.8.12.1.ebuild:
+  Stable for HPPA (bug #403235).
+
+  22 Feb 2012; Patrick Lauer <patrick@gentoo.org> wxpython-2.8.11.0.ebuild,
+  wxpython-2.8.12.0.ebuild, wxpython-2.8.12.1.ebuild, wxpython-2.9.1.1.ebuild,
+  wxpython-2.9.3.1.ebuild:
+  Restricting pypy
+
+  16 Feb 2012; Markus Meier <maekke@gentoo.org> wxpython-2.8.12.1.ebuild:
+  arm stable, bug #403235
+
+  16 Feb 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  wxpython-2.8.12.1.ebuild:
+  x86 stable wrt bug #403235
+
+  13 Feb 2012; Agostino Sarubbo <ago@gentoo.org> wxpython-2.8.12.1.ebuild:
+  Stable for amd64, wrt bug #403235
+
+*wxpython-2.9.3.1 (12 Feb 2012)
+
+  12 Feb 2012; Ryan Hill <dirtyepic@gentoo.org> +wxpython-2.9.3.1.ebuild:
+  Version bump (bug #384037 by radhermit).
+
+  08 Jan 2012; Markos Chandras <hwoarang@gentoo.org> wxpython-2.8.12.1.ebuild:
+  Fix a typo. Patch by Arfrever
+
+  06 Jan 2012; Markos Chandras <hwoarang@gentoo.org> wxpython-2.8.12.1.ebuild,
+  wxpython-2.9.1.1.ebuild:
+  Synchronize ebuilds. Use distutils.eclass. Patch by Arfrever.
+
+  06 Jan 2012; Markos Chandras <hwoarang@gentoo.org> wxpython-2.8.12.1.ebuild,
+  wxpython-2.9.1.1.ebuild:
+  Don't inherit unused eclass. Properly set local variables. Patch by Arfrever.
+
+  09 Dec 2011; Samuli Suominen <ssuominen@gentoo.org>
+  -files/scripts-multiver-2.6.1.0.diff, -wxpython-2.6.4.0-r2.ebuild:
+  old
+
+*wxpython-2.8.12.1 (09 Dec 2011)
+
+  09 Dec 2011; Ryan Hill <dirtyepic@gentoo.org> +wxpython-2.8.12.1.ebuild:
+  Version bump.
+
+  09 Dec 2011; Ryan Hill <dirtyepic@gentoo.org> -wxpython-2.8.10.1.ebuild,
+  -files/wxpython-2.8-drop-editra.patch:
+  Remove old.
+
+  16 Jul 2011; Kacper Kowalik <xarthisius@gentoo.org> wxpython-2.8.11.0.ebuild:
+  ppc64 stable wrt #364203
+
+  28 Jun 2011; Brent Baude <ranger@gentoo.org> wxpython-2.8.11.0.ebuild:
+  Marking wxpython-2.8.11.0 ppc for bug 364203
+
+  04 Jun 2011; Raúl Porcel <armin76@gentoo.org> wxpython-2.8.11.0.ebuild:
+  alpha/ia64/sh/sparc stable wrt #364203
+
+  21 May 2011; Thomas Kahle <tomka@gentoo.org> wxpython-2.8.11.0.ebuild:
+  x86 stable per bug 364203
+
+  13 May 2011; Markus Meier <maekke@gentoo.org> wxpython-2.8.11.0.ebuild:
+  arm stable, bug #364203
+
+  27 Apr 2011; Christoph Mende <angelos@gentoo.org> wxpython-2.8.11.0.ebuild:
+  Stable on amd64 wrt bug #364203
+
+  26 Apr 2011; Jeroen Roovers <jer@gentoo.org> wxpython-2.8.11.0.ebuild:
+  Stable for HPPA (bug #364203).
+
+  22 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> wxpython-2.8.11.0.ebuild,
+  wxpython-2.8.12.0.ebuild:
+  Don't install non-working binary stuff into DOCDIR (bug #364393 by ago).
+
+*wxpython-2.8.12.0 (20 Apr 2011)
+
+  20 Apr 2011; Ryan Hill <dirtyepic@gentoo.org> +wxpython-2.8.12.0.ebuild,
+  +files/wxpython-2.8.12-drop-editra.patch:
+  Version bump (bug #363319).
+
+  29 Mar 2011; Christoph Mende <angelos@gentoo.org> wxpython-2.6.4.0-r2.ebuild,
+  wxpython-2.8.10.1.ebuild:
+  Fixed slot deps
+
+  27 Feb 2011; Ryan Hill <dirtyepic@gentoo.org> wxpython-2.8.10.1.ebuild,
+  wxpython-2.8.11.0.ebuild, wxpython-2.9.1.1.ebuild:
+  Slot gnome stuff.
 
 *wxpython-2.9.1.1 (23 Jan 2011)
 
