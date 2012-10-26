@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jgoodies-forms
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jgoodies-forms/ChangeLog,v 1.29 2010/11/05 20:19:20 halcy0n Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jgoodies-forms/ChangeLog,v 1.30 2012/09/29 17:43:42 grobian Exp $
+
+  29 Sep 2012; Fabian Groffen <grobian@gentoo.org> jgoodies-forms-1.3.0.ebuild:
+  Marked ~x64-macos
 
   05 Nov 2010; Mark Loeser <halcy0n@gentoo.org> jgoodies-forms-1.3.0.ebuild:
   Stable for ppc64; bug #320683
