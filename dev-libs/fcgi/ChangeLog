@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/fcgi
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.53 2012/05/31 15:29:31 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.55 2012/07/29 23:56:22 blueness Exp $
+
+  29 Jul 2012; Anthony G. Basile <blueness@gentoo.org>
+  fcgi-2.4.1_pre0910052249.ebuild:
+  Stable ppc64, bug #415433
+
+  29 Jul 2012; Raúl Porcel <armin76@gentoo.org>
+  fcgi-2.4.1_pre0910052249.ebuild:
+  alpha/ia64/sh/sparc stable wrt #415433
 
   31 May 2012; Jeroen Roovers <jer@gentoo.org> fcgi-2.4.1_pre0910052249.ebuild:
   Stable for HPPA (bug #415433).
