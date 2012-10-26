@@ -1,14 +1,14 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/openafs-1.6.1.ebuild,v 1.2 2012/09/25 00:16:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/openafs-1.6.1-r1.ebuild,v 1.2 2012/10/02 23:17:48 naota Exp $
 
-EAPI="2"
+EAPI="4"
 
-inherit flag-o-matic eutils autotools toolchain-funcs versionator pam
+inherit flag-o-matic eutils autotools multilib toolchain-funcs versionator pam
 
 MY_PV=$(delete_version_separator '_')
 MY_P="${PN}-${MY_PV}"
-PVER="1"
+PVER="2"
 DESCRIPTION="The OpenAFS distributed file system"
 HOMEPAGE="http://www.openafs.org/"
 # We always d/l the doc tarball as man pages are not USE=doc material
@@ -29,7 +29,6 @@ RDEPEND="~net-fs/openafs-kernel-${PV}
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	EPATCH_EXCLUDE="012_all_kbuild.patch" \
 	EPATCH_SUFFIX="patch" \
 	epatch "${WORKDIR}"/gentoo/patches
 
@@ -58,23 +57,23 @@ src_configure() {
 }
 
 src_compile() {
-	emake all_nolibafs || die
+	emake all_nolibafs
 }
 
 src_install() {
 	local CONFDIR=${WORKDIR}/gentoo/configs
 	local SCRIPTDIR=${WORKDIR}/gentoo/scripts
 
-	emake DESTDIR="${D}" install_nolibafs || die
+	emake DESTDIR="${ED}" install_nolibafs
 
 	insinto /etc/openafs
-	doins src/afsd/CellServDB || die
+	doins src/afsd/CellServDB
 	echo "/afs:/var/cache/openafs:200000" > "${ED}"/etc/openafs/cacheinfo
 	echo "openafs.org" > "${ED}"/etc/openafs/ThisCell
 
 	# pam_afs and pam_afs.krb have been installed in irregular locations, fix
 	if use pam ; then
-		dopammod "${ED}"/usr/$(get_libdir)/pam_afs* || die
+		dopammod "${ED}"/usr/$(get_libdir)/pam_afs*
 	fi
 	rm -f "${ED}"/usr/$(get_libdir)/pam_afs* || die
 
