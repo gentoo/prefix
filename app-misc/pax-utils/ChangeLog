@@ -1,6 +1,27 @@
 # ChangeLog for app-misc/pax-utils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.135 2012/04/29 06:34:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.142 2012/07/10 18:05:58 ranger Exp $
+
+  10 Jul 2012; Brent Baude <ranger@gentoo.org> pax-utils-0.4.ebuild:
+  Marking pax-utils-0.4 ppc for bug 420919
+
+  08 Jul 2012; Raúl Porcel <armin76@gentoo.org> pax-utils-0.4.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #420919
+
+  22 Jun 2012; Brent Baude <ranger@gentoo.org> pax-utils-0.4.ebuild:
+  Marking pax-utils-0.4 ppc64 for bug 420919
+
+  21 Jun 2012; Jeroen Roovers <jer@gentoo.org> pax-utils-0.4.ebuild:
+  Stable for HPPA (bug #420919).
+
+  20 Jun 2012; Markus Meier <maekke@gentoo.org> pax-utils-0.4.ebuild:
+  arm stable, bug #420919
+
+  13 Jun 2012; Agostino Sarubbo <ago@gentoo.org> pax-utils-0.4.ebuild:
+  Stable for amd64, wrt bug #420919
+
+  13 Jun 2012; Jeff Horelick <jdhore@gentoo.org> pax-utils-0.4.ebuild:
+  marked x86 per bug 420919
 
 *pax-utils-0.4 (29 Apr 2012)
 
