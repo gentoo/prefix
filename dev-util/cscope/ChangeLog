@@ -1,6 +1,37 @@
 # ChangeLog for dev-util/cscope
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.129 2012/04/26 16:47:01 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.138 2012/09/29 18:45:43 armin76 Exp $
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> cscope-15.8a.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #434292
+
+  20 Sep 2012; Johannes Huber <johu@gentoo.org> cscope-15.8a.ebuild:
+  Stable for x86, wrt bug #434292
+
+  18 Sep 2012; Jeroen Roovers <jer@gentoo.org> cscope-15.8a.ebuild:
+  Stable for HPPA (bug #434292).
+
+  11 Sep 2012; Anthony G. Basile <blueness@gentoo.org> cscope-15.8a.ebuild:
+  Stable arm, bug #434292
+
+  10 Sep 2012; Anthony G. Basile <blueness@gentoo.org> cscope-15.8a.ebuild:
+  Stable ppc64, bug #434292
+
+  10 Sep 2012; Anthony G. Basile <blueness@gentoo.org> cscope-15.8a.ebuild:
+  Stable ppc, bug #434292
+
+  08 Sep 2012; Agostino Sarubbo <ago@gentoo.org> cscope-15.8a.ebuild:
+  Stable for amd64, wrt bug #434292
+
+*cscope-15.8a (07 Aug 2012)
+
+  07 Aug 2012; Tim Harder <radhermit@gentoo.org> +cscope-15.8a.ebuild:
+  Version bump (bug #430272).
+
+*cscope-15.8 (05 Jul 2012)
+
+  05 Jul 2012; Ulrich Müller <ulm@gentoo.org> +cscope-15.8.ebuild:
+  Version bump.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> cscope-15.7a-r1.ebuild:
   keyword ~amd64-fbsd

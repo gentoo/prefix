@@ -1,14 +1,14 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/cscope-15.7a-r1.ebuild,v 1.12 2012/07/05 21:46:18 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/cscope-15.8a.ebuild,v 1.8 2012/09/29 18:45:43 armin76 Exp $
 
 EAPI=4
 
-inherit elisp-common eutils
+inherit autotools elisp-common eutils
 
 DESCRIPTION="Interactively examine a C program"
 HOMEPAGE="http://cscope.sourceforge.net/"
-SRC_URI="mirror://sourceforge/cscope/${P}.tar.bz2"
+SRC_URI="mirror://sourceforge/cscope/${P}.tar.gz"
 
 LICENSE="BSD GPL-2"
 SLOT="0"
@@ -19,13 +19,13 @@ RDEPEND=">=sys-libs/ncurses-5.2
 	emacs? ( virtual/emacs )"
 DEPEND="${RDEPEND}
 	sys-devel/flex
-	sys-devel/bison
-	>=sys-devel/autoconf-2.60"
+	virtual/yacc"
 
 SITEFILE="50${PN}-gentoo.el"
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-ocs-sysdir.patch" #269305
+	epatch "${FILESDIR}/${PN}-15.7a-ocs-sysdir.patch" #269305
+	eautoreconf		  # prevent maintainer mode later on
 
 	epatch "${FILESDIR}"/${PN}-15.6-darwin.patch
 	epatch "${FILESDIR}"/${PN}-15.6-r3-interix.patch
@@ -36,9 +36,7 @@ src_configure() {
 }
 
 src_compile() {
-	make clean || die "make clean failed"
 	emake
-
 	if use emacs; then
 		cd "${S}"/contrib/xcscope || die
 		elisp-compile *.el || die
@@ -46,8 +44,7 @@ src_compile() {
 }
 
 src_install() {
-	einstall
-	dodoc AUTHORS ChangeLog NEWS README* TODO || die "dodoc failed"
+	default
 
 	if use emacs; then
 		cd "${S}"/contrib/xcscope || die
