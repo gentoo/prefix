@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/smpeg/smpeg-0.4.4-r9.ebuild,v 1.13 2011/10/23 11:49:12 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/smpeg/smpeg-0.4.4-r9.ebuild,v 1.14 2012/09/09 22:21:48 radhermit Exp $
 
 EAPI=4
 
@@ -17,7 +17,10 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
 IUSE="X debug mmx opengl static-libs"
 
 DEPEND=">=media-libs/libsdl-1.2.0
-	opengl? ( virtual/opengl )
+	opengl? (
+		virtual/glu
+		virtual/opengl
+	)
 	X? (
 		x11-libs/libXext
 		x11-libs/libXi

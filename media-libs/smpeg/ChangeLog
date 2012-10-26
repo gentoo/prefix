@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/smpeg
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/smpeg/ChangeLog,v 1.58 2011/10/23 11:49:12 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/smpeg/ChangeLog,v 1.59 2012/09/09 22:21:48 radhermit Exp $
+
+  09 Sep 2012; Tim Harder <radhermit@gentoo.org> smpeg-0.4.4-r9.ebuild:
+  Add virtual/glu dep.
 
   23 Oct 2011; Tomáš Chvátal <scarabeus@gentoo.org> smpeg-0.4.4-r9.ebuild:
   Bump eapi, punt static libs and libtool archives.
