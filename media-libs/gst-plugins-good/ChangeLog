@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/gst-plugins-good
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.129 2012/05/17 13:48:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.130 2012/10/23 07:55:22 tetromino Exp $
+
+*gst-plugins-good-0.10.31 (23 Oct 2012)
+
+  23 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gst-plugins-good-0.10.23.ebuild, gst-plugins-good-0.10.28.ebuild,
+  gst-plugins-good-0.10.30.ebuild, +gst-plugins-good-0.10.31.ebuild:
+  Version bump (bug #418075); lots of improvements and bugfixes in rtp support,
+  matroska and quicktime (de)muxing, and multifile. Update homepage and
+  license. Drop .la files.
 
   01 Oct 2012; Fabian Groffen <grobian@gentoo.org>
   gst-plugins-good-0.10.30.ebuild:
