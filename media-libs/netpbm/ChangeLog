@@ -5,6 +5,9 @@
   27 Oct 2012; Fabian Groffen <grobian@gentoo.org> netpbm-10.59.00.ebuild:
   Disable failing patch
 
+  27 Oct 2012; Fabian Groffen <grobian@gentoo.org> netpbm-10.59.00.ebuild:
+  Disable failing patch
+
 *netpbm-10.59.00 (18 Jul 2012)
 
   18 Jul 2012; Mike Frysinger <vapier@gentoo.org> +netpbm-10.59.00.ebuild:
