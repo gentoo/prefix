@@ -1,6 +1,25 @@
 # ChangeLog for sys-apps/sed
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.116 2012/04/26 14:11:12 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.122 2012/08/26 17:00:34 armin76 Exp $
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> sed-4.2.1-r1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #427118
+
+  01 Aug 2012; Tony Vroon <chainsaw@gentoo.org> sed-4.2.1-r1.ebuild:
+  Marked stable on AMD64 based on arch testing by Elijah "Armageddon" El
+  Lazkani & Tomáš "Mepho" Pružina in bug #427118.
+
+  24 Jul 2012; Jeroen Roovers <jer@gentoo.org> sed-4.2.1-r1.ebuild:
+  Stable for HPPA (bug #427118).
+
+  23 Jul 2012; Markus Meier <maekke@gentoo.org> sed-4.2.1-r1.ebuild:
+  arm stable, bug #427118
+
+  21 Jul 2012; Anthony G. Basile <blueness@gentoo.org> sed-4.2.1-r1.ebuild:
+  Stable ppc/ppc64, bug #427118
+
+  21 Jul 2012; Jeff Horelick <jdhore@gentoo.org> sed-4.2.1-r1.ebuild:
+  marked x86 per bug 427118
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> sed-4.2.1-r1.ebuild:
   keyword ~amd64-fbsd
