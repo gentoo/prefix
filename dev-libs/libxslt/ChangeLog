@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.244 2012/09/29 17:38:54 jer Exp $
 
+  27 Oct 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/libxslt-1.1.27-versionscript-solaris.patch, libxslt-1.1.27.ebuild:
+  Fix Solaris versionscript patch to 1.1.27
+
   29 Sep 2012; Jeroen Roovers <jer@gentoo.org> libxslt-1.1.27.ebuild:
   Stable for HPPA (bug #436284).
 

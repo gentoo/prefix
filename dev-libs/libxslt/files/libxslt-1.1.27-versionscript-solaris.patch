@@ -1,0 +1,22 @@
+a) don't assume (used) linker lives in /usr/bin
+b) don't unconditionally set linker flags to Sun-style ld (probably this
+   is broken regardless as the linkmap file isn't a Sun linkmap
+this patch allows to compile libxslt to compile on Solaris with GNU ld
+configured GCC
+
+https://bugzilla.gnome.org/show_bug.cgi?id=599396
+
+--- configure.in
++++ configure.in
+@@ -131,9 +131,9 @@
+ dnl then add it
+ dnl
+ VERSION_SCRIPT_FLAGS=
+-$(/usr/bin/ld --help 2>&1 | grep -- --version-script >/dev/null) && \
++$(ld --help 2>&1 | grep -- --version-script >/dev/null) && \
+     VERSION_SCRIPT_FLAGS=-Wl,--version-script=
+-test "`uname`" = "SunOS" && \
++test -z "$VERSION_SCRIPT_FLAGS" && test "`uname`" = "SunOS" && \
+     VERSION_SCRIPT_FLAGS="-Wl,-M -Wl,"
+ AC_SUBST(VERSION_SCRIPT_FLAGS)
+ AM_CONDITIONAL([USE_VERSION_SCRIPT], [test -n "$VERSION_SCRIPT_FLAGS"])

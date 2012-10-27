@@ -33,7 +33,7 @@ src_prepare() {
 	# https://bugzilla.gnome.org/show_bug.cgi?id=684621
 	epatch "${FILESDIR}"/libxslt.m4-${PN}-1.1.26.patch
 
-	epatch "${FILESDIR}"/${PN}-1.1.26-versionscript-solaris.patch
+	epatch "${FILESDIR}"/${PN}-1.1.27-versionscript-solaris.patch
 
 	epatch "${FILESDIR}"/${PN}-1.1.26-disable_static_modules.patch
 
