@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.362 2012/10/14 14:38:52 armin76 Exp $
 
+  27 Oct 2012; Fabian Groffen <grobian@gentoo.org> dbus-1.6.8-r1.ebuild:
+  Disable failing Interix patch
+
   14 Oct 2012; Raúl Porcel <armin76@gentoo.org> dbus-1.6.8.ebuild:
   ia64/s390/sh/sparc stable wrt #416725
 
@@ -1469,4 +1472,3 @@
   21 Jun 2003; Seemant Kulleen <seemant@gentoo.org> dbus-0.11.ebuild,
   files/dbus-0.11-cvs-update.patch:
   dbus thingy from freedesktop.org -- for upcoming apps like xmms2 etc
-

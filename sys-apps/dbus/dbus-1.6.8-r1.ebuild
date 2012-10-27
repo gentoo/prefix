@@ -65,7 +65,7 @@ src_prepare() {
 		-e '/"dispatch"/d' \
 		bus/test-main.c || die
 
-	epatch "${FILESDIR}"/${PN}-1.4.8-interix.patch
+#	epatch "${FILESDIR}"/${PN}-1.4.8-interix.patch
 
 	# required for asneeded patch but also for bug 263909, cross-compile so
 	# don't remove eautoreconf
