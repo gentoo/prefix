@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.265 2012/07/18 21:50:27 vapier Exp $
 
+  27 Oct 2012; Fabian Groffen <grobian@gentoo.org> netpbm-10.59.00.ebuild:
+  Disable failing patch
+
 *netpbm-10.59.00 (18 Jul 2012)
 
   18 Jul 2012; Mike Frysinger <vapier@gentoo.org> +netpbm-10.59.00.ebuild:
