@@ -1,6 +1,53 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.340 2012/07/11 14:33:02 ryao Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.353 2012/10/23 19:52:35 vapier Exp $
+
+*coreutils-8.20 (23 Oct 2012)
+
+  23 Oct 2012; Mike Frysinger <vapier@gentoo.org> +coreutils-8.20.ebuild:
+  Version bump.
+
+  03 Oct 2012; Brent Baude <ranger@gentoo.org> coreutils-8.16.ebuild:
+  Marking coreutils-8.16 ppc for bug 431722
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> coreutils-8.16.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #431722
+
+  27 Sep 2012; Anthony G. Basile <blueness@gentoo.org> coreutils-8.16.ebuild:
+  stable ppc ppc64, bug #431722
+
+  23 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> coreutils-8.16.ebuild:
+  x86 stable wrt bug #431722
+
+  06 Sep 2012; Mike Frysinger <vapier@gentoo.org> coreutils-8.16.ebuild:
+  Hack the glibc-2.16/gets issue to current stable (already fixed in newer
+  versions).
+
+  23 Aug 2012; Markus Meier <maekke@gentoo.org> coreutils-8.16.ebuild:
+  arm stable, bug #431722
+
+*coreutils-8.19 (20 Aug 2012)
+
+  20 Aug 2012; Mike Frysinger <vapier@gentoo.org> +coreutils-8.19.ebuild:
+  Version bump.
+
+  20 Aug 2012; Jeroen Roovers <jer@gentoo.org> coreutils-8.16.ebuild:
+  Stable for HPPA (bug #431722).
+
+  18 Aug 2012; Mike Frysinger <vapier@gentoo.org> coreutils-8.18.ebuild:
+  Depend on USE=static-libs for lib packages when USE=static #425732 by
+  Christian Ruppert.
+
+  18 Aug 2012; Mike Frysinger <vapier@gentoo.org> coreutils-8.18.ebuild:
+  Fix static linking #425730 by Christian Ruppert.
+
+  18 Aug 2012; Agostino Sarubbo <ago@gentoo.org> coreutils-8.16.ebuild:
+  Stable for amd64, wrt bug #431722
+
+*coreutils-8.18 (12 Aug 2012)
+
+  12 Aug 2012; Mike Frysinger <vapier@gentoo.org> +coreutils-8.18.ebuild:
+  Version bump.
 
   11 Jul 2012; Richard Yao <ryao@gentoo.org> coreutils-8.17.ebuild:
   Support Gentoo FreeBSD, bug #424856, discussed with ssuominen in IRC
