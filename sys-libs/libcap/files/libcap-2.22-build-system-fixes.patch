@@ -114,6 +114,15 @@ index 4762c60..cf99523 100644
  
  install: all
  	mkdir -p -m 0755 $(INCDIR)/sys
+@@ -77,7 +77,7 @@ install: all
+ 	install -m 0644 include/sys/capability.h $(INCDIR)/sys
+ 	mkdir -p -m 0755 $(LIBDIR)
+ 	install -m 0644 $(STALIBNAME) $(LIBDIR)/$(STALIBNAME)
+-	install -m 0644 $(MINLIBNAME) $(LIBDIR)/$(MINLIBNAME)
++	install -m 0755 $(MINLIBNAME) $(LIBDIR)/$(MINLIBNAME)
+ 	ln -sf $(MINLIBNAME) $(LIBDIR)/$(MAJLIBNAME)
+ 	ln -sf $(MAJLIBNAME) $(LIBDIR)/$(LIBNAME)
+ ifeq ($(FAKEROOT),)
 diff --git a/pam_cap/Makefile b/pam_cap/Makefile
 index 9ca5bef..bdae933 100644
 --- a/pam_cap/Makefile

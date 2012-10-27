@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/libcap-2.22.ebuild,v 1.11 2012/03/20 23:52:44 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/libcap-2.22.ebuild,v 1.12 2012/09/22 18:38:06 vapier Exp $
 
 EAPI="2"
 
@@ -34,7 +34,8 @@ src_prepare() {
 }
 
 src_configure() {
-	tc-export BUILD_CC CC AR RANLIB
+	tc-export_build_env BUILD_CC
+	tc-export CC AR RANLIB
 }
 
 src_install() {
