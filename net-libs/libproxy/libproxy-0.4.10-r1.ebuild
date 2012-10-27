@@ -46,13 +46,7 @@ src_prepare() {
 	# manually; virtualx.eclass doesn't help :(
 	epatch "${FILESDIR}/${PN}-0.4.10-disable-pac-test.patch"
 
-	# fix stupidity preventing a pkgconfig file to be installed
-	sed -i -e 's/AND NOT APPLE//' libproxy/cmake/{pkgconfig,devfiles}.cmk || die
-	# fix build due to feature macros stupidity
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		sed -i -e 's/-D_POSIX_C_SOURCE=1/-D_POSIX_C_SOURCE=200112L/' \
-			libproxy/CMakeLists.txt || die
-	fi
+	epatch "${FILESDIR}"/${P}-macosx.patch
 }
 
 src_configure() {
