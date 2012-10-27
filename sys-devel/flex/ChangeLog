@@ -1,6 +1,16 @@
 # ChangeLog for sys-devel/flex
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.97 2012/04/26 13:12:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.99 2012/08/11 16:06:53 vapier Exp $
+
+  11 Aug 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/flex-2.5.37-tests.patch, flex-2.5.37.ebuild:
+  Add fix from upstream for running tests w/bison-2.6 #429954 by Ryan Hill.
+
+*flex-2.5.37 (04 Aug 2012)
+
+  04 Aug 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/flex-2.5.37-proto.patch, +flex-2.5.37.ebuild:
+  Version bump #429774 by Samuli Suominen.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> flex-2.5.35_p10.ebuild:
   keyword ~amd64-fbsd
