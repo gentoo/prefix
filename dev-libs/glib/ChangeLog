@@ -3,6 +3,10 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.548 2012/10/23 06:21:15 tetromino Exp $
 
   27 Oct 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/glib-2.32.4-solaris-nsl.patch, glib-2.32.4-r1.ebuild:
+  Update Solaris -lnsl patch after AS_IF patches
+
+  27 Oct 2012; Fabian Groffen <grobian@gentoo.org>
   +files/glib-2.32.4-CVE-2012-3524.patch:
   Add missing patch
 

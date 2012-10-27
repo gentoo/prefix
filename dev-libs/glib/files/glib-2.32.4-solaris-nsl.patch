@@ -1,0 +1,13 @@
+https://bugzilla.gnome.org/show_bug.cgi?id=675550
+
+--- glib-2.32.4/configure.ac
++++ glib-2.32.4/configure.ac
+@@ -1096,6 +1096,8 @@
+   AC_CHECK_FUNC(socket, :, AC_CHECK_LIB(socket, socket,
+ 				        [NETWORK_LIBS="-lsocket $NETWORK_LIBS"],
+ 				        [AC_MSG_ERROR(Could not find socket())]))
++  AC_CHECK_FUNC(inet_ntop, :, AC_SEARCH_LIBS(inet_ntop, nsl,
++				[NETWORK_LIBS="-lnsl $NETWORK_LIBS"]))
+ ])
+ AC_SUBST(NETWORK_LIBS)
+ 

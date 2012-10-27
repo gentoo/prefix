@@ -60,29 +60,12 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-CVE-2012-3524.patch
 
-	mv -vf "${WORKDIR}"/pkg-config-*/pkg.m4 "${WORKDIR}"/ || die
-
-	if use ia64 ; then
-		# Only apply for < 4.1
-		local major=$(gcc-major-version)
-		local minor=$(gcc-minor-version)
-		if (( major < 4 || ( major == 4 && minor == 0 ) )); then
-			epatch "${FILESDIR}/glib-2.10.3-ia64-atomic-ops.patch"
-		fi
-	fi
-
-	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-FIONREAD.patch
-	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-nsl.patch
-	epatch "${FILESDIR}"/${PN}-2.32.3-solaris-libelf.patch
-	# patch avoids autoreconf necessity
-	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
-	epatch "${FILESDIR}"/${PN}-2.32.4-interix.patch
+	mv -f "${WORKDIR}"/pkg-config-*/pkg.m4 "${WORKDIR}"/ || die
 
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	# need to build tests if USE=doc for bug #387385
-	if ! use test && ! use doc; then
+	if ! use test; then
 		# don't waste time building tests
 		sed 's/^\(.*\SUBDIRS .*\=.*\)tests\(.*\)$/\1\2/' -i $(find . -name Makefile.am -o -name Makefile.in) || die
 	else
@@ -130,6 +113,13 @@ src_prepare() {
 
 	# disable pyc compiling
 	use test && python_clean_py-compile_files
+
+	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-FIONREAD.patch
+	epatch "${FILESDIR}"/${PN}-2.32.4-solaris-nsl.patch
+	epatch "${FILESDIR}"/${PN}-2.32.3-solaris-libelf.patch
+	# patch avoids autoreconf necessity
+	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
+	epatch "${FILESDIR}"/${PN}-2.32.4-interix.patch
 
 	# make default sane for us
 	if use prefix ; then
