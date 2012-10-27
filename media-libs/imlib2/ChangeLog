@@ -1,6 +1,24 @@
 # ChangeLog for media-libs/imlib2
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.109 2012/05/09 16:20:44 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.115 2012/09/29 18:40:34 armin76 Exp $
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> imlib2-1.4.5.ebuild:
+  alpha/ia64/sh/sparc stable wrt #433309
+
+  19 Sep 2012; Jeroen Roovers <jer@gentoo.org> imlib2-1.4.5.ebuild:
+  Stable for HPPA (bug #433309).
+
+  17 Sep 2012; Thomas Kahle <tomka@gentoo.org> imlib2-1.4.5.ebuild:
+  marked x86 per bug 433309
+
+  14 Sep 2012; Agostino Sarubbo <ago@gentoo.org> imlib2-1.4.5.ebuild:
+  Stable for amd64, wrt bug #433309
+
+  11 Sep 2012; Anthony G. Basile <blueness@gentoo.org> imlib2-1.4.5.ebuild:
+  Stable ~arm, bug #433309
+
+  09 Sep 2012; Anthony G. Basile <blueness@gentoo.org> imlib2-1.4.5.ebuild:
+  Stable ppc ppc64, bug #433309
 
   09 May 2012; Alexis Ballier <aballier@gentoo.org> imlib2-1.4.5.ebuild:
   keyword ~amd64-fbsd
