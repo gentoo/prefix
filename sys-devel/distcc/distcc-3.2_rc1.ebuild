@@ -1,11 +1,11 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.2_rc1.ebuild,v 1.3 2012/05/04 07:24:15 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.2_rc1.ebuild,v 1.4 2012/09/15 22:03:36 vapier Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2:2.5"
 
-inherit autotools eutils fdo-mime flag-o-matic multilib python toolchain-funcs
+inherit autotools eutils fdo-mime flag-o-matic multilib python toolchain-funcs user
 
 MY_P="${P/_}"
 DESCRIPTION="a program to distribute compilation of C code across several machines on a network"

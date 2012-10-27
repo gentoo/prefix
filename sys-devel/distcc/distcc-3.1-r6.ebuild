@@ -1,11 +1,11 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r6.ebuild,v 1.2 2012/05/04 07:24:15 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r6.ebuild,v 1.3 2012/09/15 22:03:36 vapier Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
 
-inherit eutils fdo-mime flag-o-matic multilib python toolchain-funcs prefix
+inherit eutils fdo-mime flag-o-matic multilib python toolchain-funcs user prefix
 
 DESCRIPTION="a program to distribute compilation of C code across several machines on a network"
 HOMEPAGE="http://distcc.org/"
