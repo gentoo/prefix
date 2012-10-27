@@ -16,5 +16,8 @@ en variabele lengte record toegangsmethoden, transacties, locking, logging,
 gedeeld geheugen caching en database herstel. DB ondersteund C, C++, Java en
 Perl API's. DB is beschikbaar voor veel UNIX platformen en
 Windows.</longdescription>
+<use>
+ <flag name='rpc'>Enable rpc client/server</flag>
+</use>
 </pkgmetadata>
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4-r1.ebuild,v 1.9 2012/05/24 05:34:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4-r1.ebuild,v 1.10 2012/09/24 00:31:53 vapier Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools multilib
 
@@ -28,7 +28,7 @@ done
 LICENSE="OracleDB BSD"
 SLOT="4.4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="tcl java doc cxx"
+IUSE="tcl java doc cxx rpc"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
 	java? ( >=virtual/jdk-1.4 )
@@ -124,7 +124,7 @@ src_compile() {
 		--enable-compat185 \
 		--enable-o_direct \
 		--without-uniquename \
-		--enable-rpc \
+		$(use_enable rpc) \
 		--host="${CHOST}" \
 		${myconf} "{javaconf}" || die "configure failed"
 
