@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/libcroco-0.6.4.ebuild,v 1.2 2012/05/04 18:35:47 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/libcroco-0.6.7.ebuild,v 1.1 2012/10/20 06:36:25 pacho Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
@@ -23,17 +23,6 @@ DEPEND="${RDEPEND}
 	doc? ( >=dev-util/gtk-doc-1 )
 	x86-interix? ( >=dev-util/gtk-doc-am-1 )"
 
-pkg_setup() {
-	G2CONF="${G2CONF} --disable-static"
-	DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
-}
-
-src_unpack() {
-	gnome2_src_unpack
-
-	use x86-interix && eautoreconf # need new libtool for interix
-}
-
 src_prepare() {
 	gnome2_src_prepare
 
@@ -42,8 +31,13 @@ src_prepare() {
 		sed 's/^\(SUBDIRS .*\=.*\)tests\(.*\)$/\1\2/' -i Makefile.am Makefile.in \
 			|| die "sed failed"
 	fi
+
+	use x86-interix && eautoreconf # need new libtool for interix
 }
 
 src_configure() {
-	econf $([[ ${CHOST} == *-darwin* ]] && echo "--disable-Bsymbolic")
+	G2CONF="${G2CONF} --disable-static"
+	[[ ${CHOST} == *-darwin* ]] && G2CONF="${G2CONF} --disable-Bsymbolic"
+	DOCS="AUTHORS ChangeLog HACKING NEWS README TODO"
+	gnome2_src_configure
 }

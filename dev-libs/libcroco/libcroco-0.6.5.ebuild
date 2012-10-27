@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/libcroco-0.6.5.ebuild,v 1.9 2012/05/24 13:39:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/libcroco-0.6.5.ebuild,v 1.10 2012/07/15 16:47:00 armin76 Exp $
 
 EAPI="4"
 GCONF_DEBUG="no"
