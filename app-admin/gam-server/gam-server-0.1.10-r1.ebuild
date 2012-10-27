@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/gam-server-0.1.10-r1.ebuild,v 1.2 2012/05/05 14:20:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/gam-server-0.1.10-r1.ebuild,v 1.9 2012/09/26 11:12:43 ssuominen Exp $
 
 EAPI="3"
 GNOME_ORG_MODULE="gamin"
