@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/gorg-0.6.4-r1.ebuild,v 1.5 2012/03/07 20:29:10 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/gorg-0.6.4-r1.ebuild,v 1.7 2012/09/02 09:03:27 flameeyes Exp $
 
 EAPI=3
 USE_RUBY="ruby18"
@@ -24,8 +24,8 @@ RDEPEND="${RDEPEND} ${CDEPEND}
 		fastcgi? ( virtual/httpd-fastcgi )"
 
 ruby_add_rdepend "
-	mysql? ( >=dev-ruby/ruby-dbi-0.0.21[mysql] )
-	fastcgi? ( >=dev-ruby/ruby-fcgi-0.8.5-r1 )"
+	mysql? ( >=dev-ruby/dbi-0.0.21[mysql] )
+	fastcgi? ( >=dev-ruby/fcgi-0.8.5-r1 )"
 
 pkg_setup() {
 	enewgroup gorg
