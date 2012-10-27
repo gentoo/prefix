@@ -1,6 +1,90 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.444 2012/05/31 04:45:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.470 2012/10/24 03:26:17 vapier Exp $
+
+*binutils-2.23 (24 Oct 2012)
+
+  24 Oct 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.ebuild:
+  Version bump.
+
+  29 Sep 2012; Raúl Porcel <armin76@gentoo.org> binutils-2.22-r1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #414865
+
+*binutils-2.23.51.0.3 (19 Sep 2012)
+
+  19 Sep 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.51.0.3.ebuild:
+  Version bump.
+
+*binutils-2.23.51.0.2 (11 Sep 2012)
+
+  11 Sep 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.51.0.2.ebuild:
+  Version bump.
+
+  22 Aug 2012; Michael Weber <xmw@gentoo.org> binutils-2.22-r1.ebuild:
+  ppc stable (bug 414865).
+
+  10 Aug 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.22-r1.ebuild:
+  Build with -fPIC on s390x #430554 by Raúl Porcel.
+
+  08 Aug 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.23.51.0.1.ebuild:
+  Fix applying of lib32 patch as reported by Arfrever.
+
+*binutils-2.23.51.0.1 (07 Aug 2012)
+
+  07 Aug 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.51.0.1.ebuild:
+  Version bump.
+
+  07 Aug 2012; Mike Frysinger <vapier@gentoo.org> -binutils-2.16.1-r3.ebuild,
+  -binutils-2.16.91.0.6.ebuild, -binutils-2.18-r3.ebuild,
+  -binutils-2.18-r4.ebuild, -binutils-2.22.52.0.1.ebuild,
+  -binutils-2.22.52.0.2.ebuild, -binutils-2.22.52.0.3.ebuild:
+  Move older versions to toolchain overlay.
+
+  07 Aug 2012; Brent Baude <ranger@gentoo.org> binutils-2.22-r1.ebuild:
+  Marking binutils-2.22-r1 ppc64 for bug 414865
+
+  07 Aug 2012; Agostino Sarubbo <ago@gentoo.org> binutils-2.22-r1.ebuild:
+  Stable for X86, wrt bug #414865
+
+  07 Aug 2012; Agostino Sarubbo <ago@gentoo.org> binutils-2.22-r1.ebuild:
+  Stable for amd64, wrt bug #424865
+
+  07 Aug 2012; Raúl Porcel <armin76@gentoo.org> binutils-2.22-r1.ebuild:
+  s390 stable wrt #414865
+
+  06 Aug 2012; Brent Baude <ranger@gentoo.org> binutils-2.22-r1.ebuild:
+  Marking binutils-2.22-r1 ppc64 for bug 414865
+
+  05 Aug 2012; Markus Meier <maekke@gentoo.org> binutils-2.22-r1.ebuild:
+  arm stable, bug #414865
+
+  02 Aug 2012; Richard Yao <ryao@gentoo.org> binutils-2.22.90.ebuild:
+  Set -*-fbsd keywords due to -ldl issue
+
+  01 Aug 2012; Jeroen Roovers <jer@gentoo.org> binutils-2.22-r1.ebuild:
+  Stable for HPPA (bug #414865).
+
+  28 Jul 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.22.90.ebuild:
+  Fix applying of lib32 patch #428366 by Alexandre.
+
+*binutils-2.22.90 (27 Jul 2012)
+
+  27 Jul 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.22.90.ebuild:
+  Version bump.
+
+*binutils-2.22.52.0.4 (06 Jul 2012)
+
+  06 Jul 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.22.52.0.4.ebuild:
+  Version bump.
+
+  15 Jun 2012; Naohiro Aota <naota@gentoo.org> binutils-2.22-r1.ebuild:
+  Add ~x86-fbsd.
+
+  15 Jun 2012; Richard Yao <ryao@gentoo.org> binutils-2.22-r1.ebuild:
+  Modify FBSD patch to include update to ./configure script, bug #421069
+
+  13 Jun 2012; Richard Yao <ryao@gentoo.org> binutils-2.22-r1.ebuild:
+  Push out fix for build failure on FreeBSD (bug #347931) by Naohiro Aota and keyword ~amd64-fbsd
 
   31 May 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.20.1-r1.ebuild:
   Push out fix for POSIX test behavior #417549 by Richard Yao.
