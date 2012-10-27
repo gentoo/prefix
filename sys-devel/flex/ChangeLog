@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.99 2012/08/11 16:06:53 vapier Exp $
 
+  27 Oct 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/flex-2.5.37-proto.patch, +files/flex-2.5.37-tests.patch:
+  Add missing patches
+
   11 Aug 2012; Mike Frysinger <vapier@gentoo.org>
   +files/flex-2.5.37-tests.patch, flex-2.5.37.ebuild:
   Add fix from upstream for running tests w/bison-2.6 #429954 by Ryan Hill.
