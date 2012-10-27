@@ -1,6 +1,87 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.342 2012/06/06 10:54:54 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.362 2012/10/14 14:38:52 armin76 Exp $
+
+  14 Oct 2012; Raúl Porcel <armin76@gentoo.org> dbus-1.6.8.ebuild:
+  ia64/s390/sh/sparc stable wrt #416725
+
+  14 Oct 2012; Anthony G. Basile <blueness@gentoo.org> dbus-1.6.8.ebuild:
+  stable ppc ppc64, bug #436028
+
+  14 Oct 2012; Matt Turner <mattst88@gentoo.org> dbus-1.6.8.ebuild:
+  Stable on alpha, bug 436028.
+
+  06 Oct 2012; Markus Meier <maekke@gentoo.org> dbus-1.6.8.ebuild:
+  arm stable, bug #436028
+
+  04 Oct 2012; Agostino Sarubbo <ago@gentoo.org> dbus-1.6.8.ebuild:
+  Stable for amd64, wrt bug #436028
+
+*dbus-1.6.8-r1 (04 Oct 2012)
+
+  04 Oct 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> dbus-1.6.8.ebuild,
+  +dbus-1.6.8-r1.ebuild:
+  x86 stable wrt security bug #436028 (systemd-specific code rolled to -r1,
+  since systemd is not stable)
+
+  02 Oct 2012; Jeroen Roovers <jer@gentoo.org> dbus-1.6.8.ebuild:
+  Stable for HPPA (bug #436028).
+
+  29 Sep 2012; Zac Medico <zmedico@gentoo.org> dbus-1.6.8.ebuild:
+  Fix for prefix and add ~x86-linux keyword.
+
+  29 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> -dbus-1.4.16.ebuild,
+  -dbus-1.6.0.ebuild, -dbus-1.6.4.ebuild, -dbus-1.6.4-r1.ebuild,
+  -files/dbus-1.6.4-CVE-2012-3524-Don-t-access-environment-variables-or-.patch:
+  old
+
+*dbus-1.6.8 (29 Sep 2012)
+
+  29 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> +dbus-1.6.8.ebuild:
+  Version bump.
+
+*dbus-1.6.4-r1 (22 Sep 2012)
+
+  22 Sep 2012; Samuli Suominen <ssuominen@gentoo.org> dbus-1.6.4.ebuild,
+  +dbus-1.6.4-r1.ebuild,
+  +files/dbus-1.6.4-CVE-2012-3524-Don-t-access-environment-variables-or-.patch:
+  Import patch for CVE-2012-3524 from Fedora 18. Again, -r0 is for stable and
+  -r1 for ~arch because of the systemd dependency.
+
+  25 Aug 2012; Mike Frysinger <vapier@gentoo.org> dbus-1.4.16.ebuild:
+  Drop useless -vf args to mv #432632 by Joshua B. Kahlenberg.
+
+  25 Jul 2012; Markus Meier <maekke@gentoo.org> dbus-1.6.2.ebuild:
+  arm stable, bug #416725
+
+  21 Jul 2012; Jeff Horelick <jdhore@gentoo.org> dbus-1.6.2.ebuild:
+  marked x86 per bug 416725
+
+  21 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> dbus-1.6.2.ebuild:
+  amd64/ppc/ppc64 stable wrt #416725
+
+  21 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> dbus-1.6.2.ebuild:
+  Use has_version instead of dependency for sys-apps/systemd regarding
+  stabilization. This is only for 1.6.2 and will be left as-is for 1.6.4.
+
+*dbus-1.6.4 (20 Jul 2012)
+
+  20 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> +dbus-1.6.4.ebuild:
+  Version bump wrt #427402 by "teidakankan"
+
+  20 Jul 2012; Jeroen Roovers <jer@gentoo.org> dbus-1.6.2.ebuild:
+  Stable for HPPA (bug #416725).
+
+  15 Jul 2012; Raúl Porcel <armin76@gentoo.org> dbus-1.4.20.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #412535
+
+  12 Jul 2012; Akinori Hattori <hattya@gentoo.org> dbus-1.4.20.ebuild:
+  ia64 stable wrt bug #412535
+
+*dbus-1.6.2 (27 Jun 2012)
+
+  27 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> +dbus-1.6.2.ebuild:
+  Version bump.
 
   06 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> -dbus-1.4.16-r2.ebuild,
   -dbus-1.4.18.ebuild, -dbus-1.5.12.ebuild, -dbus-1.5.12-r1.ebuild:
