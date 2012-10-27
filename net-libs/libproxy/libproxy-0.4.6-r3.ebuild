@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.4.6-r3.ebuild,v 1.11 2012/05/05 02:54:29 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.4.6-r3.ebuild,v 1.12 2012/10/16 08:04:33 tetromino Exp $
 
 EAPI=3
 PYTHON_DEPEND="python? 2:2.6"
@@ -11,7 +11,7 @@ DESCRIPTION="Library for automatic proxy configuration management"
 HOMEPAGE="http://code.google.com/p/libproxy/"
 SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 
-LICENSE="LGPL-2.1"
+LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="gnome kde mono networkmanager perl python test"

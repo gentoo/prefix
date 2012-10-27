@@ -1,6 +1,58 @@
 # ChangeLog for net-libs/libproxy
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.79 2012/05/26 08:57:11 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.90 2012/10/24 09:56:09 ago Exp $
+
+  24 Oct 2012; Agostino Sarubbo <ago@gentoo.org> libproxy-0.4.10-r1.ebuild:
+  Stable for amd64, wrt bug #439122
+
+  21 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  libproxy-0.4.10.ebuild, +libproxy-0.4.10-r1.ebuild:
+  Undo previous commit, re-add 0.4.10-r1: as pointed out by Chris Reffett,
+  adding the automoc dependency can change the set of installed files due to no
+  longer silently failing to build the kde plugin.
+
+  21 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  libproxy-0.4.10.ebuild, -libproxy-0.4.10-r1.ebuild:
+  Add the automoc dependency to 0.4.10, make it conditional on USE=kde, remove
+  0.4.10-r1 ebuild since it differs from 0.4.10 only in the dependency list.
+
+*libproxy-0.4.10-r1 (21 Oct 2012)
+
+  21 Oct 2012; Chris Reffett <creffett@gentoo.org> +libproxy-0.4.10-r1.ebuild:
+  Add automoc to DEPEND per bug 438714
+
+  19 Oct 2012; Andreas Schuerch <nativemad@gentoo.org> libproxy-0.4.10.ebuild:
+  x86 stable, see bug 438146
+
+  18 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  libproxy-0.4.10.ebuild, metadata.xml:
+  Turns out we shouldn't enable webkit by default, it creates a dependency
+  loop: libproxy[webkit] -> webkit-gtk -> libsoup -> glib-networking[libproxy]
+  -> libproxy.
+
+  17 Oct 2012; Markus Meier <maekke@gentoo.org> libproxy-0.4.10.ebuild:
+  arm stable, bug #438146
+
+  17 Oct 2012; Jeroen Roovers <jer@gentoo.org> libproxy-0.4.10.ebuild:
+  Stable for HPPA (bug #438146).
+
+  17 Oct 2012; Agostino Sarubbo <ago@gentoo.org> libproxy-0.4.10.ebuild:
+  Stable for amd64, wrt bug #438146
+
+  17 Oct 2012; Anthony G. Basile <blueness@gentoo.org> libproxy-0.4.10.ebuild:
+  stable ppc ppc64, bug #438146
+
+*libproxy-0.4.10 (16 Oct 2012)
+
+  16 Oct 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  libproxy-0.4.6-r3.ebuild, libproxy-0.4.7.ebuild, +libproxy-0.4.10.ebuild,
+  +files/libproxy-0.4.10-disable-pac-test.patch,
+  +files/libproxy-0.4.10-mozjs185.pc.patch, metadata.xml:
+  Version bump; fixes buffer overflow (bug #438146, CVE-2012-4504, thanks to
+  Agostino Sarubbo). Re-add USE=webkit since it now works correctly (bug
+  #412573, thanks to Lucian Muresan) and it enable by default to provide PAC
+  and WPAD support. Alternatively, spidermonkey could be used for PAC instead
+  (but might lead to firefox crashes, see bug #373397). Update license.
 
   01 Oct 2012; Fabian Groffen <grobian@gentoo.org> libproxy-0.4.7.ebuild:
   Marked ~x64-macos
