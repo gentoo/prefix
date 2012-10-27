@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/zlib
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.119 2012/09/28 13:37:32 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.120 2012/09/30 17:26:34 armin76 Exp $
+
+  30 Sep 2012; Raúl Porcel <armin76@gentoo.org> zlib-1.2.7.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #435754
 
   28 Sep 2012; Johannes Huber <johu@gentoo.org> zlib-1.2.7.ebuild:
   Stable for x86, wrt bug #435754
