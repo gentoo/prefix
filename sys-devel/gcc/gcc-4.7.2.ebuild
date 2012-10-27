@@ -1,12 +1,12 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.5.3-r1.ebuild,v 1.9 2011/11/09 19:22:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.7.2.ebuild,v 1.5 2012/10/21 17:58:23 vapier Exp $
 
-PATCH_VER="1.0"
+PATCH_VER="1.2"
 UCLIBC_VER="1.0"
 
 # Hardened gcc 4 stuff
-PIE_VER="0.4.5"
+PIE_VER="0.5.5"
 SPECS_VER="0.2.0"
 SPECS_GCC_VER="4.4.3"
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
@@ -14,7 +14,8 @@ PIE_GLIBC_STABLE="x86 amd64 ppc ppc64 arm ia64"
 PIE_UCLIBC_STABLE="x86 arm amd64 ppc ppc64"
 SSP_STABLE="amd64 x86 ppc ppc64 arm
 # uclibc need tls and nptl support for SSP support"
-SSP_UCLIBC_STABLE=""
+# uclibc need to be >= 0.9.33
+SSP_UCLIBC_STABLE="x86 amd64 ppc ppc64 arm"
 #end Hardened stuff
 
 inherit toolchain flag-o-matic
@@ -30,36 +31,45 @@ DEPEND="${RDEPEND}
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )
-	kernel_linux? (
-		ppc? ( >=${CATEGORY}/binutils-2.17 )
-		ppc64? ( >=${CATEGORY}/binutils-2.17 )
-		>=${CATEGORY}/binutils-2.15.94
-	)"
+	kernel_linux? ( >=${CATEGORY}/binutils-2.18 )"
+
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )"
 fi
 
 src_unpack() {
+	if has_version '<sys-libs/glibc-2.12' ; then
+		ewarn "Your host glibc is too old; disabling automatic fortify."
+		ewarn "Please rebuild gcc after upgrading to >=glibc-2.12 #362315"
+		EPATCH_EXCLUDE+=" 10_all_default-fortify-source.patch"
+	fi
+	# Fedora/RedHat ships glibc-2.15+ with some nasty warnings that cause
+	# configure checks for most system headers to fail, resulting in bugs
+	# compiling e.g. gcc itself, bug #433333
+	if [[ -e /usr/include/features.h ]] ; then
+		grep -qF "_FORTIFY_SOURCE requires compiling with optimization" \
+			/usr/include/features.h && \
+				EPATCH_EXCLUDE+=" 10_all_default-fortify-source.patch"
+	fi
+
+	# drop the x32 stuff once 4.7 goes stable
+	if [[ ${CTARGET} != x86_64* ]] || ! has x32 $(get_all_abis TARGET) ; then
+		EPATCH_EXCLUDE+=" 90_all_gcc-4.7-x32.patch"
+	fi
+
 	toolchain_src_unpack
+
 	use vanilla && return 0
 
-	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
-	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
-
-	# call the linker without explicit target like on sparc
-	epatch "${FILESDIR}"/solaris-i386-ld-emulation.patch
-
-	# add support for 64-bits native target on Solaris
-	epatch "${FILESDIR}"/4.5.1/solaris-x86_64.patch
-
 	# make sure 64-bits native targets don't screw up the linker paths
-	epatch "${FILESDIR}"/4.5.2/solaris-searchpath.patch
+	epatch "${FILESDIR}"/4.7.1/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
 	if use prefix; then
 		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
 		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
 		# --enable-multilib), but this does make sense in prefix only
-		epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
+# fails: likely still necessary
+#		epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
 	fi
 
 	# make it have correct install_names on Darwin
@@ -67,42 +77,26 @@ src_unpack() {
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
+		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint1.patch
 		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint3.patch
 		epatch "${FILESDIR}"/4.5.1/${PN}-4.5.1-mint1.patch
 		epatch "${FILESDIR}"/4.5.2/${PN}-4.5.2-mint1.patch
-		epatch "${FILESDIR}"/4.5.2/${PN}-4.5.2-mint2.patch
 		epatch "${FILESDIR}"/4.5.2/m68k-coldfire.patch
 	fi
 
 	# Always behave as if -pthread were passed on AIX and HPUX (#266548)
-	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
-	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
-
-	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
-	epatch "${FILESDIR}"/4.5.2/solaris-pthread.patch
-
-	sed -i 's/use_fixproto=yes/:/' gcc/config.gcc #PR33200
+# fails, likely still necessary though
+#	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
+#	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
-}
-
-pkg_setup() {
-	toolchain_pkg_setup
-
-	if use lto ; then
-		ewarn
-		ewarn "LTO support is still experimental and unstable."
-		ewarn "Any bugs resulting from the use of LTO will not be fixed."
-		ewarn
-	fi
 }
 
 src_compile() {
 	case ${CTARGET}:" ${USE} " in
 		powerpc*-darwin*)
-			# Altivec instructions cause an ICE, reduce flags here
-			# TODO: m64/powerpc64 implies -maltivec
-			filter-flags -m*
+			# bug #381179
+			filter-flags "-mcpu=*" "-mtune=*"
 		;;
 		*-mint*)
 			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
@@ -151,7 +145,7 @@ src_compile() {
 	# least on Solaris, and AIX /bin/sh is ways too slow,
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
 	# in case that doesn't exist yet
-	export CONFIG_SHELL="${BASH}"
+	export CONFIG_SHELL="${CONFIG_SHELL:-${BASH}}"
 	gcc_src_compile
 }
 
@@ -200,3 +194,11 @@ src_install() {
 
 }
 
+pkg_setup() {
+	toolchain_pkg_setup
+
+	ewarn
+	ewarn "LTO support is still experimental and unstable."
+	ewarn "Any bugs resulting from the use of LTO will not be fixed."
+	ewarn
+}

@@ -1,6 +1,82 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.890 2012/07/23 16:13:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.910 2012/10/21 17:58:23 vapier Exp $
+
+  21 Oct 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.7.1.ebuild,
+  gcc-4.7.2.ebuild:
+  Make sure gfortran respects sysroot #433435 by Andrew Aladjev.
+
+  06 Oct 2012; Magnus Granberg <zorry@gentoo.org> gcc-4.7.2.ebuild:
+  Bump the piepatchset to 0.5.5
+
+  03 Oct 2012; Magnus Granberg <zorry@gentoo.org> gcc-4.7.2.ebuild:
+  Update piepatchset to 0.5.4 to fix 436924
+
+  02 Oct 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.7.2.ebuild:
+  Update x32 patch #436756 by Alphat-PC.
+
+*gcc-4.7.2 (30 Sep 2012)
+
+  30 Sep 2012; Ryan Hill <dirtyepic@gentoo.org> gcc-4.7.0.ebuild,
+  gcc-4.7.1.ebuild, +gcc-4.7.2.ebuild:
+  Version bump (bug #435852). Fixes bug #421413 (libtheora ICE) and bug #423675
+  (gnash/boost ICE).
+
+  28 Sep 2012; Zac Medico <zmedico@gentoo.org> gcc-2.95.3-r10.ebuild:
+  Drop global scope tc-arch call, which breaks metadata generation due to KV
+  being unset (since rev 1.118 of toolchain-funcs.eclass). The
+  GENTOO_PATCH_EXCLUDE setting that this tc-arch call triggers appears to be
+  obsolete anyway, since the variable is not exported and there are no
+  references to it whatsoever in any eclasses or ebuilds.
+
+  27 Sep 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.6.0.ebuild,
+  gcc-4.5.1-r1.ebuild, gcc-4.5.2.ebuild, gcc-4.5.3-r2.ebuild,
+  gcc-4.6.1-r1.ebuild, gcc-4.6.2.ebuild, gcc-4.6.3.ebuild, gcc-4.7.0.ebuild,
+  gcc-4.7.1.ebuild:
+  Drop -Werror from libgfortran, and push out accumulated patchesets for older
+  versions.
+
+  26 Sep 2012; Matt Turner <mattst88@gentoo.org> gcc-4.4.7.ebuild,
+  gcc-4.5.4.ebuild:
+  Stable on alpha, bug 431878.
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org> gcc-4.4.7.ebuild:
+  Stable ppc64, bug #431878 - forgot 4.4.7
+
+  13 Sep 2012; Anthony G. Basile <blueness@gentoo.org> gcc-4.5.4.ebuild:
+  Stable ppc64, bug #431878
+
+  12 Sep 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> gcc-4.4.7.ebuild,
+  gcc-4.5.4.ebuild:
+  x86 stable wrt bug #431878
+
+  07 Sep 2012; Jeroen Roovers <jer@gentoo.org> gcc-4.4.7.ebuild,
+  gcc-4.5.4.ebuild:
+  Stable for HPPA (bug #431878).
+
+  02 Sep 2012; Michael Weber <xmw@gentoo.org> gcc-4.4.7.ebuild,
+  gcc-4.5.4.ebuild:
+  ppc stable (bug 431878).
+
+  01 Sep 2012; Michael Weber <xmw@gentoo.org> gcc-4.5.4.ebuild:
+  ppc stable (bug 431878).
+
+  25 Aug 2012; Anthony G. Basile <blueness@gentoo.org> gcc-4.5.4.ebuild:
+  Stable arm, bug #431878
+
+  21 Aug 2012; Agostino Sarubbo <ago@gentoo.org> gcc-4.5.4.ebuild:
+  Stable for AMD64, wrt bug #431878
+
+  21 Aug 2012; Agostino Sarubbo <ago@gentoo.org> gcc-4.4.7.ebuild:
+  Stable for AMD64, wrt bug #431878
+
+  19 Aug 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.7.1.ebuild:
+  Update fortify source handling, and enable cross-compiler warnings with system
+  paths.
+
+  11 Aug 2012; Mike Frysinger <vapier@gentoo.org> gcc-4.6.3.ebuild:
+  Add fix from upstream PR52999 for hppa section conflict errors #405161 by
+  Jeroen Roovers.
 
   29 Sep 2012; Fabian Groffen <grobian@gentoo.org>
   +files/4.6.3/gcc-4.6.3-mint1.patch, +files/4.6.3/gcc-4.6.3-mint2.patch,
