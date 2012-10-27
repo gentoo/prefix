@@ -61,6 +61,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-10.48.00-solaris.patch
 	#epatch "${FILESDIR}"/${PN}-10.57.00-solaris-xopensource.patch
 	#epatch "${FILESDIR}"/${PN}-10.48.00-interix.patch
+	epatch "${FILESDIR}"/${PN}-10.60.01-strcaseeq-strcasecmp.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 		editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
