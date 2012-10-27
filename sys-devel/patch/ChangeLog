@@ -1,6 +1,24 @@
 # ChangeLog for sys-devel/patch
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/ChangeLog,v 1.55 2012/04/26 13:35:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/ChangeLog,v 1.59 2012/09/28 22:16:50 vapier Exp $
+
+*patch-2.7.1 (28 Sep 2012)
+
+  28 Sep 2012; Mike Frysinger <vapier@gentoo.org> +patch-2.7.1.ebuild,
+  -patch-2.7.ebuild:
+  Version bump which should fix #435384 by Ben Kohler and #435862 by Andrey
+  Volkov.
+
+  19 Sep 2012; Alexis Ballier <aballier@gentoo.org> patch-2.7.ebuild:
+  restore bsd keywords, xattr useflag is now masked, bug #435474
+
+  19 Sep 2012; Mike Frysinger <vapier@gentoo.org> patch-2.7.ebuild:
+  Add USE=xattr flag #435384 by Ben Kohler.
+
+*patch-2.7 (13 Sep 2012)
+
+  13 Sep 2012; Mike Frysinger <vapier@gentoo.org> +patch-2.7.ebuild:
+  Version bump.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> patch-2.6.1.ebuild:
   keyword ~amd64-fbsd
