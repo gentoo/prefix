@@ -1,9 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.3.7.ebuild,v 1.8 2012/08/19 18:52:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.4.0.ebuild,v 1.1 2012/09/29 16:37:07 jer Exp $
 
-EAPI="4"
-
+EAPI=4
 inherit eutils autotools libtool
 
 DESCRIPTION="A sophisticated ftp/sftp/http/https/torrent client and file transfer program"
@@ -51,8 +50,8 @@ DOCS=(
 src_prepare() {
 	epatch \
 		"${FILESDIR}/${PN}-4.0.2.91-lafile.patch" \
-		"${FILESDIR}/${PN}-4.0.3-autoconf-2.64.patch" \
-		"${FILESDIR}/${PN}-4.3.5-autopoint.patch"
+		"${FILESDIR}/${PN}-4.3.5-autopoint.patch" \
+		"${FILESDIR}/${PN}-4.3.8-gets.patch"
 	epatch "${FILESDIR}"/${PN}-3.7.14-darwin-bundle.patch
 	eautoreconf
 	elibtoolize # for Darwin bundles

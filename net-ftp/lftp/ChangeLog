@@ -1,6 +1,74 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.361 2012/05/30 13:41:48 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.382 2012/09/29 16:37:07 jer Exp $
+
+*lftp-4.4.0 (29 Sep 2012)
+
+  29 Sep 2012; Jeroen Roovers <jer@gentoo.org> +lftp-4.4.0.ebuild:
+  Version bump.
+
+  11 Sep 2012; Raúl Porcel <armin76@gentoo.org> lftp-4.3.8.ebuild:
+  alpha/ia64/s390/sparc stable wrt #432018
+
+  29 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> lftp-4.3.8.ebuild:
+  Stable for amd64 (bug #432018)
+
+  21 Aug 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.8.ebuild:
+  Stable for HPPA (bug #432018).
+
+  21 Aug 2012; Anthony G. Basile <blueness@gentoo.org> lftp-4.3.8.ebuild:
+  Stable arm, bug #432018
+
+  21 Aug 2012; Anthony G. Basile <blueness@gentoo.org> lftp-4.3.8.ebuild:
+  Stable ppc64, bug #432018
+
+  21 Aug 2012; Anthony G. Basile <blueness@gentoo.org> lftp-4.3.8.ebuild:
+  Stable ppc, bug #432018
+
+  20 Aug 2012; Johannes Huber <johu@gentoo.org> lftp-4.3.8.ebuild:
+  Stable for x86, wrt bug #432018
+
+  20 Aug 2012; Jeroen Roovers <jer@gentoo.org> -lftp-4.3.6.ebuild:
+  Old.
+
+  19 Aug 2012; Raúl Porcel <armin76@gentoo.org> lftp-4.3.7.ebuild:
+  alpha/ia64/s390/sparc stable wrt #424922
+
+  19 Jul 2012; Markus Meier <maekke@gentoo.org> lftp-4.3.7.ebuild:
+  arm stable, bug #424922
+
+  17 Jul 2012; Anthony G. Basile <blueness@gentoo.org> lftp-4.3.7.ebuild:
+  Stable ppc, bug #424922
+
+  10 Jul 2012; Brent Baude <ranger@gentoo.org> lftp-4.3.7.ebuild:
+  Marking lftp-4.3.7 ppc64 for bug 424922
+
+  08 Jul 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.7.ebuild:
+  Stable for HPPA (bug #424922).
+
+  06 Jul 2012; Jeroen Roovers <jer@gentoo.org> files/lftp-4.3.8-gets.patch:
+  Move the #endif so it applies where it counts.
+
+  06 Jul 2012; Jeroen Roovers <jer@gentoo.org> lftp-4.3.8.ebuild,
+  +files/lftp-4.3.8-gets.patch:
+  Fix building against glibc-2.16 by Martin Jansa (bug #425026).
+
+  05 Jul 2012; Jeff Horelick <jdhore@gentoo.org> lftp-4.3.7.ebuild:
+  marked x86 per bug 424922
+
+  05 Jul 2012; Agostino Sarubbo <ago@gentoo.org> lftp-4.3.7.ebuild:
+  Stable for amd64, wrt bug #424922
+
+  05 Jul 2012; Jeroen Roovers <jer@gentoo.org> -lftp-4.3.5.ebuild:
+  Old.
+
+*lftp-4.3.8 (05 Jul 2012)
+
+  05 Jul 2012; Jeroen Roovers <jer@gentoo.org> +lftp-4.3.8.ebuild:
+  Version bump.
+
+  17 Jun 2012; Raúl Porcel <armin76@gentoo.org> lftp-4.3.6.ebuild:
+  alpha/ia64/s390/sparc stable wrt #414253
 
 *lftp-4.3.7 (30 May 2012)
 
