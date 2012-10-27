@@ -1,6 +1,35 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.194 2012/05/12 18:12:05 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.202 2012/10/20 16:36:13 armin76 Exp $
+
+  20 Oct 2012; Raúl Porcel <armin76@gentoo.org> apache-2.2.23.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #432284
+
+  16 Oct 2012; Andreas Schuerch <nativemad@gentoo.org> apache-2.2.23.ebuild:
+  x86 stable, see bug 432284
+
+  15 Oct 2012; Anthony G. Basile <blueness@gentoo.org> apache-2.2.23.ebuild:
+  stable arm, bug #432284
+
+  14 Oct 2012; Jeroen Roovers <jer@gentoo.org> apache-2.2.23.ebuild:
+  Stable for HPPA (bug #432284).
+
+  13 Oct 2012; Anthony G. Basile <blueness@gentoo.org> apache-2.2.23.ebuild:
+  stable ppc ppc64, bug #432284
+
+  13 Oct 2012; Agostino Sarubbo <ago@gentoo.org> apache-2.2.23.ebuild:
+  Stable for amd64, wrt bug #432284
+
+*apache-2.4.3 (12 Oct 2012)
+
+  12 Oct 2012; Patrick Lauer <patrick@gentoo.org> +apache-2.4.3.ebuild,
+  -apache-2.4.2.ebuild, metadata.xml:
+  Bump with fixes from #410607 #411433 #433736
+
+*apache-2.2.23 (12 Oct 2012)
+
+  12 Oct 2012; Patrick Lauer <patrick@gentoo.org> +apache-2.2.23.ebuild:
+  Bump for #432284
 
   12 May 2012; Alexis Ballier <aballier@gentoo.org> apache-2.2.22-r1.ebuild:
   keyword ~amd64-fbsd
