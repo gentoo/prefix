@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r2.ebuild,v 1.15 2012/07/29 16:50:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r2.ebuild,v 1.16 2012/10/23 20:07:18 vapier Exp $
 
 EAPI="1"
 AUTOTOOLS_AUTO_DEPEND="no"
@@ -44,9 +44,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.7-nongnu.patch
 	epatch "${FILESDIR}"/${PN}-5.9-rxvt-unicode-9.15.patch #192083 #383871
 	epatch "${FILESDIR}"/${PN}-5.9-fix-clang-build.patch #417763
-	sed -i \
-		-e '/^PKG_CONFIG_LIBDIR/s:=.*:=$(libdir)/pkgconfig:' \
-		misc/Makefile.in || die
 
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
@@ -120,6 +117,12 @@ do_compile() {
 	mkdir "${WORKDIR}"/$1
 	cd "${WORKDIR}"/$1
 	shift
+
+	# ncurses is dumb and doesn't install .pc files unless pkg-config
+	# is also installed.  Force the tests to go our way.  Note that it
+	# doesn't actually use pkg-config ... it just looks for set vars.
+	tc-export PKG_CONFIG
+	export PKG_CONFIG_LIBDIR="/usr/$(get_libdir)/pkgconfig"
 
 	# The chtype/mmask-t settings below are to retain ABI compat
 	# with ncurses-5.4 so dont change em !
