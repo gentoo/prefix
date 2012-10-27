@@ -11,8 +11,12 @@
     <name>Sebastian Luther</name>
   </maintainer>
   <maintainer>
-  	<email>hwoarang@gentoo.org</email>
-	<name>Markos Chandras</name>
+    <email>arfrever.fta@gmail.com</email>
+    <name>Arfrever Frehtes Taifersar Arahesis</name>
+  </maintainer>
+  <maintainer>
+    <email>mgorny@gentoo.org</email>
+    <name>Michał Górny</name>
   </maintainer>
 <longdescription>
 Boost is a free peer-reviewed portable C++ source libraries.
