@@ -1,6 +1,24 @@
 # ChangeLog for sys-devel/binutils-config
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.56 2012/06/11 10:18:46 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.62 2012/08/18 03:57:51 vapier Exp $
+
+  18 Aug 2012; Mike Frysinger <vapier@gentoo.org> files/binutils-config-3:
+  Fix relative ROOT handling #431104 by Greg Turner.
+
+  29 Jul 2012; Raúl Porcel <armin76@gentoo.org> binutils-config-3-r3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #420355
+
+  03 Jul 2012; Brent Baude <ranger@gentoo.org> binutils-config-3-r3.ebuild:
+  Marking binutils-config-3-r3 ppc for bug 420355
+
+  22 Jun 2012; Brent Baude <ranger@gentoo.org> binutils-config-3-r3.ebuild:
+  Marking binutils-config-3-r3 ppc64 for bug 420355
+
+  17 Jun 2012; Markus Meier <maekke@gentoo.org> binutils-config-3-r3.ebuild:
+  arm stable, bug #420355
+
+  14 Jun 2012; Jeroen Roovers <jer@gentoo.org> binutils-config-3-r3.ebuild:
+  Stable for HPPA (bug #420355).
 
   11 Jun 2012; Agostino Sarubbo <ago@gentoo.org> binutils-config-3-r3.ebuild:
   Stable for amd64, wrt bug #420355

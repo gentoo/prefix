@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-3,v 1.8 2012/03/02 23:12:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-3,v 1.9 2012/08/18 03:57:50 vapier Exp $
 
 # Format of /etc/env.d/binutils/:
 #  config-TARGET:	CURRENT=version for TARGET
@@ -10,8 +10,8 @@
 EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
 
 : ${ROOT:=/}
-#[[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
-[[ ${ROOT} != /* ]] && ROOT="${PWD}${ROOT}"
+[[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
+[[ ${ROOT} != /* ]] && ROOT="${PWD%/}/${ROOT}"
 EROOT="${ROOT%/}${EPREFIX}/"
 
 cd ${EPREFIX}
@@ -439,7 +439,7 @@ while [[ $# -gt 0 ]] ; do
 		-h|--help)                 usage 0 ;;
 		-V|--version)
 			unset Header
-			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-3,v 1.8 2012/03/02 23:12:09 vapier Exp $"
+			cvsver="$Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/files/binutils-config-3,v 1.9 2012/08/18 03:57:50 vapier Exp $"
 			cvsver=${cvsver##*binutils-config-}
 			bver=${cvsver%%,v *}
 			cvsver=${cvsver#* }
