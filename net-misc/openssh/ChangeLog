@@ -1,6 +1,25 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.450 2012/06/08 05:43:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.453 2012/10/12 19:09:11 vapier Exp $
+
+  12 Oct 2012; Mike Frysinger <vapier@gentoo.org> openssh-6.1_p1.ebuild:
+  Always specify pid-dir to avoid configure script falling back to /etc/ssh on
+  broken systems #435668 by Piotr Karbowski.
+
+  25 Sep 2012; Ulrich Müller <ulm@gentoo.org> openssh-5.5_p1-r2.ebuild,
+  openssh-5.6_p1-r2.ebuild, openssh-5.7_p1-r1.ebuild, openssh-5.8_p1-r1.ebuild,
+  openssh-5.8_p2.ebuild, openssh-5.8_p2-r1.ebuild, openssh-5.9_p1-r3.ebuild,
+  openssh-5.9_p1-r4.ebuild, openssh-6.0_p1.ebuild, openssh-6.0_p1-r1.ebuild,
+  openssh-6.1_p1.ebuild:
+  Specify LICENSE more precisely. According to the upstream license note:
+  "All components are under a BSD licence, or a licence more free than that."
+
+*openssh-6.1_p1 (08 Sep 2012)
+
+  08 Sep 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/openssh-6.1_p1-x509-glue.patch,
+  +files/openssh-6.1_p1-x509-hpn-glue.patch, +openssh-6.1_p1.ebuild:
+  Version bump #434278 by Phr33d0m.
 
 *openssh-6.0_p1-r1 (08 Jun 2012)
 
