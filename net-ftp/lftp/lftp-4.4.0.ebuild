@@ -52,7 +52,6 @@ src_prepare() {
 		"${FILESDIR}/${PN}-4.0.2.91-lafile.patch" \
 		"${FILESDIR}/${PN}-4.3.5-autopoint.patch" \
 		"${FILESDIR}/${PN}-4.3.8-gets.patch"
-	epatch "${FILESDIR}"/${PN}-3.7.14-darwin-bundle.patch
 	eautoreconf
 	elibtoolize # for Darwin bundles
 }
