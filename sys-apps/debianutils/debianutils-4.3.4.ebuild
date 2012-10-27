@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-4.3.ebuild,v 1.2 2012/04/26 13:55:48 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-4.3.4.ebuild,v 1.1 2012/10/23 08:03:17 radhermit Exp $
 
 EAPI=4
 
