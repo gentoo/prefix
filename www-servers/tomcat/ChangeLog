@@ -1,6 +1,62 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.292 2012/06/04 07:32:59 johu Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.298 2012/09/06 14:51:05 fordfrog Exp $
+
+*tomcat-7.0.30 (06 Sep 2012)
+
+  06 Sep 2012; Miroslav Šulc <fordfrog@gentoo.org> +tomcat-7.0.30.ebuild,
+  +files/tomcat-7.0.30-build.xml.patch:
+  version bump
+
+  24 Aug 2012; Michael Weber <xmw@gentoo.org> tomcat-7.0.27.ebuild:
+  ppc stable (bug 414375).
+
+  25 Jul 2012; Ralph Sennhauser <sera@gentoo.org> files/tomcat.init:
+  Pass to vm instead of catalina in init script. Thanks to Märt Bakhoff
+  <spam3910807@gmail.com> #427664
+
+*tomcat-7.0.29-r1 (20 Jul 2012)
+*tomcat-6.0.35-r1 (20 Jul 2012)
+
+  20 Jul 2012; Ralph Sennhauser <sera@gentoo.org> +tomcat-6.0.35-r1.ebuild,
+  +files/tomcat-6.0.35-build.xml.patch, +tomcat-7.0.29-r1.ebuild,
+  +files/tomcat-7.0.29-build.xml.patch, +files/tomcat.conf, +files/tomcat.init,
+  +files/tomcat-instance-manager.bash, metadata.xml:
+  Full rewrite.
+  Add tomcat-instance-manager.bash to convienintly create and remove multiple
+  instances.
+  Don't symlink jars but use java-config as appropriate.
+  Migrate init script to baselayout2 including major cleanup.
+  Add use extra-webapps to build and install the docs and examples web apps.
+  Use USE=doc for javadocs.
+  Major cleanup of the ebuild, like dropping elog massages obsolete for ages.
+  Don't copy manager and host-manager to catalina base but use a shared
+  instance in catalina home which gets updated with a package
+  update.
+  Actually install sources if requested.
+  Initial Gentoo Prefix support.
+  #180519 : don kill ROOT application
+  #191611 : init script improvements
+  #254526 : emerge --config, implemented with tomcat-instance-manager.bash
+  #283273, #363931 : build docs and examples 
+  #309211 : handling of manager / host-manager
+  #333153 : arbitrary classpath per instance
+  #381693 : init fails with non existent CATALINA_TMPDIR
+  #406285, #411597 : support multiple instances
+  #407979 : fails if /run is tmpfs
+  #420383 : forces invalid java compiler
+
+*tomcat-7.0.29 (08 Jul 2012)
+
+  08 Jul 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.29-build-xml.patch, +tomcat-7.0.29.ebuild:
+  version bump
+
+*tomcat-7.0.28 (19 Jun 2012)
+
+  19 Jun 2012; Miroslav Šulc <fordfrog@gentoo.org>
+  +files/7/7.0.28-build-xml.patch, +tomcat-7.0.28.ebuild:
+  Version bump
 
   04 Jun 2012; Johannes Huber <johu@gentoo.org> tomcat-7.0.27.ebuild:
   Stable for x86, wrt bug #414375
