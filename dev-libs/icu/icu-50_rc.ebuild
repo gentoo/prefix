@@ -66,7 +66,6 @@ src_prepare() {
 
 	epatch "${FILESDIR}/${PN}-4.8.1-fix_binformat_fonts.patch"
 	epatch "${FILESDIR}/${PN}-4.8.1.1-fix_ltr.patch"
-	epatch "${FILESDIR}/${P}-platforms.patch"
 }
 
 src_configure() {
@@ -77,7 +76,6 @@ src_configure() {
 	# http://bugs.icu-project.org/trac/ticket/8551: --disable-strict
 	econf \
 		--disable-renaming \
-		--disable-strict \
 		$(use_enable debug) \
 		$(use_enable examples samples) \
 		$(use_enable static-libs static)
