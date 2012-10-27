@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/ntp
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.183 2012/05/13 19:37:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.185 2012/09/28 00:30:04 ulm Exp $
+
+  28 Sep 2012; Ulrich Müller <ulm@gentoo.org> ntp-4.2.4_p7-r1.ebuild,
+  ntp-4.2.6_p2-r1.ebuild, ntp-4.2.6_p3.ebuild, ntp-4.2.6_p3-r1.ebuild,
+  ntp-4.2.6_p4.ebuild, ntp-4.2.6_p5.ebuild, ntp-4.2.6_p5-r1.ebuild:
+  Specify LICENSE more precisely.
+
+  17 Jun 2012; Raúl Porcel <armin76@gentoo.org> ntp-4.2.6_p5-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #407767
 
   13 May 2012; Alexis Ballier <aballier@gentoo.org> ntp-4.2.6_p5-r1.ebuild:
   keyword ~amd64-fbsd
