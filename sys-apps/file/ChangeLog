@@ -1,6 +1,31 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.219 2012/04/26 14:49:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.227 2012/09/19 18:34:25 vapier Exp $
+
+  19 Sep 2012; Mike Frysinger <vapier@gentoo.org> file-5.11.ebuild:
+  Use BUILD_{CC,CXX} when cross-compiling #435324 by Ambroz Bizjak.
+
+  06 Sep 2012; Mike Frysinger <vapier@gentoo.org> metadata.xml:
+  List upstream bugzilla.
+
+  26 Jul 2012; Mike Frysinger <vapier@gentoo.org> file-5.11.ebuild:
+  Drop -D_GNU_SOURCE as it does not appear to be needed anymore -- compiles
+  clean w/out it #428096 by Pacho Ramos.
+
+  22 Jul 2012; Jeroen Roovers <jer@gentoo.org> file-5.11.ebuild:
+  Stable for HPPA (bug #427368).
+
+  22 Jul 2012; Anthony G. Basile <blueness@gentoo.org> file-5.11.ebuild:
+  Stable ppc/ppc64, bug #427368
+
+  22 Jul 2012; Raúl Porcel <armin76@gentoo.org> file-5.11.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #427368
+
+  22 Jul 2012; Richard Freeman <rich0@gentoo.org> file-5.11.ebuild:
+  amd64 stable - 427368
+
+  21 Jul 2012; Jeff Horelick <jdhore@gentoo.org> file-5.11.ebuild:
+  marked x86 per bug 427368
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> file-5.11.ebuild:
   keyword ~amd64-fbsd

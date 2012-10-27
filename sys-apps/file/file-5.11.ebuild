@@ -1,13 +1,13 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.11.ebuild,v 1.2 2012/04/26 14:49:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.11.ebuild,v 1.9 2012/09/19 18:34:25 vapier Exp $
 
 EAPI="2"
 PYTHON_DEPEND="python? *"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="*-jython"
 
-inherit eutils distutils libtool flag-o-matic toolchain-funcs
+inherit eutils distutils libtool toolchain-funcs
 
 DESCRIPTION="identify a file's format by scanning binary data for patterns"
 HOMEPAGE="ftp://ftp.astron.com/pub/file/"
@@ -48,13 +48,11 @@ do_configure() {
 	popd >/dev/null
 }
 src_configure() {
-	# file uses things like strndup() and wcwidth()
-	append-flags -D_GNU_SOURCE
-
 	# when cross-compiling, we need to build up our own file
 	# because people often don't keep matching host/target
 	# file versions #362941
 	if tc-is-cross-compiler && ! ROOT=/ has_version ~${CATEGORY}/${P} ; then
+		tc-export_build_env BUILD_C{C,XX}
 		ac_cv_header_zlib_h=no \
 		ac_cv_lib_z_gzopen=no \
 		CHOST=${CBUILD} \
@@ -62,6 +60,8 @@ src_configure() {
 		CXXFLAGS=${BUILD_CXXFLAGS} \
 		CPPFLAGS=${BUILD_CPPFLAGS} \
 		LDFLAGS="${BUILD_LDFLAGS} -static" \
+		CC=${BUILD_CC} \
+		CXX=${BUILD_CXX} \
 		do_configure --disable-shared
 	fi
 
