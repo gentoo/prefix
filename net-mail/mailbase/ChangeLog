@@ -1,6 +1,12 @@
 # ChangeLog for net-mail/mailbase
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/ChangeLog,v 1.76 2012/04/26 14:21:12 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/ChangeLog,v 1.78 2012/10/12 21:35:33 eras Exp $
+
+*mailbase-1.1 (12 Oct 2012)
+
+  12 Oct 2012; Eray Aslan <eras@gentoo.org> +mailbase-1.1.ebuild:
+  Make /var/spool/mail/ directory setgid and sticky - bugs #424431 #426962
+  #438062 and various others
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> mailbase-1.ebuild:
   keyword ~amd64-fbsd
