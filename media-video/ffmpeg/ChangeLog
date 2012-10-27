@@ -1,6 +1,58 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.572 2012/07/23 22:44:14 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.585 2012/10/12 11:24:14 aballier Exp $
+
+  12 Oct 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-1.0.ebuild,
+  ffmpeg-9999.ebuild:
+  make build verbose, bug #437904 by Vicente Olivert Riera
+
+  29 Sep 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add fdk useflag
+
+  29 Sep 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  tests now work without zlib
+
+*ffmpeg-1.0 (29 Sep 2012)
+
+  29 Sep 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.0.ebuild:
+  bump to 1.0 :)
+
+  29 Sep 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  cpudetection is now enabled by default, disable it if the useflag is not
+  enabled
+
+  25 Sep 2012; Mike Frysinger <vapier@gentoo.org> ffmpeg-0.10.2.ebuild,
+  ffmpeg-0.10.3.ebuild, ffmpeg-0.10.4.ebuild, ffmpeg-0.10.5.ebuild,
+  ffmpeg-0.11.1.ebuild, ffmpeg-0.11.2.ebuild:
+  Disable asm for x32 ABIs for now #427004 by devsk.
+
+  21 Sep 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  update git url
+
+*ffmpeg-0.11.2 (20 Sep 2012)
+
+  20 Sep 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.11.2.ebuild:
+  version bump for the 0.11 branch
+
+*ffmpeg-0.10.5 (20 Sep 2012)
+
+  20 Sep 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.10.5.ebuild:
+  version bump for the 0.10 branch
+
+  20 Sep 2012; Kacper Kowalik <xarthisius@gentoo.org> ffmpeg-0.10.3.ebuild:
+  ppc64 stable wrt #420305
+
+  17 Aug 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  mmx2 is now mmxext
+
+  06 Aug 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add twolame useflag
+
+  02 Aug 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add flite useflag
 
   23 Jul 2012; Anthony G. Basile <blueness@gentoo.org> ffmpeg-0.11.1.ebuild,
   ffmpeg-9999.ebuild:

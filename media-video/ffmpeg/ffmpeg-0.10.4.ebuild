@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.10.4.ebuild,v 1.1 2012/07/23 12:33:48 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.10.4.ebuild,v 1.2 2012/09/25 03:50:07 vapier Exp $
 
 EAPI="4"
 
@@ -160,6 +160,7 @@ src_configure() {
 	else
 		myconf="${myconf} --disable-encoders"
 	fi
+	[[ ${ABI} == "x32" ]] && myconf+=" --disable-asm" #427004
 
 	# libavdevice options
 	use cdio && myconf="${myconf} --enable-libcdio"

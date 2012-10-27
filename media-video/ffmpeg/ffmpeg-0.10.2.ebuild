@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.10.2.ebuild,v 1.14 2012/06/17 04:56:29 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.10.2.ebuild,v 1.15 2012/09/25 03:50:07 vapier Exp $
 
 EAPI="4"
 
@@ -204,6 +204,7 @@ src_configure() {
 		# as the provided asm decidedly is not PIC for x86.
 		use x86 && myconf="${myconf} --disable-asm"
 	fi
+	[[ ${ABI} == "x32" ]] && myconf+=" --disable-asm" #427004
 
 	# Try to get cpu type based on CFLAGS.
 	# Bug #172723
