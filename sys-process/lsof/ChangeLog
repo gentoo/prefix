@@ -1,6 +1,16 @@
 # ChangeLog for sys-process/lsof
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.91 2012/05/28 16:22:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.93 2012/09/04 20:36:08 vapier Exp $
+
+*lsof-4.86 (04 Sep 2012)
+
+  04 Sep 2012; Mike Frysinger <vapier@gentoo.org> +lsof-4.86.ebuild:
+  Version bump #433605 by teidakankan.
+
+  22 Aug 2012; Mike Frysinger <vapier@gentoo.org> +files/lsof-4.85-cross.patch,
+  lsof-4.85-r2.ebuild:
+  Fix cross-compiling by avoiding executing compiled configure tests #432120 by
+  Dennis Schridde.
 
   03 Aug 2012; Fabian Groffen <grobian@gentoo.org> lsof-4.85-r2.ebuild:
   Fix compilation on Darwin

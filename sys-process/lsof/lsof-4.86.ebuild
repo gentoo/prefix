@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.85-r2.ebuild,v 1.10 2012/08/22 04:03:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.86.ebuild,v 1.1 2012/09/04 20:36:08 vapier Exp $
 
 EAPI="2"
 
@@ -31,7 +31,6 @@ src_unpack() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-arg.c.patch #388555
 	epatch "${FILESDIR}"/${PN}-4.85-cross.patch #432120
 	# convert `test -r header.h` into a compile test
 	sed -i -r \
