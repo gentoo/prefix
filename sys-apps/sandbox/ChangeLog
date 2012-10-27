@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.162 2012/03/30 15:58:53 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.165 2012/07/06 19:53:10 vapier Exp $
+
+  06 Jul 2012; Mike Frysinger <vapier@gentoo.org>
+  +files/sandbox-2.6-trace-hppa.patch, sandbox-2.6.ebuild:
+  Fix building of trace code for hppa #425062 by Jeroen Roovers.
+
+*sandbox-2.6 (03 Jul 2012)
+
+  03 Jul 2012; Mike Frysinger <vapier@gentoo.org> +sandbox-2.6.ebuild:
+  Various fixes, and x32 support.
+
+  24 Jun 2012; Mike Frysinger <vapier@gentoo.org> sandbox-2.5.ebuild:
+  Parallelize configure steps for multiple ABIs, and run tests in parallel.
 
   30 Mar 2012; Alexis Ballier <aballier@gentoo.org> sandbox-1.6-r2.ebuild:
   keyword -x86-fbsd for bug #374425, sandbox is broken of fbsd and this leaves
