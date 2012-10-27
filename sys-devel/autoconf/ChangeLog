@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.169 2012/04/26 17:57:01 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.170 2012/09/26 05:06:03 vapier Exp $
+
+  26 Sep 2012; Mike Frysinger <vapier@gentoo.org> autoconf-2.13.ebuild:
+  Make sure we encode standard m4/awk progs as defaults.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> autoconf-2.13.ebuild:
   keyword ~amd64-fbsd

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.13.ebuild,v 1.20 2012/04/26 17:57:01 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.13.ebuild,v 1.21 2012/09/26 05:06:03 vapier Exp $
 
 inherit eutils
 
@@ -41,6 +41,12 @@ src_compile() {
 	#
 	# need to force locale to C to avoid bugs in the old
 	# configure script breaking the install paths #351982
+	#
+	# force to `awk` so that we don't encode another awk that
+	# happens to currently be installed, but might later be
+	# uninstalled (like mawk).  same for m4.
+	ac_cv_path_M4=m4 \
+	ac_cv_prog_AWK=awk \
 	LC_ALL=C \
 	econf \
 		--exec-prefix="${EPREFIX}"/usr \
