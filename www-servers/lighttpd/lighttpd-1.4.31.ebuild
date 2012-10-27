@@ -1,10 +1,10 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.31.ebuild,v 1.1 2012/06/01 21:12:21 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.31.ebuild,v 1.10 2012/09/09 17:05:15 armin76 Exp $
 
 EAPI="4"
 
-inherit base autotools eutils depend.php
+inherit base autotools eutils depend.php user
 
 DESCRIPTION="Lightweight high-performance web server"
 HOMEPAGE="http://www.lighttpd.net/"
@@ -110,12 +110,14 @@ src_prepare() {
 	if use uploadprogress; then
 	    epatch "${FILESDIR}"/${PN}-1.4.29-mod_uploadprogress.patch
 	fi
+	epatch "${FILESDIR}"/${P}-automake-1.12.patch
 	eautoreconf
 }
 src_configure() {
 	econf --libdir="${EPREFIX}/usr/$(get_libdir)/${PN}" \
 		--enable-lfs \
 		$(use_enable ipv6) \
+		$(use_enable mmap) \
 		$(use_with bzip2) \
 		$(use_with fam) \
 		$(use_with gdbm) \
@@ -124,7 +126,6 @@ src_configure() {
 		$(use_with libev) \
 		$(use_with lua) \
 		$(use_with memcache) \
-		$(use_with mmap) \
 		$(use_with mysql) \
 		$(use_with pcre) \
 		$(use_with ssl openssl) \

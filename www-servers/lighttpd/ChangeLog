@@ -1,6 +1,46 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.277 2012/06/01 21:12:21 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.287 2012/09/09 17:05:15 armin76 Exp $
+
+  09 Sep 2012; Raúl Porcel <armin76@gentoo.org> lighttpd-1.4.31.ebuild:
+  alpha/ia64/sh/sparc stable wrt #430902
+
+  22 Aug 2012; Markos Chandras <hwoarang@gentoo.org> lighttpd-1.4.31.ebuild:
+  Replace (use_with mmap) with (use_enable mmap) as pointed out by Jeremy Olexa
+  <darkside@gentoo.org> on bug #432250
+
+  20 Aug 2012; Johannes Huber <johu@gentoo.org> lighttpd-1.4.31.ebuild:
+  Stable for x86, wrt bug #430902
+
+  13 Aug 2012; Jeroen Roovers <jer@gentoo.org> lighttpd-1.4.31.ebuild:
+  Stable for HPPA (bug #430902).
+
+  13 Aug 2012; Anthony G. Basile <blueness@gentoo.org> lighttpd-1.4.31.ebuild:
+  Stable arm, bug #430902
+
+  12 Aug 2012; Agostino Sarubbo <ago@gentoo.org> lighttpd-1.4.31.ebuild:
+  Stable for AMD64, wrt bug #430902
+
+  11 Aug 2012; Markos Chandras <hwoarang@gentoo.org>
+  -files/1.4.25-fix-CVE-2010-0295.patch,
+  -files/1.4.25-fix-unknown-AM_SILENT_RULES.patch,
+  -files/1.4.26-fix-ssl-return-check-r2716.patch,
+  -files/lighttpd-1.4.28-detect-libev.patch,
+  -files/lighttpd-1.4.29-ssl-no-ecdh.patch, -files/lighttpd.initd-1.4.13-r3,
+  -files/spawn-fcgi.confd, -files/spawn-fcgi.initd:
+  Remove obsolete files from FILESDIR
+
+  11 Aug 2012; Anthony G. Basile <blueness@gentoo.org> lighttpd-1.4.31.ebuild:
+  Stable ppc ppc64, bug #430902
+
+  23 Jun 2012; Samuli Suominen <ssuominen@gentoo.org>
+  lighttpd-1.4.28-r5.ebuild, lighttpd-1.4.29-r4.ebuild,
+  lighttpd-1.4.30-r1.ebuild, lighttpd-1.4.31.ebuild:
+  inherit user.eclass for enewgroup and enewuser
+
+  23 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> lighttpd-1.4.31.ebuild,
+  +files/lighttpd-1.4.31-automake-1.12.patch:
+  Fix building with sys-devel/automake >= 1.12 wrt #420599 by Dennis Yxun
 
 *lighttpd-1.4.31 (01 Jun 2012)
 
