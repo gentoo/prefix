@@ -28,6 +28,7 @@ src_prepare() {
 		-e '/^CFLAGS = $(RPM_OPT_FLAGS)/d'
 		-e 's:,-stats::'
 		-e "/^includedir /s:/usr/include:${EPREFIX}/usr/include:"
+		-e "/^mandir /s:=.*:= ${EPREFIX}/usr/share/man:"
 	)
 	use static-libs || args+=(
 			-e '/^STATICLIB/d'
