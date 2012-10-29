@@ -1077,6 +1077,13 @@ bootstrap_stage3() {
 				"=sys-devel/gcc-4.1*"  # 4.2/x86 can't cope with Sun ld/as
 			)
 			;;
+		sparc-*-solaris2.11)
+			pkgs=(
+				${pkgs[@]}
+				sys-devel/binutils
+				"=sys-devel/gcc-4.1*"  # most likely similar problem
+			)
+			;;
 		*)
 			pkgs=(
 				${pkgs[@]}
@@ -1413,19 +1420,31 @@ EOF
 				exit 1
 				;;
 			*-solaris*)
-				cat << EOF
+				SOLARIS_RELEASE=$(head -n1 /etc/release | sed 's/^.*Oracle Solaris \(.*\) .*$/\1/')
+				if [[ -n ${SOLARIS_RELEASE} ]] ; then
+					cat << EOF
+Seems like you have installed Oracle Solaris ${SOLARIS_RELEASE}.
+I suppose you have solaris publisher set.  If not, use:
+  pkg set-publisher -p http://pkg.oracle.com/solaris/release
+You need to install some necessary packages:
+  pkg install developer/gcc-45 system/header
+In the meanwhile, I'll wait here until you run me again, with a compiler.
+EOF
+				else
+					cat << EOF
 
-Sigh.  This is Solaris 11, OpenSolaris or OpenIndiana?  I can't tell the
-difference without looking more closely.  What I DO know, is that there
-is no compiler, at least not where I was just looking, so how do we
-continue from here, eh?  I just think you didn't install one.  I know it
-can be tricky on OpenIndiana, for instance, so won't blame you.  In case
-you're on OpenIndiana, I'll help you a bit.  Perform the following as
+Sigh.  This is OpenSolaris or OpenIndiana?  I can't tell the difference
+without looking more closely.  What I DO know, is that there is no
+compiler, at least not where I was just looking, so how do we continue
+from here, eh?  I just think you didn't install one.  I know it can be
+tricky on OpenIndiana, for instance, so won't blame you.  In case you're
+on OpenIndiana, I'll help you a bit.  Perform the following as
 super-user:
   pkg set-publisher -p http://pkg.openindiana.org/sfe/
   pkg install sfe/developer/gcc developer/library/lint system/header
 In the meanwhile, I'll wait here until you run me again, with a compiler.
 EOF
+				fi
 				exit 1
 				;;
 			*)
