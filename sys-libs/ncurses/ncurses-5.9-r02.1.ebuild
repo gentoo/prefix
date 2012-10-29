@@ -122,7 +122,7 @@ do_compile() {
 	# is also installed.  Force the tests to go our way.  Note that it
 	# doesn't actually use pkg-config ... it just looks for set vars.
 	tc-export PKG_CONFIG
-	export PKG_CONFIG_LIBDIR="/usr/$(get_libdir)/pkgconfig"
+	export PKG_CONFIG_LIBDIR="${EPREFIX}/usr/$(get_libdir)/pkgconfig"
 
 	# The chtype/mmask-t settings below are to retain ABI compat
 	# with ncurses-5.4 so dont change em !
