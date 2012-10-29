@@ -646,7 +646,7 @@ gen_usr_ldscript() {
 	case ${CTARGET:-${CHOST}} in
 	*-darwin*) ;;
 	*linux*|*-freebsd*|*-openbsd*|*-netbsd*)
-		use prefix && return 0 ;;
+		use prefix && [[ -n ${PREFIX_DISABLE_GEN_USR_LDSCRIPT} ]] && return 0 ;;
 	*) return 0 ;;
 	esac
 
