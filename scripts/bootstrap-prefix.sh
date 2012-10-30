@@ -1309,7 +1309,7 @@ EOF
 	echo
 	echo "I'm going to check for some variables in your environment now:"
 	local flag dvar badflags=
-	for flag in CPPFLAGS CFLAGS CXXFLAGS LDFLAGS ASFLAGS LD_LIBRARY_PATH DYLD_LIBRARY_PATH PKG_CONFIG_PATH ; do
+	for flag in CPPFLAGS CFLAGS CXXFLAGS LDFLAGS ASFLAGS LD_LIBRARY_PATH DYLD_LIBRARY_PATH LIBPATH PKG_CONFIG_PATH ; do
 		# starting on purpose a shell here iso ${!flag} because I want
 		# to know if the shell initialisation files trigger this
 		# note that this code is so complex because it handles both
@@ -1492,6 +1492,7 @@ EOF
 		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
 		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
         *-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
+        *-aix*)        ncpu=$(/usr/sbin/bindprocessor -q | cut -d: -f2 | wc -w) ;;
         *)             ncpu=1                                              ;;
     esac
 	# get rid of excess spaces (at least Solaris wc does)
