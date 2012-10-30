@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.209 2012/10/25 18:53:59 floppym Exp $
 
+  30 Oct 2012; Fabian Groffen <grobian@gentoo.org> icu-49.1.2.ebuild:
+  Marked ~x64-freebsd
+
   27 Oct 2012; Fabian Groffen <grobian@gentoo.org> icu-50_rc.ebuild:
   drop missing patch
 
