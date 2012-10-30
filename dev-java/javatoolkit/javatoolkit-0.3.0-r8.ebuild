@@ -40,7 +40,3 @@ python_prepare_all() {
 		install-scripts = ${EPREFIX}/usr/$(get_libdir)/${PN}/bin
 	EOF
 }
-
-src_install() {
-	distutils_src_install --install-scripts="${EPREFIX}/usr/$(get_libdir)/${PN}/bin"
-}
