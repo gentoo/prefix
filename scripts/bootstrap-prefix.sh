@@ -793,6 +793,9 @@ bootstrap_zlib_core() {
 		# compiler to 32-bits code generation if requested here
 		export CC="gcc -m32"
 	fi
+	# 1.2.5 suffers from a concurrency problem
+	[[ ${PV} == 1.2.5 ]] && MAKEOPTS=
+
 	einfo "Compiling ${A%-*}"
 	CHOST= ./configure --prefix="${ROOT}"/usr || return 1
 	$MAKE ${MAKEOPTS} || return 1
