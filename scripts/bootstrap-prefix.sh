@@ -1138,9 +1138,6 @@ bootstrap_stage3() {
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
-	# activate last compiler (some Solaris cases)
-	gcc-config $(gcc-config -l | wc -l)
-
 	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
 	# but also for perl, which uses scanelf/scanmacho to find compatible
 	# lib-dirs
@@ -1200,6 +1197,10 @@ bootstrap_stage3() {
 	treedate=$(date -f ${ROOT}/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
 	[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
+
+	# activate last compiler (some Solaris cases), needed for mpc and
+	# deps below
+	gcc-config $(gcc-config -l | wc -l)
 
 	local cpuflags=
 	case ${bootstrapCHOST} in
