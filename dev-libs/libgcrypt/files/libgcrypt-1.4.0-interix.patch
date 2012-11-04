@@ -1,18 +1,0 @@
-* mduft@gentoo.org: include sys/time.h for fd_set on Interix
-
-https://bugs.g10code.com/gnupg/issue993
-
-
---- libgcrypt-1.4.0.orig/src/ath.h	2008-03-20 15:28:52 +0100
-+++ libgcrypt-1.4.0/src/ath.h	2008-03-20 15:29:33 +0100
-@@ -29,6 +29,10 @@
- #endif
- #include <gpg-error.h>
- 
-+#ifdef __INTERIX
-+# include <sys/time.h>
-+#endif
-+
- #include <config.h>
- 
- 
