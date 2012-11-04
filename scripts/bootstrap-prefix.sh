@@ -1172,9 +1172,12 @@ bootstrap_stage3() {
 	USE=-git emerge -u system || return 1
 
 	if [[ ! -f $EPREFIX/etc/portage/make.conf ]] ; then
-		echo 'USE="unicode nls"' >> $EPREFIX/etc/portage/make.conf
-		echo 'CFLAGS="${CFLAGS} -O2 -pipe"' >> $EPREFIX/etc/portage/make.conf
-		echo 'CXXFLAGS="${CFLAGS}"' >> $EPREFIX/etc/portage/make.conf
+		{
+			echo 'USE="unicode nls"'
+			echo 'CFLAGS="${CFLAGS} -O2 -pipe"'
+			echo 'CXXFLAGS="${CFLAGS}"'
+			echo "MAKEOPTS=\"${MAKEOPTS}\""
+		} >> $EPREFIX/etc/portage/make.conf
 	fi
 
 	# activate last compiler
