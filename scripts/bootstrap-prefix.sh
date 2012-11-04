@@ -1440,8 +1440,7 @@ from here, eh?  I just think you didn't install one.  I know it can be
 tricky on OpenIndiana, for instance, so won't blame you.  In case you're
 on OpenIndiana, I'll help you a bit.  Perform the following as
 super-user:
-  pkg set-publisher -p http://pkg.openindiana.org/sfe/
-  pkg install sfe/developer/gcc developer/library/lint system/header
+  pkg install developer/gnu system/library/math/header-math
 In the meanwhile, I'll wait here until you run me again, with a compiler.
 EOF
 				fi
