@@ -1215,6 +1215,9 @@ bootstrap_stage3() {
 	# Portage should figure out itself what it needs to do, if anything
 	USE=-git emerge -u system || return 1
 
+	# activate last compiler
+	gcc-config $(gcc-config -l | wc -l)
+
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
 
@@ -1226,9 +1229,6 @@ bootstrap_stage3() {
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
 		} >> $EPREFIX/etc/portage/make.conf
 	fi
-
-	# activate last compiler
-	gcc-config $(gcc-config -l | wc -l)
 
 	einfo "stage3 successfully finished"
 }
