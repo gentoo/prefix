@@ -1420,8 +1420,8 @@ EOF
 				exit 1
 				;;
 			*-solaris*)
-				SOLARIS_RELEASE=$(head -n1 /etc/release | sed 's/^.*Oracle Solaris \(.*\) .*$/\1/')
-				if [[ -n ${SOLARIS_RELEASE} ]] ; then
+				SOLARIS_RELEASE=$(head -n1 /etc/release)
+				if [[ ${SOLARIS_RELEASE} == *"Oracle Solaris"* ]] ; then
 					cat << EOF
 Seems like you have installed Oracle Solaris ${SOLARIS_RELEASE}.
 I suppose you have solaris publisher set.  If not, use:
