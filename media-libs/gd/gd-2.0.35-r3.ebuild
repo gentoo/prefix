@@ -60,6 +60,9 @@ src_configure() {
 				fontpath="${fontpath}:/usr/X/lib/X11/fonts/TrueType"
 			[[ -d /usr/X/lib/X11/fonts/Type1 ]] && \
 				fontpath="${fontpath}:/usr/X/lib/X11/fonts/Type1"
+			# OpenIndiana
+			[[ -d /usr/share/fonts/X11/Type1 ]] && \
+				fontpath="${fontpath}:/usr/share/fonts/X11/Type1"
 		;;
 		*-linux-gnu)
 			[[ -d /usr/share/fonts/truetype ]] && \
