@@ -640,13 +640,18 @@ gen_usr_ldscript() {
 
 	tc-is-static-only && return
 
+	# In Prefix we like to avoid people moving over, while we do want to get
+	# rid of this, like toolchain (see below).  We implement it differently,
+	# that is, we allow new bootstraps to disable this function, while existing
+	# installs just remain doing what they did to avoid breakage.  Due to this,
+	# the case below is modified and emptied, because for known Prefix targets
+	# we keep on using gen_usr_ldscript.
 	[[ -n ${PREFIX_DISABLE_GEN_USR_LDSCRIPT} ]] && return
 
 	# Eventually we'd like to get rid of this func completely #417451
 	case ${CTARGET:-${CHOST}} in
-	*-darwin*) ;;
-	*linux*|*-freebsd*|*-openbsd*|*-netbsd*)
-		use prefix && [[ -n ${PREFIX_DISABLE_GEN_USR_LDSCRIPT} ]] && return 0 ;;
+	*-darwin*) ;;  # excluded for now due to known breakage
+	*linux*|*-freebsd*|*-openbsd*|*-netbsd*|*-solaris*) ;;  # Prefix
 	*) return 0 ;;
 	esac
 
