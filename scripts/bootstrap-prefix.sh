@@ -1014,6 +1014,13 @@ bootstrap_stage3() {
 	local bootstrapCHOST=${CHOST}
 	unset CHOST
 
+	# No longer support gen_usr_ldscript stuff in new bootstraps, this
+	# must be in line with what eventually ends up in make.conf, see the
+	# end of this function.  We don't do this in bootstrap_setup()
+	# because in that case we'd also have to cater for getting this
+	# right with manual bootstraps.
+	export PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes 
+
 	emerge_pkgs() {
 		local opts=$1 ; shift
 		local pkg vdb pvdb evdb
@@ -1192,9 +1199,9 @@ bootstrap_stage3() {
 		rm -Rf "${ROOT}"/tmp || return 1
 		mkdir -p "${ROOT}"/tmp || return 1
 	fi
-	# note to myself: the tree MUST at least once be synced, or we'll
+	# note to myself: the tree MUST be synced at least once, or we'll
 	# carry on the polluted profile!
-	treedate=$(date -f ${ROOT}/usr/portage/metadata/timestamp +%s)
+	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
 	[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
 
@@ -1221,13 +1228,15 @@ bootstrap_stage3() {
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
 
-	if [[ ! -f $EPREFIX/etc/portage/make.conf ]] ; then
+	if [[ ! -f ${EPREFIX}/etc/portage/make.conf ]] ; then
 		{
 			echo 'USE="unicode nls"'
 			echo 'CFLAGS="${CFLAGS} -O2 -pipe"'
 			echo 'CXXFLAGS="${CFLAGS}"'
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
-		} >> $EPREFIX/etc/portage/make.conf
+			echo "# be careful with this one, don't just remove it!"
+			echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
+		} > "${EPREFIX}"/etc/portage/make.conf
 	fi
 
 	einfo "stage3 successfully finished"
