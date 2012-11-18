@@ -1371,7 +1371,19 @@ EOF
 	echo
 	echo "I'm going to check for some variables in your environment now:"
 	local flag dvar badflags=
-	for flag in CPPFLAGS CFLAGS CXXFLAGS LDFLAGS ASFLAGS LD_LIBRARY_PATH DYLD_LIBRARY_PATH LIBPATH PKG_CONFIG_PATH ; do
+	for flag in \
+		ASFLAGS \
+		CFLAGS \
+		CPPFLAGS \
+		CXXFLAGS \
+		DYLD_LIBRARY_PATH \
+		GREP_OPTIONS \
+		LDFLAGS \
+		LD_LIBRARY_PATH \
+		LIBPATH \
+		PERL_MM_OPT \
+		PKG_CONFIG_PATH \
+	; do
 		# starting on purpose a shell here iso ${!flag} because I want
 		# to know if the shell initialisation files trigger this
 		# note that this code is so complex because it handles both
