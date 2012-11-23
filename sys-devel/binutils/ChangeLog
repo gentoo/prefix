@@ -1,6 +1,20 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.470 2012/10/24 03:26:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.473 2012/11/15 19:43:36 vapier Exp $
+
+*binutils-2.23.1 (15 Nov 2012)
+
+  15 Nov 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.1.ebuild:
+  Version bump.
+
+*binutils-2.23.51.0.5 (13 Nov 2012)
+
+  13 Nov 2012; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.51.0.5.ebuild:
+  Version bump.
+
+  02 Nov 2012; Mike Frysinger <vapier@gentoo.org> binutils-2.23.51.0.3.ebuild,
+  binutils-2.23.ebuild:
+  Drop ld sysroot patch since upstream has merged a proper fix.
 
 *binutils-2.23 (24 Oct 2012)
 
