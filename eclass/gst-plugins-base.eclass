@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.23 2012/10/21 07:48:32 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.24 2012/10/23 08:09:35 tetromino Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -18,9 +18,11 @@ inherit eutils gst-plugins10 multilib
 
 GST_EXPF="src_unpack src_compile src_install"
 GST_TARBALL_SUFFIX="bz2"
+GST_LA_PUNT="no"
 case ${EAPI:-0} in
 	4)	GST_EXPF="${GST_EXPF} src_prepare src_configure"
-		GST_TARBALL_SUFFIX="xz" ;;
+		GST_TARBALL_SUFFIX="xz"
+		GST_LA_PUNT="yes" ;;
 	2|3) GST_EXPF="${GST_EXPF} src_prepare src_configure" ;;
 	1|0) ;;
 	*) die "Unknown EAPI" ;;
@@ -147,6 +149,7 @@ gst-plugins-base_src_install() {
 
 	gst-plugins10_find_plugin_dir
 	einstall || die
+	[[ ${GST_LA_PUNT} = "yes" ]] && prune_libtool_files --modules
 
 	[[ -e README ]] && dodoc README
 }

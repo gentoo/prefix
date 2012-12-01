@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.408 2012/10/11 16:52:05 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.409 2012/10/23 21:09:39 mgorny Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1474,14 +1474,14 @@ prune_libtool_files() {
 				# Create a list of all .pc-covered libs.
 				local pc_libs=()
 				if [[ ! ${removing_all} ]]; then
-					local f
+					local pc
 					local tf=${T}/prune-lt-files.pc
 					local pkgconf=$(tc-getPKG_CONFIG)
 
-					while IFS= read -r -d '' f; do # for all .pc files
+					while IFS= read -r -d '' pc; do # for all .pc files
 						local arg
 
-						sed -e '/^Requires:/d' "${f}" > "${tf}"
+						sed -e '/^Requires:/d' "${pc}" > "${tf}"
 						for arg in $("${pkgconf}" --libs "${tf}"); do
 							[[ ${arg} == -l* ]] && pc_libs+=( lib${arg#-l}.la )
 						done

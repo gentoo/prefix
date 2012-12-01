@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.119 2012/10/17 19:14:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.121 2012/11/26 18:06:55 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -148,7 +148,6 @@ tc-binutils_apply_patches() {
 	cd "${S}"
 
 	if ! use vanilla ; then
-		[[ ${SYMLINK_LIB} != "yes" ]] && EPATCH_EXCLUDE+=" 65_all_binutils-*-amd64-32bit-path.patch"
 		if [[ -n ${PATCHVER} ]] ; then
 			EPATCH_SOURCE=${WORKDIR}/patch
 			if [[ ${CTARGET} == mips* ]] ; then
@@ -363,7 +362,17 @@ toolchain-binutils_src_install() {
 		fi
 	fi
 	insinto ${INCPATH}
-	doins "${S}/include/libiberty.h"
+	local libiberty_headers=(
+		# Not all the libiberty headers.  See libiberty/Makefile.in:install_to_libdir.
+		demangle.h
+		dyn-string.h
+		fibheap.h
+		hashtab.h
+		libiberty.h
+		objalloc.h
+		splay-tree.h
+	)
+	doins "${libiberty_headers[@]/#/${S}/include/}" || die
 	if [[ -d ${ED}/${LIBPATH}/lib ]] ; then
 		mv "${ED}"/${LIBPATH}/lib/* "${ED}"/${LIBPATH}/
 		rm -r "${ED}"/${LIBPATH}/lib
