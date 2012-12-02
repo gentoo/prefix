@@ -650,8 +650,8 @@ gen_usr_ldscript() {
 
 	# Eventually we'd like to get rid of this func completely #417451
 	case ${CTARGET:-${CHOST}} in
-	*-darwin*) ;;  # excluded for now due to known breakage
-	*linux*|*-freebsd*|*-openbsd*|*-netbsd*|*-solaris*) ;;  # Prefix
+	*-darwin*) type -P scanmacho > /dev/null || return ;;  # excluded for now due to known breakage
+	*linux*|*-freebsd*|*-openbsd*|*-netbsd*|*-solaris*) type -P scanelf > /dev/null || return;;  # Prefix
 	*) return 0 ;;
 	esac
 
@@ -718,6 +718,26 @@ gen_usr_ldscript() {
 				-id "${EPREFIX}"/${libdir}/${tlib} \
 				"${ED}"/${libdir}/${tlib} || die "install_name_tool failed"
 			[[ -n ${nowrite} ]] && chmod u-w "${ED}${libdir}/${tlib}"
+			# In the build image, stuff may have already recorded the now moved
+			# install_name, so hunt those down and fix the install_name
+			# references.
+			local l obj needed lib
+			scanmacho -qyRF '%p;%n' "${D}" | { while IFS= read l ; do
+				obj=${l%%;*}
+				needed=${l#*;}
+				# this is ugly, paths with spaces won't work
+				for lib in ${needed//,/ } ; do
+					if [[ ${lib} == */${tlib} ]] ; then
+						# don't masquerade other problems, only remove usr/
+						# from input
+						local s=${lib%usr/*}${lib##*/usr/}
+						[[ ${lib} != ${s} ]] || continue
+						einfo "gen_usr_ldscript: correcting install_name from ${lib} to ${s} in ${obj}"
+						install_name_tool -change \
+							"${lib}" "${s}" "${D}${obj}"
+					fi
+				done
+			done }
 			# Now as we don't use GNU binutils and our linker doesn't
 			# understand linker scripts, just create a symlink.
 			pushd "${ED}/usr/${libdir}" > /dev/null
