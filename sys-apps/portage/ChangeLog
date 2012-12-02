@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.21418 (02 Dec 2012)
+
+  02 Dec 2012; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.21418.ebuild,
+  -portage-2.2.01.21143.ebuild:
+  Version bump, matches 2.2.0_alpha144+, support for Python 3
+
 *portage-2.2.01.21313 (22 Oct 2012)
 
   22 Oct 2012; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.21313.ebuild,
