@@ -1,6 +1,20 @@
 # ChangeLog for media-libs/gst-plugins-good
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.130 2012/10/23 07:55:22 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.133 2012/12/02 23:00:27 eva Exp $
+
+  02 Dec 2012; Gilles Dartiguelongue <eva@gentoo.org>
+  gst-plugins-good-0.10.30.ebuild, gst-plugins-good-0.10.31.ebuild:
+  Sync ebuilds and fix 0.10.30 wrt new eclass usage.
+
+  02 Dec 2012; Gilles Dartiguelongue <eva@gentoo.org>
+  -gst-plugins-good-0.10.23.ebuild, -gst-plugins-good-0.10.28.ebuild,
+  gst-plugins-good-0.10.31.ebuild:
+  Clean up old revisions. Update ebuild to use new eclasses.
+
+  07 Nov 2012; Alexandre Rostovtsev <tetromino@gentoo.org>
+  gst-plugins-good-0.10.23.ebuild, gst-plugins-good-0.10.28.ebuild,
+  gst-plugins-good-0.10.30.ebuild, gst-plugins-good-0.10.31.ebuild:
+  Slot gstreamer dependencies in preparation for gstreamer-1.0.
 
 *gst-plugins-good-0.10.31 (23 Oct 2012)
 
