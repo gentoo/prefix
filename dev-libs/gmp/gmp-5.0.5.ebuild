@@ -28,7 +28,7 @@ src_unpack() {
 	unpacker_src_unpack
 	cd "${S}"
 	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
- 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
+	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
 	epatch "${FILESDIR}"/${PN}-5.0.5-x32-support.patch
 
 	# disable -fPIE -pie in the tests for x86  #236054
@@ -42,14 +42,14 @@ src_unpack() {
 	# GMP uses the "ABI" env var during configure as does Gentoo (econf).
 	# So, to avoid patching the source constantly, wrap things up.
 	mv configure configure.wrapped || die
-	echo "#!${EPREFIX}/bin/sh" > configure
-	echo 'exec env ABI="$GMPABI" "${0}.wrapped" "$@"' >> configure
+	cat <<-\EOF > configure
+	#!${EPREFIX}/bin/sh
+	exec env ABI="$GMPABI" "${0}.wrapped" "$@"
+	EOF
 	chmod a+rx configure
 }
 
 src_compile() {
-	local myconf
-
 	# Because of our 32-bit userland, 1.0 is the only HPPA ABI that works
 	# http://gmplib.org/manual/ABI-and-ISA.html#ABI-and-ISA (bug #344613)
 	if [[ ${CHOST} == hppa2.0-* ]] ; then
@@ -73,8 +73,7 @@ src_compile() {
 	econf \
 		--localstatedir="${EPREFIX}"/var/state/gmp \
 		--disable-mpbsd \
-		$(use_enable !nocxx cxx) \
-		${myconf} \
+		$(use_enable cxx) \
 		$(use_enable static-libs static) \
 		|| die
 
