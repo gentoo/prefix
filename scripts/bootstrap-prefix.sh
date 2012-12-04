@@ -1389,7 +1389,7 @@ EOF
 		# note that this code is so complex because it handles both
 		# C-shell as sh
 		dvar="echo \"((${flag}=\${${flag}}))\""
-		dvar="$(echo "${dvar}" | env LS_COLORS= $SHELL -l 2>/dev/null)"
+		dvar="$(echo "${dvar}" | env -i HOME=$HOME $SHELL -l 2>/dev/null)"
 		if [[ ${dvar} == *"((${flag}="?*"))" ]] ; then
 			badflags="${badflags} ${flag}"
 			dvar=${dvar#*((${flag}=}
