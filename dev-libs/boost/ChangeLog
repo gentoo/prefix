@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.285 2012/11/22 19:48:37 zerochaos Exp $
 
+  04 Dec 2012; Fabian Groffen <grobian@gentoo.org> boost-1.52.0-r4.ebuild:
+  Reduce differences with gx86
+
   22 Nov 2012; Rick Farina <zerochaos@gentoo.org> boost-1.49.0-r2.ebuild:
   sorry about that, that commit was not meant for gentoo-x86, reverting.
 

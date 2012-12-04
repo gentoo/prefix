@@ -18,7 +18,6 @@ SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
 LICENSE="Boost-1.0"
 SLOT=0
 MAJOR_V="$(get_version_component_range 1-2)"
-
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc icu +nls mpi python static-libs +threads tools"
 
@@ -68,15 +67,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# WARNING: this one changes the threading API default to win32,
-	# so keep this conditional. i found no other clean solution
-	# right now, so ...
-	if [[ ${CHOST} == *-winnt* ]]; then
-		epatch "${FILESDIR}"/${PN}-1.35.0-winnt.patch
-		epatch "${FILESDIR}"/${PN}-1.39.0-winnt.patch
-	fi
-
-	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
+#	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
 
 	epatch \
 		"${FILESDIR}/${PN}-1.48.0-mpi_python3.patch" \
@@ -137,14 +128,16 @@ src_configure() {
 	use python || OPTIONS+=" --without-python"
 	use nls || OPTIONS+=" --without-locale"
 
-	[[ ${CHOST} == *-winnt* ]] && OPTIONS+=" -sNO_BZIP2=1"
+	OPTIONS+=" pch=off --boost-build=${EPREFIX}/usr/share/boost-build --prefix=\"${ED}usr\" --layout=system threading=$(usex threads multi single) link=$(usex static-libs shared,static shared) --without-context"
 
-	OPTIONS+=" pch=off --boost-build=\"${EPREFIX}\"/usr/share/boost-build --prefix=\"${ED}usr\" --layout=system threading=$(usex threads multi single) link=$(usex static-libs shared,static shared) --without-context"
+	[[ ${CHOST} == *-winnt* ]] && OPTIONS+=" -sNO_BZIP2=1"
 }
 
 src_compile() {
 	export BOOST_ROOT="${S}"
 	PYTHON_DIRS=""
+	MPI_PYTHON_MODULE=""
+
 	building() {
 		create_user-config.jam
 
@@ -349,10 +342,6 @@ EOF
 				dosym ${linkname} "${linkname/-${MAJOR_PV}}"
 			done
 		) || die
-	fi
-
-	if use python; then
-		python_mod_optimize boost_${MAJOR_PV}
 	fi
 }
 
