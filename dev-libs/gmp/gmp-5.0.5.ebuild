@@ -43,7 +43,7 @@ src_unpack() {
 	# So, to avoid patching the source constantly, wrap things up.
 	mv configure configure.wrapped || die
 	cat <<-\EOF > configure
-	#!${EPREFIX}/bin/sh
+	#!/usr/bin/env sh
 	exec env ABI="$GMPABI" "${0}.wrapped" "$@"
 	EOF
 	chmod a+rx configure
