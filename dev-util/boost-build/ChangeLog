@@ -1,6 +1,35 @@
 # ChangeLog for dev-util/boost-build
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.105 2012/10/25 21:55:36 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.109 2012/11/08 03:19:21 flameeyes Exp $
+
+*boost-build-1.52.0-r1 (08 Nov 2012)
+
+  08 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  +boost-build-1.52.0-r1.ebuild, -boost-build-1.52.0.ebuild:
+  Bump to avoid using versioned names.
+
+*boost-build-1.52.0 (05 Nov 2012)
+
+  05 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  +boost-build-1.52.0.ebuild:
+  Bump for the new boost version.
+
+  02 Nov 2012; Raúl Porcel <armin76@gentoo.org> boost-build-1.49.0.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #425354
+
+  31 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org>
+  -boost-build-1.34.1.ebuild, -boost-build-1.35.0-r1.ebuild,
+  -boost-build-1.35.0-r2.ebuild, -boost-build-1.37.0.ebuild,
+  -boost-build-1.39.0.ebuild, -boost-build-1.40.0.ebuild,
+  -boost-build-1.41.0.ebuild, -boost-build-1.42.0.ebuild,
+  -boost-build-1.45.0.ebuild, -boost-build-1.47.0.ebuild,
+  -boost-build-1.48.0-r1.ebuild, -boost-build-1.50.0-r3.ebuild,
+  -boost-build-1.50.0.ebuild, -files/1.35.0-fix_broken_icu_build.patch,
+  -files/boost-1.41-fix-mpich2-detection.patch,
+  -files/boost-1.42-fix-mpich2-detection.patch, boost-build-1.46.1.ebuild,
+  boost-build-1.49.0.ebuild, boost-build-1.51.0.ebuild, metadata.xml:
+  Unslotting. This removes a bunch of older packages that will not build on
+  modern systems, keeps only three versions (stable, mostly-stable and masked).
 
 *boost-build-1.51.0 (25 Oct 2012)
 

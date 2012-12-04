@@ -1,6 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.46.1.ebuild,v 1.9 2011/12/28 19:22:06 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.46.1.ebuild,v 1.10 2012/10/31 16:32:18 flameeyes Exp $
 
 EAPI="2"
 
@@ -13,7 +13,7 @@ DESCRIPTION="A system for large project software construction, which is simple t
 HOMEPAGE="http://www.boost.org/doc/tools/build/index.html"
 SRC_URI="mirror://sourceforge/boost/boost_${MY_PV}.tar.bz2"
 LICENSE="Boost-1.0"
-SLOT="$(get_version_component_range 1-2)"
+SLOT=0
 KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="examples python"
 

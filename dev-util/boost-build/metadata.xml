@@ -2,16 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>cpp</herd>
-  <maintainer>
-    <email>dev-zero@gentoo.org</email>
-    <name>Tiziano Müller</name>
-  </maintainer>
-  <maintainer>
-    <email>SebastianLuther@gmx.de</email>
-    <name>Sebastian Luther</name>
-  </maintainer>
-  <maintainer>
-    <email>arfrever.fta@gmail.com</email>
-    <name>Arfrever Frehtes Taifersar Arahesis</name>
-  </maintainer>
 </pkgmetadata>
