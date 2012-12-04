@@ -1,6 +1,131 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.266 2012/10/25 22:28:45 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.285 2012/11/22 19:48:37 zerochaos Exp $
+
+  22 Nov 2012; Rick Farina <zerochaos@gentoo.org> boost-1.49.0-r2.ebuild:
+  sorry about that, that commit was not meant for gentoo-x86, reverting.
+
+  22 Nov 2012; Rick Farina <zerochaos@gentoo.org> boost-1.49.0-r2.ebuild:
+  fix to parse MAKEOPTS jobs properly, same style as newer ebuilds
+
+*boost-1.52.0-r4 (22 Nov 2012)
+
+  22 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> +boost-1.52.0-r4.ebuild,
+  +files/boost-1.52.0-tuple.patch, -boost-1.52.0-r3.ebuild:
+  Add patch to fix boost's tuple library. Thanks to Alex in bug #443992.
+
+*boost-1.52.0-r3 (18 Nov 2012)
+
+  18 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> +boost-1.52.0-r3.ebuild,
+  -boost-1.52.0-r2.ebuild:
+  Disable the context library, which is currently not used by anything in tree
+  and only works on a subset of architectures (bug #443012) and has problem with
+  multilib builds (bug #441588). Make sure to remove the headers as well, for
+  both context and locale.
+
+  13 Nov 2012; Jeroen Roovers <jer@gentoo.org> boost-1.52.0-r2.ebuild:
+  Marked -hppa (bug #443012).
+
+  11 Nov 2012; Brian Harring <ferringb@gentoo.org> metadata.xml:
+  fix malformed metadata.xml
+
+  11 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> boost-1.52.0-r2.ebuild:
+  Import the pkg_preinst bit to make sure the links are really gone.
+
+*boost-1.52.0-r2 (11 Nov 2012)
+
+  11 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> +boost-1.52.0-r2.ebuild,
+  -boost-1.46.1-r1.ebuild, -boost-1.51.0-r1.ebuild, -boost-1.52.0-r1.ebuild,
+  -files/boost-1.37.0-darwin-long-double.patch,
+  -files/boost-1.45.0-lambda_bind.patch, -files/boost-1.46.1-python32.patch,
+  -files/point_release_naming_fix.patch, -files/random-Jamfile-1.46.1,
+  -files/remove-toolset-1.46.1.patch, metadata.xml:
+  Remove old and cleanup files. Bump version 1.52 so that only one set of
+  libraries between debug and release is used; add a 'nls' USE flag to disable
+  the locale library due to bug #436262 (and right now no package in the tree
+  uses it anyway).
+
+  08 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> boost-1.52.0-r1.ebuild:
+  Only create the -mt links for USE=threads.
+
+*boost-1.52.0-r1 (08 Nov 2012)
+
+  08 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> +boost-1.52.0-r1.ebuild,
+  -boost-1.52.0.ebuild, metadata.xml:
+  Simplify bjam handling; use the unversioned commands from boost-
+  build-1.52.0-r1; force-disabled C++11 support; add threads USE flag and only
+  build either single- or multi-threaded libraries so that there is no doubt on
+  what's being linked in (a deptree check shows that they can cross and
+  collide); use the system layout, designed for Unix installs (closes bug
+  #442116 together with part of Arfrever's patch); drop old code (bug #442114 by
+  Arfrever); use proper GNU stack markings (bug #440284); fix boost.mpi python
+  module (bug #441806) and optimize the module (sneaked in the same bug).
+
+*boost-1.52.0 (05 Nov 2012)
+
+  05 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> +boost-1.52.0.ebuild:
+  Version bump. Masked for testing.
+
+  02 Nov 2012; Raúl Porcel <armin76@gentoo.org> boost-1.49.0-r2.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #425354
+
+  01 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> boost-1.51.0-r1.ebuild:
+  Fix removal of python headers.
+
+  01 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> boost-1.46.1-r1.ebuild,
+  boost-1.49.0-r2.ebuild:
+  Make these depend on a glibc before 2.16 as their headers won't work
+  otherwise.
+
+*boost-1.49.0-r2 (31 Oct 2012)
+
+  31 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> +boost-1.49.0-r2.ebuild,
+  -boost-1.49.0-r1.ebuild:
+  Force a rebuild for everybodu and get rid of eselect boost altogether. This is
+  unfortunate but eselect boost behaves differently depending on whether boost
+  was already installed or if it's a fresh install.
+
+  31 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> boost-1.49.0-r1.ebuild:
+  Remove test support from 1.49 as well, since it's not supposed to work and the
+  check-reqs limits are bogus anyway.
+
+*boost-1.51.0-r1 (31 Oct 2012)
+
+  31 Oct 2012; Diego E. Pettenò <flameeyes@gentoo.org> +boost-1.51.0-r1.ebuild,
+  -boost-1.35.0-r2.ebuild, -boost-1.35.0-r5.ebuild, -boost-1.37.0-r1.ebuild,
+  -boost-1.39.0.ebuild, -boost-1.41.0-r3.ebuild, -boost-1.42.0-r1.ebuild,
+  -boost-1.42.0-r2.ebuild, -boost-1.42.0.ebuild, -boost-1.45.0.ebuild,
+  -boost-1.47.0-r1.ebuild, -boost-1.47.0.ebuild, -boost-1.48.0-r2.ebuild,
+  -boost-1.50.0-r2.ebuild, -boost-1.50.0.ebuild, -boost-1.51.0.ebuild,
+  -files/1.35-remove-hardlink-creation.patch,
+  -files/boost-1.41.0-fix-CRC-on-x64-during-gzip-decompression.patch,
+  -files/boost-1.41.0-iostreams-missing-include-guard.patch,
+  -files/boost-1.41.0-mpi_process_group-missing-include.patch,
+  -files/boost-1.41.0-parameter-needs-python.patch,
+  -files/boost-1.41.0-spirit-fixed-include-guard-conflict.patch,
+  -files/boost-1.42.0-gcc45-python.patch,
+  -files/boost-1.42.0-parameter-needs-python.patch,
+  -files/boost-1.42.0-template_arity-gcc45.patch,
+  -files/boost-1.47.0-exceptions.patch, -files/boost-1.48.0-BOOST_FOREACH.patch,
+  -files/boost-1.48.0-gcc47.patch, -files/buildid-fix.patch,
+  -files/random-Jamfile, -files/random-Jamfile-1.45.0,
+  -files/random-Jamfile-1.47.0, -files/remove-toolset-1.41.0.patch,
+  -files/remove-toolset-1.42.0.patch, -files/remove-toolset-1.45.0.patch,
+  -files/remove-toolset-1.47.0.patch,
+  -files/remove_toolset_from_targetname.patch, boost-1.46.1-r1.ebuild,
+  boost-1.49.0-r1.ebuild, metadata.xml:
+  Unslotting. This removes a bunch of older packages that will not build on
+  modern systems, keeps only three versions (stable, mostly-stable and masked).
+  The new 1.51.0-r1 is designed so that it does not have to do any eselect or
+  eselect-like trickery for the symlinks, also drops the tests (which are not
+  working as expected anyway).
+
+  30 Oct 2012; Mike Gilbert <floppym@gentoo.org> boost-1.51.0.ebuild:
+  Remove python_mod_optimize call; boost_1_51 does not exist in site-packages.
+
+  30 Oct 2012; Mike Gilbert <floppym@gentoo.org> boost-1.48.0-r2.ebuild,
+  boost-1.49.0-r1.ebuild, boost-1.50.0-r2.ebuild:
+  Revert changes made on 25 Oct.
 
   02 Nov 2012; Fabian Groffen <grobian@gentoo.org>
   +files/boost-1.51.0-respect_python-buildid.patch,
