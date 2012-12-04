@@ -44,8 +44,10 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.8.1-ldflags.patch
 	epatch "${FILESDIR}"/${PN}-2.4.5-prefix.patch
-	use python && sed -i -e "s:\$(ecasoundc_libs):\0 $(python_get_library -l):" \
-		pyecasound/Makefile.am || die "sed failed"
+	if use use python ; then
+		sed -i -e "s:\$(ecasoundc_libs):\0 $(python_get_library -l):" \
+			pyecasound/Makefile.am || die "sed failed"
+	fi
 
 	eautoreconf
 }
