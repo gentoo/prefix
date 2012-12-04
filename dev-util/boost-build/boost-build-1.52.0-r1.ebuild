@@ -37,7 +37,7 @@ pkg_setup() {
 src_unpack() {
 	# don't die here, due to (on Solaris)
 	# Archive value 4294967295 is out of gid_t range -2147483648..2147483647
-	tar xjpf "${DISTDIR}/${A}" ./boost_${MY_PV}/tools/build/v2 #|| die "unpacking tar failed"
+	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/build/v2 #|| die "unpacking tar failed"
 }
 
 src_prepare() {
@@ -48,7 +48,6 @@ src_prepare() {
 		"${FILESDIR}/${PN}-1.50.0-fix-test.patch"
 
 	epatch "${FILESDIR}"/${PN}-1.49.0-darwin-sanitise.patch
-
 
 	# Remove stripping option
 	cd "${S}/engine"

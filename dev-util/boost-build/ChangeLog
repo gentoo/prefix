@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.109 2012/11/08 03:19:21 flameeyes Exp $
 
+  04 Dec 2012; Fabian Groffen <grobian@gentoo.org> boost-build-1.52.0-r1.ebuild:
+  Fix unpacking
+
 *boost-build-1.52.0-r1 (08 Nov 2012)
 
   08 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org>
@@ -466,4 +469,3 @@
   18 Dec 2006; Tiziano Müller <dev-zero@gentoo.org> +metadata.xml,
   +boost-build-1.34_pre20061214.ebuild:
   Initial commit.
-
