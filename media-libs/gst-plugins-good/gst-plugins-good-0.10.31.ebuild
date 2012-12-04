@@ -5,7 +5,7 @@
 EAPI="5"
 
 # order is important, gst-plugins10 after gst-plugins-good
-inherit eutils flag-o-matic gst-plugins-good gst-plugins10
+inherit eutils flag-o-matic gst-plugins-good gst-plugins10 libtool
 
 DESCRIPTION="Basepack of plugins for gstreamer"
 HOMEPAGE="http://gstreamer.freedesktop.org/"
