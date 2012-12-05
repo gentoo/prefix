@@ -1,0 +1,184 @@
+http://sourceware.org/bugzilla/show_bug.cgi?id=14779
+
+Index: binutils/config.in
+===================================================================
+RCS file: /cvs/src/src/binutils/config.in,v
+retrieving revision 1.39
+diff -u -3 -p -r1.39 config.in
+--- binutils/config.in	10 Sep 2012 22:30:54 -0000	1.39
++++ binutils/config.in	30 Oct 2012 12:00:58 -0000
+@@ -100,6 +100,9 @@
+ /* Define to 1 if you have the <locale.h> header file. */
+ #undef HAVE_LOCALE_H
+ 
++/* Define if mbstate_t exists in wchar.h. */
++#undef HAVE_MBSTATE_T
++
+ /* Define to 1 if you have the <memory.h> header file. */
+ #undef HAVE_MEMORY_H
+ 
+@@ -160,6 +163,9 @@
+ /* Define to 1 if you have the `utimes' function. */
+ #undef HAVE_UTIMES
+ 
++/* Define to 1 if you have the <wchar.h> header file. */
++#undef HAVE_WCHAR_H
++
+ /* Define to 1 if you have the <zlib.h> header file. */
+ #undef HAVE_ZLIB_H
+ 
+Index: binutils/configure
+===================================================================
+RCS file: /cvs/src/src/binutils/configure,v
+retrieving revision 1.152
+diff -u -3 -p -r1.152 configure
+--- binutils/configure	26 Oct 2012 15:27:17 -0000	1.152
++++ binutils/configure	30 Oct 2012 12:00:59 -0000
+@@ -12446,7 +12446,7 @@ case "${host}" in
+ esac
+ 
+ 
+-for ac_header in string.h strings.h stdlib.h unistd.h fcntl.h sys/file.h limits.h locale.h sys/param.h
++for ac_header in string.h strings.h stdlib.h unistd.h fcntl.h sys/file.h limits.h locale.h sys/param.h wchar.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+ ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
+@@ -12750,6 +12750,32 @@ $as_echo "#define HAVE_MKDTEMP 1" >>conf
+ 
+ fi
+ 
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for mbstate_t" >&5
++$as_echo_n "checking for mbstate_t... " >&6; }
++  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++/* end confdefs.h.  */
++#include <wchar.h>
++int
++main ()
++{
++mbstate_t teststate;
++  ;
++  return 0;
++}
++_ACEOF
++if ac_fn_c_try_compile "$LINENO"; then :
++  have_mbstate_t=yes
++else
++  have_mbstate_t=no
++fi
++rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
++  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $have_mbstate_t" >&5
++$as_echo "$have_mbstate_t" >&6; }
++  if test x"$have_mbstate_t" = xyes; then
++
++$as_echo "#define HAVE_MBSTATE_T 1" >>confdefs.h
++
++  fi
+ 
+ # Some systems have frexp only in -lm, not in -lc.
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for library containing frexp" >&5
+Index: binutils/configure.in
+===================================================================
+RCS file: /cvs/src/src/binutils/configure.in,v
+retrieving revision 1.113
+diff -u -3 -p -r1.113 configure.in
+--- binutils/configure.in	26 Oct 2012 15:27:18 -0000	1.113
++++ binutils/configure.in	30 Oct 2012 12:01:00 -0000
+@@ -96,7 +96,7 @@ case "${host}" in
+ esac
+ AC_SUBST(DEMANGLER_NAME)
+ 
+-AC_CHECK_HEADERS(string.h strings.h stdlib.h unistd.h fcntl.h sys/file.h limits.h locale.h sys/param.h)
++AC_CHECK_HEADERS(string.h strings.h stdlib.h unistd.h fcntl.h sys/file.h limits.h locale.h sys/param.h wchar.h)
+ AC_HEADER_SYS_WAIT
+ ACX_HEADER_STRING
+ AC_FUNC_ALLOCA
+@@ -107,6 +107,14 @@ AC_CHECK_FUNC([mkstemp],
+ AC_CHECK_FUNC([mkdtemp],
+               AC_DEFINE([HAVE_MKDTEMP], 1,
+               [Define to 1 if you have the `mkdtemp' function.]))
++  AC_MSG_CHECKING([for mbstate_t])
++  AC_TRY_COMPILE([#include <wchar.h>],
++  [mbstate_t teststate;],
++  have_mbstate_t=yes, have_mbstate_t=no)
++  AC_MSG_RESULT($have_mbstate_t)
++  if test x"$have_mbstate_t" = xyes; then
++    AC_DEFINE(HAVE_MBSTATE_T,1,[Define if mbstate_t exists in wchar.h.])
++  fi
+ 
+ # Some systems have frexp only in -lm, not in -lc.
+ AC_SEARCH_LIBS(frexp, m)
+Index: binutils/readelf.c
+===================================================================
+RCS file: /cvs/src/src/binutils/readelf.c,v
+retrieving revision 1.583
+diff -u -3 -p -r1.583 readelf.c
+--- binutils/readelf.c	24 Oct 2012 01:59:39 -0000	1.583
++++ binutils/readelf.c	30 Oct 2012 12:01:00 -0000
+@@ -48,7 +48,9 @@
+ #ifdef HAVE_ZLIB_H
+ #include <zlib.h>
+ #endif
++#ifdef HAVE_WCHAR_H
+ #include <wchar.h>
++#endif
+ 
+ #if __GNUC__ >= 2
+ /* Define BFD64 here, even if our default architecture is 32 bit ELF
+@@ -386,7 +388,7 @@ print_vma (bfd_vma vma, print_mode mode)
+ }
+ 
+ /* Display a symbol on stdout.  Handles the display of control characters and
+-   multibye characters.
++   multibye characters (assuming the host environment supports them).
+ 
+    Display at most abs(WIDTH) characters, truncating as necessary, unless do_wide is true.
+ 
+@@ -400,7 +402,9 @@ print_symbol (int width, const char *sym
+ {
+   bfd_boolean extra_padding = FALSE;
+   int num_printed = 0;
++#ifdef HAVE_MBSTATE_T
+   mbstate_t state;
++#endif
+   int width_remaining;
+ 
+   if (width < 0)
+@@ -417,13 +421,14 @@ print_symbol (int width, const char *sym
+   else
+     width_remaining = width;
+ 
++#ifdef HAVE_MBSTATE_T
+   /* Initialise the multibyte conversion state.  */
+   memset (& state, 0, sizeof (state));
++#endif
+ 
+   while (width_remaining)
+     {
+       size_t  n;
+-      wchar_t w;
+       const char c = *symbol++;
+ 
+       if (c == 0)
+@@ -449,15 +454,22 @@ print_symbol (int width, const char *sym
+ 	}
+       else
+ 	{
++#ifdef HAVE_MBSTATE_T
++	  wchar_t w;
++#endif
+ 	  /* Let printf do the hard work of displaying multibyte characters.  */
+ 	  printf ("%.1s", symbol - 1);
+ 	  width_remaining --;
+ 	  num_printed ++;
+ 
++#ifdef HAVE_MBSTATE_T
+ 	  /* Try to find out how many bytes made up the character that was
+ 	     just printed.  Advance the symbol pointer past the bytes that
+ 	     were displayed.  */
+ 	  n = mbrtowc (& w, symbol - 1, MB_CUR_MAX, & state);
++#else
++	  n = 1;
++#endif
+ 	  if (n != (size_t) -1 && n != (size_t) -2 && n > 0)
+ 	    symbol += (n - 1);
+ 	}
