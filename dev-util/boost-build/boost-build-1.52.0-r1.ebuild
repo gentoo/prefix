@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.52.0-r1.ebuild,v 1.1 2012/11/08 03:19:21 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.52.0-r1.ebuild,v 1.2 2012/12/06 22:32:59 bicatali Exp $
 
 EAPI="5"
 PYTHON_DEPEND="python? 2"
@@ -90,7 +90,7 @@ src_compile() {
 		toolset=cc
 	fi
 
-	CC=$(tc-getCC) ./build.sh ${toolset} -d+2 $(use_with python python /usr) || die "building bjam failed"
+	CC=$(tc-getCC) ./build.sh ${toolset} -d+2 $(use_with python python ${EPREFIX}/usr) || die "building bjam failed"
 }
 
 src_install() {
