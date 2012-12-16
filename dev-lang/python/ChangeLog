@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.621 2012/10/14 14:48:25 armin76 Exp $
 
+  16 Dec 2012; Fabian Groffen <grobian@gentoo.org> python-2.7.3-r2.ebuild:
+  Update patchbal to include fix for Cygwin
+
   06 Dec 2012; Fabian Groffen <grobian@gentoo.org> python-3.3.0.ebuild:
   Marked ~sparc{,64}-solaris
 
