@@ -677,7 +677,7 @@ bootstrap_gnu() {
 }
 
 bootstrap_python() {
-	PV=2.7.2
+	PV=2.7.3
 	A=python-${PV}-patched.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 
