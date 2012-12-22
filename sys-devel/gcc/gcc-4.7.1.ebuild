@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.7.1.ebuild,v 1.7 2012/10/21 17:58:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.7.1.ebuild,v 1.8 2012/11/24 21:22:30 vapier Exp $
 
 PATCH_VER="1.5"
 UCLIBC_VER="1.0"
@@ -30,7 +30,6 @@ DEPEND="${RDEPEND}
 !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
-	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )
 	kernel_linux? ( >=${CATEGORY}/binutils-2.18 )"
 
 if [[ ${CATEGORY} != cross-* ]] ; then

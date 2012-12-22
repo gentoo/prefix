@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.6-r1.ebuild,v 1.10 2012/05/06 16:33:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.6-r1.ebuild,v 1.12 2012/11/25 02:47:24 vapier Exp $
 
-PATCH_VER="1.0"
+PATCH_VER="1.1"
 UCLIBC_VER="1.0"
 
 # Hardened gcc 4 stuff
@@ -26,7 +26,6 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
-	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )
 	!kernel_Darwin? ( !kernel_AIX? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
