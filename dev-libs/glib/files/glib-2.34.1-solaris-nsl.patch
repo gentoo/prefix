@@ -1,0 +1,13 @@
+https://bugzilla.gnome.org/show_bug.cgi?id=675550
+
+--- configure.ac
++++ configure.ac
+@@ -1101,6 +1101,8 @@
+   AC_CHECK_FUNC(socket, :, AC_CHECK_LIB(socket, socket,
+ 				        [NETWORK_LIBS="-lsocket $NETWORK_LIBS"],
+ 				        [AC_MSG_ERROR(Could not find socket())]))
++  AC_CHECK_FUNC(inet_ntop, :, AC_SEARCH_LIBS(inet_ntop, nsl,
++                        [NETWORK_LIBS="-lnsl $NETWORK_LIBS"]))
+ ])
+ AC_SUBST(NETWORK_LIBS)
+ 

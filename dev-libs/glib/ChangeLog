@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.548 2012/10/23 06:21:15 tetromino Exp $
 
+  28 Dec 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/glib-2.34.1-solaris-nsl.patch, glib-2.34.1.ebuild:
+  Fix patches, bug #448954
+
   27 Oct 2012; Fabian Groffen <grobian@gentoo.org>
   +files/glib-2.32.4-solaris-nsl.patch, glib-2.32.4-r1.ebuild:
   Update Solaris -lnsl patch after AS_IF patches
