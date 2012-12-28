@@ -4,6 +4,8 @@
 
 EAPI="4"
 
+inherit eutils
+
 DESCRIPTION="DocBook XML catalog auto-updater"
 HOMEPAGE="http://sources.gentoo.org/gentoo-src/build-docbook-catalog/"
 SRC_URI="mirror://gentoo/${P}.tar.xz
@@ -22,6 +24,7 @@ DEPEND=""
 src_prepare() {
 	sed -i -e "/^\(ROOTCONFDIR\|DOCBOOKDIR\)=/s:=/:=${EPREFIX}/:" build-docbook-catalog || die
 	sed -i -e "/^\(SYSCONFDIR\|PREFIX\) = /s:= /:= ${EPREFIX}/:" Makefile || die
+	epatch "${FILESDIR}"/${P}-no-flock.patch
 }
 
 pkg_postinst() {

@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.35 2012/10/06 17:15:54 armin76 Exp $
 
+  28 Dec 2012; Fabian Groffen <grobian@gentoo.org>
+  +files/build-docbook-catalog-1.19.1-no-flock.patch,
+  build-docbook-catalog-1.19.1.ebuild:
+  Avoid use of non-portable flock(1) for Solaris
+
   06 Oct 2012; Raúl Porcel <armin76@gentoo.org>
   build-docbook-catalog-1.19.1.ebuild:
   alpha/ia64/m68k/s390/sh/sparc/x86 stable wrt #437024
@@ -153,4 +158,3 @@
   29 Jun 2004; Aron Griffis <agriffis@gentoo.org> +metadata.xml,
   +build-docbook-catalog-1.1.ebuild:
   New package to generate docbook-xml catalogs.  Submitted by myself in bug 52725
-
