@@ -70,7 +70,6 @@ src_prepare() {
 		fi
 	fi
 
-	epatch "${FILESDIR}"/${PN}-2.34.1-solaris-nsl.patch
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
 	epatch "${FILESDIR}"/${PN}-2.32.4-interix.patch

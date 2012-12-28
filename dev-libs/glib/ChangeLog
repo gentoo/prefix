@@ -3,6 +3,10 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.548 2012/10/23 06:21:15 tetromino Exp $
 
   28 Dec 2012; Fabian Groffen <grobian@gentoo.org>
+  -files/glib-2.34.1-solaris-nsl.patch, glib-2.34.1.ebuild:
+  Drop nsl patch which appears no longer necessary
+
+  28 Dec 2012; Fabian Groffen <grobian@gentoo.org>
   +files/glib-2.34.1-solaris-nsl.patch, glib-2.34.1.ebuild:
   Fix patches, bug #448954
 
