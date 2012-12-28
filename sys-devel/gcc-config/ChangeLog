@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.211 2012/05/13 20:14:06 vapier Exp $
 
+  28 Dec 2012; Fabian Groffen <grobian@gentoo.org> files/gcc-config-1.5:
+  Make Python 3 compatible
+
 *gcc-config-1.7.1 (13 May 2012)
 
   13 May 2012; Mike Frysinger <vapier@gentoo.org> +gcc-config-1.7.1.ebuild:
@@ -1021,4 +1024,3 @@
   28 Oct 2002; Martin Schlemmer <azarah@gentoo.org> :
 
   Initial version.
-
