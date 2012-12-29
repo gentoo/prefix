@@ -1,0 +1,325 @@
+diff --git a/Makefile b/Makefile
+--- a/Makefile
++++ b/Makefile
+@@ -5,7 +5,8 @@ PN = gcc-config
+ PV = git
+ P = $(PN)-$(PV)
+ 
+-PREFIX = /usr
++EPREFIX =
++PREFIX = $(EPREFIX)/usr
+ BINDIR = $(PREFIX)/bin
+ SUBLIBDIR = lib
+ LIBDIR = $(PREFIX)/$(SUBLIBDIR)
+@@ -16,6 +17,11 @@ INSTALL_EXE = install -m 755
+ 
+ all: wrapper
+ 
++wrapper.c: wrapper.c.in
++	sed \
++		-e 's:@GENTOO_PORTAGE_EPREFIX@:$(EPREFIX):g' \
++		wrapper.c.in > wrapper.c
++
+ clean:
+ 	rm -f wrapper *.o core
+ 
+@@ -23,6 +29,7 @@ install: all
+ 	$(MKDIR_P) $(DESTDIR)$(BINDIR) $(DESTDIR)$(LIBEXECDIR)
+ 	$(INSTALL_EXE) wrapper $(DESTDIR)$(LIBEXECDIR)/$(PN)
+ 	sed \
++		-e 's:@GENTOO_PORTAGE_EPREFIX@:$(EPREFIX):g' \
+ 		-e 's:@GENTOO_LIBDIR@:$(SUBLIBDIR):g' \
+ 		-e 's:@PV@:$(PV):g' \
+ 		gcc-config > $(DESTDIR)$(BINDIR)/gcc-config
+diff --git a/gcc-config b/gcc-config
+--- a/gcc-config
++++ b/gcc-config
+@@ -9,14 +9,16 @@
+ : ${ROOT:=/}
+ [[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
+ [[ ${ROOT} != /* ]] && ROOT="${PWD%/}/${ROOT}"
++EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
++EROOT="${ROOT%/}${EPREFIX}/"
+ 
+ cd /
+ 
+ trap ":" INT QUIT TSTP
+ 
+ argv0=${0##*/}
+-source /etc/init.d/functions.sh || {
+-	echo "${argv0}: Could not source /etc/init.d/functions.sh!" 1>&2
++source "${EPREFIX}"/etc/init.d/functions.sh || {
++	echo "${argv0}: Could not source ${EPREFIX}/etc/init.d/functions.sh!" 1>&2
+ 	exit 1
+ }
+ esyslog() { :; }
+@@ -84,16 +86,16 @@ try_real_hard_to_find_CHOST() {
+ 	#
+ 
+ 	local varname=${1:-CHOST}
+-	local conf=${ROOT}/etc/portage/make.conf
+-	if [[ ! -e ${conf} && -e ${ROOT}/etc/make.conf ]] ; then
+-		conf=${ROOT}/etc/make.conf
++	local conf=${EROOT}/etc/portage/make.conf
++	if [[ ! -e ${conf} && -e ${EROOT}/etc/make.conf ]] ; then
++		conf=${EROOT}/etc/make.conf
+ 	fi
+ 	local ret=$(source "${conf}" 2>/dev/null ; echo ${!varname})
+ 	if [[ -z ${ret} ]] ; then
+ 		# newer portage supports spaces between the var and =
+ 		# CHOST     =  "this-is-retarded"
+ 		ret=$(eval $(
+-			sed -n \
++			${SED} -n \
+ 				-e 's:[[:space:]]::g' \
+ 				-e "/^${varname}=/p" \
+ 				"${conf}"
+@@ -109,8 +111,8 @@ try_real_hard_to_find_CHOST() {
+ 	#
+ 	# Then we try /etc/env.d/gcc/config-${CTARGET}
+ 	#
+-	if [[ -s ${ROOT}/etc/env.d/gcc/config-${CTARGET} ]] ; then
+-		ret=$(split_gcc_ver $(show_var CURRENT "${ROOT}"/etc/env.d/gcc/config-${CTARGET}))
++	if [[ -s ${EROOT}/etc/env.d/gcc/config-${CTARGET} ]] ; then
++		ret=$(split_gcc_ver $(show_var CURRENT "${EROOT}"/etc/env.d/gcc/config-${CTARGET}))
+ 		echo ${ret% *}
+ 	fi
+ }
+@@ -124,7 +126,7 @@ get_chost() {
+ 
+ 	# make sure portage isnt broken
+ 	if python -V &>/dev/null ; then
+-		CHOST=$(portageq envvar CHOST 2>/dev/null)
++		CHOST=$(env -i EPREFIX="${EPREFIX}" "$(PATH="${EPREFIX}/usr/bin:${PATH}" type -P portageq)" envvar CHOST 2>/dev/null)
+ 	else
+ 		ewarn "Python seems to be broken, attempting to locate CHOST ourselves ..."
+ 		CHOST=$(try_real_hard_to_find_CHOST)
+@@ -133,7 +135,7 @@ get_chost() {
+ 	if [[ -z ${CHOST} ]] ; then
+ 		eerror "${argv0}: Could not get portage CHOST!"
+ 		eerror "${argv0}: You should verify that CHOST is set in one of these places:"
+-		eerror "${argv0}:  - ${ROOT}/etc/portage/make.conf"
++		eerror "${argv0}:  - ${EROOT}/etc/portage/make.conf"
+ 		eerror "${argv0}:  - active environment"
+ 		exit 1
+ 	fi
+@@ -196,7 +198,7 @@ update_wrappers() {
+ 	# Find the bin wrapper
+ 	local wrapper
+ 	for wrapper in ${GENTOO_LIBDIR} lib lib64 lib32 lib ; do
+-		wrapper="${ROOT}usr/${wrapper}/misc/gcc-config"
++		wrapper="${EROOT}usr/${wrapper}/misc/gcc-config"
+ 		[[ -e ${wrapper} ]] && break
+ 	done
+ 
+@@ -222,7 +224,7 @@ update_wrappers() {
+ 	# new one does not.
+ 	for x in "${old_wrappers[@]}" ; do
+ 		has "${x}" "${new_wrappers[@]}" && continue
+-		rm -f "${ROOT}usr/bin/${x}" "${ROOT}usr/bin/${CTARGET}-${x}"
++		rm -f "${EROOT}usr/bin/${x}" "${EROOT}usr/bin/${CTARGET}-${x}"
+ 	done
+ 
+ 	# For all toolchains, we want to create the fully qualified
+@@ -259,20 +261,19 @@ update_wrappers() {
+ 
+ 		# Now do the actual wrapper copy with paths to the reference binary
+ 		if [[ -x ${ref} ]] ; then
+-			atomic_cp "${wrapper}" "${ROOT}usr/bin" "${x}" "${ref}"
++			atomic_cp "${wrapper}" "${EROOT}usr/bin" "${x}" "${ref}"
+ 		else
+ 			ewarn "double insanity with ${x} and ${ref}"
+ 			# Make sure we have no stale wrappers
+-			rm -f "${ROOT}usr/bin/${x}"
++			rm -f "${EROOT}usr/bin/${x}"
+ 		fi
+ 	done
+ 	# legacy cruft, make sure we dont leave it laying around #143205
+-	rm -f "${ROOT}usr/bin/${CTARGET}-cc" "${ROOT}usr/bin"/{${CTARGET}-,}g{cc,++}{32,64}
++	rm -f "${EROOT}usr/bin/${CTARGET}-cc" "${EROOT}usr/bin"/{${CTARGET}-,}g{cc,++}{32,64}
+ 
+ 	# install the canonical cpp wrapper
+-	[[ ${CTARGET} == *-solaris* ]] && return 0
+ 	if ! is_cross_compiler ; then
+-		atomic_cp "${wrapper}" "${ROOT}lib" "cpp" "${ROOT}usr/bin/cpp"
++		atomic_cp "${wrapper}" "${EROOT}lib" "cpp" "${EROOT}usr/bin/cpp"
+ 	fi
+ }
+ 
+@@ -301,33 +302,45 @@ handle_split_usr() {
+ 	eval $(grep -h '^LDPATH=' "${GCC_ENV_D}"/${CHOST}-* | tail -1)
+ 	LDPATH=${LDPATH%%:*}
+ 
+-	# If /usr isn't a sep mount, then don't bother with linking stuff.
+-	if ln "${ROOT}/${LDPATH}/libgcc.a" "${ROOT}"/lib/.gcc.config.$$ 2>/dev/null ; then
+-		rm -f "${ROOT}"/lib/.gcc.config.$$
+-		if [[ -n $(find "${ROOT}"/lib*/lib{gcc_s,unwind}.so* 2>/dev/null) ]] ; then
++	# If /usr isn't a sep mount or EPREFIX is set, then don't bother with linking stuff.
++	if [[ -n ${EPREFIX} ]] || ln "${ROOT}/${LDPATH}/libgcc.a" "${EROOT}"/lib/.gcc.config.$$ 2>/dev/null ; then
++		rm -f "${EROOT}"/lib/.gcc.config.$$
++		if [[ -n $(find "${EROOT}"/lib*/lib{gcc_s,unwind}{.so*,*dylib} 2>/dev/null) ]] ; then
+ 			# If we previously had stuff in /, make sure ldconfig gets re-run.
+-			rm -f "${ROOT}"/lib*/lib{gcc_s,unwind}.so*
++			rm -f "${EROOT}"/lib*/lib{gcc_s,unwind}{.so*,*dylib}
+ 			return 1
+ 		fi
+ 		return 0
+ 	fi
+ 
+-	# Only bother with this stuff for the native ABI.  We assume the user
+-	# doesn't have critical binaries for non-native ABIs which is fair.
+-	local gcclib
+-	local libdir="${ROOT}${GENTOO_LIBDIR}"
+-	mkdir -p "${libdir}"/.gcc.config.new || return 0 # !?!?!
+-	for gcclib in gcc_s unwind ; do
+-		# This assumes that we always have the .so symlink,
+-		# but for now, that should be safe ...
+-		for gcclib in "${ROOT}${LDPATH}"/lib${gcclib}.so.* ; do
+-			[[ -e ${gcclib} ]] || continue
+-			cp -pP "${gcclib}" "${libdir}"/.gcc.config.new/
+-			# no need to sanity `rm` this as the `mv` should take care
+-			# of it.  we also need this step to be completely atomic
+-			# for systems that have even `mv` linked against libgcc_s.so.
+-			# http://bugs.gentoo.org/150257
+-			mv -f "${libdir}"/.gcc.config.new/* "${libdir}"/
++	gcc="${ROOT}${LATEST_GCC_PATH}/gcc"
++
++	local multilib
++	for multilib in $("${gcc}" -print-multi-lib); do
++		local multiarg=${multilib#*;}
++		multiarg=${multiarg/@/-}
++		local multilibdir=${multilib%;*}
++		local libdir="${EROOT}lib/"$("${gcc}" ${multiarg} -print-multi-os-directory)
++
++		mkdir -p "${libdir}"/.gcc.config.new || continue # !?!?!
++
++		# Only bother with this stuff for the native ABI.  We assume the user
++		# doesn't have critical binaries for non-native ABIs which is fair.
++		local gcclib
++		local libdir="${ROOT}${GENTOO_LIBDIR}"
++		mkdir -p "${libdir}"/.gcc.config.new || return 0 # !?!?!
++		for gcclib in gcc_s unwind ; do
++			# This assumes that we always have the .so symlink,
++			# but for now, that should be safe ...
++			for gcclib in "${ROOT}${LDPATH}"/lib${gcclib}.so.* ; do
++				[[ -e ${gcclib} ]] || continue
++				cp -pP "${gcclib}" "${libdir}"/.gcc.config.new/
++				# no need to sanity `rm` this as the `mv` should take care
++				# of it.  we also need this step to be completely atomic
++				# for systems that have even `mv` linked against libgcc_s.so.
++				# http://bugs.gentoo.org/150257
++				mv -f "${libdir}"/.gcc.config.new/* "${libdir}"/
++			done
+ 		done
+ 	done
+ 	rmdir "${libdir}"/.gcc.config.new
+@@ -341,7 +354,7 @@ switch_profile() {
+ 
+ 	# Make sure we have write access to the dirs.  Do not require `root`
+ 	# so that we work with prefix/cross/etc... setups that run as user.
+-	[[ ! -w ${ROOT} ]] && die "need write access to ${ROOT}"
++	[[ ! -w ${EROOT} ]] && die "need write access to ${EROOT}"
+ 
+ 	if is_cross_compiler ; then
+ 		ebegin "Switching cross-compiler to ${CC_COMP}"
+@@ -408,7 +421,7 @@ switch_profile() {
+ 		# Pass all by default
+ 		awk '!/^(STDCXX_INCDIR|LDPATH|CC|CXX|CTARGET|GCCBITS|GCC_SPECS|GCC_PATH|MULTIOSDIRS)=/ {print $0}' \
+ 			"${GCC_ENV_D}/${CC_COMP}" >> "${envd}.tmp"
+-		if [[ -d ${ROOT}/etc/ld.so.conf.d ]] ; then
++		if [[ -z ${EPREFIX} && -d ${ROOT}/etc/ld.so.conf.d ]] ; then
+ 			echo "${MY_LDPATH}" > "${ROOT}"/etc/ld.so.conf.d/05gcc-${CTARGET}.conf
+ 		else
+ 			echo "LDPATH=\"${MY_LDPATH}\"" >> "${envd}.tmp"
+@@ -427,7 +440,7 @@ switch_profile() {
+ 		local x libdir pkgconfdir
+ 		local mver=${CC_COMP_VERSION:0:3}
+ 		for libdir in ${MULTIOSDIRS//:/ } ; do
+-			pkgconfdir="${ROOT}/usr/lib/${libdir}/pkgconfig"
++			pkgconfdir="${EROOT}/usr/lib/${libdir}/pkgconfig"
+ 			for x in "" "-${mver}" ; do
+ 				x="${pkgconfdir}/libgcj${x}.pc"
+ 				if [[ -e ${pkgconfdir}/libgcj-${CC_COMP_VERSION}.pc ]] ; then
+@@ -458,7 +471,7 @@ switch_profile() {
+ 			ewarn "env-update failed to work properly; making sure ld.so.conf paths"
+ 			ewarn "are setup properly.  Please rerun gcc-config with the -f option."
+ 			echo ""
+-			if [[ ! -d /etc/ld.so.conf.d ]] ; then
++			if [[ -z ${EPREFIX} && ! -d /etc/ld.so.conf.d ]] ; then
+ 				show_var LDPATH "${ROOT}"/etc/env.d/05gcc-${CTARGET} \
+ 					| sed -e 's|:|\n|g' >> /etc/ld.so.conf
+ 			fi
+@@ -475,7 +488,9 @@ switch_profile() {
+ 		ewarn "If you intend to use the gcc from the new profile in an already"
+ 		ewarn "running shell, please remember to do:"
+ 		echo
+-		ewarn "  . /etc/profile"
++		ewarn " (bash) # . ${EPREFIX}/etc/profile"
++		ewarn "or"
++		ewarn " (tcsh) # source ${EPREFIX}/etc/csh.login"
+ 		echo
+ 	fi
+ 
+@@ -653,7 +668,7 @@ DOIT=""
+ FORCE="no"
+ 
+ CC_COMP=
+-ENV_D="${ROOT}etc/env.d"
++ENV_D="${EROOT}etc/env.d"
+ GCC_ENV_D="${ENV_D}/gcc"
+ 
+ for x in "$@" ; do
+@@ -784,7 +799,11 @@ if [[ -z ${CC_COMP} ]] ; then
+ fi
+ 
+ if [[ ${DOIT} != "get_current_profile" ]] ; then
+-	GCC_LIB=$(get_lib_path | awk -F/ '{ print  "/"$2"/"$3"/"$4"/" }')
++	GCC_LIB=$(
++		get_lib_path | \
++ 			sed -e "s|${EPREFIX}/*|/|g" | \
++			awk -F/ '{ print "/"$2"/"$3"/"$4"/" }'
++	)
+ 
+ 	# For people who insist on using funky version strings ("4.6.x"
+ 	# rather than "4.6.2"), allow them to manually specify it.
+@@ -797,11 +816,11 @@ if [[ ${DOIT} != "get_current_profile" ]
+ 		CC_COMP_TARGET=${CC_COMP%-${CC_COMP_VERSION}*}
+ 	fi
+ 
+-	if [[ ! -d ${ROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]]; then
++	if [[ ! -d ${EROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]]; then
+ 		CC_COMP_VERSION=${CC_COMP_VERSION%-*}
+ 	fi
+ 
+-	if [[ ! -d ${ROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]] || \
++	if [[ ! -d ${EROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]] || \
+ 	   [[ ! -f ${GCC_ENV_D}/${CC_COMP} ]]
+ 	then
+ 		eerror "${argv0}: Profile does not exist or invalid setting for ${GCC_ENV_D}/${CC_COMP}" 1>&2
+diff --git a/wrapper.c b/wrapper.c.in
+rename from wrapper.c
+rename to wrapper.c.in
+--- a/wrapper.c
++++ b/wrapper.c.in
+@@ -21,8 +21,8 @@
+ #include <sys/stat.h>
+ #include <sys/types.h>
+ 
+-#define GCC_CONFIG "/usr/bin/gcc-config"
+-#define ENVD_BASE  "/etc/env.d/05gcc"
++#define GCC_CONFIG "@GENTOO_PORTAGE_EPREFIX@/usr/bin/gcc-config"
++#define ENVD_BASE  "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/05gcc"
+ 
+ #define ARRAY_SIZE(arr) (sizeof(arr)/sizeof(arr[0]))
+ 
+@@ -289,8 +289,8 @@ int main(int argc, char *argv[])
+ 			data.name = wrapper_aliases[i].target;
+ 
+ 	/* What is the full name of our wrapper? */
+-	data.fullname = xmalloc(strlen(data.name) + sizeof("/usr/bin/") + 1);
+-	sprintf(data.fullname, "/usr/bin/%s", data.name);
++	data.fullname = xmalloc(strlen(data.name) + sizeof("@GENTOO_PORTAGE_EPREFIX@/usr/bin/") + 1);
++	sprintf(data.fullname, "@GENTOO_PORTAGE_EPREFIX@/usr/bin/%s", data.name);
+ 
+ 	find_wrapper_target(&data);
+ 

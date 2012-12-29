@@ -1,6 +1,60 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.211 2012/05/13 20:14:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.227 2012/11/19 06:55:06 vapier Exp $
+
+*gcc-config-1.8 (19 Nov 2012)
+
+  19 Nov 2012; Mike Frysinger <vapier@gentoo.org> +gcc-config-1.8.ebuild:
+  Version bump.
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> gcc-config-1.7.3.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #429212
+
+  04 Aug 2012; Jeroen Roovers <jer@gentoo.org> gcc-config-1.7.3.ebuild:
+  Stable for HPPA (bug #429212).
+
+  04 Aug 2012; Markos Chandras <hwoarang@gentoo.org> gcc-config-1.7.3.ebuild:
+  Stable on amd64 wrt bug #429212
+
+  02 Aug 2012; Anthony G. Basile <blueness@gentoo.org> gcc-config-1.7.3.ebuild:
+  Stable arm, bug #429212
+
+  01 Aug 2012; Anthony G. Basile <blueness@gentoo.org> gcc-config-1.7.3.ebuild:
+  Stable ppc ppc64, bug #429212
+
+  01 Aug 2012; Jeff Horelick <jdhore@gentoo.org> gcc-config-1.7.3.ebuild:
+  marked x86 per bug 429212
+
+  08 Jul 2012; Raúl Porcel <armin76@gentoo.org> gcc-config-1.6.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #419399
+
+  14 Jun 2012; Jeroen Roovers <jer@gentoo.org> gcc-config-1.6.ebuild:
+  Stable for HPPA (bug #419399).
+
+*gcc-config-1.7.3 (10 Jun 2012)
+
+  10 Jun 2012; Mike Frysinger <vapier@gentoo.org> +gcc-config-1.7.3.ebuild:
+  Version bump.
+
+  09 Jun 2012; Markus Meier <maekke@gentoo.org> gcc-config-1.6.ebuild:
+  arm stable, bug #419399
+
+  07 Jun 2012; Brent Baude <ranger@gentoo.org> gcc-config-1.6.ebuild:
+  Marking gcc-config-1.6 ppc for bug 419399
+
+  05 Jun 2012; Brent Baude <ranger@gentoo.org> gcc-config-1.6.ebuild:
+  Marking gcc-config-1.6 ppc64 for bug 419399
+
+  04 Jun 2012; Johannes Huber <johu@gentoo.org> gcc-config-1.6.ebuild:
+  Stable for x86, wrt bug #419399
+
+  04 Jun 2012; Agostino Sarubbo <ago@gentoo.org> gcc-config-1.6.ebuild:
+  Stable for amd64, wrt bug #419399
+
+*gcc-config-1.7.2 (31 May 2012)
+
+  31 May 2012; Mike Frysinger <vapier@gentoo.org> +gcc-config-1.7.2.ebuild:
+  Fix clean up in unlikely error handler.
 
   28 Dec 2012; Fabian Groffen <grobian@gentoo.org> files/gcc-config-1.5:
   Make Python 3 compatible
