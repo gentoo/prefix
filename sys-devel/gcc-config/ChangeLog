@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.227 2012/11/19 06:55:06 vapier Exp $
 
+  29 Dec 2012; Fabian Groffen <grobian@gentoo.org> -files/1.4.0-multilib.patch,
+  -files/gcc-config-1.4.1, -files/wrapper-1.4.8-prefix.patch,
+  -files/wrapper-1.4.8.c, -files/wrapper-1.5.1.c, -gcc-config-1.4.1-r1.ebuild,
+  gcc-config-1.8.ebuild:
+  cleanup
+
 *gcc-config-1.8 (19 Nov 2012)
 
   19 Nov 2012; Mike Frysinger <vapier@gentoo.org> +gcc-config-1.8.ebuild:
