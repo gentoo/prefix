@@ -18,7 +18,6 @@ SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
 LICENSE="Boost-1.0"
 SLOT=0
 MAJOR_V="$(get_version_component_range 1-2)"
-
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc icu mpi python static-libs tools"
 
@@ -127,13 +126,13 @@ src_configure() {
 	use python || OPTIONS+=" --without-python"
 
 	# https://svn.boost.org/trac/boost/attachment/ticket/2597/add-disable-long-double.patch
-	if use sparc || use mips || use hppa || use arm || use x86-fbsd || use sh; then
+	if use sparc || { use mips && [[ ${ABI} = "o32" ]]; } || use hppa || use arm || use x86-fbsd || use sh; then
 		OPTIONS+=" --disable-long-double"
 	fi
 
-	[[ ${CHOST} == *-winnt* ]] && OPTIONS+=" -sNO_BZIP2=1"
-
 	OPTIONS+=" pch=off --boost-build=${EPREFIX}/usr/share/boost-build-${MAJOR_PV} --prefix=\"${ED}usr\" --layout=versioned"
+
+	[[ ${CHOST} == *-winnt* ]] && OPTIONS+=" -sNO_BZIP2=1"
 
 	if use static-libs; then
 		LINK_OPTS="link=shared,static"
@@ -270,6 +269,7 @@ src_install () {
 			gentoorelease \
 			--user-config=user-config.jam \
 			${OPTIONS} \
+			threading=${mythreading} ${LINK_OPTS} runtime-link=shared \
 			--includedir="${ED}usr/include" \
 			--libdir="${ED}usr/$(get_libdir)" \
 			$(use python && echo --python-buildid=${PYTHON_ABI}) \
@@ -354,6 +354,7 @@ EOF
 	else
 		THREAD_LIBS="libboost_thread-mt-${MAJOR_PV}$(get_libname)"
 	fi
+	local lib
 	for lib in ${THREAD_LIBS}; do
 		dosym ${lib} "/usr/$(get_libdir)/${lib/-mt/}"
 	done
@@ -435,7 +436,6 @@ EOF
 		dohtml *.html ../boost.png
 		dodoc regress.log
 	fi
-
 	popd > /dev/null || die
 
 	# boost's build system truely sucks for not having a destdir.  Because for
@@ -491,16 +491,6 @@ EOF
 				dosym ${linkname} "${linkname/-${MAJOR_PV}}"
 			done
 		) || die
-	fi
-
-	if use python; then
-		python_mod_optimize boost_${MAJOR_PV}
-	fi
-}
-
-pkg_postrm() {
-	if use python; then
-		python_mod_cleanup boost_${MAJOR_PV}
 	fi
 }
 

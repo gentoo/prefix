@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.286 2012/12/15 14:45:27 mgorny Exp $
 
+  31 Dec 2012; Fabian Groffen <grobian@gentoo.org> boost-1.49.0-r2.ebuild:
+  sync with gx86 version to resolve bug #448794
+
 *boost-1.52.0-r5 (15 Dec 2012)
 
   15 Dec 2012; Michał Górny <mgorny@gentoo.org> +boost-1.52.0-r5.ebuild,
