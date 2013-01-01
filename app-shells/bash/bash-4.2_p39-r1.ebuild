@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.2_p10.ebuild,v 1.6 2012/05/23 01:13:17 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.2_p39-r1.ebuild,v 1.1 2012/12/15 01:55:49 vapier Exp $
 
 EAPI="1"
 
@@ -13,8 +13,6 @@ MY_PV=${PV/_p*}
 MY_PV=${MY_PV/_/-}
 MY_P=${PN}-${MY_PV}
 [[ ${PV} != *_p* ]] && PLEVEL=0
-READLINE_VER=6.1
-READLINE_PLEVEL=0 # both readline patches are also released as bash patches
 patches() {
 	local opt=$1 plevel=${2:-${PLEVEL}} pn=${3:-${PN}} pv=${4:-${MY_PV}}
 	[[ ${plevel} -eq 0 ]] && return 1
@@ -32,16 +30,15 @@ patches() {
 
 DESCRIPTION="The standard GNU Bourne again shell"
 HOMEPAGE="http://tiswww.case.edu/php/chet/bash/bashtop.html"
-SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)
-	$(patches ${READLINE_PLEVEL} readline ${READLINE_VER})"
+SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-
-IUSE="afs bashlogger examples mem-scramble +net nls plugins vanilla"
+IUSE="afs bashlogger examples mem-scramble +net nls plugins +readline vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
+	readline? ( >=sys-libs/readline-6.2 )
 	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}
 	!<sys-apps/portage-2.1.6.7_p1
@@ -69,12 +66,20 @@ src_unpack() {
 
 	# Include official patches
 	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
-	cd lib/readline
-	[[ ${READLINE_PLEVEL} -gt 0 ]] && epatch $(patches -s ${READLINE_PLEVEL} readline ${READLINE_VER})
-	cd ../..
+
+	# Clean out local libs so we know we use system ones
+	rm -rf lib/{readline,termcap}/*
+	touch lib/{readline,termcap}/Makefile.in # for config.status
+	sed -ri -e 's:\$[(](RL|HIST)_LIBSRC[)]/[[:alpha:]]*.h::g' Makefile.in || die
+
+	# Avoid regenerating docs after patches #407985
+	sed -i -r '/^(HS|RL)USER/s:=.*:=:' doc/Makefile.in || die
+	touch -r . doc/*
 
 	epatch "${FILESDIR}"/${PN}-4.2-execute-job-control.patch #383237
 	epatch "${FILESDIR}"/${PN}-4.2-parallel-build.patch
+	epatch "${FILESDIR}"/${PN}-4.2-no-readline.patch
+	epatch "${FILESDIR}"/${PN}-4.2-speed-up-read-N.patch
 
 	# this adds additional prefixes
 	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
@@ -100,6 +105,8 @@ src_unpack() {
 	# DON'T YOU EVER PUT eautoreconf OR SIMILAR HERE!  THIS IS A CRITICAL
 	# PACKAGE THAT MUST NOT RELY ON AUTOTOOLS, USE A SELF-SUFFICIENT PATCH
 	# INSTEAD!!!
+
+	epatch_user
 }
 
 src_compile() {
@@ -147,21 +154,25 @@ src_compile() {
 		#export ac_cv_lib_ncurses_tgetent=no
 	fi
 
-	# Always use the buildin readline, else if we update readline
-	# bash gets borked as readline is usually not binary compadible
-	# between minor versions.
-	#myconf="${myconf} $(use_with !readline installed-readline)"
-	myconf="${myconf} --without-installed-readline"
-
 	# Don't even think about building this statically without
 	# reading Bug 7714 first.  If you still build it statically,
 	# don't come crying to us with bugs ;).
 	#use static && export LDFLAGS="${LDFLAGS} -static"
 	use nls || myconf="${myconf} --disable-nls"
 
+	# Historically, we always used the builtin readline, but since
+	# our handling of SONAME upgrades has gotten much more stable
+	# in the PM (and the readline ebuild itself preserves the old
+	# libs during upgrades), linking against the system copy should
+	# be safe.
+	# Exact cached version here doesn't really matter as long as it
+	# is at least what's in the DEPEND up above.
+	export ac_cv_rl_version=6.2
+
 	# Force linking with system curses ... the bundled termcap lib
-	# sucks bad compared to ncurses
-	myconf="${myconf} --with-curses"
+	# sucks bad compared to ncurses.  For the most part, ncurses
+	# is here because readline needs it.  But bash itself calls
+	# ncurses in one or two small places :(.
 
 	use plugins && case ${CHOST} in
 		*-linux-gnu | *-solaris* | *-freebsd* )
@@ -171,13 +182,18 @@ src_compile() {
 	esac
 
 	econf \
+		--with-installed-readline=. \
+		--with-curses \
 		$(use_with afs) \
 		$(use_enable net net-redirections) \
 		--disable-profiling \
 		$(use_enable mem-scramble) \
 		$(use_with mem-scramble bash-malloc) \
-		${myconf} || die
-	emake || die "make failed"
+		$(use_enable readline) \
+		$(use_enable readline history) \
+		$(use_enable readline bang-history) \
+		${myconf}
+	emake || die
 
 	if use plugins ; then
 		emake -C examples/loadables all others || die
@@ -199,12 +215,27 @@ src_install() {
 		newins "${FILESDIR}"/dot-${f} .${f}
 	done
 
-	sed -i -e "s:#${USERLAND}#@::" "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
-	sed -i -e '/#@/d' "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
+	local sed_args=(
+		-e "s:#${USERLAND}#@::"
+		-e '/#@/d'
+	)
+	if ! use readline ; then
+		sed_args+=( #432338
+			-e '/^shopt -s histappend/s:^:#:'
+			-e 's:use_color=true:use_color=false:'
+		)
+	fi
+	sed -i \
+		"${sed_args[@]}" \
+		"${ED}"/etc/skel/.bashrc \
+		"${ED}"/etc/bash/bashrc || die
 
 	if use plugins ; then
 		exeinto /usr/$(get_libdir)/bash
 		doexe $(echo examples/loadables/*.o | sed 's:\.o::g') || die
+		insinto /usr/include/bash-plugins
+		doins *.h builtins/*.h examples/loadables/*.h include/*.h \
+			lib/{glob/glob.h,tilde/tilde.h}
 	fi
 
 	if use examples ; then
