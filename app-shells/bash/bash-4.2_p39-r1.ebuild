@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.2_p39-r1.ebuild,v 1.1 2012/12/15 01:55:49 vapier Exp $
 
@@ -88,6 +88,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
 
+	epatch "${FILESDIR}"/${PN}-4.2-freebsd-pipe-open-eintr.patch  # 447810
 	if [[ ${CHOST} == *-interix* ]]; then
 		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi

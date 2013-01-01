@@ -1,0 +1,18 @@
+Work around named-pipe race-condition on FreeBSD
+
+https://bugs.gentoo.org/show_bug.cgi?id=447810
+Patch by Yuta SATOH
+
+--- redir.c
++++ redir.c
+@@ -632,7 +632,9 @@
+     }
+   else
+     {
+-      fd = open (filename, flags, mode);
++      do {
++	fd = open (filename, flags, mode);
++      } while ((fd < 0) && (errno == EINTR));
+ #if defined (AFS)
+       if ((fd < 0) && (errno == EACCES))
+ 	{
