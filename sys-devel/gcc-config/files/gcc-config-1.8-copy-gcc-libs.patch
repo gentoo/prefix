@@ -1,0 +1,258 @@
+essential missing bit that makes sure libgcc_s.so.1 (amongst others)
+remains available on Solaris
+
+diff --git a/gcc-config b/gcc-config
+--- a/gcc-config
++++ b/gcc-config
+@@ -336,6 +339,243 @@ handle_split_usr() {
+ 	return 0
+ }
+ 
++prefix_copy_gcc_libs() {
++	# no business here if not Prefix
++	[[ -z ${EPREFIX} ]] && return 0
++
++	# To emulate properly what ld.so.conf magic does for non-prefix,
++	# we have to copy the libs of all installed (native) GCC's and
++	# make sure we do the current one as last, such that the
++	# pointers for the unversioned libs point to the currently
++	# selected version.  This is only necessary for platforms that use
++	# shared libs, and only record the object name (not the full path).
++	case ${CHOST} in
++		*-mint*)
++			# static only, nothing to do here
++			return 0
++			;;
++		*-darwin*)
++			# Mach-O records all references with full path, hence each
++			# object has links to the GCC-specific version of the lib.
++			return 0
++			;;
++	esac
++
++	# dstlibgcc location is added to RPATH by the binutils wrapper
++	local dstlibgcc=${EROOT}/usr/${CHOST}/lib/gcc
++
++	# Prepare empty directories first
++	local temporary=.gcc.config.new
++	rm -rf   "${dstlibgcc}"/${temporary} || return 1
++	mkdir -p "${dstlibgcc}"/${temporary} || return 1
++
++	local LIBSUFFIX
++	case ${CHOST} in
++		*-aix*)
++			LIBSUFFIX="a"
++			AIXLIBS=
++
++			do_single_runtime() {
++				local sourcedir=$1; shift
++				local libname=$1; shift
++				local targetdir=$1; shift
++				local finaldir=$1; shift
++
++				aixdll \
++					--merge-runtime \
++					--finish=false \
++					--target="${targetdir}"/lib${libname}.${LIBSUFFIX} \
++					"${sourcedir}"/lib${libname}.${LIBSUFFIX} \
++				|| return 1
++				[[ ${AIXLIBS} == *":${targetdir}/lib${libname}.${LIBSUFFIX}:"* ]] \
++				|| AIXLIBS="${AIXLIBS}:${targetdir}/lib${libname}.${LIBSUFFIX}:"
++			}
++
++			finish_runtime_dir() {
++				local sourcedir=$1; shift
++				local targetdir=$1; shift
++				local cleanup=$1; shift
++
++				local f save_IFS
++				save_IFS=$IFS; IFS=:
++				for f in ${AIXLIBS}; do
++					IFS=$save_IFS
++					[[ -n ${f} ]] || continue
++					aixdll \
++						--finish-merge \
++						--keepdir=false \
++						"${f}" \
++					|| return 1
++				done
++				IFS=$save_IFS
++				unset AIXLIBS
++
++				finish_runtime_dir_elf \
++					"${sourcedir}" \
++					"${targetdir}" \
++					${cleanup} \
++				|| return 1
++			}
++			;;
++		hppa64*-hpux*)
++			LIBSUFFIX="sl"
++			do_single_runtime() {
++				do_single_runtime_elf "$@"
++			}
++			finish_runtime_dir() {
++				finish_runtime_dir_elf "$@" 
++			}
++			;;
++		hppa*-hpux*)
++			LIBSUFFIX="sl"
++			do_single_runtime() {
++				local sourcedir=$1; shift
++				local libname=$1; shift
++				local targetdir=$1; shift
++				local finaldir=$1; shift
++
++				# when using some simple shell script wrappers (again :)),
++				# there may be no libs around!
++				if [[ -n $(ls "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* 2>/dev/null) ]]; then
++					cp -fpP "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* "${targetdir}" || return 1
++					# gcc creates "libgcc_s.4" with symlink "libgcc_s.sl -> libgcc_s.4", and
++					# we patch it to also set the 'internal name' (=soname) (gcc-PR40913).
++					if [[ ${libname} == 'gcc_s' ]]; then
++						if [[ -n $(ls "${sourcedir}"/lib${libname}.[0-9] 2>/dev/null) ]]; then
++							cp -fpP "${sourcedir}"/lib${libname}.[0-9] "${targetdir}" || return 1
++						fi
++					fi
++					# we do not need the unversioned lib, as linking
++					# is done against the used gcc's private copy.
++					rm -f "${targetdir}"/lib${libname}.${LIBSUFFIX} || return 1
++				fi
++			}
++			finish_runtime_dir() {
++				finish_runtime_dir_elf "$@" 
++			}
++			;;
++		*)
++			LIBSUFFIX="so"
++			do_single_runtime() {
++				do_single_runtime_elf "$@"
++			}
++			finish_runtime_dir() {
++				finish_runtime_dir_elf "$@" 
++			}
++			;;
++	esac
++
++	do_single_runtime_elf() {
++		local sourcedir=$1; shift
++		local libname=$1; shift
++		local targetdir=$1; shift
++		local finaldir=$1; shift
++
++		# when using some simple shell script wrappers (again :)),
++		# there may be no libs around!
++		if [[ -n $(ls "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* 2>/dev/null) ]]; then
++			cp -fpP "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* "${targetdir}" || return 1
++			# we do not need the unversioned lib, as linking
++			# is done against the used gcc's private copy.
++			rm -f "${targetdir}"/lib${libname}.${LIBSUFFIX} || return 1
++		fi
++	}
++
++	finish_runtime_dir_elf() {
++		local sourcedir=$1; shift
++		local targetdir=$1; shift
++		local cleanup=$1; shift
++
++		if [[ ${cleanup} == clean ]]; then
++			if [[ ${targetdir} == *${EPREFIX}/lib ]]; then
++				echo "WARNING: not cleaning ${targetdir}" >&2
++			else
++				for f in "${targetdir}"/*; do
++					[[ ${f} == ${sourcedir} ]] && continue
++					[[ -e "${sourcedir}/${f##*/}" ]] && continue
++					rm -f "${f}"
++				done
++			fi
++		fi
++
++		# move symlinks first:
++		# because of file ordering, the real files may be
++		# moved before the symlinks, causing the symlinks
++		# going broken.
++		for f in "${sourcedir}"/*; do
++			[[ -e ${f} && -L ${f} ]] || continue
++			# use backups: hpux cannot overwrite sharedlibs in use: "Text file busy"
++			rm -f "${targetdir}"/${f##*/}*'~' >/dev/null 2>&1
++			mv -f --backup=numbered --suffix='~' "${f}" "${targetdir}"/${f##*/} || return 1
++			rm -f "${targetdir}"/${f##*/}*'~' >/dev/null 2>&1
++		done
++
++		for f in "${sourcedir}"/*; do
++			[[ -f "${f}" ]] || continue
++			# use backups: hpux cannot overwrite sharedlibs in use: "Text file busy"
++			rm -f "${targetdir}"/${f##*/}*'~' >/dev/null 2>&1
++			mv -f --backup=numbered --suffix='~' "${f}" "${targetdir}"/${f##*/} || return 1
++			rm -f "${targetdir}"/${f##*/}*'~' >/dev/null 2>&1
++		done
++		rmdir "${sourcedir}"
++	}
++
++	local GCC_PROFILES=$(LC_ALL="C" ls ${GCC_ENV_D}/${CHOST}-*)
++
++	local targetdirs=
++	for x in ${GCC_PROFILES} ; do
++		unset GCC_PATH LDPATH
++		eval $(
++			source "${x}"
++			echo "GCC_PATH='${GCC_PATH}'"
++			echo "LDPATH='${LDPATH%%:*}'"
++		)
++
++		pushd "${ROOT%/}${LDPATH}" > /dev/null || return 1
++
++		local donelibs= lib= gcclib=
++		for lib in lib*.${LIBSUFFIX}; do
++			gcclib=${lib#lib}
++			gcclib=${gcclib%.${LIBSUFFIX}}
++			gcclib=${gcclib%%.[0-9]*} # we need the unversioned libname.
++			[[ ${donelibs} != *" ${gcclib} "* ]] || continue
++			donelibs="${donelibs} ${gcclib} "
++
++			[[ ${targetdirs} == *":${dstlibgcc},clean:"* ]] ||
++				targetdirs="${targetdirs}:${dstlibgcc},clean:"
++
++			do_single_runtime \
++				"${ROOT%/}${LDPATH}" \
++				${gcclib} \
++				"${ROOT%/}${dstlibgcc}"/${temporary} \
++				"${dstlibgcc}" \
++			|| return 1
++		done
++
++		popd > /dev/null
++	done
++
++	local clean= targetdir=
++	local save_IFS=$IFS
++	IFS=:
++	for targetdir in ${targetdirs}; do
++		IFS=$save_IFS
++		[[ -n ${targetdir} ]] || continue
++
++		# eventually cleanup old files (not from $EPREFIX/lib)
++		clean=${targetdir##*,}
++
++		targetdir=${targetdir%,*}
++
++		finish_runtime_dir \
++			"${ROOT%/}${targetdir}"/${temporary} \
++			"${ROOT%/}${targetdir}" \
++			${clean} \
++		|| return 1
++	done
++	IFS=$save_IFS
++}
++
+ switch_profile() {
+ 	local OLD_CC_COMP OLD_CC_COMP_VERSION OLD_GCC_PATH OLD_GCC_VER
+ 	local GCC_PATH
+@@ -443,6 +683,7 @@ switch_profile() {
+ 		done
+ 
++		prefix_copy_gcc_libs
+ 		handle_split_usr
+ 		: $(( envd_changed += $? ))
+ 	fi
+ 	mv_if_diff "${envd}.tmp" "${envd}"

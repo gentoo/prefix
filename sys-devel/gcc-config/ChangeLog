@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gcc-config
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.227 2012/11/19 06:55:06 vapier Exp $
+
+*gcc-config-1.8-r00.1 (02 Jan 2013)
+
+  02 Jan 2013; Fabian Groffen <grobian@gentoo.org>
+  +files/gcc-config-1.8-copy-gcc-libs.patch, +gcc-config-1.8-r00.1.ebuild,
+  -gcc-config-1.8.ebuild:
+  interrevbump for critical fix regarding GCC's libs not being copied, breaking
+  at least Solaris
 
   29 Dec 2012; Fabian Groffen <grobian@gentoo.org> -files/1.4.0-multilib.patch,
   -files/gcc-config-1.4.1, -files/wrapper-1.4.8-prefix.patch,
