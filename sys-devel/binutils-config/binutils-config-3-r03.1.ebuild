@@ -1,13 +1,15 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/binutils-config-3-r3.ebuild,v 1.9 2012/07/29 18:36:13 armin76 Exp $
+
+EAPI=3
 
 inherit eutils toolchain-funcs prefix
 
 DESCRIPTION="Utility to change the binutils version being used - prefix version"
 HOMEPAGE="http://www.gentoo.org/"
-W_VER="0.3.1718"
-SRC_URI="http://dev.gentoo.org/~grobian/distfiles/toolchain-prefix-wrapper-${W_VER}.tar.bz2"
+W_VER="0.3.1723"
+SRC_URI="http://dev.gentoo.org/~grobian/distfiles/toolchain-prefix-wrapper-${W_VER}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -16,19 +18,16 @@ IUSE="sunld"
 
 RDEPEND="userland_GNU? ( !<sys-apps/findutils-4.2 )"
 
-S=${WORKDIR}
+S=${WORKDIR}/toolchain-prefix-wrapper-${W_VER}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	cp "${FILESDIR}"/${P} ./${PN} || die
 	eprefixify ${PN} || die "eprefixify failed."
 }
 
-src_compile() {
+src_configure() {
 	econf --with-macosx-version-min=${MACOSX_DEPLOYMENT_TARGET} \
 		$(use_with sunld native-ld)
-	emake || die "emake failed."
 }
 
 src_install() {
