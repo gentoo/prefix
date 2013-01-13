@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/portage
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
+
+*portage-2.2.01.21580 (13 Jan 2013)
+
+  13 Jan 2013; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.21580.ebuild,
+  -portage-2.2.01.21313.ebuild:
+  Version bump, matches portage-2.2.0_alpha151.
 
 *portage-2.2.01.21476 (26 Dec 2012)
 

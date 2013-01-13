@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id: portage-2.2.01.16270.ebuild 58665 2010-09-05 19:54:38Z grobian $
 
@@ -7,14 +7,14 @@
 EAPI=3
 inherit eutils multilib python
 
-RESTRICT="test"
-
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
-IUSE="build doc epydoc ipc linguas_pl selinux xattr prefix-chaining"
+IUSE="build doc epydoc +ipc linguas_pl pypy1_9 python2 python3 selinux xattr prefix-chaining"
+
+RESTRICT="test"
 
 # Import of the io module in python-2.6 raises ImportError for the
 # thread module if threading is disabled.
@@ -24,7 +24,6 @@ python_dep_ssl="python3? ( =dev-lang/python-3*[ssl] )
 	) ) )
 	pypy1_9? ( !python2? ( !python3? ( dev-python/pypy:1.9[bzip2,ssl] ) ) )
 	python2? ( !python3? ( || ( dev-lang/python:2.7[ssl] dev-lang/python:2.6[ssl,threads] ) ) )"
-python_dep_ssl=">=dev-lang/python-2.7[ssl] <dev-lang/python-3.0" # prefix override
 python_dep="${python_dep_ssl//\[ssl\]}"
 python_dep="${python_dep//,ssl}"
 python_dep="${python_dep//ssl,}"
@@ -84,7 +83,8 @@ TARBALL_PV="${PV}"
 SRC_URI="$(prefix_src_archives prefix-${PN}-${TARBALL_PV}.tar.bz2)
 	linguas_pl? ( $(prefix_src_archives ${PN}-man-pl-${PV_PL}.tar.bz2) )"
 
-#PATCHVER=$PV  # in prefix we don't do this
+PATCHVER=
+[[ $TARBALL_PV = $PV ]] || PATCHVER=$PV
 if [ -n "${PATCHVER}" ]; then
 	SRC_URI="${SRC_URI} mirror://gentoo/${PN}-${PATCHVER}.patch.bz2
 	$(prefix_src_archives ${PN}-${PATCHVER}.patch.bz2)"
@@ -103,12 +103,6 @@ current_python_has_xattr() {
 }
 
 pkg_setup() {
-	use prefix && return
-
-	# Bug #359731 - Die early if get_libdir fails.
-	[[ -z $(get_libdir) ]] && \
-		die "get_libdir returned an empty string"
-
 	if use python2 && use python3 ; then
 		ewarn "Both python2 and python3 USE flags are enabled, but only one"
 		ewarn "can be in the shebangs. Using python3."
@@ -125,8 +119,8 @@ pkg_setup() {
 		! compatible_python_is_selected ; then
 		ewarn "Attempting to select a compatible default python interpreter"
 		local x success=0
-		for x in /usr/bin/python2.* ; do
-			x=${x#/usr/bin/python2.}
+		for x in "${EPREFIX}"/usr/bin/python2.* ; do
+			x=${x#${EPREFIX}/usr/bin/python2.}
 			if [[ $x -ge 6 ]] 2>/dev/null ; then
 				eselect python set python2.$x
 				if compatible_python_is_selected ; then
@@ -161,6 +155,7 @@ src_prepare() {
 	fi
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
+	epatch "${FILESDIR}"/${PN}-2.2.01.20239-ebuildshell.patch
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
@@ -169,7 +164,71 @@ src_prepare() {
 			die "failed to patch AbstractEbuildProcess.py"
 	fi
 
-	epatch "${FILESDIR}"/${PN}-2.2.01.20239-ebuildshell.patch
+	if use xattr && use kernel_linux ; then
+		einfo "Adding FEATURES=xattr to make.globals ..."
+		echo -e '\nFEATURES="${FEATURES} xattr"' >> cnf/make.globals \
+			|| die "failed to append to make.globals"
+	fi
+
+	if use python3; then
+		einfo "Converting shebangs for python3..."
+		python_convert_shebangs -r 3 .
+	elif use python2; then
+		einfo "Converting shebangs for python2..."
+		python_convert_shebangs -r 2 .
+	elif use pypy1_9; then
+		einfo "Converting shebangs for pypy-c1.9..."
+		python_convert_shebangs -r 2.7-pypy-1.9 .
+	fi
+
+	# "native" Prefix still uses configure
+	if use !prefix && [[ -n ${EPREFIX} ]] ; then
+		einfo "Setting portage.const.EPREFIX ..."
+		sed -e "s|^\(SANDBOX_BINARY[[:space:]]*=[[:space:]]*\"\)\(/usr/bin/sandbox\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(FAKEROOT_BINARY[[:space:]]*=[[:space:]]*\"\)\(/usr/bin/fakeroot\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(BASH_BINARY[[:space:]]*=[[:space:]]*\"\)\(/bin/bash\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(MOVE_BINARY[[:space:]]*=[[:space:]]*\"\)\(/bin/mv\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(PRELINK_BINARY[[:space:]]*=[[:space:]]*\"\)\(/usr/sbin/prelink\"\)|\\1${EPREFIX}\\2|" \
+			-e "s|^\(EPREFIX[[:space:]]*=[[:space:]]*\"\).*|\\1${EPREFIX}\"|" \
+			-i pym/portage/const.py || \
+			die "Failed to patch portage.const.EPREFIX"
+
+		einfo "Prefixing shebangs ..."
+		find . -type f -print0 | \
+		while read -r -d $'\0' ; do
+			local shebang=$(head -n1 "$REPLY")
+			if [[ ${shebang} == "#!"* && ! ${shebang} == "#!${EPREFIX}/"* ]] ; then
+				sed -i -e "1s:.*:#!${EPREFIX}${shebang:2}:" "$REPLY" || \
+					die "sed failed"
+			fi
+		done
+
+		einfo "Adjusting make.globals ..."
+		sed -e 's|^SYNC=.*|SYNC="rsync://rsync.prefix.freens.org/gentoo-portage-prefix"|' \
+			-e "s|^\(PORTDIR=\)\(/usr/portage\)|\\1\"${EPREFIX}\\2\"|" \
+			-e "s|^\(PORTAGE_TMPDIR=\)\(/var/tmp\)|\\1\"${EPREFIX}\\2\"|" \
+			-i cnf/make.globals || die "sed failed"
+
+		einfo "Adding FEATURES=force-prefix to make.globals ..."
+		echo -e '\nFEATURES="${FEATURES} force-prefix"' >> cnf/make.globals \
+			|| die "failed to append to make.globals"
+	fi
+
+	if use !prefix ; then
+	echo -e '\nFEATURES="${FEATURES} preserve-libs"' >> cnf/make.globals \
+		|| die "failed to append to make.globals"
+
+	cd "${S}/cnf" || die
+	if [ -f "make.conf.${ARCH}".diff ]; then
+		patch make.conf "make.conf.${ARCH}".diff || \
+			die "Failed to patch make.conf.example"
+	else
+		eerror ""
+		eerror "Portage does not have an arch-specific configuration for this arch."
+		eerror "Please notify the arch maintainer about this issue. Using generic."
+		eerror ""
+	fi
+	fi
 }
 
 src_configure() {
@@ -196,37 +255,22 @@ src_configure() {
 			--with-extra-path="${extrapath}" \
 			|| die "econf failed"
 	else
-		# even though above options would be correct, just keep it clean for
-		# non-Prefix installs, relying on the autoconf defaults
-		econf || die "econf failed"
+		default
 	fi
 }
 
 src_compile() {
-	emake || die "emake failed"
+	if use prefix ; then
+		emake || die "emake failed"
+	fi
 
 	if use doc; then
-		cd "${S}"/doc
-		touch fragment/date
-		emake xhtml xhtml-nochunks || die "failed to make docs"
+		emake docbook || die
 	fi
 
 	if use epydoc; then
 		einfo "Generating api docs"
-		mkdir "${WORKDIR}"/api
-		local my_modules epydoc_opts=""
-		# A name collision between the portage.dbapi class and the
-		# module with the same name triggers an epydoc crash unless
-		# portage.dbapi is excluded from introspection.
-		ROOT=/ has_version '>=dev-python/epydoc-3_pre0' && \
-			epydoc_opts='--exclude-introspect portage\.dbapi'
-		my_modules="$(find "${S}/pym" -name "*.py" \
-			| sed -e 's:/__init__.py$::' -e 's:\.py$::' -e "s:^${S}/pym/::" \
-			 -e 's:/:.:g' | sort)" || die "error listing modules"
-		PYTHONPATH="${S}/pym:${PYTHONPATH}" epydoc -o "${WORKDIR}"/api \
-			-qqqqq --no-frames --show-imports $epydoc_opts \
-			--name "${PN}" --url "${HOMEPAGE}" \
-			${my_modules} || die "epydoc failed"
+		emake epydoc || die
 	fi
 }
 
@@ -247,36 +291,46 @@ src_install() {
 		rm "${ED}"${portage_base}/bin/ebuild-helpers/bsd/sed || die "Failed to remove sed wrapper"
 	fi
 
-	# This allows config file updates that are applied for package
-	# moves to take effect immediately.
-	echo 'CONFIG_PROTECT_MASK="/etc/portage"' > "$T"/50portage \
-		|| die "failed to create 50portage"
-	doenvd "$T"/50portage || die "doenvd 50portage failed"
-	rm "$T"/50portage
-
-	# Symlinks to directories cause up/downgrade issues and the use of these
-	# modules outside of portage is probably negligible.
-	for x in "${ED}${portage_base}/pym/"{cache,elog_modules} ; do
-		[ ! -L "${x}" ] && continue
-		die "symlink to directory will cause upgrade/downgrade issues: '${x}'"
-	done
-
 	exeinto ${portage_base}/pym/portage/tests
 	doexe  "${S}"/pym/portage/tests/runTests
+
+	use doc && dohtml -r "${S}"/doc/*
+	use epydoc && dohtml -r "${WORKDIR}"/api
+	dodir /etc/portage
+	keepdir /etc/portage
+
+	# Use dodoc for compression, since the Makefile doesn't do that.
+	dodoc "${S}"/{ChangeLog,NEWS,RELEASE-NOTES} || die
 
 	if use linguas_pl; then
 		doman -i18n=pl "${S_PL}"/man/pl/*.[0-9] || die
 		doman -i18n=pl_PL.UTF-8 "${S_PL}"/man/pl_PL.UTF-8/*.[0-9] || die
 	fi
 
-	dodoc "${S}"/{ChangeLog,NEWS,RELEASE-NOTES}
-	use doc && dohtml -r "${S}"/doc/*
-	use epydoc && dohtml -r "${WORKDIR}"/api
-	dodir /etc/portage
-	keepdir /etc/portage
+	# Set PYTHONPATH for portage API consumers. This way we don't have
+	# to rely on patched python having the correct path, since it has
+	# been known to incorrectly add /usr/libx32/portage/pym to sys.path.
+	echo "PYTHONPATH=\"${EPREFIX}/usr/lib/portage/pym\"" > \
+		"${T}/05portage" || die
+	doenvd "${T}/05portage" || die
 }
 
 pkg_preinst() {
+	if [[ $ROOT == / ]] ; then
+		# Run some minimal tests as a sanity check.
+		local test_runner=$(find "$ED" -name runTests)
+		if [[ -n $test_runner && -x $test_runner ]] ; then
+			einfo "Running preinst sanity tests..."
+			"$test_runner" || die "preinst sanity tests failed"
+		fi
+	fi
+
+	if use xattr && ! current_python_has_xattr ; then
+		ewarn "For optimal performance in xattr handling, install"
+		ewarn "dev-python/pyxattr, or install >=dev-lang/python-3.3 and"
+		ewarn "enable USE=python3 for $CATEGORY/$PN."
+	fi
+
 	if ! use build && ! has_version dev-python/pycrypto && \
 		! has_version '>=dev-lang/python-2.6[ssl]' ; then
 		ewarn "If you are an ebuild developer and you plan to commit ebuilds"
@@ -293,7 +347,7 @@ pkg_preinst() {
 pkg_postinst() {
 	# Compile all source files recursively. Any orphans
 	# will be identified and removed in postrm.
-	python_mod_optimize /usr/$(get_libdir)/portage/pym
+	python_mod_optimize /usr/lib/portage/pym
 
 	pushd "${EROOT}var/db/pkg" > /dev/null
 	local didwork=
@@ -343,16 +397,8 @@ pkg_postinst() {
 		done
 		popd > /dev/null
 	fi
-
-	if [ x$MINOR_UPGRADE = x0 ] ; then
-		elog "If you're upgrading from a pre-2.2 version of portage you might"
-		elog "want to remerge world (emerge -e world) to take full advantage"
-		elog "of some of the new features in 2.2."
-		elog "This is not required however for portage to function properly."
-		elog
-	fi
 }
 
 pkg_postrm() {
-	python_mod_cleanup /usr/$(get_libdir)/portage/pym
+	python_mod_cleanup /usr/lib/portage/pym
 }
