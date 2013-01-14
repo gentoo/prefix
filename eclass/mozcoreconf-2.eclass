@@ -1,11 +1,11 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.23 2012/05/02 18:31:42 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.25 2012/12/10 16:47:55 polynomial-c Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
 
-inherit multilib flag-o-matic python
+inherit multilib flag-o-matic python versionator
 
 IUSE="${IUSE} custom-cflags custom-optimization"
 
@@ -61,6 +61,23 @@ mozconfig_use_extension() {
 	mozconfig_annotate "${minus:-+}$1" --enable-extensions=${minus}${2}
 }
 
+mozversion_is_new_enough() {
+	case ${PN} in
+		firefox|thunderbird)
+			if [[ $(get_version_component_range 1) -ge 17 ]] ; then
+				return 0
+			fi
+		;;
+		seamonkey)
+			if [[ $(get_version_component_range 1) -eq 2 ]] && [[ $(get_version_component_range 2) -ge 14 ]] ; then
+				return 0
+			fi
+		;;
+	esac
+
+	return 1
+}
+
 moz_pkgsetup() {
 	# Ensure we use C locale when building
 	export LANG="C"
@@ -76,6 +93,12 @@ moz_pkgsetup() {
 	export ALDFLAGS=${LDFLAGS}
 
 	python_set_active_version 2
+
+	if [[ $(gcc-major-version) -eq 3 ]]; then
+		ewarn "Unsupported compiler detected, DO NOT file bugs for"
+		ewarn "outdated compilers. Bugs opened with gcc-3 will be closed"
+		ewarn "invalid."
+	fi
 }
 
 mozconfig_init() {
@@ -135,6 +158,8 @@ mozconfig_init() {
 			mozconfig_annotate "from CFLAGS" --enable-optimize=-O0
 		elif [[ ${ARCH} == ppc ]] && has_version '>=sys-libs/glibc-2.8'; then
 			mozconfig_annotate "more than -O1 segfaults on ppc with glibc-2.8" --enable-optimize=-O1
+		elif is-flag -O3; then
+			mozconfig_annotate "from CFLAGS" --enable-optimize=-O3
 		elif is-flag -O1; then
 			mozconfig_annotate "from CFLAGS" --enable-optimize=-O1
 		elif is-flag -Os; then
@@ -170,35 +195,7 @@ mozconfig_init() {
 	ppc64)
 		append-flags -fPIC -mminimal-toc
 		;;
-
-	ppc)
-		# Fix to avoid gcc-3.3.x micompilation issues.
-		if [[ $(gcc-major-version).$(gcc-minor-version) == 3.3 ]]; then
-			append-flags -fno-strict-aliasing
-		fi
-		;;
-
-	x86)
-		if [[ $(gcc-major-version) -eq 3 ]]; then
-			# gcc-3 prior to 3.2.3 doesn't work well for pentium4
-			# see bug 25332
-			if [[ $(gcc-minor-version) -lt 2 ||
-				( $(gcc-minor-version) -eq 2 && $(gcc-micro-version) -lt 3 ) ]]
-			then
-				replace-flags -march=pentium4 -march=pentium3
-				filter-flags -msse2
-			fi
-		fi
-		;;
 	esac
-
-	if [[ $(gcc-major-version) -eq 3 ]]; then
-		# Enable us to use flash, etc plugins compiled with gcc-2.95.3
-		mozconfig_annotate "building with >=gcc-3" --enable-old-abi-compat-wrappers
-
-		# Needed to build without warnings on gcc-3
-		CXXFLAGS="${CXXFLAGS} -Wno-deprecated"
-	fi
 
 	# Go a little faster; use less RAM
 	append-flags "$MAKEEDIT_FLAGS"
@@ -213,26 +210,30 @@ mozconfig_init() {
 		--with-system-jpeg \
 		--with-system-zlib \
 		--enable-pango \
-		--enable-svg \
 		--enable-system-cairo
-		# Requires libpng with apng support
-		#--with-system-png \
+		if ! $(mozversion_is_new_enough) ; then
+			mozconfig annotate system-libs --enable-svg
+		fi
 
 	mozconfig_annotate disable_update_strip \
-		--disable-installer \
 		--disable-pedantic \
 		--disable-updater \
 		--disable-strip \
-		--disable-strip-libs \
 		--disable-install-strip
-
-
+		if ! $(mozversion_is_new_enough) ; then
+			mozconfig_annotate disable_update_strip \
+				--disable-installer \
+				--disable-strip-libs
+		fi
 
 	if [[ ${PN} != seamonkey ]]; then
 		mozconfig_annotate basic_profile \
-			--enable-single-profile \
-			--disable-profilesharing \
 			--disable-profilelocking
+			if ! $(mozversion_is_new_enough) ; then
+				mozconfig_annotate basic_profile \
+					--enable-single-profile \
+					--disable-profilesharing
+			fi
 	fi
 
 	# Here is a strange one...
@@ -278,3 +279,4 @@ mozconfig_final() {
 	sed -i '/^ac_add_options --enable-extensions/d' .mozconfig
 	echo "ac_add_options --enable-extensions=${exts// /,}" >> .mozconfig
 }
+
