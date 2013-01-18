@@ -610,17 +610,17 @@ bootstrap_gnu() {
 
 	local myconf=""
 	if [[ ${PN} == "grep" ]] ; then
-		# Solaris, AIX and OSX don't like it when --disable-nls is set,
+		# Solaris and OSX don't like it when --disable-nls is set,
 		# so just don't set it at all.
 		# Solaris 11 has a messed up prce installation.  We don't need
 		# it anyway, so just disable it
 		myconf="${myconf} --disable-perl-regexp"
 		# Except interix really needs it for grep.
 		[[ $CHOST == *interix* ]] && myconf="${myconf} --disable-nls"
-	else
-		# AIX doesn't like --disable-nls in general
-		[[ $CHOST == *-aix* ]] || myconf="${myconf} --disable-nls"
 	fi
+
+	# AIX doesn't like --enable-nls in general during bootstrap
+	[[ $CHOST == *-aix* ]] && myconf="${myconf} --disable-nls"
 
 	# NetBSD has strange openssl headers, which make wget fail.
 	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
