@@ -16,7 +16,7 @@ einfo() { echo "* $*"; }
 ## Functions Start Here
 
 econf() {
-	./configure \
+	${CONFIG_SHELL} ./configure \
 		--host=${CHOST} \
 		--prefix="${ROOT}"/usr \
 		--mandir="${ROOT}"/usr/share/man \
@@ -539,7 +539,7 @@ bootstrap_gcc() {
 	mkdir -p "${S}"/build
 	cd "${S}"/build
 
-	${S}/gcc-${GCC_PV}/configure \
+	${CONFIG_SHELL} ${S}/gcc-${GCC_PV}/configure \
 		--prefix="${ROOT}"/usr \
 		--mandir="${ROOT}"/usr/share/man \
 		--infodir="${ROOT}"/usr/share/info \
@@ -797,7 +797,7 @@ bootstrap_zlib_core() {
 	[[ ${PV} == 1.2.5 ]] && MAKEOPTS=
 
 	einfo "Compiling ${A%-*}"
-	CHOST= ./configure --prefix="${ROOT}"/usr || return 1
+	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/usr || return 1
 	$MAKE ${MAKEOPTS} || return 1
 
 	einfo "Installing ${A%-*}"
@@ -2057,6 +2057,11 @@ case ${CHOST} in
 	*-sgi-irix*)
 		MAKE=gmake
 	;;
+	*-aix*)
+		MAKE=make
+		# We do run in bash here, no? It is ways faster than /bin/sh.
+		: ${CONFIG_SHELL:=${BASH}}
+		;;
 	*)
 		MAKE=make
 	;;
@@ -2129,7 +2134,7 @@ GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 
-export MAKE
+export MAKE CONFIG_SHELL
 
 
 einfo "Bootstrapping Gentoo prefixed portage installation using"
