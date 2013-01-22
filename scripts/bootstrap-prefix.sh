@@ -679,6 +679,9 @@ bootstrap_gnu() {
 bootstrap_python() {
 	PV=2.7.3
 	A=python-${PV}-patched.tar.bz2
+
+	[[ ${CHOST} == *-aix* ]] && A=Python-${PV}.tar.bz2 # patched one breaks
+
 	einfo "Bootstrapping ${A%-*}"
 
 	# don't really want to put this on the mirror, since they are
