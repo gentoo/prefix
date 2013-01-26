@@ -117,7 +117,7 @@ enewuser() {
 	fi
 
 	# in Gentoo Prefix, we may be unprivileged, such that we can't handle this
-	rootuid=$(python -c 'from portage.const import rootuid; print rootuid')
+	rootuid=$(python -c 'from portage.const import rootuid; print(rootuid)')
 	if [[ ${rootuid} != 0 ]] ; then
 		ewarn "'enewuser()'  disabled in Gentoo Prefix with non-root user (by design)"
 		ewarn "    User: '$euser' not created"
@@ -285,7 +285,7 @@ enewgroup() {
 	fi
 
 	# in Gentoo Prefix, we may be unprivileged, such that we can't handle this
-	rootuid=$(python -c 'from portage.const import rootuid; print rootuid')
+	rootuid=$(python -c 'from portage.const import rootuid; print(rootuid)')
 	if [[ ${rootuid} != 0 ]] ; then
 		ewarn "'enewgroup()' disabled in Gentoo Prefix with non-root user (by design)"
 		ewarn "    Group: '$egroup' not created"
