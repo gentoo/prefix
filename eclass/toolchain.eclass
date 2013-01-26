@@ -563,7 +563,7 @@ toolchain_pkg_setup() {
 	fi
 
 	# yuck, but how else to do it portable?
-	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
+	local realEPREFIX=$(python -c 'import os; print(os.path.realpath("'"${EPREFIX}"'"))')
 	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]] ; then
 		ewarn "Your \${EPREFIX} contains one or more symlinks.  GCC has a"
 		ewarn "bug which prevents it from working properly when there are"
@@ -1071,7 +1071,7 @@ gcc_do_configure() {
 
 	# reset EPREFIX to its realpath equivalent, as Portage resets EPREFIX
 	# between phases
-	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
+	local realEPREFIX=$(python -c 'import os; print(os.path.realpath("'"${EPREFIX}"'"))')
 	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]] ; then
 		export EPREFIX=${realEPREFIX}
 	fi
@@ -1542,7 +1542,7 @@ toolchain_src_install() {
 	done
 	# Do the 'make install' from the build directory
 	cd "${WORKDIR}"/build
-	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
+	local realEPREFIX=$(python -c 'import os; print(os.path.realpath("'"${EPREFIX}"'"))')
 	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${realEPREFIX} != ${EPREFIX} ]] ; then
 		# compensate the changed prefix
 		S=${WORKDIR}/build \
