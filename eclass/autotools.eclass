@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.149 2012/09/20 18:04:59 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.150 2013/01/05 02:27:16 zmedico Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -157,7 +157,13 @@ eautoreconf() {
 		for x in $(autotools_check_macro_val AC_CONFIG_SUBDIRS) ; do
 			if [[ -d ${x} ]] ; then
 				pushd "${x}" >/dev/null
-				AT_NOELIBTOOLIZE="yes" multijob_child_init eautoreconf || die
+				if [[ -z ${PAST_TOPLEVEL_EAUTORECONF} ]] ; then
+					PAST_TOPLEVEL_EAUTORECONF="yes" AT_NOELIBTOOLIZE="yes" \
+						multijob_child_init eautoreconf || die
+				else
+					# Avoid unsafe nested multijob_finish_one for bug #426512.
+					AT_NOELIBTOOLIZE="yes" eautoreconf || die
+				fi
 				popd >/dev/null
 			fi
 		done

@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.119 2012/09/28 15:07:30 axs Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.120 2012/12/29 05:08:54 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -385,7 +385,7 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 		i?86-pc-interix*)         echo x86-interix;;
 		i?86-pc-winnt*)           echo x86-winnt;;
 
-		aarch64*)	ninj aarch64 arm;;
+		aarch64*)	ninj arm64 arm;;
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
 		avr*)		ninj avr32 avr;;
