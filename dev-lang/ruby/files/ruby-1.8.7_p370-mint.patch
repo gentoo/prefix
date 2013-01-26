@@ -1,0 +1,14 @@
+http://bugs.ruby-lang.org/issues/7652
+https://bugs.gentoo.org/show_bug.cgi?id=449976
+
+--- configure.in
++++ configure.in
+@@ -1175,7 +1175,7 @@
+     openstep*)	CCDLFLAGS="$CCDLFLAGS -fno-common";;
+     rhapsody*)	CCDLFLAGS="$CCDLFLAGS -fno-common";;
+     darwin*)	CCDLFLAGS="$CCDLFLAGS -fno-common";;
+-    human*|bsdi*|beos*|cygwin*|mingw*|aix*|interix*) ;;
++    human*|bsdi*|beos*|cygwin*|mingw*|aix*|interix*|mint*) ;;
+     *) CCDLFLAGS="$CCDLFLAGS -fPIC";;
+     esac
+   else

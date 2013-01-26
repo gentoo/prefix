@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p357.ebuild,v 1.6 2012/01/08 15:36:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p371.ebuild,v 1.1 2013/01/06 14:16:19 graaff Exp $
 
 EAPI=2
 
@@ -30,7 +30,7 @@ SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2
 		 http://dev.gentoo.org/~flameeyes/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
 
 LICENSE="|| ( Ruby GPL-2 )"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="+berkdb debug doc examples +gdbm ipv6 rubytests socks5 ssl threads tk xemacs ncurses +readline libedit"
 
 RDEPEND="
@@ -57,6 +57,8 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.8.7_p249-pthread-linking.patch"
 	epatch "${FILESDIR}/${PN}-1.8.7-darwin9-getsetcontext.patch"
 	epatch "${FILESDIR}/${PN}-1.8.7-glibc-2.14-fclose-behaviour.patch"
+	epatch "${FILESDIR}/${PN}-1.8.7_p370-mint.patch"
+	epatch "${FILESDIR}/${PN}-1.8.7_p370-mint-sha2.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \

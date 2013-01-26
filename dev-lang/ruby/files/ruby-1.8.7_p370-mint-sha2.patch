@@ -1,0 +1,123 @@
+https://bugs.gentoo.org/show_bug.cgi?id=449976
+
+--- ext/digest/sha2/sha2.c
++++ ext/digest/sha2/sha2.c
+@@ -176,8 +176,8 @@
+  * only.
+  */
+ void SHA512_Last(SHA512_CTX*);
+-void SHA256_Transform(SHA256_CTX*, const sha2_word32*);
+-void SHA512_Transform(SHA512_CTX*, const sha2_word64*);
++void _SHA256_Transform(SHA256_CTX*, const sha2_word32*);
++void _SHA512_Transform(SHA512_CTX*, const sha2_word64*);
+ 
+ 
+ /*** SHA-XYZ INITIAL HASH VALUES AND CONSTANTS ************************/
+@@ -329,7 +329,7 @@
+ 	(h) = T1 + Sigma0_256(a) + Maj((a), (b), (c)); \
+ 	j++
+ 
+-void SHA256_Transform(SHA256_CTX* context, const sha2_word32* data) {
++void _SHA256_Transform(SHA256_CTX* context, const sha2_word32* data) {
+ 	sha2_word32	a, b, c, d, e, f, g, h, s0, s1;
+ 	sha2_word32	T1, *W256;
+ 	int		j;
+@@ -387,7 +387,7 @@
+ 
+ #else /* SHA2_UNROLL_TRANSFORM */
+ 
+-void SHA256_Transform(SHA256_CTX* context, const sha2_word32* data) {
++void _SHA256_Transform(SHA256_CTX* context, const sha2_word32* data) {
+ 	sha2_word32	a, b, c, d, e, f, g, h, s0, s1;
+ 	sha2_word32	T1, T2, *W256;
+ 	int		j;
+@@ -489,7 +489,7 @@
+ 			context->bitcount += freespace << 3;
+ 			len -= freespace;
+ 			data += freespace;
+-			SHA256_Transform(context, (sha2_word32*)context->buffer);
++			_SHA256_Transform(context, (sha2_word32*)context->buffer);
+ 		} else {
+ 			/* The buffer is not yet full */
+ 			MEMCPY_BCOPY(&context->buffer[usedspace], data, len);
+@@ -501,7 +501,7 @@
+ 	}
+ 	while (len >= SHA256_BLOCK_LENGTH) {
+ 		/* Process as many complete blocks as we can */
+-		SHA256_Transform(context, (const sha2_word32*)data);
++		_SHA256_Transform(context, (const sha2_word32*)data);
+ 		context->bitcount += SHA256_BLOCK_LENGTH << 3;
+ 		len -= SHA256_BLOCK_LENGTH;
+ 		data += SHA256_BLOCK_LENGTH;
+@@ -541,7 +541,7 @@
+ 					MEMSET_BZERO(&context->buffer[usedspace], SHA256_BLOCK_LENGTH - usedspace);
+ 				}
+ 				/* Do second-to-last transform: */
+-				SHA256_Transform(context, (sha2_word32*)context->buffer);
++				_SHA256_Transform(context, (sha2_word32*)context->buffer);
+ 
+ 				/* And set-up for the last transform: */
+ 				MEMSET_BZERO(context->buffer, SHA256_SHORT_BLOCK_LENGTH);
+@@ -557,7 +557,7 @@
+ 		*(sha2_word64*)&context->buffer[SHA256_SHORT_BLOCK_LENGTH] = context->bitcount;
+ 
+ 		/* Final transform: */
+-		SHA256_Transform(context, (sha2_word32*)context->buffer);
++		_SHA256_Transform(context, (sha2_word32*)context->buffer);
+ 
+ #ifndef WORDS_BIGENDIAN
+ 		{
+@@ -624,7 +624,7 @@
+ 	(h) = T1 + Sigma0_512(a) + Maj((a), (b), (c)); \
+ 	j++
+ 
+-void SHA512_Transform(SHA512_CTX* context, const sha2_word64* data) {
++void _SHA512_Transform(SHA512_CTX* context, const sha2_word64* data) {
+ 	sha2_word64	a, b, c, d, e, f, g, h, s0, s1;
+ 	sha2_word64	T1, *W512 = (sha2_word64*)context->buffer;
+ 	int		j;
+@@ -679,7 +679,7 @@
+ 
+ #else /* SHA2_UNROLL_TRANSFORM */
+ 
+-void SHA512_Transform(SHA512_CTX* context, const sha2_word64* data) {
++void _SHA512_Transform(SHA512_CTX* context, const sha2_word64* data) {
+ 	sha2_word64	a, b, c, d, e, f, g, h, s0, s1;
+ 	sha2_word64	T1, T2, *W512 = (sha2_word64*)context->buffer;
+ 	int		j;
+@@ -779,7 +779,7 @@
+ 			ADDINC128(context->bitcount, freespace << 3);
+ 			len -= freespace;
+ 			data += freespace;
+-			SHA512_Transform(context, (const sha2_word64*)context->buffer);
++			_SHA512_Transform(context, (const sha2_word64*)context->buffer);
+ 		} else {
+ 			/* The buffer is not yet full */
+ 			MEMCPY_BCOPY(&context->buffer[usedspace], data, len);
+@@ -791,7 +791,7 @@
+ 	}
+ 	while (len >= SHA512_BLOCK_LENGTH) {
+ 		/* Process as many complete blocks as we can */
+-		SHA512_Transform(context, (const sha2_word64*)data);
++		_SHA512_Transform(context, (const sha2_word64*)data);
+ 		ADDINC128(context->bitcount, SHA512_BLOCK_LENGTH << 3);
+ 		len -= SHA512_BLOCK_LENGTH;
+ 		data += SHA512_BLOCK_LENGTH;
+@@ -826,7 +826,7 @@
+ 				MEMSET_BZERO(&context->buffer[usedspace], SHA512_BLOCK_LENGTH - usedspace);
+ 			}
+ 			/* Do second-to-last transform: */
+-			SHA512_Transform(context, (const sha2_word64*)context->buffer);
++			_SHA512_Transform(context, (const sha2_word64*)context->buffer);
+ 
+ 			/* And set-up for the last transform: */
+ 			MEMSET_BZERO(context->buffer, SHA512_BLOCK_LENGTH - 2);
+@@ -843,7 +843,7 @@
+ 	*(sha2_word64*)&context->buffer[SHA512_SHORT_BLOCK_LENGTH+8] = context->bitcount[0];
+ 
+ 	/* Final transform: */
+-	SHA512_Transform(context, (const sha2_word64*)context->buffer);
++	_SHA512_Transform(context, (const sha2_word64*)context->buffer);
+ }
+ 
+ void SHA512_Finish(SHA512_CTX* context, sha2_byte digest[]) {
