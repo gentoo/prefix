@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/apache
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.202 2012/10/20 16:36:13 armin76 Exp $
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.203 2012/11/27 18:46:57 pacho Exp $
+
+  27 Nov 2012; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Drop apache herd as discussed in http://www.gossamer-
+  threads.com/lists/gentoo/dev/262834
 
   20 Oct 2012; Raúl Porcel <armin76@gentoo.org> apache-2.2.23.ebuild:
   alpha/ia64/s390/sh/sparc stable wrt #432284

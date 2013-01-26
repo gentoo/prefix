@@ -1,9 +1,9 @@
 --- conf/httpd.conf
 +++ conf/httpd.conf
 @@ -36,7 +36,7 @@
- # ServerRoot at a non-local disk, be sure to point the LockFile directive
  # at a local disk.  If you wish to share the same ServerRoot for multiple
  # httpd daemons, you will need to change at least LockFile and PidFile.
+ # Comment: The LockFile directive has been replaced by the Mutex directive
 -ServerRoot "/usr/lib/apache2"
 +ServerRoot "@GENTOO_PORTAGE_EPREFIX@/usr/lib/apache2"
  
@@ -256,9 +256,9 @@
 @@ -1,4 +1,4 @@
 -#!/sbin/runscript
 +#!@GENTOO_PORTAGE_EPREFIX@/sbin/runscript
- # Copyright 1999-2007 Gentoo Foundation
+ # Copyright 1999-2011 Gentoo Foundation
  # Distributed under the terms of the GNU General Public License v2
-
+ 
 @@ -20,13 +20,13 @@
 	PIDFILE="${PIDFILE:-@GENTOO_PORTAGE_EPREFIX@/var/run/apache2.pid}"
 	TIMEOUT=${TIMEOUT:-10}
@@ -284,15 +284,6 @@
  }
 
  checkconfig() {
-@@ -56,7 +56,7 @@
- start() {
-	checkconfig || return 1
-
--	[ -f /var/log/apache2/ssl_scache ] && rm /var/log/apache2/ssl_scache
-+	[ -f @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/ssl_scache ] && rm @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/ssl_scache
-
-	ebegin "Starting apache2"
-	${APACHE2} ${APACHE2_OPTS} -k start
 --- conf/vhosts.d/00_default_ssl_vhost.conf
 +++ conf/vhosts.d/00_default_ssl_vhost.conf
 @@ -10,11 +10,11 @@
@@ -490,7 +481,7 @@
  # vim: ts=4 filetype=apache
 --- conf/modules.d/00_mpm.conf
 +++ conf/modules.d/00_mpm.conf
-@@ -4,10 +4,10 @@
+@@ -4,7 +4,7 @@
  # identification number when it starts.
  #
  # DO NOT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING
@@ -498,11 +489,7 @@
 +PidFile @GENTOO_PORTAGE_EPREFIX@/var/run/apache2.pid
 
  # The accept serialization lock file MUST BE STORED ON A LOCAL DISK.
--#LockFile /var/run/apache2.lock
-+#LockFile @GENTOO_PORTAGE_EPREFIX@/var/run/apache2.lock
-
- # Only one of the below sections will be relevant on your
- # installed httpd.  Use "/usr/sbin/apache2 -l" to find out the
+ # Mutex file:/var/run/apache_mpm_mutex
 --- conf/modules.d/40_mod_ssl.conf
 +++ conf/modules.d/40_mod_ssl.conf
 @@ -51,7 +51,7 @@

@@ -119,8 +119,7 @@ HOMEPAGE="http://httpd.apache.org/"
 # some helper scripts are Apache-1.1, thus both are here
 LICENSE="Apache-2.0 Apache-1.1"
 SLOT="2"
-# entirely new, based on eclass that probably needs fixin...
-KEYWORDS="~amd64-linux ~x64-macos ~x86-macos ~sparc64-solaris ~x64-solaris"
+KEYWORDS="~amd64-linux ~x64-macos ~x86-macos ~m68k-mint ~sparc64-solaris ~x64-solaris"
 IUSE=""
 
 DEPEND="${DEPEND}
