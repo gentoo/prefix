@@ -21,12 +21,8 @@ db_fix_so() {
 	cd "${LIB}"
 
 	# first clean up old symlinks
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*so' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*so.[23]' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*.dylib' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*.[23].dylib' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*.sl' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*.[23].sl' -exec rm \{} \;
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname)" -exec rm \{} \;
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname "[23]")" -exec rm \{} \;
 	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
 
 	# now rebuild all the correct ones
