@@ -89,7 +89,7 @@ db_includedir() {
 db_libname() {
 	if [ $# -eq 0 ]; then
 		VER="$(db_findver sys-libs/db)" || return 1
-		if [ -e "${EPREFIX}/usr/$(get_libdir)/libdb-${VER}.so" ]; then
+		if [ -e "${EPREFIX}/usr/$(get_libdir)/libdb-${VER}$(get_libname)" ]; then
 			echo -n "db-${VER}"
 			return 0
 		else
@@ -101,7 +101,7 @@ db_libname() {
 		for x in $@
 		do
 			if VER=$(db_findver "=sys-libs/db-${x}*"); then
-				if [ -e "${EPREFIX}/usr/$(get_libdir)/libdb-${VER}.so" ]; then
+				if [ -e "${EPREFIX}/usr/$(get_libdir)/libdb-${VER}$(get_libname)" ]; then
 					echo -n "db-${VER}"
 					return 0
 				fi
