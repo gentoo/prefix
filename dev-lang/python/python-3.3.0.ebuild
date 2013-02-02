@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.3.0.ebuild,v 1.3 2012/10/02 02:26:45 floppym Exp $
 
@@ -162,6 +162,7 @@ src_configure() {
 		dbmliborder+="${dbmliborder:+:}gdbm"
 	fi
 
+	# pymalloc #452720
 	OPT="" econf \
 		--with-fpectl \
 		--enable-shared \
@@ -174,7 +175,8 @@ src_configure() {
 		--with-libc="" \
 		--enable-loadable-sqlite-extensions \
 		--with-system-expat \
-		--with-system-ffi
+		--with-system-ffi \
+		--without-pymalloc
 }
 
 src_compile() {
