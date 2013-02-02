@@ -296,10 +296,7 @@ diff --git a/gcc-config b/gcc-config
  	   [[ ! -f ${GCC_ENV_D}/${CC_COMP} ]]
  	then
  		eerror "${argv0}: Profile does not exist or invalid setting for ${GCC_ENV_D}/${CC_COMP}" 1>&2
-diff --git a/wrapper.c b/wrapper.c.in
-rename from wrapper.c
-rename to wrapper.c.in
---- a/wrapper.c
+--- a/wrapper.c.in
 +++ b/wrapper.c.in
 @@ -21,8 +21,8 @@
  #include <sys/stat.h>

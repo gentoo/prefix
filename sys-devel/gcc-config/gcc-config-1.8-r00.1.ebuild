@@ -20,6 +20,7 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 IUSE=""
 
 src_prepare() {
+	mv wrapper.c wrapper.c.in || die
 	epatch "${FILESDIR}"/${PN}-prefix-${PV}-r${PREFIXREV}.patch
 	epatch "${FILESDIR}"/${P}-copy-gcc-libs.patch
 }
