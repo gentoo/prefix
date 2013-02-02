@@ -1137,6 +1137,12 @@ bootstrap_stage3() {
 				"=sys-devel/gcc-4.2*"
 			)
 			;;
+		*-*-aix*)
+			pkgs=(
+				${pkgs[@]}
+				"=sys-devel/gcc-4.2*"
+			)
+			;;
 		*)
 			pkgs=(
 				${pkgs[@]}
