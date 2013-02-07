@@ -1,6 +1,59 @@
 # ChangeLog for dev-libs/cyrus-sasl
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.246 2012/07/11 18:17:25 eras Exp $
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.260 2013/01/04 08:12:15 eras Exp $
+
+  04 Jan 2013; Eray Aslan <eras@gentoo.org> -cyrus-sasl-2.1.25-r1.ebuild,
+  -cyrus-sasl-2.1.25-r2.ebuild, -cyrus-sasl-2.1.25.ebuild:
+  Drop old
+
+  01 Jan 2013; Raúl Porcel <armin76@gentoo.org> cyrus-sasl-2.1.25-r3.ebuild:
+  s390/sh stable wrt #445208
+
+  30 Dec 2012; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r3.ebuild:
+  Stable for alpha, wrt bug #445208
+
+  29 Dec 2012; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r3.ebuild:
+  Stable for sparc, wrt bug #445208
+
+  21 Dec 2012; Eray Aslan <eras@gentoo.org> cyrus-sasl-2.1.23-r6.ebuild,
+  cyrus-sasl-2.1.25-r1.ebuild, cyrus-sasl-2.1.25-r2.ebuild,
+  cyrus-sasl-2.1.25-r3.ebuild, cyrus-sasl-2.1.25-r4.ebuild,
+  cyrus-sasl-2.1.25.ebuild:
+  Fix license - bug #447272
+
+  18 Dec 2012; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r3.ebuild:
+  Stable for ia64, wrt bug #445208
+
+  09 Dec 2012; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r3.ebuild:
+  Stable for ppc64, wrt bug #445208
+
+  06 Dec 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  cyrus-sasl-2.1.25-r3.ebuild:
+  x86 stable wrt bug #445208
+
+*cyrus-sasl-2.1.25-r4 (05 Dec 2012)
+
+  05 Dec 2012; Eray Aslan <eras@gentoo.org> +cyrus-sasl-2.1.25-r4.ebuild,
+  +files/cyrus-sasl-2.1.25-service_keytabs.patch:
+  Service keytabs should work with mit-krb5 now - bug #445932
+
+  01 Dec 2012; Anthony G. Basile <blueness@gentoo.org>
+  cyrus-sasl-2.1.25-r3.ebuild:
+  stable arm, bug #445208
+
+  30 Nov 2012; <ago@gentoo.org> cyrus-sasl-2.1.25-r3.ebuild:
+  Stable for amd64, wrt bug #445208
+
+  29 Nov 2012; Brent Baude <ranger@gentoo.org> cyrus-sasl-2.1.25-r3.ebuild:
+  Marking cyrus-sasl-2.1.25-r3 ppc for bug 445208
+
+  29 Nov 2012; Jeroen Roovers <jer@gentoo.org> cyrus-sasl-2.1.25-r3.ebuild:
+  Stable for HPPA (bug #445208).
+
+  05 Nov 2012; Eray Aslan <eras@gentoo.org> cyrus-sasl-2.1.23-r6.ebuild,
+  cyrus-sasl-2.1.25-r1.ebuild, cyrus-sasl-2.1.25-r2.ebuild,
+  cyrus-sasl-2.1.25-r3.ebuild, cyrus-sasl-2.1.25.ebuild:
+  License as-is -> BSD-4
 
 *cyrus-sasl-2.1.25-r3 (11 Jul 2012)
 

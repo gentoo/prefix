@@ -1,93 +1,67 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r6.ebuild,v 1.10 2012/12/21 13:27:37 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.25-r4.ebuild,v 1.2 2012/12/21 13:27:37 eras Exp $
 
-EAPI=2
-
+EAPI=4
 inherit eutils flag-o-matic multilib autotools pam java-pkg-opt-2 db-use
 
-ntlm_patch="${P}-ntlm_impl-spnego.patch.gz"
 SASLAUTHD_CONF_VER="2.1.21"
 
 DESCRIPTION="The Cyrus SASL (Simple Authentication and Security Layer)."
-HOMEPAGE="http://asg.web.cmu.edu/sasl/"
-SRC_URI="ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/${P}.tar.gz
-	ntlm_unsupported_patch? ( mirror://gentoo/${ntlm_patch} )"
+HOMEPAGE="http://cyrusimap.web.cmu.edu/"
+SRC_URI="ftp://ftp.cyrusimap.org/cyrus-sasl/${P}.tar.gz"
 
 LICENSE="BSD-with-attribution"
 SLOT="2"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
-IUSE="authdaemond berkdb crypt gdbm kerberos openldap mysql ntlm_unsupported_patch pam postgres sample srp ssl urandom"
+IUSE="authdaemond berkdb gdbm kerberos ldapdb openldap mysql pam postgres sample sqlite
+srp ssl static-libs urandom"
 
-DEPEND="authdaemond? ( || ( >=net-mail/courier-imap-3.0.7 >=mail-mta/courier-0.46 ) )
+DEPEND="authdaemond? ( || ( net-mail/courier-imap mail-mta/courier ) )
 	berkdb? ( >=sys-libs/db-3.2 )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )
 	kerberos? ( virtual/krb5 )
-	openldap? ( >=net-nds/openldap-2.0.25 )
+	openldap? ( net-nds/openldap )
 	mysql? ( virtual/mysql )
-	ntlm_unsupported_patch? ( >=net-fs/samba-3.0.9 )
 	pam? ( virtual/pam )
 	postgres? ( dev-db/postgresql-base )
-	ssl? ( >=dev-libs/openssl-0.9.6d )
+	sqlite? ( dev-db/sqlite:3 )
+	ssl? ( dev-libs/openssl )
 	java? ( >=virtual/jdk-1.4 )"
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
-	if use gdbm && use berkdb ; then
-		echo
-		elog "You have both 'gdbm' and 'berkdb' USE flags enabled."
-		elog "gdbm will be selected."
-		echo
-	fi
 	java-pkg-opt-2_pkg_setup
 }
 
 src_prepare() {
-	# Fix default port name for rimap auth mechanism.
-	sed -e '/define DEFAULT_REMOTE_SERVICE/s:imap:imap2:' \
-		-i saslauthd/auth_rimap.c || die "sed failed"
+	epatch "${FILESDIR}"/${P}-sasldb_al.patch
+	epatch "${FILESDIR}"/${P}-saslauthd_libtool.patch
+	epatch "${FILESDIR}"/${P}-avoid_pic_overwrite.patch
+	epatch "${FILESDIR}"/${P}-autotools_fixes.patch
+	epatch "${FILESDIR}"/${P}-as_needed.patch
+	epatch "${FILESDIR}"/${P}-missing_header.patch
+	epatch "${FILESDIR}"/${P}-gssapi.patch
+	epatch "${FILESDIR}"/${P}-lib_before_plugin.patch
+	epatch "${FILESDIR}"/${P}-fix_heimdal.patch
+	epatch "${FILESDIR}"/${P}-auxprop.patch
+	epatch "${FILESDIR}"/${PN}-2.1.23-gss_c_nt_hostbased_service.patch
+	epatch "${FILESDIR}"/${PN}-2.1.23+db-5.0.patch
+	epatch "${FILESDIR}"/${P}-get_fqhostname.patch
+	epatch "${FILESDIR}"/${P}-service_keytabs.patch
 
-	# UNSUPPORTED ntlm patch #81342
-	use ntlm_unsupported_patch && epatch "${DISTDIR}/${ntlm_patch}"
-	epatch "${FILESDIR}"/${PN}-2.1.17-pgsql-include.patch
-	use crypt && epatch "${FILESDIR}"/${PN}-2.1.19-checkpw.c.patch #45181
-	epatch "${FILESDIR}"/${PN}-2.1.22-as-needed.patch
-	epatch "${FILESDIR}/${PN}-2.1.21-keytab.patch"
-	epatch "${FILESDIR}"/${PN}-2.1.22-crypt.patch #152544
-	epatch "${FILESDIR}"/${PN}-2.1.22-qa.patch
-	epatch "${FILESDIR}/${PN}-2.1.22-gcc44.patch" #248738
-	epatch "${FILESDIR}"/${P}-authd-fix.patch
-	epatch "${FILESDIR}"/${P}+db-5.0.patch
-	epatch "${FILESDIR}/${PN}-0001_versioned_symbols.patch"
-	epatch "${FILESDIR}/${PN}-0002_testsuite.patch"
-	epatch "${FILESDIR}/${PN}-0006_library_mutexes.patch"
-	epatch "${FILESDIR}/${PN}-0008_one_time_sasl_set_alloc.patch"
-	epatch "${FILESDIR}/${PN}-0010_maintainer_mode.patch"
-	epatch "${FILESDIR}/${PN}-0011_saslauthd_ac_prog_libtool.patch"
-	epatch "${FILESDIR}/${PN}-0012_xopen_crypt_prototype.patch"
-	epatch "${FILESDIR}/${PN}-0014_avoid_pic_overwrite.patch"
-	epatch "${FILESDIR}/${PN}-0016_pid_file_lock_creation_mask.patch"
-	epatch "${FILESDIR}/${PN}-0026_drop_krb5support_dependency.patch"
-	epatch "${FILESDIR}"/${P}-rimap-loop.patch #381427
-	epatch "${FILESDIR}"/${P}-gss_c_nt_hostbased_service.patch #389349
+	# Get rid of the -R switch (runpath_switch for Sun)
+	# >=gcc-4.6 errors out with unknown option
+	sed -i -e '/LIB_SQLITE.*-R/s/ -R[^"]*//' configure.in
 
-	sed -i -e '/for dbname in/s:db-4.* db:'$(db_libname)':' \
-		"${S}"/cmulocal/berkdb.m4
-
-	# Upstream doesn't even honor their own configure options... grumble
+	# Use plugindir for sasldir
 	sed -i '/^sasldir =/s:=.*:= $(plugindir):' \
 		"${S}"/plugins/Makefile.{am,in} || die "sed failed"
 
-	# make sure to use common plugin ldflags
-	sed -i '/_la_LDFLAGS = /s:=:= $(AM_LDFLAGS) :' plugins/Makefile.am || die
-
-	# Recreate configure.
-	rm -f "${S}/config/libtool.m4" || die "rm libtool.m4 failed"
 	AT_M4DIR="${S}/cmulocal ${S}/config" eautoreconf
 }
 
 src_configure() {
-	# Fix QA issues.
 	append-flags -fno-strict-aliasing
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		# getpassphrase is defined in /usr/include/stdlib.h
@@ -112,7 +86,7 @@ src_configure() {
 		myconf="${myconf} --without-des"
 	fi
 
-	if use mysql || use postgres ; then
+	if use mysql || use postgres || use sqlite ; then
 		myconf="${myconf} --enable-sql"
 	else
 		myconf="${myconf} --disable-sql"
@@ -131,7 +105,9 @@ src_configure() {
 	fi
 
 	# Use /dev/urandom instead of /dev/random (bug #46038).
-	use urandom && myconf="${myconf} --with-devrandom=/dev/urandom"
+	if use urandom ; then
+		myconf="${myconf} --with-devrandom=/dev/urandom"
+	fi
 
 	# Don't even try to build a framework if on OSX
 	myconf="${myconf} --disable-macos-framework"
@@ -140,8 +116,9 @@ src_configure() {
 		--enable-login \
 		--enable-ntlm \
 		--enable-auth-sasldb \
+		--disable-cmulocal \
 		--disable-krb4 \
-		--disable-otp \
+		--enable-otp \
 		--without-sqlite \
 		--with-saslauthd="${EPREFIX}"/var/lib/sasl2 \
 		--with-pwcheck="${EPREFIX}"/var/lib/sasl2 \
@@ -151,20 +128,21 @@ src_configure() {
 		$(use_with ssl openssl) \
 		$(use_with pam) \
 		$(use_with openldap ldap) \
-		$(use_enable openldap ldapdb) \
+		$(use_enable ldapdb) \
 		$(use_enable sample) \
 		$(use_enable kerberos gssapi) \
 		$(use_enable java) \
 		$(use_with java javahome ${JAVA_HOME}) \
 		$(use_with mysql) \
 		$(use_with postgres pgsql) \
+		$(use_with sqlite sqlite3 "${EPREFIX}"/usr/$(get_libdir)) \
 		$(use_enable srp) \
+		$(use_enable static-libs static) \
 		${myconf}
 }
 
 src_compile() {
-	# We force -j1 for bug #110066.
-	emake -j1 || die "emake failed"
+	emake
 
 	# Default location for java classes breaks OpenOffice (bug #60769).
 	# Thanks to axxo@gentoo.org for the solution.
@@ -175,29 +153,18 @@ src_compile() {
 
 	# Add testsaslauthd (bug #58768).
 	cd "${S}/saslauthd"
-	emake testsaslauthd || die "emake testsaslauthd failed"
+	emake testsaslauthd
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake DESTDIR="${D}" install
 	keepdir /var/lib/sasl2 /etc/sasl2
 
-	# Install everything necessary so users can build sample
-	# client/server (bug #64733).
 	if use sample ; then
-		insinto /usr/share/${PN}-2/examples
-		doins aclocal.m4 config.h config.status configure.in
-		dosym /usr/include/sasl /usr/share/${PN}-2/examples/include
-		exeinto /usr/share/${PN}-2/examples
-		doexe libtool
-		insinto /usr/share/${PN}-2/examples/sample
-		doins sample/*.{c,h} sample/*Makefile*
-		insinto /usr/share/${PN}-2/examples/sample/.deps
-		doins sample/.deps/*
-		dodir /usr/share/${PN}-2/examples/lib
-		dosym /usr/$(get_libdir)/libsasl2.la /usr/share/${PN}-2/examples/lib/libsasl2.la
-		dodir /usr/share/${PN}-2/examples/lib/.libs
-		dosym /usr/$(get_libdir)/libsasl2.so /usr/share/${PN}-2/examples/lib/.libs/libsasl2.so
+		docinto sample
+		dodoc sample/*.c
+		exeinto /usr/share/doc/${P}/sample
+		doexe sample/client sample/server
 	fi
 
 	# Default location for java classes breaks OpenOffice (bug #60769).
@@ -210,7 +177,7 @@ src_install() {
 		dodoc "${S}/java/README" "${FILESDIR}/java.README.gentoo" "${S}"/java/doc/*
 		dodir "/usr/share/doc/${PF}/java/Test"
 		insinto "/usr/share/doc/${PF}/java/Test"
-		doins "${S}"/java/Test/*.java || die "Failed to copy java files to /usr/share/doc/${PF}/java/Test"
+		doins "${S}"/java/Test/*.java
 	fi
 
 	docinto ""
@@ -221,15 +188,20 @@ src_install() {
 	docinto "saslauthd"
 	dodoc saslauthd/{AUTHORS,ChangeLog,LDAP_SASLAUTHD,NEWS,README}
 
-	newpamd "${FILESDIR}/saslauthd.pam-include" saslauthd || die "Failed to install saslauthd to /etc/pam.d"
+	newpamd "${FILESDIR}/saslauthd.pam-include" saslauthd
 
-	newinitd "${FILESDIR}/pwcheck.rc6" pwcheck || die "Failed to install pwcheck to /etc/init.d"
+	newinitd "${FILESDIR}/pwcheck.rc6" pwcheck
 
-	newinitd "${FILESDIR}/saslauthd2.rc6" saslauthd || die "Failed to install saslauthd to /etc/init.d"
-	newconfd "${FILESDIR}/saslauthd-${SASLAUTHD_CONF_VER}.conf" saslauthd || die "Failed to install saslauthd to /etc/conf.d"
+	newinitd "${FILESDIR}/saslauthd2.rc6" saslauthd
+	newconfd "${FILESDIR}/saslauthd-${SASLAUTHD_CONF_VER}.conf" saslauthd
 
-	exeinto /usr/sbin
-	newexe "${S}/saslauthd/testsaslauthd" testsaslauthd || die "Failed to install testsaslauthd"
+	newsbin "${S}/saslauthd/testsaslauthd" testsaslauthd
+
+	use static-libs || find "${ED}"/usr/lib*/sasl2 -name 'lib*.la' -delete
+}
+
+pkg_preinst() {
+	preserve_old_lib /usr/$(get_libdir)/libsasl2.so.2.0.23
 }
 
 pkg_postinst () {
@@ -246,16 +218,12 @@ pkg_postinst () {
 			|| die "Failed to chmod ${EROOT}/etc/sasl2/sasldb2"
 	fi
 
-	if use sample ; then
-		elog "You have chosen to install sources for the example client and server."
-		elog "To build these, please type:"
-		elog "\tcd /usr/share/${PN}-2/examples/sample && make"
-	fi
-
 	if use authdaemond ; then
 		elog "You need to add a user running a service using Courier's"
 		elog "authdaemon to the 'mail' group. For example, do:"
 		elog "	gpasswd -a postfix mail"
 		elog "to add the 'postfix' user to the 'mail' group."
 	fi
+
+	preserve_old_lib_notify /usr/$(get_libdir)/libsasl2.so.2.0.23
 }
