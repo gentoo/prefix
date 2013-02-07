@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.25-r4.ebuild,v 1.2 2012/12/21 13:27:37 eras Exp $
 
@@ -197,7 +197,10 @@ src_install() {
 
 	newsbin "${S}/saslauthd/testsaslauthd" testsaslauthd
 
-	use static-libs || find "${ED}"/usr/lib*/sasl2 -name 'lib*.la' -delete
+	# the get_modname bit is important: do not remove the .la files on
+	# platforms where the lib isn't called .so cyrus searches the .la to
+	# figure out what the name is supposed to be instead
+	use static-libs || [[ $(get_modname) != .so ]] || find "${ED}"/usr/lib*/sasl2 -name 'lib*.la' -delete
 }
 
 pkg_preinst() {
