@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.6-r3.ebuild,v 1.11 2012/05/17 04:36:15 vapier Exp $
 
@@ -85,6 +85,19 @@ src_install() {
 
 	if [[ $(get_libname) != ".irrelevant" ]] ; then
 
+	if ! use static ; then
+		newbin bzip2-shared bzip2 || die
+	fi
+	if ! use static-libs ; then
+		rm -f "${ED}"/usr/lib*/libbz2.a || die
+	fi
+
+	# move "important" bzip2 binaries to /bin and use the shared libbz2.so
+	dodir /bin
+	mv "${ED}"/usr/bin/b{zip2,zcat,unzip2} "${ED}"/bin/ || die
+	dosym bzip2 /bin/bzcat || die
+	dosym bzip2 /bin/bunzip2 || die
+
 	# Install the shared lib manually.  We install:
 	#  .x.x.x - standard shared lib behavior
 	#  .x.x   - SONAME some distros use #338321
@@ -96,20 +109,7 @@ src_install() {
 	done
 	gen_usr_ldscript -a bz2
 
-	if ! use static ; then
-		newbin bzip2-shared bzip2 || die
 	fi
-	if ! use static-libs ; then
-		rm -f "${ED}"/usr/lib*/libbz2.a || die
-	fi
-
-	fi
-
-	# move "important" bzip2 binaries to /bin and use the shared libbz2.so
-	dodir /bin
-	mv "${ED}"/usr/bin/b{zip2,zcat,unzip2} "${ED}"/bin/ || die
-	dosym bzip2 /bin/bzcat || die
-	dosym bzip2 /bin/bunzip2 || die
 
 	if [[ ${CHOST} == *-winnt* ]]; then
 		dolib.so libbz2$(get_libname ${PV}).dll || die "dolib shared"

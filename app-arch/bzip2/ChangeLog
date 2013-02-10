@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/bzip2
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.104 2012/05/17 04:36:15 vapier Exp $
+
+  10 Feb 2013; Fabian Groffen <grobian@gentoo.org> bzip2-1.0.6-r3.ebuild:
+  Change ordering of moving such that on Darwin gen_usr_ldscript fixes the
+  install_names of all bins and libraries
 
   17 May 2012; Mike Frysinger <vapier@gentoo.org>
   +files/bzip2-1.0.6-mingw.patch, bzip2-1.0.6-r3.ebuild:
