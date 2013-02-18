@@ -1,6 +1,43 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.621 2012/10/14 14:48:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.627 2012/12/19 18:03:41 floppym Exp $
+
+  19 Dec 2012; Mike Gilbert <floppym@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild, python-3.3.0-r1.ebuild:
+  Don't depend on dev-lang/python. Bug 447752.
+
+  03 Dec 2012; Mike Gilbert <floppym@gentoo.org> python-2.5.4-r5.ebuild:
+  Copy eselect_python logic from more recent ebuilds.
+
+  02 Dec 2012; Michał Górny <mgorny@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild, python-3.3.0-r1.ebuild:
+  Stop renaming python-config wrt bug #445592. Keep a symlink for compatibility.
+
+  01 Dec 2012; Michał Górny <mgorny@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild, python-3.3.0-r1.ebuild:
+  Use python-any-r1 to clearly enforce build-time Python dependency.
+
+  30 Nov 2012; Michał Górny <mgorny@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild, python-3.3.0-r1.ebuild:
+  Fix byte-compiling the installed epython module when installing a new Python
+  version.
+
+*python-2.7.3-r3 (30 Nov 2012)
+*python-3.3.0-r1 (30 Nov 2012)
+*python-2.6.8-r1 (30 Nov 2012)
+*python-2.5.4-r5 (30 Nov 2012)
+*python-3.2.3-r2 (30 Nov 2012)
+*python-3.1.5-r1 (30 Nov 2012)
+
+  30 Nov 2012; Michał Górny <mgorny@gentoo.org> +python-2.5.4-r5.ebuild,
+  +python-2.6.8-r1.ebuild, +python-2.7.3-r3.ebuild, +python-3.1.5-r1.ebuild,
+  +python-3.2.3-r2.ebuild, +python-3.3.0-r1.ebuild:
+  Introduce a cleaned up, -r1-quality Python ebuilds. Stop using python.eclass,
+  install epython module for python-exec.
 
   02 Feb 2013; Fabian Groffen <grobian@gentoo.org> python-3.3.0.ebuild:
   Avoid configure enabling pymalloc causing a SLOT mis-match, bug #452720
