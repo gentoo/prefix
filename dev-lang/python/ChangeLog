@@ -2,7 +2,7 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.627 2012/12/19 18:03:41 floppym Exp $
 
-  18 Feb 2013; Ruurd Koons <ruurd@gentoo.org> python-3.3.0-r1.ebuild:
+  18 Feb 2013; Fabian Groffen <grobian@gentoo.org> python-3.3.0-r1.ebuild:
   Fix compilation on Darwin, thanks Richard Yao, bug #458168
 
   19 Dec 2012; Mike Gilbert <floppym@gentoo.org> python-2.5.4-r5.ebuild,
