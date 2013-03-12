@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/flex-2.5.37.ebuild,v 1.2 2012/08/11 16:06:53 vapier Exp $
 
@@ -35,6 +35,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${P}-proto.patch
 	epatch "${FILESDIR}"/${P}-tests.patch #429954
+	epatch "${FILESDIR}"/${P}-rpl_alloc.patch #endless loop
 }
 
 src_configure() {

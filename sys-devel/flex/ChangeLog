@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/flex
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.99 2012/08/11 16:06:53 vapier Exp $
+
+  12 Mar 2013; Michael Haubenwallner <haubi@gentoo.org> flex-2.5.37.ebuild,
+  +files/flex-2.5.37-rpl_alloc.patch:
+  Endless recursion in rpl_realloc, flex-bug#3607335.
 
   27 Oct 2012; Fabian Groffen <grobian@gentoo.org>
   +files/flex-2.5.37-proto.patch, +files/flex-2.5.37-tests.patch:

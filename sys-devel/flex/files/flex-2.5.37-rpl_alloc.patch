@@ -1,0 +1,12 @@
+flex bug 3607335:
+https://sourceforge.net/tracker/?func=detail&aid=3607335&group_id=97492&atid=618177
+
+--- a/lib/realloc.c
++++ b/lib/realloc.c
+@@ -1,4 +1,6 @@
+ #include <config.h>
++#undef malloc
++#undef realloc
+ 
+ #include <stdlib.h>
+ 
