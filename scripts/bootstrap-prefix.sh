@@ -621,6 +621,8 @@ bootstrap_gnu() {
 
 	# AIX doesn't like --enable-nls in general during bootstrap
 	[[ $CHOST == *-aix* ]] && myconf="${myconf} --disable-nls"
+	# AIX 7.1 has fstatat(), but broken without APAR IV23716:
+	[[ $CHOST == *-aix7* ]] && export ac_cv_func_fstatat=no
 
 	# NetBSD has strange openssl headers, which make wget fail.
 	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
