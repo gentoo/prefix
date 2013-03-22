@@ -459,6 +459,14 @@ bootstrap_portage() {
 		-i pym/_emerge/AbstractEbuildProcess.py || \
 		return 1
 
+	# Portage checks for valid shebangs. These may (xz-utils) originate
+	# in CONFIG_SHELL (AIX), which originates in PORTAGE_BASH then.
+	# So we need to ensure portage's bash is valid as shebang too.
+	mkdir -p ${ROOT}/bin || return 1
+	[[ -x ${ROOT}/bin/bash ]] || [[ ! -x ${ROOT}/tmp/bin/bash ]] || ln -s ${ROOT}/tmp/bin/bash ${ROOT}/bin/bash || return 1
+	[[ -x ${ROOT}/bin/bash ]] || ln -s ${BASH} ${ROOT}/bin/bash || return 1
+	export PORTAGE_BASH=${ROOT}/bin/bash
+
 	einfo "Compiling ${A%-*}"
 	econf \
 		--with-offset-prefix="${ROOT}" \
@@ -1028,7 +1036,7 @@ bootstrap_stage3() {
 
 	emerge_pkgs() {
 		local opts=$1 ; shift
-		local pkg vdb pvdb evdb
+		local pkg vdb pvdb evdb premerge
 		for pkg in "$@"; do
 			vdb=${pkg}
 			if [[ ${vdb} == "="* ]] ; then
@@ -1057,7 +1065,12 @@ bootstrap_stage3() {
 				fi
 				pvdb=
 			done
-			[[ -n ${pvdb} ]] || emerge --oneshot ${opts} "${pkg}" || return 1
+			[[ -n ${pvdb} ]] && continue
+			# for a valid shebang, we have symlinked bin/bash already
+			[[ ${pkg} == *"app-shells/bash"* ]] &&
+			premerge="FEATURES='${FEATURES} -collision-protect'"
+			eval ${premerge} 'emerge --oneshot ${opts} "${pkg}"'
+			[[ $? -eq 0 ]] || return 1
 		done
 	}
 
