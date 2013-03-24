@@ -15,10 +15,10 @@ SRC_URI="mirror://gentoo/${P}.tar.xz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="userland_BSD elibc_Darwin"
+IUSE="userland_BSD kernel_linux"
 
-RDEPEND="elibc_Darwin? ( app-misc/getopt )
-	!elibc_Darwin? ( || ( sys-apps/util-linux app-misc/getopt ) )
+RDEPEND="kernel_linux? ( sys-apps/util-linux )
+	!kernel_linux? ( app-misc/getopt )
 	!<app-text/docbook-xsl-stylesheets-1.73.1
 	userland_BSD? ( sys-apps/flock )
 	dev-libs/libxml2"
@@ -27,7 +27,10 @@ DEPEND=""
 src_prepare() {
 	sed -i -e "/^\(ROOTCONFDIR\|DOCBOOKDIR\)=/s:=/:=${EPREFIX}/:" build-docbook-catalog || die
 	sed -i -e "/^\(SYSCONFDIR\|PREFIX\) = /s:= /:= ${EPREFIX}/:" Makefile || die
-	epatch "${FILESDIR}"/${P}-no-flock.patch
+	if use !kernel_linux ; then
+		sed -i -e '/opts=/s/getopt/getopt-long/' build-docbook-catalog || die
+	fi
+	epatch "${FILESDIR}"/${P}-no-flock.patch  # obsoletes flock requirement
 }
 
 pkg_postinst() {
