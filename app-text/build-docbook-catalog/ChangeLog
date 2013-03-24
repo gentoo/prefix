@@ -1,6 +1,23 @@
 # ChangeLog for app-text/build-docbook-catalog
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.35 2012/10/06 17:15:54 armin76 Exp $
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/ChangeLog,v 1.39 2013/02/07 15:22:04 aballier Exp $
+
+  07 Feb 2013; Alexis Ballier <aballier@gentoo.org>
+  build-docbook-catalog-1.19.1.ebuild:
+  we need sys-apps/flock on fbsd, bug #412201
+
+  06 Dec 2012; Mike Gilbert <floppym@gentoo.org>
+  build-docbook-catalog-1.19.1.ebuild:
+  RDEPEND on libxml2 for the xmlcatalog utility.
+
+  06 Dec 2012; Mike Gilbert <floppym@gentoo.org>
+  -build-docbook-catalog-1.19.ebuild, -build-docbook-catalog-1.4.ebuild,
+  -build-docbook-catalog-1.6.ebuild:
+  Remove old.
+
+  06 Dec 2012; Mike Gilbert <floppym@gentoo.org>
+  build-docbook-catalog-1.19.1.ebuild:
+  Stable on x86 wrt bug 437024. armin76 accidentally removed x86 from CC.
 
   28 Dec 2012; Fabian Groffen <grobian@gentoo.org>
   +files/build-docbook-catalog-1.19.1-no-flock.patch,
