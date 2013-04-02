@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35-r3.ebuild,v 1.18 2012/05/05 08:02:43 jdhore Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35-r3.ebuild,v 1.19 2013/01/04 14:45:48 ulm Exp $
 
 EAPI="2"
 
@@ -10,7 +10,7 @@ DESCRIPTION="A graphics library for fast image creation"
 HOMEPAGE="http://libgd.org/ http://www.boutell.com/gd/"
 SRC_URI="http://libgd.org/releases/${P}.tar.bz2"
 
-LICENSE="as-is BSD"
+LICENSE="gd IJG HPND BSD"
 SLOT="2"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="fontconfig jpeg png static-libs truetype xpm zlib"
@@ -69,7 +69,7 @@ src_configure() {
 				fontpath="${fontpath}:/usr/share/fonts/truetype"
 		;;
 	esac
-	append-flags "-DDEFAULT_FONTPATH=\\\"${fontpath}\\\""
+	append-cppflags "-DDEFAULT_FONTPATH=\\\"${fontpath}\\\""
 
 	export ac_cv_lib_z_deflate=$(usex zlib)
 	# we aren't actually {en,dis}abling X here ... the configure
