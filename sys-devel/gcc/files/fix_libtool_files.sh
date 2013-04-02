@@ -1,5 +1,5 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/sh
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/fix_libtool_files.sh,v 1.16 2012/05/18 21:28:56 vapier Exp $
 
@@ -52,7 +52,7 @@ umask 0022
 OLDCHOST=
 [ "${ARGV2}" = "--oldarch" ] && OLDCHOST=${ARGV3}
 
-AWKDIR="${EPREFIX}/usr/share/gcc-data"
+AWKDIR="@GENTOO_PORTAGE_EPREFIX@/usr/share/gcc-data"
 
 if [ ! -r "${AWKDIR}/fixlafiles.awk" ] ; then
 	eerror "${0##*/}: ${AWKDIR}/fixlafiles.awk does not exist!"
