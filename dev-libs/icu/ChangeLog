@@ -1,12 +1,115 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.209 2012/10/25 18:53:59 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.231 2013/04/06 18:40:29 blueness Exp $
 
-*icu-51.1 (09 Apr 2013)
+  06 Apr 2013; Anthony G. Basile <blueness@gentoo.org> icu-51.1.ebuild:
+  Fix subslot, bug #464876
 
-  09 Apr 2013; Fabian Groffen <grobian@gentoo.org> +icu-51.1.ebuild,
-  metadata.xml:
-  sync
+*icu-51.1 (06 Apr 2013)
+
+  06 Apr 2013; Anthony G. Basile <blueness@gentoo.org> +icu-51.1.ebuild:
+  Version bug, addresses bug #436364
+
+  06 Mar 2013; Tomáš Chvátal <scarabeus@gentoo.org> -icu-50.1.1.ebuild,
+  icu-50.1-r2.ebuild, icu-50.1.2.ebuild:
+  Remove icu 50.1.1 which has broken abi, compared the abi between 50.1 and
+  50.1.2 and it seems they are equal so use the same subslot and for further
+  refference whomever touches this package must check the abi and adjust the
+  subslot correctly. If that won't be done I will bring my pitchfork and do
+  naughty stuff to such dev.
+
+  06 Feb 2013; Tomáš Chvátal <scarabeus@gentoo.org> +files/icu-50.1.2-bsd.patch,
+  icu-50.1.2.ebuild:
+  Fix building on bsd wrt bug#454796.
+
+  06 Feb 2013; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/icu.7601.Indic-ccmp.patch, +files/icu.8198.revert.icu5431.patch,
+  -files/icu-50.1-no-c++11.patch, -icu-50.1-r1.ebuild, icu-50.1.2.ebuild:
+  Use patches from fedora to fix few more issues.
+
+*icu-50.1.2 (06 Feb 2013)
+
+  06 Feb 2013; Tomáš Chvátal <scarabeus@gentoo.org> +icu-50.1.2.ebuild:
+  Version bump for the latest, should fix few regressions of 50.1.1 where i
+  tested.
+
+  02 Feb 2013; Alexis Ballier <aballier@gentoo.org> icu-50.1-r1.ebuild,
+  icu-50.1-r2.ebuild, icu-50.1.1.ebuild:
+  mark as -amd64-fbsd and -x86-fbsd until bug #454796 is fixed
+
+  23 Jan 2013; Tomáš Chvátal <scarabeus@gentoo.org> icu-50.1-r1.ebuild,
+  icu-50.1-r2.ebuild, icu-50.1.1.ebuild:
+  As upstream is so peachy&nice we have to subslot based on pv, no abi
+  stability.
+
+  06 Jan 2013; Zac Medico <zmedico@gentoo.org> icu-50.1-r1.ebuild,
+  icu-50.1-r2.ebuild, icu-50.1.1.ebuild:
+  Remove !dev-libs/icu:0/50 blockers, since they're not needed (regular slot is
+  still 0 for SLOT="0/50").
+
+  03 Jan 2013; Michael Palimaka <kensington@gentoo.org> icu-50.1-r1.ebuild,
+  icu-50.1-r2.ebuild, icu-50.1.1.ebuild:
+  Add subslots wrt bug #449250.
+
+*icu-50.1.1 (21 Dec 2012)
+
+  21 Dec 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> +icu-50.1.1.ebuild:
+  Version bump.
+
+  10 Dec 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> -icu-50.1.ebuild:
+  Remove version with known C++11 problems.
+
+*icu-50.1-r2 (15 Nov 2012)
+
+  15 Nov 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> +icu-50.1-r2.ebuild,
+  +files/icu-50.1-char16_t.patch:
+  Use a different (upstream) patch to handle c++11 issues, as asked by upstream
+  developer Steven R. Loomis in bug #439892.
+
+*icu-50.1-r1 (10 Nov 2012)
+
+  10 Nov 2012; Pawel Hajdan jr <phajdan.jr@gentoo.org> +icu-50.1-r1.ebuild,
+  +files/icu-50.1-no-c++11.patch:
+  Disable automagic detection of c++11, bug #439892 by Arfrever. Patch by Paul
+  Zander.
+
+  08 Nov 2012; Tomáš Chvátal <scarabeus@gentoo.org> icu-50.1.ebuild:
+  The unicode license left us.
+
+*icu-50.1 (08 Nov 2012)
+
+  08 Nov 2012; Tomáš Chvátal <scarabeus@gentoo.org> +icu-50.1.ebuild,
+  -icu-50_rc-r3.ebuild:
+  Bump to release.
+
+*icu-50_rc-r3 (05 Nov 2012)
+
+  05 Nov 2012; Tomáš Chvátal <scarabeus@gentoo.org> +icu-50_rc-r3.ebuild,
+  -icu-50_rc-r2.ebuild:
+  Revision bump to fix bug#441794 and more wip goodies.
+
+  04 Nov 2012; Tomáš Chvátal <scarabeus@gentoo.org> icu-50_rc-r2.ebuild:
+  Silence repoman.
+
+*icu-50_rc-r2 (04 Nov 2012)
+
+  04 Nov 2012; Tomáš Chvátal <scarabeus@gentoo.org> +icu-50_rc-r2.ebuild,
+  -icu-50_rc-r1.ebuild, -icu-50_rc.ebuild:
+  Revision bump again. Drop the slotting idea. Try to solve cross-compilation
+  issues wrt bug#329729.
+
+  02 Nov 2012; Tomáš Chvátal <scarabeus@gentoo.org> metadata.xml:
+  Take over as this needs to work for office all the time. Cpp/chromium teams,
+  you are more than welcome to chip in.
+
+  28 Oct 2012; Mike Gilbert <floppym@gentoo.org> icu-50_rc-r1.ebuild:
+  Improve support for clang. Patch by Arfrever.
+
+*icu-50_rc-r1 (27 Oct 2012)
+
+  27 Oct 2012; Markos Chandras <hwoarang@gentoo.org> +icu-50_rc-r1.ebuild:
+  Store -std=gnu++11 flag in CXXFLAGS in icu-config and icu-*.pc files for API
+  consumers, if this flag is supported and required. Ebuild by Arfrever.
 
   30 Oct 2012; Fabian Groffen <grobian@gentoo.org> icu-49.1.2.ebuild:
   Marked ~x64-freebsd
