@@ -2128,11 +2128,13 @@ esac
 # makes the script a bit less dangerous as it will die when just run to
 # "see what happens".
 if [[ -n $1 && -z $2 ]] ; then
-	echo "usage: $0 <prefix-path> [action]"
+	echo "usage: $0 [<prefix-path> <action>]"
 	echo
-	echo "You need to give the path offset for your Gentoo prefixed"
-	echo "portage installation, e.g. $HOME/prefix."
-	echo "The action to perform is optional and defaults to 'all'."
+	echo "Either you give no argument and I'll ask you interactively, or"
+	echo "you need to give both the path offset for your Gentoo prefixed"
+	echo "portage installation, and the action I should do there, e.g."
+	echo "  $0 $HOME/prefix <action>"
+	echo
 	echo "See the source of this script for which actions exist."
 	echo
 	echo "$0: insufficient number of arguments" 1>&2
