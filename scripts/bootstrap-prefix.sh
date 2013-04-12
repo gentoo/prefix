@@ -1368,6 +1368,7 @@ EOF
 
 
 EOF
+	[[ ${TODO} == 'noninteractive' ]] && ans=yes ||
 	read -p "Do you want me to start off now? [Yn] " ans
 	case "${ans}" in
 		[Yy][Ee][Ss]|[Yy]|"")
@@ -1557,6 +1558,7 @@ Ok, I'll give you a chance.  You can now enter what you think is
 necessary to add to PATH for me to find a compiler.  I start off with
 PATH=${PATH} and will add anything you give me here.
 EOF
+				[[ ${TODO} == 'noninteractive' ]] && ans="" ||
 				read -p "Where can I find your compiler? [] " ans
 				case "${ans}" in
 					"")
@@ -1610,6 +1612,7 @@ work where possible with ${tcpu} parallel make threads.  If you have no
 clue what this means, you should go with my excellent default I've
 chosen below, really!
 EOF
+	[[ ${TODO} == 'noninteractive' ]] && ans="" ||
 	read -p "How many parallel make jobs do you want? [${tcpu}] " ans
 	case "${ans}" in
 		"")
@@ -1690,6 +1693,7 @@ one advantage of 64-bits over 32-bits other than that 64 is a higher
 number and when you buy a car or washing machine, you also always choose
 the one with the highest number.
 EOF
+		[[ ${TODO} == 'noninteractive' ]] && ans="" ||
 		case "${CHOST}" in
 			x86_64-*|sparcv9-*)  # others can't do multilib, so don't bother
 				# 64-bits native
@@ -1743,6 +1747,7 @@ EOF
 				|| EPREFIX=$HOME/gentoo
 		fi
 		echo
+		[[ ${TODO} == 'noninteractive' ]] && ans=${ROOT} ||
 		read -p "What do you want EPREFIX to be? [$EPREFIX] " ans
 		case "${ans}" in
 			"")
@@ -1753,6 +1758,7 @@ EOF
 			*)
 				echo
 				echo "EPREFIX must be an absolute path!"
+				[[ ${TODO} == 'noninteractive' ]] && exit 1
 				EPREFIX=
 				continue
 				;;
@@ -1760,6 +1766,7 @@ EOF
 		if [[ ! -d ${EPREFIX} ]] && ! mkdir -p "${EPREFIX}" ; then
 			echo
 			echo "It seems I cannot create ${EPREFIX}."
+			[[ ${TODO} == 'noninteractive' ]] && exit 1
 			echo "I'll forgive you this time, try again."
 			EPREFIX=
 			continue
@@ -1767,6 +1774,7 @@ EOF
 		if ! touch "${EPREFIX}"/.canihaswrite >& /dev/null ; then
 			echo
 			echo "I cannot write to ${EPREFIX}!"
+			[[ ${TODO} == 'noninteractive' ]] && exit 1
 			echo "You want some fun, but without me?  Try another location."
 			EPREFIX=
 			continue
@@ -1794,6 +1802,7 @@ emerge -e system.  If any of these stages fail, both you and me are in
 deep trouble.  So let's hope that doesn't happen.
 EOF
 	echo
+	[[ ${TODO} == 'noninteractive' ]] && ans="" ||
 	read -p "Type here what you want to wish me [luck] " ans
 	if [[ -n ${ans} && ${ans} != "luck" ]] ; then
 		echo "Huh?  You're not serious, are you?"
@@ -2167,7 +2176,7 @@ einfo "host:   ${CHOST}"
 einfo "prefix: ${ROOT}"
 
 TODO=${2}
-if [[ $(type -t bootstrap_${TODO}) != "function" ]];
+if [[ ${TODO} != "noninteractive" && $(type -t bootstrap_${TODO}) != "function" ]];
 then
 	eerror "bootstrap target ${TODO} unknown"
 	exit 1
@@ -2188,4 +2197,5 @@ if [[ -n ${PKG_CONFIG_PATH} ]] ; then
 fi
 
 einfo "ready to bootstrap ${TODO}"
-bootstrap_${TODO} || exit 1
+# bootstrap_interactive proceeds with guessed defaults when TODO=noninteractive
+bootstrap_${TODO#non} || exit 1
