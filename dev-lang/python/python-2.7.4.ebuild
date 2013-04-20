@@ -1,87 +1,95 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.3-r2.ebuild,v 1.15 2013/03/19 04:04:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.4.ebuild,v 1.3 2013/04/07 20:51:03 floppym Exp $
 
-EAPI="3"
+EAPI="5"
 WANT_AUTOMAKE="none"
 WANT_LIBTOOL="none"
 
-inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
+inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs multiprocessing
 
 MY_P="Python-${PV}"
-PATCHSET_REVISION="1"
-PREFIX_PATCHREV="-r2"
+PATCHSET_REVISION="0"
+PREFIX_PATCHREV="-r0"
 
-DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
+DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
-SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.bz2
+SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
+	mirror://bitbucket/gentoo/cpython/downloads/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.xz
 	prefix? ( http://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}.tar.bz2 )"
 
 LICENSE="PSF-2"
 SLOT="2.7"
-PYTHON_ABI="${SLOT}"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm hardened ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
+# Do not add a dependency on dev-lang/python to this ebuild.
+# If you need to apply a patch which requires python for bootstrapping, please
+# run the bootstrap code on your dev box and include the results in the
+# patchset. See bug 447752.
+
 RDEPEND="app-arch/bzip2
-		>=sys-libs/zlib-1.1.3
-		!m68k-mint? ( virtual/libffi )
-		virtual/libintl
-		!build? (
-			berkdb? ( || (
-				sys-libs/db:4.8
-				sys-libs/db:4.7
-				sys-libs/db:4.6
-				sys-libs/db:4.5
-				sys-libs/db:4.4
-				sys-libs/db:4.3
-				sys-libs/db:4.2
-			) )
-			gdbm? ( sys-libs/gdbm[berkdb] )
-			ncurses? (
-				>=sys-libs/ncurses-5.2
-				readline? ( >=sys-libs/readline-4.1 )
-			)
-			sqlite? ( >=dev-db/sqlite-3.3.8:3[extensions] )
-			ssl? ( dev-libs/openssl )
-			tk? (
-				>=dev-lang/tk-8.0[-aqua]
-				dev-tcltk/blt
-			)
-			xml? ( >=dev-libs/expat-2.1 )
+	>=sys-libs/zlib-1.1.3
+	!m68k-mint? ( virtual/libffi )
+	virtual/libintl
+	!build? (
+		berkdb? ( || (
+			sys-libs/db:5.3=
+			sys-libs/db:5.2=
+			sys-libs/db:5.1=
+			sys-libs/db:5.0=
+			sys-libs/db:4.8=
+			sys-libs/db:4.7=
+			sys-libs/db:4.6=
+			sys-libs/db:4.5=
+			sys-libs/db:4.4=
+			sys-libs/db:4.3=
+			sys-libs/db:4.2=
+		) )
+		gdbm? ( sys-libs/gdbm[berkdb] )
+		ncurses? (
+			>=sys-libs/ncurses-5.2
+			readline? ( >=sys-libs/readline-4.1 )
 		)
-		!!<sys-apps/portage-2.1.9"
+		sqlite? ( >=dev-db/sqlite-3.3.8:3[extensions] )
+		ssl? ( dev-libs/openssl )
+		tk? (
+			>=dev-lang/tk-8.0[-aqua]
+			dev-tcltk/blt
+		)
+		xml? ( >=dev-libs/expat-2.1 )
+	)
+	!!<sys-apps/portage-2.1.9"
 DEPEND="${RDEPEND}
-		virtual/pkgconfig
-		>=sys-devel/autoconf-2.65
-		!sys-devel/gcc[libffi]"
+	virtual/pkgconfig
+	>=sys-devel/autoconf-2.65
+	!sys-devel/gcc[libffi]"
 RDEPEND+=" !build? ( app-misc/mime-types )
 	doc? ( dev-python/python-docs:${SLOT} )"
+PDEPEND="app-admin/eselect-python
+	app-admin/python-updater"
 
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	python_pkg_setup
-
 	if use berkdb; then
-		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python."
-		ewarn "\"bsddb\" and \"dbhash\" modules have been additionally removed in Python 3."
-		ewarn "You should use external, still maintained \"bsddb3\" module provided by dev-python/bsddb3,"
-		ewarn "which supports both Python 2 and Python 3."
+		ewarn "'bsddb' module is out-of-date and no longer maintained inside"
+		ewarn "dev-lang/python. 'bsddb' and 'dbhash' modules have been additionally"
+		ewarn "removed in Python 3. A maintained alternative of 'bsddb3' module"
+		ewarn "is provided by dev-python/bsddb3."
 	else
 		if has_version "=${CATEGORY}/${PN}-${PV%%.*}*[berkdb]"; then
-			ewarn "You are migrating from =${CATEGORY}/${PN}-${PV%%.*}*[berkdb] to =${CATEGORY}/${PN}-${PV%%.*}*[-berkdb]."
-			ewarn "You might need to migrate your databases."
+			ewarn "You are migrating from =${CATEGORY}/${PN}-${PV%%.*}*[berkdb]"
+			ewarn "to =${CATEGORY}/${PN}-${PV%%.*}*[-berkdb]."
 		fi
 	fi
 }
 
 src_prepare() {
 	# Ensure that internal copies of expat, libffi and zlib are not used.
-	rm -fr Modules/expat
-	rm -fr Modules/_ctypes/libffi*
-	rm -fr Modules/zlib
+	rm -r Modules/expat || die
+	rm -r Modules/_ctypes/libffi* || die
+	rm -r Modules/zlib || die
 
 	local excluded_patches
 	if ! tc-is-cross-compiler; then
@@ -199,17 +207,21 @@ src_configure() {
 		sed -i -e "/^PY_CFLAGS[ \\t]*=/s,\\\$(CFLAGS)[ \\t]*\\\$(CPPFLAGS),\$(CPPFLAGS) \$(CFLAGS)," Makefile.pre.in || die
 	fi
 
+	# Run the configure scripts in parallel.
+	multijob_init
+
+	mkdir -p "${WORKDIR}"/{${CBUILD},${CHOST}}
+
 	if tc-is-cross-compiler; then
-		OPT="-O1" CFLAGS="" LDFLAGS="" CC="" \
-		./configure --{build,host}=${CBUILD} || die "cross-configure failed"
-		emake python Parser/pgen || die "cross-make failed"
-		mv python hostpython
-		mv Parser/pgen Parser/hostpgen
-		make distclean
-		sed -i \
-			-e "/^HOSTPYTHON/s:=.*:=./hostpython:" \
-			-e "/^HOSTPGEN/s:=.*:=./Parser/hostpgen:" \
-			Makefile.pre.in || die "sed failed"
+		(
+		multijob_child_init
+		cd "${WORKDIR}"/${CBUILD} >/dev/null
+		OPT="-O1" CFLAGS="" CPPFLAGS="" LDFLAGS="" CC="" \
+		"${S}"/configure \
+			--{build,host}=${CBUILD} \
+			|| die "cross-configure failed"
+		) &
+		multijob_post_fork
 
 		# The configure script assumes it's buggy when cross-compiling.
 		export ac_cv_buggy_getaddrinfo=no
@@ -255,7 +267,9 @@ src_configure() {
 	# note: for a framework build we need to use ucs2 because OSX
 	# uses that internally too:
 	# http://bugs.python.org/issue763708
-	OPT="" econf \
+	cd "${WORKDIR}"/${CHOST}
+	ECONF_SOURCE="${S}" OPT="" \
+	econf \
 		--with-fpectl \
 		$(use_enable ipv6) \
 		$(use_with threads) \
@@ -268,10 +282,42 @@ src_configure() {
 		--with-system-expat \
 		--with-system-ffi \
 		${myconf}
+
+	if tc-is-cross-compiler; then
+		# Modify the Makefile.pre so we don't regen for the host/ one.
+		# We need to link the host python programs into $PWD and run
+		# them from here because the distutils sysconfig module will
+		# parse Makefile/etc... from argv[0], and we need it to pick
+		# up the target settings, not the host ones.
+		sed -i \
+			-e '1iHOSTPYTHONPATH = ./hostpythonpath:' \
+			-e '/^HOSTPYTHON/s:=.*:= ./hostpython:' \
+			-e '/^HOSTPGEN/s:=.*:= ./Parser/hostpgen:' \
+			Makefile{.pre,} || die "sed failed"
+	fi
+
+	multijob_finish
 }
 
 src_compile() {
-	emake EPYTHON="python${PV%%.*}" || die "emake failed"
+	if tc-is-cross-compiler; then
+		cd "${WORKDIR}"/${CBUILD}
+		# Disable as many modules as possible -- but we need a few to install.
+		PYTHON_DISABLE_MODULES=$(
+			sed -n "/Extension('/{s:^.*Extension('::;s:'.*::;p}" "${S}"/setup.py | \
+				egrep -v '(unicodedata|time|cStringIO|_struct|binascii)'
+		) \
+		PTHON_DISABLE_SSL="1" \
+		SYSROOT= \
+		emake || die "cross-make failed"
+		# See comment in src_configure about these.
+		ln python ../${CHOST}/hostpython || die
+		ln Parser/pgen ../${CHOST}/Parser/hostpgen || die
+		ln -s ../${CBUILD}/build/lib.*/ ../${CHOST}/hostpythonpath || die
+	fi
+
+	cd "${WORKDIR}"/${CHOST}
+	default
 
 	# Work around bug 329499. See also bug 413751.
 	pax-mark m python
@@ -284,15 +330,13 @@ src_test() {
 		return
 	fi
 
-	# Byte compiling should be enabled here.
-	# Otherwise test_import fails.
-	python_enable_pyc
+	cd "${WORKDIR}"/${CHOST}
 
 	# Skip failing tests.
 	local skipped_tests="distutils gdb"
 
 	for test in ${skipped_tests}; do
-		mv Lib/test/test_${test}.py "${T}"
+		mv "${S}"/Lib/test/test_${test}.py "${T}"
 	done
 
 	# Rerun failed tests in verbose mode (regrtest -w).
@@ -300,7 +344,7 @@ src_test() {
 	local result="$?"
 
 	for test in ${skipped_tests}; do
-		mv "${T}/test_${test}.py" Lib/test
+		mv "${T}/test_${test}.py" "${S}"/Lib/test
 	done
 
 	elog "The following tests have been skipped:"
@@ -309,10 +353,8 @@ src_test() {
 	done
 
 	elog "If you would like to run them, you may:"
-	elog "cd '${EPREFIX}$(python_get_libdir)/test'"
+	elog "cd '${EPREFIX}/usr/$(get_libdir)/python${SLOT}/test'"
 	elog "and run the tests separately."
-
-	python_disable_pyc
 
 	if [[ "${result}" -ne 0 ]]; then
 		die "emake test failed"
@@ -320,8 +362,9 @@ src_test() {
 }
 
 src_install() {
-	[[ -z "${ED}" ]] && ED="${D%/}${EPREFIX}/"
+	local libdir=${ED}/usr/$(get_libdir)/python${SLOT}
 
+	cd "${WORKDIR}"/${CHOST}
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${SLOT}/lib-dynload/
 	if use aqua ; then
 		local fwdir="${EPREFIX}"/usr/$(get_libdir)/Python.framework
@@ -342,8 +385,7 @@ src_install() {
 			-id "${EPREFIX}"/usr/$(get_libdir)/libpython${SLOT}.dylib \
 			"${ED}"/usr/$(get_libdir)/libpython${SLOT}.dylib
 		chmod u-w "${ED}"/usr/$(get_libdir)/libpython${SLOT}.dylib
-		cp "${S}"/libpython${SLOT}.a \
-			"${ED}"/usr/$(get_libdir)/ || die
+		cp libpython${SLOT}.a "${ED}"/usr/$(get_libdir)/ || die
 
 		# rebuild python executable to be the non-pythonw (python wrapper)
 		# version so we don't get framework crap
@@ -444,11 +486,11 @@ EOF
 		emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
 		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 	fi
-	python_clean_installation_image -q
 
-	sed -e "s/\(LDFLAGS=\).*/\1/" -i "${ED}$(python_get_libdir)/config/Makefile" || die "sed failed"
+	sed -e "s/\(LDFLAGS=\).*/\1/" -i "${libdir}/config/Makefile" || die "sed failed"
 
-	mv "${ED}usr/bin/python${SLOT}-config" "${ED}usr/bin/python-config-${SLOT}"
+	# Backwards compat with Gentoo divergence.
+	dosym python${SLOT}-config /usr/bin/python-config-${SLOT} || die
 
 	# Fix collisions between different slots of Python.
 	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${SLOT}"
@@ -459,35 +501,52 @@ EOF
 	# http://src.opensolaris.org/source/xref/jds/spec-files/trunk/SUNWPython.spec
 	# These #defines cause problems when building c99 compliant python modules
 	# http://bugs.python.org/issue1759169
-	[[ ${CHOST} == *-solaris* ]] && dosed -e \
+	[[ ${CHOST} == *-solaris* ]] && sed -i -e \
 		's:^\(^#define \(_POSIX_C_SOURCE\|_XOPEN_SOURCE\|_XOPEN_SOURCE_EXTENDED\).*$\):/* \1 */:' \
-		 /usr/include/python${SLOT}/pyconfig.h
+		 "${ED}"/usr/include/python${SLOT}/pyconfig.h
 
 	if use build; then
-		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,dbhash.py,idlelib,lib-tk,sqlite3,test}
+		rm -fr "${ED}usr/bin/idle${SLOT}" "${libdir}/"{bsddb,dbhash.py,idlelib,lib-tk,sqlite3,test}
 	else
-		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/"{bsddb/test,test}
-		use berkdb || rm -fr "${ED}$(python_get_libdir)/"{bsddb,dbhash.py,test/test_bsddb*}
-		use sqlite || rm -fr "${ED}$(python_get_libdir)/"{sqlite3,test/test_sqlite*}
-		use tk || rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{idlelib,lib-tk}
+		use elibc_uclibc && rm -fr "${libdir}/"{bsddb/test,test}
+		use berkdb || rm -r "${libdir}/"{bsddb,dbhash.py,test/test_bsddb*} || die
+		use sqlite || rm -r "${libdir}/"{sqlite3,test/test_sqlite*} || die
+		use tk || rm -r "${ED}usr/bin/idle${SLOT}" "${libdir}/"{idlelib,lib-tk} || die
 	fi
 
-	use threads || rm -fr "${ED}$(python_get_libdir)/multiprocessing"
-	use wininst || rm -f "${ED}$(python_get_libdir)/distutils/command/"wininst-*.exe
+	use threads || rm -r "${libdir}/multiprocessing" || die
+	use wininst || rm -r "${libdir}/distutils/command/"wininst-*.exe || die
 
-	dodoc Misc/{ACKS,HISTORY,NEWS} || die "dodoc failed"
+	dodoc "${S}"/Misc/{ACKS,HISTORY,NEWS} || die "dodoc failed"
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
-		doins -r Tools || die "doins failed"
+		doins -r "${S}"/Tools
 	fi
+	insinto /usr/share/gdb/auto-load/usr/$(get_libdir) #443510
+	local libname=$(printf 'e:\n\t@echo $(INSTSONAME)\ninclude Makefile\n' | \
+		emake --no-print-directory -s -f - 2>/dev/null)
+	newins "${S}"/Tools/gdb/libpython.py "${libname}"-gdb.py
 
-	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
-	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
+	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
+	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
 	sed \
 		-e "s:@PYDOC_PORT_VARIABLE@:PYDOC${SLOT/./_}_PORT:" \
 		-e "s:@PYDOC@:pydoc${SLOT}:" \
 		-i "${ED}etc/conf.d/pydoc-${SLOT}" "${ED}etc/init.d/pydoc-${SLOT}" || die "sed failed"
+
+	# for python-exec
+	python_export python${SLOT} EPYTHON PYTHON PYTHON_SITEDIR
+
+	# if not using a cross-compiler, use the fresh binary
+	if ! tc-is-cross-compiler; then
+		local PYTHON=./python \
+			LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
+		export LD_LIBRARY_PATH
+	fi
+
+	echo "EPYTHON='${EPYTHON}'" > epython.py
+	python_domodule epython.py
 }
 
 pkg_preinst() {
@@ -497,9 +556,6 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local eselect_python_options
-	[[ -z "${EROOT}" || (! -d "${EROOT}" && -d "${ROOT}") ]] && EROOT="${ROOT%/}${EPREFIX}/"
-
 	if [[ -z "$(eselect python show)" || ! -f "${EROOT}usr/bin/$(eselect python show)" ]]; then
 		eselect python update
 	fi
@@ -512,8 +568,6 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -f -x "/(site-packages|test|tests)/" $(python_get_libdir)
-
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn "You have just upgraded from an older version of Python."
 		ewarn "You should switch active version of Python ${PV%%.*} and run"
@@ -523,6 +577,4 @@ pkg_postinst() {
 
 pkg_postrm() {
 	eselect_python_update
-
-	python_mod_cleanup $(python_get_libdir)
 }

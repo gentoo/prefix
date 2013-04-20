@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.3.0.ebuild,v 1.3 2012/10/02 02:26:45 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.3.0.ebuild,v 1.7 2013/03/24 01:41:31 floppym Exp $
 
 EAPI="3"
 WANT_AUTOMAKE="none"
@@ -22,7 +22,7 @@ LICENSE="PSF-2"
 SLOT="3.3"
 PYTHON_ABI="${SLOT}"
 KEYWORDS="~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk wininst +xml"
+IUSE="build doc elibc_uclibc examples gdbm hardened ipv6 +ncurses +readline sqlite +ssl +threads tk wininst +xml"
 
 RDEPEND="app-arch/bzip2
 		>=sys-libs/zlib-1.1.3
@@ -41,7 +41,8 @@ RDEPEND="app-arch/bzip2
 				dev-tcltk/blt
 			)
 			xml? ( >=dev-libs/expat-2.1 )
-		)"
+		)
+		!!<sys-apps/sandbox-2.6-r1"
 DEPEND="${RDEPEND}
 		virtual/pkgconfig
 		>=sys-devel/autoconf-2.65
@@ -144,6 +145,10 @@ src_configure() {
 			-e "/^HOSTPYTHON/s:=.*:=./hostpython:" \
 			-e "/^HOSTPGEN/s:=.*:=./Parser/hostpgen:" \
 			Makefile.pre.in || die "sed failed"
+
+		# The configure script assumes it's buggy when cross-compiling.
+		export ac_cv_buggy_getaddrinfo=no
+		export ac_cv_have_long_long_format=yes
 	fi
 
 	# Export CXX so it ends up in /usr/lib/python3.X/config/Makefile.

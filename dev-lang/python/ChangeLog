@@ -1,6 +1,106 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.627 2012/12/19 18:03:41 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.647 2013/04/13 20:54:00 ago Exp $
+
+  13 Apr 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for s390, wrt bug #458318
+
+  07 Apr 2013; Mike Gilbert <floppym@gentoo.org> python-2.7.4.ebuild:
+  Adjust the sys-libs/db dep and add some || die.
+
+  07 Apr 2013; Michał Górny <mgorny@gentoo.org> python-2.6.8-r1.ebuild,
+  python-2.7.3-r3.ebuild, python-2.7.4.ebuild:
+  Fix wininst removal typo. Fixes bug #462862.
+
+*python-2.7.4 (07 Apr 2013)
+
+  07 Apr 2013; Mike Gilbert <floppym@gentoo.org> +python-2.7.4.ebuild:
+  Version bump.
+
+  31 Mar 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for sh, wrt bug #458318
+
+  31 Mar 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for sparc, wrt bug #458318
+
+  28 Mar 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for ia64, wrt bug #458318
+
+  26 Mar 2013; Mike Frysinger <vapier@gentoo.org> python-2.6.8-r1.ebuild,
+  python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild, python-3.2.3-r2.ebuild,
+  python-3.3.0-r1.ebuild:
+  When cross-compiling, run the configures in parallel for a nice speed up
+  #462264 by SpanKY.
+
+  24 Mar 2013; Mike Gilbert <floppym@gentoo.org> python-3.3.0-r1.ebuild,
+  python-3.3.0.ebuild:
+  Add hard blocker on <sys-apps/sandbox-2.6-r1 to ensure we don't hit bug
+  364877.
+
+  23 Mar 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for alpha, wrt bug #458318
+
+  23 Mar 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for arm, wrt bug #458318
+
+  21 Mar 2013; Jeroen Roovers <jer@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for HPPA (bug #458318).
+
+  19 Mar 2013; Mike Frysinger <vapier@gentoo.org> python-2.7.3-r3.ebuild,
+  python-3.2.3-r2.ebuild, python-3.3.0-r1.ebuild:
+  Install the python gdb module in the right place #443510 by Jan Pobrislo.
+
+  19 Mar 2013; Mike Frysinger <vapier@gentoo.org> python-2.7.3-r2.ebuild,
+  python-2.7.3-r3.ebuild, python-3.2.3-r1.ebuild, python-3.2.3-r2.ebuild,
+  python-3.2.3.ebuild, python-3.3.0-r1.ebuild, python-3.3.0.ebuild:
+  Export ac_cv_have_long_long_format=yes when cross-compiling #362945 by
+  Patrick.
+
+  19 Mar 2013; Mike Frysinger <vapier@gentoo.org> python-2.7.3-r2.ebuild,
+  python-2.7.3-r3.ebuild, python-3.2.3-r1.ebuild, python-3.2.3-r2.ebuild,
+  python-3.2.3.ebuild, python-3.3.0-r1.ebuild, python-3.3.0.ebuild:
+  Set ac_cv_buggy_getaddrinfo=no when cross-compiling.
+
+  19 Mar 2013; Mike Frysinger <vapier@gentoo.org> python-2.5.4-r4.ebuild,
+  python-2.5.4-r5.ebuild, python-2.6.8-r1.ebuild, python-2.6.8.ebuild,
+  python-2.7.3-r2.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.1.5.ebuild, python-3.2.3-r1.ebuild, python-3.2.3-r2.ebuild,
+  python-3.2.3.ebuild, python-3.3.0-r1.ebuild, python-3.3.0.ebuild:
+  Add hardened to IUSE since we `use` it #447264 by Alphat-PC.
+
+  18 Mar 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for ppc64, wrt bug #458318
+
+  18 Mar 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for ppc, wrt bug #458318
+
+  18 Mar 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for x86, wrt bug #458318
+
+  18 Mar 2013; Agostino Sarubbo <ago@gentoo.org> python-2.5.4-r5.ebuild,
+  python-2.6.8-r1.ebuild, python-2.7.3-r3.ebuild, python-3.1.5-r1.ebuild,
+  python-3.2.3-r2.ebuild:
+  Stable for amd64, wrt bug #458318
 
   18 Feb 2013; Fabian Groffen <grobian@gentoo.org> python-3.3.0-r1.ebuild:
   Fix compilation on Darwin, thanks Richard Yao, bug #458168
