@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.411 2013/02/26 14:36:40 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.416 2013/03/31 02:17:12 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -261,6 +261,11 @@ EPATCH_MULTI_MSG="Applying various patches (bugfixes/updates) ..."
 # Only require patches to match EPATCH_SUFFIX rather than the extended
 # arch naming style.
 EPATCH_FORCE="no"
+# @VARIABLE: EPATCH_USER_EXCLUDE
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# List of patches not to apply.	 Note this is only file names,
+# and not the full path.  Globs accepted.
 
 # @FUNCTION: epatch
 # @USAGE: [options] [patches] [dirs of patches]
@@ -405,6 +410,15 @@ epatch() {
 			local ex
 			for ex in ${EPATCH_EXCLUDE} ; do
 				if [[ ${patchname} == ${ex} ]] ; then
+					einfo "  Skipping ${patchname} due to EPATCH_EXCLUDE ..."
+					eshopts_pop
+					continue 2
+				fi
+			done
+
+			for ex in ${EPATCH_USER_EXCLUDE} ; do
+				if [[ ${patchname} == ${ex} ]] ; then
+					einfo "  Skipping ${patchname} due to EPATCH_USER_EXCLUDE ..."
 					eshopts_pop
 					continue 2
 				fi
@@ -1275,12 +1289,15 @@ epunt_cxx() {
 	local dir=$1
 	[[ -z ${dir} ]] && dir=${S}
 	ebegin "Removing useless C++ checks"
-	local f any_found
-	find "${dir}" -name configure | while read f ; do
-		patch --no-backup-if-mismatch -p0 "${f}" \
-			"${PORTDIR}/eclass/ELT-patches/nocxx/nocxx.patch" > /dev/null \
-			&& any_found=1
-	done
+	local f p any_found
+	while IFS= read -r -d '' f; do
+		for p in "${PORTDIR}"/eclass/ELT-patches/nocxx/*.patch ; do
+			if patch --no-backup-if-mismatch -p1 "${f}" "${p}" >/dev/null ; then
+				any_found=1
+				break
+			fi
+		done
+	done < <(find "${dir}" -name configure -print0)
 
 	if [[ -z ${any_found} ]]; then
 		eqawarn "epunt_cxx called unnecessarily (no C++ checks to punt)."
@@ -1298,27 +1315,31 @@ epunt_cxx() {
 make_wrapper() {
 	local wrapper=$1 bin=$2 chdir=$3 libdir=$4 path=$5
 	local tmpwrapper=$(emktemp)
+
+	(
+	echo '#!/bin/sh'
+	[[ -n ${chdir} ]] && printf 'cd "%s"\n' "${chdir}"
+	if [[ -n ${libdir} ]] ; then
+		cat <<-EOF
+			if [ "\${LD_LIBRARY_PATH+set}" = "set" ] ; then
+				export LD_LIBRARY_PATH="\${LD_LIBRARY_PATH}:${EPREFIX}${libdir}"
+			else
+				export LD_LIBRARY_PATH="${EPREFIX}${libdir}"
+			fi
+			# ultra-dirty, just do the same for Darwin
+			if [ "\${DYLD_LIBRARY_PATH+set}" = "set" ] ; then
+				export DYLD_LIBRARY_PATH="\${DYLD_LIBRARY_PATH}:${EPERFIX}${libdir}"
+			else
+				export DYLD_LIBRARY_PATH="${EPREFIX}${libdir}"
+			fi
+		EOF
+	fi
 	# We don't want to quote ${bin} so that people can pass complex
-	# things as $bin ... "./someprog --args"
-	cat << EOF > "${tmpwrapper}"
-#!${EPREFIX}/bin/sh
-cd "${chdir:-.}"
-if [ -n "${libdir}" ] ; then
-	if [ "\${LD_LIBRARY_PATH+set}" = "set" ] ; then
-		export LD_LIBRARY_PATH="\${LD_LIBRARY_PATH}:${EPREFIX}${libdir}"
-	else
-		export LD_LIBRARY_PATH="${EPREFIX}${libdir}"
-	fi
-	# ultra-dirty, just do the same for Darwin
-	if [ "\${DYLD_LIBRARY_PATH+set}" = "set" ] ; then
-		export DYLD_LIBRARY_PATH="\${DYLD_LIBRARY_PATH}:${EPERFIX}${libdir}"
-	else
-		export DYLD_LIBRARY_PATH="${EPREFIX}${libdir}"
-	fi
-fi
-exec "${EPREFIX}"${bin} "\$@"
-EOF
+	# things as ${bin} ... "./someprog --args"
+	printf 'exec %s "$@"\n' "${bin/#\//${EPREFIX}\/}"
+	) > "${tmpwrapper}"
 	chmod go+rx "${tmpwrapper}"
+
 	if [[ -n ${path} ]] ; then
 		(
 		exeinto "${path}"
