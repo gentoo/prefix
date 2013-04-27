@@ -1,13 +1,13 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.10.3.ebuild,v 1.12 2012/09/25 03:50:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-1.2.ebuild,v 1.3 2013/04/04 07:34:43 aballier Exp $
 
 EAPI="4"
 
 SCM=""
 if [ "${PV#9999}" != "${PV}" ] ; then
 	SCM="git-2"
-	EGIT_REPO_URI="git://git.videolan.org/ffmpeg.git"
+	EGIT_REPO_URI="git://source.ffmpeg.org/ffmpeg.git"
 fi
 
 inherit eutils flag-o-matic multilib toolchain-funcs ${SCM}
@@ -29,22 +29,23 @@ if [ "${PV#9999}" = "${PV}" ] ; then
 	KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 fi
 IUSE="
-	aac aacplus alsa amr bindist +bzip2 cdio celt cpudetection debug
-	dirac doc +encode faac frei0r gnutls gsm +hardcoded-tables ieee1394 jack
-	jpeg2k libass libv4l modplug mp3 network openal openssl oss pic pulseaudio
-	rtmp schroedinger sdl speex static-libs test theora threads
-	truetype v4l vaapi vdpau vorbis vpx X x264 xvid +zlib
+	aac aacplus alsa amr bindist bluray +bzip2 cdio celt
+	cpudetection debug doc +encode examples faac fdk flite fontconfig frei0r
+	gnutls gsm +hardcoded-tables +iconv iec61883 ieee1394 jack jpeg2k libass
+	libcaca libsoxr libv4l modplug mp3 network openal openssl opus oss pic
+	pulseaudio rtmp schroedinger sdl speex static-libs test theora threads
+	truetype twolame v4l vaapi vdpau vorbis vpx X x264 xvid +zlib
 	"
 
 # String for CPU features in the useflag[:configure_option] form
 # if :configure_option isn't set, it will use 'useflag' as configure option
-CPU_FEATURES="3dnow:amd3dnow 3dnowext:amd3dnowext altivec avx mmx mmxext:mmx2 ssse3 vis neon"
+CPU_FEATURES="3dnow:amd3dnow 3dnowext:amd3dnowext altivec avx mmx mmxext ssse3 vis neon"
 
 for i in ${CPU_FEATURES}; do
 	IUSE="${IUSE} ${i%:*}"
 done
 
-FFTOOLS="aviocat cws2fws ffeval graph2dot ismindex pktdumper qt-faststart trasher"
+FFTOOLS="aviocat cws2fws ffescape ffeval fourcc2pixfmt graph2dot ismindex pktdumper qt-faststart trasher"
 
 for i in ${FFTOOLS}; do
 	IUSE="${IUSE} +fftools_$i"
@@ -53,31 +54,39 @@ done
 RDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	amr? ( media-libs/opencore-amr )
+	bluray? ( media-libs/libbluray )
 	bzip2? ( app-arch/bzip2 )
-	cdio? ( dev-libs/libcdio )
+	cdio? ( || ( dev-libs/libcdio-paranoia <dev-libs/libcdio-0.90[-minimal] ) )
 	celt? ( >=media-libs/celt-0.11.1 )
-	dirac? ( media-video/dirac )
 	encode? (
 		aac? ( media-libs/vo-aacenc )
 		aacplus? ( media-libs/libaacplus )
 		amr? ( media-libs/vo-amrwbenc )
 		faac? ( media-libs/faac )
+		fdk? ( media-libs/fdk-aac )
 		mp3? ( >=media-sound/lame-3.98.3 )
 		theora? ( >=media-libs/libtheora-1.1.1[encode] media-libs/libogg )
-		vorbis? ( media-libs/libvorbis media-libs/libogg )
+		twolame? ( media-sound/twolame )
 		x264? ( >=media-libs/x264-0.0.20111017 )
 		xvid? ( >=media-libs/xvid-1.1.0 )
 	)
+	flite? ( app-accessibility/flite )
+	fontconfig? ( media-libs/fontconfig )
 	frei0r? ( media-plugins/frei0r-plugins )
 	gnutls? ( >=net-libs/gnutls-2.12.16 )
 	gsm? ( >=media-sound/gsm-1.0.12-r1 )
+	iconv? ( virtual/libiconv )
+	iec61883? ( media-libs/libiec61883 sys-libs/libraw1394 sys-libs/libavc1394 )
 	ieee1394? ( media-libs/libdc1394 sys-libs/libraw1394 )
 	jack? ( media-sound/jack-audio-connection-kit )
 	jpeg2k? ( >=media-libs/openjpeg-1.3-r2 )
 	libass? ( media-libs/libass )
+	libcaca? ( media-libs/libcaca )
+	libsoxr? ( media-libs/soxr )
 	libv4l? ( media-libs/libv4l )
 	modplug? ( media-libs/libmodplug )
 	openal? ( >=media-libs/openal-1.1 )
+	opus? ( media-libs/opus )
 	pulseaudio? ( media-sound/pulseaudio )
 	rtmp? ( >=media-video/rtmpdump-2.2f )
 	sdl? ( >=media-libs/libsdl-1.2.13-r1[audio,video] )
@@ -86,6 +95,7 @@ RDEPEND="
 	truetype? ( media-libs/freetype:2 )
 	vaapi? ( >=x11-libs/libva-0.32 )
 	vdpau? ( x11-libs/libvdpau )
+	vorbis? ( media-libs/libvorbis media-libs/libogg )
 	vpx? ( >=media-libs/libvpx-0.9.6 )
 	X? ( x11-libs/libX11 x11-libs/libXext x11-libs/libXfixes )
 	zlib? ( sys-libs/zlib )
@@ -95,8 +105,8 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	>=sys-devel/make-3.81
-	dirac? ( virtual/pkgconfig )
 	doc? ( app-text/texi2html )
+	fontconfig? ( virtual/pkgconfig )
 	gnutls? ( virtual/pkgconfig )
 	ieee1394? ( virtual/pkgconfig )
 	libv4l? ( virtual/pkgconfig )
@@ -111,88 +121,87 @@ DEPEND="${RDEPEND}
 REQUIRED_USE="bindist? ( encode? ( !faac !aacplus ) !openssl )
 	libv4l? ( v4l )
 	fftools_cws2fws? ( zlib )
-	test? ( encode zlib )"
+	test? ( encode )"
 
 S=${WORKDIR}/${P/_/-}
+BUILD_DIR=${S}_build
 
 src_prepare() {
 	if [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
 		export revision=git-N-${FFMPEG_REVISION}
 	fi
-	epatch "${FILESDIR}/freiordl.patch"
-
-	# /bin/sh on at least Solaris can't cope very will with these scripts
-	sed -i -e '1c\#!/usr/bin/env bash' version.sh libavcodec/codec_names.sh || die
+	epatch_user
 	# the version script on Solaris causes invalid symbol version problems
 	# we don't want their hacky workarounds, we're having a GNU ld
 	sed -i -e 's/sunos)/sunos) network_extralibs="-lsocket -lnsl"; add_cppflags -D__EXTENSIONS__; enable pic; disable symver ;; no-sunos)/' configure || die
 }
 
 src_configure() {
+	mkdir -p "${BUILD_DIR}"
+	cd "${BUILD_DIR}"
+
 	local myconf="${EXTRA_FFMPEG_CONF}"
-	# Set to --enable-version3 if (L)GPL-3 is required
-	local version3=""
 
-	# enabled by default
-	for i in debug doc network vaapi vdpau zlib; do
-		use ${i} || myconf="${myconf} --disable-${i}"
-	done
-	use bzip2 || myconf="${myconf} --disable-bzlib"
-	use sdl || myconf="${myconf} --disable-ffplay"
-
-	use cpudetection && myconf="${myconf} --enable-runtime-cpudetect"
-	use openssl && myconf="${myconf} --enable-openssl --enable-nonfree"
-	for i in gnutls ; do
-		use $i && myconf="${myconf} --enable-$i"
-	done
+	# options to use as use_enable in the foo[:bar] form.
+	# This will feed configure with $(use_enable foo bar)
+	# or $(use_enable foo foo) if no :bar is set.
+	local ffuse="bzip2:bzlib cpudetection:runtime-cpudetect debug doc
+			     gnutls hardcoded-tables iconv network openssl sdl:ffplay vaapi vdpau zlib"
+	use openssl && myconf="${myconf} --enable-nonfree"
 
 	# Encoders
 	if use encode
 	then
-		use mp3 && myconf="${myconf} --enable-libmp3lame"
-		use aac && { myconf="${myconf} --enable-libvo-aacenc" ; version3=" --enable-version3" ; }
-		use amr && { myconf="${myconf} --enable-libvo-amrwbenc" ; version3=" --enable-version3" ; }
-		for i in theora vorbis x264 xvid; do
-			use ${i} && myconf="${myconf} --enable-lib${i}"
+		ffuse="${ffuse} aac:libvo-aacenc amr:libvo-amrwbenc mp3:libmp3lame fdk:libfdk-aac"
+		for i in aacplus faac theora twolame x264 xvid; do
+			ffuse="${ffuse} ${i}:lib${i}"
 		done
-		use aacplus && myconf="${myconf} --enable-libaacplus --enable-nonfree"
-		use faac && myconf="${myconf} --enable-libfaac --enable-nonfree"
+
+		# Licensing.
+		if use aac || use amr ; then
+			myconf="${myconf} --enable-version3"
+		fi
+		if use aacplus || use faac || use fdk ; then
+			myconf="${myconf} --enable-nonfree"
+		fi
 	else
 		myconf="${myconf} --disable-encoders"
 	fi
 
 	# libavdevice options
-	use cdio && myconf="${myconf} --enable-libcdio"
-	use ieee1394 && myconf="${myconf} --enable-libdc1394"
-	use openal && myconf="${myconf} --enable-openal"
+	ffuse="${ffuse}	cdio:libcdio iec61883:libiec61883 ieee1394:libdc1394 libcaca openal"
+
 	# Indevs
-	# v4l1 is gone since linux-headers-2.6.38
-	myconf="${myconf} --disable-indev=v4l"
 	use v4l || myconf="${myconf} --disable-indev=v4l2"
 	for i in alsa oss jack ; do
 		use ${i} || myconf="${myconf} --disable-indev=${i}"
 	done
-	use X && myconf="${myconf} --enable-x11grab"
-	use pulseaudio && myconf="${myconf} --enable-libpulse"
-	use libv4l && myconf="${myconf} --enable-libv4l2"
+	ffuse="${ffuse}	libv4l:libv4l2 pulseaudio:libpulse X:x11grab"
+
 	# Outdevs
 	for i in alsa oss sdl ; do
 		use ${i} || myconf="${myconf} --disable-outdev=${i}"
 	done
+
 	# libavfilter options
-	use frei0r && myconf="${myconf} --enable-frei0r"
-	use truetype && myconf="${myconf} --enable-libfreetype"
-	use libass && myconf="${myconf} --enable-libass"
+	ffuse="${ffuse} flite:libflite frei0r fontconfig libass truetype:libfreetype"
+
+	# libswresample options
+	ffuse="${ffuse} libsoxr"
 
 	# Threads; we only support pthread for now but ffmpeg supports more
 	use threads && myconf="${myconf} --enable-pthreads"
 
 	# Decoders
-	use amr && { myconf="${myconf} --enable-libopencore-amrwb --enable-libopencore-amrnb" ; version3=" --enable-version3" ; }
-	for i in celt gsm dirac modplug rtmp schroedinger speex vpx; do
-		use ${i} && myconf="${myconf} --enable-lib${i}"
+	ffuse="${ffuse} amr:libopencore-amrwb amr:libopencore-amrnb	jpeg2k:libopenjpeg"
+	use amr && myconf="${myconf} --enable-version3"
+	for i in bluray celt gsm modplug opus rtmp schroedinger speex vorbis vpx; do
+		ffuse="${ffuse} ${i}:lib${i}"
 	done
-	use jpeg2k && myconf="${myconf} --enable-libopenjpeg"
+
+	for i in ${ffuse} ; do
+		myconf="${myconf} $(use_enable ${i%:*} ${i#*:})"
+	done
 
 	# CPU features
 	for i in ${CPU_FEATURES}; do
@@ -220,9 +229,9 @@ src_configure() {
 	# Mandatory configuration
 	myconf="
 		--enable-gpl
-		${version3}
 		--enable-postproc
 		--enable-avfilter
+		--enable-avresample
 		--disable-stripping
 		${myconf}"
 
@@ -242,15 +251,7 @@ src_configure() {
 		esac
 	fi
 
-	# Misc stuff
-	use hardcoded-tables && myconf="${myconf} --enable-hardcoded-tables"
-
-	# http://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2009-July/061865.html
-#	[[ ${CHOST} == *-solaris* ]] &&
-#		append-flags -Wa,--divide
-
-	cd "${S}"
-	./configure \
+	"${S}/configure" \
 		--prefix="${EPREFIX}/usr" \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
 		--shlibdir="${EPREFIX}/usr/$(get_libdir)" \
@@ -267,29 +268,37 @@ src_configure() {
 }
 
 src_compile() {
-	emake
+	cd "${BUILD_DIR}"
+	emake V=1
 
 	for i in ${FFTOOLS} ; do
 		if use fftools_$i ; then
-			emake tools/$i
+			emake V=1 tools/$i
 		fi
 	done
 }
 
 src_install() {
-	emake DESTDIR="${D}" install install-man
-
-	dodoc Changelog README INSTALL
-	dodoc -r doc/*
+	cd "${BUILD_DIR}"
+	emake V=1 DESTDIR="${D}" install install-man
 
 	for i in ${FFTOOLS} ; do
 		if use fftools_$i ; then
 			dobin tools/$i
 		fi
 	done
+
+	cd "${S}"
+	dodoc Changelog README CREDITS doc/*.txt doc/APIchanges doc/RELEASE_NOTES
+	use doc && dohtml -r doc/*
+	if use examples ; then
+		dodoc -r doc/examples
+		docompress -x /usr/share/doc/${PF}/examples
+	fi
 }
 
 src_test() {
-	LD_LIBRARY_PATH="${S}/libpostproc:${S}/libswscale:${S}/libswresample:${S}/libavcodec:${S}/libavdevice:${S}/libavfilter:${S}/libavformat:${S}/libavutil" \
-		emake fate
+	cd "${BUILD_DIR}"
+	LD_LIBRARY_PATH="${BUILD_DIR}/libpostproc:${BUILD_DIR}/libswscale:${BUILD_DIR}/libswresample:${BUILD_DIR}/libavcodec:${BUILD_DIR}/libavdevice:${BUILD_DIR}/libavfilter:${BUILD_DIR}/libavformat:${BUILD_DIR}/libavutil:${BUILD_DIR}/libavresample" \
+		emake V=1 fate
 }

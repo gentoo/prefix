@@ -1,6 +1,232 @@
 # ChangeLog for media-video/ffmpeg
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.585 2012/10/12 11:24:14 aballier Exp $
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.645 2013/04/21 10:23:45 maekke Exp $
+
+  21 Apr 2013; Markus Meier <maekke@gentoo.org> ffmpeg-1.0.6.ebuild:
+  add ~arm, bug #458100
+
+  13 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for sparc, wrt bug #465496
+
+  12 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for ia64, wrt bug #465496
+
+  12 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for arm, wrt bug #465496
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for amd64, wrt bug #465496
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for x86, wrt bug #465496
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for alpha, wrt bug #465496
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for ppc64, wrt bug #465496
+
+  11 Apr 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for ppc, wrt bug #465496
+
+  11 Apr 2013; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.10.7.ebuild:
+  Stable for HPPA (bug #465496).
+
+*ffmpeg-0.10.7 (11 Apr 2013)
+
+  11 Apr 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.10.7.ebuild:
+  version bump for the 0.10 branch
+
+  04 Apr 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-1.0.6.ebuild,
+  ffmpeg-1.1.4.ebuild, ffmpeg-1.2.ebuild, ffmpeg-9999.ebuild, metadata.xml:
+  Always enable libavresample: strictly speaking enabling or disabling it
+  changes the ABI of the package, and since some consumers started to use it
+  seems safer to hard-enable it considering its small size
+
+  03 Apr 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-1.0.6.ebuild,
+  ffmpeg-1.1.4.ebuild, ffmpeg-1.2.ebuild, ffmpeg-9999.ebuild:
+  enable avresample by default: some packages start to need it and it is really
+  small.
+
+  03 Apr 2013; Alexis Ballier <aballier@gentoo.org> -ffmpeg-1.0.5.ebuild,
+  -ffmpeg-1.1.3.ebuild:
+  remove old
+
+*ffmpeg-1.0.6 (22 Mar 2013)
+
+  22 Mar 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.0.6.ebuild:
+  version bump
+
+*ffmpeg-1.1.4 (20 Mar 2013)
+
+  20 Mar 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.1.4.ebuild:
+  version bump
+
+*ffmpeg-1.2 (15 Mar 2013)
+
+  15 Mar 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.2.ebuild:
+  version bump
+
+  15 Mar 2013; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.10.3.ebuild:
+  remove old
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.6.ebuild:
+  Stable for ppc, wrt bug #433772
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.6.ebuild:
+  Stable for sparc, wrt bug #433772
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.6.ebuild:
+  Stable for ia64, wrt bug #433772
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.6.ebuild:
+  Stable for arm, wrt bug #433772
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.6.ebuild:
+  Stable for alpha, wrt bug #433772
+
+  13 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.6.ebuild:
+  Stable for ppc64, wrt bug #433772
+
+  13 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.6.ebuild:
+  Stable for x86, wrt bug #433772
+
+  13 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ffmpeg-0.10.6.ebuild:
+  Stable for amd64, wrt bug #433772
+
+  12 Mar 2013; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.10.6.ebuild:
+  Stable for HPPA (bug #433772).
+
+  10 Mar 2013; Mike Frysinger <vapier@gentoo.org> ffmpeg-1.0.5.ebuild,
+  ffmpeg-1.1.3.ebuild, ffmpeg-9999.ebuild:
+  Restore --disable-asm for ABI=x32 #427004 by devsk.
+
+  09 Mar 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  factorize some more code into ffuse
+
+  09 Mar 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  handle enabling gpl3 the same way we handle non-free: through myconf and
+  remove the version3 variable
+
+  09 Mar 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  build up configure options on the ffuse variable that will be fed to
+  use_enable, use_enable works fine and avoids having features disappearing
+  because the default behavior changed; factorize some code
+
+  04 Mar 2013; Alexis Ballier <aballier@gentoo.org> -ffmpeg-1.0.4.ebuild,
+  -ffmpeg-1.1.2.ebuild:
+  remove old
+
+  04 Mar 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  fix vaapi/vdpau useflags that are now disabled by default
+
+  04 Mar 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  add iconv useflag
+
+  04 Mar 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  do not compress examples, they are mainly useless compressed
+
+  04 Mar 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  do an out-of-tree build
+
+*ffmpeg-1.0.5 (04 Mar 2013)
+
+  04 Mar 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.0.5.ebuild:
+  version bump
+
+  23 Feb 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-1.0.4.ebuild:
+  drop alpha/arm/ia64 keywords because of bug #458100
+
+*ffmpeg-1.1.3 (23 Feb 2013)
+
+  23 Feb 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.1.3.ebuild:
+  version bump
+
+  22 Feb 2013; Zac Medico <zmedico@gentoo.org> ffmpeg-0.10.6.ebuild,
+  ffmpeg-1.0.4.ebuild, ffmpeg-1.1.2.ebuild, ffmpeg-9999.ebuild:
+  Add ~arm-linux keywords.
+
+  19 Feb 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild,
+  metadata.xml:
+  add libsoxr useflag
+
+  18 Feb 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  Add epatch_user, by Hristo Venev, bug #448612
+
+  13 Feb 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  run tests against built libavresample
+
+  07 Feb 2013; Alexis Ballier <aballier@gentoo.org> -ffmpeg-1.1.1.ebuild:
+  remove old
+
+  07 Feb 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-1.1.2.ebuild,
+  ffmpeg-9999.ebuild:
+  fix cdio dep
+
+*ffmpeg-1.0.4 (07 Feb 2013)
+
+  07 Feb 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.0.4.ebuild:
+  Restore the 1.0 branch as this one could be unmasked rather soonish, 1.1 will
+  require more work since the change of output format of some audio decoders
+  causes runtime regressions in some programs.
+
+*ffmpeg-1.1.2 (07 Feb 2013)
+
+  07 Feb 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.1.2.ebuild:
+  version bump
+
+  27 Jan 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  Add ffescape and fourcc2pixfmt tools
+
+  23 Jan 2013; Alexis Ballier <aballier@gentoo.org> -ffmpeg-1.0.1.ebuild,
+  -ffmpeg-1.1.ebuild:
+  remove old
+
+*ffmpeg-1.1.1 (23 Jan 2013)
+
+  23 Jan 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.1.1.ebuild:
+  version bump
+
+  17 Jan 2013; Alexis Ballier <aballier@gentoo.org> metadata.xml:
+  Describe what the bindist useflag does here.
+
+  16 Jan 2013; Samuli Suominen <ssuominen@gentoo.org> ffmpeg-0.10.6.ebuild,
+  ffmpeg-1.0.1.ebuild, ffmpeg-1.1.ebuild:
+  Fix compability with libcdio-paranoia.
+
+*ffmpeg-1.1 (13 Jan 2013)
+
+  13 Jan 2013; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.1.ebuild:
+  version bump
+
+  13 Jan 2013; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  Improve documentation installation and add an examples useflag
+
+  19 Dec 2012; Alexis Ballier <aballier@gentoo.org> -ffmpeg-0.10.2.ebuild,
+  -ffmpeg-0.10.4.ebuild, -ffmpeg-0.10.5.ebuild, -ffmpeg-0.11.1.ebuild,
+  -ffmpeg-0.11.2.ebuild, -ffmpeg-1.0.ebuild:
+  remove old
+
+*ffmpeg-1.0.1 (18 Dec 2012)
+
+  18 Dec 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-1.0.1.ebuild:
+  version bump
+
+  08 Dec 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.10.6.ebuild,
+  +files/flashtest.patch:
+  backport upstream fix for the vsynth1-flashsv2 test with recent zlib
+  versions, bug #446390
+
+  08 Dec 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  v4l1 indev is gone, no need to disable it explicitly
+
+  26 Nov 2012; Tomáš Chvátal <scarabeus@gentoo.org> metadata.xml:
+  Update to global useflag.
+
+*ffmpeg-0.10.6 (14 Nov 2012)
+
+  14 Nov 2012; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.10.6.ebuild:
+  version bump
 
   12 Oct 2012; Alexis Ballier <aballier@gentoo.org> ffmpeg-1.0.ebuild,
   ffmpeg-9999.ebuild:
