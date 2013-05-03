@@ -524,8 +524,15 @@ EOF
 		doins -r "${S}"/Tools
 	fi
 	insinto /usr/share/gdb/auto-load/usr/$(get_libdir) #443510
-	local libname=$(printf 'e:\n\t@echo $(INSTSONAME)\ninclude Makefile\n' | \
-		emake --no-print-directory -s -f - 2>/dev/null)
+	local libname
+	if use aqua ; then
+		# we do framework, so the emake trick below returns a pathname
+		# since that won't work here, use a (cheap) trick instead
+		libname=libpython${SLOT}
+	else
+		libname=$(printf 'e:\n\t@echo $(INSTSONAME)\ninclude Makefile\n' | \
+			emake --no-print-directory -s -f - 2>/dev/null)
+	fi
 	newins "${S}"/Tools/gdb/libpython.py "${libname}"-gdb.py
 
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}

@@ -3,6 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.647 2013/04/13 20:54:00 ago Exp $
 
   03 May 2013; Fabian Groffen <grobian@gentoo.org> python-2.7.4.ebuild:
+  Fix installation on Darwin
+
+  03 May 2013; Fabian Groffen <grobian@gentoo.org> python-2.7.4.ebuild:
   Fix preparing on Darwin
 
 *python-3.2.3-r2 (21 Apr 2013)
