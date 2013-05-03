@@ -115,7 +115,7 @@ src_prepare() {
 			Makefile.pre.in || die
 		# Python upstream refuses to listen to configure arguments
 		sed -i -e '/FRAMEWORKINSTALLAPPSPREFIX=/s:="[^"]*":="${prefix}/../Applications":' \
-			configure.in configure || die
+			configure.ac configure || die
 	fi
 	# don't try to do fancy things on Darwin
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
