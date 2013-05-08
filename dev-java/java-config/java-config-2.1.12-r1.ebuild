@@ -1,12 +1,13 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.12.ebuild,v 1.2 2012/09/16 13:20:41 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.12-r1.ebuild,v 1.8 2013/04/11 15:49:11 mgorny Exp $
 
-EAPI="2"
-PYTHON_DEPEND="*:2.6"
-SUPPORT_PYTHON_ABIS="1"
+EAPI="5"
 
-inherit distutils eutils fdo-mime gnome2-utils prefix
+# jython depends on java-config, so don't add it or things will breake.
+PYTHON_COMPAT=( python{2_6,2_7,3_1,3_2,3_3} )
+
+inherit distutils-r1 eutils fdo-mime gnome2-utils prefix
 
 DESCRIPTION="Java environment configuration tool"
 HOMEPAGE="http://www.gentoo.org/proj/en/java/"
@@ -19,29 +20,17 @@ SLOT="2"
 IUSE=""
 
 DEPEND=""
-RDEPEND=">=dev-java/java-config-wrapper-0.15"
+RDEPEND=">=dev-java/java-config-wrapper-0.15
+	!sys-apps/baselayout-java
+	!app-admin/eselect-java"
 # https://bugs.gentoo.org/show_bug.cgi?id=315229
 PDEPEND=">=virtual/jre-1.5"
 # Tests fail when java-config isn't already installed.
 RESTRICT="test"
-RESTRICT_PYTHON_ABIS="2.4 2.5 *-jython"
 
-PYTHON_MODNAME="java_config_2"
-
-src_prepare() {
-	distutils_src_prepare
-
-	cp config/jdk-defaults-{x86,amd64}-fbsd.conf || die #415397
-	echo "*= icedtea-7 icedtea-6 icedtea-bin-7 icedtea-bin-6" \
-		> config/jdk-defaults-arm.conf || die #305773
-}
-
-src_test() {
-	testing() {
-		PYTHONPATH="build-${PYTHON_ABI}/lib" "$(PYTHON)" src/run-test-suite.py
-		PYTHONPATH="build-${PYTHON_ABI}/lib" "$(PYTHON)" src/run-test-suite2.py
-	}
-	python_execute_function testing
+python_test() {
+	"${PYTHON}" src/run-test-suite.py || die
+	"${PYTHON}" src/run-test-suite2.py || die
 }
 
 src_prepare() {
@@ -55,9 +44,8 @@ src_prepare() {
 		man/java-config-2.1
 }
 
-src_install() {
-	distutils_src_install
-	rm -rf "${ED}"/usr/share/mimelnk #350459
+python_install_all() {
+	distutils-r1_python_install_all
 
 	local a=${ARCH}
 	case $a in
@@ -67,17 +55,15 @@ src_install() {
 	esac
 
 	insinto /usr/share/java-config-2/config/
-	newins config/jdk-defaults-${a}.conf jdk-defaults.conf || die "arch config not found"
+	newins config/jdk-defaults-${a}.conf jdk-defaults.conf
 }
 
 pkg_postrm() {
-	distutils_pkg_postrm
 	fdo-mime_desktop_database_update
 	gnome2_icon_cache_update
 }
 
 pkg_postinst() {
-	distutils_pkg_postinst
 	fdo-mime_desktop_database_update
 	gnome2_icon_cache_update
 }
