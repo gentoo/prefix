@@ -1078,8 +1078,8 @@ bootstrap_stage3() {
 	local pkgs=(
 		sys-apps/sed
 		"<app-shells/bash-4.2_p20"  # higher versions require readline
-		sys-apps/baselayout-prefix
 		app-arch/xz-utils
+		sys-apps/baselayout-prefix
 		sys-devel/m4
 		sys-devel/flex
 		sys-devel/bison
