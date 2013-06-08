@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.3-r2.ebuild,v 1.22 2013/05/25 22:32:46 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.3.2.ebuild,v 1.1 2013/05/21 21:23:34 chutzpah Exp $
 
 EAPI="3"
 WANT_AUTOMAKE="none"
@@ -9,19 +9,19 @@ WANT_LIBTOOL="none"
 inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs multiprocessing
 
 MY_P="Python-${PV}"
-PATCHSET_REVISION="0"
+PATCHSET_REVISION="1"
 PREFIX_PATCHREV="-r0"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
-	mirror://gentoo/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.bz2
+	mirror://gentoo/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.xz
 	http://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}.tar.bz2"
 
 LICENSE="PSF-2"
-SLOT="3.2"
+SLOT="3.3"
 KEYWORDS="~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="build doc elibc_uclibc examples gdbm hardened ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
+IUSE="build doc elibc_uclibc examples gdbm hardened ipv6 +ncurses +readline sqlite +ssl +threads tk wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
 # If you need to apply a patch which requires python for bootstrapping, please
@@ -45,7 +45,8 @@ RDEPEND="app-arch/bzip2
 			dev-tcltk/blt
 		)
 		xml? ( >=dev-libs/expat-2.1 )
-	)"
+	)
+	!!<sys-apps/sandbox-2.6-r1"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	>=sys-devel/autoconf-2.65
@@ -57,31 +58,16 @@ PDEPEND="app-admin/eselect-python
 
 S="${WORKDIR}/${MY_P}"
 
-pkg_setup() {
-	if [[ "${PV}" =~ ^3\.2(\.[1234])?(_pre)? ]]; then
-		rm -f "${EROOT}usr/$(get_libdir)/llibpython3.so"
-	else
-		die "Deprecated code not deleted"
-	fi
-}
-
 src_prepare() {
 	# Ensure that internal copies of expat, libffi and zlib are not used.
 	rm -fr Modules/expat
 	rm -fr Modules/_ctypes/libffi*
 	rm -fr Modules/zlib
 
-	local excluded_patches
-	if ! tc-is-cross-compiler; then
-		excluded_patches="*_all_crosscompile.patch"
-	fi
-
-	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
-		epatch "${WORKDIR}/${PV}-${PATCHSET_REVISION}"
-	epatch "${FILESDIR}"/${PN}-3.2.3-x32.patch
+	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}-${PATCHSET_REVISION}"
 
 	# Prefix' round of patches
-	# http://prefix.gentooexperimental.org:8000/python-patches-3_2
+	# http://prefix.gentooexperimental.org:8000/python-patches-3_3
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
 		epatch "${WORKDIR}"/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}
 
@@ -101,7 +87,9 @@ src_prepare() {
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
 	# Disable ABI flags.
-	sed -e "s/ABIFLAGS=\"\${ABIFLAGS}.*\"/:/" -i configure.in || die "sed failed"
+	sed -e "s/ABIFLAGS=\"\${ABIFLAGS}.*\"/:/" -i configure.ac || die "sed failed"
+
+	epatch_user
 
 	eautoconf
 	eautoheader
@@ -193,7 +181,6 @@ src_configure() {
 		--enable-shared \
 		$(use_enable ipv6) \
 		$(use_with threads) \
-		$(use_with wide-unicode) \
 		--infodir='${prefix}/share/info' \
 		--mandir='${prefix}/share/man' \
 		--with-computed-gotos \
@@ -240,8 +227,12 @@ src_compile() {
 	cd "${WORKDIR}"/${CHOST}
 	emake CPPFLAGS="" CFLAGS="" LDFLAGS="" || die "emake failed"
 
-	# Work around bug 329499. See also bug 413751.
-	pax-mark m python
+	# Work around bug 329499. See also bug 413751 and 457194.
+	if has_version dev-libs/libffi[pax_kernel]; then
+		pax-mark E python
+	else
+		pax-mark m python
+	fi
 }
 
 src_test() {
