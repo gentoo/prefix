@@ -735,7 +735,7 @@ gen_usr_ldscript() {
 				needed=${l#*;}
 				# this is ugly, paths with spaces won't work
 				for lib in ${needed//,/ } ; do
-					if [[ ${lib} == */${tlib} ]] ; then
+					if [[ ${lib} == */usr/lib*/${tlib} ]] ; then
 						# don't masquerade other problems, only remove usr/
 						# from input
 						local s=${lib%usr/*}${lib##*/usr/}
