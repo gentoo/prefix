@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.2_p1-r1.ebuild,v 1.4 2012/04/30 01:36:43 vapier Exp $
 
@@ -103,11 +103,13 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die
-	gen_usr_ldscript -a readline history #4411
 
 	if ! tc-is-cross-compiler; then
 		dobin examples/rlfe/rlfe || die
 	fi
+
+	# must come after installing rlfe, bug #455512
+	gen_usr_ldscript -a readline history #4411
 
 	dodoc CHANGELOG CHANGES README USAGE NEWS
 	docinto ps
