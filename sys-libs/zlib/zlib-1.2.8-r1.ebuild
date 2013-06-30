@@ -1,9 +1,11 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.7.ebuild,v 1.13 2013/03/03 09:18:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/zlib-1.2.8-r1.ebuild,v 1.1 2013/06/23 07:43:53 pacho Exp $
 
+EAPI=4
 AUTOTOOLS_AUTO_DEPEND="no"
-inherit autotools toolchain-funcs eutils multilib
+
+inherit autotools toolchain-funcs multilib multilib-minimal eutils
 
 DESCRIPTION="Standard (de)compression library"
 HOMEPAGE="http://www.zlib.net/"
@@ -17,16 +19,13 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 IUSE="minizip static-libs"
 
 DEPEND="minizip? ( ${AUTOTOOLS_DEPEND} )"
-RDEPEND="!<dev-libs/libxml2-2.7.7" #309623
+RDEPEND="abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224 )
+	!<dev-libs/libxml2-2.7.7" #309623
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	if use minizip ; then
-		pushd contrib/minizip > /dev/null || die
+		cd contrib/minizip || die
 		eautoreconf
-		popd > /dev/null
 	fi
 
 	epatch "${FILESDIR}"/${PN}-1.2.7-aix-soname.patch #213277
@@ -35,24 +34,18 @@ src_unpack() {
 	sed -i -e 's:Linux\* | linux\*:Linux\* | linux\* | SunOS\* | solaris\*:' configure || die
 	# make sure we don't use host libtool on Darwin #419499
 	sed -i -e 's:AR="/usr/bin/libtool":AR=libtool:' configure || die
+
+	multilib_copy_sources
 }
 
 echoit() { echo "$@"; "$@"; }
-src_compile() {
+
+multilib_src_configure() {
 	tc-export CC
 	case ${CHOST} in
 	*-mingw*|mingw*)
-		emake -f win32/Makefile.gcc STRIP=true prefix="${EPREFIX}"/usr PREFIX=${CHOST}- || die
-		sed \
-			-e 's|@prefix@|/usr|g' \
-			-e 's|@exec_prefix@|${prefix}|g' \
-			-e 's|@libdir@|${exec_prefix}/'$(get_libdir)'|g' \
-			-e 's|@sharedlibdir@|${exec_prefix}/'$(get_libdir)'|g' \
-			-e 's|@includedir@|${prefix}/include|g' \
-			-e 's|@VERSION@|'${PV}'|g' \
-			zlib.pc.in > zlib.pc || die
 		;;
-	*)	# not an autoconf script, so can't use econf
+	*)      # not an autoconf script, so can't use econf
 		local uname=$("${EPREFIX}"/usr/share/gnuconfig/config.sub "${CHOST}" | cut -d- -f3) #347167
 		echoit ./configure \
 			$(tc-is-static-only && echo "--static" || echo "--shared") \
@@ -60,14 +53,33 @@ src_compile() {
 			--libdir="${EPREFIX}"/usr/$(get_libdir) \
 			${uname:+--uname=${uname}} \
 			|| die
-		emake || die
 		;;
 	esac
+
 	if use minizip ; then
-		cd contrib/minizip
+		cd contrib/minizip || die
 		econf $(use_enable static-libs static)
-		emake || die
 	fi
+}
+
+multilib_src_compile() {
+	case ${CHOST} in
+	*-mingw*|mingw*)
+		emake -f win32/Makefile.gcc STRIP=true PREFIX=${CHOST}-
+		sed \
+			-e "s|@prefix@|${EPREFIX}/usr|g" \
+			-e 's|@exec_prefix@|${prefix}|g' \
+			-e 's|@libdir@|${exec_prefix}/'$(get_libdir)'|g' \
+			-e 's|@sharedlibdir@|${exec_prefix}/'$(get_libdir)'|g' \
+			-e 's|@includedir@|${prefix}/include|g' \
+			-e 's|@VERSION@|'${PV}'|g' \
+			zlib.pc.in > zlib.pc || die
+		;;
+	*)
+		emake
+		;;
+	esac
+	use minizip && emake -C contrib/minizip
 }
 
 sed_macros() {
@@ -77,36 +89,30 @@ sed_macros() {
 }
 
 install_minizip() {
-	pushd contrib/minizip
-	emake install DESTDIR="${D}" || die
+	emake -C contrib/minizip install DESTDIR="${D}"
 	sed_macros "${ED}"/usr/include/minizip/*.h
-	dodoc *.txt
-	popd
 }
 
-src_install() {
+multilib_src_install() {
 	case ${CHOST} in
 	*-mingw*|mingw*)
 		emake -f win32/Makefile.gcc install \
 			BINARY_PATH="${ED}/usr/bin" \
 			LIBRARY_PATH="${ED}/usr/$(get_libdir)" \
 			INCLUDE_PATH="${ED}/usr/include" \
-			SHARED_MODE=1 \
-			|| die
+			SHARED_MODE=1
 		insinto /usr/share/pkgconfig
-		doins zlib.pc || die
+		doins zlib.pc
 		use minizip && install_minizip
 		;;
 
 	*)
-		emake install DESTDIR="${D}" LDCONFIG=: || die
+		emake install DESTDIR="${D}" LDCONFIG=:
 		use minizip && install_minizip
 		gen_usr_ldscript -a z
 		;;
 	esac
 	sed_macros "${ED}"/usr/include/*.h
-
-	dodoc FAQ README ChangeLog doc/*.txt
 
 	# on winnt, additionally install the .dll files.
 	if [[ ${CHOST} == *-winnt* ]]; then
@@ -115,4 +121,9 @@ src_install() {
 	fi
 
 	use static-libs || rm -f "${ED}"/usr/$(get_libdir)/lib{z,minizip}.{a,la} #419645
+}
+
+multilib_src_install_all() {
+	dodoc FAQ README ChangeLog doc/*.txt
+	use minizip && dodoc contrib/minizip/*.txt
 }
