@@ -75,6 +75,15 @@ sed_macros() {
 	# we do it here so we only have to tweak 2 files
 	sed -i -r 's:\<(O[FN])\>:_Z_\1:g' "$@" || die
 }
+
+install_minizip() {
+	pushd contrib/minizip
+	emake install DESTDIR="${D}" || die
+	sed_macros "${ED}"/usr/include/minizip/*.h
+	dodoc *.txt
+	popd
+}
+
 src_install() {
 	case ${CHOST} in
 	*-mingw*|mingw*)
@@ -86,10 +95,12 @@ src_install() {
 			|| die
 		insinto /usr/share/pkgconfig
 		doins zlib.pc || die
+		use minizip && install_minizip
 		;;
 
 	*)
 		emake install DESTDIR="${D}" LDCONFIG=: || die
+		use minizip && install_minizip
 		gen_usr_ldscript -a z
 		;;
 	esac
@@ -101,13 +112,6 @@ src_install() {
 	if [[ ${CHOST} == *-winnt* ]]; then
 		into /
 		dolib libz$(get_libname ${PV}).dll
-	fi
-
-	if use minizip ; then
-		cd contrib/minizip
-		emake install DESTDIR="${D}" || die
-		sed_macros "${ED}"/usr/include/minizip/*.h
-		dodoc *.txt
 	fi
 
 	use static-libs || rm -f "${ED}"/usr/$(get_libdir)/lib{z,minizip}.{a,la} #419645
