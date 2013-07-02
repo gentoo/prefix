@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/libtool
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.199 2012/04/26 13:07:54 aballier Exp $
+
+  02 Jul 2013; Fabian Groffen <grobian@gentoo.org>
+  files/2.2.6a/libtool-2.2.6a-darwin-module-bundle.patch:
+  Add fallback link for .bundle rationale
 
   29 Jul 2012; Fabian Groffen <grobian@gentoo.org>
   files/2.4/libtool-2.4.2-solaris-postdeps-no-dedup.patch,
