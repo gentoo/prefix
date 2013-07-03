@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/lighttpd
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.287 2012/09/09 17:05:15 armin76 Exp $
+
+  03 Jul 2013; Fabian Groffen <grobian@gentoo.org>
+  +files/lighttpd-1.4.31-automake-1.12.patch:
+  add missing patch, bug #450012
 
   09 Sep 2012; Raúl Porcel <armin76@gentoo.org> lighttpd-1.4.31.ebuild:
   alpha/ia64/sh/sparc stable wrt #430902
@@ -1535,4 +1539,3 @@
   23 Apr 2004; Stuart Herbert <stuart@gentoo.org> lighttpd-1.1.8.ebuild,
   files/lighttpd-1.1.8-gentoo.diff, files/lighttpd.initd:
   Initial import; thanks to Boris <sirro@nurfuerspam.de>; see bug #46833
-
