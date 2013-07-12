@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.9.0.ebuild,v 1.2 2012/05/05 08:02:34 jdhore Exp $
 
@@ -32,6 +32,7 @@ PDEPEND="!x86-winnt? ( app-admin/eselect-fontconfig )
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7.1-latin-reorder.patch	# 130466
 	epatch "${FILESDIR}"/${PN}-2.3.2-docbook.patch			# 310157
+	epatch "${FILESDIR}"/${PN}-2.9.0-m68k.patch				# 458590
 
 	if [[ ${CHOST} == *-winnt* ]] ; then
 		epatch "${FILESDIR}"/${PN}-2.6.0-winnt.patch

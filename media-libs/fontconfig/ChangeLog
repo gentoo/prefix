@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/fontconfig
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.161 2012/05/05 08:02:34 jdhore Exp $
+
+  12 Jul 2013; Fabian Groffen <grobian@gentoo.org>
+  +files/fontconfig-2.9.0-m68k.patch, fontconfig-2.9.0.ebuild:
+  Fix build on m68k, bug #458590
 
   05 May 2012; Jeff Horelick <jdhore@gentoo.org> fontconfig-2.8.0-r1.ebuild,
   fontconfig-2.8.0-r2.ebuild, fontconfig-2.9.0.ebuild:
@@ -698,4 +702,3 @@
 
   30 Sep 2002; Martin Schlemmer <azarah@gentoo.org> fontconfig-2.0.ebuild :
   Initial version.
-

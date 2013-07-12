@@ -1,0 +1,45 @@
+On Tue, 01 May 2012 17:39:05 +0000, Thorsten Glaser <tg@mirbsd.de> wrote:
+> Source: fontconfig
+> Version: 2.9.0-2
+> Severity: serious
+> Justification: fails to build from source (but built successfully in the past)
+> 
+> Hi,
+> 
+> the failing line is probably this one:
+>      59 FC_ASSERT_STATIC (0x08 + 1*ALIGNOF_DOUBLE == sizeof (FcValue));
+
+I've sent this patch upstream. Please test and report back.
+
+Author: Keith Packard <keithp@keithp.com>
+Date:   Tue May 1 19:23:12 2012 -0700
+
+    Deal with architectures where ALIGNOF_DOUBLE < 4
+    
+    This patch isn't really tested as I don't have such a machine, but I
+    have a bug report that on m68k machines, double values are aligned on
+    smaller than 4 byte boundaries. If ALIGNOF_DOUBLE < sizeof(int),
+    the "expected" sizeof of FcValue is miscomputed. Use the maximum of 4
+    (sizeof (int)) and ALIGNOF_DOUBLE when computing the expected size of
+    FcValue.
+    
+    Signed-off-by: Keith Packard <keithp@keithp.com>
+
+diff --git a/src/fcarch.c b/src/fcarch.c
+index 09d24b3..5fe7d97 100644
+--- a/src/fcarch.c
++++ b/src/fcarch.c
+@@ -56,7 +56,9 @@ FC_ASSERT_STATIC (SIZEOF_VOID_P == sizeof (FcStrSet *));
+ FC_ASSERT_STATIC (SIZEOF_VOID_P == sizeof (FcCharLeaf **));
+ FC_ASSERT_STATIC (SIZEOF_VOID_P == sizeof (FcChar16 *));
+ 
+-FC_ASSERT_STATIC (0x08 + 1*ALIGNOF_DOUBLE == sizeof (FcValue));
++#define FC_MAX(a,b)    ((a) > (b) ? (a) : (b))
++
++FC_ASSERT_STATIC (0x08 + 1*FC_MAX(4,ALIGNOF_DOUBLE) == sizeof (FcValue));
+ FC_ASSERT_STATIC (0x00 + 2*SIZEOF_VOID_P == sizeof (FcPatternElt));
+ FC_ASSERT_STATIC (0x08 + 2*SIZEOF_VOID_P == sizeof (FcPattern));
+ FC_ASSERT_STATIC (0x08 + 2*SIZEOF_VOID_P == sizeof (FcCharSet));
+
+-- 
+keith.packard@intel.com
