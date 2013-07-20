@@ -2,6 +2,9 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.138 2012/09/29 18:45:43 armin76 Exp $
 
+  20 Jul 2013; Fabian Groffen <grobian@gentoo.org> cscope-15.8a.ebuild:
+  Marked ~x64-macos
+
   20 Jul 2013; Fabian Groffen <grobian@gentoo.org> -cscope-15.7a.ebuild,
   -files/cscope-158831-warning_webscope.patch:
   sync
