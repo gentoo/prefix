@@ -2,6 +2,9 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/ChangeLog,v 1.60 2013/06/10 19:37:35 hwoarang Exp $
 
+  20 Jul 2013; Fabian Groffen <grobian@gentoo.org> quilt-0.60.ebuild:
+  Fix Darwin build to use getopt-long, thanks Martin von Gagern in bug #438144
+
   10 Jun 2013; Markos Chandras <hwoarang@gentoo.org> quilt-0.60.ebuild,
   quilt-9999.ebuild:
   Add ~mips

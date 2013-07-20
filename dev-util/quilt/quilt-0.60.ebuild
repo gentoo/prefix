@@ -16,6 +16,7 @@ IUSE="emacs graphviz"
 RDEPEND="sys-apps/ed
 	dev-util/diffstat
 	graphviz? ( media-gfx/graphviz )
+	kernel_Darwin? ( app-misc/getopt )
 	>=sys-apps/coreutils-8.5"
 
 PDEPEND="emacs? ( app-emacs/quilt-el )"
@@ -43,7 +44,8 @@ src_unpack() {
 
 src_compile() {
 	local myconf=""
-	[[ ${CHOST} == *"-darwin"* ]] && myconf="${myconf} --without-getopt"
+	[[ ${CHOST} == *"-darwin"* ]] && \
+		myconf="${myconf} --with-getopt=\"${EPREFIX}\"/usr/bin/getopt-long"
 	econf ${myconf}
 	emake
 }
