@@ -1,6 +1,89 @@
 # ChangeLog for dev-libs/glib
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.548 2012/10/23 06:21:15 tetromino Exp $
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.564 2013/07/17 04:59:44 ssuominen Exp $
+
+  17 Jul 2013; Samuli Suominen <ssuominen@gentoo.org> glib-2.36.3.ebuild:
+  Stop applying glib-2.32.4-bashcomp.patch because the upstream default of
+  /usr/share/bash-completion/completions is correct as is wrt #477064
+
+  11 Jun 2013; Pacho Ramos <pacho@gentoo.org> glib-2.36.3.ebuild:
+  Add gobject-introspection blocker to ensure people don't mix different g-i and
+  glib major versions as discussed with Nirbheek.
+
+  10 Jun 2013; Pacho Ramos <pacho@gentoo.org> glib-2.36.3.ebuild:
+  Stop showing warnings about dbus-glib rebuilding as looks to not be needed for
+  a long time.
+
+*glib-2.36.3 (10 Jun 2013)
+
+  10 Jun 2013; Pacho Ramos <pacho@gentoo.org> +glib-2.36.3.ebuild,
+  -glib-2.36.1.ebuild:
+  Version bump, drop old
+
+  05 Jun 2013; Mike Frysinger <vapier@gentoo.org> metadata.xml:
+  Add upstream CPE tag (security info) from ChromiumOS.
+
+*glib-2.36.2 (14 May 2013)
+
+  14 May 2013; Pacho Ramos <pacho@gentoo.org> +glib-2.36.2.ebuild,
+  -glib-2.36.0.ebuild:
+  Version bump, drop old
+
+  30 Apr 2013; Alexandre Rostovtsev <tetromino@gentoo.org>
+  glib-1.2.10-r5.ebuild, glib-2.32.4-r1.ebuild, glib-2.34.3.ebuild,
+  +files/glib-1.2.10-automake-1.13.patch,
+  +files/glib-2.34.3-automake-1.13.patch:
+  On second thought, fix automake-1.13 compatibility properly, with patches.
+
+  29 Apr 2013; Alexandre Rostovtsev <tetromino@gentoo.org>
+  glib-1.2.10-r5.ebuild, glib-2.32.4-r1.ebuild, glib-2.34.3.ebuild:
+  Require automake-1.12, since building with 1.13 fails (bug #467086, thanks to
+  Paramonov Valeriy et al.)
+
+*glib-2.36.1 (23 Apr 2013)
+
+  23 Apr 2013; Pacho Ramos <pacho@gentoo.org> +glib-2.36.1.ebuild,
+  -files/glib-2.10.3-ia64-atomic-ops.patch,
+  -files/glib-2.18.1-workaround-gio-test-failure-without-userpriv.patch,
+  -files/glib-2.30.1-external-gdbus-codegen.patch,
+  -files/glib-2.30.1-homedir-env.patch, -files/glib-2.30.2-machine-id.patch,
+  -files/glib-2.30.2-missing-decls.patch,
+  -files/glib-2.30.3-assert-test-failure.patch,
+  -files/glib-2.30.3-closure-64bit-be.patch, -glib-2.30.3.ebuild,
+  -glib-2.34.2.ebuild:
+  Version bump, drop old
+
+  07 Apr 2013; Gilles Dartiguelongue <eva@gentoo.org> glib-2.36.0.ebuild:
+  Switch to python-r1, bug #458788. Do not install gtester-report man page with
+  USE=-utils, bug #439344.
+
+*glib-2.36.0 (28 Mar 2013)
+
+  28 Mar 2013; Pacho Ramos <pacho@gentoo.org>
+  +files/glib-2.35.x-external-gdbus-codegen.patch, +glib-2.36.0.ebuild:
+  Version bump for Gnome 3.8
+
+  19 Feb 2013; Alexandre Rostovtsev <tetromino@gentoo.org> glib-2.30.3.ebuild,
+  glib-2.32.4-r1.ebuild, glib-2.34.2.ebuild, glib-2.34.3.ebuild:
+  Add epatch_user (bug #453560).
+
+  17 Feb 2013; Zac Medico <zmedico@gentoo.org> glib-2.34.3.ebuild:
+  Fix xml catalog from prefix, and add ~arm-linux keyword.
+
+  13 Jan 2013; Gilles Dartiguelongue <eva@gentoo.org> -glib-2.32.4.ebuild:
+  Clean up old revision.
+
+*glib-2.34.3 (27 Nov 2012)
+
+  27 Nov 2012; Alexandre Rostovtsev <tetromino@gentoo.org> -glib-2.34.1.ebuild,
+  +glib-2.34.3.ebuild:
+  Version bump with some minor fixes. Drop old.
+
+*glib-2.34.2 (10 Nov 2012)
+
+  10 Nov 2012; Alexandre Rostovtsev <tetromino@gentoo.org> -glib-2.34.0.ebuild,
+  +glib-2.34.2.ebuild:
+  Version bump with various bugfixes. Drop old.
 
   28 Dec 2012; Fabian Groffen <grobian@gentoo.org>
   -files/glib-2.34.1-solaris-nsl.patch, glib-2.34.1.ebuild:

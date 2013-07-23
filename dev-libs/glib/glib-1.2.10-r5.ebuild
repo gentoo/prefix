@@ -1,6 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.55 2012/09/25 11:40:57 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.57 2013/04/30 14:29:12 tetromino Exp $
+
+EAPI="4"
 
 inherit autotools libtool flag-o-matic eutils portability
 
@@ -18,10 +20,7 @@ IUSE="hardened"
 DEPEND=""
 RDEPEND=""
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epatch "${FILESDIR}"/${P}-automake.patch
 	epatch "${FILESDIR}"/${P}-m4.patch
 	epatch "${FILESDIR}"/${P}-configure-LANG.patch #133679
@@ -32,6 +31,9 @@ src_unpack() {
 	# Fix for -Wl,--as-needed (bug #133818)
 	epatch "${DISTDIR}"/glib-1.2.10-r1-as-needed.patch.bz2
 
+	# build failure with automake-1.13
+	epatch "${FILESDIR}/${P}-automake-1.13.patch"
+
 	use ppc64 && use hardened && replace-flags -O[2-3] -O1
 	append-ldflags $(dlopen_lib)
 
@@ -40,7 +42,7 @@ src_unpack() {
 	elibtoolize
 }
 
-src_compile() {
+src_configure() {
 	# Bug 48839: pam fails to build on ia64
 	# The problem is that it attempts to link a shared object against
 	# libglib.a; this library needs to be built with -fPIC.  Since
@@ -50,13 +52,11 @@ src_compile() {
 
 	econf \
 		--with-threads=posix \
-		--enable-debug=yes \
-		|| die
-	emake || die
+		--enable-debug=yes
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	default
 
 	dodoc AUTHORS ChangeLog README* INSTALL NEWS
 	dohtml -r docs
