@@ -1069,7 +1069,7 @@ bootstrap_stage3() {
 			# for a valid shebang, we have symlinked bin/bash already
 			[[ ${pkg} == *"app-shells/bash"* ]] &&
 			premerge="FEATURES='${FEATURES} -collision-protect'"
-			eval ${premerge} 'emerge --oneshot ${opts} "${pkg}"'
+			eval ${premerge} 'emerge -v --oneshot ${opts} "${pkg}"'
 			[[ $? -eq 0 ]] || return 1
 		done
 	}
