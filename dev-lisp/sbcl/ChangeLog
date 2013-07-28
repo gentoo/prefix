@@ -1,6 +1,57 @@
 # ChangeLog for dev-lisp/sbcl
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.182 2012/08/29 03:17:11 mattst88 Exp $
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.192 2013/07/24 13:47:55 grozin Exp $
+
+*sbcl-1.1.9 (24 Jul 2013)
+
+  24 Jul 2013; Andrey Grozin <grozin@gentoo.org> +sbcl-1.1.9.ebuild:
+  Version bump
+
+*sbcl-1.1.8 (18 Jun 2013)
+
+  18 Jun 2013; Andrey Grozin <grozin@gentoo.org> +sbcl-1.1.8.ebuild:
+  Version bump
+
+  10 May 2013; Patrick Lauer <patrick@gentoo.org> metadata.xml:
+  Remove unused flag from metadata
+
+*sbcl-1.1.7 (01 May 2013)
+
+  01 May 2013; Andrey Grozin <grozin@gentoo.org> +sbcl-1.1.7.ebuild:
+  Version bump
+
+*sbcl-1.1.6-r4 (20 Apr 2013)
+
+  20 Apr 2013; Andrey Grozin <grozin@gentoo.org> -sbcl-1.1.3.ebuild,
+  -sbcl-1.1.5.ebuild, +sbcl-1.1.6-r4.ebuild, +files/1.1.6-fix-svref.patch:
+  Version bump from the lisp overlay (pmasked)
+
+  17 Mar 2013; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
+  Add proxy-maintainers to metadata.xml
+
+*sbcl-1.1.5 (14 Mar 2013)
+
+  14 Mar 2013; Andrey Grozin <grozin@gentoo.org> -sbcl-1.1.2.ebuild,
+  +sbcl-1.1.5.ebuild:
+  Version bump, closing #422505
+
+*sbcl-1.1.3 (08 Jan 2013)
+
+  08 Jan 2013; Andrey Grozin <grozin@gentoo.org> +sbcl-1.1.3.ebuild:
+  Version bump (still masked)
+
+*sbcl-1.0.55-r2 (17 Dec 2012)
+
+  17 Dec 2012; Panagiotis Christopoulos <pchrist@gentoo.org>
+  +sbcl-1.0.55-r2.ebuild:
+  add zlib support to .55-r2. Dropped keywords cause it needs testing.
+  Requested by Kyle Nusbaum on irc.
+
+*sbcl-1.1.2 (14 Dec 2012)
+
+  14 Dec 2012; Andrey Grozin <grozin@gentoo.org> +sbcl-1.1.2.ebuild,
+  metadata.xml files/gentoo-fix_linux-os-c.patch:
+  Version bump (masked for testing)
 
   29 Aug 2012; Matt Turner <mattst88@gentoo.org> sbcl-1.0.55-r1.ebuild,
   metadata.xml:

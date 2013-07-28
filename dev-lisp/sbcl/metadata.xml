@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE 
-pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer>
     <email>pchrist@gentoo.org</email>
@@ -13,6 +12,7 @@ pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
     <description>second-maintainer</description>
   </maintainer>
   <herd>common-lisp</herd>
+  <herd>proxy-maintainers</herd>
   <longdescription>Steel Bank Common Lisp is an open source Common
   Lisp implementation. It provides an integrated native compiler,
   interpreter, and debugger. SBCL is a fork off of the main branch
@@ -25,7 +25,8 @@ pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
   non-ANSI extensions, or on backward compatibility with old
   non-ANSI features. Support for native threading on GNU/Linux is
   available for the x86 and amd64 platforms using an NPTL enabled
-  GLIBC. SBCL 0.8.17 and later support Unicode.</longdescription>
+  GLIBC. SBCL 0.8.17 and later support Unicode.
+</longdescription>
   <use>
     <flag name='asdf'>Include support for <pkg>dev-lisp/asdf in SBCL</pkg></flag>
     <flag name='ldb'>Include support for the SBCL low level debugger</flag>
