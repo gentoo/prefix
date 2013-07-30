@@ -24,8 +24,9 @@ RDEPEND="abi_x86_32? ( !<=app-emulation/emul-linux-x86-baselibs-20130224 )
 
 src_prepare() {
 	if use minizip ; then
-		cd contrib/minizip || die
+		pushd contrib/minizip > /dev/null || die
 		eautoreconf
+		popd > /dev/null || die
 	fi
 
 	epatch "${FILESDIR}"/${PN}-1.2.7-aix-soname.patch #213277
