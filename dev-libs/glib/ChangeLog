@@ -2,6 +2,9 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.564 2013/07/17 04:59:44 ssuominen Exp $
 
+  01 Aug 2013; Fabian Groffen <grobian@gentoo.org> glib-2.36.3.ebuild:
+  Add pkgconfig dependency, bug #479276
+
   17 Jul 2013; Samuli Suominen <ssuominen@gentoo.org> glib-2.36.3.ebuild:
   Stop applying glib-2.32.4-bashcomp.patch because the upstream default of
   /usr/share/bash-completion/completions is correct as is wrt #477064

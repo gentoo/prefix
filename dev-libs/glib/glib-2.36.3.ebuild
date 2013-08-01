@@ -31,6 +31,7 @@ RDEPEND="
 		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}] )
 "
 DEPEND="${RDEPEND}
+	virtual/pkgconfig
 	app-text/docbook-xml-dtd:4.1.2
 	>=dev-libs/libxslt-1.0
 	>=sys-devel/gettext-0.11
@@ -47,6 +48,7 @@ DEPEND="${RDEPEND}
 "
 # gobject-introspection blocker to ensure people don't mix
 # different g-i and glib major versions
+# virtual/pkgconfig due to eautoreconf (and configure most likely) #479276
 
 PDEPEND="x11-misc/shared-mime-info
 	!<gnome-base/gvfs-1.6.4-r990"
