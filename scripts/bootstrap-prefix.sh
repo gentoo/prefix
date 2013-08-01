@@ -778,18 +778,25 @@ bootstrap_python() {
 bootstrap_zlib_core() {
 	# use 1.2.5 by default, current bootstrap guides
 	PV="${1:-1.2.5}"
-	A=zlib-${PV}.tar.bz2
+	A=zlib-${PV}.tar.gz
 
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GENTOO_MIRRORS}/distfiles/${A} || return 1
+	if ! efetch ${GENTOO_MIRRORS}/distfiles/${A} ; then
+		A=zlib-${PV}.tar.bz2
+		efetch ${GENTOO_MIRRORS}/distfiles/${A} || return 1
+	fi
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
+	if [[ ${A} == *.tar.gz ]] ; then
+		gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
+	else
+		bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
+	fi
 	S="${S}"/zlib-${PV}
 	cd "${S}"
 
@@ -824,8 +831,8 @@ bootstrap_zlib_core() {
 }
 
 bootstrap_zlib() {
-	bootstrap_zlib_core 1.2.7 || bootstrap_zlib_core 1.2.6 || \
-		bootstrap_zlib_core 1.2.5
+	bootstrap_zlib_core 1.2.8 || bootstrap_zlib_core 1.2.7 || \
+	bootstrap_zlib_core 1.2.6 || bootstrap_zlib_core 1.2.5
 }
 
 bootstrap_sed() {
