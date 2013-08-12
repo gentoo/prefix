@@ -5,31 +5,52 @@
 # Require EAPI 2 since we now require at least python-2.6 (for python 3
 # syntax support) which also requires EAPI 2.
 EAPI=3
-inherit eutils multilib python
+PYTHON_COMPAT=(
+	pypy1_9 pypy2_0
+	python3_1 python3_2 python3_3 python3_4
+	python2_6 python2_7
+)
+inherit eutils multilib
 
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
-IUSE="build doc epydoc +ipc linguas_pl pypy1_9 python2 python3 selinux xattr prefix-chaining"
+IUSE="build doc epydoc +ipc linguas_ru pypy2_0 python2 python3 selinux xattr prefix-chaining"
 
-RESTRICT="test"
+for _pyimpl in ${PYTHON_COMPAT[@]} ; do
+	IUSE+=" python_targets_${_pyimpl}"
+done
+unset _pyimpl
 
 # Import of the io module in python-2.6 raises ImportError for the
 # thread module if threading is disabled.
 python_dep_ssl="python3? ( =dev-lang/python-3*[ssl] )
-	!pypy1_9? ( !python2? ( !python3? (
+	!pypy2_0? ( !python2? ( !python3? (
 		|| ( >=dev-lang/python-2.7[ssl] dev-lang/python:2.6[threads,ssl] )
 	) ) )
-	pypy1_9? ( !python2? ( !python3? ( dev-python/pypy:1.9[bzip2,ssl] ) ) )
+	pypy2_0? ( !python2? ( !python3? ( dev-python/pypy:2.0[bzip2,ssl] ) ) )
 	python2? ( !python3? ( || ( dev-lang/python:2.7[ssl] dev-lang/python:2.6[ssl,threads] ) ) )"
 python_dep="${python_dep_ssl//\[ssl\]}"
 python_dep="${python_dep//,ssl}"
 python_dep="${python_dep//ssl,}"
 
+python_dep="${python_dep}
+	python_targets_pypy1_9? ( dev-python/pypy:1.9 )
+	python_targets_pypy2_0? ( dev-python/pypy:2.0 )
+	python_targets_python2_6? ( dev-lang/python:2.6 )
+	python_targets_python2_7? ( dev-lang/python:2.7 )
+	python_targets_python3_1? ( dev-lang/python:3.1 )
+	python_targets_python3_2? ( dev-lang/python:3.2 )
+	python_targets_python3_3? ( dev-lang/python:3.3 )
+	python_targets_python3_4? ( dev-lang/python:3.4 )
+"
+
 # The pysqlite blocker is for bug #282760.
+# make-3.82 is for bug #455858
 DEPEND="${python_dep}
+	>=sys-devel/make-3.82
 	>=sys-apps/sed-4.0.5 sys-devel/patch
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
 	epydoc? ( >=dev-python/epydoc-2.0 !<=dev-python/pysqlite-2.4.1 )"
@@ -39,12 +60,15 @@ DEPEND="${python_dep}
 # to python-3.3 / pyxattr. Also, xattr support is only tested with Linux, so
 # for now, don't pull in xattr deps for other kernels.
 # For whirlpool hash, require python[ssl] or python-mhash (bug #425046).
+# For compgen, require bash[readline] (bug #445576).
 # bash-4.1 necessary for redirect_alloc_fd, which fails on non-Linux if bash
 # doesn't have a builtin for finding a random filedescriptor
-RDEPEND="${python_dep} || ( ${python_dep_ssl} dev-python/python-mhash )
+RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
-		>=app-shells/bash-4.1
-		>=app-admin/eselect-1.2 )
+		|| ( >=app-shells/bash-4.2_p37[readline] ( <app-shells/bash-4.2_p37 >=app-shells/bash-4.1 ) )
+		>=app-admin/eselect-1.2
+		|| ( ${python_dep_ssl} dev-python/python-mhash )
+	)
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
 	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
@@ -64,7 +88,7 @@ PDEPEND="
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
-# NOTE: FEATURES=install-sources requires debugedit and rsync
+# NOTE: FEATURES=installsources requires debugedit and rsync
 
 SRC_ARCHIVES="http://dev.gentoo.org/~zmedico/portage/archives http://dev.gentoo.org/~grobian/distfiles"
 
@@ -80,8 +104,8 @@ prefix_src_archives() {
 PV_PL="2.1.2"
 PATCHVER_PL=""
 TARBALL_PV="${PV}"
-SRC_URI="$(prefix_src_archives prefix-${PN}-${TARBALL_PV}.tar.bz2)
-	linguas_pl? ( $(prefix_src_archives ${PN}-man-pl-${PV_PL}.tar.bz2) )"
+SRC_URI="mirror://gentoo/prefix-${PN}-${TARBALL_PV}.tar.bz2
+	$(prefix_src_archives prefix-${PN}-${TARBALL_PV}.tar.bz2)"
 
 PATCHVER=
 [[ $TARBALL_PV = $PV ]] || PATCHVER=$PV
@@ -98,8 +122,61 @@ compatible_python_is_selected() {
 }
 
 current_python_has_xattr() {
-	[[ $("${EPREFIX}/usr/bin/python" -c 'import sys ; sys.stdout.write(sys.hexversion >= 0x3030000 and "yes" or "no")') = yes ]] || \
-	"${EPREFIX}/usr/bin/python" -c 'import xattr' 2>/dev/null
+	[[ ${EPYTHON} ]] || die 'No Python implementation set (EPYTHON is null).'
+	local PYTHON=${EPREFIX}/usr/bin/${EPYTHON}
+	[[ $("${PYTHON}" -c 'import sys ; sys.stdout.write(sys.hexversion >= 0x3030000 and "yes" or "no")') = yes ]] || \
+	"${PYTHON}" -c 'import xattr' 2>/dev/null
+}
+
+call_with_python_impl() {
+	[[ ${EPYTHON} ]] || die 'No Python implementation set (EPYTHON is null).'
+	env EPYTHON=${EPYTHON} "$@"
+}
+
+get_python_interpreter() {
+	[ $# -eq 1 ] || die "expected 1 argument, got $#: $*"
+	local impl=$1 python
+	case "${impl}" in
+		python*)
+			python=${impl/_/.}
+			;;
+		pypy*)
+			python=${impl/_/.}
+			python=${python/pypy/pypy-c}
+			;;
+		*)
+			die "Unrecognized python target: ${impl}"
+	esac
+	echo ${python}
+}
+
+get_python_sitedir() {
+	[ $# -eq 1 ] || die "expected 1 argument, got $#: $*"
+	local impl=$1
+	local site_dir=/usr/$(get_libdir)/${impl/_/.}/site-packages
+	[[ -d ${EROOT}${site_dir} ]] || \
+		ewarn "site-packages dir missing for ${impl}: ${EROOT}${site_dir}"
+	echo "${site_dir}"
+}
+
+python_compileall() {
+	[[ ${EPYTHON} ]] || die 'No Python implementation set (EPYTHON is null).'
+	local d=${EPREFIX}$1 PYTHON=${EPREFIX}/usr/bin/${EPYTHON}
+	local d_image=${D}${d#/}
+	[[ -d ${d_image} ]] || die "directory does not exist: ${d_image}"
+	case "${EPYTHON}" in
+		python*)
+			"${PYTHON}" -m compileall -q -f -d "${d}" "${d_image}" || die
+			# Note: Using -OO breaks emaint, since it requires __doc__,
+			# and __doc__ is None when -OO is used.
+			"${PYTHON}" -O -m compileall -q -f -d "${d}" "${d_image}" || die
+			;;
+		pypy*)
+			"${PYTHON}" -m compileall -q -f -d "${d}" "${d_image}" || die
+			;;
+		*)
+			die "Unrecognized EPYTHON value: ${EPYTHON}"
+	esac
 }
 
 pkg_setup() {
@@ -107,15 +184,15 @@ pkg_setup() {
 		ewarn "Both python2 and python3 USE flags are enabled, but only one"
 		ewarn "can be in the shebangs. Using python3."
 	fi
-	if use pypy1_9 && use python3 ; then
-		ewarn "Both pypy1_9 and python3 USE flags are enabled, but only one"
+	if use pypy2_0 && use python3 ; then
+		ewarn "Both pypy2_0 and python3 USE flags are enabled, but only one"
 		ewarn "can be in the shebangs. Using python3."
 	fi
-	if use pypy1_9 && use python2 ; then
-		ewarn "Both pypy1_9 and python2 USE flags are enabled, but only one"
+	if use pypy2_0 && use python2 ; then
+		ewarn "Both pypy2_0 and python2 USE flags are enabled, but only one"
 		ewarn "can be in the shebangs. Using python2"
 	fi
-	if ! use pypy1_9 && ! use python2 && ! use python3 && \
+	if ! use pypy2_0 && ! use python2 && ! use python3 && \
 		! compatible_python_is_selected ; then
 		ewarn "Attempting to select a compatible default python interpreter"
 		local x success=0
@@ -136,12 +213,16 @@ pkg_setup() {
 		fi
 	fi
 
+	# We use EPYTHON to designate the active python interpreter,
+	# but we only export when needed, via call_with_python_impl.
+	EPYTHON=python
+	export -n EPYTHON
 	if use python3; then
-		python_set_active_version 3
+		EPYTHON=python3
 	elif use python2; then
-		python_set_active_version 2
-	elif use pypy1_9; then
-		python_set_active_version 2.7-pypy-1.9
+		EPYTHON=python2
+	elif use pypy2_0; then
+		EPYTHON=pypy-c2.0
 	fi
 }
 
@@ -170,15 +251,23 @@ src_prepare() {
 			|| die "failed to append to make.globals"
 	fi
 
+	local set_shebang=
 	if use python3; then
-		einfo "Converting shebangs for python3..."
-		python_convert_shebangs -r 3 .
+		set_shebang=python3
 	elif use python2; then
-		einfo "Converting shebangs for python2..."
-		python_convert_shebangs -r 2 .
-	elif use pypy1_9; then
-		einfo "Converting shebangs for pypy-c1.9..."
-		python_convert_shebangs -r 2.7-pypy-1.9 .
+		set_shebang=python2
+	elif use pypy2_0; then
+		set_shebang=pypy-c2.0
+	fi
+	if [[ -n ${set_shebang} ]] ; then
+		einfo "Converting shebangs for ${set_shebang}..."
+		while read -r -d $'\0' ; do
+			local shebang=$(head -n1 "$REPLY")
+			if [[ ${shebang} == "#!${EPREFIX}/usr/bin/python"* ]] ; then
+				sed -i -e "1s:python:${set_shebang}:" "$REPLY" || \
+					die "sed failed"
+			fi
+		done < <(find . -type f -print0)
 	fi
 
 	# "native" Prefix still uses configure
@@ -194,14 +283,13 @@ src_prepare() {
 			die "Failed to patch portage.const.EPREFIX"
 
 		einfo "Prefixing shebangs ..."
-		find . -type f -print0 | \
 		while read -r -d $'\0' ; do
 			local shebang=$(head -n1 "$REPLY")
 			if [[ ${shebang} == "#!"* && ! ${shebang} == "#!${EPREFIX}/"* ]] ; then
 				sed -i -e "1s:.*:#!${EPREFIX}${shebang:2}:" "$REPLY" || \
 					die "sed failed"
 			fi
-		done
+		done < <(find . -type f -print0)
 
 		einfo "Adjusting make.globals ..."
 		sed -e 's|^SYNC=.*|SYNC="rsync://rsync.prefix.freens.org/gentoo-portage-prefix"|' \
@@ -215,9 +303,6 @@ src_prepare() {
 	fi
 
 	if use !prefix ; then
-	echo -e '\nFEATURES="${FEATURES} preserve-libs"' >> cnf/make.globals \
-		|| die "failed to append to make.globals"
-
 	cd "${S}/cnf" || die
 	if [ -f "make.conf.${ARCH}".diff ]; then
 		patch make.conf "make.conf.${ARCH}".diff || \
@@ -265,11 +350,13 @@ src_compile() {
 	fi
 
 	if use doc; then
+		call_with_python_impl \
 		emake docbook || die
 	fi
 
 	if use epydoc; then
 		einfo "Generating api docs"
+		call_with_python_impl \
 		emake epydoc || die
 	fi
 }
@@ -277,6 +364,7 @@ src_compile() {
 src_test() {
 	# make files executable, in case they were created by patch
 	find bin -type f | xargs chmod +x
+	call_with_python_impl \
 	emake test || die
 }
 
@@ -302,17 +390,47 @@ src_install() {
 	# Use dodoc for compression, since the Makefile doesn't do that.
 	dodoc "${S}"/{ChangeLog,NEWS,RELEASE-NOTES} || die
 
-	if use linguas_pl; then
-		doman -i18n=pl "${S_PL}"/man/pl/*.[0-9] || die
-		doman -i18n=pl_PL.UTF-8 "${S_PL}"/man/pl_PL.UTF-8/*.[0-9] || die
-	fi
+	# Allow external portage API consumers to import portage python modules
+	# (this used to be done with PYTHONPATH setting in /etc/env.d).
+	# For each of PYTHON_TARGETS, install a tree of *.py symlinks in
+	# site-packages, and compile with the corresponding interpreter.
+	local impl files mod_dir dest_mod_dir python relative_path x
+	for impl in "${PYTHON_COMPAT[@]}" ; do
+		use "python_targets_${impl}" || continue
+		if use build && [[ ${ROOT} == / &&
+			! -x ${EPREFIX}/usr/bin/$(get_python_interpreter ${impl}) ]] ; then
+			# Tolerate --nodeps at beginning of stage1 for catalyst
+			ewarn "skipping python_targets_${impl}, interpreter not found"
+			continue
+		fi
+		while read -r mod_dir ; do
+			cd "${ED}/usr/lib/portage/pym/${mod_dir}" || die
+			files=$(echo *.py)
+			if [ -z "${files}" ] || [ "${files}" = "*.py" ]; then
+				# __pycache__ directories contain no py files
+				continue
+			fi
+			dest_mod_dir=$(get_python_sitedir ${impl})/${mod_dir}
+			dodir "${dest_mod_dir}" || die
+			relative_path=../../../lib/portage/pym/${mod_dir}
+			x=/${mod_dir}
+			while [ -n "${x}" ] ; do
+				relative_path=../${relative_path}
+				x=${x%/*}
+			done
+			for x in ${files} ; do
+				dosym "${relative_path}/${x}" \
+					"${dest_mod_dir}/${x}" || die
+			done
+		done < <(cd "${ED}"/usr/lib/portage/pym || die ; find * -type d ! -path "portage/tests*")
+		cd "${S}" || die
+		EPYTHON=$(get_python_interpreter ${impl}) \
+		python_compileall "$(get_python_sitedir ${impl})"
+	done
 
-	# Set PYTHONPATH for portage API consumers. This way we don't have
-	# to rely on patched python having the correct path, since it has
-	# been known to incorrectly add /usr/libx32/portage/pym to sys.path.
-	echo "PYTHONPATH=\"${EPREFIX}/usr/lib/portage/pym\"" > \
-		"${T}/05portage" || die
-	doenvd "${T}/05portage" || die
+	# Compile /usr/lib/portage/pym with the active interpreter, since portage
+	# internal commands force this directory to the beginning of sys.path.
+	python_compileall /usr/lib/portage/pym
 }
 
 pkg_preinst() {
@@ -331,24 +449,11 @@ pkg_preinst() {
 		ewarn "enable USE=python3 for $CATEGORY/$PN."
 	fi
 
-	if ! use build && ! has_version dev-python/pycrypto && \
-		! has_version '>=dev-lang/python-2.6[ssl]' ; then
-		ewarn "If you are an ebuild developer and you plan to commit ebuilds"
-		ewarn "with this system then please install dev-python/pycrypto or"
-		ewarn "enable the ssl USE flag for >=dev-lang/python-2.6 in order"
-		ewarn "to enable RMD160 hash support."
-		ewarn "See bug #198398 for more information."
-	fi
-
 	has_version "<=${CATEGORY}/${PN}-2.2.00.13346"
 	EAPIPREFIX_UPGRADE=$?
 }
 
 pkg_postinst() {
-	# Compile all source files recursively. Any orphans
-	# will be identified and removed in postrm.
-	python_mod_optimize /usr/lib/portage/pym
-
 	pushd "${EROOT}var/db/pkg" > /dev/null
 	local didwork=
 	[[ ! -e "${EROOT}"var/lib/portage/preserved_libs_registry ]] && for cpv in */*/NEEDED ; do
@@ -397,8 +502,4 @@ pkg_postinst() {
 		done
 		popd > /dev/null
 	fi
-}
-
-pkg_postrm() {
-	python_mod_cleanup /usr/lib/portage/pym
 }
