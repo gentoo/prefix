@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 Aug 2013; Benda Xu <heroxbd@gentoo.org> +portage-2.2.01.22288.ebuild:
+  portage lib is usr/lib regardless of multilib. fix variable
+  portage_base introduced in portage-2.2.00.7209.ebuild rev 7277.
+
 *portage-2.2.01.22288 (12 Aug 2013)
 
   12 Aug 2013; Fabian Groffen <grobian@gentoo.org> +portage-2.2.01.22288.ebuild,
