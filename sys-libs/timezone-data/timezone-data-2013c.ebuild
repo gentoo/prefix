@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2012j.ebuild,v 1.2 2013/03/03 01:53:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2013c.ebuild,v 1.1 2013/04/20 17:18:55 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
@@ -24,7 +24,7 @@ S=${WORKDIR}
 
 src_unpack() {
 	unpack ${A}
-	epatch "${FILESDIR}"/${PN}-2012i-makefile.patch
+	epatch "${FILESDIR}"/${PN}-2013a-makefile.patch
 	tc-is-cross-compiler && cp -pR "${S}" "${S}"-native
 }
 
