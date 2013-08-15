@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5-r4.ebuild,v 1.3 2013/04/30 16:59:33 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5-r5.ebuild,v 1.1 2013/05/05 14:42:47 slyfox Exp $
 
 EAPI=4
 
-inherit autotools eutils
+inherit autotools eutils toolchain-funcs
 
 MY_P="${P/_/}"
 S="${WORKDIR}/${PN}-1.4.0"
@@ -19,17 +19,21 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="X slang gpm static-libs"
 
 RDEPEND="X? ( x11-libs/libX11 )
-	slang? ( >=sys-libs/slang-1.4.2 )"
-DEPEND="${RDEPEND}
+	gpm? ( sys-libs/gpm )
+	slang? ( >=sys-libs/slang-1.4.2 )
 	>=sys-libs/ncurses-5.1
+"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig
 	X? ( x11-proto/xproto )
-	gpm? ( sys-libs/gpm )"
+"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.4_rc4-gentoo.patch
 	epatch "${FILESDIR}"/${PN}-1.4_rc4-m4.patch
 	epatch "${FILESDIR}"/${PN}-1.4_rc5-fix-protos.patch #224267
 	epatch "${FILESDIR}"/${PN}-1.4_rc5-fix-aarender.patch #214142
+	epatch "${FILESDIR}"/${PN}-1.4_rc5-tinfo.patch #468566
 
 	sed -i -e 's:#include <malloc.h>:#include <stdlib.h>:g' "${S}"/src/*.c
 
@@ -44,6 +48,7 @@ src_prepare() {
 }
 
 src_configure() {
+	PKG_CONFIG=$(tc-getPKG_CONFIG) \
 	econf \
 		$(use_with slang slang-driver) \
 		$(use_with !slang ncurses "${EPREFIX}"/usr) \
