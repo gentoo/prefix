@@ -1,6 +1,124 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.659 2013/05/25 22:32:46 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.689 2013/08/18 19:28:02 floppym Exp $
+
+*python-2.7.5-r2 (18 Aug 2013)
+*python-3.2.5-r2 (18 Aug 2013)
+*python-2.6.8-r3 (18 Aug 2013)
+
+  18 Aug 2013; Mike Gilbert <floppym@gentoo.org>
+  +files/CVE-2013-4238_py26.patch, +files/CVE-2013-4238_py27.patch,
+  +files/CVE-2013-4238_py32.patch, +files/CVE-2013-4238_py33.patch,
+  +python-2.6.8-r3.ebuild, +python-2.7.5-r2.ebuild, +python-3.2.5-r2.ebuild,
+  -files/CVE-2013-4073_py33.patch, python-3.3.2-r2.ebuild:
+  Apply fix for CVE-2013-4238, bug 480856.
+
+*python-3.3.2-r2 (18 Aug 2013)
+
+  18 Aug 2013; Mike Gilbert <floppym@gentoo.org>
+  +files/CVE-2013-4073_py33.patch, +python-3.3.2-r2.ebuild:
+  Use Arfrever's patchset, bug 354877. Apply fix for CVS-2013-4238, bug 480856.
+
+  06 Aug 2013; Agostino Sarubbo <ago@gentoo.org> python-2.7.5.ebuild:
+  Stable for s390, wrt bug #475424
+
+  06 Aug 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for s390, wrt bug #469988
+
+  03 Aug 2013; Agostino Sarubbo <ago@gentoo.org> python-2.7.5.ebuild:
+  Stable for sparc, wrt bug #475424
+
+  22 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for sparc, wrt bug #469988
+
+  21 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for sh, wrt bug #469988
+
+*python-2.7.5-r1 (12 Jul 2013)
+
+  12 Jul 2013; Mike Gilbert <floppym@gentoo.org>
+  +files/python-2.7.5-re_unsigned_ptrdiff.patch, +python-2.7.5-r1.ebuild:
+  Apply patch to fix regex crash, bug 476426 by Fabio Rossi.
+
+  07 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for ia64, wrt bug #469988
+
+  07 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-2.7.5.ebuild:
+  Stable for ia64, wrt bug #475424
+
+  07 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for arm, wrt bug #469988
+
+  07 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-2.7.5.ebuild:
+  Stable for arm, wrt bug #475424
+
+  06 Jul 2013; Mike Gilbert <floppym@gentoo.org> -python-2.7.4.ebuild:
+  Remove old.
+
+  06 Jul 2013; Mike Gilbert <floppym@gentoo.org> python-2.7.5.ebuild:
+  Move uclibc test removal after everything else, bug 475972.
+
+  06 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for alpha, wrt bug #469988
+
+  04 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for ppc64, wrt bug #469988
+
+  04 Jul 2013; Jeroen Roovers <jer@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for HPPA (bug #469988).
+
+  04 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-2.7.5.ebuild:
+  Stable for ppc64, wrt bug #475424
+
+  04 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for ppc, wrt bug #469988
+
+  04 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-2.7.5.ebuild:
+  Stable for ppc, wrt bug #475424
+
+  03 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for x86, wrt bug #469988
+
+  03 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-3.2.5-r1.ebuild:
+  Stable for amd64, wrt bug #469988
+
+*python-3.2.5-r1 (03 Jul 2013)
+*python-3.3.2-r1 (03 Jul 2013)
+
+  03 Jul 2013; Mike Gilbert <floppym@gentoo.org>
+  +files/python-3.2-CVE-2013-2099.patch, +files/python-3.3-CVE-2013-2099.patch,
+  +python-3.2.5-r1.ebuild, +python-3.3.2-r1.ebuild:
+  Add patch to fix CVE-2013-2099, bug 469988.
+
+  02 Jul 2013; Jeroen Roovers <jer@gentoo.org> python-2.7.5.ebuild:
+  Stable for HPPA (bug #475424).
+
+  02 Jul 2013; Tobias Klausmann <klausman@gentoo.org> python-2.7.5.ebuild:
+  Stable on alpha, bug #475424
+
+  02 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-2.7.5.ebuild:
+  Stable for x86, wrt bug #475424
+
+  02 Jul 2013; Agostino Sarubbo <ago@gentoo.org> python-2.7.5.ebuild:
+  Stable for amd64, wrt bug #475424
+
+*python-2.6.8-r2 (30 Jun 2013)
+*python-2.5.4-r6 (30 Jun 2013)
+
+  30 Jun 2013; Mike Gilbert <floppym@gentoo.org> +files/python-2.5-tcl86.patch,
+  +python-2.5.4-r6.ebuild, +python-2.6.8-r2.ebuild:
+  Apply patch to allow old python versions to use tk-8.6, bug 454342. Also fix
+  the python shebang in idle2.5 and pydoc2.5, bugs 275241 and 383009.
+
+  30 Jun 2013; Mike Gilbert <floppym@gentoo.org> -python-2.5.4-r4.ebuild,
+  -python-2.6.8.ebuild, python-2.5.4-r5.ebuild, python-2.6.8-r1.ebuild:
+  Place upper bound on dev-lang/tk dep, bug 454342. Also stabilize on m68k since
+  nobody is responding on bug 458318.
+
+  28 Jun 2013; Mike Gilbert <floppym@gentoo.org>
+  +files/python-2.7.5-library-path.patch, python-2.7.5.ebuild:
+  Fix library paths when not cross-compiling. Should resolve bug 474882. Thanks
+  to Arfrever for finding the upstream commit.
 
 *python-2.7.5 (25 May 2013)
 *python-3.2.5 (25 May 2013)
