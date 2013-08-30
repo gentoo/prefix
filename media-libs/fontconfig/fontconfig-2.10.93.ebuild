@@ -1,14 +1,15 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.9.0.ebuild,v 1.3 2013/02/21 17:07:25 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.10.93.ebuild,v 1.1 2013/08/21 08:42:47 yngwin Exp $
 
-EAPI="4"
+EAPI=5
+AUTOTOOLS_AUTORECONF=yes
 
-inherit autotools eutils libtool toolchain-funcs flag-o-matic
+inherit autotools-multilib readme.gentoo
 
 DESCRIPTION="A library for configuring and customizing font access"
 HOMEPAGE="http://fontconfig.org/"
-SRC_URI="http://fontconfig.org/release/${P}.tar.gz"
+SRC_URI="http://fontconfig.org/release/${P}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="1.0"
@@ -18,38 +19,32 @@ IUSE="doc static-libs"
 # Purposefully dropped the xml USE flag and libxml2 support.  Expat is the
 # default and used by every distro.  See bug #283191.
 
-RDEPEND=">=media-libs/freetype-2.2.1
-	>=dev-libs/expat-1.95.3"
+RDEPEND=">=dev-libs/expat-1.95.3[${MULTILIB_USEDEP}]
+	>=media-libs/freetype-2.2.1[${MULTILIB_USEDEP}]
+	abi_x86_32? ( !app-emulation/emul-linux-x86-xlibs[-abi_x86_32(-)] )"
 DEPEND="
 	virtual/pkgconfig
 	doc? (
-		app-text/docbook-sgml-utils[jadetex]
 		=app-text/docbook-sgml-dtd-3.1*
+		app-text/docbook-sgml-utils[jadetex]
 	)"
 PDEPEND="!x86-winnt? ( app-admin/eselect-fontconfig )
 	virtual/ttf-fonts"
 
-src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.7.1-latin-reorder.patch	# 130466
-	epatch "${FILESDIR}"/${PN}-2.3.2-docbook.patch			# 310157
-	epatch "${FILESDIR}"/${PN}-2.9.0-m68k.patch				# 458590
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.7.1-latin-reorder.patch	# 130466
+	"${FILESDIR}"/${PN}-2.10.2-docbook.patch	# 310157
+)
 
-	if [[ ${CHOST} == *-winnt* ]] ; then
-		epatch "${FILESDIR}"/${PN}-2.6.0-winnt.patch
-		#eautoreconf
-	fi
-
-	eautoreconf
-
-	# Needed to get a sane .so versioning on fbsd, please dont drop.
-	# If you have to run eautoreconf, you can also leave the elibtoolize
-	# call as it will be a no-op.
-	elibtoolize
+pkg_setup() {
+	DOC_CONTENTS="Please make fontconfig configuration changes using
+	\`eselect fontconfig\`. Any changes made to /etc/fonts/fonts.conf will be
+	overwritten. If you need to reset your configuration to upstream defaults,
+	delete the directory ${EROOT}etc/fonts/conf.d/ and re-emerge fontconfig."
 }
 
 src_configure() {
-	local myconf
-
+	local addfonts
 	# harvest some font locations, such that users can benefit from the
 	# host OS's installed fonts
 	case ${CHOST} in
@@ -68,37 +63,39 @@ src_configure() {
 		;;
 	esac
 
-	if tc-is-cross-compiler; then
-		myconf="--with-arch=${ARCH}"
-		replace-flags -mtune=* -DMTUNE_CENSORED
-		replace-flags -march=* -DMARCH_CENSORED
-	fi
-	econf \
-		$(use_enable static-libs static) \
-		$(use_enable doc docs) \
-		$(use_enable doc docbook) \
-		--localstatedir="${EPREFIX}"/var \
-		--with-default-fonts="${EPREFIX}"/usr/share/fonts \
+	local myeconfargs=(
+		$(use_enable doc docbook)
+		# always enable docs to install manpages
+		--enable-docs
+		--localstatedir="${EPREFIX}"/var
+		--with-default-fonts="${EPREFIX}"/usr/share/fonts
 		--with-add-fonts="${EPREFIX}/usr/local/share/fonts${addfonts}" \
-		${myconf} || die
+		--with-templatedir="${EPREFIX}"/etc/fonts/conf.avail
+	)
+
+	autotools-multilib_src_configure
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install"
-	emake DESTDIR="${D}" -C doc install-man || die "emake install-man"
+	autotools-multilib_src_install
 
-	find "${ED}" -name '*.la' -exec rm -f {} +
+	# XXX: avoid calling this multiple times, bug #459210
+	install_others() {
+		# stuff installed from build-dir
+		autotools-utils_src_compile \
+			DESTDIR="${ED}" -C doc install-man
+
+		insinto /etc/fonts
+		doins "${BUILD_DIR}"/fonts.conf
+	}
+	multilib_foreach_abi install_others
 
 	#fc-lang directory contains language coverage datafiles
 	#which are needed to test the coverage of fonts.
 	insinto /usr/share/fc-lang
 	doins fc-lang/*.orth
 
-	insinto /etc/fonts
-	doins "${S}"/fonts.conf
-
 	dodoc doc/fontconfig-user.{txt,pdf}
-	dodoc AUTHORS ChangeLog README
 
 	if [[ -e ${ED}usr/share/doc/fontconfig/ ]];  then
 		mv "${ED}"usr/share/doc/fontconfig/* "${ED}"/usr/share/doc/${P}
@@ -113,6 +110,8 @@ src_install() {
 	# As of fontconfig 2.7, everything sticks their noses in here.
 	dodir /etc/sandbox.d
 	echo 'SANDBOX_PREDICT="/var/cache/fontconfig"' > "${ED}"/etc/sandbox.d/37fontconfig
+
+	readme.gentoo_create_doc
 }
 
 pkg_preinst() {
@@ -139,13 +138,7 @@ pkg_postinst() {
 	einfo "Cleaning broken symlinks in "${EROOT}"etc/fonts/conf.d/"
 	find -L "${EROOT}"etc/fonts/conf.d/ -type l -delete
 
-	echo
-	ewarn "Please make fontconfig configuration changes using \`eselect fontconfig\`"
-	ewarn "Any changes made to /etc/fonts/fonts.conf will be overwritten."
-	ewarn
-	ewarn "If you need to reset your configuration to upstream defaults, delete"
-	ewarn "the directory ${EROOT}etc/fonts/conf.d/ and re-emerge fontconfig."
-	echo
+	readme.gentoo_print_elog
 
 	if [[ ${ROOT} = / ]]; then
 		ebegin "Creating global font cache"
