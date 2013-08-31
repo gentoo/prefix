@@ -83,7 +83,7 @@ src_install() {
 	install_others() {
 		# stuff installed from build-dir
 		autotools-utils_src_compile \
-			DESTDIR="${ED}" -C doc install-man
+			DESTDIR="${D}" -C doc install-man
 
 		insinto /etc/fonts
 		doins "${BUILD_DIR}"/fonts.conf
