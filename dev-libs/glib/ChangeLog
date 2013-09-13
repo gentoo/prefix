@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.564 2013/07/17 04:59:44 ssuominen Exp $
 
+  13 Sep 2013; Fabian Groffen <grobian@gentoo.org>
+  +files/glib-2.36.3-solaris.patch, glib-2.36.3.ebuild:
+  Add patch to fix compilation on Solaris, NetBSD, ...
+
   01 Aug 2013; Fabian Groffen <grobian@gentoo.org> glib-2.36.3.ebuild:
   Add pkgconfig dependency, bug #479276
 

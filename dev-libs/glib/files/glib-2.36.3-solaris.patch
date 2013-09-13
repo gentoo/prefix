@@ -1,0 +1,29 @@
+https://bug698348.bugzilla-attachments.gnome.org/attachment.cgi?id=245784
+(https://bugzilla.gnome.org/show_bug.cgi?id=697166)
+
+From 4b70977f478289df3ed8368a1b0603ca5ba16c5c Mon Sep 17 00:00:00 2001
+From: Patrick Welche <prlw1@cam.ac.uk>
+Date: Fri, 31 May 2013 23:15:44 +0100
+Subject: [PATCH] In is_remote_fs(), statfs_result is also used in the
+ USE_STATVFS case.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=698348
+---
+ gio/glocalfile.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gio/glocalfile.c b/gio/glocalfile.c
+index 9007faa..973ee3d 100644
+--- a/gio/glocalfile.c
++++ b/gio/glocalfile.c
+@@ -2435,6 +2435,7 @@ is_remote_fs (const gchar *filename)
+ 
+ #elif defined(USE_STATVFS)
+   struct statvfs statfs_buffer;
++  int statfs_result = 0;
+ 
+   statfs_result = statvfs (filename, &statfs_buffer);
+ #else
+-- 
+1.8.2.3
+

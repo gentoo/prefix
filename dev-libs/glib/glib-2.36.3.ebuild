@@ -73,6 +73,9 @@ src_prepare() {
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
 
+	# Fix for Solaris, NetBSD, possibly FreeBSD
+	epatch "${FILESDIR}"/${P}-solaris.patch
+
 	# Fix gmodule issues on fbsd; bug #184301, upstream bug #107626
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
