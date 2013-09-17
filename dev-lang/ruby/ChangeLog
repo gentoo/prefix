@@ -1,6 +1,209 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.557 2013/01/06 14:16:19 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.614 2013/09/05 15:50:11 jer Exp $
+
+  05 Sep 2013; Jeroen Roovers <jer@gentoo.org> ruby-2.0.0_p247-r1.ebuild:
+  Stable for HPPA (bug #483254).
+
+  01 Sep 2013; Agostino Sarubbo <ago@gentoo.org> ruby-2.0.0_p247-r1.ebuild:
+  Stable for x86, wrt bug #483254
+
+  01 Sep 2013; Agostino Sarubbo <ago@gentoo.org> ruby-2.0.0_p247-r1.ebuild:
+  Stable for amd64, wrt bug #483254
+
+  06 Aug 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for s390, wrt bug #475074
+
+*ruby-2.0.0_p247-r1 (29 Jul 2013)
+*ruby-1.9.3_p448-r1 (29 Jul 2013)
+*ruby-1.8.7_p374-r1 (29 Jul 2013)
+
+  29 Jul 2013; Hans de Graaff <graaff@gentoo.org> +ruby-1.8.7_p374-r1.ebuild,
+  +ruby-1.9.3_p448-r1.ebuild, +ruby-2.0.0_p247-r1.ebuild:
+  Revision bump to counter breakage introduced in portage 2.1.13 for bug
+  465000. Thanks to thansen for reporting.
+
+  22 Jul 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for sparc, wrt bug #475074
+
+  21 Jul 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for sh, wrt bug #475074
+
+  07 Jul 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for ia64, wrt bug #475074
+
+*ruby-2.0.0_p247 (07 Jul 2013)
+
+  07 Jul 2013; Hans de Graaff <graaff@gentoo.org> +ruby-2.0.0_p247.ebuild:
+  Version bump. First ruby 2.0.x ebuild. Our Gentoo RUBY_TARGET for this is
+  ruby20.
+
+  06 Jul 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for alpha, wrt bug #475074
+
+  04 Jul 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for ppc64, wrt bug #475074
+
+  01 Jul 2013; Jeroen Roovers <jer@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for HPPA (bug #475074).
+
+  30 Jun 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for ppc, wrt bug #475074
+
+  30 Jun 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for arm, wrt bug #475074
+
+  30 Jun 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for x86, wrt bug #475074
+
+  30 Jun 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p374.ebuild,
+  ruby-1.9.3_p448.ebuild:
+  Stable for amd64, wrt bug #475074
+
+*ruby-1.9.3_p448 (30 Jun 2013)
+*ruby-1.8.7_p374 (30 Jun 2013)
+
+  30 Jun 2013; Hans de Graaff <graaff@gentoo.org> +ruby-1.8.7_p374.ebuild,
+  +ruby-1.9.3_p448.ebuild:
+  Version bumps for security bug 475074.
+
+  30 Jun 2013; Hans de Graaff <graaff@gentoo.org> -ruby-1.8.7_p370.ebuild,
+  -ruby-1.9.3_p125.ebuild, -ruby-1.9.3_p194-r1.ebuild, -ruby-1.9.3_p286.ebuild,
+  -ruby-1.9.3_p385.ebuild, -ruby-1.9.3_p392.ebuild:
+  Cleanup. Remove vulnerable versions.
+
+  09 Jun 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for sh, wrt bug #469984
+
+  26 May 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for s390, wrt bug #469984
+
+  25 May 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for ppc64, wrt bug #469984
+
+  25 May 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for ia64, wrt bug #469984
+
+  25 May 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for alpha, wrt bug #469984
+
+  25 May 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for sparc, wrt bug #469984
+
+  20 May 2013; Hans de Graaff <graaff@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Remove non-functional dosym calls, bug 442462.
+
+  20 May 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for arm, wrt bug #469984
+
+  20 May 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for ppc, wrt bug #469984
+
+  19 May 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for x86, wrt bug #469984
+
+  19 May 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for amd64, wrt bug #469984
+
+  19 May 2013; Jeroen Roovers <jer@gentoo.org> ruby-1.9.3_p429.ebuild:
+  Stable for HPPA (bug #469984).
+
+*ruby-1.9.3_p429 (16 May 2013)
+
+  16 May 2013; Hans de Graaff <graaff@gentoo.org> +ruby-1.9.3_p429.ebuild:
+  Version bump for security bug #469984.
+
+  10 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for s390, wrt bug #437366
+
+  09 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for sparc, wrt bug #437366
+
+  09 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for ia64, wrt bug #437366
+
+  09 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for alpha, wrt bug #437366
+
+  09 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for ppc64, wrt bug #437366
+
+  08 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for arm, wrt bug #437366
+
+  06 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for sh, wrt bug #437366
+
+  04 Mar 2013; Brent Baude <ranger@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Marking ruby-1.8.7_p371 ppc for bug 437366
+
+  04 Mar 2013; Jeroen Roovers <jer@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for HPPA (bug #437366).
+
+  04 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for x86, wrt bug #437366
+
+  04 Mar 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.8.7_p371.ebuild:
+  Stable for amd64, wrt bug #437366
+
+  26 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for sh, wrt bug #458776
+
+  26 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for alpha, wrt bug #458776
+
+  25 Feb 2013; Diego E. Pettenò <flameeyes@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Add patch to fix bug #459074 (parallel build).
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for arm, wrt bug #458776
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for s390, wrt bug #458776
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for sparc, wrt bug #458776
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for hppa, wrt bug #458776
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for ia64, wrt bug #458776
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for x86, wrt bug #458776
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for amd64, wrt bug #458776
+
+  23 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for ppc64, wrt bug #458776
+
+  23 Feb 2013; Agostino Sarubbo <ago@gentoo.org> ruby-1.9.3_p392.ebuild:
+  Stable for ppc, wrt bug #458776
+
+*ruby-1.9.3_p392 (22 Feb 2013)
+
+  22 Feb 2013; Hans de Graaff <graaff@gentoo.org> +ruby-1.9.3_p392.ebuild:
+  Version bump for security bug 458776.
+
+*ruby-1.9.3_p385 (10 Feb 2013)
+
+  10 Feb 2013; Hans de Graaff <graaff@gentoo.org> +ruby-1.9.3_p385.ebuild:
+  Version bump. Fixes security bug 442580.
+
+  28 Jan 2013; Alexis Ballier <aballier@gentoo.org> ruby-1.9.3_p286.ebuild:
+  keyword ~amd64-fbsd
 
 *ruby-1.8.7_p371 (06 Jan 2013)
 

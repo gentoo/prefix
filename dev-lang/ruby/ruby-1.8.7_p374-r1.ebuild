@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p371.ebuild,v 1.12 2013/03/10 16:18:50 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p374-r1.ebuild,v 1.1 2013/07/29 19:06:01 graaff Exp $
 
 EAPI=2
 
@@ -105,7 +105,7 @@ src_configure() {
 		myconf="${myconf} --without-readline"
 	fi
 
-	econf \
+	INSTALL="${EPREFIX}/usr/bin/install -c" econf \
 		--program-suffix="${MY_SUFFIX}" \
 		--enable-shared \
 		$(use_enable socks5 socks) \
