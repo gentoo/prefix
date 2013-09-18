@@ -376,7 +376,7 @@ bootstrap_tree() {
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
-		do_tree http://files.prefix.freens.org/distfiles prefix-overlay-${PV}.tar.bz2
+		do_tree http://prefix.gentooexperimental.org/distfiles prefix-overlay-${PV}.tar.bz2
 	fi
 }
 
@@ -2172,7 +2172,7 @@ PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
 DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
 PORTAGE_TMPDIR=${ROOT}/var/tmp
 DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
-SNAPSHOT_URL="http://files.prefix.freens.org/snapshots"
+SNAPSHOT_URL="http://prefix.gentooexperimental.org/snapshots"
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
