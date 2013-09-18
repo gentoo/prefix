@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.416 2013/03/31 02:17:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.427 2013/09/14 19:00:10 mgorny Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -146,6 +146,77 @@ estack_pop() {
 	eval unset ${__estack_name}\[${__estack_i}\]
 }
 
+# @FUNCTION: evar_push
+# @USAGE: <variable to save> [more vars to save]
+# @DESCRIPTION:
+# This let's you temporarily modify a variable and then restore it (including
+# set vs unset semantics).  Arrays are not supported at this time.
+#
+# This is meant for variables where using `local` does not work (such as
+# exported variables, or only temporarily changing things in a func).
+#
+# For example:
+# @CODE
+#		evar_push LC_ALL
+#		export LC_ALL=C
+#		... do some stuff that needs LC_ALL=C set ...
+#		evar_pop
+#
+#		# You can also save/restore more than one var at a time
+#		evar_push BUTTERFLY IN THE SKY
+#		... do stuff with the vars ...
+#		evar_pop     # This restores just one var, SKY
+#		... do more stuff ...
+#		evar_pop 3   # This pops the remaining 3 vars
+# @CODE
+evar_push() {
+	local var val
+	for var ; do
+		[[ ${!var+set} == "set" ]] \
+			&& val=${!var} \
+			|| val="${___ECLASS_ONCE_EUTILS}"
+		estack_push evar "${var}" "${val}"
+	done
+}
+
+# @FUNCTION: evar_push_set
+# @USAGE: <variable to save> [new value to store]
+# @DESCRIPTION:
+# This is a handy shortcut to save and temporarily set a variable.  If a value
+# is not specified, the var will be unset.
+evar_push_set() {
+	local var=$1
+	evar_push ${var}
+	case $# in
+	1) unset ${var} ;;
+	2) printf -v "${var}" '%s' "$2" ;;
+	*) die "${FUNCNAME}: incorrect # of args: $*" ;;
+	esac
+}
+
+# @FUNCTION: evar_pop
+# @USAGE: [number of vars to restore]
+# @DESCRIPTION:
+# Restore the variables to the state saved with the corresponding
+# evar_push call.  See that function for more details.
+evar_pop() {
+	local cnt=${1:-bad}
+	case $# in
+	0) cnt=1 ;;
+	1) isdigit "${cnt}" || die "${FUNCNAME}: first arg must be a number: $*" ;;
+	*) die "${FUNCNAME}: only accepts one arg: $*" ;;
+	esac
+
+	local var val
+	while (( cnt-- )) ; do
+		estack_pop evar val || die "${FUNCNAME}: unbalanced push"
+		estack_pop evar var || die "${FUNCNAME}: unbalanced push"
+		[[ ${val} == "${___ECLASS_ONCE_EUTILS}" ]] \
+			&& unset ${var} \
+			|| printf -v "${var}" '%s' "${val}"
+	done
+}
+
 # @FUNCTION: eshopts_push
 # @USAGE: [options to `set` or `shopt`]
 # @DESCRIPTION:
@@ -218,6 +289,18 @@ eumask_pop() {
 	umask ${s} || die "${FUNCNAME}: sanity: could not restore umask: ${s}"
 }
 
+# @FUNCTION: isdigit
+# @USAGE: <number> [more numbers]
+# @DESCRIPTION:
+# Return true if all arguments are numbers.
+isdigit() {
+	local d
+	for d ; do
+		[[ ${d:-bad} == *[!0-9]* ]] && return 1
+	done
+	return 0
+}
+
 # @VARIABLE: EPATCH_SOURCE
 # @DESCRIPTION:
 # Default directory to search for patches.
@@ -273,7 +356,7 @@ EPATCH_FORCE="no"
 # epatch is designed to greatly simplify the application of patches.  It can
 # process patch files directly, or directories of patches.  The patches may be
 # compressed (bzip/gzip/etc...) or plain text.  You generally need not specify
-# the -p option as epatch will automatically attempt -p0 to -p5 until things
+# the -p option as epatch will automatically attempt -p0 to -p4 until things
 # apply successfully.
 #
 # If you do not specify any patches/dirs, then epatch will default to the
@@ -344,8 +427,11 @@ epatch() {
 		local EPATCH_SUFFIX=$1
 
 	elif [[ -d $1 ]] ; then
-		# Some people like to make dirs of patches w/out suffixes (vim)
+		# We have to force sorting to C so that the wildcard expansion is consistent #471666.
+		evar_push_set LC_COLLATE C
+		# Some people like to make dirs of patches w/out suffixes (vim).
 		set -- "$1"/*${EPATCH_SUFFIX:+."${EPATCH_SUFFIX}"}
+		evar_pop
 
 	elif [[ -f ${EPATCH_SOURCE}/$1 ]] ; then
 		# Re-use EPATCH_SOURCE as a search dir
@@ -476,15 +562,23 @@ epatch() {
 		# Similar reason, but with relative paths.
 		local rel_paths=$(egrep -n '^[-+]{3} [^	]*[.][.]/' "${PATCH_TARGET}")
 		if [[ -n ${rel_paths} ]] ; then
-			eqawarn "QA Notice: Your patch uses relative paths '../'."
-			eqawarn " In the future this will cause a failure."
-			eqawarn "${rel_paths}"
+			echo
+			eerror "Rejected Patch: ${patchname} !"
+			eerror " ( ${PATCH_TARGET} )"
+			eerror
+			eerror "Your patch uses relative paths '../':"
+			eerror "${rel_paths}"
+			echo
+			die "you need to fix the relative paths in patch"
 		fi
 
 		# Dynamically detect the correct -p# ... i'm lazy, so shoot me :/
 		local patch_cmd
+		# Handle aliased patch command #404447 #461568
+		local patch="patch"
+		eval $(alias patch 2>/dev/null | sed 's:^alias ::')
 		while [[ ${count} -lt 5 ]] ; do
-			patch_cmd="${BASH_ALIASES[patch]:-patch} -p${count} ${EPATCH_OPTS}"
+			patch_cmd="${patch} -p${count} ${EPATCH_OPTS}"
 
 			# Generate some useful debug info ...
 			(
@@ -1466,12 +1560,20 @@ prune_libtool_files() {
 	while IFS= read -r -d '' f; do # for all .la files
 		local archivefile=${f/%.la/.a}
 
+		# The following check is done by libtool itself.
+		# It helps us avoid removing random files which match '*.la',
+		# see bug #468380.
+		if ! sed -n -e '/^# Generated by .*libtool/q0;4q1' "${f}"; then
+			continue
+		fi
+
 		[[ ${f} != ${archivefile} ]] || die 'regex sanity check failed'
-
 		local reason pkgconfig_scanned
+		local snotlink=$(sed -n -e 's:^shouldnotlink=::p' "${f}")
 
-		# Remove static libs we're not supposed to link against.
-		if grep -q '^shouldnotlink=yes$' "${f}"; then
+		if [[ ${snotlink} == yes ]]; then
+
+			# Remove static libs we're not supposed to link against.
 			if [[ -f ${archivefile} ]]; then
 				einfo "Removing unnecessary ${archivefile#${D%/}} (static plugin)"
 				queue+=( "${archivefile}" )
@@ -1483,62 +1585,66 @@ prune_libtool_files() {
 				reason='module'
 			fi
 
-		# Remove .la files when:
-		# - user explicitly wants us to remove all .la files,
-		# - respective static archive doesn't exist,
-		# - they are covered by a .pc file already,
-		# - they don't provide any new information (no libs & no flags).
-
-		elif [[ ${removing_all} ]]; then
-			reason='requested'
-		elif [[ ! -f ${archivefile} ]]; then
-			reason='no static archive'
-		elif [[ ! $(sed -nre \
-				"s/^(dependency_libs|inherited_linker_flags)='(.*)'$/\2/p" \
-				"${f}") ]]; then
-			reason='no libs & flags'
 		else
-			if [[ ! ${pkgconfig_scanned} ]]; then
-				# Create a list of all .pc-covered libs.
-				local pc_libs=()
-				if [[ ! ${removing_all} ]]; then
-					local pc
-					local tf=${T}/prune-lt-files.pc
-					local pkgconf=$(tc-getPKG_CONFIG)
 
-					while IFS= read -r -d '' pc; do # for all .pc files
-						local arg libs
+			# Remove .la files when:
+			# - user explicitly wants us to remove all .la files,
+			# - respective static archive doesn't exist,
+			# - they are covered by a .pc file already,
+			# - they don't provide any new information (no libs & no flags).
 
-						# Use pkg-config if available (and works),
-						# fallback to sed.
-						if ${pkgconf} --exists "${pc}" &>/dev/null; then
-							sed -e '/^Requires:/d' "${pc}" > "${tf}"
-							libs=$(${pkgconf} --libs "${tf}")
-						else
-							libs=$(sed -ne 's/^Libs://p' "${pc}")
-						fi
+			if [[ ${removing_all} ]]; then
+				reason='requested'
+			elif [[ ! -f ${archivefile} ]]; then
+				reason='no static archive'
+			elif [[ ! $(sed -nre \
+					"s/^(dependency_libs|inherited_linker_flags)='(.*)'$/\2/p" \
+					"${f}") ]]; then
+				reason='no libs & flags'
+			else
+				if [[ ! ${pkgconfig_scanned} ]]; then
+					# Create a list of all .pc-covered libs.
+					local pc_libs=()
+					if [[ ! ${removing_all} ]]; then
+						local pc
+						local tf=${T}/prune-lt-files.pc
+						local pkgconf=$(tc-getPKG_CONFIG)
 
-						for arg in ${libs}; do
-							if [[ ${arg} == -l* ]]; then
-								if [[ ${arg} == '*$*' ]]; then
-									eqawarn "${FUNCNAME}: variable substitution likely failed in ${pc}"
-									eqawarn "(arg: ${arg})"
-									eqawarn "Most likely, you need to add virtual/pkgconfig to DEPEND."
-								fi
+						while IFS= read -r -d '' pc; do # for all .pc files
+							local arg libs
 
-								pc_libs+=( lib${arg#-l}.la )
+							# Use pkg-config if available (and works),
+							# fallback to sed.
+							if ${pkgconf} --exists "${pc}" &>/dev/null; then
+								sed -e '/^Requires:/d' "${pc}" > "${tf}"
+								libs=$(${pkgconf} --libs "${tf}")
+							else
+								libs=$(sed -ne 's/^Libs://p' "${pc}")
 							fi
-						done
-					done < <(find "${ED}" -type f -name '*.pc' -print0)
 
-					rm -f "${tf}"
-				fi
+							for arg in ${libs}; do
+								if [[ ${arg} == -l* ]]; then
+									if [[ ${arg} == '*$*' ]]; then
+										eqawarn "${FUNCNAME}: variable substitution likely failed in ${pc}"
+										eqawarn "(arg: ${arg})"
+										eqawarn "Most likely, you need to add virtual/pkgconfig to DEPEND."
+									fi
 
-				pkgconfig_scanned=1
-			fi
+									pc_libs+=( lib${arg#-l}.la )
+								fi
+							done
+						done < <(find "${D}" -type f -name '*.pc' -print0)
 
-			has "${f##*/}" "${pc_libs[@]}" && reason='covered by .pc'
-		fi
+						rm -f "${tf}"
+					fi
+
+					pkgconfig_scanned=1
+				fi # pkgconfig_scanned
+
+				has "${f##*/}" "${pc_libs[@]}" && reason='covered by .pc'
+			fi # removal due to .pc
+
+		fi # shouldnotlink==no
 
 		if [[ ${reason} ]]; then
 			einfo "Removing unnecessary ${f#${D%/}} (${reason})"
@@ -1549,6 +1655,43 @@ prune_libtool_files() {
 	if [[ ${queue[@]} ]]; then
 		rm -f "${queue[@]}"
 	fi
+}
+
+einstalldocs() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	local dodoc_opts=-r
+	has ${EAPI} 0 1 2 3 && dodoc_opts=
+
+	if ! declare -p DOCS &>/dev/null ; then
+		local d
+		for d in README* ChangeLog AUTHORS NEWS TODO CHANGES \
+				THANKS BUGS FAQ CREDITS CHANGELOG ; do
+			if [[ -s ${d} ]] ; then
+				dodoc "${d}" || die
+			fi
+		done
+	elif [[ $(declare -p DOCS) == "declare -a"* ]] ; then
+		if [[ ${DOCS[@]} ]] ; then
+			dodoc ${dodoc_opts} "${DOCS[@]}" || die
+		fi
+	else
+		if [[ ${DOCS} ]] ; then
+			dodoc ${dodoc_opts} ${DOCS} || die
+		fi
+	fi
+
+	if [[ $(declare -p HTML_DOCS 2>/dev/null) == "declare -a"* ]] ; then
+		if [[ ${HTML_DOCS[@]} ]] ; then
+			dohtml -r "${HTML_DOCS[@]}" || die
+		fi
+	else
+		if [[ ${HTML_DOCS} ]] ; then
+			dohtml -r ${HTML_DOCS} || die
+		fi
+	fi
+
+	return 0
 }
 
 check_license() { die "you no longer need this as portage supports ACCEPT_LICENSE itself"; }
