@@ -369,8 +369,7 @@ src_test() {
 }
 
 src_install() {
-	local libdir=$(get_libdir)
-	local portage_base="/usr/${libdir}/portage"
+	local portage_base="/usr/lib/portage"
 
 	emake DESTDIR="${D}" install || die "make install failed."
 	dodir /usr/lib/portage/bin
