@@ -292,9 +292,7 @@ src_prepare() {
 		done < <(find . -type f -print0)
 
 		einfo "Adjusting make.globals ..."
-		sed -e 's|^SYNC=.*|SYNC="rsync://rsync.prefix.freens.org/gentoo-portage-prefix"|' \
-			-e "s|^\(PORTDIR=\)\(/usr/portage\)|\\1\"${EPREFIX}\\2\"|" \
-			-e "s|^\(PORTAGE_TMPDIR=\)\(/var/tmp\)|\\1\"${EPREFIX}\\2\"|" \
+		sed -e "s|^\(PORTAGE_TMPDIR=\)\(/var/tmp\)|\\1\"${EPREFIX}\\2\"|" \
 			-i cnf/make.globals || die "sed failed"
 
 		einfo "Adding FEATURES=force-prefix to make.globals ..."
