@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  19 Sep 2013; Fabian Groffen <grobian@gentoo.org> portage-2.2.4.22351.ebuild,
+  portage-2.2.6.22374.ebuild:
+  Drop more legacy sedding
+
   19 Sep 2013; Fabian Groffen <grobian@gentoo.org> portage-2.2.01.22288.ebuild,
   portage-2.2.4.22351.ebuild, portage-2.2.6.22374.ebuild:
   Drop legacy sed replacements (vars were moved)

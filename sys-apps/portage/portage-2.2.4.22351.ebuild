@@ -291,10 +291,6 @@ src_prepare() {
 			fi
 		done < <(find . -type f -print0)
 
-		einfo "Adjusting make.globals ..."
-		sed -e "s|^\(PORTAGE_TMPDIR=\)\(/var/tmp\)|\\1\"${EPREFIX}\\2\"|" \
-			-i cnf/make.globals || die "sed failed"
-
 		einfo "Adding FEATURES=force-prefix to make.globals ..."
 		echo -e '\nFEATURES="${FEATURES} force-prefix"' >> cnf/make.globals \
 			|| die "failed to append to make.globals"
