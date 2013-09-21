@@ -306,6 +306,7 @@ texlive-module_src_compile() {
 # Installs texmf and config files to the system.
 
 texlive-module_src_install() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	for i in texmf-dist/fmtutil/format*.cnf; do
 		[ -f "${i}" ] && etexlinks "${i}"
 	done
