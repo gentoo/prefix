@@ -202,6 +202,7 @@ fi
 
 # called from cvs_src_unpack
 cvs_fetch() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 
 	# Make these options local variables so that the global values are
 	# not affected by modifications in this function.
