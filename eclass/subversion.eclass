@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.83 2012/07/29 05:54:17 hattya Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.85 2013/07/27 10:18:13 mgorny Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -31,7 +31,7 @@ DEPEND+=" net-misc/rsync"
 
 # @ECLASS-VARIABLE: ESVN_STORE_DIR
 # @DESCRIPTION:
-# subversion sources store directory. Users may override this in /etc/make.conf
+# subversion sources store directory. Users may override this in /etc/portage/make.conf
 [[ -z ${ESVN_STORE_DIR} ]] && ESVN_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR:-${DISTDIR}}/svn-src"
 
 # @ECLASS-VARIABLE: ESVN_FETCH_CMD
@@ -324,6 +324,9 @@ subversion_fetch() {
 					${ESVN_UPDATE_CMD} ${options} || die "${ESVN}: can't update ${wc_path} from ${repo_uri}."
 				fi
 			fi
+
+			# export updated information for the working copy
+			subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 		fi
 	fi
 
@@ -440,8 +443,8 @@ subversion_src_prepare() {
 # want the logs to stick around if packages are uninstalled without messing with
 # config protection.
 subversion_pkg_preinst() {
+		has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
 	local pkgdate=$(date "+%Y%m%d %H:%M:%S")
-	subversion_wc_info "${1}"
 	if [[ -n ${ESCM_LOGDIR} ]]; then
 		local dir="${EROOT}/${ESCM_LOGDIR}/${CATEGORY}"
 		if [[ ! -d ${dir} ]]; then
