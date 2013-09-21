@@ -443,7 +443,7 @@ subversion_src_prepare() {
 # want the logs to stick around if packages are uninstalled without messing with
 # config protection.
 subversion_pkg_preinst() {
-		has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
 	local pkgdate=$(date "+%Y%m%d %H:%M:%S")
 	if [[ -n ${ESCM_LOGDIR} ]]; then
 		local dir="${EROOT}/${ESCM_LOGDIR}/${CATEGORY}"
