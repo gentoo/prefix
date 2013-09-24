@@ -22,9 +22,9 @@ db_fix_so() {
 	cd "${LIB}"
 
 	# first clean up old symlinks
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname)" -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname "[23]")" -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname)" -delete
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname "[23]")" -delete
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -delete
 
 	# now rebuild all the correct ones
 	for ext in so a dylib sl; do
@@ -150,14 +150,10 @@ db_src_install_usrlibcleanup() {
 		mv "${LIB}/libdb_cxx.a" "${LIB}/libdb_cxx-${SLOT}.a"
 	fi
 
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*so' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*so.[23]' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*dylib' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*[23].dylib' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*sl' -exec rm \{} \;
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*[23].sl' -exec rm \{} \;
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname)" -delete
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname "[23]")" -delete
 	einfo "removing unversioned static archives"
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -delete
 
 	rm -f \
 		"${ED}"/usr/include/{db,db_185}.h \
