@@ -1,9 +1,9 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/db.eclass,v 1.47 2012/10/08 19:59:59 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/db.eclass,v 1.49 2013/07/21 09:23:45 pacho Exp $
 # This is a common location for functions used in the sys-libs/db ebuilds
 #
-# Bugs: pauldv@gentoo.org
+# Bugs: maintainer-needed@gentoo.org
 
 inherit eutils multilib
 
@@ -16,6 +16,7 @@ DEPEND="test? ( >=dev-lang/tcl-8.4 )"
 RDEPEND=""
 
 db_fix_so() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
 	LIB="${EROOT}/usr/$(get_libdir)"
 
 	cd "${LIB}"
@@ -78,6 +79,7 @@ db_fix_so() {
 }
 
 db_src_install_doc() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	# not everybody wants this wad of documentation as it is primarily API docs
 	if use doc; then
 		dodir /usr/share/doc/${PF}/html
@@ -91,6 +93,7 @@ db_src_install_doc() {
 }
 
 db_src_install_examples() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	if use examples ; then
 		local langs="c cxx stl"
 		[[ "${IUSE/java}" != "${IUSE}" ]] \
@@ -108,6 +111,7 @@ db_src_install_examples() {
 }
 
 db_src_install_usrbinslot() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	# slot all program names to avoid overwriting
 	for fname in "${ED}"/usr/bin/db*
 	do
@@ -120,17 +124,19 @@ db_src_install_usrbinslot() {
 }
 
 db_src_install_headerslot() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	# install all headers in a slotted location
 	dodir /usr/include/db${SLOT}
 	mv "${ED}"/usr/include/*.h "${ED}"/usr/include/db${SLOT}/
 }
 
 db_src_install_usrlibcleanup() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	LIB="${ED}/usr/$(get_libdir)"
 	# Clean out the symlinks so that they will not be recorded in the
 	# contents (bug #60732)
 
-	if [ "${ED}" = "" ]; then
+	if [ "${D}" = "" ]; then
 		die "Calling clean_links while \$D not defined"
 	fi
 
@@ -167,6 +173,8 @@ db_src_test() {
 	fi
 
 	if use tcl; then
+		einfo "Running sys-libs/db testsuite"
+		ewarn "This can take 6+ hours on modern machines"
 		# Fix stuff that fails with relative paths, and upstream moving files
 		# around...
 		local test_parallel=''
@@ -182,6 +190,7 @@ db_src_test() {
 		sed -ri \
 			-e '/regsub .test_path ./s,(regsub),#\1,g' \
 			-e '/regsub .src_root ./s,(regsub),#\1,g' \
+			-e '/regsub .tcl_utils ./s,(regsub),#\1,g' \
 			"${test_parallel}"
 		cd "${S}"
 		for t in \
