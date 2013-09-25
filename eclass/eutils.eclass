@@ -955,6 +955,7 @@ make_desktop_entry() {
 # @DESCRIPTION:
 # Validate desktop entries using desktop-file-utils
 validate_desktop_entries() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}" && EPREFIX=
 	if [[ -x "${EPREFIX}"/usr/bin/desktop-file-validate ]] ; then
 		einfo "Checking desktop entry validity"
 		local directories=""
@@ -1227,6 +1228,7 @@ strip-linguas() {
 # solution, so instead you can call this from pkg_preinst.  See also the
 # preserve_old_lib_notify function.
 preserve_old_lib() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}" && ED="${D}"
 	if [[ ${EBUILD_PHASE} != "preinst" ]] ; then
 		eerror "preserve_old_lib() must be called from pkg_preinst() only"
 		die "Invalid preserve_old_lib() usage"
@@ -1265,6 +1267,8 @@ preserve_old_lib_notify() {
 	# let portage worry about it
 	has preserve-libs ${FEATURES} && return 0
 
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
+	
 	local lib notice=0
 	for lib in "$@" ; do
 		[[ -e ${EROOT}/${lib} ]] || continue
@@ -1303,6 +1307,7 @@ preserve_old_lib_notify() {
 # Remember that this function isn't terribly intelligent so order of optional
 # flags matter.
 built_with_use() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
 	local hidden="no"
 	if [[ $1 == "--hidden" ]] ; then
 		hidden="yes"
@@ -1407,6 +1412,7 @@ epunt_cxx() {
 # first optionally setting LD_LIBRARY_PATH to the colon-delimited
 # libpaths followed by optionally changing directory to chdir.
 make_wrapper() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	local wrapper=$1 bin=$2 chdir=$3 libdir=$4 path=$5
 	local tmpwrapper=$(emktemp)
 
@@ -1414,17 +1420,16 @@ make_wrapper() {
 	echo '#!/bin/sh'
 	[[ -n ${chdir} ]] && printf 'cd "%s"\n' "${chdir}"
 	if [[ -n ${libdir} ]] ; then
+		if [[ ${CHOST} == *-darwin* ]] ; then
+			var=DYLD_LIBRARY_PATH
+		else
+			var=LD_LIBRARY_PATH
+		fi
 		cat <<-EOF
-			if [ "\${LD_LIBRARY_PATH+set}" = "set" ] ; then
-				export LD_LIBRARY_PATH="\${LD_LIBRARY_PATH}:${EPREFIX}${libdir}"
+			if [ "\${${var}+set}" = "set" ] ; then
+				export ${var}="\${${var}}:${EPREFIX}${libdir}"
 			else
-				export LD_LIBRARY_PATH="${EPREFIX}${libdir}"
-			fi
-			# ultra-dirty, just do the same for Darwin
-			if [ "\${DYLD_LIBRARY_PATH+set}" = "set" ] ; then
-				export DYLD_LIBRARY_PATH="\${DYLD_LIBRARY_PATH}:${EPERFIX}${libdir}"
-			else
-				export DYLD_LIBRARY_PATH="${EPREFIX}${libdir}"
+				export ${var}="${EPREFIX}${libdir}"
 			fi
 		EOF
 	fi
@@ -1541,6 +1546,7 @@ prune_libtool_files() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local removing_all removing_modules opt
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	for opt; do
 		case "${opt}" in
 			--all)
