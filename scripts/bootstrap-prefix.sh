@@ -438,6 +438,7 @@ bootstrap_portage() {
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
 	STABLE_PV="2.2.01.22124"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.2.7"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
