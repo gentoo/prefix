@@ -2178,3 +2178,9 @@ is_treelang() {
 	#use treelang
 	return 0
 }
+
+# should kill these off once all the ebuilds are migrated (prefix-only)
+gcc_pkg_setup() { toolchain_pkg_setup ; }
+gcc_src_unpack() { toolchain_src_unpack ; }
+gcc_src_compile() { toolchain_src_compile ; }
+gcc_src_test() { toolchain_src_test ; }
