@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.06.ebuild,v 1.2 2012/08/13 17:45:27 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-9.06.ebuild,v 1.5 2013/08/27 14:58:36 kensington Exp $
 
 EAPI=4
 
@@ -31,13 +31,13 @@ COMMON_DEPEND="
 	media-libs/libpng:0
 	media-libs/tiff:0
 	>=sys-libs/zlib-1.2.3
-	virtual/jpeg
+	virtual/jpeg:0
 	!bindist? ( djvu? ( app-text/djvu ) )
 	cups? ( >=net-print/cups-1.3.8 )
 	dbus? ( sys-apps/dbus )
 	gtk? ( || ( x11-libs/gtk+:3 x11-libs/gtk+:2 ) )
 	idn? ( net-dns/libidn )
-	jpeg2k? ( >=media-libs/openjpeg-1.5.0 )
+	jpeg2k? ( >=media-libs/openjpeg-1.5.0:0 )
 	X? ( x11-libs/libXt x11-libs/libXext )"
 
 DEPEND="${COMMON_DEPEND}
@@ -124,6 +124,9 @@ src_prepare() {
 		base/Makefile.in base/*.mak || die "sed failed"
 
 	epatch "${FILESDIR}"/${PN}-9.05-darwin.patch
+
+	# bug 467100
+	sed -i -e '/AM_PROG_CC_STDC/d' ijs/configure.ac || die "sed failed"
 
 	cd "${S}"
 	eautoreconf
