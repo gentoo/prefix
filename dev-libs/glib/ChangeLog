@@ -1,6 +1,81 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.564 2013/07/17 04:59:44 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.578 2013/09/29 10:39:57 pacho Exp $
+
+  29 Sep 2013; Pacho Ramos <pacho@gentoo.org> glib-2.36.4-r1.ebuild:
+  Support compilation in clang until upstream solves this, upstream bug #691608
+  (#478338 by Yuta SATOH)
+
+  29 Sep 2013; Pacho Ramos <pacho@gentoo.org> -glib-2.36.4.ebuild,
+  glib-2.36.4-r1.ebuild:
+  Add support for win32 threads model (#472218 by Bertrand Jacquin), drop old.
+
+  05 Sep 2013; Michał Górny <mgorny@gentoo.org> glib-2.34.3-r1.ebuild,
+  glib-2.36.4-r1.ebuild, glib-2.36.4.ebuild:
+  Clean up PYTHON_COMPAT from old implementations.
+
+*glib-2.36.4-r1 (02 Sep 2013)
+
+  02 Sep 2013; Alexandre Rostovtsev <tetromino@gentoo.org> -glib-2.34.3.ebuild,
+  -glib-2.36.3-r1.ebuild, -glib-2.36.3-r2.ebuild, +glib-2.36.4-r1.ebuild,
+  -files/glib-2.36.3-revert-ext34.patch, +files/glib-2.36.4-znodelete.patch:
+  Fix segfaults in vlc and other applications that try to unload libgobject at
+  runtime (bug #405173, thanks to Cédric D. for finding a good solution). Drop
+  old ebuilds.
+
+  01 Sep 2013; Pacho Ramos <pacho@gentoo.org> glib-2.36.4.ebuild:
+  Pass --disable-compile-warnings configure option to drop -Werror usage
+
+  16 Aug 2013; Lars Wendler <polynomial-c@gentoo.org> glib-2.34.3-r1.ebuild:
+  Non-maintainer commit: really use python-r1 eclass.
+
+*glib-2.36.4 (16 Aug 2013)
+
+  16 Aug 2013; Alexandre Rostovtsev <tetromino@gentoo.org> -glib-2.36.3.ebuild,
+  +glib-2.36.4.ebuild:
+  Version bump, remove old. Includes the ext4 patch from 2.36.3-r2.
+
+*glib-2.34.3-r1 (15 Aug 2013)
+
+  15 Aug 2013; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +glib-2.34.3-r1.ebuild,
+  +files/glib-2.34.3-testsuite-skip-gdbus-auth-tests.patch:
+  Update ebuild for python-r1.eclass in preparation for stabilization. Skip
+  another failing test (fixed in 2.36).
+
+  15 Aug 2013; Alexandre Rostovtsev <tetromino@gentoo.org>
+  glib-2.36.3-r2.ebuild:
+  Restore the pkg.m4 hack from 2.34.x to prevent stage3 build failure (bug
+  #481056, thanks to Markos Chandras).
+
+  14 Aug 2013; Alexandre Rostovtsev <tetromino@gentoo.org>
+  glib-2.32.4-r1.ebuild, glib-2.34.3.ebuild, glib-2.36.3.ebuild,
+  glib-2.36.3-r1.ebuild, glib-2.36.3-r2.ebuild:
+  Add missing libselinux dependency when USE=selinux. Disable selinux GIO
+  support for non-native multilib builds until libselinux gets a multilib
+  version (bug #480946, thanks to Alphat-PC).
+
+  11 Aug 2013; Alexis Ballier <aballier@gentoo.org> glib-2.32.4-r1.ebuild,
+  glib-2.34.3.ebuild, glib-2.36.3.ebuild, glib-2.36.3-r1.ebuild,
+  glib-2.36.3-r2.ebuild:
+  freebsd-lib provides its own libelf now, adjust the deps, bug #479494 by Yuta
+  SATOH
+
+  10 Aug 2013; Alexis Ballier <aballier@gentoo.org> glib-2.36.3-r2.ebuild:
+  Add blockers on emul-libs so that it is stacked for baselibs r10
+
+*glib-2.36.3-r2 (10 Aug 2013)
+
+  10 Aug 2013; Alexis Ballier <aballier@gentoo.org> +glib-2.36.3-r2.ebuild:
+  migrate to multilib, bug #479282
+
+*glib-2.36.3-r1 (26 Jul 2013)
+
+  26 Jul 2013; Pacho Ramos <pacho@gentoo.org>
+  +files/glib-2.36.3-revert-ext34.patch, +glib-2.36.3-r1.ebuild,
+  -glib-2.36.2.ebuild:
+  Apply upstream patch reverting a change that could cause problems with some
+  ext3/4 setups, adapt bash-completion dir relying on eclass. Drop old.
 
   13 Sep 2013; Fabian Groffen <grobian@gentoo.org>
   +files/glib-2.36.3-solaris.patch, glib-2.36.3.ebuild:
