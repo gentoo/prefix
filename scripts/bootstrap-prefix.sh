@@ -1471,6 +1471,10 @@ EOF
 			;;
 	esac
 
+	# eventually the user does know where to find a compiler
+	[[ ${TODO} == 'noninteractive' ]] &&
+	usergcc=$(type -P gcc 2>/dev/null)
+
 	# the standard path we want to start with, override anything from
 	# the user on purpose
 	PATH="/usr/bin:/bin"
@@ -1566,7 +1570,7 @@ Ok, I'll give you a chance.  You can now enter what you think is
 necessary to add to PATH for me to find a compiler.  I start off with
 PATH=${PATH} and will add anything you give me here.
 EOF
-				[[ ${TODO} == 'noninteractive' ]] && ans="" ||
+				[[ ${TODO} == 'noninteractive' ]] && ans="${usergcc%/gcc}" ||
 				read -p "Where can I find your compiler? [] " ans
 				case "${ans}" in
 					"")
