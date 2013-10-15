@@ -255,7 +255,9 @@ HOSTCC='gcc -m64'
 			;;
 		powerpc-ibm-aix*)
 			profile="${PORTDIR}/profiles/prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
+			# The bootstrap compiler unlikely has runtime linking enabled already,
+			# but elibtoolize switches to the "lib.so(shr.o)" sharedlib variant.
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-brtl -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
 		mips-sgi-irix*)
 			profile="${PORTDIR}/profiles/prefix/irix/${CHOST#mips-sgi-irix}/mips"
