@@ -870,6 +870,7 @@ bootstrap_tar() {
 }
 
 bootstrap_make() {
+	MAKEOPTS= # no GNU make yet
 	bootstrap_gnu make 3.82
 }
 
