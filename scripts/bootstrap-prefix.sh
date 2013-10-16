@@ -1608,6 +1608,7 @@ EOF
 		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
         *-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
         *-aix*)        ncpu=$(/usr/sbin/bindprocessor -q | cut -d: -f2 | wc -w) ;;
+        *-hpux*)       ncpu=$(/sbin/ioscan -kC processor | grep -c processor) ;;
         *)             ncpu=1                                              ;;
     esac
 	# get rid of excess spaces (at least Solaris wc does)
