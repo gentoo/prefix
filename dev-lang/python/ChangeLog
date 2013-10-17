@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.709 2013/10/10 08:06:30 djc Exp $
 
+  17 Oct 2013; Michael Haubenwallner <haubi@gentoo.org> python-3.2.3-r2.ebuild,
+  python-3.3.2-r2.ebuild:
+  Marked ~x86-linux
+
   10 Oct 2013; Dirkjan Ochtman <djc@gentoo.org> -files/python-3.2.3-x32.patch,
   -python-2.6.8-r1.ebuild, -python-2.6.8-r2.ebuild, -python-2.7.3-r2.ebuild,
   -python-2.7.3-r3.ebuild, -python-2.7.5-r1.ebuild, -python-2.7.5.ebuild,
