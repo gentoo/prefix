@@ -151,7 +151,7 @@ src_compile() {
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
 	# in case that doesn't exist yet
 	export CONFIG_SHELL="${BASH}"
-	gcc_src_compile
+	toolchain_src_compile
 }
 
 src_install() {

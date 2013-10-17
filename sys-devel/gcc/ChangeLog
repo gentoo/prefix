@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.940 2013/03/12 11:49:56 ago Exp $
 
+  17 Oct 2013; Michael Haubenwallner <haubi@gentoo.org> gcc-4.1.2.ebuild,
+  gcc-4.2.4-r01.4.ebuild, gcc-4.3.6-r1.ebuild, gcc-4.4.6-r1.ebuild,
+  gcc-4.5.3-r2.ebuild, gcc-4.5.4.ebuild, gcc-4.6.3.ebuild, gcc-4.7.1.ebuild,
+  gcc-4.7.2-r1.ebuild:
+  gcc_src_compile was renamed to toolchain_src_compile
+
   02 Apr 2013; Fabian Groffen <grobian@gentoo.org> files/fix_libtool_files.sh:
   Fix fix_libtool_files.sh files not to rely on EPREFIX in env, bug #458042
 

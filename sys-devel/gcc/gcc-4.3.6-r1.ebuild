@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.6-r1.ebuild,v 1.12 2012/11/25 02:47:24 vapier Exp $
 
@@ -120,7 +120,7 @@ src_compile() {
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
 	# in case that doesn't exist yet
 	export CONFIG_SHELL="${BASH}"
-	gcc_src_compile
+	toolchain_src_compile
 }
 
 src_install() {

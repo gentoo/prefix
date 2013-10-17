@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.1.2.ebuild,v 1.33 2012/11/29 01:25:47 vapier Exp $
 
@@ -73,5 +73,5 @@ src_compile() {
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, so force it into our own bash
 	export CONFIG_SHELL="${BASH}"
-	gcc_src_compile
+	toolchain_src_compile
 }
