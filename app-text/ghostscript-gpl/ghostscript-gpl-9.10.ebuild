@@ -124,7 +124,7 @@ src_prepare() {
 		-e 's: -g : :g' \
 		"${S}"/Makefile.in "${S}"/base/*.mak || die "sed failed"
 
-	epatch "${FILESDIR}"/${PN}-9.05-darwin.patch
+	epatch "${FILESDIR}"/${PN}-9.10-darwin.patch
 
 	cd "${S}"
 	eautoreconf

@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.159 2013/09/06 00:53:53 tgurr Exp $
 
+  18 Oct 2013; Fabian Groffen <grobian@gentoo.org>
+  +files/ghostscript-gpl-9.10-darwin.patch, ghostscript-gpl-9.10.ebuild:
+  Fix Darwin patch, bug #487806
+
 *ghostscript-gpl-9.10 (06 Sep 2013)
 
   06 Sep 2013; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-9.09.ebuild,
@@ -794,4 +798,3 @@
   +files/gdevhl12-hl1250.mak, +metadata.xml, +ghostscript-gpl-8.54.ebuild:
   Move ghostscript-afpl to ghostscript-gpl and change the license, thanks to
   Ernst Rohlicek <ernst.rohlicek@inode.at> in bug 137289
-
