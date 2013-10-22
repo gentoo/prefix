@@ -1,0 +1,44 @@
+http://bugs.gentoo.org/show_bug.cgi?id=347319
+
+--- gcc/Makefile.in.old	2010-11-26 18:16:31.000000000 +0000
++++ gcc/Makefile.in	2010-11-26 18:17:13.000000000 +0000
+@@ -1819,6 +1819,7 @@
+ cc1$(exeext): $(C_OBJS) cc1-checksum.o $(BACKEND) $(LIBDEPS)
+ 	$(LINKER) $(ALL_LINKERFLAGS) $(LDFLAGS) -o $@ $(C_OBJS) \
+ 	  cc1-checksum.o $(BACKEND) $(LIBS) $(BACKENDLIBS)
++	stack -S 2 $@
+ 
+ #
+ # Build libgcc.a.
+--- gcc/cp/Make-lang.in.old	2013-03-22 21:10:05.000000000 +0000
++++ gcc/cp/Make-lang.in	2013-03-22 21:10:24.000000000 +0000
+@@ -104,6 +104,7 @@
+ cc1plus$(exeext): $(CXX_OBJS) cc1plus-checksum.o $(BACKEND) $(LIBDEPS)
+ 	+$(LINKER) $(ALL_LINKERFLAGS) $(LDFLAGS) -o $@ \
+ 	      $(CXX_OBJS) cc1plus-checksum.o $(BACKEND) $(LIBS) $(BACKENDLIBS)
++	stack -S 2 $@
+ 
+ ifeq ($(ENABLE_MAINTAINER_RULES), true)
+ # Special build rule.  This is a maintainer rule, that is only
+--- config/picflag.m4.old	2013-03-09 22:38:27.000000000 +0000
++++ config/picflag.m4	2013-03-09 22:38:49.000000000 +0000
+@@ -11,6 +11,8 @@
+ 	# Common symbols not allowed in MH_DYLIB files
+ 	$1=-fno-common
+ 	;;
++    *-*-mint*)
++	;;
+     alpha*-dec-osf5*)
+ 	# PIC is the default.
+ 	;;
+--- libiberty/configure.old	2013-03-09 22:36:10.000000000 +0000
++++ libiberty/configure	2013-03-09 22:36:45.000000000 +0000
+@@ -4859,6 +4859,8 @@
+ 	# Common symbols not allowed in MH_DYLIB files
+ 	PICFLAG=-fno-common
+ 	;;
++    *-*-mint*)
++	;;
+     alpha*-dec-osf5*)
+ 	# PIC is the default.
+ 	;;

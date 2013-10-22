@@ -1,0 +1,335 @@
+http://bugs.gentoo.org/show_bug.cgi?id=350822
+
+--- libstdc++-v3/libsupc++/guard.cc.old	2008-04-21 14:01:06.429023196 +0100
++++ libstdc++-v3/libsupc++/guard.cc	2008-04-21 14:01:25.230287338 +0100
+@@ -30,6 +30,7 @@
+ // Thread support written by Jason Merrill, Red Hat Inc. <jason@redhat.com>
+ 
+ #include <bits/c++config.h>
++#include <cstdlib>
+ #include <cxxabi.h>
+ #include <exception>
+ #include <new>
+--- libstdc++-v3/src/c++98/codecvt.cc.old	2008-04-21 14:32:37.116117842 +0100
++++ libstdc++-v3/src/c++98/codecvt.cc	2008-04-21 14:32:47.505045768 +0100
+@@ -27,6 +27,7 @@
+ 
+ // Written by Benjamin Kosnik <bkoz@redhat.com>
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/complex_io.cc.old	2008-04-21 14:36:27.261023151 +0100
++++ libstdc++-v3/src/c++98/complex_io.cc	2008-04-21 14:36:36.534232802 +0100
+@@ -27,6 +27,7 @@
+ // invalidate any other reasons why the executable file might be covered by
+ // the GNU General Public License.
+ 
++#include <cstdlib>
+ #include <complex>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/ctype.cc.old	2008-04-21 14:40:06.994312017 +0100
++++ libstdc++-v3/src/c++98/ctype.cc	2008-04-21 14:40:18.218220665 +0100
+@@ -26,6 +26,7 @@
+ // invalidate any other reasons why the executable file might be covered by
+ // the GNU General Public License.
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/globals_io.cc.old	2008-04-21 14:47:42.230023258 +0100
++++ libstdc++-v3/src/c++98/globals_io.cc	2008-04-21 14:47:52.749297097 +0100
+@@ -27,6 +27,7 @@
+ // the GNU General Public License.
+ 
+ #include "bits/c++config.h"
++#include <cstdlib>
+ #include <fstream>
+ #include <istream>
+ #include <ostream>
+--- libstdc++-v3/src/c++98/ios.cc.old	2008-04-21 14:51:32.364023391 +0100
++++ libstdc++-v3/src/c++98/ios.cc	2008-04-21 14:51:39.371196232 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882: 27.4  Iostreams base classes
+ //
+ 
++#include <cstdlib>
+ #include <ios>
+ #include <limits>
+ 
+--- libstdc++-v3/src/c++98/ios_failure.cc.old	2008-04-21 14:53:10.759023042 +0100
++++ libstdc++-v3/src/c++98/ios_failure.cc	2008-04-21 14:53:40.197127646 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882: 27.4.2.1.1  Class ios_base::failure
+ //
+ 
++#include <cstdlib>
+ #include <ios>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/ios_init.cc.old	2008-04-21 14:55:53.181023355 +0100
++++ libstdc++-v3/src/c++98/ios_init.cc	2008-04-21 14:56:01.407485842 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882: 27.4  Iostreams base classes
+ //
+ 
++#include <cstdlib>
+ #include <ios>
+ #include <ostream>
+ #include <istream>
+--- libstdc++-v3/src/c++98/ios_locale.cc.old	2008-04-21 15:04:38.355183857 +0100
++++ libstdc++-v3/src/c++98/ios_locale.cc	2008-04-21 15:04:47.456159205 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882: 27.4  Iostreams base classes
+ //
+ 
++#include <cstdlib>
+ #include <ios>
+ #include <locale>
+ 
+--- libstdc++-v3/src/c++98/locale_facets.cc.old	2008-04-21 15:10:19.610023164 +0100
++++ libstdc++-v3/src/c++98/locale_facets.cc	2008-04-21 15:10:26.952034403 +0100
+@@ -26,6 +26,7 @@
+ // invalidate any other reasons why the executable file might be covered by
+ // the GNU General Public License.
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/strstream.cc.old	2008-04-21 15:17:36.006071207 +0100
++++ libstdc++-v3/src/c++98/strstream.cc	2008-04-21 15:17:43.447641937 +0100
+@@ -46,6 +46,7 @@
+ // MAY BE REMOVED in a future standard revision.  You should use the
+ // header <sstream> instead.
+ 
++#include <cstdlib>
+ #include <strstream>
+ #include <algorithm>
+ #include <new>
+--- libstdc++-v3/src/c++11/fstream-inst.cc.old	2008-04-21 15:25:14.168032671 +0100
++++ libstdc++-v3/src/c++11/fstream-inst.cc	2008-04-21 15:25:24.605060960 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882:
+ //
+ 
++#include <cstdlib>
+ #include <fstream>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/ios-inst.cc.old	2008-04-21 15:40:43.642023146 +0100
++++ libstdc++-v3/src/c++98/ios-inst.cc	2008-04-21 15:40:51.723051414 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882:
+ //
+ 
++#include <cstdlib>
+ #include <ios>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/iostream-inst.cc.old	2008-04-21 15:55:15.625023267 +0100
++++ libstdc++-v3/src/c++98/iostream-inst.cc	2008-04-21 15:55:23.629058393 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882:
+ //
+ 
++#include <cstdlib>
+ #include <iomanip>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/istream-inst.cc.old	2008-04-21 15:59:50.862024439 +0100
++++ libstdc++-v3/src/c++98/istream-inst.cc	2008-04-21 15:59:59.603028397 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882:
+ //
+ 
++#include <cstdlib>
+ #include <istream>
+ #include <iomanip>
+ 
+--- libstdc++-v3/src/c++98/istream.cc.old	2008-04-21 16:03:55.949023206 +0100
++++ libstdc++-v3/src/c++98/istream.cc	2008-04-21 16:04:03.746026447 +0100
+@@ -31,6 +31,7 @@
+ // ISO C++ 14882: 27.6.1  Input streams
+ //
+ 
++#include <cstdlib>
+ #include <istream>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/locale-inst.cc.old	2008-04-21 16:07:06.705023144 +0100
++++ libstdc++-v3/src/c++98/locale-inst.cc	2008-04-21 16:07:14.922226343 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882: 22.1  Locales
+ //
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ // Instantiation configuration.
+--- libstdc++-v3/src/c++98/ostream-inst.cc.old	2008-04-21 16:19:19.443023243 +0100
++++ libstdc++-v3/src/c++98/ostream-inst.cc	2008-04-21 16:19:26.505037357 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882:
+ //
+ 
++#include <cstdlib>
+ #include <ostream>
+ #include <iomanip>
+ 
+--- libstdc++-v3/src/c++98/sstream-inst.cc.old	2008-04-21 16:22:53.830023256 +0100
++++ libstdc++-v3/src/c++98/sstream-inst.cc	2008-04-21 16:23:01.792239858 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882:
+ //
+ 
++#include <cstdlib>
+ #include <sstream>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/src/c++98/streambuf-inst.cc.old	2008-04-21 16:27:18.648023102 +0100
++++ libstdc++-v3/src/c++98/streambuf-inst.cc	2008-04-21 16:27:28.394022870 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882:
+ //
+ 
++#include <cstdlib>
+ #include <ios>
+ #include <streambuf>
+ 
+--- libstdc++-v3/src/c++98/streambuf.cc.old	2008-04-21 16:32:11.191078470 +0100
++++ libstdc++-v3/src/c++98/streambuf.cc	2008-04-21 16:32:20.434047649 +0100
+@@ -31,6 +31,7 @@
+ // ISO C++ 14882: 27.5  Stream buffers
+ //
+ 
++#include <cstdlib>
+ #include <streambuf>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/config/locale/generic/codecvt_members.cc.old	2008-04-21 16:40:52.235023128 +0100
++++ libstdc++-v3/config/locale/generic/codecvt_members.cc	2008-04-21 16:41:01.248427209 +0100
+@@ -33,6 +33,7 @@
+ 
+ // Written by Benjamin Kosnik <bkoz@redhat.com>
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/config/locale/generic/collate_members.cc.old	2008-04-21 16:42:19.265348380 +0100
++++ libstdc++-v3/config/locale/generic/collate_members.cc	2008-04-21 16:42:25.552040967 +0100
+@@ -33,6 +33,7 @@
+ 
+ // Written by Benjamin Kosnik <bkoz@redhat.com>
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/config/locale/generic/ctype_members.cc.old	2008-04-21 16:49:06.726023078 +0100
++++ libstdc++-v3/config/locale/generic/ctype_members.cc	2008-04-21 16:49:18.212045558 +0100
+@@ -33,6 +33,7 @@
+ 
+ // Written by Benjamin Kosnik <bkoz@redhat.com>
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/config/locale/generic/messages_members.cc.old	2008-04-21 16:51:46.237348712 +0100
++++ libstdc++-v3/config/locale/generic/messages_members.cc	2008-04-21 16:51:55.015221637 +0100
+@@ -33,6 +33,7 @@
+ 
+ // Written by Benjamin Kosnik <bkoz@redhat.com>
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/config/locale/generic/monetary_members.cc.old	2008-04-21 16:53:14.893023165 +0100
++++ libstdc++-v3/config/locale/generic/monetary_members.cc	2008-04-21 16:53:22.350043513 +0100
+@@ -33,6 +33,7 @@
+ 
+ // Written by Benjamin Kosnik <bkoz@redhat.com>
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/config/locale/generic/numeric_members.cc.old	2008-04-21 16:54:11.077212480 +0100
++++ libstdc++-v3/config/locale/generic/numeric_members.cc	2008-04-21 16:53:32.618266080 +0100
+@@ -33,6 +33,7 @@
+ 
+ // Written by Benjamin Kosnik <bkoz@redhat.com>
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/config/locale/generic/time_members.cc.old	2008-04-21 16:54:00.835099080 +0100
++++ libstdc++-v3/config/locale/generic/time_members.cc	2008-04-21 16:53:41.260024731 +0100
+@@ -34,6 +34,7 @@
+ 
+ // Written by Benjamin Kosnik <bkoz@redhat.com>
+ 
++#include <cstdlib>
+ #include <locale>
+ 
+ _GLIBCXX_BEGIN_NAMESPACE(std)
+--- libstdc++-v3/config/io/basic_file_stdio.cc.old	2008-04-21 17:00:09.629307442 +0100
++++ libstdc++-v3/config/io/basic_file_stdio.cc	2008-04-21 16:59:58.512314844 +0100
+@@ -32,6 +32,7 @@
+ // ISO C++ 14882: 27.8  File-based streams
+ //
+ 
++#include <cstdlib>
+ #include <bits/basic_file.h>
+ #include <fcntl.h>
+ #include <errno.h>
+--- gcc/cp/g++spec.c.old	2008-06-05 11:12:02.252475943 +0100
++++ gcc/cp/g++spec.c	2008-06-05 11:12:49.557473133 +0100
+@@ -343,6 +343,12 @@
+ 	}
+ #endif
+     }
++#ifdef __MINT__
++  generate_option (OPT_l, "pthread", 1,
++		   CL_DRIVER, &new_decoded_options[j]);
++  added_libraries++;
++  j++;
++#endif
+   if (saw_math)
+     new_decoded_options[j++] = *saw_math;
+   else if (library > 0 && need_math)
+--- libstdc++-v3/include/c_global/cstdlib.old	2008-06-05 11:15:10.644432810 +0100
++++ libstdc++-v3/include/c_global/cstdlib	2008-06-05 11:15:43.703707876 +0100
+@@ -97,7 +97,11 @@
+ #undef strtod
+ #undef strtol
+ #undef strtoul
++#if _POSIX_THREAD_SYSCALL_SOFT && !defined(_PTHREAD_PRIVATE)
++/* don't undefine system as we're using libpthread */
++#else
+ #undef system
++#endif
+ #undef wcstombs
+ #undef wctomb
+ 
+--- libstdc++-v3/include/c_std/cstdlib.old	2008-06-05 11:15:10.644432810 +0100
++++ libstdc++-v3/include/c_std/cstdlib	2008-06-05 11:15:43.703707876 +0100
+@@ -97,7 +97,11 @@
+ #undef strtod
+ #undef strtol
+ #undef strtoul
++#if _POSIX_THREAD_SYSCALL_SOFT && !defined(_PTHREAD_PRIVATE)
++/* don't undefine system as we're using libpthread */
++#else
+ #undef system
++#endif
+ #undef wcstombs
+ #undef wctomb
+ 
