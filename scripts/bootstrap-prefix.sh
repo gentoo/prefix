@@ -1099,6 +1099,9 @@ bootstrap_stage3() {
 		sys-devel/gcc-config
 	)
 
+	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
+	# but also for perl, which uses scanelf/scanmacho to find compatible
+	# lib-dirs
 	case ${bootstrapCHOST} in
 		*-darwin*)
 			pkgs=( ${pkgs[@]} sys-apps/darwin-miscutils sys-libs/csu )
@@ -1114,7 +1117,11 @@ bootstrap_stage3() {
 					return 1
 					;;
 			esac
-			pkgs=( ${pkgs[@]} sys-devel/gcc-apple )
+			pkgs=(
+				${pkgs[@]}
+				sys-devel/gcc-apple
+				app-misc/pax-utils  # see note above
+			)
 			;;
 		i?86-*-solaris*)
 			# 4.2/x86 can't cope with Sun ld/as
@@ -1152,6 +1159,7 @@ bootstrap_stage3() {
 				sys-devel/binutils
 				"=sys-devel/gcc-4.1*"
 				${needgcc42}
+				app-misc/pax-utils  # see note above
 			)
 			;;
 		sparc-*-solaris2.11)
@@ -1161,6 +1169,7 @@ bootstrap_stage3() {
 				sys-devel/binutils
 				"=sys-devel/gcc-4.1*"
 				"=sys-devel/gcc-4.2*"
+				app-misc/pax-utils  # see note above
 			)
 			;;
 		*-*-aix*)
@@ -1169,6 +1178,7 @@ bootstrap_stage3() {
 				sys-apps/diffutils # or gcc PR14251
 				sys-devel/native-cctools
 				"=sys-devel/gcc-4.2*"
+				sys-apps/aix-miscutils
 			)
 			;;
 		*)
@@ -1176,18 +1186,15 @@ bootstrap_stage3() {
 				${pkgs[@]}
 				sys-devel/binutils
 				"=sys-devel/gcc-4.2*"
+				app-misc/pax-utils  # see note above
 			)
 			;;
 	esac
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
-	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
-	# but also for perl, which uses scanelf/scanmacho to find compatible
-	# lib-dirs
 	# --oneshot
 	local pkgs=(
-		app-misc/pax-utils  # see note above
 		sys-apps/coreutils
 		sys-apps/findutils
 		"<app-arch/tar-1.26-r1" # bug 406131
