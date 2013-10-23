@@ -1166,6 +1166,7 @@ bootstrap_stage3() {
 		*-*-aix*)
 			pkgs=(
 				${pkgs[@]}
+				sys-apps/diffutils # or gcc PR14251
 				"=sys-devel/gcc-4.2*"
 			)
 			;;
