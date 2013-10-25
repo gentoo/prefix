@@ -236,7 +236,7 @@ src_prepare() {
 	fi
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
-	epatch "${FILESDIR}"/${PN}-2.2.01.20239-ebuildshell.patch
+	epatch "${FILESDIR}"/${PN}-2.2.7-ebuildshell.patch # 155161
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."

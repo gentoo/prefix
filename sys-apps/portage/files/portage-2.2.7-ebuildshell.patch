@@ -1,0 +1,158 @@
+diff --git a/bin/ebuild.sh b/bin/ebuild.sh
+index 35f4b91..8e702d0 100755
+--- a/bin/ebuild.sh
++++ b/bin/ebuild.sh
+@@ -90,7 +90,7 @@ __qa_source() {
+ __qa_call() {
+ 	local shopts=$(shopt) OLDIFS="$IFS"
+ 	local retval
+-	"$@"
++	__call-ebuildshell "$@"
+ 	retval=$?
+ 	set +e
+ 	[[ $shopts != $(shopt) ]] &&
+@@ -467,6 +467,58 @@ if [[ -n ${QA_INTERCEPTORS} ]] ; then
+ 	unset BIN_PATH BIN BODY FUNC_SRC
+ fi
+ 
++__call-ebuildshell() {
++	if ! has ebuildshell ${FEATURES}; then
++		"$@"
++		return $?
++	fi
++	(
++		umask 002
++		(
++			(
++				set
++				declare -p
++				declare -fp
++				shopt -p
++				if [[ ${BASH_VERSINFO[0]} == 3 ]]; then
++					export
++				fi
++			) | __filter_readonly_variables --filter-for-subshell
++			echo 'declare -r $PORTAGE_READONLY_METADATA $PORTAGE_READONLY_VARS'
++			echo "export PS1='EBUILD ${PN} $1 \$ '" 
++			echo 'unset ENV'
++			echo "type $1"
++			echo "echo WANTED: $@"
++			echo "trap '"
++			echo "umask 002"
++			echo "("
++			echo "	set"
++			echo "	declare -p"
++			echo "	declare -fp"
++			echo "	shopt -p | grep -v extdebug$"
++			if [[ ${BASH_VERSINFO[0]} == 3 ]]; then
++				echo "	export"
++			fi
++			echo -n ")"
++			echo -n " | __filter_readonly_variables --filter-metadata"
++			echo " > ${T}/ebuildshell-environment-outcome' 0"
++			echo "shopt -u extdebug"
++			echo "trap - DEBUG"
++		) > ${T}/ebuildshell-environment
++		chown ${PORTAGE_USER:-portage}:${PORTAGE_GROUP:-portage} "${T}/ebuildshell-environment" &>/dev/null
++		chmod g+w "${T}/ebuildshell-environment" &>/dev/null
++	)
++
++	rm -f "${T}/ebuildshell-environment-outcome" >&/dev/null
++
++	unset BASH_ENV
++	env -i ${BASH} --rcfile "${T}/ebuildshell-environment"  -i || die
++
++	chown ${PORTAGE_USER:-portage}:${PORTAGE_GROUP:-portage} "${T}/ebuildshell-environment-outcome" &>/dev/null
++	chmod g+w "${T}/ebuildshell-environment-outcome" &>/dev/null
++	source "${T}/ebuildshell-environment-outcome" &>/dev/null
++}
++
+ # Subshell/helper die support (must export for the die helper).
+ export EBUILD_MASTER_PID=$BASHPID
+ trap 'exit 1' SIGTERM
+diff --git a/bin/phase-functions.sh b/bin/phase-functions.sh
+index 711b721..5f3a8a2 100644
+--- a/bin/phase-functions.sh
++++ b/bin/phase-functions.sh
+@@ -87,7 +87,7 @@ PORTAGE_MUTABLE_FILTERED_VARS="AA HOSTNAME"
+ __filter_readonly_variables() {
+ 	local x filtered_vars
+ 	local readonly_bash_vars="BASHOPTS BASHPID DIRSTACK EUID
+-		FUNCNAME GROUPS PIPESTATUS PPID SHELLOPTS UID"
++		FUNCNAME GROUPS PIPESTATUS PPID SHELLOPTS UID BASH_VERSINFO"
+ 	local bash_misc_vars="BASH BASH_.* COLUMNS COMP_WORDBREAKS HISTCMD
+ 		HISTFILE HOSTNAME HOSTTYPE IFS LINENO MACHTYPE OLDPWD
+ 		OPTERR OPTIND OSTYPE POSIXLY_CORRECT PS4 PWD RANDOM
+@@ -98,12 +98,14 @@ __filter_readonly_variables() {
+ 	# Untrusted due to possible application of package renames to binpkgs
+ 	local binpkg_untrusted_vars="CATEGORY P PF PN PR PV PVR"
+ 	local misc_garbage_vars="_portage_filter_opts"
+-	filtered_vars="$readonly_bash_vars $bash_misc_vars
+-		$PORTAGE_READONLY_VARS $misc_garbage_vars"
++	filtered_vars="$readonly_bash_vars"
++	if ! has --filter-for-subshell $* ; then
++		filtered_vars="$filtered_vars $bash_misc_vars $PORTAGE_READONLY_VARS $misc_garbage_vars"
++	fi
+ 
+ 	# Don't filter/interfere with prefix variables unless they are
+ 	# supported by the current EAPI.
+-	if ___eapi_has_prefix_variables; then
++	if ___eapi_has_prefix_variables && ! has --filter-for-subshell $* ; then
+ 		filtered_vars+=" ED EPREFIX EROOT"
+ 	fi
+ 
+@@ -123,7 +125,11 @@ __filter_readonly_variables() {
+ 			LC_CTYPE LC_MESSAGES LC_MONETARY
+ 			LC_NUMERIC LC_PAPER LC_TIME"
+ 	fi
+-	if ! has --allow-extra-vars $* ; then
++	if has --filter-metadata $* ; then
++		filtered_vars="$filtered_vars $PORTAGE_READONLY_METADATA"
++	fi
++	if ! has --allow-extra-vars $* &&
++	   ! has --filter-for-subshell $* ; then
+ 		if [ "${EMERGE_FROM}" = binary ] ; then
+ 			# preserve additional variables from build time,
+ 			# while excluding untrusted variables
+diff --git a/man/make.conf.5 b/man/make.conf.5
+index ab9b44e..45903e3 100644
+--- a/man/make.conf.5
++++ b/man/make.conf.5
+@@ -345,6 +345,12 @@ exist). Also see the related \fIunmerge\-backup\fR feature.
+ Use locks to ensure that unsandboxed ebuild phases never execute
+ concurrently. Also see \fIparallel\-install\fR.
+ .TP
++.B ebuildshell
++Drop into an interactive shell for each phase function, meant for
++debugging.  Because the shell would normally be used to execute the
++phase function, commands like src_unpack or epatch are available in the
++interactive shell.  Use `exit 1` to terminate the merge.
++.TP
+ .B fakeroot
+ Enable fakeroot for the install and package phases when a non-root user runs
+ the \fBebuild\fR(1) command.
+diff --git a/pym/_emerge/AbstractEbuildProcess.py b/pym/_emerge/AbstractEbuildProcess.py
+index 31127f4..73031d0 100644
+--- a/pym/_emerge/AbstractEbuildProcess.py
++++ b/pym/_emerge/AbstractEbuildProcess.py
+@@ -136,6 +136,7 @@ class AbstractEbuildProcess(SpawnProcess):
+ 			self.fd_pipes = {}
+ 		null_fd = None
+ 		if 0 not in self.fd_pipes and \
++			"ebuildshell" not in self.settings.features and \
+ 			self.phase not in self._phases_interactive_whitelist and \
+ 			"interactive" not in self.settings.get("PROPERTIES", "").split():
+ 			null_fd = os.open('/dev/null', os.O_RDONLY)
+diff --git a/pym/portage/const.py b/pym/portage/const.py
+index 214ede4..725a7d0 100644
+--- a/pym/portage/const.py
++++ b/pym/portage/const.py
+@@ -100,7 +100,7 @@ SUPPORTED_FEATURES       = frozenset([
+                            "collision-protect", "compress-build-logs", "compressdebug",
+                            "compress-index", "config-protect-if-modified",
+                            "digest", "distcc", "distcc-pump", "distlocks",
+-                           "downgrade-backup", "ebuild-locks", "fakeroot",
++                           "downgrade-backup", "ebuildshell", "ebuild-locks", "fakeroot",
+                            "fail-clean", "force-mirror", "force-prefix", "getbinpkg",
+                            "installsources", "ipc-sandbox",
+                            "keeptemp", "keepwork", "fixlafiles", "lmirror",
