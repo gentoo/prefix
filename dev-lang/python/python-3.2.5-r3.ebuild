@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.5-r2.ebuild,v 1.13 2013/08/28 15:59:25 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.5-r3.ebuild,v 1.1 2013/10/16 23:43:45 floppym Exp $
 
 EAPI="4"
 WANT_AUTOMAKE="none"
@@ -81,6 +81,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}/python-3.2-CVE-2013-2099.patch"
 	epatch "${FILESDIR}/CVE-2013-4238_py33.patch"
+	epatch "${FILESDIR}/python-3.2-issue16248.patch"
 
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-3_2

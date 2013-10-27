@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.4.ebuild,v 1.9 2013/05/18 13:13:35 zorry Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.5-r4.ebuild,v 1.1 2013/10/26 15:11:20 floppym Exp $
 
 EAPI="4"
 WANT_AUTOMAKE="none"
@@ -9,8 +9,8 @@ WANT_LIBTOOL="none"
 inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs multiprocessing
 
 MY_P="Python-${PV}"
-PATCHSET_REVISION="2"
-PREFIX_PATCHREV="-r0"
+PATCHSET_REVISION="0"
+PREFIX_PATCHREV="-r2"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
@@ -51,7 +51,7 @@ RDEPEND="app-arch/bzip2
 			>=sys-libs/ncurses-5.2
 			readline? ( >=sys-libs/readline-4.1 )
 		)
-		sqlite? ( >=dev-db/sqlite-3.3.8:3[extensions] )
+		sqlite? ( >=dev-db/sqlite-3.3.8:3 )
 		ssl? ( dev-libs/openssl )
 		tk? (
 			>=dev-lang/tk-8.0[-aqua]
@@ -91,17 +91,21 @@ src_prepare() {
 	rm -r Modules/_ctypes/libffi* || die
 	rm -r Modules/zlib || die
 
-	local excluded_patches
-	if ! tc-is-cross-compiler; then
-		excluded_patches+=" *_all_crosscompile.patch"
+	if tc-is-cross-compiler; then
+		local EPATCH_EXCLUDE="*_regenerate_platform-specific_modules.patch"
 	fi
 
 	# if building a patched source-tar, comment the rm's above, and uncomment
 	# this line:
-	#excluded_patches="01_all_prefix-no-patch-invention.patch"
+	#local EPATCH_EXCLUDE=" 01_all_prefix-no-patch-invention.patch"
 
-	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
-		epatch "${WORKDIR}/${PV}-${PATCHSET_REVISION}"
+	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}-${PATCHSET_REVISION}"
+
+	epatch "${FILESDIR}/${P}-library-path.patch" #474882
+	epatch "${FILESDIR}/${P}-re_unsigned_ptrdiff.patch" #476426
+	epatch "${FILESDIR}/CVE-2013-4238_py27.patch"
+	epatch "${FILESDIR}/python-2.7-issue16248.patch"
+	epatch "${FILESDIR}/python-2.7-issue18851.patch"
 
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-2_7
@@ -119,6 +123,9 @@ src_prepare() {
 	fi
 	# don't try to do fancy things on Darwin
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
+
+	# Fix for cross-compiling.
+	epatch "${FILESDIR}/python-2.7.5-nonfatal-compileall.patch"
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -199,35 +206,14 @@ src_configure() {
 		append-cppflags -I${EPREFIX}/usr/include
 		append-ldflags -L${EPREFIX}/$(get_libdir)
 		append-ldflags -L${EPREFIX}/usr/$(get_libdir)
-		# fix compilation on some 64-bits Linux hosts, #381163
-		for hostlibdir in /usr/lib32 /usr/lib64 /lib32 /lib64 ; do
+		# fix compilation on some 64-bits Linux hosts, #381163, #473520
+		for hostlibdir in /usr/lib32 /usr/lib64 /usr/lib /lib32 /lib64; do
 			[[ -d ${hostlibdir} ]] || continue
 			append-ldflags -L${hostlibdir}
 		done
 		# Have to move $(CPPFLAGS) to before $(CFLAGS) to ensure that
 		# local include paths - set in $(CPPFLAGS) - are searched first.
 		sed -i -e "/^PY_CFLAGS[ \\t]*=/s,\\\$(CFLAGS)[ \\t]*\\\$(CPPFLAGS),\$(CPPFLAGS) \$(CFLAGS)," Makefile.pre.in || die
-	fi
-
-	# Run the configure scripts in parallel.
-	multijob_init
-
-	mkdir -p "${WORKDIR}"/{${CBUILD},${CHOST}}
-
-	if tc-is-cross-compiler; then
-		(
-		multijob_child_init
-		cd "${WORKDIR}"/${CBUILD} >/dev/null
-		OPT="-O1" CFLAGS="" CPPFLAGS="" LDFLAGS="" CC="" \
-		"${S}"/configure \
-			--{build,host}=${CBUILD} \
-			|| die "cross-configure failed"
-		) &
-		multijob_post_fork
-
-		# The configure script assumes it's buggy when cross-compiling.
-		export ac_cv_buggy_getaddrinfo=no
-		export ac_cv_have_long_long_format=yes
 	fi
 
 	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
@@ -266,10 +252,13 @@ src_configure() {
 		&& myconf="${myconf} --enable-framework=${EPREFIX}/usr/lib" \
 		|| myconf="${myconf} --enable-shared"
 
+	BUILD_DIR="${WORKDIR}/${CHOST}"
+	mkdir -p "${BUILD_DIR}" || die
+	cd "${BUILD_DIR}" || die
+
 	# note: for a framework build we need to use ucs2 because OSX
 	# uses that internally too:
 	# http://bugs.python.org/issue763708
-	cd "${WORKDIR}"/${CHOST}
 	ECONF_SOURCE="${S}" OPT="" \
 	econf \
 		--with-fpectl \
@@ -284,42 +273,14 @@ src_configure() {
 		--with-system-expat \
 		--with-system-ffi \
 		${myconf}
-
-	if tc-is-cross-compiler; then
-		# Modify the Makefile.pre so we don't regen for the host/ one.
-		# We need to link the host python programs into $PWD and run
-		# them from here because the distutils sysconfig module will
-		# parse Makefile/etc... from argv[0], and we need it to pick
-		# up the target settings, not the host ones.
-		sed -i \
-			-e '1iHOSTPYTHONPATH = ./hostpythonpath:' \
-			-e '/^HOSTPYTHON/s:=.*:= ./hostpython:' \
-			-e '/^HOSTPGEN/s:=.*:= ./Parser/hostpgen:' \
-			Makefile{.pre,} || die "sed failed"
-	fi
-
-	multijob_finish
 }
 
 src_compile() {
-	if tc-is-cross-compiler; then
-		cd "${WORKDIR}"/${CBUILD}
-		# Disable as many modules as possible -- but we need a few to install.
-		PYTHON_DISABLE_MODULES=$(
-			sed -n "/Extension('/{s:^.*Extension('::;s:'.*::;p}" "${S}"/setup.py | \
-				egrep -v '(unicodedata|time|cStringIO|_struct|binascii)'
-		) \
-		PTHON_DISABLE_SSL="1" \
-		SYSROOT= \
-		emake
-		# See comment in src_configure about these.
-		ln python ../${CHOST}/hostpython || die
-		ln Parser/pgen ../${CHOST}/Parser/hostpgen || die
-		ln -s ../${CBUILD}/build/lib.*/ ../${CHOST}/hostpythonpath || die
-	fi
+	# Avoid invoking pgen for cross-compiles.
+	touch Include/graminit.h Python/graminit.c
 
-	cd "${WORKDIR}"/${CHOST}
-	default
+	cd "${BUILD_DIR}" || die
+	emake
 
 	# Work around bug 329499. See also bug 413751 and 457194.
 	if has_version dev-libs/libffi[pax_kernel]; then
@@ -336,7 +297,7 @@ src_test() {
 		return
 	fi
 
-	cd "${WORKDIR}"/${CHOST}
+	cd "${BUILD_DIR}" || die
 
 	# Skip failing tests.
 	local skipped_tests="distutils gdb"
@@ -370,7 +331,7 @@ src_test() {
 src_install() {
 	local libdir=${ED}/usr/$(get_libdir)/python${SLOT}
 
-	cd "${WORKDIR}"/${CHOST}
+	cd "${BUILD_DIR}" || die
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${SLOT}/lib-dynload/
 	if use aqua ; then
 		local fwdir="${EPREFIX}"/usr/$(get_libdir)/Python.framework
@@ -512,10 +473,10 @@ EOF
 	if use build; then
 		rm -fr "${ED}usr/bin/idle${SLOT}" "${libdir}/"{bsddb,dbhash.py,idlelib,lib-tk,sqlite3,test}
 	else
-		use elibc_uclibc && rm -fr "${libdir}/"{bsddb/test,test}
 		use berkdb || rm -r "${libdir}/"{bsddb,dbhash.py,test/test_bsddb*} || die
 		use sqlite || rm -r "${libdir}/"{sqlite3,test/test_sqlite*} || die
-		use tk || rm -r "${ED}usr/bin/idle${SLOT}" "${libdir}/"{idlelib,lib-tk} || die
+		use tk || rm -fr "${ED}usr/bin/idle${SLOT}" "${libdir}/"{idlelib,lib-tk} || die
+		use elibc_uclibc && rm -fr "${libdir}/"{bsddb/test,test}
 	fi
 
 	use threads || rm -r "${libdir}/multiprocessing" || die
@@ -551,9 +512,8 @@ EOF
 
 	# if not using a cross-compiler, use the fresh binary
 	if ! tc-is-cross-compiler; then
-		local PYTHON=./python \
-			LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
-		export LD_LIBRARY_PATH
+		local PYTHON=./python
+		local -x LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
 	fi
 
 	echo "EPYTHON='${EPYTHON}'" > epython.py
