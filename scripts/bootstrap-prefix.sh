@@ -1175,6 +1175,7 @@ bootstrap_stage3() {
 		*-*-aix*)
 			pkgs=(
 				${pkgs[@]}
+				dev-libs/libiconv # avoid hell with shared libiconv.a
 				sys-apps/diffutils # or gcc PR14251
 				sys-devel/native-cctools
 				"=sys-devel/gcc-4.2*"
