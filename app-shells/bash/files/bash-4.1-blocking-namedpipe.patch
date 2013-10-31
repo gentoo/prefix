@@ -1,0 +1,14 @@
+Breaks on platforms without /dev/fd/ like AIX, so named pipes are used instead:
+bash -c 'for x in {0..9}; do echo $x; done > >(cnt=0; while read line; do let cnt=cnt+1; done; echo $cnt)'
+
+--- subst.c.orig	2013-10-31 15:33:56.243896345 +0100
++++ subst.c	2013-10-31 15:34:14.285099859 +0100
+@@ -4839,7 +4839,7 @@
+ 
+ #if !defined (HAVE_DEV_FD)
+   /* Open the named pipe in the child. */
+-  fd = open (pathname, open_for_read_in_child ? O_RDONLY|O_NONBLOCK : O_WRONLY);
++  fd = open (pathname, open_for_read_in_child ? O_RDONLY : O_WRONLY);
+   if (fd < 0)
+     {
+       /* Two separate strings for ease of translation. */
