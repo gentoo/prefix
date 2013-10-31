@@ -124,7 +124,7 @@ HOSTCC='gcc -m64'
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
-		i*86-apple-darwin1[012])
+		i*86-apple-darwin1[0123])
 			rev=${CHOST##*darwin}
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
@@ -134,7 +134,7 @@ CXX='g++ -m32'
 HOSTCC='gcc -m32'
 "
 			;;
-		x86_64-apple-darwin9|x86_64-apple-darwin1[012])
+		x86_64-apple-darwin9|x86_64-apple-darwin1[0123])
 			rev=${CHOST##*darwin}
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x64"
 			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
@@ -1106,14 +1106,14 @@ bootstrap_stage3() {
 		*-darwin*)
 			pkgs=( ${pkgs[@]} sys-apps/darwin-miscutils sys-libs/csu )
 			case "$(gcc --version)" in
-				*"(GCC) 4.2.1 "*)
+				*"(GCC) 4.2.1 "*|*"Apple LLVM version 5.0"*)
 					pkgs=( ${pkgs[@]} sys-devel/binutils-apple )
 					;;
 				*"(GCC) 4.0.1 "*)
 					pkgs=( ${pkgs[@]} "=sys-devel/binutils-apple-3.2" )
 					;;
 				*)
-					eerror "unknown GCC compiler"
+					eerror "unknown compiler"
 					return 1
 					;;
 			esac
