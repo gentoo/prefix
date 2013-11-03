@@ -830,6 +830,14 @@ bootstrap_zlib_core() {
 	# because the tmp lib path is in the library search path there
 	rm -Rf "${ROOT}"/usr/lib/libz*.a
 
+	if [[ ${CHOST} == *-aix* ]]; then
+		# No aix-soname support, but symlinks when built with gcc. This breaks
+		# later on when aix-soname is added within Prefix, where the lib.so.1
+		# is an archive then, while finding this one first due to possible
+		# rpath ordering issues.
+		rm -f "${ROOT}"/usr/lib/libz.so.1
+	fi
+
 	einfo "${A%-*} bootstrapped"
 }
 
