@@ -1188,6 +1188,7 @@ bootstrap_stage3() {
 				sys-devel/native-cctools
 				"=sys-devel/gcc-4.2*"
 				sys-apps/aix-miscutils
+				sys-apps/texinfo
 			)
 			;;
 		*)
