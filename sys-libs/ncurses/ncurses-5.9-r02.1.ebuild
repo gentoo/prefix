@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r2.ebuild,v 1.16 2012/10/23 20:07:18 vapier Exp $
 
@@ -45,7 +45,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.9-rxvt-unicode-9.15.patch #192083 #383871
 	epatch "${FILESDIR}"/${PN}-5.9-fix-clang-build.patch #417763
 
-	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
 
 	# /bin/sh is not always good enough
@@ -53,7 +52,7 @@ src_unpack() {
 
 	if need-libtool; then
 		mkdir "${WORKDIR}"/local-libtool || die
-		cd "${WORKDIR}"/local-libtool || die
+		pushd "${WORKDIR}"/local-libtool >/dev/null || die
 		cat >configure.ac<<-EOF
 			AC_INIT(local-libtool, 0)
 			AC_PROG_CC
@@ -62,6 +61,11 @@ src_unpack() {
 			AC_OUTPUT
 		EOF
 		eautoreconf
+		popd >/dev/null || die
+
+		# Don't need local libraries (-L../lib) for libncurses,
+		# ends up as insecure runpath in libncurses.so[shr.o] on AIX
+		sed -i -e '/^SHLIB_LIST[ \t]*=/s/\$(SHLIB_DIRS)//' ncurses/Makefile.in || die
 	fi
 
 	# Don't mess with _XOPEN_SOURCE for C++ on (Open)Solaris.  The compiler
@@ -208,19 +212,9 @@ src_install() {
 		emake DESTDIR="${D}" install || die
 	fi
 
-	if need-libtool; then
-		# Move dynamic ncurses libraries into /lib
-		dodir /$(get_libdir)
-		local f
-		for f in "${ED}"usr/$(get_libdir)/lib{,n}curses{,w}$(get_libname)*; do
-			[[ -f ${f} ]] || continue
-			mv "${f}" "${ED}"$(get_libdir)/ || die "could not move ${f#${ED}}"
-		done
-	else # keeping intendation to keep diff small
 	# Move static and extraneous ncurses static libraries out of /lib
 	cd "${ED}"/$(get_libdir)
 	mv *.a "${ED}"/usr/$(get_libdir)/
-	fi
 	gen_usr_ldscript -a ncurses
 	use unicode && gen_usr_ldscript -a ncursesw
 	if ! tc-is-static-only ; then
