@@ -1,0 +1,23 @@
+With a little help from my friend, the native-cctools, providing the mkexpfile
+helper for the list of exported symbols, and wrapping ld to support '-soname'
+flag on AIX, we can provide full soname support there (#213277).
+However, this patch is not for upstream, as they cannot rely on that ld wrapper:
+They would have to do the aix-soname magic themself instead.
+
+--- support/shobj-conf.orig	2013-11-05 12:48:40 +0100
++++ support/shobj-conf	2013-11-05 13:00:06 +0100
+@@ -264,11 +264,10 @@
+ 
+ aix4.[2-9]*-*gcc*|aix[5-9].*-*gcc*)		# lightly tested by jik@cisco.com
+ 	SHOBJ_CFLAGS=-fpic
+-	SHOBJ_LD='ld'
+-	SHOBJ_LDFLAGS='-bdynamic -bnoentry -bexpall'
+-	SHOBJ_XLDFLAGS='-G'
++	SHOBJ_LD='${CC}'
++	SHOBJ_LDFLAGS='-shared -Wl,-bsymbolic `'${host_cpu}-${host_vendor}-${host_os}'-mkexpfile -o exp.$@ --show-with=-Wl,-bexport: $(SHARED_OBJ)`'
+ 
+-	SHLIB_XLDFLAGS='-bM:SRE'
++	SHLIB_XLDFLAGS='-Wl,-soname,`basename $@ $(SHLIB_MINOR)`'
+ 	SHLIB_LIBS='-lcurses -lc'
+ 	SHLIB_LIBVERSION='$(SHLIB_LIBSUFF).$(SHLIB_MAJOR)'
+ 	;;

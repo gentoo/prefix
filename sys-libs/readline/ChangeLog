@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.181 2012/04/30 01:36:43 vapier Exp $
 
+  05 Nov 2013; Michael Haubenwallner <haubi@gentoo.org>
+  readline-6.2_p1-r1.ebuild, +files/readline-6.2-aixso.patch:
+  Using mkexpfile helper on AIX, available since native-cctools-3.
+
   29 Jun 2013; Fabian Groffen <grobian@gentoo.org> readline-6.2_p1-r1.ebuild:
   fix rlfe on Darwin when /usr-split is active, thanks Francois Bissey in bug
   #455512
