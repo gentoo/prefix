@@ -20,7 +20,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 
 LICENSE="PSF-2"
 SLOT="3.3"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="build doc elibc_uclibc examples gdbm hardened ipv6 +ncurses +readline sqlite +ssl +threads tk wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
@@ -74,6 +74,8 @@ src_prepare() {
 
 	epatch "${FILESDIR}/python-3.3-CVE-2013-2099.patch"
 	epatch "${FILESDIR}/CVE-2013-4238_py33.patch"
+	epatch "${FILESDIR}/python-3.2-issue18235.patch"
+	epatch "${FILESDIR}/python-3.2-issue19521.patch"
 
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-3_3
@@ -83,6 +85,9 @@ src_prepare() {
 	# we provide a fully working readline also on Darwin, so don't force
 	# usage of half-implemented libedit
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
+
+	# We may have wrapped /usr/ccs/bin/nm on AIX for long TMPDIR.
+	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -145,8 +150,9 @@ src_configure() {
 		use hardened && replace-flags -O3 -O2
 	fi
 
+	# Export CC so even AIX will use gcc instead of xlc_r.
 	# Export CXX so it ends up in /usr/lib/python3.X/config/Makefile.
-	tc-export CXX
+	tc-export CC CXX
 	# The configure script fails to use pkg-config correctly.
 	# http://bugs.python.org/issue15506
 	export ac_cv_path_PKG_CONFIG=$(tc-getPKG_CONFIG)

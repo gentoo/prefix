@@ -106,6 +106,7 @@ src_prepare() {
 	epatch "${FILESDIR}/CVE-2013-4238_py27.patch"
 	epatch "${FILESDIR}/python-2.7-issue16248.patch"
 	epatch "${FILESDIR}/python-2.7-issue18851.patch"
+	epatch "${FILESDIR}/python-2.7-issue18235.patch"
 
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-2_7
@@ -126,6 +127,9 @@ src_prepare() {
 
 	# Fix for cross-compiling.
 	epatch "${FILESDIR}/python-2.7.5-nonfatal-compileall.patch"
+
+	# On AIX, we've wrapped /usr/ccs/bin/nm to work around long TMPDIR.
+	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -216,8 +220,9 @@ src_configure() {
 		sed -i -e "/^PY_CFLAGS[ \\t]*=/s,\\\$(CFLAGS)[ \\t]*\\\$(CPPFLAGS),\$(CPPFLAGS) \$(CFLAGS)," Makefile.pre.in || die
 	fi
 
+	# Export CC so even AIX will use gcc instead of xlc_r.
 	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
-	tc-export CXX
+	tc-export CC CXX
 	# The configure script fails to use pkg-config correctly.
 	# http://bugs.python.org/issue15506
 	export ac_cv_path_PKG_CONFIG=$(tc-getPKG_CONFIG)
@@ -236,9 +241,6 @@ src_configure() {
 	if use berkdb; then
 		dbmliborder+="${dbmliborder:+:}bdb"
 	fi
-
-	# python defaults to use 'cc_r' on aix
-	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-gcc=$(tc-getCC)"
 
 	# Don't include libmpc on IRIX - it is only available for 64bit MIPS4
 	[[ ${CHOST} == *-irix* ]] && export ac_cv_lib_mpc_usconfig=no
