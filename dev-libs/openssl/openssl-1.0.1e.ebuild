@@ -122,7 +122,7 @@ src_prepare() {
 		sed -i -e "s:/usr/ccs/bin/::" crypto/bn/Makefile || die "sed failed"
 	fi
 
-	./config --test-sanity || die "I AM NOT SANE"
+	./config -t --test-sanity || die "I AM NOT SANE"
 }
 
 src_configure() {
