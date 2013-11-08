@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.5.ebuild,v 1.2 2012/05/22 23:12:49 vapier Exp $
 
@@ -44,7 +44,7 @@ src_unpack() {
 	mv configure configure.wrapped || die
 	cat <<-\EOF > configure
 	#!/usr/bin/env sh
-	exec env ABI="$GMPABI" "${0}.wrapped" "$@"
+	exec env ABI="$GMPABI" ${CONFIG_SHELL} "${0}.wrapped" "$@"
 	EOF
 	chmod a+rx configure
 }

@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/gmp
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.169 2012/05/22 23:12:49 vapier Exp $
+
+  08 Nov 2013; Michael Haubenwallner <haubi@gentoo.org> gmp-5.0.5.ebuild:
+  Respect CONFIG_SHELL for configure.wrapped.
 
   04 Dec 2012; Fabian Groffen <grobian@gentoo.org> gmp-5.0.5.ebuild:
   fix configure breakage
