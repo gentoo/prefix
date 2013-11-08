@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.227 2012/11/19 06:55:06 vapier Exp $
 
+  08 Nov 2013; Michael Haubenwallner <haubi@gentoo.org>
+  files/gcc-config-1.8-copy-gcc-libs.patch:
+  No need to merge shared archive members on AIX since 'aix-soname'.
+
   02 Feb 2013; Fabian Groffen <grobian@gentoo.org>
   files/gcc-config-prefix-1.8-r221.patch, gcc-config-1.8-r00.1.ebuild:
   Fix unpacking with older patch, such as when bootstrapping, as reported on
