@@ -125,6 +125,7 @@ src_prepare() {
 		"${S}"/Makefile.in "${S}"/base/*.mak || die "sed failed"
 
 	epatch "${FILESDIR}"/${PN}-9.10-darwin.patch
+	epatch "${FILESDIR}"/${PN}-9.10-ssl-namespace.patch
 
 	cd "${S}"
 	eautoreconf

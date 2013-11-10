@@ -1,0 +1,15 @@
+--- trio/triodef.h.old	2013-11-09 11:41:31.000000000 +0000
++++ trio/triodef.h	2013-11-09 14:03:33.000000000 +0000
+@@ -333,4 +333,12 @@
+ # endif
+ #endif
+ 
++#if defined(__MINT__)
++# define TRIO_NO_FLOORL 1
++# define TRIO_NO_CEILL 1
++# define TRIO_NO_POWL 1
++# define TRIO_NO_FMODL 1
++# define TRIO_NO_LOG10L 1
++#endif
++
+ #endif /* TRIO_TRIODEF_H */
