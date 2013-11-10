@@ -10,7 +10,7 @@ inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolcha
 
 MY_P="Python-${PV}"
 PATCHSET_REVISION="0"
-PREFIX_PATCHREV="-r2"
+PREFIX_PATCHREV="-r3"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
