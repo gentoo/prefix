@@ -83,6 +83,7 @@ src_unpack() {
 		epatch "${FILESDIR}"/4.7.2/pr52391.patch
 		epatch "${FILESDIR}"/4.7.2/mint-unroll.patch
 		epatch "${FILESDIR}"/4.7.2/pr52773.patch
+		epatch "${FILESDIR}"/4.7.2/pr52714.patch
 	fi
 
 	# Always behave as if -pthread were passed on AIX and HPUX (#266548)
