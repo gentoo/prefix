@@ -237,6 +237,7 @@ src_prepare() {
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
 	epatch "${FILESDIR}"/${PN}-2.2.7-ebuildshell.patch # 155161
+	epatch "${FILESDIR}"/${PN}-2.2.7-shebang-fixes.patch # already in git
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
@@ -444,9 +445,96 @@ pkg_preinst() {
 
 	has_version "<=${CATEGORY}/${PN}-2.2.00.13346"
 	EAPIPREFIX_UPGRADE=$?
+
+	if has_version "<${CATEGORY}/${PN}-2.2.7-r1" ; then
+		REPOS_CONF_UPGRADE=true
+		REPOS_CONF_SYNC=
+		type -P portageq >/dev/null 2>&1 && \
+			REPOS_CONF_SYNC=$("$(type -P portageq)" envvar SYNC)
+	fi
+}
+
+new_config_protect() {
+	# Generate a ._cfg file even if the target file
+	# does not exist, ensuring that the user will
+	# notice the config change.
+	local basename=${1##*/}
+	local dirname=${1%/*}
+	local i=0
+	while true ; do
+		local filename=$(
+			echo -n "${dirname}/._cfg"
+			printf "%04d" ${i}
+			echo -n "_${basename}"
+		)
+		[[ -e ${filename} ]] || break
+		(( i++ ))
+	done
+	echo "${filename}"
 }
 
 pkg_postinst() {
+
+	if ${REPOS_CONF_UPGRADE} ; then
+		einfo "Generating repos.conf"
+		local repo_name=
+		[[ -f ${PORTDIR}/profiles/repo_name ]] && \
+			repo_name=$(< "${PORTDIR}/profiles/repo_name")
+		if [[ -z ${REPOS_CONF_SYNC} ]] ; then
+			REPOS_CONF_SYNC=$(grep "^sync-uri =" "${EROOT:-${ROOT}}usr/share/portage/config/repos.conf")
+			REPOS_CONF_SYNC=${REPOS_CONF_SYNC##* }
+		fi
+		local sync_type=
+		[[ ${REPOS_CONF_SYNC} == git://* ]] && sync_type=git
+
+		if [[ ${REPOS_CONF_SYNC} == cvs://* ]]; then
+			sync_type=cvs
+			REPOS_CONF_SYNC=${REPOS_CONF_SYNC#cvs://}
+		fi
+
+		cat <<-EOF > "${T}/repos.conf"
+		[DEFAULT]
+		main-repo = ${repo_name:-gentoo}
+
+		[${repo_name:-gentoo}]
+		location = ${PORTDIR:-${EPREFIX}/usr/portage}
+		sync-type = ${sync_type:-rsync}
+		sync-uri = ${REPOS_CONF_SYNC}
+		EOF
+
+		[[ ${sync_type} == cvs ]] && echo "sync-cvs-repo = $(<"${PORTDIR}/CVS/Repository")" >> "${T}/repos.conf"
+
+		local dest=${EROOT:-${ROOT}}etc/portage/repos.conf
+		if [[ ! -f ${dest} ]] && mkdir -p "${dest}" 2>/dev/null ; then
+			dest=${EROOT:-${ROOT}}etc/portage/repos.conf/${repo_name:-gentoo}.conf
+		fi
+		# Don't install the config update if the desired repos.conf directory
+		# and config file exist, since users may accept it blindly and break
+		# their config (bug #478726).
+		[[ -e ${EROOT:-${ROOT}}etc/portage/repos.conf/${repo_name:-gentoo}.conf ]] || \
+			mv "${T}/repos.conf" "$(new_config_protect "${dest}")"
+
+		if [[ ${PORTDIR} == ${EPREFIX}/usr/portage ]] ; then
+			einfo "Generating make.conf PORTDIR setting for backward compatibility"
+			for dest in "${EROOT:-${ROOT}}etc/make.conf" "${EROOT:-${ROOT}}etc/portage/make.conf" ; do
+				[[ -e ${dest} ]] && break
+			done
+			[[ -d ${dest} ]] && dest=${dest}/portdir.conf
+			rm -rf "${T}/make.conf"
+			[[ -f ${dest} ]] && cat "${dest}" > "${T}/make.conf"
+			cat <<-EOF >> "${T}/make.conf"
+
+			# Set PORTDIR for backward compatibility with various tools:
+			#   gentoo-bashcomp - bug #478444
+			#   euse - bug #474574
+			#   euses and ufed - bug #478318
+			PORTDIR="${EPREFIX}/usr/portage"
+			EOF
+			mkdir -p "${dest%/*}"
+			mv "${T}/make.conf" "$(new_config_protect "${dest}")"
+		fi
+	fi
+
 	pushd "${EROOT}var/db/pkg" > /dev/null
 	local didwork=
 	[[ ! -e "${EROOT}"var/lib/portage/preserved_libs_registry ]] && for cpv in */*/NEEDED ; do

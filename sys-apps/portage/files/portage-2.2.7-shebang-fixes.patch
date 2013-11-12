@@ -1,0 +1,153 @@
+Hi Fabian,
+
+when /bin/bash is some bash-3.x, things break miserably:
+/tools/gentoo/buildslave/sauxz3-f_pfx-10.0/build/gentoo-prefix/usr/lib/portage/bin/eapi.sh: line 8: syntax error in conditional expression: unexpected token `('
+/tools/gentoo/buildslave/sauxz3-f_pfx-10.0/build/gentoo-prefix/usr/lib/portage/bin/eapi.sh: line 8: syntax error near `^(0'
+/tools/gentoo/buildslave/sauxz3-f_pfx-10.0/build/gentoo-prefix/usr/lib/portage/bin/eapi.sh: line 8: `   [[ ! ${1-${EAPI}} =~ ^(0|1|2|3)$ ]]'
+/tools/gentoo/buildslave/sauxz3-f_pfx-10.0/build/gentoo-prefix/usr/lib/portage/bin/ebuild-helpers/keepdir: line 7: ___eapi_has_prefix_variables: command not found
+
+There are still some scripts in 2.2.7 that need to get the shebangs fixed:
+$ git grep '#!/'
+
+Thanks!
+/haubi/
+---
+ bin/bashrc-functions.sh          | 2 +-
+ bin/eapi.sh                      | 2 +-
+ bin/ebuild-helpers/doheader      | 2 +-
+ bin/ebuild-helpers/keepdir       | 2 +-
+ bin/ebuild-helpers/newins        | 1 -
+ bin/ebuild-helpers/xattr/install | 2 +-
+ bin/helper-functions.sh          | 2 +-
+ bin/install.py                   | 2 +-
+ bin/phase-functions.sh           | 2 +-
+ bin/phase-helpers.sh             | 2 +-
+ bin/xattr-helper.py              | 2 +-
+ misc/emerge-delta-webrsync       | 2 +-
+ 12 files changed, 11 insertions(+), 12 deletions(-)
+
+diff --git a/bin/bashrc-functions.sh b/bin/bashrc-functions.sh
+index 69a5eb9..1a92738 100644
+--- a/bin/bashrc-functions.sh
++++ b/bin/bashrc-functions.sh
+@@ -1,4 +1,4 @@
+-#!@PREFIX_PORTAGE_BASH@
++#!@PORTAGE_BASH@
+ # Copyright 1999-2013 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/eapi.sh b/bin/eapi.sh
+index 623b89f..670f884 100644
+--- a/bin/eapi.sh
++++ b/bin/eapi.sh
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@PORTAGE_BASH@
+ # Copyright 2012 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/ebuild-helpers/doheader b/bin/ebuild-helpers/doheader
+index 3795365..5b6b169 100755
+--- a/bin/ebuild-helpers/doheader
++++ b/bin/ebuild-helpers/doheader
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@PORTAGE_BASH@
+ # Copyright 1999-2012 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/ebuild-helpers/keepdir b/bin/ebuild-helpers/keepdir
+index bec2feb..7167981 100755
+--- a/bin/ebuild-helpers/keepdir
++++ b/bin/ebuild-helpers/keepdir
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@PORTAGE_BASH@
+ # Copyright 1999-2013 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/ebuild-helpers/newins b/bin/ebuild-helpers/newins
+index 26dd049..2638a38 100755
+--- a/bin/ebuild-helpers/newins
++++ b/bin/ebuild-helpers/newins
+@@ -1,5 +1,4 @@
+ #!@PORTAGE_BASH@
+-#!/bin/bash
+ # Copyright 1999-2012 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/ebuild-helpers/xattr/install b/bin/ebuild-helpers/xattr/install
+index f51f621..b1d2315 100755
+--- a/bin/ebuild-helpers/xattr/install
++++ b/bin/ebuild-helpers/xattr/install
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@PORTAGE_BASH@
+ # Copyright 2013 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/helper-functions.sh b/bin/helper-functions.sh
+index c574612..864d5fe 100644
+--- a/bin/helper-functions.sh
++++ b/bin/helper-functions.sh
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@PORTAGE_BASH@
+ # Copyright 1999-2012 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/install.py b/bin/install.py
+index 2c6dfbe..9bd38c7 100755
+--- a/bin/install.py
++++ b/bin/install.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!@PREFIX_PORTAGE_PYTHON@
+ # Copyright 2013 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/phase-functions.sh b/bin/phase-functions.sh
+index 80e7cc6..4650e14 100644
+--- a/bin/phase-functions.sh
++++ b/bin/phase-functions.sh
+@@ -1,4 +1,4 @@
+-#!@PREFIX_PORTAGE_BASH@
++#!@PORTAGE_BASH@
+ # Copyright 1999-2013 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/phase-helpers.sh b/bin/phase-helpers.sh
+index 12238c6..dc20991 100644
+--- a/bin/phase-helpers.sh
++++ b/bin/phase-helpers.sh
+@@ -1,4 +1,4 @@
+-#!@PREFIX_PORTAGE_BASH@
++#!@PORTAGE_BASH@
+ # Copyright 1999-2013 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/bin/xattr-helper.py b/bin/xattr-helper.py
+index a85309f..d6cef4f 100755
+--- a/bin/xattr-helper.py
++++ b/bin/xattr-helper.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!@PREFIX_PORTAGE_PYTHON@
+ # Copyright 2012-2013 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+diff --git a/misc/emerge-delta-webrsync b/misc/emerge-delta-webrsync
+index b16982b..66e9275 100755
+--- a/misc/emerge-delta-webrsync
++++ b/misc/emerge-delta-webrsync
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@PORTAGE_BASH@
+ # Copyright 1999-2013 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ # Author: Brian Harring <ferringb@gentoo.org>, karltk@gentoo.org originally.
+-- 
+1.8.1.5
+
+
+
