@@ -1207,7 +1207,7 @@ bootstrap_stage3() {
 	local pkgs=(
 		sys-apps/coreutils
 		sys-apps/findutils
-		"<app-arch/tar-1.26-r1" # bug 406131
+		app-arch/tar
 		sys-apps/grep
 		sys-apps/gawk
 		sys-devel/make
