@@ -1,0 +1,14 @@
+--- ./shlibs/mount/src/Makefile.am.orig	2013-11-12 15:28:36 +0100
++++ ./shlibs/mount/src/Makefile.am	2013-11-12 15:28:53 +0100
+@@ -19,9 +19,9 @@
+ 
+ nodist_libmount_la_SOURCES = mountP.h
+ 
+-libmount_la_LIBADD = $(ul_libblkid_la)
++libmount_la_LIBADD = $(ul_libblkid_la) $(LTLIBINTL)
+ 
+-libmount_la_DEPENDENCIES = $(libmount_la_LIBADD) mount.sym mount.h.in
++libmount_la_DEPENDENCIES = $(ul_libblkid_la) mount.sym mount.h.in
+ 
+ libmount_la_LDFLAGS =
+ if GNU_LD

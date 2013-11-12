@@ -1,0 +1,26 @@
+--- ./shlibs/mount/src/fs.c.orig	2013-11-12 15:16:08 +0100
++++ ./shlibs/mount/src/fs.c	2013-11-12 15:17:02 +0100
+@@ -11,6 +11,10 @@
+  * @short_description: mnt_fs represents one entry in fstab/mtab/mountinfo
+  *
+  */
++#ifdef _AIX
++# define _BSD /* for major(), minor() */
++#endif
++
+ #include <stdio.h>
+ #include <string.h>
+ #include <stdlib.h>
+--- ./shlibs/mount/src/tab_parse.c.orig	2013-11-12 15:17:33 +0100
++++ ./shlibs/mount/src/tab_parse.c	2013-11-12 15:18:01 +0100
+@@ -5,6 +5,10 @@
+  * GNU Lesser General Public License.
+  */
+ 
++#ifdef _AIX
++# define _BSD /* for makedev() */
++#endif
++
+ #include <string.h>
+ #include <stdlib.h>
+ #include <ctype.h>
