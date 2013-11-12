@@ -107,6 +107,7 @@ src_prepare() {
 	epatch "${FILESDIR}/python-2.7-issue16248.patch"
 	epatch "${FILESDIR}/python-2.7-issue18851.patch"
 	epatch "${FILESDIR}/python-2.7-issue18235.patch"
+	epatch "${FILESDIR}/python-2.7-issue17919.patch"
 
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-2_7

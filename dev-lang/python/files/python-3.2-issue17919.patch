@@ -1,0 +1,74 @@
+--- Modules/selectmodule.c.orig	2013-11-11 17:19:26.900910431 +0100
++++ Modules/selectmodule.c	2013-11-11 17:22:56.819926607 +0100
+@@ -343,7 +343,8 @@
+         assert(i < self->ufd_len);
+         /* Never overflow */
+         self->ufds[i].fd = (int)PyLong_AsLong(key);
+-        self->ufds[i].events = (short)PyLong_AsLong(value);
++        /* Why does a bitfield need to be signed at all? */
++        self->ufds[i].events = (short)PyLong_AsUnsignedLong(value);
+         i++;
+     }
+     assert(i == self->ufd_len);
+@@ -363,10 +364,10 @@
+ {
+     PyObject *o, *key, *value;
+     int fd;
+-    short events = POLLIN | POLLPRI | POLLOUT;
++    unsigned short events = POLLIN | POLLPRI | POLLOUT;
+     int err;
+ 
+-    if (!PyArg_ParseTuple(args, "O|h:register", &o, &events)) {
++    if (!PyArg_ParseTuple(args, "O|H:register", &o, &events)) {
+         return NULL;
+     }
+ 
+@@ -378,7 +379,7 @@
+     key = PyLong_FromLong(fd);
+     if (key == NULL)
+         return NULL;
+-    value = PyLong_FromLong(events);
++    value = PyLong_FromUnsignedLong(events);
+     if (value == NULL) {
+         Py_DECREF(key);
+         return NULL;
+@@ -406,10 +407,11 @@
+ poll_modify(pollObject *self, PyObject *args)
+ {
+     PyObject *o, *key, *value;
+-    int fd, events;
++    int fd;
++    unsigned short events;
+     int err;
+ 
+-    if (!PyArg_ParseTuple(args, "Oi:modify", &o, &events)) {
++    if (!PyArg_ParseTuple(args, "OH:modify", &o, &events)) {
+         return NULL;
+     }
+ 
+@@ -426,7 +428,7 @@
+         Py_DECREF(key);
+         return NULL;
+     }
+-    value = PyLong_FromLong(events);
++    value = PyLong_FromUnsignedLong(events);
+     if (value == NULL) {
+         Py_DECREF(key);
+         return NULL;
+@@ -550,11 +552,12 @@
+             }
+             PyTuple_SET_ITEM(value, 0, num);
+ 
+-            /* The &0xffff is a workaround for AIX.  'revents'
+-               is a 16-bit short, and IBM assigned POLLNVAL
++            /* The 'unsigned' cast is necessary for AIX. 'revents'
++               is a 16-bit signed short, but IBM assigned POLLNVAL
+                to be 0x8000, so the conversion to int results
+-               in a negative number. See SF bug #923315. */
+-            num = PyLong_FromLong(self->ufds[i].revents & 0xffff);
++               in a negative number. See issue17919 and issue923315.
++               Why does a bitfield need to be signed at all? */
++            num = PyLong_FromUnsignedLong((unsigned short)self->ufds[i].revents);
+             if (num == NULL) {
+                 Py_DECREF(value);
+                 goto error;

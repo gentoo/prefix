@@ -1,0 +1,54 @@
+--- Modules/selectmodule.c.orig	2013-11-11 17:14:37.966910450 +0100
++++ Modules/selectmodule.c	2013-11-11 17:17:12.532891570 +0100
+@@ -346,6 +346,7 @@
+         assert(i < self->ufd_len);
+         /* Never overflow */
+         self->ufds[i].fd = (int)PyInt_AsLong(key);
++        /* Why does a bitfield need to be signed at all? */
+         self->ufds[i].events = (short)PyInt_AsLong(value);
+         i++;
+     }
+@@ -366,10 +367,10 @@
+ {
+     PyObject *o, *key, *value;
+     int fd;
+-    short events = POLLIN | POLLPRI | POLLOUT;
++    unsigned short events = POLLIN | POLLPRI | POLLOUT;
+     int err;
+ 
+-    if (!PyArg_ParseTuple(args, "O|h:register", &o, &events)) {
++    if (!PyArg_ParseTuple(args, "O|H:register", &o, &events)) {
+         return NULL;
+     }
+ 
+@@ -409,10 +410,11 @@
+ poll_modify(pollObject *self, PyObject *args)
+ {
+     PyObject *o, *key, *value;
+-    int fd, events;
++    int fd;
++    unsigned short events;
+     int err;
+ 
+-    if (!PyArg_ParseTuple(args, "Oi:modify", &o, &events)) {
++    if (!PyArg_ParseTuple(args, "OH:modify", &o, &events)) {
+         return NULL;
+     }
+ 
+@@ -552,11 +554,12 @@
+             }
+             PyTuple_SET_ITEM(value, 0, num);
+ 
+-            /* The &0xffff is a workaround for AIX.  'revents'
+-               is a 16-bit short, and IBM assigned POLLNVAL
++            /* The 'unsigned' cast is necessary for AIX. 'revents'
++               is a 16-bit signed short, but IBM assigned POLLNVAL
+                to be 0x8000, so the conversion to int results
+-               in a negative number. See SF bug #923315. */
+-            num = PyInt_FromLong(self->ufds[i].revents & 0xffff);
++               in a negative number. See issue17919 and issue923315.
++               Why does a bitfield need to be signed at all? */
++            num = PyInt_FromLong((unsigned short)self->ufds[i].revents);
+             if (num == NULL) {
+                 Py_DECREF(value);
+                 goto error;

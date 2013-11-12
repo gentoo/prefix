@@ -76,6 +76,7 @@ src_prepare() {
 	epatch "${FILESDIR}/CVE-2013-4238_py33.patch"
 	epatch "${FILESDIR}/python-3.2-issue18235.patch"
 	epatch "${FILESDIR}/python-3.2-issue19521.patch"
+	epatch "${FILESDIR}/python-3.3-issue17919.patch"
 
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-3_3
