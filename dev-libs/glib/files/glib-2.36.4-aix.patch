@@ -1,0 +1,247 @@
+https://git.gnome.org/browse/glib/commit/?id=c0e0c6a4201c879b5d8d7f5314d42f268a317f4c
+https://bugzilla.gnome.org/show_bug.cgi?id=712314
+
+diff -ru glib-2.36.4.orig/gobject/gobject.c glib-2.36.4/gobject/gobject.c
+--- glib-2.36.4.orig/gobject/gobject.c	2013-08-07 16:36:32.000000000 +0200
++++ glib-2.36.4/gobject/gobject.c	2013-11-15 09:56:16.417354713 +0100
+@@ -176,7 +176,7 @@
+ static guint               object_floating_flag_handler (GObject        *object,
+                                                          gint            job);
+ 
+-static void object_interface_check_properties           (gpointer        func_data,
++static void object_interface_check_properties           (gpointer        check_data,
+ 							 gpointer        g_iface);
+ 
+ /* --- typedefs --- */
+@@ -1366,7 +1366,7 @@
+ }
+ 
+ static void
+-object_interface_check_properties (gpointer func_data,
++object_interface_check_properties (gpointer check_data,
+ 				   gpointer g_iface)
+ {
+   GTypeInterface *iface_class = g_iface;
+diff -ru glib-2.36.4.orig/configure.ac glib-2.36.4/configure.ac
+--- glib-2.36.4.orig/configure.ac	2013-08-07 16:36:32.000000000 +0200
++++ glib-2.36.4/configure.ac	2013-11-15 09:55:49.870738679 +0100
+@@ -890,7 +890,7 @@
+ AC_CHECK_HEADERS([sys/select.h sys/types.h stdint.h inttypes.h sched.h malloc.h])
+ AC_CHECK_HEADERS([sys/vfs.h sys/vmount.h sys/statfs.h sys/statvfs.h sys/filio.h])
+ AC_CHECK_HEADERS([mntent.h sys/mnttab.h sys/vfstab.h sys/mntctl.h fstab.h])
+-AC_CHECK_HEADERS([sys/uio.h sys/mkdev.h])
++AC_CHECK_HEADERS([sys/uio.h])
+ AC_CHECK_HEADERS([linux/magic.h])
+ AC_CHECK_HEADERS([sys/prctl.h])
+ 
+@@ -901,6 +901,7 @@
+ ])
+ AC_CHECK_FUNCS(sysctlbyname)
+ 
++AC_HEADER_MAJOR
+ AC_CHECK_HEADERS([xlocale.h])
+ 
+ # check for structure fields
+@@ -994,6 +995,7 @@
+ AC_CHECK_FUNCS(chown lchmod lchown fchmod fchown link utimes getgrgid getpwuid getresuid)
+ AC_CHECK_FUNCS(getmntent_r setmntent endmntent hasmntopt getfsstat getvfsstat fallocate)
+ # Check for high-resolution sleep functions
++case $host_os in aix*) ac_cv_func_splice=no ;; esac # AIX splice() is something else
+ AC_CHECK_FUNCS(splice)
+ AC_CHECK_FUNCS(prlimit)
+ 
+diff -ru glib-2.36.4.orig/gio/gdbusmessage.c glib-2.36.4/gio/gdbusmessage.c
+--- glib-2.36.4.orig/gio/gdbusmessage.c	2013-08-07 16:36:32.000000000 +0200
++++ glib-2.36.4/gio/gdbusmessage.c	2013-11-15 09:55:49.877405332 +0100
+@@ -29,13 +29,16 @@
+ #include <errno.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+-#ifdef HAVE_SYS_MKDEV_H
+-#include <sys/mkdev.h>
+-#endif
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+ 
++#if MAJOR_IN_MKDEV
++#include <sys/mkdev.h>
++#elif MAJOR_IN_SYSMACROS
++#include <sys/sysmacros.h>
++#endif
++
+ #include "gdbusutils.h"
+ #include "gdbusmessage.h"
+ #include "gdbuserror.h"
+diff -ru glib-2.36.4.orig/gio/Makefile.am glib-2.36.4/gio/Makefile.am
+--- glib-2.36.4.orig/gio/Makefile.am	2013-08-07 16:34:32.000000000 +0200
++++ glib-2.36.4/gio/Makefile.am	2013-11-15 09:55:49.877405332 +0100
+@@ -669,10 +669,10 @@
+ 
+ bin_PROGRAMS = gio-querymodules glib-compile-schemas glib-compile-resources gsettings
+ 
+-glib_compile_resources_LDADD = \
+-	$(top_builddir)/glib/libglib-2.0.la \
++glib_compile_resources_LDADD = libgio-2.0.la		\
+ 	$(top_builddir)/gobject/libgobject-2.0.la	\
+-	libgio-2.0.la
++	$(top_builddir)/glib/libglib-2.0.la		\
++	$(NULL)
+ 
+ glib_compile_resources_SOURCES = \
+ 	gvdb/gvdb-format.h		\
+@@ -681,11 +681,10 @@
+ 	glib-compile-resources.c
+ 
+ gio_querymodules_SOURCES = gio-querymodules.c
+-gio_querymodules_LDADD	 = \
+-	$(top_builddir)/glib/libglib-2.0.la		\
++gio_querymodules_LDADD	 = libgio-2.0.la		\
+ 	$(top_builddir)/gobject/libgobject-2.0.la	\
+ 	$(top_builddir)/gmodule/libgmodule-2.0.la	\
+-	libgio-2.0.la					\
++	$(top_builddir)/glib/libglib-2.0.la		\
+ 	$(NULL)
+ 
+ gconstructor_as_data.h: $(top_srcdir)/glib/gconstructor.h data-to-c.pl
+@@ -699,10 +698,11 @@
+ 	gvdb/gvdb-builder.c		\
+ 	glib-compile-schemas.c
+ 
+-gsettings_LDADD = \
+-	$(top_builddir)/glib/libglib-2.0.la		\
++gsettings_LDADD = libgio-2.0.la				\
+ 	$(top_builddir)/gobject/libgobject-2.0.la	\
+-	libgio-2.0.la
++	$(top_builddir)/glib/libglib-2.0.la		\
++	$(NULL)
++
+ gsettings_SOURCES = gsettings-tool.c
+ 
+ schemadir = $(datadir)/glib-2.0/schemas
+@@ -714,8 +714,9 @@
+ bin_PROGRAMS += gdbus
+ gdbus_SOURCES = gdbus-tool.c
+ gdbus_LDADD = libgio-2.0.la \
++	$(top_builddir)/gobject/libgobject-2.0.la	\
+ 	$(top_builddir)/glib/libglib-2.0.la 		\
+-	$(top_builddir)/gobject/libgobject-2.0.la
++	$(NULL)
+ 
+ completiondir = $(datadir)/bash-completion/completions
+ completion_DATA = \
+@@ -730,9 +731,9 @@
+ bin_PROGRAMS += gresource
+ gresource_SOURCES = gresource-tool.c
+ gresource_CPPFLAGS = $(LIBELF_CFLAGS) $(AM_CPPFLAGS)
+-gresource_LDADD = libgio-2.0.la \
++gresource_LDADD = libgio-2.0.la				\
++	$(top_builddir)/gobject/libgobject-2.0.la	\
+ 	$(top_builddir)/glib/libglib-2.0.la 		\
+-	$(top_builddir)/gobject/libgobject-2.0.la \
+ 	$(LIBELF_LIBS)
+ 
+ # ------------------------------------------------------------------------
+diff -ru glib-2.36.4.orig/gio/tests/Makefile.am glib-2.36.4/gio/tests/Makefile.am
+--- glib-2.36.4.orig/gio/tests/Makefile.am	2013-08-07 16:34:32.000000000 +0200
++++ glib-2.36.4/gio/tests/Makefile.am	2013-11-15 09:55:49.877405332 +0100
+@@ -21,12 +21,13 @@
+ noinst_PROGRAMS = $(TEST_PROGS) $(SAMPLE_PROGS)
+ noinst_DATA = $(MISC_STUFF)
+ 
+-LDADD     = 					\
+-	$(top_builddir)/glib/libglib-2.0.la 		\
++LDADD     = 						\
++	$(top_builddir)/gio/libgio-2.0.la		\
+ 	$(top_builddir)/gthread/libgthread-2.0.la	\
+ 	$(top_builddir)/gobject/libgobject-2.0.la	\
+ 	$(top_builddir)/gmodule/libgmodule-2.0.la	\
+-	$(top_builddir)/gio/libgio-2.0.la
++	$(top_builddir)/glib/libglib-2.0.la 		\
++	$(NULL)
+ 
+ TEST_PROGS +=	 		\
+ 	io-stream		\
+@@ -162,35 +163,26 @@
+ 
+ actions_SOURCES   = actions.c gdbus-sessionbus.c gdbus-sessionbus.h
+ 
+-unix_streams_LDADD       = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++unix_streams_LDADD       = $(LDADD)
+ 
+-win32_streams_LDADD      = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++win32_streams_LDADD      = $(LDADD)
+ 
+-resolver_LDADD		  = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++resolver_LDADD		  = $(LDADD)
+ 
+-socket_server_LDADD	  = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++socket_server_LDADD	  = $(LDADD)
+ 
+ socket_client_SOURCES	  = socket-client.c \
+                             gtlsconsoleinteraction.c \
+                             gtlsconsoleinteraction.h
+-socket_client_LDADD	  = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++socket_client_LDADD	  = $(LDADD)
+ 
+-echo_server_LDADD	  = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++echo_server_LDADD	  = $(LDADD)
+ 
+-httpd_LDADD		  = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++httpd_LDADD		  = $(LDADD)
+ 
+-send_data_LDADD		  = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++send_data_LDADD		  = $(LDADD)
+ 
+-contexts_LDADD		  = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++contexts_LDADD		  = $(LDADD)
+ 
+ gdbus_daemon_SOURCES = gdbus-daemon.c $(top_srcdir)/gio/gdbusdaemon.c $(top_builddir)/gio/gdbus-daemon-generated.c
+ 
+@@ -361,8 +353,7 @@
+ 	schema-tests/range.gschema.xml					\
+ 	schema-tests/wrong-category.gschema.xml
+ 
+-proxy_LDADD   = $(LDADD) \
+-	$(top_builddir)/gthread/libgthread-2.0.la
++proxy_LDADD   = $(LDADD)
+ 
+ tls_certificate_SOURCES = tls-certificate.c gtesttlsbackend.c gtesttlsbackend.h
+ 
+diff -ru glib-2.36.4.orig/tests/Makefile.am glib-2.36.4/tests/Makefile.am
+--- glib-2.36.4.orig/tests/Makefile.am	2013-08-07 16:34:32.000000000 +0200
++++ glib-2.36.4/tests/Makefile.am	2013-11-15 09:55:49.877405332 +0100
+@@ -80,10 +80,10 @@
+ assert_msg_test_LDADD = $(libglib)
+ if ENABLE_TIMELOOP
+ timeloop_LDADD = $(libglib)
+-timeloop_closure_LDADD = $(libglib) $(libgobject)
++timeloop_closure_LDADD = $(libgobject) $(libglib)
+ endif
+ datetime_LDADD = $(libglib)
+-testgobject_LDADD = $(libglib) $(libgobject)
++testgobject_LDADD = $(libgobject) $(libglib)
+ 
+ test_programs =					\
+ 	atomic-test				\
+diff -ru glib-2.36.4.orig/tests/refcount/Makefile.am glib-2.36.4/tests/refcount/Makefile.am
+--- glib-2.36.4.orig/tests/refcount/Makefile.am	2013-08-07 16:34:32.000000000 +0200
++++ glib-2.36.4/tests/refcount/Makefile.am	2013-11-15 09:55:49.877405332 +0100
+@@ -9,7 +9,7 @@
+ libgmodule = $(top_builddir)/gmodule/libgmodule-2.0.la
+ libgobject = $(top_builddir)/gobject/libgobject-2.0.la
+ 
+-LDADD = $(libglib) $(libgobject)
++LDADD = $(libgobject) $(libglib)
+ 
+ test_programs = 				\
+ 	closures				\

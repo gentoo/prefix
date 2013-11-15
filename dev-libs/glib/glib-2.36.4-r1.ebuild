@@ -94,6 +94,8 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301, upstream bug #107626
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
+	epatch "${FILESDIR}"/${PN}-2.36.4-aix.patch # AIX buildtime fixes
+
 	if use test; then
 		# Do not try to remove files on live filesystem, upstream bug #619274
 		sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
@@ -239,9 +241,6 @@ multilib_src_configure() {
 
 	local mythreads=posix
 	[[ ${CHOST} == *-winnt* ]] && mythreads=win32
-
-	# without this, AIX defines EEXIST and ENOTEMPTY to the same value
-	[[ ${CHOST} == *-aix* ]] && append-cppflags -D_LINUX_SOURCE_COMPAT
 
 	# Only used by the gresource bin
 	multilib_is_native_abi || myconf="${myconf} --disable-libelf"
