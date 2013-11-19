@@ -66,8 +66,8 @@ src_unpack() {
 	# objformat for years, so we don't want to rely on that.
 	sed -i -e '/objformat/s:if .*; then:if true; then:' support/shobj-conf || die
 
-	# support OSX Lion and Mountain Lion
-	sed -i -e 's/darwin10\*/darwin1\[012\]\*/g' support/shobj-conf || die
+	# support OSX Lion, Mountain Lion and Mavericks
+	sed -i -e 's/darwin10\*/darwin1\[0123\]\*/g' support/shobj-conf || die
 
 	ln -s ../.. examples/rlfe/readline # for local readline headers
 }
