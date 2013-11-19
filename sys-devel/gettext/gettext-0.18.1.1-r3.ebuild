@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.18.1.1-r3.ebuild,v 1.12 2012/09/23 19:05:55 armin76 Exp $
 
@@ -40,8 +40,8 @@ src_prepare() {
 	sed -i -e '1c\#!/usr/bin/env sh' \
 		"${S}"/gettext-tools/misc/convert-archive.in || die
 
-	# work around problem in gnulib on OSX Lion and Mountain Lion
-	if [[ ${CHOST} == *-darwin1[12] ]] ; then
+	# work around problem in gnulib on OSX Lion, Mountain Lion and Mavericks
+	if [[ ${CHOST} == *-darwin1[123] ]] ; then
 		sed -i -e '/^#ifndef weak_alias$/a\# undef __stpncpy' \
 			gettext-tools/gnulib-lib/stpncpy.c || die
 		sed -i -e '/^# undef __stpncpy$/a\# undef stpncpy' \
