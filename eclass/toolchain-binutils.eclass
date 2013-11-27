@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.124 2013/09/30 02:28:42 ottxor Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.127 2013/11/21 04:07:25 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -39,7 +39,7 @@ cvs)
 git)
 	extra_eclass="git-2"
 	BVER="git"
-	EGIT_REPO_URI="git://sourceware.org/git/binutils.git"
+	EGIT_REPO_URI="git://sourceware.org/git/binutils-gdb.git"
 	;;
 snap)
 	BVER=${PV/9999_pre}
@@ -292,6 +292,8 @@ toolchain-binutils_src_compile() {
 		--with-bugurl=http://bugs.gentoo.org/
 		$(use_enable static-libs static)
 		${EXTRA_ECONF}
+		# Disable modules that are in a combined binutils/gdb tree. #490566
+		--disable-{gdb,libdecnumber,readline,sim}
 	)
 	echo ./configure "${myconf[@]}"
 	"${S}"/configure "${myconf[@]}" || die
@@ -416,15 +418,14 @@ toolchain-binutils_src_install() {
 	[[ -n ${src}${dst} ]] && FAKE_TARGETS="${FAKE_TARGETS} ${CTARGET/${src}/${dst}}"
 
 	# Generate an env.d entry for this binutils
-	cd "${S}"
 	insinto /etc/env.d/binutils
-	cat <<-EOF > env.d
+	cat <<-EOF > "${T}"/env.d
 		TARGET="${CTARGET}"
 		VER="${BVER}"
 		LIBPATH="${EPREFIX}${LIBPATH}"
 		FAKE_TARGETS="${FAKE_TARGETS}"
 	EOF
-	newins env.d ${CTARGET}-${BVER}
+	newins "${T}"/env.d ${CTARGET}-${BVER}
 
 	# Handle documentation
 	if ! is_cross ; then

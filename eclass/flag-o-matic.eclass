@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.189 2013/09/30 06:39:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.192 2013/11/02 03:20:37 dirtyepic Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -29,13 +29,13 @@ setup-allowed-flags() {
 	ALLOWED_FLAGS+=" -fbounds-checking -fno-strict-overflow"
 	ALLOWED_FLAGS+=" -fno-PIE -fno-pie -fno-unit-at-a-time"
 	ALLOWED_FLAGS+=" -g -g[0-9] -ggdb -ggdb[0-9] -gstabs -gstabs+"
-	ALLOWED_FLAGS+=" -fno-ident -fpermissive"
+	ALLOWED_FLAGS+=" -fno-ident -fpermissive -frecord-gcc-switches"
 	ALLOWED_FLAGS+=" -W* -w"
 
 	# allow a bunch of flags that negate features / control ABI
 	ALLOWED_FLAGS+=" -fno-stack-protector -fno-stack-protector-all \
 		-fno-strict-aliasing -fno-bounds-checking -fstrict-overflow \
-		-fno-omit-frame-pointer"
+		-fno-omit-frame-pointer -fno-builtin*"
 	ALLOWED_FLAGS+=" -mregparm -mno-app-regs -mapp-regs -mno-mmx -mno-sse \
 		-mno-sse2 -mno-sse3 -mno-ssse3 -mno-sse4 -mno-sse4.1 -mno-sse4.2 \
 		-mno-avx -mno-aes -mno-pclmul -mno-sse4a -mno-3dnow -mno-popcnt \
@@ -395,6 +395,9 @@ strip-flags() {
 			new+=( -O2 )
 		fi
 
+		if [[ ${!var} != "${new[*]}" ]] ; then
+			einfo "strip-flags: ${var}: changed '${!var}' to '${new[*]}'"
+		fi
 		eval export ${var}=\""${new[*]}"\"
 	done
 
