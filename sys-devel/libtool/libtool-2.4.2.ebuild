@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.4.2.ebuild,v 1.5 2012/04/26 13:07:54 aballier Exp $
 
@@ -43,6 +43,19 @@ src_unpack() {
 		xz -dc "${DISTDIR}"/${A} > ${P}.tar #356089
 		unpack ./${P}.tar
 	fi
+
+	# The libtool script used to create libltdl.la, and when installed used
+	# by some crappy packages like dev-libs/apr, must be elibtoolize'd (for
+	# AIX at least). However, the installed libtoolize script better is as
+	# vanilla as possible, as it also may be used to create distribution
+	# tarballs by independent package maintainers.
+	mkdir "${WORKDIR}"/host-libtool || die
+	cat >"${WORKDIR}"/host-libtool/configure.ac<<-EOF
+		AC_INIT(host-libtool, ${PVR})
+		$(grep '\<LT_INIT\>' "${S}"/configure.ac)
+		$(grep '\<LT_LANG\>' "${S}"/configure.ac)
+		AC_OUTPUT
+	EOF
 }
 
 src_prepare() {
@@ -88,6 +101,27 @@ src_configure() {
 	# usr/bin/libtool is provided by binutils-apple
 	[[ ${CHOST} == *-darwin* ]] && myconf="--program-prefix=g"
 	econf ${myconf} $(use_enable static-libs static) || die
+
+	# Bootstrap host-libtool using this very $P.
+	emake libtoolize || die
+	cd "${WORKDIR}"/host-libtool || die
+
+	local-libtoolize() {
+		# tell libtoolize to use local input files
+		_lt_pkgdatadir="${S}" "${S}"/libtoolize "$@"
+	}
+
+	AT_M4DIR="${S}"/libltdl/m4 \
+	LIBTOOLIZE='local-libtoolize' \
+	eautoreconf
+
+	econf ${myconf} $(use_enable static-libs static) || die
+
+	# Put the elibtoolize'd one in place. Actually, the installed libtool
+	# script should be a separate package, maybe also useable as
+	# ${CHOST}-libtool for cross-compiling. Keeping this one for now to
+	# prevent the need for creating another sys-devel package in Prefix.
+	cp libtool "${S}" || die
 }
 
 src_install() {
