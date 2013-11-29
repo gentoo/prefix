@@ -1,0 +1,14 @@
+http://cvs.ossp.org/tktview?tn=195
+
+--- aclocal.m4.orig	2013-11-29 14:36:58.021044281 +0000
++++ aclocal.m4	2013-11-29 14:38:20.606684317 +0000
+@@ -1185,7 +1185,9 @@
+ changequote(<<, >>)dnl
+ <<
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <sys/types.h>
++#include <sys/time.h>
+ #include <unistd.h>
+ int main(int argc, char *argv[])
+ {

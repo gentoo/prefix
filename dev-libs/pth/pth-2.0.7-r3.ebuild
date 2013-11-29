@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r3.ebuild,v 1.8 2012/08/08 15:01:43 armin76 Exp $
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug static-libs"
 
 DEPEND=""
@@ -28,6 +28,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.0.7-ia64.patch
 	epatch "${FILESDIR}"/${PN}-2.0.7-kernel-3.patch
 	epatch "${FILESDIR}"/${PN}-2.0.7-mint.patch
+	epatch "${FILESDIR}"/${PN}-2.0.7-aix.patch
 
 	ht_fix_file aclocal.m4 configure
 

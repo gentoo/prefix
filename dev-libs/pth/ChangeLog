@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/pth
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/ChangeLog,v 1.74 2012/09/18 04:50:29 radhermit Exp $
+
+  29 Nov 2013; Michael Haubenwallner <haubi@gentoo.org> pth-2.0.7-r3.ebuild,
+  +files/pth-2.0.7-aix.patch:
+  Fix for and keyword ~ppc-aix.
 
   23 Dec 2012; Fabian Groffen <grobian@gentoo.org> pth-2.0.7-r3.ebuild:
   Marked ~sparc64-solaris
