@@ -1,20 +1,21 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.3.2-r2.ebuild,v 1.8 2013/11/23 17:47:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.3.3.ebuild,v 1.3 2013/11/23 17:47:09 jer Exp $
 
-EAPI="3"
+EAPI="4"
 WANT_AUTOMAKE="none"
 WANT_LIBTOOL="none"
 
 inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs multiprocessing
 
 MY_P="Python-${PV}"
-PATCHSET_REVISION="2"
-PREFIX_PATCHREV="-r2"
+PATCHSET_REVISION="0"
+PREFIX_PATCHREV="-r0"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
+	http://dev.gentoo.org/~floppym/python/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.xz
 	mirror://gentoo/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.xz
 	http://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}.tar.bz2"
 
@@ -70,11 +71,7 @@ src_prepare() {
 		local EPATCH_EXCLUDE="05_all_regenerate_platform-specific_modules.patch"
 	fi
 
-	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}-${PATCHSET_REVISION}"
-
-	epatch "${FILESDIR}/python-3.3-CVE-2013-2099.patch"
-	epatch "${FILESDIR}/CVE-2013-4238_py33.patch"
-	epatch "${FILESDIR}/python-3.2-issue18235.patch"
+	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 	epatch "${FILESDIR}/python-3.2-issue19521.patch"
 	epatch "${FILESDIR}/python-3.3-issue17919.patch"
 
@@ -84,7 +81,7 @@ src_prepare() {
 		epatch "${WORKDIR}"/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}
 
 	# we provide a fully working readline also on Darwin, so don't force
-	# usage of half-implemented libedit
+	# usage of less functional libedit
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
 
 	# We may have wrapped /usr/ccs/bin/nm on AIX for long TMPDIR.
@@ -101,11 +98,24 @@ src_prepare() {
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
+	# workaround a development build env problem and muck around
+	# framework install to get the best of both worlds (non-standard)
+	sed -i \
+		-e "s:FRAMEWORKINSTALLAPPSPREFIX=\":FRAMEWORKINSTALLAPPSPREFIX=\"${EPREFIX}:" \
+		configure.ac configure || die
+#		-e "s/frameworkinstallmaclib//" \
+#		-e "s/frameworkinstallunixtools//" \
+#		-e "s/frameworkaltinstallunixtools//" \
+#		-e '/^if test \$enable_shared = "yes"/s/enable_shared = "yes"/enable_framework/' \
+	sed -i -e '/find/s/$/ || true/' Mac/PythonLauncher/Makefile.in || die
+#	sed -i -e 's/@prefix@/@FRAMEWORKUNIXTOOLSPREFIX@/' Mac/Makefile.in || die
+
 	# Disable ABI flags.
 	sed -e "s/ABIFLAGS=\"\${ABIFLAGS}.*\"/:/" -i configure.ac || die "sed failed"
 
 	epatch_user
 
+	rm -f configure  # force regeneration
 	eautoconf
 	eautoheader
 }
@@ -163,6 +173,10 @@ src_configure() {
 	# Please query BSD team before removing this!
 	append-ldflags "-L."
 
+	# make sure setup.py considers Prefix' paths before system ones
+	use prefix && append-cppflags -I"${EPREFIX}"/usr/include
+	use prefix && append-ldflags -L"${EPREFIX}"/lib -L"${EPREFIX}"/usr/lib
+
 	local dbmliborder
 	if use gdbm; then
 		dbmliborder+="${dbmliborder:+:}gdbm"
@@ -172,18 +186,19 @@ src_configure() {
 	mkdir -p "${BUILD_DIR}" || die
 	cd "${BUILD_DIR}" || die
 
-	# we need this to get pythonw, the GUI version of python
-	# --enable-framework and --enable-shared are mutually exclusive:
-	# http://bugs.python.org/issue5809
-	use aqua \
-		&& shared="--enable-framework=${EPREFIX}/usr/lib" \
-		|| shared="--enable-shared"
+	if use aqua ; then
+		ECONF_SOURCE="${S}" OPT="" \
+		econf \
+			--enable-framework="${EPREFIX}"/usr/lib \
+			--config-cache
+	fi
 
 	# pymalloc #452720
 	ECONF_SOURCE="${S}" OPT="" \
 	econf \
+		$(use aqua && echo --config-cache) \
 		--with-fpectl \
-		${shared} \
+		--enable-shared \
 		$(use_enable ipv6) \
 		$(use_with threads) \
 		--infodir='${prefix}/share/info' \
@@ -256,6 +271,21 @@ src_install() {
 
 	emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
 
+	if use aqua ; then
+		# avoid config.status to be triggered
+		find Mac -name "Makefile" -exec touch \{\} + || die
+
+		emake DESTDIR="${D}" -C Mac \
+			install_Python install_PythonLauncher install_IDLE \
+			|| die
+
+		local fwdir=/usr/$(get_libdir)/Python.framework/Versions/${SLOT}
+		ln -s "${EPREFIX}"/usr/include/python${SLOT} \
+			"${ED}${fwdir}"/Headers || die
+		ln -s "${EPREFIX}"/usr/lib/libpython${SLOT}.dylib \
+			"${ED}${fwdir}"/Python || die
+	fi
+
 	sed \
 		-e "s/\(CONFIGURE_LDFLAGS=\).*/\1/" \
 		-e "s/\(PY_LDFLAGS=\).*/\1/" \
@@ -286,8 +316,14 @@ src_install() {
 		doins -r "${S}"/Tools || die "doins failed"
 	fi
 	insinto /usr/share/gdb/auto-load/usr/$(get_libdir) #443510
-	local libname=$(printf 'e:\n\t@echo $(INSTSONAME)\ninclude Makefile\n' | \
-		emake --no-print-directory -s -f - 2>/dev/null)
+	if use aqua ; then
+		# we do framework, so the emake trick below returns a pathname
+		# since that won't work here, use a (cheap) trick instead
+		local libname=libpython${SLOT}
+	else
+		local libname=$(printf 'e:\n\t@echo $(INSTSONAME)\ninclude Makefile\n' | \
+			emake --no-print-directory -s -f - 2>/dev/null)
+	fi
 	newins "${S}"/Tools/gdb/libpython.py "${libname}"-gdb.py
 
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
