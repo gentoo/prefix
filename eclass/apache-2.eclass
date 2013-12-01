@@ -219,6 +219,8 @@ check_module_depends() {
 # This internal function selects all built-in modules based on USE flags and
 # APACHE2_MODULES USE_EXPAND flags
 setup_modules() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
+
 	local mod_type=
 
 	if use static ; then
@@ -299,6 +301,8 @@ setup_modules() {
 # This internal function generates the LoadModule lines for httpd.conf based on
 # the current module selection and MODULE_DEFINES
 generate_load_module() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
+
 	local endit=0 mod_lines= mod_dir="${ED}/usr/$(get_libdir)/apache2/modules"
 
 	if use static; then
@@ -336,6 +340,8 @@ generate_load_module() {
 # to convert this file to the new APACHE2_MODULES USE_EXPAND variable and remove
 # it afterwards.
 check_upgrade() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
+
 	if [[ -e "${EROOT}"etc/apache2/apache2-builtin-mods ]]; then
 		eerror "The previous configuration file for built-in modules"
 		eerror "(${EROOT}etc/apache2/apache2-builtin-mods) exists on your"
@@ -465,6 +471,8 @@ apache-2_src_prepare() {
 # This function adds compiler flags and runs econf and emake based on MY_MPM and
 # MY_CONF
 apache-2_src_configure() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
+
 	# Instead of filtering --as-needed (bug #128505), append --no-as-needed
 	# Thanks to Harald van Dijk
 	append-ldflags $(no-as-needed)
@@ -500,6 +508,8 @@ apache-2_src_configure() {
 # This function runs `emake install' and generates, installs and adapts the gentoo
 # specific configuration files found in the tarball
 apache-2_src_install() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
+
 	emake DESTDIR="${D}" MKINSTALLDIRS="mkdir -p" install || die "make install failed"
 
 	# install our configuration files
@@ -583,6 +593,8 @@ apache-2_src_install() {
 # because the default webroot is a copy of the files that exist elsewhere and we
 # don't want them to be managed/removed by portage when apache is upgraded.
 apache-2_pkg_postinst() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
+
 	if use ssl && [[ ! -e "${EROOT}/etc/ssl/apache2/server.pem" ]]; then
 		SSL_ORGANIZATION="${SSL_ORGANIZATION:-Apache HTTP Server}"
 		install_cert /etc/ssl/apache2/server
