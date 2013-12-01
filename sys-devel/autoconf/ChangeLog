@@ -1,6 +1,64 @@
 # ChangeLog for sys-devel/autoconf
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.170 2012/09/26 05:06:03 vapier Exp $
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.185 2013/04/04 22:59:16 vapier Exp $
+
+  04 Apr 2013; Mike Frysinger <vapier@gentoo.org> -autoconf-2.65.ebuild,
+  autoconf-2.59-r7.ebuild, autoconf-2.61-r2.ebuild, autoconf-2.62-r1.ebuild,
+  autoconf-2.63-r1.ebuild, autoconf-2.64.ebuild, autoconf-2.65-r1.ebuild,
+  autoconf-2.67.ebuild, autoconf-2.68.ebuild, autoconf-2.69.ebuild,
+  autoconf-9999.ebuild, metadata.xml:
+  Initial USE=multislot support.  Also drop -j1 workaround for newer versions as
+  bug only affected 2.61.
+
+  04 Apr 2013; Mike Frysinger <vapier@gentoo.org> autoconf-2.59-r7.ebuild,
+  autoconf-2.61-r2.ebuild, autoconf-2.62-r1.ebuild, autoconf-2.63-r1.ebuild,
+  autoconf-2.64.ebuild, autoconf-2.65-r1.ebuild, autoconf-2.65.ebuild,
+  autoconf-2.67.ebuild, autoconf-2.68.ebuild, autoconf-2.69.ebuild,
+  autoconf-9999.ebuild:
+  Drop texinfo from DEPEND since this was added when we were munging the info
+  pages which none of the newer versions do anymore.
+
+  19 Feb 2013; Zac Medico <zmedico@gentoo.org> autoconf-2.69.ebuild,
+  autoconf-9999.ebuild:
+  Add ~arm-linux + ~x86-linux keywords.
+
+  28 Jan 2013; Alexis Ballier <aballier@gentoo.org> autoconf-2.13.ebuild:
+  Use GNU awk and GNU m4 on userland_BSD, bug #453798 by Yuta SATOH
+
+  01 Jan 2013; Raúl Porcel <armin76@gentoo.org> autoconf-2.69.ebuild:
+  m68k/s390/sh stable wrt #447756
+
+  30 Dec 2012; Agostino Sarubbo <ago@gentoo.org> autoconf-2.69.ebuild:
+  Stable for alpha, wrt bug #447756
+
+  30 Dec 2012; Agostino Sarubbo <ago@gentoo.org> autoconf-2.69.ebuild:
+  Stable for sparc, wrt bug #447756
+
+  28 Dec 2012; Jeroen Roovers <jer@gentoo.org> autoconf-2.69.ebuild:
+  Stable for HPPA (bug #447756).
+
+  26 Dec 2012; Markus Meier <maekke@gentoo.org> autoconf-2.69.ebuild:
+  arm stable, bug #447756
+
+  25 Dec 2012; Agostino Sarubbo <ago@gentoo.org> autoconf-2.69.ebuild:
+  Stable for ia64, wrt bug #447756
+
+  23 Dec 2012; Jeff Horelick <jdhore@gentoo.org> autoconf-2.69.ebuild:
+  marked x86 per bug 447756
+
+  23 Dec 2012; Agostino Sarubbo <ago@gentoo.org> autoconf-2.69.ebuild:
+  Stable for ppc64, wrt bug #447756
+
+  22 Dec 2012; Agostino Sarubbo <ago@gentoo.org> autoconf-2.69.ebuild:
+  Stable for ppc, wrt bug #447756
+
+  19 Dec 2012; Agostino Sarubbo <ago@gentoo.org> autoconf-2.69.ebuild:
+  Stable for amd64, wrt bug #447756
+
+  03 Dec 2012; Robin H. Johnson <robbat2@gentoo.org> autoconf-2.69.ebuild:
+  With m4-1.4.14-r1, autoconf does not configure properly due to this upstream
+  check: Root out Glibc 2.9 - 2.12 and GNU M4 1.4.11 - 1.4.15 with buggy false
+  positive strstr.
 
   26 Sep 2012; Mike Frysinger <vapier@gentoo.org> autoconf-2.13.ebuild:
   Make sure we encode standard m4/awk progs as defaults.
