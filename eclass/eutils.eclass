@@ -948,6 +948,14 @@ make_desktop_entry() {
 	) || die "installing desktop file failed"
 }
 
+# @FUNCTION: _eutils_eprefix_init
+# @USAGE:
+# @DESCRIPTION:
+# Initialized prefix variables for EAPI<3. 
+_eutils_eprefix_init() {
+	has "${EAPI:-0}" 0 1 2 && : ${ED:=${D}} ${EPREFIX:=} ${EROOT:=${ROOT}}
+}
+
 # @FUNCTION: validate_desktop_entries
 # @USAGE: [directories]
 # @MAINTAINER:
@@ -955,7 +963,7 @@ make_desktop_entry() {
 # @DESCRIPTION:
 # Validate desktop entries using desktop-file-utils
 validate_desktop_entries() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}" && EPREFIX=
+	_eutils_eprefix_init
 	if [[ -x "${EPREFIX}"/usr/bin/desktop-file-validate ]] ; then
 		einfo "Checking desktop entry validity"
 		local directories=""
@@ -1228,7 +1236,7 @@ strip-linguas() {
 # solution, so instead you can call this from pkg_preinst.  See also the
 # preserve_old_lib_notify function.
 preserve_old_lib() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}" && ED="${D}"
+	_eutils_eprefix_init
 	if [[ ${EBUILD_PHASE} != "preinst" ]] ; then
 		eerror "preserve_old_lib() must be called from pkg_preinst() only"
 		die "Invalid preserve_old_lib() usage"
@@ -1261,7 +1269,7 @@ preserve_old_lib_notify() {
 	# let portage worry about it
 	has preserve-libs ${FEATURES} && return 0
 
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
+	_eutils_eprefix_init
 	
 	local lib notice=0
 	for lib in "$@" ; do
@@ -1301,7 +1309,7 @@ preserve_old_lib_notify() {
 # Remember that this function isn't terribly intelligent so order of optional
 # flags matter.
 built_with_use() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
+	_eutils_eprefix_init
 	local hidden="no"
 	if [[ $1 == "--hidden" ]] ; then
 		hidden="yes"
@@ -1406,7 +1414,7 @@ epunt_cxx() {
 # first optionally setting LD_LIBRARY_PATH to the colon-delimited
 # libpaths followed by optionally changing directory to chdir.
 make_wrapper() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
+	_eutils_eprefix_init
 	local wrapper=$1 bin=$2 chdir=$3 libdir=$4 path=$5
 	local tmpwrapper=$(emktemp)
 
@@ -1540,7 +1548,7 @@ prune_libtool_files() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local removing_all removing_modules opt
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
+	_eutils_eprefix_init
 	for opt; do
 		case "${opt}" in
 			--all)
