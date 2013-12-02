@@ -949,7 +949,7 @@ make_desktop_entry() {
 }
 
 # @FUNCTION: _eutils_eprefix_init
-# @USAGE:
+# @INTERNAL
 # @DESCRIPTION:
 # Initialized prefix variables for EAPI<3. 
 _eutils_eprefix_init() {
@@ -1333,8 +1333,8 @@ built_with_use() {
 	[[ -z ${PKG} ]] && die "Unable to resolve $1 to an installed package"
 	shift
 
-	local USEFILE="${EROOT}"/var/db/pkg/${PKG}/USE
-	local IUSEFILE="${EROOT}"/var/db/pkg/${PKG}/IUSE
+	local USEFILE=${EROOT}/var/db/pkg/${PKG}/USE
+	local IUSEFILE=${EROOT}/var/db/pkg/${PKG}/IUSE
 
 	# if the IUSE file doesn't exist, the read will error out, we need to handle
 	# this gracefully
@@ -1420,8 +1420,9 @@ make_wrapper() {
 
 	(
 	echo '#!/bin/sh'
-	[[ -n ${chdir} ]] && printf 'cd "%s"\n' "${chdir}"
+	[[ -n ${chdir} ]] && printf 'cd "%s"\n' "${EPREFIX}${chdir}"
 	if [[ -n ${libdir} ]] ; then
+		local var
 		if [[ ${CHOST} == *-darwin* ]] ; then
 			var=DYLD_LIBRARY_PATH
 		else
