@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.329 2012/12/15 01:55:49 vapier Exp $
 
+  04 Dec 2013; Michael Haubenwallner <haubi@gentoo.org>
+  +files/bash-4.0-childmax-pids.patch, bash-4.1_p11.ebuild,
+  bash-4.2_p39-r1.ebuild:
+  Backport bash-4.3 fix wrt. CHILD_MAX (AIX, Interix).
+
   31 Oct 2013; Michael Haubenwallner <haubi@gentoo.org> bash-4.1_p11.ebuild,
   +files/bash-4.1-blocking-namedpipe.patch, bash-4.2_p39-r1.ebuild:
   Fix command substitution with named pipes, for multibuild.eclass on AIX.

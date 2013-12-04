@@ -1,0 +1,123 @@
+Initial report:
+http://lists.gnu.org/archive/html/bug-bash/2012-07/msg00054.html
+Small testcase breaking on AIX, requires maxuproc > 128
+  $ /usr/sbin/lsattr -E -l sys0 | grep maxuproc
+http://lists.gnu.org/archive/html/bug-bash/2012-07/msg00080.html
+
+				   7/24
+				   ----
+configure.in
+	- interix: define RECYCLES_PIDS.  Based on a report from Michael
+	  Haubenwallner <michael.haubenwallner@salomon.at>
+
+				   7/26
+				   ----
+jobs.c
+	- make_child: call bgp_delete on the newly-created pid unconditionally.
+	  Some systems reuse pids before cycling through an entire set of
+	  CHILD_MAX/_SC_CHILD_MAX unique pids.  This is no longer dependent
+	  on RECYCLES_PIDS.  Based on a report from Michael Haubenwallner
+	  <michael.haubenwallner@salomon.at>
+
+				   7/28
+				   ----
+subst.c
+	- command_substitute: make sure last_made_pid gets reset if make_child
+	  fails
+
+execute_cmd.c
+	- execute_command_internal: case cm_simple: decide whether or not to
+	  wait_for a child if already_making_children is non-zero, indicates
+	  that there is an unwaited-for child.  More of fix for bug report
+	  from Michael Haubenwallner <michael.haubenwallner@salomon.at>
+
+jobs.c
+	- make_child: call delete_old_job (new_pid) unconditionally, don't
+	  bother to check whether or not pid wrap occurred.  Rest of fix for
+	  bug report from Michael Haubenwallner
+	  <michael.haubenwallner@salomon.at>
+
+#diff --git a/configure.in b/configure.in
+#index df91278..646abee 100644
+#--- a/configure.in
+#+++ b/configure.in
+#@@ -1067,7 +1067,7 @@ linux*)		LOCAL_LDFLAGS=-rdynamic		 # allow dynamic loading
+# *qnx*)		LOCAL_CFLAGS="-Dqnx -F -3s" LOCAL_LDFLAGS="-3s" LOCAL_LIBS="-lunix -lncurses" ;;
+# powerux*)	LOCAL_LIBS="-lgen" ;;
+# cygwin*)	LOCAL_CFLAGS=-DRECYCLES_PIDS ;;
+#-opennt*|interix*) LOCAL_CFLAGS="-DNO_MAIN_ENV_ARG -DBROKEN_DIRENT_D_INO -D_POSIX_SOURCE -D_ALL_SOURCE" ;;
+#+opennt*|interix*) LOCAL_CFLAGS="-DNO_MAIN_ENV_ARG -DBROKEN_DIRENT_D_INO -D_POSIX_SOURCE -D_ALL_SOURCE -DRECYCLES_PIDS" ;;
+# esac
+# 
+# dnl Stanza for OS/compiler pair-specific flags
+diff --git a/configure b/configure
+index 0e62d6f..d913772 100755
+--- a/configure
++++ b/configure
+@@ -15760,7 +15760,7 @@ linux*)		LOCAL_LDFLAGS=-rdynamic		 # allow dynamic loading
+ *qnx*)		LOCAL_CFLAGS="-Dqnx -F -3s" LOCAL_LDFLAGS="-3s" LOCAL_LIBS="-lunix -lncurses" ;;
+ powerux*)	LOCAL_LIBS="-lgen" ;;
+ cygwin*)	LOCAL_CFLAGS=-DRECYCLES_PIDS ;;
+-opennt*|interix*) LOCAL_CFLAGS="-DNO_MAIN_ENV_ARG -DBROKEN_DIRENT_D_INO -D_POSIX_SOURCE -D_ALL_SOURCE" ;;
++opennt*|interix*) LOCAL_CFLAGS="-DNO_MAIN_ENV_ARG -DBROKEN_DIRENT_D_INO -D_POSIX_SOURCE -D_ALL_SOURCE -DRECYCLES_PIDS" ;;
+ esac
+ 
+ case "${host_os}-${CC}" in
+diff --git a/execute_cmd.c b/execute_cmd.c
+index 5beddef..8615b0b 100644
+--- a/execute_cmd.c
++++ b/execute_cmd.c
+@@ -775,9 +782,11 @@ execute_command_internal (command, asynchronous, pipe_in, pipe_out,
+ 	   the child. */
+ 
+ 	/* XXX - this is something to watch out for if there are problems
+-	   when the shell is compiled without job control. */
+-	if (already_making_children && pipe_out == NO_PIPE &&
+-	    last_made_pid != last_pid)
++	   when the shell is compiled without job control.  Don't worry about
++	   whether or not last_made_pid == last_pid; already_making_children
++	   tells us whether or not there are unwaited-for children to wait
++	   for and reap. */
++	if (already_making_children && pipe_out == NO_PIPE)
+ 	  {
+ 	    stop_pipeline (asynchronous, (COMMAND *)NULL);
+ 
+diff --git a/jobs.c b/jobs.c
+index 18b189d..d190e82 100644
+--- a/jobs.c
++++ b/jobs.c
+@@ -1898,15 +1898,13 @@ make_child (command, async_p)
+ 	last_asynchronous_pid = 1;
+ #endif
+ 
+-      if (pid_wrap > 0)
+-	delete_old_job (pid);
++      /* Delete the saved status for any job containing this PID in case it's
++	 been reused. */
++      delete_old_job (pid);
+ 
+-#if !defined (RECYCLES_PIDS)
+-      /* Only check for saved status if we've saved more than CHILD_MAX
+-	 statuses, unless the system recycles pids. */
+-      if ((js.c_reaped + bgpids.npid) >= js.c_childmax)
+-#endif
+-	bgp_delete (pid);		/* new process, discard any saved status */
++      /* Perform the check for pid reuse unconditionally.  Some systems reuse
++         PIDs before giving a process CHILD_MAX/_SC_CHILD_MAX unique ones. */
++      bgp_delete (pid);		/* new process, discard any saved status */
+ 
+       last_made_pid = pid;
+ 
+diff --git a/subst.c b/subst.c
+index 057c992..e772dd7 100644
+--- a/subst.c
++++ b/subst.c
+@@ -5332,6 +5332,8 @@ command_substitute (string, quoted)
+       sys_error (_("cannot make child for command substitution"));
+     error_exit:
+ 
++      last_made_pid = old_pid;
++
+       FREE (istring);
+       close (fildes[0]);
+       close (fildes[1]);

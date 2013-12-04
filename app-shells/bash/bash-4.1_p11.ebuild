@@ -86,6 +86,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
+	epatch "${FILESDIR}"/${PN}-4.0-childmax-pids.patch # AIX, Interix
 
 	if [[ ${CHOST} == *-interix* ]]; then
 		epatch "${FILESDIR}"/${PN}-4.1-interix-stdint.patch

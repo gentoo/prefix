@@ -90,6 +90,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.2-freebsd-pipe-open-eintr.patch  # 447810
 	epatch "${FILESDIR}"/${PN}-4.1-blocking-namedpipe.patch # aix lacks /dev/fd/
+	epatch "${FILESDIR}"/${PN}-4.0-childmax-pids.patch # AIX, Interix
 	if [[ ${CHOST} == *-interix* ]]; then
 		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi
