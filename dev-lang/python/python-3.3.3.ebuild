@@ -74,6 +74,7 @@ src_prepare() {
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 	epatch "${FILESDIR}/python-3.2-issue19521.patch"
 	epatch "${FILESDIR}/python-3.3-issue17919.patch"
+	epatch "${FILESDIR}/python-3.3-issue18235.patch"
 
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-3_3
