@@ -25,21 +25,8 @@
 +Include @GENTOO_PORTAGE_EPREFIX@/etc/apache2/vhosts.d/*.conf
  
  # vim: ts=4 filetype=apache
---- scripts/apache2ctl
-+++ scripts/apache2ctl
-@@ -1,2 +1,2 @@
--#!/bin/sh
--exec /etc/init.d/apache2 "$@"
-+#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
-+exec @GENTOO_PORTAGE_EPREFIX@/etc/init.d/apache2 "$@"
 --- scripts/gentestcrt.sh
 +++ scripts/gentestcrt.sh
-@@ -1,4 +1,4 @@
--#!/bin/sh
-+#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
- ##
- ##  gentestcrt -- Create self-signed test certificate
- ##  (C) 2001 Jean-Michel Dault <jmdault@mandrakesoft.com> and Mandrakesoft
 @@ -6,7 +6,7 @@
  ##
  
@@ -163,7 +150,7 @@
 -	manualdir:       /usr/share/doc/version/manual
 -	sysconfdir:      /etc/apache2
 -	localstatedir:   /var
--	runtimedir:      /var/run
+-	runtimedir:      /run
 -	logfiledir:      /var/log/apache2
 -	proxycachedir:   /var/cache/apache2
 +	prefix:          @GENTOO_PORTAGE_EPREFIX@/usr
@@ -183,7 +170,7 @@
 +	manualdir:       @GENTOO_PORTAGE_EPREFIX@/usr/share/doc/version/manual
 +	sysconfdir:      @GENTOO_PORTAGE_EPREFIX@/etc/apache2
 +	localstatedir:   @GENTOO_PORTAGE_EPREFIX@/var
-+	runtimedir:      @GENTOO_PORTAGE_EPREFIX@/var/run
++	runtimedir:      @GENTOO_PORTAGE_EPREFIX@/run
 +	logfiledir:      @GENTOO_PORTAGE_EPREFIX@/var/log/apache2
 +	proxycachedir:   @GENTOO_PORTAGE_EPREFIX@/var/cache/apache2
  </Layout>
@@ -228,8 +215,8 @@
  # YOU HAVE BEEN WARNED.
 
  # PID file
--#PIDFILE=/var/run/apache2.pid
-+#PIDFILE=@GENTOO_PORTAGE_EPREFIX@/var/run/apache2.pid
+-#PIDFILE=/run/apache2.pid
++#PIDFILE=@GENTOO_PORTAGE_EPREFIX@/run/apache2.pid
 
  # timeout for startup/shutdown checks
  #TIMEOUT=10
@@ -253,12 +240,6 @@
  # of the command line. Designed for lynx, however other programs may work.
 --- init/apache2.initd
 +++ init/apache2.initd
-@@ -1,4 +1,4 @@
--#!/sbin/runscript
-+#!@GENTOO_PORTAGE_EPREFIX@/sbin/runscript
- # Copyright 1999-2011 Gentoo Foundation
- # Distributed under the terms of the GNU General Public License v2
- 
 @@ -20,13 +20,13 @@
 	PIDFILE="${PIDFILE:-@GENTOO_PORTAGE_EPREFIX@/var/run/apache2.pid}"
 	TIMEOUT=${TIMEOUT:-10}
@@ -485,8 +466,8 @@
  # identification number when it starts.
  #
  # DO NOT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING
--PidFile /var/run/apache2.pid
-+PidFile @GENTOO_PORTAGE_EPREFIX@/var/run/apache2.pid
+-PidFile /run/apache2.pid
++PidFile @GENTOO_PORTAGE_EPREFIX@/run/apache2.pid
 
  # The accept serialization lock file MUST BE STORED ON A LOCAL DISK.
  # Mutex file:/var/run/apache_mpm_mutex
@@ -495,9 +476,9 @@
 @@ -51,7 +51,7 @@
  # Configure the SSL Session Cache: First the mechanism  to use and second the
  # expiring timeout (in seconds).
- #SSLSessionCache		dbm:/var/run/ssl_scache
--SSLSessionCache			shmcb:/var/run/ssl_scache(512000)
-+SSLSessionCache			shmcb:@GENTOO_PORTAGE_EPREFIX@/var/run/ssl_scache(512000)
+ #SSLSessionCache		dbm:/run/ssl_scache
+-SSLSessionCache			shmcb:/run/ssl_scache(512000)
++SSLSessionCache			shmcb:@GENTOO_PORTAGE_EPREFIX@/run/ssl_scache(512000)
  SSLSessionCacheTimeout  300
  
  ## Semaphore:
