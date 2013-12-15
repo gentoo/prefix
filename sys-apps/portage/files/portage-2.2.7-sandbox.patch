@@ -1,0 +1,21 @@
+candidate patch to be included in the next revision
+
+https://bugs.gentoo.org/show_bug.cgi?id=490016
+
+diff --git a/pym/portage/package/ebuild/doebuild.py b/pym/portage/package/ebuild/doebuild.py
+index 691ef97..7a000b1 100644
+--- a/pym/portage/package/ebuild/doebuild.py
++++ b/pym/portage/package/ebuild/doebuild.py
+@@ -1311,10 +1311,8 @@ def _spawn_actionmap(settings):
+ 		nosandbox = ("sandbox" not in features and \
+ 			"usersandbox" not in features)
+ 
+-	if not portage.process.sandbox_capable:
+-		nosandbox = True
+-
+-	if not portage.process.macossandbox_capable:
++	if not (portage.process.sandbox_capable or \
++		portage.process.macossandbox_capable):
+ 		nosandbox = True
+ 
+ 	sesandbox = settings.selinux_enabled() and \

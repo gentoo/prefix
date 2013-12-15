@@ -238,6 +238,7 @@ src_prepare() {
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
 	epatch "${FILESDIR}"/${PN}-2.2.7-ebuildshell.patch # 155161
 	epatch "${FILESDIR}"/${PN}-2.2.7-shebang-fixes.patch # already in git
+	epatch "${FILESDIR}"/${PN}-2.2.7-sandbox.patch # 490016
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
