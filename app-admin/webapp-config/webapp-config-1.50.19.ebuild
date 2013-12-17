@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/webapp-config-1.50.19.ebuild,v 1.4 2012/06/28 23:28:24 blueness Exp $
 
@@ -7,7 +7,7 @@ EAPI="3"
 PYTHON_DEPEND="2:2.6"
 SUPPORT_PYTHON_ABIS="1"
 
-inherit distutils prefix
+inherit distutils eutils prefix
 
 DESCRIPTION="Gentoo's installer for web-based applications"
 HOMEPAGE="http://sourceforge.net/projects/webapp-config/"
