@@ -2,6 +2,9 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.493 2013/11/30 08:31:02 vapier Exp $
 
+  17 Dec 2013; Fabian Groffen <grobian@gentoo.org> binutils-2.23.ebuild:
+  Apply texinfo fix when makeinfo is available for bug #491620
+
 *binutils-2.24.51.0.1 (30 Nov 2013)
 
   30 Nov 2013; Mike Frysinger <vapier@gentoo.org> +binutils-2.24.51.0.1.ebuild:

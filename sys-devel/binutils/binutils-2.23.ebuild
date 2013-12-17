@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.23.ebuild,v 1.2 2012/11/02 22:44:29 vapier Exp $
 
@@ -25,6 +25,12 @@ src_compile() {
 	then
 		# binutils >= 2.17 (accidentally?) requires 'makeinfo'
 		export EXTRA_EMAKE="MAKEINFO=true"
+	else
+		# bug #491620
+		sed -i \
+			-e 's/@colophon/@@colophon/' \
+			-e 's/doc@cygnus.com/doc@@cygnus.com/' \
+			bfd/doc/bfd.texinfo || die
 	fi
 
 	case "${CTARGET}" in
