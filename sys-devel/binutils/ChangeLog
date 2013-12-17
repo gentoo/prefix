@@ -1,6 +1,69 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.476 2012/12/29 20:58:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.493 2013/11/30 08:31:02 vapier Exp $
+
+*binutils-2.24.51.0.1 (30 Nov 2013)
+
+  30 Nov 2013; Mike Frysinger <vapier@gentoo.org> +binutils-2.24.51.0.1.ebuild:
+  Version bump.
+
+  12 Aug 2013; Mike Frysinger <vapier@gentoo.org> binutils-2.23.2.ebuild:
+  Unmask again since we know better what is failing (the packages themselves)
+  #464152.
+
+  06 Aug 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for s390, wrt bug #475570
+
+  03 Aug 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for sparc, wrt bug #475570
+
+  07 Jul 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for ia64, wrt bug #475570
+
+  07 Jul 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for arm, wrt bug #475570
+
+  06 Jul 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for alpha, wrt bug #475570
+
+  04 Jul 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for ppc64, wrt bug #475570
+
+  04 Jul 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for ppc, wrt bug #475570
+
+  03 Jul 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for x86, wrt bug #475570
+
+  03 Jul 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for amd64, wrt bug #475570
+
+  03 Jul 2013; Jeroen Roovers <jer@gentoo.org> binutils-2.23.1.ebuild:
+  Stable for HPPA (bug #475570).
+
+*binutils-2.23.52.0.2 (05 May 2013)
+
+  05 May 2013; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.52.0.2.ebuild:
+  Version bump.
+
+  02 Apr 2013; Mike Frysinger <vapier@gentoo.org> binutils-2.23.2.ebuild:
+  Dekeyword until we can get a handle on missing symbol linkage errors #464152
+  by Ryan Hill.
+
+*binutils-2.23.52.0.1 (26 Mar 2013)
+
+  26 Mar 2013; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.52.0.1.ebuild:
+  Version bump.
+
+*binutils-2.23.2 (26 Mar 2013)
+
+  26 Mar 2013; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.2.ebuild:
+  Version bump.
+
+*binutils-2.23.51.0.9 (03 Feb 2013)
+
+  03 Feb 2013; Mike Frysinger <vapier@gentoo.org> +binutils-2.23.51.0.9.ebuild:
+  Version bump.
 
 *binutils-2.23.51.0.8 (29 Dec 2012)
 
