@@ -239,6 +239,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.2.7-ebuildshell.patch # 155161
 	epatch "${FILESDIR}"/${PN}-2.2.7-shebang-fixes.patch # already in git
 	epatch "${FILESDIR}"/${PN}-2.2.7-sandbox.patch # 490016
+	epatch "${FILESDIR}"/${PN}-2.2.7-macho-relative-install_names.patch # in git
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
