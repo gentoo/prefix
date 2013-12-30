@@ -1,6 +1,44 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.714 2013/11/23 17:47:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.724 2013/12/30 01:45:02 floppym Exp $
+
+  30 Dec 2013; Mike Gilbert <floppym@gentoo.org> python-2.6.8-r3.ebuild,
+  python-2.6.9.ebuild, python-2.7.5-r3.ebuild, python-2.7.5-r4.ebuild,
+  python-2.7.6.ebuild, python-3.2.5-r3.ebuild, python-3.3.2-r2.ebuild,
+  python-3.3.3.ebuild:
+  Die if sem_open is detected as broken, bug 496328.
+
+  26 Dec 2013; Markus Meier <maekke@gentoo.org> python-3.3.2-r2.ebuild:
+  arm stable, bug #474128
+
+*python-2.6.9 (25 Dec 2013)
+
+  25 Dec 2013; Mike Gilbert <floppym@gentoo.org> +python-2.6.9.ebuild:
+  Bump for security bug 495224.
+
+  15 Dec 2013; Agostino Sarubbo <ago@gentoo.org> python-3.3.2-r2.ebuild:
+  Stable for sparc, wrt bug #474128
+
+  13 Dec 2013; Matt Turner <mattst88@gentoo.org> python-3.3.2-r2.ebuild:
+  alpha stable, bug 474128.
+
+  08 Dec 2013; Pacho Ramos <pacho@gentoo.org> python-3.3.2-r2.ebuild:
+  x86 stable, bug #474128
+
+  07 Dec 2013; Mike Frysinger <vapier@gentoo.org> python-2.7.6.ebuild,
+  python-3.3.3.ebuild:
+  Drop redundant die statements with EAPI=4.
+
+*python-2.7.6 (01 Dec 2013)
+
+  01 Dec 2013; Mike Gilbert <floppym@gentoo.org> +python-2.7.6.ebuild:
+  Version bump. Thanks to Arfrever for the patches.
+
+  30 Nov 2013; Jeroen Roovers <jer@gentoo.org> python-3.3.2-r2.ebuild:
+  Stable for HPPA (bug #474128).
+
+  30 Nov 2013; Pacho Ramos <pacho@gentoo.org> python-3.3.2-r2.ebuild:
+  amd64 stable, bug #474128
 
   30 Dec 2013; Fabian Groffen <grobian@gentoo.org> python-3.3.3.ebuild:
   Make sure Mac apps are run with just built libpython3.3.dylib, bug #496398

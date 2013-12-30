@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.5-r3.ebuild,v 1.1 2013/10/16 23:43:45 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.5-r3.ebuild,v 1.2 2013/12/30 01:45:02 floppym Exp $
 
 EAPI="4"
 WANT_AUTOMAKE="none"
@@ -216,6 +216,12 @@ src_configure() {
 		--with-system-expat \
 		--with-system-ffi \
 		--without-pymalloc
+
+	if grep -q "#define POSIX_SEMAPHORES_NOT_ENABLED 1" pyconfig.h; then
+		eerror "configure has detected that the sem_open function is broken."
+		eerror "Please ensure that /dev/shm is mounted as a tmpfs with mode 1777."
+		die "Broken sem_open function (bug 496328)"
+	fi
 
 	if tc-is-cross-compiler; then
 		# Modify the Makefile.pre so we don't regen for the host/ one.
