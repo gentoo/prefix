@@ -103,13 +103,9 @@ src_prepare() {
 	# framework install to get the best of both worlds (non-standard)
 	sed -i \
 		-e "s:FRAMEWORKINSTALLAPPSPREFIX=\":FRAMEWORKINSTALLAPPSPREFIX=\"${EPREFIX}:" \
+		-e '/RUNSHARED=DYLD_FRAMEWORK_PATH/s/FRAMEWORK/LIBRARY/g' \
 		configure.ac configure || die
-#		-e "s/frameworkinstallmaclib//" \
-#		-e "s/frameworkinstallunixtools//" \
-#		-e "s/frameworkaltinstallunixtools//" \
-#		-e '/^if test \$enable_shared = "yes"/s/enable_shared = "yes"/enable_framework/' \
 	sed -i -e '/find/s/$/ || true/' Mac/PythonLauncher/Makefile.in || die
-#	sed -i -e 's/@prefix@/@FRAMEWORKUNIXTOOLSPREFIX@/' Mac/Makefile.in || die
 
 	# Disable ABI flags.
 	sed -e "s/ABIFLAGS=\"\${ABIFLAGS}.*\"/:/" -i configure.ac || die "sed failed"
