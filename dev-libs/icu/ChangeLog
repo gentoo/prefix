@@ -1,6 +1,72 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.231 2013/04/06 18:40:29 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.261 2013/12/27 15:35:54 dilfridge Exp $
+
+*icu-51.2-r1 (29 Oct 2013)
+*icu-51.1-r1 (29 Oct 2013)
+
+  29 Oct 2013; Andreas K. Huettel <dilfridge@gentoo.org> +icu-51.1-r1.ebuild,
+  +files/icu-51.1-CVE-2013-2924.patch, +icu-51.2-r1.ebuild:
+  Add patched versions of both subslots for bug 486948
+
+  24 Jul 2013; Alexis Ballier <aballier@gentoo.org> icu-51.2.ebuild:
+  Rekeyword x86-fbsd too...
+
+  24 Jul 2013; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/icu-51.2-fix_binformat_fonts.patch, icu-51.2.ebuild:
+  Remove the patches the LE path for them should not be executed nowdays.
+
+  24 Jul 2013; Mark Wright <gienah@gentoo.org>
+  +files/icu-51.2-fix_binformat_fonts.patch, icu-51.2.ebuild:
+  Bump icu-51.2-fix_binformat_fonts.patch for bug # 381327 upstream bug
+  http://bugs.icu-project.org/trac/ticket/8320
+
+  24 Jul 2013; Patrick Lauer <patrick@gentoo.org> icu-51.2.ebuild:
+  QA: Rekeywording for ~amd64-fbsd as all old versions were punted and #454796
+  claims to be fixed
+
+*icu-51.2 (23 Jul 2013)
+
+  23 Jul 2013; Tomáš Chvátal <scarabeus@gentoo.org> +icu-51.2.ebuild,
+  -files/icu-49.1.2-platforms.patch, -files/icu-50.1-char16_t.patch,
+  -files/icu-50.1.2-bsd.patch, -files/icu.7601.Indic-ccmp.patch,
+  -files/icu.8198.revert.icu5431.patch, -icu-49.1.2.ebuild, -icu-50.1-r2.ebuild,
+  -icu-50.1.2.ebuild:
+  Version bump to latest release, yay changed api/abi again without bump. Remove
+  overshadowed versions to keep life simpler.
+
+  20 May 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for s390, wrt bug #467452
+
+  08 May 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for sh, wrt bug #467452
+
+  07 May 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for ppc64, wrt bug #467452
+
+  07 May 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for sparc, wrt bug #467452
+
+  07 May 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for ia64, wrt bug #467452
+
+  05 May 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for alpha, wrt bug #467452
+
+  05 May 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for arm, wrt bug #467452
+
+  03 May 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for ppc, wrt bug #467452
+
+  27 Apr 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for x86, wrt bug #467452
+
+  27 Apr 2013; Agostino Sarubbo <ago@gentoo.org> icu-51.1.ebuild:
+  Stable for amd64, wrt bug #467452
+
+  27 Apr 2013; Jeroen Roovers <jer@gentoo.org> icu-51.1.ebuild:
+  Stable for HPPA (bug #467452).
 
   06 Apr 2013; Anthony G. Basile <blueness@gentoo.org> icu-51.1.ebuild:
   Fix subslot, bug #464876
@@ -111,12 +177,6 @@
   Store -std=gnu++11 flag in CXXFLAGS in icu-config and icu-*.pc files for API
   consumers, if this flag is supported and required. Ebuild by Arfrever.
 
-  30 Oct 2012; Fabian Groffen <grobian@gentoo.org> icu-49.1.2.ebuild:
-  Marked ~x64-freebsd
-
-  27 Oct 2012; Fabian Groffen <grobian@gentoo.org> icu-50_rc.ebuild:
-  drop missing patch
-
 *icu-50_rc (25 Oct 2012)
 
   25 Oct 2012; Mike Gilbert <floppym@gentoo.org> +icu-50_rc.ebuild:
@@ -147,9 +207,6 @@
   23 Jul 2012; Mike Gilbert <floppym@gentoo.org>
   +files/icu-49.1.2-platforms.patch, icu-49.1.2.ebuild:
   Fix detection of some platforms. Patch by Arfrever.
-
-  15 Jun 2012; Fabian Groffen <grobian@gentoo.org> icu-49.1.2.ebuild:
-  Fix compilation on Solaris
 
 *icu-49.1.2 (07 Jun 2012)
 
