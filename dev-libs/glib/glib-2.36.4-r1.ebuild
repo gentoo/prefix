@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.36.4-r1.ebuild,v 1.6 2013/10/22 20:18:06 ottxor Exp $
 
@@ -168,7 +168,7 @@ src_prepare() {
 
 	# make default sane for us
 	if use prefix ; then
-		sed -i -e "s:/usr/local:${EPREFIX}:" gio/xdgmime/xdgmime.c || die
+		sed -i -e "s:/usr/local:${EPREFIX}/usr:" gio/xdgmime/xdgmime.c || die
 		# bug #308609, without path, bug #314057
 		export PERL=perl
 	fi
