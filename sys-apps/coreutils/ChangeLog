@@ -1,6 +1,106 @@
 # ChangeLog for sys-apps/coreutils
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.353 2012/10/23 19:52:35 vapier Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.383 2013/12/24 12:51:08 ago Exp $
+
+  24 Dec 2013; Agostino Sarubbo <ago@gentoo.org> coreutils-8.21.ebuild:
+  Stable for x86, wrt bug #467186
+
+  23 Dec 2013; Markus Meier <maekke@gentoo.org> coreutils-8.21.ebuild:
+  arm stable, bug #467186
+
+  23 Dec 2013; Agostino Sarubbo <ago@gentoo.org> coreutils-8.21.ebuild:
+  Stable for sparc, wrt bug #467186
+
+  23 Dec 2013; Pacho Ramos <pacho@gentoo.org> coreutils-8.21.ebuild:
+  amd64 stable, bug #467186
+
+  22 Dec 2013; Agostino Sarubbo <ago@gentoo.org> coreutils-8.21.ebuild:
+  Stable for ppc64, wrt bug #467186
+
+  21 Dec 2013; Agostino Sarubbo <ago@gentoo.org> coreutils-8.21.ebuild:
+  Stable for ppc, wrt bug #467186
+
+  19 Dec 2013; Matt Turner <mattst88@gentoo.org> coreutils-8.21.ebuild:
+  alpha stable, bug 467186.
+
+  18 Dec 2013; Jeroen Roovers <jer@gentoo.org> coreutils-8.21.ebuild:
+  Stable for HPPA (bug #467186).
+
+  18 Dec 2013; Mike Frysinger <vapier@gentoo.org> coreutils-8.22.ebuild:
+  Drop old mirrors for main tarball as they aren't necessary anymore.
+
+*coreutils-8.22 (16 Dec 2013)
+
+  16 Dec 2013; Mike Frysinger <vapier@gentoo.org> +coreutils-8.22.ebuild:
+  Version bump.
+
+  05 Jun 2013; Mike Frysinger <vapier@gentoo.org> metadata.xml:
+  Add upstream CPE tag (security info) from ChromiumOS.
+
+  28 Apr 2013; Mike Frysinger <vapier@gentoo.org> coreutils-8.21.ebuild:
+  Use virtual/libintl for runtime nls dependency #398983 by Maxim Kammerer.
+
+  20 Feb 2013; Zac Medico <zmedico@gentoo.org> coreutils-8.21.ebuild:
+  Fix for prefix and add ~arm-linux + ~x86-linux keywords.
+
+*coreutils-8.21 (18 Feb 2013)
+
+  18 Feb 2013; Mike Frysinger <vapier@gentoo.org> +coreutils-8.21.ebuild:
+  Version bump.
+
+  22 Jan 2013; Guy Martin <gmsoft@gentoo.org> coreutils-8.20-r2.ebuild:
+  Marked stable on hppa to fix #452570.
+
+  17 Jan 2013; Mike Frysinger <vapier@gentoo.org> coreutils-8.20-r2.ebuild:
+  Fix building on hppa-1.1 systems #452570 by Jeroen Roovers.
+
+  11 Jan 2013; Lars Wendler <polynomial-c@gentoo.org> coreutils-8.20-r2.ebuild:
+  non-maintainer commit: Fixed download location of patchset.
+
+*coreutils-8.20-r2 (11 Jan 2013)
+
+  11 Jan 2013; Mike Frysinger <vapier@gentoo.org> +coreutils-8.20-r2.ebuild:
+  Add fix from upstream for `seq -s` misbehavior #448716 by Homer.  Fix parallel
+  recursive cp errors w/mkdir #449838 by Michał Górny.
+
+  01 Jan 2013; Raúl Porcel <armin76@gentoo.org> coreutils-8.20.ebuild:
+  m68k/s390/sh stable wrt #443536
+
+  30 Dec 2012; Agostino Sarubbo <ago@gentoo.org> coreutils-8.20.ebuild:
+  Stable for alpha, wrt bug #443536
+
+  29 Dec 2012; Agostino Sarubbo <ago@gentoo.org> coreutils-8.20.ebuild:
+  Stable for sparc, wrt bug #443536
+
+*coreutils-8.20-r1 (19 Dec 2012)
+
+  19 Dec 2012; Mike Frysinger <vapier@gentoo.org> +coreutils-8.20-r1.ebuild:
+  Add fix from upstream for `cp --no-preserve=mode` always exiting w/status of 1
+  as noticed in ChromiumOS.
+
+  17 Dec 2012; Agostino Sarubbo <ago@gentoo.org> coreutils-8.20.ebuild:
+  Stable for ia64, wrt bug #443536
+
+  08 Dec 2012; Mike Frysinger <vapier@gentoo.org> coreutils-8.20.ebuild:
+  Disable man generation for native compiles too #446438 by Mario Kicherer.
+
+  07 Dec 2012; Mike Frysinger <vapier@gentoo.org> coreutils-8.20.ebuild:
+  Fix cross-compiling #446104 and x32 building.
+
+  04 Dec 2012; <ago@gentoo.org> coreutils-8.20.ebuild:
+  Stable for x86, wrt bug #443536
+
+  02 Dec 2012; Anthony G. Basile <blueness@gentoo.org> coreutils-8.20.ebuild:
+  stable ppc ppc64, bug #443536
+
+  02 Dec 2012; Markus Meier <maekke@gentoo.org> coreutils-8.20.ebuild:
+  arm stable, bug #443536
+
+  30 Nov 2012; Sergey Popov <pinkbyte@gentoo.org> coreutils-8.20.ebuild:
+  Stable on amd64, wrt bug #443536
+
+  29 Nov 2012; Jeroen Roovers <jer@gentoo.org> coreutils-8.20.ebuild:
+  Stable for HPPA (bug #443536).
 
 *coreutils-8.20 (23 Oct 2012)
 
