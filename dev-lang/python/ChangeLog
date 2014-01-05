@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/python
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.724 2013/12/30 01:45:02 floppym Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.725 2013/12/30 21:57:26 floppym Exp $
+
+  30 Dec 2013; Mike Gilbert <floppym@gentoo.org> python-2.6.8-r3.ebuild,
+  python-2.6.9.ebuild, python-2.7.5-r3.ebuild, python-2.7.5-r4.ebuild,
+  python-2.7.6.ebuild, python-3.2.5-r3.ebuild, python-3.3.2-r2.ebuild,
+  python-3.3.3.ebuild:
+  Don't die on broken sem_open if threads flag is disabled.
 
   30 Dec 2013; Mike Gilbert <floppym@gentoo.org> python-2.6.8-r3.ebuild,
   python-2.6.9.ebuild, python-2.7.5-r3.ebuild, python-2.7.5-r4.ebuild,
