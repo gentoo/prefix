@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.9_p1-r4.ebuild,v 1.11 2012/09/25 12:29:34 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.9_p1-r4.ebuild,v 1.16 2013/12/11 09:37:15 radhermit Exp $
 
 EAPI="2"
 inherit eutils user flag-o-matic multilib autotools pam systemd
@@ -21,10 +21,10 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 	${X509_PATCH:+X509? ( http://roumenpetrov.info/openssh/x509-${X509_VER}/${X509_PATCH} )}
 	"
 
-LICENSE="BSD"
+LICENSE="BSD GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="${HPN_PATCH:++}hpn kerberos ldap libedit pam selinux skey static tcpd X X509"
+IUSE="bindist ${HPN_PATCH:++}hpn kerberos ldap libedit pam selinux skey static tcpd X X509"
 
 RDEPEND="pam? ( virtual/pam )
 	kerberos? ( virtual/krb5 )
@@ -32,7 +32,7 @@ RDEPEND="pam? ( virtual/pam )
 	skey? ( >=sys-auth/skey-1.1.5-r1 )
 	ldap? ( net-nds/openldap )
 	libedit? ( dev-libs/libedit )
-	>=dev-libs/openssl-0.9.6d
+	>=dev-libs/openssl-0.9.6d:0[bindist=]
 	>=sys-libs/zlib-1.2.3
 	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )
 	X? ( x11-apps/xauth )
@@ -130,6 +130,8 @@ src_prepare() {
 	# Disable PATH reset, trust what portage gives us. bug 254615
 	sed -i -e 's:^PATH=/:#PATH=/:' configure || die
 
+	epatch_user #473004
+
 	# Now we can build a sane merged version.h
 	(
 		sed '/^#define SSH_RELEASE/d' version.h.* | sort -u
@@ -217,7 +219,7 @@ src_install() {
 		keepdir /var/empty/dev
 	fi
 
-	if use ldap ; then
+	if ! use X509 && [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 		insinto /etc/openldap/schema/
 		newins openssh-lpk_openldap.schema openssh-lpk.schema
 	fi
