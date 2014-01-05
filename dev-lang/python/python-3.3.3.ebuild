@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.3.3.ebuild,v 1.6 2013/12/30 21:57:26 floppym Exp $
 
@@ -10,7 +10,7 @@ inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolcha
 
 MY_P="Python-${PV}"
 PATCHSET_REVISION="0"
-PREFIX_PATCHREV="-r0"
+PREFIX_PATCHREV="-r1"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
