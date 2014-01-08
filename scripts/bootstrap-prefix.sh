@@ -1224,7 +1224,7 @@ bootstrap_stage3() {
 
 	# --oneshot
 	local pkgs=(
-		"<net-misc/wget-1.13.4-r1" # until we fix #393277
+		net-misc/wget
 		virtual/os-headers
 	)
 	emerge_pkgs "" "${pkgs[@]}" || return 1
