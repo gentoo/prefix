@@ -1,6 +1,56 @@
 # ChangeLog for sys-devel/binutils
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.493 2013/11/30 08:31:02 vapier Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.507 2014/01/07 04:43:47 patrick Exp $
+
+*binutils-2.24-r1 (07 Jan 2014)
+
+  07 Jan 2014; Patrick Lauer <patrick@gentoo.org> +binutils-2.24-r1.ebuild,
+  -binutils-2.24.ebuild:
+  Bump 2.24 so that all users get the fixes
+
+  06 Jan 2014; Mike Frysinger <vapier@gentoo.org> binutils-2.24.51.0.1.ebuild,
+  binutils-2.24.51.0.2.ebuild, binutils-2.24.ebuild:
+  Fix install of libiberty #497268 by Small_Penguin.
+
+*binutils-2.24 (31 Dec 2013)
+
+  31 Dec 2013; Mike Frysinger <vapier@gentoo.org> +binutils-2.24.ebuild:
+  Version bump.
+
+  31 Dec 2013; Mike Frysinger <vapier@gentoo.org> binutils-9999.ebuild:
+  Start testing out EAPI=4.
+
+  26 Dec 2013; Markus Meier <maekke@gentoo.org> binutils-2.23.2.ebuild:
+  arm stable, bug #494670
+
+  24 Dec 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.2.ebuild:
+  Stable for x86, wrt bug #494670
+
+  23 Dec 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.2.ebuild:
+  Stable for sparc, wrt bug #494670
+
+  23 Dec 2013; Mike Frysinger <vapier@gentoo.org> binutils-2.23.2.ebuild:
+  Mark ia64 stable #494670.
+
+*binutils-2.24.51.0.2 (22 Dec 2013)
+
+  22 Dec 2013; Mike Frysinger <vapier@gentoo.org> +binutils-2.24.51.0.2.ebuild:
+  Version bump.
+
+  22 Dec 2013; Pacho Ramos <pacho@gentoo.org> binutils-2.23.2.ebuild:
+  amd64 stable, bug #494670
+
+  22 Dec 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.2.ebuild:
+  Stable for ppc64, wrt bug #494670
+
+  21 Dec 2013; Agostino Sarubbo <ago@gentoo.org> binutils-2.23.2.ebuild:
+  Stable for ppc, wrt bug #494670
+
+  20 Dec 2013; Matt Turner <mattst88@gentoo.org> binutils-2.23.2.ebuild:
+  alpha stable, bug 494670.
+
+  19 Dec 2013; Jeroen Roovers <jer@gentoo.org> binutils-2.23.2.ebuild:
+  Stable for HPPA (bug #494670).
 
   17 Dec 2013; Fabian Groffen <grobian@gentoo.org> binutils-2.23.ebuild:
   Apply texinfo fix when makeinfo is available for bug #491620
