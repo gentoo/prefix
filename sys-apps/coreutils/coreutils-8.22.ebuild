@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.22.ebuild,v 1.2 2013/12/18 05:00:08 vapier Exp $
 
@@ -48,7 +48,7 @@ src_prepare() {
 		epatch
 	fi
 
-	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
+	epatch "${FILESDIR}"/${PN}-8.22-mint.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
