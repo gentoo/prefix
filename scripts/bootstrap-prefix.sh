@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2006-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 2006-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Id: bootstrap-prefix.sh 61818 2014-01-08 07:28:16Z haubi $
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
