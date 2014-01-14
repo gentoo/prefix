@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby -w
-# Copyright 2008-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 2008-2014 Gentoo Foundation; Distributed under the GPL v2
 
 %w{ pathname set }.each {|lib| require lib}
 

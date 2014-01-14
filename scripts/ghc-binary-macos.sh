@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2007-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 2007-2014 Gentoo Foundation; Distributed under the GPL v2
 EPREFIX=$(portageq envvar EPREFIX)
 VERSION=6.8.2
 GCC_VERSION=4.0.1
