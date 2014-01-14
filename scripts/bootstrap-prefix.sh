@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Copyright 2006-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Id$
+# $Id: bootstrap-prefix.sh 61818 2014-01-08 07:28:16Z haubi $
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
 
@@ -374,7 +374,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20131215"
+	local PV="20140113"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
@@ -439,8 +439,8 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
-	STABLE_PV="2.2.7"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.2.7"
+	STABLE_PV="2.2.8"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.2.8"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
