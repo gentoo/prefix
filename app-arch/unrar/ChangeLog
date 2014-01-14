@@ -1,6 +1,98 @@
 # ChangeLog for app-arch/unrar
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.183 2012/07/15 17:19:06 armin76 Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.208 2013/11/17 15:11:37 ssuominen Exp $
+
+*unrar-5.0.13 (17 Nov 2013)
+
+  17 Nov 2013; Samuli Suominen <ssuominen@gentoo.org> +unrar-5.0.13.ebuild:
+  Version bump.
+
+  09 Oct 2013; Samuli Suominen <ssuominen@gentoo.org> -unrar-5.0.7.ebuild,
+  -unrar-5.0.8.ebuild:
+  old
+
+*unrar-5.0.12 (09 Oct 2013)
+
+  09 Oct 2013; Samuli Suominen <ssuominen@gentoo.org> +unrar-5.0.12.ebuild:
+  Version bump.
+
+*unrar-5.0.8 (29 Jul 2013)
+
+  29 Jul 2013; Samuli Suominen <ssuominen@gentoo.org> +unrar-5.0.8.ebuild:
+  Version bump.
+
+  28 Jul 2013; Alexis Ballier <aballier@gentoo.org> unrar-5.0.7.ebuild:
+  keyword ~amd64-fbsd, bug #477750
+
+  26 Jun 2013; Samuli Suominen <ssuominen@gentoo.org> -unrar-5.0.2.ebuild,
+  -unrar-5.0.3.ebuild:
+  old
+
+*unrar-5.0.7 (26 Jun 2013)
+
+  26 Jun 2013; Samuli Suominen <ssuominen@gentoo.org> +unrar-5.0.7.ebuild:
+  Version bump.
+
+  05 Jun 2013; Mike Frysinger <vapier@gentoo.org> metadata.xml:
+  Add upstream CPE tag (security info) from ChromiumOS.
+
+*unrar-5.0.3 (09 May 2013)
+
+  09 May 2013; Samuli Suominen <ssuominen@gentoo.org> +unrar-5.0.3.ebuild:
+  Version bump.
+
+  01 May 2013; Samuli Suominen <ssuominen@gentoo.org> -unrar-4.2.3.ebuild:
+  old
+
+*unrar-5.0.2 (01 May 2013)
+
+  01 May 2013; Samuli Suominen <ssuominen@gentoo.org> +unrar-5.0.2.ebuild,
+  +files/unrar-5.0.2-build.patch:
+  Version bump.
+
+  16 Mar 2013; Mike Frysinger <vapier@gentoo.org>
+  +files/unrar-4.2.4-build.patch, unrar-4.2.4.ebuild:
+  Fix parallel build failures #461806 by Mikle Kolyada.
+
+  15 Mar 2013; Jeroen Roovers <jer@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for HPPA (bug #461610).
+
+  15 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for sh, wrt bug #461610
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for s390, wrt bug #461610
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for sparc, wrt bug #461610
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for ia64, wrt bug #461610
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for arm, wrt bug #461610
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for alpha, wrt bug #461610
+
+  13 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for ppc64, wrt bug #461610
+
+  13 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for ppc, wrt bug #461610
+
+  13 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for x86, wrt bug #461610
+
+  13 Mar 2013; Agostino Sarubbo <ago@gentoo.org> unrar-4.2.4.ebuild:
+  Stable for amd64, wrt bug #461610
+
+  13 Mar 2013; Samuli Suominen <ssuominen@gentoo.org> -unrar-4.1.4-r2.ebuild,
+  -unrar-4.2.1.ebuild, -unrar-4.2.2.ebuild:
+  old
+
+  17 Feb 2013; Zac Medico <zmedico@gentoo.org> unrar-4.2.4.ebuild:
+  Add ~arm-linux and ~x86-linux keywords.
 
   15 Jul 2012; Raúl Porcel <armin76@gentoo.org> unrar-4.2.3.ebuild:
   alpha/ia64/s390/sh/sparc stable wrt #421221

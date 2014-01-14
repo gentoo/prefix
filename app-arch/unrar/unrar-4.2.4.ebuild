@@ -1,9 +1,9 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-4.2.4.ebuild,v 1.1 2012/06/14 20:55:16 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-4.2.4.ebuild,v 1.14 2013/03/16 15:35:08 vapier Exp $
 
 EAPI=4
-inherit flag-o-matic multilib toolchain-funcs
+inherit flag-o-matic multilib toolchain-funcs eutils
 
 MY_PN=${PN}src
 
@@ -21,6 +21,7 @@ RDEPEND="!<=app-arch/unrar-gpl-0.0.1_p20080417"
 S=${WORKDIR}/unrar
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PN}-4.2.4-build.patch
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		sed -i \
 			-e "/libunrar/s:.so:$(get_libname ${PV%.*.*}):" \
@@ -45,6 +46,9 @@ src_compile() {
 	ln -s libunrar$(get_libname ${PV%.*.*}) libunrar$(get_libname)
 	ln -s libunrar$(get_libname ${PV%.*.*}) libunrar$(get_libname ${PV})
 
+	# The stupid code compiles a lot of objects differently if
+	# they're going into a lib (-DRARDLL) or into the main app.
+	# So for now, we can't link the main app against the lib.
 	unrar_make clean
 	unrar_make
 }

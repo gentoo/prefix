@@ -1,9 +1,9 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-4.2.1.ebuild,v 1.1 2012/05/05 12:20:06 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-5.0.13.ebuild,v 1.1 2013/11/17 15:11:37 ssuominen Exp $
 
-EAPI=4
-inherit flag-o-matic multilib toolchain-funcs
+EAPI=5
+inherit eutils flag-o-matic multilib toolchain-funcs
 
 MY_PN=${PN}src
 
@@ -21,16 +21,17 @@ RDEPEND="!<=app-arch/unrar-gpl-0.0.1_p20080417"
 S=${WORKDIR}/unrar
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PN}-5.0.2-build.patch
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		sed -i \
 			-e "/libunrar/s:.so:$(get_libname ${PV%.*.*}):" \
 			-e "s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/lib/libunrar$(get_libname ${PV%.*.*}):" \
-			makefile.unix || die
+			makefile || die
 	else
 		sed -i \
 			-e "/libunrar/s:.so:$(get_libname ${PV%.*.*}):" \
 			-e "s:-shared:& -Wl,-soname -Wl,libunrar$(get_libname ${PV%.*.*}):" \
-			makefile.unix || die
+			makefile || die
 	fi
 	epatch "${FILESDIR}"/${PN}-3.9.10-solaris-byteorder.patch
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.8.5-interix.patch
@@ -38,13 +39,16 @@ src_prepare() {
 
 src_compile() {
 	unrar_make() {
-		emake -f makefile.unix CXX="$(tc-getCXX)" CXXFLAGS="${CXXFLAGS}" STRIP=true "$@"
+		emake CXX="$(tc-getCXX)" CXXFLAGS="${CXXFLAGS}" STRIP=true "$@"
 	}
 
 	unrar_make CXXFLAGS+=" -fPIC" lib
 	ln -s libunrar$(get_libname ${PV%.*.*}) libunrar$(get_libname)
 	ln -s libunrar$(get_libname ${PV%.*.*}) libunrar$(get_libname ${PV})
 
+	# The stupid code compiles a lot of objects differently if
+	# they're going into a lib (-DRARDLL) or into the main app.
+	# So for now, we can't link the main app against the lib.
 	unrar_make clean
 	unrar_make
 }
