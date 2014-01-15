@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${PN}-${UP_PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~m68k-mint ~x86-solaris"
 IUSE="nls static-libs"
 
 RDEPEND="!sys-libs/com_err
@@ -35,8 +35,6 @@ S=${WORKDIR}/${P%_pre*}
 src_prepare() {
 	printf 'all:\n%%:;@:\n' > doc/Makefile.in # don't bother with docs #305613
 	epatch "${FILESDIR}"/${PN}-1.42.9-no-quota.patch
-	epatch "${FILESDIR}"/${PN}-1.41.12-darwin-makefile.patch
-	epatch "${FILESDIR}"/${PN}-1.41.9-irix.patch
 	if [[ ${CHOST} == *-mint* ]]; then
 		sed -i -e 's/_SVID_SOURCE/_GNU_SOURCE/' lib/uuid/gen_uuid.c || die
 	fi
