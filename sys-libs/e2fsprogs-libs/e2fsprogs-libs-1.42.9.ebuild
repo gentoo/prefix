@@ -35,21 +35,9 @@ S=${WORKDIR}/${P%_pre*}
 src_prepare() {
 	printf 'all:\n%%:;@:\n' > doc/Makefile.in # don't bother with docs #305613
 	epatch "${FILESDIR}"/${PN}-1.42.9-no-quota.patch
-	if [[ ${CHOST} == *-mint* ]]; then
-		sed -i -e 's/_SVID_SOURCE/_GNU_SOURCE/' lib/uuid/gen_uuid.c || die
-	fi
 }
 
 multilib_src_configure() {
-	# We want to use the "bsd" libraries while building on Darwin, but while
-	# building on other Gentoo/*BSD we prefer elf-naming scheme.
-	local libtype
-	case ${CHOST} in
-		*-darwin*) libtype=--enable-bsd-shlibs  ;;
-		*-mint*)   libtype=                     ;;
-		*)         libtype=--enable-elf-shlibs  ;;
-	esac
-
 	# we use blkid/uuid from util-linux now
 	ac_cv_lib_uuid_uuid_generate=yes \
 	ac_cv_lib_blkid_blkid_get_cache=yes \
@@ -58,7 +46,7 @@ multilib_src_configure() {
 	econf \
 		--disable-lib{blkid,uuid} \
 		--disable-quota \
-		${libtype} \
+		$(tc-is-static-only || echo --enable-elf-shlibs) \
 		$(tc-has-tls || echo --disable-tls) \
 		$(use_enable nls)
 }
