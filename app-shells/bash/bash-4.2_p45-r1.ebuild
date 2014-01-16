@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.2_p37.ebuild,v 1.10 2012/09/02 17:49:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.2_p45-r1.ebuild,v 1.1 2014/01/07 14:23:35 vapier Exp $
 
 EAPI="1"
 
@@ -79,6 +79,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.2-execute-job-control.patch #383237
 	epatch "${FILESDIR}"/${PN}-4.2-parallel-build.patch
 	epatch "${FILESDIR}"/${PN}-4.2-no-readline.patch
+	epatch "${FILESDIR}"/${PN}-4.2-read-retry.patch #447810
+	if ! use vanilla ; then
+		epatch "${FILESDIR}"/${PN}-4.2-speed-up-read-N.patch
+	fi
 
 	# this adds additional prefixes
 	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
@@ -87,6 +91,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
 
+	epatch "${FILESDIR}"/${PN}-4.2-darwin13.patch # patch from 4.3
+	epatch "${FILESDIR}"/${PN}-4.1-blocking-namedpipe.patch # aix lacks /dev/fd/
+	epatch "${FILESDIR}"/${PN}-4.0-childmax-pids.patch # AIX, Interix
 	if [[ ${CHOST} == *-interix* ]]; then
 		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi
@@ -96,10 +103,11 @@ src_unpack() {
 	sed -i -e '1s:sh:bash:' support/bashbug.sh || die
 
 	# modify the bashrc file for prefix
-	cp "${FILESDIR}"/bashrc "${T}"
-	cd "${T}"
+	pushd "${T}" > /dev/null || die
+	cp "${FILESDIR}"/bashrc .
 	epatch "${FILESDIR}"/bashrc-prefix.patch
-	eprefixify "${T}"/bashrc
+	eprefixify bashrc
+	popd > /dev/null
 
 	# DON'T YOU EVER PUT eautoreconf OR SIMILAR HERE!  THIS IS A CRITICAL
 	# PACKAGE THAT MUST NOT RELY ON AUTOTOOLS, USE A SELF-SUFFICIENT PATCH
@@ -109,7 +117,7 @@ src_unpack() {
 }
 
 src_compile() {
-	local myconf=
+	local myconf=()
 
 	# For descriptions of these, see config-top.h
 	# bashrc/#26952 bash_logout/#90488 ssh/#24762
@@ -157,7 +165,7 @@ src_compile() {
 	# reading Bug 7714 first.  If you still build it statically,
 	# don't come crying to us with bugs ;).
 	#use static && export LDFLAGS="${LDFLAGS} -static"
-	use nls || myconf="${myconf} --disable-nls"
+	use nls || myconf+=( --disable-nls )
 
 	# Historically, we always used the builtin readline, but since
 	# our handling of SONAME upgrades has gotten much more stable
@@ -179,7 +187,7 @@ src_compile() {
 		;;
 		# Darwin doesn't need an rpath here (in fact doesn't grok the argument)
 	esac
-
+	tc-export AR #444070
 	econf \
 		--with-installed-readline=. \
 		--with-curses \
@@ -191,7 +199,7 @@ src_compile() {
 		$(use_enable readline) \
 		$(use_enable readline history) \
 		$(use_enable readline bang-history) \
-		${myconf}
+		"${myconf[@]}"
 	emake || die
 
 	if use plugins ; then
@@ -232,6 +240,9 @@ src_install() {
 	if use plugins ; then
 		exeinto /usr/$(get_libdir)/bash
 		doexe $(echo examples/loadables/*.o | sed 's:\.o::g') || die
+		insinto /usr/include/bash-plugins
+		doins *.h builtins/*.h examples/loadables/*.h include/*.h \
+			lib/{glob/glob.h,tilde/tilde.h}
 	fi
 
 	if use examples ; then

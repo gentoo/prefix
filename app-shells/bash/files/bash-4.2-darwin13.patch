@@ -1,0 +1,41 @@
+https://lists.gnu.org/archive/html/bug-bash/2013-07/msg00011.html
+https://github.com/Homebrew/homebrew/commit/5bfaa0553c8318c268cab1a169f0b6d2487e7fee#diff-13b7da79ca811b00c712f3fc37bc8cc3R61
+
+(Fixed in next bash release)
+
+From 481ac7aca4763deb475ee134884a7ab719f7b152 Mon Sep 17 00:00:00 2001
+From: Jeremy Olexa <darkside@gentoo.org>
+Date: Wed, 15 Jan 2014 21:25:24 -0600
+Subject: [PATCH] fix polite_directory_format on osx 10.9
+
+---
+ parse.y | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/parse.y b/parse.y
+index dc78e7e..88f0417 100644
+--- a/parse.y
++++ b/parse.y
+@@ -5271,9 +5271,18 @@ decode_prompt_string (string)
+ #undef ROOT_PATH
+ #undef DOUBLE_SLASH_ROOT
+ 		else
++		{
+ 		  /* polite_directory_format is guaranteed to return a string
+ 		     no longer than PATH_MAX - 1 characters. */
+-		  strcpy (t_string, polite_directory_format (t_string));
++				/* polite_directory_format might simply return the pointer to
++			 	t_string strcpy(3) tells dst and src may not overlap, OS X 10.9
++			 	asserts this and triggers an abort trap if that's the case */
++			temp = polite_directory_format (t_string);
++			if (temp != t_string)
++				strcpy (t_string, temp);
++		}
++
++
+ 
+ 		temp = trim_pathname (t_string, PATH_MAX - 1);
+ 		/* If we're going to be expanding the prompt string later,
+-- 
+1.8.3.4 (Apple Git-47)
+
