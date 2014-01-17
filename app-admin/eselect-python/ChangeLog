@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.79 2013/12/10 17:45:14 floppym Exp $
 
+*eselect-python-20131210-r1 (17 Jan 2014)
+
+  17 Jan 2014; Fabian Groffen <grobian@gentoo.org>
+  +eselect-python-20131210-r1.ebuild, -eselect-python-20131210.ebuild:
+  Apply half workaround for bug #498356
+
 *eselect-python-20131210 (10 Dec 2013)
 
   10 Dec 2013; Mike Gilbert <floppym@gentoo.org>
@@ -355,4 +361,3 @@
   24 Jan 2008; Ali Polatel <hawking@gentoo.org> +metadata.xml,
   +eselect-python-20080124.ebuild:
   eselect-python, initial version
-
