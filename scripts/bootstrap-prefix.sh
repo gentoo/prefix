@@ -346,17 +346,17 @@ HOSTCC='gcc -m64'
 		# our own GCC with c++ support.  For that reason we cannot
 		# globally mask cxx, because then GCC will be built without c++
 		# support too.
-		echo "sys-devel/binutils cxx" >> ${PORTDIR}/profiles/prefix/package.use.mask
+		echo "sys-devel/binutils cxx" >> ${PORTDIR}/profiles/features/prefix/package.use.mask
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
 	# Hack for bash because curses is not always available (linux).
 	# This will be wiped upon emerge --sync and back to normal.
 	echo '[[ ${PN} == "bash" ]] && EXTRA_ECONF="--without-curses"' >> \
-		"${PORTDIR}/profiles/prefix/profile.bashrc"
+		"${PORTDIR}/profiles/features/prefix/profile.bashrc"
 	# Some people will hit bug 262653 with gcc-4.2 and elfutils. Let's skip it
 	# here and bring it in AFTER the --sync
 	echo "dev-libs/elfutils-0.153" >> \
-		"${PORTDIR}/profiles/prefix/package.provided"
+		"${PORTDIR}/profiles/features/prefix/package.provided"
 }
 
 do_tree() {
