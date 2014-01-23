@@ -110,11 +110,12 @@ src_prepare() {
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
-	# Disable ABI flags.  (configure because autoconf doesn't regen)
-	sed -e "s/ABIFLAGS=\"\${ABIFLAGS}.*\"/:/" -i configure.ac configure || die "sed failed"
+	# Disable ABI flags.
+	sed -e "s/ABIFLAGS=\"\${ABIFLAGS}.*\"/:/" -i configure.ac || die "sed failed"
 
 	epatch_user
 
+	rm -f configure  # force regeneration
 	eautoconf
 	eautoheader
 }
