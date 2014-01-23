@@ -357,6 +357,9 @@ HOSTCC='gcc -m64'
 	# here and bring it in AFTER the --sync
 	echo "dev-libs/elfutils-0.153" >> \
 		"${PORTDIR}/profiles/features/prefix/package.provided"
+	# Python >= 3.3 fails to build on gcc-4.2. Disable it until after the sync.
+	echo ">=dev-lang/python-3.3" >> "${PORTDIR}/profiles/features/prefix/package.mask"
+	echo 'USE="${USE} python_targets_python3_2 -python_targets_python3_3"' >> "${PORTDIR}/profiles/features/prefix/make.defaults"
 }
 
 do_tree() {
@@ -1273,11 +1276,14 @@ bootstrap_stage3() {
 			;;
 	esac
 
-	# Portage should figure out itself what it needs to do, if anything
-	USE=-git emerge -u system || return 1
+	# We need an up-to-date compiler before upgrading python to avoid bug #490774
+	emerge -u sys-devel/gcc || return 1
 
 	# activate last compiler
 	gcc-config $(gcc-config -l | wc -l)
+
+	# Portage should figure out itself what it needs to do, if anything
+	USE=-git emerge -u system || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
