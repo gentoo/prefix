@@ -762,6 +762,9 @@ bootstrap_python() {
 	export OPT="${CFLAGS}"
 
 	einfo "Compiling ${A%-*}"
+
+	#some ancient versions of hg fail with "hg id -i", so help configure to not find them
+	HAS_HG=no \
 	econf \
 		--disable-toolbox-glue \
 		--disable-ipv6 \
