@@ -1774,6 +1774,17 @@ EOF
 				continue
 				;;
 		esac
+		if type -P readlink > /dev/null && \
+		  [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && $EPREFIX != $(readlink "$EPREFIX") ]]; then
+			echo
+			echo "$EPREFIX contains a symlink, which will make the merge of gcc"
+			echo "imposible, use '$(readlink "$EPREFIX")' instead or"
+			echo "export I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS='hell yeah'"
+			[[ ${TODO} == 'noninteractive' ]] && exit 1
+			echo "Have another try."
+			EPREFIX=
+			continue
+		fi
 		if [[ ! -d ${EPREFIX} ]] && ! mkdir -p "${EPREFIX}" ; then
 			echo
 			echo "It seems I cannot create ${EPREFIX}."
