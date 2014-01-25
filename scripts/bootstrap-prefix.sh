@@ -223,137 +223,137 @@ bootstrap_setup() {
 	einfo "setting up some guessed defaults"
 	case ${CHOST} in
 		powerpc-apple-darwin7)
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.3"
+			profile="prefix/darwin/macos/10.3"
 			;;
 		powerpc-apple-darwin[89])
 			rev=${CHOST##*darwin}
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/ppc"
+			profile="prefix/darwin/macos/10.$((rev - 4))/ppc"
 			;;
 		powerpc64-apple-darwin[89])
 			rev=${CHOST##*darwin}
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/ppc64"
+			profile="prefix/darwin/macos/10.$((rev - 4))/ppc64"
 			;;
 		i*86-apple-darwin[89])
 			rev=${CHOST##*darwin}
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
+			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
 			;;
 		i*86-apple-darwin1[0123])
 			rev=${CHOST##*darwin}
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
+			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
 			;;
 		x86_64-apple-darwin9|x86_64-apple-darwin1[0123])
 			rev=${CHOST##*darwin}
-			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x64"
+			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
 		i*86-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/prefix/linux/x86"
+			profile="prefix/linux/x86"
 			;;
 		x86_64-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/prefix/linux/amd64"
+			profile="prefix/linux/amd64"
 			;;
 		ia64-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/prefix/linux/ia64"
+			profile="prefix/linux/ia64"
 			;;
 		powerpc-unknown-linux-gnu)
-			profile="${PORTDIR}/profiles/prefix/linux/ppc"
+			profile="prefix/linux/ppc"
 			;;
 		powerpc64-unknown-linux-gnu)
-			profile="${PORTDIR}/profiles/prefix/linux/ppc64"
+			profile="prefix/linux/ppc64"
 			;;
 		armv7l-pc-linux-gnu)
-			profile="${PORTDIR}/profiles/prefix/linux/arm"
+			profile="prefix/linux/arm"
 			;;
 		sparc-sun-solaris2.9)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc"
+			profile="prefix/sunos/solaris/5.9/sparc"
 			;;
 		sparcv9-sun-solaris2.9)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc64"
+			profile="prefix/sunos/solaris/5.9/sparc64"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
 			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		i386-pc-solaris2.10)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x86"
+			profile="prefix/sunos/solaris/5.10/x86"
 			;;
 		x86_64-pc-solaris2.10)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x64"
+			profile="prefix/sunos/solaris/5.10/x64"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
 			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		sparc-sun-solaris2.10)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/sparc"
+			profile="prefix/sunos/solaris/5.10/sparc"
 			;;
 		sparcv9-sun-solaris2.10)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/sparc64"
+			profile="prefix/sunos/solaris/5.10/sparc64"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
 			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		i386-pc-solaris2.11)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/x86"
+			profile="prefix/sunos/solaris/5.11/x86"
 			;;
 		x86_64-pc-solaris2.11)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/x64"
+			profile="prefix/sunos/solaris/5.11/x64"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
 			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		sparc-sun-solaris2.11)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/sparc"
+			profile="prefix/sunos/solaris/5.11/sparc"
 			;;
 		sparcv9-sun-solaris2.11)
-			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/sparc64"
+			profile="prefix/sunos/solaris/5.11/sparc64"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
 			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		powerpc-ibm-aix*)
-			profile="${PORTDIR}/profiles/prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
+			profile="prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
 			;;
 		mips-sgi-irix*)
-			profile="${PORTDIR}/profiles/prefix/irix/${CHOST#mips-sgi-irix}/mips"
+			profile="prefix/irix/${CHOST#mips-sgi-irix}/mips"
 			;;
 		i586-pc-interix*)
-			profile="${PORTDIR}/profiles/prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
+			profile="prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
 			;;
 		i586-pc-winnt*)
-			profile="${PORTDIR}/profiles/prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
+			profile="prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
 			;;
 		i686-pc-cygwin*)
-			profile="${PORTDIR}/profiles/prefix/windows/cygwin/${CHOST#i686-pc-cygwin}/x86"
+			profile="prefix/windows/cygwin/${CHOST#i686-pc-cygwin}/x86"
 			;;
 		hppa64*-hp-hpux11*)
-			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa64"
+			profile="prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa64"
 			;;
 		hppa2.0*-hp-hpux11*)
-			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa2.0"
+			profile="prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa2.0"
 			;;
 		ia64-hp-hpux11*)
-			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
+			profile="prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
 			;;
 		i386-pc-freebsd*)
-			profile="${PORTDIR}/profiles/prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
+			profile="prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
 			;;
 		x86_64-pc-freebsd*)
-			profile="${PORTDIR}/profiles/prefix/bsd/freebsd/${CHOST#x86_64-pc-freebsd}/x64"
+			profile="prefix/bsd/freebsd/${CHOST#x86_64-pc-freebsd}/x64"
 			;;
 		i386-pc-netbsd*)
-			profile="${PORTDIR}/profiles/prefix/bsd/netbsd/${CHOST#i386-pc-netbsdelf}/x86"
+			profile="prefix/bsd/netbsd/${CHOST#i386-pc-netbsdelf}/x86"
 			;;
 		powerpc-unknown-openbsd*)
-			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#powerpc-unknown-openbsd}/ppc"
+			profile="prefix/bsd/openbsd/${CHOST#powerpc-unknown-openbsd}/ppc"
 			;;
 		i386-pc-openbsd*)
-			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#i386-pc-openbsd}/x86"
+			profile="prefix/bsd/openbsd/${CHOST#i386-pc-openbsd}/x86"
 			;;
 		x86_64-pc-openbsd*)
-			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#x86_64-pc-openbsd}/x64"
+			profile="prefix/bsd/openbsd/${CHOST#x86_64-pc-openbsd}/x64"
 			;;
 		*)	
 			einfo "UNKNOWN ARCH: You need to set up a make.profile symlink to a"
@@ -361,8 +361,16 @@ bootstrap_setup() {
 			;;
 	esac
 	if [[ -n ${profile} && ! -e ${ROOT}/etc/portage/make.profile ]] ; then
-		ln -s "${profile}" "${ROOT}"/etc/portage/make.profile
-		einfo "Your profile is set to ${profile}."
+		local fullprofile="${PORTDIR}/profiles/${profile}"
+		for base in ${PORTDIR_OVERLAY} ; do
+			if [[ -e ${base}/profiles/${profile}/parent ]] ; then
+				fullprofile="${base}/profiles/${profile}"
+				break
+			fi
+		done
+		
+		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
+		einfo "Your profile is set to ${fullprofile}."
 	fi
 	
 	# Disable the STALE warning because the snapshot frequently gets stale.
@@ -1257,6 +1265,7 @@ bootstrap_stage3() {
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
 			echo "# be careful with this one, don't just remove it!"
 			echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
+			[[ -n $PORTDIR_OVERLAY ]] && echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
 		} > "${EPREFIX}"/etc/portage/make.conf
 	fi
 
