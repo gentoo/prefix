@@ -92,6 +92,132 @@ efetch() {
 # 	einfo "${A%-*} successfully bootstrapped"
 # }
 
+configure_toolchain() {
+	export CPPFLAGS="-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include"
+
+	case ${CHOST} in
+		*-darwin*)
+			export LDFLAGS="-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
+			;;
+		*-solaris* | *-irix*)
+			export LDFLAGS="-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib"
+			;;
+		*-hp-hpux*)
+			export LDFLAGS="-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib"
+			;;
+		*-*-aix*)
+			# The bootstrap compiler unlikely has runtime linking enabled already,
+			# but elibtoolize switches to the "lib.so(shr.o)" sharedlib variant.
+			export LDFLAGS="-Wl,-brtl -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
+			;;
+		i586-pc-interix* | i586-pc-winnt* | i686-pc-cygwin*)
+			export LDFLAGS="-L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
+			;;
+		*)
+			export LDFLAGS="-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib"
+			;;
+	esac
+
+	case ${CHOST} in
+		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
+			[[ -n ${CC} ]] && export CC="gcc -m64"
+			[[ -n ${CXX} ]] && export CXX="g++ -m64"
+			[[ -n ${HOSTCC} ]] && export HOSTCC="gcc -m64"
+			;;
+		i*86-apple-darwin1*)
+			[[ -n ${CC} ]] && export CC="gcc -m32"
+			[[ -n ${CXX} ]] && export CXX="g++ -m32"
+			[[ -n ${HOSTCC} ]] && export HOSTCC="gcc -m32"
+			;;
+		*)
+			;;
+	esac
+
+	case ${bootstrapCHOST} in
+		*-darwin*)
+			case "$(gcc --version)" in
+				*"(GCC) 4.2.1 "*|*"Apple LLVM version 5.0"*)
+					local linker=sys-devel/binutils-apple
+					;;
+				*"(GCC) 4.0.1 "*)
+					local linker="=sys-devel/binutils-apple-3.2"
+					;;
+				*)
+					eerror "unknown compiler"
+					return 1
+					;;
+			esac
+			toolchainpackages=(
+				sys-apps/darwin-miscutils
+				sys-libs/csu
+				${linker}
+				sys-devel/gcc-apple
+			)
+			;;
+		i?86-*-solaris*)
+			# 4.2/x86 can't cope with Sun ld/as
+			# results in a bootstrap compare mismatch
+
+			# Figure out what Solaris we're on.  Since Solaris 10u10
+			# some Solaris 11 changes have been integrated that
+			# implement some GNU extensions to ELF.  This most notably
+			# is the VERSYM_HIDDEN flag, that GCC 4.1 doesn't know
+			# about, resulting in a libstdc++.so that cannot find these
+			# hidden symbols.  GCC 4.2 knows about these, so we must
+			# have it there.  Unfortunately, 4.2 doesn't always compile,
+			# so we need to perform the expensive 4.1 -> 4.2 -> current.
+			local SOLARIS_RELEASE=$(head -n1 /etc/release)
+			local needgcc42=
+			case "${SOLARIS_RELEASE}" in
+				*"Solaris 10"*)
+					# figure out major update level
+					SOLARIS_RELEASE=${SOLARIS_RELEASE##*s10s_u}
+					SOLARIS_RELEASE=${SOLARIS_RELEASE%%wos_*}
+					if [[ "${SOLARIS_RELEASE}" -ge "10" ]] ; then
+						needgcc42="=sys-devel/gcc-4.2*"
+					fi
+					;;
+				*)
+					# assume all the rest is Oracle Solaris 11,
+					# OpenSolaris, OpenIndiana, SmartOS, whatever,
+					# thus > Solaris 10u10
+					needgcc42="=sys-devel/gcc-4.2*"
+					;;
+			esac
+
+			toolchainpackages=(
+				sys-devel/binutils
+				"=sys-devel/gcc-4.1*"
+				${needgcc42}
+			)
+			;;
+		sparc-*-solaris2.11)
+			# unknown what the problem is here
+			toolchainpackages=(
+				sys-devel/binutils
+				"=sys-devel/gcc-4.1*"
+				"=sys-devel/gcc-4.2*"
+			)
+			;;
+		*-*-aix*)
+			toolchainpackages=(
+				dev-libs/libiconv # avoid hell with shared libiconv.a
+				sys-apps/diffutils # or gcc PR14251
+				sys-devel/native-cctools
+				"=sys-devel/gcc-4.2*"
+				sys-apps/aix-miscutils
+				sys-apps/texinfo
+			)
+			;;
+		*)
+			toolchainpackages=(
+				sys-devel/binutils
+				"=sys-devel/gcc-4.2*"
+			)
+			;;
+	esac
+}
+
 bootstrap_setup() {
 	local profile=""
 	einfo "setting up some guessed defaults"
@@ -930,14 +1056,6 @@ bootstrap_stage3() {
 		return 1
 	fi
 
-	# stage2 as set a profile, which defines CHOST, so unset any CHOST
-	# we've got here to avoid cross-compilation due to slight
-	# differences caused by our guessing vs. what the profile sets.
-	# This happens at least on 32-bits Darwin, with i386 and i686.
-	# https://bugs.gentoo.org/show_bug.cgi?id=433948
-	local bootstrapCHOST=${CHOST}
-	unset CHOST
-
 	# Avoid circulur deps caused by the default profiles (and IUSE defaults).
 	local baseUSE="${USE}"
 	export USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python -readline bootstrap internal-glib ${baseUSE}"
@@ -953,15 +1071,24 @@ bootstrap_stage3() {
 	# since our stage1 Python lives in $EPREFIX/tmp, bug #407573
 	export PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym
 
-
-
-
 	# No longer support gen_usr_ldscript stuff in new bootstraps, this
 	# must be in line with what eventually ends up in make.conf, see the
 	# end of this function.  We don't do this in bootstrap_setup()
 	# because in that case we'd also have to cater for getting this
 	# right with manual bootstraps.
 	export PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes 
+
+	# Find out what toolchain packages we need, and configure LDFLAGS and friends.
+	configure_toolchain || return 1
+
+	# stage2 as set a profile, which defines CHOST, so unset any CHOST
+	# we've got here to avoid cross-compilation due to slight
+	# differences caused by our guessing vs. what the profile sets.
+	# This happens at least on 32-bits Darwin, with i386 and i686.
+	# https://bugs.gentoo.org/show_bug.cgi?id=433948
+	local bootstrapCHOST=${CHOST}
+	unset CHOST
+
 
 	emerge_pkgs() {
 		local opts=$1 ; shift
@@ -1016,6 +1143,9 @@ bootstrap_stage3() {
 		done
 	}
 
+	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
+	# but also for perl, which uses scanelf/scanmacho to find compatible
+	# lib-dirs
 	# --oneshot --nodeps
 	local pkgs=(
 		sys-apps/sed
@@ -1028,145 +1158,11 @@ bootstrap_stage3() {
 		sys-devel/patch
 		sys-devel/binutils-config
 		sys-devel/gcc-config
+		app-misc/pax-utils
 	)
-
-	export CPPFLAGS="-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include"
-
-	case ${bootstrapCHOST} in
-		*-darwin*)
-			export LDFLAGS="-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
-			;;
-		*-solaris* | *-irix*)
-			export LDFLAGS="-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib"
-			;;
-		*-hp-hpux*)
-			export LDFLAGS="-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib"
-			;;
-		*-*-aix*)
-			# The bootstrap compiler unlikely has runtime linking enabled already,
-			# but elibtoolize switches to the "lib.so(shr.o)" sharedlib variant.
-			export LDFLAGS="-Wl,-brtl -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
-			;;
-		i586-pc-interix* | i586-pc-winnt* | i686-pc-cygwin*)
-			export LDFLAGS="-L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
-			;;
-		*)
-			export LDFLAGS="-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib"
-			;;
-	esac
-
-	case ${bootstrapCHOST} in
-		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
-			[[ -n ${CC} ]] && export CC="gcc -m64"
-			[[ -n ${CXX} ]] && export CXX="g++ -m64"
-			[[ -n ${HOSTCC} ]] && export HOSTCC="gcc -m64"
-			;;
-		i*86-apple-darwin1*)
-			[[ -n ${CC} ]] && export CC="gcc -m32"
-			[[ -n ${CXX} ]] && export CXX="g++ -m32"
-			[[ -n ${HOSTCC} ]] && export HOSTCC="gcc -m32"
-			;;
-		*)
-			;;
-	esac
-	
-	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
-	# but also for perl, which uses scanelf/scanmacho to find compatible
-	# lib-dirs
-	case ${bootstrapCHOST} in
-		*-darwin*)
-			pkgs=( ${pkgs[@]} sys-apps/darwin-miscutils sys-libs/csu )
-			case "$(gcc --version)" in
-				*"(GCC) 4.2.1 "*|*"Apple LLVM version 5.0"*)
-					pkgs=( ${pkgs[@]} sys-devel/binutils-apple )
-					;;
-				*"(GCC) 4.0.1 "*)
-					pkgs=( ${pkgs[@]} "=sys-devel/binutils-apple-3.2" )
-					;;
-				*)
-					eerror "unknown compiler"
-					return 1
-					;;
-			esac
-			pkgs=(
-				${pkgs[@]}
-				sys-devel/gcc-apple
-				app-misc/pax-utils  # see note above
-			)
-			;;
-		i?86-*-solaris*)
-			# 4.2/x86 can't cope with Sun ld/as
-			# results in a bootstrap compare mismatch
-
-			# Figure out what Solaris we're on.  Since Solaris 10u10
-			# some Solaris 11 changes have been integrated that
-			# implement some GNU extensions to ELF.  This most notably
-			# is the VERSYM_HIDDEN flag, that GCC 4.1 doesn't know
-			# about, resulting in a libstdc++.so that cannot find these
-			# hidden symbols.  GCC 4.2 knows about these, so we must
-			# have it there.  Unfortunately, 4.2 doesn't always compile,
-			# so we need to perform the expensive 4.1 -> 4.2 -> current.
-			local SOLARIS_RELEASE=$(head -n1 /etc/release)
-			local needgcc42=
-			case "${SOLARIS_RELEASE}" in
-				*"Solaris 10"*)
-					# figure out major update level
-					SOLARIS_RELEASE=${SOLARIS_RELEASE##*s10s_u}
-					SOLARIS_RELEASE=${SOLARIS_RELEASE%%wos_*}
-					if [[ "${SOLARIS_RELEASE}" -ge "10" ]] ; then
-						needgcc42="=sys-devel/gcc-4.2*"
-					fi
-					;;
-				*)
-					# assume all the rest is Oracle Solaris 11,
-					# OpenSolaris, OpenIndiana, SmartOS, whatever,
-					# thus > Solaris 10u10
-					needgcc42="=sys-devel/gcc-4.2*"
-					;;
-			esac
-
-			pkgs=(
-				${pkgs[@]}
-				sys-devel/binutils
-				"=sys-devel/gcc-4.1*"
-				${needgcc42}
-				app-misc/pax-utils  # see note above
-			)
-			;;
-		sparc-*-solaris2.11)
-			# unknown what the problem is here
-			pkgs=(
-				${pkgs[@]}
-				sys-devel/binutils
-				"=sys-devel/gcc-4.1*"
-				"=sys-devel/gcc-4.2*"
-				app-misc/pax-utils  # see note above
-			)
-			;;
-		*-*-aix*)
-			pkgs=(
-				${pkgs[@]}
-				dev-libs/libiconv # avoid hell with shared libiconv.a
-				sys-apps/diffutils # or gcc PR14251
-				sys-devel/native-cctools
-				"=sys-devel/gcc-4.2*"
-				sys-apps/aix-miscutils
-				sys-apps/texinfo
-			)
-			# The bootstrap compiler unlikely has runtime linking enabled already,
-			# but elibtoolize switches to the "lib.so(shr.o)" sharedlib variant.
-			;;
-		*)
-			pkgs=(
-				${pkgs[@]}
-				sys-devel/binutils
-				"=sys-devel/gcc-4.2*"
-				app-misc/pax-utils  # see note above
-			)
-			;;
-	esac
-
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+
+	emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
 
 	# --oneshot
 	local pkgs=(
