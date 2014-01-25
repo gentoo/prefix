@@ -1192,7 +1192,9 @@ bootstrap_stage3() {
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 	# --oneshot
+	# wget>=1.14 runs eautopoint, which needs autopoint>=0.15 from gettext
 	local pkgs=(
+		sys-devel/gettext
 		net-misc/wget
 		virtual/os-headers
 	)
