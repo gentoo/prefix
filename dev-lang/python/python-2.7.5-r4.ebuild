@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.5-r4.ebuild,v 1.3 2013/12/30 21:57:26 floppym Exp $
 
@@ -262,7 +262,8 @@ src_configure() {
 	# note: for a framework build we need to use ucs2 because OSX
 	# uses that internally too:
 	# http://bugs.python.org/issue763708
-	ECONF_SOURCE="${S}" OPT="" \
+	# HAS_HG to avoid finding obsolete hg of the host
+	ECONF_SOURCE="${S}" OPT="" HAS_HG="no" \
 	econf \
 		--with-fpectl \
 		$(use_enable ipv6) \
