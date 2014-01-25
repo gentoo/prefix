@@ -94,92 +94,54 @@ efetch() {
 
 bootstrap_setup() {
 	local profile=""
-	local keywords=""
-	local ldflags_make_defaults=""
-	local cppflags_make_defaults="CPPFLAGS=\"-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include\""
-	local extra_make_globals=""
 	einfo "setting up some guessed defaults"
 	case ${CHOST} in
 		powerpc-apple-darwin7)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.3"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
 		powerpc-apple-darwin[89])
 			rev=${CHOST##*darwin}
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/ppc"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
 		powerpc64-apple-darwin[89])
 			rev=${CHOST##*darwin}
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/ppc64"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
 			;;
 		i*86-apple-darwin[89])
 			rev=${CHOST##*darwin}
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
 		i*86-apple-darwin1[0123])
 			rev=${CHOST##*darwin}
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x86"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
-			extra_make_globals="
-CC='gcc -m32'
-CXX='g++ -m32'
-HOSTCC='gcc -m32'
-"
 			;;
 		x86_64-apple-darwin9|x86_64-apple-darwin1[0123])
 			rev=${CHOST##*darwin}
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.$((rev - 4))/x64"
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
 			;;
 		i*86-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/x86"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		x86_64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/amd64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		ia64-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/ia64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		powerpc-unknown-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/ppc"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		powerpc64-unknown-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/ppc64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		armv7l-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/arm"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		sparc-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			;;
 		sparcv9-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
@@ -187,16 +149,9 @@ HOSTCC='gcc -m64'
 			;;
 		i386-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x86"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			;;
 		x86_64-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
@@ -204,16 +159,9 @@ HOSTCC='gcc -m64'
 			;;
 		sparc-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/sparc"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			;;
 		sparcv9-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/sparc64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
@@ -221,16 +169,9 @@ HOSTCC='gcc -m64'
 			;;
 		i386-pc-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/x86"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			;;
 		x86_64-pc-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/x64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
@@ -238,16 +179,9 @@ HOSTCC='gcc -m64'
 			;;
 		sparc-sun-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/sparc"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			;;
 		sparcv9-sun-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/sparc64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
-			extra_make_globals="
-CC='gcc -m64'
-CXX='g++ -m64'
-HOSTCC='gcc -m64'
-"
 			# we need this, or binutils can't link, can't add it to -L,
 			# since then binutils breaks on finding an old libiberty.a
 			# from there instead of its own
@@ -255,61 +189,45 @@ HOSTCC='gcc -m64'
 			;;
 		powerpc-ibm-aix*)
 			profile="${PORTDIR}/profiles/prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
-			# The bootstrap compiler unlikely has runtime linking enabled already,
-			# but elibtoolize switches to the "lib.so(shr.o)" sharedlib variant.
-			ldflags_make_defaults="LDFLAGS=\"-Wl,-brtl -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
 		mips-sgi-irix*)
 			profile="${PORTDIR}/profiles/prefix/irix/${CHOST#mips-sgi-irix}/mips"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			;;
 		i586-pc-interix*)
 			profile="${PORTDIR}/profiles/prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
 		i586-pc-winnt*)
 			profile="${PORTDIR}/profiles/prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
 		i686-pc-cygwin*)
 			profile="${PORTDIR}/profiles/prefix/windows/cygwin/${CHOST#i686-pc-cygwin}/x86"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib\""
 			;;
 		hppa64*-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib\""
 			;;
 		hppa2.0*-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa2.0"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib\""
 			;;
 		ia64-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib\""
 			;;
 		i386-pc-freebsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		x86_64-pc-freebsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/freebsd/${CHOST#x86_64-pc-freebsd}/x64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		i386-pc-netbsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/netbsd/${CHOST#i386-pc-netbsdelf}/x86"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		powerpc-unknown-openbsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#powerpc-unknown-openbsd}/ppc"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		i386-pc-openbsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#i386-pc-openbsd}/x86"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		x86_64-pc-openbsd*)
 			profile="${PORTDIR}/profiles/prefix/bsd/openbsd/${CHOST#x86_64-pc-openbsd}/x64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib\""
 			;;
 		*)	
 			einfo "UNKNOWN ARCH: You need to set up a make.profile symlink to a"
@@ -319,47 +237,15 @@ HOSTCC='gcc -m64'
 	if [[ -n ${profile} && ! -e ${ROOT}/etc/portage/make.profile ]] ; then
 		ln -s "${profile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${profile}."
-		# make.globals is used for GCC overrides
-		echo "${extra_make_globals}" >> "${ROOT}"/etc/make.globals
-		# this is darn ugly, but we can't use the make.globals hack,
-		# since the profiles overwrite CFLAGS/LDFLAGS in numerous cases
-		echo "${cppflags_make_defaults}" >> "${profile}"/make.defaults
-		echo "${ldflags_make_defaults}" >> "${profile}"/make.defaults
-		# The default profiles (and IUSE defaults) introduce circular deps. By
-		# shoving this USE line into make.defaults, we can ensure that the
-		# end-user always avoids circular deps while bootstrapping and it gets
-		# wiped after a --sync. Also simplifies bootstrapping instructions.
-		echo "USE=\"-berkdb -fortran -gdbm -git -nls -pcre -ssl -python -readline bootstrap internal-glib\"" >> "${profile}"/make.defaults
-		# and we don't need to spam the user about news until after a --sync
-		# because the tools aren't available to read the news item yet anyway.
-		echo 'FEATURES="${FEATURES} -news"' >> "${profile}"/make.defaults
-		# Disable the STALE warning because the snapshot frequently gets stale.
-		# DON'T REMOVE this one, stage3's tree check relies on this one
-		echo 'PORTAGE_SYNC_STALE=0' >> "${profile}"/make.defaults
-		# Set correct PYTHONPATH for Portage, since our Python lives in
-		# $EPREFIX/tmp, bug #407573
-		echo "PYTHONPATH=${ROOT}/usr/lib/portage/pym" >> "${profile}"/make.defaults
-		# Most binary Linux distributions seem to fancy toolchains that
-		# do not do c++ support (need to install a separate package).
-		# Since we don't check for g++, just make sure binutils won't
-		# try to build gold (needs c++), it will get there once we built
-		# our own GCC with c++ support.  For that reason we cannot
-		# globally mask cxx, because then GCC will be built without c++
-		# support too.
-		echo "sys-devel/binutils cxx" >> ${PORTDIR}/profiles/features/prefix/package.use.mask
-		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
-	# Hack for bash because curses is not always available (linux).
-	# This will be wiped upon emerge --sync and back to normal.
-	echo '[[ ${PN} == "bash" ]] && EXTRA_ECONF="--without-curses"' >> \
-		"${PORTDIR}/profiles/features/prefix/profile.bashrc"
+	
+	# Disable the STALE warning because the snapshot frequently gets stale.
+	# DON'T REMOVE this one, stage3's tree check relies on this one
+	echo 'PORTAGE_SYNC_STALE=0' >> "${PORTDIR}"/profiles/features/prefix/make.defaults
+	
 	# Some people will hit bug 262653 with gcc-4.2 and elfutils. Let's skip it
 	# here and bring it in AFTER the --sync
-	echo "dev-libs/elfutils-0.153" >> \
-		"${PORTDIR}/profiles/features/prefix/package.provided"
-	# Python >= 3.3 fails to build on gcc-4.2. Disable it until after the sync.
-	echo ">=dev-lang/python-3.3" >> "${PORTDIR}/profiles/features/prefix/package.mask"
-	echo 'USE="${USE} python_targets_python3_2 -python_targets_python3_3"' >> "${PORTDIR}/profiles/features/prefix/make.defaults"
+	echo "dev-libs/elfutils-0.153" >> "${PORTDIR}"/profiles/features/prefix/package.provided
 }
 
 do_tree() {
@@ -1052,6 +938,24 @@ bootstrap_stage3() {
 	local bootstrapCHOST=${CHOST}
 	unset CHOST
 
+	# Avoid circulur deps caused by the default profiles (and IUSE defaults).
+	local baseUSE="${USE}"
+	export USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python -readline bootstrap internal-glib ${baseUSE}"
+
+	# Python >= 3.3 fails to build on gcc-4.2. Disable it until after the sync.
+	USE="python_targets_python3_2 -python_targets_python3_3 ${USE}"
+
+	# Need need to spam the user about news until the emerge -e default
+	# because the tools aren't available to read the news item yet anyway.
+	export FEATURES="-news ${FEATURES}"
+
+	# Until we get a proper python, set correct PYTHONPATH for Portage,
+	# since our stage1 Python lives in $EPREFIX/tmp, bug #407573
+	export PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym
+
+
+
+
 	# No longer support gen_usr_ldscript stuff in new bootstraps, this
 	# must be in line with what eventually ends up in make.conf, see the
 	# end of this function.  We don't do this in bootstrap_setup()
@@ -1091,9 +995,22 @@ bootstrap_stage3() {
 				pvdb=
 			done
 			[[ -n ${pvdb} ]] && continue
-			# for a valid shebang, we have symlinked bin/bash already
+			
+			# Hack for bash because curses is not always available (linux).
+			# Disable collision-protect to overwrite the symlinked bin/bash for a valid shebang
+			# we have symlinked bin/bash already
 			[[ ${pkg} == *"app-shells/bash"* ]] &&
-			premerge="FEATURES='${FEATURES} -collision-protect'"
+			premerge="FEATURES='${FEATURES} -collision-protect' EXTRA_ECONF=--without-curses"
+
+
+			# Most binary Linux distributions seem to fancy toolchains that
+			# do not do c++ support (need to install a separate package).
+			# Since we don't check for g++, just make sure binutils won't
+			# try to build gold (needs c++), it will get there once we built
+			# our own GCC with c++ support.
+			[[ ${pkg} == *"sys-devel/binutils"* ]] &&
+			premerge="USE='${USE} -cxx'"
+
 			eval ${premerge} 'emerge -v --oneshot ${opts} "${pkg}"'
 			[[ $? -eq 0 ]] || return 1
 		done
@@ -1113,6 +1030,46 @@ bootstrap_stage3() {
 		sys-devel/gcc-config
 	)
 
+	export CPPFLAGS="-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include"
+
+	case ${bootstrapCHOST} in
+		*-darwin*)
+			export LDFLAGS="-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
+			;;
+		*-solaris* | *-irix*)
+			export LDFLAGS="-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib"
+			;;
+		*-hp-hpux*)
+			export LDFLAGS="-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib"
+			;;
+		*-*-aix*)
+			# The bootstrap compiler unlikely has runtime linking enabled already,
+			# but elibtoolize switches to the "lib.so(shr.o)" sharedlib variant.
+			export LDFLAGS="-Wl,-brtl -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
+			;;
+		i586-pc-interix* | i586-pc-winnt* | i686-pc-cygwin*)
+			export LDFLAGS="-L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
+			;;
+		*)
+			export LDFLAGS="-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib"
+			;;
+	esac
+
+	case ${bootstrapCHOST} in
+		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
+			[[ -n ${CC} ]] && export CC="gcc -m64"
+			[[ -n ${CXX} ]] && export CXX="g++ -m64"
+			[[ -n ${HOSTCC} ]] && export HOSTCC="gcc -m64"
+			;;
+		i*86-apple-darwin1*)
+			[[ -n ${CC} ]] && export CC="gcc -m32"
+			[[ -n ${CXX} ]] && export CXX="g++ -m32"
+			[[ -n ${HOSTCC} ]] && export HOSTCC="gcc -m32"
+			;;
+		*)
+			;;
+	esac
+	
 	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
 	# but also for perl, which uses scanelf/scanmacho to find compatible
 	# lib-dirs
@@ -1196,6 +1153,8 @@ bootstrap_stage3() {
 				sys-apps/aix-miscutils
 				sys-apps/texinfo
 			)
+			# The bootstrap compiler unlikely has runtime linking enabled already,
+			# but elibtoolize switches to the "lib.so(shr.o)" sharedlib variant.
 			;;
 		*)
 			pkgs=(
@@ -1264,6 +1223,9 @@ bootstrap_stage3() {
 	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
 	[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
+
+	export USE="${baseUSE}"
+	unset PYTHONPATH CC CXX HOSTCC CPPFLAGS LDFLAGS
 
 	# activate last compiler (some Solaris cases), needed for mpc and
 	# deps below
