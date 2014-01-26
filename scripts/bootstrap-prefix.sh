@@ -1786,15 +1786,16 @@ EOF
 			EPREFIX=
 			continue
 		fi
-		if type -P readlink > /dev/null && \
-			[[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && $EPREFIX != $(readlink -f "$EPREFIX") ]]; then
+		#readlink -f would not work on darwin, so use bash builtins
+		local realEPREFIX="$(cd "$EPREFIX"; pwd -P)"
+		if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]]; then
 			echo
 			echo "$EPREFIX contains a symlink, which will make the merge of gcc"
-			echo "imposible, use '$(readlink -f "$EPREFIX")' instead or"
+			echo "imposible, use '${realEPREFIX}' instead or"
 			echo "export I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS='hell yeah'"
 			[[ ${TODO} == 'noninteractive' ]] && exit 1
 			echo "Have another try."
-			EPREFIX="$(readlink -f "$EPREFIX")"
+			EPREFIX="${realEPREFIX}"
 			continue
 		fi
 		if ! touch "${EPREFIX}"/.canihaswrite >& /dev/null ; then
