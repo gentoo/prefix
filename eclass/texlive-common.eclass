@@ -14,6 +14,13 @@
 #
 # Note that this eclass *must* not assume the presence of any standard tex tool
 
+case "${EAPI:-0}" in
+	0|1|2)
+		die "EAPI='${EAPI}' is not supported anymore"
+		;;
+	*)
+		;;
+esac
 
 TEXMF_PATH=/usr/share/texmf
 TEXMF_DIST_PATH=/usr/share/texmf-dist
@@ -27,7 +34,6 @@ TEXMF_VAR_PATH=/var/lib/texmf
 # configuration
 
 texlive-common_handle_config_files() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}" && EPREFIX=
 	# Handle config files properly
 	[ -d "${ED}${TEXMF_PATH}" ] || return
 	cd "${ED}${TEXMF_PATH}"
@@ -67,7 +73,6 @@ texlive-common_is_file_present_in_texmf() {
 # also do the fmtutil file parsing.
 
 texlive-common_do_symlinks() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	while [ $# != 0 ]; do
 		case $1 in
 			cont-??|metafun|mptopdf)
@@ -118,7 +123,6 @@ etexlinks() {
 # correctly set for the file that it will point to.
 
 dobin_texmf_scripts() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	while [ $# -gt 0 ] ; do
 		local trg=$(basename ${1} | sed 's,\.[^/]*$,,' | tr '[:upper:]' '[:lower:]')
 		einfo "Installing ${1} as ${trg} bin wrapper"
@@ -135,7 +139,6 @@ dobin_texmf_scripts() {
 # function helps in factorizing some code.
 
 etexmf-update() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	if has_version 'app-text/texlive-core' ; then
 		if [ "$ROOT" = "/" ] && [ -x "${EPREFIX}"/usr/sbin/texmf-update ] ; then
 			"${EPREFIX}"/usr/sbin/texmf-update
@@ -154,7 +157,6 @@ etexmf-update() {
 # function helps in factorizing some code.
 
 efmtutil-sys() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	if has_version 'app-text/texlive-core' ; then
 		if [ "$ROOT" = "/" ] && [ -x "${EPREFIX}"/usr/bin/fmtutil-sys ] ; then
 			einfo "Rebuilding formats"
