@@ -1291,6 +1291,7 @@ bootstrap_stage3() {
 				echo -n 'echo I need \$1 from \$2 in \$3; read'\'
 				echo    ' -- \${FILE} \${URI} \${DISTDIR}"'
 			} >> "${EPREFIX}"/etc/portage/make.conf
+		fi
 	fi
 
 	einfo "stage3 successfully finished"
