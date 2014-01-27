@@ -30,6 +30,13 @@ econf() {
 
 efetch() {
 	if [[ ! -e ${DISTDIR}/${1##*/} ]] ; then
+	  	if [[ ${OFFLINE_MODE} ]]; then
+		  echo "I needed ${1##*/} from $1 or ${GENTOO_MIRRORS}/distfiles/${1##*/} in $DISTDIR"
+		  read
+		  [[ -e ${DISTDIR}/${1##*/} ]] && return 0
+		  #Give fetch a try 
+		fi
+
 		if [[ -z ${FETCH_COMMAND} ]] ; then
 			# Try to find a download manager, we only deal with wget,
 			# curl, FreeBSD's fetch and ftp.
@@ -997,7 +1004,7 @@ bootstrap_stage1() {
 
 	# don't rely on $MAKE, if make == gmake packages that call 'make' fail
 	[[ $(make --version 2>&1) == *GNU* ]] || (bootstrap_make) || return 1
-	type -P wget > /dev/null || (bootstrap_wget) || return 1
+	[[ ${OFFLINE_MODE} ]] || type -P wget > /dev/null || (bootstrap_wget) || return 1
 	[[ $(sed --version 2>&1) == *GNU* ]] || (bootstrap_sed) || return 1
 	[[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] || (bootstrap_m4) || return 1
 	[[ $(bison --version 2>&1) == *"(GNU Bison) 2."[345678]* ]] \
@@ -1097,6 +1104,8 @@ bootstrap_stage3() {
 	local bootstrapCHOST=${CHOST}
 	unset CHOST
 
+	[[ ${OFFLINE_MODE} ]] && \
+		export FETCHCOMMAND="bash -c 'echo I need \\\$1 from \\\$2 in \\\$3; read' -- \\\${FILE} \\\${URI} \\\${DISTDIR}"
 
 	emerge_pkgs() {
 		local opts=$1 ; shift
@@ -1193,14 +1202,13 @@ bootstrap_stage3() {
 
 	# bug #418181
 	# wget[nls]>=1.14 runs eautopoint, which needs autopoint>=0.15 from gettext
-
-	# --oneshot
 	local pkgs=(
 		sys-devel/gettext
 		net-misc/wget
-		virtual/os-headers
 	)
-	emerge_pkgs "" "${pkgs[@]}" || return 1
+	[[ ${OFFLINE_MODE} ]] || emerge_pkgs "" "${pkgs[@]}" || return 1
+
+	emerge_pkgs "" "virtual/os-headers" || return 1
 
 	# ugly hack to make sure we can compile glib without pkg-config,
 	# which is depended upon by shared-mime-info
@@ -1230,7 +1238,13 @@ bootstrap_stage3() {
 	# carry on the polluted profile!
 	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
-	[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
+	if [[ ${OFFLINE_MODE} ]]; then
+	  	# --keep used ${DISTDIR}, which make it easier to download a snapshot beforehand
+		[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge-webrsync --keep || return 1
+	else
+		[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
+	fi
+
 
 	export USE="${baseUSE}"
 	unset PYTHONPATH CC CXX HOSTCC CPPFLAGS LDFLAGS
@@ -1271,6 +1285,12 @@ bootstrap_stage3() {
 			echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
 			[[ -n $PORTDIR_OVERLAY ]] && echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
 		} > "${EPREFIX}"/etc/portage/make.conf
+		if [[ ${OFFLINE_MODE} ]]; then
+			{
+		  		echo -n 'FETCHCOMMAND="bash -c '\'
+				echo -n 'echo I need \$1 from \$2 in \$3; read'\'
+				echo    ' -- \${FILE} \${URI} \${DISTDIR}"'
+			} >> "${EPREFIX}"/etc/portage/make.conf
 	fi
 
 	einfo "stage3 successfully finished"
