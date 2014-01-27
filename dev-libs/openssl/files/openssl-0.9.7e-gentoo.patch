@@ -1,0 +1,16 @@
+diff -r -c -C 2 openssl-0.9.6g-orig/test/Makefile openssl-0.9.6g/test/Makefile
+*** openssl-0.9.6g-orig/test/Makefile	Thu Sep 26 15:20:47 2002
+--- openssl-0.9.6g/test/Makefile	Thu Sep 26 15:23:26 2002
+***************
+*** 28,32 ****
+  DLIBCRYPTO= ../libcrypto.a
+  DLIBSSL= ../libssl.a
+! LIBCRYPTO= -L.. -lcrypto
+  LIBSSL= -L.. -lssl
+  
+--- 28,32 ----
+  DLIBCRYPTO= ../libcrypto.a
+  DLIBSSL= ../libssl.a
+! LIBCRYPTO= -L.. -lcrypto -lcrypt
+  LIBSSL= -L.. -lssl
+  

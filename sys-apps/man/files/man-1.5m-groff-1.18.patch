@@ -1,0 +1,31 @@
+With newer versions of groff (1.18+), we need to use -c 
+so as to filter color output.
+
+Also, change the -Tlatin1 to -Tascii to get rid of '<B7>' 
+gremlins and output the normal bullets 'o'.
+http://bugs.gentoo.org/show_bug.cgi?id=44201
+
+--- man-1.5k/configure.orig	2002-12-26 06:23:53.000000000 +0200
++++ man-1.5k/configure	2002-12-26 06:25:14.000000000 +0200
+@@ -473,9 +473,9 @@
+   then
+     if test $Fnroff = "missing"
+     then
+-      nroff="nroff -Tlatin1 -mandoc"
++      nroff="nroff -Tascii -c -mandoc"
+     else
+-      nroff="$Fnroff -Tlatin1 -mandoc"
++      nroff="$Fnroff -Tascii -c -mandoc"
+     fi
+     troff="troff -mandoc"
+     echo "Warning: could not find groff"
+@@ -484,7 +484,7 @@
+     then
+       nroff="$Fgroff -Tlatin1 -mandoc"
+     else
+-      nroff="$Fnroff -Tlatin1 -mandoc"
++      nroff="$Fnroff -Tascii -c -mandoc"
+     fi
+     troff="$Fgroff -Tps -mandoc"
+     jnroff="$Fgroff -Tnippon -mandocj"
+

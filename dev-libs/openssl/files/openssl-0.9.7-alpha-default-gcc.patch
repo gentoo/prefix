@@ -1,0 +1,12 @@
+diff -ur openssl-0.9.7d.orig/config openssl-0.9.7d/config
+--- openssl-0.9.7d.orig/config	2004-12-11 19:01:11.077248504 -0500
++++ openssl-0.9.7d/config	2004-12-11 19:08:52.099162520 -0500
+@@ -452,7 +452,7 @@
+ 	sed 's/.* C V\([0-9]\)\.\([0-9]\).*/\1\2/'`
+   CCCVER=${CCCVER:-0}
+   if [ $CCCVER -gt 60 ]; then
+-    CC=ccc	# overrides gcc!!! well, ccc outperforms inoticeably
++    CC=gcc	# overrides gcc!!! well, ccc outperforms inoticeably
+ 		# only on hash routines and des, otherwise gcc (2.95)
+ 		# keeps along rather tight...
+   fi
