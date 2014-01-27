@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/wxpython
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.173 2012/09/05 09:36:33 jlec Exp $
+
+  27 Jan 2014; Fabian Groffen <grobian@gentoo.org>
+  +files/wxpython-2.9.4.1-wxversion-scripts.patch:
+  Add missing file
 
   05 Sep 2012; Justin Lecher <jlec@gentoo.org> wxpython-2.8.12.1.ebuild,
   wxpython-2.9.3.1.ebuild, wxpython-2.9.4.1.ebuild:
