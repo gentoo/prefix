@@ -22,7 +22,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 LICENSE="PSF-2"
 SLOT="3.3"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua build doc elibc_uclibc examples gdbm hardened ipv6 +ncurses +readline sqlite +ssl +threads tk wininst +xml"
+IUSE="aqua build +crypt doc elibc_uclibc examples gdbm hardened ipv6 +ncurses nis +readline sqlite +ssl +threads tk wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
 # If you need to apply a patch which requires python for bootstrapping, please
@@ -124,8 +124,10 @@ src_configure() {
 		export PYTHON_DISABLE_SSL="1"
 	else
 		local disable
+		use crypt    || disable+=" _crypt"
 		use gdbm     || disable+=" gdbm"
 		use ncurses  || disable+=" _curses _curses_panel"
+		use nis      || disable+=" nis"
 		use readline || disable+=" readline"
 		use sqlite   || disable+=" _sqlite3"
 		use ssl      || export PYTHON_DISABLE_SSL="1"
