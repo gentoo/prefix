@@ -1093,10 +1093,11 @@ bootstrap_stage3() {
 	# right with manual bootstraps.
 	export PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes 
 
-	# Find out what toolchain packages we need, and configure LDFLAGS and friends.
+	# Find out what toolchain packages we need, and configure LDFLAGS
+	# and friends.
 	configure_toolchain || return 1
 
-	# stage2 as set a profile, which defines CHOST, so unset any CHOST
+	# stage2 has set a profile, which defines CHOST, so unset any CHOST
 	# we've got here to avoid cross-compilation due to slight
 	# differences caused by our guessing vs. what the profile sets.
 	# This happens at least on 32-bits Darwin, with i386 and i686.
