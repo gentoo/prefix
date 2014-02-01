@@ -1255,16 +1255,6 @@ bootstrap_stage3() {
 	# deps below
 	gcc-config $(gcc-config -l | wc -l)
 
-	local cpuflags=
-	case ${bootstrapCHOST} in
-		*-darwin*)
-			: # gcc-apple is 4.2, so mpfr/mpc/gmp are not necessary
-			;;
-		*)
-			emerge_pkgs "" "<dev-libs/mpc-0.9" || return 1
-			;;
-	esac
-
 	# We need an up-to-date compiler before upgrading python to avoid
 	# bug #490774
 	emerge --oneshot -u sys-devel/gcc || return 1
