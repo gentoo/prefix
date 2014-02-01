@@ -1155,6 +1155,9 @@ bootstrap_stage3() {
 		EXTRA_ECONF="--without-curses --disable-readline" \
 		emerge_pkgs --nodeps "app-shells/bash" || return 1
 
+	# we can now use our own bash throughout
+	export CONFIG_SHELL="${ROOT}/bin/bash"
+
 	local pkgs=(
 		app-arch/xz-utils
 		sys-apps/baselayout-prefix
