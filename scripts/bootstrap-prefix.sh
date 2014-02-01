@@ -140,7 +140,7 @@ configure_toolchain() {
 			;;
 	esac
 
-	case ${bootstrapCHOST} in
+	case ${CHOST} in
 		*-darwin*)
 			case "$(gcc --version)" in
 				*"(GCC) 4.2.1 "*|*"Apple LLVM version 5.0"*)
