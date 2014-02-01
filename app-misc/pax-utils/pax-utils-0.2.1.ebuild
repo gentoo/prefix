@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.2.1.ebuild,v 1.8 2012/02/07 16:58:10 vapier Exp $
 
@@ -32,6 +32,6 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}${EPREFIX}" install || die
+	emake CC="$(tc-getCC)" DESTDIR="${D}${EPREFIX}" install || die
 	dodoc BUGS README TODO
 }

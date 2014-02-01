@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/pax-utils
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.142 2012/07/10 18:05:58 ranger Exp $
+
+  01 Feb 2014; Fabian Groffen <grobian@gentoo.org> pax-utils-0.2.1.ebuild,
+  pax-utils-0.4.ebuild:
+  Avoid depending on 'cc' during install, use the compiler we know that
+  works/exists
 
   10 Jul 2012; Brent Baude <ranger@gentoo.org> pax-utils-0.4.ebuild:
   Marking pax-utils-0.4 ppc for bug 420919
@@ -575,4 +580,3 @@
 
   11 Nov 2004; <solar@gentoo.org> +metadata.xml, pax-utils-0.0.4.ebuild:
   marking pax-utils stable on x86/mips
-
