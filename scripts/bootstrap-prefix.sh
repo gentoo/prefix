@@ -1265,8 +1265,9 @@ bootstrap_stage3() {
 			;;
 	esac
 
-	# We need an up-to-date compiler before upgrading python to avoid bug #490774
-	emerge -u sys-devel/gcc || return 1
+	# We need an up-to-date compiler before upgrading python to avoid
+	# bug #490774
+	emerge --oneshot -u sys-devel/gcc || return 1
 
 	# activate last compiler
 	gcc-config $(gcc-config -l | wc -l)
