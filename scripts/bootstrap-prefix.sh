@@ -1073,7 +1073,7 @@ bootstrap_stage3() {
 
 	# Avoid circular deps caused by the default profiles (and IUSE defaults).
 	local baseUSE="${USE}"
-	export USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python -readline bootstrap internal-glib ${baseUSE}"
+	export USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python bootstrap internal-glib ${baseUSE}"
 
 	# Python >= 3.3 fails to build on gcc-4.2. Disable it until after the sync.
 	USE="python_targets_python3_2 -python_targets_python3_3 ${USE}"
@@ -1109,7 +1109,7 @@ bootstrap_stage3() {
 
 	emerge_pkgs() {
 		local opts=$1 ; shift
-		local pkg vdb pvdb evdb premerge
+		local pkg vdb pvdb evdb
 		for pkg in "$@"; do
 			vdb=${pkg}
 			if [[ ${vdb} == "="* ]] ; then
@@ -1140,33 +1140,21 @@ bootstrap_stage3() {
 			done
 			[[ -n ${pvdb} ]] && continue
 			
-			# Hack for bash because curses is not always available (linux).
-			# Disable collision-protect to overwrite the symlinked bin/bash for a valid shebang
-			# we have symlinked bin/bash already
-			[[ ${pkg} == *"app-shells/bash"* ]] &&
-			premerge="FEATURES='${FEATURES} -collision-protect' EXTRA_ECONF=--without-curses"
-
-
-			# Most binary Linux distributions seem to fancy toolchains that
-			# do not do c++ support (need to install a separate package).
-			# Since we don't check for g++, just make sure binutils won't
-			# try to build gold (needs c++), it will get there once we built
-			# our own GCC with c++ support.
-			[[ ${pkg} == *"sys-devel/binutils"* ]] &&
-			premerge="USE='${USE} -cxx'"
-
-			eval ${premerge} 'emerge -v --oneshot ${opts} "${pkg}"'
+			eval 'emerge -v --oneshot ${opts} "${pkg}"'
 			[[ $? -eq 0 ]] || return 1
 		done
 	}
 
-	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
-	# but also for perl, which uses scanelf/scanmacho to find compatible
-	# lib-dirs
-	# --oneshot --nodeps
+	emerge_pkgs --nodeps "sys-apps/sed" || return 1
+
+	# Hack for bash because curses is not always available (linux).
+	# Disable collision-protect to overwrite the symlinked bin/bash for
+	# a valid shebang we have symlinked bin/bash already
+	FEATURES="${FEATURES} -collision-protect" \
+		EXTRA_ECONF="--without-curses --disable-readline" \
+		emerge_pkgs --nodeps "app-shells/bash" || return 1
+
 	local pkgs=(
-		sys-apps/sed
-		"<app-shells/bash-4.2_p20"  # higher versions require readline
 		app-arch/xz-utils
 		sys-apps/baselayout-prefix
 		sys-devel/m4
@@ -1175,11 +1163,21 @@ bootstrap_stage3() {
 		sys-devel/patch
 		sys-devel/binutils-config
 		sys-devel/gcc-config
-		app-misc/pax-utils
 	)
-	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+	# to avoid shared library linking problems with Sun ld (libeinfo)
+	EXTRA_ECONF="--disable-shared" emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
-	emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
+	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
+	# but also for perl, which uses scanelf/scanmacho to find compatible
+	# lib-dirs
+	emerge_pkgs --nodeps "app-misc/pax-utils" || return 1
+
+	# Most binary Linux distributions seem to fancy toolchains that
+	# do not do c++ support (need to install a separate package).
+	# Since we don't check for g++, just make sure binutils won't
+	# try to build gold (needs c++), it will get there once we built
+	# our own GCC with c++ support.
+	USE="${USE} -cxx" emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
 
 	# --oneshot
 	local pkgs=(
