@@ -1671,8 +1671,8 @@ EOF
 					sleep 1
 					echo "(are you?)"
 				fi
-				MAKEOPTS="-j${ans}"
 			fi
+			MAKEOPTS="-j${ans}"
 			;;
 	esac
 	export MAKEOPTS
