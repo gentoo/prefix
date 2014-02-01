@@ -1283,6 +1283,7 @@ bootstrap_stage3() {
 			echo 'CFLAGS="${CFLAGS} -O2 -pipe"'
 			echo 'CXXFLAGS="${CFLAGS}"'
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
+			echo "CONFIG_SHELL=\"${CONFIG_SHELL}\""
 			echo "# be careful with this one, don't just remove it!"
 			echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
 			[[ -n $PORTDIR_OVERLAY ]] && echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
