@@ -1071,7 +1071,7 @@ bootstrap_stage3() {
 		return 1
 	fi
 
-	# Avoid circulur deps caused by the default profiles (and IUSE defaults).
+	# Avoid circular deps caused by the default profiles (and IUSE defaults).
 	local baseUSE="${USE}"
 	export USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python -readline bootstrap internal-glib ${baseUSE}"
 
