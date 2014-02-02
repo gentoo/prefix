@@ -113,8 +113,9 @@ configure_toolchain() {
 			export LDFLAGS="-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib"
 			;;
 		*-*-aix*)
-			# The bootstrap compiler unlikely has runtime linking enabled already,
-			# but elibtoolize switches to the "lib.so(shr.o)" sharedlib variant.
+			# The bootstrap compiler unlikely has runtime linking
+			# enabled already, but elibtoolize switches to the
+			# "lib.so(shr.o)" sharedlib variant.
 			export LDFLAGS="-Wl,-brtl -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
 			;;
 		i586-pc-interix* | i586-pc-winnt* | i686-pc-cygwin*)
@@ -1158,9 +1159,12 @@ bootstrap_stage3() {
 	# we can now use our own bash throughout
 	export CONFIG_SHELL="${ROOT}/bin/bash"
 
+	emerge_pkgs --nodeps "app-arch/xz-utils" || return 1
+	# to avoid shared library linking problems with Sun ld (libeinfo)
+	EXTRA_ECONF="--disable-shared" \
+		emerge_pkgs --nodeps "sys-apps/baselayout-prefix" || return 1
+
 	local pkgs=(
-		app-arch/xz-utils
-		sys-apps/baselayout-prefix
 		sys-devel/m4
 		sys-devel/flex
 		sys-devel/bison
@@ -1168,8 +1172,7 @@ bootstrap_stage3() {
 		sys-devel/binutils-config
 		sys-devel/gcc-config
 	)
-	# to avoid shared library linking problems with Sun ld (libeinfo)
-	EXTRA_ECONF="--disable-shared" emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
 	# but also for perl, which uses scanelf/scanmacho to find compatible
