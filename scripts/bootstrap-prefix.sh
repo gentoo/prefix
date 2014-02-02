@@ -1153,7 +1153,7 @@ bootstrap_stage3() {
 	# Disable collision-protect to overwrite the symlinked bin/bash for
 	# a valid shebang we have symlinked bin/bash already
 	FEATURES="${FEATURES} -collision-protect" \
-		EXTRA_ECONF="--without-curses --disable-readline" \
+	EXTRA_ECONF="--without-curses --disable-readline --disable-history --disable-bang-history" \
 		emerge_pkgs --nodeps "app-shells/bash" || return 1
 
 	# we can now use our own bash throughout
