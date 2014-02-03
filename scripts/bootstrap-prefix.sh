@@ -1074,7 +1074,7 @@ bootstrap_stage3() {
 
 	# Avoid circular deps caused by the default profiles (and IUSE defaults).
 	local baseUSE="${USE}"
-	export USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python bootstrap internal-glib ${baseUSE}"
+	export USE="-berkdb -fortran -gdbm -git -nls -pcre -readline -ssl -python bootstrap internal-glib ${baseUSE}"
 
 	# Python >= 3.3 fails to build on gcc-4.2. Disable it until after the sync.
 	USE="python_targets_python3_2 -python_targets_python3_3 ${USE}"
@@ -1141,7 +1141,7 @@ bootstrap_stage3() {
 				pvdb=
 			done
 			[[ -n ${pvdb} ]] && continue
-			
+
 			eval 'emerge -v --oneshot ${opts} "${pkg}"'
 			[[ $? -eq 0 ]] || return 1
 		done
@@ -1266,7 +1266,7 @@ bootstrap_stage3() {
 	gcc-config $(gcc-config -l | wc -l)
 
 	# Portage should figure out itself what it needs to do, if anything
-	USE=-git emerge -u system || return 1
+	USE="-git" emerge -u system || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
