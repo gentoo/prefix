@@ -1079,6 +1079,13 @@ bootstrap_stage3() {
 	# Python >= 3.3 fails to build on gcc-4.2. Disable it until after the sync.
 	USE="python_targets_python3_2 -python_targets_python3_3 ${USE}"
 
+	# Most binary Linux distributions seem to fancy toolchains that
+	# do not do c++ support (need to install a separate package).
+	# Since we don't check for g++, just make sure binutils won't
+	# try to build gold (needs c++), it will get there once we built
+	# our own GCC with c++ support.
+	USE="${USE} -cxx"
+
 	# Need need to spam the user about news until the emerge -e default
 	# because the tools aren't available to read the news item yet anyway.
 	export FEATURES="-news ${FEATURES}"
@@ -1179,12 +1186,7 @@ bootstrap_stage3() {
 	# lib-dirs
 	emerge_pkgs --nodeps "app-misc/pax-utils" || return 1
 
-	# Most binary Linux distributions seem to fancy toolchains that
-	# do not do c++ support (need to install a separate package).
-	# Since we don't check for g++, just make sure binutils won't
-	# try to build gold (needs c++), it will get there once we built
-	# our own GCC with c++ support.
-	USE="${USE} -cxx" emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
+	emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
 
 	# --oneshot
 	local pkgs=(
