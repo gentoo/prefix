@@ -128,14 +128,14 @@ configure_toolchain() {
 
 	case ${CHOST} in
 		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
-			[[ -n ${CC} ]] && export CC="gcc -m64"
-			[[ -n ${CXX} ]] && export CXX="g++ -m64"
-			[[ -n ${HOSTCC} ]] && export HOSTCC="gcc -m64"
+			[[ -z ${CC} ]] && export CC="gcc -m64"
+			[[ -z ${CXX} ]] && export CXX="g++ -m64"
+			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m64"
 			;;
 		i*86-apple-darwin1*)
-			[[ -n ${CC} ]] && export CC="gcc -m32"
-			[[ -n ${CXX} ]] && export CXX="g++ -m32"
-			[[ -n ${HOSTCC} ]] && export HOSTCC="gcc -m32"
+			[[ -z ${CC} ]] && export CC="gcc -m32"
+			[[ -z ${CXX} ]] && export CXX="g++ -m32"
+			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m32"
 			;;
 		*)
 			;;
@@ -1167,6 +1167,7 @@ bootstrap_stage3() {
 	export CONFIG_SHELL="${ROOT}/bin/bash"
 
 	emerge_pkgs --nodeps "app-arch/xz-utils" || return 1
+
 	# to avoid shared library linking problems with Sun ld (libeinfo)
 	EXTRA_ECONF="--disable-shared" \
 		emerge_pkgs --nodeps "sys-apps/baselayout-prefix" || return 1
