@@ -129,12 +129,10 @@ configure_toolchain() {
 	case ${CHOST} in
 		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
 			[[ -z ${CC} ]] && export CC="gcc -m64"
-			[[ -z ${CXX} ]] && export CXX="g++ -m64"
 			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m64"
 			;;
 		i*86-apple-darwin1*)
 			[[ -z ${CC} ]] && export CC="gcc -m32"
-			[[ -z ${CXX} ]] && export CXX="g++ -m32"
 			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m32"
 			;;
 		*)
@@ -1083,8 +1081,12 @@ bootstrap_stage3() {
 	# do not do c++ support (need to install a separate package).
 	# Since we don't check for g++, just make sure binutils won't
 	# try to build gold (needs c++), it will get there once we built
-	# our own GCC with c++ support.
+	# our own GCC with c++ support.  Getting there, requires us to have
+	# a cxx compiler though, so since we can build one without any extra
+	# deps with gcc, we should do so.
 	USE="${USE} -cxx"
+	grep -q '>=sys-devel/gcc-4.2 cxx' "${ROOT}"/etc/portage/make.profile/package.use.force \
+		|| echo ">=sys-devel/gcc-4.2 cxx" >> "${ROOT}"/etc/portage/make.profile/package.use.force
 
 	# Need need to spam the user about news until the emerge -e default
 	# because the tools aren't available to read the news item yet anyway.
@@ -1253,9 +1255,8 @@ bootstrap_stage3() {
 		[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
 	fi
 
-
 	export USE="${baseUSE}"
-	unset PYTHONPATH CC CXX HOSTCC CPPFLAGS LDFLAGS
+	unset PYTHONPATH CC HOSTCC CPPFLAGS LDFLAGS
 
 	# activate last compiler (some Solaris cases), needed for mpc and
 	# deps below
