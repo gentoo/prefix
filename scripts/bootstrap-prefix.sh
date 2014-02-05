@@ -496,7 +496,7 @@ bootstrap_portage() {
 	# in CONFIG_SHELL (AIX), which originates in PORTAGE_BASH then.
 	# So we need to ensure portage's bash is valid as shebang too.
 	mkdir -p ${ROOT}/bin || return 1
-	[[ -x ${ROOT}/bin/bash ]] || [[ ! -x ${ROOT}/tmp/bin/bash ]] || ln -s ${ROOT}/tmp/bin/bash ${ROOT}/bin/bash || return 1
+	[[ -x ${ROOT}/bin/bash ]] || [[ ! -x ${ROOT}/tmp/usr/bin/bash ]] || ln -s ${ROOT}/tmp/usr/bin/bash ${ROOT}/bin/bash || return 1
 	[[ -x ${ROOT}/bin/bash ]] || ln -s ${BASH} ${ROOT}/bin/bash || return 1
 	export PORTAGE_BASH=${ROOT}/bin/bash
 
@@ -506,7 +506,7 @@ bootstrap_portage() {
 		--with-portage-user="`id -un`" \
 		--with-portage-group="`id -gn`" \
 		--mandir="${ROOT}/automatically-removed" \
-		--with-extra-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}" \
+		--with-extra-path="${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}" \
 		|| return 1
 	$MAKE ${MAKEOPTS} || return 1
 
