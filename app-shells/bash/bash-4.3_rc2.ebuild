@@ -1,19 +1,18 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p38.ebuild,v 1.5 2012/11/19 22:26:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.3_rc2.ebuild,v 1.1 2014/01/31 05:42:08 vapier Exp $
 
 EAPI="1"
 
 inherit eutils flag-o-matic toolchain-funcs multilib prefix
 
 # Official patchlevel
-# See ftp://ftp.cwru.edu/pub/bash/bash-3.2-patches/
+# See ftp://ftp.cwru.edu/pub/bash/bash-4.2-patches/
 PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
+MY_PV=${MY_PV/_/-}
 MY_P=${PN}-${MY_PV}
 [[ ${PV} != *_p* ]] && PLEVEL=0
-READLINE_VER=6.0
-READLINE_PLEVEL=0 # both readline patches are also released as bash patches
 patches() {
 	local opt=$1 plevel=${2:-${PLEVEL}} pn=${3:-${PN}} pv=${4:-${MY_PV}}
 	[[ ${plevel} -eq 0 ]] && return 1
@@ -32,16 +31,21 @@ patches() {
 DESCRIPTION="The standard GNU Bourne again shell"
 HOMEPAGE="http://tiswww.case.edu/php/chet/bash/bashtop.html"
 SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)"
+[[ ${PV} == *_rc* ]] && SRC_URI+=" ftp://ftp.cwru.edu/pub/bash/${MY_P}.tar.gz"
 
 LICENSE="GPL-3"
-SLOT="${MY_PV}"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="afs mem-scramble +net nls +readline"
+SLOT="0"
+#KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd"
+IUSE="afs bashlogger examples mem-scramble +net nls plugins +readline vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
 	readline? ( >=sys-libs/readline-6.2 )
 	nls? ( virtual/libintl )"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	!<sys-apps/portage-2.1.6.7_p1
+	!<sys-apps/paludis-0.26.0_alpha5"
+# we only need yacc when the .y files get patched (bash42-005)
+DEPEND+=" virtual/yacc"
 
 S=${WORKDIR}/${MY_P}
 
@@ -51,50 +55,48 @@ pkg_setup() {
 		eerror "as it breaks LFS (struct stat64) on x86."
 		die "remove -malign-double from your CFLAGS mr ricer"
 	fi
+	if use bashlogger ; then
+		ewarn "The logging patch should ONLY be used in restricted (i.e. honeypot) envs."
+		ewarn "This will log ALL output you enter into the shell, you have been warned."
+	fi
 }
 
 src_unpack() {
 	unpack ${MY_P}.tar.gz
 	cd "${S}"
+	src_prepare
+}
 
+src_prepare() {
+use mem-scramble
 	# Include official patches
 	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
-	cd lib/readline
-	[[ ${READLINE_PLEVEL} -gt 0 ]] && epatch $(patches -s ${READLINE_PLEVEL} readline ${READLINE_VER})
-	cd ../..
 
-	epatch "${FILESDIR}"/${PN}-4.0-configure.patch #304901
-	epatch "${FILESDIR}"/${PN}-4.x-deferred-heredocs.patch
-
-	if ! use vanilla ; then
-		sed -i '1i#define NEED_FPURGE_DECL' execute_cmd.c # needs fpurge() decl
-		epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671
-		epatch "${FILESDIR}"/${PN}-4.0-ldflags-for-build.patch #211947
-		epatch "${FILESDIR}"/${PN}-4.0-negative-return.patch
-		epatch "${FILESDIR}"/${PN}-4.0-parallel-build.patch #267613
-		# Log bash commands to syslog #91327
-		if use bashlogger ; then
-			ewarn "The logging patch should ONLY be used in restricted (i.e. honeypot) envs."
-			ewarn "This will log ALL output you enter into the shell, you have been warned."
-			ebeep
-			epause
-			epatch "${FILESDIR}"/${PN}-3.1-bash-logger.patch
-		fi
-		sed -i '/\.o: .*shell\.h/s:$: pathnames.h:' Makefile.in #267613
+	# Clean out local libs so we know we use system ones w/releases.
+	if [[ ${PV} != *_rc* ]] ; then
+		rm -rf lib/{readline,termcap}/*
+		touch lib/{readline,termcap}/Makefile.in # for config.status
+		sed -ri -e 's:\$[(](RL|HIST)_LIBSRC[)]/[[:alpha:]]*.h::g' Makefile.in || die
 	fi
+
+	# Avoid regenerating docs after patches #407985
+	sed -i -r '/^(HS|RL)USER/s:=.*:=:' doc/Makefile.in || die
+	touch -r . doc/*
+
+	epatch "${FILESDIR}"/${PN}-4.2-execute-job-control.patch #383237
+	epatch "${FILESDIR}"/${PN}-4.2-no-readline.patch
 
 	# this adds additional prefixes
 	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
 	eprefixify pathnames.h.in
 
-	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
 
+	epatch "${FILESDIR}"/${PN}-4.2-darwin13.patch # patch from 4.3
+	epatch "${FILESDIR}"/${PN}-4.1-blocking-namedpipe.patch # aix lacks /dev/fd/
+	epatch "${FILESDIR}"/${PN}-4.0-childmax-pids.patch # AIX, Interix
 	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
-		epatch "${FILESDIR}"/${PN}-4.0-interix.patch
-		epatch "${FILESDIR}"/${PN}-4.0-interix-access-suacomp.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi
 
@@ -103,18 +105,21 @@ src_unpack() {
 	sed -i -e '1s:sh:bash:' support/bashbug.sh || die
 
 	# modify the bashrc file for prefix
-	cp "${FILESDIR}"/bashrc "${T}"
-	cd "${T}"
+	pushd "${T}" > /dev/null || die
+	cp "${FILESDIR}"/bashrc .
 	epatch "${FILESDIR}"/bashrc-prefix.patch
-	eprefixify "${T}"/bashrc
+	eprefixify bashrc
+	popd > /dev/null
 
 	# DON'T YOU EVER PUT eautoreconf OR SIMILAR HERE!  THIS IS A CRITICAL
 	# PACKAGE THAT MUST NOT RELY ON AUTOTOOLS, USE A SELF-SUFFICIENT PATCH
 	# INSTEAD!!!
+
+	epatch_user
 }
 
-src_compile() {
-	local myconf=
+src_configure() {
+	local myconf=()
 
 	# For descriptions of these, see config-top.h
 	# bashrc/#26952 bash_logout/#90488 ssh/#24762
@@ -125,7 +130,8 @@ src_compile() {
 			-DSYS_BASHRC=\'\"${EPREFIX}/etc/bash/bashrc\"\' \
 			-DSYS_BASH_LOGOUT=\'\"${EPREFIX}/etc/bash/bash_logout\"\' \
 			-DNON_INTERACTIVE_LOGIN_SHELLS \
-			-DSSH_SOURCE_BASHRC
+			-DSSH_SOURCE_BASHRC \
+			$(use bashlogger && echo -DSYSLOG_HISTORY)
 	else
 	append-cppflags \
 		-DDEFAULT_PATH_VALUE=\'\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\' \
@@ -133,53 +139,78 @@ src_compile() {
 		-DSYS_BASHRC=\'\"/etc/bash/bashrc\"\' \
 		-DSYS_BASH_LOGOUT=\'\"/etc/bash/bash_logout\"\' \
 		-DNON_INTERACTIVE_LOGIN_SHELLS \
-		-DSSH_SOURCE_BASHRC
+		-DSSH_SOURCE_BASHRC \
+		$(use bashlogger && echo -DSYSLOG_HISTORY)
 	fi
 
 	# IRIX's MIPSpro produces garbage with >= -O2, bug #209137
 	[[ ${CHOST} == mips-sgi-irix* ]] && replace-flags -O? -O1
 
-	# Always use the buildin readline, else if we update readline
-	# bash gets borked as readline is usually not binary compadible
-	# between minor versions.
-	#myconf="${myconf} $(use_with !readline installed-readline)"
-	myconf="${myconf} --without-installed-readline"
+	if [[ ${CHOST} == *-aix* ]] || [[ ${CHOST} == *-hpux* ]] ; then
+		# Avoid finding tgetent() in anything else but ncurses library,
+		# as <termcap.h> is provided by ncurses, even during bootstrap
+		# on AIX and HP-UX, and we would get undefined symbols like
+		# BC, PC, UP if linking against something else.
+		# The bash-bug is that it doesn't check for <termcap.h> provider,
+		# and unfortunately {,n}curses is checked last.
+		# Even if ncurses provides libcurses.so->libncurses.so symlink,
+		# it feels more clean to link against libncurses.so directly.
+		# (all configure-variables for tgetent() are shown here)
+		export ac_cv_func_tgetent=no
+		export ac_cv_lib_termcap_tgetent=no # found on HP-UX
+		export ac_cv_lib_tinfo_tgetent=no
+		export ac_cv_lib_curses_tgetent=no # found on AIX
+		#export ac_cv_lib_ncurses_tgetent=no
+	fi
 
 	# Don't even think about building this statically without
 	# reading Bug 7714 first.  If you still build it statically,
 	# don't come crying to us with bugs ;).
 	#use static && export LDFLAGS="${LDFLAGS} -static"
-	use nls || myconf="${myconf} --disable-nls"
+	use nls || myconf+=( --disable-nls )
+
+	# Historically, we always used the builtin readline, but since
+	# our handling of SONAME upgrades has gotten much more stable
+	# in the PM (and the readline ebuild itself preserves the old
+	# libs during upgrades), linking against the system copy should
+	# be safe.
+	# Exact cached version here doesn't really matter as long as it
+	# is at least what's in the DEPEND up above.
+	export ac_cv_rl_version=6.2
 
 	# Force linking with system curses ... the bundled termcap lib
-	# sucks bad compared to ncurses
-	myconf="${myconf} --with-curses"
+	# sucks bad compared to ncurses.  For the most part, ncurses
+	# is here because readline needs it.  But bash itself calls
+	# ncurses in one or two small places :(.
+
+	if [[ ${PV} != *_rc* ]] ; then
+		# Use system readline only with released versions.
+		myconf+=( --with-installed-readline=. )
+	fi
 
 	use plugins && case ${CHOST} in
 		*-linux-gnu | *-solaris* | *-freebsd* )
 			append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/bash
 		;;
-		# Darwin doesn't need an rpath here
+		# Darwin doesn't need an rpath here (in fact doesn't grok the argument)
 	esac
-
-	if [[ ${CHOST} == *-interix* ]]; then
-		export ac_cv_header_inttypes_h=no
-		export gt_cv_header_inttypes_h=no
-		export jm_ac_cv_header_inttypes_h=no
-
-		# argh... something doomed this test on windows ... ???
-		export bash_cv_type_intmax_t=yes
-		export bash_cv_type_uintmax_t=yes
-	fi
-
+	tc-export AR #444070
 	econf \
+		--with-curses \
 		$(use_with afs) \
 		$(use_enable net net-redirections) \
 		--disable-profiling \
 		$(use_enable mem-scramble) \
 		$(use_with mem-scramble bash-malloc) \
-		${myconf} || die
-	emake || die "make failed"
+		$(use_enable readline) \
+		$(use_enable readline history) \
+		$(use_enable readline bang-history) \
+		"${myconf[@]}"
+}
+
+src_compile() {
+	src_configure
+	emake || die
 
 	if use plugins ; then
 		emake -C examples/loadables all others || die
@@ -201,12 +232,41 @@ src_install() {
 		newins "${FILESDIR}"/dot-${f} .${f}
 	done
 
-	sed -i -e "s:#${USERLAND}#@::" "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
-	sed -i -e '/#@/d' "${ED}"/etc/skel/.bashrc "${ED}"/etc/bash/bashrc
+	local sed_args=(
+		-e "s:#${USERLAND}#@::"
+		-e '/#@/d'
+	)
+	if ! use readline ; then
+		sed_args+=( #432338
+			-e '/^shopt -s histappend/s:^:#:'
+			-e 's:use_color=true:use_color=false:'
+		)
+	fi
+	sed -i \
+		"${sed_args[@]}" \
+		"${ED}"/etc/skel/.bashrc \
+		"${ED}"/etc/bash/bashrc || die
 
 	if use plugins ; then
 		exeinto /usr/$(get_libdir)/bash
 		doexe $(echo examples/loadables/*.o | sed 's:\.o::g') || die
+		insinto /usr/include/bash-plugins
+		doins *.h builtins/*.h examples/loadables/*.h include/*.h \
+			lib/{glob/glob.h,tilde/tilde.h}
+	fi
+
+	if use examples ; then
+		for d in examples/{functions,misc,scripts,scripts.noah,scripts.v2} ; do
+			exeinto /usr/share/doc/${PF}/${d}
+			insinto /usr/share/doc/${PF}/${d}
+			for f in ${d}/* ; do
+				if [[ ${f##*/} != PERMISSION ]] && [[ ${f##*/} != *README ]] ; then
+					doexe ${f}
+				else
+					doins ${f}
+				fi
+			done
+		done
 	fi
 
 	doman doc/*.1

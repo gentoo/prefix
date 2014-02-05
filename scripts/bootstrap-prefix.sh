@@ -1157,6 +1157,7 @@ bootstrap_stage3() {
 			[[ $? -eq 0 ]] || return 1
 		done
 	}
+	local pkgs
 
 	emerge_pkgs --nodeps "sys-apps/sed" || return 1
 
@@ -1176,10 +1177,19 @@ bootstrap_stage3() {
 	EXTRA_ECONF="--disable-shared" \
 		emerge_pkgs --nodeps "sys-apps/baselayout-prefix" || return 1
 
-	local pkgs=(
+	pkgs=(
 		sys-devel/m4
 		sys-devel/flex
-		sys-devel/bison
+	)
+	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+
+	# bison-2.7.1's configure checks for perl, but doesn't use it,
+	# except for tests.  Since we don't want to pull in perl at this
+	# stage, fake it
+	PERL=$(which true) \
+		emerge_pkgs --nodeps "sys-devel/bison" || return 1
+
+	pkgs=(
 		sys-devel/patch
 		sys-devel/binutils-config
 		sys-devel/gcc-config
@@ -1194,7 +1204,7 @@ bootstrap_stage3() {
 	emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
 
 	# --oneshot
-	local pkgs=(
+	pkgs=(
 		sys-apps/coreutils
 		sys-apps/findutils
 		app-arch/tar
@@ -1206,7 +1216,7 @@ bootstrap_stage3() {
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# --oneshot --nodeps
-	local pkgs=(
+	pkgs=(
 		sys-apps/file
 		app-admin/eselect
 	)
@@ -1214,7 +1224,7 @@ bootstrap_stage3() {
 
 	# bug #418181
 	# wget[nls]>=1.14 runs eautopoint, which needs autopoint>=0.15 from gettext
-	local pkgs=(
+	pkgs=(
 		sys-devel/gettext
 		net-misc/wget
 	)
