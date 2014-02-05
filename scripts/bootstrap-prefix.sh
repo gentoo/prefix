@@ -1087,6 +1087,8 @@ bootstrap_stage3() {
 	USE="${USE} -cxx"
 	grep -q '>=sys-devel/gcc-4.2 cxx' "${ROOT}"/etc/portage/make.profile/package.use.force \
 		|| echo ">=sys-devel/gcc-4.2 cxx" >> "${ROOT}"/etc/portage/make.profile/package.use.force
+	grep -q 'sys-devel/gcc-apple cxx' "${ROOT}"/etc/portage/make.profile/package.use.force \
+		|| echo "sys-devel/gcc-apple cxx" >> "${ROOT}"/etc/portage/make.profile/package.use.force
 
 	# Need need to spam the user about news until the emerge -e default
 	# because the tools aren't available to read the news item yet anyway.
