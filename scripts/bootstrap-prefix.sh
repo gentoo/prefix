@@ -1086,10 +1086,12 @@ bootstrap_stage3() {
 	# a cxx compiler though, so since we can build one without any extra
 	# deps with gcc, we should do so.
 	USE="${USE} -cxx"
-	grep -q '>=sys-devel/gcc-4.2 cxx' "${ROOT}"/etc/portage/make.profile/package.use.force \
-		|| echo ">=sys-devel/gcc-4.2 cxx" >> "${ROOT}"/etc/portage/make.profile/package.use.force
-	grep -q 'sys-devel/gcc-apple cxx' "${ROOT}"/etc/portage/make.profile/package.use.force \
-		|| echo "sys-devel/gcc-apple cxx" >> "${ROOT}"/etc/portage/make.profile/package.use.force
+	if [[ -f ${ROOT}/usr/portage/.unpacked ]] ; then  # only mess with snapshot
+		{
+		echo ">=sys-devel/gcc-4.2 cxx"
+		echo "sys-devel/gcc-apple cxx"
+		} >> "${ROOT}"/etc/portage/make.profile/package.use.force
+	fi
 
 	# Need need to spam the user about news until the emerge -e default
 	# because the tools aren't available to read the news item yet anyway.
