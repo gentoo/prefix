@@ -90,16 +90,6 @@ use mem-scramble
 	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
 	eprefixify pathnames.h.in
 
-	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
-	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
-
-	epatch "${FILESDIR}"/${PN}-4.2-darwin13.patch # patch from 4.3
-	epatch "${FILESDIR}"/${PN}-4.1-blocking-namedpipe.patch # aix lacks /dev/fd/
-	epatch "${FILESDIR}"/${PN}-4.0-childmax-pids.patch # AIX, Interix
-	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
-	fi
-
 	# Nasty trick to set bashbug's shebang to bash instead of sh. We don't have
 	# sh while bootstrapping for the first time, This works around bug 309825
 	sed -i -e '1s:sh:bash:' support/bashbug.sh || die
