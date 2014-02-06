@@ -1204,7 +1204,11 @@ bootstrap_stage3() {
 	# lib-dirs
 	emerge_pkgs --nodeps "app-misc/pax-utils" || return 1
 
-	emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
+	# GCC sometimes decides that it needs to run makeinfo to update some
+	# info pages from .texi files.  Obviously we don't care at this
+	# stage and rather have it continue instead of abort the build
+	MAKEINFO=$(which true) \
+		emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
 
 	# --oneshot
 	pkgs=(
