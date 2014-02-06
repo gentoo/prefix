@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/ChangeLog,v 1.154 2014/01/18 03:18:03 vapier Exp $
 
+  06 Feb 2014; Fabian Groffen <grobian@gentoo.org> pax-utils-0.2.1.ebuild:
+  Specify we need a C99 compiler to fix compilation on Solaris 10 with native
+  GCC3
+
   18 Jan 2014; Mike Frysinger <vapier@gentoo.org> pax-utils-0.7.ebuild:
   Add arm64 love.
 

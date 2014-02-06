@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.2.1.ebuild,v 1.8 2012/02/07 16:58:10 vapier Exp $
 
-inherit toolchain-funcs
+inherit toolchain-funcs flag-o-matic
 
 DESCRIPTION="ELF related utils for ELF 32/64 binaries that can check files for security relevant properties"
 HOMEPAGE="http://hardened.gentoo.org/pax-utils.xml"
@@ -28,6 +28,8 @@ src_compile() {
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
 		libs="-lgnu"
 	fi
+	# we use C99 features but don't adhere to C99 specs, so ...
+	append-flags -std=gnu99
 	emake CC="$(tc-getCC)" LIBS="${libs}" USE_CAP=$(use caps && echo yes) || die
 }
 
