@@ -1,13 +1,13 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1e.ebuild,v 1.4 2013/11/26 07:27:00 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1f.ebuild,v 1.14 2014/01/26 11:59:33 ago Exp $
 
 EAPI="4"
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 REV="1.7"
-DESCRIPTION="full-strength general purpose cryptography library (including SSL v2/v3 and TLS v1)"
+DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="http://www.openssl.org/"
 SRC_URI="mirror://openssl/source/${P}.tar.gz
 	http://cvs.pld-linux.org/cgi-bin/cvsweb.cgi/packages/${PN}/${PN}-c_rehash.sh?rev=${REV} -> ${PN}-c_rehash.sh.${REV}"
@@ -15,8 +15,7 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz
 LICENSE="openssl"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-
-IUSE="bindist gmp kerberos rfc3779 sse2 static-libs test vanilla zlib"
+IUSE="bindist gmp kerberos rfc3779 sse2 static-libs test +tls-heartbeat vanilla zlib"
 
 # Have the sub-libs in RDEPEND with [static-libs] since, logically,
 # our libssl.a depends on libz.a/etc... at runtime.
@@ -59,6 +58,9 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-1.0.1-parallel-build.patch
 		epatch "${FILESDIR}"/${PN}-1.0.1-x32.patch
 		epatch "${FILESDIR}"/${PN}-1.0.1e-ipv6.patch
+		epatch "${FILESDIR}"/${PN}-1.0.1f-perl-5.18.patch #497286
+		epatch "${FILESDIR}"/${PN}-1.0.1e-s_client-verify.patch #472584
+		epatch "${FILESDIR}"/${PN}-1.0.1f-revert-alpha-perl-generation.patch #499086
 		epatch_user #332661
 	fi
 
@@ -101,11 +103,6 @@ src_prepare() {
 	append-flags -fno-strict-aliasing
 	append-flags $(test-flags-CC -Wa,--noexecstack)
 
-	# type -P required on platforms where perl is not installed
-	# in the same prefix (prefix-chaining).
-	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure || die #141906
-	sed -i '1s/perl5/perl/' tools/c_rehash || die #308455
-
 	# fixup c_rehash script, bug #350601
 	sed -i \
 		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
@@ -122,6 +119,13 @@ src_prepare() {
 		sed -i -e "s:/usr/ccs/bin/::" crypto/bn/Makefile || die "sed failed"
 	fi
 
+	# type -P required on platforms where perl is not installed
+	# in the same prefix (prefix-chaining).
+	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure || die #141906
+	sed -i '1s/perl5/perl/' tools/c_rehash || die #308455
+
+	# The config script does stupid stuff to prompt the user.  Kill it.
+	sed -i '/stty -icanon min 0 time 50; read waste/d' config || die
 	./config -t --test-sanity || die "I AM NOT SANE"
 }
 
@@ -158,6 +162,17 @@ src_configure() {
 		;;
 	esac
 
+	# See if our toolchain supports __uint128_t.  If so, it's 64bit
+	# friendly and can use the nicely optimized code paths. #460790
+	local ec_nistp_64_gcc_128
+	# Disable it for now though #469976
+	#if ! use bindist ; then
+	#	echo "__uint128_t i;" > "${T}"/128.c
+	#	if ${CC} ${CFLAGS} -c "${T}"/128.c -o /dev/null >&/dev/null ; then
+	#		ec_nistp_64_gcc_128="enable-ec_nistp_64_gcc_128"
+	#	fi
+	#fi
+
 	local sslout=$(./gentoo.config)
 	einfo "Use configuration ${sslout:-(openssl knows best)}"
 	local config="Configure"
@@ -168,6 +183,7 @@ src_configure() {
 		$(use sse2 || echo "no-sse2") \
 		enable-camellia \
 		$(use_ssl !bindist ec) \
+		${ec_nistp_64_gcc_128} \
 		enable-idea \
 		enable-mdc2 \
 		$(use_ssl !bindist rc5) \
@@ -175,6 +191,7 @@ src_configure() {
 		$(use_ssl gmp gmp -lgmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
 		$(use_ssl rfc3779) \
+		$(use_ssl tls-heartbeat heartbeats) \
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
 		--openssldir="${EPREFIX}"${SSL_CNF_DIR} \
