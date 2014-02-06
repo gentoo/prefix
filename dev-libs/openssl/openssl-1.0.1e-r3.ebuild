@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1e-r3.ebuild,v 1.1 2013/12/20 19:26:59 vapier Exp $
 
@@ -43,7 +43,7 @@ src_unpack() {
 		-e "/^DIR=/s:=.*:=${EPREFIX}${SSL_CNF_DIR}:" \
 		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
 		"${DISTDIR}"/${PN}-c_rehash.sh.${REV} \
-		> "${WORKDIR}"/c_rehash || die #416717
+		> "${WORKDIR}"/c_rehash || die #416717 #350601
 }
 
 src_prepare() {
@@ -109,11 +109,6 @@ src_prepare() {
 	# in the same prefix (prefix-chaining).
 	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure || die #141906
 	sed -i '1s/perl5/perl/' tools/c_rehash || die #308455
-
-	# fixup c_rehash script, bug #350601
-	sed -i \
-		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
-		"${WORKDIR}"/c_rehash || die
 
 	# avoid waiting on terminal input forever when spitting
 	# 64bit warning message.

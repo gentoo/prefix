@@ -43,7 +43,7 @@ src_unpack() {
 		-e "/^DIR=/s:=.*:=${EPREFIX}${SSL_CNF_DIR}:" \
 		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
 		"${DISTDIR}"/${PN}-c_rehash.sh.${REV} \
-		> "${WORKDIR}"/c_rehash || die #416717
+		> "${WORKDIR}"/c_rehash || die #416717 #350601
 }
 
 src_prepare() {
@@ -102,11 +102,6 @@ src_prepare() {
 
 	append-flags -fno-strict-aliasing
 	append-flags $(test-flags-CC -Wa,--noexecstack)
-
-	# fixup c_rehash script, bug #350601
-	sed -i \
-		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
-		"${WORKDIR}"/c_rehash || die
 
 	# avoid waiting on terminal input forever when spitting
 	# 64bit warning message.
