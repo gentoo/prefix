@@ -1075,8 +1075,8 @@ bootstrap_stage3() {
 	local baseUSE="${USE}"
 	export USE="-berkdb -fortran -gdbm -git -nls -pcre -readline -ssl -python bootstrap internal-glib ${baseUSE}"
 
-	# Python >= 3.3 fails to build on gcc-4.2. Disable it until after the sync.
-	USE="python_targets_python3_2 -python_targets_python3_3 ${USE}"
+	# Python >= 3.2 fails to build on gcc-4.2. Disable it until after the sync.
+	USE="-python_targets_python3_2 -python_targets_python3_3 ${USE}"
 
 	# Most binary Linux distributions seem to fancy toolchains that
 	# do not do c++ support (need to install a separate package).
