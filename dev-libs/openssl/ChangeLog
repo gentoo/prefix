@@ -4,6 +4,10 @@
 
   06 Feb 2014; Fabian Groffen <grobian@gentoo.org> openssl-1.0.1e-r3.ebuild,
   openssl-1.0.1e.ebuild, openssl-1.0.1f.ebuild:
+  Fix build on Solaris 10, due to broken /bin/sh
+
+  06 Feb 2014; Fabian Groffen <grobian@gentoo.org> openssl-1.0.1e-r3.ebuild,
+  openssl-1.0.1e.ebuild, openssl-1.0.1f.ebuild:
   cleanup double work
 
   26 Jan 2014; Agostino Sarubbo <ago@gentoo.org> openssl-1.0.1f.ebuild:
