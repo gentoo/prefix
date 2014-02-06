@@ -1088,7 +1088,7 @@ bootstrap_stage3() {
 	USE="${USE} -cxx"
 	if [[ -f ${ROOT}/usr/portage/.unpacked ]] ; then  # only mess with snapshot
 		{
-		echo ">=sys-devel/gcc-4.2 cxx"
+		echo "sys-devel/gcc cxx"
 		echo "sys-devel/gcc-apple cxx"
 		} >> "${ROOT}"/etc/portage/make.profile/package.use.force
 	fi
