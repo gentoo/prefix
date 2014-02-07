@@ -2,10 +2,6 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.513 2014/01/26 11:59:33 ago Exp $
 
-  07 Feb 2014; Ruud Koolen <redlizard@gentoo.org> openssl-1.0.1e-r3.ebuild,
-  openssl-1.0.1e.ebuild, openssl-1.0.1f.ebuild:
-  Fix build on systems without CONFIG_SHELL set
-
   06 Feb 2014; Fabian Groffen <grobian@gentoo.org> openssl-1.0.1e-r3.ebuild,
   openssl-1.0.1e.ebuild, openssl-1.0.1f.ebuild:
   Fix build on Solaris 10, due to broken /bin/sh
