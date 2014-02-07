@@ -82,8 +82,8 @@ src_prepare() {
 	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
 
 	# avoid using /bin/sh because it's fragile on some platforms (Solaris)
-	sed -i -e "/SHELL=/s:=.*$:=${CONFIG_SHELL}:" Makefile.org || die
-	sed -i -e "1a\SHELL=${CONFIG_SHELL}" Makefile.shared || die
+	sed -i -e "/SHELL=/s:=.*$:=${BASH}:" Makefile.org || die
+	sed -i -e "1a\SHELL=${BASH}" Makefile.shared || die
 
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0a-interix.patch
