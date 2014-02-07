@@ -22,7 +22,7 @@ src_compile() {
 	|| ! type -p makeinfo >/dev/null
 	then
 		# binutils >= 2.17 (accidentally?) requires 'makeinfo'
-		export EXTRA_EMAKE="MAKEINFO=true"
+		export EXTRA_EMAKE="MAKEINFO='echo makeinfo GNU texinfo 4.13'"
 	fi
 
 	case "${CTARGET}" in

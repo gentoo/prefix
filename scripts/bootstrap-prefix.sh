@@ -1207,7 +1207,9 @@ bootstrap_stage3() {
 	# GCC sometimes decides that it needs to run makeinfo to update some
 	# info pages from .texi files.  Obviously we don't care at this
 	# stage and rather have it continue instead of abort the build
-	MAKEINFO=$(which true) \
+	# binutils does likewise, but also checks if the version is
+	# sufficient, hence we trick it with --version output
+	MAKEINFO="echo makeinfo GNU texinfo 4.13" \
 		emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
 
 	# --oneshot
