@@ -381,7 +381,6 @@ bootstrap_setup() {
 	fi
 	
 	# Disable the STALE warning because the snapshot frequently gets stale.
-	# DON'T REMOVE this one, stage3's tree check relies on this one
 	echo 'PORTAGE_SYNC_STALE=0' >> "${PORTDIR}"/profiles/features/prefix/make.defaults
 	
 	# Some people will hit bug 262653 with gcc-4.2 and elfutils. Let's skip it
@@ -1276,9 +1275,9 @@ bootstrap_stage3() {
 	nowdate=$(date +%s)
 	if [[ ${OFFLINE_MODE} ]]; then
 	  	# --keep used ${DISTDIR}, which make it easier to download a snapshot beforehand
-		[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge-webrsync --keep || return 1
+		[[ ( ! -e ${PORTDIR}/.unpacked ) && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge-webrsync --keep || return 1
 	else
-		[[ $(< ${ROOT}/etc/portage/make.profile/make.defaults) != *"PORTAGE_SYNC_STALE"* && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
+		[[ ( ! -e ${PORTDIR}/.unpacked ) && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
 	fi
 
 	export USE="${baseUSE}"
