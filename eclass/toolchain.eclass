@@ -379,6 +379,15 @@ toolchain_pkg_setup() {
 	# we dont want to use the installed compiler's specs to build gcc
 	unset GCC_SPECS
 	unset LANGUAGES #265283
+
+	# yuck, but how else to do it portable?
+	local realEPREFIX=$(python -c 'import os; print(os.path.realpath("'"${EPREFIX}"'"))')
+	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]] ; then
+		ewarn "Your \${EPREFIX} contains one or more symlinks.  GCC has a"
+		ewarn "bug which prevents it from working properly when there are"
+		ewarn "symlinks in your \${EPREFIX}."
+		ewarn "See http://gcc.gnu.org/bugzilla/show_bug.cgi?id=29831"
+	fi
 }
 
 #---->> src_unpack <<----
@@ -1616,16 +1625,7 @@ toolchain_src_install() {
 	done < <(find gcc/include*/ -name '*.h')
 
 	# Do the 'make install' from the build directory
-	local realEPREFIX=$(python -c 'import os; print(os.path.realpath("'"${EPREFIX}"'"))')
-	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${realEPREFIX} != ${EPREFIX} ]] ; then
-		# compensate the changed prefix
-		S=${WORKDIR}/build emake -j1 DESTDIR="${D}"/nuke-me install || die
-		mkdir -p "${ED}"
-		mv "${D}/nuke-me${realEPREFIX}"/* "${ED}"/
-		rm -Rf "${D}"/nuke-me
-	else
-		S="${WORKDIR}"/build emake -j1 DESTDIR="${D}" install || die
-	fi
+	S="${WORKDIR}"/build emake -j1 DESTDIR="${D}" install || die
 	# Punt some tools which are really only useful while building gcc
 	find "${ED}" -name install-tools -prune -type d -exec rm -rf "{}" \;
 	# This one comes with binutils
