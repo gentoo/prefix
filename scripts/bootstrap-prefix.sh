@@ -1077,6 +1077,11 @@ bootstrap_stage3() {
 
 	# Python >= 3.2 fails to build on gcc-4.2. Disable it until after the sync.
 	USE="-python_targets_python3_2 -python_targets_python3_3 ${USE}"
+	if [[ -f ${ROOT}/usr/portage/.unpacked ]] ; then  # only mess with snapshot
+		{
+		echo ">=dev-lang/python-3"
+		} >> "${ROOT}"/etc/portage/make.profile/package.mask
+	fi
 
 	# Most binary Linux distributions seem to fancy toolchains that
 	# do not do c++ support (need to install a separate package).
