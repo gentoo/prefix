@@ -1,15 +1,17 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.13 2012/11/29 05:06:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.16 2014/01/19 01:51:34 dirtyepic Exp $
 
-PATCH_VER="1.2"
+EAPI="2"
+
+PATCH_VER="1.3"
 UCLIBC_VER="1.0"
 
-inherit toolchain flag-o-matic prefix
+inherit eutils toolchain flag-o-matic prefix
 
 DESCRIPTION="The GNU Compiler Collection"
 
-LICENSE="GPL-3 LGPL-2.1 || ( GPL-3 libgcc libstdc++ ) FDL-1.2"
+LICENSE="GPL-3+ LGPL-2.1+ || ( GPL-3+ libgcc libstdc++ ) FDL-1.2+"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=""
@@ -23,8 +25,8 @@ DEPEND="${RDEPEND}
 		>=${CATEGORY}/binutils-2.15.94
 	) ) )"
 
-src_unpack() {
-	toolchain_src_unpack
+src_prepare() {
+	toolchain_src_prepare
 
 	use vanilla && return 0
 
@@ -118,7 +120,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.2.2/aix-soname.patch
 }
 
-src_compile() {
+src_configure() {
 	case ${CTARGET}:" ${USE} " in
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
@@ -163,7 +165,7 @@ src_compile() {
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
 	# in case that doesn't exist yet
 	export CONFIG_SHELL="${BASH}"
-	toolchain_src_compile
+	toolchain_src_configure
 }
 
 src_install() {

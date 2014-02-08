@@ -1,16 +1,18 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.1.2.ebuild,v 1.33 2012/11/29 01:25:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.1.2.ebuild,v 1.37 2014/01/19 01:51:34 dirtyepic Exp $
 
-PATCH_VER="1.4"
+EAPI="2"
+
+PATCH_VER="1.5"
 UCLIBC_VER="1.0"
 D_VER="0.24"
 
-inherit toolchain flag-o-matic
+inherit eutils toolchain flag-o-matic
 
 DESCRIPTION="The GNU Compiler Collection"
 
-LICENSE="GPL-2 LGPL-2.1 FDL-1.2"
+LICENSE="GPL-2+ LGPL-2.1+ FDL-1.2+"
 KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 
 RDEPEND=""
@@ -23,8 +25,8 @@ DEPEND="${RDEPEND}
 		>=${CATEGORY}/binutils-2.15.94
 	) )"
 
-src_unpack() {
-	toolchain_src_unpack
+src_prepare() {
+	toolchain_src_prepare
 
 	use vanilla && return 0
 
@@ -53,7 +55,7 @@ src_unpack() {
 	fi
 }
 
-src_compile() {
+src_configure() {
 	case ${CHOST} in
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
@@ -73,5 +75,5 @@ src_compile() {
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, so force it into our own bash
 	export CONFIG_SHELL="${BASH}"
-	toolchain_src_compile
+	toolchain_src_configure
 }
