@@ -91,7 +91,6 @@ src_configure() {
 		--with-packager="Gentoo" \
 		--with-packager-version="${PVR} (p${PATCH_VER:-0})" \
 		--with-packager-bug-reports="http://bugs.gentoo.org/" \
-		${myconf} \
 		--enable-largefile \
 		$(use caps || echo --disable-libcap) \
 		$(use_enable nls) \
@@ -138,7 +137,7 @@ src_install() {
 	insinto /etc
 	newins src/dircolors.hin DIR_COLORS || die
 
-	if [[ ${USERLAND} == "GNU" || ${EPREFIX%/} != "" ]] ; then
+	if [[ ${USERLAND} == "GNU" ]] ; then
 		cd "${ED}"/usr/bin
 		dodir /bin
 		# move critical binaries into /bin (required by FHS)
@@ -187,5 +186,4 @@ pkg_postinst() {
 			;;
 		esac
 	fi
-
 }
