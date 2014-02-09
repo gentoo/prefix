@@ -395,11 +395,15 @@ do_tree() {
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
 	if [[ ${PREFIX_DISABLE_USR_SPLIT} == "yes" ]] ; then
-		for x in lib {,s}bin ; do
+		# note to self: don't make bin a symlink to usr/bin for
+		# coreutils installs symlinks to from usr/bin to bin, which in
+		# case they are the same boils down to a pointless indirection
+		# to self
+		for x in lib sbin ; do
 			[[ -e ${ROOT}/${x} ]] || ( cd "${ROOT}" && ln -s usr/${x} )
 		done
 	else
-		for x in lib {,s}bin ; do
+		for x in lib sbin ; do
 			[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 		done
 	fi
