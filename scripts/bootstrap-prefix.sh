@@ -1320,10 +1320,11 @@ bootstrap_stage3() {
 				echo "# be careful with this one, don't just remove it!"
 				echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
 			fi
-			[[ -n $PORTDIR_OVERLAY ]] && echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
+			[[ -n $PORTDIR_OVERLAY ]] && \
+				echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
+			[[ ${OFFLINE_MODE} ]] && \
+				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
 		} > "${EPREFIX}"/etc/portage/make.conf
-		[[ ${OFFLINE_MODE} ]] &&
-			echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""' >> "${EPREFIX}"/etc/portage/make.conf
 	fi
 
 	einfo "stage3 successfully finished"
