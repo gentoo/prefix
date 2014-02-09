@@ -389,10 +389,20 @@ bootstrap_setup() {
 }
 
 do_tree() {
-	for x in etc{,/portage} {,usr/}{,s}bin var/tmp var/lib/portage var/log/portage var/db;
+	local x
+	for x in etc{,/portage} usr/{{,s}bin,lib} var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
+	if [[ ${PREFIX_DISABLE_USR_SPLIT} == "yes" ]] ; then
+		for x in lib {,s}bin ; do
+			[[ -e ${ROOT}/${x} ]] || ( cd "${ROOT}" && ln -s usr/${x} )
+		done
+	else
+		for x in lib {,s}bin ; do
+			[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
+		done
+	fi
 	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
 		efetch "$1/$2" || return 1
 		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
@@ -1111,13 +1121,6 @@ bootstrap_stage3() {
 	# since our stage1 Python lives in $EPREFIX/tmp, bug #407573
 	export PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym
 
-	# No longer support gen_usr_ldscript stuff in new bootstraps, this
-	# must be in line with what eventually ends up in make.conf, see the
-	# end of this function.  We don't do this in bootstrap_setup()
-	# because in that case we'd also have to cater for getting this
-	# right with manual bootstraps.
-	export PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes 
-
 	# Find out what toolchain packages we need, and configure LDFLAGS
 	# and friends.
 	configure_toolchain || return 1
@@ -1313,8 +1316,10 @@ bootstrap_stage3() {
 			echo 'CXXFLAGS="${CFLAGS}"'
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
 			echo "CONFIG_SHELL=\"${CONFIG_SHELL}\""
-			echo "# be careful with this one, don't just remove it!"
-			echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
+			if [[ -n ${PREFIX_DISABLE_USR_SPLIT} ]] ; then
+				echo "# be careful with this one, don't just remove it!"
+				echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
+			fi
 			[[ -n $PORTDIR_OVERLAY ]] && echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
 		} > "${EPREFIX}"/etc/portage/make.conf
 		[[ ${OFFLINE_MODE} ]] &&
@@ -1325,6 +1330,13 @@ bootstrap_stage3() {
 }
 
 bootstrap_interactive() {
+	# No longer support gen_usr_ldscript stuff and the /usr split it
+	# works around for in new bootstraps, this must be in line with what
+	# eventually ends up in make.conf, see the end of stage3.  We don't
+	# do this in bootstrap_setup() because in that case we'd also have
+	# to cater for getting this right with manual bootstraps.
+	export PREFIX_DISABLE_USR_SPLIT=yes 
+
 	# immediately die on platforms that we know are impossible due to
 	# brain-deadness (Debian/Ubuntu) or extremely hard dependency chains
 	# (TODO NetBSD/OpenBSD)
