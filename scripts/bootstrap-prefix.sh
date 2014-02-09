@@ -1054,6 +1054,12 @@ bootstrap_stage2() {
 
 	# checks itself if things need to be done still
 	bootstrap_tree || return 1
+
+	# try to keep distfiles, we might be able to reuse them
+	[[ -d ${ROOT}/usr/portage/distfiles ]] || \
+		mv "${ROOT}"/tmp/usr/portage/distfiles "${ROOT}"/usr/portage/
+
+	# setup portage
 	[[ -e ${ROOT}/etc/make.globals ]] || bootstrap_portage || return 1
 
 	einfo "stage2 successfully finished"
