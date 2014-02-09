@@ -60,9 +60,9 @@ efetch() {
 		einfo "Fetching ${1##*/}"
 		pushd "${DISTDIR}" > /dev/null
 		# try for mirrors first, then try given location
-		${FETCH_COMMAND} "${GENTOO_MIRRORS}/distfiles/${1##*/}"
+		${FETCH_COMMAND} "${GENTOO_MIRRORS}/distfiles/${1##*/}" < /dev/null
 		[[ ! -f ${1##*/} && ${1} != ${GENTOO_MIRRORS}/distfiles/${1##*/} ]] \
-			&& ${FETCH_COMMAND} "$1"
+			&& ${FETCH_COMMAND} "$1" < /dev/null
 		if [[ ! -f ${1##*/} ]] ; then
 			eerror "downloading ${1} failed!"
 			return 1
