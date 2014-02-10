@@ -1,9 +1,9 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.0.1-r6.ebuild,v 1.8 2012/03/15 02:29:18 ssuominen Exp $
 
 EAPI=4
-inherit eutils libtool toolchain-funcs autotools
+inherit eutils libtool toolchain-funcs autotools flag-o-matic
 
 DESCRIPTION="XML parsing libraries"
 HOMEPAGE="http://expat.sourceforge.net/"
@@ -37,6 +37,12 @@ src_prepare() {
 }
 
 src_configure() {
+	# compilation with -O0 fails on solaris 11.
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		replace-flags -O0 -O2
+		is-flagq -O[s123] || append-flags -O2
+	fi
+
 	local myconf="$(use_enable static-libs static)"
 
 	pushd "${S}"-build >/dev/null
