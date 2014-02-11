@@ -1093,6 +1093,11 @@ bootstrap_stage3() {
 	# Avoid circular deps caused by the default profiles (and IUSE defaults).
 	local baseUSE="${USE}"
 	export USE="-berkdb -fortran -gdbm -git -nls -pcre -readline -ssl -python bootstrap internal-glib ${baseUSE}"
+	if [[ -f ${ROOT}/usr/portage/.unpacked ]] ; then  # only mess with snapshot
+		{
+		echo "app-shells/bash -readline"
+		} >> "${ROOT}"/etc/portage/make.profile/package.use.force
+	fi
 
 	# Python >= 3.2 fails to build on gcc-4.2. Disable it until after the sync.
 	USE="-python_targets_python3_2 -python_targets_python3_3 ${USE}"
@@ -1185,7 +1190,7 @@ bootstrap_stage3() {
 	# Disable collision-protect to overwrite the symlinked bin/bash for
 	# a valid shebang we have symlinked bin/bash already
 	FEATURES="${FEATURES} -collision-protect" \
-	EXTRA_ECONF="--without-curses --disable-readline --disable-history --disable-bang-history" \
+	EXTRA_ECONF="--without-curses" \
 		emerge_pkgs --nodeps "app-shells/bash" || return 1
 
 	# we can now use our own bash throughout
