@@ -90,6 +90,12 @@ use mem-scramble
 	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
 	eprefixify pathnames.h.in
 
+	# Fix not to reference a disabled symbol if USE=-readline, breaks
+	# Darwin, bug #500932
+	if use !readline ; then
+		sed -i -e 's/enable_hostname_completion//' builtins/shopt.def || die
+	fi
+
 	# Nasty trick to set bashbug's shebang to bash instead of sh. We don't have
 	# sh while bootstrapping for the first time, This works around bug 309825
 	sed -i -e '1s:sh:bash:' support/bashbug.sh || die
