@@ -127,12 +127,15 @@ configure_toolchain() {
 	esac
 
 	case ${CHOST} in
+		# note: we need CXX for binutils-apple which' ld is c++
 		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
 			[[ -z ${CC} ]] && export CC="gcc -m64"
+			[[ -z ${CXX} ]] && export CXX="g++ -m64"
 			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m64"
 			;;
 		i*86-apple-darwin1*)
 			[[ -z ${CC} ]] && export CC="gcc -m32"
+			[[ -z ${CXX} ]] && export CXX="g++ -m32"
 			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m32"
 			;;
 		*)
