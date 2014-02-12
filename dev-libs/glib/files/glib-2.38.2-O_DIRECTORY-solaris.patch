@@ -1,0 +1,51 @@
+From 7eb1e5fc5bc5aa6744bd516463ca2d65104c5a4e Mon Sep 17 00:00:00 2001
+From: William Orr <will@worrbase.com>
+Date: Thu, 26 Sep 2013 18:02:06 +0000
+Subject: glocalfile: Only use O_DIRECTORY if available
+
+Solaris 10 for example doesn't have it.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=708860
+---
+diff --git a/configure.ac b/configure.ac
+index ee76daf..9e55ff5 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1224,6 +1224,18 @@ AS_IF([test "$ac_cv_func_statfs" = yes], [
+       AC_MSG_ERROR([unable to determine number of arguments to statfs()])])])
+ ])
+ 
++dnl
++dnl open takes O_DIRECTORY as an option
++dnl
++AC_MSG_CHECKING([open() option O_DIRECTORY])
++AC_TRY_COMPILE([#include <fcntl.h>
++#include <sys/types.h>
++#include <sys/stat.h>],
++[open(0, O_DIRECTORY, 0);],[
++	AC_MSG_RESULT([yes])
++	AC_DEFINE(HAVE_OPEN_O_DIRECTORY, 1, [open option O_DIRECTORY])],[
++	AC_MSG_RESULT([no])])
++
+ #
+ # Check whether to use an included printf
+ #
+diff --git a/gio/glocalfile.c b/gio/glocalfile.c
+index 345214d..3763a46 100644
+--- a/gio/glocalfile.c
++++ b/gio/glocalfile.c
+@@ -2699,7 +2699,11 @@ g_local_file_measure_size_of_file (gint           parent_fd,
+         return FALSE;
+ 
+ #ifdef AT_FDCWD
+-      dir_fd = openat (parent_fd, name->data, O_RDONLY | O_DIRECTORY);
++#ifdef HAVE_OPEN_O_DIRECTORY
++      dir_fd = openat (parent_fd, name->data, O_RDONLY|O_DIRECTORY);
++#else
++      dir_fd = openat (parent_fd, name->data, O_RDONLY);
++#endif
+       if (dir_fd < 0)
+         return g_local_file_measure_size_error (state->flags, errno, name, error);
+ #endif
+--
+cgit v0.9.2
