@@ -1,6 +1,35 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.583 2013/11/14 04:57:32 mattst88 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.590 2014/01/18 04:44:00 vapier Exp $
+
+  18 Jan 2014; Mike Frysinger <vapier@gentoo.org> glib-2.36.4-r1.ebuild,
+  glib-2.38.2.ebuild:
+  Add arm64 love.
+
+  18 Jan 2014; Mike Frysinger <vapier@gentoo.org> glib-2.34.3-r1.ebuild,
+  glib-2.36.4-r1.ebuild:
+  Mark m68k/s390/sh stable.
+
+  23 Dec 2013; Gilles Dartiguelongue <eva@gentoo.org> metadata.xml:
+  Restore metadata.xml upstream tag.
+
+*glib-2.38.2 (23 Dec 2013)
+
+  23 Dec 2013; Gilles Dartiguelongue <eva@gentoo.org> +glib-2.38.2.ebuild,
+  files/glib-2.12.12-fbsd.patch,
+  files/glib-2.34.0-testsuite-skip-thread4.patch,
+  files/glib-2.36.4-znodelete.patch,
+  +files/glib-2.37.x-external-gdbus-codegen.patch, metadata.xml:
+  Version bump for Gnome 3.10. Refresh patches with git headers.
+
+  22 Dec 2013; Jeroen Roovers <jer@gentoo.org> glib-2.36.4-r1.ebuild:
+  Stable for HPPA (bug #478252).
+
+  08 Dec 2013; Pacho Ramos <pacho@gentoo.org> glib-2.36.4-r1.ebuild:
+  x86 stable, bug #478252
+
+  30 Nov 2013; Pacho Ramos <pacho@gentoo.org> glib-2.36.4-r1.ebuild:
+  amd64 stable, bug #478252
 
   01 Jan 2014; Fabian Groffen <grobian@gentoo.org> glib-2.36.4-r1.ebuild:
   Fix Prefix /usr/local substitution, thanks Michael Weiser in bug #496672
