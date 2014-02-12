@@ -85,13 +85,8 @@ src_prepare() {
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.32.1-solaris-thread.patch
 
-	# Fix for Solaris, NetBSD, possibly FreeBSD
-	epatch "${FILESDIR}"/${PN}-2.36.3-solaris.patch
-
 	# Fix gmodule issues on fbsd; bug #184301, upstream bug #107626
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
-
-	epatch "${FILESDIR}"/${PN}-2.36.4-aix.patch # AIX buildtime fixes
 
 	if use test; then
 		# Do not try to remove files on live filesystem, upstream bug #619274
