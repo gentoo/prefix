@@ -1093,6 +1093,11 @@ bootstrap_stage3() {
 		return 1
 	fi
 
+	# activate usr-split disabling in gen_usr_ldscript
+	if [[ -n ${PREFIX_DISABLE_USR_SPLIT} ]] ; then
+		export PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes
+	fi
+
 	# Avoid circular deps caused by the default profiles (and IUSE defaults).
 	local baseUSE="${USE}"
 	export USE="-berkdb -fortran -gdbm -git -nls -pcre -readline -ssl -python bootstrap internal-glib ${baseUSE}"
