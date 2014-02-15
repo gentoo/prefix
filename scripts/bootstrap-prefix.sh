@@ -102,7 +102,7 @@ efetch() {
 configure_toolchain() {
 	export CPPFLAGS="-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include"
 
-	case ${CHOST} in
+	case ${bootstrapCHOST} in
 		*-darwin*)
 			export LDFLAGS="-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
 			;;
@@ -126,7 +126,7 @@ configure_toolchain() {
 			;;
 	esac
 
-	case ${CHOST} in
+	case ${bootstrapCHOST} in
 		# note: we need CXX for binutils-apple which' ld is c++
 		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
 			[[ -z ${CC} ]] && export CC="gcc -m64"
@@ -142,7 +142,7 @@ configure_toolchain() {
 			;;
 	esac
 
-	case ${CHOST} in
+	case ${bootstrapCHOST} in
 		*-darwin*)
 			case "$(gcc --version)" in
 				*"(GCC) 4.2.1 "*|*"Apple LLVM version 5.0"*)
@@ -1133,17 +1133,17 @@ bootstrap_stage3() {
 	# since our stage1 Python lives in $EPREFIX/tmp, bug #407573
 	export PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym
 
-	# Find out what toolchain packages we need, and configure LDFLAGS
-	# and friends.
-	configure_toolchain || return 1
-
 	# stage2 has set a profile, which defines CHOST, so unset any CHOST
 	# we've got here to avoid cross-compilation due to slight
 	# differences caused by our guessing vs. what the profile sets.
 	# This happens at least on 32-bits Darwin, with i386 and i686.
 	# https://bugs.gentoo.org/show_bug.cgi?id=433948
-	local bootstrapCHOST=${CHOST}
+	export bootstrapCHOST=${CHOST}
 	unset CHOST
+
+	# Find out what toolchain packages we need, and configure LDFLAGS
+	# and friends.
+	configure_toolchain || return 1
 
 	[[ ${OFFLINE_MODE} ]] && \
 		export FETCHCOMMAND="bash -c 'echo I need \\\$1 from \\\$2 in \\\$3; read' -- \\\${FILE} \\\${URI} \\\${DISTDIR}"
