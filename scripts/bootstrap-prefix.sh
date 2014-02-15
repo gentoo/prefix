@@ -1281,6 +1281,9 @@ bootstrap_stage3() {
 	# the -I directions set by the profile
 	export CPPFLAGS="${CPPFLAGS} -DNO_LARGEFILE_SOURCE"
 
+	# bash needs to be compiled with USE=readline for Portage
+	export USE="${USE//-readline/}"
+
 	# disable collision-protect to overwrite the bootstrapped portage
 	FEATURES="-collision-protect" emerge_pkgs "" "sys-apps/portage" || return 1
 
