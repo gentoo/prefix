@@ -142,6 +142,7 @@ configure_toolchain() {
 			;;
 	esac
 
+	pkggcc="sys-devel/gcc"
 	case ${bootstrapCHOST} in
 		*-darwin*)
 			case "$(gcc --version)" in
@@ -162,6 +163,7 @@ configure_toolchain() {
 				${linker}
 				sys-devel/gcc-apple
 			)
+			pkggcc="sys-devel/gcc-apple"
 			;;
 		i?86-*-solaris*)
 			# 4.2/x86 can't cope with Sun ld/as
@@ -1331,7 +1333,7 @@ bootstrap_stage3() {
 
 	# We need an up-to-date compiler before upgrading python to avoid
 	# bug #490774
-	emerge --oneshot -u sys-devel/gcc || return 1
+	emerge --oneshot -u ${pkggcc} || return 1
 
 	# activate last compiler
 	gcc-config $(gcc-config -l | wc -l)
