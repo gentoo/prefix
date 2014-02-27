@@ -1,6 +1,95 @@
 # ChangeLog for sys-devel/gettext
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.209 2012/09/23 19:05:55 armin76 Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.231 2014/01/30 22:12:30 axs Exp $
+
+  30 Jan 2014; Ian Stakenvicius <axs@gentoo.org> gettext-0.18.3.2.ebuild:
+  fixed dep version on emul-linux-x86-baselibs to match the one will not collide
+  with abi_x86_32
+
+  18 Jan 2014; Mike Frysinger <vapier@gentoo.org> gettext-0.18.2.ebuild,
+  gettext-0.18.3.1-r1.ebuild, gettext-0.18.3.2.ebuild:
+  Add hack for gnulib acl check when cross-compiling #333887 by Luca Barbato.
+
+*gettext-0.18.3.2 (16 Jan 2014)
+
+  16 Jan 2014; Lars Wendler <polynomial-c@gentoo.org> +gettext-0.18.3.2.ebuild:
+  Version bump. Added multilib support (bug #496218).
+
+  07 Jan 2014; Lars Wendler <polynomial-c@gentoo.org>
+  -gettext-0.18.1.1-r1.ebuild, -gettext-0.18.1.1-r2.ebuild,
+  -gettext-0.18.1.1-r3.ebuild, -gettext-0.18.3.1.ebuild,
+  -files/gettext-0.14.1-lib-path-tests.patch,
+  -files/gettext-0.14.2-fix-race.patch,
+  -files/gettext-0.15-expat-no-dlopen.patch, -files/gettext-0.17-gnuinfo.patch,
+  -files/gettext-0.17-open-args.patch, -files/gettext-0.17-x-python.patch,
+  -files/gettext-0.18.1.1-no-gets.patch,
+  -files/gettext-0.18.1.1-uclibc-sched_param-def.patch:
+  Removed old versions and files.
+
+  05 Jan 2014; Mike Frysinger <vapier@gentoo.org> gettext-0.18.3.1-r1.ebuild:
+  Control libasprintf (a C++ library) via USE=cxx #496926 by Sylvain BERTRAND.
+
+  16 Dec 2013; Mike Frysinger <vapier@gentoo.org> gettext-0.18.2.ebuild,
+  gettext-0.18.3.1-r1.ebuild:
+  Add patch by Arc Riley for USE=ncurses flag to control ncurses dependency
+  #493390
+
+  30 Nov 2013; Mike Frysinger <vapier@gentoo.org> gettext-0.18.3.1-r1.ebuild:
+  Stick to EAPI=4 for now.
+
+*gettext-0.18.3.1-r1 (25 Oct 2013)
+
+  25 Oct 2013; Lars Wendler <polynomial-c@gentoo.org>
+  +gettext-0.18.3.1-r1.ebuild,
+  +files/gettext-0.18.3.1-use_m4_fallback_dir.patch:
+  Fixed autopoint installation to / when no m4dir was found (bug #487794).
+  Raised ebuild to EAPI-5. Switched to mono-env eclass.
+
+*gettext-0.18.3.1 (25 Aug 2013)
+
+  25 Aug 2013; Mike Frysinger <vapier@gentoo.org> +gettext-0.18.3.1.ebuild:
+  Version bump.
+
+  27 Apr 2013; Mike Frysinger <vapier@gentoo.org> gettext-0.18.2.ebuild:
+  Mark m68k stable #460792.
+
+  13 Apr 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for s390, wrt bug #460792
+
+  02 Apr 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for hppa, wrt bug #460792
+
+  02 Apr 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for sh, wrt bug #460792
+
+  31 Mar 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for sparc, wrt bug #460792
+
+  28 Mar 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for ia64, wrt bug #460792
+
+  24 Mar 2013; Markus Meier <maekke@gentoo.org> gettext-0.18.2.ebuild:
+  arm stable, bug #460792
+
+  23 Mar 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for alpha, wrt bug #460792
+
+  23 Mar 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for ppc64, wrt bug #460792
+
+  22 Mar 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for ppc, wrt bug #460792
+
+  20 Mar 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for x86, wrt bug #460792
+
+  20 Mar 2013; Agostino Sarubbo <ago@gentoo.org> gettext-0.18.2.ebuild:
+  Stable for amd64, wrt bug #460792
+
+*gettext-0.18.2 (11 Jan 2013)
+
+  11 Jan 2013; Mike Frysinger <vapier@gentoo.org> +gettext-0.18.2.ebuild:
+  Version bump #451300 by Agostino Sarubbo.
 
   19 Nov 2013; Fabian Groffen <grobian@gentoo.org> gettext-0.18.1.1-r3.ebuild:
   Fix compilation on OS X Mavericks, thanks Linlin Yan in bug #491172
