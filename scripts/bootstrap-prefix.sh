@@ -1236,12 +1236,17 @@ bootstrap_stage3() {
 	# lib-dirs
 	emerge_pkgs --nodeps "app-misc/pax-utils" || return 1
 
+	# Clang on OSX defaults to c99 mode, while GCC defaults to gnu89
+	# (C90 + extensions).  This makes Clang barf on GCC's sources, so
+	# work around that.  Bug #491098
+	GCC_CC=${CC}
+	[[ ${bootstrapCHOST} == *-darwin* ]] && GCC_CC="${CC} -std=gnu89"
 	# GCC sometimes decides that it needs to run makeinfo to update some
 	# info pages from .texi files.  Obviously we don't care at this
 	# stage and rather have it continue instead of abort the build
 	# binutils does likewise, but also checks if the version is
 	# sufficient, hence we trick it with --version output
-	MAKEINFO="echo makeinfo GNU texinfo 4.13" \
+	MAKEINFO="echo makeinfo GNU texinfo 4.13" CC="${GCC_CC}" \
 		emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
 
 	# --oneshot
