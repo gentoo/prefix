@@ -1,6 +1,151 @@
 # ChangeLog for dev-libs/cyrus-sasl
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.260 2013/01/04 08:12:15 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.297 2014/02/24 05:29:54 patrick Exp $
+
+*cyrus-sasl-2.1.26-r4 (24 Feb 2014)
+
+  24 Feb 2014; Patrick Lauer <patrick@gentoo.org> +cyrus-sasl-2.1.26-r4.ebuild:
+  Fix configure.in and unrestrict allowed automake versions #486740 #468556
+
+  14 Sep 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild:
+  Stable for sparc, wrt bug #476764
+
+  05 Sep 2013; Tim Harder <radhermit@gentoo.org> -cyrus-sasl-2.1.23-r6.ebuild,
+  -cyrus-sasl-2.1.25-r4.ebuild, -cyrus-sasl-2.1.26-r1.ebuild,
+  -cyrus-sasl-2.1.26-r2.ebuild:
+  Remove old.
+
+  06 Aug 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild,
+  cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for s390, wrt bug #476764
+
+  22 Jul 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for sparc, wrt bug #476764
+
+  21 Jul 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild,
+  cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for sh, wrt bug #476764
+
+  21 Jul 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild,
+  cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for arm, wrt bug #476764
+
+  21 Jul 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild,
+  cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for ppc, wrt bug #476764
+
+  21 Jul 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild,
+  cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for ppc64, wrt bug #476764
+
+  21 Jul 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild,
+  cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for ia64, wrt bug #476764
+
+  21 Jul 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild,
+  cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for alpha, wrt bug #476764
+
+  20 Jul 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild,
+  cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for x86, wrt bug #476764
+
+  20 Jul 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild,
+  cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for amd64, wrt bug #476764
+
+  17 Jul 2013; Jeroen Roovers <jer@gentoo.org> cyrus-sasl-2.1.26-r3.ebuild:
+  Stable for HPPA (bug #476764).
+
+  17 Jul 2013; Jeroen Roovers <jer@gentoo.org> cyrus-sasl-2.1.23-r7.ebuild:
+  Stable for HPPA (bug #476764).
+
+*cyrus-sasl-2.1.26-r3 (14 Jul 2013)
+
+  14 Jul 2013; Eray Aslan <eras@gentoo.org> +cyrus-sasl-2.1.26-r3.ebuild,
+  +files/cyrus-sasl-2.1.26-CVE-2013-4122.patch,
+  +files/cyrus-sasl-2.1.26-canonuser-ldapdb-garbage-in-out-buffer.patch,
+  +files/cyrus-sasl-2.1.26-send-imap-logout.patch:
+  Security bump - bug #476764. Import send-imap-logout and ldapdb-buffer patches
+  from debian.
+
+*cyrus-sasl-2.1.23-r7 (14 Jul 2013)
+
+  14 Jul 2013; Eray Aslan <eras@gentoo.org> +cyrus-sasl-2.1.23-r7.ebuild,
+  +files/cyrus-sasl-2.1.23-CVE-2013-4122.patch:
+  Security bump - bug #476764
+
+*cyrus-sasl-2.1.26-r2 (13 Jul 2013)
+
+  13 Jul 2013; Pacho Ramos <pacho@gentoo.org> +cyrus-sasl-2.1.26-r2.ebuild,
+  +files/cyrus-sasl.conf, +files/pwcheck.service, +files/saslauthd-2.1.26.conf,
+  +files/saslauthd.service, +files/saslauthd2.rc7:
+  Install unit file (#466376)
+
+  24 Apr 2013; Eray Aslan <eras@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild,
+  cyrus-sasl-2.1.26-r1.ebuild:
+  Do not use automake-1.13 until fixed - bug #466994
+
+  11 Mar 2013; Eray Aslan <eras@gentoo.org> -cyrus-sasl-2.1.25-r3.ebuild,
+  -cyrus-sasl-2.1.26.ebuild:
+  Remove old
+
+  01 Mar 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for sh, wrt bug #457688
+
+  28 Feb 2013; Jeroen Roovers <jer@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for HPPA (bug #457688).
+
+  23 Feb 2013; Eray Aslan <eras@gentoo.org> cyrus-sasl-2.1.26-r1.ebuild:
+  Fix preserve_old_lib call - bug #458804
+
+  23 Feb 2013; Eray Aslan <eras@gentoo.org>
+  files/cyrus-sasl-2.1.26-missing-size_t.patch:
+  Commit forgotton patch
+
+  23 Feb 2013; Lars Wendler <polynomial-c@gentoo.org>
+  +files/cyrus-sasl-2.1.26-missing-size_t.patch:
+  Added forgotten patch from previous commit.
+
+*cyrus-sasl-2.1.26-r1 (23 Feb 2013)
+
+  23 Feb 2013; Eray Aslan <eras@gentoo.org> +cyrus-sasl-2.1.26-r1.ebuild:
+  Add missing header - bug #458790
+
+*cyrus-sasl-2.1.26 (22 Feb 2013)
+
+  22 Feb 2013; Eray Aslan <eras@gentoo.org> +cyrus-sasl-2.1.26.ebuild:
+  Version bump - bug #447984
+
+  21 Feb 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for ia64, wrt bug #457688
+
+  20 Feb 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for s390, wrt bug #457688
+
+  20 Feb 2013; Eray Aslan <eras@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Add net-mail/mailbase to DEPEND - bug #458408
+
+  19 Feb 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for arm, wrt bug #457688
+
+  18 Feb 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for ppc64, wrt bug #457688
+
+  18 Feb 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for ppc, wrt bug #457688
+
+  15 Feb 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for alpha, wrt bug #457688
+
+  15 Feb 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for sparc, wrt bug #457688
+
+  15 Feb 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for x86, wrt bug #457688
+
+  15 Feb 2013; Agostino Sarubbo <ago@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
+  Stable for amd64, wrt bug #457688
 
   16 Jan 2014; Fabian Groffen <grobian@gentoo.org> cyrus-sasl-2.1.25-r4.ebuild:
   Marked ~x64-solaris

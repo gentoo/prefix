@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r6.ebuild,v 1.10 2012/12/21 13:27:37 eras Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r7.ebuild,v 1.12 2013/09/14 10:41:14 ago Exp $
 
 EAPI=2
 
@@ -70,6 +70,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-0026_drop_krb5support_dependency.patch"
 	epatch "${FILESDIR}"/${P}-rimap-loop.patch #381427
 	epatch "${FILESDIR}"/${P}-gss_c_nt_hostbased_service.patch #389349
+	epatch "${FILESDIR}"/${P}-CVE-2013-4122.patch
 
 	sed -i -e '/for dbname in/s:db-4.* db:'$(db_libname)':' \
 		"${S}"/cmulocal/berkdb.m4
