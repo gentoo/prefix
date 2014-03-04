@@ -58,6 +58,9 @@ src_prepare() {
 
 	use vanilla && return 0
 
+	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=60221
+	epatch "${FILESDIR}"/gcc-4.7.2-cleanup-empty-eh-o0.patch
+
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/4.7.1/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
