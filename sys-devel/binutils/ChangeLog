@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.507 2014/01/07 04:43:47 patrick Exp $
 
+  05 Mar 2014; redlizard <redlizard@gentoo.org> binutils-2.24-r1.ebuild,
+  binutils-2.24.51.0.1.ebuild, binutils-2.24.51.0.2.ebuild:
+  Removed binutils-2.20.51.0.1-linux-x86-on-amd64.patch from binutils-2.24, to
+  which it no longer applies.
+
   19 Feb 2014; Fabian Groffen <grobian@gentoo.org> binutils-2.24-r1.ebuild:
   Revert Solaris 10 fix, it apparently breaks other platforms
 
