@@ -1,26 +1,29 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r2.ebuild,v 1.16 2012/10/23 20:07:18 vapier Exp $
 
 EAPI="1"
-AUTOTOOLS_AUTO_DEPEND="no"
-inherit eutils flag-o-matic toolchain-funcs autotools
+inherit eutils flag-o-matic toolchain-funcs libtool
 
 MY_PV=${PV:0:3}
 PV_SNAP=${PV:4}
 MY_P=${PN}-${MY_PV}
+HOSTLTV="0.1.0"
+HOSTLT="host-libtool-${HOSTLTV}"
+HOSTLT_URI="https://github.com/haubi/host-libtool/releases/download/v${HOSTLTV}/${HOSTLT}.tar.gz"
 DESCRIPTION="console display library"
 HOMEPAGE="http://www.gnu.org/software/ncurses/ http://dickey.his.com/ncurses/"
-SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
+SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz
+	kernel_AIX? ( ${HOSTLT_URI} )
+	kernel_HPUX? ( ${HOSTLT_URI} )
+"
 
 LICENSE="MIT"
 SLOT="5"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="ada +cxx debug doc gpm minimal profile static-libs trace unicode"
 
-DEPEND="gpm? ( sys-libs/gpm )
-	kernel_AIX? ( ${AUTOTOOLS_DEPEND} )
-	kernel_HPUX? ( ${AUTOTOOLS_DEPEND} )"
+DEPEND="gpm? ( sys-libs/gpm )"
 #	berkdb? ( sys-libs/db )"
 RDEPEND="${DEPEND}
 	!<x11-terms/rxvt-unicode-9.06-r3"
@@ -51,17 +54,7 @@ src_unpack() {
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
 
 	if need-libtool; then
-		mkdir "${WORKDIR}"/local-libtool || die
-		pushd "${WORKDIR}"/local-libtool >/dev/null || die
-		cat >configure.ac<<-EOF
-			AC_INIT(local-libtool, 0)
-			AC_PROG_CC
-			AC_PROG_CXX
-			AC_PROG_LIBTOOL
-			AC_OUTPUT
-		EOF
-		eautoreconf
-		popd >/dev/null || die
+		S="${WORKDIR}"/${HOSTLT} elibtoolize
 
 		# Don't need local libraries (-L../lib) for libncurses,
 		# ends up as insecure runpath in libncurses.so[shr.o] on AIX
@@ -88,9 +81,9 @@ src_unpack() {
 
 src_compile() {
 	if need-libtool; then
-		cd "${WORKDIR}"/local-libtool || die
+		cd "${WORKDIR}"/${HOSTLT} || die
 		econf
-		export PATH="${WORKDIR}"/local-libtool:${PATH}
+		export PATH="${WORKDIR}"/${HOSTLT}:${PATH}
 		cd "${S}" || die
 	fi
 
