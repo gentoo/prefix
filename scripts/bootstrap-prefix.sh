@@ -1254,25 +1254,17 @@ bootstrap_stage3() {
 		sys-apps/gawk
 		sys-devel/make
 		sys-libs/zlib
+		sys-apps/file
+		app-admin/eselect
+		virtual/os-headers
 	)
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
-	# --oneshot --nodeps
-	pkgs=(
-		sys-apps/file
-		app-admin/eselect
-	)
-	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
-
-	# bug #418181
-	# wget[nls]>=1.14 runs eautopoint, which needs autopoint>=0.15 from gettext
 	pkgs=(
 		sys-devel/gettext
 		net-misc/wget
 	)
 	[[ ${OFFLINE_MODE} ]] || emerge_pkgs "" "${pkgs[@]}" || return 1
-
-	emerge_pkgs "" "virtual/os-headers" || return 1
 
 	# ugly hack to make sure we can compile glib without pkg-config,
 	# which is depended upon by shared-mime-info
