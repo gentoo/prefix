@@ -1206,13 +1206,9 @@ bootstrap_stage3() {
 	# we can now use our own bash throughout
 	export CONFIG_SHELL="${ROOT}/bin/bash"
 
-	emerge_pkgs --nodeps "app-arch/xz-utils" || return 1
-
-	# to avoid shared library linking problems with Sun ld (libeinfo)
-	EXTRA_ECONF="--disable-shared" \
-		emerge_pkgs --nodeps "sys-apps/baselayout-prefix" || return 1
-
 	pkgs=(
+		app-arch/xz-utils
+		sys-apps/baselayout-prefix
 		sys-devel/m4
 		sys-devel/flex
 	)
