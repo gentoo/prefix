@@ -1,0 +1,44 @@
+diff -u -r Python-3.3.3-orig//configure.ac Python-3.3.3/configure.ac
+--- Python-3.3.3-orig//configure.ac	2014-03-06 05:25:46.000000000 +0100
++++ Python-3.3.3/configure.ac	2014-03-06 05:26:27.000000000 +0100
+@@ -2247,10 +2247,13 @@
+ 
+ if test "$with_system_ffi" = "yes" && test -n "$PKG_CONFIG"; then
+     LIBFFI_INCLUDEDIR="`"$PKG_CONFIG" libffi --cflags-only-I 2>/dev/null | sed -e 's/^-I//;s/ *$//'`"
++    LIBFFI_LIB="`"$PKG_CONFIG" libffi --libs-only-l 2>/dev/null | sed -e 's/^-l//;s/ *$//'`"
+ else
+     LIBFFI_INCLUDEDIR=""
++    LIBFFI_LIB=""
+ fi
+ AC_SUBST(LIBFFI_INCLUDEDIR)
++AC_SUBST(LIBFFI_LIB)
+ 
+ AC_MSG_RESULT($with_system_ffi)
+ 
+diff -u -r Python-3.3.3-orig//Makefile.pre.in Python-3.3.3/Makefile.pre.in
+--- Python-3.3.3-orig//Makefile.pre.in	2014-03-06 05:25:46.000000000 +0100
++++ Python-3.3.3/Makefile.pre.in	2014-03-06 05:26:42.000000000 +0100
+@@ -252,6 +252,7 @@
+ 
+ 
+ LIBFFI_INCLUDEDIR=	@LIBFFI_INCLUDEDIR@
++LIBFFI_LIB=	@LIBFFI_LIB@
+ 
+ ##########################################################################
+ # Parser
+diff -u -r Python-3.3.3-orig//setup.py Python-3.3.3/setup.py
+--- Python-3.3.3-orig//setup.py	2014-03-06 05:25:46.000000000 +0100
++++ Python-3.3.3/setup.py	2014-03-06 05:27:05.000000000 +0100
+@@ -1763,8 +1763,10 @@
+                         break
+                     if line.startswith('#define LIBFFI_H'):
+                         break
+-        ffi_lib = None
+-        if ffi_inc is not None:
++        ffi_lib = sysconfig.get_config_var("LIBFFI_LIB")
++        if not ffi_lib or ffi_lib == '':
++            ffi_lib = None
++        if ffi_inc is not None and ffi_lib is None:
+             for lib_name in ('ffi_convenience', 'ffi_pic', 'ffi'):
+                 if (self.compiler.find_library_file(lib_dirs, lib_name)):
+                     ffi_lib = lib_name

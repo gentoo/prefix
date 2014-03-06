@@ -88,6 +88,9 @@ src_prepare() {
 	# We may have wrapped /usr/ccs/bin/nm on AIX for long TMPDIR.
 	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
 
+	# Make sure python doesn't use the host libffi.
+	use prefix && epatch "${FILESDIR}/python-3.2-libffi-pkgconfig.patch"
+
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
 		Lib/distutils/sysconfig.py \

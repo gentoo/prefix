@@ -132,6 +132,9 @@ src_prepare() {
 	# On AIX, we've wrapped /usr/ccs/bin/nm to work around long TMPDIR.
 	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
 
+	# Make sure python doesn't use the host libffi.
+	use prefix && epatch "${FILESDIR}/python-2.7-libffi-pkgconfig.patch"
+
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
 		Lib/distutils/sysconfig.py \
@@ -208,9 +211,9 @@ src_configure() {
 	if use prefix ; then
 		# for Python's setup.py not to do false assumptions (only looking in
 		# host paths) we need to make explicit where Prefix stuff is
-		append-cppflags -I${EPREFIX}/usr/include
-		append-ldflags -L${EPREFIX}/$(get_libdir)
-		append-ldflags -L${EPREFIX}/usr/$(get_libdir)
+		append-cppflags -I"${EPREFIX}"/usr/include
+		append-ldflags -L"${EPREFIX}"/$(get_libdir)
+		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)
 		# fix compilation on some 64-bits Linux hosts, #381163, #473520
 		for hostlibdir in /usr/lib32 /usr/lib64 /usr/lib /lib32 /lib64; do
 			[[ -d ${hostlibdir} ]] || continue
