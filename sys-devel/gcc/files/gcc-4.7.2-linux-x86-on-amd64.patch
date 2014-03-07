@@ -1,16 +1,16 @@
 --- gcc/config.gcc.orig	2009-04-17 13:58:41.000000000 +0200
 +++ gcc/config.gcc	2009-09-22 15:38:53.614811935 +0200
-@@ -1103,6 +1103,7 @@
+@@ -1294,6 +1294,7 @@
  			esac
  		else
- 			tm_file="${tm_file} i386/linux.h"
+ 			tm_file="${tm_file} i386/gnu-user.h i386/linux.h"
 +			tmake_file="${tmake_file} i386/t-linux32"
  		fi
  		;;
  	i[34567]86-*-knetbsd*-gnu) tm_file="${tm_file} i386/linux.h knetbsd-gnu.h i386/knetbsd-gnu.h" ;;
---- gcc/config/i386/linux.h.orig	2009-05-21 15:21:30.000000000 +0200
-+++ gcc/config/i386/linux.h	2009-09-22 15:33:39.158050728 +0200
-@@ -130,6 +130,8 @@
+--- gcc/config/i386/gnu-user.h.orig	2009-05-21 15:21:30.000000000 +0200
++++ gcc/config/i386/gnu-user.h	2009-09-22 15:33:39.158050728 +0200
+@@ -114,6 +114,8 @@
     %{mpc80:crtprec80.o%s} \
     %{shared|pie:crtendS.o%s;:crtend.o%s} crtn.o%s"
  

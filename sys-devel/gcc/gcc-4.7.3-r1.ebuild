@@ -72,8 +72,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
 		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
 		# --enable-multilib), but this does make sense in prefix only
-# fails: likely still necessary
-#		epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
+		epatch "${FILESDIR}"/${PN}-4.7.2-linux-x86-on-amd64.patch
 	fi
 
 	# make it have correct install_names on Darwin

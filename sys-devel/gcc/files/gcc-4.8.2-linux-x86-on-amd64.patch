@@ -1,0 +1,34 @@
+--- gcc/config.gcc.orig	2009-04-17 13:58:41.000000000 +0200
++++ gcc/config.gcc	2009-09-22 15:38:53.614811935 +0200
+@@ -1304,6 +1304,7 @@
+ 			esac
+ 		else
+ 			tm_file="${tm_file} i386/gnu-user-common.h i386/gnu-user.h i386/linux-common.h i386/linux.h"
++			tmake_file="${tmake_file} i386/t-linux32"
+ 		fi
+ 		;;
+ 	i[34567]86-*-knetbsd*-gnu) tm_file="${tm_file} i386/linux.h knetbsd-gnu.h i386/knetbsd-gnu.h" ;;
+--- gcc/config/i386/gnu-user.h.orig	2009-05-21 15:21:30.000000000 +0200
++++ gcc/config/i386/gnu-user.h	2009-09-22 15:33:39.158050728 +0200
+@@ -114,6 +114,8 @@
+    %{mpc80:crtprec80.o%s} \
+    %{shared|pie:crtendS.o%s;:crtend.o%s} crtn.o%s"
+ 
++#define MULTILIB_DEFAULTS { "m32" }
++
+ /* A C statement (sans semicolon) to output to the stdio stream
+    FILE the assembler definition of uninitialized global DECL named
+    NAME whose size is SIZE bytes and alignment is ALIGN bytes.
+--- /dev/null	2009-09-10 15:59:29.820003140 +0200
++++ gcc/config/i386/t-linux32	2009-09-16 11:02:34.118502434 +0200
+@@ -0,0 +1,10 @@
++# On Debian, Ubuntu and other derivative distributions, the 32bit libraries
++# are found in /lib32 and /usr/lib32, /lib64 and /usr/lib64 are symlinks to
++# /lib and /usr/lib, while other distributions install libraries into /lib64
++# and /usr/lib64.  The LSB does not enforce the use of /lib64 and /usr/lib64,
++# it doesn't tell anything about the 32bit libraries on those systems.  Set
++# MULTILIB_OSDIRNAMES according to what is found on the target.
++
++MULTILIB_OPTIONS = m32
++MULTILIB_DIRNAMES = .
++MULTILIB_OSDIRNAMES = $(if $(wildcard $(shell echo $(SYSTEM_HEADER_DIR))/../../usr/lib32),../lib32,)

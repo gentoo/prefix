@@ -66,6 +66,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
 	if use prefix; then
 		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
+		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
+		# --enable-multilib), but this does make sense in prefix only
+		epatch "${FILESDIR}"/${PN}-4.8.2-linux-x86-on-amd64.patch
 	fi
 
 	# make it have correct install_names on Darwin
@@ -116,7 +119,7 @@ src_configure() {
 				# (real x86-linux-gcc also accept -m32).
 				tc-export CC CXX
 				CC="${CC} -m32"
-				CXX="${CC} -m32"
+				CXX="${CXX} -m32"
 			fi
 		;;
 	esac
