@@ -2,6 +2,18 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.99 2012/08/11 16:06:53 vapier Exp $
 
+
+*flex-2.5.38-r1 (16 Mar 2014)
+
+  16 Mar 2014; Mike Frysinger <vapier@gentoo.org> +flex-2.5.38-r1.ebuild,
+  -flex-2.5.38.ebuild:
+  Drop shared lib since it makes no sense #503522 by Andrés Becerra Sandoval.
+
+*flex-2.5.38 (13 Feb 2014)
+
+  13 Feb 2014; Tim Harder <radhermit@gentoo.org> +flex-2.5.38.ebuild:
+  Version bump.
+
   12 Mar 2013; Michael Haubenwallner <haubi@gentoo.org> flex-2.5.37.ebuild,
   +files/flex-2.5.37-rpl_alloc.patch:
   Endless recursion in rpl_realloc, flex-bug#3607335.
