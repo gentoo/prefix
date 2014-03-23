@@ -146,7 +146,7 @@ configure_toolchain() {
 	case ${bootstrapCHOST} in
 		*-darwin*)
 			case "$(gcc --version)" in
-				*"(GCC) 4.2.1 "*|*"Apple LLVM version 5.0"*)
+				*"(GCC) 4.2.1 "*|*"Apple LLVM version 5."*)
 					local linker=sys-devel/binutils-apple
 					;;
 				*"(GCC) 4.0.1 "*)
