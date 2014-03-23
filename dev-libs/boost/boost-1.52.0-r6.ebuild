@@ -1,13 +1,11 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.52.0-r4.ebuild,v 1.1 2012/11/22 03:37:58 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.52.0-r6.ebuild,v 1.13 2013/12/14 19:45:54 ago Exp $
 
 EAPI="5"
-PYTHON_DEPEND="python? *"
-SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="*-jython *-pypy-*"
+PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3} )
 
-inherit flag-o-matic multilib multiprocessing python toolchain-funcs versionator
+inherit eutils flag-o-matic multilib multiprocessing python-r1 toolchain-funcs versionator
 
 MY_P=${PN}_$(replace_all_version_separators _)
 
@@ -16,18 +14,20 @@ HOMEPAGE="http://www.boost.org/"
 SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
 
 LICENSE="Boost-1.0"
-SLOT=0
 MAJOR_V="$(get_version_component_range 1-2)"
+SLOT="0/${MAJOR_V}"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc icu +nls mpi python static-libs +threads tools"
 
 RDEPEND="icu? ( >=dev-libs/icu-3.6:= )
 	!icu? ( virtual/libiconv )
 	mpi? ( || ( sys-cluster/openmpi[cxx] sys-cluster/mpich2[cxx,threads] ) )
+	python? ( ${PYTHON_DEPS} )
+	app-arch/bzip2
 	sys-libs/zlib
 	!app-admin/eselect-boost"
 DEPEND="${RDEPEND}
-	=dev-util/boost-build-${MAJOR_V}*"
+	=dev-util/boost-build-1.52.0-r1"
 
 S=${WORKDIR}/${MY_P}
 
@@ -50,7 +50,7 @@ create_user-config.jam() {
 	fi
 
 	if use python; then
-		python_configuration="using python : $(python_get_version) : ${EPREFIX}/usr : ${EPREFIX}$(python_get_includedir) : ${EPREFIX}/usr/$(get_libdir) ;"
+		python_configuration="using python : : ${PYTHON} ;"
 	fi
 
 	cat > user-config.jam << __EOF__
@@ -58,12 +58,6 @@ using ${compiler} : ${compiler_version} : ${compiler_executable} : <cflags>"${CF
 ${mpi_configuration}
 ${python_configuration}
 __EOF__
-}
-
-pkg_setup() {
-	if use python; then
-		python_pkg_setup
-	fi
 }
 
 src_prepare() {
@@ -78,7 +72,8 @@ src_prepare() {
 		"${FILESDIR}/${PN}-1.48.0-python_linking.patch" \
 		"${FILESDIR}/${PN}-1.48.0-disable_icu_rpath.patch" \
 		"${FILESDIR}/remove-toolset-1.48.0.patch" \
-		"${FILESDIR}/${PN}-1.52.0-tuple.patch"
+		"${FILESDIR}/${PN}-1.52.0-tuple.patch" \
+		"${FILESDIR}/${P}-locale-utf.patch"
 
 	# Avoid a patch for now
 	for file in libs/context/src/asm/*.S; do
@@ -142,7 +137,7 @@ src_compile() {
 		create_user-config.jam
 
 		ejam ${OPTIONS} \
-			$(use python && echo --python-buildid=${PYTHON_ABI}) \
+			$(use python && echo --python-buildid=${EPYTHON#python}) \
 			|| die "Building of Boost libraries failed"
 
 		if use python; then
@@ -156,7 +151,8 @@ src_compile() {
 
 			local dir
 			for dir in ${PYTHON_DIRS}; do
-				mv ${dir} ${dir}-${PYTHON_ABI} || die "Renaming of '${dir}' to '${dir}-${PYTHON_ABI}' failed"
+				mv ${dir} ${dir}-${EPYTHON} \
+					|| die "Renaming of '${dir}' to '${dir}-${EPYTHON}' failed"
 			done
 
 			if use mpi; then
@@ -171,12 +167,13 @@ src_compile() {
 					fi
 				fi
 
-				mv stage/lib/mpi.so stage/lib/mpi.so-${PYTHON_ABI} || die "Renaming of 'stage/lib/mpi.so' to 'stage/lib/mpi.so-${PYTHON_ABI}' failed"
+				mv stage/lib/mpi.so stage/lib/mpi.so-${EPYTHON} \
+					|| die "Renaming of 'stage/lib/mpi.so' to 'stage/lib/mpi.so-${EPYTHON}' failed"
 			fi
 		fi
 	}
 	if use python; then
-		python_execute_function building
+		python_foreach_impl building
 	else
 		building
 	fi
@@ -197,19 +194,22 @@ src_install () {
 		if use python; then
 			local dir
 			for dir in ${PYTHON_DIRS}; do
-				cp -pr ${dir}-${PYTHON_ABI} ${dir} || die "Copying of '${dir}-${PYTHON_ABI}' to '${dir}' failed"
+				cp -pr ${dir}-${EPYTHON} ${dir} \
+					|| die "Copying of '${dir}-${EPYTHON}' to '${dir}' failed"
 			done
 
 			if use mpi; then
-				cp -p stage/lib/mpi.so-${PYTHON_ABI} "${MPI_PYTHON_MODULE}" || die "Copying of 'stage/lib/mpi.so-${PYTHON_ABI}' to '${MPI_PYTHON_MODULE}' failed"
-				cp -p stage/lib/mpi.so-${PYTHON_ABI} stage/lib/mpi.so || die "Copying of 'stage/lib/mpi.so-${PYTHON_ABI}' to 'stage/lib/mpi.so' failed"
+				cp -p stage/lib/mpi.so-${EPYTHON} "${MPI_PYTHON_MODULE}" \
+					|| die "Copying of 'stage/lib/mpi.so-${EPYTHON}' to '${MPI_PYTHON_MODULE}' failed"
+				cp -p stage/lib/mpi.so-${EPYTHON} stage/lib/mpi.so \
+					|| die "Copying of 'stage/lib/mpi.so-${EPYTHON}' to 'stage/lib/mpi.so' failed"
 			fi
 		fi
 
 		ejam ${OPTIONS} \
 			--includedir="${ED}usr/include" \
 			--libdir="${ED}usr/$(get_libdir)" \
-			$(use python && echo --python-buildid=${PYTHON_ABI}) \
+			$(use python && echo --python-buildid=${EPYTHON#python}) \
 			install || die "Installation of Boost libraries failed"
 
 		if use python; then
@@ -218,9 +218,10 @@ src_install () {
 			# Move mpi.so Python module to Python site-packages directory.
 			# https://svn.boost.org/trac/boost/ticket/2838
 			if use mpi; then
-				dodir $(python_get_sitedir)/boost
-				mv "${ED}usr/$(get_libdir)/mpi.so" "${ED}$(python_get_sitedir)/boost" || die
-				cat << EOF > "${ED}$(python_get_sitedir)/boost/__init__.py" || die
+				local moddir=$(python_get_sitedir)/boost
+				dodir "${moddir}"
+				mv "${ED}usr/$(get_libdir)/mpi.so" "${ED}${moddir}" || die
+				cat << EOF > "${ED}${moddir}/__init__.py" || die
 import sys
 if sys.platform.startswith('linux'):
 	import DLFCN
@@ -234,10 +235,12 @@ else:
 del sys
 EOF
 			fi
+
+			python_optimize
 		fi
 	}
 	if use python; then
-		python_execute_function installation
+		python_foreach_impl installation
 	else
 		installation
 	fi
@@ -353,18 +356,6 @@ pkg_preinst() {
 	for symlink in "${EROOT}usr/include/boost" "${EROOT}usr/share/boostbook"; do
 		[[ -L ${symlink} ]] && rm -f "${symlink}"
 	done
-}
-
-pkg_postinst() {
-	if use mpi && use python; then
-		python_mod_optimize boost
-	fi
-}
-
-pkg_postrm() {
-	if use mpi && use python; then
-		python_mod_cleanup boost
-	fi
 }
 
 # the tests will never fail because these are not intended as sanity

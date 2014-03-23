@@ -1,34 +1,44 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.52.0-r5.ebuild,v 1.1 2012/12/15 14:45:27 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.55.0-r1.ebuild,v 1.1 2013/12/27 17:08:26 pinkbyte Exp $
 
 EAPI="5"
-PYTHON_COMPAT=( python{2_5,2_6,2_7,3_1,3_2,3_3} )
+PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3} )
 
 inherit eutils flag-o-matic multilib multiprocessing python-r1 toolchain-funcs versionator
 
-MY_P=${PN}_$(replace_all_version_separators _)
+MY_P="${PN}_$(replace_all_version_separators _)"
+MAJOR_V="$(get_version_component_range 1-2)"
 
 DESCRIPTION="Boost Libraries for C++"
 HOMEPAGE="http://www.boost.org/"
 SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
 
 LICENSE="Boost-1.0"
-SLOT=0
-MAJOR_V="$(get_version_component_range 1-2)"
+SLOT="0/${PV}" # ${PV} instead ${MAJOR_V} due to bug 486122
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
-IUSE="debug doc icu +nls mpi python static-libs +threads tools"
+
+IUSE="context debug doc icu +nls mpi python static-libs +threads tools"
 
 RDEPEND="icu? ( >=dev-libs/icu-3.6:= )
 	!icu? ( virtual/libiconv )
 	mpi? ( || ( sys-cluster/openmpi[cxx] sys-cluster/mpich2[cxx,threads] ) )
 	python? ( ${PYTHON_DEPS} )
+	app-arch/bzip2
 	sys-libs/zlib
 	!app-admin/eselect-boost"
 DEPEND="${RDEPEND}
 	=dev-util/boost-build-${MAJOR_V}*"
+REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
 
-S=${WORKDIR}/${MY_P}
+S="${WORKDIR}/${MY_P}"
+
+# the tests will never fail because these are not intended as sanity
+# tests at all. They are more a way for upstream to check their own code
+# on new compilers. Since they would either be completely unreliable
+# (failing for no good reason) or completely useless (never failing)
+# there is no point in having them in the ebuild to begin with.
+RESTRICT="test"
 
 create_user-config.jam() {
 	local compiler compiler_version compiler_executable
@@ -63,25 +73,13 @@ src_prepare() {
 #	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
 
 	epatch \
-		"${FILESDIR}/${PN}-1.48.0-mpi_python3.patch" \
 		"${FILESDIR}/${PN}-1.51.0-respect_python-buildid.patch" \
 		"${FILESDIR}/${PN}-1.51.0-support_dots_in_python-buildid.patch" \
 		"${FILESDIR}/${PN}-1.48.0-no_strict_aliasing_python2.patch" \
 		"${FILESDIR}/${PN}-1.48.0-disable_libboost_python3.patch" \
 		"${FILESDIR}/${PN}-1.48.0-python_linking.patch" \
 		"${FILESDIR}/${PN}-1.48.0-disable_icu_rpath.patch" \
-		"${FILESDIR}/remove-toolset-1.48.0.patch" \
-		"${FILESDIR}/${PN}-1.52.0-tuple.patch"
-
-	# Avoid a patch for now
-	for file in libs/context/src/asm/*.S; do
-		cat - >> $file <<EOF
-
-#if defined(__linux__) && defined(__ELF__)
-.section .note.GNU-stack,"",%progbits
-#endif
-EOF
-	done
+		"${FILESDIR}/${PN}-1.55.0-context-x32.patch"
 }
 
 ejam() {
@@ -217,7 +215,8 @@ src_install () {
 			# https://svn.boost.org/trac/boost/ticket/2838
 			if use mpi; then
 				local moddir=$(python_get_sitedir)/boost
-				dodir "${moddir}"
+				# moddir already includes eprefix
+				mkdir -p "${ED}${moddir}" || die
 				mv "${ED}usr/$(get_libdir)/mpi.so" "${ED}${moddir}" || die
 				cat << EOF > "${ED}${moddir}/__init__.py" || die
 import sys
@@ -251,7 +250,10 @@ EOF
 		rm -r "${ED}"/usr/include/boost/locale || die
 	fi
 
-	rm -r "${ED}"/usr/include/boost/context || die
+	if ! use context; then
+		rm -r "${ED}"/usr/include/boost/context || die
+		rm -r "${ED}"/usr/include/boost/coroutine || die
+	fi
 
 	if use doc; then
 		find libs/*/* -iname "test" -or -iname "src" | xargs rm -rf
@@ -355,10 +357,3 @@ pkg_preinst() {
 		[[ -L ${symlink} ]] && rm -f "${symlink}"
 	done
 }
-
-# the tests will never fail because these are not intended as sanity
-# tests at all. They are more a way for upstream to check their own code
-# on new compilers. Since they would either be completely unreliable
-# (failing for no good reason) or completely useless (never failing)
-# there is no point in having them in the ebuild to begin with.
-src_test() { :; }
