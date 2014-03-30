@@ -288,7 +288,6 @@ java-pkg_dojar() {
 # Wrapper for the depend-java-query binary to enable passing USE in env.
 # Using env variables keeps this eclass working with java-config versions that
 # do not handle use flags.
-
 depend-java-query() {
 	# Used to have a which call here but it caused endless loops for some people
 	# that had some weird bashrc voodoo for which.
@@ -311,6 +310,7 @@ depend-java-query() {
 # @CODE
 #
 
+# TODO should we be making sure the jar is present on ${D} or wherever?
 java-pkg_regjar() {
 	debug-print-function ${FUNCNAME} $*
 
