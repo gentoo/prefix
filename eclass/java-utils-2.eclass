@@ -335,7 +335,7 @@ java-pkg_regjar() {
 			#    java-pkg_regjar ${ED}/opt/java/*.jar
 			# such call will fall into this case (-e ${jar}) and will
 			# record paths with ${D} in package.env
-			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${D}}"
+			java-pkg_append_ JAVA_PKG_CLASSPATH	"${jar#${D%/}}"
 		else
 			if [[ ${jar} = *\** ]]; then
 				eerror "The argument ${jar} to ${FUNCNAME}"
