@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.212 2012/10/23 20:07:18 vapier Exp $
 
+  31 Mar 2014; Michael Haubenwallner <haubi@gentoo.org>
+  ncurses-5.9-r02.1.ebuild:
+  Use http for github link, not https.
+
   05 Mar 2014; Michael Haubenwallner <haubi@gentoo.org>
   ncurses-5.9-r02.1.ebuild:
   Drop autotools dependency, use new host-libtool-0.1.0 pkg instead.
