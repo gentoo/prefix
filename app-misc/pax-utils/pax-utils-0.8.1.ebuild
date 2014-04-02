@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/pax-utils-${PV}.tar.xz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="caps python"
+IUSE="caps +python"
 #RESTRICT="mirror"
 
 RDEPEND="caps? ( sys-libs/libcap )
@@ -48,4 +48,6 @@ src_test() {
 
 src_install() {
 	_emake DESTDIR="${ED}" PKGDOCDIR='$(DOCDIR)'/${PF} install
+
+	use prefix && use !python && ewarn "With USE=-python lddtree will not work in Prefix"
 }
