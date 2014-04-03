@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id: portage-2.2.01.16270.ebuild 58665 2010-09-05 19:54:38Z grobian $
 
@@ -236,7 +236,7 @@ src_prepare() {
 	fi
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
-#	epatch "${FILESDIR}"/${PN}-2.2.7-ebuildshell.patch # 155161
+	epatch "${FILESDIR}"/${PN}-2.2.8-ebuildshell.patch # 155161
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
