@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit flag-o-matic
+inherit flag-o-matic libtool
 
 DESCRIPTION="The Fast Lexical Analyzer"
 HOMEPAGE="http://flex.sourceforge.net/"
@@ -21,6 +21,11 @@ DEPEND="${RDEPEND}
 	app-arch/xz-utils
 	nls? ( sys-devel/gettext )
 	test? ( sys-devel/bison )"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-2.5.39-rpl_alloc.patch # flex bug#151
+	elibtoolize # Prefix always needs this
+}
 
 src_configure() {
 	use static && append-ldflags -static
