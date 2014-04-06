@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.192 2013/11/02 03:20:37 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.197 2014/02/02 22:26:13 tommy Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -30,6 +30,7 @@ setup-allowed-flags() {
 	ALLOWED_FLAGS+=" -fno-PIE -fno-pie -fno-unit-at-a-time"
 	ALLOWED_FLAGS+=" -g -g[0-9] -ggdb -ggdb[0-9] -gstabs -gstabs+"
 	ALLOWED_FLAGS+=" -fno-ident -fpermissive -frecord-gcc-switches"
+	ALLOWED_FLAGS+=" -fdiagnostics*"
 	ALLOWED_FLAGS+=" -W* -w"
 
 	# allow a bunch of flags that negate features / control ABI
@@ -54,6 +55,10 @@ setup-allowed-flags() {
 	ALLOWED_FLAGS+=" -mno-fsgsbase -mno-rdrnd -mno-f16c -mno-bmi -mno-tbm"
 	# 4.7
 	ALLOWED_FLAGS+=" -mno-avx2 -mno-bmi2 -mno-fma -mno-lzcnt"
+	# 4.8
+	ALLOWED_FLAGS+=" -mno-fxsr -mno-rtm -mno-xsave -mno-xsaveopt"
+	# 4.9
+	ALLOWED_FLAGS+=" -mno-avx512cd -mno-avx512er -mno-avx512f -mno-avx512pf -mno-sha"
 
 	# CPPFLAGS and LDFLAGS
 	ALLOWED_FLAGS+=" -I* -L* -R* -Wl,*"
@@ -605,13 +610,24 @@ replace-sparc64-flags() {
 # @FUNCTION: append-libs
 # @USAGE: <libs>
 # @DESCRIPTION:
-# Add extra <libs> to the current LIBS.
+# Add extra <libs> to the current LIBS. All arguments should be prefixed with
+# either -l or -L.  For compatibility, if arguments are not prefixed as
+# options, they are given a -l prefix automatically.
 append-libs() {
 	[[ $# -eq 0 ]] && return 0
 	local flag
 	for flag in "$@"; do
-		[[ ${flag} == -l* ]] && flag=${flag#-l}
-		export LIBS="${LIBS} -l${flag}"
+		case $flag in
+			-[lL]*) 
+				export LIBS="${LIBS} ${flag}"
+				;;
+			-*) 
+				eqawarn "Appending non-library to LIBS (${flag}); Other linker flags should be passed via LDFLAGS"
+				export LIBS="${LIBS} ${flag}"
+				;;
+			*)
+				export LIBS="${LIBS} -l${flag}"
+		esac
 	done
 
 	return 0
