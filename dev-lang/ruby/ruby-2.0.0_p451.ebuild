@@ -1,10 +1,10 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_p194-r1.ebuild,v 1.11 2012/12/07 21:43:09 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-2.0.0_p451.ebuild,v 1.1 2014/03/05 07:37:18 graaff Exp $
 
-EAPI=4
+EAPI=5
 
-#PATCHSET=
+#PATCHSET=1
 
 inherit autotools eutils flag-o-matic multilib versionator
 
@@ -15,8 +15,7 @@ S=${WORKDIR}/${MY_P}
 
 SLOT=$(get_version_component_range 1-2)
 MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
-# 1.9.3 still uses 1.9.1
-RUBYVERSION=1.9.1
+RUBYVERSION=2.0.0
 
 if [[ -n ${PATCHSET} ]]; then
 	if [[ ${PVR} == ${PV} ]]; then
@@ -30,51 +29,49 @@ fi
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/1.9/${MY_P}.tar.bz2
+SRC_URI="mirror://ruby/2.0/${MY_P}.tar.bz2
 		 http://dev.gentoo.org/~flameeyes/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
 
 LICENSE="|| ( Ruby-BSD BSD-2 )"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc examples gdbm ipv6 +rdoc rubytests socks5 ssl tk xemacs ncurses +readline +yaml" #libedit
-
-# libedit support is removed everywhere because of this upstream bug:
-# http://redmine.ruby-lang.org/issues/show/3698
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="berkdb debug doc examples gdbm ipv6 +rdoc rubytests socks5 ssl xemacs ncurses +readline"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
 	gdbm? ( sys-libs/gdbm )
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
-	tk? ( dev-lang/tk[threads] )
 	ncurses? ( sys-libs/ncurses )
 	readline?  ( sys-libs/readline )
-	yaml? ( dev-libs/libyaml )
+	dev-libs/libyaml
 	virtual/libffi
 	sys-libs/zlib
 	>=app-admin/eselect-ruby-20100402
 	!<dev-ruby/rdoc-3.9.4
 	!<dev-ruby/rubygems-1.8.10-r1"
-#	libedit? ( dev-libs/libedit )
-#	!libedit? ( readline? ( sys-libs/readline ) )
 
 DEPEND="${RDEPEND}"
 PDEPEND="
-	>=dev-ruby/rubygems-1.8.10-r1[ruby_targets_ruby19]
-	rdoc? ( >=dev-ruby/rdoc-3.9.4[ruby_targets_ruby19] )
+	>=dev-ruby/rubygems-2.0.2[ruby_targets_ruby20]
+	>=dev-ruby/json-1.7.7[ruby_targets_ruby20]
+	>=dev-ruby/rake-0.9.6[ruby_targets_ruby20]
+	rdoc? ( >=dev-ruby/rdoc-4.0.0[ruby_targets_ruby20] )
 	xemacs? ( app-xemacs/ruby-modes )"
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-1.9.1-only-ncurses.patch"
+#	epatch "${FILESDIR}/${PN}-1.9.1-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.9.1-prefix.patch"
 
 	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
 		epatch "${WORKDIR}/patches"
 
+	# We can no longer unbundle all of rake because rubygems now depends
+	# on this. We leave the actual rake code around to bootstrap
+	# rubygems, but remove the bits that would cause a file collision.
 	einfo "Unbundling gems..."
 	cd "$S"
 	rm -r \
 		{bin,lib}/rake lib/rake.rb man/rake.1 \
-		ext/json \
 		bin/gem || die "removal failed"
 
 	# Fix a hardcoded lib path in configure script
@@ -89,6 +86,11 @@ src_prepare() {
 
 src_configure() {
 	local myconf=
+
+	# The Tk module can no longer be built because the module code is no
+	# longer compatible with newer stable versions.
+	# https://bugs.gentoo.org/show_bug.cgi?id=500894
+	local modules="tk"
 
 	# -fomit-frame-pointer makes ruby segfault, see bug #150413.
 	filter-flags -fomit-frame-pointer
@@ -114,32 +116,35 @@ src_configure() {
 	# ipv6 hack, bug 168939. Needs --enable-ipv6.
 	use ipv6 || myconf="${myconf} --with-lookup-order-hack=INET"
 
-#	if use libedit; then
-#		einfo "Using libedit to provide readline extension"
-#		myconf="${myconf} --enable-libedit --with-readline"
-#	elif use readline; then
-#		einfo "Using readline to provide readline extension"
-#		myconf="${myconf} --with-readline"
-#	else
-#		myconf="${myconf} --without-readline"
-#	fi
-	myconf="${myconf} $(use_with readline)"
+	# Determine which modules *not* to build depending in the USE flags.
+	if ! use readline ; then
+		modules="${modules},readline"
+	fi
+	if ! use berkdb ; then
+		modules="${modules},dbm"
+	fi
+	if ! use gdbm ; then
+		modules="${modules},gdbm"
+	fi
+	if ! use ssl ; then
+		modules="${modules},openssl"
+	fi
+	if ! use ncurses ; then
+		modules="${modules},curses"
+	fi
 
-	econf \
+	INSTALL="${EPREFIX}/usr/bin/install -c" econf \
 		--program-suffix=${MY_SUFFIX} \
 		--with-soname=ruby${MY_SUFFIX} \
+		--docdir=${EPREFIX}/usr/share/doc/${P} \
 		--enable-shared \
 		--enable-pthread \
+		--disable-rpath \
+		--with-out-ext="${modules}" \
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		--enable-ipv6 \
 		$(use_enable debug) \
-		$(use_with berkdb dbm) \
-		$(use_with gdbm) \
-		$(use_with ssl openssl) \
-		$(use_with tk) \
-		$(use_with ncurses curses) \
-		$(use_with yaml psych) \
 		${myconf} \
 		--with-readline-dir="${EPREFIX}"/usr \
 		--enable-option-checking=no \
@@ -169,6 +174,11 @@ src_test() {
 }
 
 src_install() {
+	# Remove the remaining bundled gems. We do this late in the process
+	# since they are used during the build to e.g. create the
+	# documentation.
+	rm -rf ext/json || die
+
 	# Ruby is involved in the install process, we don't want interference here.
 	unset RUBYOPT
 
@@ -202,7 +212,7 @@ src_install() {
 	dosym "libruby${MY_SUFFIX}$(get_libname ${PV%_*})" \
 		"/usr/$(get_libdir)/libruby$(get_libname ${PV%_*})"
 
-	dodoc ChangeLog NEWS doc/NEWS* README* ToDo || die
+	dodoc ChangeLog NEWS doc/NEWS* README* || die
 
 	if use rubytests; then
 		pushd test

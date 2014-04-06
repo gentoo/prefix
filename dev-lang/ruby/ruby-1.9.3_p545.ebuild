@@ -1,10 +1,10 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_p125.ebuild,v 1.7 2012/09/16 16:45:22 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.3_p545.ebuild,v 1.1 2014/02/26 14:20:28 graaff Exp $
 
-EAPI=2
+EAPI=4
 
-#PATCHSET=
+#PATCHSET=1
 
 inherit autotools eutils flag-o-matic multilib versionator
 
@@ -34,8 +34,8 @@ SRC_URI="mirror://ruby/1.9/${MY_P}.tar.bz2
 		 http://dev.gentoo.org/~flameeyes/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
 
 LICENSE="|| ( Ruby-BSD BSD-2 )"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc examples gdbm ipv6 +rdoc rubytests socks5 ssl tk xemacs ncurses +readline +yaml" #libedit
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="berkdb debug doc examples gdbm ipv6 +rdoc rubytests socks5 ssl xemacs ncurses +readline +yaml" #libedit
 
 # libedit support is removed everywhere because of this upstream bug:
 # http://redmine.ruby-lang.org/issues/show/3698
@@ -45,7 +45,6 @@ RDEPEND="
 	gdbm? ( sys-libs/gdbm )
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
-	tk? ( dev-lang/tk[threads] )
 	ncurses? ( sys-libs/ncurses )
 	readline?  ( sys-libs/readline )
 	yaml? ( dev-libs/libyaml )
@@ -59,6 +58,7 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 PDEPEND="
+	>=dev-ruby/rubygems-1.8.10-r1[ruby_targets_ruby19]
 	rdoc? ( >=dev-ruby/rdoc-3.9.4[ruby_targets_ruby19] )
 	xemacs? ( app-xemacs/ruby-modes )"
 
@@ -124,14 +124,14 @@ src_configure() {
 #	fi
 	myconf="${myconf} $(use_with readline)"
 
-	# Set a faux target (bug #342819)
-	use hppa && myconf="${myconf} --target=parisc"
-
-	econf \
+	# Always disable tk because the module is no longer compatible with
+	# stable tcl/tk: https://bugs.gentoo.org/show_bug.cgi?id=500894
+	INSTALL="${EPREFIX}/usr/bin/install -c" econf \
 		--program-suffix=${MY_SUFFIX} \
 		--with-soname=ruby${MY_SUFFIX} \
 		--enable-shared \
 		--enable-pthread \
+		--without-tk \
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		--enable-ipv6 \
@@ -139,7 +139,6 @@ src_configure() {
 		$(use_with berkdb dbm) \
 		$(use_with gdbm) \
 		$(use_with ssl openssl) \
-		$(use_with tk) \
 		$(use_with ncurses curses) \
 		$(use_with yaml psych) \
 		${myconf} \
@@ -149,11 +148,11 @@ src_configure() {
 }
 
 src_compile() {
-	emake EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
+	emake V=1 EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
 }
 
 src_test() {
-	emake -j1 test || die "make test failed"
+	emake -j1 V=1 test || die "make test failed"
 
 	elog "Ruby's make test has been run. Ruby also ships with a make check"
 	elog "that cannot be run until after ruby has been installed."
@@ -183,7 +182,7 @@ src_install() {
 	done
 	export LD_LIBRARY_PATH RUBYLIB
 
-	emake DESTDIR="${D}" install || die "make install failed"
+	emake V=1 DESTDIR="${D}" install || die "make install failed"
 
 	# Remove installed rubygems copy
 	rm -r "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}/rubygems" || die "rm rubygems failed"
@@ -198,11 +197,6 @@ src_install() {
 		insinto /usr/share/doc/${PF}
 		doins -r sample
 	fi
-
-	dosym "libruby${MY_SUFFIX}$(get_libname ${PV%_*})" \
-		"/usr/$(get_libdir)/libruby$(get_libname ${PV%.*})"
-	dosym "libruby${MY_SUFFIX}$(get_libname ${PV%_*})" \
-		"/usr/$(get_libdir)/libruby$(get_libname ${PV%_*})"
 
 	dodoc ChangeLog NEWS doc/NEWS* README* ToDo || die
 
