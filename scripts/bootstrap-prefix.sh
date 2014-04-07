@@ -213,7 +213,6 @@ configure_toolchain() {
 			;;
 		*-*-aix*)
 			toolchainpackages=(
-				dev-libs/libiconv # avoid hell with shared libiconv.a
 				sys-apps/diffutils # or gcc PR14251
 				sys-devel/native-cctools
 				"=sys-devel/gcc-4.2*"
@@ -1196,6 +1195,9 @@ bootstrap_stage3() {
 
 	emerge_pkgs --nodeps "sys-apps/sed" || return 1
 
+	[[ ${bootstrapCHOST} != *-aix* ]] || # avoid hell with shared libiconv.a
+	emerge_pkgs --nodeps "dev-libs/libiconv" || return 1
+ 
 	# Hack for bash because curses is not always available (linux).
 	# Disable collision-protect to overwrite the symlinked bin/bash for
 	# a valid shebang we have symlinked bin/bash already
@@ -1229,7 +1231,8 @@ bootstrap_stage3() {
 
 	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
 	# but also for perl, which uses scanelf/scanmacho to find compatible
-	# lib-dirs
+	# lib-dirs. Useless on AIX.
+	[[ ${bootstrapCHOST} == *-aix* ]] ||
 	emerge_pkgs --nodeps "app-misc/pax-utils" || return 1
 
 	# Clang on OSX defaults to c99 mode, while GCC defaults to gnu89
