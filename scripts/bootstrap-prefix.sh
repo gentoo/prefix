@@ -1232,6 +1232,8 @@ bootstrap_stage3() {
 	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
 	# but also for perl, which uses scanelf/scanmacho to find compatible
 	# lib-dirs. Useless on AIX.
+	# NOTE: no longer necessary on OSX with no /usr-split, no longer
+	# necessary for perl when we have a snapshot with latest perl ebuild
 	[[ ${bootstrapCHOST} == *-aix* ]] ||
 	emerge_pkgs --nodeps "app-misc/pax-utils" || return 1
 
