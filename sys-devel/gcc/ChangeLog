@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.998 2014/01/19 01:51:34 dirtyepic Exp $
 
+  11 Apr 2014; redlizard <redlizard@gentoo.org>
+  +files/4.7.2/solaris-x64-tls-gnu-as.patch, gcc-4.7.2-r1.ebuild,
+  gcc-4.7.3-r1.ebuild, gcc-4.8.2-r1.ebuild:
+  gcc: make sure solaris-x64 doesn't misdetect tls support, bug #505446
+
   07 Mar 2014; redlizard <redlizard@gentoo.org>
   +files/gcc-4.7.2-linux-x86-on-amd64.patch,
   +files/gcc-4.8.2-linux-x86-on-amd64.patch,
