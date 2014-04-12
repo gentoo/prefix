@@ -738,9 +738,18 @@ bootstrap_gnu() {
 
 bootstrap_python() {
 	PV=2.7.3
-	A=python-${PV}-patched.tar.bz2
 
-	[[ ${CHOST} == *-aix* ]] && A=Python-${PV}.tar.bz2 # patched one breaks
+	case $CHOST in
+		*-*-aix*)
+			# TODO: freebsd 10 also seems to need this
+			A=Python-${PV}.tar.bz2 # patched one breaks
+			patch=true
+		;;
+		*)
+			A=python-${PV}-patched.tar.bz2
+			patch=false
+		;;
+	esac
 
 	einfo "Bootstrapping ${A%-*}"
 
@@ -756,6 +765,13 @@ bootstrap_python() {
 	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
 	S="${S}"/Python-${PV}
 	cd "${S}"
+
+	if ${patch}; then
+		# This patch is critical and needs to be applied even
+		# when using the otherwise unpatched sources.
+		efetch "http://dev.gentoo.org/~redlizard/distfiles/02_all_disable_modules_and_ssl.patch"
+		patch -p0 < "${DISTDIR}"/02_all_disable_modules_and_ssl.patch
+	fi
 
 	local myconf=""
 
