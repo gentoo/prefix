@@ -1287,11 +1287,6 @@ bootstrap_stage3() {
 	)
 	[[ ${OFFLINE_MODE} ]] || emerge_pkgs "" "${pkgs[@]}" || return 1
 
-	# ugly hack to make sure we can compile glib without pkg-config,
-	# which is depended upon by shared-mime-info
-	export LIBFFI_CFLAGS="-I$(echo ${ROOT}/usr/lib*/libffi-*/include)"
-	export LIBFFI_LIBS="-lffi"
-
 	# for some yet unknown reason, libxml2 has a problem with zlib, but
 	# only during this stage, in the emerge -e system phase it is fine
 	# it boils down to zlib headers replacing gzopen with gzopen64, but
@@ -1308,7 +1303,7 @@ bootstrap_stage3() {
 	# disable collision-protect to overwrite the bootstrapped portage
 	FEATURES="-collision-protect" emerge_pkgs "" "sys-apps/portage" || return 1
 
-	unset LIBFFI_CFLAGS LIBFFI_LIBS CPPFLAGS
+	unset CPPFLAGS
 
 	# Remove the tmp space (stage1 tools) we shouldn't be needing these
 	# any more.  There is just one but, which is that on 64-bits Solaris
@@ -1354,6 +1349,9 @@ bootstrap_stage3() {
 
 	# Portage should figure out itself what it needs to do, if anything
 	USE="-git" emerge -u system || return 1
+
+	# avoid a circular dependency between glib and pkg-config
+	emerge -u --newuse dev-util/pkgconfig || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
