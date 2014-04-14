@@ -129,6 +129,8 @@ src_prepare() {
 	# Fix for cross-compiling.
 	epatch "${FILESDIR}/python-2.7.5-nonfatal-compileall.patch"
 
+	epatch "${FILESDIR}"/python-2.7-aix-dlopen-soname.patch # libtool-built modules
+
 	# On AIX, we've wrapped /usr/ccs/bin/nm to work around long TMPDIR.
 	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
 
