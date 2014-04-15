@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.2_p1-r1.ebuild,v 1.4 2012/04/30 01:36:43 vapier Exp $
 
-inherit eutils multilib toolchain-funcs flag-o-matic
+inherit eutils multilib toolchain-funcs flag-o-matic libtool
 
 # Official patches
 # See ftp://ftp.cwru.edu/pub/bash/readline-6.0-patches/
@@ -28,7 +28,11 @@ patches() {
 
 DESCRIPTION="Another cute console display library"
 HOMEPAGE="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html"
-SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz $(patches)"
+HOSTLTV="0.1.0"
+HOSTLT="host-libtool-${HOSTLTV}"
+HOSTLT_URI="http://github.com/haubi/host-libtool/releases/download/v${HOSTLTV}/${HOSTLT}.tar.gz"
+SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz $(patches) ${HOSTLT_URI}"
+HOSTLT_S=${WORKDIR}/${HOSTLT}
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -41,6 +45,9 @@ DEPEND="${RDEPEND}"
 S=${WORKDIR}/${MY_P}
 
 src_unpack() {
+	unpack ${HOSTLT}.tar.gz
+	S="${HOSTLT_S}" elibtoolize
+
 	unpack ${MY_P}.tar.gz
 
 	cd "${S}"
@@ -57,7 +64,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
 	epatch "${FILESDIR}"/${PN}-6.1-darwin-shlib-versioning.patch
-	epatch "${FILESDIR}"/${PN}-6.2-aixso.patch
+	epatch "${FILESDIR}"/${PN}-6.2-libtool.patch
 
 	# force ncurses linking #71420
 	sed -i -e 's:^SHLIB_LIBS=:SHLIB_LIBS=-lncurses:' support/shobj-conf || die "sed"
@@ -73,6 +80,11 @@ src_unpack() {
 }
 
 src_compile() {
+	cd "${HOSTLT_S}" || die
+	econf $(use_enable static-libs static)
+	export PATH=${HOSTLT_S}:${PATH}
+
+	cd "${S}"
 	# fix implicit decls with widechar funcs
 	append-cppflags -D_GNU_SOURCE
 	# http://lists.gnu.org/archive/html/bug-readline/2010-07/msg00013.html
@@ -84,27 +96,28 @@ src_compile() {
 	econf \
 		--cache-file="${S}"/config.cache \
 		--with-curses \
-		$(use_enable static-libs static)
-	emake || die
+		--disable-shared # use libtool instead
+	emake shared || die
 
 	if ! tc-is-cross-compiler ; then
 		# code is full of AC_TRY_RUN()
 		cd examples/rlfe
 		local l
 		for l in readline history ; do
-			ln -s ../../shlib/lib${l}*$(get_libname)* lib${l}$(get_libname)
-			ln -sf ../../lib${l}.a lib${l}.a
+			ln -s ../../shlib/lib${l}.la .
 		done
 		econf --cache-file="${S}"/config.cache
-		emake || die
+		emake LTLINK='libtool --mode=link --tag=CC' || die
 	fi
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	export PATH=${HOSTLT_S}:${PATH}
+
+	emake DESTDIR="${D}" install-shared || die
 
 	if ! tc-is-cross-compiler; then
-		dobin examples/rlfe/rlfe || die
+		libtool --mode=install install examples/rlfe/rlfe $ED$DESTTREE/bin || die
 	fi
 
 	# must come after installing rlfe, bug #455512
