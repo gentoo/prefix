@@ -1,6 +1,6 @@
-diff --git a/Makefile b/Makefile
---- a/Makefile
-+++ b/Makefile
+diff --git a/a/Makefile b/b/Makefile
+--- a/a/Makefile
++++ b/b/Makefile
 @@ -5,7 +5,8 @@ PN = gcc-config
  PV = git
  P = $(PN)-$(PV)
@@ -31,14 +31,16 @@ diff --git a/Makefile b/Makefile
  		-e 's:@GENTOO_LIBDIR@:$(SUBLIBDIR):g' \
  		-e 's:@PV@:$(PV):g' \
  		gcc-config > $(DESTDIR)$(BINDIR)/gcc-config
-diff --git a/gcc-config b/gcc-config
---- a/gcc-config
-+++ b/gcc-config
-@@ -9,14 +9,16 @@
+diff --git a/a/gcc-config b/b/gcc-config
+index 18d0b48..935b4c8 100755
+--- a/a/gcc-config
++++ b/b/gcc-config
+@@ -9,14 +9,17 @@
  : ${ROOT:=/}
  [[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
  [[ ${ROOT} != /* ]] && ROOT="${PWD%/}/${ROOT}"
-+EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
++BPREFIX="@GENTOO_PORTAGE_EPREFIX@"
++: ${EPREFIX:=${BPREFIX}}
 +EROOT="${ROOT%/}${EPREFIX}/"
  
  cd /
@@ -48,12 +50,12 @@ diff --git a/gcc-config b/gcc-config
  argv0=${0##*/}
 -source /etc/init.d/functions.sh || {
 -	echo "${argv0}: Could not source /etc/init.d/functions.sh!" 1>&2
-+source "${EPREFIX}"/etc/init.d/functions.sh || {
-+	echo "${argv0}: Could not source ${EPREFIX}/etc/init.d/functions.sh!" 1>&2
++source "${BPREFIX}"/etc/init.d/functions.sh || {
++	echo "${argv0}: Could not source ${BPREFIX}/etc/init.d/functions.sh!" 1>&2
  	exit 1
  }
  esyslog() { :; }
-@@ -84,16 +86,16 @@ try_real_hard_to_find_CHOST() {
+@@ -84,16 +87,16 @@ try_real_hard_to_find_CHOST() {
  	#
  
  	local varname=${1:-CHOST}
@@ -74,7 +76,7 @@ diff --git a/gcc-config b/gcc-config
  				-e 's:[[:space:]]::g' \
  				-e "/^${varname}=/p" \
  				"${conf}"
-@@ -109,8 +111,8 @@ try_real_hard_to_find_CHOST() {
+@@ -109,8 +112,8 @@ try_real_hard_to_find_CHOST() {
  	#
  	# Then we try /etc/env.d/gcc/config-${CTARGET}
  	#
@@ -85,16 +87,16 @@ diff --git a/gcc-config b/gcc-config
  		echo ${ret% *}
  	fi
  }
-@@ -124,7 +126,7 @@ get_chost() {
+@@ -124,7 +127,7 @@ get_chost() {
  
  	# make sure portage isnt broken
  	if python -V &>/dev/null ; then
 -		CHOST=$(portageq envvar CHOST 2>/dev/null)
-+		CHOST=$(env -i EPREFIX="${EPREFIX}" "$(PATH="${EPREFIX}/usr/bin:${PATH}" type -P portageq)" envvar CHOST 2>/dev/null)
++		CHOST=$(env -i EPREFIX="${BPREFIX}" "$(PATH="${BPREFIX}/usr/bin:${PATH}" type -P portageq)" envvar CHOST 2>/dev/null)
  	else
  		ewarn "Python seems to be broken, attempting to locate CHOST ourselves ..."
  		CHOST=$(try_real_hard_to_find_CHOST)
-@@ -133,7 +135,7 @@ get_chost() {
+@@ -133,7 +136,7 @@ get_chost() {
  	if [[ -z ${CHOST} ]] ; then
  		eerror "${argv0}: Could not get portage CHOST!"
  		eerror "${argv0}: You should verify that CHOST is set in one of these places:"
@@ -103,7 +105,7 @@ diff --git a/gcc-config b/gcc-config
  		eerror "${argv0}:  - active environment"
  		exit 1
  	fi
-@@ -196,7 +198,7 @@ update_wrappers() {
+@@ -196,7 +199,7 @@ update_wrappers() {
  	# Find the bin wrapper
  	local wrapper
  	for wrapper in ${GENTOO_LIBDIR} lib lib64 lib32 lib ; do
@@ -112,7 +114,7 @@ diff --git a/gcc-config b/gcc-config
  		[[ -e ${wrapper} ]] && break
  	done
  
-@@ -222,7 +224,7 @@ update_wrappers() {
+@@ -222,7 +225,7 @@ update_wrappers() {
  	# new one does not.
  	for x in "${old_wrappers[@]}" ; do
  		has "${x}" "${new_wrappers[@]}" && continue
@@ -121,7 +123,7 @@ diff --git a/gcc-config b/gcc-config
  	done
  
  	# For all toolchains, we want to create the fully qualified
-@@ -259,20 +261,19 @@ update_wrappers() {
+@@ -259,20 +262,19 @@ update_wrappers() {
  
  		# Now do the actual wrapper copy with paths to the reference binary
  		if [[ -x ${ref} ]] ; then
@@ -146,7 +148,7 @@ diff --git a/gcc-config b/gcc-config
  	fi
  }
  
-@@ -301,33 +302,45 @@ handle_split_usr() {
+@@ -301,33 +303,45 @@ handle_split_usr() {
  	eval $(grep -h '^LDPATH=' "${GCC_ENV_D}"/${CHOST}-* | tail -1)
  	LDPATH=${LDPATH%%:*}
  
@@ -213,7 +215,7 @@ diff --git a/gcc-config b/gcc-config
  		done
  	done
  	rmdir "${libdir}"/.gcc.config.new
-@@ -341,7 +354,7 @@ switch_profile() {
+@@ -341,7 +355,7 @@ switch_profile() {
  
  	# Make sure we have write access to the dirs.  Do not require `root`
  	# so that we work with prefix/cross/etc... setups that run as user.
@@ -222,7 +224,7 @@ diff --git a/gcc-config b/gcc-config
  
  	if is_cross_compiler ; then
  		ebegin "Switching cross-compiler to ${CC_COMP}"
-@@ -408,7 +421,7 @@ switch_profile() {
+@@ -408,7 +422,7 @@ switch_profile() {
  		# Pass all by default
  		awk '!/^(STDCXX_INCDIR|LDPATH|CC|CXX|CTARGET|GCCBITS|GCC_SPECS|GCC_PATH|MULTIOSDIRS)=/ {print $0}' \
  			"${GCC_ENV_D}/${CC_COMP}" >> "${envd}.tmp"
@@ -231,7 +233,7 @@ diff --git a/gcc-config b/gcc-config
  			echo "${MY_LDPATH}" > "${ROOT}"/etc/ld.so.conf.d/05gcc-${CTARGET}.conf
  		else
  			echo "LDPATH=\"${MY_LDPATH}\"" >> "${envd}.tmp"
-@@ -427,7 +440,7 @@ switch_profile() {
+@@ -427,7 +441,7 @@ switch_profile() {
  		local x libdir pkgconfdir
  		local mver=${CC_COMP_VERSION:0:3}
  		for libdir in ${MULTIOSDIRS//:/ } ; do
@@ -240,7 +242,7 @@ diff --git a/gcc-config b/gcc-config
  			for x in "" "-${mver}" ; do
  				x="${pkgconfdir}/libgcj${x}.pc"
  				if [[ -e ${pkgconfdir}/libgcj-${CC_COMP_VERSION}.pc ]] ; then
-@@ -458,7 +471,7 @@ switch_profile() {
+@@ -458,7 +472,7 @@ switch_profile() {
  			ewarn "env-update failed to work properly; making sure ld.so.conf paths"
  			ewarn "are setup properly.  Please rerun gcc-config with the -f option."
  			echo ""
@@ -249,7 +251,7 @@ diff --git a/gcc-config b/gcc-config
  				show_var LDPATH "${ROOT}"/etc/env.d/05gcc-${CTARGET} \
  					| sed -e 's|:|\n|g' >> /etc/ld.so.conf
  			fi
-@@ -475,7 +488,9 @@ switch_profile() {
+@@ -475,7 +489,9 @@ switch_profile() {
  		ewarn "If you intend to use the gcc from the new profile in an already"
  		ewarn "running shell, please remember to do:"
  		echo
@@ -260,7 +262,7 @@ diff --git a/gcc-config b/gcc-config
  		echo
  	fi
  
-@@ -653,7 +668,7 @@ DOIT=""
+@@ -653,7 +669,7 @@ DOIT=""
  FORCE="no"
  
  CC_COMP=
@@ -269,7 +271,7 @@ diff --git a/gcc-config b/gcc-config
  GCC_ENV_D="${ENV_D}/gcc"
  
  for x in "$@" ; do
-@@ -784,7 +799,11 @@ if [[ -z ${CC_COMP} ]] ; then
+@@ -784,7 +800,11 @@ if [[ -z ${CC_COMP} ]] ; then
  fi
  
  if [[ ${DOIT} != "get_current_profile" ]] ; then
@@ -282,7 +284,7 @@ diff --git a/gcc-config b/gcc-config
  
  	# For people who insist on using funky version strings ("4.6.x"
  	# rather than "4.6.2"), allow them to manually specify it.
-@@ -797,11 +816,11 @@ if [[ ${DOIT} != "get_current_profile" ]
+@@ -797,11 +817,11 @@ if [[ ${DOIT} != "get_current_profile" ]] ; then
  		CC_COMP_TARGET=${CC_COMP%-${CC_COMP_VERSION}*}
  	fi
  
@@ -296,8 +298,10 @@ diff --git a/gcc-config b/gcc-config
  	   [[ ! -f ${GCC_ENV_D}/${CC_COMP} ]]
  	then
  		eerror "${argv0}: Profile does not exist or invalid setting for ${GCC_ENV_D}/${CC_COMP}" 1>&2
---- a/wrapper.c.in
-+++ b/wrapper.c.in
+diff --git a/a/wrapper.c.in b/b/wrapper.c.in
+index 65e5317..afa03bc 100644
+--- a/a/wrapper.c.in
++++ b/b/wrapper.c.in
 @@ -21,8 +21,8 @@
  #include <sys/stat.h>
  #include <sys/types.h>
@@ -308,6 +312,24 @@ diff --git a/gcc-config b/gcc-config
 +#define ENVD_BASE  "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/05gcc"
  
  #define ARRAY_SIZE(arr) (sizeof(arr)/sizeof(arr[0]))
+ 
+@@ -146,7 +146,7 @@ static int find_target_in_envd(struct wrapper_data *data, int cross_compile)
+ 		/* for the sake of speed, we'll keep a symlink around for
+ 		 * the native compiler.  #190260
+ 		 */
+-		snprintf(envd_file, sizeof(envd_file)-1, "/etc/env.d/gcc/.NATIVE");
++		snprintf(envd_file, sizeof(envd_file)-1, "@GENTOO_PORTAGE_EPREFIX@/etc/env.d/gcc/.NATIVE");
+ 	} else {
+ 		char *ctarget, *end = strrchr(data->name, '-');
+ 		if (end == NULL)
+@@ -213,7 +213,7 @@ static void find_wrapper_target(struct wrapper_data *data)
+ 	/* Only our wrapper is in PATH, so get the CC path using
+ 	 * gcc-config and execute the real binary in there ...
+ 	 */
+-	FILE *inpipe = popen("ROOT= " GCC_CONFIG " --get-bin-path", "r");
++	FILE *inpipe = popen("ROOT= EPREFIX=\"@GENTOO_PORTAGE_EPREFIX@\" " GCC_CONFIG " --get-bin-path", "r");
+ 	if (inpipe == NULL)
+ 		wrapper_errp("could not open pipe");
  
 @@ -289,8 +289,8 @@ int main(int argc, char *argv[])
  			data.name = wrapper_aliases[i].target;
