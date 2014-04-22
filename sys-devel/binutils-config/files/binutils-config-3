@@ -7,7 +7,8 @@
 #  config-TARGET:	CURRENT=version for TARGET
 #  TARGET-VER:		has a TARGET and VER variable
 
-EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+BPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+: ${EPREFIX:=${BPREFIX}}
 
 : ${ROOT:=/}
 [[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
@@ -19,8 +20,8 @@ cd ${EPREFIX}
 trap ":" INT QUIT TSTP
 
 argv0=${0##*/}
-source ${EPREFIX}/etc/init.d/functions.sh || {
-	echo "${argv0}: Could not source ${EPREFIX}/etc/init.d/functions.sh!" 1>&2
+source "${BPREFIX}"/etc/init.d/functions.sh || {
+	echo "${argv0}: Could not source ${BPREFIX}/etc/init.d/functions.sh!" 1>&2
 	exit 1
 }
 esyslog() { :; }
@@ -149,7 +150,7 @@ switch_profile() {
 			ld|ld64)
 				# recompile the wrapper for the desired target
 				# not a huge fan of it, never have been
-				"${EROOT}"usr/lib/misc/binutils-config/create-ldwrapper \
+				"${BPREFIX}"/usr/lib/misc/binutils-config/create-ldwrapper \
 					--wrapper-name="${x}" \
 					--wrapper-source="${EROOT}usr/lib/misc/binutils-config" \
 					--output-file="${EROOT}/${BINPATH_LINKS}/${x}" \
