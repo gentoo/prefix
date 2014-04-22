@@ -50,6 +50,9 @@ is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
 }
 
+# The target prefix defaults to the host prefix, except for cross compilers, which targets the empty prefix by default.
+: ${TPREFIX:=$(is_crosscompile || echo "${EPREFIX}")}
+
 # General purpose version check.  Without a second arg matches up to minor version (x.x.x)
 tc_version_is_at_least() {
 	version_is_at_least "$1" "${2:-${GCC_RELEASE_VER}}"
@@ -989,7 +992,7 @@ toolchain_src_configure() {
 			# should be /usr, because it's the path to search includes
 			# for, which is unrelated to TOOLCHAIN_PREFIX, a.k.a.
 			# PREFIX
-			confgcc+=( --with-local-prefix="${EPREFIX}/usr" )
+			confgcc+=( --with-local-prefix="${TPREFIX}/usr" )
 		fi
 	fi
 
