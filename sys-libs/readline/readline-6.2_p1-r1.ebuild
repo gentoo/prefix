@@ -92,7 +92,7 @@ src_compile() {
 
 	# This is for rlfe, but we need to make sure LDFLAGS doesn't change
 	# so we can re-use the config cache file between the two.
-	append-ldflags -L.
+	export LDFLAGS="-L${S}/shlib ${LDFLAGS}" # search local dirs first
 	econf \
 		--cache-file="${S}"/config.cache \
 		--with-curses \
@@ -102,10 +102,6 @@ src_compile() {
 	if ! tc-is-cross-compiler ; then
 		# code is full of AC_TRY_RUN()
 		cd examples/rlfe
-		local l
-		for l in readline history ; do
-			ln -s ../../shlib/lib${l}.la .
-		done
 		econf --cache-file="${S}"/config.cache
 		emake LTLINK='libtool --mode=link --tag=CC' || die
 	fi
@@ -117,7 +113,7 @@ src_install() {
 	emake DESTDIR="${D}" install-shared || die
 
 	if ! tc-is-cross-compiler; then
-		libtool --mode=install install examples/rlfe/rlfe $ED$DESTTREE/bin || die
+		libtool --mode=install install examples/rlfe/rlfe "${ED%/}${DESTTREE}"/bin || die
 	fi
 
 	# must come after installing rlfe, bug #455512
