@@ -22,17 +22,13 @@ S=${WORKDIR}/unrar
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.0.2-build.patch
+	local sed_args=( -e "/libunrar/s:.so:$(get_libname ${PV%.*.*}):" )
 	if [[ ${CHOST} == *-darwin* ]] ; then
-		sed -i \
-			-e "/libunrar/s:.so:$(get_libname ${PV%.*.*}):" \
-			-e "s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/lib/libunrar$(get_libname ${PV%.*.*}):" \
-			makefile || die
+		sed_args+=( -e "s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libunrar$(get_libname ${PV%.*.*}):" )
 	else
-		sed -i \
-			-e "/libunrar/s:.so:$(get_libname ${PV%.*.*}):" \
-			-e "s:-shared:& -Wl,-soname -Wl,libunrar$(get_libname ${PV%.*.*}):" \
-			makefile || die
+		sed_args+=( -e "s:-shared:& -Wl,-soname -Wl,libunrar$(get_libname ${PV%.*.*}):" )
 	fi
+	sed -i "${sed_args[@]}" makefile
 }
 
 src_compile() {
