@@ -1,0 +1,12 @@
+https://bugzilla.gnome.org/show_bug.cgi?id=712314
+
+--- glib-2.38.2.orig/tests/refcount/Makefile.am	2013-08-07 16:34:32.000000000 +0200
++++ glib-2.38.2/tests/refcount/Makefile.am	2013-11-15 09:55:49.877405332 +0100
+@@ -1,6 +1,6 @@
+ include $(top_srcdir)/glib.mk
+ 
+-LDADD = $(top_builddir)/glib/libglib-2.0.la $(top_builddir)/gobject/libgobject-2.0.la
++LDADD = $(top_builddir)/gobject/libgobject-2.0.la $(top_builddir)/glib/libglib-2.0.la
+ AM_CPPFLAGS = $(gmodule_INCLUDES) $(GLIB_DEBUG_FLAGS)
+ DEFS = -DGLIB_DISABLE_DEPRECATION_WARNINGS
+ AM_CFLAGS = -g

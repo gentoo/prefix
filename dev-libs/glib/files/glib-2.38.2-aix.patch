@@ -1,0 +1,181 @@
+https://bugzilla.gnome.org/show_bug.cgi?id=712314
+
+part of glib-2.39.2:
+https://git.gnome.org/browse/glib/commit/?id=efb1701bf3baf6f5b05fd1a7a5a4ff990a7dc460
+https://git.gnome.org/browse/glib/commit/?id=1f0573d2e6605d657cdf2884cc4dcd646f8a214f
+https://git.gnome.org/browse/glib/commit/?id=b1af471a3f08c3afa4eb61f0791998aac5da80a8
+
+diff -ru glib-2.38.2.orig/configure.ac glib-2.38.2/configure.ac
+--- glib-2.38.2.orig/configure.ac	2013-08-07 16:36:32.000000000 +0200
++++ glib-2.38.2/configure.ac	2013-11-15 09:55:49.870738679 +0100
+@@ -840,7 +840,7 @@
+ AC_CHECK_HEADERS([sys/select.h sys/types.h stdint.h inttypes.h sched.h malloc.h])
+ AC_CHECK_HEADERS([sys/vfs.h sys/vmount.h sys/statfs.h sys/statvfs.h sys/filio.h])
+ AC_CHECK_HEADERS([mntent.h sys/mnttab.h sys/vfstab.h sys/mntctl.h fstab.h])
+-AC_CHECK_HEADERS([sys/uio.h sys/mkdev.h])
++AC_CHECK_HEADERS([sys/uio.h])
+ AC_CHECK_HEADERS([linux/magic.h])
+ AC_CHECK_HEADERS([sys/prctl.h])
+ 
+@@ -851,6 +851,7 @@
+ ])
+ AC_CHECK_FUNCS(sysctlbyname)
+ 
++AC_HEADER_MAJOR
+ AC_CHECK_HEADERS([xlocale.h])
+ 
+ # check for structure fields
+@@ -1028,6 +1029,7 @@
+ AC_CHECK_FUNCS(chown lchmod lchown fchmod fchown link utimes getgrgid getpwuid getresuid)
+ AC_CHECK_FUNCS(getmntent_r setmntent endmntent hasmntopt getfsstat getvfsstat fallocate)
+ # Check for high-resolution sleep functions
++case $host_os in aix*) ac_cv_func_splice=no ;; esac # AIX splice() is something else
+ AC_CHECK_FUNCS(splice)
+ AC_CHECK_FUNCS(prlimit)
+ 
+diff -ru glib-2.38.2.orig/gio/gdbusmessage.c glib-2.38.2/gio/gdbusmessage.c
+--- glib-2.38.2.orig/gio/gdbusmessage.c	2013-08-07 16:36:32.000000000 +0200
++++ glib-2.38.2/gio/gdbusmessage.c	2013-11-15 09:55:49.877405332 +0100
+@@ -29,13 +29,16 @@
+ #include <errno.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+-#ifdef HAVE_SYS_MKDEV_H
+-#include <sys/mkdev.h>
+-#endif
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+ 
++#if MAJOR_IN_MKDEV
++#include <sys/mkdev.h>
++#elif MAJOR_IN_SYSMACROS
++#include <sys/sysmacros.h>
++#endif
++
+ #include "gdbusutils.h"
+ #include "gdbusmessage.h"
+ #include "gdbuserror.h"
+diff -ru glib-2.38.2.orig/gio/Makefile.am glib-2.38.2/gio/Makefile.am
+--- glib-2.38.2.orig/gio/Makefile.am	2013-08-07 16:34:32.000000000 +0200
++++ glib-2.38.2/gio/Makefile.am	2013-11-15 09:55:49.877405332 +0100
+@@ -466,9 +466,9 @@
+ EXTRA_DIST += strinfo.c
+ 
+ libgio_2_0_la_LIBADD = \
+-	$(top_builddir)/glib/libglib-2.0.la 		\
+ 	$(top_builddir)/gobject/libgobject-2.0.la 	\
+ 	$(top_builddir)/gmodule/libgmodule-2.0.la 	\
++	$(top_builddir)/glib/libglib-2.0.la 		\
+ 	$(platform_libadd) 				\
+ 	$(ZLIB_LIBS)					\
+ 	$(SELINUX_LIBS) 				\
+@@ -670,10 +670,10 @@
+ 
+ bin_PROGRAMS = gio-querymodules glib-compile-schemas glib-compile-resources gsettings
+ 
+-glib_compile_resources_LDADD = \
+-	$(top_builddir)/glib/libglib-2.0.la \
++glib_compile_resources_LDADD = libgio-2.0.la		\
+ 	$(top_builddir)/gobject/libgobject-2.0.la	\
+-	libgio-2.0.la
++	$(top_builddir)/glib/libglib-2.0.la		\
++	$(NULL)
+ 
+ glib_compile_resources_SOURCES = \
+ 	gvdb/gvdb-format.h		\
+@@ -682,11 +682,10 @@
+ 	glib-compile-resources.c
+ 
+ gio_querymodules_SOURCES = gio-querymodules.c
+-gio_querymodules_LDADD	 = \
+-	$(top_builddir)/glib/libglib-2.0.la		\
++gio_querymodules_LDADD	 = libgio-2.0.la		\
+ 	$(top_builddir)/gobject/libgobject-2.0.la	\
+ 	$(top_builddir)/gmodule/libgmodule-2.0.la	\
+-	libgio-2.0.la					\
++	$(top_builddir)/glib/libglib-2.0.la		\
+ 	$(NULL)
+ 
+ gconstructor_as_data.h: $(top_srcdir)/glib/gconstructor.h data-to-c.pl
+@@ -700,10 +699,11 @@
+ 	gvdb/gvdb-builder.c		\
+ 	glib-compile-schemas.c
+ 
+-gsettings_LDADD = \
+-	$(top_builddir)/glib/libglib-2.0.la		\
++gsettings_LDADD = libgio-2.0.la				\
+ 	$(top_builddir)/gobject/libgobject-2.0.la	\
+-	libgio-2.0.la
++	$(top_builddir)/glib/libglib-2.0.la		\
++	$(NULL)
++
+ gsettings_SOURCES = gsettings-tool.c
+ 
+ schemadir = $(datadir)/glib-2.0/schemas
+@@ -715,8 +715,9 @@
+ bin_PROGRAMS += gdbus
+ gdbus_SOURCES = gdbus-tool.c
+ gdbus_LDADD = libgio-2.0.la \
++	$(top_builddir)/gobject/libgobject-2.0.la	\
+ 	$(top_builddir)/glib/libglib-2.0.la 		\
+-	$(top_builddir)/gobject/libgobject-2.0.la
++	$(NULL)
+ 
+ completiondir = $(datadir)/bash-completion/completions
+ completion_DATA = \
+@@ -731,9 +732,9 @@
+ bin_PROGRAMS += gresource
+ gresource_SOURCES = gresource-tool.c
+ gresource_CPPFLAGS = $(LIBELF_CFLAGS) $(AM_CPPFLAGS)
+-gresource_LDADD = libgio-2.0.la \
++gresource_LDADD = libgio-2.0.la				\
++	$(top_builddir)/gobject/libgobject-2.0.la	\
+ 	$(top_builddir)/glib/libglib-2.0.la 		\
+-	$(top_builddir)/gobject/libgobject-2.0.la \
+ 	$(LIBELF_LIBS)
+ 
+ # ------------------------------------------------------------------------
+diff -ru glib-2.38.2.orig/gio/tests/Makefile.am glib-2.38.2/gio/tests/Makefile.am
+--- glib-2.38.2.orig/gio/tests/Makefile.am	2013-08-07 16:34:32.000000000 +0200
++++ glib-2.38.2/gio/tests/Makefile.am	2013-11-15 09:55:49.877405332 +0100
+@@ -6,10 +6,10 @@
+ SUBDIRS = gdbus-object-manager-example services
+ 
+ LDADD = \
+-	$(top_builddir)/glib/libglib-2.0.la		\
++	$(top_builddir)/glib/libgio-2.0.la		\
+ 	$(top_builddir)/gobject/libgobject-2.0.la	\
+ 	$(top_builddir)/gmodule/libgmodule-2.0.la	\
+-	$(top_builddir)/gio/libgio-2.0.la
++	$(top_builddir)/gio/libglib-2.0.la
+ AM_CPPFLAGS = $(gio_INCLUDES) $(GLIB_DEBUG_FLAGS) -I$(top_builddir)/gio -I$(top_srcdir)/gio
+ DEFS = -DG_LOG_DOMAIN=\"GLib-GIO\" -DTEST_SERVICES=\""$(abs_top_builddir)/gio/tests/services"\"
+ AM_CFLAGS = $(GLIB_WARN_CFLAGS)
+diff -ru glib-2.38.2.orig/tests/Makefile.am glib-2.38.2/tests/Makefile.am
+--- glib-2.38.2.orig/tests/Makefile.am	2013-08-07 16:34:32.000000000 +0200
++++ glib-2.38.2/tests/Makefile.am	2013-11-15 09:55:49.877405332 +0100
+@@ -88,11 +88,11 @@
+ 
+ test_programs += module-test
+ module_test_DEPENDENCIES = libmoduletestplugin_a.la libmoduletestplugin_b.la
+-module_test_LDADD = $(LDADD) $(top_builddir)/gmodule/libgmodule-2.0.la
++module_test_LDADD = $(top_builddir)/gmodule/libgmodule-2.0.la $(LDADD)
+ module_test_LDFLAGS = $(G_MODULE_LDFLAGS)
+ slice_test_SOURCES = slice-test.c memchunks.c
+ slice_color_SOURCES = slice-color.c memchunks.c
+-slice_threadinit_LDADD = $(LDADD) $(top_builddir)/gthread/libgthread-2.0.la
++slice_threadinit_LDADD = $(top_builddir)/gthread/libgthread-2.0.la $(LDADD)
+ 
+ test_ltlibraries = libmoduletestplugin_a.la libmoduletestplugin_b.la
+ 
+--- glib-2.38.2/tests/gobject/Makefile.am.orig
++++ glib-2.38.2/tests/gobject/Makefile.am
+@@ -1,6 +1,6 @@
+ include $(top_srcdir)/glib.mk
+ 
+-LDADD = $(top_builddir)/glib/libglib-2.0.la $(top_builddir)/gobject/libgobject-2.0.la
++LDADD = $(top_builddir)/gobject/libgobject-2.0.la $(top_builddir)/glib/libglib-2.0.la
+ AM_CPPFLAGS = $(gmodule_INCLUDES) $(GLIB_DEBUG_FLAGS)
+ DEFS = -DGLIB_DISABLE_DEPRECATION_WARNINGS -DG_LOG_DOMAIN=\"GLib\"
+ AM_CFLAGS = -g

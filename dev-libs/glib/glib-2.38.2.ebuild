@@ -91,6 +91,9 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301, upstream bug #107626
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
+	epatch "${FILESDIR}"/${PN}-2.38.2-aix.patch # fixed upstream since 2.39.2
+	epatch "${FILESDIR}"/${PN}-2.39.2-aix.patch # more AIX buildtime fixes
+
 	if use test; then
 		# Do not try to remove files on live filesystem, upstream bug #619274
 		sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
@@ -181,7 +184,7 @@ src_prepare() {
 	if [[ ${CHOST} == *-interix* ]]; then
 		# activate the itx-bind package...
 		append-flags "-I${EPREFIX}/usr/include/bind"
-		append-ldflags "-L${EPREFIX}/usr/lib/bind"
+		append-libs "-L${EPREFIX}/usr/lib/bind"
 	fi
 
 	# Needed for the punt-python-check patch, disabling timeout test
@@ -225,8 +228,9 @@ multilib_src_configure() {
 	if use !elibc_glibc ; then
 		myconf="${myconf} --with-libiconv=gnu"
 		# add the libdir for libtool, otherwise it'll make love with system
-		# installed libiconv
-		append-ldflags "-L${EPREFIX}/usr/$(get_libdir)"
+		# installed libiconv. Automake passes LDFLAGS before local libs,
+		# add this to LIBS instead to come after local lib dirs.
+		append-libs "-L${EPREFIX}/usr/$(get_libdir)"
 	fi
 
 	[[ ${CHOST} == *-interix* ]] && {
