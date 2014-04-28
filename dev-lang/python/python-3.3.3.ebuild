@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.3.3.ebuild,v 1.6 2013/12/30 21:57:26 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.3.3.ebuild,v 1.18 2014/03/18 16:43:13 ago Exp $
 
 EAPI="4"
 WANT_AUTOMAKE="none"
@@ -221,6 +221,9 @@ src_configure() {
 }
 
 src_compile() {
+	# http://bugs.python.org/issue19966
+	touch Include/Python-ast.h Python/Python-ast.c || die
+
 	# Avoid invoking pgen for cross-compiles.
 	touch Include/graminit.h Python/graminit.c || die
 

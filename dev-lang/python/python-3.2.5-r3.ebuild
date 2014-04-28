@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.5-r3.ebuild,v 1.3 2013/12/30 21:57:26 floppym Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.2.5-r3.ebuild,v 1.4 2014/03/28 02:10:17 floppym Exp $
 
 EAPI="4"
 WANT_AUTOMAKE="none"
@@ -9,13 +9,13 @@ WANT_LIBTOOL="none"
 inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs multiprocessing
 
 MY_P="Python-${PV}"
-PATCHSET_REVISION="0"
+PATCHSET_REVISION="1"
 PREFIX_PATCHREV="-r0"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
-	mirror://gentoo/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.xz
+	http://dev.gentoo.org/~floppym/python/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.xz
 	http://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}.tar.bz2"
 
 LICENSE="PSF-2"
@@ -77,7 +77,7 @@ src_prepare() {
 	fi
 
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
-		epatch "${WORKDIR}/${PV}-${PATCHSET_REVISION}"
+		epatch "${WORKDIR}/patches"
 
 	epatch "${FILESDIR}/python-3.2-CVE-2013-2099.patch"
 	epatch "${FILESDIR}/CVE-2013-4238_py33.patch"

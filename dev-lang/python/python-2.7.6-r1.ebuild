@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.5-r4.ebuild,v 1.4 2014/01/18 11:37:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.6-r1.ebuild,v 1.1 2014/04/25 18:33:36 chutzpah Exp $
 
 EAPI="4"
 WANT_AUTOMAKE="none"
@@ -9,13 +9,14 @@ WANT_LIBTOOL="none"
 inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs multiprocessing
 
 MY_P="Python-${PV}"
-PATCHSET_REVISION="0"
-PREFIX_PATCHREV="-r3"
+PATCHSET_REVISION="1"
+PREFIX_PATCHREV=""
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 	mirror://gentoo/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.xz
+	http://dev.gentoo.org/~floppym/python/python-gentoo-patches-${PV}-${PATCHSET_REVISION}.tar.xz
 	prefix? ( http://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}.tar.bz2 )"
 
 LICENSE="PSF-2"
@@ -99,13 +100,7 @@ src_prepare() {
 	# this line:
 	#local EPATCH_EXCLUDE=" 01_all_prefix-no-patch-invention.patch"
 
-	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}-${PATCHSET_REVISION}"
-
-	epatch "${FILESDIR}/${P}-library-path.patch" #474882
-	epatch "${FILESDIR}/${P}-re_unsigned_ptrdiff.patch" #476426
-	epatch "${FILESDIR}/CVE-2013-4238_py27.patch"
-	epatch "${FILESDIR}/python-2.7-issue16248.patch"
-	epatch "${FILESDIR}/python-2.7-issue18851.patch"
+	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 	epatch "${FILESDIR}/python-2.7-issue18235.patch"
 	epatch "${FILESDIR}/python-2.7-issue17919.patch"
 
@@ -149,6 +144,9 @@ src_prepare() {
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
 	epatch_user
+
+	# fix for CVE-2014-1912 (bug #500518)
+	epatch "${FILESDIR}"/${P}-recvfrom_into_buffer_overflow.patch
 
 	eautoconf
 	eautoheader
@@ -199,6 +197,12 @@ src_configure() {
 	if is-flagq -O3; then
 		is-flagq -fstack-protector-all && replace-flags -O3 -O2
 		use hardened && replace-flags -O3 -O2
+	fi
+
+	if tc-is-cross-compiler; then
+		# Force some tests that try to poke fs paths.
+		export ac_cv_file__dev_ptc=no
+		export ac_cv_file__dev_ptmx=yes
 	fi
 
 	# http://bugs.gentoo.org/show_bug.cgi?id=302137
@@ -497,7 +501,7 @@ EOF
 	use threads || rm -r "${libdir}/multiprocessing" || die
 	use wininst || rm -r "${libdir}/distutils/command/"wininst-*.exe || die
 
-	dodoc "${S}"/Misc/{ACKS,HISTORY,NEWS} || die "dodoc failed"
+	dodoc "${S}"/Misc/{ACKS,HISTORY,NEWS}
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
