@@ -25,6 +25,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.5.39-rpl_alloc.patch # flex bug#151
 	elibtoolize # Prefix always needs this
+	touch doc/stamp-vti # avoid rebuilding docs due to changed configure
 }
 
 src_configure() {
