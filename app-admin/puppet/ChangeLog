@@ -1,6 +1,324 @@
 # ChangeLog for app-admin/puppet
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.122 2012/09/10 15:38:59 prometheanfire Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.195 2014/03/16 21:52:37 prometheanfire Exp $
+
+*puppet-3.4.3-r1 (16 Mar 2014)
+
+  16 Mar 2014; Matthew Thode <prometheanfire@gentoo.org>
+  +puppet-3.4.3-r1.ebuild, -puppet-3.4.3.ebuild:
+  fixing bug 503294
+
+*puppet-3.4.3 (03 Mar 2014)
+
+  03 Mar 2014; Matthew Thode <prometheanfire@gentoo.org> +puppet-3.4.3.ebuild:
+  fixing bug 487264 and bug 460324
+
+*puppet-3.4.2-r2 (18 Feb 2014)
+
+  18 Feb 2014; Matthew Thode <prometheanfire@gentoo.org>
+  +puppet-3.4.2-r2.ebuild:
+  fixed for bug 489868
+
+  18 Jan 2014; Matthew Thode <prometheanfire@gentoo.org> -puppet-2.7.23.ebuild,
+  -puppet-3.2.4.ebuild:
+  removing the old and janky (vulnerable)
+
+*puppet-3.4.2-r1 (15 Jan 2014)
+
+  15 Jan 2014; Matthew Thode <prometheanfire@gentoo.org>
+  +puppet-3.4.2-r1.ebuild:
+  750 on /var/lib/puppet and /etc/puppet
+
+*puppet-3.4.2 (08 Jan 2014)
+
+  08 Jan 2014; Matthew Thode <prometheanfire@gentoo.org> +puppet-3.4.2.ebuild:
+  bugfix bump for PUP-724: Could not autoload puppet /util /instrumentation
+  /listeners
+
+  06 Jan 2014; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.24.ebuild,
+  puppet-3.4.1.ebuild:
+  Stable for sparc, wrt bug #494768
+
+  06 Jan 2014; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.24.ebuild,
+  puppet-3.4.1.ebuild:
+  Stable for ppc, wrt bug #494768
+
+  04 Jan 2014; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.24.ebuild,
+  puppet-3.4.1.ebuild:
+  Stable for x86, wrt bug #494768
+
+  04 Jan 2014; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.24.ebuild,
+  puppet-3.4.1.ebuild:
+  Stable for amd64, wrt bug #494768
+
+  01 Jan 2014; Patrick Lauer <patrick@gentoo.org> puppet-2.7.23.ebuild,
+  puppet-3.2.4.ebuild:
+  Remove ruby18 target as dependencies lost support already
+
+  27 Dec 2013; Jeroen Roovers <jer@gentoo.org> puppet-3.4.1.ebuild:
+  Stable for HPPA (bug #494768).
+
+  27 Dec 2013; Jeroen Roovers <jer@gentoo.org> puppet-2.7.24.ebuild:
+  Stable for HPPA (bug #494768).
+
+*puppet-2.7.24 (26 Dec 2013)
+*puppet-3.4.1 (26 Dec 2013)
+
+  26 Dec 2013; Matthew Thode <prometheanfire@gentoo.org> +puppet-2.7.24.ebuild,
+  +puppet-3.4.1.ebuild, -puppet-3.3.2-r1.ebuild, -puppet-3.3.2.ebuild:
+  updating puppet for CVE-2013-4969 bug 494768
+
+  24 Dec 2013; Agostino Sarubbo <ago@gentoo.org> puppet-3.2.4.ebuild:
+  Stable for x86, wrt bug #486002
+
+  23 Dec 2013; Agostino Sarubbo <ago@gentoo.org> puppet-3.2.4.ebuild:
+  Stable for sparc, wrt bug #486002
+
+*puppet-3.3.2-r1 (23 Dec 2013)
+
+  23 Dec 2013; Matthew Thode <prometheanfire@gentoo.org> +files/tmpfiles.d,
+  +puppet-3.3.2-r1.ebuild, -puppet-3.3.0.ebuild, -puppet-3.3.1.ebuild:
+  adding systemd support for bug 489860
+
+  19 Nov 2013; Chema Alonso <nimiux@gentoo.org> puppet-3.2.4.ebuild:
+  Stable for amd64 wrt bug #486002
+
+  17 Nov 2013; Theo Chatzimichos <tampakrap@gentoo.org> puppet-3.3.2.ebuild:
+  Remove useless elog messages:  - The eix elog msg is deprecated, recent puppet
+  versions are smart enough to run    eix-update by themselves  - The runlevels
+  elog msg is a known puppet bug, http://projects.puppetlabs.com/issues/2712
+  There is no reaason for us to elog every known puppet bug out there
+
+*puppet-3.3.2 (16 Nov 2013)
+
+  16 Nov 2013; Theo Chatzimichos <tampakrap@gentoo.org> +puppet-3.3.2.ebuild:
+  version bump
+
+*puppet-3.3.1 (12 Oct 2013)
+
+  12 Oct 2013; Theo Chatzimichos <tampakrap@gentoo.org> +puppet-3.3.1.ebuild:
+  Version bump, add note about the Portage module, remove comment
+
+  02 Oct 2013; Jeroen Roovers <jer@gentoo.org> puppet-3.2.4.ebuild:
+  Stable for HPPA (bug #486002).
+
+  17 Sep 2013; Matthew Thode <prometheanfire@gentoo.org> puppet-3.3.0.ebuild:
+  adding sparc keyword to 3.3.0 cause jmorgan said I could :D
+
+  17 Sep 2013; Jack Morgan <jmorgan@gentoo.org> puppet-3.2.4.ebuild:
+  ~sparc wrt bz 449184
+
+*puppet-3.3.0 (16 Sep 2013)
+
+  16 Sep 2013; Matthew Thode <prometheanfire@gentoo.org> +puppet-3.3.0.ebuild,
+  -puppet-3.1.1-r3.ebuild:
+  verbump of puppet to 3.3.0
+
+  27 Aug 2013; Chris Reffett <creffett@gentoo.org> -puppet-2.7.22.ebuild:
+  Drop insecure version wrt cleanup for security bug 481186. ACK by
+  prometheanfire.
+
+  21 Aug 2013; Jack Morgan <jmorgan@gentoo.org> puppet-2.7.23.ebuild:
+  sparc stable wrt #481186
+
+  19 Aug 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.23.ebuild:
+  Stable for ppc, wrt bug #481186
+
+  17 Aug 2013; Jeroen Roovers <jer@gentoo.org> puppet-2.7.23.ebuild:
+  Stable for HPPA (bug #481186).
+
+  16 Aug 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.23.ebuild:
+  Stable for x86, wrt bug #481186
+
+  16 Aug 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.23.ebuild:
+  Stable for amd64, wrt bug #481186
+
+  16 Aug 2013; Matthew Thode <prometheanfire@gentoo.org>
+  +files/50puppet-mode-gentoo.el:
+  readded file that I inadvertently removed bug 481214
+
+*puppet-2.7.23 (15 Aug 2013)
+*puppet-3.2.4 (15 Aug 2013)
+
+  15 Aug 2013; Matthew Thode <prometheanfire@gentoo.org> +puppet-2.7.23.ebuild,
+  +puppet-3.2.4.ebuild, -files/50puppet-mode-gentoo.el,
+  -files/puppet-2.7.18-eix_fix.patch, -files/puppet.init-CVE-2012-6120,
+  -files/puppetmaster-2.7.6.confd, -files/puppetmaster-2.7.6.init,
+  -files/puppetmaster-2.7.6.init-CVE-2012-6120, -puppet-2.7.21-r1.ebuild,
+  -puppet-2.7.21.ebuild, -puppet-3.2.2.ebuild, -puppet-3.2.3.ebuild,
+  puppet-3.1.1-r3.ebuild:
+  masking puppet 3.1 for removal and updating puppet for bug 481186
+
+  21 Jul 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.22.ebuild:
+  Stable for sparc, wrt bug #473720
+
+*puppet-3.2.3 (16 Jul 2013)
+
+  16 Jul 2013; Matthew Thode <prometheanfire@gentoo.org> +puppet-3.2.3.ebuild:
+  puppet version bump from 3.2.2 to 3.2.3
+
+  04 Jul 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.22.ebuild:
+  Stable for x86, wrt bug #473720
+
+  30 Jun 2013; Jeroen Roovers <jer@gentoo.org> puppet-2.7.22.ebuild:
+  Stable for HPPA (bug #473720).
+
+  29 Jun 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.22.ebuild:
+  Stable for ppc, wrt bug #473720
+
+  28 Jun 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.22.ebuild:
+  Stable for amd64, wrt bug #473720
+
+*puppet-3.1.1-r3 (18 Jun 2013)
+*puppet-3.2.2 (18 Jun 2013)
+*puppet-2.7.22 (18 Jun 2013)
+*puppet-2.7.21-r1 (18 Jun 2013)
+
+  18 Jun 2013; Matthew Thode <prometheanfire@gentoo.org>
+  +puppet-2.7.21-r1.ebuild, +puppet-2.7.22.ebuild, +puppet-3.1.1-r3.ebuild,
+  +puppet-3.2.2.ebuild, -puppet-3.1.1-r2.ebuild, -puppet-3.1.1.ebuild:
+  puppet CVE-2013-3567 bug 473720 fixes
+
+*puppet-3.1.1-r2 (07 Jun 2013)
+
+  07 Jun 2013; Matthew Thode <prometheanfire@gentoo.org>
+  +files/puppet-openrc-status-fix.patch, +puppet-3.1.1-r2.ebuild,
+  -puppet-3.1.1-r1.ebuild:
+  puppet fix for bug 470998
+
+*puppet-3.1.1-r1 (22 Mar 2013)
+
+  22 Mar 2013; Diego E. Pettenò <flameeyes@gentoo.org>
+  +files/puppetmaster.init-r1, +puppet-3.1.1-r1.ebuild:
+  Remove reload option from init script as it's broken. See bug #462640.
+
+  19 Mar 2013; Diego E. Pettenò <flameeyes@gentoo.org> files/puppet.init-r1,
+  files/puppetmaster.init:
+  Drop 'need net' from init scripts.
+
+  17 Mar 2013; Matthew Thode <prometheanfire@gentoo.org> -puppet-2.7.18.ebuild,
+  -puppet-2.7.19-r1.ebuild:
+  removing old vulnerable versions of puppet for bug 461656
+
+  17 Mar 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.21.ebuild:
+  Stable for sparc, wrt bug #461656
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.21.ebuild:
+  Stable for ppc, wrt bug #461656
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.21.ebuild:
+  Stable for x86, wrt bug #461656
+
+  14 Mar 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.21.ebuild:
+  Stable for amd64, wrt bug #461656
+
+  13 Mar 2013; Jeroen Roovers <jer@gentoo.org> puppet-2.7.21.ebuild:
+  Stable for HPPA (bug #461656).
+
+*puppet-3.1.1 (13 Mar 2013)
+*puppet-2.7.21 (13 Mar 2013)
+
+  13 Mar 2013; Matthew Thode <prometheanfire@gentoo.org>
+  -puppet-2.7.18-r1.ebuild, +puppet-2.7.21.ebuild, -puppet-3.0.1-r1.ebuild,
+  -puppet-3.1.0.ebuild, +puppet-3.1.1.ebuild:
+  adding puppet-2.7.21.ebuild and puppet-3.1.1.ebuild for bug 461656 multiple
+  CVEs
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.19-r1.ebuild:
+  Stable for sparc, wrt bug #456002
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.19-r1.ebuild:
+  Stable for hppa, wrt bug #456002
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.19-r1.ebuild:
+  Stable for x86, wrt bug #456002
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.19-r1.ebuild:
+  Stable for amd64, wrt bug #456002
+
+  23 Feb 2013; Agostino Sarubbo <ago@gentoo.org> puppet-2.7.19-r1.ebuild:
+  Stable for ppc, wrt bug #456002
+
+*puppet-3.1.0 (11 Feb 2013)
+
+  11 Feb 2013; Matthew Thode <prometheanfire@gentoo.org> +puppet-3.1.0.ebuild:
+  upating puppet to 3.1 for bug 456274
+
+  09 Feb 2013; Matthew Thode <prometheanfire@gentoo.org>
+  puppet-2.7.18-r1.ebuild, puppet-2.7.19-r1.ebuild, puppet-3.0.1-r1.ebuild:
+  init scripts were not renamed, but were in the ebuild (file the ebuild wanted
+  didn't exist)
+
+*puppet-3.0.1-r1 (08 Feb 2013)
+*puppet-2.7.19-r1 (08 Feb 2013)
+
+  08 Feb 2013; Matthew Thode <prometheanfire@gentoo.org>
+  +files/puppetmaster-2.7.6.init-CVE-2012-6120, +puppet-2.7.18-r1.ebuild,
+  -puppet-2.7.19.ebuild, +puppet-2.7.19-r1.ebuild, -puppet-3.0.1.ebuild,
+  +puppet-3.0.1-r1.ebuild, +files/puppet.init-CVE-2012-6120,
+  files/puppet.init-r1, files/puppetmaster.init:
+  updating initscripts with checkpath for bug 456002 CVE-2012-6120
+
+  03 Feb 2013; Matthew Thode <prometheanfire@gentoo.org> metadata.xml,
+  puppet-3.0.1.ebuild:
+  not maintainer-needed anymore
+
+  03 Feb 2013; Pacho Ramos <pacho@gentoo.org> -puppet-2.7.11.ebuild,
+  -puppet-2.7.12.ebuild, -puppet-2.7.13.ebuild, -puppet-2.7.18-r1.ebuild,
+  metadata.xml:
+  Cleanup due #22900
+
+  31 Dec 2012; Agostino Sarubbo <ago@gentoo.org> puppet-3.0.1.ebuild:
+  Add ~ppc, wrt bug #449184
+
+  31 Dec 2012; Jeroen Roovers <jer@gentoo.org> puppet-3.0.1.ebuild:
+  Marked ~hppa (bug #449184).
+
+  31 Dec 2012; Jeroen Roovers <jer@gentoo.org> puppet-3.0.1.ebuild:
+  Drop keywords for broken arches (bug #449184).
+
+  11 Nov 2012; Christian Ruppert <idl0r@gentoo.org> puppet-3.0.1.ebuild:
+  The puppetmasterd is no longer provided by puppet 3.x so there's no need to
+  remove it any longer.
+
+  07 Nov 2012; Christian Ruppert <idl0r@gentoo.org> puppet-3.0.1.ebuild:
+  Update deps according to
+  http://docs.puppetlabs.com/puppet/3/reference/release_notes.html#dependencies
+  -and-supported-systems
+
+  06 Nov 2012; Theo Chatzimichos <tampakrap@gentoo.org> puppet-2.7.11.ebuild,
+  puppet-2.7.12.ebuild, puppet-2.7.13.ebuild:
+  Append GPL-2 in all ebuilds to cover the initscript license, bug 425870
+
+  06 Nov 2012; Theo Chatzimichos <tampakrap@gentoo.org> puppet-3.0.1.ebuild:
+  vim-syntax is split to puppet-syntax, bug 417085
+
+  06 Nov 2012; Christian Ruppert <idl0r@gentoo.org> puppet-2.7.19.ebuild,
+  puppet-3.0.1.ebuild:
+  Fix ruby deps
+
+  06 Nov 2012; Christian Ruppert <idl0r@gentoo.org> puppet-2.7.19.ebuild,
+  puppet-3.0.1.ebuild:
+  We need ruby with yaml
+
+  06 Nov 2012; Diego E. Pettenò <flameeyes@gentoo.org> puppet-3.0.1.ebuild:
+  Fix dependencies.
+
+*puppet-3.0.1 (06 Nov 2012)
+*puppet-2.7.19 (06 Nov 2012)
+
+  06 Nov 2012; Christian Ruppert <idl0r@gentoo.org> +puppet-2.7.19.ebuild,
+  +puppet-3.0.1.ebuild, +files/puppet.init-r1, files/puppetmaster.confd,
+  files/puppetmaster.init:
+  Version bump, bug 434814. puppet-3 ebuild by Alec Warner <antarus@gentoo.org>
+  and me. Also fixes bug 421207.
+
+  06 Nov 2012; Theo Chatzimichos <tampakrap@gentoo.org> metadata.xml:
+  Add sysadmin and ruby herds in metadata.xml
+
+  06 Nov 2012; Hans de Graaff <graaff@gentoo.org> puppet-2.7.18-r1.ebuild:
+  Add back ruby19 target now that all dependencies are ready for ruby19. This
+  avoids nasty downgrades to 2.7.12 which already had the ruby19 target.
 
 *puppet-2.7.18-r1 (10 Sep 2012)
 
