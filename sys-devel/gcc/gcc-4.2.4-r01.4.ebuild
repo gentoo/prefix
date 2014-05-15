@@ -39,6 +39,9 @@ src_prepare() {
 	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=27516
 	epatch "${FILESDIR}"/4.2.2/treelang-nomakeinfo.patch
 
+	# https://bugs.gentoo.org/show_bug.cgi?id=510344
+	epatch "${FILESDIR}"/gcc-4.2.4-bison-3.patch
+
 	# call the linker without explicit target like on sparc
 	epatch "${FILESDIR}"/solaris-i386-ld-emulation-4.2.patch
 
