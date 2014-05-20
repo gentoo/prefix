@@ -415,6 +415,7 @@ src_install() {
 		pushd "${D}${fwdir}"/Versions/${SLOT}/include > /dev/null
 		ln -s ../../../../../include/python${SLOT} || die
 		popd > /dev/null
+		rm -f "${ED}"/usr/share/man/man1/python{,2}.1
 
 		# same for libs
 		# NOTE: can't symlink the entire dir, because a real dir already exists
