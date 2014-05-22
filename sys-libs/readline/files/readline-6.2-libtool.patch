@@ -680,7 +680,7 @@
  
  rlfe: $(OFILES)
 -	$(CC) $(LDFLAGS) -o $@ $(OFILES) $(LIBS)
-+	$(LTLINK) $(CC) $(LDFLAGS) -o $@ $(OFILES) $(LIBS)
++	$(LTLINK) $(CC) $(LDFLAGS) $(CFLAGS) -o $@ $(OFILES) $(LIBS)
  
  rlfe-$(VERSION).tar.gz:
  	tar czf $@ $(CFILES) $(HFILES) $(EXTRA_DIST)
