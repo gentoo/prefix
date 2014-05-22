@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.181 2012/04/30 01:36:43 vapier Exp $
 
+  22 May 2014; Michael Haubenwallner <haubi@gentoo.org>
+  files/readline-6.2-libtool.patch:
+  Use LDFLAGS with additional CFLAGS.
+
   24 Apr 2014; Michael Haubenwallner <haubi@gentoo.org>
   readline-6.2_p1-r1.ebuild:
   avoid symlinking libtool libs
