@@ -422,7 +422,7 @@ test-flag-PROG() {
 	# don't use -o /dev/null: /usr/ccs/bin/as: File exists (Sun LD)
 	# don't use /dev/null as input: -xc flag needs not to exist #254120
 	local src=${T}/tf-${comp}-${SECONDS}.${lang}
-	echo "main() {}" > "${src}"
+	echo "int main() { return 0; }" > "${src}"
 	local PROG=$(tc-get${comp})
 	${PROG} "${flag}" -c -o "${src}.o" "${src}" \
 		> /dev/null 2>&1
