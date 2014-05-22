@@ -1,0 +1,15 @@
+https://bugs.gentoo.org/show_bug.cgi?id=510268
+
+--- java-config-2.2.0/setup.py.orig 2014-05-13 21:53:35.273974390 +0100
++++ java-config-2.2.0/setup.py  2014-05-13 21:50:35.868132638 +0100
+@@ -87,8 +87,8 @@
+ 		elif arch in ['hpux']:
+ 			defaults = '*= hp-jdk-bin'
+ 
+-		os.mkdir(self.root + '/usr/share/java-config-2/config/')
+-		with open(self.root + '/usr/share/java-config-2/config/jdk-defaults.conf', 'w') as f:
++		os.mkdir(self.root + eprefix + '/usr/share/java-config-2/config/')
++		with open(self.root + eprefix + '/usr/share/java-config-2/config/jdk-defaults.conf', 'w') as f:
+ 			f.write("# This files contain the default support jdk's\n")
+ 			f.write(defaults + "\n")
+ 
