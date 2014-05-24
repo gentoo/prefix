@@ -855,7 +855,6 @@ toolchain_src_configure() {
 		fi
 		is_objcxx && GCC_LANG+=",obj-c++"
 	fi
-	is_treelang && GCC_LANG+=",treelang"
 
 	# fortran support just got sillier! the lang value can be f77 for
 	# fortran77, f95 for fortran95, or just plain old fortran for the
@@ -2161,14 +2160,6 @@ is_objc() {
 is_objcxx() {
 	gcc-lang-supported 'obj-c++' || return 1
 	use cxx && use_if_iuse objc++
-}
-
-is_treelang() {
-	use_if_iuse boundschecking && return 1 #260532
-	is_crosscompile && return 1 #199924
-	gcc-lang-supported treelang || return 1
-	#use treelang
-	return 0
 }
 
 # Grab a variable from the build system (taken from linux-info.eclass)
