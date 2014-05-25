@@ -471,7 +471,7 @@ new_config_protect() {
 
 pkg_postinst() {
 
-	if ${REPOS_CONF_UPGRADE} ; then
+	if [[ -n ${REPOS_CONF_UPGRADE} ]] ; then
 		einfo "Generating repos.conf"
 		local repo_name=
 		[[ -f ${PORTDIR}/profiles/repo_name ]] && \
