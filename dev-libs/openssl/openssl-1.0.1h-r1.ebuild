@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1g.ebuild,v 1.11 2014/04/29 19:21:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1h-r1.ebuild,v 1.6 2014/06/05 20:23:32 zlogene Exp $
 
 EAPI="4"
 
@@ -57,8 +57,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-1.0.0h-pkg-config.patch
 		epatch "${FILESDIR}"/${PN}-1.0.1-parallel-build.patch
 		epatch "${FILESDIR}"/${PN}-1.0.1-x32.patch
-		epatch "${FILESDIR}"/${PN}-1.0.1e-ipv6.patch
-		epatch "${FILESDIR}"/${PN}-1.0.1f-perl-5.18.patch #497286
+		epatch "${FILESDIR}"/${PN}-1.0.1h-ipv6.patch
 		epatch "${FILESDIR}"/${PN}-1.0.1e-s_client-verify.patch #472584
 		epatch "${FILESDIR}"/${PN}-1.0.1f-revert-alpha-perl-generation.patch #499086
 		epatch_user #332661
