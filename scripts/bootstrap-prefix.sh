@@ -1707,6 +1707,18 @@ EOF
 		echo "Great!  You appear to have a compiler in your PATH"
 	fi
 
+	if type -P xcode-select > /dev/null && [[ ! -d /usr/include ]] ; then
+		# bug #512032
+		cat << EOF
+
+You don't have /usr/include, this thwarts me to build stuff.
+Please execute:
+  xcode-select --install
+or install /usr/include in another way and try running me again.
+EOF
+		exit 1
+	fi
+
 	echo
 	local ncpu=
     case "${CHOST}" in
