@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.10.1 (20 Jun 2014)
+
+  20 Jun 2014; Fabian Groffen <grobian@gentoo.org> +portage-2.2.10.1.ebuild:
+  Version bump, suppot for QA_INSTALL_NAME in ebuilds
+
   25 May 2014; Fabian Groffen <grobian@gentoo.org> portage-2.2.10.ebuild:
   Fix ever fixing make.conf, bug #511404 by Greg Turner
 
