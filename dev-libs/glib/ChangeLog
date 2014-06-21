@@ -1,6 +1,95 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.590 2014/01/18 04:44:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.612 2014/06/18 19:11:16 mgorny Exp $
+
+  18 Jun 2014; Michał Górny <mgorny@gentoo.org> glib-2.38.2-r1.ebuild,
+  glib-2.40.0-r1.ebuild:
+  Update dependencies to require guaranteed EAPI=5 or multilib ebuilds, bug
+  #513718.
+
+*glib-2.40.0-r1 (17 Jun 2014)
+
+  17 Jun 2014; Michał Górny <mgorny@gentoo.org> +glib-2.40.0-r1.ebuild,
+  -glib-2.40.0.ebuild, glib-2.38.2-r1.ebuild:
+  Fix gtk-doc install, bug #492544.
+
+  03 Jun 2014; Alexandre Rostovtsev <tetromino@gentoo.org>
+  glib-2.38.2-r1.ebuild, glib-2.40.0.ebuild, metadata.xml:
+  Make shared-mime-info an optional dependency for servers and embedded systems
+  (requested by vapier in bug #511894).
+
+  01 Jun 2014; Pacho Ramos <pacho@gentoo.org> glib-2.40.0.ebuild:
+  Don't build tests if we are not going to run them (#512022 by kulti)
+
+*glib-2.40.0 (27 Apr 2014)
+
+  27 Apr 2014; Gilles Dartiguelongue <eva@gentoo.org> +glib-2.40.0.ebuild,
+  +files/glib-2.40.0-external-gdbus-codegen.patch:
+  Version bump for Gnome 3.12.
+
+  25 Apr 2014; Pacho Ramos <pacho@gentoo.org>
+  -files/glib-2.31.x-external-gdbus-codegen.patch,
+  -files/glib-2.32.4-CVE-2012-3524.patch, -files/glib-2.32.4-bashcomp.patch,
+  -files/glib-2.34.0-testsuite-skip-gdbus-auth-tests.patch,
+  -files/glib-2.34.3-automake-1.13.patch,
+  -files/glib-2.34.3-testsuite-skip-gdbus-auth-tests.patch,
+  -files/glib-2.35.x-external-gdbus-codegen.patch, -glib-2.32.4-r1.ebuild,
+  -glib-2.34.3-r1.ebuild, -glib-2.36.4-r1.ebuild:
+  drop old
+
+  21 Apr 2014; Agostino Sarubbo <ago@gentoo.org> glib-2.38.2-r1.ebuild:
+  Stable for arm, wrt bug #507568
+
+  19 Apr 2014; Agostino Sarubbo <ago@gentoo.org> glib-2.38.2-r1.ebuild:
+  Stable for sparc, wrt bug #507568
+
+  18 Apr 2014; Agostino Sarubbo <ago@gentoo.org> glib-2.38.2-r1.ebuild:
+  Stable for alpha, wrt bug #507568
+
+  17 Apr 2014; Agostino Sarubbo <ago@gentoo.org> glib-2.38.2-r1.ebuild:
+  Stable for ia64, wrt bug #507568
+
+  16 Apr 2014; Agostino Sarubbo <ago@gentoo.org> glib-2.38.2-r1.ebuild:
+  Stable for ppc64, wrt bug #507568
+
+  14 Apr 2014; Agostino Sarubbo <ago@gentoo.org> glib-2.38.2-r1.ebuild:
+  Stable for ppc, wrt bug #507568
+
+  28 Mar 2014; Jeroen Roovers <jer@gentoo.org> glib-2.38.2-r1.ebuild:
+  Stable for HPPA (bug #499954).
+
+  26 Mar 2014; Mike Frysinger <vapier@gentoo.org> glib-2.38.2-r1.ebuild:
+  Mark arm64/m68k/s390/sh stable.
+
+  16 Mar 2014; Pacho Ramos <pacho@gentoo.org> -glib-2.38.2.ebuild:
+  Drop broken version
+
+  15 Mar 2014; Pacho Ramos <pacho@gentoo.org> glib-2.38.2-r1.ebuild:
+  x86 stable, bug #501330
+
+  15 Mar 2014; Pacho Ramos <pacho@gentoo.org> glib-2.38.2-r1.ebuild:
+  amd64 stable, bug #501330
+
+*glib-2.38.2-r1 (14 Mar 2014)
+
+  14 Mar 2014; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +glib-2.38.2-r1.ebuild, +files/glib-2.38.2-sigaction.patch:
+  Fix uninitialized memory access in signal handler code that caused consolekit
+  to fail (thanks to everybody from bug #501330 for diagnosing the issue, and
+  to George L. Emigh for finding the patch).
+
+  09 Mar 2014; Pacho Ramos <pacho@gentoo.org> glib-2.38.2.ebuild:
+  x86 stable, bug 499954
+
+  09 Mar 2014; Pacho Ramos <pacho@gentoo.org> glib-2.38.2.ebuild:
+  amd64 stable, bug 499954
+
+  04 Mar 2014; Naohiro Aota <naota@gentoo.org>
+  +files/glib-2.38.2-configure.patch, glib-2.38.2.ebuild:
+  Apply a upstream patch to fix non POSIX test construction. #500996
+
+  22 Feb 2014; Akinori Hattori <hattya@gentoo.org> glib-2.36.4-r1.ebuild:
+  ia64 stable wrt bug #494132
 
   25 Apr 2014; Michael Haubenwallner <haubi@gentoo.org> glib-2.38.2.ebuild,
   +files/glib-2.38.2-aix.patch, +files/glib-2.39.2-aix.patch:
