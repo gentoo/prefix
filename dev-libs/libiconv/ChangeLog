@@ -1,6 +1,31 @@
 # ChangeLog for dev-libs/libiconv
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.41 2012/09/16 16:18:25 blueness Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/ChangeLog,v 1.48 2014/05/24 09:47:39 hwoarang Exp $
+
+  24 May 2014; Markos Chandras <hwoarang@gentoo.org> libiconv-1.14-r1.ebuild:
+  Stable on amd64 wrt bug #492042
+
+  27 Mar 2014; Mike Frysinger <vapier@gentoo.org> libiconv-1.14-r1.ebuild:
+  Rename man pages to avoid collisions w/man-pages package with USERLAND=GNU
+  systems #503162 by René Rhéaume.
+
+  27 Mar 2014; Mike Frysinger <vapier@gentoo.org>
+  +files/libiconv-1.14-no-gets.patch, libiconv-1.14-r1.ebuild:
+  Fix build w/newer glibc, and simplify install phase.
+
+  24 Dec 2013; Agostino Sarubbo <ago@gentoo.org> libiconv-1.14-r1.ebuild:
+  Stable for x86, wrt bug #492042
+
+  23 Dec 2013; Agostino Sarubbo <ago@gentoo.org> libiconv-1.14-r1.ebuild:
+  Stable for ppc, wrt bug #492042
+
+  02 Dec 2013; Anthony G. Basile <blueness@gentoo.org> libiconv-1.14-r1.ebuild:
+  Stable arm, bug #492042
+
+*libiconv-1.14-r1 (28 Jul 2013)
+
+  28 Jul 2013; Alexis Ballier <aballier@gentoo.org> +libiconv-1.14-r1.ebuild:
+  Go multilib and add a static-libs useflag.
 
   16 Sep 2012; Anthony G. Basile <blueness@gentoo.org> libiconv-1.14.ebuild:
   Stable on amd64 arm ppc x86
