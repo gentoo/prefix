@@ -89,7 +89,6 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301, upstream bug #107626
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	epatch "${FILESDIR}"/${PN}-2.38.2-aix.patch # fixed upstream since 2.39.2
 	epatch "${FILESDIR}"/${PN}-2.39.2-aix.patch # more AIX buildtime fixes
 
 	if use test; then
