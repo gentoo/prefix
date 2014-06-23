@@ -2,6 +2,9 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.757 2014/04/25 18:33:36 chutzpah Exp $
 
+  23 Jun 2014; Michael Haubenwallner <haubi@gentoo.org> python-2.7.6-r1.ebuild:
+  fixorz upstream issues 13493, 14150, 15590, 16189 for AIX
+
   28 Apr 2014; Fabian Groffen <grobian@gentoo.org> python-3.3.3.ebuild:
   Updated FreeMiNT patch by Alan Hourihane, bug #507180
 

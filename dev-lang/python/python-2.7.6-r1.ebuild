@@ -473,6 +473,20 @@ EOF
 	fi
 
 	sed -e "s/\(LDFLAGS=\).*/\1/" -i "${libdir}/config/Makefile" || die "sed failed"
+	if [[ ${CHOST} == *-aix* ]]; then
+		# fix upstream bugs with quite large proposed diffs still to be sorted out:
+		# http://bugs.python.org/issue13493
+		# http://bugs.python.org/issue14150
+		# http://bugs.python.org/issue15590
+		# http://bugs.python.org/issue16189
+		sed -e "/Libs:/s|\$| -Wl,-bE:${EPREFIX}/${libdir#$ED}/config/python.exp -lld|" \
+			-i "${ED}"usr/$(get_libdir)/pkgconfig/python-${SLOT}.pc || die "sed failed"
+		sed -e "s|:Modules/python.exp|:${EPREFIX}/${libdir#$ED}/config/python.exp|" \
+			-e 's| -bI:| -Wl,-bI:|g' \
+			-e '/LINKFORSHARED/s|-bE:|-bI:|g' \
+			-e '/LINKFORSHARED/s| -lld||g' \
+			-i "${libdir}"/{_sysconfigdata.py,config/Makefile} || die "sed failed"
+	fi
 
 	# Backwards compat with Gentoo divergence.
 	dosym python${SLOT}-config /usr/bin/python-config-${SLOT}
