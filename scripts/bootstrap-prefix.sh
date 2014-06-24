@@ -681,6 +681,8 @@ bootstrap_gnu() {
 	[[ $CHOST == *-aix* ]] && myconf="${myconf} --disable-nls"
 	# AIX 7.1 has fstatat(), but broken without APAR IV23716:
 	[[ $CHOST == *-aix7* ]] && export ac_cv_func_fstatat=no
+	# AIX lacks /dev/fd/*, bash uses (blocking) named pipes instead
+	[[ ${PN} == "bash" ]] && sed -i -e 's/|O_NONBLOCK//' subst.c
 
 	# NetBSD has strange openssl headers, which make wget fail.
 	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
@@ -1049,7 +1051,7 @@ bootstrap_stage1() {
 	[[ $(patch --version 2>&1) == *GNU* ]] || (bootstrap_patch) || return 1
 	[[ $(grep --version 2>&1) == *GNU* ]] || (bootstrap_grep) || return 1
 	[[ $(awk --version < /dev/null 2>&1) == *GNU* ]] || bootstrap_gawk || return 1
-	[[ $(bash --version 2>&1) == "GNU bash, version 4."[123456789]* ]] \
+	[[ $(bash --version 2>&1) == "GNU bash, version 4."[123456789]* && ${CHOST} != *-aix* ]] \
 		|| (bootstrap_bash) || return 1
 	if type -P pkg-config > /dev/null ; then
 		# it IS possible to get here without installing anything in
