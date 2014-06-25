@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.55.0-r1.ebuild,v 1.1 2013/12/27 17:08:26 pinkbyte Exp $
 
@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
 
 LICENSE="Boost-1.0"
 SLOT="0/${PV}" # ${PV} instead ${MAJOR_V} due to bug 486122
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 
 IUSE="context debug doc icu +nls mpi python static-libs +threads tools"
 
@@ -79,7 +79,8 @@ src_prepare() {
 		"${FILESDIR}/${PN}-1.48.0-disable_libboost_python3.patch" \
 		"${FILESDIR}/${PN}-1.48.0-python_linking.patch" \
 		"${FILESDIR}/${PN}-1.48.0-disable_icu_rpath.patch" \
-		"${FILESDIR}/${PN}-1.55.0-context-x32.patch"
+		"${FILESDIR}/${PN}-1.55.0-context-x32.patch" \
+		"${FILESDIR}/${PN}-1.55.0-aix-pthread.patch"
 }
 
 ejam() {
@@ -122,6 +123,8 @@ src_configure() {
 	OPTIONS+=" pch=off --boost-build=${EPREFIX}/usr/share/boost-build --prefix=\"${ED}usr\" --layout=system threading=$(usex threads multi single) link=$(usex static-libs shared,static shared) --without-context"
 
 	[[ ${CHOST} == *-winnt* ]] && OPTIONS+=" -sNO_BZIP2=1"
+	# http://lists.boost.org/boost-build/2013/11/27186.php
+	[[ ${CHOST} == *-aix* ]] && OPTIONS+=" --without-coroutine"
 }
 
 src_compile() {

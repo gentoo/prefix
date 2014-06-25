@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.311 2013/12/27 17:08:26 pinkbyte Exp $
 
+  25 Jun 2014; Michael Haubenwallner <haubi@gentoo.org> boost-1.55.0-r1.ebuild,
+  +files/boost-1.55.0-aix-pthread.patch:
+  Add patch for upstream Issue 10147 for AIX.
+
 *boost-1.55.0-r1 (27 Dec 2013)
 
   27 Dec 2013; Sergey Popov <pinkbyte@gentoo.org> -boost-1.55.0.ebuild,

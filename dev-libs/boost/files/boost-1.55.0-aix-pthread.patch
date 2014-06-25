@@ -1,0 +1,13 @@
+https://svn.boost.org/trac/boost/ticket/10147
+
+--- libs/thread/src/pthread/thread.cpp.orig	2014-06-23 11:32:08 +0200
++++ libs/thread/src/pthread/thread.cpp	2014-06-23 11:32:38 +0200
+@@ -442,7 +442,7 @@
+               {
+ 
+   #   if defined(BOOST_HAS_PTHREAD_DELAY_NP)
+-  #     if defined(__IBMCPP__)
++  #     if defined(_AIX)
+                 BOOST_VERIFY(!pthread_delay_np(const_cast<timespec*>(&ts)));
+   #     else
+                 BOOST_VERIFY(!pthread_delay_np(&ts));
