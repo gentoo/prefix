@@ -1307,22 +1307,11 @@ bootstrap_stage3() {
 
 	unset CPPFLAGS
 
-	# Remove the tmp space (stage1 tools) we shouldn't be needing these
-	# any more.  There is just one but, which is that on 64-bits Solaris
-	# bootstraps we had to copy libgcc_s.so.1 over there, and removing
-	# that one now causes tools linked against it to fail.  These tools
-	# are amost all that were built, but most notably binutils and
-	# xz-utils.  Obviously having them fail means end of the bootstrap.
-	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
-		[[ -e ${ROOT}/tmp/usr/lib/libgcc_s.so.1 ]] && \
-			mv "${ROOT}"/tmp/usr/lib/libgcc_s.so.1 "${ROOT}"/
-		rm -Rf "${ROOT}"/tmp || return 1
-		mkdir -p "${ROOT}"/tmp || return 1
-		if [[ -e ${ROOT}/libgcc_s.so.1 ]] ; then
-			mkdir -p "${ROOT}"/tmp/usr/lib
-			mv "${ROOT}"/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
-		fi
-	fi
+	# Each package emerged while portage was depending on the temporary tools
+	# still may depend on them too. Examples are:
+	#   binutils, xz-utils needing libgcc_s.so.1 on 64-bits Solaris
+	#   shebangs (bin/egrep) originate in PORTAGE_SHELL
+	# So we must keep the temporary tools until 'emerge -e system' is done.
 
 	# note to myself: the tree MUST be synced at least once, or we'll
 	# carry on the polluted profile!
@@ -2042,13 +2031,10 @@ EOF
 		exit 1
 	fi
 
-	# In case of a Solaris 64-bits bootstrap we can now finally cleanup
-	# stuff we used in /tmp (that is libgcc_s.so.1)
-	if [[ -e ${ROOT}/tmp/usr/lib/libgcc_s.so.1 ]] ; then
-		rm "${ROOT}"/tmp/usr/lib/libgcc_s.so.1 && \
-			rmdir "${ROOT}"/tmp/usr/lib && \
-			rmdir "${ROOT}"/tmp/usr && \
-			rmdir "${ROOT}"/tmp
+	# Now, after 'emerge -e system', we can get rid of the temporary tools.
+	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
+		rm -Rf "${ROOT}"/tmp || return 1
+		mkdir -p "${ROOT}"/tmp || return 1
 	fi
 
 	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
