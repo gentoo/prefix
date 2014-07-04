@@ -1,0 +1,109 @@
+https://gcc.gnu.org/ml/gcc-patches/2012-08/msg01938.html
+
+diff -ruN gcc-4.2.4/libstdc++-v3/include/bits/basic_string.h /junk/base-2010.0u/portage/sys-devel/gcc-4.2.4-r01.11/work/gcc-4.2.4/libstdc++-v3/include/bits/basic_string.h
+--- gcc-4.2.4/libstdc++-v3/include/bits/basic_string.h	2007-10-14 20:22:22 +0200
++++ /junk/base-2010.0u/portage/sys-devel/gcc-4.2.4-r01.11/work/gcc-4.2.4/libstdc++-v3/include/bits/basic_string.h	2014-06-30 15:51:25 +0200
+@@ -174,7 +174,7 @@
+ 
+ 	// The following storage is init'd to 0 by the linker, resulting
+         // (carefully) in an empty string with one reference.
+-        static size_type _S_empty_rep_storage[];
++        static size_type const _S_empty_rep_storage[];
+ 
+         static _Rep&
+         _S_empty_rep()
+@@ -182,7 +182,7 @@
+ 	  // NB: Mild hack to avoid strict-aliasing warnings.  Note that
+ 	  // _S_empty_rep_storage is never modified and the punning should
+ 	  // be reasonably safe in this case.
+-	  void* __p = reinterpret_cast<void*>(&_S_empty_rep_storage);
++	  void* __p = const_cast<void*>(reinterpret_cast<void const*>(&_S_empty_rep_storage));
+ 	  return *reinterpret_cast<_Rep*>(__p);
+ 	}
+ 
+@@ -204,12 +204,17 @@
+ 
+ 	void
+ 	_M_set_length_and_sharable(size_type __n)
+-	{ 
+-	  this->_M_set_sharable();  // One reference.
+-	  this->_M_length = __n;
+-	  traits_type::assign(this->_M_refdata()[__n], _S_terminal);
+-	  // grrr. (per 21.3.4)
+-	  // You cannot leave those LWG people alone for a second.
++	{
++#ifndef _GLIBCXX_FULLY_DYNAMIC_STRING
++	  if (__builtin_expect(this != &_S_empty_rep(), false))
++#endif
++	    {
++	      this->_M_set_sharable();  // One reference.
++	      this->_M_length = __n;
++	      traits_type::assign(this->_M_refdata()[__n], _S_terminal);
++	      // grrr. (per 21.3.4)
++	      // You cannot leave those LWG people alone for a second.
++	    }
+ 	}
+ 
+ 	_CharT*
+@@ -1153,16 +1158,8 @@
+        *  The value of the string doesn't change if an error is thrown.
+       */
+       iterator
+-      erase(iterator __first, iterator __last)
+-      {
+-	_GLIBCXX_DEBUG_PEDASSERT(__first >= _M_ibegin() && __first <= __last
+-				 && __last <= _M_iend());
+-        const size_type __pos = __first - _M_ibegin();
+-	_M_mutate(__pos, __last - __first, size_type(0));
+-	_M_rep()->_M_set_leaked();
+-	return iterator(_M_data() + __pos);
+-      }
+-
++      erase(iterator __first, iterator __last);
++ 
+       /**
+        *  @brief  Replace characters with value from another string.
+        *  @param pos  Index of first character to replace.
+diff -ruN gcc-4.2.4/libstdc++-v3/include/bits/basic_string.tcc /junk/base-2010.0u/portage/sys-devel/gcc-4.2.4-r01.11/work/gcc-4.2.4/libstdc++-v3/include/bits/basic_string.tcc
+--- gcc-4.2.4/libstdc++-v3/include/bits/basic_string.tcc	2007-03-30 19:11:22 +0200
++++ /junk/base-2010.0u/portage/sys-devel/gcc-4.2.4-r01.11/work/gcc-4.2.4/libstdc++-v3/include/bits/basic_string.tcc	2014-06-30 15:51:25 +0200
+@@ -75,10 +75,10 @@
+   // Linker sets _S_empty_rep_storage to all 0s (one reference, empty string)
+   // at static init time (before static ctors are run).
+   template<typename _CharT, typename _Traits, typename _Alloc>
+-    typename basic_string<_CharT, _Traits, _Alloc>::size_type
++    typename basic_string<_CharT, _Traits, _Alloc>::size_type const
+     basic_string<_CharT, _Traits, _Alloc>::_Rep::_S_empty_rep_storage[
+     (sizeof(_Rep_base) + sizeof(_CharT) + sizeof(size_type) - 1) /
+-      sizeof(size_type)];
++      sizeof(size_type)] = {};
+ 
+   // NB: This is the special case for Input Iterators, used in
+   // istreambuf_iterators, etc.
+@@ -391,6 +391,26 @@
+      }
+ 
+    template<typename _CharT, typename _Traits, typename _Alloc>
++     typename basic_string<_CharT, _Traits, _Alloc>::iterator
++     basic_string<_CharT, _Traits, _Alloc>::
++     erase(iterator __first, iterator __last)
++     {
++       _GLIBCXX_DEBUG_PEDASSERT(__first >= _M_ibegin() && __first <= __last
++				&& __last <= _M_iend());
++
++       const size_type __size = __last - __first;
++       if (__size)
++	 {
++	   const size_type __pos = __first - _M_ibegin();
++	   _M_mutate(__pos, __size, size_type(0));
++	   _M_rep()->_M_set_leaked();
++	   return iterator(_M_data() + __pos);
++	 }
++       else
++	 return __first;
++     }
++
++   template<typename _CharT, typename _Traits, typename _Alloc>
+      basic_string<_CharT, _Traits, _Alloc>&
+      basic_string<_CharT, _Traits, _Alloc>::
+      replace(size_type __pos, size_type __n1, const _CharT* __s,

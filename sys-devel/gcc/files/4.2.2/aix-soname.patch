@@ -3,9 +3,8 @@ utilizing the ld-wrapper handling the '-soname' flag.
 
 http://bugs.gentoo.org/show_bug.cgi?id=213277
 
-diff -ruN gcc-4.2.4.orig/config.rpath gcc-4.2.4/config.rpath
---- gcc-4.2.4.orig/config.rpath	2005-07-16 04:30:53 +0200
-+++ gcc-4.2.4/config.rpath	2011-03-21 16:15:29 +0100
+--- gcc-4.2.4/config.rpath
++++ gcc-4.2.4/config.rpath
 @@ -204,7 +204,7 @@
          # have to do anything special.
          aix_use_runtimelinking=no
@@ -15,9 +14,8 @@ diff -ruN gcc-4.2.4.orig/config.rpath gcc-4.2.4/config.rpath
          # Test if we are trying to use run time linking or normal
          # AIX style linking. If -brtl is somewhere in LDFLAGS, we
          # need to do runtime linking.
-diff -ruN gcc-4.2.4.orig/ltcf-c.sh gcc-4.2.4/ltcf-c.sh
---- gcc-4.2.4.orig/ltcf-c.sh	2011-03-21 16:04:29 +0100
-+++ gcc-4.2.4/ltcf-c.sh	2011-03-21 16:22:18 +0100
+--- gcc-4.2.4/ltcf-c.sh
++++ gcc-4.2.4/ltcf-c.sh
 @@ -325,7 +325,7 @@
      else
        # Test if we are trying to use run time linking, or normal AIX style linking.
@@ -32,13 +30,12 @@ diff -ruN gcc-4.2.4.orig/ltcf-c.sh gcc-4.2.4/ltcf-c.sh
        allow_undefined_flag=' ${wl}-berok'
        hardcode_libdir_flag_spec='${wl}-blibpath:$libdir:/usr/lib:/lib'
 -      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$soname $libobjs $deplibs $compiler_flags ${allow_undefined_flag} '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
-+      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$realname ${wl}-soname "${wl}$soname" $libobjs $deplibs $compiler_flags ${allow_undefined_flag} ${wl}-bernotok '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
++      archive_expsym_cmds="\$CC \${wl}-brtl $shared_flag"' -o $output_objdir/$realname ${wl}-soname "${wl}$soname" $libobjs $deplibs $compiler_flags ${allow_undefined_flag} ${wl}-bernotok '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
      else
        if test "$host_cpu" = ia64; then
          if test $with_gnu_ld = no; then
-diff -ruN gcc-4.2.4.orig/ltcf-cxx.sh gcc-4.2.4/ltcf-cxx.sh
---- gcc-4.2.4.orig/ltcf-cxx.sh	2011-03-21 16:04:29 +0100
-+++ gcc-4.2.4/ltcf-cxx.sh	2011-03-21 16:22:43 +0100
+--- gcc-4.2.4/ltcf-cxx.sh
++++ gcc-4.2.4/ltcf-cxx.sh
 @@ -176,7 +176,7 @@
      else
        # Test if we are trying to use run time linking, or normal AIX style linking.
@@ -53,13 +50,12 @@ diff -ruN gcc-4.2.4.orig/ltcf-cxx.sh gcc-4.2.4/ltcf-cxx.sh
        hardcode_libdir_flag_spec='${wl}-blibpath:$libdir:/usr/lib:/lib'
        allow_undefined_flag=' -Wl,-G'
 -      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$soname $libobjs $deplibs $compiler_flags ${allow_undefined_flag} '"\${wl}$no_entry_flag \${wl}-brtl \${wl}$exp_sym_flag:\$export_symbols"
-+      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$realname ${wl}-soname "${wl}$soname" $libobjs $deplibs $compiler_flags ${allow_undefined_flag} ${wl}-bernotok '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
++      archive_expsym_cmds="\$CC \${wl}-brtl $shared_flag"' -o $output_objdir/$realname ${wl}-soname "${wl}$soname" $libobjs $deplibs $compiler_flags ${allow_undefined_flag} ${wl}-bernotok '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
       else
        if test "$host_cpu" = ia64; then
          if test $with_gnu_ld = no; then
-diff -ruN gcc-4.2.4.orig/ltcf-gcj.sh gcc-4.2.4/ltcf-gcj.sh
---- gcc-4.2.4.orig/ltcf-gcj.sh	2011-03-21 16:04:29 +0100
-+++ gcc-4.2.4/ltcf-gcj.sh	2011-03-21 16:23:07 +0100
+--- gcc-4.2.4/ltcf-gcj.sh
++++ gcc-4.2.4/ltcf-gcj.sh
 @@ -324,7 +324,7 @@
      else
        # Test if we are trying to use run time linking, or normal AIX style linking.
@@ -74,13 +70,12 @@ diff -ruN gcc-4.2.4.orig/ltcf-gcj.sh gcc-4.2.4/ltcf-gcj.sh
        allow_undefined_flag=' ${wl}-berok'
        hardcode_libdir_flag_spec='${wl}-blibpath:$libdir:/usr/lib:/lib'
 -      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$soname $libobjs $deplibs $compiler_flags ${allow_undefined_flag} '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
-+      archive_expsym_cmds="\$CC $shared_flag"' -o $output_objdir/$realname ${wl}-soname "${wl}$soname" $libobjs $deplibs $compiler_flags ${allow_undefined_flag} ${wl}-bernotok '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
++      archive_expsym_cmds="\$CC \${wl}-brtl $shared_flag"' -o $output_objdir/$realname ${wl}-soname "${wl}$soname" $libobjs $deplibs $compiler_flags ${allow_undefined_flag} ${wl}-bernotok '"\${wl}$no_entry_flag \${wl}$exp_sym_flag:\$export_symbols"
      else
        if test "$host_cpu" = ia64; then
          if test $with_gnu_ld = no; then
-diff -ruN gcc-4.2.4.orig/ltconfig gcc-4.2.4/ltconfig
---- gcc-4.2.4.orig/ltconfig	2011-03-21 16:04:29 +0100
-+++ gcc-4.2.4/ltconfig	2011-03-21 16:14:16 +0100
+--- gcc-4.2.4/ltconfig
++++ gcc-4.2.4/ltconfig
 @@ -1005,6 +1005,7 @@
        # If using run time linking (on AIX 4.2 or later) use lib<name>.so instead of
        # lib<name>.a to let people know that these are not typical AIX shared libraries.
@@ -89,8 +84,8 @@ diff -ruN gcc-4.2.4.orig/ltconfig gcc-4.2.4/ltconfig
      else
        # We preserve .a as extension for shared libraries though AIX4.2
        # and later when we are not doing run time linking.
---- gcc-4.2.4.orig/gcc/config/rs6000/t-aix52
-+++ gcc-4.2.4.orig/gcc/config/rs6000/t-aix52
+--- gcc-4.2.4/gcc/config/rs6000/t-aix52
++++ gcc-4.2.4/gcc/config/rs6000/t-aix52
 @@ -23,25 +23,32 @@
  INSTALL_LIBGCC = install-multilib
  
