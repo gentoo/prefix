@@ -1043,6 +1043,7 @@ bootstrap_stage1() {
 	[[ $(sed --version 2>&1) == *GNU* ]] || (bootstrap_sed) || return 1
 	[[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] || (bootstrap_m4) || return 1
 	[[ $(bison --version 2>&1) == *"(GNU Bison) 2."[345678]* ]] \
+		|| [[ -x ${ROOT}/usr/bin/bison ]] \
 		|| (bootstrap_bison) || return 1
 	[[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]] \
 		|| (bootstrap_coreutils) || return 1
@@ -1052,6 +1053,7 @@ bootstrap_stage1() {
 	[[ $(grep --version 2>&1) == *GNU* ]] || (bootstrap_grep) || return 1
 	[[ $(awk --version < /dev/null 2>&1) == *GNU* ]] || bootstrap_gawk || return 1
 	[[ $(bash --version 2>&1) == "GNU bash, version 4."[123456789]* && ${CHOST} != *-aix* ]] \
+		|| [[ -x ${ROOT}/usr/bin/bash ]] \
 		|| (bootstrap_bash) || return 1
 	if type -P pkg-config > /dev/null ; then
 		# it IS possible to get here without installing anything in
