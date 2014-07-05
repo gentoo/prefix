@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.6-r3.ebuild,v 1.11 2012/05/17 04:36:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.6-r3.ebuild,v 1.12 2014/01/18 01:43:22 vapier Exp $
 
 # XXX: atm, libbz2.a is always PIC :(, so it is always built quickly
 #      (since we're building shared libs) ...

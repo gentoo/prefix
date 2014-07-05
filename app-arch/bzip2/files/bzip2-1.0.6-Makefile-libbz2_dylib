@@ -37,24 +37,6 @@ OBJS= blocksort.o  \
 
 all: $(OBJS)
 	$(CC) $(LDFLAGS) $(SOLDFLAGS) -o libbz2.1.0.6.dylib $(OBJS)
-	$(CC) $(LDFLAGS) $(CFLAGS) -o bzip2-shared bzip2.c libbz2.1.0.6.dylib
-	rm -f libbz2.1.0.dylib
-	ln -s libbz2.1.0.6.dylib libbz2.1.0.dylib
 
 clean: 
 	rm -f $(OBJS) bzip2.o libbz2.1.0.6.dylib libbz2.1.0.dylib bzip2-shared
-
-blocksort.o: blocksort.c
-	$(CC) $(CFLAGS) -c blocksort.c
-huffman.o: huffman.c
-	$(CC) $(CFLAGS) -c huffman.c
-crctable.o: crctable.c
-	$(CC) $(CFLAGS) -c crctable.c
-randtable.o: randtable.c
-	$(CC) $(CFLAGS) -c randtable.c
-compress.o: compress.c
-	$(CC) $(CFLAGS) -c compress.c
-decompress.o: decompress.c
-	$(CC) $(CFLAGS) -c decompress.c
-bzlib.o: bzlib.c
-	$(CC) $(CFLAGS) -c bzlib.c

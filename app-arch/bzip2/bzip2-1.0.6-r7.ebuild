@@ -37,7 +37,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
 	eprefixify bz{diff,grep,more}
 	# this a makefile for Darwin, which already "includes" saneso
-	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib-out-of-tree Makefile-libbz2_dylib || die
+	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
 
 	# - Use right man path
 	# - Generate symlinks instead of hardlinks
@@ -54,9 +54,6 @@ src_prepare() {
 			sed -i -e '/^SOEXT/s,so,sl,' Makefile-libbz2_so || die "cannot replace so with sl"
 			sed -i -e '/^SONAME/s,=,=${EPREFIX}/lib/,' Makefile-libbz2_so || die "cannt set soname"
 		fi
-	elif [[ ${CHOST} == *-interix* ]] ; then
-		sed -i -e 's,-soname,-h,' Makefile-libbz2_so || die "cannot replace -soname with -h"
-		sed -i -e 's,-fpic,,' -e 's,-fPIC,,' Makefile-libbz2_so || die "cannot replace pic options"
 	fi
 }
 
@@ -73,18 +70,20 @@ multilib_src_compile() {
 	local checkopts=
 	case "${CHOST}" in
 		*-darwin*)
-			bemake PREFIX="${EPREFIX}"/usr -f "${S}"/Makefile-libbz2_dylib || die
+			bemake PREFIX="${EPREFIX}"/usr -f "${S}"/Makefile-libbz2_dylib all
+			# FWIW, #504648 like for .so below
+			ln -sf libbz2.${PV}.dylib libbz2.dylib
 		;;
 		*-mint*)
 			# do nothing, no shared libraries
 			:
 		;;
 		*)
-			bemake -f "${S}"/Makefile-libbz2_so all || die
+			bemake -f "${S}"/Makefile-libbz2_so all
+			# Make sure we link against the shared lib #504648
+			ln -sf libbz2.so.${PV} libbz2.so
 		;;
 	esac
-	# Make sure we link against the shared lib #504648
-	ln -sf libbz2.so.${PV} libbz2.so
 	bemake -f "${S}"/Makefile all LDFLAGS="${LDFLAGS} $(usex static -static '')"
 }
 
@@ -98,12 +97,11 @@ multilib_src_install() {
 	#  .x.x   - SONAME some distros use #338321
 	#  .x     - SONAME Gentoo uses
 	dolib.so libbz2$(get_libname ${PV})
-	local s
+	local v
 	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
 		dosym libbz2$(get_libname ${PV}) /usr/$(get_libdir)/${v}
 	done
 
-	[[ ${CHOST} == *-winnt* ]] && dolib.so libbz2$(get_libname ${PV}).dll
 	fi
 
 	use static-libs && dolib.a libbz2.a
@@ -147,8 +145,4 @@ multilib_src_install_all() {
 	# move "important" bzip2 binaries to /bin and use the shared libbz2.so
 	dosym bzip2 /bin/bzcat
 	dosym bzip2 /bin/bunzip2
-
-	# on windows, we want to continue using bzip2 from interix.
-	# building bzip2 on windows gives the libraries only!
-	[[ ${CHOST} == *-winnt* ]] && rm -rf "${ED}"/bin "${ED}"/usr/bin
 }
