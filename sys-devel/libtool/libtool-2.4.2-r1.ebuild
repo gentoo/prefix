@@ -1,12 +1,12 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.4.2.ebuild,v 1.18 2014/01/18 03:56:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.4.2-r1.ebuild,v 1.1 2014/05/02 10:30:31 mgorny Exp $
 
-EAPI="2" #356089
+EAPI="4"
 
 LIBTOOLIZE="true" #225559
 WANT_LIBTOOL="none"
-inherit eutils autotools multilib unpacker prefix
+inherit eutils autotools multilib unpacker multilib-minimal prefix
 
 if [[ ${PV} == "9999" ]] ; then
 	EGIT_REPO_URI="git://git.savannah.gnu.org/${PN}.git
@@ -27,7 +27,11 @@ IUSE="static-libs test vanilla"
 RDEPEND="sys-devel/gnuconfig
 	!<sys-devel/autoconf-2.62:2.5
 	!<sys-devel/automake-1.11.1:1.11
-	!=sys-devel/libtool-2*:1.5"
+	!=sys-devel/libtool-2*:1.5
+	abi_x86_32? (
+		!<=app-emulation/emul-linux-x86-baselibs-20140406-r2
+		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
+	)"
 DEPEND="${RDEPEND}
 	test? ( || ( >=sys-devel/binutils-2.20
 		sys-devel/binutils-apple sys-devel/native-cctools ) )
@@ -90,7 +94,7 @@ src_prepare() {
 	epunt_cxx
 }
 
-src_configure() {
+multilib_src_configure() {
 	# the libtool script uses bash code in it and at configure time, tries
 	# to find a bash shell.  if /bin/sh is bash, it uses that.  this can
 	# cause problems for people who switch /bin/sh on the fly to other
@@ -100,6 +104,7 @@ src_configure() {
 	local myconf
 	# usr/bin/libtool is provided by binutils-apple
 	[[ ${CHOST} == *-darwin* ]] && myconf="--program-prefix=g"
+	ECONF_SOURCE="${S}" \
 	econf ${myconf} $(use_enable static-libs static) || die
 
 	# Bootstrap host-libtool using this very $P.
@@ -124,8 +129,7 @@ src_configure() {
 	cp libtool "${S}" || die
 }
 
-src_install() {
-	emake DESTDIR="${D}" install || die
+multilib_src_install_all() {
 	dodoc AUTHORS ChangeLog* NEWS README THANKS TODO doc/PLATFORMS
 
 	# While the libltdl.la file is not used directly, the m4 ltdl logic
@@ -137,7 +141,7 @@ src_install() {
 	# for crappy packages that utilize the system libtool, so undo that.
 	local g=
 	[[ ${CHOST} == *-darwin* ]] && g=g
-	dosed '1,/^build_old_libs=/{/^build_old_libs=/{s:=.*:=yes:}}' /usr/bin/${g}libtool || die
+	sed -i -e '1,/^build_old_libs=/{/^build_old_libs=/{s:=.*:=yes:}}' "${ED}"/usr/bin/${g}libtool || die
 
 	local x
 	for x in $(find "${ED}" -name config.guess -o -name config.sub) ; do
