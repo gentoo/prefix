@@ -1,6 +1,69 @@
 # ChangeLog for sys-devel/flex
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.99 2012/08/11 16:06:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/ChangeLog,v 1.117 2014/05/30 14:25:06 mgorny Exp $
+
+*flex-2.5.39-r1 (30 May 2014)
+
+  30 May 2014; Michał Górny <mgorny@gentoo.org> +flex-2.5.39-r1.ebuild:
+  Enable multilib support for libfl.a.
+
+*flex-2.5.39 (29 Mar 2014)
+
+  29 Mar 2014; Tim Harder <radhermit@gentoo.org> +flex-2.5.39.ebuild:
+  Version bump.
+
+  28 Mar 2014; Christoph Junghans <ottxor@gentoo.org> flex-2.5.38-r1.ebuild:
+  added prefix keywords
+
+*flex-2.5.38-r1 (16 Mar 2014)
+
+  16 Mar 2014; Mike Frysinger <vapier@gentoo.org> +flex-2.5.38-r1.ebuild,
+  -flex-2.5.38.ebuild:
+  Drop shared lib since it makes no sense #503522 by Andrés Becerra Sandoval.
+
+*flex-2.5.38 (13 Feb 2014)
+
+  13 Feb 2014; Tim Harder <radhermit@gentoo.org> +flex-2.5.38.ebuild:
+  Version bump.
+
+  18 Jan 2014; Mike Frysinger <vapier@gentoo.org> flex-2.5.37.ebuild:
+  Add arm64 love.
+
+  27 Apr 2013; Mike Frysinger <vapier@gentoo.org> flex-2.5.37.ebuild:
+  Respect $AR setting #444086 by Denis M..
+
+  19 Feb 2013; Zac Medico <zmedico@gentoo.org> flex-2.5.37.ebuild:
+  Fix for prefix and add ~arm-linux + ~x86-linux keywords.
+
+  01 Jan 2013; Raúl Porcel <armin76@gentoo.org> flex-2.5.37.ebuild:
+  m68k/s390/sh stable wrt #447964
+
+  01 Jan 2013; Agostino Sarubbo <ago@gentoo.org> flex-2.5.37.ebuild:
+  Stable for arm, wrt bug #447964
+
+  30 Dec 2012; Agostino Sarubbo <ago@gentoo.org> flex-2.5.37.ebuild:
+  Stable for alpha, wrt bug #447964
+
+  30 Dec 2012; Agostino Sarubbo <ago@gentoo.org> flex-2.5.37.ebuild:
+  Stable for sparc, wrt bug #447964
+
+  29 Dec 2012; Jeroen Roovers <jer@gentoo.org> flex-2.5.37.ebuild:
+  Stable for HPPA (bug #447964).
+
+  25 Dec 2012; Agostino Sarubbo <ago@gentoo.org> flex-2.5.37.ebuild:
+  Stable for ia64, wrt bug #447964
+
+  23 Dec 2012; Jeff Horelick <jdhore@gentoo.org> flex-2.5.37.ebuild:
+  marked x86 per bug 447964
+
+  23 Dec 2012; Agostino Sarubbo <ago@gentoo.org> flex-2.5.37.ebuild:
+  Stable for ppc64, wrt bug #447964
+
+  22 Dec 2012; Agostino Sarubbo <ago@gentoo.org> flex-2.5.37.ebuild:
+  Stable for ppc, wrt bug #447964
+
+  22 Dec 2012; Agostino Sarubbo <ago@gentoo.org> flex-2.5.37.ebuild:
+  Stable for amd64, wrt bug #447964
 
   01 May 2014; redlizard <redlizard@gentoo.org> flex-2.5.39.ebuild:
   sys-devel/flex: Don't rebuild documentation.
