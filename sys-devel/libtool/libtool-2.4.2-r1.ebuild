@@ -46,19 +46,6 @@ src_unpack() {
 	else
 		unpacker_src_unpack
 	fi
-
-	# The libtool script used to create libltdl.la, and when installed used
-	# by some crappy packages like dev-libs/apr, must be elibtoolize'd (for
-	# AIX at least). However, the installed libtoolize script better is as
-	# vanilla as possible, as it also may be used to create distribution
-	# tarballs by independent package maintainers.
-	mkdir "${WORKDIR}"/host-libtool || die
-	cat >"${WORKDIR}"/host-libtool/configure.ac<<-EOF
-		AC_INIT(host-libtool, ${PVR})
-		$(grep '\<LT_INIT\>' "${S}"/configure.ac)
-		$(grep '\<LT_LANG\>' "${S}"/configure.ac)
-		AC_OUTPUT
-	EOF
 }
 
 src_prepare() {
@@ -109,11 +96,25 @@ multilib_src_configure() {
 
 	# Bootstrap host-libtool using this very $P.
 	emake libtoolize || die
-	cd "${WORKDIR}"/host-libtool || die
+
+	mkdir -p host-libtool || die
+	pushd host-libtool >/dev/null || die
+
+	# The libtool script used to create libltdl.la, and when installed used
+	# by some crappy packages like dev-libs/apr, must be elibtoolize'd (for
+	# AIX at least). However, the installed libtoolize script better is as
+	# vanilla as possible, as it also may be used to create distribution
+	# tarballs by independent package maintainers.
+	cat >configure.ac<<-EOF
+		AC_INIT(host-libtool, ${PVR})
+		$(grep '\<LT_INIT\>' "${S}"/configure.ac)
+		$(grep '\<LT_LANG\>' "${S}"/configure.ac)
+		AC_OUTPUT
+	EOF
 
 	local-libtoolize() {
 		# tell libtoolize to use local input files
-		_lt_pkgdatadir="${S}" "${S}"/libtoolize "$@"
+		_lt_pkgdatadir="${S}" ../libtoolize "$@"
 	}
 
 	AT_M4DIR="${S}"/libltdl/m4 \
@@ -126,7 +127,9 @@ multilib_src_configure() {
 	# script should be a separate package, maybe also useable as
 	# ${CHOST}-libtool for cross-compiling. Keeping this one for now to
 	# prevent the need for creating another sys-devel package in Prefix.
-	cp libtool "${S}" || die
+	cp libtool .. || die
+
+	popd >/dev/null
 }
 
 multilib_src_install_all() {
