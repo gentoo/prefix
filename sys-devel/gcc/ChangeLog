@@ -2,6 +2,15 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.998 2014/01/19 01:51:34 dirtyepic Exp $
 
+*gcc-4.2.4-r01.5 (04 Jul 2014)
+
+  04 Jul 2014; Michael Haubenwallner <haubi@gentoo.org>
+  +gcc-4.2.4-r01.5.ebuild, +files/4.2.2/aix-libssp.patch,
+  files/4.2.2/aix-runtimelinking.patch, files/4.2.2/aix-soname.patch,
+  +files/4.2.2/ro-string.patch:
+  AIX: Improve runtime-linking support, allow for libssp.
+  Add patch for std::string().c_str() to point to readonly memory.
+
   11 Apr 2014; redlizard <redlizard@gentoo.org>
   +files/4.7.2/solaris-x64-tls-gnu-as.patch, gcc-4.7.2-r1.ebuild,
   gcc-4.7.3-r1.ebuild, gcc-4.8.2-r1.ebuild:
