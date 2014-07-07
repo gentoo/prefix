@@ -2,6 +2,9 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.757 2014/04/25 18:33:36 chutzpah Exp $
 
+  07 Jul 2014; Michael Haubenwallner <haubi@gentoo.org> python-3.3.3.ebuild:
+  fixorz upstream issues 13493, 14150, 15590, 16189 for AIX
+
   23 Jun 2014; Michael Haubenwallner <haubi@gentoo.org> python-2.7.6-r1.ebuild:
   fixorz upstream issues 13493, 14150, 15590, 16189 for AIX
 
