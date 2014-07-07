@@ -313,7 +313,7 @@ _elibtoolize() {
 		${LIBTOOLIZE} -n --install >& /dev/null || shift
 	fi
 
-	autotools_run_tool ${LIBTOOLIZE} "$@" ${opts}
+	autotools_run_tool ${LIBTOOLIZE} "$@"
 }
 
 # @FUNCTION: eautoheader
