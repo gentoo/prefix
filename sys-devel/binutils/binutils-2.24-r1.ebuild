@@ -21,12 +21,6 @@ src_compile() {
 	then
 		# binutils >= 2.17 (accidentally?) requires 'makeinfo'
 		export EXTRA_EMAKE="MAKEINFO=true"
-	else
-		# bug #491620
-		sed -i \
-			-e 's/@colophon/@@colophon/' \
-			-e 's/doc@cygnus.com/doc@@cygnus.com/' \
-			bfd/doc/bfd.texinfo || die
 	fi
 
 	case "${CTARGET}" in
