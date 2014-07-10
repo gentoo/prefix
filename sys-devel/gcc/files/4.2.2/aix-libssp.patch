@@ -1,9 +1,8 @@
 When locked to GCC, Stack Smashing Protector works well on AIX.
 
-diff -ruN gcc-4.2.4/configure /junk/base-2010.0u/portage/sys-devel/gcc-4.2.4-r01.11/work/gcc-4.2.4/configure
---- gcc-4.2.4/configure	2014-06-30 16:44:39 +0200
-+++ /junk/base-2010.0u/portage/sys-devel/gcc-4.2.4-r01.11/work/gcc-4.2.4/configure	2014-06-30 15:51:26 +0200
-@@ -1529,7 +1529,7 @@
+--- gcc-4.2.4/configure.in
++++ gcc-4.2.4/configure.in
+@@ -686,7 +686,7 @@
      ;;
    powerpc-*-aix*)
      # copied from rs6000-*-* entry
@@ -12,18 +11,9 @@ diff -ruN gcc-4.2.4/configure /junk/base-2010.0u/portage/sys-devel/gcc-4.2.4-r01
      ;;
    powerpc*-*-winnt* | powerpc*-*-pe* | ppc*-*-pe)
      target_configdirs="$target_configdirs target-winsup"
-@@ -2567,7 +2567,6 @@
- 	    add_this_lang=no
- 	    ;;
- 	esac
--  	aix_use_runtimelinking=yes
- 
- 	case $add_this_lang in
- 	  no)
-diff -ruN gcc-4.2.4/configure.in /junk/base-2010.0u/portage/sys-devel/gcc-4.2.4-r01.11/work/gcc-4.2.4/configure.in
---- gcc-4.2.4/configure.in	2014-06-30 16:44:39 +0200
-+++ /junk/base-2010.0u/portage/sys-devel/gcc-4.2.4-r01.11/work/gcc-4.2.4/configure.in	2014-06-30 15:51:26 +0200
-@@ -686,7 +686,7 @@
+--- gcc-4.2.4/configure
++++ gcc-4.2.4/configure
+@@ -1529,7 +1529,7 @@
      ;;
    powerpc-*-aix*)
      # copied from rs6000-*-* entry
