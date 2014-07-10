@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.18-r1.ebuild,v 1.12 2011/04/02 14:23:45 armin76 Exp $
 
@@ -21,7 +21,7 @@ else
 	SRC_URI="mirror://kernel/linux/utils/util-linux/v${PV:0:4}/${MY_P}.tar.bz2
 		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-ng-2.18-20100706.diff.bz2 )"
 #	KEYWORDS="~amd64-linux ~x86-linux"
-KEYWORDS="~ppc-aix ~ppc-macos ~x64-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 fi
 
 LICENSE="GPL-2"
