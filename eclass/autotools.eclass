@@ -435,7 +435,7 @@ autotools_env_setup() {
 		[[ ${WANT_AUTOMAKE} == "latest" ]] && \
 			die "Cannot find the latest automake! Tried ${_LATEST_AUTOMAKE}"
 	fi
-	[[ ${WANT_AUTOMAKE} == "latest" ]] && export WANT_AUTOMAKE=1.13
+	[[ ${WANT_AUTOMAKE} == "latest" ]] && export WANT_AUTOMAKE=${_LATEST_AUTOMAKE[0]#*:}
 	[[ ${WANT_AUTOCONF} == "latest" ]] && export WANT_AUTOCONF=2.5
 }
 
