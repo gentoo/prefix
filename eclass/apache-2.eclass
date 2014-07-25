@@ -395,8 +395,9 @@ apache-2_pkg_setup() {
 # rebuilds the configure scripts.
 apache-2_src_prepare() {
 	pushd "${GENTOO_PATCHDIR}"
-	epatch "${FILESDIR}"/${PN}-${PVR}-prefix.patch
-	eprefixify \
+	#trash this block after testing 2.4.10 for a while
+	[[ ${PV} = 2.4.[347] ]] && epatch "${FILESDIR}"/${PN}-${PVR}-prefix.patch
+	[[ ${PV} = 2.4.[347] ]] && eprefixify \
 		conf/httpd.conf \
 		docs/ip-based-vhost.conf.example \
 		docs/name-based-vhost.conf.example \
