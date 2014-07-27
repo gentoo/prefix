@@ -1,6 +1,47 @@
 # ChangeLog for media-sound/jack-audio-connection-kit
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.147 2012/07/15 17:57:38 armin76 Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/ChangeLog,v 1.155 2014/07/23 15:23:03 ago Exp $
+
+  23 Jul 2014; Agostino Sarubbo <ago@gentoo.org>
+  jack-audio-connection-kit-0.121.3-r1.ebuild:
+  Stable for x86, wrt bug #512012
+
+  22 Jul 2014; Agostino Sarubbo <ago@gentoo.org>
+  jack-audio-connection-kit-0.121.3-r1.ebuild:
+  Stable for amd64, wrt bug #512912
+
+  18 Jun 2014; Michał Górny <mgorny@gentoo.org>
+  jack-audio-connection-kit-0.121.3-r1.ebuild:
+  Update dependencies to require guaranteed EAPI=5 or multilib ebuilds, bug
+  #513718.
+
+  14 Oct 2013; Michał Górny <mgorny@gentoo.org>
+  jack-audio-connection-kit-0.121.3-r1.ebuild:
+  Explicitly call einstalldocs in multilib_src_install_all() to accomodate bug
+  #483304.
+
+*jack-audio-connection-kit-0.121.3-r1 (29 Jul 2013)
+
+  29 Jul 2013; Alexis Ballier <aballier@gentoo.org>
+  +jack-audio-connection-kit-0.121.3-r1.ebuild:
+  Migrate to multilib and fix the ncurses dep when readline gets picked up by
+  default.
+
+  13 May 2013; Anthony G. Basile <blueness@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  Install DSO into LIBDIR, bug #466732
+
+  14 Feb 2013; Alexis Ballier <aballier@gentoo.org>
+  -files/jack-audio-connection-kit-0.103.0-ppc64fix.patch,
+  -files/jack-audio-connection-kit-0.103.0-riceitdown.patch,
+  -jack-audio-connection-kit-0.109.2-r1.ebuild,
+  -files/jack-audio-connection-kit-transport.patch:
+  remove old
+
+  14 Feb 2013; Alexis Ballier <aballier@gentoo.org>
+  jack-audio-connection-kit-0.121.3.ebuild:
+  rdepend on lsof for detecting what blocks alsa devices. bug #406833 by
+  Amadeusz Sławiński
 
   15 Jul 2012; Raúl Porcel <armin76@gentoo.org>
   jack-audio-connection-kit-0.121.3.ebuild:
