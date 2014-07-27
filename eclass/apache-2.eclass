@@ -412,7 +412,7 @@ apache-2_pkg_setup() {
 apache-2_src_prepare() {
 	pushd "${GENTOO_PATCHDIR}"
 	#trash this block after testing 2.4.10 for a while
-	if [[ ${PV} = 2.4.[347] ]]; then 
+	if [[ ${PV} = 2.4.7* ]] ; then
 		epatch "${FILESDIR}"/${PN}-${PVR}-prefix.patch
 		eprefixify \
 			conf/httpd.conf \
@@ -547,8 +547,6 @@ apache-2_src_configure() {
 # This function runs `emake install' and generates, installs and adapts the gentoo
 # specific configuration files found in the tarball
 apache-2_src_install() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
-
 	emake DESTDIR="${D}" MKINSTALLDIRS="mkdir -p" install || die "make install failed"
 
 	# install our configuration files
@@ -633,8 +631,6 @@ apache-2_src_install() {
 # because the default webroot is a copy of the files that exist elsewhere and we
 # don't want them to be managed/removed by portage when apache is upgraded.
 apache-2_pkg_postinst() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
-
 	if use ssl && [[ ! -e "${EROOT}/etc/ssl/apache2/server.pem" ]]; then
 		SSL_ORGANIZATION="${SSL_ORGANIZATION:-Apache HTTP Server}"
 		install_cert /etc/ssl/apache2/server
