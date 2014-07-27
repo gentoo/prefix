@@ -17,8 +17,7 @@ inherit autotools eutils flag-o-matic multilib ssl-cert user toolchain-funcs ver
 
 case ${EAPI:-0} in
 	0|1|2|3)
-		#die "This eclass requires >=EAPI-4"
-		:
+		die "This eclass requires >=EAPI-4"
 	;;
 esac
 
@@ -242,8 +241,6 @@ check_module_depends() {
 # This internal function selects all built-in modules based on USE flags and
 # APACHE2_MODULES USE_EXPAND flags
 setup_modules() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
-
 	local mod_type=
 
 	if use static ; then
@@ -324,8 +321,6 @@ setup_modules() {
 # This internal function generates the LoadModule lines for httpd.conf based on
 # the current module selection and MODULE_DEFINES
 generate_load_module() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
-
 	local endit=0 mod_lines= mod_dir="${ED}/usr/$(get_libdir)/apache2/modules"
 
 	if use static; then
@@ -363,8 +358,6 @@ generate_load_module() {
 # to convert this file to the new APACHE2_MODULES USE_EXPAND variable and remove
 # it afterwards.
 check_upgrade() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
-
 	if [[ -e "${EROOT}"etc/apache2/apache2-builtin-mods ]]; then
 		eerror "The previous configuration file for built-in modules"
 		eerror "(${EROOT}etc/apache2/apache2-builtin-mods) exists on your"
@@ -509,8 +502,6 @@ apache-2_src_prepare() {
 # This function adds compiler flags and runs econf and emake based on MY_MPM and
 # MY_CONF
 apache-2_src_configure() {
-	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
-
 	tc-export PKG_CONFIG
 
 	# Sanity check in case people have bad mounts/TPE settings. #500928
