@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.31 2013/04/28 16:15:33 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.36 2014/05/22 13:58:46 polynomial-c Exp $
 
 # @ECLASS: apache-2.eclass
 # @MAINTAINER:
@@ -10,7 +10,29 @@
 # This eclass handles apache-2.x ebuild functions such as LoadModule generation
 # and inter-module dependency checking.
 
-inherit autotools eutils flag-o-matic multilib ssl-cert prefix
+inherit autotools eutils flag-o-matic multilib ssl-cert user toolchain-funcs versionator prefix
+
+[[ ${CATEGORY}/${PN} != www-servers/apache ]] \
+	&& die "Do not use this eclass with anything else than www-servers/apache ebuilds!"
+
+case ${EAPI:-0} in
+	0|1|2|3)
+		#die "This eclass requires >=EAPI-4"
+		:
+	;;
+esac
+
+# settings which are version specific go in here:
+case $(get_version_component_range 1-2) in
+	2.4)
+		DEFAULT_MPM_THREADED="event" #509922
+		RDEPEND=">=dev-libs/apr-1.5.1" #492578
+	;;
+	*)
+		DEFAULT_MPM_THREADED="worker"
+		RDEPEND=">=dev-libs/apr-1.4.5" #368651
+	;;
+esac
 
 # ==============================================================================
 # INTERNAL VARIABLES
@@ -81,11 +103,13 @@ DEPEND="dev-lang/perl
 	=dev-libs/apr-1*
 	=dev-libs/apr-util-1*[ldap?]
 	dev-libs/libpcre
+	apache2_modules_deflate? ( sys-libs/zlib )
+	apache2_modules_mime? ( app-misc/mime-types )
 	ldap? ( =net-nds/openldap-2* )
 	selinux? ( sec-policy/selinux-apache )
-	ssl? ( >=dev-libs/openssl-0.9.8f )
+	ssl? ( >=dev-libs/openssl-0.9.8m )
 	!=www-servers/apache-1*"
-RDEPEND="${DEPEND}"
+RDEPEND+=" ${DEPEND}"
 PDEPEND="~app-admin/apache-tools-${PV}"
 
 S="${WORKDIR}/httpd-${PV}"
@@ -121,7 +145,7 @@ setup_mpm() {
 
 	if [[ -z "${MY_MPM}" ]] ; then
 		if use threads ; then
-			MY_MPM=worker
+			MY_MPM=${DEFAULT_MPM_THREADED}
 			elog
 			elog "Selected default threaded MPM: ${MY_MPM}"
 			elog
@@ -171,7 +195,6 @@ check_module_critical() {
 		ewarn "Although this is not an error, please be"
 		ewarn "aware that this setup is UNSUPPORTED."
 		ewarn
-		ebeep 10
 	fi
 }
 
@@ -232,17 +255,17 @@ setup_modules() {
 	MY_CONF="--enable-so=static"
 
 	if use ldap ; then
-		MY_CONF="${MY_CONF} --enable-authnz_ldap=${mod_type} --enable-ldap=${mod_type}"
-		MY_MODS="${MY_MODS} ldap authnz_ldap"
+		MY_CONF+=" --enable-authnz_ldap=${mod_type} --enable-ldap=${mod_type}"
+		MY_MODS+=" ldap authnz_ldap"
 	else
-		MY_CONF="${MY_CONF} --disable-authnz_ldap --disable-ldap"
+		MY_CONF+=" --disable-authnz_ldap --disable-ldap"
 	fi
 
 	if use ssl ; then
-		MY_CONF="${MY_CONF} --with-ssl="${EPREFIX}"/usr --enable-ssl=${mod_type}"
-		MY_MODS="${MY_MODS} ssl"
+		MY_CONF+=" --with-ssl="${EPREFIX}"/usr --enable-ssl=${mod_type}"
+		MY_MODS+=" ssl"
 	else
-		MY_CONF="${MY_CONF} --without-ssl --disable-ssl"
+		MY_CONF+=" --without-ssl --disable-ssl"
 	fi
 
 	if use suexec ; then
@@ -259,27 +282,27 @@ setup_modules() {
 		elog "    SUEXEC_UMASK: Umask for the suexec process (default: 077)"
 		elog
 
-		MY_CONF="${MY_CONF} --with-suexec-safepath=${SUEXEC_SAFEPATH:-"${EPREFIX}"/usr/local/bin:"${EPREFIX}"/usr/bin:"${EPREFIX}"/bin}"
-		MY_CONF="${MY_CONF} --with-suexec-logfile=${SUEXEC_LOGFILE:-"${EPREFIX}"/var/log/apache2/suexec_log}"
-		MY_CONF="${MY_CONF} --with-suexec-bin="${EPREFIX}"/usr/sbin/suexec"
-		MY_CONF="${MY_CONF} --with-suexec-userdir=${SUEXEC_USERDIR:-public_html}"
-		MY_CONF="${MY_CONF} --with-suexec-caller=${SUEXEC_CALLER:-apache}"
-		MY_CONF="${MY_CONF} --with-suexec-docroot=${SUEXEC_DOCROOT:-"${EPREFIX}"/var/www}"
-		MY_CONF="${MY_CONF} --with-suexec-uidmin=${SUEXEC_MINUID:-1000}"
-		MY_CONF="${MY_CONF} --with-suexec-gidmin=${SUEXEC_MINGID:-100}"
-		MY_CONF="${MY_CONF} --with-suexec-umask=${SUEXEC_UMASK:-077}"
-		MY_CONF="${MY_CONF} --enable-suexec=${mod_type}"
-		MY_MODS="${MY_MODS} suexec"
+		MY_CONF+=" --with-suexec-safepath=${SUEXEC_SAFEPATH:-"${EPREFIX}"/usr/local/bin:"${EPREFIX}"/usr/bin:"${EPREFIX}"/bin}"
+		MY_CONF+=" --with-suexec-logfile=${SUEXEC_LOGFILE:-"${EPREFIX}"/var/log/apache2/suexec_log}"
+		MY_CONF+=" --with-suexec-bin="${EPREFIX}"/usr/sbin/suexec"
+		MY_CONF+=" --with-suexec-userdir=${SUEXEC_USERDIR:-public_html}"
+		MY_CONF+=" --with-suexec-caller=${SUEXEC_CALLER:-apache}"
+		MY_CONF+=" --with-suexec-docroot=${SUEXEC_DOCROOT:-"${EPREFIX}"/var/www}"
+		MY_CONF+=" --with-suexec-uidmin=${SUEXEC_MINUID:-1000}"
+		MY_CONF+=" --with-suexec-gidmin=${SUEXEC_MINGID:-100}"
+		MY_CONF+=" --with-suexec-umask=${SUEXEC_UMASK:-077}"
+		MY_CONF+=" --enable-suexec=${mod_type}"
+		MY_MODS+=" suexec"
 	else
-		MY_CONF="${MY_CONF} --disable-suexec"
+		MY_CONF+=" --disable-suexec"
 	fi
 
 	for x in ${IUSE_MODULES} ; do
 		if use apache2_modules_${x} ; then
-			MY_CONF="${MY_CONF} --enable-${x}=${mod_type}"
-			MY_MODS="${MY_MODS} ${x}"
+			MY_CONF+=" --enable-${x}=${mod_type}"
+			MY_MODS+=" ${x}"
 		else
-			MY_CONF="${MY_CONF} --disable-${x}"
+			MY_CONF+=" --disable-${x}"
 		fi
 	done
 
@@ -351,7 +374,7 @@ check_upgrade() {
 		eerror "for detailed information how to convert this file to the new"
 		eerror "APACHE2_MODULES USE_EXPAND variable."
 		eerror
-		die "upgrade not possible with existing ${EROOT}etc/apache2/apache2-builtin-mods"
+		die "upgrade not possible with existing ${ROOT}etc/apache2/apache2-builtin-mods"
 	fi
 }
 
@@ -375,7 +398,7 @@ apache-2_pkg_setup() {
 	setup_modules
 
 	if use debug; then
-		MY_CONF="${MY_CONF} --enable-maintainer-mode --enable-exception-hook"
+		MY_CONF+=" --enable-maintainer-mode --enable-exception-hook"
 	fi
 
 	elog "Please note that you need SysV IPC support in your kernel."
@@ -396,36 +419,42 @@ apache-2_pkg_setup() {
 apache-2_src_prepare() {
 	pushd "${GENTOO_PATCHDIR}"
 	#trash this block after testing 2.4.10 for a while
-	[[ ${PV} = 2.4.[347] ]] && epatch "${FILESDIR}"/${PN}-${PVR}-prefix.patch
-	[[ ${PV} = 2.4.[347] ]] && eprefixify \
-		conf/httpd.conf \
-		docs/ip-based-vhost.conf.example \
-		docs/name-based-vhost.conf.example \
-		docs/ssl-vhost.conf.example \
-		init/apache2.initd \
-		init/apache2.confd \
-		patches/config.layout \
-		scripts/gentestcrt.sh \
-		scripts/apache2-logrotate \
-		scripts/apache2ctl \
-		conf/modules.d/00_apache_manual.conf \
-		conf/modules.d/00_default_settings.conf \
-		conf/modules.d/00_error_documents.conf \
-		conf/modules.d/00_languages.conf \
-		conf/modules.d/00_mod_autoindex.conf \
-		conf/modules.d/00_mod_info.conf \
-		conf/modules.d/00_mod_log_config.conf \
-		conf/modules.d/00_mod_mime.conf \
-		conf/modules.d/00_mod_status.conf \
-		conf/modules.d/00_mod_userdir.conf \
-		conf/modules.d/00_mpm.conf \
-		conf/modules.d/10_mod_mem_cache.conf \
-		conf/modules.d/40_mod_ssl.conf \
-		conf/modules.d/45_mod_dav.conf \
-		conf/modules.d/46_mod_ldap.conf \
-		conf/vhosts.d/00_default_ssl_vhost.conf \
-		conf/vhosts.d/00_default_vhost.conf \
-		conf/vhosts.d/default_vhost.include
+	if [[ ${PV} = 2.4.[347] ]]; then 
+		epatch "${FILESDIR}"/${PN}-${PVR}-prefix.patch
+		eprefixify \
+			conf/httpd.conf \
+			docs/ip-based-vhost.conf.example \
+			docs/name-based-vhost.conf.example \
+			docs/ssl-vhost.conf.example \
+			init/apache2.initd \
+			init/apache2.confd \
+			patches/config.layout \
+			scripts/gentestcrt.sh \
+			scripts/apache2-logrotate \
+			scripts/apache2ctl \
+			conf/modules.d/00_apache_manual.conf \
+			conf/modules.d/00_default_settings.conf \
+			conf/modules.d/00_error_documents.conf \
+			conf/modules.d/00_languages.conf \
+			conf/modules.d/00_mod_autoindex.conf \
+			conf/modules.d/00_mod_info.conf \
+			conf/modules.d/00_mod_log_config.conf \
+			conf/modules.d/00_mod_mime.conf \
+			conf/modules.d/00_mod_status.conf \
+			conf/modules.d/00_mod_userdir.conf \
+			conf/modules.d/00_mpm.conf \
+			conf/modules.d/10_mod_mem_cache.conf \
+			conf/modules.d/40_mod_ssl.conf \
+			conf/modules.d/45_mod_dav.conf \
+			conf/modules.d/46_mod_ldap.conf \
+			conf/vhosts.d/00_default_ssl_vhost.conf \
+			conf/vhosts.d/00_default_vhost.conf \
+			conf/vhosts.d/default_vhost.include
+	else
+		sed -e "s@/\(usr\|var\|etc\|run\)/@${EPREFIX}&@g" \
+			-i conf/httpd.conf scripts/* docs/*.example \
+			patches/*.layout init/* conf/vhosts.d/* conf/modules.d/*
+	fi
 	popd
 
 	# 03_all_gentoo-apache-tools.patch injects -Wl,-z,now, which is not a good
@@ -465,6 +494,14 @@ apache-2_src_prepare() {
 	# patched-in MPMs need the build environment rebuilt
 	sed -i -e '/sinclude/d' configure.in
 	AT_M4DIR=build eautoreconf
+
+	# This package really should upgrade to using pcre's .pc file.
+	cat <<-\EOF >"${T}"/pcre-config
+	#!/bin/sh
+	[ "${flag}" = "--version" ] && set -- --modversion
+	exec ${PKG_CONFIG} libpcre "$@"
+	EOF
+	chmod a+x "${T}"/pcre-config
 }
 
 # @FUNCTION: apache-2_src_configure
@@ -473,6 +510,15 @@ apache-2_src_prepare() {
 # MY_CONF
 apache-2_src_configure() {
 	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
+
+	tc-export PKG_CONFIG
+
+	# Sanity check in case people have bad mounts/TPE settings. #500928
+	if ! "${T}"/pcre-config --help >/dev/null ; then
+		eerror "Could not execute ${T}/pcre-config; do you have bad mount"
+		eerror "permissions in ${T} or have TPE turned on in your kernel?"
+		die "check your runtime settings #500928"
+	fi
 
 	# Instead of filtering --as-needed (bug #128505), append --no-as-needed
 	# Thanks to Harald van Dijk
@@ -485,6 +531,7 @@ apache-2_src_configure() {
 
 	# econf overwrites the stuff from config.layout, so we have to put them into
 	# our myconf line too
+	ac_cv_path_PKGCONFIG=${PKG_CONFIG} \
 	econf \
 		--includedir="${EPREFIX}"/usr/include/apache2 \
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/apache2/modules \
@@ -492,9 +539,9 @@ apache-2_src_configure() {
 		--sysconfdir="${EPREFIX}"/etc/apache2 \
 		--localstatedir="${EPREFIX}"/var \
 		--with-mpm=${MY_MPM} \
-		--with-apr="${EPREFIX}"/usr \
-		--with-apr-util="${EPREFIX}"/usr \
-		--with-pcre="${EPREFIX}"/usr \
+		--with-apr="${SYSROOT}${EPREFIX}"/usr \
+		--with-apr-util="${SYSROOT}${EPREFIX}"/usr \
+		--with-pcre="${T}"/pcre-config \
 		--with-z="${EPREFIX}"/usr \
 		--with-port=80 \
 		--with-program-name=apache2 \
@@ -549,7 +596,7 @@ apache-2_src_install() {
 	fi
 
 	# provide legacy symlink for apxs, bug 177697
-	dosym /usr/sbin/apxs /usr/sbin/apxs2
+	dosym apxs /usr/sbin/apxs2
 
 	# install some documentation
 	dodoc ABOUT_APACHE CHANGES LAYOUT README README.platforms VERSIONING
@@ -558,6 +605,7 @@ apache-2_src_install() {
 	# drop in a convenient link to the manual
 	if use doc ; then
 		sed -i -e "s:VERSION:${PVR}:" "${ED}/etc/apache2/modules.d/00_apache_manual.conf"
+		docompress -x /usr/share/doc/${PF}/manual # 503640
 	else
 		rm -f "${ED}/etc/apache2/modules.d/00_apache_manual.conf"
 		rm -Rf "${ED}/usr/share/doc/${PF}/manual"
