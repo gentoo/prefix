@@ -1,6 +1,38 @@
 # ChangeLog for media-libs/xvid
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.134 2012/09/11 06:57:39 vapier Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.143 2014/07/23 15:20:25 ago Exp $
+
+  23 Jul 2014; Agostino Sarubbo <ago@gentoo.org> xvid-1.3.3.ebuild:
+  Stable for x86, wrt bug #512012
+
+  22 Jul 2014; Agostino Sarubbo <ago@gentoo.org> xvid-1.3.3.ebuild:
+  Stable for amd64, wrt bug #512912
+
+  20 Jul 2014; Markus Meier <maekke@gentoo.org> xvid-1.3.3.ebuild:
+  arm stable, bug #512012
+
+  30 May 2014; Samuli Suominen <ssuominen@gentoo.org> xvid-1.3.3.ebuild:
+  Pull in sys-apps/grep as DEPEND
+
+*xvid-1.3.3 (30 May 2014)
+
+  30 May 2014; Samuli Suominen <ssuominen@gentoo.org> +xvid-1.3.3.ebuild:
+  Version bump wrt #511780 by "Nikoli"
+
+  28 Jul 2013; Alexis Ballier <aballier@gentoo.org> xvid-1.3.2-r1.ebuild:
+  Force using nasm on FreeBSD as it doesnt build with yasm, bug
+
+  26 Jun 2013; Alexis Ballier <aballier@gentoo.org> xvid-1.3.2-r1.ebuild:
+  update emul-linux blocker, bug #473838
+
+  19 Jun 2013; Alexis Ballier <aballier@gentoo.org> -xvid-1.2.2-r2.ebuild,
+  -xvid-1.3.1.ebuild, -files/xvid-1.2.2-noexecstack.patch:
+  remove old
+
+*xvid-1.3.2-r1 (19 Jun 2013)
+
+  19 Jun 2013; Alexis Ballier <aballier@gentoo.org> +xvid-1.3.2-r1.ebuild:
+  add multilib support and make build verbose
 
   11 Sep 2012; Mike Frysinger <vapier@gentoo.org> xvid-1.3.2.ebuild:
   Disable assembly code for x32 ABI for now #421841 by Xavier Miller.
