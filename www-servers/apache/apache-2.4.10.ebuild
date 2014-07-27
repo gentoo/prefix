@@ -134,14 +134,6 @@ pkg_setup() {
 	apache-2_pkg_setup
 }
 
-src_prepare() {
-	apache-2_src_prepare
-
-	sed -e "s@/\(usr\|var\|etc\|run\)/@${EPREFIX}&@g" \
-		-i conf/httpd.conf scripts/* docs/*.example \
-		patches/*.layout init/* conf/vhosts.d/* conf/modules.d/*
-}
-
 src_configure() {
 	# Brain dead check.
 	tc-is-cross-compiler && export ap_cv_void_ptr_lt_long="no"
