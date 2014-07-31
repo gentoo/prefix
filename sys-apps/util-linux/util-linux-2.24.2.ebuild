@@ -90,7 +90,7 @@ multilib_src_configure() {
 	export ac_cv_header_security_pam_misc_h=$(multilib_native_usex pam) #485486
 	ECONF_SOURCE=${S} \
 	econf \
-		--docdir="/usr/share/doc/${PF}" \
+		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--enable-fs-paths-extra=/usr/sbin:/bin:/usr/bin \
 		$(multilib_native_use_enable nls) \
 		--enable-agetty \
