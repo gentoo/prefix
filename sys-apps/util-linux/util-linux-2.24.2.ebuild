@@ -91,7 +91,8 @@ multilib_src_configure() {
 	ECONF_SOURCE=${S} \
 	econf \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
-		--enable-fs-paths-extra=/usr/sbin:/bin:/usr/bin \
+		--enable-fs-paths-extra="${EPREFIX}/usr/sbin:${EPREFIX}/bin:${EPREFIX}/usr/bin" \
+		--libdir='${prefix}/'"$(get_libdir)" \
 		$(multilib_native_use_enable nls) \
 		--enable-agetty \
 		--with-bashcompletiondir="$(get_bashcompdir)" \
