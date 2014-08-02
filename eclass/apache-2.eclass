@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.36 2014/05/22 13:58:46 polynomial-c Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.37 2014/07/30 19:01:02 robbat2 Exp $
 
 # @ECLASS: apache-2.eclass
 # @MAINTAINER:
@@ -10,7 +10,7 @@
 # This eclass handles apache-2.x ebuild functions such as LoadModule generation
 # and inter-module dependency checking.
 
-inherit autotools eutils flag-o-matic multilib ssl-cert user toolchain-funcs versionator prefix
+inherit autotools eutils flag-o-matic multilib ssl-cert user toolchain-funcs versionator
 
 [[ ${CATEGORY}/${PN} != www-servers/apache ]] \
 	&& die "Do not use this eclass with anything else than www-servers/apache ebuilds!"
@@ -410,45 +410,12 @@ apache-2_pkg_setup() {
 # This function applies patches, configures a custom file-system layout and
 # rebuilds the configure scripts.
 apache-2_src_prepare() {
-	pushd "${GENTOO_PATCHDIR}"
-	#trash this block after testing 2.4.10 for a while
-	if [[ ${PV} = 2.4.7* ]] ; then
-		epatch "${FILESDIR}"/${PN}-${PVR}-prefix.patch
-		eprefixify \
-			conf/httpd.conf \
-			docs/ip-based-vhost.conf.example \
-			docs/name-based-vhost.conf.example \
-			docs/ssl-vhost.conf.example \
-			init/apache2.initd \
-			init/apache2.confd \
-			patches/config.layout \
-			scripts/gentestcrt.sh \
-			scripts/apache2-logrotate \
-			scripts/apache2ctl \
-			conf/modules.d/00_apache_manual.conf \
-			conf/modules.d/00_default_settings.conf \
-			conf/modules.d/00_error_documents.conf \
-			conf/modules.d/00_languages.conf \
-			conf/modules.d/00_mod_autoindex.conf \
-			conf/modules.d/00_mod_info.conf \
-			conf/modules.d/00_mod_log_config.conf \
-			conf/modules.d/00_mod_mime.conf \
-			conf/modules.d/00_mod_status.conf \
-			conf/modules.d/00_mod_userdir.conf \
-			conf/modules.d/00_mpm.conf \
-			conf/modules.d/10_mod_mem_cache.conf \
-			conf/modules.d/40_mod_ssl.conf \
-			conf/modules.d/45_mod_dav.conf \
-			conf/modules.d/46_mod_ldap.conf \
-			conf/vhosts.d/00_default_ssl_vhost.conf \
-			conf/vhosts.d/00_default_vhost.conf \
-			conf/vhosts.d/default_vhost.include
-	else
-		sed -e "s@/\(usr\|var\|etc\|run\)/@${EPREFIX}&@g" \
-			-i conf/httpd.conf scripts/* docs/*.example \
-			patches/*.layout init/* conf/vhosts.d/* conf/modules.d/*
-	fi
-	popd
+	#fix prefix in conf files etc (bug #433736)
+	use !prefix || sed -e "s@/\(usr\|var\|etc\|run\)/@${EPREFIX}&@g" \
+		-i "${GENTOO_PATCHDIR}"/conf/httpd.conf "${GENTOO_PATCHDIR}"/scripts/* \
+		"${GENTOO_PATCHDIR}"/docs/*.example "${GENTOO_PATCHDIR}"/patches/*.layout \
+		"${GENTOO_PATCHDIR}"/init/* "${GENTOO_PATCHDIR}"/conf/vhosts.d/* \
+		"${GENTOO_PATCHDIR}"/conf/modules.d/* || die
 
 	# 03_all_gentoo-apache-tools.patch injects -Wl,-z,now, which is not a good
 	# idea for everyone
@@ -487,6 +454,9 @@ apache-2_src_prepare() {
 	# patched-in MPMs need the build environment rebuilt
 	sed -i -e '/sinclude/d' configure.in
 	AT_M4DIR=build eautoreconf
+
+	# ${T} must be not group-writable, else grsec TPE will block it
+	chmod g-w "${T}"
 
 	# This package really should upgrade to using pcre's .pc file.
 	cat <<-\EOF >"${T}"/pcre-config
