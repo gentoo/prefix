@@ -58,20 +58,20 @@ multilib_src_configure() {
 	# beneficial for the user
 	use prefix && case ${CHOST} in
 		*-darwin*)
-			fontpath="${fontpath}:/Library/Fonts:/System/Library/Fonts"
+			fontpath+=":/Library/Fonts:/System/Library/Fonts"
 		;;
 		*-solaris*)
 			[[ -d /usr/X/lib/X11/fonts/TrueType ]] && \
-				fontpath="${fontpath}:/usr/X/lib/X11/fonts/TrueType"
+				fontpath+=":/usr/X/lib/X11/fonts/TrueType"
 			[[ -d /usr/X/lib/X11/fonts/Type1 ]] && \
-				fontpath="${fontpath}:/usr/X/lib/X11/fonts/Type1"
+				fontpath+=":/usr/X/lib/X11/fonts/Type1"
 			# OpenIndiana
 			[[ -d /usr/share/fonts/X11/Type1 ]] && \
-				fontpath="${fontpath}:/usr/share/fonts/X11/Type1"
+				fontpath+=":/usr/share/fonts/X11/Type1"
 		;;
 		*-linux-gnu)
 			[[ -d /usr/share/fonts/truetype ]] && \
-				fontpath="${fontpath}:/usr/share/fonts/truetype"
+				fontpath+=":/usr/share/fonts/truetype"
 		;;
 	esac
 	append-cppflags "-DDEFAULT_FONTPATH=\\\"${fontpath}\\\""
