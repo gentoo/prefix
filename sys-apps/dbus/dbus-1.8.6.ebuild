@@ -101,8 +101,8 @@ multilib_src_configure() {
 		--disable-embedded-tests
 		--disable-modular-tests
 		$(use_enable debug stats)
-		--with-session-socket-dir="${EPRFIX}"/tmp
-		--with-system-pid-file="${EPRFIX}"/var/run/dbus.pid
+		--with-session-socket-dir="${EPREFIX}"/tmp
+		--with-system-pid-file="${EPREFIX}"/var/run/dbus.pid
 		--with-system-socket="${EPREFIX}"/var/run/dbus/system_bus_socket
 		--with-dbus-user=messagebus
 		$(use_with X x)
