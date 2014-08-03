@@ -91,6 +91,8 @@ multilib_src_configure() {
 }
 
 multilib_src_compile() {
+	# Needed for Solaris because /bin/sh is not a bash, bug #245647
+	sed -i -e "s:/bin/sh:${EPREFIX}/bin/sh:" src/Makefile || die "sed failed"
 	emake
 
 	if multilib_is_native_abi; then
