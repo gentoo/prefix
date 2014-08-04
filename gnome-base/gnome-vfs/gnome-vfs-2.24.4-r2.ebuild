@@ -129,6 +129,9 @@ multilib_src_configure() {
 	# foser <foser@gentoo.org 19 Apr 2004
 	use gnutls && use ssl && myconf+=( --disable-openssl )
 
+	#configure script is so messed up on res_init on Darwin
+	[[ ${CHOST} == *-darwin* ]] && export LIBS="${LIBS} -lresolv"
+
 	ECONF_SOURCE=${S} \
 	gnome2_src_configure "${myconf[@]}"
 
