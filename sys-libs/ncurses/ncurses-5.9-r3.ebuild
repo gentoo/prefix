@@ -1,19 +1,21 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r2.ebuild,v 1.18 2014/01/18 02:22:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r3.ebuild,v 1.16 2014/07/13 19:30:57 zlogene Exp $
 
-EAPI="1"
-inherit eutils flag-o-matic toolchain-funcs libtool
+EAPI="4"
+inherit eutils flag-o-matic toolchain-funcs multilib-minimal libtool
 
 MY_PV=${PV:0:3}
 PV_SNAP=${PV:4}
 MY_P=${PN}-${MY_PV}
+DESCRIPTION="console display library"
+HOMEPAGE="http://www.gnu.org/software/ncurses/ http://dickey.his.com/ncurses/"
+SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
+
 HOSTLTV="0.1.0"
 HOSTLT="host-libtool-${HOSTLTV}"
 HOSTLT_URI="http://github.com/haubi/host-libtool/releases/download/v${HOSTLTV}/${HOSTLT}.tar.gz"
-DESCRIPTION="console display library"
-HOMEPAGE="http://www.gnu.org/software/ncurses/ http://dickey.his.com/ncurses/"
-SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz
+SRC_URI="${SRC_URI}
 	kernel_AIX? ( ${HOSTLT_URI} )
 	kernel_HPUX? ( ${HOSTLT_URI} )
 "
@@ -26,9 +28,18 @@ IUSE="ada +cxx debug doc gpm minimal profile static-libs tinfo trace unicode"
 DEPEND="gpm? ( sys-libs/gpm )"
 #	berkdb? ( sys-libs/db )"
 RDEPEND="${DEPEND}
-	!<x11-terms/rxvt-unicode-9.06-r3"
+	!<x11-terms/rxvt-unicode-9.06-r3
+	abi_x86_32? (
+		!<=app-emulation/emul-linux-x86-baselibs-20130224-r12
+		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
+	)"
+# Put the MULTILIB_USEDEP on gpm in PDEPEND only to avoid circular deps.
+# We can move it to DEPEND and drop the --with-gpm=libgpm.so.1 from the econf
+# line below once we can assume multilib gpm is available everywhere.
+PDEPEND="gpm? ( sys-libs/gpm[${MULTILIB_USEDEP}] )"
 
 S=${WORKDIR}/${MY_P}
+HOSTTIC_DIR=${WORKDIR}/${P}-host
 
 need-libtool() {
 	# need libtool to build aix-style shared objects inside archive libs, but
@@ -39,16 +50,13 @@ need-libtool() {
 	[[ ${CHOST} == *'-aix'* || ${CHOST} == *'-hpux'* ]]
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
 	epatch "${FILESDIR}"/${PN}-5.8-gfbsd.patch
 	epatch "${FILESDIR}"/${PN}-5.7-nongnu.patch
 	epatch "${FILESDIR}"/${PN}-5.9-rxvt-unicode-9.15.patch #192083 #383871
 	epatch "${FILESDIR}"/${PN}-5.9-fix-clang-build.patch #417763
-
-	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
+	epatch "${FILESDIR}"/${PN}-5.9-pkg-config.patch
 
 	# /bin/sh is not always good enough
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
@@ -79,7 +87,7 @@ src_unpack() {
 	fi
 }
 
-src_compile() {
+src_configure() {
 	if need-libtool; then
 		cd "${WORKDIR}"/${HOSTLT} || die
 		econf
@@ -95,121 +103,143 @@ src_compile() {
 	# because people often don't keep matching host/target
 	# ncurses versions #249363
 	if tc-is-cross-compiler && ! ROOT=/ has_version ~sys-libs/${P} ; then
-		make_flags="-C progs tic"
 		CHOST=${CBUILD} \
 		CFLAGS=${BUILD_CFLAGS} \
 		CXXFLAGS=${BUILD_CXXFLAGS} \
 		CPPFLAGS=${BUILD_CPPFLAGS} \
 		LDFLAGS="${BUILD_LDFLAGS} -static" \
-		do_compile cross --without-shared --with-normal
+		BUILD_DIR="${HOSTTIC_DIR}" do_configure cross --without-shared --with-normal
 	fi
-
-	make_flags=""
-	do_compile narrowc
-	use unicode && do_compile widec --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
+	multilib-minimal_src_configure
 }
-do_compile() {
+
+multilib_src_configure() {
+	do_configure narrowc
+	use unicode && do_configure widec --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
+}
+
+do_configure() {
 	ECONF_SOURCE=${S}
 
-	mkdir "${WORKDIR}"/$1
-	cd "${WORKDIR}"/$1
+	mkdir "${BUILD_DIR}"-$1
+	cd "${BUILD_DIR}"-$1 || die
 	shift
 
-	# ncurses is dumb and doesn't install .pc files unless pkg-config
-	# is also installed.  Force the tests to go our way.  Note that it
-	# doesn't actually use pkg-config ... it just looks for set vars.
-	tc-export PKG_CONFIG
-	export PKG_CONFIG_LIBDIR="${EPREFIX}/usr/$(get_libdir)/pkgconfig"
+	local conf=(
+		# We need the basic terminfo files in /etc, bug #37026.  We will
+		# add '--with-terminfo-dirs' and then populate /etc/terminfo in
+		# src_install() ...
+		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo"
 
-	# The chtype/mmask-t settings below are to retain ABI compat
-	# with ncurses-5.4 so dont change em !
-	local conf_abi="
-		--with-chtype=long \
-		--with-mmask-t=long \
-		--disable-ext-colors \
-		--disable-ext-mouse \
-		--without-pthread \
-		--without-reentrant \
-	"
+		# Disabled until #245417 is sorted out.
+		#$(use_with berkdb hashed-db)
 
-	local myconf=""
-	if need-libtool; then
-		myconf="${myconf} --with-libtool"
-	elif [[ ${CHOST} == *-mint* ]]; then
-		:
-	else
-		myconf="--with-shared"
+		# ncurses is dumb and doesn't install .pc files unless pkg-config
+		# is also installed.  Force the tests to go our way.  Note that it
+		# doesn't actually use pkg-config ... it just looks for set vars.
+		--enable-pc-files
+		--with-pkg-config="$(tc-getPKG_CONFIG)"
+		# This path is used to control where the .pc files are installed.
+		PKG_CONFIG_LIBDIR="${EPREFIX}/usr/$(get_libdir)/pkgconfig"
+
+		# Now the rest of the various standard flags.
+		--$(
+			if need-libtool ; then
+				echo with-libtool
+			elif [[ ${CHOST} == *-mint* ]] ; then
+				echo without-shared
+			else
+				echo with-shared
+			fi
+		)
+		--enable-overwrite
+		--without-hashed-db
+		$(use_with ada)
+		$(use_with cxx)
+		$(use_with cxx cxx-binding)
+		$(use_with debug)
+		$(use_with profile)
+		$(use_with gpm)
+		$(multilib_is_native_abi || use_with gpm gpm libgpm.so.1)
+		--disable-termcap
+		--enable-symlinks
+		--with-rcs-ids
+		--with-manpage-format=normal
+		--enable-const
+		--enable-colorfgbg
+		--enable-echo
+		$(use_enable !ada warnings)
+		$(use_with debug assertions)
+		$(use_enable debug leaks)
+		$(use_with debug expanded)
+		$(use_with !debug macros)
+		$(use_with trace)
+		$(use_with tinfo termlib)
+
+		# The chtype/mmask-t settings below are to retain ABI compat
+		# with ncurses-5.4 so dont change em !
+		--with-chtype=long
+		--with-mmask-t=long
+		--disable-ext-colors
+		--disable-ext-mouse
+		--without-pthread
+		--without-reentrant
+	)
+
+	econf "${conf[@]}" "$@"
+}
+
+src_compile() {
+	# when cross-compiling, we need to build up our own tic
+	# because people often don't keep matching host/target
+	# ncurses versions #249363
+	if tc-is-cross-compiler && ! ROOT=/ has_version ~sys-libs/${P} ; then
+		make_flags="-C progs tic"
+		BUILD_DIR="${HOSTTIC_DIR}" do_compile cross
 	fi
 
-	if [[ ${CHOST} == *-interix* ]]; then
-		myconf="--without-leaks"
-	fi
+	multilib-minimal_src_compile
+}
 
-	# We need the basic terminfo files in /etc, bug #37026.  We will
-	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
-	# src_install() ...
-#		$(use_with berkdb hashed-db)
-	econf \
-		--libdir="${EPREFIX}/usr/$(get_libdir)" \
-		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo" \
-		${myconf} \
-		--without-hashed-db \
-		--enable-overwrite \
-		$(use_with ada) \
-		$(use_with cxx) \
-		$(use_with cxx cxx-binding) \
-		$(use_with debug) \
-		$(use_with profile) \
-		$(use_with gpm) \
-		--disable-termcap \
-		--enable-symlinks \
-		--with-rcs-ids \
-		--with-manpage-format=normal \
-		--enable-const \
-		--enable-colorfgbg \
-		--enable-echo \
-		--enable-pc-files \
-		$(use_enable !ada warnings) \
-		$(use_with debug assertions) \
-		$(use_enable debug leaks) \
-		$(use_with debug expanded) \
-		$(use_with !debug macros) \
-		$(use_with trace) \
-		$(use_with tinfo termlib) \
-		${conf_abi} \
-		"$@"
+multilib_src_compile() {
+	make_flags=""
+	multilib_is_native_abi || make_flags="PROGS= "
+	do_compile narrowc
+	use unicode && do_compile widec
+}
+
+do_compile() {
+	cd "${BUILD_DIR}"-$1 || die
 
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
 	# non-parallel), we can then build the rest of the package
 	# in parallel.  This is not really a perf hit since the source
 	# generation is quite small.
-	emake -j1 sources || die
+	emake -j1 sources
 	# For some reason, sources depends on pc-files which depends on
 	# compiled libraries which depends on sources which ...
 	# Manually delete the pc-files file so the install step will
 	# create the .pc files we want.
 	rm -f misc/pc-files
-	emake ${make_flags} || die
+	emake ${make_flags}
 }
 
-src_install() {
+multilib_src_install() {
 	# use the cross-compiled tic (if need be) #249363
-	export PATH=${WORKDIR}/cross/progs:${PATH}
+	export PATH="${HOSTTIC_DIR}-cross/progs:${PATH}"
 
 	# install unicode version second so that the binaries in /usr/bin
 	# support both wide and narrow
-	cd "${WORKDIR}"/narrowc
-	emake DESTDIR="${D}" install || die
+	cd "${BUILD_DIR}"-narrowc || die
+	emake DESTDIR="${D}" install
 	if use unicode ; then
-		cd "${WORKDIR}"/widec
-		emake DESTDIR="${D}" install || die
+		cd "${BUILD_DIR}"-widec || die
+		emake DESTDIR="${D}" install
 	fi
 
-	# Move static and extraneous ncurses static libraries out of /lib
-	cd "${ED}"/$(get_libdir)
-	mv *.a "${ED}"/usr/$(get_libdir)/
-	gen_usr_ldscript -a \
+	# Move libncurses{,w} into /lib
+	multilib_is_native_abi && gen_usr_ldscript -a \
 		ncurses \
 		$(usex unicode 'ncursesw' '') \
 		$(use tinfo && usex unicode 'tinfow' '') \
@@ -219,6 +249,11 @@ src_install() {
 	fi
 	use static-libs || find "${D}"/usr/ -name '*.a' -a '!' -name '*curses++*.a' -delete
 
+	# Build fails to create this ...
+	dosym ../share/terminfo /usr/$(get_libdir)/terminfo
+}
+
+multilib_src_install_all() {
 #	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026
 		einfo "Installing basic terminfo files in /etc..."
@@ -235,9 +270,6 @@ src_install() {
 					/usr/share/terminfo/${basedir}/${x}
 			fi
 		done
-
-		# Build fails to create this ...
-		dosym ../share/terminfo /usr/$(get_libdir)/terminfo
 #	fi
 
 	echo "CONFIG_PROTECT_MASK=\"/etc/terminfo\"" > "${T}"/50ncurses
