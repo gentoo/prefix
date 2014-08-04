@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Copyright 2006-2014 Gentoo Foundation; Distributed under the GPL v2
 
+# <haubi@gentoo.org> -- 2014-08-04
+# do numeric comparison on calculated rev-diff, as [[ 0 < -9 ]] is true
 # <grobian@gentoo.org> -- 2010-10-16
 # treat ChangeLogs special, such that newer repoman that update the
 # ChangeLog can just do so -- we try to 'prepend only' avoiding
@@ -164,9 +166,9 @@ cmp_ebuild_ver() {
 		fi
 
 		t=$((lan - ran))
-		if [[ ${t} != 0 ]] ; then
-			[[ $t > 9 ]] && t=9
-			[[ $t < -9 ]] && t=-9
+		if (( ${t} != 0 )) ; then
+			(( $t > 9 )) && t=9
+			(( $t < -9 )) && t=-9
 			echo $((t * cnt))
 			return
 		else
@@ -187,7 +189,7 @@ cmp_ebuild_ver() {
 		lver=${lver#.}
 		rver=${rver#.}
 
-		[[ $cnt < 1000 ]] && cnt=$((cnt * 10))
+		(( $cnt < 1000 )) && cnt=$((cnt * 10))
 	done
 
 	# the main version components are equal, dive into the suffices
@@ -257,7 +259,7 @@ cmp_ebuild_ver() {
 	esac
 
 	t=$((lan - ran))
-	if [[ ${t} != 0 ]] ; then
+	if (( ${t} != 0 )) ; then
 		echo $((-t * cnt))
 		return
 	fi
@@ -271,9 +273,9 @@ cmp_ebuild_ver() {
 	lsuf=${lsuf:-0}
 	rsuf=${rsuf:-0}
 	t=$((${lsuf%_p*} - ${rsuf%_p*}))
-	if [[ ${t} != 0 ]] ; then
-		[[ $t > 9 ]] && t=9
-		[[ $t < -9 ]] && t=-9
+	if (( ${t} != 0 )) ; then
+		(( $t > 9 )) && t=9
+		(( $t < -9 )) && t=-9
 		echo $((t * cnt))
 		return
 	fi
@@ -281,9 +283,9 @@ cmp_ebuild_ver() {
 	case ${lsuf}:${rsuf} in
 		*_p*:*_p*)
 			t=$((${lsuf#*_p} - ${rsuf#*_p}))
-			if [[ ${t} != 0 ]] ; then
-				[[ $t > 9 ]] && t=9
-				[[ $t < -9 ]] && t=-9
+			if (( ${t} != 0 )) ; then
+				(( $t > 9 )) && t=9
+				(( $t < -9 )) && t=-9
 				echo $((t * cnt))
 				return
 			fi
@@ -318,9 +320,9 @@ cmp_ebuild_ver() {
 	fi
 
 	t=$((lrev - rrev))
-	[[ $t == 0 ]] && t=$((lsrev - rsrev))
-	[[ $t > 9 ]] && t=9
-	[[ $t < -9 ]] && t=-9
+	(( $t == 0 )) && t=$((lsrev - rsrev))
+	(( $t > 9 )) && t=9
+	(( $t < -9 )) && t=-9
 	echo $((t * cnt))
 }
 
