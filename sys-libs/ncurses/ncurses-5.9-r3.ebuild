@@ -72,7 +72,7 @@ src_prepare() {
 	# Don't mess with _XOPEN_SOURCE for C++ on (Open)Solaris.  The compiler
 	# defines a value for it, and depending on version, a different definition
 	# is used.  Defining this variable on these systems is dangerous any time,
-	# since the system headers do strict checks on compatability of flags and
+	# since the system headers do strict checks on compatibility of flags and
 	# standards.
 	# Defining _XOPEN_SOURCE_EXTENDED together with _XOPEN_SOURCE leads to
 	# pre-_XOPEN_SOURCE=500 stuff, so only do it for non-C++ code.
@@ -115,7 +115,7 @@ src_configure() {
 
 multilib_src_configure() {
 	do_configure narrowc
-	use unicode && do_configure widec --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
+	use unicode && do_configure widec --enable-widec --includedir='$(prefix)/include/ncursesw'
 }
 
 do_configure() {
@@ -146,13 +146,12 @@ do_configure() {
 		--$(
 			if need-libtool ; then
 				echo with-libtool
-			elif [[ ${CHOST} == *-mint* ]] ; then
+			elif tc-is-static-only ; then
 				echo without-shared
 			else
 				echo with-shared
 			fi
 		)
-		--enable-overwrite
 		--without-hashed-db
 		$(use_with ada)
 		$(use_with cxx)
