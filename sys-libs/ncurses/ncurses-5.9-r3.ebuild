@@ -115,7 +115,7 @@ src_configure() {
 
 multilib_src_configure() {
 	do_configure narrowc
-	use unicode && do_configure widec --enable-widec --includedir='$(prefix)/include/ncursesw'
+	use unicode && do_configure widec --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
 }
 
 do_configure() {
