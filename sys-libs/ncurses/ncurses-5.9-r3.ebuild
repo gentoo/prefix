@@ -246,7 +246,7 @@ multilib_src_install() {
 	if ! tc-is-static-only ; then
 		ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname) || die
 	fi
-	use static-libs || find "${D}"/usr/ -name '*.a' -a '!' -name '*curses++*.a' -delete
+	use static-libs || find "${ED}"/usr/ -name '*.a' -a '!' -name '*curses++*.a' -delete
 
 	# Build fails to create this ...
 	dosym ../share/terminfo /usr/$(get_libdir)/terminfo
