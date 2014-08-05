@@ -1,8 +1,0 @@
---- bdftogd~	2007-10-14 10:49:41 +0200
-+++ bdftogd	2007-10-14 10:49:49 +0200
-@@ -1,4 +1,4 @@
--#!/usr/bin/perl -w
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
- 
- #
- # Simple convertor from bdf to gd font format.
