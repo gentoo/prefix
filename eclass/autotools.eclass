@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.160 2014/02/18 03:57:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.162 2014/07/11 08:21:58 ulm Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -13,8 +13,8 @@
 # Note: We require GNU m4, as does autoconf.  So feel free to use any features
 # from the GNU version of m4 without worrying about other variants (i.e. BSD).
 
-if [[ ${___ECLASS_ONCE_AUTOTOOLS} != "recur -_+^+_- spank" ]] ; then
-___ECLASS_ONCE_AUTOTOOLS="recur -_+^+_- spank"
+if [[ -z ${_AUTOTOOLS_ECLASS} ]]; then
+_AUTOTOOLS_ECLASS=1
 
 inherit libtool multiprocessing
 
@@ -313,7 +313,7 @@ _elibtoolize() {
 		${LIBTOOLIZE} -n --install >& /dev/null || shift
 	fi
 
-	autotools_run_tool ${LIBTOOLIZE} "$@"
+	autotools_run_tool ${LIBTOOLIZE} "$@" ${opts}
 }
 
 # @FUNCTION: eautoheader
@@ -353,7 +353,7 @@ eautomake() {
 	done
 
 	_automake_version() {
-		automake --version 2>/dev/null | sed -n -e '1{s:.*(GNU automake) ::p;q}'
+		autotools_run_tool automake --version 2>/dev/null | sed -n -e '1{s:.*(GNU automake) ::p;q}'
 	}
 
 	if [[ -z ${makefile_name} ]] ; then
