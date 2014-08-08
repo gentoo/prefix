@@ -22,8 +22,10 @@ db_fix_so() {
 	cd "${LIB}"
 
 	# first clean up old symlinks
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname)" -delete
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname "[23]")" -delete
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1_-]*'"$(get_libname)" -delete
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1_-]*'"$(get_libname "[23]")" -delete
+	find "${LIB}" -maxdepth 1 -type l -name "libdb$(get_libname)" -delete #519364
+	find "${LIB}" -maxdepth 1 -type l -name "libdb$(get_libname "[23]")" -delete #519364
 	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -delete
 
 	# now rebuild all the correct ones
@@ -136,8 +138,8 @@ db_src_install_usrlibcleanup() {
 	# Clean out the symlinks so that they will not be recorded in the
 	# contents (bug #60732)
 
-	if [ "${D}" = "" ]; then
-		die "Calling clean_links while \$D not defined"
+	if [ "${ED}" = "" ]; then
+		die "Calling clean_links while \$ED not defined"
 	fi
 
 	if [ -e "${LIB}"/libdb.a ] && [ ! -e "${LIB}"/libdb-${SLOT}.a ]; then
@@ -150,8 +152,10 @@ db_src_install_usrlibcleanup() {
 		mv "${LIB}/libdb_cxx.a" "${LIB}/libdb_cxx-${SLOT}.a"
 	fi
 
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname)" -delete
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname "[23]")" -delete
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1_-]*'"$(get_libname)" -delete
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1_-]*'"$(get_libname "[23]")" -delete
+	find "${LIB}" -maxdepth 1 -type l -name "libdb$(get_libname)" -delete #519364
+	find "${LIB}" -maxdepth 1 -type l -name "libdb$(get_libname "[23]")" -delete #519364
 	einfo "removing unversioned static archives"
 	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -delete
 
