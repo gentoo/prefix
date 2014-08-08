@@ -52,6 +52,7 @@ need_php5() {
 
 # common settings go in here
 uses_php5() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	# cache this
 	libdir=$(get_libdir)
 

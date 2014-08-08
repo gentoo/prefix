@@ -38,6 +38,7 @@ DEPEND="=sci-biology/emboss-${EBOV}*
 S=${WORKDIR}/EMBOSS-${EBOV}/embassy/${EF}
 
 embassy_src_unpack() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	unpack ${A}
 	mkdir EMBOSS-${EBOV}/embassy
 	mv ${EF} EMBOSS-${EBOV}/embassy/
@@ -53,6 +54,7 @@ embassy_src_unpack() {
 }
 
 embassy_src_compile() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}" && PREFIX=
 	local PREFIX="${EROOT}/usr" # grobian: this feels so bad, ROOT in here
 	local EXTRA_CONF
 	! use X && EXTRA_CONF="${EXTRA_CONF} --without-x"
@@ -81,6 +83,7 @@ embassy_src_compile() {
 }
 
 embassy_src_install() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	emake DESTDIR="${D}" install || die "Install failed"
 	dodoc AUTHORS ChangeLog NEWS README
 	dodir /usr/share

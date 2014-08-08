@@ -118,6 +118,7 @@ APACHE2_4_DEPEND="=www-servers/apache-2.4*"
 
 _init_apache2() {
 	debug-print-function $FUNCNAME $*
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 
 	# WARNING: Do not use these variables with anything that is put
 	# into the dependency cache (DEPEND/RDEPEND/etc)

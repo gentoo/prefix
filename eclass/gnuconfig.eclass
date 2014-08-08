@@ -87,6 +87,7 @@ gnuconfig_do_update() {
 # this searches the standard locations for the newest config.{sub|guess}, and
 # returns the directory where they can be found.
 gnuconfig_findnewest() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	local locations=(
 		${EPREFIX}/usr/share/misc/config.sub
 		${EPREFIX}/usr/share/gnuconfig/config.sub
