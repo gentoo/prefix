@@ -117,6 +117,8 @@ src_prepare() {
 		# Python upstream refuses to listen to configure arguments
 		sed -i -e '/FRAMEWORKINSTALLAPPSPREFIX=/s:="[^"]*":="${prefix}/../Applications":' \
 			configure.ac configure || die
+		# we handle creation of symlinks in src_install
+		sed -i -e '/ln -fs .*PYTHONFRAMEWORK/d' Makefile.pre.in || die
 	fi
 	# don't try to do fancy things on Darwin
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
@@ -425,9 +427,10 @@ src_install() {
 		# NOTE: can't symlink the entire dir, because a real dir already exists
 		# on upgrade (site-packages), however since we h4x0rzed python to
 		# actually look into the UNIX-style dir, we just switch them around.
-		mkdir -p "${ED}"/usr/$(get_libdir)
-		mv "${D}${fwdir}"/Versions/${SLOT}/lib/python${SLOT} \
-			"${ED}"/usr/lib/ || die "can't move python${SLOT}"
+		mkdir -p "${ED}"/usr/$(get_libdir)/python${SLOT}
+		mv "${D}${fwdir}"/Versions/${SLOT}/lib/python${SLOT}/* \
+			"${ED}"/usr/$(get_libdir)/python${SLOT}/ || die "can't move python${SLOT}"
+		rmdir "${D}${fwdir}"/Versions/${SLOT}/lib/python${SLOT} || die
 		pushd "${D}${fwdir}"/Versions/${SLOT}/lib > /dev/null
 		ln -s ../../../../python${SLOT} || die
 		popd > /dev/null
