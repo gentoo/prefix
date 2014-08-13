@@ -421,7 +421,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20140228"
+	local PV="20140812"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
