@@ -1236,10 +1236,10 @@ bootstrap_stage3() {
 	)
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
-	# bison-2.7.1's configure checks for perl, but doesn't use it,
+	# >=bison-2.7.1's configure checks for perl, but doesn't use it,
 	# except for tests.  Since we don't want to pull in perl at this
 	# stage, fake it
-	PERL=$(which true) \
+	PERL=$(which touch) \
 		emerge_pkgs --nodeps "sys-devel/bison" || return 1
 
 	pkgs=(
