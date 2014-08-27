@@ -980,7 +980,7 @@ bootstrap_bison() {
 }
 
 bootstrap_m4() {
-	bootstrap_gnu m4 1.4.16 || bootstrap_gnu m4 1.4.15
+	bootstrap_gnu m4 1.4.17 || bootstrap_gnu m4 1.4.16 || bootstrap_gnu m4 1.4.15
 }
 
 bootstrap_gzip() {
