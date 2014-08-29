@@ -33,6 +33,7 @@ RDEPEND="${DEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.00-strtoull.patch
+	epatch "${FILESDIR}"/${P}-darwin-10.6.patch
 	# avoid eautoreconf when adding check for strtoull #263527
 	sed -i 's/ strtoul / strtoul strtoull __strtoull /' configure
 	sed -i "/#undef HAVE_STRTOUL\$/a#undef HAVE_STRTOULL\n#undef HAVE___STRTOULL" config.h.in

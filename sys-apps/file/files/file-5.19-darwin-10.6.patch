@@ -1,0 +1,19 @@
+http://bugs.gw.com/view.php?id=230
+
+CCLD file
+Undefined symbols:
+  "_getline", referenced from:
+    _main in file.o
+    _main in file.o
+ld: symbol(s) not found
+--- file-5.19/src/getline.c	2014-08-29 16:18:39.000000000 -0600
++++ file-5.19/src/getline.c.orig	2014-08-29 16:18:26.000000000 -0600
+@@ -76,7 +76,7 @@
+ 	}
+ }
+ 
+-ssize_t
++public ssize_t
+ getline(char **buf, size_t *bufsiz, FILE *fp)
+ {
+ 	return getdelim(buf, bufsiz, '\n', fp);
