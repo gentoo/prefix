@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.523 2014/08/04 19:57:18 polynomial-c Exp $
 
+  02 Sep 2014; Michael Haubenwallner <haubi@gentoo.org>
+  openssh-6.6_p1-r1.ebuild:
+  retry setting setuid bit in pkg_preinst
+
 *openssh-6.6.1_p1-r2 (04 Aug 2014)
 
   04 Aug 2014; Lars Wendler <polynomial-c@gentoo.org>
