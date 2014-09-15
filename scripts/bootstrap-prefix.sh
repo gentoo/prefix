@@ -385,11 +385,11 @@ bootstrap_setup() {
 	fi
 	
 	# Disable the STALE warning because the snapshot frequently gets stale.
-	echo 'PORTAGE_SYNC_STALE=0' >> "${PORTDIR}"/profiles/features/prefix/make.defaults
+	echo 'PORTAGE_SYNC_STALE=0 # for bootstrap-prefix.sh' >> "${ROOT}"/etc/portage/make.profile/make.defaults
 	
 	# Some people will hit bug 262653 with gcc-4.2 and elfutils. Let's skip it
 	# here and bring it in AFTER the --sync
-	echo "dev-libs/elfutils-0.153" >> "${PORTDIR}"/profiles/features/prefix/package.provided
+	echo "dev-libs/elfutils-0.153 # for bootstrap-prefix.sh" >> "${ROOT}"/etc/portage/make.profile/package.provided
 }
 
 do_tree() {
@@ -1122,19 +1122,11 @@ bootstrap_stage3() {
 	# Avoid circular deps caused by the default profiles (and IUSE defaults).
 	local baseUSE="${USE}"
 	export USE="-berkdb -fortran -gdbm -git -nls -pcre -readline -ssl -python bootstrap internal-glib ${baseUSE}"
-	if [[ -f ${ROOT}/usr/portage/.unpacked ]] ; then  # only mess with snapshot
-		{
-		echo "app-shells/bash -readline"
-		} >> "${ROOT}"/etc/portage/make.profile/package.use.force
-	fi
+	echo "app-shells/bash -readline # for bootstrap-prefix.sh" >> "${ROOT}"/etc/portage/make.profile/package.use.force
 
 	# Python >= 3.2 fails to build on gcc-4.2. Disable it until after the sync.
 	USE="-python_targets_python3_2 -python_targets_python3_3 ${USE}"
-	if [[ -f ${ROOT}/usr/portage/.unpacked ]] ; then  # only mess with snapshot
-		{
-		echo ">=dev-lang/python-3"
-		} >> "${ROOT}"/etc/portage/make.profile/package.mask
-	fi
+	echo ">=dev-lang/python-3 # for bootstrap-prefix.sh" >> "${ROOT}"/etc/portage/make.profile/package.mask
 
 	# Most binary Linux distributions seem to fancy toolchains that
 	# do not do c++ support (need to install a separate package).
@@ -1144,12 +1136,10 @@ bootstrap_stage3() {
 	# a cxx compiler though, so since we can build one without any extra
 	# deps with gcc, we should do so.
 	USE="${USE} -cxx"
-	if [[ -f ${ROOT}/usr/portage/.unpacked ]] ; then  # only mess with snapshot
-		{
-		echo "sys-devel/gcc cxx"
-		echo "sys-devel/gcc-apple cxx"
-		} >> "${ROOT}"/etc/portage/make.profile/package.use.force
-	fi
+	{
+		echo "sys-devel/gcc cxx # for bootstrap-prefix.sh"
+		echo "sys-devel/gcc-apple cxx # for bootstrap-prefix.sh"
+	} >> "${ROOT}"/etc/portage/make.profile/package.use.force
 
 	# Need need to spam the user about news until the emerge -e default
 	# because the tools aren't available to read the news item yet anyway.
@@ -1315,8 +1305,9 @@ bootstrap_stage3() {
 	#   shebangs (bin/egrep) originate in PORTAGE_SHELL
 	# So we must keep the temporary tools until 'emerge -e system' is done.
 
-	# note to myself: the tree MUST be synced at least once, or we'll
-	# carry on the polluted profile!
+	# kill temporary profile pollution
+	find "${ROOT}"/usr/portage/profiles -type f -exec sed -i -e '/# for bootstrap-prefix.sh$/d' {} +
+
 	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
 	if [[ ${OFFLINE_MODE} ]]; then
