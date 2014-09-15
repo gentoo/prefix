@@ -415,7 +415,7 @@ do_tree() {
 		efetch "$1/$2" || return 1
 		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
 		einfo "Unpacking, this may take a while"
-		bzip2 -dc ${DISTDIR}/$2 | $TAR -xf - -C ${PORTDIR%portage} || return 1
+		bzip2 -dc ${DISTDIR}/$2 | $TAR -xf - -C ${PORTDIR} --strip-components=1 || return 1
 		touch ${PORTDIR}/.unpacked
 	fi
 }
