@@ -1,55 +1,73 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.9_p1-r4.ebuild,v 1.16 2013/12/11 09:37:15 radhermit Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-6.6.1_p1-r2.ebuild,v 1.1 2014/08/04 19:57:18 polynomial-c Exp $
 
-EAPI="2"
-inherit eutils user flag-o-matic multilib autotools pam systemd
+EAPI="4"
+inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 
 # Make it more portable between straight releases
 # and _p? releases.
-PARCH=${P/_}
+PARCH=${P/.1_}
 
-HPN_PATCH="${PARCH}-hpn13v11.diff.gz"
-LDAP_PATCH="${PARCH/-/-lpk-}-0.3.14.patch.gz"
-X509_VER="7.0" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
+#HPN_PATCH="${PN}-6.6p1-hpnssh14v4.diff.gz"
+HPN_PATCH="${PN}-6.6.1p1-hpnssh14v4.diff.xz"
+LDAP_PATCH="${PN}-lpk-6.5p1-0.3.14.patch.gz"
+X509_VER="7.9" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
-	${HPN_PATCH:+hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} mirror://gentoo/${HPN_PATCH} )}
+	${HPN_PATCH:+hpn? ( http://dev.gentoo.org/~polynomial-c/${HPN_PATCH} )}
 	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
 	${X509_PATCH:+X509? ( http://roumenpetrov.info/openssh/x509-${X509_VER}/${X509_PATCH} )}
 	"
+	#${HPN_PATCH:+hpn? ( mirror://sourceforge/hpnssh/${HPN_PATCH} )}
 
 LICENSE="BSD GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bindist ${HPN_PATCH:++}hpn kerberos ldap libedit pam selinux skey static tcpd X X509"
+IUSE="bindist ${HPN_PATCH:++}hpn kerberos ldap ldns libedit pam selinux skey static tcpd X X509"
 
-RDEPEND="pam? ( virtual/pam )
-	kerberos? ( virtual/krb5 )
-	selinux? ( >=sys-libs/libselinux-1.28 )
-	skey? ( >=sys-auth/skey-1.1.5-r1 )
-	ldap? ( net-nds/openldap )
-	libedit? ( dev-libs/libedit )
+LIB_DEPEND="selinux? ( >=sys-libs/libselinux-1.28[static-libs(+)] )
+	skey? ( >=sys-auth/skey-1.1.5-r1[static-libs(+)] )
+	libedit? ( dev-libs/libedit[static-libs(+)] )
 	>=dev-libs/openssl-0.9.6d:0[bindist=]
-	>=sys-libs/zlib-1.2.3
-	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )
-	X? ( x11-apps/xauth )
-	userland_GNU? ( virtual/shadow )"
+	dev-libs/openssl[static-libs(+)]
+	>=sys-libs/zlib-1.2.3[static-libs(+)]
+	tcpd? ( >=sys-apps/tcp-wrappers-7.6[static-libs(+)] )"
+RDEPEND="
+	!static? (
+		${LIB_DEPEND//\[static-libs(+)]}
+		ldns? (
+			!bindist? ( net-libs/ldns[ecdsa,ssl] )
+			bindist? ( net-libs/ldns[-ecdsa,ssl] )
+		)
+	)
+	pam? ( virtual/pam )
+	kerberos? ( virtual/krb5 )
+	ldap? ( net-nds/openldap )"
 DEPEND="${RDEPEND}
+	static? (
+		${LIB_DEPEND}
+		ldns? (
+			!bindist? ( net-libs/ldns[ecdsa,ssl,static-libs(+)] )
+			bindist? ( net-libs/ldns[-ecdsa,ssl,static-libs(+)] )
+		)
+	)
 	virtual/pkgconfig
 	virtual/os-headers
 	sys-devel/autoconf"
 RDEPEND="${RDEPEND}
-	pam? ( >=sys-auth/pambase-20081028 )"
+	pam? ( >=sys-auth/pambase-20081028 )
+	userland_GNU? ( virtual/shadow )
+	X? ( x11-apps/xauth )"
 
 S=${WORKDIR}/${PARCH}
 
 pkg_setup() {
 	# this sucks, but i'd rather have people unable to `emerge -u openssh`
 	# than not be able to log in to their server any more
-	maybe_fail() { [[ -z ${!2} ]] && echo ${1} ; }
+	maybe_fail() { [[ -z ${!2} ]] && echo "$1" ; }
 	local fail="
 		$(use X509 && maybe_fail X509 X509_PATCH)
 		$(use ldap && maybe_fail ldap LDAP_PATCH)
@@ -65,7 +83,15 @@ pkg_setup() {
 	fi
 }
 
+save_version() {
+	# version.h patch conflict avoidence
+	mv version.h version.h.$1
+	cp -f version.h.pristine version.h
+}
+
 src_prepare() {
+	epatch "${FILESDIR}"/${P}.patch #508604
+
 	sed -i \
 		-e "/_PATH_XAUTH/s:/usr/X11R6/bin/xauth:${EPREFIX}/usr/bin/xauth:" \
 		pathnames.h || die
@@ -76,68 +102,57 @@ src_prepare() {
 	# don't break .ssh/authorized_keys2 for fun
 	sed -i '/^AuthorizedKeysFile/s:^:#:' sshd_config || die
 
-	epatch "${FILESDIR}"/${PN}-5.9_p1-drop-openssl-check.patch
 	epatch "${FILESDIR}"/${PN}-5.9_p1-sshd-gssapi-multihomed.patch #378361
 	if use X509 ; then
 		pushd .. >/dev/null
-		epatch "${FILESDIR}"/${PN}-5.9_p1-x509-glue.patch
+		epatch "${FILESDIR}"/${PN}-6.6_p1-x509-glue.patch
+		use hpn && epatch "${FILESDIR}"/${PN}-6.6.1_p1-x509-hpn14v4-glue-p2.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
-		epatch "${FILESDIR}"/${PN}-5.8_p1-x509-hpn-glue.patch
+		epatch "${FILESDIR}"/${PN}-6.3_p1-x509-hpn14v2-glue.patch
+		save_version X509
 	fi
 	if ! use X509 ; then
 		if [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 			epatch "${WORKDIR}"/${LDAP_PATCH%.*}
-			#epatch "${FILESDIR}"/${PN}-5.2p1-ldap-stdargs.diff #266654 - merged
-			# version.h patch conflict avoidence
-			mv version.h version.h.lpk
-			cp -f version.h.pristine version.h
+			save_version LPK
 		fi
 	else
 		use ldap && ewarn "Sorry, X509 and LDAP conflict internally, disabling LDAP"
 	fi
 	epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
+	epatch "${FILESDIR}"/${PN}-6.6_p1-openssl-ignore-status.patch
 	if [[ -n ${HPN_PATCH} ]] && use hpn; then
 		epatch "${WORKDIR}"/${HPN_PATCH%.*}
-		epatch "${FILESDIR}"/${PN}-5.6_p1-hpn-progressmeter.patch
-		# version.h patch conflict avoidence
-		mv version.h version.h.hpn
-		cp -f version.h.pristine version.h
-		# The AES-CTR multithreaded variant is broken, and causes random hangs
-		# when combined background threading and control sockets. To avoid
-		# this, we change the internal table to use the non-multithread version
-		# for the meantime. Do NOT remove this in new versions. See bug #354113
-		# comment #6 for testcase.
-		# Upstream reference: http://www.psc.edu/networking/projects/hpn-ssh/
-		## Additionally, the MT-AES-CTR mode cipher replaces the default ST-AES-CTR mode
-		## cipher. Be aware that if the client process is forked using the -f command line
-		## option the process will hang as the parent thread gets 'divorced' from the key
-		## generation threads. This issue will be resolved as soon as possible
-		sed -i \
-			-e '/aes...-ctr.*SSH_CIPHER_SSH2/s,evp_aes_ctr_mt,evp_aes_128_ctr,' \
-			cipher.c || die
+		epatch "${FILESDIR}"/${PN}-6.5_p1-hpn-cipher-align.patch #498632
+		save_version HPN
 	fi
 
-	sed -i "s:-lcrypto:$(pkg-config --libs openssl):" configure{,.ac} || die
+	tc-export PKG_CONFIG
+	local sed_args=(
+		-e "s:-lcrypto:$(${PKG_CONFIG} --libs openssl):"
+		# Disable PATH reset, trust what portage gives us #254615
+		-e 's:^PATH=/:#PATH=/:'
+		# Disable fortify flags ... our gcc does this for us
+		-e 's:-D_FORTIFY_SOURCE=2::'
+	)
+	# The -ftrapv flag ICEs on hppa #505182
+	use hppa && sed_args+=(
+		-e '/CFLAGS/s:-ftrapv:-fdisable-this-test:'
+		-e '/OSSH_CHECK_CFLAG_LINK.*-ftrapv/d'
+	)
+	sed -i "${sed_args[@]}" configure{.ac,} || die
 
-	#epatch "${FILESDIR}"/${PN}-5.5_p1-interix.patch # fails to apply
-
-	# setting setuid bit may fail as non-priviledged user (prefix).
-	if [[ $(id -u) != 0 ]]; then
-		sed -i -e 's/-m 4711/-m 0711/' "${S}"/Makefile.in || die
-	fi
-
-	# Disable PATH reset, trust what portage gives us. bug 254615
-	sed -i -e 's:^PATH=/:#PATH=/:' configure || die
+	sed -i -e 's/-m 4711/-m 0711/' "${S}"/Makefile.in || die
 
 	epatch_user #473004
 
 	# Now we can build a sane merged version.h
 	(
 		sed '/^#define SSH_RELEASE/d' version.h.* | sort -u
-		printf '#define SSH_RELEASE SSH_VERSION SSH_PORTABLE %s %s\n' \
-			"$([ -e version.h.hpn ] && echo SSH_HPN)" \
-			"$([ -e version.h.lpk ] && echo SSH_LPK)"
+		macros=()
+		for p in HPN LPK X509 ; do [ -e version.h.${p} ] && macros+=( SSH_${p} ) ; done
+		printf '#define SSH_RELEASE SSH_VERSION SSH_PORTABLE %s\n' "${macros}"
 	) > version.h
 
 	eautoreconf
@@ -158,49 +173,52 @@ static_use_with() {
 }
 
 src_configure() {
+	local myconf
 	addwrite /dev/ptmx
 	addpredict /etc/skey/skeykeys #skey configure code triggers this
 
 	use static && append-ldflags -static
 
-	# for some reason the stack-protector detection code doesn't really work on
-	# solaris, so don't try it, FreeMiNT neither
-	[[ ${CHOST} == *-solaris* || ${CHOST} == *-mint* ]] && \
-		myconf="${myconf} --without-stackprotect"
+	# Special settings for Gentoo/FreeBSD 9.0 or later (see bug #391011)
+	if use elibc_FreeBSD && version_is_at_least 9.0 "$(uname -r|sed 's/\(.\..\).*/\1/')" ; then
+		myconf="${myconf} --disable-utmp --disable-wtmp --disable-wtmpx"
+		append-ldflags -lutil
+	fi
 
 	econf \
 		--with-ldflags="${LDFLAGS}" \
 		--disable-strip \
+		--with-pid-dir="${EPREFIX}"/var/run \
 		--sysconfdir="${EPREFIX}"/etc/ssh \
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/misc \
 		--datadir="${EPREFIX}"/usr/share/openssh \
 		--with-privsep-path="${EPREFIX}"/var/empty \
-		--with-pid-dir="${EPREFIX}"/var/run \
 		--with-privsep-user=sshd \
 		--with-md5-passwords \
 		--with-ssl-engine \
 		$(static_use_with pam) \
 		$(static_use_with kerberos kerberos5 "${EPREFIX}"/usr) \
 		${LDAP_PATCH:+$(use X509 || ( use ldap && use_with ldap ))} \
+		$(use_with ldns) \
 		$(use_with libedit) \
 		$(use_with selinux) \
 		$(use_with skey) \
-		$(use_with tcpd tcp-wrappers)
+		$(use_with tcpd tcp-wrappers) \
+		${myconf}
 }
 
 src_install() {
-	emake install-nokeys DESTDIR="${D}" || die
+	emake install-nokeys DESTDIR="${D}"
 	fperms 600 /etc/ssh/sshd_config
-	dobin contrib/ssh-copy-id || die
-	newinitd "${FILESDIR}"/sshd.rc6.3 sshd
+	dobin contrib/ssh-copy-id
+	newinitd "${FILESDIR}"/sshd.rc6.4 sshd
 	newconfd "${FILESDIR}"/sshd.confd sshd
 	keepdir /var/empty
-	keepdir /var/run
 
 	# not all openssl installs support ecc, or are functional #352645
 	if ! grep -q '#define OPENSSL_HAS_ECC 1' config.h ; then
 		elog "dev-libs/openssl was built with 'bindist' - disabling ecdsa support"
-		dosed 's:&& gen_key ecdsa::' /etc/init.d/sshd || die
+		sed -i 's:&& gen_key ecdsa::' "${ED}"/etc/init.d/sshd || die
 	fi
 
 	newpamd "${FILESDIR}"/sshd.pam_include.2 sshd
@@ -212,6 +230,18 @@ src_install() {
 			-e "/^#PrintLastLog /s:.*:PrintLastLog no:" \
 			"${ED}"/etc/ssh/sshd_config || die "sed of configuration file failed"
 	fi
+
+	# Gentoo tweaks to default config files
+	cat <<-EOF >> "${ED}"/etc/ssh/sshd_config
+
+	# Allow client to pass locale environment variables #367017
+	AcceptEnv LANG LC_*
+	EOF
+	cat <<-EOF >> "${ED}"/etc/ssh/ssh_config
+
+	# Send locale environment variables #367017
+	SendEnv LANG LC_*
+	EOF
 
 	# This instruction is from the HPN webpage,
 	# Used for the server logging functionality
@@ -230,12 +260,12 @@ src_install() {
 	diropts -m 0700
 	dodir /etc/skel/.ssh
 
-	systemd_dounit "${FILESDIR}"/sshd.{service,socket} || die
-	systemd_newunit "${FILESDIR}"/sshd_at.service 'sshd@.service' || die
+	systemd_dounit "${FILESDIR}"/sshd.{service,socket}
+	systemd_newunit "${FILESDIR}"/sshd_at.service 'sshd@.service'
 }
 
 src_test() {
-	use prefix && return # horse drug, see #335343
+	[[ $(id -u) = 0 ]] || return #335343
 	local t tests skipped failed passed shell
 	tests="interop-tests compat-tests"
 	skipped=""
@@ -272,20 +302,17 @@ src_test() {
 pkg_preinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
+	fperms 4711 /usr/$(get_libdir)/misc/ssh-keysign*
 }
 
 pkg_postinst() {
-	elog "Starting with openssh-5.8p1, the server will default to a newer key"
-	elog "algorithm (ECDSA).  You are encouraged to manually update your stored"
-	elog "keys list as servers update theirs.  See ssh-keyscan(1) for more info."
-	echo
+	if has_version "<${CATEGORY}/${PN}-5.8_p1" ; then
+		elog "Starting with openssh-5.8p1, the server will default to a newer key"
+		elog "algorithm (ECDSA).  You are encouraged to manually update your stored"
+		elog "keys list as servers update theirs.  See ssh-keyscan(1) for more info."
+	fi
 	ewarn "Remember to merge your config files in /etc/ssh/ and then"
 	ewarn "reload sshd: '/etc/init.d/sshd reload'."
-	if use pam ; then
-		echo
-		ewarn "Please be aware users need a valid shell in /etc/passwd"
-		ewarn "in order to be allowed to login."
-	fi
 	# This instruction is from the HPN webpage,
 	# Used for the server logging functionality
 	if [[ -n ${HPN_PATCH} ]] && use hpn ; then

@@ -141,11 +141,7 @@ src_prepare() {
 	)
 	sed -i "${sed_args[@]}" configure{.ac,} || die
 
-	# setting setuid bit may fail as non-priviledged user (prefix, userpriv?)
-	# during build, retry in pkg_preinst
-	if [[ $(id -u) != 0 ]]; then
-		sed -i -e 's/-m 4711/-m 0711/' "${S}"/Makefile.in || die
-	fi
+	sed -i -e 's/-m 4711/-m 0711/' "${S}"/Makefile.in || die
 
 	epatch_user #473004
 
@@ -267,7 +263,7 @@ src_install() {
 }
 
 src_test() {
-	use prefix && return # horse drug, see #335343
+	[[ $(id -u) = 0 ]] || return #335343
 	local t tests skipped failed passed shell
 	tests="interop-tests compat-tests"
 	skipped=""
@@ -304,8 +300,7 @@ src_test() {
 pkg_preinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
-	# retry setting setuid bit, may fail as non-priviledged user (prefix).
-	$(usex prefix 'nonfatal' '') fperms 4711 /usr/$(get_libdir)/misc/ssh-keysign*
+	fperms 4711 /usr/$(get_libdir)/misc/ssh-keysign*
 }
 
 pkg_postinst() {

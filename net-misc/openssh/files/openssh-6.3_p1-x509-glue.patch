@@ -1,12 +1,13 @@
 make x509 apply after openssh-5.9_p1-sshd-gssapi-multihomed.patch
 
---- openssh-5.9p1+x509-7.0.diff
-+++ openssh-5.9p1+x509-7.0.diff
-@@ -11995,9 +11995,9 @@
+--- openssh-6.3p1+x509-7.6.diff
++++ openssh-6.3p1+x509-7.6.diff
+@@ -14784,10 +14784,9 @@
+  .It Cm ChallengeResponseAuthentication
   Specifies whether challenge-response authentication is allowed (e.g. via
   PAM or though authentication styles supported in
- @@ -430,6 +507,16 @@
-+ This facility is provided to assist with operation on multi homed machines.
+-@@ -490,6 +567,16 @@
++@@ -490,5 +567,15 @@
   The default is
   .Dq yes .
 - Note that this option applies to protocol version 2 only.
