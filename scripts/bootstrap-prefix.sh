@@ -778,6 +778,15 @@ bootstrap_python() {
 	local myconf=""
 
 	case $CHOST in
+	(x86_64-*-*|sparcv9-*-*)
+		export CFLAGS="-m64"
+		;;
+	(i?86-*-*)
+		export CFLAGS="-m32"
+		;;
+	esac
+
+	case $CHOST in
 		*-*-aix*)
 			# Python stubbornly insists on using cc_r to compile.  We
 			# know better, so force it to listen to us
@@ -789,7 +798,7 @@ bootstrap_python() {
 		*-linux*)
 			# Bug 382263: make sure Python will know about the libdir in use for
 			# the current arch
-			libdir="-L/usr/lib/$(gcc -print-multi-os-directory)"
+			libdir="-L/usr/lib/$(gcc ${CFLAGS} -print-multi-os-directory)"
 		;;
 		x86_64-*-solaris*|sparcv9-*-solaris*)
 			# Like above, make Python know where GCC's 64-bits
@@ -801,7 +810,7 @@ bootstrap_python() {
 	# python refuses to find the zlib headers that are built in the
 	# offset
 	export CPPFLAGS="-I$EPREFIX/tmp/usr/include"
-	export LDFLAGS="-L$EPREFIX/tmp/usr/lib"
+	export LDFLAGS="${CFLAGS} -L$EPREFIX/tmp/usr/lib"
 	# set correct flags for runtime for ELF platforms
 	case $CHOST in
 		*-*bsd*|*-linux*)
