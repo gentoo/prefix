@@ -451,7 +451,7 @@ bootstrap_startscript() {
 	if ! emerge -u ${theshell} ; then
 		eerror "Your shell is not available in portage, hence we cannot" > /dev/stderr
 		eerror "automate starting your prefix, set SHELL and rerun this script" > /dev/stderr
-		return -1
+		return 1
 	fi
 	einfo "Creating the Prefix start script (startprefix)"
 	# currently I think right into the prefix is the best location, as
