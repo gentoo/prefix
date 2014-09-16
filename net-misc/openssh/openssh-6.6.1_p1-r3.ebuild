@@ -302,7 +302,7 @@ src_test() {
 pkg_preinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
-	fperms 4711 /usr/$(get_libdir)/misc/ssh-keysign*
+	fperms 4711 /usr/$(get_libdir)/misc/ssh-keysign
 }
 
 pkg_postinst() {
