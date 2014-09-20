@@ -1,12 +1,12 @@
-diff -ru a/bin/g-cpan b/bin/g-cpan
---- a/bin/g-cpan	2007-04-24 17:07:19 -0700
-+++ b/bin/g-cpan	2009-04-22 14:24:03 -0700
+diff -ur g-cpan-0.16.4.orig/bin/g-cpan g-cpan-0.16.4/bin/g-cpan
+--- g-cpan-0.16.4.orig/bin/g-cpan	2011-01-25 00:10:13.000000000 +0100
++++ g-cpan-0.16.4/bin/g-cpan	2012-09-29 16:59:48.000000000 +0200
 @@ -1,4 +1,4 @@
 -#!/usr/bin/perl -w
 +#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
  package main;
  
- # Copyright 1999-2006 Gentoo Foundation
+ # Copyright 1999-2011 Gentoo Foundation
 @@ -32,7 +32,7 @@
  my $prog = basename($0);
  
@@ -57,7 +57,7 @@ diff -ru a/bin/g-cpan b/bin/g-cpan
  
  if (!$install && defined($ask))
  {
-@@ -210,7 +210,7 @@
+@@ -227,7 +227,7 @@
  
  # Confirm that there is an /etc/portage/categories file
  # and that we have an entry for perl-gcpan in it.
@@ -66,7 +66,7 @@ diff -ru a/bin/g-cpan b/bin/g-cpan
  if (-f "$cat_file")
  {
  
-@@ -235,7 +235,7 @@
+@@ -252,7 +252,7 @@
              }
              else
              {
@@ -75,7 +75,7 @@ diff -ru a/bin/g-cpan b/bin/g-cpan
                  print_err("Please run $prog as a user with sufficient permissions");
                  exit;
              }
-@@ -251,7 +251,7 @@
+@@ -268,7 +268,7 @@
      }
      else
      {
@@ -84,7 +84,7 @@ diff -ru a/bin/g-cpan b/bin/g-cpan
          print_err("Please run $prog as a user with sufficient permissions");
          exit;
      }
-@@ -493,7 +493,7 @@
+@@ -518,7 +518,7 @@
      {
  
              # First, check to see if this came with the core perl install
@@ -93,8 +93,8 @@ diff -ru a/bin/g-cpan b/bin/g-cpan
              my $s_perl   = new DirHandle($pkgdbdir);
              my $eb       = $ebuild_wanted;
              $eb =~ s{::}{/}gxs;
-@@ -626,8 +626,8 @@
-             if ($overlay) { @overlays = split ' ', $overlay }
+@@ -660,8 +660,8 @@
+             }
              else
              {
 -                push @overlays, "/var/tmp/g-cpan"
@@ -104,7 +104,7 @@ diff -ru a/bin/g-cpan b/bin/g-cpan
              }
              foreach my $target_dir (@overlays)
              {
-@@ -741,7 +741,7 @@
+@@ -802,7 +802,7 @@
                              if (defined($buildpkg) or defined($buildpkgonly)) {
                                  print $EBUILD "\npkg_postinst() {\n";
                                  print $EBUILD "elog \"If you redistribute this package, please remember to\"\n";
@@ -113,7 +113,7 @@ diff -ru a/bin/g-cpan b/bin/g-cpan
  
                                  print $EBUILD "}\n";
                              }
-@@ -1064,7 +1064,7 @@
+@@ -1131,7 +1131,7 @@
  
  =item B<-L,--log>
  
@@ -122,10 +122,11 @@ diff -ru a/bin/g-cpan b/bin/g-cpan
  
  =item B<-s,--search>
  
-diff -ru a/lib/Gentoo/CPAN.pm b/lib/Gentoo/CPAN.pm
---- a/lib/Gentoo/CPAN.pm	2007-04-24 17:06:19 -0700
-+++ b/lib/Gentoo/CPAN.pm	2009-04-22 14:13:33 -0700
-@@ -34,19 +34,19 @@
+Only in g-cpan-0.16.4/bin: g-cpan.orig
+diff -ur g-cpan-0.16.4.orig/lib/Gentoo/CPAN.pm g-cpan-0.16.4/lib/Gentoo/CPAN.pm
+--- g-cpan-0.16.4.orig/lib/Gentoo/CPAN.pm	2012-09-29 16:30:49.000000000 +0200
++++ g-cpan-0.16.4/lib/Gentoo/CPAN.pm	2012-09-29 16:59:48.000000000 +0200
+@@ -33,19 +33,19 @@
  use constant CPAN_CFG_NAME => 'MyConfig.pm';
  
  # defaults tools for CPAN Config
@@ -157,7 +158,7 @@ diff -ru a/lib/Gentoo/CPAN.pm b/lib/Gentoo/CPAN.pm
  
  sub new {
      my $proto = shift;
-@@ -538,7 +538,7 @@
+@@ -553,7 +553,7 @@
    'make' => q[$make_prog],
    'make_arg' => q[],
    'make_install_arg' => q[],
@@ -166,15 +167,16 @@ diff -ru a/lib/Gentoo/CPAN.pm b/lib/Gentoo/CPAN.pm
    'makepl_arg' => q[],
    'mbuild_arg' => q[],
    'mbuild_install_arg' => q[],
-diff -ru a/lib/Gentoo/Portage.pm b/lib/Gentoo/Portage.pm
---- a/lib/Gentoo/Portage.pm	2007-04-24 17:06:19 -0700
-+++ b/lib/Gentoo/Portage.pm	2009-04-22 14:13:33 -0700
+diff -ur g-cpan-0.16.4.orig/lib/Gentoo/Portage.pm g-cpan-0.16.4/lib/Gentoo/Portage.pm
+--- g-cpan-0.16.4.orig/lib/Gentoo/Portage.pm	2012-09-29 16:30:49.000000000 +0200
++++ g-cpan-0.16.4/lib/Gentoo/Portage.pm	2012-09-29 17:01:00.000000000 +0200
 @@ -47,7 +47,7 @@
          return($var =~ /^$envvar$/ );
      };
  
--foreach my $file ( "$ENV{HOME}/.gcpanrc", "/etc/make.conf", "/etc/make.globals" ) {
-+foreach my $file ( "$ENV{HOME}/.gcpanrc", "@GENTOO_PORTAGE_EPREFIX@/etc/make.conf", "@GENTOO_PORTAGE_EPREFIX@/etc/make.globals" ) {
+-foreach my $file ( "$ENV{HOME}/.gcpanrc", '/etc/portage/make.conf', '/etc/make.conf', '/etc/make.globals' ) {
++foreach my $file ( "$ENV{HOME}/.gcpanrc", "@GENTOO_PORTAGE_EPREFIX@/etc/portage/make.conf", "@GENTOO_PORTAGE_EPREFIX@/etc/make.conf", "@GENTOO_PORTAGE_EPREFIX@/etc/make.globals" ) {
      if ( -f $file) {
      	my $importer = Shell::EnvImporter->new(
      		file => $file,
+Only in g-cpan-0.16.4: prefix.patch
