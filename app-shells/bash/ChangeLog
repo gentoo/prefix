@@ -1,6 +1,255 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.351 2014/01/31 05:42:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.389 2014/09/25 11:35:56 polynomial-c Exp $
+
+  25 Sep 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-3.1_p17.ebuild,
+  -bash-3.1_p18.ebuild, -bash-3.2_p51.ebuild, -bash-3.2_p52.ebuild,
+  -bash-4.0_p38.ebuild, -bash-4.0_p39.ebuild, -bash-4.1_p11.ebuild,
+  -bash-4.1_p12.ebuild, -bash-4.2_p45.ebuild, -bash-4.2_p48.ebuild,
+  -bash-4.3_p25.ebuild:
+  Removed vulnerable versions.
+
+  25 Sep 2014; Raúl Porcel <armin76@gentoo.org> bash-3.1_p18-r1.ebuild,
+  bash-3.2_p52-r1.ebuild, bash-4.0_p39-r1.ebuild, bash-4.1_p12-r1.ebuild,
+  bash-4.2_p48-r1.ebuild:
+  arm64/m68k/s390/sh stable
+
+  25 Sep 2014; Jeroen Roovers <jer@gentoo.org> bash-3.1_p18-r1.ebuild,
+  bash-3.2_p52-r1.ebuild, bash-4.0_p39-r1.ebuild, bash-4.1_p12-r1.ebuild,
+  bash-4.2_p48-r1.ebuild:
+  Stable for HPPA (bug #523592).
+
+  25 Sep 2014; Agostino Sarubbo <ago@gentoo.org> bash-3.1_p18-r1.ebuild,
+  bash-3.2_p52-r1.ebuild, bash-4.0_p39-r1.ebuild, bash-4.1_p12-r1.ebuild,
+  bash-4.2_p48-r1.ebuild:
+  Stable for alpha/amd64/arm/ia64/ppc/ppc64/sparc/sh/x86 wrt the security bug
+  #523592
+
+*bash-4.3_p25-r1 (25 Sep 2014)
+*bash-4.2_p48-r1 (25 Sep 2014)
+*bash-4.1_p12-r1 (25 Sep 2014)
+*bash-4.0_p39-r1 (25 Sep 2014)
+*bash-3.2_p52-r1 (25 Sep 2014)
+*bash-3.1_p18-r1 (25 Sep 2014)
+
+  25 Sep 2014; Lars Wendler <polynomial-c@gentoo.org> +bash-3.1_p18-r1.ebuild,
+  +bash-3.2_p52-r1.ebuild, +bash-4.0_p39-r1.ebuild, +bash-4.1_p12-r1.ebuild,
+  +bash-4.2_p48-r1.ebuild, +bash-4.3_p25-r1.ebuild,
+  +files/bash-eol-pushback.patch:
+  Another security bump for CVE-2014-7169 (bug #523592).
+
+  24 Sep 2014; Jeroen Roovers <jer@gentoo.org> bash-3.1_p18.ebuild,
+  bash-3.2_p52.ebuild, bash-4.0_p39.ebuild, bash-4.1_p12.ebuild,
+  bash-4.2_p48.ebuild:
+  Stable for HPPA (bug #523592).
+
+*bash-4.3_p25 (24 Sep 2014)
+*bash-4.2_p48 (24 Sep 2014)
+*bash-4.1_p12 (24 Sep 2014)
+*bash-4.0_p39 (24 Sep 2014)
+*bash-3.2_p52 (24 Sep 2014)
+*bash-3.1_p18 (24 Sep 2014)
+
+  24 Sep 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-3.1_p17-r1.ebuild,
+  +bash-3.1_p18.ebuild, -bash-3.2_p51-r1.ebuild, +bash-3.2_p52.ebuild,
+  -bash-4.0_p38-r1.ebuild, +bash-4.0_p39.ebuild, -bash-4.1_p11-r1.ebuild,
+  +bash-4.1_p12.ebuild, -bash-4.2_p47.ebuild, -bash-4.2_p47-r1.ebuild,
+  +bash-4.2_p48.ebuild, -bash-4.3_p24-r2.ebuild, +bash-4.3_p25.ebuild,
+  -files/bash-3.1-funcdef-import.patch, -files/bash-4.3-funcdef-import.patch:
+  Added official upstream fixes. Removed old. Committed straight to stable
+  where the removed ebuilds were stable.
+
+  24 Sep 2014; Agostino Sarubbo <ago@gentoo.org> bash-3.1_p17-r1.ebuild,
+  bash-3.2_p51-r1.ebuild, bash-4.0_p38-r1.ebuild, bash-4.1_p11-r1.ebuild,
+  bash-4.2_p47-r1.ebuild:
+  Stable for alpha/amd64/arm/ia64/ppc/ppc64/sparc/x86 wrt the security bug
+  #523592
+
+*bash-4.3_p24-r2 (24 Sep 2014)
+*bash-4.2_p47-r1 (24 Sep 2014)
+*bash-4.1_p11-r1 (24 Sep 2014)
+*bash-4.0_p38-r1 (24 Sep 2014)
+*bash-3.2_p51-r1 (24 Sep 2014)
+*bash-3.1_p17-r1 (24 Sep 2014)
+
+  24 Sep 2014; Lars Wendler <polynomial-c@gentoo.org> +bash-3.1_p17-r1.ebuild,
+  +bash-3.2_p51-r1.ebuild, +bash-4.0_p38-r1.ebuild, +bash-4.1_p11-r1.ebuild,
+  +bash-4.2_p47-r1.ebuild, -bash-4.3_p24.ebuild, -bash-4.3_p24-r1.ebuild,
+  +bash-4.3_p24-r2.ebuild, +files/bash-3.1-funcdef-import.patch,
+  +files/bash-4.3-funcdef-import.patch:
+  Security bump (bug #523592). Fixed environment handling command injection
+  (CVE-2014-6271).
+
+*bash-4.3_p24-r1 (09 Sep 2014)
+
+  09 Sep 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p22-r1.ebuild,
+  +bash-4.3_p24-r1.ebuild, -files/bash-4.3-indirect-array-element.patch,
+  +files/bash-4.3-term-cleanup.patch:
+  Revbump so bash cleans up readline and its terminal state in all cases.
+  Removed old.
+
+  30 Aug 2014; Lars Wendler <polynomial-c@gentoo.org> files/bashrc:
+  Added KDE's konsole to the list of valid terms for PROMPT_COMMAND.
+
+*bash-4.3_p24 (24 Aug 2014)
+
+  24 Aug 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p22.ebuild,
+  +bash-4.3_p24.ebuild:
+  Version bump. Removed old.
+
+*bash-4.3_p22-r1 (12 Aug 2014)
+
+  12 Aug 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p18-r4.ebuild,
+  +bash-4.3_p22-r1.ebuild, +files/bash-4.3-append-process-segfault.patch,
+  -files/bash-4.3-here-doc-ps2-comsub.patch,
+  -files/bash-4.3-lastpipe-nested-pipe-segfault.patch:
+  Revbump to fix a segmentation fault with lastpipe. Removed old.
+
+*bash-4.3_p22 (02 Aug 2014)
+
+  02 Aug 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p18-r3.ebuild,
+  +bash-4.3_p22.ebuild:
+  Version bump. Removed old.
+
+*bash-4.3_p18-r4 (24 Jul 2014)
+
+  24 Jul 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p18-r2.ebuild,
+  +bash-4.3_p18-r4.ebuild, +files/bash-4.3-indirect-array-element.patch:
+  Revbump to fix a bug in array name expansion. Removed old.
+
+*bash-4.3_p18-r3 (08 Jul 2014)
+
+  08 Jul 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p18.ebuild,
+  -bash-4.3_p18-r1.ebuild, +bash-4.3_p18-r3.ebuild,
+  +files/bash-4.3-lastpipe-nested-pipe-segfault.patch:
+  Revbump to fix a segfault in lastpipe mode. Removed old.
+
+*bash-4.3_p18-r2 (17 Jun 2014)
+
+  17 Jun 2014; Mike Frysinger <vapier@gentoo.org> +bash-4.3_p18-r2.ebuild,
+  +files/bash-4.3-compat-lvl.patch, +files/bash-4.3-parse-time-keyword.patch:
+  Fix plugins handling and add some fixes from upstream.
+
+*bash-4.3_p18-r1 (05 Jun 2014)
+
+  05 Jun 2014; Lars Wendler <polynomial-c@gentoo.org> +bash-4.3_p18-r1.ebuild,
+  +files/bash-4.3-here-doc-ps2-comsub.patch:
+  Added upstream fix.
+
+*bash-4.3_p18 (18 May 2014)
+
+  18 May 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p11-r4.ebuild,
+  -bash-4.3_p11-r5.ebuild, +bash-4.3_p18.ebuild:
+  Version bump. Removed old.
+
+  14 May 2014; Lars Wendler <polynomial-c@gentoo.org> bash-4.3_p11-r5.ebuild,
+  +files/bash-4.3-bind-compound-arry.patch,
+  -files/bash-4.3-bind-compund-arry.patch:
+  Fixed patchname.
+
+*bash-4.3_p11-r5 (13 May 2014)
+
+  13 May 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p11-r2.ebuild,
+  +bash-4.3_p11-r5.ebuild, +files/bash-4.3-bind-compund-arry.patch:
+  Added yet another upstream fix. Removed old.
+
+*bash-4.3_p11-r4 (07 May 2014)
+
+  07 May 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p11-r3.ebuild,
+  +bash-4.3_p11-r4.ebuild, +files/bash-4.3-localvar-invisible.patch:
+  Added another upstream fix. Removed old.
+
+*bash-4.3_p11-r3 (07 May 2014)
+
+  07 May 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p11-r1.ebuild,
+  +bash-4.3_p11-r3.ebuild, +files/bash-4.3-extglob-directory.patch:
+  Added another upstream fix. Removed old.
+
+*bash-4.3_p11-r2 (26 Apr 2014)
+
+  26 Apr 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p11.ebuild,
+  +bash-4.3_p11-r2.ebuild, +files/bash-4.3-complete-dequoting.patch:
+  Added another upstream fix. Removed old.
+
+*bash-4.3_p11-r1 (16 Apr 2014)
+
+  16 Apr 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.2_p45-r1.ebuild,
+  -bash-4.2_p46-r1.ebuild, +bash-4.3_p11-r1.ebuild,
+  +files/bash-4.3-jobs-run-sigchld-trap.patch:
+  Added upstream fix. Removed old.
+
+*bash-4.2_p47 (14 Apr 2014)
+
+  14 Apr 2014; Lars Wendler <polynomial-c@gentoo.org> +bash-4.2_p47.ebuild,
+  bash-4.3_p11.ebuild:
+  Version bump. Added prefix support to bash-4.3
+
+*bash-4.3_p11 (12 Apr 2014)
+
+  12 Apr 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3_p8.ebuild,
+  +bash-4.3_p11.ebuild, -files/bash-4.3-input-line-realloc.patch,
+  -files/bash-4.3-pcomplete-dequote.patch:
+  Version bump. Removed old.
+
+  02 Apr 2014; Tom Wijsman <TomWij@gentoo.org> bash-4.2_p46-r1.ebuild:
+  Downgrade 4.2_p46-r1 to EAPI 4 per Poly-C's request, as this is an essential
+  base-system package.
+
+*bash-4.2_p46-r1 (02 Apr 2014)
+
+  02 Apr 2014; Tom Wijsman <TomWij@gentoo.org> +bash-4.2_p46-r1.ebuild,
+  -bash-4.2_p46.ebuild:
+  [QA] Revision bump to 4.2_p46-r1 for EAPI 5 and Prefix support.
+
+*bash-4.2_p46 (01 Apr 2014)
+
+  01 Apr 2014; Mike Frysinger <vapier@gentoo.org> +bash-4.2_p46.ebuild:
+  Version bump.
+
+*bash-4.3_p8 (31 Mar 2014)
+
+  31 Mar 2014; Lars Wendler <polynomial-c@gentoo.org> -bash-4.3-r3.ebuild,
+  +bash-4.3_p8.ebuild, -files/bash-4.3-compound-array-empty-value.patch,
+  -files/bash-4.3-debug-trap.patch, -files/bash-4.3-extglob-skipname.patch,
+  -files/bash-4.3-jobs-exit.patch, -files/bash-4.3-parse-ansi-expand.patch:
+  Bump to latest official patch release.
+
+*bash-4.3-r3 (28 Mar 2014)
+
+  28 Mar 2014; Mike Frysinger <vapier@gentoo.org> +bash-4.3-r3.ebuild,
+  +files/bash-4.3-input-line-realloc.patch, -bash-4.3-r2.ebuild:
+  Fix from upstream for crash when exiting the shell.
+
+*bash-4.3-r2 (20 Mar 2014)
+
+  20 Mar 2014; Mike Frysinger <vapier@gentoo.org> +bash-4.3-r2.ebuild,
+  +files/bash-4.3-compound-array-empty-value.patch,
+  +files/bash-4.3-extglob-skipname.patch, -bash-4.3-r1.ebuild:
+  Add more fixes from upstream.
+
+  19 Mar 2014; Mike Frysinger <vapier@gentoo.org> bash-4.3-r1.ebuild:
+  Drop job/readline patches as they appear to be fixed in this release already.
+
+  19 Mar 2014; Mike Frysinger <vapier@gentoo.org> bash-4.3-r1.ebuild:
+  Move the readline version to a global var so it stays in sync.
+
+*bash-4.3-r1 (10 Mar 2014)
+
+  10 Mar 2014; Mike Frysinger <vapier@gentoo.org> +bash-4.3-r1.ebuild,
+  +files/bash-4.3-debug-trap.patch, +files/bash-4.3-jobs-exit.patch,
+  +files/bash-4.3-parse-ansi-expand.patch,
+  +files/bash-4.3-pcomplete-dequote.patch, -bash-4.3.ebuild:
+  Add misc fixes from upstream.
+
+  28 Feb 2014; Mike Frysinger <vapier@gentoo.org> -bash-4.3_rc2.ebuild,
+  bash-4.3.ebuild:
+  Fix up doc install, delete a bit of debug code, keep the old src_unpack to
+  avoid warnings when using patches, and use POSIX shell in pkg_* funcs.
+
+*bash-4.3 (27 Feb 2014)
+
+  27 Feb 2014; Lars Wendler <polynomial-c@gentoo.org> +bash-4.3.ebuild:
+  Version bump.
 
   11 Feb 2014; Fabian Groffen <grobian@gentoo.org> bash-4.2_p45-r1.ebuild,
   bash-4.3_rc2.ebuild:
