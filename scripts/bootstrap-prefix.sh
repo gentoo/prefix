@@ -100,7 +100,10 @@ efetch() {
 # }
 
 configure_toolchain() {
-	export CPPFLAGS="-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include"
+	# gcc identifies -I/usr/include as system dir and ignores it,
+	# resulting in /tmp/usr/include being searched before /usr/include.
+	# Need to pass both with -isystem instead to retain expected search order.
+	export CPPFLAGS="-isystem${ROOT}/usr/include -isystem${ROOT}/tmp/usr/include"
 
 	case ${bootstrapCHOST} in
 		*-darwin*)
