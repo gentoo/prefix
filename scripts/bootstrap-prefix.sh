@@ -374,6 +374,8 @@ bootstrap_setup() {
 			einfo "profile in ${PORTDIR} for your CHOST ${CHOST}"
 			;;
 	esac
+	[[ -n ${PROFILE_BASE}${PROFILE_VARIANT} ]] &&
+	profile=${PROFILE_BASE:-prefix}/${profile#prefix/}${PROFILE_VARIANT:+/${PROFILE_VARIANT}}
 	if [[ -n ${profile} && ! -e ${ROOT}/etc/portage/make.profile ]] ; then
 		local fullprofile="${PORTDIR}/profiles/${profile}"
 		for base in ${PORTDIR_OVERLAY} ; do
@@ -1112,6 +1114,11 @@ bootstrap_stage2() {
 	# setup portage
 	[[ -e ${ROOT}/etc/make.globals ]] || bootstrap_portage || return 1
 
+	if [[ -s ${ROOT}/usr/portage/profiles/repo_name ]]; then
+		# sync portage's repos.conf with the tree being used
+		sed -i -e "s,gentoo_prefix,$(<"${ROOT}"/usr/portage/profiles/repo_name)," "${ROOT}"/usr/share/portage/config/repos.conf || return 1
+	fi
+
 	einfo "stage2 successfully finished"
 }
 
@@ -1133,7 +1140,7 @@ bootstrap_stage3() {
 
 	# Avoid circular deps caused by the default profiles (and IUSE defaults).
 	local baseUSE="${USE}"
-	export USE="-berkdb -fortran -gdbm -git -nls -pcre -readline -ssl -python bootstrap internal-glib ${baseUSE}"
+	export USE="-berkdb -fortran -gdbm -git -kerberos -nls -pcre -readline -ssl -python bootstrap internal-glib ${baseUSE}"
 	echo "app-shells/bash -readline # for bootstrap-prefix.sh" >> "${ROOT}"/etc/portage/make.profile/package.use.force
 
 	# Python >= 3.2 fails to build on gcc-4.2. Disable it until after the sync.
@@ -1306,6 +1313,8 @@ bootstrap_stage3() {
 
 	# bash needs to be compiled with USE=readline for Portage
 	export USE="${USE//-readline/}"
+	# python-2.7 needs to be compiled with USE=ssl for Portage
+	export USE="${USE//-ssl/}"
 
 	# disable collision-protect to overwrite the bootstrapped portage
 	FEATURES="-collision-protect" emerge_pkgs "" "sys-apps/portage" || return 1
@@ -2314,8 +2323,8 @@ CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
 PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
 DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
 PORTAGE_TMPDIR=${ROOT}/var/tmp
-DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
-SNAPSHOT_URL="http://prefix.gentooexperimental.org/snapshots"
+DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
+SNAPSHOT_URL=${SNAPSHOT_URL:-"http://prefix.gentooexperimental.org/snapshots"}
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
