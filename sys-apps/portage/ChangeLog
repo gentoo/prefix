@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.14_rc1 (30 Sep 2014)
+
+  30 Sep 2014; Fabian Groffen <grobian@gentoo.org> +portage-2.2.14_rc1.ebuild:
+  Version bump
+
 *portage-2.2.10.1 (20 Jun 2014)
 
   20 Jun 2014; Fabian Groffen <grobian@gentoo.org> +portage-2.2.10.1.ebuild:
