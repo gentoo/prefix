@@ -1,13 +1,13 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p12-r1.ebuild,v 1.4 2014/09/25 11:02:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p41.ebuild,v 1.4 2014/09/29 09:27:19 jer Exp $
 
 EAPI="4"
 
 inherit eutils flag-o-matic toolchain-funcs multilib prefix
 
 # Official patchlevel
-# See ftp://ftp.cwru.edu/pub/bash/bash-4.1-patches/
+# See ftp://ftp.cwru.edu/pub/bash/bash-4.0-patches/
 PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
 MY_PV=${MY_PV/_/-}
@@ -35,7 +35,6 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)"
 LICENSE="GPL-3"
 SLOT="${MY_PV}"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-
 IUSE="afs mem-scramble +net nls +readline"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
@@ -66,11 +65,14 @@ src_prepare() {
 	touch lib/{readline,termcap}/Makefile.in # for config.status
 	sed -ri -e 's:\$[(](RL|HIST)_LIBSRC[)]/[[:alpha:]]*.h::g' Makefile.in || die
 
-	epatch "${FILESDIR}"/${PN}-4.1-fbsd-eaccess.patch #303411
+	epatch "${FILESDIR}"/${PN}-4.0-configure.patch #304901
+	epatch "${FILESDIR}"/${PN}-4.x-deferred-heredocs.patch
 	sed -i '1i#define NEED_FPURGE_DECL' execute_cmd.c # needs fpurge() decl
-	epatch "${FILESDIR}"/${PN}-4.1-parallel-build.patch
-	epatch "${FILESDIR}"/bash-eol-pushback.patch #523592
-	epatch "${FILESDIR}"/${PN}-4.1-blocking-namedpipe.patch # aix lacks /dev/fd/
+	epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671
+	epatch "${FILESDIR}"/${PN}-4.0-ldflags-for-build.patch #211947
+	epatch "${FILESDIR}"/${PN}-4.0-negative-return.patch
+	epatch "${FILESDIR}"/${PN}-4.0-parallel-build.patch #267613
+	sed -i '/\.o: .*shell\.h/s:$: pathnames.h:' Makefile.in #267613
 
 	# this adds additional prefixes
 	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
@@ -79,12 +81,11 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
-	epatch "${FILESDIR}"/${PN}-4.0-childmax-pids.patch # AIX, Interix
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${PN}-4.1-interix-stdint.patch
+		epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix.patch
-		epatch "${FILESDIR}"/${PN}-4.1-interix-access-suacomp.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix-access-suacomp.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi
 
@@ -107,8 +108,6 @@ src_prepare() {
 
 src_configure() {
 	local myconf=()
-
-	myconf+=( --without-lispdir ) #335896
 
 	# For descriptions of these, see config-top.h
 	# bashrc/#26952 bash_logout/#90488 ssh/#24762
@@ -189,5 +188,5 @@ src_install() {
 	newins doc/bashref.info bash-${SLOT}.info
 	dosym bash-${SLOT}.info /usr/share/info/bashref-${SLOT}.info
 
- 	dodoc README NEWS AUTHORS CHANGES COMPAT Y2K doc/FAQ doc/INTRO
+	dodoc README NEWS AUTHORS CHANGES COMPAT Y2K doc/FAQ doc/INTRO
 }
