@@ -104,6 +104,8 @@ configure_toolchain() {
 	# resulting in /tmp/usr/include being searched before /usr/include.
 	# Need to pass both with -isystem instead to retain expected search order.
 	export CPPFLAGS="-isystem${ROOT}/usr/include -isystem${ROOT}/tmp/usr/include"
+	# But strip-flags() will drop -isystem if not told otherwise.
+	sed -i -e '/ALLOWED_FLAGS=/aALLOWED_FLAGS+=" -isystem*" # for bootstrap-prefix.sh' "${ROOT}"/usr/portage/eclass/flag-o-matic.eclass
 
 	case ${bootstrapCHOST} in
 		*-darwin*)
@@ -1328,7 +1330,7 @@ bootstrap_stage3() {
 	# So we must keep the temporary tools until 'emerge -e system' is done.
 
 	# kill temporary profile pollution
-	find "${ROOT}"/usr/portage/profiles -type f -exec sed -i -e '/# for bootstrap-prefix.sh$/d' {} +
+	find "${ROOT}"/usr/portage/{profiles,eclass} -type f -exec sed -i -e '/# for bootstrap-prefix.sh$/d' {} +
 
 	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
