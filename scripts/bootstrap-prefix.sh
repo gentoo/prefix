@@ -923,7 +923,7 @@ bootstrap_zlib() {
 }
 
 bootstrap_sed() {
-	bootstrap_gnu sed 4.2.1
+	bootstrap_gnu sed 4.2.2 || bootstrap_gnu sed 4.2.1
 }
 
 bootstrap_findutils() {
