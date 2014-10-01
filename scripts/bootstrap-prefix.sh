@@ -2330,7 +2330,7 @@ esac
 CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
 PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
 DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
-PORTAGE_TMPDIR=${ROOT}/var/tmp
+PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
 DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
 SNAPSHOT_URL=${SNAPSHOT_URL:-"http://prefix.gentooexperimental.org/snapshots"}
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
