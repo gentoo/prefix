@@ -488,6 +488,10 @@ bootstrap_startscript() {
 	fi
 }
 
+get_extra_path() {
+	echo "${1}/usr/bin:/bin:/usr/bin:${PATH}"
+}
+
 bootstrap_portage() {
 	# Set TESTING_PV in env if you want to test a new portage before bumping the
 	# STABLE_PV that is known to work. Intended for power users only.
@@ -530,7 +534,7 @@ bootstrap_portage() {
 		--with-portage-user="`id -un`" \
 		--with-portage-group="`id -gn`" \
 		--mandir="${ROOT}/automatically-removed" \
-		--with-extra-path="${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}" \
+		--with-extra-path="$(get_extra_path "${ROOT}/tmp")" \
 		|| return 1
 	$MAKE ${MAKEOPTS} || return 1
 
@@ -1032,11 +1036,13 @@ bootstrap_bzip2() {
 	einfo "${A%-*} successfully bootstrapped"
 }
 
-bootstrap_stage1() {
+bootstrap_stage1() { (
 	if [[ ${ROOT} != */tmp ]] ; then
 		eerror "stage1 can only be used for paths that end in '/tmp'"
 		return 1
 	fi
+
+	export PATH=$(get_extra_path "${ROOT}")
 
 	# NOTE: stage1 compiles all tools (no libraries) in the native
 	# bits-size of the compiler, which needs not to match what we're
@@ -1098,7 +1104,7 @@ bootstrap_stage1() {
 	[[ -x ${ROOT}/usr/bin/python ]] || (bootstrap_python) || return 1
 
 	einfo "stage1 successfully finished"
-}
+); }
 
 bootstrap_stage2() {
 	if [[ ${ROOT} == */tmp ]] ; then
