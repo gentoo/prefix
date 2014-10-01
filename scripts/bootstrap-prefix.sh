@@ -190,6 +190,7 @@ configure_toolchain() {
 					SOLARIS_RELEASE=${SOLARIS_RELEASE##*s10s_u}
 					SOLARIS_RELEASE=${SOLARIS_RELEASE##*s10x_u}
 					SOLARIS_RELEASE=${SOLARIS_RELEASE%%wos_*}
+					SOLARIS_RELEASE=${SOLARIS_RELEASE##*s10_*} # older
 					if [[ "${SOLARIS_RELEASE}" -ge "10" ]] ; then
 						needgcc42="=sys-devel/gcc-4.2*"
 					fi
