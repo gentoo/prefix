@@ -709,18 +709,6 @@ bootstrap_gnu() {
 	[[ ${PN} == "coreutils" ]] && \
 		myconf="${myconf} --disable-acl --without-gmp"
 
-	if [[ ${PN} == "coreutils" && ${CHOST} == *-interix* ]] ; then
-		# Interix doesn't have filesystem listing stuff, but that means all
-		# other utilities but df aren't useless at all, so don't die
-		sed -i -e '/^if test -z "$ac_list_mounted_fs"; then$/c\if test 1 = 0; then' configure
-
-		# try to make id() not poll the entire domain before returning
-		export CFLAGS="${CFLAGS} -Dgetgrgid=getgrgid_nomembers -Dgetgrent=getgrent_nomembers -Dgetgrnam=getgrnam_nomembers"
-
-		# Fix a compilation error due to a missing definition
-		sed -i -e '/^#include "fcntl-safer.h"$/a\#define ESTALE -1' lib/savewd.c
-	fi
-
 	if [[ ${PN} == "tar" && ${CHOST} == *-hpux* ]] ; then
 		# Fix a compilation error due to a missing definition
 		export CPPFLAGS="${CPPFLAGS} -DCHAR_BIT=8"
