@@ -1,57 +1,74 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.0j.ebuild,v 1.10 2013/02/08 06:17:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.2_beta3.ebuild,v 1.1 2014/09/26 06:05:53 polynomial-c Exp $
 
 EAPI="4"
 
-inherit eutils flag-o-matic toolchain-funcs multilib
+inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal
 
 REV="1.7"
-DESCRIPTION="full-strength general purpose cryptography library (including SSL v2/v3 and TLS v1)"
+MY_P=${P/_/-}
+DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="http://www.openssl.org/"
-SRC_URI="mirror://openssl/source/${P}.tar.gz
+SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
 	http://cvs.pld-linux.org/cgi-bin/cvsweb.cgi/packages/${PN}/${PN}-c_rehash.sh?rev=${REV} -> ${PN}-c_rehash.sh.${REV}"
 
 LICENSE="openssl"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="bindist gmp kerberos rfc3779 sse2 static-libs test zlib"
+#KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
+IUSE="bindist gmp kerberos rfc3779 sse2 static-libs test +tls-heartbeat vanilla zlib"
 
-# Have the sub-libs in RDEPEND with [static-libs] since, logically,
-# our libssl.a depends on libz.a/etc... at runtime.
-LIB_DEPEND="gmp? ( dev-libs/gmp[static-libs(+)] )
-	zlib? ( sys-libs/zlib[static-libs(+)] )
-	kerberos? ( app-crypt/mit-krb5 )"
-RDEPEND="static-libs? ( ${LIB_DEPEND} )
-	!static-libs? ( ${LIB_DEPEND//\[static-libs(+)]} )"
+# The blocks are temporary just to make sure people upgrade to a
+# version that lack runtime version checking.  We'll drop them in
+# the future.
+RDEPEND="gmp? ( >=dev-libs/gmp-5.1.3-r1[static-libs(+)?,${MULTILIB_USEDEP}] )
+	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )
+	kerberos? ( >=app-crypt/mit-krb5-1.11.4[${MULTILIB_USEDEP}] )
+	abi_x86_32? (
+		!<=app-emulation/emul-linux-x86-baselibs-20140508
+		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
+	)
+	!<net-misc/openssh-5.9_p1-r4
+	!<net-libs/neon-0.29.6-r1"
 DEPEND="${RDEPEND}
 	sys-apps/diffutils
 	>=dev-lang/perl-5
 	test? ( sys-devel/bc )"
-
 PDEPEND="app-misc/ca-certificates"
 
-src_unpack() {
-	unpack ${P}.tar.gz
+S="${WORKDIR}/${MY_P}"
+
+MULTILIB_WRAPPED_HEADERS=(
+	usr/include/openssl/opensslconf.h
+)
+
+src_prepare() {
 	SSL_CNF_DIR="/etc/ssl"
 	sed \
 		-e "/^DIR=/s:=.*:=${EPREFIX}${SSL_CNF_DIR}:" \
+		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
 		"${DISTDIR}"/${PN}-c_rehash.sh.${REV} \
-		> "${WORKDIR}"/c_rehash || die #416717
+		> "${WORKDIR}"/c_rehash || die #416717 #350601
 }
+
+MULTILIB_WRAPPED_HEADERS=(
+	usr/include/openssl/opensslconf.h
+)
 
 src_prepare() {
 	# Make sure we only ever touch Makefile.org and avoid patching a file
 	# that gets blown away anyways by the Configure script in src_configure
 	rm -f Makefile
 
-	epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
-	epatch "${FILESDIR}"/${PN}-1.0.0d-fbsd-amd64.patch #363089
-	epatch "${FILESDIR}"/${PN}-1.0.0d-windres.patch #373743
-	epatch "${FILESDIR}"/${PN}-1.0.0h-pkg-config.patch
-	epatch "${FILESDIR}"/${PN}-1.0.0e-parallel-build.patch
-	epatch "${FILESDIR}"/${PN}-1.0.0e-x32.patch
-	epatch_user #332661
+	if ! use vanilla ; then
+		epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
+		epatch "${FILESDIR}"/${PN}-1.0.0d-windres.patch #373743
+		epatch "${FILESDIR}"/${PN}-1.0.2-parallel-build.patch
+		epatch "${FILESDIR}"/${PN}-1.0.2_beta2-ipv6.patch
+		epatch "${FILESDIR}"/${PN}-1.0.1e-s_client-verify.patch #472584
+
+		epatch_user #332661
+	fi
 
 	# disable fips in the build
 	# make sure the man pages are suffixed #302165
@@ -62,17 +79,22 @@ src_prepare() {
 		-e '/^MAKEDEPPROG/s:=.*:=$(CC):' \
 		-e $(has noman FEATURES \
 			&& echo '/^install:/s:install_docs::' \
-			|| echo '/^MANDIR=/s:=.*:='"${EPREFIX}"'/usr/share/man:') \
+			|| echo '/^MANDIR=/s:=.*:='${EPREFIX}'/usr/share/man:') \
 		Makefile.org \
 		|| die
 	# show the actual commands in the log
 	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
+
+	# avoid using /bin/sh because it's fragile on some platforms (Solaris)
+	sed -i -e "/SHELL=/s:=.*$:=${CONFIG_SHELL:-${BASH}}:" Makefile.org || die
+	sed -i -e "1a\SHELL=${CONFIG_SHELL:-${BASH}}" Makefile.shared || die
 
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0a-interix.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0a-mint.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8l-aixso.patch #213277: with import files now
 	epatch "${FILESDIR}"/${PN}-1.0.0b-darwin-bundle-compile-fix.patch
+	epatch "${FILESDIR}"/${PN}-1.0.1-gethostbyname2-solaris.patch
 	if [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
 	fi
@@ -84,22 +106,23 @@ src_prepare() {
 	# remove -arch for darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure || die
 
+	# since we're forcing $(CC) as makedep anyway, just fix
+	# the conditional as always-on
+	# helps clang (#417795), and versioned gcc (#499818)
+	sed -i 's/expr.*MAKEDEPEND.*;/true;/' util/domd || die
+
+	# quiet out unknown driver argument warnings since openssl
+	# doesn't have well-split CFLAGS and we're making it even worse
+	# and 'make depend' uses -Werror for added fun (#417795 again)
+	[[ ${CC} == *clang* ]] && append-flags -Qunused-arguments
+
 	# allow openssl to be cross-compiled
-	cp "${FILESDIR}"/gentoo.config-1.0.0 gentoo.config || die
+	cp "${FILESDIR}"/gentoo.config-1.0.1 gentoo.config || die
 	chmod a+rx gentoo.config
 
 	append-flags -fno-strict-aliasing
 	append-flags $(test-flags-CC -Wa,--noexecstack)
-
-	# type -P required on platforms where perl is not installed
-	# in the same prefix (prefix-chaining).
-	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure || die #141906
-	sed -i '1s/perl5/perl/' tools/c_rehash || die #308455
-
-	# fixup c_rehash script, bug #350601
-	sed -i \
-		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
-		"${WORKDIR}"/c_rehash || die
+	append-cppflags -DOPENSSL_NO_BUF_FREELISTS
 
 	# avoid waiting on terminal input forever when spitting
 	# 64bit warning message.
@@ -112,10 +135,19 @@ src_prepare() {
 		sed -i -e "s:/usr/ccs/bin/::" crypto/bn/Makefile || die "sed failed"
 	fi
 
-	./config --test-sanity || die "I AM NOT SANE"
+	# type -P required on platforms where perl is not installed
+	# in the same prefix (prefix-chaining).
+	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure || die #141906
+	sed -i '1s/perl5/perl/' tools/c_rehash || die #308455
+
+	# The config script does stupid stuff to prompt the user.  Kill it.
+	sed -i '/stty -icanon min 0 time 50; read waste/d' config || die
+	./config -t --test-sanity || die "I AM NOT SANE"
+
+	multilib_copy_sources
 }
 
-src_configure() {
+multilib_src_configure() {
 	unset APPS #197996
 	unset SCRIPTS #312551
 	unset CROSS_COMPILE #311473
@@ -148,16 +180,29 @@ src_configure() {
 		;;
 	esac
 
+	# See if our toolchain supports __uint128_t.  If so, it's 64bit
+	# friendly and can use the nicely optimized code paths. #460790
+	local ec_nistp_64_gcc_128
+	# Disable it for now though #469976
+	#if ! use bindist ; then
+	#	echo "__uint128_t i;" > "${T}"/128.c
+	#	if ${CC} ${CFLAGS} -c "${T}"/128.c -o /dev/null >&/dev/null ; then
+	#		ec_nistp_64_gcc_128="enable-ec_nistp_64_gcc_128"
+	#	fi
+	#fi
+
 	local sslout=$(./gentoo.config)
 	einfo "Use configuration ${sslout:-(openssl knows best)}"
 	local config="Configure"
 	[[ -z ${sslout} ]] && config="config"
+
 	echoit \
 	./${config} \
 		${sslout} \
 		$(use sse2 || echo "no-sse2") \
 		enable-camellia \
 		$(use_ssl !bindist ec) \
+		${ec_nistp_64_gcc_128} \
 		enable-idea \
 		enable-mdc2 \
 		$(use_ssl !bindist rc5) \
@@ -165,6 +210,7 @@ src_configure() {
 		$(use_ssl gmp gmp -lgmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
 		$(use_ssl rfc3779) \
+		$(use_ssl tls-heartbeat heartbeats) \
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
 		--openssldir="${EPREFIX}"${SSL_CNF_DIR} \
@@ -194,27 +240,30 @@ src_configure() {
 		Makefile || die
 }
 
-src_compile() {
+multilib_src_compile() {
 	if [[ ${CHOST} == *-winnt* ]]; then
 		( cd fips && emake -j1 links PERL=$(type -P perl) ) || die "make links in fips failed"
 	fi
 
 	# depend is needed to use $confopts; it also doesn't matter
 	# that it's -j1 as the code itself serializes subdirs
-	emake -j1 depend || die
-	emake all || die
+	emake -j1 depend
+	emake all
 	# rehash is needed to prep the certs/ dir; do this
 	# separately to avoid parallel build issues.
-	emake rehash || die
+	emake rehash
 }
 
-src_test() {
-	emake -j1 test || die
+multilib_src_test() {
+	emake -j1 test
 }
 
-src_install() {
-	emake INSTALL_PREFIX="${D}" install || die
-	dobin "${WORKDIR}"/c_rehash || die #333117
+multilib_src_install() {
+	emake INSTALL_PREFIX="${D}" install
+}
+
+multilib_src_install_all() {
+	dobin "${WORKDIR}"/c_rehash #333117
 	dodoc CHANGES* FAQ NEWS README doc/*.txt doc/c-indentation.el
 	dohtml -r doc/*
 	use rfc3779 && dodoc engines/ccgost/README.gost
