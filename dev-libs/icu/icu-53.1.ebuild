@@ -1,10 +1,10 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-51.2-r1.ebuild,v 1.11 2013/11/12 20:12:53 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-53.1.ebuild,v 1.2 2014/08/24 06:37:28 scarabeus Exp $
 
 EAPI=5
 
-inherit eutils toolchain-funcs base autotools
+inherit eutils toolchain-funcs autotools multilib-minimal
 
 DESCRIPTION="International Components for Unicode"
 HOMEPAGE="http://www.icu-project.org/"
@@ -12,11 +12,7 @@ SRC_URI="http://download.icu-project.org/files/icu4c/${PV/_/}/icu4c-${PV//./_}-s
 
 LICENSE="BSD"
 
-SLOT="0/51.2"
-# As far as I can remember, icu consumers reacted rather sensitive to icu upgrades in the past. 
-# Even if revdep-rebuild did not rebuild (i.e. soname did not change), random crashes and 
-# other irregularities occured until the consumers were rebuilt. So let's rather err on the side
-# of caution and more rebuilds here. See also bug 464876. dilfridge
+SLOT="0/53"
 
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc examples static-libs"
@@ -29,14 +25,11 @@ DEPEND="
 
 S="${WORKDIR}/${PN}/source"
 
-PATCHES=(
-	"${FILESDIR}/${PN}-51.1-CVE-2013-2924.patch"
-)
-
 src_prepare() {
 	local variable
 
-	base_src_prepare
+	epatch "${FILESDIR}/icu-fix-tests-depending-on-date.patch"
+	epatch_user
 
 	# Do not hardcode flags in icu-config and icu-*.pc files.
 	# https://ssl.icu-project.org/trac/ticket/6102
@@ -69,50 +62,65 @@ src_prepare() {
 	# Append doxygen configuration to configure
 	sed -i \
 		-e 's:icudefs.mk:icudefs.mk Doxyfile:' \
-		configure.in || die
+		configure.ac || die
 	eautoreconf
 }
 
 src_configure() {
-	local cross_opts
-
-	# bootstrap for cross compilation
 	if tc-is-cross-compiler; then
+		mkdir "${WORKDIR}"/host || die
+		pushd "${WORKDIR}"/host >/dev/null || die
+
 		CFLAGS="" CXXFLAGS="" ASFLAGS="" LDFLAGS="" \
 		CC="$(tc-getBUILD_CC)" CXX="$(tc-getBUILD_CXX)" AR="$(tc-getBUILD_AR)" \
 		RANLIB="$(tc-getBUILD_RANLIB)" LD="$(tc-getBUILD_LD)" \
-		./configure --disable-renaming --disable-debug \
+		"${S}"/configure --disable-renaming --disable-debug \
 			--disable-samples --enable-static || die
 		emake
-		mkdir -p "${WORKDIR}/host/"
-		cp -a {bin,lib,config,tools} "${WORKDIR}/host/"
-		emake clean
 
-		cross_opts="--with-cross-build=${WORKDIR}/host"
+		popd >/dev/null || die
 	fi
+
+	multilib-minimal_src_configure
+}
+
+multilib_src_configure() {
+	local myeconfargs=(
+		--disable-renaming
+		--disable-samples
+		$(use_enable debug)
+		$(use_enable static-libs static)
+	)
+
+	multilib_is_native_abi && myeconfargs+=(
+		$(use_enable examples samples)
+	)
+	tc-is-cross-compiler && myeconfargs+=(
+		--with-cross-build="${WORKDIR}"/host
+	)
+
+	# icu tries to use clang by default
+	tc-export CC CXX
 
 	# make sure we configure with the same shell as we run icu-config
 	# with, or ECHO_N, ECHO_T and ECHO_C will be wrongly defined
 	# (this is part 2 from the echo_{t,c,n} fix)
 	export CONFIG_SHELL=${CONFIG_SHELL:-${EPREFIX}/bin/sh}
-	econf \
-		--disable-renaming \
-		$(use_enable debug) \
-		$(use_enable examples samples) \
-		$(use_enable static-libs static) \
-		${cross_opts}
+
+	ECONF_SOURCE=${S} \
+	econf "${myeconfargs[@]}"
 }
 
-src_compile() {
+multilib_src_compile() {
 	default
 
-	if use doc; then
+	if multilib_is_native_abi && use doc; then
 		doxygen -u Doxyfile || die
 		doxygen Doxyfile || die
 	fi
 }
 
-src_test() {
+multilib_src_test() {
 	# INTLTEST_OPTS: intltest options
 	#   -e: Exhaustive testing
 	#   -l: Reporting of memory leaks
@@ -126,10 +134,15 @@ src_test() {
 	emake -j1 VERBOSE="1" check
 }
 
-src_install() {
+multilib_src_install() {
 	default
 
-	dohtml ../readme.html
+	if multilib_is_native_abi && use doc; then
+		dohtml -p api -r doc/html/
+	fi
+}
 
-	use doc && dohtml -p api -r doc/html/
+multilib_src_install_all() {
+	einstalldocs
+	dohtml ../readme.html
 }
