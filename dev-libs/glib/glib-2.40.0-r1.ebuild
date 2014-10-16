@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.40.0-r1.ebuild,v 1.2 2014/06/18 19:11:16 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.40.0-r1.ebuild,v 1.13 2014/10/11 11:35:18 maekke Exp $
 
 EAPI="5"
 PYTHON_COMPAT=( python2_{6,7} )
@@ -20,6 +20,7 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linu
 
 # FIXME: want >=libselinux-2.2.2-r4[${MULTILIB_USEDEP}] - bug #480960
 RDEPEND="
+	!<dev-util/gdbus-codegen-${PV}
 	>=virtual/libiconv-0-r1[${MULTILIB_USEDEP}]
 	>=virtual/libffi-3.0.13-r1[${MULTILIB_USEDEP}]
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
@@ -52,7 +53,6 @@ DEPEND="${RDEPEND}
 		${PYTHON_DEPS}
 		>=dev-util/gdbus-codegen-${PV}[${PYTHON_USEDEP}]
 		>=sys-apps/dbus-1.2.14 )
-	!<dev-libs/gobject-introspection-1.$(get_version_component_range 2)
 	!<dev-util/gtk-doc-1.15-r2
 "
 # gobject-introspection blocker to ensure people don't mix
