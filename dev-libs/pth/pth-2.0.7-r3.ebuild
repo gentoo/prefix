@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r3.ebuild,v 1.8 2012/08/08 15:01:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r3.ebuild,v 1.10 2014/03/16 02:38:02 vapier Exp $
 
 EAPI=4
 
