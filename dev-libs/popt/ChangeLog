@@ -2,6 +2,9 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.104 2014/06/18 19:18:10 mgorny Exp $
 
+  16 Oct 2014; Fabian Groffen <grobian@gentoo.org> popt-1.16-r1.ebuild:
+  sync
+
   18 Jun 2014; Michał Górny <mgorny@gentoo.org> popt-1.16-r2.ebuild:
   Update dependencies to require guaranteed EAPI=5 or multilib ebuilds, bug
   #513718.
