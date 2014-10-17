@@ -1,34 +1,52 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.8.5-r4.ebuild,v 1.12 2014/01/17 04:23:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.14.1.ebuild,v 1.3 2014/01/17 04:23:15 vapier Exp $
 
-inherit eutils
+inherit eutils versionator unpacker
+
+if [[ ${PV/_beta} == ${PV} ]]; then
+	MY_P=${P}
+	SRC_URI="mirror://gnu/${PN}/${P}.tar.xz
+		ftp://alpha.gnu.org/pub/gnu/${PN}/${MY_P}.tar.xz"
+else
+	MY_PV="$(get_major_version).$(($(get_version_component_range 2)-1))b"
+	MY_P="${PN}-${MY_PV}"
+
+	# Alpha/beta releases are not distributed on the usual mirrors.
+	SRC_URI="ftp://alpha.gnu.org/pub/gnu/${PN}/${MY_P}.tar.xz"
+fi
 
 DESCRIPTION="Used to generate Makefile.in from Makefile.am"
 HOMEPAGE="http://www.gnu.org/software/automake/"
-SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="${PV:0:3}"
-KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+# Use Gentoo versioning for slotting.
+SLOT="${PV:0:4}"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND="dev-lang/perl
 	>=sys-devel/automake-wrapper-9
-	>=sys-devel/autoconf-2.59-r6
+	>=sys-devel/autoconf-2.62
 	sys-devel/gnuconfig"
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	sys-apps/help2man"
+
+S="${WORKDIR}/${MY_P}"
 
 src_unpack() {
-	unpack ${A}
+	unpacker_src_unpack
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.8.2-infopage-namechange.patch
-	epatch "${FILESDIR}"/${P}-test-fixes.patch #159557
-	epatch "${FILESDIR}"/${PN}-1.9.6-aclocal7-test-sleep.patch #197366
-	epatch "${FILESDIR}"/${PN}-1.9.6-subst-test.patch #222225
-	epatch "${FILESDIR}"/${PN}-1.10-ccnoco-ldflags.patch #203914
-	epatch "${FILESDIR}"/${P}-CVE-2009-4029.patch #295357
 	export WANT_AUTOCONF=2.5
+}
+
+src_compile() {
+	econf --docdir="${EPREFIX}"/usr/share/doc/${PF} HELP2MAN=true || die
+	emake APIVERSION="${SLOT}" pkgvdatadir="${EPREFIX}/usr/share/${PN}-${SLOT}" || die
+}
+
+src_test() {
+	emake check || die
 }
 
 # slot the info pages.  do this w/out munging the source so we don't have
@@ -61,15 +79,20 @@ slot_info_pages() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install \
+		APIVERSION="${SLOT}" pkgvdatadir="${EPREFIX}/usr/share/${PN}-${SLOT}" || die
 	slot_info_pages
-	rm -f "${ED}"/usr/bin/{aclocal,automake}
+	rm "${ED}"/usr/share/aclocal/README || die
+	rmdir "${ED}"/usr/share/aclocal || die
+	dodoc AUTHORS ChangeLog NEWS README THANKS
 
-	dodoc NEWS README THANKS TODO AUTHORS ChangeLog
+	rm \
+		"${ED}"/usr/bin/{aclocal,automake} \
+		"${ED}"/usr/share/man/man1/{aclocal,automake}.1 || die
 
 	# remove all config.guess and config.sub files replacing them
 	# w/a symlink to a specific gnuconfig version
-	local x=
+	local x
 	for x in guess sub ; do
 		dosym ../gnuconfig/config.${x} /usr/share/${PN}-${SLOT}/config.${x}
 	done

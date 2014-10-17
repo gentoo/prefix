@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.5-r1.ebuild,v 1.13 2013/04/04 22:15:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.5-r1.ebuild,v 1.15 2014/01/17 04:23:15 vapier Exp $
 
 inherit eutils prefix
 
@@ -14,7 +14,7 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux 
 IUSE=""
 
 DEPEND="dev-lang/perl
-	sys-devel/automake-wrapper
+	>=sys-devel/automake-wrapper-9
 	>=sys-devel/autoconf-2.59-r6
 	sys-devel/gnuconfig"
 RDEPEND="${DEPEND}"
