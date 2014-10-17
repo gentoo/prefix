@@ -1,6 +1,44 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.383 2013/12/24 12:51:08 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.391 2014/07/28 09:44:48 vapier Exp $
+
+*coreutils-8.23 (28 Jul 2014)
+
+  28 Jul 2014; Mike Frysinger <vapier@gentoo.org> +coreutils-8.23.ebuild,
+  metadata.xml:
+  Version bump.
+
+  08 May 2014; Mike Frysinger <vapier@gentoo.org> coreutils-8.22-r1.ebuild:
+  Drop old migration logic as we have moved way beyond it and it causes issues
+  with /usr merge #509596 by Duncan.
+
+*coreutils-8.22-r1 (27 Apr 2014)
+
+  27 Apr 2014; Mike Frysinger <vapier@gentoo.org> +coreutils-8.22-r1.ebuild:
+  Include new arch(1) man page #507528. Add fix from upstream for cp behavior
+  #508638. Skip test ls/stat-free-color #415487.
+
+  27 Apr 2014; Mike Frysinger <vapier@gentoo.org> coreutils-8.22.ebuild:
+  Rebuild man page tarball to include arch(1) #507528 by dwfreed.
+
+  17 Jan 2014; Mike Frysinger <vapier@gentoo.org> coreutils-8.21.ebuild,
+  coreutils-8.22.ebuild:
+  Add arm64 keywords.
+
+  17 Jan 2014; Mike Frysinger <vapier@gentoo.org> coreutils-8.21.ebuild:
+  Mark m68k/s390/sh stable.
+
+  15 Jan 2014; Agostino Sarubbo <ago@gentoo.org> coreutils-8.21.ebuild:
+  Stable for ia64, wrt bug #467186
+
+  04 Jan 2014; Lars Wendler <polynomial-c@gentoo.org> -coreutils-8.5.ebuild,
+  -coreutils-8.5-r1.ebuild, -coreutils-8.7.ebuild, -coreutils-8.8.ebuild,
+  -coreutils-8.9.ebuild, -coreutils-8.10.ebuild, -coreutils-8.11.ebuild,
+  -coreutils-8.12.ebuild, -coreutils-8.13.ebuild, -coreutils-8.14.ebuild,
+  -coreutils-8.15.ebuild, -coreutils-8.16.ebuild, -coreutils-8.17.ebuild,
+  -coreutils-8.18.ebuild, -coreutils-8.19.ebuild, -coreutils-8.20-r1.ebuild,
+  -coreutils-8.20-r2.ebuild:
+  Removed old versions and files.
 
   09 Feb 2014; Fabian Groffen <grobian@gentoo.org> coreutils-8.22.ebuild:
   cleanup
