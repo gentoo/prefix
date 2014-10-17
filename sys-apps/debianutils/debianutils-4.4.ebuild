@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-4.3.4.ebuild,v 1.13 2013/09/05 09:50:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-4.4.ebuild,v 1.12 2014/01/26 12:18:12 ago Exp $
 
 EAPI=4
 

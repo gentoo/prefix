@@ -1,6 +1,80 @@
 # ChangeLog for sys-apps/debianutils
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.183 2012/10/23 08:06:55 radhermit Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/ChangeLog,v 1.207 2014/01/26 12:18:12 ago Exp $
+
+  26 Jan 2014; Agostino Sarubbo <ago@gentoo.org> debianutils-4.4.ebuild:
+  Stable for sparc, wrt bug #495918
+
+  19 Jan 2014; Agostino Sarubbo <ago@gentoo.org> debianutils-4.4.ebuild:
+  Stable for ppc64, wrt bug #495918
+
+  18 Jan 2014; Agostino Sarubbo <ago@gentoo.org> debianutils-4.4.ebuild:
+  Stable for alpha, wrt bug #495918
+
+  17 Jan 2014; Mike Frysinger <vapier@gentoo.org> debianutils-4.4.ebuild:
+  Add arm64 keywords.
+
+  17 Jan 2014; Mike Frysinger <vapier@gentoo.org> debianutils-4.4.ebuild:
+  Mark m68k/s390/sh stable.
+
+  15 Jan 2014; Agostino Sarubbo <ago@gentoo.org> debianutils-4.4.ebuild:
+  Stable for ia64, wrt bug #495918
+
+  14 Jan 2014; Agostino Sarubbo <ago@gentoo.org> debianutils-4.4.ebuild:
+  Stable for ppc, wrt bug #495918
+
+  14 Jan 2014; Agostino Sarubbo <ago@gentoo.org> debianutils-4.4.ebuild:
+  Stable for x86, wrt bug #495918
+
+  12 Jan 2014; Pacho Ramos <pacho@gentoo.org> debianutils-4.4.ebuild:
+  amd64 stable, bug #495918
+
+  31 Dec 2013; Markus Meier <maekke@gentoo.org> debianutils-4.4.ebuild:
+  arm stable, bug #495918
+
+  25 Dec 2013; Jeroen Roovers <jer@gentoo.org> debianutils-4.4.ebuild:
+  Stable for HPPA (bug #495918).
+
+  05 Sep 2013; Mike Frysinger <vapier@gentoo.org> debianutils-4.3.4.ebuild:
+  Mark m68k stable #450348.
+
+*debianutils-4.4 (05 Sep 2013)
+
+  05 Sep 2013; Tim Harder <radhermit@gentoo.org> +debianutils-4.4.ebuild:
+  Version bump.
+
+  24 Feb 2013; Agostino Sarubbo <ago@gentoo.org> debianutils-4.3.4.ebuild:
+  Stable for sh, wrt bug #450348
+
+  21 Feb 2013; Zac Medico <zmedico@gentoo.org> debianutils-4.3.4.ebuild:
+  Add ~arm-linux and ~x86-linux keywords.
+
+  20 Feb 2013; Agostino Sarubbo <ago@gentoo.org> debianutils-4.3.4.ebuild:
+  Stable for s390, wrt bug #450348
+
+  11 Jan 2013; Anthony G. Basile <blueness@gentoo.org> debianutils-4.3.4.ebuild:
+  stable ppc ppc64, bug #450348, thanks vincent
+
+  07 Jan 2013; Agostino Sarubbo <ago@gentoo.org> debianutils-4.3.4.ebuild:
+  Stable for alpha, wrt bug #450348
+
+  07 Jan 2013; Jeroen Roovers <jer@gentoo.org> debianutils-4.3.4.ebuild:
+  Stable for HPPA (bug #450348).
+
+  06 Jan 2013; <jd@gentoo.org> debianutils-4.3.4.ebuild:
+  marked x86 per bug 450348
+
+  06 Jan 2013; Markus Meier <maekke@gentoo.org> debianutils-4.3.4.ebuild:
+  arm stable, bug #450348
+
+  05 Jan 2013; Agostino Sarubbo <ago@gentoo.org> debianutils-4.3.4.ebuild:
+  Stable for ia64, wrt bug #450348
+
+  05 Jan 2013; Agostino Sarubbo <ago@gentoo.org> debianutils-4.3.4.ebuild:
+  Stable for sparc, wrt bug #450348
+
+  05 Jan 2013; Agostino Sarubbo <ago@gentoo.org> debianutils-4.3.4.ebuild:
+  Stable for amd64, wrt bug #450348
 
   23 Oct 2012; Tim Harder <radhermit@gentoo.org> -debianutils-3.4.4.ebuild,
   -debianutils-4.1.ebuild, -debianutils-4.2.1.ebuild,
