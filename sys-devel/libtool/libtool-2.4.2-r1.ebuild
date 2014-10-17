@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.4.2-r1.ebuild,v 1.1 2014/05/02 10:30:31 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.4.2-r1.ebuild,v 1.11 2014/09/15 08:24:00 ago Exp $
 
 EAPI="4"
 
