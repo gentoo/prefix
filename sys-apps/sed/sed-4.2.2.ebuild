@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.2.1.ebuild,v 1.12 2014/02/08 13:24:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.2.2.ebuild,v 1.5 2014/02/08 13:24:00 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -13,8 +13,9 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="acl nls selinux static"
 
-RDEPEND="nls? ( virtual/libintl )
-	acl? ( virtual/acl )"
+RDEPEND="acl? ( virtual/acl )
+	nls? ( virtual/libintl )
+	selinux? ( sys-libs/libselinux )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
@@ -35,7 +36,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-4.1.5-alloca.patch
 	epatch "${FILESDIR}"/${PN}-4.1.4-aix-malloc.patch
-	epatch "${FILESDIR}"/${PN}-4.1.5-regex-nobool.patch
+	epatch "${FILESDIR}"/${PN}-4.2.1-espipe.patch
 	# don't use sed here if we have to recover a broken host sed
 }
 
@@ -52,6 +53,8 @@ src_compile() {
 		bindir="${EPREFIX}"/usr/bin
 	fi
 
+	# Should be able to drop this hack in next release. #333887
+	tc-is-cross-compiler && export gl_cv_func_working_acl_get_file=yes
 	export ac_cv_search_setfilecon=$(usex selinux -lselinux)
 	export ac_cv_header_selinux_{context,selinux}_h=$(usex selinux)
 	use static && append-ldflags -static
