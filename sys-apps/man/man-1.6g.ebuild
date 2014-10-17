@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6g.ebuild,v 1.10 2012/05/24 02:55:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6g.ebuild,v 1.13 2014/01/16 18:19:15 vapier Exp $
 
 EAPI="2"
 
@@ -13,13 +13,15 @@ SRC_URI="http://primates.ximian.com/~flucifredi/man/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="+lzma nls"
+IUSE="+lzma nls selinux"
 
-DEPEND="nls? ( sys-devel/gettext )"
+DEPEND="nls? ( sys-devel/gettext )
+		selinux? ( sec-policy/selinux-makewhatis )"
 RDEPEND="|| ( >=sys-apps/groff-1.19.2-r1 app-doc/heirloom-doctools )
 	!sys-apps/man-db
 	!<app-arch/lzma-4.63
-	lzma? ( app-arch/xz-utils )"
+	lzma? ( app-arch/xz-utils )
+	selinux? ( sec-policy/selinux-makewhatis )"
 
 pkg_setup() {
 	enewgroup man 15

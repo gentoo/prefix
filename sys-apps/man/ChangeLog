@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/man
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.174 2012/05/24 02:55:26 vapier Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.177 2014/01/16 18:19:15 vapier Exp $
+
+  16 Jan 2014; Mike Frysinger <vapier@gentoo.org> man-1.6f-r4.ebuild,
+  man-1.6g.ebuild:
+  Mark m68k/s390/sh stable.
+
+  27 Dec 2013; Sergey Popov <pinkbyte@gentoo.org> man-1.6f-r4.ebuild,
+  man-1.6g.ebuild:
+  Drop s390/sh/m68k to unstable
+
+  15 Dec 2012; <swift@gentoo.org> man-1.6f-r4.ebuild, man-1.6f-r5.ebuild,
+  man-1.6g.ebuild:
+  Adding SELinux dependency on selinux-makewhatis package
 
   24 May 2012; Mike Frysinger <vapier@gentoo.org> man-1.6f-r4.ebuild,
   man-1.6f-r5.ebuild, man-1.6g.ebuild:
