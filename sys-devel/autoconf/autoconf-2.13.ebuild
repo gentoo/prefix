@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.13.ebuild,v 1.22 2013/01/28 14:34:28 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.13.ebuild,v 1.24 2014/01/17 04:23:13 vapier Exp $
 
 inherit eutils
 
@@ -14,9 +14,10 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux 
 IUSE="userland_BSD"
 
 DEPEND=">=sys-apps/texinfo-4.3
-	sys-devel/autoconf-wrapper
 	=sys-devel/m4-1.4*
 	dev-lang/perl"
+RDEPEND="${DEPEND}
+	>=sys-devel/autoconf-wrapper-13"
 
 src_unpack() {
 	unpack ${A}
