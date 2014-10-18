@@ -237,6 +237,10 @@ src_prepare() {
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
 	epatch "${FILESDIR}"/${PN}-2.2.8-ebuildshell.patch # 155161
+	# prefix.gentooexperimental.org isn't available right now :(
+	sed -i \
+		-e 's/prefix.gentooexperimental.org/rsync8.prefix.bitzolder.nl/' \
+		bin/emerge-webrsync cnf/make.conf.example cnf/repos.conf
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
