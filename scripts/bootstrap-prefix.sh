@@ -429,11 +429,11 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20140812"
+	local PV="20141017"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
-		do_tree http://prefix.gentooexperimental.org/distfiles prefix-overlay-${PV}.tar.bz2
+		do_tree http://dev.gentoo.org/~grobian/distfiles prefix-overlay-${PV}.tar.bz2
 	fi
 }
 
@@ -498,8 +498,8 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
-	STABLE_PV="2.2.8"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.2.8"
+	STABLE_PV="2.2.10.1"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.2.10.1"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
@@ -2323,7 +2323,7 @@ PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
 DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
 PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
 DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
-SNAPSHOT_URL=${SNAPSHOT_URL:-"http://prefix.gentooexperimental.org/snapshots"}
+SNAPSHOT_URL=${SNAPSHOT_URL:-"http://rsync8.prefix.bitzolder.nl/snapshots"}
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
