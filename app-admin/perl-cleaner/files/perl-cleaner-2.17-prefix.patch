@@ -1,19 +1,24 @@
 --- perl-cleaner
 +++ perl-cleaner
-@@ -27,10 +27,10 @@
+@@ -27,13 +27,13 @@
  PKGS_EXCEPTIONS="dev-lang/perl sys-devel/libperl app-emulation/emul-linux-x86-baselibs"
  PKGS_MANUAL=""
  
 -PKG_DBDIR=/var/db/pkg
 +PKG_DBDIR="@GENTOO_PORTAGE_EPREFIX@/var/db/pkg"
  
--. /etc/init.d/functions.sh || {
--    echo "$0: Could not source /etc/init.d/functions.sh!"
-+. "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh" || {
-+    echo "$0: Could not source @GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh!"
+ # See bug 504116 for details
+-if [ -e /lib/gentoo/functions.sh ]; then
+-    . /lib/gentoo/functions.sh
+-elif [ -e /etc/init.d/functions.sh ]; then
+-    . /etc/init.d/functions.sh
++if [ -e "@GENTOO_PORTAGE_EPREFIX@/lib/gentoo/functions.sh" ]; then
++    . "@GENTOO_PORTAGE_EPREFIX@/lib/gentoo/functions.sh"
++elif [ -e "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh" ]; then
++    . "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh"
+ else
+     echo "$0: Unable to find functions.sh"
      exit 1
- }
- 
 @@ -87,7 +87,7 @@
  
      veinfo 1 "Locating ph files for removal"
