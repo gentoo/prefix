@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/binutils-config-3-r3.ebuild,v 1.9 2012/07/29 18:36:13 armin76 Exp $
 
@@ -23,6 +23,8 @@ S=${WORKDIR}/toolchain-prefix-wrapper-${W_VER}
 src_prepare() {
 	cp "${FILESDIR}"/${P} ./${PN} || die
 	eprefixify ${PN} || die "eprefixify failed."
+	# fix configure stupidity, until next release
+	sed -i -e 's/x10\.\[3456789\]/x10.*/' configure || die
 }
 
 src_configure() {

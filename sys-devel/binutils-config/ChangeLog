@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/binutils-config
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.62 2012/08/18 03:57:51 vapier Exp $
+
+  19 Oct 2014; Fabian Groffen <grobian@gentoo.org>
+  binutils-config-3-r03.1.ebuild:
+  Fix configure to also support OS X Yosemite
 
 *binutils-config-3-r03.1 (10 Jan 2013)
 
