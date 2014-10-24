@@ -2,6 +2,9 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.283 2014/09/12 19:13:33 dilfridge Exp $
 
+  24 Oct 2014; Fabian Groffen <grobian@gentoo.org> files/icu-4.6-echo_t.patch:
+  Fix patch to apply, bug #526368
+
   12 Sep 2014; Andreas K. Huettel <dilfridge@gentoo.org> -icu-51.2-r1.ebuild,
   -icu-51.2-r2.ebuild, -files/icu-51.1-CVE-2013-2924.patch:
   Remove old

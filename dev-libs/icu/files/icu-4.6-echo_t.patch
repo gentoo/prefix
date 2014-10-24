@@ -1,5 +1,5 @@
---- a/source/configure.in
-+++ b/source/configure.in
+--- a/source/configure.ac
++++ b/source/configure.ac
 @@ -20,9 +20,9 @@
  # for icu-config
  # This may be removed later - mow (June 17, 2010)
