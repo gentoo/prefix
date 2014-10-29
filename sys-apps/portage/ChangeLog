@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  29 Oct 2014; Fabian Groffen <grobian@gentoo.org> portage-2.2.10.1.ebuild,
+  portage-2.2.14_rc1.ebuild:
+  Use pool for default rsync server
+
   18 Oct 2014; Fabian Groffen <grobian@gentoo.org> portage-2.2.10.1.ebuild,
   portage-2.2.14_rc1.ebuild:
   portage: let's face it, prefix.ge.org is dead
