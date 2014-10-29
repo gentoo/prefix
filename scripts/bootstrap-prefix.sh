@@ -2323,7 +2323,7 @@ PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
 DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
 PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
 DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
-SNAPSHOT_URL=${SNAPSHOT_URL:-"http://rsync8.prefix.bitzolder.nl/snapshots"}
+SNAPSHOT_URL=${SNAPSHOT_URL:-"http://rsync.prefix.bitzolder.nl/snapshots"}
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
