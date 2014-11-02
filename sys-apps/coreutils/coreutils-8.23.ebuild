@@ -87,7 +87,7 @@ src_configure() {
 	# hostname    - net-tools
 	if [[ ${CHOST} == *-mint* ]]; then
 		myconf="${myconf} --enable-install-program=arch,hostname,kill,uptime"
-		myconf="${myconf} --enable-no-install-program=groups,su"
+		myconf="${myconf} --enable-no-install-program=groups,su,stdbuf"
 	else
 		myconf="${myconf} --enable-install-program=arch"
 		myconf="${myconf} --enable-no-install-program=groups,hostname,kill,su,uptime"
