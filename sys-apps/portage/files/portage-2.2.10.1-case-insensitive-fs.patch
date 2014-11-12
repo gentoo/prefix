@@ -1,0 +1,375 @@
+From fc3e0fafac889586ad85b12f414bcd10d30d7021 Mon Sep 17 00:00:00 2001
+From: Zac Medico <zmedico@gentoo.org>
+Date: Thu, 2 Oct 2014 10:57:11 -0700
+Subject: [PATCH] FEATURES=case-insensitive-fs for bug #524236
+
+When case-insensitive-fs is enabled in FEATURES, the dblink.isowner
+method, _owners_db class, and ConfigProtect class will be
+case-insensitive. This causes the collision-protect and unmerge code
+to behave correctly for a case-insensitive file system. If the file
+system is case-insensitive but case-preserving, then case is preserved
+in the CONTENTS data of installed packages.
+
+X-Gentoo-Bug: 524236
+X-Gentoo-Url: https://bugs.gentoo.org/show_bug.cgi?id=524236
+---
+ bin/dispatch-conf              |  8 +++++++-
+ bin/etc-update                 | 14 +++++++++++---
+ bin/portageq                   |  7 ++++---
+ bin/quickpkg                   |  4 +++-
+ man/make.conf.5                |  4 ++++
+ pym/_emerge/depgraph.py        |  4 +++-
+ pym/portage/_global_updates.py |  4 +++-
+ pym/portage/const.py           |  1 +
+ pym/portage/dbapi/vartree.py   | 32 +++++++++++++++++++++++++++++++-
+ pym/portage/update.py          |  6 ++++--
+ pym/portage/util/__init__.py   | 10 +++++++++-
+ 11 files changed, 80 insertions(+), 14 deletions(-)
+
+diff --git a/bin/dispatch-conf b/bin/dispatch-conf
+index fb0a8af..7946415 100755
+--- a/bin/dispatch-conf
++++ b/bin/dispatch-conf
+@@ -29,6 +29,10 @@ from portage.process import find_binary, spawn
+ FIND_EXTANT_CONFIGS  = "find '%s' %s -name '._cfg????_%s' ! -name '.*~' ! -iname '.*.bak' -print"
+ DIFF_CONTENTS        = "diff -Nu '%s' '%s'"
+ 
++if "case-insensitive-fs" in portage.settings.features:
++    FIND_EXTANT_CONFIGS = \
++        FIND_EXTANT_CONFIGS.replace("-name '._cfg", "-iname '._cfg")
++
+ # We need a secure scratch dir and python does silly verbose errors on the use of tempnam
+ oldmask = os.umask(0o077)
+ SCRATCH_DIR = None
+@@ -144,7 +148,9 @@ class dispatch:
+         protect_obj = portage.util.ConfigProtect(
+             config_root, config_paths,
+             portage.util.shlex_split(
+-            portage.settings.get('CONFIG_PROTECT_MASK', '')))
++            portage.settings.get('CONFIG_PROTECT_MASK', '')),
++            case_insensitive = ("case-insensitive-fs"
++            in portage.settings.features))
+ 
+         def diff(file1, file2):
+             return diffstatusoutput(DIFF_CONTENTS, file1, file2)
+diff --git a/bin/etc-update b/bin/etc-update
+index 1a99231..c27379b 100755
+--- a/bin/etc-update
++++ b/bin/etc-update
+@@ -67,6 +67,7 @@ scan() {
+ 	mkdir "${TMP}"/files || die "Failed mkdir command!"
+ 	count=0
+ 	input=0
++	local basename
+ 	local find_opts
+ 	local path
+ 
+@@ -75,13 +76,17 @@ scan() {
+ 
+ 		if [[ ! -d ${path} ]] ; then
+ 			[[ ! -f ${path} ]] && continue
+-			local my_basename="${path##*/}"
++			basename="${path##*/}"
+ 			path="${path%/*}"
+-			find_opts=( -maxdepth 1 -name "._cfg????_${my_basename}" )
++			find_opts=( -maxdepth 1 )
+ 		else
++			basename=*
+ 			# Do not traverse hidden directories such as .svn or .git.
+-			find_opts=( -name '.*' -type d -prune -o -name '._cfg????_*' )
++			find_opts=( -name '.*' -type d -prune -o )
+ 		fi
++		${case_insensitive} && \
++			find_opts+=( -iname ) || find_opts+=( -name )
++		find_opts+=( "._cfg????_${basename}" )
+ 		find_opts+=( ! -name '.*~' ! -iname '.*.bak' -print )
+ 
+ 		if [ ! -w "${path}" ] ; then
+@@ -623,6 +628,7 @@ ${SET_X} && set -x
+ type -P portageq >/dev/null || die "missing portageq"
+ portage_vars=(
+ 	CONFIG_PROTECT{,_MASK}
++	FEATURES
+ 	PORTAGE_CONFIGROOT
+ 	PORTAGE_INST_{G,U}ID
+ 	PORTAGE_TMPDIR
+@@ -633,6 +639,8 @@ portage_vars=(
+ eval $(${PORTAGE_PYTHON:+"${PORTAGE_PYTHON}"} "$(type -P portageq)" envvar -v ${portage_vars[@]})
+ export PORTAGE_TMPDIR
+ SCAN_PATHS=${*:-${CONFIG_PROTECT}}
++[[ " ${FEATURES} " == *" case-insensitive-fs "* ]] && \
++	case_insensitive=true || case_insensitive=false
+ 
+ TMP="${PORTAGE_TMPDIR}/etc-update-$$"
+ trap "die terminated" SIGTERM
+diff --git a/bin/portageq b/bin/portageq
+index 009f116..552cff6 100755
+--- a/bin/portageq
++++ b/bin/portageq
+@@ -379,8 +379,8 @@ def is_protected(argv):
+ 	protect = portage.util.shlex_split(settings.get("CONFIG_PROTECT", ""))
+ 	protect_mask = portage.util.shlex_split(
+ 		settings.get("CONFIG_PROTECT_MASK", ""))
+-	protect_obj = ConfigProtect(root, protect, protect_mask)
+-
++	protect_obj = ConfigProtect(root, protect, protect_mask,
++		case_insensitive = ("case-insensitive-fs" in settings.features))
+ 	if protect_obj.isprotected(f):
+ 		return 0
+ 	return 1
+@@ -414,7 +414,8 @@ def filter_protected(argv):
+ 	protect = portage.util.shlex_split(settings.get("CONFIG_PROTECT", ""))
+ 	protect_mask = portage.util.shlex_split(
+ 		settings.get("CONFIG_PROTECT_MASK", ""))
+-	protect_obj = ConfigProtect(root, protect, protect_mask)
++	protect_obj = ConfigProtect(root, protect, protect_mask,
++		case_insensitive = ("case-insensitive-fs" in settings.features))
+ 
+ 	errors = 0
+ 
+diff --git a/bin/quickpkg b/bin/quickpkg
+index cf75791..4d6bc87 100755
+--- a/bin/quickpkg
++++ b/bin/quickpkg
+@@ -102,7 +102,9 @@ def quickpkg_atom(options, infos, arg, eout):
+ 			if not include_config:
+ 				confprot = ConfigProtect(eroot,
+ 					shlex_split(settings.get("CONFIG_PROTECT", "")),
+-					shlex_split(settings.get("CONFIG_PROTECT_MASK", "")))
++					shlex_split(settings.get("CONFIG_PROTECT_MASK", "")),
++					case_insensitive = ("case-insensitive-fs"
++					in settings.features))
+ 				def protect(filename):
+ 					if not confprot.isprotected(filename):
+ 						return False
+diff --git a/man/make.conf.5 b/man/make.conf.5
+index 84e894b..7b7daa4 100644
+--- a/man/make.conf.5
++++ b/man/make.conf.5
+@@ -265,6 +265,10 @@ Build binary packages for just packages in the system set.
+ Enable a special progress indicator when \fBemerge\fR(1) is calculating
+ dependencies.
+ .TP
++.B case\-insensitive\-fs
++Use case\-insensitive file name comparisions when merging and unmerging
++files.
++.TP
+ .B ccache
+ Enable portage support for the ccache package.  If the ccache dir is not
+ present in the user's environment, then portage will default to
+diff --git a/pym/_emerge/depgraph.py b/pym/_emerge/depgraph.py
+index 5180db5..cae8c32 100644
+--- a/pym/_emerge/depgraph.py
++++ b/pym/_emerge/depgraph.py
+@@ -7799,7 +7799,9 @@ class depgraph(object):
+ 				settings = self._frozen_config.roots[root].settings
+ 				protect_obj[root] = ConfigProtect(settings["EROOT"], \
+ 					shlex_split(settings.get("CONFIG_PROTECT", "")),
+-					shlex_split(settings.get("CONFIG_PROTECT_MASK", "")))
++					shlex_split(settings.get("CONFIG_PROTECT_MASK", "")),
++					case_insensitive = ("case-insensitive-fs"
++					in settings.features))
+ 
+ 		def write_changes(root, changes, file_to_write_to):
+ 			file_contents = None
+diff --git a/pym/portage/_global_updates.py b/pym/portage/_global_updates.py
+index 17dc080..bb39f7a 100644
+--- a/pym/portage/_global_updates.py
++++ b/pym/portage/_global_updates.py
+@@ -208,7 +208,9 @@ def _do_global_updates(trees, prev_mtimes, quiet=False, if_mtime_changed=True):
+ 		update_config_files(root,
+ 			shlex_split(mysettings.get("CONFIG_PROTECT", "")),
+ 			shlex_split(mysettings.get("CONFIG_PROTECT_MASK", "")),
+-			repo_map, match_callback=_config_repo_match)
++			repo_map, match_callback = _config_repo_match,
++			case_insensitive = "case-insensitive-fs"
++			in mysettings.features)
+ 
+ 		# The above global updates proceed quickly, so they
+ 		# are considered a single mtimedb transaction.
+diff --git a/pym/portage/const.py b/pym/portage/const.py
+index acb90f9..5545a84 100644
+--- a/pym/portage/const.py
++++ b/pym/portage/const.py
+@@ -125,6 +125,7 @@ SUPPORTED_FEATURES       = frozenset([
+ 	"buildpkg",
+ 	"buildsyspkg",
+ 	"candy",
++	"case-insensitive-fs",
+ 	"ccache",
+ 	"cgroup",
+ 	"chflags",
+diff --git a/pym/portage/dbapi/vartree.py b/pym/portage/dbapi/vartree.py
+index b46ba0b..8a68f4e 100644
+--- a/pym/portage/dbapi/vartree.py
++++ b/pym/portage/dbapi/vartree.py
+@@ -1052,6 +1052,11 @@ class vardbapi(dbapi):
+ 		def add(self, cpv):
+ 			eroot_len = len(self._vardb._eroot)
+ 			contents = self._vardb._dblink(cpv).getcontents()
++
++			if "case-insensitive-fs" in self._vardb.settings.features:
++				contents = dict((k.lower(), v)
++					for k, v in contents.items())
++
+ 			pkg_hash = self._hash_pkg(cpv)
+ 			if not contents:
+ 				# Empty path is a code used to represent empty contents.
+@@ -1189,6 +1194,8 @@ class vardbapi(dbapi):
+ 			hash_pkg = owners_cache._hash_pkg
+ 			hash_str = owners_cache._hash_str
+ 			base_names = self._vardb._aux_cache["owners"]["base_names"]
++			case_insensitive = "case-insensitive-fs" \
++				in vardb.settings.features
+ 
+ 			dblink_cache = {}
+ 
+@@ -1205,6 +1212,8 @@ class vardbapi(dbapi):
+ 			while path_iter:
+ 
+ 				path = path_iter.pop()
++				if case_insensitive:
++					path = path.lower()
+ 				is_basename = os.sep != path[:1]
+ 				if is_basename:
+ 					name = path
+@@ -1236,6 +1245,8 @@ class vardbapi(dbapi):
+ 
+ 							if is_basename:
+ 								for p in dblink(cpv).getcontents():
++									if case_insensitive:
++										p = p.lower()
+ 									if os.path.basename(p) == name:
+ 										owners.append((cpv, p[len(root):]))
+ 							else:
+@@ -1265,8 +1276,12 @@ class vardbapi(dbapi):
+ 			if not path_list:
+ 				return
+ 
++			case_insensitive = "case-insensitive-fs" \
++				in self._vardb.settings.features
+ 			path_info_list = []
+ 			for path in path_list:
++				if case_insensitive:
++					path = path.lower()
+ 				is_basename = os.sep != path[:1]
+ 				if is_basename:
+ 					name = path
+@@ -1285,6 +1300,8 @@ class vardbapi(dbapi):
+ 				for path, name, is_basename in path_info_list:
+ 					if is_basename:
+ 						for p in dblnk.getcontents():
++							if case_insensitive:
++								p = p.lower()
+ 							if os.path.basename(p) == name:
+ 								search_pkg.results.append((dblnk, p[len(root):]))
+ 					else:
+@@ -1540,7 +1557,9 @@ class dblink(object):
+ 			portage.util.shlex_split(
+ 				self.settings.get("CONFIG_PROTECT", "")),
+ 			portage.util.shlex_split(
+-				self.settings.get("CONFIG_PROTECT_MASK", "")))
++				self.settings.get("CONFIG_PROTECT_MASK", "")),
++			case_insensitive = ("case-insensitive-fs"
++					in self.settings.features))
+ 
+ 		return self._protect_obj
+ 
+@@ -2762,7 +2781,16 @@ class dblink(object):
+ 			filename.lstrip(os_filename_arg.path.sep)))
+ 
+ 		pkgfiles = self.getcontents()
++
++		preserve_case = None
++		if "case-insensitive-fs" in self.settings.features:
++			destfile = destfile.lower()
++			preserve_case = dict((k.lower(), k) for k in pkgfiles)
++			pkgfiles = dict((k.lower(), v) for k, v in pkgfiles.items())
++
+ 		if pkgfiles and destfile in pkgfiles:
++			if preserve_case is not None:
++				return preserve_case[destfile]
+ 			return destfile
+ 		if pkgfiles:
+ 			basename = os_filename_arg.path.basename(destfile)
+@@ -2855,6 +2883,8 @@ class dblink(object):
+ 				for p_path in p_path_list:
+ 					x = os_filename_arg.path.join(p_path, basename)
+ 					if x in pkgfiles:
++						if preserve_case is not None:
++							return preserve_case[x]
+ 						return x
+ 
+ 		return False
+diff --git a/pym/portage/update.py b/pym/portage/update.py
+index df4e11b..7a71092 100644
+--- a/pym/portage/update.py
++++ b/pym/portage/update.py
+@@ -282,7 +282,8 @@ def parse_updates(mycontent):
+ 		myupd.append(mysplit)
+ 	return myupd, errors
+ 
+-def update_config_files(config_root, protect, protect_mask, update_iter, match_callback = None):
++def update_config_files(config_root, protect, protect_mask, update_iter,
++	match_callback = None, case_insensitive = False):
+ 	"""Perform global updates on /etc/portage/package.*, /etc/portage/profile/package.*,
+ 	/etc/portage/profile/packages and /etc/portage/sets.
+ 	config_root - location of files to update
+@@ -406,7 +407,8 @@ def update_config_files(config_root, protect, protect_mask, update_iter, match_c
+ 							sys.stdout.flush()
+ 
+ 	protect_obj = ConfigProtect(
+-		config_root, protect, protect_mask)
++		config_root, protect, protect_mask,
++		case_insensitive = case_insensitive)
+ 	for x in update_files:
+ 		updating_file = os.path.join(abs_user_config, x)
+ 		if protect_obj.isprotected(updating_file):
+diff --git a/pym/portage/util/__init__.py b/pym/portage/util/__init__.py
+index 4105c19..707b001 100644
+--- a/pym/portage/util/__init__.py
++++ b/pym/portage/util/__init__.py
+@@ -1555,10 +1555,12 @@ class LazyItemsDict(UserDict):
+ 			return result
+ 
+ class ConfigProtect(object):
+-	def __init__(self, myroot, protect_list, mask_list):
++	def __init__(self, myroot, protect_list, mask_list,
++		case_insensitive = False):
+ 		self.myroot = myroot
+ 		self.protect_list = protect_list
+ 		self.mask_list = mask_list
++		self.case_insensitive = case_insensitive
+ 		self.updateprotect()
+ 
+ 	def updateprotect(self):
+@@ -1572,6 +1574,8 @@ class ConfigProtect(object):
+ 		for x in self.protect_list:
+ 			ppath = normalize_path(
+ 				os.path.join(self.myroot, x.lstrip(os.path.sep)))
++			if self.case_insensitive:
++				ppath = ppath.lower()
+ 			try:
+ 				if stat.S_ISDIR(os.stat(ppath).st_mode):
+ 					self._dirs.add(ppath)
+@@ -1584,6 +1588,8 @@ class ConfigProtect(object):
+ 		for x in self.mask_list:
+ 			ppath = normalize_path(
+ 				os.path.join(self.myroot, x.lstrip(os.path.sep)))
++			if self.case_insensitive:
++				ppath = ppath.lower()
+ 			try:
+ 				"""Use lstat so that anything, even a broken symlink can be
+ 				protected."""
+@@ -1604,6 +1610,8 @@ class ConfigProtect(object):
+ 		masked = 0
+ 		protected = 0
+ 		sep = os.path.sep
++		if self.case_insensitive:
++			obj = obj.lower()
+ 		for ppath in self.protect:
+ 			if len(ppath) > masked and obj.startswith(ppath):
+ 				if ppath in self._dirs:
+-- 
+1.8.5.5
+

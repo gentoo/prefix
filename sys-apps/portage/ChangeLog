@@ -2,6 +2,18 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.10.1-r1 (12 Nov 2014)
+*portage-2.2.14 (12 Nov 2014)
+
+  12 Nov 2014; Fabian Groffen <grobian@gentoo.org>
+  +files/portage-2.2.10.1-case-insensitive-fs.patch,
+  +portage-2.2.10.1-r1.ebuild, +portage-2.2.14.ebuild, -portage-2.2.10.ebuild,
+  -portage-2.2.14_rc1.ebuild, -portage-2.2.7-r2.ebuild:
+  Version bump, also revbump on 2.2.10.1 for case-insensitive-fs patch.  This
+  version needs to be installed in order to install 2.2.14.  Unfortunately we
+  cannot force this with dependencies, hence 2.2.14 is masked for the time
+  being.
+
   29 Oct 2014; Fabian Groffen <grobian@gentoo.org> portage-2.2.10.1.ebuild,
   portage-2.2.14_rc1.ebuild:
   Use pool for default rsync server

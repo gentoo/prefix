@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id: portage-2.2.01.16270.ebuild 58665 2010-09-05 19:54:38Z grobian $
 
@@ -236,10 +236,17 @@ src_prepare() {
 	fi
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
-	epatch "${FILESDIR}"/${PN}-2.2.7-ebuildshell.patch # 155161
-	epatch "${FILESDIR}"/${PN}-2.2.7-shebang-fixes.patch # already in git
-	epatch "${FILESDIR}"/${PN}-2.2.7-sandbox.patch # 490016
-	epatch "${FILESDIR}"/${PN}-2.2.7-macho-relative-install_names.patch # in git
+	epatch "${FILESDIR}"/${PN}-2.2.8-ebuildshell.patch # 155161
+	# use pool of servers
+	sed -i \
+		-e 's/prefix.gentooexperimental.org/rsync.prefix.bitzolder.nl/' \
+		bin/emerge-webrsync cnf/make.conf.example cnf/repos.conf
+
+	# temp workaround to be able to upgrade to 2.2.14
+	epatch "${FILESDIR}"/${P}-case-insensitive-fs.patch # 524236
+	sed -i \
+		-e 's/force-prefix/force-prefix case-insensitive-fs/' \
+		cnf/make.globals
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
@@ -375,9 +382,6 @@ src_install() {
 		rm "${ED}"${portage_base}/bin/ebuild-helpers/bsd/sed || die "Failed to remove sed wrapper"
 	fi
 
-	exeinto ${portage_base}/pym/portage/tests
-	doexe  "${S}"/pym/portage/tests/runTests
-
 	use doc && dohtml -r "${S}"/doc/*
 	use epydoc && dohtml -r "${WORKDIR}"/api
 	dodir /etc/portage
@@ -477,7 +481,7 @@ new_config_protect() {
 
 pkg_postinst() {
 
-	if ${REPOS_CONF_UPGRADE} ; then
+	if [[ -n ${REPOS_CONF_UPGRADE} ]] ; then
 		einfo "Generating repos.conf"
 		local repo_name=
 		[[ -f ${PORTDIR}/profiles/repo_name ]] && \
