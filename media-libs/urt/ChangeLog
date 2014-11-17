@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/urt
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/urt/ChangeLog,v 1.33 2012/06/16 16:32:52 ssuominen Exp $
+
+  17 Nov 2014; Fabian Groffen <grobian@gentoo.org> files/urt-3.1b-solaris.patch:
+  Add patch header
 
   16 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> urt-3.1b-r1.ebuild,
   metadata.xml:
