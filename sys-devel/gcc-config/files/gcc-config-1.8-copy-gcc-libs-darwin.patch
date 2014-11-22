@@ -1,0 +1,32 @@
+diff --git a/a/gcc-config b/b/gcc-config
+index d747840..b1e0517 100755
+--- a/a/gcc-config
++++ b/b/gcc-config
+@@ -364,11 +364,6 @@ prefix_copy_gcc_libs() {
+ 			# static only, nothing to do here
+ 			return 0
+ 			;;
+-		*-darwin*)
+-			# Mach-O records all references with full path, hence each
+-			# object has links to the GCC-specific version of the lib.
+-			return 0
+-			;;
+ 	esac
+ 
+ 	# dstlibgcc location is added to RPATH by the binutils wrapper
+@@ -418,6 +413,15 @@ prefix_copy_gcc_libs() {
+ 				finish_runtime_dir_elf "$@" 
+ 			}
+ 			;;
++		*-darwin*)
++			LIBSUFFIX="dylib"
++			do_single_runtime() {
++				do_single_runtime_elf "$@"
++			}
++			finish_runtime_dir() {
++				finish_runtime_dir_elf "$@" 
++			}
++			;;
+ 		*)
+ 			LIBSUFFIX="so"
+ 			do_single_runtime() {
