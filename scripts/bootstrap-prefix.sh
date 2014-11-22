@@ -18,12 +18,12 @@ einfo() { echo "* $*"; }
 econf() {
 	${CONFIG_SHELL} ./configure \
 		--host=${CHOST} \
-		--prefix="${ROOT}"/usr \
-		--mandir="${ROOT}"/usr/share/man \
-		--infodir="${ROOT}"/usr/share/info \
-		--datadir="${ROOT}"/usr/share \
-		--sysconfdir="${ROOT}"/etc \
-		--localstatedir="${ROOT}"/var/lib \
+		--prefix="${ROOT}"/tmp/usr \
+		--mandir="${ROOT}"/tmp/usr/share/man \
+		--infodir="${ROOT}"/tmp/usr/share/info \
+		--datadir="${ROOT}"/tmp/usr/share \
+		--sysconfdir="${ROOT}"/tmp/etc \
+		--localstatedir="${ROOT}"/tmp/var/lib \
 		--build=${CHOST} \
 		"$@" || return 1
 }
@@ -489,10 +489,6 @@ bootstrap_startscript() {
 	fi
 }
 
-get_extra_path() {
-	echo "${1}/usr/bin:/bin:/usr/bin:${PATH}"
-}
-
 bootstrap_portage() {
 	# Set TESTING_PV in env if you want to test a new portage before bumping the
 	# STABLE_PV that is known to work. Intended for power users only.
@@ -530,12 +526,20 @@ bootstrap_portage() {
 	export PORTAGE_BASH=${ROOT}/bin/bash
 
 	einfo "Compiling ${A%-*}"
-	econf \
+	${CONFIG_SHELL} ./configure \
+		--host=${CHOST} \
+		--prefix="${ROOT}"/usr \
+		--mandir="${ROOT}"/usr/share/man \
+		--infodir="${ROOT}"/usr/share/info \
+		--datadir="${ROOT}"/usr/share \
+		--sysconfdir="${ROOT}"/tmp/etc \
+		--localstatedir="${ROOT}"/tmp/var/lib \
+		--build=${CHOST} \
 		--with-offset-prefix="${ROOT}" \
 		--with-portage-user="`id -un`" \
 		--with-portage-group="`id -gn`" \
 		--mandir="${ROOT}/automatically-removed" \
-		--with-extra-path="$(get_extra_path "${ROOT}/tmp")" \
+		--with-extra-path="${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}" \
 		|| return 1
 	$MAKE ${MAKEOPTS} || return 1
 
@@ -739,17 +743,17 @@ bootstrap_python() {
 
 	# python refuses to find the zlib headers that are built in the
 	# offset
-	export CPPFLAGS="-I$EPREFIX/tmp/usr/include"
-	export LDFLAGS="${CFLAGS} -L$EPREFIX/tmp/usr/lib"
+	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
+	export LDFLAGS="${CFLAGS} -L${ROOT}/tmp/usr/lib"
 	# set correct flags for runtime for ELF platforms
 	case $CHOST in
 		*-*bsd*|*-linux*)
 			# GNU ld
-			export LDFLAGS="${LDFLAGS} -Wl,-rpath,$EPREFIX/tmp/usr/lib ${libdir}"
+			export LDFLAGS="${LDFLAGS} -Wl,-rpath,${ROOT}/tmp/usr/lib ${libdir}"
 		;;
 		*-solaris*)
 			# Sun ld
-			export LDFLAGS="${LDFLAGS} -R$EPREFIX/tmp/usr/lib ${libdir}"
+			export LDFLAGS="${LDFLAGS} -R${ROOT}/tmp/usr/lib ${libdir}"
 		;;
 	esac
 
@@ -775,9 +779,9 @@ bootstrap_python() {
 
 	einfo "Installing ${A%-*}"
 	$MAKE -k install || echo "??? Python failed to install *sigh* continuing anyway"
-	cd "${ROOT}"/usr/bin
+	cd "${ROOT}"/tmp/usr/bin
 	ln -sf python${PV%.*} python
-	cd "${ROOT}"/usr/lib
+	cd "${ROOT}"/tmp/usr/lib
 	# messes up python emerges, and shouldn't be necessary for anything
 	# http://forums.gentoo.org/viewtopic-p-6890526.html
 	rm -f libpython${PV%.*}.a
@@ -827,7 +831,7 @@ bootstrap_zlib_core() {
 	[[ ${PV} == 1.2.5 ]] && MAKEOPTS=
 
 	einfo "Compiling ${A%-*}"
-	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/usr || return 1
+	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
 	$MAKE ${MAKEOPTS} || return 1
 
 	einfo "Installing ${A%-*}"
@@ -835,14 +839,14 @@ bootstrap_zlib_core() {
 
 	# this lib causes issues when emerging python again on Solaris
 	# because the tmp lib path is in the library search path there
-	rm -Rf "${ROOT}"/usr/lib/libz*.a
+	rm -Rf "${ROOT}"/tmp/usr/lib/libz*.a
 
 	if [[ ${CHOST} == *-aix* ]]; then
 		# No aix-soname support, but symlinks when built with gcc. This breaks
 		# later on when aix-soname is added within Prefix, where the lib.so.1
 		# is an archive then, while finding this one first due to possible
 		# rpath ordering issues.
-		rm -f "${ROOT}"/usr/lib/libz.so.1
+		rm -f "${ROOT}"/tmp/usr/lib/libz.so.1
 	fi
 
 	einfo "${A%-*} bootstrapped"
@@ -948,7 +952,7 @@ bootstrap_bzip2() {
 	$MAKE || return 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE PREFIX="${ROOT}"/usr install || return 1
+	$MAKE PREFIX="${ROOT}"/tmp/usr install || return 1
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
@@ -956,13 +960,6 @@ bootstrap_bzip2() {
 }
 
 bootstrap_stage1() { (
-	if [[ ${ROOT} != */tmp ]] ; then
-		eerror "stage1 can only be used for paths that end in '/tmp'"
-		return 1
-	fi
-
-	export PATH=$(get_extra_path "${ROOT}")
-
 	# NOTE: stage1 compiles all tools (no libraries) in the native
 	# bits-size of the compiler, which needs not to match what we're
 	# bootstrapping for.  This is no problem since they're just tools,
@@ -999,7 +996,7 @@ bootstrap_stage1() { (
 	if type -P pkg-config > /dev/null ; then
 		# it IS possible to get here without installing anything in
 		# tmp/usr/bin, which makes the below fail to happen
-		mkdir -p "${ROOT}"/usr/bin/
+		mkdir -p "${ROOT}"/tmp/usr/bin/
 		# hide an existing pkg-config for glib, which first checks
 		# pkg-config for libffi, and only then the LIBFFI_* vars
 		# this resolves nasty problems like bug #426302
@@ -1008,29 +1005,24 @@ bootstrap_stage1() { (
 		{
 			echo "#!/bin/sh"
 			echo "exit 1"
-		} > "${ROOT}"/usr/bin/pkg-config
-		chmod 755 "${ROOT}"/usr/bin/pkg-config
+		} > "${ROOT}"/tmp/usr/bin/pkg-config
+		chmod 755 "${ROOT}"/tmp/usr/bin/pkg-config
 	fi
 	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
 	# important to have our own (non-flawed one) since Python (from
 	# Portage) and binutils use it
-	for zlib in ${ROOT}/usr/lib/libz.* ; do
+	for zlib in ${ROOT}/tmp/usr/lib/libz.* ; do
 		[[ -e ${zlib} ]] && break
 		zlib=
 	done
 	[[ -n ${zlib} ]] || (bootstrap_zlib) || return 1
 	# too vital to rely on a host-provided one
-	[[ -x ${ROOT}/usr/bin/python ]] || (bootstrap_python) || return 1
+	[[ -x ${ROOT}/tmp/usr/bin/python ]] || (bootstrap_python) || return 1
 
 	einfo "stage1 successfully finished"
 ); }
 
 bootstrap_stage2() {
-	if [[ ${ROOT} == */tmp ]] ; then
-		eerror "stage2 cannot be used for paths that end in '/tmp'"
-		return 1
-	fi
-
 	mkdir -p "${ROOT}"/usr/portage || return 1
 
 	# try to keep distfiles, we might be able to reuse them
@@ -1052,11 +1044,6 @@ bootstrap_stage2() {
 }
 
 bootstrap_stage3() {
-	if [[ ${ROOT} == */tmp ]] ; then
-		eerror "stage3 cannot be used for paths that end in '/tmp'"
-		return 1
-	fi
-
 	if ! type -P emerge > /dev/null ; then
 		eerror "emerge not found, did you bootstrap stage1 and stage2?"
 		return 1
@@ -1291,7 +1278,7 @@ bootstrap_stage3() {
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
 
-	if [[ ! -f ${EPREFIX}/etc/portage/make.conf ]] ; then
+	if [[ ! -f ${ROOT}/etc/portage/make.conf ]] ; then
 		{
 			echo 'USE="unicode nls"'
 			echo 'CFLAGS="${CFLAGS} -O2 -pipe"'
@@ -1306,7 +1293,7 @@ bootstrap_stage3() {
 				echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
 			[[ ${OFFLINE_MODE} ]] && \
 				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
-		} > "${EPREFIX}"/etc/portage/make.conf
+		} > "${ROOT}"/etc/portage/make.conf
 	fi
 
 	einfo "stage3 successfully finished"
@@ -1866,7 +1853,6 @@ EOF
 		# location seems ok
 		break;
 	done
-	export EPREFIX
 	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$PATH"
 
 	cat << EOF
@@ -1892,12 +1878,12 @@ EOF
 	fi
 	echo
 
-	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1 ; then
+	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1 ; then
 		# stage 1 fail
 		cat << EOF
 
 I tried running
-  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}/tmp" stage1
+  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1
 but that failed :(  I have no clue, really.  Please find friendly folks
 in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
 or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
@@ -1976,9 +1962,9 @@ EOF
 	fi
 
 	# Now, after 'emerge -e system', we can get rid of the temporary tools.
-	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
-		rm -Rf "${ROOT}"/tmp || return 1
-		mkdir -p "${ROOT}"/tmp || return 1
+	if [[ -d ${EPREFIX}/tmp/var/tmp ]] ; then
+		rm -Rf "${EPREFIX}"/tmp || return 1
+		mkdir -p "${EPREFIX}"/tmp || return 1
 	fi
 
 	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
