@@ -392,12 +392,11 @@ bootstrap_setup() {
 		einfo "Your profile is set to ${fullprofile}."
 	fi
 	
-	# Disable the STALE warning because the snapshot frequently gets stale.
-	echo 'PORTAGE_SYNC_STALE=0 # for bootstrap-prefix.sh' >> "${ROOT}"/etc/portage/make.profile/make.defaults
-	
 	# Some people will hit bug 262653 with gcc-4.2 and elfutils. Let's skip it
 	# here and bring it in AFTER the --sync
 	echo "dev-libs/elfutils-0.153 # for bootstrap-prefix.sh" >> "${ROOT}"/etc/portage/make.profile/package.provided
+	
+	cp -a "${ROOT}"/etc/portage "${ROOT}"/tmp/etc
 }
 
 do_tree() {
@@ -526,20 +525,11 @@ bootstrap_portage() {
 	export PORTAGE_BASH=${ROOT}/bin/bash
 
 	einfo "Compiling ${A%-*}"
-	${CONFIG_SHELL} ./configure \
-		--host=${CHOST} \
-		--prefix="${ROOT}"/usr \
-		--mandir="${ROOT}"/usr/share/man \
-		--infodir="${ROOT}"/usr/share/info \
-		--datadir="${ROOT}"/usr/share \
-		--sysconfdir="${ROOT}"/tmp/etc \
-		--localstatedir="${ROOT}"/tmp/var/lib \
-		--build=${CHOST} \
-		--with-offset-prefix="${ROOT}" \
+	econf \
+		--with-offset-prefix="${ROOT}"/tmp \
 		--with-portage-user="`id -un`" \
 		--with-portage-group="`id -gn`" \
-		--mandir="${ROOT}/automatically-removed" \
-		--with-extra-path="${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}" \
+		--with-extra-path="${PATH}" \
 		|| return 1
 	$MAKE ${MAKEOPTS} || return 1
 
@@ -553,14 +543,12 @@ bootstrap_portage() {
 
 	# Some people will skip the tree() step and hence var/log is not created 
 	# As such, portage complains..
-	[[ ! -d $ROOT/var/log ]] && mkdir ${ROOT}/var/log
-	
-	# during bootstrap_portage(), man pages are not compressed. This is
-	# problematic once you have a working prefix. So, remove them now.
-	rm -rf "${ROOT}/automatically-removed"	
+	mkdir -p "${ROOT}"/var/log "${ROOT}"/tmp/var/log
 
 	# in Prefix the sed wrapper is deadly, so kill it
-	rm -f "${ROOT}"/usr/lib/portage/bin/ebuild-helpers/sed
+	rm -f "${ROOT}"/tmp/usr/lib/portage/bin/ebuild-helpers/sed
+
+	[[ -e "${ROOT}"/tmp/usr/portage ]] || ln -s "${PORTDIR}" "${ROOT}"/tmp/usr/portage
 
 	einfo "${A%-*} successfully bootstrapped"
 }
@@ -1025,19 +1013,15 @@ bootstrap_stage1() { (
 bootstrap_stage2() {
 	mkdir -p "${ROOT}"/usr/portage || return 1
 
-	# try to keep distfiles, we might be able to reuse them
-	[[ -d ${ROOT}/usr/portage/distfiles ]] || \
-		mv "${ROOT}"/tmp/usr/portage/distfiles "${ROOT}"/usr/portage/
-
 	# checks itself if things need to be done still
 	bootstrap_tree || return 1
 
 	# setup portage
-	[[ -e ${ROOT}/etc/make.globals ]] || bootstrap_portage || return 1
+	[[ -e ${ROOT}/tmp/etc/make.globals ]] || bootstrap_portage || return 1
 
 	if [[ -s ${ROOT}/usr/portage/profiles/repo_name ]]; then
 		# sync portage's repos.conf with the tree being used
-		sed -i -e "s,gentoo_prefix,$(<"${ROOT}"/usr/portage/profiles/repo_name)," "${ROOT}"/usr/share/portage/config/repos.conf || return 1
+		sed -i -e "s,gentoo_prefix,$(<"${ROOT}"/usr/portage/profiles/repo_name)," "${ROOT}"/tmp/usr/share/portage/config/repos.conf || return 1
 	fi
 
 	einfo "stage2 successfully finished"
@@ -1079,6 +1063,9 @@ bootstrap_stage3() {
 	# Need need to spam the user about news until the emerge -e default
 	# because the tools aren't available to read the news item yet anyway.
 	export FEATURES="-news ${FEATURES}"
+
+	# Disable the STALE warning because the snapshot frequently gets stale.
+	export PORTAGE_SYNC_STALE=0
 
 	# Until we get a proper python, set correct PYTHONPATH for Portage,
 	# since our stage1 Python lives in $EPREFIX/tmp, bug #407573
@@ -1132,7 +1119,7 @@ bootstrap_stage3() {
 			done
 			[[ -n ${pvdb} ]] && continue
 
-			eval 'emerge -v --oneshot ${opts} "${pkg}"'
+			PORTAGE_CONFIGROOT="${ROOT}" EPREFIX="${ROOT}" emerge -v --oneshot --root-deps ${opts} "${pkg}"
 			[[ $? -eq 0 ]] || return 1
 		done
 	}
@@ -1152,6 +1139,9 @@ bootstrap_stage3() {
 
 	# we can now use our own bash throughout
 	export CONFIG_SHELL="${ROOT}/bin/bash"
+
+	# make sure portage uses the prefix tools when possible
+	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
 	pkgs=(
 		app-arch/xz-utils
@@ -1196,6 +1186,8 @@ bootstrap_stage3() {
 	MAKEINFO="echo makeinfo GNU texinfo 4.13" CC="${GCC_CC}" \
 		emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
 
+	unset CC HOSTCC CPPFLAGS LDFLAGS
+
 	# --oneshot
 	pkgs=(
 		sys-apps/coreutils
@@ -1233,9 +1225,14 @@ bootstrap_stage3() {
 	export USE="${USE//-ssl/}"
 
 	# disable collision-protect to overwrite the bootstrapped portage
-	FEATURES="-collision-protect" emerge_pkgs "" "sys-apps/portage" || return 1
+	emerge_pkgs "" "sys-apps/portage" || return 1
 
 	unset CPPFLAGS
+
+
+	# Switch to the proper portage now.
+	unset PYTHONPATH
+	hash -r
 
 	# Each package emerged while portage was depending on the temporary tools
 	# still may depend on them too. Examples are:
@@ -1256,7 +1253,6 @@ bootstrap_stage3() {
 	fi
 
 	export USE="${baseUSE}"
-	unset PYTHONPATH CC HOSTCC CPPFLAGS LDFLAGS
 
 	# activate last compiler (some Solaris cases), needed for mpc and
 	# deps below
@@ -2235,8 +2231,8 @@ case $ROOT in
 esac
 
 CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
-PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
-DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
+export PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
+export DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
 PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
 DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
 SNAPSHOT_URL=${SNAPSHOT_URL:-"http://rsync.prefix.bitzolder.nl/snapshots"}
