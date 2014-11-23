@@ -100,137 +100,76 @@ efetch() {
 # }
 
 configure_toolchain() {
-	# gcc identifies -I/usr/include as system dir and ignores it,
-	# resulting in /tmp/usr/include being searched before /usr/include.
-	# Need to pass both with -isystem instead to retain expected search order.
-	export CPPFLAGS="-isystem${ROOT}/usr/include -isystem${ROOT}/tmp/usr/include"
-	# But strip-flags() will drop -isystem if not told otherwise.
-	sed -i -e '/ALLOWED_FLAGS=/aALLOWED_FLAGS+=" -isystem*" # for bootstrap-prefix.sh' "${ROOT}"/usr/portage/eclass/flag-o-matic.eclass
-
+	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
+	
 	case ${bootstrapCHOST} in
 		*-darwin*)
-			export LDFLAGS="-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
+			export LDFLAGS="-Wl,-search_paths_first -L${ROOT}/tmp/usr/lib"
 			;;
 		*-solaris* | *-irix*)
-			export LDFLAGS="-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib"
+			export LDFLAGS="-L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib"
 			;;
 		*-hp-hpux*)
-			export LDFLAGS="-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib"
+			export LDFLAGS="-L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib"
 			;;
 		*-*-aix*)
 			# The bootstrap compiler unlikely has runtime linking
 			# enabled already, but elibtoolize switches to the
 			# "lib.so(shr.o)" sharedlib variant.
-			export LDFLAGS="-Wl,-brtl -L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
+			export LDFLAGS="-Wl,-brtl -L${ROOT}/tmp/usr/lib"
 			;;
 		i586-pc-interix* | i586-pc-winnt* | i686-pc-cygwin*)
-			export LDFLAGS="-L${ROOT}/usr/lib -L${ROOT}/lib -L${ROOT}/tmp/usr/lib"
+			export LDFLAGS="-L${ROOT}/tmp/usr/lib"
 			;;
 		*)
-			export LDFLAGS="-L${ROOT}/usr/lib -Wl,-rpath=${ROOT}/usr/lib -L${ROOT}/lib -Wl,-rpath=${ROOT}/lib -L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib"
+			export LDFLAGS="-L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib"
 			;;
 	esac
 
 	case ${bootstrapCHOST} in
 		# note: we need CXX for binutils-apple which' ld is c++
+		# Clang on OSX defaults to c99 mode, while GCC defaults to gnu89
+		# (C90 + extensions).  This makes Clang barf on GCC's sources, so
+		# work around that.  Bug #491098
 		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
-			[[ -z ${CC} ]] && export CC="gcc -m64"
+			[[ -z ${CC} ]] && export CC="gcc -m64 -std=gnu89"
 			[[ -z ${CXX} ]] && export CXX="g++ -m64"
-			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m64"
+			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m64 -std=gnu89"
 			;;
 		i*86-apple-darwin1*)
-			[[ -z ${CC} ]] && export CC="gcc -m32"
+			[[ -z ${CC} ]] && export CC="gcc -m32 -std=gnu89"
 			[[ -z ${CXX} ]] && export CXX="g++ -m32"
-			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m32"
+			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m32 -std=gnu89"
 			;;
 		*)
 			;;
 	esac
+
+	linker=sys-devel/binutils
+	compiler=sys-devel/gcc
+	# The host may not have a functioning c++ toolchain, so use a stage1 compiler that can build with C only.
+	compiler_stage1="<sys-devel/gcc-4.8"
 
 	pkggcc="sys-devel/gcc"
 	case ${bootstrapCHOST} in
 		*-darwin*)
 			case "$(gcc --version)" in
 				*"(GCC) 4.2.1 "*|*"Apple LLVM version "*)
-					local linker=sys-devel/binutils-apple
+					linker=sys-devel/binutils-apple
 					;;
 				*"(GCC) 4.0.1 "*)
-					local linker="=sys-devel/binutils-apple-3.2"
+					linker="=sys-devel/binutils-apple-3.2"
 					;;
 				*)
 					eerror "unknown compiler"
 					return 1
 					;;
 			esac
-			toolchainpackages=(
-				sys-apps/darwin-miscutils
-				sys-libs/csu
-				${linker}
-				sys-devel/gcc-apple
-			)
-			pkggcc="sys-devel/gcc-apple"
-			;;
-		i?86-*-solaris*)
-			# 4.2/x86 can't cope with Sun ld/as
-			# results in a bootstrap compare mismatch
-
-			# Figure out what Solaris we're on.  Since Solaris 10u10
-			# some Solaris 11 changes have been integrated that
-			# implement some GNU extensions to ELF.  This most notably
-			# is the VERSYM_HIDDEN flag, that GCC 4.1 doesn't know
-			# about, resulting in a libstdc++.so that cannot find these
-			# hidden symbols.  GCC 4.2 knows about these, so we must
-			# have it there.  Unfortunately, 4.2 doesn't always compile,
-			# so we need to perform the expensive 4.1 -> 4.2 -> current.
-			local SOLARIS_RELEASE=$(head -n1 /etc/release)
-			local needgcc42=
-			case "${SOLARIS_RELEASE}" in
-				*"Solaris 10"*)
-					# figure out major update level
-					SOLARIS_RELEASE=${SOLARIS_RELEASE##*s10s_u}
-					SOLARIS_RELEASE=${SOLARIS_RELEASE##*s10x_u}
-					SOLARIS_RELEASE=${SOLARIS_RELEASE%%wos_*}
-					SOLARIS_RELEASE=${SOLARIS_RELEASE##*s10_*} # older
-					if [[ "${SOLARIS_RELEASE}" -ge "10" ]] ; then
-						needgcc42="=sys-devel/gcc-4.2*"
-					fi
-					;;
-				*)
-					# assume all the rest is Oracle Solaris 11,
-					# OpenSolaris, OpenIndiana, SmartOS, whatever,
-					# thus > Solaris 10u10
-					needgcc42="=sys-devel/gcc-4.2*"
-					;;
-			esac
-
-			toolchainpackages=(
-				sys-devel/binutils
-				"=sys-devel/gcc-4.1*"
-				${needgcc42}
-			)
-			;;
-		sparc-*-solaris2.11)
-			# unknown what the problem is here
-			toolchainpackages=(
-				sys-devel/binutils
-				"=sys-devel/gcc-4.1*"
-				"=sys-devel/gcc-4.2*"
-			)
+			compiler=sys-devel/gcc-apple
+			compiler_stage1="${compiler}"
 			;;
 		*-*-aix*)
-			toolchainpackages=(
-				sys-apps/diffutils # or gcc PR14251
-				sys-devel/native-cctools
-				"=sys-devel/gcc-4.2*"
-				sys-apps/aix-miscutils
-				sys-apps/texinfo
-			)
-			;;
-		*)
-			toolchainpackages=(
-				sys-devel/binutils
-				"=sys-devel/gcc-4.2*"
-			)
+			linker=sys-devel/native-cctools
 			;;
 	esac
 }
@@ -519,10 +458,12 @@ bootstrap_portage() {
 	# Portage checks for valid shebangs. These may (xz-utils) originate
 	# in CONFIG_SHELL (AIX), which originates in PORTAGE_BASH then.
 	# So we need to ensure portage's bash is valid as shebang too.
-	mkdir -p ${ROOT}/bin || return 1
-	[[ -x ${ROOT}/bin/bash ]] || [[ ! -x ${ROOT}/tmp/usr/bin/bash ]] || ln -s ${ROOT}/tmp/usr/bin/bash ${ROOT}/bin/bash || return 1
-	[[ -x ${ROOT}/bin/bash ]] || ln -s ${BASH} ${ROOT}/bin/bash || return 1
-	export PORTAGE_BASH=${ROOT}/bin/bash
+	mkdir -p "${ROOT}"/tmp/bin "${ROOT}"/bin || return 1
+	[[ -x ${ROOT}/tmp/bin/bash ]] || [[ ! -x ${ROOT}/tmp/usr/bin/bash ]] || ln -s ../usr/bin/bash "${ROOT}"/tmp/bin/bash || return 1
+	[[ -x ${ROOT}/tmp/bin/bash ]] || ln -s "${BASH}" "${ROOT}"/tmp/bin/bash || return 1
+	[[ -x ${ROOT}/tmp/bin/sh ]] || ln -s bash "${ROOT}"/tmp/bin/sh || return 1
+	[[ -x ${ROOT}/bin/sh ]] || ln -s ../tmp/bin/sh "${ROOT}"/bin/sh || return 1
+	export PORTAGE_BASH="${ROOT}"/tmp/bin/bash
 
 	einfo "Compiling ${A%-*}"
 	econf \
@@ -969,7 +910,7 @@ bootstrap_stage1() { (
 	[[ $(sed --version 2>&1) == *GNU* ]] || (bootstrap_sed) || return 1
 	[[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] || (bootstrap_m4) || return 1
 	[[ $(bison --version 2>&1) == *"(GNU Bison) 2."[345678]* ]] \
-		|| [[ -x ${ROOT}/usr/bin/bison ]] \
+		|| [[ -x ${ROOT}/tmp/usr/bin/bison ]] \
 		|| (bootstrap_bison) || return 1
 	[[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]] \
 		|| (bootstrap_coreutils) || return 1
@@ -979,7 +920,7 @@ bootstrap_stage1() { (
 	[[ $(grep --version 2>&1) == *GNU* ]] || (bootstrap_grep) || return 1
 	[[ $(awk --version < /dev/null 2>&1) == *GNU* ]] || bootstrap_gawk || return 1
 	[[ $(bash --version 2>&1) == "GNU bash, version 4."[123456789]* && ${CHOST} != *-aix* ]] \
-		|| [[ -x ${ROOT}/usr/bin/bash ]] \
+		|| [[ -x ${ROOT}/tmp/usr/bin/bash ]] \
 		|| (bootstrap_bash) || return 1
 	if type -P pkg-config > /dev/null ; then
 		# it IS possible to get here without installing anything in
@@ -1040,27 +981,9 @@ bootstrap_stage3() {
 
 	# Avoid circular deps caused by the default profiles (and IUSE defaults).
 	local baseUSE="${USE}"
-	export USE="-berkdb -fortran -gdbm -git -kerberos -nls -pcre -readline -ssl -python bootstrap internal-glib ${baseUSE}"
-	echo "app-shells/bash -readline # for bootstrap-prefix.sh" >> "${ROOT}"/etc/portage/make.profile/package.use.force
+	export USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python bootstrap internal-glib ${baseUSE}"
 
-	# Python >= 3.2 fails to build on gcc-4.2. Disable it until after the sync.
-	USE="-python_targets_python3_2 -python_targets_python3_3 ${USE}"
-	echo ">=dev-lang/python-3 # for bootstrap-prefix.sh" >> "${ROOT}"/etc/portage/make.profile/package.mask
-
-	# Most binary Linux distributions seem to fancy toolchains that
-	# do not do c++ support (need to install a separate package).
-	# Since we don't check for g++, just make sure binutils won't
-	# try to build gold (needs c++), it will get there once we built
-	# our own GCC with c++ support.  Getting there, requires us to have
-	# a cxx compiler though, so since we can build one without any extra
-	# deps with gcc, we should do so.
-	USE="${USE} -cxx"
-	{
-		echo "sys-devel/gcc cxx # for bootstrap-prefix.sh"
-		echo "sys-devel/gcc-apple cxx # for bootstrap-prefix.sh"
-	} >> "${ROOT}"/etc/portage/make.profile/package.use.force
-
-	# Need need to spam the user about news until the emerge -e default
+	# Need need to spam the user about news until the emerge -e system
 	# because the tools aren't available to read the news item yet anyway.
 	export FEATURES="-news ${FEATURES}"
 
@@ -1078,6 +1001,7 @@ bootstrap_stage3() {
 	# https://bugs.gentoo.org/show_bug.cgi?id=433948
 	export bootstrapCHOST=${CHOST}
 	unset CHOST
+	export CHOST=$(portageq envvar CHOST)
 
 	# Find out what toolchain packages we need, and configure LDFLAGS
 	# and friends.
@@ -1086,7 +1010,7 @@ bootstrap_stage3() {
 	[[ ${OFFLINE_MODE} ]] && \
 		export FETCHCOMMAND="bash -c 'echo I need \\\$1 from \\\$2 in \\\$3; read' -- \\\${FILE} \\\${URI} \\\${DISTDIR}"
 
-	emerge_pkgs() {
+	do_emerge_pkgs() {
 		local opts=$1 ; shift
 		local pkg vdb pvdb evdb
 		for pkg in "$@"; do
@@ -1101,7 +1025,7 @@ bootstrap_stage3() {
 			else
 				vdb=${vdb}-\*
 			fi
-			for pvdb in ${ROOT}/var/db/pkg/${vdb%-*}-* ; do
+			for pvdb in ${EPREFIX}/var/db/pkg/${vdb%-*}-* ; do
 				if [[ -d ${pvdb} ]] ; then
 					evdb=${pvdb##*/}
 					if [[ ${pkg} == "="* ]] ; then
@@ -1119,76 +1043,111 @@ bootstrap_stage3() {
 			done
 			[[ -n ${pvdb} ]] && continue
 
-			PORTAGE_CONFIGROOT="${ROOT}" EPREFIX="${ROOT}" emerge -v --oneshot --root-deps ${opts} "${pkg}"
+			PORTAGE_CONFIGROOT="${EPREFIX}" emerge -v --oneshot --root-deps ${opts} "${pkg}"
 			[[ $? -eq 0 ]] || return 1
 		done
 	}
+
+	emerge_pkgs() {
+		EPREFIX="${ROOT}" \
+		do_emerge_pkgs "$@"
+	}
+
+	emerge_tmp_pkgs() {
+		EPREFIX="${ROOT}"/tmp \
+		FEATURES="${FEATURES} -collision-protect" \
+		do_emerge_pkgs "$@"
+	}
+
 	local pkgs
 
-	emerge_pkgs --nodeps "sys-apps/sed" || return 1
+	# bison's configure checks for perl, but doesn't use it,
+	# except for tests.  Since we don't want to pull in perl at this
+	# stage, fake it
+	export PERL=$(which touch)
+	# GCC sometimes decides that it needs to run makeinfo to update some
+	# info pages from .texi files.  Obviously we don't care at this
+	# stage and rather have it continue instead of abort the build
+	export MAKEINFO="echo makeinfo GNU texinfo 4.13"
 
-	[[ ${bootstrapCHOST} != *-aix* ]] || # avoid hell with shared libiconv.a
-	emerge_pkgs --nodeps "dev-libs/libiconv" || return 1
- 
-	# Hack for bash because curses is not always available (linux).
-	# Disable collision-protect to overwrite the symlinked bin/bash for
-	# a valid shebang we have symlinked bin/bash already
-	FEATURES="${FEATURES} -collision-protect" \
-	EXTRA_ECONF="--without-curses" \
-		emerge_pkgs --nodeps "app-shells/bash" || return 1
+	if [[ ! -e "${ROOT}"/usr/bin/gcc ]]; then
+		# Build a basic compiler and portage dependencies in $ROOT/tmp.
+		pkgs=(
+			$([[ ${bootstrapCHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
+			sys-libs/ncurses
+			sys-libs/readline
+			app-shells/bash
+			sys-apps/sed
+			app-arch/xz-utils
+			sys-apps/baselayout-prefix
+			sys-devel/m4
+			sys-devel/flex
+			sys-devel/bison
+			sys-devel/patch
+			sys-devel/binutils-config
+			sys-devel/gcc-config
+			dev-libs/gmp
+			dev-libs/mpfr
+			dev-libs/mpc
+			$([[ ${bootstrapCHOST} == *-aix* ]] && echo sys-apps/diffutils ) # gcc can't deal with aix diffutils, gcc PR14251
+			$([[ ${bootstrapCHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
+			$([[ ${bootstrapCHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
+		)
+		# Most binary Linux distributions seem to fancy toolchains that
+		# do not do c++ support (need to install a separate package).
+		USE="${USE} -cxx" \
+		emerge_tmp_pkgs --nodeps "${pkgs[@]}" || return 1
+		
+		# Build a linker and compiler that live in ${ROOT}/tmp, but
+		# produce binaries in ${ROOT}.
+		USE="${USE} -cxx" \
+		TPREFIX="${ROOT}" \
+		emerge_tmp_pkgs --nodeps "${linker}" || return 1
+		
+		EXTRA_ECONF=--disable-bootstrap \
+		GCC_MAKE_TARGET=all \
+		TPREFIX="${ROOT}" \
+		emerge_tmp_pkgs --nodeps "${compiler_stage1}" || return 1
+	fi
 
-	# we can now use our own bash throughout
-	export CONFIG_SHELL="${ROOT}/bin/bash"
+	unset CC CXX HOSTCC CPPFLAGS LDFLAGS
 
-	# make sure portage uses the prefix tools when possible
-	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
+	# make sure the EPREFIX gcc shared libraries are there
+	mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
+	cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
 
+	# Build a native compiler.
 	pkgs=(
+		$([[ ${bootstrapCHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
+		sys-libs/ncurses
+		sys-libs/readline
+		app-shells/bash
+		sys-apps/sed
 		app-arch/xz-utils
 		sys-apps/baselayout-prefix
 		sys-devel/m4
 		sys-devel/flex
-	)
-	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
-
-	# >=bison-2.7.1's configure checks for perl, but doesn't use it,
-	# except for tests. And bison-3 may want to run makeinfo.
-	# Since we don't want to pull in perl at this stage, fake it
-	PERL=$(which touch) \
-	MAKEINFO="echo makeinfo GNU texinfo 4.13" \
-		emerge_pkgs --nodeps "sys-devel/bison" || return 1
-
-	pkgs=(
-		sys-devel/patch
 		sys-devel/binutils-config
 		sys-devel/gcc-config
+		sys-libs/zlib
+		dev-libs/gmp
+		dev-libs/mpfr
+		dev-libs/mpc
+		$([[ ${bootstrapCHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
+		$([[ ${bootstrapCHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
+		"${linker}"
+		"${compiler}"
 	)
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
-	# we need pax-utils this early for OSX (before libiconv - gen_usr_ldscript)
-	# but also for perl, which uses scanelf/scanmacho to find compatible
-	# lib-dirs. Useless on AIX.
-	# NOTE: no longer necessary on OSX with no /usr-split, no longer
-	# necessary for perl when we have a snapshot with latest perl ebuild
-	[[ ${bootstrapCHOST} == *-aix* ]] ||
-	emerge_pkgs --nodeps "app-misc/pax-utils" || return 1
+	# Use $ROOT tools where possible from now on.
+	rm -f "${ROOT}"/bin/sh
+	ln -s bash "${ROOT}"/bin/sh
+	export CONFIG_SHELL="${ROOT}/bin/bash"
+	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
+	unset PERL MAKEINFO
 
-	# Clang on OSX defaults to c99 mode, while GCC defaults to gnu89
-	# (C90 + extensions).  This makes Clang barf on GCC's sources, so
-	# work around that.  Bug #491098
-	GCC_CC=${CC}
-	[[ ${bootstrapCHOST} == *-darwin* ]] && GCC_CC="${CC} -std=gnu89"
-	# GCC sometimes decides that it needs to run makeinfo to update some
-	# info pages from .texi files.  Obviously we don't care at this
-	# stage and rather have it continue instead of abort the build
-	# binutils does likewise, but also checks if the version is
-	# sufficient, hence we trick it with --version output
-	MAKEINFO="echo makeinfo GNU texinfo 4.13" CC="${GCC_CC}" \
-		emerge_pkgs --nodeps "${toolchainpackages[@]}" || return 1
-
-	unset CC HOSTCC CPPFLAGS LDFLAGS
-
-	# --oneshot
+	# Build portage and dependencies.
 	pkgs=(
 		sys-apps/coreutils
 		sys-apps/findutils
@@ -1199,36 +1158,12 @@ bootstrap_stage3() {
 		sys-libs/zlib
 		sys-apps/file
 		app-admin/eselect
+		$( [[ ${OFFLINE_MODE} ]] || echo sys-devel/gettext )
+		$( [[ ${OFFLINE_MODE} ]] || echo net-misc/wget )
 		virtual/os-headers
+		sys-apps/portage
 	)
 	emerge_pkgs "" "${pkgs[@]}" || return 1
-
-	pkgs=(
-		sys-devel/gettext
-		net-misc/wget
-	)
-	[[ ${OFFLINE_MODE} ]] || emerge_pkgs "" "${pkgs[@]}" || return 1
-
-	# for some yet unknown reason, libxml2 has a problem with zlib, but
-	# only during this stage, in the emerge -e system phase it is fine
-	# it boils down to zlib headers replacing gzopen with gzopen64, but
-	# no gzopen64 prototype being defined, due to libxml.h messing with
-	# FILE_OFFSET_BITS
-	# we can work around this by defining NO_LARGEFILE_SOURCE for libxml.h
-	# since we have the compiler emerged, it's no problem we wipe out
-	# the -I directions set by the profile
-	export CPPFLAGS="${CPPFLAGS} -DNO_LARGEFILE_SOURCE"
-
-	# bash needs to be compiled with USE=readline for Portage
-	export USE="${USE//-readline/}"
-	# python-2.7 needs to be compiled with USE=ssl for Portage
-	export USE="${USE//-ssl/}"
-
-	# disable collision-protect to overwrite the bootstrapped portage
-	emerge_pkgs "" "sys-apps/portage" || return 1
-
-	unset CPPFLAGS
-
 
 	# Switch to the proper portage now.
 	unset PYTHONPATH
@@ -1254,22 +1189,8 @@ bootstrap_stage3() {
 
 	export USE="${baseUSE}"
 
-	# activate last compiler (some Solaris cases), needed for mpc and
-	# deps below
-	gcc-config $(gcc-config -l | wc -l)
-
-	# We need an up-to-date compiler before upgrading python to avoid
-	# bug #490774
-	emerge --oneshot -u ${pkggcc} || return 1
-
-	# activate last compiler
-	gcc-config $(gcc-config -l | wc -l)
-
 	# Portage should figure out itself what it needs to do, if anything
 	USE="-git" emerge -u system || return 1
-
-	# avoid a circular dependency between glib and pkg-config
-	emerge -u --newuse dev-util/pkgconfig || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
