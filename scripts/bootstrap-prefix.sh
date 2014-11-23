@@ -1151,11 +1151,12 @@ bootstrap_stage3() {
 	# Update the portage tree.
 	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
+	[[ ( ! -e ${PORTDIR}/.unpacked ) && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || \
 	if [[ ${OFFLINE_MODE} ]]; then
 	  	# --keep used ${DISTDIR}, which make it easier to download a snapshot beforehand
-		[[ ( ! -e ${PORTDIR}/.unpacked ) && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge-webrsync --keep || return 1
+		emerge-webrsync --keep || return 1
 	else
-		[[ ( ! -e ${PORTDIR}/.unpacked ) && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
+		emerge --sync || emerge-webrsync || return 1
 	fi
 
 	# Portage should figure out itself what it needs to do, if anything
