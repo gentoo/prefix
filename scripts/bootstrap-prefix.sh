@@ -102,7 +102,7 @@ efetch() {
 configure_toolchain() {
 	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
 	
-	case ${bootstrapCHOST} in
+	case ${CHOST} in
 		*-darwin*)
 			export LDFLAGS="-Wl,-search_paths_first -L${ROOT}/tmp/usr/lib"
 			;;
@@ -126,7 +126,7 @@ configure_toolchain() {
 			;;
 	esac
 
-	case ${bootstrapCHOST} in
+	case ${CHOST} in
 		# note: we need CXX for binutils-apple which' ld is c++
 		# Clang on OSX defaults to c99 mode, while GCC defaults to gnu89
 		# (C90 + extensions).  This makes Clang barf on GCC's sources, so
@@ -151,9 +151,9 @@ configure_toolchain() {
 	compiler_stage1="<sys-devel/gcc-4.8"
 
 	pkggcc="sys-devel/gcc"
-	case ${bootstrapCHOST} in
+	case ${CHOST} in
 		*-darwin*)
-			case "$(gcc --version)" in
+			case "$( (unset CHOST; gcc --version) )" in
 				*"(GCC) 4.2.1 "*|*"Apple LLVM version "*)
 					linker=sys-devel/binutils-apple
 					;;
@@ -960,7 +960,6 @@ bootstrap_stage3() {
 	# differences caused by our guessing vs. what the profile sets.
 	# This happens at least on 32-bits Darwin, with i386 and i686.
 	# https://bugs.gentoo.org/show_bug.cgi?id=433948
-	export bootstrapCHOST=${CHOST}
 	unset CHOST
 	export CHOST=$(portageq envvar CHOST)
 
@@ -1034,7 +1033,7 @@ bootstrap_stage3() {
 	if [[ ! -e "${ROOT}"/usr/bin/gcc ]]; then
 		# Build a basic compiler and portage dependencies in $ROOT/tmp.
 		pkgs=(
-			$([[ ${bootstrapCHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
+			$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
 			sys-libs/ncurses
 			sys-libs/readline
 			app-shells/bash
@@ -1050,9 +1049,9 @@ bootstrap_stage3() {
 			dev-libs/gmp
 			dev-libs/mpfr
 			dev-libs/mpc
-			$([[ ${bootstrapCHOST} == *-aix* ]] && echo sys-apps/diffutils ) # gcc can't deal with aix diffutils, gcc PR14251
-			$([[ ${bootstrapCHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
-			$([[ ${bootstrapCHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
+			$([[ ${CHOST} == *-aix* ]] && echo sys-apps/diffutils ) # gcc can't deal with aix diffutils, gcc PR14251
+			$([[ ${CHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
+			$([[ ${CHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
 		)
 		# Most binary Linux distributions seem to fancy toolchains that
 		# do not do c++ support (need to install a separate package).
@@ -1079,7 +1078,7 @@ bootstrap_stage3() {
 
 	# Build a native compiler.
 	pkgs=(
-		$([[ ${bootstrapCHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
+		$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
 		sys-libs/ncurses
 		sys-libs/readline
 		app-shells/bash
@@ -1094,8 +1093,8 @@ bootstrap_stage3() {
 		dev-libs/gmp
 		dev-libs/mpfr
 		dev-libs/mpc
-		$([[ ${bootstrapCHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
-		$([[ ${bootstrapCHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
+		$([[ ${CHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
+		$([[ ${CHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
 		"${linker}"
 		"${compiler}"
 	)
