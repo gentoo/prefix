@@ -224,50 +224,30 @@ bootstrap_setup() {
 			;;
 		sparcv9-sun-solaris2.9)
 			profile="prefix/sunos/solaris/5.9/sparc64"
-			# we need this, or binutils can't link, can't add it to -L,
-			# since then binutils breaks on finding an old libiberty.a
-			# from there instead of its own
-			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		i386-pc-solaris2.10)
 			profile="prefix/sunos/solaris/5.10/x86"
 			;;
 		x86_64-pc-solaris2.10)
 			profile="prefix/sunos/solaris/5.10/x64"
-			# we need this, or binutils can't link, can't add it to -L,
-			# since then binutils breaks on finding an old libiberty.a
-			# from there instead of its own
-			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		sparc-sun-solaris2.10)
 			profile="prefix/sunos/solaris/5.10/sparc"
 			;;
 		sparcv9-sun-solaris2.10)
 			profile="prefix/sunos/solaris/5.10/sparc64"
-			# we need this, or binutils can't link, can't add it to -L,
-			# since then binutils breaks on finding an old libiberty.a
-			# from there instead of its own
-			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		i386-pc-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/x86"
 			;;
 		x86_64-pc-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/x64"
-			# we need this, or binutils can't link, can't add it to -L,
-			# since then binutils breaks on finding an old libiberty.a
-			# from there instead of its own
-			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		sparc-sun-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/sparc"
 			;;
 		sparcv9-sun-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/sparc64"
-			# we need this, or binutils can't link, can't add it to -L,
-			# since then binutils breaks on finding an old libiberty.a
-			# from there instead of its own
-			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		powerpc-ibm-aix*)
 			profile="prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
@@ -330,10 +310,6 @@ bootstrap_setup() {
 		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${fullprofile}."
 	fi
-	
-	# Some people will hit bug 262653 with gcc-4.2 and elfutils. Let's skip it
-	# here and bring it in AFTER the --sync
-	echo "dev-libs/elfutils-0.153 # for bootstrap-prefix.sh" >> "${ROOT}"/etc/portage/make.profile/package.provided
 	
 	cp -a "${ROOT}"/etc/portage "${ROOT}"/tmp/etc
 }
@@ -922,21 +898,6 @@ bootstrap_stage1() { (
 	[[ $(bash --version 2>&1) == "GNU bash, version 4."[123456789]* && ${CHOST} != *-aix* ]] \
 		|| [[ -x ${ROOT}/tmp/usr/bin/bash ]] \
 		|| (bootstrap_bash) || return 1
-	if type -P pkg-config > /dev/null ; then
-		# it IS possible to get here without installing anything in
-		# tmp/usr/bin, which makes the below fail to happen
-		mkdir -p "${ROOT}"/tmp/usr/bin/
-		# hide an existing pkg-config for glib, which first checks
-		# pkg-config for libffi, and only then the LIBFFI_* vars
-		# this resolves nasty problems like bug #426302
-		# note that an existing pkg-config can be ancient, which glib
-		# doesn't grok (e.g. Solaris 10) => error
-		{
-			echo "#!/bin/sh"
-			echo "exit 1"
-		} > "${ROOT}"/tmp/usr/bin/pkg-config
-		chmod 755 "${ROOT}"/tmp/usr/bin/pkg-config
-	fi
 	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
 	# important to have our own (non-flawed one) since Python (from
 	# Portage) and binutils use it
@@ -1168,16 +1129,15 @@ bootstrap_stage3() {
 	# Switch to the proper portage now.
 	unset PYTHONPATH
 	hash -r
+	export USE="${baseUSE}"
 
-	# Each package emerged while portage was depending on the temporary tools
-	# still may depend on them too. Examples are:
-	#   binutils, xz-utils needing libgcc_s.so.1 on 64-bits Solaris
-	#   shebangs (bin/egrep) originate in PORTAGE_SHELL
-	# So we must keep the temporary tools until 'emerge -e system' is done.
+	# Get rid of the temporary tools.
+	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
+		rm -rf "${ROOT}"/tmp
+		mkdir "${ROOT}"/tmp
+	fi
 
-	# kill temporary profile pollution
-	find "${ROOT}"/usr/portage/{profiles,eclass} -type f -exec sed -i -e '/# for bootstrap-prefix.sh$/d' {} +
-
+	# Update the portage tree.
 	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
 	if [[ ${OFFLINE_MODE} ]]; then
@@ -1186,8 +1146,6 @@ bootstrap_stage3() {
 	else
 		[[ ( ! -e ${PORTDIR}/.unpacked ) && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || emerge --sync || emerge-webrsync || return 1
 	fi
-
-	export USE="${baseUSE}"
 
 	# Portage should figure out itself what it needs to do, if anything
 	USE="-git" emerge -u system || return 1
@@ -1876,12 +1834,6 @@ You know, I got the feeling you just started to like me, but I guess
 that's all gone now.  I'll bother you no longer.
 EOF
 		exit 1
-	fi
-
-	# Now, after 'emerge -e system', we can get rid of the temporary tools.
-	if [[ -d ${EPREFIX}/tmp/var/tmp ]] ; then
-		rm -Rf "${EPREFIX}"/tmp || return 1
-		mkdir -p "${EPREFIX}"/tmp || return 1
 	fi
 
 	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
