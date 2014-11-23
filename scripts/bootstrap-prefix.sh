@@ -1807,7 +1807,7 @@ Hmmmm, I was already afraid of this to happen.  Running
   $(type -P bash) ${BASH_SOURCE[0]} "${EPREFIX}" stage3
 somewhere failed :(  Details might be found in the build log:
 EOF
-		for log in "${EPREFIX}"/var/tmp/portage/*/*/temp/build.log ; do
+		for log in "${EPREFIX}"{/tmp,}/var/tmp/portage/*/*/temp/build.log ; do
 			[[ -e ${log} ]] || continue
 			echo "  ${log}"
 		done
