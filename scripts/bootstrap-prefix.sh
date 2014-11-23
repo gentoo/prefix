@@ -899,6 +899,18 @@ bootstrap_stage1() { (
 		|| [[ -x ${ROOT}/tmp/usr/bin/bash ]] \
 		|| (bootstrap_bash) || return 1
 	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
+	case ${CHOST} in
+		*-*-aix*)
+			# sys-devel/native-cctools installs the wrapper below,
+			# but we need it early or gmp breaks
+			{
+				echo '#!/bin/sh'
+				echo 'test ${#TMPDIR} -le 85 || TMPDIR=/tmp export TMPDIR'
+				echo 'exec /usr/ccs/bin/nm ${1+"$@"}'
+			} > "${ROOT}"/tmp/usr/bin/nm
+			chmod 755 "${ROOT}"/tmp/usr/bin/nm
+			;;
+	esac
 	# important to have our own (non-flawed one) since Python (from
 	# Portage) and binutils use it
 	for zlib in ${ROOT}/tmp/usr/lib/libz.* ; do
