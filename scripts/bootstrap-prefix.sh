@@ -343,11 +343,11 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20141123"
+	local PV="20141125"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
-		do_tree http://dev.gentoo.org/~grobian/distfiles prefix-overlay-${PV}.tar.bz2
+		do_tree http://dev.gentoo.org/~redlizard/distfiles prefix-overlay-${PV}.tar.bz2
 	fi
 }
 
