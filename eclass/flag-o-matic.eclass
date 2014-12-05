@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.197 2014/02/02 22:26:13 tommy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.203 2014/11/01 03:45:53 vapier Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -10,8 +10,8 @@
 # This eclass contains a suite of functions to help developers sanely
 # and safely manage toolchain flags in their builds.
 
-if [[ ${___ECLASS_ONCE_FLAG_O_MATIC} != "recur -_+^+_- spank" ]] ; then
-___ECLASS_ONCE_FLAG_O_MATIC="recur -_+^+_- spank"
+if [[ -z ${_FLAG_O_MATIC_ECLASS} ]]; then
+_FLAG_O_MATIC_ECLASS=1
 
 inherit eutils toolchain-funcs multilib
 
@@ -24,17 +24,17 @@ all-flag-vars() {
 # Note: shell globs and character lists are allowed
 setup-allowed-flags() {
 	ALLOWED_FLAGS="-pipe"
-	ALLOWED_FLAGS+=" -O -O1 -O2 -Os -mcpu -march -mtune"
-	ALLOWED_FLAGS+=" -fstack-protector -fstack-protector-all"
+	ALLOWED_FLAGS+=" -O -O1 -O2 -Os -Og -mcpu -march -mtune"
+	ALLOWED_FLAGS+=" -fstack-protector*"
 	ALLOWED_FLAGS+=" -fbounds-checking -fno-strict-overflow"
-	ALLOWED_FLAGS+=" -fno-PIE -fno-pie -fno-unit-at-a-time"
-	ALLOWED_FLAGS+=" -g -g[0-9] -ggdb -ggdb[0-9] -gstabs -gstabs+"
+	ALLOWED_FLAGS+=" -fno-PIE -fno-pie -nopie -fno-unit-at-a-time"
+	ALLOWED_FLAGS+=" -g -g[0-9] -ggdb -ggdb[0-9] -gdwarf-* gstabs -gstabs+"
 	ALLOWED_FLAGS+=" -fno-ident -fpermissive -frecord-gcc-switches"
 	ALLOWED_FLAGS+=" -fdiagnostics*"
 	ALLOWED_FLAGS+=" -W* -w"
 
 	# allow a bunch of flags that negate features / control ABI
-	ALLOWED_FLAGS+=" -fno-stack-protector -fno-stack-protector-all \
+	ALLOWED_FLAGS+=" -fno-stack-protector* -fabi-version=* \
 		-fno-strict-aliasing -fno-bounds-checking -fstrict-overflow \
 		-fno-omit-frame-pointer -fno-builtin*"
 	ALLOWED_FLAGS+=" -mregparm -mno-app-regs -mapp-regs -mno-mmx -mno-sse \
@@ -47,7 +47,7 @@ setup-allowed-flags() {
 		-mno-faster-structs -mfaster-structs -m32 -m64 -mx32 -mabi \
 		-mlittle-endian -mbig-endian -EL -EB -fPIC -mlive-g0 -mcmodel \
 		-mstack-bias -mno-stack-bias -msecure-plt -m*-toc -mfloat-abi \
-		-D* -U*"
+		-mfix-r10000 -mno-fix-r10000 -D* -U*"
 
 	# 4.5
 	ALLOWED_FLAGS+=" -mno-fma4 -mno-movbe -mno-xop -mno-lwp"
@@ -617,11 +617,15 @@ append-libs() {
 	[[ $# -eq 0 ]] && return 0
 	local flag
 	for flag in "$@"; do
+		if [[ -z "${flag// }" ]]; then
+			eqawarn "Appending an empty argument to LIBS is invalid! Skipping."
+			continue
+		fi
 		case $flag in
-			-[lL]*) 
+			-[lL]*)
 				export LIBS="${LIBS} ${flag}"
 				;;
-			-*) 
+			-*)
 				eqawarn "Appending non-library to LIBS (${flag}); Other linker flags should be passed via LDFLAGS"
 				export LIBS="${LIBS} ${flag}"
 				;;

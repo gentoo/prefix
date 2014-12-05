@@ -1,15 +1,28 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.154 2013/04/08 07:36:25 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.159 2014/11/21 21:47:16 hasufell Exp $
 
-# devlist: games@gentoo.org
+# @ECLASS: games
+# @MAINTAINER:
+# Games team <games@gentoo.org>
+# @BLURB: Standardizing the install of games.
+# @DESCRIPTION:
+# This eclass makes sure that games are consistently handled in gentoo.
+# It installs game files by default in FHS-compatible directories
+# like /usr/share/games and sets more restrictive permissions in order
+# to avoid some security bugs.
 #
-# This is the games eclass for standardizing the install of games ...
-# you better have a *good* reason why you're *not* using games.eclass
-# in a games-* ebuild
+# The installation directories as well as the user and group files are
+# installed as can be controlled by the user. See the variables like
+# GAMES_BINDIR, GAMES_USER etc. below. These are NOT supposed to be set
+# by ebuilds!
+#
+# For a general guide on writing games ebuilds, see:
+# https://wiki.gentoo.org/wiki/Project:Games/Ebuild_howto
 
-if [[ ${___ECLASS_ONCE_GAMES} != "recur -_+^+_- spank" ]] ; then
-___ECLASS_ONCE_GAMES="recur -_+^+_- spank"
+
+if [[ -z ${_GAMES_ECLASS} ]]; then
+_GAMES_ECLASS=1
 
 inherit base multilib toolchain-funcs eutils user
 
@@ -19,25 +32,96 @@ case ${EAPI:-0} in
 	*) die "no support for EAPI=${EAPI} yet" ;;
 esac
 
-export GAMES_PREFIX=${GAMES_PREFIX:-/usr/games}
-export GAMES_PREFIX_OPT=${GAMES_PREFIX_OPT:-/opt}
-export GAMES_DATADIR=${GAMES_DATADIR:-/usr/share/games}
-export GAMES_DATADIR_BASE=${GAMES_DATADIR_BASE:-/usr/share} # some packages auto append 'games'
-export GAMES_SYSCONFDIR=${GAMES_SYSCONFDIR:-/etc/games}
-export GAMES_STATEDIR=${GAMES_STATEDIR:-/var/games}
-export GAMES_LOGDIR=${GAMES_LOGDIR:-/var/log/games}
-export GAMES_BINDIR=${GAMES_BINDIR:-${GAMES_PREFIX}/bin}
-export GAMES_ENVD="90games"
-# if you want to use a different user/group than games.games,
-# just add these two variables to your environment (aka /etc/profile)
-export GAMES_USER=${GAMES_USER:-root}
-export GAMES_USER_DED=${GAMES_USER_DED:-games}
-export GAMES_GROUP=${GAMES_GROUP:-games}
+if [[ ${CATEGORY}/${PN} != "games-misc/games-envd" ]] ; then
+	# environment file
+	RDEPEND="games-misc/games-envd"
+fi
 
+# @ECLASS-VARIABLE: GAMES_PREFIX
+# @DESCRIPTION:
+# Prefix where to install games, mostly used by GAMES_BINDIR. Games data should
+# still go into GAMES_DATADIR. May be set by the user.
+GAMES_PREFIX=${GAMES_PREFIX:-/usr/games}
+
+# @ECLASS-VARIABLE: GAMES_PREFIX_OPT
+# @DESCRIPTION:
+# Prefix where to install precompiled/blob games, usually followed by
+# package name. May be set by the user.
+GAMES_PREFIX_OPT=${GAMES_PREFIX_OPT:-/opt}
+
+# @ECLASS-VARIABLE: GAMES_DATADIR
+# @DESCRIPTION:
+# Base directory where to install game data files, usually followed by
+# package name. May be set by the user.
+GAMES_DATADIR=${GAMES_DATADIR:-/usr/share/games}
+
+# @ECLASS-VARIABLE: GAMES_DATADIR_BASE
+# @DESCRIPTION:
+# Similar to GAMES_DATADIR, but only used when a package auto appends 'games'
+# to the path. May be set by the user.
+GAMES_DATADIR_BASE=${GAMES_DATADIR_BASE:-/usr/share}
+
+# @ECLASS-VARIABLE: GAMES_SYSCONFDIR
+# @DESCRIPTION:
+# Where to install global games configuration files, usually followed by
+# package name. May be set by the user.
+GAMES_SYSCONFDIR=${GAMES_SYSCONFDIR:-/etc/games}
+
+# @ECLASS-VARIABLE: GAMES_STATEDIR
+# @DESCRIPTION:
+# Where to install/store global variable game data, usually followed by
+# package name. May be set by the user.
+GAMES_STATEDIR=${GAMES_STATEDIR:-/var/games}
+
+# @ECLASS-VARIABLE: GAMES_LOGDIR
+# @DESCRIPTION:
+# Where to store global game log files, usually followed by
+# package name. May be set by the user.
+GAMES_LOGDIR=${GAMES_LOGDIR:-/var/log/games}
+
+# @ECLASS-VARIABLE: GAMES_BINDIR
+# @DESCRIPTION:
+# Where to install the game binaries. May be set by the user. This is in PATH.
+GAMES_BINDIR=${GAMES_BINDIR:-${GAMES_PREFIX}/bin}
+
+# @ECLASS-VARIABLE: GAMES_ENVD
+# @INTERNAL
+# @DESCRIPTION:
+# The games environment file name which sets games specific LDPATH and PATH.
+GAMES_ENVD="90games"
+
+# @ECLASS-VARIABLE: GAMES_USER
+# @DESCRIPTION:
+# The USER who owns all game files and usually has write permissions.
+# May be set by the user.
+GAMES_USER=${GAMES_USER:-root}
+
+# @ECLASS-VARIABLE: GAMES_USER_DED
+# @DESCRIPTION:
+# The USER who owns all game files related to the dedicated server part
+# of a package. May be set by the user.
+GAMES_USER_DED=${GAMES_USER_DED:-games}
+
+# @ECLASS-VARIABLE: GAMES_GROUP
+# @DESCRIPTION:
+# The GROUP that owns all game files and usually does not have
+# write permissions. May be set by the user.
+# If you want games world-executable, then you can at least set this variable
+# to 'users' which is almost the same.
+GAMES_GROUP=${GAMES_GROUP:-games}
+
+# @FUNCTION: games_get_libdir
+# @DESCRIPTION:
+# Gets the directory where to install games libraries. This is in LDPATH.
 games_get_libdir() {
 	echo ${GAMES_PREFIX}/$(get_libdir)
 }
 
+# @FUNCTION: egamesconf
+# @USAGE: [<args>...]
+# @DESCRIPTION:
+# Games equivalent to 'econf' for autotools based build systems. It passes
+# the necessary games specific directories automatically.
 egamesconf() {
 	# handle verbose build log pre-EAPI5
 	local _gamesconf
@@ -45,6 +129,11 @@ egamesconf() {
 		if grep -q -s disable-silent-rules "${ECONF_SOURCE:-.}"/configure ; then
 			_gamesconf="--disable-silent-rules"
 		fi
+	fi
+
+	# bug 493954
+	if grep -q -s datarootdir "${ECONF_SOURCE:-.}"/configure ; then
+		_gamesconf="${_gamesconf} --datarootdir=/usr/share"
 	fi
 
 	econf \
@@ -57,6 +146,12 @@ egamesconf() {
 		"$@"
 }
 
+# @FUNCTION: gameswrapper
+# @USAGE: <command> [<args>...]
+# @INTERNAL
+# @DESCRIPTION:
+# Wraps an install command like dobin, dolib etc, so that
+# it has GAMES_PREFIX as prefix.
 gameswrapper() {
 	# dont want to pollute calling env
 	(
@@ -67,18 +162,75 @@ gameswrapper() {
 	)
 }
 
+# @FUNCTION: dogamesbin
+# @USAGE: <path>...
+# @DESCRIPTION:
+# Install one or more games binaries.
 dogamesbin() { gameswrapper ${FUNCNAME/games} "$@"; }
+
+# @FUNCTION: dogamessbin
+# @USAGE: <path>...
+# @DESCRIPTION:
+# Install one or more games system binaries.
 dogamessbin() { gameswrapper ${FUNCNAME/games} "$@"; }
+
+# @FUNCTION: dogameslib
+# @USAGE: <path>...
+# @DESCRIPTION:
+# Install one or more games libraries.
 dogameslib() { gameswrapper ${FUNCNAME/games} "$@"; }
+
+# @FUNCTION: dogameslib.a
+# @USAGE: <path>...
+# @DESCRIPTION:
+# Install one or more static games libraries.
 dogameslib.a() { gameswrapper ${FUNCNAME/games} "$@"; }
+
+# @FUNCTION: dogameslib.so
+# @USAGE: <path>...
+# @DESCRIPTION:
+# Install one or more shared games libraries.
 dogameslib.so() { gameswrapper ${FUNCNAME/games} "$@"; }
+
+# @FUNCTION: newgamesbin
+# @USAGE: <path> <newname>
+# @DESCRIPTION:
+# Install one games binary with a new name.
 newgamesbin() { gameswrapper ${FUNCNAME/games} "$@"; }
+
+# @FUNCTION: newgamessbin
+# @USAGE: <path> <newname>
+# @DESCRIPTION:
+# Install one system games binary with a new name.
 newgamessbin() { gameswrapper ${FUNCNAME/games} "$@"; }
 
+# @FUNCTION: games_make_wrapper
+# @USAGE: <wrapper> <target> [chdir] [libpaths] [installpath]
+# @DESCRIPTION:
+# Create a shell wrapper script named wrapper in installpath
+# (defaults to the games bindir) to execute target (default of wrapper) by
+# first optionally setting LD_LIBRARY_PATH to the colon-delimited
+# libpaths followed by optionally changing directory to chdir.
 games_make_wrapper() { gameswrapper ${FUNCNAME/games_} "$@"; }
 
+# @FUNCTION: gamesowners
+# @USAGE: [<args excluding owner/group>...] <path>...
+# @DESCRIPTION:
+# Run 'chown' with the given args on the given files. Owner and
+# group are GAMES_USER and GAMES_GROUP and must not be passed
+# as args.
 gamesowners() { use prefix || chown ${GAMES_USER}:${GAMES_GROUP} "$@"; }
+
+# @FUNCTION: gamesperms
+# @USAGE: <path>...
+# @DESCRIPTION:
+# Run 'chmod' with games specific permissions on the given files.
 gamesperms() { use prefix || chmod u+rw,g+r-w,o-rwx "$@"; }
+
+# @FUNCTION: prepgamesdirs
+# @DESCRIPTION:
+# Fix all permissions/owners of files in games related directories,
+# usually called at the end of src_install().
 prepgamesdirs() {
 	local dir f mode
 	for dir in \
@@ -116,26 +268,13 @@ prepgamesdirs() {
 		fi
 	done
 	[[ -d ${ED}/${GAMES_BINDIR} ]] || return 0
-	use prefix || find "${ED}/${GAMES_BINDIR}" -maxdepth 1 -type f -exec chmod 750 '{}' \;
+	use prefix || find "${D}/${GAMES_BINDIR}" -maxdepth 1 -type f -exec chmod 750 '{}' \;
 }
 
-gamesenv() {
-	local d libdirs
-
-	for d in $(get_all_libdirs) ; do
-		libdirs="${libdirs}:${EPREFIX}${GAMES_PREFIX}/${d}"
-	done
-
-	# Wish we could use doevnd here, but we dont want the env
-	# file to be tracked in the CONTENTS of every game
-	cat <<-EOF > "${EROOT}"/etc/env.d/${GAMES_ENVD}
-	LDPATH="${libdirs:1}"
-	PATH="${EPREFIX}${GAMES_BINDIR}"
-	EOF
-	gamesowners "${EROOT}"/etc/env.d/${GAMES_ENVD}
-	gamesperms  "${EROOT}"/etc/env.d/${GAMES_ENVD}
-}
-
+# @FUNCTION: games_pkg_setup
+# @DESCRIPTION:
+# Export some toolchain specific variables and create games related groups
+# and users. This function is exported as pkg_setup().
 games_pkg_setup() {
 	if has "${EAPI:-0}" 0 1 2 && ! use prefix; then
 		EPREFIX=
@@ -158,10 +297,17 @@ games_pkg_setup() {
 		&& usermod -s "${EPREFIX}"/bin/bash "${GAMES_USER_DED}"
 }
 
+# @FUNCTION: games_src_configure
+# @DESCRIPTION:
+# Runs egamesconf if there is a configure file.
+# This function is exported as src_configure().
 games_src_configure() {
-	[[ -x ./configure ]] && egamesconf
+	[[ -x "${ECONF_SOURCE:-.}"/configure ]] && egamesconf
 }
 
+# @FUNCTION: games_src_compile
+# @DESCRIPTION:
+# Runs base_src_make(). This function is exported as src_compile().
 games_src_compile() {
 	case ${EAPI:-0} in
 		0|1) games_src_configure ;;
@@ -169,6 +315,9 @@ games_src_compile() {
 	base_src_make
 }
 
+# @FUNCTION: games_pkg_preinst
+# @DESCRIPTION:
+# Synchronizes GAMES_STATEDIR of the ebuild image with the live filesystem.
 games_pkg_preinst() {
 	local f
 
@@ -184,9 +333,10 @@ games_pkg_preinst() {
 	done < <(find "${ED}/${GAMES_STATEDIR}" -type f -printf '%P\n' 2>/dev/null)
 }
 
-# pkg_postinst function ... create env.d entry and warn about games group
+# @FUNCTION: games_pkg_postinst
+# @DESCRIPTION:
+# Prints some warnings and infos, also related to games groups.
 games_pkg_postinst() {
-	gamesenv
 	if [[ -z "${GAMES_SHOW_WARNING}" ]] ; then
 		ewarn "Remember, in order to play games, you have to"
 		ewarn "be in the '${GAMES_GROUP}' group."
@@ -203,8 +353,10 @@ games_pkg_postinst() {
 	fi
 }
 
-# Unpack .uz2 files for UT2003/UT2004
-# $1: directory or file to unpack
+# @FUNCTION: games_ut_unpack
+# @USAGE: <directory or file to unpack>
+# @DESCRIPTION:
+# Unpack .uz2 files for UT2003/UT2004.
 games_ut_unpack() {
 	local ut_unpack="$1"
 	local f=
@@ -225,9 +377,11 @@ games_ut_unpack() {
 	fi
 }
 
-# Unpacks .umod/.ut2mod/.ut4mod files for UT/UT2003/UT2004
-# Usage: games_umod_unpack $1
-# oh, and don't forget to set 'dir' and 'Ddir'
+# @FUNCTION: games_umod_unpack
+# @USAGE: <file to unpack>
+# @DESCRIPTION:
+# Unpacks .umod/.ut2mod/.ut4mod files for UT/UT2003/UT2004.
+# Don't forget to set 'dir' and 'Ddir'.
 games_umod_unpack() {
 	local umod=$1
 	mkdir -p "${Ddir}"/System

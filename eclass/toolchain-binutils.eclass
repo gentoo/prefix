@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.127 2013/11/21 04:07:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.137 2014/11/08 17:12:09 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -50,7 +50,13 @@ snap)
 esac
 
 inherit eutils libtool flag-o-matic gnuconfig multilib versionator unpacker ${extra_eclass}
-EXPORT_FUNCTIONS src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
+case ${EAPI:-0} in
+0|1)
+	EXPORT_FUNCTIONS src_unpack src_compile src_test src_install pkg_postinst pkg_postrm ;;
+2|3|4|5)
+	EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_test src_install pkg_postinst pkg_postrm ;;
+*) die "unsupported EAPI ${EAPI}" ;;
+esac
 
 export CTARGET=${CTARGET:-${CHOST}}
 if [[ ${CTARGET} == ${CHOST} ]] ; then
@@ -59,9 +65,6 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 	fi
 fi
 is_cross() { [[ ${CHOST} != ${CTARGET} ]] ; }
-
-: ${ED:=${D}}
-: ${EROOT:=${ROOT}}
 
 DESCRIPTION="Tools necessary to build programs"
 HOMEPAGE="http://sourceware.org/binutils/"
@@ -96,17 +99,17 @@ if version_is_at_least 2.18 ; then
 else
 	LICENSE="|| ( GPL-2 LGPL-2 )"
 fi
-IUSE="cxx nls multitarget multislot static-libs test vanilla"
+IUSE="cxx multislot multitarget nls static-libs test vanilla"
 if version_is_at_least 2.19 ; then
 	IUSE+=" zlib"
 fi
-if use multislot ; then
+if ! version_is_at_least 2.23.90 || [[ ${PV} == "9999" ]] || use multislot ; then
 	SLOT="${BVER}"
 else
 	SLOT="0"
 fi
 
-RDEPEND=">=sys-devel/binutils-config-1.9"
+RDEPEND=">=sys-devel/binutils-config-3"
 in_iuse zlib && RDEPEND+=" zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}
 	test? ( dev-util/dejagnu )
@@ -179,7 +182,7 @@ tc-binutils_apply_patches() {
 	# fix locale issues if possible #122216
 	if [[ -e ${FILESDIR}/binutils-configure-LANG.patch ]] ; then
 		einfo "Fixing misc issues in configure files"
-		for f in $(grep -l 'autoconf version 2.13' $(find "${S}" -name configure)) ; do
+		for f in $(find "${S}" -name configure -exec grep -l 'autoconf version 2.13' {} +) ; do
 			ebegin "  Updating ${f/${S}\/}"
 			patch "${f}" "${FILESDIR}"/binutils-configure-LANG.patch >& "${T}"/configure-patch.log \
 				|| eerror "Please file a bug about this"
@@ -204,15 +207,30 @@ tc-binutils_apply_patches() {
 
 toolchain-binutils_src_unpack() {
 	tc-binutils_unpack
+	case ${EAPI:-0} in
+	0|1) toolchain-binutils_src_prepare ;;
+	esac
+}
+
+toolchain-binutils_src_prepare() {
 	tc-binutils_apply_patches
 }
 
-toolchain-binutils_src_compile() {
-	# prevent makeinfo from running in releases.  it may not always be
-	# installed, and older binutils may fail with newer texinfo.
-	# besides, we never patch the doc files anyways, so regenerating
-	# in the first place is useless. #193364
-	find . '(' -name '*.info' -o -name '*.texi' ')' -print0 | xargs -0 touch -r .
+_eprefix_init() {
+	has "${EAPI:-0}" 0 1 2 && ED=${D} EPREFIX= EROOT=${ROOT}
+}
+
+# Intended for ebuilds to override to set their own versioning information.
+toolchain-binutils_bugurl() {
+	printf "http://bugs.gentoo.org/"
+}
+toolchain-binutils_pkgversion() {
+	printf "Gentoo ${BVER}"
+	[[ -n ${PATCHVER} ]] && printf " p${PATCHVER}"
+}
+
+toolchain-binutils_src_configure() {
+	_eprefix_init
 
 	# make sure we filter $LINGUAS so that only ones that
 	# actually work make it through #42033
@@ -288,16 +306,42 @@ toolchain-binutils_src_compile() {
 		--enable-obsolete
 		--enable-shared
 		--enable-threads
+		# Newer versions (>=2.24) make this an explicit option. #497268
+		--enable-install-libiberty
 		--disable-werror
-		--with-bugurl=http://bugs.gentoo.org/
+		--with-bugurl="$(toolchain-binutils_bugurl)"
+		--with-pkgversion="$(toolchain-binutils_pkgversion)"
 		$(use_enable static-libs static)
 		${EXTRA_ECONF}
 		# Disable modules that are in a combined binutils/gdb tree. #490566
 		--disable-{gdb,libdecnumber,readline,sim}
+		# Strip out broken static link flags.
+		# https://gcc.gnu.org/PR56750
+		--without-stage1-ldflags
 	)
 	echo ./configure "${myconf[@]}"
 	"${S}"/configure "${myconf[@]}" || die
 
+	# Prevent makeinfo from running in releases.  It may not always be
+	# installed, and older binutils may fail with newer texinfo.
+	# Besides, we never patch the doc files anyways, so regenerating
+	# in the first place is useless. #193364
+	# For older versions, it means we don't get any info pages at all.
+	# Oh well, tough luck. #294617
+	if [[ -e ${S}/gas/doc/as.info ]] || ! version_is_at_least 2.24 ; then
+		sed -i \
+			-e '/^MAKEINFO/s:=.*:= true:' \
+			Makefile || die
+	fi
+}
+
+toolchain-binutils_src_compile() {
+	_eprefix_init
+	case ${EAPI:-0} in
+	0|1) toolchain-binutils_src_configure ;;
+	esac
+
+	cd "${MY_BUILDDIR}"
 	emake all || die "emake failed"
 
 	# only build info pages if we user wants them, and if
@@ -307,7 +351,7 @@ toolchain-binutils_src_compile() {
 	fi
 	# we nuke the manpages when we're left with junk
 	# (like when we bootstrap, no perl -> no manpages)
-	find . -name '*.1' -a -size 0 | xargs rm -f
+	find . -name '*.1' -a -size 0 -delete
 
 	# elf2flt only works on some arches / targets
 	if [[ -n ${ELF2FLT_VER} ]] && [[ ${CTARGET} == *linux* || ${CTARGET} == *-elf* ]] ; then
@@ -339,6 +383,7 @@ toolchain-binutils_src_test() {
 }
 
 toolchain-binutils_src_install() {
+	_eprefix_init
 	local x d
 
 	cd "${MY_BUILDDIR}"
@@ -398,32 +443,12 @@ toolchain-binutils_src_install() {
 		newdoc README README.elf2flt
 	fi
 
-	# Now, some binutils are tricky and actually provide
-	# for multiple TARGETS.  Really, we're talking just
-	# 32bit/64bit support (like mips/ppc/sparc).  Here
-	# we want to tell binutils-config that it's cool if
-	# it generates multiple sets of binutil symlinks.
-	# e.g. sparc gets {sparc,sparc64}-unknown-linux-gnu
-	local targ=${CTARGET/-*} src="" dst=""
-	local FAKE_TARGETS=${CTARGET}
-	case ${targ} in
-		mips*)    src="mips"    dst="mips64";;
-		powerpc*) src="powerpc" dst="powerpc64";;
-		s390*)    src="s390"    dst="s390x";;
-		sparc*)   src="sparc"   dst="sparc64";;
-	esac
-	case ${targ} in
-		mips64*|powerpc64*|s390x*|sparc64*) targ=${src} src=${dst} dst=${targ};;
-	esac
-	[[ -n ${src}${dst} ]] && FAKE_TARGETS="${FAKE_TARGETS} ${CTARGET/${src}/${dst}}"
-
 	# Generate an env.d entry for this binutils
 	insinto /etc/env.d/binutils
 	cat <<-EOF > "${T}"/env.d
 		TARGET="${CTARGET}"
 		VER="${BVER}"
 		LIBPATH="${EPREFIX}${LIBPATH}"
-		FAKE_TARGETS="${FAKE_TARGETS}"
 	EOF
 	newins "${T}"/env.d ${CTARGET}-${BVER}
 
@@ -449,16 +474,18 @@ toolchain-binutils_src_install() {
 	# Remove shared info pages
 	rm -f "${ED}"/${DATAPATH}/info/{dir,configure.info,standards.info}
 	# Trim all empty dirs
-	find "${ED}" -type d | xargs rmdir >& /dev/null
+	find "${ED}" -depth -type d -exec rmdir {} + 2>/dev/null
 }
 
 toolchain-binutils_pkg_postinst() {
+	_eprefix_init
 	# Make sure this ${CTARGET} has a binutils version selected
 	[[ -e ${EROOT}/etc/env.d/binutils/config-${CTARGET} ]] && return 0
 	binutils-config ${CTARGET}-${BVER}
 }
 
 toolchain-binutils_pkg_postrm() {
+	_eprefix_init
 	local current_profile=$(binutils-config -c ${CTARGET})
 
 	# If no other versions exist, then uninstall for this

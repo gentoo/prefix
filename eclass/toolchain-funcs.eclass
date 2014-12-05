@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.123 2013/10/12 21:31:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.131 2014/11/01 05:19:20 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -13,8 +13,8 @@
 # in such a way that you can rely on the function always returning
 # something sane.
 
-if [[ ${___ECLASS_ONCE_TOOLCHAIN_FUNCS} != "recur -_+^+_- spank" ]] ; then
-___ECLASS_ONCE_TOOLCHAIN_FUNCS="recur -_+^+_- spank"
+if [[ -z ${_TOOLCHAIN_FUNCS_ECLASS} ]]; then
+_TOOLCHAIN_FUNCS_ECLASS=1
 
 inherit multilib prefix
 
@@ -169,7 +169,7 @@ tc-export() {
 # @FUNCTION: tc-is-cross-compiler
 # @RETURN: Shell true if we are using a cross-compiler, shell false otherwise
 tc-is-cross-compiler() {
-	return $([[ ${CBUILD:-${CHOST}} != ${CHOST} ]])
+	[[ ${CBUILD:-${CHOST}} != ${CHOST} ]]
 }
 
 # @FUNCTION: tc-is-softfloat
@@ -210,7 +210,7 @@ tc-is-static-only() {
 	local host=${CTARGET:-${CHOST}}
 
 	# *MiNT doesn't have shared libraries, only platform so far
-	return $([[ ${host} == *-mint* ]])
+	[[ ${host} == *-mint* ]]
 }
 
 # @FUNCTION: tc-export_build_env
@@ -364,7 +364,8 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 	[[ -z ${host} ]] && host=${CTARGET:-${CHOST}}
 
 	local KV=${KV:-${KV_FULL}}
-	use kernel_linux && [[ ${type} == "kern" ]] && [[ -z ${KV} ]] && \
+	use kernel_linux &&
+	[[ ${type} == "kern" ]] && [[ -z ${KV} ]] && \
 	ewarn "QA: Kernel version could not be determined, please inherit kernel-2 or linux-info"
 
 	case ${host} in
@@ -391,7 +392,7 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 		i?86-pc-interix*)         echo x86-interix;;
 		i?86-pc-winnt*)           echo x86-winnt;;
 
-		aarch64*)	ninj arm64 arm;;
+		aarch64*)	echo arm64;;
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
 		avr*)		ninj avr32 avr;;
@@ -438,6 +439,7 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 				echo ppc
 			fi
 			;;
+		riscv*)		echo riscv;;
 		s390*)		echo s390;;
 		score)		echo score;;
 		sh64*)		ninj sh64 sh;;
@@ -498,6 +500,7 @@ tc-endian() {
 		m68*)		echo big;;
 		mips*l*)	echo little;;
 		mips*)		echo big;;
+		powerpc*le)	echo little;;
 		powerpc*)	echo big;;
 		s390*)		echo big;;
 		sh*b*)		echo big;;
@@ -600,37 +603,43 @@ gcc-specs-directive() {
 gcc-specs-relro() {
 	local directive
 	directive=$(gcc-specs-directive link_command)
-	return $([[ "${directive/\{!norelro:}" != "${directive}" ]])
+	[[ "${directive/\{!norelro:}" != "${directive}" ]]
 }
 # Returns true if gcc sets now
 gcc-specs-now() {
 	local directive
 	directive=$(gcc-specs-directive link_command)
-	return $([[ "${directive/\{!nonow:}" != "${directive}" ]])
+	[[ "${directive/\{!nonow:}" != "${directive}" ]]
 }
 # Returns true if gcc builds PIEs
 gcc-specs-pie() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ "${directive/\{!nopie:}" != "${directive}" ]])
+	[[ "${directive/\{!nopie:}" != "${directive}" ]]
 }
 # Returns true if gcc builds with the stack protector
 gcc-specs-ssp() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ "${directive/\{!fno-stack-protector:}" != "${directive}" ]])
+	[[ "${directive/\{!fno-stack-protector:}" != "${directive}" ]]
 }
 # Returns true if gcc upgrades fstack-protector to fstack-protector-all
 gcc-specs-ssp-to-all() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ "${directive/\{!fno-stack-protector-all:}" != "${directive}" ]])
+	[[ "${directive/\{!fno-stack-protector-all:}" != "${directive}" ]]
 }
 # Returns true if gcc builds with fno-strict-overflow
 gcc-specs-nostrict() {
 	local directive
 	directive=$(gcc-specs-directive cc1)
-	return $([[ "${directive/\{!fstrict-overflow:}" != "${directive}" ]])
+	[[ "${directive/\{!fstrict-overflow:}" != "${directive}" ]]
+}
+# Returns true if gcc builds with fstack-check
+gcc-specs-stack-check() {
+	local directive
+	directive=$(gcc-specs-directive cc1)
+	[[ "${directive/\{!fno-stack-check:}" != "${directive}" ]]
 }
 
 

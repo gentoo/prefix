@@ -1,12 +1,11 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.623 2014/02/05 06:18:29 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.647 2014/11/15 08:45:33 vapier Exp $
 
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
 DESCRIPTION="The GNU Compiler Collection"
 HOMEPAGE="http://gcc.gnu.org/"
-LICENSE="GPL-2 LGPL-2.1"
 RESTRICT="strip" # cross-compilers need controlled stripping
 
 inherit eutils fixheadtails flag-o-matic gnuconfig libtool multilib pax-utils toolchain-funcs versionator prefix
@@ -80,17 +79,19 @@ GCCMICRO=$(get_version_component_range 3 ${GCC_PV})
 GCC_CONFIG_VER=${GCC_CONFIG_VER:-$(replace_version_separator 3 '-' ${GCC_PV})}
 
 # Pre-release support
-if [[ ${GCC_PV} != ${GCC_PV/_pre/-} ]] ; then
+if [[ ${GCC_PV} == *_pre* ]] ; then
 	PRERELEASE=${GCC_PV/_pre/-}
-fi
-
-# make _alpha and _beta ebuilds automatically use a snapshot
-if [[ ${GCC_PV} == *_alpha* ]] ; then
+elif [[ ${GCC_PV} == *_alpha* ]] ; then
 	SNAPSHOT=${GCC_BRANCH_VER}-${GCC_PV##*_alpha}
 elif [[ ${GCC_PV} == *_beta* ]] ; then
 	SNAPSHOT=${GCC_BRANCH_VER}-${GCC_PV##*_beta}
 elif [[ ${GCC_PV} == *_rc* ]] ; then
 	SNAPSHOT=${GCC_PV%_rc*}-RC-${GCC_PV##*_rc}
+fi
+
+if [[ ${SNAPSHOT} == 5.0-* ]] ; then
+	# The gcc-5 release has dropped the .0 for some reason.
+	SNAPSHOT=${SNAPSHOT/5.0/5}
 fi
 
 export GCC_FILESDIR=${GCC_FILESDIR:-${FILESDIR}}
@@ -116,14 +117,28 @@ DATAPATH=${TOOLCHAIN_DATAPATH:-${PREFIX}/share/gcc-data/${CTARGET}/${GCC_CONFIG_
 # We will handle /usr/include/g++-v3/ with gcc-config ...
 STDCXX_INCDIR=${TOOLCHAIN_STDCXX_INCDIR:-${LIBPATH}/include/g++-v${GCC_BRANCH_VER/\.*/}}
 
-#---->> SLOT+IUSE logic <<----
+#---->> LICENSE+SLOT+IUSE logic <<----
+
+if tc_version_is_at_least 4.6 ; then
+	LICENSE="GPL-3+ LGPL-3+ || ( GPL-3+ libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.3+"
+elif tc_version_is_at_least 4.4 ; then
+	LICENSE="GPL-3+ LGPL-3+ || ( GPL-3+ libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.2+"
+elif tc_version_is_at_least 4.3 ; then
+	LICENSE="GPL-3+ LGPL-3+ || ( GPL-3+ libgcc libstdc++ ) FDL-1.2+"
+elif tc_version_is_at_least 4.2 ; then
+	LICENSE="GPL-3+ LGPL-2.1+ || ( GPL-3+ libgcc libstdc++ ) FDL-1.2+"
+elif tc_version_is_at_least 3.3 ; then
+	LICENSE="GPL-2+ LGPL-2.1+ FDL-1.2+"
+else
+	LICENSE="GPL-2+ LGPL-2.1+ FDL-1.1+"
+fi
 
 IUSE="multislot regression-test vanilla"
-IUSE_DEF="nls nptl"
+IUSE_DEF=( nls nptl )
 
 if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
 	IUSE+=" altivec"
-	IUSE_DEF+=" cxx fortran"
+	IUSE_DEF+=( cxx fortran )
 	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
 	[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
 	[[ -n ${D_VER}   ]] && IUSE+=" d"
@@ -132,14 +147,15 @@ if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
 	tc_version_is_at_least 4.0 && IUSE+=" objc-gc"
 	tc_version_is_between 4.0 4.9 && IUSE+=" mudflap"
 	tc_version_is_at_least 4.1 && IUSE+=" libssp objc++"
-	tc_version_is_at_least 4.2 && IUSE_DEF+=" openmp"
+	tc_version_is_at_least 4.2 && IUSE_DEF+=( openmp )
 	tc_version_is_at_least 4.3 && IUSE+=" fixed-point"
 	tc_version_is_at_least 4.6 && IUSE+=" graphite"
 	tc_version_is_at_least 4.7 && IUSE+=" go"
+	tc_version_is_at_least 4.8 && IUSE_DEF+=( sanitize )
 fi
 
-[[ ${EAPI:-0} != 0 ]] && IUSE_DEF="+${IUSE_DEF// / +}"
-IUSE+=" ${IUSE_DEF}"
+[[ ${EAPI:-0} != 0 ]] && IUSE_DEF=( "${IUSE_DEF[@]/#/+}" )
+IUSE+=" ${IUSE_DEF[*]}"
 
 # Support upgrade paths here or people get pissed
 if use multislot ; then
@@ -151,7 +167,7 @@ fi
 #---->> DEPEND <<----
 
 RDEPEND="sys-libs/zlib
-	nls? ( sys-devel/gettext )"
+	nls? ( virtual/libintl )"
 
 tc_version_is_at_least 3 && RDEPEND+=" virtual/libiconv"
 
@@ -185,6 +201,7 @@ fi
 DEPEND="${RDEPEND}
 	>=sys-devel/bison-1.875
 	>=sys-devel/flex-2.5.4
+	nls? ( sys-devel/gettext )
 	regression-test? (
 		>=dev-util/dejagnu-1.4.4
 		>=sys-devel/autogen-5.5.4
@@ -227,7 +244,7 @@ S=$(
 )
 
 gentoo_urls() {
-	local devspace="HTTP~vapier/dist/URI HTTP~dirtyepic/dist/URI
+	local devspace="HTTP~vapier/dist/URI HTTP~rhill/dist/URI
 	HTTP~halcy0n/patches/URI HTTP~zorry/patches/gcc/URI"
 	devspace=${devspace//HTTP/http:\/\/dev.gentoo.org\/}
 	echo mirror://gentoo/$1 ${devspace//URI/$1}
@@ -300,11 +317,14 @@ get_gcc_src_uri() {
 
 	# Set where to download gcc itself depending on whether we're using a
 	# prerelease, snapshot, or release tarball.
-	if [[ -n ${PRERELEASE} ]] ; then
+	if [[ ${PV} == *9999* ]] ; then
+		# Nothing to do w/git snapshots.
+		:
+	elif [[ -n ${PRERELEASE} ]] ; then
 		GCC_SRC_URI="ftp://gcc.gnu.org/pub/gcc/prerelease-${PRERELEASE}/gcc-${PRERELEASE}.tar.bz2"
 	elif [[ -n ${SNAPSHOT} ]] ; then
 		GCC_SRC_URI="ftp://gcc.gnu.org/pub/gcc/snapshots/${SNAPSHOT}/gcc-${SNAPSHOT}.tar.bz2"
-	elif [[ ${PV} != *9999* ]] ; then
+	else
 		GCC_SRC_URI="mirror://gnu/gcc/gcc-${GCC_PV}/gcc-${GCC_RELEASE_VER}.tar.bz2"
 		# we want all branch updates to be against the main release
 		[[ -n ${BRANCH_UPDATE} ]] && \
@@ -638,7 +658,6 @@ do_gcc_PIE_patches() {
 
 # configure to build with the hardened GCC specs as the default
 make_gcc_hard() {
-	
 	# we want to be able to control the pie patch logic via something other
 	# than ALL_CFLAGS...
 	sed -e '/^ALL_CFLAGS/iHARD_CFLAGS = ' \
@@ -911,6 +930,16 @@ toolchain_src_configure() {
 		confgcc+=( --enable-libstdcxx-time )
 	fi
 
+	# # Turn on the -Wl,--build-id flag by default for ELF targets. #525942
+	# # This helps with locating debug files.
+	# case ${CTARGET} in
+	# *-linux-*|*-elf|*-eabi)
+	# 	tc_version_is_at_least 4.5 && confgcc+=(
+	# 		--enable-linker-build-id
+	# 	)
+	# 	;;
+	# esac
+
 	# newer gcc versions like to bootstrap themselves with C++,
 	# so we need to manually disable it ourselves
 	if tc_version_is_between 4.7 4.8 && ! is_cxx ; then
@@ -1046,9 +1075,9 @@ toolchain_src_configure() {
 	*)
 		# If they've explicitly opt-ed in, do hardfloat,
 		# otherwise let the gcc default kick in.
-		[[ ${CTARGET//_/-} == *-hardfloat-* ]] \
-			&& confgcc+=( --with-float=hard )
-		;;
+		case ${CTARGET//_/-} in
+		*-hardfloat-*|*eabihf) confgcc+=( --with-float=hard ) ;;
+		esac
 	esac
 
 	local with_abi_map=()
@@ -1172,7 +1201,10 @@ toolchain_src_configure() {
 		else
 			# Not all libcs have ssp built in.  I assume only glibc has
 			# this for now.
-			use elibc_glibc && export gcc_cv_libc_provides_ssp=yes
+			use elibc_glibc &&
+			if hardened_gcc_is_stable ssp; then
+				export gcc_cv_libc_provides_ssp=yes
+			fi
 			confgcc+=( --disable-libssp )
 		fi
 
@@ -1205,6 +1237,10 @@ toolchain_src_configure() {
 	elif tc_version_is_at_least 4.4 ; then
 		confgcc+=( --without-cloog )
 		confgcc+=( --without-ppl )
+	fi
+
+	if tc_version_is_at_least 4.8 ; then
+		confgcc+=( $(use_enable sanitize libsanitizer) )
 	fi
 
 	# Disable gcc info regeneration -- it ships with generated info pages
@@ -1260,8 +1296,8 @@ downgrade_arch_flags() {
 	# If -march=native isn't supported we have to tease out the actual arch
 	if [[ ${myarch} == native || ${mytune} == native ]] ; then
 		if [[ ${bver} < 4.2 ]] ; then
-			arch=$(echo "" | $(tc-getCC) -march=native -v -E - 2>&1 \
-				 | grep cc1 | sed -e 's:.*-march=\([^ ]*\).*:\1:')
+			arch=$($(tc-getCC) -march=native -v -E -P - </dev/null 2>&1 \
+				| sed -rn "/cc1.*-march/s:.*-march=([^ ']*).*:\1:p")
 			replace-cpu-flags native ${arch}
 		fi
 	fi
@@ -1272,103 +1308,104 @@ downgrade_arch_flags() {
 	[[ ${mytune} == x86-64 ]] && filter-flags '-mtune=*'
 	[[ ${bver} < 3.4 ]] && filter-flags '-mtune=*'
 
-	declare -a archlist
-	# "arch" "added" "replacement"
-	archlist=("bdver4 4.9 bdver3")
-	archlist+=("bonnell 4.9 atom")
-	archlist+=("broadwell 4.9 core-avx2")
-	archlist+=("haswell 4.9 core-avx2")
-	archlist+=("ivybridge 4.9 core-avx-i")
-	archlist+=("nehalem 4.9 corei7")
-	archlist+=("sandybridge 4.9 corei7-avx")
-	archlist+=("silvermont 4.9 corei7")
-	archlist+=("westmere 4.9 corei7")
-	archlist+=("bdver3 4.8 bdver2")
-	archlist+=("btver2 4.8 btver1")
-	archlist+=("bdver2 4.7 bdver1")
-	archlist+=("core-avx2 4.7 core-avx-i")
-	archlist+=("bdver1 4.6 amdfam10")
-	archlist+=("btver1 4.6 amdfam10")
-	archlist+=("core-avx-i 4.6 core2")
-	archlist+=("corei7 4.6 core2")
-	archlist+=("corei7-avx 4.6 core2")
-	archlist+=("atom 4.5 core2")
-	archlist+=("amdfam10 4.3 k8")
-	archlist+=("athlon64-sse3 4.3 k8")
-	archlist+=("barcelona 4.3 k8")
-	archlist+=("core2 4.3 nocona")
-	archlist+=("geode 4.3 k6-2") # gcc.gnu.org/PR41989#c22
-	archlist+=("k8-sse3 4.3 k8")
-	archlist+=("opteron-sse3 4.3 k8")
-	archlist+=("athlon-fx 3.4 x86-64")
-	archlist+=("athlon64 3.4 x86-64")
-	archlist+=("c3-2 3.4 c3")
-	archlist+=("k8 3.4 x86-64")
-	archlist+=("opteron 3.4 x86-64")
-	archlist+=("pentium-m 3.4 pentium3")
-	archlist+=("pentium3m 3.4 pentium3")
-	archlist+=("pentium4m 3.4 pentium4")
+	# "added" "arch" "replacement"
+	local archlist=(
+		4.9 bdver4 bdver3
+		4.9 bonnell atom
+		4.9 broadwell core-avx2
+		4.9 haswell core-avx2
+		4.9 ivybridge core-avx-i
+		4.9 nehalem corei7
+		4.9 sandybridge corei7-avx
+		4.9 silvermont corei7
+		4.9 westmere corei7
+		4.8 bdver3 bdver2
+		4.8 btver2 btver1
+		4.7 bdver2 bdver1
+		4.7 core-avx2 core-avx-i
+		4.6 bdver1 amdfam10
+		4.6 btver1 amdfam10
+		4.6 core-avx-i core2
+		4.6 corei7 core2
+		4.6 corei7-avx core2
+		4.5 atom core2
+		4.3 amdfam10 k8
+		4.3 athlon64-sse3 k8
+		4.3 barcelona k8
+		4.3 core2 nocona
+		4.3 geode k6-2 # gcc.gnu.org/PR41989#c22
+		4.3 k8-sse3 k8
+		4.3 opteron-sse3 k8
+		3.4 athlon-fx x86-64
+		3.4 athlon64 x86-64
+		3.4 c3-2 c3
+		3.4 k8 x86-64
+		3.4 opteron x86-64
+		3.4 pentium-m pentium3
+		3.4 pentium3m pentium3
+		3.4 pentium4m pentium4
+	)
 
-	myarch=$(get-flag march)
-	mytune=$(get-flag mtune)
+	for ((i = 0; i < ${#archlist[@]}; i += 3)) ; do
+		myarch=$(get-flag march)
+		mytune=$(get-flag mtune)
 
-	for ((i=0; i < ${#archlist[@]}; i++)) ; do
-		arch=${archlist[i]%% *}
-		ver=${archlist[i]#* } ver=${ver% *}
-		rep=${archlist[i]##* }
+		ver=${archlist[i]}
+		arch=${archlist[i + 1]}
+		rep=${archlist[i + 2]}
 
 		[[ ${myarch} != ${arch} && ${mytune} != ${arch} ]] && continue
-		
+
 		if [[ ${ver} > ${bver} ]] ; then
-			einfo "Replacing ${myarch} (added in ${ver}) with ${rep}..."
+			einfo "Replacing ${myarch} (added in gcc ${ver}) with ${rep}..."
 			[[ ${myarch} == ${arch} ]] && replace-cpu-flags ${myarch} ${rep}
 			[[ ${mytune} == ${arch} ]] && replace-cpu-flags ${mytune} ${rep}
-			downgrade_arch_flags ${1:-${GCC_BRANCH_VER}}
-			break
+			continue
 		else
 			break
 		fi
 	done
 
-	declare -a isalist
 	# we only check -mno* here since -m* get removed by strip-flags later on
-	isalist=("-mno-sha 4.9")
-	isalist+=("-mno-avx512pf 4.9")
-	isalist+=("-mno-avx512f 4.9")
-	isalist+=("-mno-avx512er 4.9")
-	isalist+=("-mno-avx512cd 4.9")
-	isalist+=("-mno-xsaveopt 4.8")
-	isalist+=("-mno-xsave 4.8")
-	isalist+=("-mno-rtm 4.8")
-	isalist+=("-mno-fxsr 4.8")
-	isalist+=("-mno-lzcnt 4.7")
-	isalist+=("-mno-bmi2 4.7")
-	isalist+=("-mno-avx2 4.7")
-	isalist+=("-mno-tbm 4.6")
-	isalist+=("-mno-rdrnd 4.6")
-	isalist+=("-mno-fsgsbase 4.6")
-	isalist+=("-mno-f16c 4.6")
-	isalist+=("-mno-bmi 4.6")
-	isalist+=("-mno-xop 4.5")
-	isalist+=("-mno-movbe 4.5")
-	isalist+=("-mno-lwp 4.5")
-	isalist+=("-mno-fma4 4.5")
-	isalist+=("-mno-pclmul 4.4")
-	isalist+=("-mno-fma 4.4")
-	isalist+=("-mno-avx 4.4")
-	isalist+=("-mno-aes 4.4")
-	isalist+=("-mno-ssse3 4.3")
-	isalist+=("-mno-sse4a 4.3")
-	isalist+=("-mno-sse4 4.3")
-	isalist+=("-mno-sse4.2 4.3")
-	isalist+=("-mno-sse4.1 4.3")
-	isalist+=("-mno-popcnt 4.3")
-	isalist+=("-mno-abm 4.3")
+	local isalist=(
+		4.9 -mno-sha
+		4.9 -mno-avx512pf
+		4.9 -mno-avx512f
+		4.9 -mno-avx512er
+		4.9 -mno-avx512cd
+		4.8 -mno-xsaveopt
+		4.8 -mno-xsave
+		4.8 -mno-rtm
+		4.8 -mno-fxsr
+		4.7 -mno-lzcnt
+		4.7 -mno-bmi2
+		4.7 -mno-avx2
+		4.6 -mno-tbm
+		4.6 -mno-rdrnd
+		4.6 -mno-fsgsbase
+		4.6 -mno-f16c
+		4.6 -mno-bmi
+		4.5 -mno-xop
+		4.5 -mno-movbe
+		4.5 -mno-lwp
+		4.5 -mno-fma4
+		4.4 -mno-pclmul
+		4.4 -mno-fma
+		4.4 -mno-avx
+		4.4 -mno-aes
+		4.3 -mno-ssse3
+		4.3 -mno-sse4a
+		4.3 -mno-sse4
+		4.3 -mno-sse4.2
+		4.3 -mno-sse4.1
+		4.3 -mno-popcnt
+		4.3 -mno-abm
+	)
 
-	for ((i=0; i < ${#isalist[@]}; i++)) ; do
-		isa=${isalist[i]%% *}
-		ver=${isalist[i]##* }
-		[[ ${ver} > ${bver} ]] && filter-flags ${isa}
+	for ((i = 0; i < ${#isalist[@]}; i += 2)) ; do
+		ver=${isalist[i]}
+		isa=${isalist[i + 1]}
+		[[ ${ver} > ${bver} ]] && filter-flags ${isa} ${isa/-m/-mno-}
 	done
 }
 
@@ -1379,7 +1416,8 @@ gcc_do_filter_flags() {
 	# dont want to funk ourselves
 	filter-flags '-mabi*' -m31 -m32 -m64
 
-	filter-flags '-frecord-gcc-switches' # 490738
+	filter-flags -frecord-gcc-switches # 490738
+	filter-flags -mno-rtm -mno-htm # 506202
 
 	if tc_version_is_between 3.2 3.4 ; then
 		# XXX: this is so outdated it's barely useful, but it don't hurt...
@@ -1398,9 +1436,9 @@ gcc_do_filter_flags() {
 		case $(tc-arch) in
 			amd64|x86)
 				filter-flags '-mcpu=*'
-				
+
 				tc_version_is_between 4.4 4.5 && append-flags -mno-avx # 357287
-				
+
 				if tc_version_is_between 4.6 4.7 ; then
 					# https://bugs.gentoo.org/411333
 					# https://bugs.gentoo.org/466454
@@ -1510,20 +1548,19 @@ toolchain_src_compile() {
 	[[ ! -x /usr/bin/perl ]] \
 		&& find "${WORKDIR}"/build -name '*.[17]' | xargs touch
 
-	einfo "Compiling ${PN} ..."
 	gcc_do_make ${GCC_MAKE_TARGET}
 }
 
 gcc_do_make() {
 	# This function accepts one optional argument, the make target to be used.
 	# If omitted, gcc_do_make will try to guess whether it should use all,
-	# profiledbootstrap, or bootstrap-lean depending on CTARGET and arch. An
-	# example of how to use this function:
+	# or bootstrap-lean depending on CTARGET and arch.
+	# An example of how to use this function:
 	#
 	#	gcc_do_make all-target-libstdc++-v3
-	#
-	# Set make target to $1 if passed
+
 	[[ -n ${1} ]] && GCC_MAKE_TARGET=${1}
+
 	# default target
 	if is_crosscompile || tc-is-cross-compiler ; then
 		# 3 stage bootstrapping doesnt quite work when you cant run the
@@ -1533,13 +1570,11 @@ gcc_do_make() {
 		GCC_MAKE_TARGET=${GCC_MAKE_TARGET-bootstrap-lean}
 	fi
 
-	# the gcc docs state that parallel make isnt supported for the
-	# profiledbootstrap target, as collisions in profile collecting may occur.
+	# Older versions of GCC could not do profiledbootstrap in parallel due to
+	# collisions with profiling info.
 	# boundschecking also seems to introduce parallel build issues.
-	if [[ ${GCC_MAKE_TARGET} == "profiledbootstrap" ]] ||
-	   use_if_iuse boundschecking
-	then
-		export MAKEOPTS="${MAKEOPTS} -j1"
+	if [[ ${GCC_MAKE_TARGET} == "profiledbootstrap" ]] || use_if_iuse boundschecking ; then
+		! tc_version_is_at_least 4.6 && export MAKEOPTS="${MAKEOPTS} -j1"
 	fi
 
 	if [[ ${GCC_MAKE_TARGET} == "all" ]] ; then
@@ -1559,6 +1594,8 @@ gcc_do_make() {
 		# cross-compiler.
 		BOOT_CFLAGS=${BOOT_CFLAGS-"$(get_abi_CFLAGS ${TARGET_DEFAULT_ABI}) ${CFLAGS}"}
 	fi
+
+	einfo "Compiling ${PN} (${GCC_MAKE_TARGET})..."
 
 	pushd "${WORKDIR}"/build >/dev/null
 
@@ -1987,6 +2024,12 @@ toolchain_pkg_postinst() {
 		elog "Testsuite results have been installed into /usr/share/doc/${PF}/testsuite"
 		echo
 	fi
+
+	if [[ -n ${PRERELEASE}${SNAPSHOT} ]] ; then
+		einfo "This GCC ebuild is provided for your convenience, and the use"
+		einfo "of this compiler is not supported by the Gentoo Developers."
+		einfo "Please report bugs to upstream at http://gcc.gnu.org/bugzilla/"
+	fi
 }
 
 toolchain_pkg_postrm() {
@@ -2211,7 +2254,7 @@ hardened_gcc_is_stable() {
 	elif [[ $1 == "ssp" ]] ; then
 		if [[ ${CTARGET} == *-uclibc* ]] ; then
 			tocheck=${SSP_UCLIBC_STABLE}
-		else
+		elif  [[ ${CTARGET} == *-gnu* ]] ; then
 			tocheck=${SSP_STABLE}
 		fi
 	else

@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.291 2013/11/22 13:35:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.297 2014/11/28 17:40:20 mpagano Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -80,7 +80,9 @@
 # If you do change them, there is a chance that we will not fix resulting bugs;
 # that of course does not mean we're not willing to help.
 
-inherit eutils toolchain-funcs versionator multilib
+PYTHON_COMPAT=( python{2_6,2_7} )
+
+inherit eutils toolchain-funcs versionator multilib python-any-r1
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_preinst pkg_postinst pkg_postrm
 
 # Added by Daniel Ostrow <dostrow@gentoo.org>
@@ -462,9 +464,12 @@ if [[ ${ETYPE} == sources ]]; then
 					K_DEBLOB_AVAILABLE=1
 		if [[ ${K_DEBLOB_AVAILABLE} == "1" ]] ; then
 			IUSE="${IUSE} deblob"
+
 			# Reflect that kernels contain firmware blobs unless otherwise
 			# stripped
 			LICENSE="${LICENSE} !deblob? ( freedist )"
+
+			DEPEND+=" deblob? ( ${PYTHON_DEPS} )"
 
 			if [[ -n KV_MINOR ]]; then
 				DEBLOB_PV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
@@ -488,7 +493,6 @@ if [[ ${ETYPE} == sources ]]; then
 			DEBLOB_URI="${DEBLOB_HOMEPAGE}/${DEBLOB_URI_PATH}/${DEBLOB_A}"
 			HOMEPAGE="${HOMEPAGE} ${DEBLOB_HOMEPAGE}"
 
-			DEPEND+=" deblob? ( =dev-lang/python-2* )"
 			KERNEL_URI="${KERNEL_URI}
 				deblob? (
 					${DEBLOB_URI}
@@ -855,16 +859,18 @@ postinst_sources() {
 	KV_MINOR=$(get_version_component_range 2 ${OKV})
 	KV_PATCH=$(get_version_component_range 3 ${OKV})
 	if [[ "$(tc-arch)" = "sparc" ]]; then
-		if [[ ${KV_MAJOR} -ge 3 || ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.24 ]] ; then
-			echo
-			elog "NOTE: Since 2.6.25 the kernel Makefile has changed in a way that"
-			elog "you now need to do"
-			elog "  make CROSS_COMPILE=sparc64-unknown-linux-gnu-"
-			elog "instead of just"
-			elog "  make"
-			elog "to compile the kernel. For more information please browse to"
-			elog "https://bugs.gentoo.org/show_bug.cgi?id=214765"
-			echo
+		if [[ $(gcc-major-version) -lt 4 && $(gcc-minor-version) -lt 4 ]]; then
+			if [[ ${KV_MAJOR} -ge 3 || ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.24 ]] ; then
+				echo
+				elog "NOTE: Since 2.6.25 the kernel Makefile has changed in a way that"
+				elog "you now need to do"
+				elog "  make CROSS_COMPILE=sparc64-unknown-linux-gnu-"
+				elog "instead of just"
+				elog "  make"
+				elog "to compile the kernel. For more information please browse to"
+				elog "https://bugs.gentoo.org/show_bug.cgi?id=214765"
+				echo
+			fi
 		fi
 	fi
 }
@@ -1033,6 +1039,33 @@ unipatch() {
 			#[ -z ${i/*.diff*/} ]  && PATCH_DEPTH=${i/*.diff/}
 
 			if [ -z "${PATCH_DEPTH}" ]; then PATCH_DEPTH=0; fi
+
+			####################################################################
+			# IMPORTANT: This is temporary code to support Linux git 3.15_rc1! #
+			#                                                                  #
+			# The patch contains a removal of a symlink, followed by addition  #
+			# of a file with the same name as the symlink in the same          #
+			# location; this causes the dry-run to fail, filed bug #507656.    #
+			#                                                                  #
+			# https://bugs.gentoo.org/show_bug.cgi?id=507656                   #
+			####################################################################
+			if [[ ${PN} == "git-sources" ]] ; then
+				if [[ ${KV_MAJOR}${KV_PATCH} -ge 315 && ${RELEASETYPE} == -rc ]] ; then
+					ebegin "Applying ${i/*\//} (-p1)"
+					if [ $(patch -p1 --no-backup-if-mismatch -f < ${i} >> ${STDERR_T}) "$?" -eq 0 ]; then
+						eend 0
+						rm ${STDERR_T}
+						break
+					else
+						eend 1
+						eerror "Failed to apply patch ${i/*\//}"
+						eerror "Please attach ${STDERR_T} to any bug you may post."
+						eshopts_pop
+						die "Failed to apply ${i/*\//} on patch depth 1."
+					fi
+				fi
+			fi
+			####################################################################
 
 			while [ ${PATCH_DEPTH} -lt 5 ]; do
 				echo "Attempting Dry-run:" >> ${STDERR_T}
@@ -1225,7 +1258,8 @@ kernel-2_src_compile() {
 
 	if [[ $K_DEBLOB_AVAILABLE == 1 ]] && use deblob ; then
 		echo ">>> Running deblob script ..."
-		EPYTHON="python2" sh "${T}/${DEBLOB_A}" --force || die "Deblob script failed to run!!!"
+		python_setup
+		sh "${T}/${DEBLOB_A}" --force || die "Deblob script failed to run!!!"
 	fi
 }
 
