@@ -1,7 +1,7 @@
 #!@GENTOO_PORTAGE_EPREFIX@/bin/sh
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/fix_libtool_files.sh,v 1.16 2012/05/18 21:28:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/fix_libtool_files.sh,v 1.17 2014/05/20 08:00:40 rhill Exp $
 
 usage() {
 cat << "USAGE_END"
@@ -38,7 +38,6 @@ ARGV2=$2
 ARGV3=$3
 
 . "@GENTOO_PORTAGE_EPREFIX@"/etc/profile || exit 1
-. "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh || exit 1
 
 # Prefix: no!
 #if [ ${EUID:-0} -ne 0 ] ; then
@@ -55,7 +54,7 @@ OLDCHOST=
 AWKDIR="@GENTOO_PORTAGE_EPREFIX@/usr/share/gcc-data"
 
 if [ ! -r "${AWKDIR}/fixlafiles.awk" ] ; then
-	eerror "${0##*/}: ${AWKDIR}/fixlafiles.awk does not exist!"
+	echo "${0##*/}: ${AWKDIR}/fixlafiles.awk does not exist!"
 	exit 1
 fi
 
@@ -63,7 +62,7 @@ OLDVER=${ARGV1}
 
 export OLDVER OLDCHOST
 
-einfo "Scanning libtool files for hardcoded gcc library paths..."
+echo "Scanning libtool files for hardcoded gcc library paths..."
 exec gawk -f "${AWKDIR}/fixlafiles.awk"
 
 # vim:ts=4

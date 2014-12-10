@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.998 2014/01/19 01:51:34 dirtyepic Exp $
 
+*gcc-4.8.3 (10 Dec 2014)
+
+  10 Dec 2014; Michael Haubenwallner <haubi@gentoo.org> +gcc-4.8.3.ebuild,
+  +files/gcc-4.8.3-linux-x86-on-amd64.patch, files/fix_libtool_files.sh:
+  sync
+
   10 Jul 2014; Michael Haubenwallner <haubi@gentoo.org>
   files/4.2.2/aix-libssp.patch:
   Fix patch to apply even on non-aix, bug#516762.
