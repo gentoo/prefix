@@ -217,7 +217,7 @@ toolchain-binutils_src_prepare() {
 }
 
 _eprefix_init() {
-	has "${EAPI:-0}" 0 1 2 && ED=${D} EPREFIX= EROOT=${ROOT}
+	has "${EAPI:-0}" 0 1 2 && : ${ED:=${D}} ${EPREFIX:=} ${EROOT:=${ROOT}}
 }
 
 # Intended for ebuilds to override to set their own versioning information.
