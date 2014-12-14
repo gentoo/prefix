@@ -99,7 +99,7 @@ efetch() {
 # 	einfo "${A%-*} successfully bootstrapped"
 # }
 
-configure_toolchain() {
+configure_cflags() {
 	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
 	
 	case ${CHOST} in
@@ -144,7 +144,9 @@ configure_toolchain() {
 		*)
 			;;
 	esac
+}
 
+configure_toolchain() {
 	linker=sys-devel/binutils
 	compiler=sys-devel/gcc
 	# The host may not have a functioning c++ toolchain, so use a stage1 compiler that can build with C only.
@@ -177,6 +179,25 @@ configure_toolchain() {
 bootstrap_setup() {
 	local profile=""
 	einfo "setting up some guessed defaults"
+	
+	if [[ ! -f ${ROOT}/etc/portage/make.conf ]] ; then
+		{
+			echo 'USE="unicode nls"'
+			echo 'CFLAGS="${CFLAGS} -O2 -pipe"'
+			echo 'CXXFLAGS="${CFLAGS}"'
+			echo "MAKEOPTS=\"${MAKEOPTS}\""
+			echo "CONFIG_SHELL=\"${ROOT}/bin/bash\""
+			if [[ -n ${PREFIX_DISABLE_USR_SPLIT} ]] ; then
+				echo "# be careful with this one, don't just remove it!"
+				echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
+			fi
+			[[ -n $PORTDIR_OVERLAY ]] && \
+				echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
+			[[ ${OFFLINE_MODE} ]] && \
+				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
+		} > "${ROOT}"/etc/portage/make.conf
+	fi
+	
 	case ${CHOST} in
 		powerpc-apple-darwin7)
 			profile="prefix/darwin/macos/10.3"
@@ -292,8 +313,9 @@ bootstrap_setup() {
 			profile="prefix/bsd/openbsd/${CHOST#x86_64-pc-openbsd}/x64"
 			;;
 		*)	
-			einfo "UNKNOWN ARCH: You need to set up a make.profile symlink to a"
-			einfo "profile in ${PORTDIR} for your CHOST ${CHOST}"
+			eerror "UNKNOWN ARCH: You need to set up a make.profile symlink to a"
+			eerror "profile in ${PORTDIR} for your CHOST ${CHOST}"
+			exit 1
 			;;
 	esac
 	[[ -n ${PROFILE_BASE}${PROFILE_VARIANT} ]] &&
@@ -310,8 +332,6 @@ bootstrap_setup() {
 		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${fullprofile}."
 	fi
-	
-	cp -a "${ROOT}"/etc/portage "${ROOT}"/tmp/etc
 }
 
 do_tree() {
@@ -333,6 +353,7 @@ do_tree() {
 			[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 		done
 	fi
+	mkdir -p "${PORTDIR}"
 	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
 		efetch "$1/$2" || return 1
 		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
@@ -349,13 +370,6 @@ bootstrap_tree() {
 	else
 		do_tree http://dev.gentoo.org/~redlizard/distfiles prefix-overlay-${PV}.tar.bz2
 	fi
-}
-
-bootstrap_latest_tree() {
-	# kept here for compatibility reasons
-	einfo "This function 'latest_tree' is deprecated and will be"
-	einfo "removed in the future, please set LATEST_TREE_YES=1 in the env"
-	LATEST_TREE_YES=1 bootstrap_tree
 }
 
 bootstrap_startscript() {
@@ -453,8 +467,6 @@ bootstrap_portage() {
  	einfo "Installing ${A%-*}"
 	$MAKE install || return 1
 
-	bootstrap_setup
-
 	cd "${ROOT}"
 	rm -Rf ${ptmp} >& /dev/null
 
@@ -466,6 +478,11 @@ bootstrap_portage() {
 	rm -f "${ROOT}"/tmp/usr/lib/portage/bin/ebuild-helpers/sed
 
 	[[ -e "${ROOT}"/tmp/usr/portage ]] || ln -s "${PORTDIR}" "${ROOT}"/tmp/usr/portage
+
+	if [[ -s ${PORTDIR}/profiles/repo_name ]]; then
+		# sync portage's repos.conf with the tree being used
+		sed -i -e "s,gentoo_prefix,$(<"${PORTDIR}"/profiles/repo_name)," "${ROOT}"/tmp/usr/share/portage/config/repos.conf || return 1
+	fi
 
 	einfo "${A%-*} successfully bootstrapped"
 }
@@ -921,117 +938,86 @@ bootstrap_stage1() { (
 	# too vital to rely on a host-provided one
 	[[ -x ${ROOT}/tmp/usr/bin/python ]] || (bootstrap_python) || return 1
 
+
+	# checks itself if things need to be done still
+	(bootstrap_tree) || return 1
+
+	# setup a profile
+	[[ -e ${ROOT}/etc/portage/make.profile && -e ${ROOT}/etc/portage/make.conf ]] || (bootstrap_setup) || return 1
+	mkdir -p "${ROOT}"/tmp/etc || return 1
+	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || cp -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc || return 1
+
+	# setup portage
+	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
+
 	einfo "stage1 successfully finished"
 ); }
 
-bootstrap_stage2() {
-	mkdir -p "${ROOT}"/usr/portage || return 1
+do_emerge_pkgs() {
+	local opts=$1 ; shift
+	local pkg vdb pvdb evdb
+	for pkg in "$@"; do
+		vdb=${pkg}
+		if [[ ${vdb} == "="* ]] ; then
+			vdb=${vdb#=}
+		elif [[ ${vdb} == "<"* ]] ; then
+			vdb=${vdb#<}
+			vdb=${vdb%-r*}
+			vdb=${vdb%-*}
+			vdb=${vdb}-\*
+		else
+			vdb=${vdb}-\*
+		fi
+		for pvdb in ${EPREFIX}/var/db/pkg/${vdb%-*}-* ; do
+			if [[ -d ${pvdb} ]] ; then
+				evdb=${pvdb##*/}
+				if [[ ${pkg} == "="* ]] ; then
+					# exact match required (* should work here)
+					[[ ${evdb} == ${vdb##*/} ]] && break
+				else
+					vdb=${vdb%-*}
+					evdb=${evdb%-r*}
+					evdb=${evdb%_p*}
+					evdb=${evdb%-*}
+					[[ ${evdb} == ${vdb#*/} ]] && break
+				fi
+			fi
+			pvdb=
+		done
+		[[ -n ${pvdb} ]] && continue
 
-	# checks itself if things need to be done still
-	bootstrap_tree || return 1
-
-	# setup portage
-	[[ -e ${ROOT}/tmp/etc/make.globals ]] || bootstrap_portage || return 1
-
-	if [[ -s ${ROOT}/usr/portage/profiles/repo_name ]]; then
-		# sync portage's repos.conf with the tree being used
-		sed -i -e "s,gentoo_prefix,$(<"${ROOT}"/usr/portage/profiles/repo_name)," "${ROOT}"/tmp/usr/share/portage/config/repos.conf || return 1
-	fi
-
-	einfo "stage2 successfully finished"
+		# Emerge targetting $EPREFIX.
+		PORTAGE_CONFIGROOT="${EPREFIX}" \
+		# Disable the STALE warning because the snapshot frequently gets stale.
+		PORTAGE_SYNC_STALE=0 \
+		# Need need to spam the user about news until the emerge -e system
+		# because the tools aren't available to read the news item yet anyway.
+		FEATURES="-news ${FEATURES}" \
+		# Use the stage1 python.
+		PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym \
+		# Avoid circular deps caused by the default profiles (and IUSE defaults).
+		USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python bootstrap internal-glib ${USE}" \
+		emerge -v --oneshot --root-deps ${opts} "${pkg}" || return 1
+	done
 }
 
-bootstrap_stage3() {
+bootstrap_stage2() {
 	if ! type -P emerge > /dev/null ; then
-		eerror "emerge not found, did you bootstrap stage1 and stage2?"
+		eerror "emerge not found, did you bootstrap stage1?"
 		return 1
 	fi
 
-	# activate usr-split disabling in gen_usr_ldscript
-	if [[ -n ${PREFIX_DISABLE_USR_SPLIT} ]] ; then
-		export PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes
-	fi
-
-	# Avoid circular deps caused by the default profiles (and IUSE defaults).
-	local baseUSE="${USE}"
-	export USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python bootstrap internal-glib ${baseUSE}"
-
-	# Need need to spam the user about news until the emerge -e system
-	# because the tools aren't available to read the news item yet anyway.
-	export FEATURES="-news ${FEATURES}"
-
-	# Disable the STALE warning because the snapshot frequently gets stale.
-	export PORTAGE_SYNC_STALE=0
-
-	# Until we get a proper python, set correct PYTHONPATH for Portage,
-	# since our stage1 Python lives in $EPREFIX/tmp, bug #407573
-	export PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym
-
-	# stage2 has set a profile, which defines CHOST, so unset any CHOST
-	# we've got here to avoid cross-compilation due to slight
-	# differences caused by our guessing vs. what the profile sets.
-	# This happens at least on 32-bits Darwin, with i386 and i686.
-	# https://bugs.gentoo.org/show_bug.cgi?id=433948
-	unset CHOST
-	export CHOST=$(portageq envvar CHOST)
-
 	# Find out what toolchain packages we need, and configure LDFLAGS
 	# and friends.
+	configure_cflags || return 1
 	configure_toolchain || return 1
-
-	[[ ${OFFLINE_MODE} ]] && \
-		export FETCHCOMMAND="bash -c 'echo I need \\\$1 from \\\$2 in \\\$3; read' -- \\\${FILE} \\\${URI} \\\${DISTDIR}"
-
-	do_emerge_pkgs() {
-		local opts=$1 ; shift
-		local pkg vdb pvdb evdb
-		for pkg in "$@"; do
-			vdb=${pkg}
-			if [[ ${vdb} == "="* ]] ; then
-				vdb=${vdb#=}
-			elif [[ ${vdb} == "<"* ]] ; then
-				vdb=${vdb#<}
-				vdb=${vdb%-r*}
-				vdb=${vdb%-*}
-				vdb=${vdb}-\*
-			else
-				vdb=${vdb}-\*
-			fi
-			for pvdb in ${EPREFIX}/var/db/pkg/${vdb%-*}-* ; do
-				if [[ -d ${pvdb} ]] ; then
-					evdb=${pvdb##*/}
-					if [[ ${pkg} == "="* ]] ; then
-						# exact match required (* should work here)
-						[[ ${evdb} == ${vdb##*/} ]] && break
-					else
-						vdb=${vdb%-*}
-						evdb=${evdb%-r*}
-						evdb=${evdb%_p*}
-						evdb=${evdb%-*}
-						[[ ${evdb} == ${vdb#*/} ]] && break
-					fi
-				fi
-				pvdb=
-			done
-			[[ -n ${pvdb} ]] && continue
-
-			PORTAGE_CONFIGROOT="${EPREFIX}" emerge -v --oneshot --root-deps ${opts} "${pkg}"
-			[[ $? -eq 0 ]] || return 1
-		done
-	}
+	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 
 	emerge_pkgs() {
-		EPREFIX="${ROOT}" \
-		do_emerge_pkgs "$@"
-	}
-
-	emerge_tmp_pkgs() {
 		EPREFIX="${ROOT}"/tmp \
 		FEATURES="${FEATURES} -collision-protect" \
 		do_emerge_pkgs "$@"
 	}
-
-	local pkgs
 
 	# bison's configure checks for perl, but doesn't use it,
 	# except for tests.  Since we don't want to pull in perl at this
@@ -1042,52 +1028,75 @@ bootstrap_stage3() {
 	# stage and rather have it continue instead of abort the build
 	export MAKEINFO="echo makeinfo GNU texinfo 4.13"
 
-	if [[ ! -e "${ROOT}"/usr/bin/gcc ]]; then
-		# Build a basic compiler and portage dependencies in $ROOT/tmp.
-		pkgs=(
-			$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
-			sys-libs/ncurses
-			sys-libs/readline
-			app-shells/bash
-			sys-apps/sed
-			app-arch/xz-utils
-			sys-apps/baselayout-prefix
-			sys-devel/m4
-			sys-devel/flex
-			sys-devel/bison
-			sys-devel/patch
-			sys-devel/binutils-config
-			sys-devel/gcc-config
-			dev-libs/gmp
-			dev-libs/mpfr
-			dev-libs/mpc
-			$([[ ${CHOST} == *-aix* ]] && echo sys-apps/diffutils ) # gcc can't deal with aix diffutils, gcc PR14251
-			$([[ ${CHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
-			$([[ ${CHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
-		)
-		# Most binary Linux distributions seem to fancy toolchains that
-		# do not do c++ support (need to install a separate package).
-		USE="${USE} -cxx" \
-		emerge_tmp_pkgs --nodeps "${pkgs[@]}" || return 1
-		
-		# Build a linker and compiler that live in ${ROOT}/tmp, but
-		# produce binaries in ${ROOT}.
-		USE="${USE} -cxx" \
-		TPREFIX="${ROOT}" \
-		emerge_tmp_pkgs --nodeps "${linker}" || return 1
-		
-		EXTRA_ECONF=--disable-bootstrap \
-		GCC_MAKE_TARGET=all \
-		TPREFIX="${ROOT}" \
-		emerge_tmp_pkgs --nodeps "${compiler_stage1}" || return 1
-	fi
-
-	unset CC CXX HOSTCC CPPFLAGS LDFLAGS
-
+	# Build a basic compiler and portage dependencies in $ROOT/tmp.
+	pkgs=(
+		$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
+		sys-libs/ncurses
+		sys-libs/readline
+		app-shells/bash
+		sys-apps/sed
+		app-arch/xz-utils
+		sys-apps/baselayout-prefix
+		sys-devel/m4
+		sys-devel/flex
+		sys-devel/bison
+		sys-devel/patch
+		sys-devel/binutils-config
+		sys-devel/gcc-config
+		dev-libs/gmp
+		dev-libs/mpfr
+		dev-libs/mpc
+		$([[ ${CHOST} == *-aix* ]] && echo sys-apps/diffutils ) # gcc can't deal with aix diffutils, gcc PR14251
+		$([[ ${CHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
+		$([[ ${CHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
+	)
+	# Most binary Linux distributions seem to fancy toolchains that
+	# do not do c++ support (need to install a separate package).
+	USE="${USE} -cxx" \
+	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+	
+	# Build a linker and compiler that live in ${ROOT}/tmp, but
+	# produce binaries in ${ROOT}.
+	USE="${USE} -cxx" \
+	TPREFIX="${ROOT}" \
+	emerge_pkgs --nodeps "${linker}" || return 1
+	
+	EXTRA_ECONF=--disable-bootstrap \
+	GCC_MAKE_TARGET=all \
+	TPREFIX="${ROOT}" \
+	emerge_pkgs --nodeps "${compiler_stage1}" || return 1
+	
 	# make sure the EPREFIX gcc shared libraries are there
 	mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
 	cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
 
+	einfo "stage2 successfully finished"
+}
+
+bootstrap_stage3() {
+	if ! type -P emerge > /dev/null ; then
+		eerror "emerge not found, did you bootstrap stage1?"
+		return 1
+	fi
+	
+	if ! type -P gcc > /dev/null ; then
+		eerror "gcc not found, did you bootstrap stage2?"
+		return 1
+	fi
+
+	configure_toolchain || return 1
+	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
+
+	emerge_pkgs() {
+		EPREFIX="${ROOT}" \
+		do_emerge_pkgs "$@"
+	}
+
+	# GCC sometimes decides that it needs to run makeinfo to update some
+	# info pages from .texi files.  Obviously we don't care at this
+	# stage and rather have it continue instead of abort the build
+	export MAKEINFO="echo makeinfo GNU texinfo 4.13"
+	
 	# Build a native compiler.
 	pkgs=(
 		$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
@@ -1117,7 +1126,7 @@ bootstrap_stage3() {
 	ln -s bash "${ROOT}"/bin/sh
 	export CONFIG_SHELL="${ROOT}/bin/bash"
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
-	unset PERL MAKEINFO
+	unset MAKEINFO
 
 	# Build portage and dependencies.
 	pkgs=(
@@ -1137,10 +1146,8 @@ bootstrap_stage3() {
 	)
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
-	# Switch to the proper portage now.
-	unset PYTHONPATH
+	# Switch to the proper portage.
 	hash -r
-	export USE="${baseUSE}"
 
 	# Get rid of the temporary tools.
 	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
@@ -1153,7 +1160,7 @@ bootstrap_stage3() {
 	nowdate=$(date +%s)
 	[[ ( ! -e ${PORTDIR}/.unpacked ) && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || \
 	if [[ ${OFFLINE_MODE} ]]; then
-	  	# --keep used ${DISTDIR}, which make it easier to download a snapshot beforehand
+		# --keep used ${DISTDIR}, which make it easier to download a snapshot beforehand
 		emerge-webrsync --keep || return 1
 	else
 		emerge --sync || emerge-webrsync || return 1
@@ -1164,24 +1171,6 @@ bootstrap_stage3() {
 
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
-
-	if [[ ! -f ${ROOT}/etc/portage/make.conf ]] ; then
-		{
-			echo 'USE="unicode nls"'
-			echo 'CFLAGS="${CFLAGS} -O2 -pipe"'
-			echo 'CXXFLAGS="${CFLAGS}"'
-			echo "MAKEOPTS=\"${MAKEOPTS}\""
-			echo "CONFIG_SHELL=\"${CONFIG_SHELL}\""
-			if [[ -n ${PREFIX_DISABLE_USR_SPLIT} ]] ; then
-				echo "# be careful with this one, don't just remove it!"
-				echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
-			fi
-			[[ -n $PORTDIR_OVERLAY ]] && \
-				echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
-			[[ ${OFFLINE_MODE} ]] && \
-				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
-		} > "${ROOT}"/etc/portage/make.conf
-	fi
 
 	einfo "stage3 successfully finished"
 }
@@ -1765,7 +1754,7 @@ EOF
 	fi
 	echo
 
-	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1 ; then
+	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1 ; then
 		# stage 1 fail
 		cat << EOF
 
@@ -1779,23 +1768,42 @@ EOF
 		exit 1
 	fi
 
-	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
+	# stage1 has set a profile, which defines CHOST, so unset any CHOST
+	# we've got here to avoid cross-compilation due to slight
+	# differences caused by our guessing vs. what the profile sets.
+	# This happens at least on 32-bits Darwin, with i386 and i686.
+	# https://bugs.gentoo.org/show_bug.cgi?id=433948
+	unset CHOST
+	export CHOST=$(portageq envvar CHOST)
+
+	# after stage1 and stage2 we should have a bash of our own, which
+	# is preferably over the host-provided one, because we know it can
+	# deal with the bash-constructs we use in stage3 and onwards
+	hash -r
+
+	if ! [[ -x ${EPREFIX}/usr/bin/gcc || -x ${EPREFIX}/tmp/usr/bin/gcc ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
 		# stage 2 fail
 		cat << EOF
 
 Odd!  Running
   ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2
-failed! :(  I have no clue, really.  Please find friendly folks in
-#gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or
-file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
-I am defeated.  I am of no use here any more.
+failed! :(  Details might be found in the build log:
+EOF
+		for log in "${EPREFIX}"{/tmp,}/var/tmp/portage/*/*/temp/build.log ; do
+			[[ -e ${log} ]] || continue
+			echo "  ${log}"
+		done
+		[[ -e ${log} ]] || echo "  (no build logs found?!?)"
+		cat << EOF
+I have no clue, really.  Please find friendly folks in #gentoo-prefix on
+irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
+at bugs.gentoo.org under Gentoo/Alt, Prefix Support. I am defeated.
+I am of no use here any more.
 EOF
 		exit 1
 	fi
 
-	# after stage1 and stage2 we should have a bash of our own, which
-	# is preferably over the host-provided one, because we know it can
-	# deal with the bash-constructs we use in stage3 and onwards
+	# new bash
 	hash -r
 
 	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" stage3 ; then
@@ -1820,10 +1828,8 @@ inconvenient, and it crushed my ego.  Sorry, I give up.
 EOF
 		exit 1
 	fi
-	hash -r  # tmp/* stuff is removed in stage3
 
-	# Don't confuse Portage with a possibly slightly differing CHOST
-	unset CHOST
+	hash -r  # tmp/* stuff is removed in stage3
 
 	if ! emerge -e system ; then
 		# emerge -e system fail
