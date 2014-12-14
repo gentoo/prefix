@@ -2124,7 +2124,7 @@ esac
 CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
 export PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
 export DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
-PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
+PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/tmp/var/tmp}
 DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
 SNAPSHOT_URL=${SNAPSHOT_URL:-"http://rsync.prefix.bitzolder.nl/snapshots"}
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
