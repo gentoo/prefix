@@ -1,0 +1,32 @@
+diff --git a/binutils-config b/binutils-config
+index 7454527..570a6b0 100755
+--- a/binutils-config
++++ b/binutils-config
+@@ -121,7 +121,26 @@ switch_profile() {
+ 	cd "${ROOT}/${BINPATH}" || exit 1
+ 	mkdir -p "${ROOT}/${BINPATH_LINKS}" "${EROOT}/usr/bin"
+ 	for x in * ; do
+-		atomic_ln "${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}" "${x}"
++		case ${x} in
++			ld|ld64)
++				# recompile the wrapper for the desired target
++				# not a huge fan of it, never have been
++				"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/misc/binutils-config/create-ldwrapper \
++					--wrapper-name="${x}" \
++					--wrapper-source="${EROOT}usr/lib/misc/binutils-config" \
++					--output-file="${ROOT}/${BINPATH_LINKS}/${x}" \
++					--host="${HOST}" \
++					--target="${TARGET}" \
++					--binpath="${BINPATH#${EPREFIX}}" \
++					--debug="${DEBUG}" \
++				|| return 1
++				touch -r "${ROOT}/${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}/${x}"
++			;;
++			*)
++				atomic_ln "${BINPATH}/${x}" "${ROOT}/${BINPATH_LINKS}" "${x}"
++			;;
++		esac
++		
+ 		atomic_ln "${BINPATH_LINKS}/${x}" "${EROOT}/usr/bin" "${TARGET}-${x}"
+ 		if [[ ${TARGET} == ${HOST} ]] ; then
+ 			atomic_ln "${TARGET}-${x}" "${EROOT}/usr/bin" "${x}"
