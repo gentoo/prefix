@@ -986,16 +986,16 @@ do_emerge_pkgs() {
 		done
 		[[ -n ${pvdb} ]] && continue
 
-		# Emerge targetting $EPREFIX.
-		PORTAGE_CONFIGROOT="${EPREFIX}" \
 		# Disable the STALE warning because the snapshot frequently gets stale.
-		PORTAGE_SYNC_STALE=0 \
+		#
 		# Need need to spam the user about news until the emerge -e system
 		# because the tools aren't available to read the news item yet anyway.
-		FEATURES="-news ${FEATURES}" \
-		# Use the stage1 python.
-		PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym \
+		#
 		# Avoid circular deps caused by the default profiles (and IUSE defaults).
+		PORTAGE_CONFIGROOT="${EPREFIX}" \
+		PORTAGE_SYNC_STALE=0 \
+		FEATURES="-news ${FEATURES}" \
+		PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym \
 		USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python bootstrap internal-glib ${USE}" \
 		emerge -v --oneshot --root-deps ${opts} "${pkg}" || return 1
 	done
