@@ -111,7 +111,7 @@ src_prepare() {
 		"${FILESDIR}/${PN}-1.55.0-context-x32.patch" \
 		"${FILESDIR}/${PN}-1.55.0-tools-c98-compat.patch" \
 		"${FILESDIR}/${PN}-1.52.0-threads.patch" \
-		"${FILESDIR}/${PN}-1.55.0-aix-pthread.patch"
+		"${FILESDIR}/${PN}-1.56.0-build-auto_index-tool.patch"
 
 	# Do not try to build missing 'wave' tool, bug #522682
 	# Upstream bugreport - https://svn.boost.org/trac/boost/ticket/10507
@@ -161,12 +161,14 @@ src_configure() {
 	use icu || OPTIONS+=" --disable-icu boost.locale.icu=off"
 	mpi_needed || OPTIONS+=" --without-mpi"
 	use nls || OPTIONS+=" --without-locale"
+	use context || OPTIONS+=" --without-context --without-coroutine"
 
-	OPTIONS+=" pch=off --boost-build=${EPREFIX}/usr/share/boost-build --prefix=\"${ED}usr\" --layout=system threading=$(usex threads multi single) link=$(usex static-libs shared,static shared) --without-context"
+	OPTIONS+=" pch=off"
+	OPTIONS+=" --boost-build=${EPREFIX}/usr/share/boost-build --prefix=\"${ED}usr\""
+	OPTIONS+=" --layout=system"
+	OPTIONS+=" threading=$(usex threads multi single) link=$(usex static-libs shared,static shared)"
 
 	[[ ${CHOST} == *-winnt* ]] && OPTIONS+=" -sNO_BZIP2=1"
-	# http://lists.boost.org/boost-build/2013/11/27186.php
-	[[ ${CHOST} == *-aix* ]] && OPTIONS+=" --without-coroutine"
 }
 
 multilib_src_compile() {
