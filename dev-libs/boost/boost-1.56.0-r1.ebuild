@@ -312,9 +312,9 @@ multilib_src_install() {
 			if mpi_needed; then
 				local moddir=$(python_get_sitedir)/boost
 				# moddir already includes eprefix
-				mkdir -p "${ED}${moddir}" || die
-				mv "${ED}usr/$(get_libdir)/mpi.so" "${ED}${moddir}" || die
-				cat << EOF > "${ED}${moddir}/__init__.py" || die
+				mkdir -p "${D}${moddir}" || die
+				mv "${ED}usr/$(get_libdir)/mpi.so" "${D}${moddir}" || die
+				cat << EOF > "${D}${moddir}/__init__.py" || die
 import sys
 if sys.platform.startswith('linux'):
 	import DLFCN
