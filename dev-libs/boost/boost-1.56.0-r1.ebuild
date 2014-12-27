@@ -388,29 +388,6 @@ EOF
 			fi
 		done
 	fi
-
-	# on winnt we don't have eselect-boost support (yet), so create
-	# symlinks/copies where required.
-	if [[ ${CHOST} == *-winnt* ]]; then
-		(
-			if use debug; then
-				. "${ED}/usr/share/boost-eselect/profiles/${SLOT}/debug"
-			else
-				. "${ED}/usr/share/boost-eselect/profiles/${SLOT}/default"
-			fi
-
-			test -z "${includes}" -o -z "${libs}" && die "oops. something went wrong - boost profile damaged!"
-
-			dodir /usr/include
-			cp -r "${D}"${includes} "${ED}/usr/include/"
-
-			dodir /usr/$(get_libdir)
-			for f in ${libs}; do
-				linkname="${f#${EPREFIX}}"
-				dosym ${linkname} "${linkname/-${MAJOR_PV}}"
-			done
-		) || die
-	fi
 }
 
 pkg_preinst() {
