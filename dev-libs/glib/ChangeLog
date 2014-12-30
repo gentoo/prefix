@@ -1,6 +1,26 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.624 2014/10/11 11:35:18 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.630 2014/12/28 12:23:03 ago Exp $
+
+  28 Dec 2014; Agostino Sarubbo <ago@gentoo.org> glib-2.40.2.ebuild:
+  Stable for ppc, wrt bug #529964
+
+  19 Dec 2014; Pacho Ramos <pacho@gentoo.org> glib-2.40.2.ebuild:
+  amd64 stable, bug 529964
+
+  18 Dec 2014; Pacho Ramos <pacho@gentoo.org> glib-2.40.2.ebuild:
+  x86 stable, bug 529964
+
+*glib-2.42.1 (14 Dec 2014)
+
+  14 Dec 2014; Gilles Dartiguelongue <eva@gentoo.org> +glib-2.42.1.ebuild:
+  Version bump for Gnome 3.14.
+
+  12 Dec 2014; Jeroen Roovers <jer@gentoo.org> glib-2.40.2.ebuild:
+  Stable for HPPA (bug #529964).
+
+  27 Oct 2014; Mike Frysinger <vapier@gentoo.org> glib-2.40.0-r1.ebuild:
+  Mark arm64/m68k/s390/sh stable.
 
   11 Oct 2014; Markus Meier <maekke@gentoo.org> glib-2.40.0-r1.ebuild:
   arm stable, bug #512012
