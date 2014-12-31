@@ -2,6 +2,9 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.219 2014/12/29 07:42:08 polynomial-c Exp $
 
+  31 Dec 2014; Fabian Groffen <grobian@gentoo.org> readline-6.3_p8-r1.ebuild:
+  disable for bug #530890
+
   29 Dec 2014; Lars Wendler <polynomial-c@gentoo.org> -readline-6.2_p1.ebuild,
   -readline-6.3_p8.ebuild, readline-6.3_p8-r1.ebuild:
   Fixed installation location for documents (bug #533770 by Chris Mayo).
