@@ -2,6 +2,29 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.219 2014/12/29 07:42:08 polynomial-c Exp $
 
+  20 Jan 2015; Guilherme Amadio <guilherme.amadio@gmail.com>
+  -files/bash-3.0-etc-inputrc.patch,
+  -files/readline-5.1-cleanups.patch,
+  -files/readline-5.1-fbsd-pic.patch,
+  -files/readline-5.1-rlfe-build.patch,
+  -files/readline-5.1-rlfe-libutil.patch,
+  -files/readline-5.1-rlfe-uclibc.patch,
+  -files/readline-5.2-aix5.patch,
+  -files/readline-5.2-darwin9-rlfe.patch,
+  -files/readline-5.2-darwin9.patch,
+  -files/readline-5.2-rlfe-build.patch,
+  -files/readline-5.2-rlfe-irix.patch,
+  -files/readline-6.0-rlfe-build.patch,
+  -files/readline-6.1-mint.patch,
+  -files/readline-6.1-rlfe-freebsd.patch,
+  -files/readline-6.2-aixso.patch,
+  +files/readline-6.3-darwin-shlib-versioning.patch,
+  +files/readline-6.3-interix.patch,
+  +files/readline-6.3-libtool.patch,
+  sys-libs/readline/readline-6.3_p8-r1.ebuild:
+  Fix for bug #530890, use host libtool
+  Remove unused files.
+
   31 Dec 2014; Fabian Groffen <grobian@gentoo.org> readline-6.3_p8-r1.ebuild:
   disable for bug #530890
 
