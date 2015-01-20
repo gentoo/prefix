@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.3_p8-r1.ebuild,v 1.2 2014/12/29 07:42:08 polynomial-c Exp $
 
 EAPI=4
 
@@ -38,8 +37,9 @@ HOSTLT_S=${WORKDIR}/${HOSTLT}
 
 LICENSE="GPL-3"
 SLOT="0"
-# bug #530890
-#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+
+# see bug 530890 before installing on OS X
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static-libs"
 
 RDEPEND=">=sys-libs/ncurses-5.9-r3[${MULTILIB_USEDEP}]
@@ -53,24 +53,28 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 src_unpack() {
-	#unpack ${HOSTLT}.tar.gz
-	#S="${HOSTLT_S}" elibtoolize
+	unpack ${HOSTLT}.tar.gz
+	S="${HOSTLT_S}" elibtoolize
 	unpack ${MY_P}.tar.gz
 }
 
 src_prepare() {
 	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
-	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
-	epatch "${FILESDIR}"/${PN}-6.2-rlfe-tgoto.patch #385091
-	epatch "${FILESDIR}"/${PN}-6.3-fix-long-prompt-vi-search.patch
 
+	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
-	epatch "${FILESDIR}"/${PN}-6.0-rlfe-solaris.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
-	#epatch "${FILESDIR}"/${PN}-6.2-libtool.patch
+	epatch "${FILESDIR}"/${PN}-6.0-rlfe-solaris.patch
+	epatch "${FILESDIR}"/${PN}-6.1-aix-soname.patch
+	epatch "${FILESDIR}"/${PN}-6.1-aix-expfull.patch
+	epatch "${FILESDIR}"/${PN}-6.2-rlfe-tgoto.patch #385091
+	epatch "${FILESDIR}"/${PN}-6.3-libtool.patch
+	epatch "${FILESDIR}"/${PN}-6.3-interix.patch
+	epatch "${FILESDIR}"/${PN}-6.3-darwin-shlib-versioning.patch
+	epatch "${FILESDIR}"/${PN}-6.3-fix-long-prompt-vi-search.patch
 
 	# Force ncurses linking. #71420
 	# Use pkg-config to get the right values. #457558
@@ -86,18 +90,17 @@ src_prepare() {
 	# objformat for years, so we don't want to rely on that.
 	sed -i -e '/objformat/s:if .*; then:if true; then:' support/shobj-conf || die
 
-	# support OSX Lion, Mountain Lion and Mavericks
-# hopefully this is in now?
-#	sed -i -e 's/darwin10\*/darwin1\[0123\]\*/g' support/shobj-conf || die
+	# support more recent OS X versions
+	sed -i -e 's/darwin10\*/darwin1\[01234\]\*/g' support/shobj-conf || die
 
 	ln -s ../.. examples/rlfe/readline # for local readline headers
 }
 
 src_configure() {
-	#cd "${HOSTLT_S}" || die
-	#econf $(use_enable static-libs static)
-	#export PATH=${HOSTLT_S}:${PATH}
-	#cd "${S}"
+	cd "${HOSTLT_S}" || die
+	econf $(use_enable static-libs static)
+	export PATH="${HOSTLT_S}:${PATH}"
+	cd "${S}"
 
 	# fix implicit decls with widechar funcs
 	append-cppflags -D_GNU_SOURCE
@@ -122,7 +125,7 @@ src_configure() {
 	# This is for rlfe, but we need to make sure LDFLAGS doesn't change
 	# so we can re-use the config cache file between the two.
 	append-ldflags -L.
-	#export LDFLAGS="-L${S}/shlib ${LDFLAGS}" # search local dirs first
+	export LDFLAGS="-L${S}/shlib ${LDFLAGS}" # search local dirs first
 
 	multilib-minimal_src_configure
 }
@@ -133,8 +136,7 @@ multilib_src_configure() {
 		--cache-file="${BUILD_DIR}"/config.cache \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--with-curses \
- 		$(use_enable static-libs static)
-#		--disable-shared # use libtool instead
+		--disable-shared # use libtool instead
 
 	if multilib_is_native_abi && ! tc-is-cross-compiler ; then
 		# code is full of AC_TRY_RUN()
@@ -146,7 +148,7 @@ multilib_src_configure() {
 }
 
 multilib_src_compile() {
-	emake
+	emake shared || die
 
 	if multilib_is_native_abi && ! tc-is-cross-compiler ; then
 		# code is full of AC_TRY_RUN()
@@ -156,21 +158,21 @@ multilib_src_compile() {
 			ln -s ../../shlib/lib${l}$(get_libname)* lib${l}$(get_libname)
 			ln -sf ../../lib${l}.a lib${l}.a
 		done
-		#emake LTLINK='libtool --mode=link --tag=CC' || die
-		emake
+		emake LTLINK='libtool --mode=link --tag=CC' || die
 	fi
 }
 
 multilib_src_install() {
-	#export PATH=${HOSTLT_S}:${PATH}
-	default
+	export PATH="${HOSTLT_S}:${PATH}"
+	emake DESTDIR="${D}" install-shared || die
 
 	if multilib_is_native_abi ; then
-		gen_usr_ldscript -a readline history #4411
-
 		if ! tc-is-cross-compiler; then
 			dobin examples/rlfe/rlfe
 		fi
+
+		# must come after installing rlfe, bug #455512
+		gen_usr_ldscript -a readline history #4411
 	fi
 }
 
