@@ -1,0 +1,16 @@
+With a little help from my friend, the native-cctools wrapping ld to support
+'-soname' flag on AIX, we can provide full soname support there (#213277).
+However, this patch is not for upstream, as they cannot rely on that ld wrapper:
+They would have to do the aix-soname magic themself instead.
+
+--- support/shobj-conf.orig	2011-02-08 11:53:20 +0100
++++ support/shobj-conf	2011-02-08 11:57:14 +0100
+@@ -269,7 +269,7 @@
+ 	SHOBJ_LDFLAGS='-bdynamic -bnoentry -bexpfull'
+ 	SHOBJ_XLDFLAGS='-G'
+ 
+-	SHLIB_XLDFLAGS='-bM:SRE'
++	SHLIB_XLDFLAGS='-bM:SRE -soname `basename $@ $(SHLIB_MINOR)`'
+ 	SHLIB_LIBS='-lcurses -lc'
+ 	SHLIB_LIBVERSION='$(SHLIB_LIBSUFF).$(SHLIB_MAJOR)'
+ 	;;

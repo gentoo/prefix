@@ -1,0 +1,14 @@
+diff -urB readline-6.3.orig/examples/rlfe/rlfe.c readline-6.3/examples/rlfe/rlfe.c
+--- readline-6.3.orig/examples/rlfe/rlfe.c	2014-11-27 07:37:41.225503671 -0200
++++ readline-6.3/examples/rlfe/rlfe.c	2014-11-27 07:41:12.285503660 -0200
+@@ -79,6 +79,10 @@
+ #  include <sys/wait.h>
+ #endif
+ 
++#ifdef __INTERIX
++#	include <sys/select.h>
++#endif
++
+ #ifdef READLINE_LIBRARY
+ #  include "readline.h"
+ #  include "history.h"
