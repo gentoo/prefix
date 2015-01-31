@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/binutils-config
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.62 2012/08/18 03:57:51 vapier Exp $
+
+*binutils-config-4-r1 (31 Jan 2015)
+
+  31 Jan 2015; Fabian Groffen <grobian@gentoo.org> +binutils-config-4-r1.ebuild,
+  +files/binutils-config-4-no-macosx-version-min.patch,
+  -binutils-config-4.ebuild:
+  Revbump for removing -macosx_version_min from ld invocation
 
   19 Oct 2014; Fabian Groffen <grobian@gentoo.org>
   binutils-config-3-r03.1.ebuild:
