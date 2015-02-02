@@ -1,78 +1,8 @@
 https://bugs.gentoo.org/show_bug.cgi?id=537684
 Patch by Michael Weiser
 
---- ./toolchain-prefix-wrapper-0.3.1723/config.h.in.orig	2015-01-24 21:23:19.000000000 +0100
-+++ ./toolchain-prefix-wrapper-0.3.1723/config.h.in	2015-01-24 21:23:28.000000000 +0100
-@@ -6,9 +6,6 @@
- /* gentoo portage eprefix */
- #undef GENTOO_PORTAGE_EPREFIX
- 
--/* macosx_version_min */
--#undef MIN_OSX_TARGET
--
- /* Name of package */
- #undef PACKAGE
- 
---- ./toolchain-prefix-wrapper-0.3.1723/configure.ac.orig	2015-01-24 21:22:27.000000000 +0100
-+++ ./toolchain-prefix-wrapper-0.3.1723/configure.ac	2015-01-24 21:23:03.000000000 +0100
-@@ -53,57 +53,6 @@
- )
- AC_SUBST(GENTOO_PORTAGE_EPREFIX)
- 
--AC_MSG_CHECKING([for Mac OS X minimum deployment target])
--AC_ARG_WITH([macosx-version-min],
--	[AC_HELP_STRING(
--	 	[--with-macosx-version-min],
--		[the minimum deployment target on Mac OS X, such as 10.4]
--	)],
--	[MIN_OSX_TARGET=$withval],
--	[MIN_OSX_TARGET=auto]
--)
--# We only "support" Tiger, Leopard and Snow Leopard and Lion
--case $ac_cv_host in
--	*-darwin*)
--		case "x${MIN_OSX_TARGET}" in
--			x10.[[3456789]]) ;;
--			xno)
--				AC_ERROR([--with-macosx-version-min must be given on Mac OS X hosts])
--			;;
--			xauto)
--				# auto guessing
--				case $ac_cv_host in
--					*-darwin8*)
--						MIN_OSX_TARGET=10.4
--					;;
--					*-darwin9*)
--						MIN_OSX_TARGET=10.5
--					;;
--					*-darwin10*)
--						MIN_OSX_TARGET=10.6
--					;;
--					*-darwin11*)
--						MIN_OSX_TARGET=10.7
--					;;
--				esac
--			;;
--			*)
--				AC_ERROR([need an explicit Mac OS X version number with --with-macosx-version-min])
--			;;
--		esac
--		AC_MSG_RESULT(['${MIN_OSX_TARGET}'])
--	;;
--	*)
--		MIN_OSX_TARGET="you shouldn't use this"
--		AC_MSG_RESULT([irrelevant for $ac_cv_host])
--	;;
--esac
--AC_DEFINE_UNQUOTED(
--	[MIN_OSX_TARGET], ["${MIN_OSX_TARGET}"],
--	[macosx_version_min]
--)
--AC_SUBST(MIN_OSX_TARGET)
--
- AC_MSG_CHECKING([whether to use native ld even when GNU ld is supported])
- AC_ARG_WITH([native-ld],
- 	[AC_HELP_STRING(
+Stripped down to c-file part only to avoid autoreconf triggering.
+
 --- ./toolchain-prefix-wrapper-0.3.1723/ld/darwinplugin.c.orig	2015-01-24 21:23:44.000000000 +0100
 +++ ./toolchain-prefix-wrapper-0.3.1723/ld/darwinplugin.c	2015-01-24 21:24:04.000000000 +0100
 @@ -22,8 +22,6 @@
@@ -84,33 +14,3 @@ Patch by Michael Weiser
  
  
  		/* keep argv[1] ... argv[n] */
---- ./toolchain-prefix-wrapper-0.3.1723/ld/Makefile.in.orig	2015-01-24 21:24:16.000000000 +0100
-+++ ./toolchain-prefix-wrapper-0.3.1723/ld/Makefile.in	2015-01-24 21:24:24.000000000 +0100
-@@ -160,7 +160,6 @@
- LIBS = @LIBS@
- LTLIBOBJS = @LTLIBOBJS@
- MAKEINFO = @MAKEINFO@
--MIN_OSX_TARGET = @MIN_OSX_TARGET@
- MKDIR_P = @MKDIR_P@
- NATIVELD = @NATIVELD@
- OBJEXT = @OBJEXT@
---- ./toolchain-prefix-wrapper-0.3.1723/Makefile.in.orig	2013-01-10 16:51:52.000000000 +0100
-+++ ./toolchain-prefix-wrapper-0.3.1723/Makefile.in	2015-01-24 21:24:29.000000000 +0100
-@@ -165,7 +165,6 @@
- LIBS = @LIBS@
- LTLIBOBJS = @LTLIBOBJS@
- MAKEINFO = @MAKEINFO@
--MIN_OSX_TARGET = @MIN_OSX_TARGET@
- MKDIR_P = @MKDIR_P@
- NATIVELD = @NATIVELD@
- OBJEXT = @OBJEXT@
---- ./toolchain-prefix-wrapper-0.3.1723/utils/Makefile.in.orig	2013-01-10 16:51:52.000000000 +0100
-+++ ./toolchain-prefix-wrapper-0.3.1723/utils/Makefile.in	2015-01-24 21:24:59.000000000 +0100
-@@ -120,7 +120,6 @@
- LIBS = @LIBS@
- LTLIBOBJS = @LTLIBOBJS@
- MAKEINFO = @MAKEINFO@
--MIN_OSX_TARGET = @MIN_OSX_TARGET@
- MKDIR_P = @MKDIR_P@
- NATIVELD = @NATIVELD@
- OBJEXT = @OBJEXT@
