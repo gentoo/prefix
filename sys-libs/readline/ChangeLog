@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/readline
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.219 2014/12/29 07:42:08 polynomial-c Exp $
+
+*readline-6.3_p8-r01.1 (02 Feb 2015)
+
+  02 Feb 2015; Michael Haubenwallner <haubi@gentoo.org>
+  +readline-6.3_p8-r01.1.ebuild:
+  really use new local libtool-built libs
 
   20 Jan 2015; Guilherme Amadio <guilherme.amadio@gmail.com>
   -files/bash-3.0-etc-inputrc.patch,
