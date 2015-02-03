@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6g.ebuild,v 1.13 2014/01/16 18:19:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6g.ebuild,v 1.14 2014/11/02 09:47:12 swift Exp $
 
 EAPI="2"
 
@@ -15,8 +15,7 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="+lzma nls selinux"
 
-DEPEND="nls? ( sys-devel/gettext )
-		selinux? ( sec-policy/selinux-makewhatis )"
+DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND="|| ( >=sys-apps/groff-1.19.2-r1 app-doc/heirloom-doctools )
 	!sys-apps/man-db
 	!<app-arch/lzma-4.63
