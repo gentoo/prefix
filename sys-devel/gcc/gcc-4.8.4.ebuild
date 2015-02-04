@@ -71,6 +71,12 @@ src_prepare() {
 
 	# make it have correct install_names on Darwin
 	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
+	# filename based versioning of libgcc_s for AIX
+	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libgcc.patch.xz
+	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libtool.patch.xz
+	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-regen.patch.xz
+	# let --with-specs=-pthread work for libgcc_s on AIX without multilib
+	epatch "${FILESDIR}"/gcc-4.8.4-aix-pthread-specs.patch
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
@@ -84,33 +90,38 @@ src_prepare() {
 		epatch "${FILESDIR}"/4.7.2/pr52714.patch
 	fi
 
-	# Always behave as if -pthread were passed on AIX and HPUX (#266548)
-#	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
-	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
-
 	#Use -r1 for newer piepatchet that use DRIVER_SELF_SPECS for the hardened specs.
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env-r1.patch
 }
 
 src_configure() {
+	local myconf=()
 	case ${CTARGET}:" ${USE} " in
 		powerpc*-darwin*)
 			# bug #381179
 			filter-flags "-mcpu=*" "-mtune=*"
 		;;
 		*-mint*)
-			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
+			myconf+=( --enable-multilib )
 		;;
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
-			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld --with-gnu-as"
+			myconf+=( --with-gnu-ld --with-gnu-as )
 		;;
 		*-aix*)
 			# AIX doesn't use GNU binutils, because it doesn't produce usable
 			# code
-			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
+			myconf+=( --without-gnu-ld --without-gnu-as --disable-lto )
 			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
+			# we have backports of the aix-soname upstream patches
+			myconf+=( --with-aix-soname=svr4 )
+			# Always behave as if -pthread were passed on AIX (#266548)
+			myconf+=( --with-specs=-pthread )
 		;;
+		ia64*-*-hpux*)
+			# Always behave as if -pthread were passed on HPUX (#266548)
+			myconf+=( --with-specs=-pthread )
+			;;
 		*-interix*)
 			# disable usage of poll() on interix, since poll() only
 			# works on the /proc filesystem (.......)
@@ -129,7 +140,7 @@ src_configure() {
 		i[34567]86-*-linux*:*" prefix "*)
 			# to allow the linux-x86-on-amd64.patch become useful, we need
 			# to enable multilib, even if there is just one multilib option.
-			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
+			myconf+=( --enable-multilib )
 			if [[ ${CBUILD:-${CHOST}} == "${CHOST}" ]]; then
 				# we might be on x86_64-linux, but don't do cross-compile, so
 				# tell the host-compiler to really create 32bits (for stage1)
@@ -144,7 +155,7 @@ src_configure() {
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
 	# in case that doesn't exist yet
 	export CONFIG_SHELL="${CONFIG_SHELL:-${BASH}}"
-	toolchain_src_configure
+	toolchain_src_configure "${myconf[@]}"
 }
 
 src_install() {
