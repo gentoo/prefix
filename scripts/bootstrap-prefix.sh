@@ -899,6 +899,9 @@ bootstrap_stage1() { (
 	# whatever the native toolchain is here, is what in general works
 	# best.
 
+	configure_toolchain
+	export CC CXX
+
 	# run all bootstrap_* commands in a subshell since the targets
 	# frequently pollute the environment using exports which affect
 	# packages following (e.g. zlib builds 64-bits)
