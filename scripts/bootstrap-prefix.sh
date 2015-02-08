@@ -1421,6 +1421,11 @@ EOF
 			# SmartOS
 			[[ -d /opt/local/gcc47/bin ]] && PATH="${PATH}:/opt/local/gcc47/bin"
 			;;
+		*-darwin1*)
+			# Apple ships a broken clang by default, fun!
+			[[ -e /Library/Developer/CommandLineTools/usr/bin/clang ]] \
+				&& PATH="/Library/Developer/CommandLineTools/usr/bin:${PATH}"
+			;;
 	esac
 
 	# TODO: should we better use cc here? or check both?
@@ -1740,7 +1745,7 @@ EOF
 		# location seems ok
 		break;
 	done
-	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$PATH"
+	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:${PATH}"
 
 	cat << EOF
 
