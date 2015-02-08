@@ -132,14 +132,14 @@ configure_cflags() {
 		# (C90 + extensions).  This makes Clang barf on GCC's sources, so
 		# work around that.  Bug #491098
 		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
-			[[ -z ${CC} ]] && export CC="gcc -m64 -std=gnu89"
-			[[ -z ${CXX} ]] && export CXX="g++ -m64"
-			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m64 -std=gnu89"
+			export CC="${CC-gcc} -m64 -std=gnu89"
+			export CXX="${CXX-g++} -m64"
+			export HOSTCC="${CC-gcc} -m64 -std=gnu89"
 			;;
 		i*86-apple-darwin1*)
-			[[ -z ${CC} ]] && export CC="gcc -m32 -std=gnu89"
-			[[ -z ${CXX} ]] && export CXX="g++ -m32"
-			[[ -z ${HOSTCC} ]] && export HOSTCC="gcc -m32 -std=gnu89"
+			export CC="${CC-gcc} -m32 -std=gnu89"
+			export CXX="${CXX-g++} -m32"
+			export HOSTCC="${CC-gcc} -m32 -std=gnu89"
 			;;
 		*)
 			;;
