@@ -1018,9 +1018,10 @@ bootstrap_stage2() {
 
 	# Find out what toolchain packages we need, and configure LDFLAGS
 	# and friends.
-	configure_cflags || return 1
 	configure_toolchain || return 1
+	configure_cflags || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
+	export CC CXX
 
 	emerge_pkgs() {
 		EPREFIX="${ROOT}"/tmp \
