@@ -747,13 +747,13 @@ bootstrap_zlib_core() {
 		# hence we need to make sure that we really bootstrap this
 		# 64-bits (in contrast to the tools which we don't care if they
 		# are 32-bits)
-		export CC="gcc -m64"
+		export CC="${CC} -m64"
 	elif [[ ${CHOST} == i?86-*-* ]] ; then
 		# This is important for bootstraps which are 64-native, but we
 		# want 32-bits, such as most Linuxes, and more recent OSX.
 		# OS X Lion and up default to a 64-bits userland, so force the
 		# compiler to 32-bits code generation if requested here
-		export CC="gcc -m32"
+		export CC="${CC} -m32"
 	fi
 	# 1.2.5 suffers from a concurrency problem
 	[[ ${PV} == 1.2.5 ]] && MAKEOPTS=
