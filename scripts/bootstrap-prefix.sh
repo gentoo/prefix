@@ -153,11 +153,17 @@ configure_toolchain() {
 	compiler_stage1="<sys-devel/gcc-4.8"
 
 	pkggcc="sys-devel/gcc"
+	CC=gcc
+	CXX=g++
 	case ${CHOST} in
 		*-darwin*)
 			case "$( (unset CHOST; gcc --version) )" in
 				*"(GCC) 4.2.1 "*|*"Apple LLVM version "*)
 					linker=sys-devel/binutils-apple
+					if type -P clang > /dev/null ; then
+						CC=clang
+						CXX=clang++
+					fi
 					;;
 				*"(GCC) 4.0.1 "*)
 					linker="=sys-devel/binutils-apple-3.2"
