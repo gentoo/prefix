@@ -1096,6 +1096,7 @@ bootstrap_stage3() {
 
 	configure_toolchain || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
+	unset CC CXX
 
 	emerge_pkgs() {
 		EPREFIX="${ROOT}" \
