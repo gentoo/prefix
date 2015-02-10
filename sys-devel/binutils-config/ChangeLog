@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.62 2012/08/18 03:57:51 vapier Exp $
 
+*binutils-config-4-r01.1 (10 Feb 2015)
+
+  10 Feb 2015; Michael Haubenwallner <haubi@gentoo.org>
+  +binutils-config-4-r01.1.ebuild, +files/binutils-config-4-aix-ld-svr4.patch:
+  Work around AIX ld bug with -bsvr4 -bnoentry -bE:file args. Don't add -brtl
+  AIX ld flag to not change the behaviour.
+
   02 Feb 2015; Fabian Groffen <grobian@gentoo.org>
   files/binutils-config-4-no-macosx-version-min.patch:
   Avoid autoreconf stuff by not patching the buildsystem, for we don't really

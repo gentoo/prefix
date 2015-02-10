@@ -1,0 +1,56 @@
+Don't add ld behaviour by adding -brtl flag here.
+Work around ld bug with -bsvr4 -bnoentry -bE:file args.
+--- ld/aixplugin.c.orig	2015-02-09 17:06:11 +0100
++++ ld/aixplugin.c	2015-02-09 17:48:56 +0100
+@@ -33,6 +33,7 @@
+ 	String *newString = NULL;
+ 	char libpath2runpath = 1; /* whether to record -L as runpath */
+ 	char svr4mode = 0; /* whether we are in -bsvr4 mode */
++	String const *noentryArg = NULL; /* ld-problem with -bsvr4 -bE:file -bnoentry argument order */
+ 	char const *argBuffer;
+ 	int argBufferLength;
+ 
+@@ -53,10 +54,6 @@
+ 		 || StringListAppendConcat(aixRunpathList, "/lib", strlen("/lib"), NULL) < 0
+ 		) break;
+ 
+-		/* always use runtime linking (-brtl) */
+-		if (StringListAppendConcat(data->out->argList, "-brtl", strlen("-brtl"), NULL) < 0)
+-			break;
+-
+ 		/* detect if we are in svr4 mode (-bsvr4).
+ 		 * "-R runpath" is only accepted in svr4 mode,
+ 		 * but we add "-R runpath" as extension in normal mode to add default runpath.
+@@ -67,6 +64,15 @@
+ 			if (strcmp(argBuffer, "-bsvr4") == 0) {
+ 				svr4mode = 1;
+ 				libpath2runpath = 0;
++			} else
++			if (strcmp(argBuffer, "-bnoentry") == 0) {
++				/* AIX ld has this problem:
++				 *   $ /usr/ccs/bin/ld -bsvr4 -bE:xx.exp -bnoentry xx.o
++				 *   ld: 0706-005 Cannot find or open file: l
++				 *       ld:open(): No such file or directory
++				 * Simplest workaround is to put -bnoentry before -bsvr4.
++				 */
++				noentryArg = argString;
+ 			}
+ 		}
+ 
+@@ -150,6 +156,16 @@
+ 					break;
+ 
+ 				continue;
++			} else
++			if (svr4mode && strcmp(argBuffer, "-bnoentry") == 0) {
++				/* Must not use ptr-comparison but strcmp() for multiple -bnoentry flags. */
++				/* skip -bnoentry, is added before -bsvr4 */
++				continue;
++			} else
++			if (noentryArg && strcmp(argBuffer, "-bsvr4") == 0) {
++				/* add -bnoentry before -bsvr4 */
++				if (StringListAppendString(data->out->argList, noentryArg) < 0) break;
++				noentryArg = NULL; /* once */
+ 			}
+ 
+ 			/* keep other arguments */
