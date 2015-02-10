@@ -1,10 +1,10 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-53.1.ebuild,v 1.2 2014/08/24 06:37:28 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-54.1-r1.ebuild,v 1.1 2015/02/07 17:47:06 dilfridge Exp $
 
 EAPI=5
 
-inherit eutils toolchain-funcs autotools multilib-minimal
+inherit eutils flag-o-matic toolchain-funcs autotools multilib-minimal
 
 DESCRIPTION="International Components for Unicode"
 HOMEPAGE="http://www.icu-project.org/"
@@ -12,7 +12,7 @@ SRC_URI="http://download.icu-project.org/files/icu4c/${PV/_/}/icu4c-${PV//./_}-s
 
 LICENSE="BSD"
 
-SLOT="0/53"
+SLOT="0/54a"
 
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc examples static-libs"
@@ -25,29 +25,22 @@ DEPEND="
 
 S="${WORKDIR}/${PN}/source"
 
+MULTILIB_CHOST_TOOLS=(
+	/usr/bin/icu-config
+)
+
 src_prepare() {
 	local variable
 
-	epatch "${FILESDIR}/icu-fix-tests-depending-on-date.patch"
+	epatch "${FILESDIR}/${PN}-remove-bashisms.patch"
+	epatch "${FILESDIR}/${P}-CVE-2014-9654.patch"
 	epatch_user
-
-	# Do not hardcode flags in icu-config and icu-*.pc files.
-	# https://ssl.icu-project.org/trac/ticket/6102
-	for variable in CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
-		sed \
-			-e "/^${variable} =.*/s: *@${variable}@\( *$\)\?::" \
-			-i config/icu.pc.in \
-			-i config/Makefile.inc.in \
-			|| die
-	done
 
 	# fix compilation on Solaris due to enabling of conflicting standards
 	sed -i -e '/define _XOPEN_SOURCE_EXTENDED/s/_XOPEN/no_XOPEN/' \
 		common/uposixdefs.h || die
 	# for correct install_names
 	epatch "${FILESDIR}"/${PN}-4.8.1-darwin.patch
-	# fix part 1 for echo_{t,c,n}
-	epatch "${FILESDIR}"/${PN}-4.6-echo_t.patch
 
 	# Disable renaming as it is stupind thing to do
 	sed -i \
@@ -63,10 +56,14 @@ src_prepare() {
 	sed -i \
 		-e 's:icudefs.mk:icudefs.mk Doxyfile:' \
 		configure.ac || die
+
 	eautoreconf
 }
 
 src_configure() {
+	# Do _not_ use C++11 yet, make sure to force GNU C++ 98 standard.
+	append-cxxflags -std=gnu++98
+
 	if tc-is-cross-compiler; then
 		mkdir "${WORKDIR}"/host || die
 		pushd "${WORKDIR}"/host >/dev/null || die
@@ -104,8 +101,7 @@ multilib_src_configure() {
 
 	# make sure we configure with the same shell as we run icu-config
 	# with, or ECHO_N, ECHO_T and ECHO_C will be wrongly defined
-	# (this is part 2 from the echo_{t,c,n} fix)
-	export CONFIG_SHELL=${CONFIG_SHELL:-${EPREFIX}/bin/sh}
+	export CONFIG_SHELL=${EPREFIX}/bin/sh
 
 	ECONF_SOURCE=${S} \
 	econf "${myeconfargs[@]}"
