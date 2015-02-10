@@ -1,0 +1,40 @@
+From 0ea81204518de942e047a51033dd77461d9f2f06 Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <michael.haubenwallner@ssi-schaefer.com>
+Date: Thu, 5 Feb 2015 15:22:24 +0100
+Subject: [PATCH] nm for AIX: avoid -B flag when there is -P
+
+---
+ gcc/exec-tool.in | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/gcc/exec-tool.in b/gcc/exec-tool.in
+index 6722ce5..5145ba7 100644
+--- a/gcc/exec-tool.in
++++ b/gcc/exec-tool.in
+@@ -49,6 +49,23 @@ case "$invoked" in
+     ;;
+   nm)
+     original=$ORIGINAL_NM_FOR_TARGET
++    # AIX-nm needs -B for BSD-style, but properly reports weak symbols with
++    # -P only (for --with-aix-soname=svr4). Both are mutually exclusive.
++    for arg in ${1+"$@"}; do
++      case $arg in
++	-*P*)
++	  original=
++	  for arg in $ORIGINAL_NM_FOR_TARGET; do
++	    case $arg in
++	      -*B*) continue ;; # skip -B
++	    esac
++	    original="$original${original:+ }$arg"
++	  done
++	  break ;;
++	-*) ;;
++	*) break ;; # no more switches
++      esac
++    done
+     prog=nm-new$exeext
+     dir=binutils
+     ;;
+-- 
+2.0.5
+

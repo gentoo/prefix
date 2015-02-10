@@ -23,7 +23,7 @@ SSP_UCLIBC_STABLE="x86 amd64 mips ppc ppc64 arm"
 inherit eutils toolchain flag-o-matic
 
 #KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-KEYWORDS="~x86-linux"
+KEYWORDS="~ppc-aix ~x86-linux"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -73,10 +73,13 @@ src_prepare() {
 	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
 	# filename based versioning of libgcc_s for AIX
 	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libgcc.patch.xz
-	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libtool.patch.xz
-	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-regen.patch.xz
 	# let --with-specs=-pthread work for libgcc_s on AIX without multilib
 	epatch "${FILESDIR}"/gcc-4.8.4-aix-pthread-specs.patch
+	# drop -B flag when ./nm encounters -P
+	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-nm-weak.patch
+	# support --with-aix-soname=aix|both|svr4 for libtool libs
+	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libtool.patch.xz
+	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-regen.patch.xz
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
@@ -115,8 +118,11 @@ src_configure() {
 			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
 			# we have backports of the aix-soname upstream patches
 			myconf+=( --with-aix-soname=svr4 )
-			# Always behave as if -pthread were passed on AIX (#266548)
-			myconf+=( --with-specs=-pthread )
+			# Always behave on AIX as if:
+			#   -pthread were passed (#266548)
+			#   -Wl,-bsvr4 were passed
+			#   -Wl,-G,-bernotok were passed for shared libraries
+			myconf+=( --with-specs="-pthread%x{-bsvr4}%{shared:%x{-G}%x{-bernotok}}" )
 		;;
 		ia64*-*-hpux*)
 			# Always behave as if -pthread were passed on HPUX (#266548)
