@@ -1,0 +1,37 @@
+From 9ab1ca7f8b56d79306a6c2c2b1c3fe45253b2b31 Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <michael.haubenwallner@ssi-schaefer.com>
+Date: Wed, 11 Feb 2015 10:38:58 +0100
+Subject: [PATCH] stdbuf: build for ELF systems only (sr#108676)
+
+* configure.ac: Avoid false positive when checking for ELF system.
+---
+ configure.ac | 2 ++
+ 1 file changed, 2 insertions(+)
+
+#diff --git a/configure.ac b/configure.ac
+#index 3918f43..b88e6c0 100644
+#--- a/configure.ac
+#+++ b/configure.ac
+@@ -472,6 +472,8 @@ AC_COMPILE_IFELSE(
+     {
+       #if __ELF__
+         stdbuf = 1;
++      #else
++      # error not an ELF system
+       #endif
+     }]],[[
+     return !(stdbuf == 1);]])
+-- 
+2.0.5
+
+--- a/configure
++++ b/configure
+@@ -62600,6 +62600,8 @@
+     {
+       #if __ELF__
+         stdbuf = 1;
++      #else
++      # error not ELF
+       #endif
+     }
+ int
