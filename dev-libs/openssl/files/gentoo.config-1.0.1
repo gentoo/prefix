@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/files/gentoo.config-1.0.1,v 1.2 2014/01/17 04:27:03 vapier Exp $
 #
@@ -35,6 +35,7 @@ if [[ $1 == "test" ]] ; then
 		"i586-pc-winnt                |winnt-parity" \
 		"s390-ibm-linux-gnu           |linux-generic32 -DB_ENDIAN" \
 		"s390x-linux-gnu              |linux64-s390x" \
+		"powerpc-ibm-aixX.Y           |aix-gcc --with-aix-soname=svr4" \
 	;do
 		CHOST=${c/|*}
 		ret_want=${c/*|}
@@ -127,7 +128,7 @@ BSD)
 	esac
 	;;
 aix)
-	machine=${compiler}
+	machine="${compiler} --with-aix-soname=svr4"
 	;;
 darwin)
 	case ${chost_machine} in

@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.615 2015/01/08 23:27:04 jer Exp $
 
+  17 Feb 2015; Michael Haubenwallner <haubi@gentoo.org> openssl-1.0.1k.ebuild,
+  files/gentoo.config-1.0.1, +files/openssl-1.0.1k-aix-soname.patch:
+  Implement and use --with-aix-soname=svr4
+
   08 Jan 2015; Jeroen Roovers <jer@gentoo.org> openssl-1.0.1k.ebuild:
   Stable for HPPA (bug #536042).
 

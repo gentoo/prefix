@@ -89,7 +89,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0a-interix.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0a-mint.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8l-aixso.patch #213277: with import files now
+	epatch "${FILESDIR}"/${PN}-1.0.1k-aix-soname.patch #213277: like libtool
 	epatch "${FILESDIR}"/${PN}-1.0.0b-darwin-bundle-compile-fix.patch
 	epatch "${FILESDIR}"/${PN}-1.0.1-gethostbyname2-solaris.patch
 	if [[ ${CHOST} == *-interix* ]] ; then
@@ -172,7 +172,7 @@ multilib_src_configure() {
 		;;
 		*-aix*)
 			# symbols in asm file aren't exported for yet unknown reason
-			confopts="${confopts} no-asm"
+			confopts="${confopts} no-asm --with-aix-soname=svr4"
 		;;
 	esac
 
