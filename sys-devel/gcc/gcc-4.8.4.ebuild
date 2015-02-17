@@ -88,6 +88,8 @@ src_prepare() {
 		))
 		echo "STAGE2_CFLAGS += -frandom-seed=${myseed}" >> config/mh-ppc-aix
 		echo "STAGE3_CFLAGS += -frandom-seed=${myseed}" >> config/mh-ppc-aix
+		is_crosscompile ||
+		echo "CFLAGS_FOR_TARGET += -frandom-seed=${myseed}" >> config/mh-ppc-aix
 		# build large insn-*.o one at a time
 		epatch "${FILESDIR}"/gcc-4.8.4-lowmem-build.patch
 	fi
