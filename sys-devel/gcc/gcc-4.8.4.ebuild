@@ -80,6 +80,17 @@ src_prepare() {
 	# support --with-aix-soname=aix|both|svr4 for libtool libs
 	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libtool.patch.xz
 	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-regen.patch.xz
+	epatch "${FILESDIR}"/gcc-4.8-aix-extref.patch # PR target/65058
+	if [[ ${CHOST} == *-aix* ]]; then
+		# -fPIC breaks stage2/3 comparison, use per-build random seed
+		local myseed=$(echo $(
+			head -c32 /dev/urandom | uuencode - | tr -d -c a-zA-Z0-9_+/.,
+		))
+		echo "STAGE2_CFLAGS += -frandom-seed=${myseed}" >> config/mh-ppc-aix
+		echo "STAGE3_CFLAGS += -frandom-seed=${myseed}" >> config/mh-ppc-aix
+		# build large insn-*.o one at a time
+		epatch "${FILESDIR}"/gcc-4.8.4-lowmem-build.patch
+	fi
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
@@ -119,10 +130,11 @@ src_configure() {
 			# we have backports of the aix-soname upstream patches
 			myconf+=( --with-aix-soname=svr4 )
 			# Always behave on AIX as if:
-			#   -pthread were passed (#266548)
-			#   -Wl,-bsvr4 were passed
-			#   -Wl,-G,-bernotok were passed for shared libraries
-			myconf+=( --with-specs="-pthread%x{-bsvr4}%{shared:%x{-G}%x{-bernotok}}" )
+			#   -fPIC was passed (packages know that "everything on AIX is PIC")
+			#   -pthread was passed (#266548)
+			#   -Wl,-bsvr4 was passed (runtime linking, hold -L paths off the runpath)
+			#   -Wl,-G,-bernotok was passed for shared libraries (runtime linking, --no-undefined)
+			myconf+=( --with-specs="-fPIC -pthread %x{-bsvr4} %{shared:%x{-G} %x{-bernotok}}" )
 		;;
 		ia64*-*-hpux*)
 			# Always behave as if -pthread were passed on HPUX (#266548)

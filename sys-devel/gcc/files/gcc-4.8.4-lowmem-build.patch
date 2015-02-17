@@ -1,0 +1,24 @@
+diff --git a/gcc/Makefile.in b/gcc/Makefile.in
+index de1f3b6..25f3587 100644
+--- a/gcc/Makefile.in
++++ b/gcc/Makefile.in
+@@ -1149,6 +1149,19 @@ C_COMMON_OBJS = c-family/c-common.o c-family/c-cppbuiltin.o c-family/c-dump.o \
+ # We put the insn-*.o files first so that a parallel make will build
+ # them sooner, because they are large and otherwise tend to be the
+ # last objects to finish building.
++# Better do not build them in parallel at all to avoid exhausting memory.
++insn-attrtab.o: insn-automata.o
++insn-automata.o: insn-dfatab.o
++insn-dfatab.o: insn-emit.o
++insn-emit.o: insn-extract.o
++insn-extract.o: insn-latencytab.o
++insn-latencytab.o: insn-modes.o
++insn-modes.o: insn-opinit.o
++insn-opinit.o: insn-output.o
++insn-output.o: insn-peep.o
++insn-peep.o: insn-preds.o
++insn-preds.o: insn-recog.o
++insn-recog.o: insn-enums.o
+ OBJS = \
+ 	insn-attrtab.o \
+ 	insn-automata.o \
