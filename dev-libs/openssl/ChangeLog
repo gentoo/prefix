@@ -1,6 +1,75 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.615 2015/01/08 23:27:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.631 2015/03/04 16:41:25 vapier Exp $
+
+  04 Mar 2015; Mike Frysinger <vapier@gentoo.org> openssl-1.0.2-r2.ebuild:
+  Require recent lksctp-tools #506046#8 by Maciej Szmigiero.
+
+*openssl-1.0.2-r2 (04 Mar 2015)
+
+  04 Mar 2015; Mike Frysinger <vapier@gentoo.org>
+  +files/openssl-1.0.2-CVE-2015-0209.patch,
+  +files/openssl-1.0.2-CVE-2015-0288.patch, +openssl-1.0.2-r2.ebuild:
+  Add fix from upstream for CVE-2015-0209 #541502 by Agostino Sarubbo and
+  CVE-2015-0288 #542038 by Kristian Fiskerstrand.
+
+  28 Jan 2015; Michał Górny <mgorny@gentoo.org> openssl-0.9.8z_p1-r2.ebuild,
+  openssl-0.9.8z_p2.ebuild, openssl-0.9.8z_p3.ebuild, openssl-0.9.8z_p4.ebuild,
+  openssl-0.9.8z_p5.ebuild, openssl-1.0.0q.ebuild, openssl-1.0.1j.ebuild,
+  openssl-1.0.1k.ebuild, openssl-1.0.1l.ebuild, openssl-1.0.2-r1.ebuild:
+  Switch to CPU_FLAGS_X86.
+
+*openssl-1.0.2-r1 (23 Jan 2015)
+
+  23 Jan 2015; Lars Wendler <polynomial-c@gentoo.org> -openssl-1.0.2.ebuild,
+  +openssl-1.0.2-r1.ebuild, metadata.xml:
+  Removed "ssl2" USE flag again. Broke ABI and caused some packages to fail
+  like curl (bug #537452) and mozilla packages.
+
+*openssl-1.0.2 (23 Jan 2015)
+
+  23 Jan 2015; Lars Wendler <polynomial-c@gentoo.org>
+  -openssl-1.0.2_beta3.ebuild, +openssl-1.0.2.ebuild,
+  +files/openssl-1.0.2-ipv6.patch, +files/openssl-1.0.2-s_client-verify.patch,
+  -files/openssl-1.0.2_beta2-ipv6.patch, metadata.xml:
+  Version bump. Removed old. Added "ssl2" USE flag (bug #510798).
+
+  16 Jan 2015; Agostino Sarubbo <ago@gentoo.org> openssl-1.0.1k.ebuild:
+  Stable for ia64, wrt bug #536042
+
+*openssl-1.0.1l (15 Jan 2015)
+*openssl-1.0.0q (15 Jan 2015)
+*openssl-0.9.8z_p5 (15 Jan 2015)
+
+  15 Jan 2015; Lars Wendler <polynomial-c@gentoo.org>
+  +openssl-0.9.8z_p5.ebuild, -openssl-1.0.0p.ebuild, +openssl-1.0.0q.ebuild,
+  +openssl-1.0.1l.ebuild:
+  Version bump. Removed old.
+
+  14 Jan 2015; Agostino Sarubbo <ago@gentoo.org> openssl-1.0.1k.ebuild:
+  Stable for ppc64, wrt bug #536042
+
+  13 Jan 2015; Agostino Sarubbo <ago@gentoo.org> openssl-1.0.1k.ebuild:
+  Stable for sparc, wrt bug #536042
+
+  11 Jan 2015; Markus Meier <maekke@gentoo.org> openssl-1.0.1k.ebuild:
+  arm stable, bug #536042
+
+  11 Jan 2015; Markus Meier <maekke@gentoo.org> openssl-0.9.8z_p4.ebuild:
+  arm stable, bug #536042
+
+  09 Jan 2015; Andreas Schuerch <nativemad@gentoo.org>
+  openssl-0.9.8z_p4.ebuild, openssl-1.0.1k.ebuild:
+  x86 stable, see bug 536042
+
+  09 Jan 2015; Tobias Klausmann <klausman@gentoo.org> openssl-1.0.1k.ebuild:
+  Stable on alpha, bug 536042
+
+  09 Jan 2015; Tobias Klausmann <klausman@gentoo.org> openssl-0.9.8z_p4.ebuild:
+  Stable on alpha, bug 536042
+
+  09 Jan 2015; Agostino Sarubbo <ago@gentoo.org> openssl-1.0.1k.ebuild:
+  Stable for ppc, wrt bug #536042
 
   17 Feb 2015; Michael Haubenwallner <haubi@gentoo.org> openssl-1.0.1k.ebuild,
   files/gentoo.config-1.0.1, +files/openssl-1.0.1k-aix-soname.patch:
