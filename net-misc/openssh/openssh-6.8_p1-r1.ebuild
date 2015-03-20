@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-6.8_p1-r1.ebuild,v 1.1 2015/03/19 17:02:59 chutzpah Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-6.8_p1-r1.ebuild,v 1.5 2015/03/20 02:35:27 vapier Exp $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -9,8 +9,8 @@ inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 # and _p? releases.
 PARCH=${P/_}
 
-HPN_PATCH="${PN}-6.8p1-hpnssh14v5.tar.xz"
-LDAP_PATCH="${PN}-lpk-6.7p1-0.3.14.patch.xz"
+HPN_PATCH="${PN}-6.8p1-r1-hpnssh14v5.tar.xz"
+LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"
 X509_VER="8.3" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
@@ -36,7 +36,8 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 IUSE="bindist ${HPN_PATCH:++}hpn kerberos kernel_linux ldap ldns libedit pam +pie sctp selinux skey +ssh1 +ssl static X X509"
 REQUIRED_USE="pie? ( !static )
 	ssh1? ( ssl )
-	static? ( !kerberos !pam )"
+	static? ( !kerberos !pam )
+	X509? ( !ldap ssl )"
 
 LIB_DEPEND="sctp? ( net-misc/lksctp-tools[static-libs(+)] )
 	selinux? ( >=sys-libs/libselinux-1.28[static-libs(+)] )
@@ -95,7 +96,7 @@ pkg_setup() {
 	fi
 
 	# Make sure people who are using tcp wrappers are notified of its removal. #531156
-	if grep -qs '^ *sshd *:' "${EROOT}"/etc/hosts.deny ; then
+	if grep -qs '^ *sshd *:' "${EROOT}"/etc/hosts.{allow,deny} ; then
 		eerror "Sorry, but openssh no longer supports tcp-wrappers, and it seems like"
 		eerror "you're trying to use it.  Update your ${EROOT}etc/hosts.deny please."
 		die "USE=tcpd no longer works"
@@ -129,19 +130,16 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-6.3_p1-x509-hpn14v2-glue.patch
 		save_version X509
 	fi
-	if ! use X509 ; then
-		if [[ -n ${LDAP_PATCH} ]] && use ldap ; then
-			epatch "${WORKDIR}"/${LDAP_PATCH%.*}
-			save_version LPK
-		fi
-	else
-		use ldap && ewarn "Sorry, X509 and LDAP conflict internally, disabling LDAP"
+	if use ldap ; then
+		epatch "${WORKDIR}"/${LDAP_PATCH%.*}
+		save_version LPK
 	fi
 	epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	epatch "${FILESDIR}"/${PN}-6.7_p1-openssl-ignore-status.patch
+	# The X509 patchset fixes this independently.
 	use X509 || epatch "${FILESDIR}"/${PN}-6.8_p1-ssl-engine-configure.patch
 	epatch "${WORKDIR}"/${P}-sctp.patch
-	if [[ -n ${HPN_PATCH} ]] && use hpn; then
+	if use hpn ; then
 		epatch "${WORKDIR}"/${HPN_PATCH%.*.*}/*
 		save_version HPN
 	fi
@@ -177,11 +175,37 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf=()
 	addwrite /dev/ptmx
 	addpredict /etc/skey/skeykeys # skey configure code triggers this
 
 	use static && append-ldflags -static
+
+	local myconf=(
+		--with-ldflags="${LDFLAGS}"
+		--disable-strip
+		--with-pid-dir="${EPREFIX}"$(usex kernel_linux '' '/var')/run
+		--sysconfdir="${EPREFIX}"/etc/ssh
+		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/misc
+		--datadir="${EPREFIX}"/usr/share/openssh
+		--with-privsep-path="${EPREFIX}"/var/empty
+		--with-privsep-user=sshd
+		$(use_with kerberos kerberos5 "${EPREFIX}"/usr)
+		# We apply the ldap patch conditionally, so can't pass --without-ldap
+		# unconditionally else we get unknown flag warnings.
+		$(use ldap && use_with ldap)
+		$(use_with ldns)
+		$(use_with libedit)
+		$(use_with pam)
+		$(use_with pie)
+		$(use_with sctp)
+		$(use_with selinux)
+		$(use_with skey)
+		$(use_with ssh1)
+		# The X509 patch deletes this option entirely.
+		$(use X509 || use_with ssl openssl)
+		$(use_with ssl md5-passwords)
+		$(use_with ssl ssl-engine)
+	)
 
 	# Special settings for Gentoo/FreeBSD 9.0 or later (see bug #391011)
 	if use elibc_FreeBSD && version_is_at_least 9.0 "$(uname -r|sed 's/\(.\..\).*/\1/')" ; then
@@ -189,29 +213,7 @@ src_configure() {
 		append-ldflags -lutil
 	fi
 
-	econf \
-		--with-ldflags="${LDFLAGS}" \
-		--disable-strip \
-		--with-pid-dir="${EPREFIX}"$(usex kernel_linux '' '/var')/run \
-		--sysconfdir="${EPREFIX}"/etc/ssh \
-		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/misc \
-		--datadir="${EPREFIX}"/usr/share/openssh \
-		--with-privsep-path="${EPREFIX}"/var/empty \
-		--with-privsep-user=sshd \
-		$(use_with kerberos kerberos5 "${EPREFIX}"/usr) \
-		${LDAP_PATCH:+$(use X509 || (use ldap && use_with ldap))} \
-		$(use_with ldns) \
-		$(use_with libedit) \
-		$(use_with pam) \
-		$(use_with pie) \
-		$(use_with sctp) \
-		$(use_with selinux) \
-		$(use_with skey) \
-		$(use_with ssh1) \
-		$(use X509 || use_with ssl openssl) \
-		$(use_with ssl md5-passwords) \
-		$(use_with ssl ssl-engine) \
-		"${myconf[@]}"
+	econf "${myconf[@]}"
 }
 
 src_install() {
