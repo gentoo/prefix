@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.19.ebuild,v 1.5 2014/10/11 06:45:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.22.ebuild,v 1.11 2015/02/05 22:41:25 vapier Exp $
 
 EAPI="4"
 PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3,3_4} pypy2_0 )
@@ -33,10 +33,11 @@ RDEPEND="${DEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.00-strtoull.patch
-	epatch "${FILESDIR}"/${P}-darwin-10.6.patch
 	# avoid eautoreconf when adding check for strtoull #263527
 	sed -i 's/ strtoul / strtoul strtoull __strtoull /' configure
 	sed -i "/#undef HAVE_STRTOUL\$/a#undef HAVE_STRTOULL\n#undef HAVE___STRTOULL" config.h.in
+	# Solaris has no sig_t
+	[[ ${CHOST} == *-solaris* ]] && sed -i -e 's/sig_t/void */' src/compress.c
 
 	[[ ${PV} == "9999" ]] && eautoreconf
 	elibtoolize
