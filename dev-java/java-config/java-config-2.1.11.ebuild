@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.11.ebuild,v 1.13 2013/04/06 10:21:50 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.11.ebuild,v 1.14 2015/03/31 18:55:04 ulm Exp $
 
 EAPI="2"
 PYTHON_DEPEND="*:2.6"
@@ -14,13 +14,13 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=""
 RDEPEND=">=dev-java/java-config-wrapper-0.15
 	!sys-apps/baselayout-java
-	!app-admin/eselect-java"
+	!app-eselect/eselect-java"
 # Tests fail when java-config isn't already installed.
 RESTRICT="test"
 RESTRICT_PYTHON_ABIS="2.4 2.5 *-jython"
