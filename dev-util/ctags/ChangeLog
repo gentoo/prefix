@@ -1,6 +1,26 @@
 # ChangeLog for dev-util/ctags
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.84 2012/04/26 16:49:19 aballier Exp $
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.88 2015/03/31 17:44:26 ulm Exp $
+
+  31 Mar 2015; Ulrich Müller <ulm@gentoo.org> ctags-5.8.ebuild,
+  ctags-5.8-r1.ebuild:
+  Update dependency after package move of eselect modules to app-eselect.
+
+  26 Sep 2014; Tim Harder <radhermit@gentoo.org> -ctags-5.5.4-r2.ebuild,
+  -ctags-5.6-r2.ebuild, -ctags-5.6-r3.ebuild, -ctags-5.7.ebuild,
+  -ctags-5.7-r1.ebuild, -ctags-5.7-r2.ebuild, -files/ctags-5.5.4-ebuilds.patch,
+  -files/ctags-5.5.4-ruby-classes.patch, -files/ctags-5.6-php5.patch,
+  -files/ctags-5.7-f95-pointers.patch,
+  -files/ctags-5.7-python-vars-starting-with-def.patch, -files/ctags-ada.patch:
+  Remove old.
+
+*ctags-5.8-r1 (26 Sep 2014)
+
+  26 Sep 2014; Tim Harder <radhermit@gentoo.org> +ctags-5.8-r1.ebuild:
+  Make app-admin/eselect-ctags an rdep (bug #519834 by Nick Bowler).
+
+  06 Jun 2014; Mike Frysinger <vapier@gentoo.org> ctags-5.8.ebuild:
+  Add arm64 love.
 
   26 Apr 2012; Alexis Ballier <aballier@gentoo.org> ctags-5.8.ebuild:
   keyword ~amd64-fbsd

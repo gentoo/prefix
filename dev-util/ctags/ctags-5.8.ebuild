@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.8.ebuild,v 1.10 2012/04/26 16:49:19 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.8.ebuild,v 1.12 2015/03/31 17:44:26 ulm Exp $
 
 EAPI="4"
 
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="ada"
 
-DEPEND="app-admin/eselect-ctags"
+DEPEND="app-eselect/eselect-ctags"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-5.6-ebuilds.patch"
