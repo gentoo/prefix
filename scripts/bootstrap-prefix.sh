@@ -1149,7 +1149,6 @@ bootstrap_stage3() {
 		sys-apps/grep
 		sys-apps/gawk
 		sys-devel/make
-		sys-libs/zlib
 		sys-apps/file
 		app-admin/eselect
 		$( [[ ${OFFLINE_MODE} ]] || echo sys-devel/gettext )
