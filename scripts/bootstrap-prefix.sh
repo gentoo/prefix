@@ -1046,6 +1046,7 @@ bootstrap_stage2() {
 		app-shells/bash
 		sys-apps/sed
 		app-arch/xz-utils
+		sys-apps/gentoo-functions
 		sys-apps/baselayout-prefix
 		sys-devel/m4
 		sys-devel/flex
@@ -1116,6 +1117,7 @@ bootstrap_stage3() {
 		app-shells/bash
 		sys-apps/sed
 		app-arch/xz-utils
+		sys-apps/gentoo-functions
 		sys-apps/baselayout-prefix
 		sys-devel/m4
 		sys-devel/flex
