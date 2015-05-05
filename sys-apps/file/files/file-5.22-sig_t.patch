@@ -1,0 +1,114 @@
+From ae920f77a0fc2141e3391dd2eb869e33509939bb Mon Sep 17 00:00:00 2001
+From: Christos Zoulas <christos@zoulas.com>
+Date: Fri, 27 Mar 2015 17:35:39 +0000
+Subject: [PATCH] PR/438: Deal with lack of sig_t on illumos/solaris.
+
+---
+ configure.ac   |  6 +++++-
+ src/compress.c | 13 ++++++++++++-
+ 2 files changed, 17 insertions(+), 2 deletions(-)
+
+#diff --git a/configure.ac b/configure.ac
+#index b65e866..581baa8 100644
+#--- a/configure.ac
+#+++ b/configure.ac
+@@ -82,9 +82,13 @@ AC_HEADER_MAJOR
+ AC_HEADER_SYS_WAIT
+ AC_CHECK_HEADERS(stdint.h fcntl.h locale.h stdint.h inttypes.h unistd.h)
+ AC_CHECK_HEADERS(stddef.h utime.h wchar.h wctype.h limits.h)
+-AC_CHECK_HEADERS(getopt.h err.h xlocale.h)
++AC_CHECK_HEADERS(getopt.h err.h xlocale.h signal.h)
+ AC_CHECK_HEADERS(sys/mman.h sys/stat.h sys/types.h sys/utime.h sys/time.h)
+ AC_CHECK_HEADERS(zlib.h)
++AC_CHECK_TYPE([sig_t],[AC_DEFINE([HAVE_SIG_T],1,[Have sig_t type])],,[
++#ifdef HAVE_SIGNAL_H
++#include <signal.h>
++#endif])
+ 
+ dnl Checks for typedefs, structures, and compiler characteristics.
+ AC_C_CONST
+diff --git a/src/compress.c b/src/compress.c
+index 207c4c1..5eda540 100644
+--- a/src/compress.c
++++ b/src/compress.c
+@@ -35,7 +35,7 @@
+ #include "file.h"
+ 
+ #ifndef lint
+-FILE_RCSID("@(#)$File: compress.c,v 1.77 2014/12/12 16:33:01 christos Exp $")
++FILE_RCSID("@(#)$File: compress.c,v 1.78 2015/01/02 21:29:39 christos Exp $")
+ #endif
+ 
+ #include "magic.h"
+@@ -45,7 +45,12 @@ FILE_RCSID("@(#)$File: compress.c,v 1.77 2014/12/12 16:33:01 christos Exp $")
+ #endif
+ #include <string.h>
+ #include <errno.h>
++#ifdef HAVE_SIGNAL_H
+ #include <signal.h>
++# ifndef HAVE_SIG_T
++typedef void (*sig_t)(int);
++# endif /* HAVE_SIG_T */
++#endif 
+ #if !defined(__MINGW32__) && !defined(WIN32)
+ #include <sys/ioctl.h>
+ #endif
+@@ -104,12 +109,16 @@ file_zmagic(struct magic_set *ms, int fd, const char *name,
+ 	size_t i, nsz;
+ 	int rv = 0;
+ 	int mime = ms->flags & MAGIC_MIME;
++#ifdef HAVE_SIGNAL_H
+ 	sig_t osigpipe;
++#endif
+ 
+ 	if ((ms->flags & MAGIC_COMPRESS) == 0)
+ 		return 0;
+ 
++#ifdef HAVE_SIGNAL_H
+ 	osigpipe = signal(SIGPIPE, SIG_IGN);
++#endif
+ 	for (i = 0; i < ncompr; i++) {
+ 		if (nbytes < compr[i].maglen)
+ 			continue;
+@@ -136,7 +145,9 @@ file_zmagic(struct magic_set *ms, int fd, const char *name,
+ 		}
+ 	}
+ error:
++#ifdef HAVE_SIGNAL_H
+ 	(void)signal(SIGPIPE, osigpipe);
++#endif
+ 	free(newbuf);
+ 	ms->flags |= MAGIC_COMPRESS;
+ 	return rv;
+-- 
+2.0.5
+
+--- file-5.22.orig/configure
++++ file-5.22/configure
+@@ -12785,7 +12785,7 @@
+ 
+ done
+ 
+-for ac_header in getopt.h err.h xlocale.h
++for ac_header in getopt.h err.h xlocale.h signal.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+ ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
+@@ -12823,6 +12823,17 @@
+ 
+ done
+ 
++ac_fn_c_check_type "$LINENO" "sig_t" "ac_cv_type_sig_t" "
++#ifdef HAVE_SIGNAL_H
++#include <signal.h>
++#endif
++"
++if test "x$ac_cv_type_sig_t" = xyes; then :
++
++$as_echo "#define HAVE_SIG_T 1" >>confdefs.h
++
++fi
++
+ 
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for an ANSI C-conforming const" >&5
+ $as_echo_n "checking for an ANSI C-conforming const... " >&6; }
