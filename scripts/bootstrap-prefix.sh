@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2006-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 2006-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Id: bootstrap-prefix.sh 61818 2014-01-08 07:28:16Z haubi $
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
@@ -370,11 +370,11 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20141125"
+	local PV="20150505"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
-		do_tree http://dev.gentoo.org/~redlizard/distfiles prefix-overlay-${PV}.tar.bz2
+		do_tree http://dev.gentoo.org/~grobian/distfiles prefix-overlay-${PV}.tar.bz2
 	fi
 }
 
