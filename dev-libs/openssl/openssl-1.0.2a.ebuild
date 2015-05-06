@@ -88,7 +88,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0a-interix.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0a-mint.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8l-aixso.patch #213277: with import files now
+	epatch "${FILESDIR}"/${PN}-1.0.2a-aix-soname.patch # like libtool
 	epatch "${FILESDIR}"/${PN}-1.0.0b-darwin-bundle-compile-fix.patch
 	epatch "${FILESDIR}"/${PN}-1.0.2-gethostbyname2-solaris.patch
 	if [[ ${CHOST} == *-interix* ]] ; then
