@@ -27,6 +27,7 @@ DOCS=( AUTHORS ChangeLog-2012 NEWS README THANKS TODO ) # ChangeLog-1998 PACKAGI
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-optional-perl-gen.patch #538300
+	touch doc/bison.1 #548778
 }
 
 src_configure() {
