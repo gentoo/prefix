@@ -822,9 +822,11 @@ bootstrap_make() {
 }
 
 bootstrap_patch() {
-	# 2.5.9 needed for OSX 10.6.x
-	bootstrap_gnu patch 2.6.1 || bootstrap_gnu patch 2.5.9 || \
-		bootstrap_gnu patch 2.5.4
+	# 2.5.9 needed for OSX 10.6.x still?
+	bootstrap_gnu patch 2.7.5 ||
+	bootstrap_gnu patch 2.7.4 ||
+	bootstrap_gnu patch 2.7.3 ||
+	bootstrap_gnu patch 2.6.1
 }
 
 bootstrap_gawk() {
@@ -918,7 +920,7 @@ bootstrap_stage1() { (
 		|| (bootstrap_coreutils) || return 1
 	[[ $(find --version 2>&1) == *GNU* ]] || (bootstrap_findutils) || return 1
 	[[ $(tar --version 2>&1) == *GNU* ]] || (bootstrap_tar) || return 1
-	[[ $(patch --version 2>&1) == *GNU* ]] || (bootstrap_patch) || return 1
+	[[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] || (bootstrap_patch) || return 1
 	[[ $(grep --version 2>&1) == *GNU* ]] || (bootstrap_grep) || return 1
 	[[ $(awk --version < /dev/null 2>&1) == *GNU* ]] || bootstrap_gawk || return 1
 	[[ $(bash --version 2>&1) == "GNU bash, version 4."[123456789]* && ${CHOST} != *-aix* ]] \
