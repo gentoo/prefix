@@ -1,0 +1,32 @@
+On older OS X assert.h refers to eprintf which is nowhere to be found. That's
+why everyone (libstdc++, clang compiler-rt) bring their own implementation.
+Ours is nicked from Apple's patch to libstdc++-39.
+
+--- libcxx-3.5.1.src/src/mutex.cpp.orig	2015-01-26 23:55:25.000000000 +0100
++++ libcxx-3.5.1.src/src/mutex.cpp	2015-01-26 23:56:30.000000000 +0100
+@@ -13,6 +13,25 @@
+ #include "system_error"
+ #include "cassert"
+ 
++#ifdef __APPLE__
++#include <AvailabilityMacros.h>
++#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1050)
++#include <cstdio>
++#include <cstdlib>
++
++using namespace std;
++extern "C"
++__attribute__((visibility("hidden")))
++void __eprintf (const char *string, const char *expression,
++	unsigned int line, const char *filename)
++{
++	fprintf (stderr, string, expression, line, filename);
++	fflush (stderr);
++	abort ();
++}
++#endif
++#endif /* __APPLE__ */
++
+ _LIBCPP_BEGIN_NAMESPACE_STD
+ 
+ const defer_lock_t  defer_lock = {};

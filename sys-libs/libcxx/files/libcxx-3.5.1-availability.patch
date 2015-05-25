@@ -1,0 +1,46 @@
+Older OS X does not have Availability.h. Use AvailabilityMacros.h instead.
+Since those platforms don't know anything about the oPhone, we can drop those
+checks.
+
+--- libcxx-3.5.1.src/include/iterator.orig	2015-01-26 22:39:31.000000000 +0100
++++ libcxx-3.5.1.src/include/iterator	2015-01-26 22:40:40.000000000 +0100
+@@ -335,7 +335,7 @@
+ #include <iosfwd>
+ #include <initializer_list>
+ #ifdef __APPLE__
+-#include <Availability.h>
++#include <AvailabilityMacros.h>
+ #endif
+ 
+ #ifdef _LIBCPP_DEBUG
+@@ -913,8 +913,7 @@
+     _LIBCPP_INLINE_VISIBILITY bool failed() const _NOEXCEPT {return __sbuf_ == 0;}
+ 
+ #if !defined(__APPLE__) || \
+-    (defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED > __MAC_10_8) || \
+-    (defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_0)
++    (defined(MAC_OS_X_VERSION_MIN_REQUIRED) && MAC_OS_X_VERSION_MIN_REQUIRED > 1080)
+ 
+     template <class _Ch, class _Tr>
+     friend
+--- libcxx-3.5.1.src/include/locale.orig	2015-01-26 23:39:10.000000000 +0100
++++ libcxx-3.5.1.src/include/locale	2015-01-26 23:39:34.000000000 +0100
+@@ -198,7 +198,7 @@
+ #endif
+ 
+ #ifdef __APPLE__
+-#include <Availability.h>
++#include <AvailabilityMacros.h>
+ #endif
+ 
+ #include <__undef_min_max>
+@@ -1467,8 +1467,7 @@
+ }
+ 
+ #if !defined(__APPLE__) || \
+-    (defined(__MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED > __MAC_10_8) || \
+-    (defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_6_0)
++    (defined(MAC_OS_X_VERSION_MIN_REQUIRED) && __MAC_OS_X_VERSION_MIN_REQUIRED > 1080)
+ 
+ template <class _CharT, class _Traits>
+ _LIBCPP_HIDDEN

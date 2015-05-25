@@ -1,0 +1,34 @@
+Make buildit recognise older OS X and build for them the same as on 10.6.
+
+--- libcxx-3.5.1.src/lib/buildit.orig	2015-01-18 11:21:51.000000000 -0900
++++ libcxx-3.5.1.src/lib/buildit	2015-01-18 11:32:36.000000000 -0900
+@@ -50,8 +50,8 @@
+       RC_CFLAGS="-arch i386 -arch x86_64"
+     fi
+     SOEXT=dylib
+-    if [ "$MACOSX_DEPLOYMENT_TARGET" = "10.6" ]
+-    then
++    case "${MACOSX_DEPLOYMENT_TARGET}" in
++    10.[0123456])
+         EXTRA_FLAGS="-nostdinc++ -std=c++11 -U__STRICT_ANSI__"
+         LDSHARED_FLAGS="-o libc++.1.dylib \
+             -dynamiclib -nodefaultlibs -current_version 1 \
+@@ -60,7 +60,8 @@
+             -Wl,-reexport_library,/Users/michael/Gentoo/usr/lib/libc++abi.dylib \
+             -Wl,-unexported_symbols_list,libc++unexp.exp  \
+             /usr/lib/libSystem.B.dylib"
+-    else
++        ;;
++    *)
+         if [ -n "$SDKROOT" ]
+         then
+             EXTRA_FLAGS+="-isysroot ${SDKROOT} "
+@@ -92,7 +93,7 @@
+             ${RE_EXPORT_LINE}  \
+             -Wl,-force_symbols_not_weak_list,notweak.exp \
+             -Wl,-force_symbols_weak_list,weak.exp"
+-    fi
++    esac
+     ;;
+   *-*-mingw*)
+     # FIXME: removing libgcc and libsupc++ dependencies means porting libcxxrt and LLVM/compiler-rt
