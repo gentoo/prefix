@@ -1,0 +1,28 @@
+Work around bug in OS X 10.6 math.h headers which never declare the long long
+float conversion functions even if allowed.
+
+--- libcxx-3.5.1.src/include/cmath.orig	2015-01-15 12:05:28.000000000 +0100
++++ libcxx-3.5.1.src/include/cmath	2015-01-15 12:09:31.000000000 +0100
+@@ -299,6 +299,22 @@
+ 
+ #include <__config>
+ #include <math.h>
++
++/* work around bug in OS X 10.6 math.h headers which never declare the long
++ * long float conversion functions even if allowed */
++#if !(__DARWIN_NO_LONG_LONG)
++    /* long long is not part of C90. Make sure you are passing -std=c99 or -std=gnu99 or better if you need this. */
++    extern long long int llrint ( double );
++    extern long long int llrintf ( float );
++
++    extern long long int llround ( double );
++    extern long long int llroundf ( float );
++
++    /* long long is not part of C90. Make sure you are passing -std=c99 or -std=gnu99 or better if you need this. */
++    extern long long int llrintl(long double);
++    extern long long int llroundl(long double);
++#endif /* #if !(__DARWIN_NO_LONG_LONG) */
++
+ #include <type_traits>
+ 
+ #ifdef _LIBCPP_MSVCRT
