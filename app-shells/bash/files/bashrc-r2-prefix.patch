@@ -1,0 +1,37 @@
+--- bashrc-r2
++++ bashrc-r2
+@@ -1,4 +1,4 @@
+-# /etc/bash/bashrc
++# @GENTOO_PORTAGE_EPREFIX@/etc/bash/bashrc
+ #
+ # This file is sourced by all *interactive* bash shells on startup,
+ # including some apparently interactive shells such as scp and rcp
+@@ -64,7 +64,7 @@
+ safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
+ match_lhs=""
+ [[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
+-[[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
++[[ -f @GENTOO_PORTAGE_EPREFIX@/etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(<@GENTOO_PORTAGE_EPREFIX@/etc/DIR_COLORS)"
+ [[ -z ${match_lhs}    ]] \
+ 	&& type -P dircolors >/dev/null \
+ 	&& match_lhs=$(dircolors --print-database)
+@@ -75,8 +75,8 @@
+ 	if type -P dircolors >/dev/null ; then
+ 		if [[ -f ~/.dir_colors ]] ; then
+ 			eval $(dircolors -b ~/.dir_colors)
+-		elif [[ -f /etc/DIR_COLORS ]] ; then
+-			eval $(dircolors -b /etc/DIR_COLORS)
++		elif [[ -f @GENTOO_PORTAGE_EPREFIX@/etc/DIR_COLORS ]] ; then
++			eval $(dircolors -b @GENTOO_PORTAGE_EPREFIX@/etc/DIR_COLORS)
+ 		fi
+ 	fi
+ 
+@@ -100,7 +100,7 @@
+ 	fi
+ fi
+ 
+-for sh in /etc/bash/bashrc.d/* ; do
++for sh in @GENTOO_PORTAGE_EPREFIX@/etc/bash/bashrc.d/* ; do
+ 	[[ -r ${sh} ]] && source "${sh}"
+ done
+ 

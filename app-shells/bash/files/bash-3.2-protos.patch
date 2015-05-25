@@ -43,3 +43,15 @@ move prototypes around so they show up when needed
  /* Non-zero means SIGINT has already ocurred. */
  extern volatile int interrupt_state;
  extern volatile int terminating_signal;
+--- a/support/bashversion.c
++++ b/support/bashversion.c
+@@ -47,6 +47,9 @@
+ extern char *dist_version;
+ extern int patch_level;
+ 
++extern char *shell_version_string __P((void));
++extern void show_shell_version __P((int));
++
+ char *shell_name = "bash";
+ char *progname;
+ 
