@@ -1,0 +1,28 @@
+--- libcxxabi-3.5.1.src/src/cxa_personality.cpp.orig	2015-01-26 23:20:13.000000000 +0100
++++ libcxxabi-3.5.1.src/src/cxa_personality.cpp	2015-01-26 23:25:45.000000000 +0100
+@@ -21,6 +21,25 @@
+ #include <stdlib.h>
+ #include <assert.h>
+ 
++#ifdef __APPLE__
++#include <AvailabilityMacros.h>
++#if (MAC_OS_X_VERSION_MIN_REQUIRED < 1050)
++#include <cstdio>
++#include <cstdlib>
++
++using namespace std;
++extern "C"
++__attribute__((visibility("hidden")))
++void __eprintf (const char *string, const char *expression,
++	unsigned int line, const char *filename)
++{
++	fprintf (stderr, string, expression, line, filename);
++	fflush (stderr);
++	abort ();
++}
++#endif
++#endif /* __APPLE__ */
++
+ /*
+     Exception Header Layout:
+ 
