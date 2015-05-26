@@ -64,6 +64,8 @@ src_prepare() {
 	# so let's just update the timestamps and skip the help2man step.
 	set -- man/*.x
 	touch ${@/%x/1}
+	# docs depend on configure as well
+	touch -r doc/stamp-vti configure
 
 	# Avoid perl dep for compiled in dircolors default #348642
 	if ! has_version dev-lang/perl ; then

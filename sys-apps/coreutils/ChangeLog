@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.391 2014/07/28 09:44:48 vapier Exp $
 
+  26 May 2015; Michael Haubenwallner <haubi@gentoo.org>
+  coreutils-8.23-r00.1.ebuild:
+  avoid doc regeneration due to configure change
+
 *coreutils-8.23-r00.1 (11 Feb 2015)
 
   11 Feb 2015; Michael Haubenwallner <haubi@gentoo.org>
