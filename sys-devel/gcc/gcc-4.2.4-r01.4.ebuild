@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.16 2014/01/19 01:51:34 dirtyepic Exp $
 
@@ -18,8 +18,8 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
-	kernel_Interix? ( || ( ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 ) )
-	!kernel_Darwin? ( !kernel_AIX? ( !kernel_Interix? (
+	elibc_Interix? ( || ( ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 ) )
+	!kernel_Darwin? ( !kernel_AIX? ( !elibc_Interix? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94

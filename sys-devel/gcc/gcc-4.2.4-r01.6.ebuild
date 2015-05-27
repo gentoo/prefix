@@ -18,8 +18,8 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
-	kernel_Interix? ( || ( ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 ) )
-	!kernel_Darwin? ( !kernel_AIX? ( !kernel_Interix? (
+	elibc_Interix? ( || ( ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 ) )
+	!kernel_Darwin? ( !kernel_AIX? ( !elibc_Interix? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94
