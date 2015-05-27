@@ -964,6 +964,10 @@ bootstrap_stage1() { (
 	einfo "stage1 successfully finished"
 ); }
 
+bootstrap_stage1_log() {
+	bootstrap_stage1 ${@} 2>&1 | tee -a ${ROOT}/stage1.log
+}
+
 do_emerge_pkgs() {
 	local opts=$1 ; shift
 	local pkg vdb pvdb evdb
@@ -1086,6 +1090,10 @@ bootstrap_stage2() {
 	einfo "stage2 successfully finished"
 }
 
+bootstrap_stage2_log() {
+	bootstrap_stage2 ${@} 2>&1 | tee -a ${ROOT}/stage2.log
+}
+
 bootstrap_stage3() {
 	if ! type -P emerge > /dev/null ; then
 		eerror "emerge not found, did you bootstrap stage1?"
@@ -1187,6 +1195,10 @@ bootstrap_stage3() {
 	emerge --depclean
 
 	einfo "stage3 successfully finished"
+}
+
+bootstrap_stage3_log() {
+	bootstrap_stage3 ${@} 2>&1 | tee -a ${ROOT}/stage3.log
 }
 
 bootstrap_interactive() {
@@ -1773,7 +1785,7 @@ EOF
 	fi
 	echo
 
-	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1 ; then
+	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1_log ; then
 		# stage 1 fail
 		cat << EOF
 
@@ -1783,6 +1795,7 @@ but that failed :(  I have no clue, really.  Please find friendly folks
 in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
 or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 Sorry that I have failed you master.  I shall now return to my humble cave.
+You can find a log of what happened in ${EPREFIX}/stage1.log
 EOF
 		exit 1
 	fi
@@ -1800,7 +1813,7 @@ EOF
 	# deal with the bash-constructs we use in stage3 and onwards
 	hash -r
 
-	if ! [[ -x ${EPREFIX}/usr/bin/gcc || -x ${EPREFIX}/tmp/usr/bin/gcc ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2 ; then
+	if ! [[ -x ${EPREFIX}/usr/bin/gcc || -x ${EPREFIX}/tmp/usr/bin/gcc ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2_log ; then
 		# stage 2 fail
 		cat << EOF
 
@@ -1818,6 +1831,7 @@ I have no clue, really.  Please find friendly folks in #gentoo-prefix on
 irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
 at bugs.gentoo.org under Gentoo/Alt, Prefix Support. I am defeated.
 I am of no use here any more.
+Maybe you can find some clues in ${EPREFIX}/stage2.log
 EOF
 		exit 1
 	fi
@@ -1825,7 +1839,7 @@ EOF
 	# new bash
 	hash -r
 
-	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" stage3 ; then
+	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" stage3_log ; then
 		# stage 3 fail
 		hash -r  # previous cat (tmp/usr/bin/cat) may have been removed
 		cat << EOF
@@ -1844,6 +1858,7 @@ I have no clue, really.  Please find friendly folks in #gentoo-prefix on
 irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
 at bugs.gentoo.org under Gentoo/Alt, Prefix Support.  This is most
 inconvenient, and it crushed my ego.  Sorry, I give up.
+Should you want to give it a try, there is ${EPREFIX}/stage3.log
 EOF
 		exit 1
 	fi
