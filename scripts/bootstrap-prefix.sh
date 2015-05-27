@@ -966,6 +966,7 @@ bootstrap_stage1() { (
 
 bootstrap_stage1_log() {
 	bootstrap_stage1 ${@} 2>&1 | tee -a ${ROOT}/stage1.log
+	return ${PIPESTATUS[0]}
 }
 
 do_emerge_pkgs() {
@@ -1092,6 +1093,7 @@ bootstrap_stage2() {
 
 bootstrap_stage2_log() {
 	bootstrap_stage2 ${@} 2>&1 | tee -a ${ROOT}/stage2.log
+	return ${PIPESTATUS[0]}
 }
 
 bootstrap_stage3() {
@@ -1199,6 +1201,7 @@ bootstrap_stage3() {
 
 bootstrap_stage3_log() {
 	bootstrap_stage3 ${@} 2>&1 | tee -a ${ROOT}/stage3.log
+	return ${PIPESTATUS[0]}
 }
 
 bootstrap_interactive() {
