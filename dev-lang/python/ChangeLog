@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.816 2015/03/31 18:46:33 ulm Exp $
 
+  31 May 2015; Fabian Groffen <grobian@gentoo.org>
+  +files/python-3.3-issue21811.patch, python-3.3.3.ebuild:
+  Grab patch from upstream to fix building on OSX 10.10 (Yosemite)
+
   06 Apr 2015; Fabian Groffen <grobian@gentoo.org> python-2.7.8.ebuild,
   python-3.3.3.ebuild:
   Fix category for python-updater (too eager eselect change)

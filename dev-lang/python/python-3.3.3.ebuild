@@ -80,6 +80,7 @@ src_prepare() {
 	# http://prefix.gentooexperimental.org:8000/python-patches-3_3
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
 		epatch "${WORKDIR}"/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}
+	epatch "${FILESDIR}/python-3.3-issue21811.patch"
 
 	# we provide a fully working readline also on Darwin, so don't force
 	# usage of less functional libedit
