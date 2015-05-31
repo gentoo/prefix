@@ -1,6 +1,208 @@
 # ChangeLog for sys-libs/db
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.332 2012/10/21 00:03:09 blueness Exp $
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.376 2015/05/29 06:31:25 polynomial-c Exp $
+
+*db-6.1.23 (29 May 2015)
+
+  29 May 2015; Lars Wendler <polynomial-c@gentoo.org> +db-6.1.23.ebuild:
+  Version bump.
+
+  20 Mar 2015; Justin Lecher <jlec@gentoo.org> db-4.8.30-r1.ebuild,
+  db-4.8.30-r2.ebuild, db-4.8.30.ebuild, db-5.1.29-r1.ebuild, db-5.1.29.ebuild,
+  db-5.3.28-r1.ebuild, db-5.3.28-r2.ebuild, db-6.0.30-r1.ebuild,
+  db-6.0.30.ebuild, db-6.1.19.ebuild:
+  Fix ebuild layout
+
+  16 Mar 2015; Mike Frysinger <vapier@gentoo.org> db-4.8.30-r2.ebuild,
+  db-5.1.29-r1.ebuild, db-5.3.28-r2.ebuild, db-6.0.30-r1.ebuild,
+  db-6.1.19.ebuild:
+  Set linker to bfd when gold is detected #470634 by Nick.
+
+  20 Feb 2015; Mikle Kolyada <zlogene@gentoo.org> db-4.8.30-r2.ebuild:
+  ia64 stable wrt bug #525282
+
+  02 Jan 2015; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r2.ebuild:
+  Stable for sparc, wrt bug #525282
+
+  01 Jan 2015; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r2.ebuild:
+  Stable for ppc64, wrt bug #525282
+
+  31 Dec 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r2.ebuild:
+  Stable for ppc, wrt bug #525282
+
+  26 Dec 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r2.ebuild:
+  Stable for x86, wrt bug #525282
+
+  23 Dec 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r2.ebuild:
+  Stable for alpha, wrt bug #525282
+
+  20 Dec 2014; Markus Meier <maekke@gentoo.org> db-4.8.30-r2.ebuild:
+  arm stable, bug #525282
+
+  13 Dec 2014; Mikle Kolyada <zlogene@gentoo.org> db-4.8.30-r2.ebuild:
+  amd64 stable wrt bug #525282
+
+  11 Dec 2014; Jeroen Roovers <jer@gentoo.org> db-4.8.30-r2.ebuild:
+  Stable for HPPA (bug #525282).
+
+  27 Oct 2014; Mike Frysinger <vapier@gentoo.org> db-4.8.30-r1.ebuild:
+  Mark arm64/m68k/s390/sh stable.
+
+  15 Sep 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r1.ebuild:
+  Stable for sparc, wrt bug #512012
+
+  13 Sep 2014; Markus Meier <maekke@gentoo.org> db-4.8.30-r1.ebuild:
+  arm stable, bug #512012
+
+  25 Aug 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r1.ebuild:
+  Stable for alpha, wrt bug #518006
+
+  23 Aug 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r1.ebuild:
+  Stable for ia64, wrt bug #512012
+
+  21 Aug 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r1.ebuild:
+  Stable for ppc64, wrt bug #518006
+
+  07 Aug 2014; Jeroen Roovers <jer@gentoo.org> db-4.8.30-r1.ebuild:
+  Stable for HPPA (bug #512012).
+
+*db-6.1.19 (04 Aug 2014)
+
+  04 Aug 2014; Robin H. Johnson <robbat2@gentoo.org> +db-6.1.19.ebuild,
+  +files/db-6.1.19-sqlite-configure-path.patch:
+  Add 6.1.19 into the tree, in p.mask as upstream testsuite still has failures,
+  maybe a later 6.1 will be better.
+
+  04 Aug 2014; Robin H. Johnson <robbat2@gentoo.org> -db-5.2.42-r1.ebuild,
+  -db-5.2.42.ebuild:
+  db-5.2 fails tests, so removing forever: condition {[stat_field $env rep_stat
+  "Startup complete"]} not achieved in 40 seconds; perm_failed_stat returned
+  error value 0;  db_location returned error value 0; files_archivable_closed:
+  expected 0, got 1
+
+*db-5.1.29-r1 (04 Aug 2014)
+*db-5.2.42-r1 (04 Aug 2014)
+
+  04 Aug 2014; Robin H. Johnson <robbat2@gentoo.org> +db-5.1.29-r1.ebuild,
+  +db-5.2.42-r1.ebuild, -db-5.0.32.ebuild:
+  5.0 fails tests, so removed forever. 5.1 passes, 5.2 testing in progress.
+  EAPI5 bumps for 5.1 & 5.2.
+
+*db-6.0.30-r1 (03 Aug 2014)
+*db-4.8.30-r2 (03 Aug 2014)
+
+  03 Aug 2014; Robin H. Johnson <robbat2@gentoo.org> +db-4.8.30-r2.ebuild,
+  +db-6.0.30-r1.ebuild, -db-5.3.21.ebuild, -db-5.3.28.ebuild,
+  -db-6.0.20-r1.ebuild:
+  Cleanup ebuilds, some EAPI5 porting.
+
+  28 Jul 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r1.ebuild:
+  Stable for ppc, wrt bug #512012
+
+  23 Jul 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r1.ebuild:
+  Stable for x86, wrt bug #512012
+
+  22 Jul 2014; Agostino Sarubbo <ago@gentoo.org> db-4.8.30-r1.ebuild:
+  Stable for amd64, wrt bug #512912
+
+  18 Jun 2014; Michał Górny <mgorny@gentoo.org> db-4.8.30-r1.ebuild,
+  db-5.3.28-r2.ebuild, db-6.0.30.ebuild:
+  Update dependencies to require guaranteed EAPI=5 or multilib ebuilds, bug
+  #513718.
+
+  20 May 2014; Lars Wendler <polynomial-c@gentoo.org> db-5.3.21.ebuild,
+  db-5.3.28.ebuild, db-5.3.28-r1.ebuild, db-5.3.28-r2.ebuild,
+  db-6.0.20-r1.ebuild, db-6.0.30.ebuild:
+  Fixed compilation with java USE flag being enabled.
+
+*db-6.0.30 (20 May 2014)
+
+  20 May 2014; Lars Wendler <polynomial-c@gentoo.org> +db-6.0.30.ebuild:
+  Version bump (bug #504248).
+
+*db-4.8.30-r1 (15 May 2014)
+*db-5.3.28-r2 (15 May 2014)
+
+  15 May 2014; Michał Górny <mgorny@gentoo.org> +db-4.8.30-r1.ebuild,
+  +db-5.3.28-r2.ebuild:
+  Enable multilib support.
+
+*db-5.3.28-r1 (03 Apr 2014)
+
+  03 Apr 2014; Patrick Lauer <patrick@gentoo.org> +db-5.3.28-r1.ebuild:
+  Use newer eapi features in 5.3 ebuild
+
+  18 Jan 2014; Mike Frysinger <vapier@gentoo.org> db-1.85-r3.ebuild,
+  db-3.2.9_p2.ebuild, db-4.2.52_p5-r1.ebuild, db-4.3.29_p1-r1.ebuild,
+  db-4.4.20_p4-r1.ebuild, db-4.5.20_p2-r1.ebuild, db-4.6.21_p4.ebuild,
+  db-4.7.25_p4.ebuild, db-4.8.30.ebuild, db-5.0.32.ebuild, db-5.1.29.ebuild,
+  db-5.2.42.ebuild, db-5.3.21.ebuild, db-5.3.28.ebuild, db-6.0.20-r1.ebuild:
+  Add arm64 love.
+
+  18 Jan 2014; Mike Frysinger <vapier@gentoo.org> db-4.8.30.ebuild:
+  Mark m68k/s390/sh stable.
+
+*db-5.3.28 (15 Jan 2014)
+
+  15 Jan 2014; Lars Wendler <polynomial-c@gentoo.org> db-4.8.30.ebuild,
+  +db-5.3.28.ebuild, -db-6.0.20.ebuild, db-6.0.20-r1.ebuild:
+  Version bump. Removed EAPI-5 ebuild (not allowed for base-system packages).
+  Converted some ebuilds to EAPI-4.
+
+  05 Jan 2014; Robin H. Johnson <robbat2@gentoo.org> -db-4.2.52_p5.ebuild,
+  -db-4.3.29_p1.ebuild, -db-4.4.20_p4.ebuild, -db-4.5.20_p2.ebuild,
+  -db-4.7.25_p3.ebuild, -db-4.8.24.ebuild, -db-4.8.26.ebuild,
+  -db-5.0.21-r1.ebuild, -db-5.0.26.ebuild, -db-5.1.19-r2.ebuild,
+  -db-5.1.25.ebuild, -db-5.2.28.ebuild, -db-5.2.36.ebuild:
+  Cleanup old versions.
+
+  23 Sep 2013; Agostino Sarubbo <ago@gentoo.org> db-4.8.30.ebuild:
+  Stable for sparc, wrt bug #483184
+
+  23 Sep 2013; Agostino Sarubbo <ago@gentoo.org> db-4.8.30.ebuild:
+  Stable for ppc64, wrt bug #483184
+
+  23 Sep 2013; Agostino Sarubbo <ago@gentoo.org> db-4.8.30.ebuild:
+  Stable for alpha, wrt bug #483184
+
+  22 Sep 2013; Agostino Sarubbo <ago@gentoo.org> db-4.8.30.ebuild:
+  Stable for ia64, wrt bug #483184
+
+  30 Aug 2013; Jeroen Roovers <jer@gentoo.org> db-4.8.30.ebuild:
+  Stable for HPPA too.
+
+*db-6.0.20-r1 (10 Jul 2013)
+
+  10 Jul 2013; Robin H. Johnson <robbat2@gentoo.org> +db-6.0.20-r1.ebuild,
+  +files/db-6.0.20-test-link.patch, db-5.2.42.ebuild, db-5.3.21.ebuild:
+  Maintainer bump per #gentoo-infra discussion of July 4th. Patch massively
+  reduces storage requirement for running tests, but they still have two
+  failures: "repmgr_start:invalid argument"; "FAIL: condition {[stat_field $env
+  rep_stat \"Startup complete\"]}".
+
+*db-6.0.20 (10 Jul 2013)
+
+  10 Jul 2013; Lars Wendler <polynomial-c@gentoo.org> +db-6.0.20.ebuild,
+  +files/db-6.0.19-sqlite-configure-path.patch:
+  Non-maintainer commit: Version bump (bug #474602).
+
+  25 Nov 2012; Ulrich Müller <ulm@gentoo.org> db-1.85-r3.ebuild,
+  db-3.2.9_p2.ebuild, db-4.2.52_p5.ebuild, db-4.2.52_p5-r1.ebuild,
+  db-4.3.29_p1.ebuild, db-4.3.29_p1-r1.ebuild, db-4.4.20_p4.ebuild,
+  db-4.4.20_p4-r1.ebuild, db-4.5.20_p2.ebuild, db-4.5.20_p2-r1.ebuild,
+  db-4.6.21_p4.ebuild, db-4.7.25_p3.ebuild, db-4.7.25_p4.ebuild,
+  db-4.8.24.ebuild, db-4.8.26.ebuild, db-4.8.30.ebuild, db-5.0.21-r1.ebuild,
+  db-5.0.26.ebuild, db-5.0.32.ebuild, db-5.1.19-r2.ebuild, db-5.1.25.ebuild,
+  db-5.1.29.ebuild, db-5.2.28.ebuild, db-5.2.36.ebuild, db-5.2.42.ebuild,
+  db-5.3.21.ebuild:
+  Update LICENSE: DB and OracleDB are identical, except for the different
+  copyright holder. They have been unified in the "Sleepycat" license
+  template, which is the name used by both OSI and SPDX. Bug 300426.
+
+*db-5.3.21 (12 Nov 2012)
+
+  12 Nov 2012; Robin H. Johnson <robbat2@gentoo.org> +db-5.3.21.ebuild:
+  Early days, but useful for some testing still. src_test fails dismally still.
 
   21 Oct 2012; Anthony G. Basile <blueness@gentoo.org> db-4.8.30.ebuild:
   stable arm, bug #429188

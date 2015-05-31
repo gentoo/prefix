@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.2.52_p5-r1.ebuild,v 1.15 2012/09/24 00:31:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.2.52_p5-r1.ebuild,v 1.17 2014/01/18 04:14:32 vapier Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools multilib
 
@@ -24,7 +24,7 @@ for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
 	export SRC_URI="${SRC_URI} http://www.oracle.com/technology/products/berkeley-db/db/update/${MY_PV}/patch.${MY_PV}.${i}"
 done
 
-LICENSE="DB"
+LICENSE="Sleepycat"
 SLOT="4.2"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos"
 IUSE="tcl java doc cxx rpc"

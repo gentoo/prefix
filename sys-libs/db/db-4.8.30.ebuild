@@ -1,6 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.8.30.ebuild,v 1.10 2012/10/21 00:03:09 blueness Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.8.30.ebuild,v 1.20 2015/03/20 14:41:50 jlec Exp $
+
+EAPI=4
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools multilib
 
@@ -24,25 +26,28 @@ for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
 	export SRC_URI="${SRC_URI} http://www.oracle.com/technology/products/berkeley-db/db/update/${MY_PV}/patch.${MY_PV}.${i}"
 done
 
-LICENSE="OracleDB"
+LICENSE="Sleepycat"
 SLOT="4.8"
 KEYWORDS="~ppc-aix ~x64-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc java cxx tcl test"
 
 # the entire testsuite needs the TCL functionality
-DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
-	test? ( >=dev-lang/tcl-8.4 )
+DEPEND="tcl? ( >=dev-lang/tcl-8.4:0 )
+	test? ( >=dev-lang/tcl-8.4:0 )
 	java? ( >=virtual/jdk-1.5 )
 	|| ( sys-devel/binutils-apple
 		 sys-devel/native-cctools
 		 >=sys-devel/binutils-2.16.1
 	)"
-RDEPEND="tcl? ( dev-lang/tcl )
+RDEPEND="tcl? ( dev-lang/tcl:0 )
 	java? ( >=virtual/jre-1.5 )"
 
 src_unpack() {
 	unpack "${MY_P}".tar.gz
-	cd "${WORKDIR}"/"${MY_P}"
+}
+
+src_prepare() {
+	cd "${WORKDIR}"/"${MY_P}" || die
 	for (( i=1 ; i<=${PATCHNO} ; i++ ))
 	do
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
@@ -76,22 +81,23 @@ src_unpack() {
 
 	popd > /dev/null
 
-	sed -e "/^DB_RELEASE_DATE=/s/%B %e, %Y/%Y-%m-%d/" -i dist/RELEASE
+	sed -e "/^DB_RELEASE_DATE=/s/%B %e, %Y/%Y-%m-%d/" -i dist/RELEASE \
+		|| die
 
 	# Include the SLOT for Java JAR files
 	# This supersedes the unused jarlocation patches.
 	sed -r -i \
 		-e '/jarfile=.*\.jar$/s,(.jar$),-$(LIBVERSION)\1,g' \
-		"${S}"/../dist/Makefile.in
+		"${S}"/../dist/Makefile.in || die
 
-	cd "${S}"/../dist
+	cd "${S}"/../dist || die
 	rm -f aclocal/libtool.m4
 	sed -i \
 		-e '/AC_PROG_LIBTOOL$/aLT_OUTPUT' \
-		configure.ac
+		configure.ac || die
 	sed -i \
 		-e '/^AC_PATH_TOOL/s/ sh, none/ bash, none/' \
-		aclocal/programs.m4
+		aclocal/programs.m4 || die
 	AT_M4DIR="aclocal aclocal_java" eautoreconf
 	# Upstream sucks - they do autoconf and THEN replace the version variables.
 	. ./RELEASE
@@ -101,10 +107,10 @@ src_unpack() {
 		-e "s/__EDIT_DB_VERSION_PATCH__/$DB_VERSION_PATCH/g" \
 		-e "s/__EDIT_DB_VERSION_STRING__/$DB_VERSION_STRING/g" \
 		-e "s/__EDIT_DB_VERSION_UNIQUE_NAME__/$DB_VERSION_UNIQUE_NAME/g" \
-		-e "s/__EDIT_DB_VERSION__/$DB_VERSION/g" configure
+		-e "s/__EDIT_DB_VERSION__/$DB_VERSION/g" configure || die
 }
 
-src_compile() {
+src_configure() {
 	local myconf=''
 
 	# compilation with -O0 fails on amd64, see bug #171231
@@ -138,7 +144,6 @@ src_compile() {
 		myconf="${myconf} --disable-tcl"
 	fi
 
-	cd "${S}"
 	ECONF_SOURCE="${S}"/../dist \
 	STRIP="true" \
 	econf \
@@ -153,12 +158,10 @@ src_compile() {
 		${myconf} \
 		$(use_enable test) \
 		"$@"
-
-	emake || die "make failed"
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	emake install DESTDIR="${D}"
 
 	db_src_install_usrbinslot
 
@@ -170,8 +173,10 @@ src_install() {
 
 	dodir /usr/sbin
 	# This file is not always built, and no longer exists as of db-4.8
-	[[ -f "${ED}"/usr/bin/berkeley_db_svc ]] && \
-	mv "${ED}"/usr/bin/berkeley_db_svc "${ED}"/usr/sbin/berkeley_db"${SLOT/./}"_svc
+	if [[ -f "${ED}"/usr/bin/berkeley_db_svc ]] ; then
+		mv "${ED}"/usr/bin/berkeley_db_svc \
+			"${ED}"/usr/sbin/berkeley_db"${SLOT/./}"_svc || die
+	fi
 
 	if use java; then
 		local ext=so
