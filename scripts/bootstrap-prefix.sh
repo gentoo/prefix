@@ -1839,7 +1839,7 @@ EOF
 	if ! [[ -x ${EPREFIX}/usr/bin/gcc \
 		|| -x ${EPREFIX}/usr/bin/clang \
 		|| -x ${EPREFIX}/tmp/usr/bin/gcc \
-		|| ${EPREFIX}/tmp/usr/bin/clang ]] \
+		|| -x ${EPREFIX}/tmp/usr/bin/clang ]] \
 		&& ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2_log ; then
 		# stage 2 fail
 		cat << EOF
