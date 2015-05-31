@@ -148,15 +148,17 @@ configure_cflags() {
 
 configure_toolchain() {
 	linker=sys-devel/binutils
-	compiler=sys-devel/gcc
+	compiler="sys-devel/gcc-config sys-devel/gcc"
 	# The host may not have a functioning c++ toolchain, so use a stage1 compiler that can build with C only.
-	compiler_stage1="<sys-devel/gcc-4.8"
+	compiler_stage1="sys-devel/gcc-config <sys-devel/gcc-4.8"
 
-	pkggcc="sys-devel/gcc"
 	CC=gcc
 	CXX=g++
 	case ${CHOST} in
 		*-darwin*)
+			# for compilers choice, see bug:
+			# https://bugs.gentoo.org/show_bug.cgi?id=538366
+			compiler_stage1=
 			case "$( (unset CHOST; gcc --version) )" in
 				*"(GCC) 4.2.1 "*|*"Apple LLVM version "*)
 					linker=sys-devel/binutils-apple
@@ -167,14 +169,18 @@ configure_toolchain() {
 					;;
 				*"(GCC) 4.0.1 "*)
 					linker="=sys-devel/binutils-apple-3.2"
+					compiler_stage1="sys-devel/gcc-config sys-devel/gcc-apple"
 					;;
 				*)
 					eerror "unknown compiler"
 					return 1
 					;;
 			esac
-			compiler=sys-devel/gcc-apple
-			compiler_stage1="${compiler}"
+			# we always have to bootstrap with 3.4 for else we'd need
+			# libcxx, which only compiles with clang
+			local libcxx="sys-libs/libcxx-headers sys-libs/libcxxabi sys-libs/libcxx"
+			compiler_stage1+=" <sys-devel/llvm-3.5 ${libcxx}"
+			compiler="${libcxx} <sys-devel/llvm-3.6 <sys-devel/clang-3.6"
 			;;
 		*-*-aix*)
 			linker=sys-devel/native-cctools
@@ -194,7 +200,8 @@ bootstrap_setup() {
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
 			echo "CONFIG_SHELL=\"${ROOT}/bin/bash\""
 			if [[ -n ${PREFIX_DISABLE_USR_SPLIT} ]] ; then
-				echo "# be careful with this one, don't just remove it!"
+				echo
+				echo "# This disables /usr-split, removing this will break"
 				echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
 			fi
 			[[ -n $PORTDIR_OVERLAY ]] && \
@@ -370,7 +377,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20150510"
+	local PV="20150531"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
@@ -1012,7 +1019,7 @@ do_emerge_pkgs() {
 		PORTAGE_SYNC_STALE=0 \
 		FEATURES="-news ${FEATURES}" \
 		PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym \
-		USE="-berkdb -fortran -gdbm -git -nls -pcre -ssl -python bootstrap internal-glib ${USE}" \
+		USE="-berkdb -fortran -gdbm -git -libcxx -nls -pcre -ssl -python bootstrap clang internal-glib ${USE}" \
 		emerge -v --oneshot --root-deps ${opts} "${pkg}" || return 1
 	done
 }
@@ -1060,7 +1067,6 @@ bootstrap_stage2() {
 		sys-devel/bison
 		sys-devel/patch
 		sys-devel/binutils-config
-		sys-devel/gcc-config
 		dev-libs/gmp
 		dev-libs/mpfr
 		dev-libs/mpc
@@ -1077,16 +1083,27 @@ bootstrap_stage2() {
 	# produce binaries in ${ROOT}.
 	USE="${USE} -cxx" \
 	TPREFIX="${ROOT}" \
-	emerge_pkgs --nodeps "${linker}" || return 1
+	emerge_pkgs --nodeps ${linker} || return 1
 	
-	EXTRA_ECONF=--disable-bootstrap \
+	EXTRA_ECONF="--disable-bootstrap" \
 	GCC_MAKE_TARGET=all \
 	TPREFIX="${ROOT}" \
-	emerge_pkgs --nodeps "${compiler_stage1}" || return 1
+	emerge_pkgs --nodeps ${compiler_stage1} || return 1
 	
 	# make sure the EPREFIX gcc shared libraries are there
 	mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
 	cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
+
+	if [[ ${CHOST} == *darwin* ]] ; then
+		# we use Clang as our toolchain compiler, so we need to make
+		# sure we actually use it
+		{
+			echo
+			echo "# System compiler on Darwin Prefix is Clang, do not remove this"
+			echo "CC=clang"
+			echo "CXX=clang++"
+		} >> "${ROOT}"/etc/portage/make.conf
+	fi
 
 	einfo "stage2 successfully finished"
 }
@@ -1134,17 +1151,20 @@ bootstrap_stage3() {
 		sys-devel/m4
 		sys-devel/flex
 		sys-devel/binutils-config
-		sys-devel/gcc-config
 		sys-libs/zlib
 		dev-libs/gmp
 		dev-libs/mpfr
 		dev-libs/mpc
 		$([[ ${CHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
 		$([[ ${CHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
-		"${linker}"
-		"${compiler}"
+		${linker}
 	)
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+
+	# work around eselect-python not being there, and llvm insisting on
+	# using python
+	ac_cv_path_PYTHON="${ROOT}/tmp/usr/bin/python" \
+	emerge_pkgs --nodeps ${compiler} || return 1
 
 	# Use $ROOT tools where possible from now on.
 	rm -f "${ROOT}"/bin/sh
@@ -1816,7 +1836,11 @@ EOF
 	# deal with the bash-constructs we use in stage3 and onwards
 	hash -r
 
-	if ! [[ -x ${EPREFIX}/usr/bin/gcc || -x ${EPREFIX}/tmp/usr/bin/gcc ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2_log ; then
+	if ! [[ -x ${EPREFIX}/usr/bin/gcc \
+		|| -x ${EPREFIX}/usr/bin/clang \
+		|| -x ${EPREFIX}/tmp/usr/bin/gcc \
+		|| ${EPREFIX}/tmp/usr/bin/clang ]] \
+		&& ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2_log ; then
 		# stage 2 fail
 		cat << EOF
 
