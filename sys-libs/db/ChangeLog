@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.376 2015/05/29 06:31:25 polynomial-c Exp $
 
+  01 Jun 2015; Fabian Groffen <grobian@gentoo.org> db-5.1.29-r1.ebuild,
+  files/db-4.8.30-rename-atomic-compare-exchange.patch:
+  Forward port atomic-compare-exchange patch to 5.1
+
 *db-6.1.23 (29 May 2015)
 
   29 May 2015; Lars Wendler <polynomial-c@gentoo.org> +db-6.1.23.ebuild:

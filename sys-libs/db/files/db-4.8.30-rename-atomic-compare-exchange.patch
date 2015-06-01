@@ -1,7 +1,5 @@
-diff --git a/dbinc/atomic.h b/dbinc/atomic.h
-index 0034dcc..fa7ba93 100644
---- a/dbinc/atomic.h
-+++ b/dbinc/atomic.h
+--- a/src/dbinc/atomic.h
++++ b/src/dbinc/atomic.h
 @@ -144,7 +144,7 @@ typedef LONG volatile *interlocked_val;
  #define	atomic_inc(env, p)	__atomic_inc(p)
  #define	atomic_dec(env, p)	__atomic_dec(p)
