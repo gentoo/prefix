@@ -118,7 +118,7 @@ configure_cflags() {
 			# "lib.so(shr.o)" sharedlib variant.
 			export LDFLAGS="-Wl,-brtl -L${ROOT}/tmp/usr/lib"
 			;;
-		i586-pc-interix* | i586-pc-winnt* | i686-pc-cygwin*)
+		i586-pc-interix* | i586-pc-winnt* | *-pc-cygwin*)
 			export LDFLAGS="-L${ROOT}/tmp/usr/lib"
 			;;
 		*)
@@ -297,6 +297,9 @@ bootstrap_setup() {
 			;;
 		i686-pc-cygwin*)
 			profile="prefix/windows/cygwin/${CHOST#i686-pc-cygwin}/x86"
+			;;
+		x86_64-pc-cygwin*)
+			profile="prefix/windows/cygwin/${CHOST#x86_64-pc-cygwin}/x64"
 			;;
 		hppa64*-hp-hpux11*)
 			profile="prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa64"
@@ -2003,10 +2006,13 @@ if [[ -z ${CHOST} ]]; then
 				esac
 				;;
 			CYGWIN*)
-				# http://www.cygwin.com/ml/cygwin/2009-02/msg00669.html
 				case `uname -r` in
-					1.7*)
+					1.7*) # http://www.cygwin.com/ml/cygwin/2009-02/msg00669.html
 						CHOST="`uname -m`-pc-cygwin1.7"
+					;;
+					2.[0-9]*) # https://sourceware.org/ml/cygwin/2015-04/msg00595.html
+						# probably split on important features
+						CHOST="`uname -m`-pc-cygwin2.0"
 					;;
 					*)
 						CHOST="`uname -m`-pc-cygwin"
