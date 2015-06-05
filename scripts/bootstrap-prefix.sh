@@ -1577,6 +1577,7 @@ EOF
 	echo
 	local ncpu=
     case "${CHOST}" in
+		*-cygwin*)     ncpu=${NUMBER_OF_PROCESSORS}                        ;;
 		*-darwin*)     ncpu=$(/usr/sbin/sysctl -n hw.ncpu)                 ;;
 		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
 		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
