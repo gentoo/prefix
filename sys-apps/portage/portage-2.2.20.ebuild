@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id: portage-2.2.01.16270.ebuild 58665 2010-09-05 19:54:38Z grobian $
 
@@ -13,7 +13,7 @@ PYTHON_COMPAT=(
 inherit eutils multilib
 
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
-HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
+HOMEPAGE="http://prefix.gentoo.org/"
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
@@ -372,9 +372,6 @@ src_install() {
 		rm "${ED}"${portage_base}/bin/ebuild-helpers/bsd/sed || die "Failed to remove sed wrapper"
 	fi
 
-	exeinto ${portage_base}/pym/portage/tests
-	doexe  "${S}"/pym/portage/tests/runTests
-
 	use doc && dohtml -r "${S}"/doc/*
 	use epydoc && dohtml -r "${WORKDIR}"/api
 	dodir /etc/portage
@@ -474,7 +471,7 @@ new_config_protect() {
 
 pkg_postinst() {
 
-	if ${REPOS_CONF_UPGRADE} ; then
+	if [[ -n ${REPOS_CONF_UPGRADE} ]] ; then
 		einfo "Generating repos.conf"
 		local repo_name=
 		[[ -f ${PORTDIR}/profiles/repo_name ]] && \
