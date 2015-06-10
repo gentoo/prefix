@@ -158,7 +158,7 @@ configure_toolchain() {
 		*-darwin*)
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
-			compiler_stage1=
+			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
 			case "$( (unset CHOST; gcc --version) )" in
 				*"(GCC) 4.2.1 "*|*"Apple LLVM version "*)
 					linker=sys-devel/binutils-apple
@@ -169,7 +169,7 @@ configure_toolchain() {
 					;;
 				*"(GCC) 4.0.1 "*)
 					linker="=sys-devel/binutils-apple-3.2"
-					compiler_stage1="sys-devel/gcc-config sys-devel/gcc-apple"
+					compiler_stage1+=" sys-devel/gcc-config sys-devel/gcc-apple"
 					;;
 				*)
 					eerror "unknown compiler"
@@ -180,7 +180,7 @@ configure_toolchain() {
 			# libcxx, which only compiles with clang
 			local libcxx="sys-libs/libcxx-headers sys-libs/libcxxabi sys-libs/libcxx"
 			compiler_stage1+=" <sys-devel/llvm-3.5 ${libcxx}"
-			compiler="${libcxx} <sys-devel/llvm-3.6 <sys-devel/clang-3.6"
+			compiler="${libcxx} sys-libs/csu <sys-devel/llvm-3.6 <sys-devel/clang-3.6"
 			;;
 		*-*-aix*)
 			linker=sys-devel/native-cctools
@@ -1074,8 +1074,6 @@ bootstrap_stage2() {
 		dev-libs/mpfr
 		dev-libs/mpc
 		$([[ ${CHOST} == *-aix* ]] && echo sys-apps/diffutils ) # gcc can't deal with aix diffutils, gcc PR14251
-		$([[ ${CHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
-		$([[ ${CHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
 	)
 	# Most binary Linux distributions seem to fancy toolchains that
 	# do not do c++ support (need to install a separate package).
@@ -1158,8 +1156,6 @@ bootstrap_stage3() {
 		dev-libs/gmp
 		dev-libs/mpfr
 		dev-libs/mpc
-		$([[ ${CHOST} == *-darwin* ]] && echo sys-apps/darwin-miscutils ) # gcc-apple dependency
-		$([[ ${CHOST} == *-darwin* ]] && echo sys-libs/csu ) # gcc-apple dependency
 		${linker}
 	)
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
