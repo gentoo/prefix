@@ -148,9 +148,10 @@ configure_cflags() {
 
 configure_toolchain() {
 	linker=sys-devel/binutils
-	compiler="sys-devel/gcc-config sys-devel/gcc"
+	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc"
+	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 	# The host may not have a functioning c++ toolchain, so use a stage1 compiler that can build with C only.
-	compiler_stage1="sys-devel/gcc-config <sys-devel/gcc-4.8"
+	compiler_stage1="${gcc_deps} sys-devel/gcc-config <sys-devel/gcc-4.8"
 
 	CC=gcc
 	CXX=g++
@@ -169,7 +170,7 @@ configure_toolchain() {
 					;;
 				*"(GCC) 4.0.1 "*)
 					linker="=sys-devel/binutils-apple-3.2"
-					compiler_stage1+=" sys-devel/gcc-config sys-devel/gcc-apple"
+					compiler_stage1+=" ${gcc_deps} sys-devel/gcc-config sys-devel/gcc-apple"
 					;;
 				*)
 					eerror "unknown compiler"
@@ -1070,9 +1071,6 @@ bootstrap_stage2() {
 		sys-devel/bison
 		sys-devel/patch
 		sys-devel/binutils-config
-		dev-libs/gmp
-		dev-libs/mpfr
-		dev-libs/mpc
 		$([[ ${CHOST} == *-aix* ]] && echo sys-apps/diffutils ) # gcc can't deal with aix diffutils, gcc PR14251
 	)
 	# Most binary Linux distributions seem to fancy toolchains that
@@ -1153,9 +1151,6 @@ bootstrap_stage3() {
 		sys-devel/flex
 		sys-devel/binutils-config
 		sys-libs/zlib
-		dev-libs/gmp
-		dev-libs/mpfr
-		dev-libs/mpc
 		${linker}
 	)
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
