@@ -595,6 +595,17 @@ bootstrap_gnu() {
 	[[ ${PN} == "libffi" ]] && 
 	sed -i -e '/includesdir =/s/=.*/= $(includedir)/' include/Makefile.in
 
+	# we have to build the libraries for correct bitwidth
+	[[ " libffi " == *" ${PN} "* ]] &&
+	case $CHOST in
+	(x86_64-*-*|sparcv9-*-*)
+		export CFLAGS="-m64"
+		;;
+	(i?86-*-*)
+		export CFLAGS="-m32"
+		;;
+	esac
+
 	einfo "Compiling ${PN}"
 	econf ${myconf} || return 1
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
