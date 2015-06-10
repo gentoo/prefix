@@ -697,10 +697,10 @@ bootstrap_python() {
 		;;
 	esac
 
-	# python refuses to find the zlib headers that are built in the
-	# offset
+	# python refuses to find the zlib headers that are built in the offset,
+	# same for libffi, which installs into compiler's multilib-osdir
 	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
-	export LDFLAGS="${CFLAGS} -L${ROOT}/tmp/usr/lib"
+	export LDFLAGS="${CFLAGS} -L${ROOT}/tmp/usr/lib -L${ROOT}/tmp/usr/lib64"
 	# set correct flags for runtime for ELF platforms
 	case $CHOST in
 		*-*bsd*|*-linux*)
