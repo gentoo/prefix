@@ -591,6 +591,10 @@ bootstrap_gnu() {
 	# Gentoo Bug 400831, fails on Ubuntu with libssl-dev installed
 	[[ ${PN} == "wget" ]] && myconf="${myconf} --without-ssl"
 
+	# we do not have pkg-config to find lib/libffi-*/include/ffi.h
+	[[ ${PN} == "libffi" ]] && 
+	sed -i -e '/includesdir =/s/=.*/= $(includedir)/' include/Makefile.in
+
 	einfo "Compiling ${PN}"
 	econf ${myconf} || return 1
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
@@ -640,6 +644,8 @@ bootstrap_python() {
 	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
 	S="${S}"/Python-${PV}
 	cd "${S}"
+	rm -rf Modules/_ctypes/libffi* || return 1
+	rm -rf Modules/zlib || return 1
 
 	if ${patch}; then
 		# This patch is critical and needs to be applied even
@@ -708,8 +714,11 @@ bootstrap_python() {
 	einfo "Compiling ${A%-*}"
 
 	#some ancient versions of hg fail with "hg id -i", so help configure to not find them
+	# do not find libffi via pkg-config
 	HAS_HG=no \
+	PKG_CONFIG= \
 	econf \
+		--with-system-ffi \
 		--disable-toolbox-glue \
 		--disable-ipv6 \
 		--disable-shared \
@@ -794,6 +803,10 @@ bootstrap_zlib_core() {
 bootstrap_zlib() {
 	bootstrap_zlib_core 1.2.8 || bootstrap_zlib_core 1.2.7 || \
 	bootstrap_zlib_core 1.2.6 || bootstrap_zlib_core 1.2.5
+}
+
+bootstrap_libffi() {
+	bootstrap_gnu libffi 3.2.1
 }
 
 bootstrap_sed() {
@@ -957,6 +970,11 @@ bootstrap_stage1() { (
 		zlib=
 	done
 	[[ -n ${zlib} ]] || (bootstrap_zlib) || return 1
+	for libffi in ${ROOT}/tmp/usr/lib/libffi.* ; do
+		[[ -e ${libffi} ]] && break
+		libffi=
+	done
+	[[ -n ${libffi} ]] || (bootstrap_libffi) || return 1
 	# too vital to rely on a host-provided one
 	[[ -x ${ROOT}/tmp/usr/bin/python ]] || (bootstrap_python) || return 1
 
