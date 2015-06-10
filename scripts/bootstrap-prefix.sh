@@ -970,7 +970,7 @@ bootstrap_stage1() { (
 		zlib=
 	done
 	[[ -n ${zlib} ]] || (bootstrap_zlib) || return 1
-	for libffi in ${ROOT}/tmp/usr/lib/libffi.* ; do
+	for libffi in ${ROOT}/tmp/usr/lib*/libffi.* ; do
 		[[ -e ${libffi} ]] && break
 		libffi=
 	done
