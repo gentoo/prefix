@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r3.ebuild,v 1.17 2014/08/05 16:09:26 ottxor Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r4.ebuild,v 1.3 2015/04/06 20:11:01 vapier Exp $
 
 EAPI="4"
 inherit eutils flag-o-matic toolchain-funcs multilib-minimal libtool
@@ -57,6 +57,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.9-rxvt-unicode-9.15.patch #192083 #383871
 	epatch "${FILESDIR}"/${PN}-5.9-fix-clang-build.patch #417763
 	epatch "${FILESDIR}"/${PN}-5.9-pkg-config.patch
+	epatch "${FILESDIR}"/${P}-no-I-usr-include.patch #522586
+	epatch "${FILESDIR}"/${P}-gcc-5.patch #545114
 
 	# /bin/sh is not always good enough
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
@@ -169,7 +171,7 @@ do_configure() {
 		--enable-echo
 		$(use_enable !ada warnings)
 		$(use_with debug assertions)
-		$(use_enable debug leaks)
+		$(use_enable !debug leaks)
 		$(use_with debug expanded)
 		$(use_with !debug macros)
 		$(use_with trace)
@@ -185,7 +187,9 @@ do_configure() {
 		--without-reentrant
 	)
 
-	econf "${conf[@]}" "$@"
+	# Force bash until upstream rebuilds the configure script with a newer
+	# version of autotools. #545532
+	CONFIG_SHELL="${BASH}" econf "${conf[@]}" "$@"
 }
 
 src_compile() {
