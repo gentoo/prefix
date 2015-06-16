@@ -180,7 +180,7 @@ configure_toolchain() {
 			# we always have to bootstrap with 3.4 for else we'd need
 			# libcxx, which only compiles with clang
 			local libcxx="sys-libs/libcxx-headers sys-libs/libcxxabi sys-libs/libcxx"
-			compiler_stage1+=" <sys-devel/llvm-3.5 ${libcxx}"
+			compiler_stage1+=" dev-libs/libffi <sys-devel/llvm-3.5 ${libcxx}"
 			compiler="${libcxx} sys-libs/csu dev-libs/libffi <sys-devel/llvm-3.6 <sys-devel/clang-3.6"
 			;;
 		*-*-aix*)
