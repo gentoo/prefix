@@ -1,6 +1,110 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.640 2015/03/19 23:07:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.665 2015/06/15 12:38:02 vapier Exp $
+
+  15 Jun 2015; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8z_p7.ebuild,
+  openssl-1.0.1o.ebuild:
+  Mark arm64/m68k/s390/sh stable #551832.
+
+  13 Jun 2015; Mikle Kolyada <zlogene@gentoo.org> openssl-0.9.8z_p7.ebuild,
+  openssl-1.0.1o.ebuild:
+  arm stable wrt bug #551832
+
+  13 Jun 2015; Anthony G. Basile <blueness@gentoo.org> openssl-0.9.8z_p7.ebuild:
+  Stable for ppc and ppc64.  Bug #551832.
+
+  13 Jun 2015; Anthony G. Basile <blueness@gentoo.org> openssl-1.0.1o.ebuild:
+  Stable for ppc.  Bug #551832.
+
+  13 Jun 2015; Agostino Sarubbo <ago@gentoo.org> openssl-0.9.8z_p7.ebuild,
+  openssl-1.0.1o.ebuild:
+  Stable for x86, wrt bug #551832
+
+  13 Jun 2015; Mikle Kolyada <zlogene@gentoo.org> openssl-0.9.8z_p7.ebuild,
+  openssl-1.0.1o.ebuild:
+  amd64 stable wrt bug #551832
+
+  13 Jun 2015; Jeroen Roovers <jer@gentoo.org> openssl-1.0.1o.ebuild:
+  Stable for HPPA PPC64 (bug #551832).
+
+*openssl-1.0.1o (12 Jun 2015)
+*openssl-1.0.2c (12 Jun 2015)
+
+  12 Jun 2015; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.1o.ebuild,
+  +openssl-1.0.2c.ebuild:
+  Version bumps.
+
+*openssl-1.0.2b (11 Jun 2015)
+*openssl-1.0.1n (11 Jun 2015)
+*openssl-0.9.8z_p7 (11 Jun 2015)
+
+  11 Jun 2015; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8z_p7.ebuild,
+  +openssl-1.0.1n.ebuild, +openssl-1.0.2b.ebuild:
+  Version bump.
+
+  27 May 2015; Mikle Kolyada <zlogene@gentoo.org> openssl-0.9.8z_p6.ebuild,
+  openssl-1.0.1m.ebuild:
+  arm stable wrt bug #547992
+
+  20 May 2015; Matt Turner <mattst88@gentoo.org> openssl-0.9.8z_p6.ebuild,
+  openssl-1.0.1m.ebuild:
+  alpha stable, bug 547992.
+
+  15 May 2015; Pacho Ramos <pacho@gentoo.org> openssl-0.9.8z_p6.ebuild,
+  openssl-1.0.1m.ebuild:
+  ppc stable wrt bug #547992
+
+  13 May 2015; Agostino Sarubbo <ago@gentoo.org> openssl-0.9.8z_p6.ebuild,
+  openssl-1.0.1m.ebuild:
+  Stable for x86, wrt bug #547992
+
+  11 May 2015; Mikle Kolyada <zlogene@gentoo.org> openssl-0.9.8z_p6.ebuild,
+  openssl-1.0.1m.ebuild:
+  amd64 stable wrt bug #547992
+
+  06 May 2015; Mike Frysinger <vapier@gentoo.org> openssl-1.0.1m.ebuild:
+  Mark arm64/ia64/m68k/s390/sh stable #547992.
+
+  30 Apr 2015; Jeroen Roovers <jer@gentoo.org> openssl-1.0.1m.ebuild:
+  Stable for HPPA (bug #547992).
+
+  29 Apr 2015; Jeroen Roovers <jer@gentoo.org> openssl-1.0.1m.ebuild:
+  Stable for PPC64 (bug #547992).
+
+  03 Apr 2015; Mike Frysinger <vapier@gentoo.org>
+  files/openssl-1.0.0a-ldflags.patch, files/openssl-1.0.2a-parallel-build.patch:
+  Fix upstream bug url.
+
+  03 Apr 2015; Mike Frysinger <vapier@gentoo.org>
+  +files/openssl-1.0.2a-parallel-symlinking.patch, openssl-1.0.2a.ebuild:
+  Fix parallel build wrt symlinking of generated libs #545028 by Martin von
+  Gagern.
+
+  02 Apr 2015; Mike Frysinger <vapier@gentoo.org> openssl-1.0.2a.ebuild,
+  files/openssl-1.0.2a-parallel-build.patch,
+  +files/openssl-1.0.2a-parallel-install-dirs.patch,
+  +files/openssl-1.0.2a-parallel-obj-headers.patch:
+  Split parallel build patch up a bit to match how they've been sent upstream.
+
+  02 Apr 2015; Mike Frysinger <vapier@gentoo.org> openssl-1.0.2a.ebuild,
+  files/openssl-1.0.2a-malloc-typo.patch, files/openssl-1.0.2a-x32-asm.patch:
+  Add links to upstream bug reports.
+
+  21 Mar 2015; Mike Frysinger <vapier@gentoo.org>
+  +files/openssl-1.0.2a-x32-asm.patch, openssl-1.0.2a.ebuild:
+  Fix building on x32 ABIs #542618 by Bertrand Jacquin.
+
+  21 Mar 2015; Mike Frysinger <vapier@gentoo.org> openssl-1.0.2a.ebuild,
+  metadata.xml:
+  Add USE=asm so people can easily turn off assembly code for testing purposes
+  #528158 by Joakim Tjernlund.
+
+  21 Mar 2015; Mike Frysinger <vapier@gentoo.org> openssl-1.0.2a.ebuild:
+  Use existing use_ssl helper for sctp flags.
+
+  21 Mar 2015; Mike Frysinger <vapier@gentoo.org>
+  +files/openssl-1.0.2a-malloc-typo.patch, openssl-1.0.2a.ebuild:
+  Fix typo in malloc define #543828 by Conrad Kostecki.
 
   06 May 2015; Michael Haubenwallner <haubi@gentoo.org> openssl-1.0.2a.ebuild,
   +files/openssl-1.0.2a-aix-soname.patch:

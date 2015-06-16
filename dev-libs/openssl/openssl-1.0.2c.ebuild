@@ -1,21 +1,23 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.1j.ebuild,v 1.11 2015/01/28 19:35:28 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-1.0.2c.ebuild,v 1.1 2015/06/12 16:06:03 vapier Exp $
 
 EAPI="4"
 
 inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal
 
 REV="1.7"
+MY_P=${P/_/-}
 DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="http://www.openssl.org/"
-SRC_URI="mirror://openssl/source/${P}.tar.gz
+SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
 	http://cvs.pld-linux.org/cgi-bin/cvsweb.cgi/packages/${PN}/${PN}-c_rehash.sh?rev=${REV} -> ${PN}-c_rehash.sh.${REV}"
 
 LICENSE="openssl"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="bindist gmp kerberos rfc3779 cpu_flags_x86_sse2 static-libs test +tls-heartbeat vanilla zlib"
+IUSE="+asm bindist gmp kerberos rfc3779 sctp cpu_flags_x86_sse2 static-libs test +tls-heartbeat vanilla zlib"
+RESTRICT="!bindist? ( bindist )"
 
 # The blocks are temporary just to make sure people upgrade to a
 # version that lack runtime version checking.  We'll drop them in
@@ -24,7 +26,7 @@ RDEPEND="gmp? ( >=dev-libs/gmp-5.1.3-r1[static-libs(+)?,${MULTILIB_USEDEP}] )
 	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )
 	kerberos? ( >=app-crypt/mit-krb5-1.11.4[${MULTILIB_USEDEP}] )
 	abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20140406-r3
+		!<=app-emulation/emul-linux-x86-baselibs-20140508
 		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
 	)
 	!<net-misc/openssh-5.9_p1-r4
@@ -32,25 +34,24 @@ RDEPEND="gmp? ( >=dev-libs/gmp-5.1.3-r1[static-libs(+)?,${MULTILIB_USEDEP}] )
 DEPEND="${RDEPEND}
 	sys-apps/diffutils
 	>=dev-lang/perl-5
+	sctp? ( >=net-misc/lksctp-tools-1.0.12 )
 	test? ( sys-devel/bc )"
-
 PDEPEND="app-misc/ca-certificates"
 
-src_unpack() {
-	unpack ${P}.tar.gz
-	SSL_CNF_DIR="/etc/ssl"
-	sed \
-		-e "/^DIR=/s:=.*:=${EPREFIX}${SSL_CNF_DIR}:" \
-		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
-		"${DISTDIR}"/${PN}-c_rehash.sh.${REV} \
-		> "${WORKDIR}"/c_rehash || die #416717 #350601
-}
+S="${WORKDIR}/${MY_P}"
 
 MULTILIB_WRAPPED_HEADERS=(
 	usr/include/openssl/opensslconf.h
 )
 
 src_prepare() {
+	SSL_CNF_DIR="/etc/ssl"
+	sed \
+		-e "/^DIR=/s:=.*:=${EPREFIX}${SSL_CNF_DIR}:" \
+		-e "s:SSL_CMD=/usr:SSL_CMD=${EPREFIX}/usr:" \
+		"${DISTDIR}"/${PN}-c_rehash.sh.${REV} \
+		> "${WORKDIR}"/c_rehash || die #416717 #350601
+
 	# Make sure we only ever touch Makefile.org and avoid patching a file
 	# that gets blown away anyways by the Configure script in src_configure
 	rm -f Makefile
@@ -58,12 +59,13 @@ src_prepare() {
 	if ! use vanilla ; then
 		epatch "${FILESDIR}"/${PN}-1.0.0a-ldflags.patch #327421
 		epatch "${FILESDIR}"/${PN}-1.0.0d-windres.patch #373743
-		epatch "${FILESDIR}"/${PN}-1.0.0h-pkg-config.patch
-		epatch "${FILESDIR}"/${PN}-1.0.1-parallel-build.patch
-		epatch "${FILESDIR}"/${PN}-1.0.1-x32.patch
-		epatch "${FILESDIR}"/${PN}-1.0.1h-ipv6.patch
-		epatch "${FILESDIR}"/${PN}-1.0.1e-s_client-verify.patch #472584
-		epatch "${FILESDIR}"/${PN}-1.0.1f-revert-alpha-perl-generation.patch #499086
+		epatch "${FILESDIR}"/${PN}-1.0.2a-parallel-build.patch
+		epatch "${FILESDIR}"/${PN}-1.0.2a-parallel-obj-headers.patch
+		epatch "${FILESDIR}"/${PN}-1.0.2a-parallel-install-dirs.patch
+		epatch "${FILESDIR}"/${PN}-1.0.2a-parallel-symlinking.patch #545028
+		epatch "${FILESDIR}"/${PN}-1.0.2-ipv6.patch
+		epatch "${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
+
 		epatch_user #332661
 	fi
 
@@ -89,9 +91,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0a-interix.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0a-mint.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8l-aixso.patch #213277: with import files now
+	epatch "${FILESDIR}"/${PN}-1.0.2a-aix-soname.patch # like libtool
 	epatch "${FILESDIR}"/${PN}-1.0.0b-darwin-bundle-compile-fix.patch
-	epatch "${FILESDIR}"/${PN}-1.0.1-gethostbyname2-solaris.patch
+	epatch "${FILESDIR}"/${PN}-1.0.2-gethostbyname2-solaris.patch
 	if [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
 	fi
@@ -119,6 +121,7 @@ src_prepare() {
 
 	append-flags -fno-strict-aliasing
 	append-flags $(test-flags-CC -Wa,--noexecstack)
+	append-cppflags -DOPENSSL_NO_BUF_FREELISTS
 
 	# avoid waiting on terminal input forever when spitting
 	# 64bit warning message.
@@ -155,7 +158,7 @@ multilib_src_configure() {
 	# IDEA:     Expired                 http://en.wikipedia.org/wiki/International_Data_Encryption_Algorithm
 	# EC:       ????????? ??/??/2015    http://en.wikipedia.org/wiki/Elliptic_Curve_Cryptography
 	# MDC2:     Expired                 http://en.wikipedia.org/wiki/MDC-2
-	# RC5:      5,724,428 03/03/2015    http://en.wikipedia.org/wiki/RC5
+	# RC5:      Expired                 http://en.wikipedia.org/wiki/RC5
 
 	use_ssl() { usex $1 "enable-${2:-$1}" "no-${2:-$1}" " ${*:3}" ; }
 	echoit() { echo "$@" ; "$@" ; }
@@ -201,11 +204,13 @@ multilib_src_configure() {
 		${ec_nistp_64_gcc_128} \
 		enable-idea \
 		enable-mdc2 \
-		$(use_ssl !bindist rc5) \
+		enable-rc5 \
 		enable-tlsext \
+		$(use_ssl asm) \
 		$(use_ssl gmp gmp -lgmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
 		$(use_ssl rfc3779) \
+		$(use_ssl sctp) \
 		$(use_ssl tls-heartbeat heartbeats) \
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
