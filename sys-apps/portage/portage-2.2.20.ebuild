@@ -237,6 +237,7 @@ src_prepare() {
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
 	epatch "${FILESDIR}"/${PN}-2.2.8-ebuildshell.patch # 155161
+	epatch "${FILESDIR}"/${PN}-2.2.10.1-brokentty-more-platforms.patch
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
