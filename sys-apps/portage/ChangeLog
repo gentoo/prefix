@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  20 Jun 2015; Fabian Groffen <grobian@gentoo.org>
+  files/portage-2.2.10.1-brokentty-more-platforms.patch, portage-2.2.20.ebuild:
+  Committed pty patch upstream
+
   19 Jun 2015; Michael Haubenwallner <haubi@gentoo.org> portage-2.2.20.ebuild,
   +files/portage-2.2.10.1-brokentty-more-platforms.patch:
   disable openpty usage on AIX,HP-UX too
