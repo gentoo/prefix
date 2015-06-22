@@ -1616,6 +1616,7 @@ EOF
 	# case anyway.
 	local tcpu=$((ncpu / 2 + 1))
 	[[ ${tcpu} -gt 8 ]] && tcpu=8
+	[[ -n ${USE_CPU_CORES} ]] && tcpu=${USE_CPU_CORES}
 	cat << EOF
 
 I did my utmost best, and found that you have ${ncpu} cpu cores.  If
