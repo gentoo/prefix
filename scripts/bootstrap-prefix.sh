@@ -457,6 +457,8 @@ bootstrap_portage() {
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
+	patch -p1 < "${ROOT}"/usr/portage/sys-apps/portage/files/portage-2.2.10.1-brokentty-more-platforms.patch # now upstream
+
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
 		-i pym/_emerge/AbstractEbuildProcess.py || \
