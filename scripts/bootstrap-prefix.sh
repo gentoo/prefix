@@ -570,6 +570,9 @@ bootstrap_gnu() {
 	[[ $CHOST == *-aix7* ]] && export ac_cv_func_fstatat=no
 	# AIX lacks /dev/fd/*, bash uses (blocking) named pipes instead
 	[[ ${PN} == "bash" ]] && sed -i -e 's/|O_NONBLOCK//' subst.c
+	# but portage's multijob needs more unique pipe names
+	[[ ${PN},${CHOST} == bash,*-aix* ]] &&
+	export CPPFLAGS="${CPPFLAGS}${CPPFLAGS:+ }-DUSE_MKTEMP"
 
 	# NetBSD has strange openssl headers, which make wget fail.
 	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
