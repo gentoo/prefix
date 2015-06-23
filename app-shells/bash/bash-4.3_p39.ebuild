@@ -155,6 +155,10 @@ src_configure() {
 		export ac_cv_lib_tinfo_tgetent=no
 		export ac_cv_lib_curses_tgetent=no # found on AIX
 		#export ac_cv_lib_ncurses_tgetent=no
+
+		# Without /dev/fd/*, bash uses named pipes instead, but the
+		# pipe names are not unique enough for portage's multijob.
+		append-cppflags -DUSE_MKTEMP
 	fi
 
 	# Don't even think about building this statically without
