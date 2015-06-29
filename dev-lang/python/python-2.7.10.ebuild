@@ -124,7 +124,8 @@ src_prepare() {
 	# Fix for cross-compiling.
 	epatch "${FILESDIR}/python-2.7.5-nonfatal-compileall.patch"
 	epatch "${FILESDIR}/python-2.7.9-ncurses-pkg-config.patch"
-	epatch "${FILESDIR}/python-2.7.10-semaphore-pid.patch"
+#552422	epatch "${FILESDIR}/python-2.7.10-semaphore-pid.patch"
+	epatch "${FILESDIR}/python-2.7.10-semaphore-urandom.patch" #552422
 
 	epatch "${FILESDIR}"/python-2.7-aix-dlopen-soname.patch # libtool-built modules
 
