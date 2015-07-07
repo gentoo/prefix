@@ -2,6 +2,9 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.92 2015/06/09 08:58:29 jlec Exp $
 
+  07 Jul 2015; Fabian Groffen <grobian@gentoo.org> unzip-6.0-r3.ebuild:
+  app-arch/unzip: fix CC and AS sed replacements
+
   09 Jun 2015; Justin Lecher <jlec@gentoo.org> metadata.xml:
   Updating remote-id in metadata.xml
 
