@@ -3,6 +3,9 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.819 2015/05/28 04:10:47 floppym Exp $
 
   07 Jul 2015; Fabian Groffen <grobian@gentoo.org> python-2.7.10.ebuild:
+  sign manifest
+
+  07 Jul 2015; Fabian Groffen <grobian@gentoo.org> python-2.7.10.ebuild:
   Python 2.7: sanitise sysconfig data also, bug #554130 by Vladimir Smirnov
 
   29 Jun 2015; Michael Haubenwallner <haubi@gentoo.org> python-2.7.10.ebuild,

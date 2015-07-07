@@ -427,7 +427,8 @@ src_install() {
 		# actually look into the UNIX-style dir, we just switch them around.
 		mkdir -p "${ED}"/usr/$(get_libdir)/python${SLOT}
 		mv "${D}${fwdir}"/Versions/${SLOT}/lib/python${SLOT}/* \
-			"${ED}"/usr/$(get_libdir)/python${SLOT}/ || die "can't move python${SLOT}"
+			"${ED}"/usr/$(get_libdir)/python${SLOT}/ \
+			|| die "can't move python${SLOT}"
 		rmdir "${D}${fwdir}"/Versions/${SLOT}/lib/python${SLOT} || die
 		pushd "${D}${fwdir}"/Versions/${SLOT}/lib > /dev/null
 		ln -s ../../../../python${SLOT} || die
