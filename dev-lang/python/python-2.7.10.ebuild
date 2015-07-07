@@ -446,7 +446,18 @@ src_install() {
 			-e '/^PYTHONFRAMEWORKPREFIX=/s/=.*$/=/' \
 			-e '/^PYTHONFRAMEWORKINSTALLDIR=/s/=.*$/=/' \
 			-e '/^LDLIBRARY=/s:=.*$:libpython$(VERSION).dylib:' \
-			"${ED}"/usr/lib/python${SLOT}/config/Makefile || die
+			"${libdir}"/config/Makefile || die
+		# and sysconfigdata likewise
+		sed -i \
+			-e "/'LINKFORSHARED'/s/-u _PyMac_Error[^']*'/'/" \
+			-e "/'LDFLAGS'/s/:.*$/:'',/" \
+			-e "/'prefix'/s|:.*$|:'${EPREFIX}/usr',|" \
+			-e "/'PYTHONFRAMEWORK'/s/:.*$/:'',/" \
+			-e "/'PYTHONFRAMEWORKDIR'/s/:.*$/:'no-framework',/" \
+			-e "/'PYTHONFRAMEWORKPREFIX'/s/:.*$/:'',/" \
+			-e "/'PYTHONFRAMEWORKINSTALLDIR'/s/:.*$/:'',/" \
+			-e "/'LDLIBRARY'/s|:.*$|:'libpython${SLOT}.dylib',|" \
+			"${libdir}"/_sysconfigdata.py || die
 
 		# add missing version.plist file
 		mkdir -p "${D}${fwdir}"/Versions/${SLOT}/Resources
