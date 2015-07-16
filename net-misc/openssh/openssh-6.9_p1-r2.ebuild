@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-6.8_p1-r1.ebuild,v 1.5 2015/03/20 02:35:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-6.9_p1-r2.ebuild,v 1.1 2015/07/08 09:09:13 vapier Exp $
 
 EAPI="4"
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
@@ -9,31 +9,28 @@ inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 # and _p? releases.
 PARCH=${P/_}
 
-HPN_PATCH="${PN}-6.8p1-r1-hpnssh14v5.tar.xz"
+HPN_PATCH="${PN}-6.9p1-r1-hpnssh14v5.tar.xz"
 LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"
-X509_VER="8.3" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
+X509_VER="8.4" X509_PATCH="${PN}-6.9p1+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
-	mirror://gentoo/${P}-sctp.patch.xz
+	mirror://gentoo/${PN}-6.8_p1-sctp.patch.xz
 	${HPN_PATCH:+hpn? (
 		mirror://gentoo/${HPN_PATCH}
-		http://dev.gentoo.org/~vapier/dist/${HPN_PATCH}
+		http://dev.gentoo.org/~polynomial-c/${HPN_PATCH}
 		mirror://sourceforge/hpnssh/${HPN_PATCH}
 	)}
 	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
-	${X509_PATCH:+X509? (
-		http://roumenpetrov.info/openssh/x509-${X509_VER}/${X509_PATCH}
-		mirror://gentoo/${P}-x509-glue.patch.xz
-	)}
+	${X509_PATCH:+X509? ( http://roumenpetrov.info/openssh/x509-${X509_VER}/${X509_PATCH} )}
 	"
 
 LICENSE="BSD GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-# Probably want to drop ssh1/ssl defaulting to on in a future version.
-IUSE="bindist ${HPN_PATCH:++}hpn kerberos kernel_linux ldap ldns libedit pam +pie sctp selinux skey +ssh1 +ssl static X X509"
+# Probably want to drop ssl defaulting to on in a future version.
+IUSE="bindist debug ${HPN_PATCH:++}hpn kerberos kernel_linux ldap ldns libedit pam +pie sctp selinux skey ssh1 +ssl static X X509"
 REQUIRED_USE="pie? ( !static )
 	ssh1? ( ssl )
 	static? ( !kerberos !pam )
@@ -98,7 +95,7 @@ pkg_setup() {
 	# Make sure people who are using tcp wrappers are notified of its removal. #531156
 	if grep -qs '^ *sshd *:' "${EROOT}"/etc/hosts.{allow,deny} ; then
 		eerror "Sorry, but openssh no longer supports tcp-wrappers, and it seems like"
-		eerror "you're trying to use it.  Update your ${EROOT}etc/hosts.deny please."
+		eerror "you're trying to use it.  Update your ${EROOT}etc/hosts.{allow,deny} please."
 		die "USE=tcpd no longer works"
 	fi
 }
@@ -120,14 +117,14 @@ src_prepare() {
 	# don't break .ssh/authorized_keys2 for fun
 	sed -i '/^AuthorizedKeysFile/s:^:#:' sshd_config || die
 
-	epatch "${FILESDIR}"/${PN}-6.8_p1-sshd-gssapi-multihomed.patch #378361
 	if use X509 ; then
 		pushd .. >/dev/null
-		epatch "${WORKDIR}"/${P}-x509-glue.patch
-		epatch "${FILESDIR}"/${P}-sctp-x509-glue.patch
+		#epatch "${WORKDIR}"/${PN}-6.8_p1-x509-${X509_VER}-glue.patch
+		epatch "${FILESDIR}"/${PN}-6.8_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
 		epatch "${FILESDIR}"/${PN}-6.3_p1-x509-hpn14v2-glue.patch
+		epatch "${FILESDIR}"/${PN}-6.9_p1-x509-warnings.patch
 		save_version X509
 	fi
 	if use ldap ; then
@@ -138,9 +135,11 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.7_p1-openssl-ignore-status.patch
 	# The X509 patchset fixes this independently.
 	use X509 || epatch "${FILESDIR}"/${PN}-6.8_p1-ssl-engine-configure.patch
-	epatch "${WORKDIR}"/${P}-sctp.patch
+	epatch "${WORKDIR}"/${PN}-6.8_p1-sctp.patch
 	if use hpn ; then
-		epatch "${WORKDIR}"/${HPN_PATCH%.*.*}/*
+		EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
+			EPATCH_MULTI_MSG="Applying HPN patchset ..." \
+			epatch "${WORKDIR}"/${HPN_PATCH%.*.*}
 		save_version HPN
 	fi
 
@@ -178,6 +177,7 @@ src_configure() {
 	addwrite /dev/ptmx
 	addpredict /etc/skey/skeykeys # skey configure code triggers this
 
+	use debug && append-cppflags -DSANDBOX_SECCOMP_FILTER_DEBUG
 	use static && append-ldflags -static
 
 	local myconf=(
@@ -246,12 +246,6 @@ src_install() {
 	SendEnv LANG LC_*
 	EOF
 
-	# This instruction is from the HPN webpage,
-	# Used for the server logging functionality
-	if [[ -n ${HPN_PATCH} ]] && use hpn ; then
-		keepdir /var/empty/dev
-	fi
-
 	if ! use X509 && [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 		insinto /etc/openldap/schema/
 		newins openssh-lpk_openldap.schema openssh-lpk.schema
@@ -314,14 +308,11 @@ pkg_postinst() {
 		elog "algorithm (ECDSA).  You are encouraged to manually update your stored"
 		elog "keys list as servers update theirs.  See ssh-keyscan(1) for more info."
 	fi
+	if has_version "<${CATEGORY}/${PN}-6.9_p1" ; then
+		elog "Starting with openssh-6.9p1, ssh1 support is disabled by default."
+	fi
 	ewarn "Remember to merge your config files in /etc/ssh/ and then"
 	ewarn "reload sshd: '/etc/init.d/sshd reload'."
-	# This instruction is from the HPN webpage,
-	# Used for the server logging functionality
-	if [[ -n ${HPN_PATCH} ]] && use hpn ; then
-		einfo "For the HPN server logging patch, you must ensure that"
-		einfo "your syslog application also listens at /var/empty/dev/log."
-	fi
 	elog "Note: openssh-6.7 versions no longer support USE=tcpd as upstream has"
 	elog "      dropped it.  Make sure to update any configs that you might have."
 }
