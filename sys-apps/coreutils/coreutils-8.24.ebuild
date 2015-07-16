@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.23.ebuild,v 1.1 2014/07/28 09:44:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.24.ebuild,v 1.1 2015/07/10 11:31:59 vapier Exp $
 
 # To generate the man pages, unpack the upstream tarball and run:
 # ./configure --enable-install-program=arch,coreutils
@@ -63,6 +63,8 @@ src_prepare() {
 	# so let's just update the timestamps and skip the help2man step.
 	set -- man/*.x
 	touch ${@/%x/1}
+	# docs depend on configure as well
+	touch -r doc/stamp-vti configure
 
 	# Avoid perl dep for compiled in dircolors default #348642
 	if ! has_version dev-lang/perl ; then
@@ -108,7 +110,7 @@ src_configure() {
 }
 
 src_test() {
-	# Non-root tests will fail if the full path isnt
+	# Non-root tests will fail if the full path isn't
 	# accessible to non-root users
 	chmod -R go-w "${WORKDIR}"
 	chmod a+rx "${WORKDIR}"
