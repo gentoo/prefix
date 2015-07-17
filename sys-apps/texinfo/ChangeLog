@@ -1,6 +1,27 @@
 # ChangeLog for sys-apps/texinfo
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.135 2014/01/18 19:27:30 vapier Exp $
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/ChangeLog,v 1.141 2015/07/08 09:06:51 zlogene Exp $
+
+  08 Jul 2015; Mikle Kolyada <zlogene@gentoo.org> texinfo-5.2.ebuild:
+  x86 stable wrt bug #527998
+
+  07 Jul 2015; Markus Meier <maekke@gentoo.org> texinfo-5.2.ebuild:
+  arm stable, bug #527998
+
+  06 Jul 2015; Mike Frysinger <vapier@gentoo.org> texinfo-5.2.ebuild:
+  Mark arm64/ia64/m68k/s390/sh stable #527998.
+
+  05 Jul 2015; Mikle Kolyada <zlogene@gentoo.org> texinfo-5.2.ebuild:
+  amd64 stable wrt bug #527998
+
+  05 Jul 2015; Jeroen Roovers <jer@gentoo.org> texinfo-5.2.ebuild:
+  Stable for HPPA (bug #527998).
+
+*texinfo-6.0 (30 Jun 2015)
+
+  30 Jun 2015; Lars Wendler <polynomial-c@gentoo.org> -texinfo-5.1.ebuild,
+  +texinfo-6.0.ebuild:
+  Version bump. Removed old.
 
   18 Jan 2014; Mike Frysinger <vapier@gentoo.org> texinfo-4.13-r2.ebuild,
   texinfo-5.1.ebuild, texinfo-5.2.ebuild:
