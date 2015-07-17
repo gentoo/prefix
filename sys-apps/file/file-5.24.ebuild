@@ -1,9 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.22.ebuild,v 1.12 2015/04/08 18:27:33 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.24.ebuild,v 1.1 2015/07/09 15:43:24 vapier Exp $
 
-EAPI="4"
-PYTHON_COMPAT=( python{2_7,3_3,3_4} )
+EAPI="5"
+PYTHON_COMPAT=( python{2_7,3_3,3_4} pypy )
 DISTUTILS_OPTIONAL=1
 
 inherit eutils distutils-r1 libtool toolchain-funcs multilib-minimal
@@ -33,12 +33,6 @@ RDEPEND="${DEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.00-strtoull.patch
-	epatch "${FILESDIR}"/${PN}-5.22-sig_t.patch
-	# avoid eautoreconf when adding check for strtoull #263527
-	sed -i 's/ strtoul / strtoul strtoull __strtoull /' configure
-	sed -i "/#undef HAVE_STRTOUL\$/a#undef HAVE_STRTOULL\n#undef HAVE___STRTOULL" config.h.in
-	# Solaris has no sig_t
-	[[ ${CHOST} == *-solaris* ]] && sed -i -e 's/sig_t/void */' src/compress.c
 
 	[[ ${PV} == "9999" ]] && eautoreconf
 	elibtoolize

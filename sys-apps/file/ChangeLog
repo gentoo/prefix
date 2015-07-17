@@ -1,6 +1,25 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.309 2015/02/05 22:41:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.313 2015/07/09 15:43:24 vapier Exp $
+
+*file-5.24 (09 Jul 2015)
+
+  09 Jul 2015; Mike Frysinger <vapier@gentoo.org> +file-5.24.ebuild:
+  Version bump.
+
+*file-5.23 (15 Jun 2015)
+
+  15 Jun 2015; Lars Wendler <polynomial-c@gentoo.org> +file-5.23.ebuild:
+  Version bump.
+
+  08 Apr 2015; Michał Górny <mgorny@gentoo.org> file-5.22.ebuild:
+  Drop old Python implementations
+
+*file-5.22-r1 (21 Mar 2015)
+
+  21 Mar 2015; Michał Górny <mgorny@gentoo.org> +file-5.22-r1.ebuild,
+  file-9999.ebuild:
+  EAPI bump, bug #543160.
 
   05 May 2015; Michael Haubenwallner <haubi@gentoo.org> file-5.22.ebuild,
   +files/file-5.22-sig_t.patch:
