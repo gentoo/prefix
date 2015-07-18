@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-6.0.0a.ebuild,v 1.2 2014/05/08 20:01:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-6.0.0a.ebuild,v 1.3 2015/03/09 17:53:52 blueness Exp $
 
 EAPI="4"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.xz
 	ftp://ftp.gmplib.org/pub/${MY_P}/${MY_P}.tar.xz
 	doc? ( http://gmplib.org/${PN}-man-${MY_PV}.pdf )"
 
-LICENSE="LGPL-3"
+LICENSE="|| ( LGPL-3+ GPL-2+ )"
 SLOT="0"
 
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
