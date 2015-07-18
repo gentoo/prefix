@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.1.0-r4.ebuild,v 1.2 2014/04/28 17:27:28 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/expat-2.1.0-r4.ebuild,v 1.11 2015/05/27 12:55:43 zlogene Exp $
 
 EAPI=5
 inherit eutils libtool multilib toolchain-funcs autotools flag-o-matic multilib-minimal

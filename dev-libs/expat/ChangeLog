@@ -1,6 +1,36 @@
 # ChangeLog for dev-libs/expat
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.164 2014/04/28 17:27:28 mgorny Exp $
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.174 2015/06/09 14:16:10 jlec Exp $
+
+  09 Jun 2015; Justin Lecher <jlec@gentoo.org> metadata.xml:
+  Updating remote-id in metadata.xml
+
+  27 May 2015; Mikle Kolyada <zlogene@gentoo.org> expat-2.1.0-r4.ebuild:
+  arm stable wrt bug #545846
+
+  30 Apr 2015; Jeroen Roovers <jer@gentoo.org> expat-2.1.0-r4.ebuild:
+  Stable for PPC64 (bug #545846).
+
+  26 Apr 2015; Mikle Kolyada <zlogene@gentoo.org> expat-2.1.0-r4.ebuild:
+  sparc stable wrt bug #545846
+
+  21 Apr 2015; Pacho Ramos <pacho@gentoo.org> expat-2.1.0-r4.ebuild:
+  ppc stable wrt bug #545846
+
+  19 Apr 2015; Agostino Sarubbo <ago@gentoo.org> expat-2.1.0-r4.ebuild:
+  Stable for x86, wrt bug #545846
+
+  14 Apr 2015; Agostino Sarubbo <ago@gentoo.org> expat-2.1.0-r4.ebuild:
+  Stable for ia64, wrt bug #545846
+
+  13 Apr 2015; Agostino Sarubbo <ago@gentoo.org> expat-2.1.0-r4.ebuild:
+  Stable for alpha, wrt bug #545846
+
+  08 Apr 2015; Jeroen Roovers <jer@gentoo.org> expat-2.1.0-r4.ebuild:
+  Stable for HPPA (bug #545846).
+
+  08 Apr 2015; Agostino Sarubbo <ago@gentoo.org> expat-2.1.0-r4.ebuild:
+  Stable for amd64, wrt bug #545846
 
   16 Oct 2014; Fabian Groffen <grobian@gentoo.org> -expat-2.0.1-r6.ebuild,
   -expat-2.1.0-r1.ebuild, -expat-2.1.0-r2.ebuild, metadata.xml:
