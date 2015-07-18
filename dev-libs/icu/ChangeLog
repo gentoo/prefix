@@ -1,6 +1,77 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.293 2015/02/07 17:47:06 dilfridge Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.315 2015/06/24 07:55:22 ago Exp $
+
+  24 Jun 2015; Agostino Sarubbo <ago@gentoo.org> icu-55.1.ebuild:
+  Stable for ppc, wrt bug #546156
+
+  02 Jun 2015; Jack Morgan <jmorgan@gentoo.org> icu-55.1.ebuild:
+  sparc stable wrt bug #546156
+
+  01 Jun 2015; Jack Morgan <jmorgan@gentoo.org> icu-55.1.ebuild:
+  ia64 stable wrt bug #546156
+
+  29 May 2015; Mike Frysinger <vapier@gentoo.org> icu-54.1-r1.ebuild,
+  icu-55.1.ebuild:
+  Mark arm64/m68k/s390/sh stable.
+
+  28 May 2015; Jeroen Roovers <jer@gentoo.org> icu-55.1.ebuild:
+  Stable for HPPA (bug #546156).
+
+  27 May 2015; Agostino Sarubbo <ago@gentoo.org> icu-55.1.ebuild:
+  Stable for arm, wrt bug #546156
+
+  27 May 2015; Agostino Sarubbo <ago@gentoo.org> icu-55.1.ebuild:
+  Stable for x86, wrt bug #547900
+
+  27 May 2015; Agostino Sarubbo <ago@gentoo.org> icu-55.1.ebuild:
+  Stable for amd64, wrt bug #547900
+
+  26 May 2015; Jeroen Roovers <jer@gentoo.org> icu-55.1.ebuild:
+  Stable for PPC64 (bug #546156).
+
+  24 May 2015; Matt Turner <mattst88@gentoo.org> icu-55.1.ebuild:
+  alpha stable, bug 546156.
+
+*icu-55.1 (17 May 2015)
+
+  17 May 2015; Andreas K. Huettel <dilfridge@gentoo.org> +icu-55.1.ebuild:
+  Version bump
+
+  25 Feb 2015; Andreas K. Huettel <dilfridge@gentoo.org> -icu-52.1.ebuild,
+  -icu-53.1.ebuild, -icu-53.1-r3.ebuild:
+  Remove old
+
+  24 Feb 2015; Agostino Sarubbo <ago@gentoo.org> icu-54.1-r1.ebuild:
+  Stable for alpha, wrt bug #539108
+
+  23 Feb 2015; Agostino Sarubbo <ago@gentoo.org> icu-54.1-r1.ebuild:
+  Stable for ia64, wrt bug #539108
+
+  18 Feb 2015; Agostino Sarubbo <ago@gentoo.org> icu-54.1-r1.ebuild:
+  Stable for ppc, wrt bug #539108
+
+  18 Feb 2015; Agostino Sarubbo <ago@gentoo.org> icu-54.1-r1.ebuild:
+  Stable for ppc64, wrt bug #539108
+
+  17 Feb 2015; Markus Meier <maekke@gentoo.org> icu-54.1-r1.ebuild:
+  arm stable, bug #539108
+
+  16 Feb 2015; Agostino Sarubbo <ago@gentoo.org> icu-54.1-r1.ebuild:
+  Stable for sparc, wrt bug #539108
+
+  16 Feb 2015; Jeroen Roovers <jer@gentoo.org> icu-54.1-r1.ebuild:
+  Stable for HPPA (bug #539108).
+
+  15 Feb 2015; Agostino Sarubbo <ago@gentoo.org> icu-54.1-r1.ebuild:
+  Stable for x86, wrt bug #539108
+
+  15 Feb 2015; Agostino Sarubbo <ago@gentoo.org> icu-54.1-r1.ebuild:
+  Stable for amd64, wrt bug #539108
+
+  14 Feb 2015; Andreas K. Huettel <dilfridge@gentoo.org> -icu-53.1-r2.ebuild,
+  -icu-54.1.ebuild:
+  Remove old
 
 *icu-54.1-r1 (07 Feb 2015)
 *icu-53.1-r3 (07 Feb 2015)

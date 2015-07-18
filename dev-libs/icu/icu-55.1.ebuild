@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-54.1-r1.ebuild,v 1.11 2015/05/29 05:05:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-55.1.ebuild,v 1.11 2015/06/24 07:55:22 ago Exp $
 
 EAPI=5
 
@@ -12,7 +12,7 @@ SRC_URI="http://download.icu-project.org/files/icu4c/${PV/_/}/icu4c-${PV//./_}-s
 
 LICENSE="BSD"
 
-SLOT="0/54a"
+SLOT="0/55"
 
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc examples static-libs"
@@ -33,7 +33,6 @@ src_prepare() {
 	local variable
 
 	epatch "${FILESDIR}/${PN}-remove-bashisms.patch"
-	epatch "${FILESDIR}/${P}-CVE-2014-9654.patch"
 	epatch_user
 
 	# fix compilation on Solaris due to enabling of conflicting standards
