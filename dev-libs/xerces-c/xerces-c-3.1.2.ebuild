@@ -1,25 +1,27 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.1.1.ebuild,v 1.1 2010/08/28 06:25:10 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.1.2.ebuild,v 1.6 2015/07/03 08:33:12 ago Exp $
 
-EAPI=2
+EAPI=5
 
 inherit eutils
 
-DESCRIPTION="A validating XML parser written in a portable subset of C++."
+DESCRIPTION="A validating XML parser written in a portable subset of C++"
 HOMEPAGE="http://xerces.apache.org/xerces-c/"
 SRC_URI="mirror://apache/xerces/c/3/sources/${P}.tar.gz"
+
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris ~x86-winnt"
-IUSE="curl doc iconv icu libwww sse2 static-libs threads elibc_Darwin elibc_FreeBSD"
+IUSE="cpu_flags_x86_sse2 curl doc elibc_Darwin elibc_FreeBSD iconv icu static-libs threads"
 
-RDEPEND="icu? ( >=dev-libs/icu-4.2 )
+RDEPEND="icu? ( dev-libs/icu:0= )
 	curl? ( net-misc/curl )
-	libwww? ( net-libs/libwww )
 	virtual/libiconv"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
+
+DOCS=( CREDITS KEYS NOTICE README version.incl )
 
 pkg_setup() {
 	export ICUROOT="${EPREFIX}/usr"
@@ -31,11 +33,14 @@ pkg_setup() {
 }
 
 src_prepare() {
-	use threads || epatch "${FILESDIR}/${PV}-disable-thread-tests.patch"
+	use threads || epatch "${FILESDIR}/3.1.1-disable-thread-tests.patch"
 
 	sed -i \
 		-e 's|$(prefix)/msg|$(DESTDIR)/$(prefix)/share/xerces-c/msg|' \
-		src/xercesc/util/MsgLoaders/MsgCatalog/Makefile.in || die "sed failed"
+		-e 's/@mkdir_p@/@MKDIR_P@/' \
+		src/xercesc/util/MsgLoaders/MsgCatalog/Makefile.in || die
+
+	epatch_user
 }
 
 src_configure() {
@@ -53,7 +58,6 @@ src_configure() {
 	# But the docs aren't clear about it, so we would need some testing...
 	local netaccessor="socket"
 	use elibc_Darwin && netaccessor="cfurl"
-	use libwww && netaccessor="libwww"
 	use curl && netaccessor="curl"
 
 	econf \
@@ -65,7 +69,7 @@ src_configure() {
 		--enable-msgloader-${mloader} \
 		--enable-netaccessor-${netaccessor} \
 		--enable-transcoder-${transcoder} \
-		$(use_enable sse2)
+		$(use_enable cpu_flags_x86_sse2 sse2)
 }
 
 src_compile() {
@@ -78,9 +82,8 @@ src_compile() {
 }
 
 src_install () {
-	emake DESTDIR="${D}" install || die "emake failed"
-
-	use static-libs || rm "${ED}"/usr/lib*/*.la
+	default
+	prune_libtool_files
 
 	# To make sure an appropriate NLS msg file is around when using the iconv msgloader
 	# ICU has the messages compiled in.
@@ -97,6 +100,4 @@ src_install () {
 		doins -r samples
 		dohtml -r doc/html/*
 	fi
-
-	dodoc CREDITS KEYS NOTICE README version.incl
 }
