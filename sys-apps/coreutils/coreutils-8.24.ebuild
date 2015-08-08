@@ -10,7 +10,7 @@
 
 EAPI="4"
 
-inherit eutils flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 PATCH_VER="1.0"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
@@ -55,6 +55,20 @@ src_prepare() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-8.22-mint.patch
+
+	# fixup libstdbuf non-libtool stuff
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i \
+			-e "/src_libstdbuf_so_LDFLAGS = -shared/s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/libexec/coreutils/libstdbuf.dylib:" \
+			Makefile.in \
+			|| die
+	fi
+	sed -i \
+		-e "s/libstdbuf.so/libstdbuf$(get_libname)/" \
+		src/stdbuf.c \
+		Makefile.in \
+		configure \
+		|| die
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
