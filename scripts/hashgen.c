@@ -143,6 +143,8 @@ process_dir(const char *dir)
 		FILE *m;
 		char newmanifest[8096];
 		char buf[8096];
+		struct stat s;
+		struct timeval tv[2];
 		
 		snprintf(newmanifest, sizeof(newmanifest), "%s/.Manifest.new", dir);
 		if ((m = fopen(newmanifest, "w")) == NULL) {
@@ -189,7 +191,20 @@ process_dir(const char *dir)
 
 		fflush(m);
 		fclose(m);
+
+		if (stat(manifest, &s)) {
+			tv[0].tv_sec = 0;
+			tv[0].tv_usec = 0;
+		} else {
+			tv[0].tv_sec = s.st_atim.tv_sec;
+			tv[0].tv_usec = s.st_atim.tv_nsec / 1000;
+			tv[1].tv_sec = s.st_mtim.tv_sec;
+			tv[1].tv_usec = s.st_mtim.tv_nsec / 1000;
+		}
 		rename(newmanifest, manifest);
+		if (tv[0].tv_sec != 0) {
+			utimes(newmanifest, tv);
+		}
 	}
 }
 
