@@ -9,6 +9,7 @@
 #include <openssl/whrlpool.h>
 
 /* Generate thick Manifests based on thin Manifests */
+/* gcc -o hashgen -fopenmp -Wall -Werror -O3 -pipe -lssl -lcrypto hashgen.c */
 
 static inline void
 hex_hash(char *out, const unsigned char *buf, const int length)
@@ -107,6 +108,7 @@ process_files(const char *dir, const char *off, FILE *m)
 			/* regular file */
 			write_hashes(dir, path, "AUX", m);
 		}
+		closedir(d);
 		return 1;
 	} else {
 		return 0;
@@ -134,6 +136,7 @@ process_dir(const char *dir)
 				if (!stat(path, &s) && s.st_mode & S_IFDIR)
 					process_dir(path);
 			}
+			closedir(d);
 		}
 	} else {
 		/* this looks like an ebuild dir, so update the Manifest */
