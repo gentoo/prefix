@@ -203,7 +203,7 @@ process_dir(const char *dir)
 		}
 		rename(newmanifest, manifest);
 		if (tv[0].tv_sec != 0) {
-			utimes(newmanifest, tv);
+			utimes(manifest, tv);
 		}
 	}
 }
