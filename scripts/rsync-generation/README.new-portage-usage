@@ -1,0 +1,12 @@
+- fix shebang of bin/egencache
+- fix pym/portage/const_autotool.py
+- fix bin/ebuild.sh (PORTAGE_BASE)
+
+- set prefix symlink to point to the portage sources dir
+
+configure \
+	--prefix="/home/prefix/rsync-master/scripts/prefix/usr" \
+	--with-offset-prefix="/home/prefix/rsync-master/scripts/prefix" \
+	--with-portage-user="`id -un`" \
+	--with-portage-group="`id -gn`" \
+	--with-extra-path="/bin:/usr/bin"
