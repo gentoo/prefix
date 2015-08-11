@@ -1,8 +1,0 @@
-# ChangeLog for sys-libs/libcxx-headers
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-*libcxx-headers-3.6.2 (11 Aug 2015)
-
-  11 Aug 2015; Fabian Groffen <grobian@gentoo.org> +libcxx-headers-3.6.2.ebuild:
-  Version bump to 3.6.2 by Michael Weiser, bug #538364
