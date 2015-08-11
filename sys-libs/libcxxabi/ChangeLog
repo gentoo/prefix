@@ -1,0 +1,8 @@
+# ChangeLog for sys-libs/libcxxabi
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*libcxxabi-3.6.2 (11 Aug 2015)
+
+  11 Aug 2015; Fabian Groffen <grobian@gentoo.org> +libcxxabi-3.6.2.ebuild:
+  sys-libs/libcxxabi: version bump to 3.6.2 by Michael Weiser, bug #538364
