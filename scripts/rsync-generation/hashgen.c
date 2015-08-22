@@ -145,7 +145,21 @@ process_dir(const char *dir)
 		char buf[8096];
 		struct stat s;
 		struct timeval tv[2];
-		
+
+		/* set mtime of Manifest to the one of the parent dir, this way
+		 * we enure the Manifest gets mtime bumped upon any change made
+		 * to the directory, that is, a DIST change (Manifest itself) or
+		 * any other change (ebuild, files, metadata) */
+		if (stat(dir, &s)) {
+			tv[0].tv_sec = 0;
+			tv[0].tv_usec = 0;
+		} else {
+			tv[0].tv_sec = s.st_atim.tv_sec;
+			tv[0].tv_usec = s.st_atim.tv_nsec / 1000;
+			tv[1].tv_sec = s.st_mtim.tv_sec;
+			tv[1].tv_usec = s.st_mtim.tv_nsec / 1000;
+		}
+
 		snprintf(newmanifest, sizeof(newmanifest), "%s/.Manifest.new", dir);
 		if ((m = fopen(newmanifest, "w")) == NULL) {
 			fprintf(stderr, "failed to open file '%s' for writing: %s\n",
@@ -192,18 +206,11 @@ process_dir(const char *dir)
 		fflush(m);
 		fclose(m);
 
-		if (stat(manifest, &s)) {
-			tv[0].tv_sec = 0;
-			tv[0].tv_usec = 0;
-		} else {
-			tv[0].tv_sec = s.st_atim.tv_sec;
-			tv[0].tv_usec = s.st_atim.tv_nsec / 1000;
-			tv[1].tv_sec = s.st_mtim.tv_sec;
-			tv[1].tv_usec = s.st_mtim.tv_nsec / 1000;
-		}
 		rename(newmanifest, manifest);
 		if (tv[0].tv_sec != 0) {
+			/* restore dir mtime, and set Manifest mtime to match it */
 			utimes(manifest, tv);
+			utimes(dir, tv);
 		}
 	}
 }
