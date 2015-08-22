@@ -72,11 +72,7 @@ git pull -q
 popd || exit 1
 # Rebuild from scratch, in case any news items have been removed from git
 rm -rf "${RSYNCDIR}"/metadata/news && mkdir "${RSYNCDIR}"/metadata/news
-# As specified by GLEP 42, copy yyyy/* out of subdirectories.
-find "${NEWSDIR}" -mindepth 2 -maxdepth 2 -type d ! -name .git ! -path '*/.git/*' -print | \
-while read news_item ; do
-	rsync -v -Wa --exclude .git --delete "${news_item}" "${RSYNCDIR}"/metadata/news/
-done
+rsync -v -Wa --exclude .git "${NEWSDIR}" "${RSYNCDIR}"/metadata/news/
 date -R -u > "${RSYNCDIR}"/metadata/news/timestamp.chk
 echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/news/timestamp.chk)"
 
