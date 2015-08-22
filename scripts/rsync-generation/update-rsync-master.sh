@@ -70,9 +70,8 @@ echo "($(date +"%F %R")) updating news"
 pushd "$NEWSDIR" || exit 1
 git pull -q
 popd || exit 1
-# Rebuild from scratch, in case any news items have been removed from git
-rm -rf "${RSYNCDIR}"/metadata/news && mkdir "${RSYNCDIR}"/metadata/news
-rsync -v -Wa --exclude .git "${NEWSDIR}" "${RSYNCDIR}"/metadata/news/
+mkdir -p "${RSYNCDIR}"/metadata/news
+rsync -v -Wa --exclude .git --delete "${NEWSDIR}" "${RSYNCDIR}"/metadata/news/
 date -R -u > "${RSYNCDIR}"/metadata/news/timestamp.chk
 echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/news/timestamp.chk)"
 
