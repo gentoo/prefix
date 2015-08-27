@@ -1117,11 +1117,19 @@ bootstrap_stage2() {
 	USE="${USE} -cxx" \
 	TPREFIX="${ROOT}" \
 	emerge_pkgs --nodeps ${linker} || return 1
-	
+
+	# gmp has cxx flag enabled by default. When dealing with a host
+	# compiler without cxx support this causes configure failure. Use
+	# package.use to disable in the temporary prefix.  
+	echo "dev-libs/gmp -cxx" >> "${ROOT}"/tmp/etc/portage/package.use
+
 	EXTRA_ECONF="--disable-bootstrap" \
 	GCC_MAKE_TARGET=all \
 	TPREFIX="${ROOT}" \
 	emerge_pkgs --nodeps ${compiler_stage1} || return 1
+
+	# undo gmp cxx hack
+	rm -f "${ROOT}"/tmp/etc/portage/package.use
 	
 	# make sure the EPREFIX gcc shared libraries are there
 	mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
