@@ -139,9 +139,9 @@ TIME_CVSGX86=$((STOP - START))
 START=$(date +%s)
 
 # update the Mercurial image
-echo "($(date +"%F %R")) updating Prefix tree (Hg image)"
+echo "($(date +"%F %R")) updating Prefix tree (Git image)"
 pushd "$HGDIR" || exit 1
-hg pull -u || echo "Failed to pull!"
+git pull -q || echo "Failed to pull!"
 echo "($(date +"%F %R")) Mercurial image updated"
 
 # rsync the SVN image to the rsync master
