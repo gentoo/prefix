@@ -1,15 +1,18 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r3.ebuild,v 1.17 2014/08/05 16:09:26 ottxor Exp $
+# $Id$
 
-EAPI="4"
+# This version is just for the ABI .5 library
+
+EAPI="5"
+
 inherit eutils flag-o-matic toolchain-funcs multilib-minimal libtool
 
 MY_PV=${PV:0:3}
 PV_SNAP=${PV:4}
 MY_P=${PN}-${MY_PV}
 DESCRIPTION="console display library"
-HOMEPAGE="http://www.gnu.org/software/ncurses/ http://dickey.his.com/ncurses/"
+HOMEPAGE="https://www.gnu.org/software/ncurses/ http://dickey.his.com/ncurses/"
 SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
 
 HOSTLTV="0.1.0"
@@ -21,7 +24,8 @@ SRC_URI="${SRC_URI}
 "
 
 LICENSE="MIT"
-SLOT="5"
+# The subslot reflects the SONAME.
+SLOT="5/5"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="ada +cxx debug doc gpm minimal profile static-libs tinfo trace unicode"
 
@@ -57,6 +61,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.9-rxvt-unicode-9.15.patch #192083 #383871
 	epatch "${FILESDIR}"/${PN}-5.9-fix-clang-build.patch #417763
 	epatch "${FILESDIR}"/${PN}-5.9-pkg-config.patch
+	epatch "${FILESDIR}"/${P}-no-I-usr-include.patch #522586
+	epatch "${FILESDIR}"/${P}-gcc-5.patch #545114
 
 	# /bin/sh is not always good enough
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
@@ -169,7 +175,7 @@ do_configure() {
 		--enable-echo
 		$(use_enable !ada warnings)
 		$(use_with debug assertions)
-		$(use_enable debug leaks)
+		$(use_enable !debug leaks)
 		$(use_with debug expanded)
 		$(use_with !debug macros)
 		$(use_with trace)
@@ -185,7 +191,9 @@ do_configure() {
 		--without-reentrant
 	)
 
-	econf "${conf[@]}" "$@"
+	# Force bash until upstream rebuilds the configure script with a newer
+	# version of autotools. #545532
+	CONFIG_SHELL="${BASH}" econf "${conf[@]}" "$@"
 }
 
 src_compile() {
