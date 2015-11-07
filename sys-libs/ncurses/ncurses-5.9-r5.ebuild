@@ -1,8 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.9-r4.ebuild,v 1.3 2015/04/06 20:11:01 vapier Exp $
+# $Id$
 
-EAPI="4"
+EAPI="5"
+
 inherit eutils flag-o-matic toolchain-funcs multilib-minimal libtool
 
 MY_PV=${PV:0:3}
@@ -21,13 +22,15 @@ SRC_URI="${SRC_URI}
 "
 
 LICENSE="MIT"
-SLOT="0"
+# The subslot reflects the SONAME.
+SLOT="0/5"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="ada +cxx debug doc gpm minimal profile static-libs tinfo trace unicode"
 
 DEPEND="gpm? ( sys-libs/gpm )"
 #	berkdb? ( sys-libs/db )"
 RDEPEND="${DEPEND}
+	!<=sys-libs/ncurses-5.9-r4:5
 	!<x11-terms/rxvt-unicode-9.06-r3
 	abi_x86_32? (
 		!<=app-emulation/emul-linux-x86-baselibs-20130224-r12
