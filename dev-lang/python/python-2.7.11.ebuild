@@ -426,9 +426,6 @@ src_install() {
 		pushd "${D}${fwdir}"/Versions/${SLOT}/lib > /dev/null
 		ln -s ../../../../python${SLOT} || die
 		popd > /dev/null
-		# remove now dead symlinks
-		rm "${ED}"/usr/lib/python${SLOT}/config/libpython${SLOT}.a
-		rm "${ED}"/usr/lib/python${SLOT}/config/libpython${SLOT}.dylib
 
 		# fix up Makefile
 		sed -i \
@@ -545,7 +542,7 @@ EOF
 
 	# if not using a cross-compiler, use the fresh binary
 	if ! tc-is-cross-compiler; then
-		local -x PYTHON=./python
+		local -x PYTHON=./python$([[ ${CHOST} == *-darwin* ]] && echo ".exe")
 		local -x LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
 	else
 		vars=( PYTHON "${vars[@]}" )
