@@ -345,7 +345,7 @@ src_install() {
 
 	# if not using a cross-compiler, use the fresh binary
 	if ! tc-is-cross-compiler; then
-		local -x PYTHON=./python
+		local -x PYTHON=./python$([[ ${CHOST} == *-darwin* ]] && echo ".exe")
 		local -x LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
 	else
 		vars=( PYTHON "${vars[@]}" )
