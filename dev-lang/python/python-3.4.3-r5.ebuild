@@ -282,10 +282,10 @@ src_install() {
 			install_Python install_PythonLauncher install_IDLE \
 			|| die
 
-		local fwdir=/usr/$(get_libdir)/Python.framework/Versions/${SLOT}
-		ln -s "${EPREFIX}"/usr/include/python${SLOT} \
+		local fwdir=/usr/$(get_libdir)/Python.framework/Versions/${PYVER}
+		ln -s "${EPREFIX}"/usr/include/python${PYVER} \
 			"${ED}${fwdir}"/Headers || die
-		ln -s "${EPREFIX}"/usr/lib/libpython${SLOT}.dylib \
+		ln -s "${EPREFIX}"/usr/lib/libpython${PYVER}.dylib \
 			"${ED}${fwdir}"/Python || die
 	fi
 
@@ -323,7 +323,7 @@ src_install() {
 	if use aqua ; then
 		# we do framework, so the emake trick below returns a pathname
 		# since that won't work here, use a (cheap) trick instead
-		local libname=libpython${SLOT}
+		local libname=libpython${PYVER}
 	else
 		local libname=$(printf 'e:\n\t@echo $(INSTSONAME)\ninclude Makefile\n' | \
 			emake --no-print-directory -s -f - 2>/dev/null)
