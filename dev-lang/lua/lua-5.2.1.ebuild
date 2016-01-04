@@ -39,14 +39,6 @@ src_prepare() {
 		fi
 	fi
 
-	# fix libtool and ld usage on OSX
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		sed -i \
-			-e 's/libtool/glibtool/g' \
-			-e 's/-Wl,-E//g' \
-			Makefile src/Makefile
-	fi
-
 	[ -d "${FILESDIR}/${PV}" ] && \
 		EPATCH_SOURCE="${FILESDIR}/${PV}" EPATCH_SUFFIX="upstream.patch" epatch
 
@@ -74,17 +66,7 @@ src_compile() {
 	tc-export CC
 
 	# what to link to liblua
-	liblibs="-lm"
-	if [[ $CHOST == *-darwin* ]]; then
-		mycflags="${mycflags} -DLUA_USE_MACOSX"
-	elif [[ ${CHOST} == *-winnt* ]]; then
-		: # nothing for now...
-	elif [[ ${CHOST} == *-interix* ]]; then
-		: # nothing here too...
-	else # building for standard linux (and bsd too)
-		mycflags="${mycflags} -DLUA_USE_LINUX"
-	fi
-	liblibs="${liblibs} $(dlopen_lib)"
+	liblibs="-lm $(dlopen_lib)"
 
 	# what to link to the executables
 	mylibs=
