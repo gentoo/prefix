@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.2.1.ebuild,v 1.1 2012/07/04 19:34:20 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/Attic/lua-5.2.1.ebuild,v 1.4 2014/07/04 21:21:21 mabi dead $
 
 EAPI=4
 
@@ -23,28 +23,14 @@ PDEPEND="emacs? ( app-emacs/lua-mode )"
 src_prepare() {
 	local PATCH_PV=$(get_version_component_range 1-2)
 
-	if [[ ${CHOST} == *-winnt* ]]; then
-		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-no-libtool.patch
-	else
-		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make.patch
-
-		# Using dynamic linked lua is not recommended for performance
-		# reasons. http://article.gmane.org/gmane.comp.lang.lua.general/18519
-		# Mainly, this is of concern if your arch is poor with GPRs, like x86
-		# Note that this only affects the interpreter binary (named lua), not the lua
-		# compiler (built statically) nor the lua libraries (both shared and static
-		# are installed)
-		if use static ; then
-			sed -i -e 's:\(-export-dynamic\):-static \1:' src/Makefile
-		fi
-	fi
+	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make.patch
 
 	[ -d "${FILESDIR}/${PV}" ] && \
 		EPATCH_SOURCE="${FILESDIR}/${PV}" EPATCH_SUFFIX="upstream.patch" epatch
 
 	sed -i \
-		-e 's:\(LUA_ROOT\s*\).*:\1"/usr/":' \
-		-e "s:\(LUA_CDIR\s*LUA_ROOT \"\)lib:\1$(get_libdir):" \
+		-e 's:\(define LUA_ROOT\s*\).*:\1"'${EPREFIX}'/usr/":' \
+		-e "s:\(define LUA_CDIR\s*LUA_ROOT \"\)lib:\1$(get_libdir):" \
 		src/luaconf.h \
 	|| die "failed patching luaconf.h"
 
@@ -57,6 +43,16 @@ src_prepare() {
 		sed -i -e '/#define LUA_USE_READLINE/d' src/luaconf.h
 	fi
 
+	# Using dynamic linked lua is not recommended for performance
+	# reasons. http://article.gmane.org/gmane.comp.lang.lua.general/18519
+	# Mainly, this is of concern if your arch is poor with GPRs, like x86
+	# Note that this only affects the interpreter binary (named lua), not the lua
+	# compiler (built statically) nor the lua libraries (both shared and static
+	# are installed)
+	if use static ; then
+		sed -i -e 's:\(-export-dynamic\):-static \1:' src/Makefile
+	fi
+
 	# upstream does not use libtool, but we do (see bug #336167)
 	cp "${FILESDIR}/configure.in" "${S}"
 	eautoreconf
@@ -66,7 +62,8 @@ src_compile() {
 	tc-export CC
 
 	# what to link to liblua
-	liblibs="-lm $(dlopen_lib)"
+	liblibs="-lm"
+	liblibs="${liblibs} $(dlopen_lib)"
 
 	# what to link to the executables
 	mylibs=
