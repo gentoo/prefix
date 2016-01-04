@@ -23,30 +23,13 @@ PDEPEND="emacs? ( app-emacs/lua-mode )"
 src_prepare() {
 	local PATCH_PV=$(get_version_component_range 1-2)
 
-	if [[ ${CHOST} == *-winnt* ]]; then
-		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-no-libtool.patch
-	else
-		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-r1.patch
-
-		# Using dynamic linked lua is not recommended for performance
-		# reasons. http://article.gmane.org/gmane.comp.lang.lua.general/18519
-		# Mainly, this is of concern if your arch is poor with GPRs, like x86
-		# Note that this only affects the interpreter binary (named lua), not the lua
-		# compiler (built statically) nor the lua libraries (both shared and static
-		# are installed)
-		if use static ; then
-			epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make_static-r1.patch
-		fi
-	fi
-
+	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-r1.patch
 	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-module_paths.patch
 
-	# fix libtool and ld usage on OSX
+	# use glibtool on Darwin (versus Apple libtool)
 	if [[ ${CHOST} == *-darwin* ]] ; then
-		sed -i \
-			-e 's/libtool/glibtool/g' \
-			-e 's/-Wl,-E//g' \
-			Makefile src/Makefile
+		sed -i -e '/LIBTOOL = /s:libtool:glibtool:' \
+			Makefile src/Makefile || die
 	fi
 
 	EPATCH_SOURCE="${FILESDIR}/${PV}" EPATCH_SUFFIX="upstream.patch" epatch
@@ -65,6 +48,16 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-readline.patch
 	fi
 
+	# Using dynamic linked lua is not recommended for performance
+	# reasons. http://article.gmane.org/gmane.comp.lang.lua.general/18519
+	# Mainly, this is of concern if your arch is poor with GPRs, like x86
+	# Note that this only affects the interpreter binary (named lua), not the lua
+	# compiler (built statically) nor the lua libraries (both shared and static
+	# are installed)
+	if use static ; then
+		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make_static-r1.patch
+	fi
+
 	# We want packages to find our things...
 	sed -i \
 		-e "s:/usr/local:${EPREFIX}/usr:" \
@@ -80,15 +73,6 @@ src_compile() {
 	myflags=
 	# what to link to liblua
 	liblibs="-lm"
-	if [[ $CHOST == *-darwin* ]]; then
-		mycflags="${mycflags} -DLUA_USE_MACOSX"
-	elif [[ ${CHOST} == *-winnt* ]]; then
-		: # nothing for now...
-	elif [[ ${CHOST} == *-interix* ]]; then
-		: # nothing here too...
-	else # building for standard linux (and bsd too)
-		mycflags="${mycflags} -DLUA_USE_LINUX"
-	fi
 	liblibs="${liblibs} $(dlopen_lib)"
 
 	# what to link to the executables
@@ -98,7 +82,7 @@ src_compile() {
 	fi
 
 	cd src
-	emake CC="${CC}" CFLAGS="${mycflags} ${CFLAGS}" \
+	emake CC="${CC}" CFLAGS="-DLUA_USE_LINUX ${CFLAGS}" \
 			RPATH="${EPREFIX}/usr/$(get_libdir)/" \
 			LUA_LIBS="${mylibs}" \
 			LIB_LIBS="${liblibs}" \
