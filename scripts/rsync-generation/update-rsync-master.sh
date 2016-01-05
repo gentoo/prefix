@@ -27,10 +27,8 @@ HOME="${BASE_PATH}/misc"
 echo "(init) BASE_PATH=$BASE_PATH"
 echo "(init) PORTAGE_BASE_PATH=$PORTAGE_BASE_PATH"
 echo "(init) PYTHONPATH=$PYTHONPATH"
-#echo "(init) ROOT=$ROOT"
 echo "(init) PORTAGE_CONFIGROOT=$PORTAGE_CONFIGROOT"
 echo "(init) PORTAGE_DEPCACHEDIR=$PORTAGE_DEPCACHEDIR"
-#echo "(init) PORTAGE_PROFILE=$PORTAGE_PROFILE"
 echo "(init) PATH=$PATH"
 
 #### ---- egencache settings ---- ####
@@ -92,33 +90,6 @@ START=$(date +%s)
 
 echo "($(date +"%F %R")) updating the gx86 tree"
 pushd "${CVSDIR}" || exit 1
-# update the entire cvs tree in parallel
-#updatepids=
-#( cvs -q update -dPA [a-d]*-* 2>&1 | tee /var/tmp/cvsfubarlist.1 )&
-#( cvs -q update -dPA [a-m]*-* 2>&1 | tee /var/tmp/cvsfubarlist.1 )&
-#updatepids+=" $!"
-#( cvs -q update -dPA [e-r]*-* 2>&1 | tee /var/tmp/cvsfubarlist.2 )&
-#updatepids+=" $!"
-#( cvs -q update -dPA [s-z]*-* 2>&1 | tee /var/tmp/cvsfubarlist.3 )&
-#( cvs -q update -dPA [n-z]*-* 2>&1 | tee /var/tmp/cvsfubarlist.3 )&
-#updatepids+=" $!"
-# intentionally skip "scripts", since we overwrite with Prefix version
-#( cvs -q update -dPA eclass licenses metadata profiles virtual \
-#	header.txt skel.* 2>&1 | tee /var/tmp/cvsfubarlist.4 )&
-#updatepids+=" $!"
-#wait ${updatepids}
-
-# on principia: paralellism drains IO too much, so use single process
-#cvs -q update -dPA 2>&1 | tee /var/tmp/cvsfubarlist.all
-#echo "($(date +"%F %R")) cleansing stuff that looks wrong"
-#grep "^[M?C] " /var/tmp/cvsfubarlist.* | xargs --no-run-if-empty rm -v -Rf --
-#grep "^[M?C] " /var/tmp/cvsfubarlist.* | \
-#	sed -e 's/^..//g' -e 's/\/.*$//' | \
-#	xargs --no-run-if-empty cvs -q update -dPA 2>/dev/null || exit 1
-#rm -f /var/tmp/cvsfubarlist.*
-##find . -name ".#*" | xargs --no-run-if-empty rm --
-
-# with git above logic should be all unnecessary
 git pull -q
 popd || exit 1
 rsync -v \
@@ -180,12 +151,6 @@ sign_manifest() {
 	local mc=${pkg//\//_}.manifest
 	[[ -z ${pkg} ]] && return 1
 
-	if [[ $(<${RSYNCDIR}/${pkg}/Manifest) == *'BEGIN PGP SIGNED MESSAGE'* ]] ; then
-		rm -f ${MANIFEST_CACHE}/${mc}
-		# already signed, don't do anything
-		return 0
-	fi
-
 	if [[ ! -f ${MANIFEST_CACHE}/${mc} || ${RSYNCDIR}/${pkg}/Manifest -nt ${MANIFEST_CACHE}/${mc} ]] ; then
 		mkdir -p "${MANIFEST_CACHE}"
 
@@ -240,11 +205,6 @@ echo "($(date +"%F %R")) set up repo $(< "${RSYNCDIR}"/profiles/repo_name)"
 
 
 START=$(date +%s)
-
-# #410505 should not be necessary (even wrong)
-#echo "($(date +"%F %R")) cleaning metadata/cache"
-#rm -Rf "${RSYNCDIR}"/metadata/cache/*
-#rm -Rf "${RSYNCDIR}"/metadata/md5-cache/
 
 # generate the metadata
 echo "($(date +"%F %R")) generating metadata"
