@@ -51,7 +51,7 @@ src_prepare() {
 
 	# this script uses syntax that Solaris /bin/sh doesn't grok
 	sed -i -e '1c\#!/usr/bin/env sh' \
-		"${S}"/gettext-tools/misc/convert-archive.in || die
+		gettext-tools/misc/convert-archive.in || die
 
 	epunt_cxx
 	elibtoolize
@@ -128,6 +128,10 @@ multilib_src_install_all() {
 		rm -rf "${ED}"/usr/share/doc/${PF}/{csharpdoc,examples,javadoc2,javadoc1}
 	fi
 	rm -f "${ED}"/usr/share/doc/${PF}/*.html
+
+	# remove libintl stuff that we can't seem to get disabled
+	rm -f "${ED}"/usr/$(get_libdir)/libintl*
+	rm -f "${ED}"/usr/include/libintl.h
 
 	dodoc AUTHORS ChangeLog NEWS README THANKS
 }
