@@ -347,6 +347,7 @@ src_install() {
 	if ! tc-is-cross-compiler; then
 		local -x PYTHON=./python$([[ ${CHOST} == *-darwin* ]] && echo ".exe")
 		local -x LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
+		local -x DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH+${DYLD_LIBRARY_PATH}:}.
 	else
 		vars=( PYTHON "${vars[@]}" )
 	fi
