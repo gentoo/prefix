@@ -195,6 +195,7 @@ bootstrap_setup() {
 	
 	if [[ ! -f ${ROOT}/etc/portage/make.conf ]] ; then
 		{
+			echo "# Added by bootstrap-prefix.sh for ${CHOST}"
 			echo 'USE="unicode nls"'
 			echo 'CFLAGS="${CFLAGS} -O2 -pipe"'
 			echo 'CXXFLAGS="${CFLAGS}"'
