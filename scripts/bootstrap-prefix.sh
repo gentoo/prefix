@@ -1132,10 +1132,6 @@ bootstrap_stage2() {
 	# undo gmp cxx hack
 	rm -f "${ROOT}"/tmp/etc/portage/package.use
 	
-	# make sure the EPREFIX gcc shared libraries are there
-	mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
-	cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
-
 	if [[ ${CHOST} == *darwin* ]] ; then
 		# we use Clang as our toolchain compiler, so we need to make
 		# sure we actually use it
@@ -1147,6 +1143,14 @@ bootstrap_stage2() {
 			echo "BUILD_CC=${CHOST}-clang"
 			echo "BUILD_CXX=${CHOST}-clang++"
 		} >> "${ROOT}"/etc/portage/make.conf
+		# llvm-3.4 isn't setup to provide the CHOST symlinks, so we'll
+		# do it ourselves here to make the bootstrap continue
+		( cd "${ROOT}"/tmp/usr/bin && ln -s clang ${CHOST}-clang && ln -s clang++ ${CHOST}-clang++ )
+	else
+		# make sure the EPREFIX gcc shared libraries are there
+		mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
+		cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
+
 	fi
 
 	einfo "stage2 successfully finished"
@@ -1163,9 +1167,16 @@ bootstrap_stage3() {
 		return 1
 	fi
 	
-	if ! type -P gcc > /dev/null ; then
-		eerror "gcc not found, did you bootstrap stage2?"
-		return 1
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		if ! type -P clang > /dev/null ; then
+			eerror "clang not found, did you bootstrap stage2?"
+			return 1
+		fi
+	else
+		if ! type -P gcc > /dev/null ; then
+			eerror "gcc not found, did you bootstrap stage2?"
+			return 1
+		fi
 	fi
 
 	configure_toolchain || return 1
@@ -1200,10 +1211,14 @@ bootstrap_stage3() {
 	)
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
-	# work around eselect-python not being there, and llvm insisting on
-	# using python
-	ac_cv_path_PYTHON="${ROOT}/tmp/usr/bin/python" \
+	# Clang unconditionally requires python, the eclasses are really not
+	# setup for a scenario where python doesn't live in the target
+	# prefix and no helpers are available
+	( cd "${ROOT}"/usr/bin && ln -s "${ROOT}"/tmp/usr/bin/python2.7 )
+	# in addition, avoid collisions
+	rm -Rf "${ROOT}"/tmp/usr/lib/python2.7/site-packages/clang
 	emerge_pkgs --nodeps ${compiler} || return 1
+	( cd "${ROOT}"/usr/bin && rm -f python2.7 )
 
 	# Use $ROOT tools where possible from now on.
 	rm -f "${ROOT}"/bin/sh
