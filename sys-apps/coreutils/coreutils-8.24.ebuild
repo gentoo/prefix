@@ -24,12 +24,12 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.xz
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="acl caps gmp multicall nls selinux static userland_BSD vanilla xattr"
+IUSE="acl caps gmp multicall nls selinux static elibc_glibc vanilla xattr"
 
 LIB_DEPEND="acl? ( sys-apps/acl[static-libs] )
 	caps? ( sys-libs/libcap )
 	gmp? ( dev-libs/gmp[static-libs] )
-	xattr? ( !userland_BSD? ( sys-apps/attr[static-libs] ) )"
+	xattr? ( elibc_glibc? ( sys-apps/attr[static-libs] ) )"
 RDEPEND="!static? ( ${LIB_DEPEND//\[static-libs]} )
 	selinux? ( sys-libs/libselinux )
 	nls? ( virtual/libintl )
