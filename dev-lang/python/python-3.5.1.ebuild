@@ -287,9 +287,10 @@ src_install() {
 		# avoid config.status to be triggered
 		find Mac -name "Makefile" -exec touch \{\} + || die
 
-		emake DESTDIR="${D}" -C Mac \
-			install_Python install_PythonLauncher install_IDLE \
-			|| die
+		# Python_Launcher is kind of a wrapper, and we should fix it for
+		# Prefix (it uses /usr/bin/pythonw) so useless
+		# IDLE doesn't run, no idea, but definitely not used
+		emake DESTDIR="${D}" -C Mac install_Python || die
 
 		local fwdir=/usr/$(get_libdir)/Python.framework/Versions/${PYVER}
 		ln -s "${EPREFIX}"/usr/include/python${PYVER} \
