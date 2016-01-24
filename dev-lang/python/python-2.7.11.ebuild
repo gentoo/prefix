@@ -351,6 +351,12 @@ src_install() {
 		# do not make multiple targets in parallel when there are broken
 		# sharedmods (during bootstrap), would build them twice in parallel.
 
+		# Python_Launcher is kind of a wrapper, and we should fix it for
+		# Prefix (it uses /usr/bin/pythonw) so useless
+		# IDLE doesn't run, no idea, but definitely not used
+		sed -i -e 's/install_\(BuildApplet\|PythonLauncher\|IDLE\)[^:]//g' \
+			Mac/Makefile || die
+
 		# let the makefiles do their thing
 		emake -j1 CC="$(tc-getCC)" DESTDIR="${D}" STRIPFLAG= altinstall
 
