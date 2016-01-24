@@ -1214,7 +1214,7 @@ bootstrap_stage3() {
 	# Clang unconditionally requires python, the eclasses are really not
 	# setup for a scenario where python doesn't live in the target
 	# prefix and no helpers are available
-	( cd "${ROOT}"/usr/bin && test ! -e python2.7 && ln -s "${ROOT}"/tmp/usr/bin/python2.7 )
+	( cd "${ROOT}"/usr/bin && test ! -e python2.7 && test ! -e python && ln -s "${ROOT}"/tmp/usr/bin/python2.7 )
 	# in addition, avoid collisions
 	rm -Rf "${ROOT}"/tmp/usr/lib/python2.7/site-packages/clang
 	emerge_pkgs --nodeps ${compiler} || return 1
