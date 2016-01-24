@@ -1264,6 +1264,9 @@ bootstrap_stage3() {
 		emerge --sync || emerge-webrsync || return 1
 	fi
 
+	# temporarily work around c_rehash missing openssl dependency, bug #572790
+	emerge -1 openssl || return 1
+
 	# Portage should figure out itself what it needs to do, if anything
 	USE="-git" emerge -u system || return 1
 
