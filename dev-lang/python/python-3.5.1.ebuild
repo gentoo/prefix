@@ -80,6 +80,12 @@ src_prepare() {
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
 		epatch "${WORKDIR}"/python-prefix-${PV}-gentoo-patches-${PREFIX_PATCHREV}
 
+	# https://forums.developer.apple.com/thread/9233, bug #572726
+	sed -i -e 's:$(RUNSHARED) ./regen:export RUNSHARED=$(RUNSHARED); ./regen:' \
+		Makefile.pre.in || die
+	sed -i -e '/python$EXE/s/^/env ${RUNSHARED} /' \
+		Lib/plat-darwin/regen || die
+
 	# we provide a fully working readline also on Darwin, so don't force
 	# usage of less functional libedit
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
