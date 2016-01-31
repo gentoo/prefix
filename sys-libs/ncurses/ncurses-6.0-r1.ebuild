@@ -74,6 +74,7 @@ src_configure() {
 		local dbuildflags="-Wl,-rpath,${WORKDIR}/lib"
 		case ${CHOST} in
 			*-darwin*)  dbuildflags=     ;;
+			*-aix*)     dbuildflags=     ;;
 		esac
 		echo "int main() {}" | \
 			$(tc-getCC) -o x -x c - ${lbuildflags} -pipe >& /dev/null \
