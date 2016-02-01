@@ -288,6 +288,8 @@ src_install() {
 		# Prefix (it uses /usr/bin/pythonw) so useless
 		# IDLE doesn't run, no idea, but definitely not used
 		emake DESTDIR="${D}" -C Mac install_Python || die
+		rmdir "${ED}"/Applications/Python* || die
+		rmdir "${ED}"/Applications || die
 
 		local fwdir=/usr/$(get_libdir)/Python.framework/Versions/${PYVER}
 		ln -s "${EPREFIX}"/usr/include/python${PYVER} \

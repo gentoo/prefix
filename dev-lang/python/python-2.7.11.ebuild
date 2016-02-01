@@ -359,6 +359,8 @@ src_install() {
 
 		# let the makefiles do their thing
 		emake -j1 CC="$(tc-getCC)" DESTDIR="${D}" STRIPFLAG= altinstall
+		rmdir "${ED}"/Applications/Python* || die
+		rmdir "${ED}"/Applications || die
 
 		# avoid framework incompatability, degrade to a normal UNIX lib
 		mkdir -p "${ED}"/usr/$(get_libdir)
