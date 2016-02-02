@@ -81,7 +81,7 @@ src_prepare() {
 		epatch "${WORKDIR}"/python-prefix-${PV}-gentoo-patches-${PREFIX_PATCHREV}
 
 	# https://forums.developer.apple.com/thread/9233, bug #572726
-	sed -i -e 's:$(RUNSHARED) ./regen:export RUNSHARED=$(RUNSHARED); ./regen:' \
+	sed -i -e '/$(RUNSHARED) .\/regen/s/^/export RUNSHARED=$(RUNSHARED); /' \
 		Makefile.pre.in || die
 	sed -i -e '/python$EXE/s/^/env ${RUNSHARED} /' \
 		Lib/plat-darwin/regen || die
