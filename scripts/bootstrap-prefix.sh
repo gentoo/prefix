@@ -1246,6 +1246,10 @@ bootstrap_stage3() {
 		virtual/os-headers
 		sys-apps/portage
 	)
+	# for grep we need to do a little workaround as we use llvm-3.4
+	# here, which doesn't necessarily grok the system headers on newer
+	# OSX, confusing the buildsystem
+	ac_cv_c_decl_report=warning \
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# Switch to the proper portage.
