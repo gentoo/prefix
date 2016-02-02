@@ -181,6 +181,8 @@ configure_toolchain() {
 			# libcxx, which only compiles with clang
 			local libcxx="sys-libs/libcxx-headers sys-libs/libcxxabi sys-libs/libcxx"
 			compiler_stage1+=" dev-libs/libffi <sys-devel/llvm-3.5 ${libcxx}"
+			# similar, the deps for 3.6+ are too high (cmake, ninja,
+			# python) so we have to do this with an intermediate
 			compiler="${libcxx} sys-libs/csu dev-libs/libffi <sys-devel/llvm-3.6 <sys-devel/clang-3.6"
 			;;
 		*-*-aix*)
