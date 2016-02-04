@@ -64,7 +64,7 @@ src_prepare() {
 			|| die
 	fi
 	sed -i \
-		-e "s/libstdbuf.so/libstdbuf$(get_libname)/" \
+		-e "s/libstdbuf\\.so/libstdbuf$(get_libname)/" \
 		src/stdbuf.c \
 		Makefile.in \
 		configure \
