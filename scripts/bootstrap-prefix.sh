@@ -1061,6 +1061,7 @@ do_emerge_pkgs() {
 		FEATURES="-news ${FEATURES}" \
 		PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym \
 		USE="-berkdb -fortran -gdbm -git -libcxx -nls -pcre -ssl -python bootstrap clang internal-glib ${USE}" \
+		CFLAGS= CXXFLAGS= \
 		emerge -v --oneshot --root-deps ${opts} "${pkg}" || return 1
 	done
 }
@@ -1145,7 +1146,9 @@ bootstrap_stage2() {
 			echo "BUILD_CC=${CHOST}-clang"
 			echo "BUILD_CXX=${CHOST}-clang++"
 		} >> "${ROOT}"/etc/portage/make.conf
-		# llvm-3.4 isn't setup to provide the CHOST symlinks, so we'll
+		# llvm won't setup symlinks to CHOST-clang here because
+		# we're in a cross-ish situation (at least according to
+		# multilib.eclass -- can't blame it at this point really)
 		# do it ourselves here to make the bootstrap continue
 		( cd "${ROOT}"/tmp/usr/bin && ln -s clang ${CHOST}-clang && ln -s clang++ ${CHOST}-clang++ )
 	else
@@ -1273,10 +1276,10 @@ bootstrap_stage3() {
 	fi
 
 	# temporarily work around c_rehash missing openssl dependency, bug #572790
-	emerge -1 openssl || return 1
+	CFLAGS= CXXFLAGS= emerge -1 openssl || return 1
 
 	# Portage should figure out itself what it needs to do, if anything
-	USE="-git" emerge -u system || return 1
+	CFLAGS= CXXFLAGS= USE="-git" emerge -u system || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
