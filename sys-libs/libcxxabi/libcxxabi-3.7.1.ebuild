@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id $
 
 EAPI=5
 
@@ -21,7 +21,7 @@ IUSE=""
 
 RDEPEND=""
 DEPEND="${RDEPEND}
-	sys-libs/libcxx-headers
+	=sys-libs/libcxx-headers-${PV}
 	sys-devel/clang"
 
 pkg_setup() {
@@ -43,8 +43,6 @@ src_configure() {
 }
 
 src_prepare() {
-	cd "${S}"
-
 	# libc++abi needs stack unwinding functions provided by libSystem on Mac OS X
 	# >= 10.6. On < 10.6 they're in libgcc_s. So force link against that.
 	# Additionally, the crt1.o provided by our gcc-apple toolchain isn't
