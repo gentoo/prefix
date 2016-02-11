@@ -2,4 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>prefix</herd>
+  <use>
+	<flag name="libcxxrt">Build against <pkg>sys-libs/libcxxr</pkg></flag>
+  </use>
 </pkgmetadata>

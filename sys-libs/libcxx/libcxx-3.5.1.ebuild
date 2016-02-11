@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id $
 
 EAPI=5
 
@@ -13,8 +13,7 @@ inherit ${SCM} flag-o-matic toolchain-funcs multilib multilib-minimal
 DESCRIPTION="New implementation of the C++ standard library, targeting C++11"
 HOMEPAGE="http://libcxx.llvm.org/"
 if [ "${PV%9999}" = "${PV}" ] ; then
-	SRC_URI="mirror://gentoo/${P}.src.tar.xz
-		http://llvm.org/releases/${PV}/${P}.src.tar.xz"
+	SRC_URI="http://llvm.org/releases/${PV}/${P}.src.tar.xz"
 	S="${WORKDIR}"/"${P}".src
 else
 	SRC_URI=""
@@ -30,10 +29,16 @@ fi
 IUSE="elibc_glibc +libcxxrt static-libs test"
 
 REQUIRED_USE="kernel_Darwin? ( libcxxrt !static-libs )"
-RDEPEND="!kernel_Darwin? (
+RDEPEND="
+	!kernel_Darwin? (
 		libcxxrt? ( >=sys-libs/libcxxrt-0.0_p20130725[static-libs?,${MULTILIB_USEDEP}] )
-		!libcxxrt? ( >=sys-devel/gcc-4.7[cxx] ) )
-	kernel_Darwin? ( sys-libs/libcxx-headers sys-libs/libcxxabi sys-devel/clang )"
+		!libcxxrt? ( >=sys-devel/gcc-4.7[cxx] )
+	)
+	kernel_Darwin? (
+		=sys-libs/libcxx-headers-${PV}
+		=sys-libs/libcxxabi-${PV}
+		sys-devel/clang
+	)"
 DEPEND="${RDEPEND}
 	test? ( sys-devel/clang )
 	app-arch/xz-utils"
