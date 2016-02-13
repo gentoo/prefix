@@ -981,6 +981,19 @@ bootstrap_stage1() { (
 			} > "${ROOT}"/tmp/usr/bin/nm
 			chmod 755 "${ROOT}"/tmp/usr/bin/nm
 			;;
+		*-darwin*)
+			# Recent Mac OS X have a nice popup to install java when
+			# it's called without being installed, this doesn't stop the
+			# process from going, but keeps popping up a dialog during
+			# the bootstrap process, which is slightly anoying.
+			# Nevertheless, we don't want Java when it's installed to be
+			# detected, so hide during the stage builds
+			{
+				echo "#!$(type -P false)"
+			} > "${ROOT}"/tmp/usr/bin/java
+			cp "${ROOT}"/tmp/usr/bin/java{,c}
+			chmod 755 "${ROOT}"/tmp/usr/bin/java{,c}
+			;;
 	esac
 	# important to have our own (non-flawed one) since Python (from
 	# Portage) and binutils use it
