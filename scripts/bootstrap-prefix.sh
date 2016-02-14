@@ -179,11 +179,23 @@ configure_toolchain() {
 			esac
 			# we always have to bootstrap with 3.4 for else we'd need
 			# libcxx, which only compiles with clang
-			local libcxx="sys-libs/libcxx-headers sys-libs/libcxxabi sys-libs/libcxx"
-			compiler_stage1+=" dev-libs/libffi <sys-devel/llvm-3.5 ${libcxx}"
+			compiler_stage1+=" dev-libs/libffi <sys-devel/llvm-3.5"
 			# similar, the deps for 3.6+ are too high (cmake, ninja,
 			# python) so we have to do this with an intermediate
-			compiler="${libcxx} sys-libs/csu dev-libs/libffi <sys-devel/llvm-3.6 <sys-devel/clang-3.6"
+			local cdep="3.5.9999"
+			# unfortunately, gmp needs c++, thus libcxx, so have to drag
+			# it in early (gmp is necessary for 3.5+)
+			local libcxx="
+				<sys-libs/libcxx-headers-${cdep}
+				<sys-libs/libcxxabi-${cdep}
+				<sys-libs/libcxx-${cdep}"
+			compiler_stage1+=" ${libcxx}"
+			compiler="
+				${libcxx}
+				sys-libs/csu
+				dev-libs/libffi
+				<sys-devel/llvm-${cdep}
+				<sys-devel/clang-${cdep}"
 			;;
 		*-*-aix*)
 			linker=sys-devel/native-cctools
