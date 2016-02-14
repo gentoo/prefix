@@ -211,7 +211,7 @@ main(int argc, char *argv[])
 		newargv[j] = argv[i];
 #ifndef TARGET_DARWIN
 		/* on ELF targets we add runpaths for all found search paths */
-		if (argv[i][0] == '-' && argv[i][1] == 'L') {
+		if (argv[i][0] == '-' && argv[i][1] == 'L' && argv[i][2] == '/') {
 			newargv[++j] = strdup(argv[i]);
 			if (newargv[j] == NULL) {
 				fprintf(stderr, "%s: failed to allocate memory for "
