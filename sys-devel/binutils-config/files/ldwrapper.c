@@ -151,6 +151,7 @@ main(int argc, char *argv[])
 	char *p;
 	int i;
 	int j;
+	int k;
 
 	/* cannonicanise wrapper, stripping path and CHOST */
 	if ((p = strrchr(wrapper, '/')) != NULL) {
@@ -207,36 +208,63 @@ main(int argc, char *argv[])
 	/* inject this first to make the intention clear */
 	newargv[j++] = "-search_paths_first";
 #endif
+	/* position k right after the original arguments */
+	k = j - 1 + argc;
 	for (i = 1; i < argc; i++, j++) {
 		newargv[j] = argv[i];
 #ifndef TARGET_DARWIN
 		/* on ELF targets we add runpaths for all found search paths */
-		if (argv[i][0] == '-' && argv[i][1] == 'L' && argv[i][2] == '/') {
-			newargv[++j] = strdup(argv[i]);
-			if (newargv[j] == NULL) {
+		if (argv[i][0] == '-' && argv[i][1] == 'L') {
+			char *path;
+			size_t len;
+
+			/* arguments can be in many ways here:
+			 * -L<path>
+			 * -L <path> (yes, this is accepted)
+			 * -L(whitespace)? <path in next argument>
+			 * where path is absolute (not relative) */
+			path = &argv[i][2];
+			while (*path != '\0' && isspace(*path))
+				path++;
+			if (*path == '\0') {
+				/* no more arguments?!? skip */
+				if (i + 1 >= argc)
+					continue;
+				path = argv[i + 1];
+				while (*path != '\0' && isspace(*path))
+					path++;
+			}
+			/* not absolute (or empty)?!? skip */
+			if (*path != '/')
+				continue;
+
+			len = 2 + strlen(path) + 1;
+			newargv[k] = malloc(sizeof(char) * len);
+			if (newargv[k] == NULL) {
 				fprintf(stderr, "%s: failed to allocate memory for "
 						"'%s' -R argument\n", wrapper, argv[i]);
 				exit(1);
 			}
-			newargv[j][1] = 'R';
+			snprintf(newargv[k], len, "-R%s", path);
+			k++;
 		}
 #endif
 	}
 	/* add the custom paths */
 #ifdef TARGET_DARWIN
-	newargv[j++] = "-L" EPREFIX "/usr/lib";
-	newargv[j++] = "-L" EPREFIX "/lib";
+	newargv[k++] = "-L" EPREFIX "/usr/lib";
+	newargv[k++] = "-L" EPREFIX "/lib";
 #else
-	newargv[j++] = "-L" EPREFIX "/usr/" CHOST "/lib/gcc";
-	newargv[j++] = "-R" EPREFIX "/usr/" CHOST "/lib/gcc";
-	newargv[j++] = "-L" EPREFIX "/usr/" CHOST "/lib";
-	newargv[j++] = "-R" EPREFIX "/usr/" CHOST "/lib";
-	newargv[j++] = "-L" EPREFIX "/usr/lib";
-	newargv[j++] = "-R" EPREFIX "/usr/lib";
-	newargv[j++] = "-L" EPREFIX "/lib";
-	newargv[j++] = "-R" EPREFIX "/lib";
+	newargv[k++] = "-L" EPREFIX "/usr/" CHOST "/lib/gcc";
+	newargv[k++] = "-R" EPREFIX "/usr/" CHOST "/lib/gcc";
+	newargv[k++] = "-L" EPREFIX "/usr/" CHOST "/lib";
+	newargv[k++] = "-R" EPREFIX "/usr/" CHOST "/lib";
+	newargv[k++] = "-L" EPREFIX "/usr/lib";
+	newargv[k++] = "-R" EPREFIX "/usr/lib";
+	newargv[k++] = "-L" EPREFIX "/lib";
+	newargv[k++] = "-R" EPREFIX "/lib";
 #endif
-	newargv[j] = NULL;
+	newargv[k] = NULL;
 
 	if (verbose) {
 		fprintf(stdout, "%s: invoking %s with arguments:\n", wrapper, ld);
