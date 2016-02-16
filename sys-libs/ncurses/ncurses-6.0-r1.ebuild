@@ -112,6 +112,8 @@ do_configure() {
 		# add '--with-terminfo-dirs' and then populate /etc/terminfo in
 		# src_install() ...
 		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo"
+		# do not install in subdir (EPREFIX/usr/include/ncurses)
+		--enable-overwrite
 
 		# Disabled until #245417 is sorted out.
 		#$(use_with berkdb hashed-db)
