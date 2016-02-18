@@ -360,14 +360,17 @@ src_install() {
 		-i "${ED}etc/conf.d/pydoc-${SLOT}" "${ED}etc/init.d/pydoc-${SLOT}" || die "sed failed"
 
 	# for python-exec
-	python_export python${SLOT} EPYTHON PYTHON PYTHON_SITEDIR
+	local vars=( EPYTHON PYTHON_SITEDIR PYTHON_SCRIPTDIR )
 
 	# if not using a cross-compiler, use the fresh binary
 	if ! tc-is-cross-compiler; then
-		local PYTHON=./python
+		local -x PYTHON=./python
 		local -x LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
+	else
+		vars=( PYTHON "${vars[@]}" )
 	fi
 
+	python_export "python${SLOT}" "${vars[@]}"
 	echo "EPYTHON='${EPYTHON}'" > epython.py
 	python_domodule epython.py
 }
