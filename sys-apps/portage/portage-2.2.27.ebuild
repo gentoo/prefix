@@ -91,10 +91,14 @@ pkg_setup() {
 	use epydoc && DISTUTILS_ALL_SUBPHASE_IMPLS=( python2.7 )
 }
 
-python_prepare() {
+python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}"/${PN}-2.2.8-ebuildshell.patch # 155161
+
+	# solved in git already, remove at next version
+	sed -i -e "s/version = '2.2.27'/version = '2.2.27-prefix'/" \
+		setup.py || die
 
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
@@ -129,7 +133,6 @@ python_prepare() {
 		einfo "Adjusting sources for ${EPREFIX}"
 		find . -type f -exec \
 		sed -e "s|@PORTAGE_EPREFIX@|${EPREFIX}|" \
-			-e "s|@PORTAGE_BASE@|${EPREFIX}/usr/lib/portage/${EPYTHON}|" \
 			-e "s|@PORTAGE_MV@|$(type -P mv)|" \
 			-e "s|@PORTAGE_BASH@|${BASH}|" \
 			-e "s|@PREFIX_PORTAGE_PYTHON@|$(type -P python)|" \
@@ -143,6 +146,9 @@ python_prepare() {
 			-e "s|@sysconfdir@|${EPREFIX}/etc|" \
 			-i '{}' + || \
 			die "Failed to patch sources"
+		# We don't need the below, since setup.py deal with this (and
+		# more) so we don't have to make this correct
+		#	-e "s|@PORTAGE_BASE@|${EPREFIX}/usr/lib/portage/${EPYTHON}|" \
 
 		# remove Makefiles, or else they will get installed
 		find . -name "Makefile.*" -delete
