@@ -1249,6 +1249,8 @@ bootstrap_stage3() {
 	( cd "${ROOT}"/usr/bin && test ! -e python && ln -s "${ROOT}"/tmp/usr/bin/python2.7 )
 	# in addition, avoid collisions
 	rm -Rf "${ROOT}"/tmp/usr/lib/python2.7/site-packages/clang
+	# try to get ourself out of the mudd, bug #575324
+	EXTRA_ECONF="--disable-compiler-version-checks" \
 	emerge_pkgs --nodeps ${compiler} || return 1
 	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python2.7 )
 
