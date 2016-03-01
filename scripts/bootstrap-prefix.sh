@@ -128,18 +128,15 @@ configure_cflags() {
 
 	case ${CHOST} in
 		# note: we need CXX for binutils-apple which' ld is c++
-		# Clang on OSX defaults to c99 mode, while GCC defaults to gnu89
-		# (C90 + extensions).  This makes Clang barf on GCC's sources, so
-		# work around that.  Bug #491098
 		*64-apple* | sparcv9-*-solaris* | x86_64-*-solaris*)
-			export CC="${CC-gcc} -m64 -std=gnu89"
+			export CC="${CC-gcc} -m64"
 			export CXX="${CXX-g++} -m64"
-			export HOSTCC="${CC-gcc} -m64 -std=gnu89"
+			export HOSTCC="${CC}"
 			;;
 		i*86-apple-darwin1*)
-			export CC="${CC-gcc} -m32 -std=gnu89"
+			export CC="${CC-gcc} -m32"
 			export CXX="${CXX-g++} -m32"
-			export HOSTCC="${CC-gcc} -m32 -std=gnu89"
+			export HOSTCC="${CC}"
 			;;
 		*)
 			;;
