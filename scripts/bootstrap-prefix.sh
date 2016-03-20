@@ -1165,6 +1165,8 @@ bootstrap_stage2() {
 			echo "# System compiler on Darwin Prefix is Clang, do not remove this"
 			echo "CC=${CHOST}-clang"
 			echo "CXX=${CHOST}-clang++"
+			echo "OBJC=${CHOST}-clang"
+			echo "OBJCXX=${CHOST}-clang++"
 			echo "BUILD_CC=${CHOST}-clang"
 			echo "BUILD_CXX=${CHOST}-clang++"
 		} >> "${ROOT}"/etc/portage/make.conf
