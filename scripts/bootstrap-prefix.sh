@@ -393,7 +393,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20160211"
+	local PV="20160324"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
@@ -451,8 +451,8 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
-	STABLE_PV="2.2.20"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.2.20"
+	STABLE_PV="2.2.28"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.2.28"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
@@ -468,8 +468,6 @@ bootstrap_portage() {
 	bzip2 -dc "${DISTDIR}/${A}" | $TAR -xf - || return 1
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
-
-	patch -p1 < "${ROOT}"/usr/portage/sys-apps/portage/files/portage-2.2.10.1-brokentty-more-platforms.patch # now upstream
 
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
