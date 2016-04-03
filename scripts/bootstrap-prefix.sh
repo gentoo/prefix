@@ -1100,6 +1100,7 @@ do_emerge_pkgs() {
 		# because the tools aren't available to read the news item yet anyway.
 		#
 		# Avoid circular deps caused by the default profiles (and IUSE defaults).
+		echo "USE=${myuse[*]} PKG=${pkg}"
 		PORTAGE_CONFIGROOT="${EPREFIX}" \
 		PORTAGE_SYNC_STALE=0 \
 		FEATURES="-news ${FEATURES}" \
