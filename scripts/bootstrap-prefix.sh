@@ -1070,6 +1070,30 @@ do_emerge_pkgs() {
 		done
 		[[ -n ${pvdb} ]] && continue
 
+		local myuse=(
+			-berkdb
+			-fortran
+			-gdbm
+			-git
+			-libcxx
+			-nls
+			-pcre
+			-ssl
+			-python
+			bootstrap
+			clang
+			internal-glib
+		)
+		myuse=" ${myuse[*]} "
+		local use
+		for use in ${USE} ; do
+			myuse=" ${myuse/ ${use} /} "
+			myuse=" ${myuse/ -${use} /} "
+			myuse=" ${myuse/ ${use#-} /} "
+			myuse+=" ${use} "
+		done
+		myuse=( ${myuse} )
+
 		# Disable the STALE warning because the snapshot frequently gets stale.
 		#
 		# Need need to spam the user about news until the emerge -e system
@@ -1080,7 +1104,7 @@ do_emerge_pkgs() {
 		PORTAGE_SYNC_STALE=0 \
 		FEATURES="-news ${FEATURES}" \
 		PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym \
-		USE="-berkdb -fortran -gdbm -git -libcxx -nls -pcre -ssl -python bootstrap clang internal-glib ${USE}" \
+		USE="${myuse[*]}" \
 		CFLAGS= CXXFLAGS= \
 		emerge -v --oneshot --root-deps ${opts} "${pkg}" || return 1
 	done
