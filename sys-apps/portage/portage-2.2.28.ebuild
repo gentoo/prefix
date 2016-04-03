@@ -70,8 +70,6 @@ REQUIRED_USE="epydoc? ( $(python_gen_useflags 'python2*') )"
 
 SRC_ARCHIVES="https://dev.gentoo.org/~dolsen/releases/portage http://dev.gentoo.org/~grobian/distfiles"
 
-SRC_ARCHIVES="http://dev.gentoo.org/~zmedico/portage/archives http://dev.gentoo.org/~grobian/distfiles"
-
 prefix_src_archives() {
 	local x y
 	for x in ${@}; do
@@ -129,12 +127,18 @@ python_prepare_all() {
 			extrapath="/usr/sbin:/usr/bin:/sbin:/bin"
 		fi
 		local defaultpath="${EPREFIX}/usr/sbin:${EPREFIX}/usr/bin:${EPREFIX}/sbin:${EPREFIX}/bin"
+		# We need to probe for bash in the Prefix, because it may not
+		# exist, in which case we fall back to the currently in use
+		# bash.  This logic is necessary in particular during bootstrap,
+		# where we pull ourselves out of a temporary place with tools
+		local bash="${EPREFIX}/bin/bash"
+		[[ ! -x ${bash} ]] && bash=${BASH}
 
 		einfo "Adjusting sources for ${EPREFIX}"
 		find . -type f -exec \
 		sed -e "s|@PORTAGE_EPREFIX@|${EPREFIX}|" \
 			-e "s|@PORTAGE_MV@|$(type -P mv)|" \
-			-e "s|@PORTAGE_BASH@|${BASH}|" \
+			-e "s|@PORTAGE_BASH@|${bash}|" \
 			-e "s|@PREFIX_PORTAGE_PYTHON@|$(type -P python)|" \
 			-e "s|@DEFAULT_PATH@|${defaultpath}|" \
 			-e "s|@EXTRA_PATH@|${extrapath}|" \
