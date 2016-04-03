@@ -1293,15 +1293,22 @@ bootstrap_stage3() {
 		sys-devel/make
 		sys-apps/file
 		app-admin/eselect
-		$( [[ ${OFFLINE_MODE} ]] || echo sys-devel/gettext )
-		$( [[ ${OFFLINE_MODE} ]] || echo net-misc/wget )
-		virtual/os-headers
-		sys-apps/portage
 	)
 	# for grep we need to do a little workaround as we use llvm-3.4
 	# here, which doesn't necessarily grok the system headers on newer
 	# OSX, confusing the buildsystem
 	ac_cv_c_decl_report=warning \
+	emerge_pkgs "" "${pkgs[@]}" || return 1
+
+	# gettext pulls in portage, which since 2.2.28 needs ssl enabled, so
+	# we need to lift our mask for that.
+	pkgs=(
+		$( [[ ${OFFLINE_MODE} ]] || echo sys-devel/gettext )
+		$( [[ ${OFFLINE_MODE} ]] || echo net-misc/wget )
+		virtual/os-headers
+		sys-apps/portage
+	)
+	USE="ssl" \
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# Switch to the proper portage.
