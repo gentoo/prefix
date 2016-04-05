@@ -157,7 +157,7 @@ configure_toolchain() {
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
 			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
-			case "$( (unset CHOST; gcc --version) )" in
+			case "$( (unset CHOST; gcc --version 2>/dev/null) )" in
 				*"(GCC) 4.2.1 "*|*"Apple LLVM version "*)
 					linker=sys-devel/binutils-apple
 					if type -P clang > /dev/null ; then
