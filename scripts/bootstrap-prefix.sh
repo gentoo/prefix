@@ -1234,7 +1234,7 @@ bootstrap_stage3() {
 	configure_toolchain || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	export CPPFLAGS="-I${ROOT}/usr/include"
-	export LDFLAGS="-I${ROOT}/usr/lib"
+	export LDFLAGS="-L${ROOT}/usr/lib"
 	unset CC CXX
 
 	emerge_pkgs() {
