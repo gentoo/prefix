@@ -1279,9 +1279,9 @@ bootstrap_stage3() {
 	# Use $ROOT tools where possible from now on.
 	rm -f "${ROOT}"/bin/sh
 	ln -s bash "${ROOT}"/bin/sh
-	export CONFIG_SHELL="${ROOT}/bin/bash"
-	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
+	unset CONFIG_SHELL
 	unset MAKEINFO
+	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
 	# Build portage and dependencies.
 	pkgs=(
