@@ -33,7 +33,7 @@ echo "(init) PATH=$PATH"
 
 #### ---- egencache settings ---- ####
 
-EGENCACHE_OPTS="--jobs=2 --load-average=3 --tolerant --update-use-local-desc"
+EGENCACHE_OPTS="--jobs=4 --load-average=3 --tolerant --update-use-local-desc"
 
 export PYTHONPATH PORTDIR PORTAGE_BASE_PATH PORTAGE_CONFIGROOT  \
 	ROOT PORTAGE_TMPFS FEATURES HOME
@@ -215,11 +215,19 @@ dolog() {
 dolog "${PORTAGE_BASE_PATH}/bin/egencache" --update --rsync \
 	--config-root="${PORTAGE_CONFIGROOT}" \
 	--cache-dir="${PORTAGE_DEPCACHEDIR}" \
-	--portdir="${RSYNCDIR}" \
 	--repo=gentoo_prefix \
+	--repositories-configuration='
+[DEFAULT]
+main-repo = gentoo_prefix
+
+[gentoo_prefix]
+location = '"${RSYNCDIR}"'
+sync-type = rsync
+sync-uri = rsync://dont-sync
+auto-sync = no
+' \
 	${EGENCACHE_OPTS} \
 	|| exit 5
-	#--repositories-configuration="/etc/repos.conf/gentoo_prefix.conf" \
 
 STOP=$(date +%s)
 TIME_EGENCACHE=$((STOP - START))
