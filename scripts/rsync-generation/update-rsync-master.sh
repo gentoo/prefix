@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # get keys for ssh and signing
-eval $(keychain -q --noask --eval)
+eval $(env SHELL=/bin/bash keychain -q --noask --eval)
 
 BASE_PATH="$(readlink -f "${BASH_SOURCE[0]%/*}")"
 
