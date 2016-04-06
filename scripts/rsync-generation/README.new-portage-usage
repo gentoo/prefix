@@ -10,3 +10,4 @@ configure \
 	--with-portage-user="`id -un`" \
 	--with-portage-group="`id -gn`" \
 	--with-extra-path="/bin:/usr/bin"
+make install
