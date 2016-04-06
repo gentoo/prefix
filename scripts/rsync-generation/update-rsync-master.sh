@@ -208,7 +208,11 @@ START=$(date +%s)
 
 # generate the metadata
 echo "($(date +"%F %R")) generating metadata"
-"${PORTAGE_BASE_PATH}/bin/egencache" --update --rsync \
+dolog() {
+	echo $*
+	"$@"
+}
+dolog "${PORTAGE_BASE_PATH}/bin/egencache" --update --rsync \
 	--config-root="${PORTAGE_CONFIGROOT}" \
 	--cache-dir="${PORTAGE_DEPCACHEDIR}" \
 	--portdir="${RSYNCDIR}" \
