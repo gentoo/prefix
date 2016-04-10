@@ -1683,18 +1683,32 @@ EOF
 		echo "Great!  You appear to have a compiler in your PATH"
 	fi
 
-	if type -P xcode-select > /dev/null && [[ ! -d /usr/include ]] ; then
-		# bug #512032
-		cat << EOF
+	if type -P xcode-select > /dev/null ; then
+		if [[ ! -d /usr/include ]] ; then
+			# bug #512032
+			cat << EOF
 
 You don't have /usr/include, this thwarts me to build stuff.
 Please execute:
   xcode-select --install
 or install /usr/include in another way and try running me again.
 EOF
-		exit 1
-	fi
+			exit 1
+		fi
+		if [[ $(xcode-select -p) != */CommandLineTools ]] ; then
+			# to an extent, bug #564814 and bug #562800
+			cat << EOF
 
+Your xcode-select is not set to CommandLineTools.  This prevents builds
+from succeeding.  Switch to command line tools for the bootstrap to
+continue.  Please execute:
+  xcode-select -s /Library/Developer/CommandLineTools
+and try running me again.
+EOF
+			exit 1
+		fi
+	fi
+	
 	echo
 	local ncpu=
     case "${CHOST}" in
