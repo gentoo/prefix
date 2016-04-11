@@ -680,6 +680,24 @@ bootstrap_python() {
 		patch -p0 < "${DISTDIR}"/02_all_disable_modules_and_ssl.patch
 	fi
 
+	# --disable-shared causes modules to probably link against the
+	# executable name, which must be the real executable at runtime
+	# as well rather than some symlink (for Cygwin at least).
+	patch -p0 <<'EOP'
+--- Makefile.pre.in
++++ Makefile.pre.in
+@@ -185,1 +185,1 @@
+-BUILDPYTHON=	python$(BUILDEXE)
++BUILDPYTHON=	python$(VERSION)$(BUILDEXE)
+@@ -984,1 +984,1 @@
+-	export EXE; EXE="$(BUILDEXE)"; \
++	export HOSTPYTHON; HOSTPYTHON="$(HOSTPYTHON)"; \
+--- Lib/plat-generic/regen
++++ Lib/plat-generic/regen
+@@ -3,1 +3,1 @@
+-python$EXE ../../Tools/scripts/h2py.py -i '(u_long)' /usr/include/netinet/in.h
++$HOSTPYTHON ../../Tools/scripts/h2py.py -i '(u_long)' /usr/include/netinet/in.h
+EOP
 	local myconf=""
 
 	case $CHOST in
