@@ -193,7 +193,7 @@ src_compile() {
 	# See comments in src_configure.
 	if ! ROOT=/ has_version "~sys-libs/${P}:0" ; then
 		BUILD_DIR="${WORKDIR}" \
-		do_compile cross -C progs tic
+		do_compile cross -C progs GET_PROGS=
 	fi
 
 	multilib-minimal_src_compile
