@@ -147,8 +147,16 @@ configure_toolchain() {
 	linker=sys-devel/binutils
 	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc"
 	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
-	# The host may not have a functioning c++ toolchain, so use a stage1 compiler that can build with C only.
-	compiler_stage1="${gcc_deps} sys-devel/gcc-config <sys-devel/gcc-4.8"
+	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
+	case ${CHOST} in
+	*-cygwin*)
+	  # not supported in gcc-4.7 yet, easy enough to install g++
+	  compiler_stage1+=" sys-devel/gcc"
+	  ;;
+	*)
+	  # The host may not have a functioning c++ toolchain, so use a stage1 compiler that can build with C only.
+	  compiler_stage1+=" <sys-devel/gcc-4.8"
+	esac
 
 	CC=gcc
 	CXX=g++
