@@ -243,7 +243,7 @@ multilib_src_install() {
 		# Provide a link for -lcurses.
 		ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname) || die
 	fi
-	use static-libs || find "${ED}"/usr/ -name '*.a' -delete
+	use static-libs || find "${ED}"/usr/ -name '*.a' -not -name "*$(get_libname)" -delete
 
 	# Build fails to create this ...
 	dosym ../share/terminfo /usr/$(get_libdir)/terminfo
