@@ -94,6 +94,8 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 
+	epatch "${FILESDIR}"/${P}-cygwin-r2.patch
+
 	# Nasty trick to set bashbug's shebang to bash instead of sh. We don't have
 	# sh while bootstrapping for the first time, This works around bug 309825
 	sed -i -e '1s:sh:bash:' support/bashbug.sh || die
