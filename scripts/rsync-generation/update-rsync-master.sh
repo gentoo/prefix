@@ -7,10 +7,9 @@ BASE_PATH="$(readlink -f "${BASH_SOURCE[0]%/*}")"
 
 HGDIR="${BASE_PATH}/repos/prefix-tree"
 CVSDIR="${BASE_PATH}/repos/gentoo-x86"
-DTDDIR="${BASE_PATH}/repos/xml/htdocs/dtd"
-GLSADIR="${BASE_PATH}/repos/xml/htdocs/security/en/glsa"
+DTDDIR="${BASE_PATH}/dtd"
+GLSADIR="${BASE_PATH}/glsa"
 NEWSDIR="${BASE_PATH}/repos/gentoo-news"
-HERDSDIR="${BASE_PATH}/repos/xml/htdocs/proj/en/metastructure/herds"
 RSYNCDIR="${BASE_PATH}/master-rsync-tree"
 
 #### ---- Portage setup (use local modified copy) ---- ####
@@ -46,7 +45,7 @@ GLOBALSTART=${START}
 # update DTDs
 echo "($(date +"%F %R")) updating DTDs"
 pushd "$DTDDIR" || exit 1
-cvs -q update -dP
+git pull -q
 popd || exit 1
 # rsync the DTDs
 rsync -v --delete -aC "${DTDDIR}" "${RSYNCDIR}"/metadata/ || exit 1
@@ -56,7 +55,7 @@ echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/dtd/timestamp.ch
 # update GLSAs
 echo "($(date +"%F %R")) updating GLSAs"
 pushd "$GLSADIR" || exit 1
-cvs -q update -dP
+git pull -q
 popd || exit 1
 # rsync the GLSAs
 rsync -v --delete -aC "${GLSADIR}" "${RSYNCDIR}"/metadata/ || exit 1
@@ -73,13 +72,13 @@ rsync -v -Wa --exclude .git --delete "${NEWSDIR}" "${RSYNCDIR}"/metadata/news/
 date -R -u > "${RSYNCDIR}"/metadata/news/timestamp.chk
 echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/news/timestamp.chk)"
 
-# update herds
-echo "($(date +"%F %R")) updating herds.xml"
-pushd "${HERDSDIR}" || exit 1
-cvs -q update herds.xml
+# update projects
+echo "($(date +"%F %R")) updating projects.xml"
+pushd "${RSYNCDIR}"/metadata/ || exit 1
+rm -f projects.xml
+wget -q "https://api.gentoo.org/metastructure/projects.xml" || exit 1
 popd || exit 1
-rsync -v -a "${HERDSDIR}"/herds.xml "${RSYNCDIR}"/metadata/herds.xml || exit 1
-echo "($(date +"%F %R")) herds.xml updated"
+echo "($(date +"%F %R")) projectss.xml updated"
 
 STOP=$(date +%s)
 TIME_METADATA=$((STOP - START))
