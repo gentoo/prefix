@@ -7,8 +7,8 @@ BASE_PATH="$(readlink -f "${BASH_SOURCE[0]%/*}")"
 
 HGDIR="${BASE_PATH}/repos/prefix-tree"
 CVSDIR="${BASE_PATH}/repos/gentoo-x86"
-DTDDIR="${BASE_PATH}/dtd"
-GLSADIR="${BASE_PATH}/glsa"
+DTDDIR="${BASE_PATH}/repos/dtd"
+GLSADIR="${BASE_PATH}/repos/glsa"
 NEWSDIR="${BASE_PATH}/repos/gentoo-news"
 RSYNCDIR="${BASE_PATH}/master-rsync-tree"
 
