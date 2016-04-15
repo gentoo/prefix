@@ -6,6 +6,7 @@ EAPI="4"
 
 PATCH_VER="1.0"
 UCLIBC_VER="1.0"
+CYGWINPORTS_GITREV="f44d762eb3551ea0d81aa8e4b428bcb7caabb628" # gcc-5.3.0-3
 
 # Hardened gcc 4 stuff
 PIE_VER="0.6.5"
