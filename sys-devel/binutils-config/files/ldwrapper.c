@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <strings.h>
+#include <string.h>
 #include <ctype.h>
 #include <sys/stat.h>
 #include <errno.h>
@@ -46,6 +47,9 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	char *e;
 	struct stat lde;
 
+	/* we may not succeed finding the linker */
+	*ld = NULL;
+
 	/* respect the override in environment */
 	ldoveride = getenv("BINUTILS_CONFIG_LD");
 	if (ldoveride != NULL && *ldoveride != '\0') {
@@ -67,23 +71,20 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 
 	/* find ld in PATH, allowing easy PATH overrides */
 	path = getenv("PATH");
-	if (path != NULL && *path != '\0') {
-		char *p;
-		char *q;
-
-		for (p = path; (q = strchr(p, ':')) != NULL; p = q + 1) {
-			if (q)
-				*q = '\0';
-			if (strstr(p, "/" CHOST "/binutils-bin/") != NULL) {
-				snprintf(e, ESIZ, "%s/%s", p, wrapper);
-				if (stat(e, &lde) == 0) {
-					*ld = e;
-					return;
-				}
-			}
-			if (!q)
-				break;
+	while (path > (char*)1 && *path != '\0') {
+		char *q = strchr(path, ':');
+		if (q)
+			*q = '\0';
+		if (strstr(path, "/" CHOST "/binutils-bin/") != NULL) {
+			snprintf(e, ESIZ, "%s/%s", path, wrapper);
+			if (stat(e, &lde) == 0)
+				*ld = e;
 		}
+		if (q)
+			*q = ':'; /* restore PATH value */
+		if (*ld)
+			return;
+		path = q + 1;
 	}
 	if (verbose)
 		fprintf(stdout, "%s: linker not found in PATH\n", wrapper);
@@ -135,9 +136,6 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	if (verbose)
 		fprintf(stdout, "%s: linker not found via binutils-config -c\n",
 				wrapper);
-
-	/* we didn't succeed finding the linker */
-	*ld = NULL;
 }
 
 int
