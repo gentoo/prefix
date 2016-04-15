@@ -366,6 +366,10 @@ get_gcc_src_uri() {
 		fi
 	fi
 
+	# Cygwin patches from https://github.com/cygwinports/gcc
+	[[ -n ${CYGWINPORTS_GITREV} ]] && \
+		GCC_SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/gcc/archive/${CYGWINPORTS_GITREV}.zip )"
+
 	echo "${GCC_SRC_URI}"
 }
 
@@ -484,6 +488,8 @@ gcc_quick_unpack() {
 
 	use_if_iuse boundschecking && unpack "bounds-checking-gcc-${HTB_GCC_VER}-${HTB_VER}.patch.bz2"
 
+	[[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin && unpack "${CYGWINPORTS_GITREV}.zip"
+
 	popd > /dev/null
 }
 
@@ -508,6 +514,7 @@ toolchain_src_prepare() {
 	fi
 	do_gcc_HTB_patches
 	do_gcc_PIE_patches
+	do_gcc_CYGWINPORTS_patches
 	epatch_user
 
 	if ( tc_version_is_at_least 4.8.2 || use hardened ) && ! use vanilla ; then
@@ -654,6 +661,19 @@ do_gcc_PIE_patches() {
 	fi
 
 	BRANDING_GCC_PKGVERSION="${BRANDING_GCC_PKGVERSION}, pie-${PIE_VER}"
+}
+
+do_gcc_CYGWINPORTS_patches() {
+	[[ -n ${CYGWINPORTS_GITREV} ]] || return 0
+	use elibc_Cygwin || return 0
+
+	local p d="${WORKDIR}/gcc-${CYGWINPORTS_GITREV}"
+	for p in $(
+		eval "$(sed -ne '/PATCH_URI="/,/"/p' < "${d}"/gcc.cygport)"
+		echo ${PATCH_URI}
+	); do
+		epatch "${d}/${p}"
+	done
 }
 
 # configure to build with the hardened GCC specs as the default
@@ -1010,7 +1030,7 @@ toolchain_src_configure() {
 			confgcc+=( --enable-shared )
 		fi
 		case ${CHOST} in
-		mingw*|*-mingw*|*-cygwin)
+		mingw*|*-mingw*)
 			confgcc+=( --enable-threads=win32 ) ;;
 		*)
 			confgcc+=( --enable-threads=posix ) ;;
