@@ -93,6 +93,8 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}"/${PN}-2.2.8-ebuildshell.patch # 155161
+	use prefix-chaining &&
+		epatch "${FILESDIR}"/${PN}-2.2.14-prefix-chaining.patch
 
 	# solved in git already, remove at next version
 	sed -i -e "s/version = '2.2.27'/version = '2.2.27-prefix'/" \

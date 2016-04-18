@@ -1,0 +1,873 @@
+diff -ru prefix-portage-2.2.14.orig/bin/install-qa-check.d/05prefix prefix-portage-2.2.14/bin/install-qa-check.d/05prefix
+--- prefix-portage-2.2.14.orig/bin/install-qa-check.d/05prefix	2014-09-28 19:31:20.000000000 +0200
++++ prefix-portage-2.2.14/bin/install-qa-check.d/05prefix	2015-06-17 10:08:15.074682823 +0200
+@@ -79,16 +79,42 @@
+ 		# unprefixed shebang, is the script directly in $PATH or an init
+ 		# script?
+ 		if [[ ":${PATH}:${EPREFIX}/etc/init.d:" == *":${fp}:"* ]] ; then
+-			if [[ -e ${EROOT}${line[0]} || -e ${ED}${line[0]} ]] ; then
++			all_epfs="$PORTAGE_READONLY_EPREFIXES:$EPREFIX:$EROOT:$ED"
++			save_IFS=$IFS
++			IFS=:
++			epfs=( $all_epfs )
++			IFS=$save_IFS
++
++			found=
++			for x in "${epfs[@]}"; do
++				[[ -z "${x}" ]] && continue
++				check="${x}${line[0]}"
++
++				# might already contain a prefix
++				if [[ "${line[0]}" == "${x}"* ]]; then
++					check="${line[0]}"
++				fi
++
++				if [[ -e ${check} ]]; then
++					found="${check}"
++				fi
++			done
++
++			if [[ -n ${found} ]] ; then
+ 				# is it unprefixed, but we can just fix it because a
+ 				# prefixed variant exists
+ 				eqawarn "prefixing shebang of ${fn#${D}}"
++
++				if [[ ${found} == "${ED}"* || ${found} == "${EROOT}"* ]]; then
++					found="${EPREFIX}${line[0]}"
++				fi
++
+ 				# statement is made idempotent on purpose, because
+ 				# symlinks may point to the same target, and hence the
+ 				# same real file may be sedded multiple times since we
+ 				# read the shebangs in one go upfront for performance
+ 				# reasons
+-				sed -i -e '1s:^#! \?'"${line[0]}"':#!'"${EPREFIX}"${line[0]}':' "${rf}"
++				sed -i -e '1s:^#! \?'"${line[0]}"':#!'"${found}"':' "${rf}"
+ 				continue
+ 			else
+ 				# this is definitely wrong: script in $PATH and invalid shebang
+diff -ru prefix-portage-2.2.14.orig/bin/phase-helpers.sh prefix-portage-2.2.14/bin/phase-helpers.sh
+--- prefix-portage-2.2.14.orig/bin/phase-helpers.sh	2014-09-28 19:12:31.000000000 +0200
++++ prefix-portage-2.2.14/bin/phase-helpers.sh	2015-06-17 10:24:28.997164214 +0200
+@@ -758,6 +758,10 @@
+ 		"${PORTAGE_BIN_PATH}/ebuild-helpers/portageq" has_version "${eroot}" "${atom}"
+ 	fi
+ 	local retval=$?
++	if [[ ${retval} -eq 1 && -n ${READONLY_EPREFIX} ]]; then
++		${SHELL} -c "EPREFIX='${READONLY_EPREFIX%:*}' EPYTHON= '${READONLY_EPREFIX%:*}'/usr/lib/portage/bin/portageq has_version '${READONLY_EPREFIX%:*}' '${atom}'"
++		retval=$?
++	fi
+ 	case "${retval}" in
+ 		0|1)
+ 			return ${retval}
+@@ -817,6 +821,10 @@
+ 		"${PORTAGE_BIN_PATH}/ebuild-helpers/portageq" best_version "${eroot}" "${atom}"
+ 	fi
+ 	local retval=$?
++	if [[ ${retval} -eq 1 && -n ${READONLY_EPREFIX} ]]; then
++		${SHELL} -c "EPREFIX='${READONLY_EPREFIX%:*}' EPYTHON= '${READONLY_EPREFIX%:*}'/usr/lib/portage/bin/portageq best_version '${READONLY_EPREFIX%:*}' '${atom}'"
++		retval=$?
++	fi
+ 	case "${retval}" in
+ 		0|1)
+ 			return ${retval}
+@@ -846,6 +854,10 @@
+ 			output=$("${PORTAGE_BIN_PATH}/ebuild-helpers/portageq" master_repositories "${EROOT}" "${repository}")
+ 		fi
+ 		retval=$?
++		if [[ ${retval} -eq 1 && -n ${READONLY_EPREFIX} ]]; then
++			output=$(${SHELL} -c "EPREFIX='${READONLY_EPREFIX%:*}' EPYTHON= '${READONLY_EPREFIX%:*}'/usr/lib/portage/bin/portageq master_repositories '${READONLY_EPREFIX%:*}' '${repository}'")
++			retval=$?
++		fi
+ 		[[ -n ${output} ]] && echo "${output}"
+ 		case "${retval}" in
+ 			0|1)
+@@ -877,6 +889,10 @@
+ 			output=$("${PORTAGE_BIN_PATH}/ebuild-helpers/portageq" get_repo_path "${EROOT}" "${repository}")
+ 		fi
+ 		retval=$?
++		if [[ ${retval} -eq 1 && -n ${READONLY_EPREFIX} ]]; then
++			output=$(${SHELL} -c "EPREFIX='${READONLY_EPREFIX%:*}' EPYTHON= '${READONLY_EPREFIX%:*}'/usr/lib/portage/bin/portageq repository_path '${READONLY_EPREFIX%:*}' '${repository}'")
++			retval=$?
++		fi
+ 		[[ -n ${output} ]] && echo "${output}"
+ 		case "${retval}" in
+ 			0|1)
+@@ -907,6 +923,10 @@
+ 			output=$("${PORTAGE_BIN_PATH}/ebuild-helpers/portageq" available_eclasses "${EROOT}" "${repository}")
+ 		fi
+ 		retval=$?
++		if [[ ${retval} -eq 1 && -n ${READONLY_EPREFIX} ]]; then
++			output=$(${SHELL} -c "EPREFIX='${READONLY_EPREFIX%:*}' EPYTHON= '${READONLY_EPREFIX%:*}'/usr/lib/portage/bin/portageq available_eclasses '${READONLY_EPREFIX%:*}' '${repository}'")
++			retval=$?
++		fi
+ 		[[ -n ${output} ]] && echo "${output}"
+ 		case "${retval}" in
+ 			0|1)
+@@ -937,6 +957,10 @@
+ 		else
+ 			output=$("${PORTAGE_BIN_PATH}/ebuild-helpers/portageq" eclass_path "${EROOT}" "${repository}" "${eclass}")
+ 		fi
++		if [[ ${retval} -eq 1 && -n ${READONLY_EPREFIX} ]]; then
++			output=$(${SHELL} -c "EPREFIX='${READONLY_EPREFIX%:*}' EPYTHON= '${READONLY_EPREFIX%:*}'/usr/lib/portage/bin/portageq eclass_path '${READONLY_EPREFIX%:*}' '${repository}' '${eclass}'")
++			retval=$?
++		fi
+ 		retval=$?
+ 		[[ -n ${output} ]] && echo "${output}"
+ 		case "${retval}" in
+@@ -968,6 +992,10 @@
+ 		else
+ 			output=$("${PORTAGE_BIN_PATH}/ebuild-helpers/portageq" license_path "${EROOT}" "${repository}" "${license}")
+ 		fi
++		if [[ ${retval} -eq 1 && -n ${READONLY_EPREFIX} ]]; then
++			output=(${SHELL} -c "EPREFIX='${READONLY_EPREFIX%:*}' EPYTHON= '${READONLY_EPREFIX%:*}'/usr/lib/portage/bin/portageq license_path '${READONLY_EPREFIX%:*}' '${repository}' '${license}'")
++			retval=$?
++		fi
+ 		retval=$?
+ 		[[ -n ${output} ]] && echo "${output}"
+ 		case "${retval}" in
+Only in prefix-portage-2.2.14/bin: phase-helpers.sh.orig
+diff -ru prefix-portage-2.2.14.orig/pym/_emerge/actions.py prefix-portage-2.2.14/pym/_emerge/actions.py
+--- prefix-portage-2.2.14.orig/pym/_emerge/actions.py	2014-10-02 20:48:26.000000000 +0200
++++ prefix-portage-2.2.14/pym/_emerge/actions.py	2015-06-17 10:24:28.997164214 +0200
+@@ -38,7 +38,7 @@
+ from portage import shutil
+ from portage import eapi_is_supported, _encodings, _unicode_decode
+ from portage.cache.cache_errors import CacheError
+-from portage.const import EPREFIX
++from portage.const import EPREFIX, BPREFIX
+ from portage.const import GLOBAL_CONFIG_PATH, VCS_DIRS, _DEPCLEAN_LIB_CHECK_DEFAULT
+ from portage.const import SUPPORTED_BINPKG_FORMATS, TIMESTAMP_FORMAT
+ from portage.dbapi.dep_expand import dep_expand
+@@ -62,6 +62,7 @@
+ from portage.util._async.run_main_scheduler import run_main_scheduler
+ from portage.util._async.SchedulerInterface import SchedulerInterface
+ from portage.util._eventloop.global_event_loop import global_event_loop
++from portage.util._path import exists_raise_eaccess
+ from portage._global_updates import _global_updates
+ 
+ from _emerge.clear_caches import clear_caches
+@@ -2629,7 +2630,8 @@
+ 				out.eerror(line)
+ 			return exitcode
+ 	elif repo.sync_type == "cvs":
+-		if not os.path.exists(EPREFIX + "/usr/bin/cvs"):
++		cvs_bin = portage.process.find_binary("cvs")
++		if cvs_bin is None:
+ 			print("!!! %s/usr/bin/cvs does not exist, so CVS support is disabled." % (EPREFIX))
+ 			print("!!! Type \"emerge %s\" to enable CVS support." % portage.const.CVS_PACKAGE_ATOM)
+ 			return os.EX_UNAVAILABLE
+@@ -2697,6 +2699,13 @@
+ 			writemsg_level(" %s spawn failed of %s\n" % (bad("*"), postsync,),
+ 				level=logging.ERROR, noiselevel=-1)
+ 
++	postsync = os.path.join(BPREFIX, portage.USER_CONFIG_PATH, "bin", "post_sync")
++	if os.access(postsync, os.X_OK):
++		retval = portage.process.spawn([postsync, dosyncuri], env=settings.environ())
++		if retval != os.EX_OK:
++			writemsg_level(" %s spawn failed of %s\n" % (bad("*"), postsync,),
++				level=logging.ERROR, noiselevel=-1)
++
+ 	return os.EX_OK
+ 
+ def action_uninstall(settings, trees, ldpath_mtimes,
+@@ -3413,6 +3422,9 @@
+ 	if portage.const.EPREFIX:
+ 		global_config_path = os.path.join(portage.const.EPREFIX,
+ 				portage.const.GLOBAL_CONFIG_PATH.lstrip(os.sep))
++		if not exists_raise_eaccess(global_config_path) and portage.const.BPREFIX:
++			global_config_path = os.path.join(portage.const.BPREFIX,
++                    portage.const.GLOBAL_CONFIG_PATH.lstrip(os.sep))
+ 	msg.append("        This usually means that '%s'" % \
+ 		(os.path.join(global_config_path, "sets/portage.conf"),))
+ 	msg.append("        is missing or corrupt.")
+Only in prefix-portage-2.2.14/pym/_emerge: actions.py.orig
+diff -ru prefix-portage-2.2.14.orig/pym/_emerge/depgraph.py prefix-portage-2.2.14/pym/_emerge/depgraph.py
+--- prefix-portage-2.2.14.orig/pym/_emerge/depgraph.py	2014-11-12 18:26:12.000000000 +0100
++++ prefix-portage-2.2.14/pym/_emerge/depgraph.py	2015-06-17 10:19:41.254082296 +0200
+@@ -2743,23 +2743,24 @@
+ 				edepend["HDEPEND"] = ""
+ 
+ 		deps = (
+-			(depend_root, edepend["DEPEND"],
++			(depend_root, "DEPEND",
+ 				self._priority(buildtime=True,
+ 				optional=(pkg.built or ignore_depend_deps),
+ 				ignored=ignore_depend_deps)),
+-			(self._frozen_config._running_root.root, edepend["HDEPEND"],
++			(self._frozen_config._running_root.root, "HDEPEND",
+ 				self._priority(buildtime=True,
+ 				optional=(pkg.built or ignore_hdepend_deps),
+ 				ignored=ignore_hdepend_deps)),
+-			(myroot, edepend["RDEPEND"],
++			(myroot, "RDEPEND",
+ 				self._priority(runtime=True)),
+-			(myroot, edepend["PDEPEND"],
++			(myroot, "PDEPEND",
+ 				self._priority(runtime_post=True))
+ 		)
+ 
+ 		debug = "--debug" in self._frozen_config.myopts
+ 
+-		for dep_root, dep_string, dep_priority in deps:
++		for dep_root, dep_type, dep_priority in deps:
++				dep_string = edepend[dep_type]
+ 				if not dep_string:
+ 					continue
+ 				if debug:
+@@ -2797,7 +2798,7 @@
+ 
+ 				try:
+ 					dep_string = list(self._queue_disjunctive_deps(
+-						pkg, dep_root, dep_priority, dep_string))
++						pkg, dep_root, dep_priority, dep_string, dep_type))
+ 				except portage.exception.InvalidDependString as e:
+ 					if pkg.installed:
+ 						self._dynamic_config._masked_installed.add(pkg)
+@@ -2812,14 +2813,14 @@
+ 
+ 				if not self._add_pkg_dep_string(
+ 					pkg, dep_root, dep_priority, dep_string,
+-					allow_unsatisfied):
++					allow_unsatisfied, dep_type):
+ 					return 0
+ 
+ 		self._dynamic_config._traversed_pkg_deps.add(pkg)
+ 		return 1
+ 
+ 	def _add_pkg_dep_string(self, pkg, dep_root, dep_priority, dep_string,
+-		allow_unsatisfied):
++		allow_unsatisfied, dep_type=None):
+ 		_autounmask_backup = self._dynamic_config._autounmask
+ 		if dep_priority.optional or dep_priority.ignored:
+ 			# Temporarily disable autounmask for deps that
+@@ -2828,7 +2829,7 @@
+ 		try:
+ 			return self._wrapped_add_pkg_dep_string(
+ 				pkg, dep_root, dep_priority, dep_string,
+-				allow_unsatisfied)
++				allow_unsatisfied, dep_type)
+ 		finally:
+ 			self._dynamic_config._autounmask = _autounmask_backup
+ 
+@@ -2864,7 +2865,7 @@
+ 			not slot_operator_rebuild
+ 
+ 	def _wrapped_add_pkg_dep_string(self, pkg, dep_root, dep_priority,
+-		dep_string, allow_unsatisfied):
++		dep_string, allow_unsatisfied, dep_type=None):
+ 		if isinstance(pkg.depth, int):
+ 			depth = pkg.depth + 1
+ 		else:
+@@ -2888,7 +2889,7 @@
+ 		try:
+ 			selected_atoms = self._select_atoms(dep_root,
+ 				dep_string, myuse=self._pkg_use_enabled(pkg), parent=pkg,
+-				strict=strict, priority=dep_priority)
++				strict=strict, priority=dep_priority, dep_type=dep_type)
+ 		except portage.exception.InvalidDependString:
+ 			if pkg.installed:
+ 				self._dynamic_config._masked_installed.add(pkg)
+@@ -3186,7 +3187,7 @@
+ 					child_pkgs.sort()
+ 				yield (atom, child_pkgs[-1])
+ 
+-	def _queue_disjunctive_deps(self, pkg, dep_root, dep_priority, dep_struct):
++	def _queue_disjunctive_deps(self, pkg, dep_root, dep_priority, dep_struct, dep_type=None):
+ 		"""
+ 		Queue disjunctive (virtual and ||) deps in self._dynamic_config._dep_disjunctive_stack.
+ 		Yields non-disjunctive deps. Raises InvalidDependString when
+@@ -3195,33 +3196,33 @@
+ 		for x in dep_struct:
+ 			if isinstance(x, list):
+ 				if x and x[0] == "||":
+-					self._queue_disjunction(pkg, dep_root, dep_priority, [x])
++					self._queue_disjunction(pkg, dep_root, dep_priority, [x], dep_type)
+ 				else:
+ 					for y in self._queue_disjunctive_deps(
+-						pkg, dep_root, dep_priority, x):
++						pkg, dep_root, dep_priority, x, dep_type):
+ 						yield y
+ 			else:
+ 				# Note: Eventually this will check for PROPERTIES=virtual
+ 				# or whatever other metadata gets implemented for this
+ 				# purpose.
+ 				if x.cp.startswith('virtual/'):
+-					self._queue_disjunction(pkg, dep_root, dep_priority, [x])
++					self._queue_disjunction(pkg, dep_root, dep_priority, [x], dep_type)
+ 				else:
+ 					yield x
+ 
+-	def _queue_disjunction(self, pkg, dep_root, dep_priority, dep_struct):
++	def _queue_disjunction(self, pkg, dep_root, dep_priority, dep_struct, dep_type=None):
+ 		self._dynamic_config._dep_disjunctive_stack.append(
+-			(pkg, dep_root, dep_priority, dep_struct))
++			(pkg, dep_root, dep_priority, dep_struct, dep_type))
+ 
+ 	def _pop_disjunction(self, allow_unsatisfied):
+ 		"""
+ 		Pop one disjunctive dep from self._dynamic_config._dep_disjunctive_stack, and use it to
+ 		populate self._dynamic_config._dep_stack.
+ 		"""
+-		pkg, dep_root, dep_priority, dep_struct = \
++		pkg, dep_root, dep_priority, dep_struct, dep_type = \
+ 			self._dynamic_config._dep_disjunctive_stack.pop()
+ 		if not self._add_pkg_dep_string(
+-			pkg, dep_root, dep_priority, dep_struct, allow_unsatisfied):
++			pkg, dep_root, dep_priority, dep_struct, allow_unsatisfied, dep_type):
+ 			return 0
+ 		return 1
+ 
+@@ -4030,7 +4031,7 @@
+ 			**portage._native_kwargs(kwargs))
+ 
+ 	def _select_atoms_highest_available(self, root, depstring,
+-		myuse=None, parent=None, strict=True, trees=None, priority=None):
++		myuse=None, parent=None, strict=True, trees=None, priority=None, dep_type=None):
+ 		"""This will raise InvalidDependString if necessary. If trees is
+ 		None then self._dynamic_config._filtered_trees is used."""
+ 
+@@ -4053,6 +4054,13 @@
+ 		pkgsettings = self._frozen_config.pkgsettings[root]
+ 		if trees is None:
+ 			trees = self._dynamic_config._filtered_trees
++
++		# this one is needed to guarantee good readonly root
++		# resolution display in the merge list. required since
++		# parent (below) can be None
++		trees[root]["disp_parent"] = parent
++
++
+ 		mytrees = trees[root]
+ 		atom_graph = digraph()
+ 		if True:
+@@ -4081,7 +4089,7 @@
+ 
+ 				mycheck = portage.dep_check(depstring, None,
+ 					pkgsettings, myuse=myuse,
+-					myroot=root, trees=trees)
++					myroot=root, trees=trees, dep_type=dep_type)
+ 			finally:
+ 				# restore state
+ 				self._dynamic_config._autounmask = _autounmask_backup
+@@ -4152,6 +4160,7 @@
+ 							continue
+ 						node_stack.append((child_node, node, child_atom))
+ 
++		trees[root].pop("disp_parent")
+ 		return selected_atoms
+ 
+ 	def _expand_virt_from_graph(self, root, atom):
+diff -ru prefix-portage-2.2.14.orig/pym/_emerge/resolver/output.py prefix-portage-2.2.14/pym/_emerge/resolver/output.py
+--- prefix-portage-2.2.14.orig/pym/_emerge/resolver/output.py	2014-05-06 21:32:08.000000000 +0200
++++ prefix-portage-2.2.14/pym/_emerge/resolver/output.py	2015-06-17 10:24:28.920497614 +0200
+@@ -22,11 +22,12 @@
+ from portage.package.ebuild.config import _get_feature_flags
+ from portage.package.ebuild._spawn_nofetch import spawn_nofetch
+ from portage.output import ( blue, colorize, create_color_func,
+-	darkblue, darkgreen, green, nc_len, teal)
++	darkblue, darkgreen, green, nc_len, teal, yellow, turquoise)
+ bad = create_color_func("BAD")
+ from portage._sets.base import InternalPackageSet
+ from portage.util import writemsg_stdout
+ from portage.versions import best, cpv_getversion
++from portage.dep.dep_check import ro_selected
+ 
+ from _emerge.Blocker import Blocker
+ from _emerge.create_world_atom import create_world_atom
+@@ -556,6 +557,42 @@
+ 			writemsg_stdout("%s\n" % (pkg,), noiselevel=-1)
+ 		return
+ 
++	def print_readonly_prefix(self):
++		"""Performs the actual output printing for the readonly prefix
++		information stuff
++		"""
++		out = sys.stdout
++
++        # print readonly selected packages
++		if len(ro_selected) > 0:
++			out.write("\n%s\n\n" % (darkgreen("Packages resolved from readonly installations:")))
++
++		ro_mismatch_warning = False
++		ro_dupcheck = []
++		for x in ro_selected:
++			tmp_type = x["type"].replace("END","")
++			while len(tmp_type) < 4:
++				tmp_type += " "
++			if x["parent"] and str(x["atom"]) not in ro_dupcheck:
++				out.write("[%s %s] %s %s %s (%s by %s)" % (teal("readonly"),
++					green(tmp_type), green(str(x["matches"][0])), yellow("from"),
++					blue(x["ro_root"]), turquoise(str(x["atom"])), green(x["parent"].cpv)))
++
++				ro_dupcheck.append(str(x["atom"]))
++
++				if x["host_mismatch"]:
++					ro_mismatch_warning = True
++					out.write(" %s\n" % (red("**")))
++				else:
++					out.write("\n")
++
++		if ro_mismatch_warning:
++			out.write("\n%s:" % (red("**")))
++			out.write(yellow(" WARNING: packages marked with ** have been resolved as a\n"))
++			out.write(yellow("    runtime dependency, but the CHOST variable for the parent\n"))
++			out.write(yellow("    and dependency package don't match. This could cause link\n"))
++			out.write(yellow("    errors. It is recommended to use RDEPEND READONLY_EPREFIX's\n"))
++			out.write(yellow("    only with matching CHOST portage instances.\n"))
+ 
+ 	def print_verbose(self, show_repos):
+ 		"""Prints the verbose output to std_out
+@@ -907,6 +944,7 @@
+ 		# now finally print out the messages
+ 		self.print_messages(show_repos)
+ 		self.print_blockers()
++		self.print_readonly_prefix()
+ 		if self.conf.verbosity == 3:
+ 			self.print_verbose(show_repos)
+ 		for pkg, pkg_info in self.restrict_fetch_list.items():
+diff -ru prefix-portage-2.2.14.orig/pym/portage/const.py prefix-portage-2.2.14/pym/portage/const.py
+--- prefix-portage-2.2.14.orig/pym/portage/const.py	2014-11-12 18:26:12.000000000 +0100
++++ prefix-portage-2.2.14/pym/portage/const.py	2015-06-17 10:24:28.963830910 +0200
+@@ -187,6 +187,7 @@
+ 	"notitles",
+ 	"parallel-fetch",
+ 	"parallel-install",
++	"prefix-chaining",
+ 	"prelink-checksums",
+ 	"preserve-libs",
+ 	"protect-owned",
+@@ -265,6 +266,11 @@
+ #EPREFIX = ""
+ # END PREFIX LOCAL
+ 
++BPREFIX = EPREFIX
++
++# --prefix commandline arg always rules, ends up in os.environ["EPREFIX"]
++if "EPREFIX" in os.environ:
++    os.environ["PORTAGE_OVERRIDE_EPREFIX"] = os.environ["EPREFIX"]
+ # pick up EPREFIX from the environment if set
+ if "PORTAGE_OVERRIDE_EPREFIX" in os.environ:
+ 	EPREFIX = os.environ["PORTAGE_OVERRIDE_EPREFIX"]
+Only in prefix-portage-2.2.14/pym/portage: const.py.orig
+diff -ru prefix-portage-2.2.14.orig/pym/portage/dbapi/vartree.py prefix-portage-2.2.14/pym/portage/dbapi/vartree.py
+--- prefix-portage-2.2.14.orig/pym/portage/dbapi/vartree.py	2014-11-12 18:28:33.000000000 +0100
++++ prefix-portage-2.2.14/pym/portage/dbapi/vartree.py	2015-06-17 10:24:28.973830901 +0200
+@@ -184,8 +184,19 @@
+ 		self._counter_path = os.path.join(self._eroot,
+ 			CACHE_PATH, "counter")
+ 
+-		self._plib_registry = PreservedLibsRegistry(settings["ROOT"],
+-			os.path.join(self._eroot, PRIVATE_PATH, "preserved_libs_registry"))
++		plibreg_path = os.path.join(self._eroot, PRIVATE_PATH, "preserved_libs_registry")
++
++		if vartree:
++			self._kill_eprefix = vartree._kill_eprefix
++		else:
++			self._kill_eprefix = False
++
++		if self._kill_eprefix:
++			self._aux_cache_filename = self._aux_cache_filename.replace(EPREFIX, "")
++			self._counter_path = self._counter_path.replace(EPREFIX, "")
++			plibreg_path = plibreg_path.replace(EPREFIX, "")
++
++		self._plib_registry = PreservedLibsRegistry(settings["ROOT"], plibreg_path)
+ 		self._linkmap = LinkageMap(self)
+ 		chost = self.settings.get('CHOST')
+ 		if not chost:
+@@ -215,6 +226,9 @@
+ 		# This is an optimized hotspot, so don't use unicode-wrapped
+ 		# os module and don't use os.path.join().
+ 		rValue = self._eroot + VDB_PATH + _os.sep + mykey
++		if self._kill_eprefix:
++			rValue = rValue.replace(EPREFIX, "")
++
+ 		if filename is not None:
+ 			# If filename is always relative, we can do just
+ 			# rValue += _os.sep + filename
+@@ -440,6 +454,9 @@
+ 		returnme = []
+ 		basepath = os.path.join(self._eroot, VDB_PATH) + os.path.sep
+ 
++		if self._kill_eprefix:
++			basepath = os.path.join(self.root, basepath.replace(EPREFIX, ""))
++
+ 		if use_cache:
+ 			from portage import listdir
+ 		else:
+@@ -530,11 +547,17 @@
+ 				del self.matchcache[mycat]
+ 			return list(self._iter_match(mydep,
+ 				self.cp_list(mydep.cp, use_cache=use_cache)))
++
++		_tmp_path = os.path.join(self._eroot, VDB_PATH, mycat)
++
++		if self._kill_eprefix:
++			_tmp_path = _tmp_path.replace(EPREFIX, "")
++
+ 		try:
+ 			if sys.hexversion >= 0x3030000:
+-				curmtime = os.stat(os.path.join(self._eroot, VDB_PATH, mycat)).st_mtime_ns
++				curmtime = os.stat(_tmp_path).st_mtime_ns
+ 			else:
+-				curmtime = os.stat(os.path.join(self._eroot, VDB_PATH, mycat)).st_mtime
++				curmtime = os.stat(_tmp_path).st_mtime
+ 		except (IOError, OSError):
+ 			curmtime=0
+ 
+@@ -1339,7 +1362,7 @@
+ class vartree(object):
+ 	"this tree will scan a var/db/pkg database located at root (passed to init)"
+ 	def __init__(self, root=None, virtual=DeprecationWarning, categories=None,
+-		settings=None):
++		settings=None, kill_eprefix=None):
+ 
+ 		if settings is None:
+ 			settings = portage.settings
+@@ -1357,6 +1380,7 @@
+ 				" constructor is unused",
+ 				DeprecationWarning, stacklevel=2)
+ 
++		self._kill_eprefix = kill_eprefix
+ 		self.settings = settings
+ 		self.dbapi = vardbapi(settings=settings, vartree=self)
+ 		self.populated = 1
+Only in prefix-portage-2.2.14/pym/portage/dbapi: vartree.py.orig
+diff -ru prefix-portage-2.2.14.orig/pym/portage/dep/dep_check.py prefix-portage-2.2.14/pym/portage/dep/dep_check.py
+--- prefix-portage-2.2.14.orig/pym/portage/dep/dep_check.py	2014-09-28 19:12:31.000000000 +0200
++++ prefix-portage-2.2.14/pym/portage/dep/dep_check.py	2015-06-17 10:24:28.973830901 +0200
+@@ -247,6 +247,95 @@
+ 	__slots__ = ('atoms', 'slot_map', 'cp_map', 'all_available',
+ 		'all_installed_slots')
+ 
++ro_trees={}
++ro_vartrees={}
++ro_selected=[]
++
++def dep_match_readonly_roots(settings, atom, dep_type, parent=None):
++   if len(ro_trees) < len(settings.readonly_prefixes):
++       # MDUFT: create additional vartrees for every readonly root here.
++       # the ro_vartrees instances are created below as they are needed to
++       # avoid reading vartrees of portage instances which aren't required
++       # while resolving this dependencies.
++       for type in ("DEPEND","RDEPEND", "PDEPEND"):
++           ro_trees[type] = []
++
++           for ro_root, ro_dep_types in settings.readonly_prefixes.items():
++               if type in ro_dep_types:
++                   ro_trees[type].append(ro_root)
++
++   if len(ro_trees) == 0:
++       return []
++
++   matches = []
++
++   for ro_root in ro_trees[dep_type]:
++       if not ro_vartrees.has_key(ro_root):
++           # target_root=ro_root ok? or should it be the real target_root?
++           _tmp_settings = portage.config(config_root=ro_root, target_root=ro_root,
++               config_incrementals=portage.const.INCREMENTALS)
++
++           ro_vartrees[ro_root] = portage.vartree(root=ro_root,
++               categories=_tmp_settings.categories,
++               settings=_tmp_settings, kill_eprefix=True)
++
++       ro_matches = ro_vartrees[ro_root].dbapi.match(atom)
++
++       if ro_matches:
++           ro_host_mismatch = False
++           if dep_type is "RDEPEND":
++               # we need to assure binary compatability, so it needs to be
++               # the same CHOST! But how? for now i cannot do anything...
++               if parent and parent.metadata["CHOST"] != ro_vartrees[ro_root].settings.get("CHOST", ""):
++                   # provocate a big fat warning in the list of external packages.
++                   ro_host_mismatch = True
++               pass
++
++           matches.append({ "ro_root": ro_root, "atom": atom, "matches": ro_matches,
++               "type": dep_type, "parent": parent, "host_mismatch": ro_host_mismatch })
++
++   return matches
++
++def dep_wordreduce_readonly(reduced, unreduced, settings, dep_type, parent):
++   for mypos, token in enumerate(unreduced):
++       # recurse if it's a list.
++       if isinstance(reduced[mypos], list):
++           reduced[mypos] = dep_wordreduce_readonly(reduced[mypos],
++               unreduced[mypos], settings, dep_type, parent)
++
++       # do nothing if it's satisfied already.
++       elif not reduced[mypos]:
++           ro_matches = dep_match_readonly_roots(settings, unreduced[mypos], dep_type, parent)
++
++           if ro_matches:
++               # TODO: select a match if there are more than one?
++               # for now, the first match is taken...
++               ro_selected.append(ro_matches[0])
++               reduced[mypos] = True
++
++   return reduced
++
++# this may be better placed somewhere else, but i put it here for now, to
++# keep all functions in the patch on one big heap.
++def readonly_pathmatch_any(settings, path):
++   path = path.lstrip('/')
++   # first try locally, and match that if it exists.
++   if os.path.exists(os.path.join(EPREFIX,path)):
++       return os.path.join(EPREFIX,path)
++
++   # after that try all readonly roots where DEPEND is allowed. this makes
++   # sure that executing binaries is possible from there.
++   for ro_root, ro_deps in settings.readonly_roots.items():
++       if "DEPEND" in ro_deps:
++           print(" --- checking %s --- " % (os.path.join(ro_root,path)))
++           if os.path.exists(os.path.join(ro_root,path)):
++               return os.path.join(ro_root,path)
++           break
++
++   # as a fallback make the string the same as it was originally.
++   # even though this path doesn't exist.
++   return os.path.join(EPREFIX,path)
++
+ def dep_zapdeps(unreduced, reduced, myroot, use_binaries=0, trees=None):
+ 	"""
+ 	Takes an unreduced and reduced deplist and removes satisfied dependencies.
+@@ -567,7 +656,7 @@
+ 	assert(False) # This point should not be reachable
+ 
+ def dep_check(depstring, mydbapi, mysettings, use="yes", mode=None, myuse=None,
+-	use_cache=1, use_binaries=0, myroot=None, trees=None):
++	use_cache=1, use_binaries=0, myroot=None, trees=None, dep_type=None):
+ 	"""
+ 	Takes a depend string, parses it, and selects atoms.
+ 	The myroot parameter is unused (use mysettings['EROOT'] instead).
+@@ -663,6 +752,14 @@
+ 	writemsg("mysplit:  %s\n" % (mysplit), 1)
+ 	writemsg("mysplit2: %s\n" % (mysplit2), 1)
+ 
++	if dep_type is not None:
++		mysplit2=dep_wordreduce_readonly(unreduced=mysplit[:],
++				reduced=mysplit2, settings=mysettings,
++				dep_type=dep_type, parent=trees[myroot].get("disp_parent"))
++
++		writemsg("\n", 1)
++		writemsg("mysplit2 after readonly reduce: %s\n" % (mysplit2), 1)
++
+ 	selected_atoms = dep_zapdeps(mysplit, mysplit2, myroot,
+ 		use_binaries=use_binaries, trees=trees)
+ 
+Only in prefix-portage-2.2.14/pym/portage/dep: dep_check.py.orig
+diff -ru prefix-portage-2.2.14.orig/pym/portage/package/ebuild/_config/LocationsManager.py prefix-portage-2.2.14/pym/portage/package/ebuild/_config/LocationsManager.py
+--- prefix-portage-2.2.14.orig/pym/portage/package/ebuild/_config/LocationsManager.py	2014-02-06 21:49:32.000000000 +0100
++++ prefix-portage-2.2.14/pym/portage/package/ebuild/_config/LocationsManager.py	2015-06-17 10:24:28.983830892 +0200
+@@ -285,6 +285,9 @@
+ 		if portage.const.EPREFIX:
+ 			self.global_config_path = os.path.join(portage.const.EPREFIX,
+ 				GLOBAL_CONFIG_PATH.lstrip(os.sep))
++			if not exists_raise_eaccess(self.global_config_path) and portage.const.BPREFIX:
++				self.global_config_path = os.path.join(portage.const.BPREFIX,
++					GLOBAL_CONFIG_PATH.lstrip(os.sep))
+ 
+ 	def set_port_dirs(self, portdir, portdir_overlay):
+ 		self.portdir = portdir
+diff -ru prefix-portage-2.2.14.orig/pym/portage/package/ebuild/config.py prefix-portage-2.2.14/pym/portage/package/ebuild/config.py
+--- prefix-portage-2.2.14.orig/pym/portage/package/ebuild/config.py	2014-09-28 19:12:31.000000000 +0200
++++ prefix-portage-2.2.14/pym/portage/package/ebuild/config.py	2015-06-17 10:24:28.983830892 +0200
+@@ -298,6 +298,7 @@
+ 			self.features = features_set(self)
+ 			self.features._features = copy.deepcopy(clone.features._features)
+ 			self._features_overrides = copy.deepcopy(clone._features_overrides)
++			self.readonly_prefixes = copy.deepcopy(clone.readonly_prefixes)
+ 
+ 			#Strictly speaking _license_manager is not immutable. Users need to ensure that
+ 			#extract_global_changes() is called right after __init__ (if at all).
+@@ -894,6 +895,63 @@
+ 
+ 			self._validate_commands()
+ 
++			# expand READONLY_EPREFIX to a list of all readonly portage instances
++			# all the way down to the last one. beware that ATM a deeper instance
++			# in the chain can provide more than the toplevel! this means that
++			# if you only inherit DEPENDS from one instance, that instance may
++			# inherit RDEPENDs from another one, making the top-level instance
++			# inherit RDEPENDs from there too - even if the intermediate prefix
++			# does not do this.
++			self.readonly_prefixes = {}
++			ro_cfg_root = config_root
++			ro_widest_depset = set(['DEPEND', 'RDEPEND', 'PDEPEND'])
++
++			while ro_cfg_root:
++				ro_make_conf_paths = [
++					os.path.join(ro_cfg_root, 'etc', 'make.conf'),
++					os.path.join(ro_cfg_root, MAKE_CONF_FILE)
++				]
++				try:
++					if os.path.samefile(*ro_make_conf_paths):
++						ro_make_conf_paths.pop()
++				except OSError:
++					pass
++
++				ro_cfg_root = None
++				for ro_make_conf in ro_make_conf_paths:
++					if not os.path.exists(ro_make_conf):
++						continue
++
++					ro_cfg = getconfig(ro_make_conf, tolerant=True, allow_sourcing=True)
++					if not ro_cfg.has_key("READONLY_EPREFIX"):
++						continue
++
++					if not ro_cfg["READONLY_EPREFIX"].find(":"):
++						raise portage.exception.InvalidReadonlyERoot("ERROR: malformed READONLY_EPREFIX in %s" % (ro_make_conf))
++
++					if ro_cfg_root is not None:
++						raise portage.exception.InvalidReadonlyERoot("ERROR: duplicate READONLY_EPREFIX in %s and %s" % tuple(ro_make_conf_paths))
++
++					(ro_cfg_root,ro_cfg_root_deps) = ro_cfg["READONLY_EPREFIX"].rsplit(":",1)
++
++					if not os.path.exists(ro_cfg_root):
++						raise portage.exception.InvalidReadonlyERoot("ERROR: malformed READONLY_EPREFIX in %s: %s does not exist!" % (ro_make_conf, ro_cfg_root))
++
++					if os.path.samefile(ro_cfg_root, config_root):
++						raise portage.exception.InvalidReadonlyERoot("ERROR: cannot add this instance (%s) as READONLY_EPREFIX in %s." % (ro_cfg_root, ro_make_conf))
++
++					if self.readonly_prefixes.has_key(ro_cfg_root):
++						raise portage.exception.InvalidReadonlyERoot("ERROR: circular READONLY_EPREFIX's in %s. %s already checked for %s" % (ro_make_conf, ro_cfg_root, self.readonly_prefixes[ro_cfg_root])) 
++
++					# intersect the widest depset with the current one to strip down
++					# the allowed dependency resolution to not be wider than the
++					# next higher one. this way we can prevent for a given prefix
++					# to resolve RDEPENDs from a prefix with a different CHOST that
++					# is a few levels deeper in the chain.
++					ro_widest_depset = set(ro_cfg_root_deps.split(",")) & ro_widest_depset
++					self.readonly_prefixes[ro_cfg_root] = ro_widest_depset
++				pass
++
+ 			for k in self._case_insensitive_vars:
+ 				if k in self:
+ 					self[k] = self[k].lower()
+@@ -2671,6 +2729,10 @@
+ 		if not eapi_exports_merge_type(eapi):
+ 			mydict.pop("MERGE_TYPE", None)
+ 
++		# populate with PORTAGE_READONLY_EPREFIXES
++		if self.readonly_prefixes and len(self.readonly_prefixes) > 0:
++			mydict["PORTAGE_READONLY_EPREFIXES"] = ':'.join(self.readonly_prefixes)
++
+ 		# Prefix variables are supported beginning with EAPI 3, or when
+ 		# force-prefix is in FEATURES, since older EAPIs would otherwise be
+ 		# useless with prefix configurations. This brings compatibility with
+Only in prefix-portage-2.2.14/pym/portage/package/ebuild: config.py.orig
+diff -ru prefix-portage-2.2.14.orig/pym/portage/package/ebuild/doebuild.py prefix-portage-2.2.14/pym/portage/package/ebuild/doebuild.py
+--- prefix-portage-2.2.14.orig/pym/portage/package/ebuild/doebuild.py	2014-09-28 19:25:39.000000000 +0200
++++ prefix-portage-2.2.14/pym/portage/package/ebuild/doebuild.py	2015-06-17 10:23:25.703886164 +0200
+@@ -46,6 +46,7 @@
+ 	unmerge, _encodings, _os_merge, \
+ 	_shell_quote, _unicode_decode, _unicode_encode
+ from portage.const import EBUILD_SH_ENV_FILE, EBUILD_SH_ENV_DIR, \
++    GLOBAL_CONFIG_PATH, \
+ 	EBUILD_SH_BINARY, INVALID_ENV_FILE, MISC_SH_BINARY, PORTAGE_PYM_PACKAGES, EPREFIX, MACOSSANDBOX_PROFILE
+ from portage.data import portage_gid, portage_uid, secpass, \
+ 	uid, userpriv_groups
+@@ -66,7 +67,8 @@
+ from portage.package.ebuild.prepare_build_dirs import prepare_build_dirs
+ from portage.util import apply_recursive_permissions, \
+ 	apply_secpass_permissions, noiselimit, normalize_path, \
+-	writemsg, writemsg_stdout, write_atomic
++	writemsg, writemsg_stdout, write_atomic, getconfig
++from portage.util._path import exists_raise_eaccess
+ from portage.util.lafilefixer import rewrite_lafile	
+ from portage.versions import _pkgsplit
+ from _emerge.BinpkgEnvExtractor import BinpkgEnvExtractor
+@@ -212,8 +214,27 @@
+ 		path.append(os.path.join(portage_bin_path, "ebuild-helpers", "bsd"))
+ 
+ 	path.append(os.path.join(portage_bin_path, "ebuild-helpers"))
++
++	# PREFIX CHAINING: append default path for all prefixes involved
++	pfxs = [ eprefix ]
++	pfxs.extend(settings.readonly_prefixes)
++	for prefix in pfxs:
++		global_config_path = os.path.join(prefix, GLOBAL_CONFIG_PATH.lstrip(os.sep))
++		make_globals_path = os.path.join(global_config_path, "make.globals")
++		if exists_raise_eaccess(make_globals_path):
++			expand_map = { "EPREFIX": prefix }
++			pxcfg = getconfig(make_globals_path, True, expand_map)
++			pxdefp = [x for x in pxcfg.get("DEFAULT_PATH", "").split(":") if x]
++			for x in pxdefp:
++				if x.startswith(prefix) and not x in path:
++					path.append(x)
++		else:
++			pxdefs = [prefix + "/usr/sbin", prefix + "/usr/bin", prefix + "/sbin", prefix + "/bin"]
++			path.extend(pxdefs)
++	# END PREFIX CHAINING
++
+ 	path.extend(prerootpath)
+-	path.extend(defaultpath)
++	# path.extend(defaultpath) # PREFIX CHAINING appends the default path for involved prefixes above
+ 	path.extend(rootpath)
+ 	path.extend(extrapath)
+ 	# END PREFIX LOCAL
+diff -ru prefix-portage-2.2.14.orig/pym/portage/package/ebuild/fetch.py prefix-portage-2.2.14/pym/portage/package/ebuild/fetch.py
+--- prefix-portage-2.2.14.orig/pym/portage/package/ebuild/fetch.py	2014-04-22 21:50:06.000000000 +0200
++++ prefix-portage-2.2.14/pym/portage/package/ebuild/fetch.py	2015-06-17 10:24:28.983830892 +0200
+@@ -43,6 +43,7 @@
+ from portage.util import apply_recursive_permissions, \
+ 	apply_secpass_permissions, ensure_dirs, grabdict, shlex_split, \
+ 	varexpand, writemsg, writemsg_level, writemsg_stdout
++from portage.util._path import exists_raise_eaccess
+ from portage.process import spawn
+ 
+ _userpriv_spawn_kwargs = (
+@@ -869,6 +870,9 @@
+ 				global_config_path = GLOBAL_CONFIG_PATH
+ 				if portage.const.EPREFIX:
+ 					global_config_path = os.path.join(portage.const.EPREFIX,
++						GLOBAL_CONFIG_PATH.lstrip(os.sep))
++					if not exists_raise_eaccess(global_config_path) and portage.const.BPREFIX:
++						global_config_path = os.path.join(portage.const.BPREFIX,
+ 							GLOBAL_CONFIG_PATH.lstrip(os.sep))
+ 
+ 				missing_file_param = False
+diff -ru prefix-portage-2.2.14.orig/pym/portage/_sets/__init__.py prefix-portage-2.2.14/pym/portage/_sets/__init__.py
+--- prefix-portage-2.2.14.orig/pym/portage/_sets/__init__.py	2014-01-06 10:44:16.000000000 +0100
++++ prefix-portage-2.2.14/pym/portage/_sets/__init__.py	2015-06-17 10:24:28.983830892 +0200
+@@ -28,6 +28,7 @@
+ from portage.exception import PackageSetNotFound
+ from portage.localization import _
+ from portage.util import writemsg_level
++from portage.util._path import exists_raise_eaccess
+ 
+ SETPREFIX = "@"
+ 
+@@ -299,6 +300,10 @@
+ 	if portage.const.EPREFIX:
+ 		global_config_path = os.path.join(portage.const.EPREFIX,
+ 			GLOBAL_CONFIG_PATH.lstrip(os.sep))
++		if not exists_raise_eaccess(global_config_path) and portage.const.BPREFIX:
++			global_config_path = os.path.join(portage.const.BPREFIX,
++				GLOBAL_CONFIG_PATH.lstrip(os.sep))
++
+ 	def _getfiles():
+ 		for path, dirs, files in os.walk(os.path.join(global_config_path, "sets")):
+ 			for f in files:
+diff -ru prefix-portage-2.2.14.orig/pym/portage/util/_dyn_libs/LinkageMapELF.py prefix-portage-2.2.14/pym/portage/util/_dyn_libs/LinkageMapELF.py
+--- prefix-portage-2.2.14.orig/pym/portage/util/_dyn_libs/LinkageMapELF.py	2013-05-04 18:36:19.000000000 +0200
++++ prefix-portage-2.2.14/pym/portage/util/_dyn_libs/LinkageMapELF.py	2015-06-17 10:24:28.987164223 +0200
+@@ -17,7 +17,7 @@
+ from portage.util import grabfile
+ from portage.util import normalize_path
+ from portage.util import writemsg_level
+-from portage.const import EPREFIX
++from portage.const import BPREFIX
+ 
+ class LinkageMapELF(object):
+ 
+@@ -235,7 +235,7 @@
+ 					continue
+ 				plibs.update((x, cpv) for x in items)
+ 		if plibs:
+-			args = [EPREFIX + "/usr/bin/scanelf", "-qF", "%a;%F;%S;%r;%n"]
++			args = [BPREFIX + "/usr/bin/scanelf", "-qF", "%a;%F;%S;%r;%n"]
+ 			args.extend(os.path.join(root, x.lstrip("." + os.sep)) \
+ 				for x in plibs)
+ 			try:
