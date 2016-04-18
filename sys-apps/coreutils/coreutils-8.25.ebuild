@@ -67,6 +67,9 @@ src_prepare() {
 			-e "/src_libstdbuf_so_LDFLAGS = -shared/s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/libexec/coreutils/libstdbuf.dylib:" \
 			Makefile.in \
 			|| die
+	elif use elibc_Cygwin ; then
+		epatch "${FILESDIR}"/${P}-cygwin-3.patch
+		sed -i -e 's|\(libstdbuf\.so\)$(EXEEXT)|\1|g' Makefile.in || die
 	fi
 	sed -i \
 		-e "s/libstdbuf\\.so/libstdbuf$(get_libname)/" \
@@ -183,6 +186,10 @@ src_install() {
 		rm -rf "${ED}"/usr/share/man
 	fi
 
+	if use elibc_Cygwin ; then
+		! use kill || mv "${ED}"/bin/{,g}kill || die
+		mv "${ED}"/usr/libexec/${PN}/libstdbuf$(get_libname){.exe,} || die
+	fi
 }
 
 pkg_postinst() {
