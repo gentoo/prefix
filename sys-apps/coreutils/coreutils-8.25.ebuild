@@ -10,7 +10,7 @@
 
 EAPI="4"
 
-inherit eutils flag-o-matic toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 PATCH_VER="1.1"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
@@ -23,13 +23,13 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.xz
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS= # "~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux"
-IUSE="acl caps gmp hostname kill multicall nls selinux static userland_BSD vanilla xattr"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="acl caps elibc_glibc gmp hostname kill multicall nls selinux static +stdbuf uptime userland_BSD vanilla xattr"
 
 LIB_DEPEND="acl? ( sys-apps/acl[static-libs] )
 	caps? ( sys-libs/libcap )
 	gmp? ( dev-libs/gmp[static-libs] )
-	xattr? ( !userland_BSD? ( sys-apps/attr[static-libs] ) )"
+	xattr? ( elibc_glibc? ( sys-apps/attr[static-libs] ) )"
 RDEPEND="!static? ( ${LIB_DEPEND//\[static-libs]} )
 	selinux? ( sys-libs/libselinux )
 	nls? ( virtual/libintl )"
@@ -59,6 +59,22 @@ src_prepare() {
 		epatch
 	fi
 
+	epatch "${FILESDIR}"/${PN}-8.22-mint.patch
+
+	# fixup libstdbuf non-libtool stuff
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i \
+			-e "/src_libstdbuf_so_LDFLAGS = -shared/s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/libexec/coreutils/libstdbuf.dylib:" \
+			Makefile.in \
+			|| die
+	fi
+	sed -i \
+		-e "s/libstdbuf\\.so/libstdbuf$(get_libname)/" \
+		src/stdbuf.c \
+		Makefile.in \
+		configure \
+		|| die
+
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
@@ -66,6 +82,8 @@ src_prepare() {
 	# so let's just update the timestamps and skip the help2man step.
 	set -- man/*.x
 	touch ${@/%x/1}
+	# docs depend on configure as well
+	touch -r doc/stamp-vti configure
 
 	# Avoid perl dep for compiled in dircolors default #348642
 	if ! has_version dev-lang/perl ; then
@@ -92,8 +110,8 @@ src_configure() {
 		--with-packager="Gentoo" \
 		--with-packager-version="${PVR} (p${PATCH_VER:-0})" \
 		--with-packager-bug-reports="https://bugs.gentoo.org/" \
-		--enable-install-program="arch,$(usev hostname),$(usev kill)" \
-		--enable-no-install-program="groups,$(usev !hostname),$(usev !kill),su,uptime" \
+		--enable-install-program="arch,$(usev hostname),$(usev kill),$(usev stdbuf),$(usev uptime)" \
+		--enable-no-install-program="groups,$(usev !hostname),$(usev !kill),$(usev !stdbuf),su,$(usev !uptime)" \
 		--enable-largefile \
 		$(use caps || echo --disable-libcap) \
 		$(use_enable nls) \
@@ -145,7 +163,8 @@ src_install() {
 		dodir /bin
 		# move critical binaries into /bin (required by FHS)
 		local fhs="cat chgrp chmod chown cp date dd df echo false ln ls
-		           mkdir mknod mv pwd rm rmdir stty sync true uname"
+		           mkdir mknod mv pwd rm rmdir stty sync true uname
+		           $(usev hostname)"
 		mv ${fhs} ../../bin/ || die "could not move fhs bins"
 		if use kill; then
 			mv kill ../../bin/ || die
