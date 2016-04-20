@@ -25,10 +25,13 @@ RDEPEND="
 	sys-apps/baselayout-java
 	sys-apps/portage[${PYTHON_USEDEP}]"
 
+python_prepare_all() {
+	distutils-r1_python_prepare_all
+	epatch "${FILESDIR}/${P}-prefix.patch"
+}
+
 python_install_all() {
 	distutils-r1_python_install_all
-
-	epatch "${FILESDIR}/${P}-prefix.patch"
 
 	# This replaces the file installed by java-config-wrapper.
 	dosym java-config-2 /usr/bin/java-config
