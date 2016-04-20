@@ -13,7 +13,7 @@ DESCRIPTION="Java environment configuration query tool"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Java"
 SRC_URI="https://dev.gentoo.org/~sera/distfiles/${P}.tar.bz2"
 
-LICENSE="GPL-2"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="2"
 KEYWORDS="amd64 ~arm ppc64 x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="test"
