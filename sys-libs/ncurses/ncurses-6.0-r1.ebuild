@@ -71,10 +71,12 @@ src_configure() {
 		local lbuildflags="-static"
 
 		# some toolchains don't quite support static linking
-		local dbuildflags="-Wl,-rpath,${WORKDIR}/lib"
+		local dbuildflags=
 		case ${CHOST} in
-			*-darwin*)  dbuildflags=     ;;
-			*-aix*)     dbuildflags=     ;;
+			*-darwin*)  ;;
+			*-aix*)     ;;
+			*-solaris*) dbuildflags="-Wl,-R,${WORKDIR}/lib" ;;
+			*)          dbuildflags="-Wl,-rpath,${WORKDIR}/lib" ;;
 		esac
 		echo "int main() {}" | \
 			$(tc-getCC) -o x -x c - ${lbuildflags} -pipe >& /dev/null \
