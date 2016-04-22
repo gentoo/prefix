@@ -144,7 +144,7 @@ configure_cflags() {
 }
 
 configure_toolchain() {
-	linker=sys-devel/binutils
+	linker="sys-devel/binutils"
 	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc"
 	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
@@ -1182,6 +1182,7 @@ bootstrap_stage2() {
 		sys-devel/binutils-config
 		$([[ ${CHOST} == *-aix* ]] && echo sys-apps/diffutils ) # gcc can't deal with aix diffutils, gcc PR14251
 	)
+
 	# Most binary Linux distributions seem to fancy toolchains that
 	# do not do c++ support (need to install a separate package).
 	USE="${USE} -cxx" \
@@ -1228,7 +1229,6 @@ bootstrap_stage2() {
 		# make sure the EPREFIX gcc shared libraries are there
 		mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
 		cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
-
 	fi
 
 	einfo "stage2 successfully finished"
@@ -1291,6 +1291,13 @@ bootstrap_stage3() {
 	)
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
+	# On some hosts, gcc gets confused now when it uses the new linker,
+	# see for instance bug #575480.  While we would like to hide that
+	# linker, we can't since we want the compiler to pick it up.
+	# Therefore, inject some kludgy workaround, for deps like gmp that
+	# use c++
+	[[ ${CHOST} != *-darwin* ]] && export CXX="${CHOST}-g++ -lgcc_s"
+
 	# Clang unconditionally requires python, the eclasses are really not
 	# setup for a scenario where python doesn't live in the target
 	# prefix and no helpers are available
@@ -1307,6 +1314,7 @@ bootstrap_stage3() {
 	ln -s bash "${ROOT}"/bin/sh
 	unset CONFIG_SHELL
 	unset MAKEINFO
+	unset CXX
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
 	# Build portage and dependencies.
