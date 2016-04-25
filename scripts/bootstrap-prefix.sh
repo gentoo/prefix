@@ -1175,6 +1175,7 @@ bootstrap_stage2() {
 		app-arch/xz-utils
 		sys-apps/gentoo-functions
 		sys-apps/baselayout-prefix
+		dev-libs/libffi
 		sys-devel/m4
 		sys-devel/flex
 		sys-devel/bison
