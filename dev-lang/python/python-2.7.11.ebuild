@@ -129,6 +129,9 @@ src_prepare() {
 	epatch "${FILESDIR}/python-2.7.10-cross-compile-warn-test.patch"
 	epatch "${FILESDIR}/python-2.7.10-system-libffi.patch"
 
+	# On Cygwin, find_library("c") has to return "cygwin1.dll"
+	epatch "${FILESDIR}/python-2.5.2-cygwin-find_library.patch"
+
 	# On AIX, we've wrapped /usr/ccs/bin/nm to work around long TMPDIR.
 	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
 
