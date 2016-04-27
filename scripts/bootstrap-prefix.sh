@@ -691,6 +691,7 @@ bootstrap_python() {
 	# --disable-shared causes modules to probably link against the
 	# executable name, which must be the real executable at runtime
 	# as well rather than some symlink (for Cygwin at least).
+	# And with dlltool, find_library("c") can return "cygwin1.dll".
 	patch -p0 <<'EOP'
 --- Makefile.pre.in
 +++ Makefile.pre.in
@@ -705,6 +706,29 @@ bootstrap_python() {
 @@ -3,1 +3,1 @@
 -python$EXE ../../Tools/scripts/h2py.py -i '(u_long)' /usr/include/netinet/in.h
 +$HOSTPYTHON ../../Tools/scripts/h2py.py -i '(u_long)' /usr/include/netinet/in.h
+--- Lib/ctypes/util.py
++++ Lib/ctypes/util.py
+@@ -41,6 +41,20 @@
+                 continue
+         return None
+ 
++elif sys.platform == "cygwin":
++    def find_library(name):
++        for libdir in ['/usr/lib', '/usr/local/lib']:
++            for libext in ['lib%s.dll.a' % name, 'lib%s.a' % name]:
++                implib = os.path.join(libdir, libext)
++                if not os.path.exists(implib):
++                    continue
++                cmd = "dlltool -I " + implib + " 2>/dev/null"
++                res = os.popen(cmd).read().replace("\n","")
++                if not res:
++                    continue
++                return res
++        return None
++
+ elif os.name == "posix":
+     # Andreas Degert's find functions, using gcc, /sbin/ldconfig, objdump
+     import re, tempfile, errno
 EOP
 	local myconf=""
 
