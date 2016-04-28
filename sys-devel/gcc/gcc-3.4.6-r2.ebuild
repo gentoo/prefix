@@ -16,7 +16,6 @@ inherit eutils toolchain prefix
 DESCRIPTION="The GNU Compiler Collection"
 
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux"
-IUSE="ip28 ip32r10k n32 n64"
 
 # we need a proper glibc version for the Scrt1.o provided to the pie-ssp specs
 # NOTE: we SHOULD be using at least binutils 2.15.90.0.1 everywhere for proper
