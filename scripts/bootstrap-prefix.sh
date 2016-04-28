@@ -1127,13 +1127,16 @@ do_emerge_pkgs() {
 		#
 		# Avoid circular deps caused by the default profiles (and IUSE defaults).
 		echo "USE=${myuse[*]} PKG=${pkg}"
-		PORTAGE_CONFIGROOT="${EPREFIX}" \
-		PORTAGE_SYNC_STALE=0 \
-		FEATURES="-news ${FEATURES}" \
-		PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym \
-		USE="${myuse[*]}" \
-		CFLAGS= CXXFLAGS= \
-		emerge -v --oneshot --root-deps ${opts} "${pkg}" || return 1
+		(
+			unset CFLAGS CXXFLAGS
+			PORTAGE_CONFIGROOT="${EPREFIX}" \
+			PORTAGE_SYNC_STALE=0 \
+			FEATURES="-news ${FEATURES}" \
+			PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym \
+			USE="${myuse[*]}" \
+			emerge -v --oneshot --root-deps ${opts} "${pkg}" 
+		)
+		[[ $? -eq 0 ]] || return 1
 	done
 }
 
