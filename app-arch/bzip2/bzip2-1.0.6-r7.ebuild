@@ -55,6 +55,12 @@ src_prepare() {
 			sed -i -e '/^SONAME/s,=,=${EPREFIX}/lib/,' Makefile-libbz2_so || die "cannt set soname"
 		fi
 	fi
+	if [[ ${CHOST} == *-cygwin* ]] ; then
+		sed -i -e "s/-o libbz2\.so\.${PV}/-Wl,--out-implib=libbz2$(get_libname ${PV})/" \
+			   -e "s/-Wl,-soname -Wl,libbz2\.so\.1/-o cygbz2-${PV%%.*}.dll/" \
+			   -e "s/libbz2\.so/libbz2$(get_libname)/g" \
+			Makefile-libbz2_so
+	fi
 }
 
 bemake() {
@@ -81,7 +87,8 @@ multilib_src_compile() {
 		*)
 			bemake -f "${S}"/Makefile-libbz2_so all
 			# Make sure we link against the shared lib #504648
-			ln -sf libbz2.so.${PV} libbz2.so
+			[[ $(get_libname) != $(get_libname ${PV}) ]] &&
+			ln -sf libbz2$(get_libname ${PV}) libbz2$(get_libname)
 		;;
 	esac
 	bemake -f "${S}"/Makefile all LDFLAGS="${LDFLAGS} $(usex static -static '')"
@@ -97,7 +104,9 @@ multilib_src_install() {
 	#  .x.x   - SONAME some distros use #338321
 	#  .x     - SONAME Gentoo uses
 	dolib.so libbz2$(get_libname ${PV})
+	[[ ${CHOST} == *-cygwin* ]] && dobin cygbz2-${PV%%.*}.dll
 	local v
+	[[ $(get_libname) != $(get_libname ${PV}) ]] &&
 	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
 		dosym libbz2$(get_libname ${PV}) /usr/$(get_libdir)/${v}
 	done
