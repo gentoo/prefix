@@ -1,0 +1,47 @@
+http://rpm5.org/cvs/tktview?tn=93
+
+--- configure.ac
++++ configure.ac
+#@@ -82,7 +82,7 @@
+ AC_CHECK_FUNC(setreuid, [], [
+     AC_CHECK_LIB(ucb, setreuid, [if echo $LIBS | grep -- -lucb >/dev/null ;then :; else LIBS="$LIBS -lc -lucb" USEUCB=y;fi])
+ ])
+-AC_CHECK_FUNCS(getuid geteuid iconv mtrace __secure_getenv setregid stpcpy strerror vasprintf srandom)
++AC_CHECK_FUNCS(getuid geteuid glob_pattern_p iconv mtrace __secure_getenv setregid stpcpy strerror vasprintf srandom)
+ 
+ AM_GNU_GETTEXT([external])
+ AM_ICONV_LINK
+--- config.h.in
++++ config.h.in
+@@ -34,6 +34,9 @@
+ /* Define to 1 if you have the `getuid' function. */
+ #undef HAVE_GETUID
+ 
++/* Define to 1 if you have the `glob_pattern_p' function. */
++#undef HAVE_GLOB_PATTERN_P
++
+ /* Define to 1 if you have the <glob.h> header file. */
+ #undef HAVE_GLOB_H
+ 
+--- configure
++++ configure
+@@ -13505,7 +13505,7 @@
+ 
+ 
+ 
+-for ac_func in getuid geteuid iconv mtrace __secure_getenv setregid stpcpy strerror vasprintf srandom
++for ac_func in getuid geteuid glob_pattern_p iconv mtrace __secure_getenv setregid stpcpy strerror vasprintf srandom
+ do
+ as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ { $as_echo "$as_me:$LINENO: checking for $ac_func" >&5
+--- poptconfig.c
++++ poptconfig.c
+@@ -42,7 +42,7 @@
+ /*@=declundef =exportheader =incondefs =protoparammatch =redecl =type @*/
+ #endif	/* __LCLINT__ */
+ 
+-#if !defined(__GLIBC__)
++#if !defined(HAVE_GLOB_PATTERN_P)
+ /* Return nonzero if PATTERN contains any metacharacters.
+    Metacharacters can be quoted with backslashes if QUOTE is nonzero.  */
+ static int
