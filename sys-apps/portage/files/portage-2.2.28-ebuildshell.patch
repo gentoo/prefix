@@ -1,19 +1,19 @@
-From 096a74009cea9c79bcc2729d18a3cbcb99783aeb Mon Sep 17 00:00:00 2001
+From c93cb045630db71f8fbc0e0b67960a28764a6852 Mon Sep 17 00:00:00 2001
 From: Michael Haubenwallner <michael.haubenwallner@salomon.at>
 Date: Wed, 6 Nov 2013 12:40:05 +0100
 Subject: [PATCH] Add ebuildshell feature, bug#155161.
 
 ---
- bin/ebuild.sh                        | 102 ++++++++++++++++++++++++++++++++++-
- bin/filter-bash-environment.py       |  65 ++++++++++++++++------
+ bin/ebuild.sh                        | 131 ++++++++++++++++++++++++++++++++++-
+ bin/filter-bash-environment.py       |  50 ++++++++-----
  bin/save-ebuild-env.sh               |   2 +-
- man/make.conf.5                      |   6 +++
+ man/make.conf.5                      |   6 ++
  pym/_emerge/AbstractEbuildProcess.py |   1 +
  pym/portage/const.py                 |   1 +
- 6 files changed, 159 insertions(+), 18 deletions(-)
+ 6 files changed, 173 insertions(+), 18 deletions(-)
 
 diff --git a/bin/ebuild.sh b/bin/ebuild.sh
-index f1586b2..06c90df 100755
+index f1586b2..cb487c0 100755
 --- a/bin/ebuild.sh
 +++ b/bin/ebuild.sh
 @@ -130,7 +130,7 @@ __qa_source() {
@@ -25,7 +25,7 @@ index f1586b2..06c90df 100755
  	retval=$?
  	set +e
  	[[ $shopts != $(shopt) ]] &&
-@@ -537,6 +537,106 @@ if [[ -n ${QA_INTERCEPTORS} ]] ; then
+@@ -537,6 +537,135 @@ if [[ -n ${QA_INTERCEPTORS} ]] ; then
  	unset BIN_PATH BIN BODY FUNC_SRC
  fi
  
@@ -74,14 +74,31 @@ index f1586b2..06c90df 100755
 +			type $1
 +			echo "WANTED: \$@"
 +			echo "or use: \"\\\$@\""
-+			# use bash history, but not the user's real one
++			# use bash history, but not the 'user's real one
 +			HISTFILE=~/.bash_history
-+			# for copy&paste function body lines containing: local
-+			alias local=declare
 +			# for copy&paste function body lines containing: !
 +			set +H
++			# Support the 'local' keyword outside any shell function
++			# for copy&paste of function body lines: Remember these
++			# "local" variable names for filtering from return-env.
++			__ebuildshell_local_vars=
++			__ebuildshell_local() {
++				local __ebuildshell_local_attr=
++				while [[ \${1} == -* ]]; do
++					__ebuildshell_local_attr+=" \${1}"
++					shift
++				done
++				__ebuildshell_local_vars+=" \${1%%=*} "
++				# Need to declare into the global shell namespace,
++				# as we are in some shell function here apparently.
++				declare -g \${__ebuildshell_local_attr} "\$@"
++			}
++			# within some function, BASH_LINENO is set, and we use real 'local'
++			alias local='\$( (( \${#BASH_LINENO} > 0 )) && echo local || echo __ebuildshell_local)'
 +			# at exit, dump the current environment
 +			trap "
++				unalias local
++				unset -f __ebuildshell_local
 +				rm -f '${__ebuildshell_tmpf}.return-'*
 +				(
 +					(
@@ -93,13 +110,14 @@ index f1586b2..06c90df 100755
 +					(
 +						# We may have more readonly variables now, but we
 +						# need to filter variables that are readonly already.
-+						2>"${__ebuildshell_tmpf}.return-rovars" \
-+						'${PORTAGE_PYTHON:-/tools/haubi/gentoo/s01en24/usr/bin/python}' \
++						2>'${__ebuildshell_tmpf}.return-rovars' \\
++						'${PORTAGE_PYTHON:-/tools/haubi/gentoo/s01en24/usr/bin/python}' \\
 +							'${PORTAGE_BIN_PATH}'/filter-bash-environment.py \\
-+								--report-readonly-variables \
-+								--preserve-readonly-attribute \
-+								--export-into-global-scope \
-+								'${__ebuildshell_bash_i_vars} ${__ebuildshell_ro_ebuild_vars}' \\
++								--report-readonly-variables \\
++								--preserve-readonly-attribute \\
++								'${__ebuildshell_bash_i_vars}
++								 ${__ebuildshell_ro_ebuild_vars}
++								 '\" \${__ebuildshell_local_vars}\" \\
 +							|| die 'filter-bash-environment.py failed'
 +					)
 +				) > '${__ebuildshell_tmpf}.return-env'
@@ -120,12 +138,23 @@ index f1586b2..06c90df 100755
 +	# The environment- and exit-status handling after leaving the ebuildshell
 +	# prompt is expected to be identical as without the ebuildshell prompt.
 +	local __ebuildshell_status=$?
++
++	# Defining a variable without using the the local keyword makes this
++	# variable visible to the 'global' shell namespace.  But 'declare -p'
++	# does not show the -g flag, so we need to add that one for all
++	# variables that have been visible to the EXIT trap above.
++	local __ebuildshell_orig_expand_aliases=$(shopt -p expand_aliases)
++	alias declare='declare -g'
++	shopt -s expand_aliases
 +	source "${__ebuildshell_tmpf}.return-env"
++	unalias declare
++	${__ebuildshell_orig_expand_aliases}
 +	# Portage does whitelist readonly variables. If an ebuild defines
 +	# more readonly variables, their readonly attribute is removed.
 +	# If we ever want to preserve additional readonly variables across
 +	# phases, their names are in "${__ebuildshell_tmpf}.return-rovars".
 +	rm -f "${__ebuildshell_tmpf}."{ebuild,return}-{env,rovars}
++
 +	return ${__ebuildshell_status}
 +}
 +
@@ -133,20 +162,19 @@ index f1586b2..06c90df 100755
  export EBUILD_MASTER_PID=${BASHPID:-$(__bashpid)}
  trap 'exit 1' SIGTERM
 diff --git a/bin/filter-bash-environment.py b/bin/filter-bash-environment.py
-index a4cdc54..a710e93 100755
+index a4cdc54..5ed2584 100755
 --- a/bin/filter-bash-environment.py
 +++ b/bin/filter-bash-environment.py
-@@ -14,7 +14,8 @@ func_end_re = re.compile(r'^\}$')
+@@ -14,7 +14,7 @@ func_end_re = re.compile(r'^\}$')
  
  var_assign_re = re.compile(r'(^|^declare\s+-\S+\s+|^declare\s+|^export\s+)([^=\s]+)=("|\')?.*$')
  close_quote_re = re.compile(r'(\\"|"|\')\s*$')
 -readonly_re = re.compile(r'^declare\s+-(\S*)r(\S*)\s+')
 +readonly_re = re.compile(r'^declare\s+-(\S*)r(\S*)\s+([^=\s]+)')
-+export_re = re.compile(r'^declare\s+-(\S*x\S*)\s+')
  # declare without assignment
  var_declare_re = re.compile(r'^declare(\s+-\S+)?\s+([^=\s]+)\s*$')
  
-@@ -29,7 +30,7 @@ def have_end_quote(quote, line):
+@@ -29,7 +29,7 @@ def have_end_quote(quote, line):
  	return close_quote_match is not None and \
  		close_quote_match.group(1) == quote
  
@@ -155,7 +183,7 @@ index a4cdc54..a710e93 100755
  	readonly_match = readonly_re.match(line)
  	if readonly_match is not None:
  		declare_opts = ''
-@@ -37,14 +38,29 @@ def filter_declare_readonly_opt(line):
+@@ -37,14 +37,19 @@ def filter_declare_readonly_opt(line):
  			group = readonly_match.group(i)
  			if group is not None:
  				declare_opts += group
@@ -175,41 +203,29 @@ index a4cdc54..a710e93 100755
  	return line
  
 -def filter_bash_environment(pattern, file_in, file_out):
-+def add_global_export_opt(line, options):
-+	export_match = export_re.match(line)
-+	if export_match is not None:
-+		declare_opts = export_match.group(1)
-+		if 'g' not in declare_opts and '--export-into-global-scope' in options:
-+			declare_opts += 'g'
-+		line = 'declare -%s %s' % \
-+			(declare_opts, line[export_match.end():])
-+	return line
-+
 +def filter_bash_environment(pattern, file_in, file_out, options):
  	# Filter out any instances of the \1 character from variable values
  	# since this character multiplies each time that the environment
  	# is saved (strange bash behavior). This can eventually result in
-@@ -77,7 +93,8 @@ def filter_bash_environment(pattern, file_in, file_out):
+@@ -77,7 +82,7 @@ def filter_bash_environment(pattern, file_in, file_out):
  					multi_line_quote = quote
  					multi_line_quote_filter = filter_this
  				if not filter_this:
 -					line = filter_declare_readonly_opt(line)
 +					line = filter_declare_readonly_opt(line, options)
-+					line = add_global_export_opt(line, options)
  					file_out.write(line.replace("\1", ""))
  				continue
  			else:
-@@ -87,7 +104,8 @@ def filter_bash_environment(pattern, file_in, file_out):
+@@ -87,7 +92,7 @@ def filter_bash_environment(pattern, file_in, file_out):
  					filter_this = pattern.match(declare_match.group(2)) \
  						is not None
  					if not filter_this:
 -						line = filter_declare_readonly_opt(line)
 +						line = filter_declare_readonly_opt(line, options)
-+						line = add_global_export_opt(line, options)
  						file_out.write(line)
  					continue
  
-@@ -124,13 +142,28 @@ if __name__ == "__main__":
+@@ -124,13 +129,26 @@ if __name__ == "__main__":
  		"while leaving bash function definitions and here-documents " + \
  		"intact. The PATTERN is a space separated list of variable names" + \
  		" and it supports python regular expression syntax."
@@ -227,8 +243,6 @@ index a4cdc54..a710e93 100755
 +			"Write names of readonly variables to stderr.",
 +		'--preserve-readonly-attribute':
 +			"Preserve the '-r' flag in 'declare -r'.",
-+		'--export-into-global-scope':
-+			"Add the '-g' flag to 'declare -x'.",
 +	}
 +	options = {}
 +	for arg in sys.argv[1:]:
@@ -245,7 +259,7 @@ index a4cdc54..a710e93 100755
  
  	if len(args) != 1:
  		sys.stderr.write(usage + "\n")
-@@ -154,5 +187,5 @@ if __name__ == "__main__":
+@@ -154,5 +172,5 @@ if __name__ == "__main__":
  
  	var_pattern = "^(%s)$" % "|".join(var_pattern)
  	filter_bash_environment(
