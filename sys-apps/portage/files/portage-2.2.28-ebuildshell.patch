@@ -1,19 +1,19 @@
-From c93cb045630db71f8fbc0e0b67960a28764a6852 Mon Sep 17 00:00:00 2001
+From 3ae829681363c032c9863d4e5a41a762af89f93e Mon Sep 17 00:00:00 2001
 From: Michael Haubenwallner <michael.haubenwallner@salomon.at>
 Date: Wed, 6 Nov 2013 12:40:05 +0100
 Subject: [PATCH] Add ebuildshell feature, bug#155161.
 
 ---
- bin/ebuild.sh                        | 131 ++++++++++++++++++++++++++++++++++-
- bin/filter-bash-environment.py       |  50 ++++++++-----
+ bin/ebuild.sh                        | 123 ++++++++++++++++++++++++++++++++++-
+ bin/filter-bash-environment.py       |  57 +++++++++++-----
  bin/save-ebuild-env.sh               |   2 +-
  man/make.conf.5                      |   6 ++
  pym/_emerge/AbstractEbuildProcess.py |   1 +
  pym/portage/const.py                 |   1 +
- 6 files changed, 173 insertions(+), 18 deletions(-)
+ 6 files changed, 172 insertions(+), 18 deletions(-)
 
 diff --git a/bin/ebuild.sh b/bin/ebuild.sh
-index f1586b2..cb487c0 100755
+index f1586b2..8231a98 100755
 --- a/bin/ebuild.sh
 +++ b/bin/ebuild.sh
 @@ -130,7 +130,7 @@ __qa_source() {
@@ -25,7 +25,7 @@ index f1586b2..cb487c0 100755
  	retval=$?
  	set +e
  	[[ $shopts != $(shopt) ]] &&
-@@ -537,6 +537,135 @@ if [[ -n ${QA_INTERCEPTORS} ]] ; then
+@@ -537,6 +537,127 @@ if [[ -n ${QA_INTERCEPTORS} ]] ; then
  	unset BIN_PATH BIN BODY FUNC_SRC
  fi
  
@@ -39,8 +39,8 @@ index f1586b2..cb487c0 100755
 +	local __ebuildshell_bash_i_vars="__ebuildshell_.*
 +		_ BASH_ARGC BASH_ARGV BASH_COMMAND BASH_LINENO BASH_SOURCE
 +		BASH_VERSINFO BASH_SUBSHELL BASHOPTS BASHPID COMP_WORDBREAKS
-+		DIRSTACK EUID FUNCNAME GROUPS HISTCMD HISTFILE LINENO
-+		PIPESTATUS PPID PWD RANDOM SECONDS SHELLOPTS UID"
++		DIRSTACK EUID FUNCNAME GROUPS HISTCMD HISTFILE LINENO PIPESTATUS
++		PPID PS1 PS2 PS3 PS4 PWD RANDOM SECONDS SHELLOPTS UID"
 +	# Allow recursive ebuildshell, for use in multibuild.eclass and similar:
 +	local __ebuildshell_pid=${BASHPID:-$(__bashpid)}
 +	local __ebuildshell_tmpf="${T}/ebuildshell.${__ebuildshell_pid}"
@@ -76,56 +76,50 @@ index f1586b2..cb487c0 100755
 +			echo "or use: \"\\\$@\""
 +			# use bash history, but not the 'user's real one
 +			HISTFILE=~/.bash_history
-+			# for copy&paste function body lines containing: !
++			# but do not use history-expansion with '!',
++			# for copy&paste of function body lines containing: !
 +			set +H
-+			# Support the 'local' keyword outside any shell function
-+			# for copy&paste of function body lines: Remember these
-+			# "local" variable names for filtering from return-env.
-+			__ebuildshell_local_vars=
-+			__ebuildshell_local() {
-+				local __ebuildshell_local_attr=
-+				while [[ \${1} == -* ]]; do
-+					__ebuildshell_local_attr+=" \${1}"
-+					shift
-+				done
-+				__ebuildshell_local_vars+=" \${1%%=*} "
-+				# Need to declare into the global shell namespace,
-+				# as we are in some shell function here apparently.
-+				declare -g \${__ebuildshell_local_attr} "\$@"
-+			}
-+			# within some function, BASH_LINENO is set, and we use real 'local'
-+			alias local='\$( (( \${#BASH_LINENO} > 0 )) && echo local || echo __ebuildshell_local)'
++			# For copy&paste of function body lines, we want the 'local'
++			# keyword available at the shell prompt as well.  So we alias
++			# the 'local' keyword to 'declare -t', to identify local
++			# variables by their trace attribute.
++			alias local='declare -t'
++			shopt -s expand_aliases
++			# this is a debugging shell already
++			shopt -u extdebug
++			trap - DEBUG
 +			# at exit, dump the current environment
 +			trap "
 +				unalias local
-+				unset -f __ebuildshell_local
++				unset -f __call-ebuildshell
 +				rm -f '${__ebuildshell_tmpf}.return-'*
 +				(
 +					(
++						# declare -p does not tell the -g flag,
++						# so we add it by aliasing declare.
++						echo \"alias declare='declare -g'\"
 +						declare -p
++						echo \"unalias declare\"
 +						declare -fp
-+						shopt -p | grep -v 'extdebug$'
++						shopt -p | grep -v '\\(expand_aliases\\|extdebug\\)$'
 +						$([[ ${BASH_VERSINFO[0]} == 3 ]] && echo export)
 +					) |
 +					(
-+						# We may have more readonly variables now, but we
++						# We may have more readonly variables now, yet we
 +						# need to filter variables that are readonly already.
 +						2>'${__ebuildshell_tmpf}.return-rovars' \\
 +						'${PORTAGE_PYTHON:-/tools/haubi/gentoo/s01en24/usr/bin/python}' \\
 +							'${PORTAGE_BIN_PATH}'/filter-bash-environment.py \\
 +								--report-readonly-variables \\
 +								--preserve-readonly-attribute \\
-+								'${__ebuildshell_bash_i_vars}
-+								 ${__ebuildshell_ro_ebuild_vars}
-+								 '\" \${__ebuildshell_local_vars}\" \\
++								--filter-traced-variables \\
++								'${__ebuildshell_bash_i_vars} \
++								 ${__ebuildshell_ro_ebuild_vars}' \\
 +							|| die 'filter-bash-environment.py failed'
 +					)
 +				) > '${__ebuildshell_tmpf}.return-env'
 +				" EXIT
-+			# this is a debugging shell already
-+			shopt -u extdebug
-+			trap - DEBUG
-+			# can do some cleanup already
++			# can do some cleanup right now
 +			rm -f '${__ebuildshell_tmpf}.ebuild-'*
 +		EOE
 +	) > "${__ebuildshell_tmpf}.ebuild-env"
@@ -139,16 +133,14 @@ index f1586b2..cb487c0 100755
 +	# prompt is expected to be identical as without the ebuildshell prompt.
 +	local __ebuildshell_status=$?
 +
-+	# Defining a variable without using the the local keyword makes this
-+	# variable visible to the 'global' shell namespace.  But 'declare -p'
-+	# does not show the -g flag, so we need to add that one for all
-+	# variables that have been visible to the EXIT trap above.
-+	local __ebuildshell_orig_expand_aliases=$(shopt -p expand_aliases)
-+	alias declare='declare -g'
-+	shopt -s expand_aliases
++	# We might be in a recursive ebuildshell, but do not want
++	# any aliases being active while sourcing the return-env.
++	local __ebuildshell_orig_aliases=$(alias)
++	unalias -a
 +	source "${__ebuildshell_tmpf}.return-env"
-+	unalias declare
-+	${__ebuildshell_orig_expand_aliases}
++	unalias -a
++	eval "${__ebuildshell_orig_aliases}"
++
 +	# Portage does whitelist readonly variables. If an ebuild defines
 +	# more readonly variables, their readonly attribute is removed.
 +	# If we ever want to preserve additional readonly variables across
@@ -162,19 +154,20 @@ index f1586b2..cb487c0 100755
  export EBUILD_MASTER_PID=${BASHPID:-$(__bashpid)}
  trap 'exit 1' SIGTERM
 diff --git a/bin/filter-bash-environment.py b/bin/filter-bash-environment.py
-index a4cdc54..5ed2584 100755
+index a4cdc54..1c4ad58 100755
 --- a/bin/filter-bash-environment.py
 +++ b/bin/filter-bash-environment.py
-@@ -14,7 +14,7 @@ func_end_re = re.compile(r'^\}$')
+@@ -14,7 +14,8 @@ func_end_re = re.compile(r'^\}$')
  
  var_assign_re = re.compile(r'(^|^declare\s+-\S+\s+|^declare\s+|^export\s+)([^=\s]+)=("|\')?.*$')
  close_quote_re = re.compile(r'(\\"|"|\')\s*$')
 -readonly_re = re.compile(r'^declare\s+-(\S*)r(\S*)\s+')
 +readonly_re = re.compile(r'^declare\s+-(\S*)r(\S*)\s+([^=\s]+)')
++trace_re = re.compile(r'^declare\s+-\S*t\S*\s+')
  # declare without assignment
  var_declare_re = re.compile(r'^declare(\s+-\S+)?\s+([^=\s]+)\s*$')
  
-@@ -29,7 +29,7 @@ def have_end_quote(quote, line):
+@@ -29,7 +30,7 @@ def have_end_quote(quote, line):
  	return close_quote_match is not None and \
  		close_quote_match.group(1) == quote
  
@@ -183,7 +176,7 @@ index a4cdc54..5ed2584 100755
  	readonly_match = readonly_re.match(line)
  	if readonly_match is not None:
  		declare_opts = ''
-@@ -37,14 +37,19 @@ def filter_declare_readonly_opt(line):
+@@ -37,14 +38,19 @@ def filter_declare_readonly_opt(line):
  			group = readonly_match.group(i)
  			if group is not None:
  				declare_opts += group
@@ -207,7 +200,16 @@ index a4cdc54..5ed2584 100755
  	# Filter out any instances of the \1 character from variable values
  	# since this character multiplies each time that the environment
  	# is saved (strange bash behavior). This can eventually result in
-@@ -77,7 +82,7 @@ def filter_bash_environment(pattern, file_in, file_out):
+@@ -68,6 +74,8 @@ def filter_bash_environment(pattern, file_in, file_out):
+ 				quote = var_assign_match.group(3)
+ 				filter_this = pattern.match(var_assign_match.group(2)) \
+ 					is not None
++				if not filter_this and '--filter-traced-variables' in options:
++					filter_this = trace_re.match(line) is not None
+ 				# Exclude the start quote when searching for the end quote,
+ 				# to ensure that the start quote is not misidentified as the
+ 				# end quote (happens if there is a newline immediately after
+@@ -77,7 +85,7 @@ def filter_bash_environment(pattern, file_in, file_out):
  					multi_line_quote = quote
  					multi_line_quote_filter = filter_this
  				if not filter_this:
@@ -216,16 +218,19 @@ index a4cdc54..5ed2584 100755
  					file_out.write(line.replace("\1", ""))
  				continue
  			else:
-@@ -87,7 +92,7 @@ def filter_bash_environment(pattern, file_in, file_out):
+@@ -86,8 +94,10 @@ def filter_bash_environment(pattern, file_in, file_out):
+ 					# declare without assignment
  					filter_this = pattern.match(declare_match.group(2)) \
  						is not None
++					if not filter_this and '--filter-traced-variables' in options:
++						filter_this = trace_re.match(line) is not None
  					if not filter_this:
 -						line = filter_declare_readonly_opt(line)
 +						line = filter_declare_readonly_opt(line, options)
  						file_out.write(line)
  					continue
  
-@@ -124,13 +129,26 @@ if __name__ == "__main__":
+@@ -124,13 +134,28 @@ if __name__ == "__main__":
  		"while leaving bash function definitions and here-documents " + \
  		"intact. The PATTERN is a space separated list of variable names" + \
  		" and it supports python regular expression syntax."
@@ -243,6 +248,8 @@ index a4cdc54..5ed2584 100755
 +			"Write names of readonly variables to stderr.",
 +		'--preserve-readonly-attribute':
 +			"Preserve the '-r' flag in 'declare -r'.",
++		'--filter-traced-variables':
++			"Filter out variables declared with '-t' attribute."
 +	}
 +	options = {}
 +	for arg in sys.argv[1:]:
@@ -259,7 +266,7 @@ index a4cdc54..5ed2584 100755
  
  	if len(args) != 1:
  		sys.stderr.write(usage + "\n")
-@@ -154,5 +172,5 @@ if __name__ == "__main__":
+@@ -154,5 +179,5 @@ if __name__ == "__main__":
  
  	var_pattern = "^(%s)$" % "|".join(var_pattern)
  	filter_bash_environment(
