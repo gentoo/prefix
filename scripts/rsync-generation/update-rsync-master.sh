@@ -243,5 +243,13 @@ chmod -R u-s,g-s "${RSYNCDIR}"/metadata
 STOP=$(date +%s)
 TIME_TOTAL=$((STOP - GLOBALSTART))
 
-echo "${GLOBALSTART}	\"$(date +"%F %H:%M" -d @${GLOBALSTART})\"	${TIME_METADATA}	${TIME_SVNPREFIX}	${TIME_CVSGX86} ${TIME_EGENCACHE}	${TIME_TOTAL}	${TIME_MANISIGN}" >> \
-	/export/gentoo/statistics/stats/timing-rsync0.data
+# feed timings to graphite
+prefix="gentoo.rsync-generation.$(hostname -s)"
+{
+	echo "${prefix}.pull-metadata ${TIME_METADATA} ${GLOBALSTART}"
+	echo "${prefix}.pull-overlay ${TIME_SVNPREFIX} ${GLOBALSTART}"
+	echo "${prefix}.pull-gx86 ${TIME_CVSGX86} ${GLOBALSTART}"
+	echo "${prefix}.egencache ${TIME_EGENCACHE} ${GLOBALSTART}"
+	echo "${prefix}.wallclock ${TIME_TOTAL} ${GLOBALSTART}"
+	echo "${prefix}.signing ${TIME_MANISIGN} ${GLOBALSTART}"
+} | nc -q 0 localhost 3002
