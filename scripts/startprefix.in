@@ -37,9 +37,15 @@ fi
 # give a small notice
 echo "Entering Gentoo Prefix ${EPREFIX}"
 # start the login shell, clean the entire environment but what's needed
+RETAIN="HOME=$HOME TERM=$TERM USER=$USER SHELL=$SHELL"
 # PROFILEREAD is necessary on SUSE not to wipe the env on shell start
-[[ -n ${PROFILEREAD} ]] && DOPROFILEREAD="PROFILEREAD=${PROFILEREAD}"
-env -i HOME=$HOME TERM=$TERM USER=$USER SHELL=$SHELL $DOPROFILEREAD $SHELL -l
+[[ -n ${PROFILEREAD} ]] && RETAIN+=" PROFILEREAD=$PROFILEREAD"
+# ssh-agent is handy to keep, of if set, inherit it
+[[ -n ${SSH_AUTH_SOCK} ]] && RETAIN+=" SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
+# if we're on some X terminal, makes sense to inherit that too
+[[ -n ${DISPLAY} ]] && RETAIN+=" DISPLAY=$DISPLAY"
+# do it!
+env -i $RETAIN $SHELL -l
 # and leave a message when we exit... the shell might return non-zero
 # without having real problems, so don't send alarming messages about
 # that
