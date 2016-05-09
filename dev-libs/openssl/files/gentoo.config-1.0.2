@@ -34,6 +34,8 @@ if [[ $1 == "test" ]] ; then
 		"i386-apple-darwinX           |darwin-i386-cc" \
 		"powerpc-apple-darwinX        |darwin-ppc-cc" \
 		"i586-pc-winnt                |winnt-parity" \
+		"i586-pc-cygwin2.0            |Cygwin" \
+		"x86_64-pc-cygwin             |Cygwin-x86_64" \
 		"s390-ibm-linux-gnu           |linux-generic32 -DB_ENDIAN" \
 		"s390x-linux-gnu              |linux64-s390x" \
 	;do
@@ -57,6 +59,7 @@ fi
 # Detect the operating system
 case ${CHOST} in
 	*-aix*)          system="aix";;
+	*-cygwin*)       system="Cygwin";;
 	*-darwin*)       system="darwin";;
 	*-freebsd*)      system="BSD";;
 	*-hpux*)         system="hpux";;
@@ -129,6 +132,12 @@ BSD)
 	;;
 aix)
 	machine=${compiler}
+	;;
+Cygwin)
+	case ${chost_machine} in
+	x86_64) machine=x86_64 ;;
+	*)      echo ${system} ;; # Cygwin-x86 is 'Cygwin' only
+	esac
 	;;
 darwin)
 	case ${chost_machine} in
