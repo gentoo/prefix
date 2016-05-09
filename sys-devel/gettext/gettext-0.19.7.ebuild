@@ -49,6 +49,12 @@ pkg_setup() {
 src_prepare() {
 	java-pkg-opt-2_src_prepare
 
+	# Cygwin patches
+	epatch "${FILESDIR}"/0.18.1.1-no-woe32dll.patch
+	epatch "${FILESDIR}"/0.19.3-localename.patch
+	epatch "${FILESDIR}"/0.19.3-tests-cygwin.patch
+	epatch "${FILESDIR}"/0.19.7-gnulib-cygwin25.patch
+
 	# this script uses syntax that Solaris /bin/sh doesn't grok
 	sed -i -e '1c\#!/usr/bin/env sh' \
 		gettext-tools/misc/convert-archive.in || die
