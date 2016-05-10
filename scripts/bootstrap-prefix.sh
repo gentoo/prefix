@@ -1396,7 +1396,11 @@ bootstrap_stage3() {
 	# temporarily work around c_rehash missing openssl dependency, bug #572790
 	CFLAGS= CXXFLAGS= emerge -1 openssl || return 1
 
-	# Portage should figure out itself what it needs to do, if anything
+	# Portage should figure out itself what it needs to do, if anything.
+	# Avoid glib compiling for Cocoa libs if it finds them, since we're
+	# still with an old llvm that may not understand the system headers
+	# very well on Darwin (-DGNUSTEP_BASE_VERSION hack)
+	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
 	CFLAGS= CXXFLAGS= USE="-git" emerge -u system || return 1
 
 	# remove anything that we don't need (compilers most likely)
