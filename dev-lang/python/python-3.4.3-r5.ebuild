@@ -10,12 +10,16 @@ inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolcha
 MY_P="Python-${PV/_/}"
 PATCHSET_VERSION="3.4.3-0"
 PREFIX_PATCHREV="r0"
+CYGWINPORTS_GITREV="8ee84829be03c2a1aa74f0f095c994c1f43f4688"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV%_rc*}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~floppym/python/python-gentoo-patches-${PATCHSET_VERSION}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches-${PREFIX_PATCHREV}.tar.xz"
+
+[[ -n ${CYGWINPORTS_GITREV} ]] &&
+SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/python3/archive/${CYGWINPORTS_GITREV}.zip )"
 
 LICENSE="PSF-2"
 SLOT="3.4/3.4m"
@@ -76,6 +80,7 @@ src_prepare() {
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 	epatch "${FILESDIR}/${PN}-3.4.3-ncurses-pkg-config.patch"
 	epatch "${FILESDIR}/${PN}-3.4-gcc-5.patch" #547626
+	epatch "${FILESDIR}/${PN}-3.4-pyfpe-dll.patch" # Cygwin: --with-fpectl
 
 	# Prefix' round of patches
 	# http://prefix.gentooexperimental.org:8000/python-patches-3_3
@@ -97,6 +102,18 @@ src_prepare() {
 
 	# Make sure python doesn't use the host libffi.
 	use prefix && epatch "${FILESDIR}/python-3.2-libffi-pkgconfig.patch"
+
+	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
+	    local p d="${WORKDIR}/python3-${CYGWINPORTS_GITREV}"
+	    for p in $(
+		    eval "$(sed -ne '/PATCH_URI="/,/"/p' < "${d}"/python3.cygport)"
+		    echo ${PATCH_URI}
+	    ); do
+			# dropped by 01_all_prefix-no-patch-invention.patch
+			[[ ${p} == *-tkinter-* ]] && continue
+		    epatch "${d}/${p}"
+	    done
+	fi
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \

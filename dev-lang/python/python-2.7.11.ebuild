@@ -10,12 +10,16 @@ inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolcha
 MY_P="Python-${PV}"
 PATCHSET_VERSION="2.7.11-0"
 PREFIX_PATCHREV="r0"
+CYGWINPORTS_GITREV="7be648659ef46f33db6913ca0ca5a809219d5629"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~djc/python-gentoo-patches-${PATCHSET_VERSION}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches-${PREFIX_PATCHREV}.tar.xz"
+
+[[ -n ${CYGWINPORTS_GITREV} ]] &&
+SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/python/archive/${CYGWINPORTS_GITREV}.zip )"
 
 LICENSE="PSF-2"
 SLOT="2.7"
@@ -128,15 +132,25 @@ src_prepare() {
 	epatch "${FILESDIR}/python-2.7.9-ncurses-pkg-config.patch"
 	epatch "${FILESDIR}/python-2.7.10-cross-compile-warn-test.patch"
 	epatch "${FILESDIR}/python-2.7.10-system-libffi.patch"
-
-	# On Cygwin, find_library("c") has to return "cygwin1.dll"
-	epatch "${FILESDIR}/python-2.5.2-cygwin-find_library.patch"
+	epatch "${FILESDIR}/python-3.4-pyfpe-dll.patch" # Cygwin: --with-fpectl
 
 	# On AIX, we've wrapped /usr/ccs/bin/nm to work around long TMPDIR.
 	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
 
 	# Make sure python doesn't use the host libffi.
 	use prefix && epatch "${FILESDIR}/python-2.7-libffi-pkgconfig.patch"
+
+	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
+	    local p d="${WORKDIR}/python-${CYGWINPORTS_GITREV}"
+	    for p in $(
+		    eval "$(sed -ne '/PATCH_URI="/,/"/p' < "${d}"/python.cygport)"
+		    echo ${PATCH_URI}
+	    ); do
+			# dropped by 01_all_prefix-no-patch-invention.patch
+			[[ ${p} == *-tkinter-* ]] && continue
+		    epatch "${d}/${p}"
+	    done
+	fi
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
