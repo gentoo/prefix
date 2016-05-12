@@ -378,11 +378,14 @@ do_tree() {
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
 	if [[ ${PREFIX_DISABLE_USR_SPLIT} == "yes" ]] ; then
-		# note to self: don't make bin a symlink to usr/bin for
-		# coreutils installs symlinks to from usr/bin to bin, which in
-		# case they are the same boils down to a pointless indirection
-		# to self
-		for x in lib sbin ; do
+		# note to self: since coreutils now listens to
+		# PREFIX_DISABLE_GEN_USR_LDSCRIPT to avoid symlinks
+		# from usr/bin to bin, we can make bin a symlink as well
+		# This is necessary for Cygwin, as there is no such thing
+		# like an embedded runpath. Instead we put all the dlls
+		# next to the exes, to get them working even without the
+		# PATH environment variable being set up.
+		for x in lib sbin bin; do
 			[[ -e ${ROOT}/${x} ]] || ( cd "${ROOT}" && ln -s usr/${x} )
 		done
 	else
