@@ -176,8 +176,10 @@ src_install() {
 		local com="basename chroot cut dir dirname du env expr head mkfifo
 		           mktemp readlink seq sleep sort tail touch tr tty vdir wc yes"
 		mv ${com} ../../bin/ || die "could not move common bins"
-		# create a symlink for uname in /usr/bin/ since autotools require it
+		# create a symlink for uname in /usr/bin/ since autotools require it,
+		# as long as /bin is not a symlink (to /usr/bin eventually)
 		local x
+		[[ -L ${EROOT}/bin ]] ||
 		for x in ${com} uname ; do
 			dosym /bin/${x} /usr/bin/${x}
 		done
