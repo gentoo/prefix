@@ -157,12 +157,11 @@ main(int argc, char *argv[])
 	int k;
 
 	/* cannonicanise wrapper, stripping path and CHOST */
-	if ((p = strrchr(wrapper, '/')) != NULL) {
+	if ((p = strrchr(wrapper, '/')) != NULL)
 		wrapper = p + 1;
-		p = CHOST "-";
-		if (strncmp(wrapper, p, strlen(p)) == 0)
-			wrapper += strlen(p);
-	}
+	p = CHOST "-";
+	if (strncmp(wrapper, p, strlen(p)) == 0)
+		wrapper += strlen(p);
 
 	/* walk over the arguments to see if there's anything interesting
 	 * for us and calculate the final number of arguments */
