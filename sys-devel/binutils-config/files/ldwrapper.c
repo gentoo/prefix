@@ -125,6 +125,8 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	if ((f = popen("binutils-config -c", "r")) != NULL) {
 		char p[ESIZ];
 		if (fgets(p, ESIZ, f) != NULL) {
+			if (strncmp(p, CHOST "-", strlen(CHOST "-")) == 0)
+				p += strlen(CHOST "-");
 			snprintf(e, ESIZ, EPREFIX "/usr/" CHOST "/binutils-bin/%s/%s",
 					p, wrapper);
 		} else {
