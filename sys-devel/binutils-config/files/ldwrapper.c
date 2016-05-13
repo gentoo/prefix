@@ -92,6 +92,7 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	/* parse EPREFIX/etc/env.d/binutils/config-CHOST to get CURRENT, then
 	 * consider $EPREFIX/usr/CHOST/binutils-bin/CURRENT where we should
 	 * be able to find ld */
+	*e = '\0';
 	if ((f = fopen(EPREFIX "/etc/env.d/binutils/config-" CHOST, "r")) != NULL) {
 		char p[ESIZ];
 		while (fgets(p, ESIZ, f) != NULL) {
@@ -115,10 +116,12 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	}
 	if (verbose)
 		fprintf(stdout, "%s: linker not found via " EPREFIX
-				"/etc/env.d/binutils/config-" CHOST "\n", wrapper);
+				"/etc/env.d/binutils/config-" CHOST " (ld=%s)\n",
+				wrapper, e);
 	
 	/* last try, call binutils-config to tell us what the linker is
 	 * supposed to be */
+	*e = '\0';
 	if ((f = popen("binutils-config -c", "r")) != NULL) {
 		char p[ESIZ];
 		if (fgets(p, ESIZ, f) != NULL) {
@@ -134,8 +137,8 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 		}
 	}
 	if (verbose)
-		fprintf(stdout, "%s: linker not found via binutils-config -c\n",
-				wrapper);
+		fprintf(stdout, "%s: linker not found via binutils-config -c (ld=%s)\n",
+				wrapper, e);
 }
 
 int
