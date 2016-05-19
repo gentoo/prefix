@@ -28,6 +28,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-libosp-la.patch
 	epatch "${FILESDIR}"/${P}-gcc46.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${P}-no-undefined.patch
+	epatch "${FILESDIR}"/${P}-wchar_t-uint.patch
 
 	# Please note!  Opts are disabled.  If you know what you're doing
 	# feel free to remove this line.  It may cause problems with
