@@ -69,7 +69,7 @@ diff -ur readline-6.3.old/shlib/Makefile.in readline-6.3.new/shlib/Makefile.in
 +SHOBJ_CFLAGS_ =
 +SHOBJ_LD_ = $(SHOBJ_CC)
 +SHOBJ_LDFLAGS_ = -shared -version-info `echo $(SHLIB_MAJOR)$(SHLIB_MINOR) | sed -e 's/\./:/g'`
-+SHLIB_XLDFLAGS_ = -rpath $(libdir)
++SHLIB_XLDFLAGS_ = -no-undefined -rpath $(libdir)
 +
 +LTTAG_CC    = $(LTTAG_CC_$(SHARED_TARGET))
 +LTCLEAN     = $(LTCLEAN_$(SHARED_TARGET))
