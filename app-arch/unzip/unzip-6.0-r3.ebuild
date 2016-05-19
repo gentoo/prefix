@@ -60,6 +60,7 @@ src_compile() {
 		*-aix*)              TARGET=gcc; append-cppflags "-DNO_LCHMOD"; append-ldflags "-Wl,-blibpath:${EPREFIX}/usr/$(get_libdir)" ;;
 		*-hpux*)             TARGET=gcc; append-ldflags "-Wl,+b,${EPREFIX}/usr/$(get_libdir)" ;;
 		*-mint*)             TARGET=generic ;;
+		*-cygwin*)           TARGET=generic ;;
 		*) die "Unknown target, you suck" ;;
 	esac
 
