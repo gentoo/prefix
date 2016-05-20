@@ -317,10 +317,10 @@ bootstrap_setup() {
 			profile="prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
 			;;
 		i686-pc-cygwin*)
-			profile="prefix/windows/cygwin/${CHOST#i686-pc-cygwin}/x86"
+			profile="prefix/windows/cygwin/x86"
 			;;
 		x86_64-pc-cygwin*)
-			profile="prefix/windows/cygwin/${CHOST#x86_64-pc-cygwin}/x64"
+			profile="prefix/windows/cygwin/x64"
 			;;
 		hppa64*-hp-hpux11*)
 			profile="prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa64"
@@ -2213,12 +2213,9 @@ if [[ -z ${CHOST} ]]; then
 				;;
 			CYGWIN*)
 				case `uname -r` in
-					1.7*) # http://www.cygwin.com/ml/cygwin/2009-02/msg00669.html
-						CHOST="`uname -m`-pc-cygwin1.7"
-					;;
-					2.[0-9]*) # https://sourceware.org/ml/cygwin/2015-04/msg00595.html
-						# probably split on important features
-						CHOST="`uname -m`-pc-cygwin2.0"
+					[0-1].*|2.[0-4].*|2.5.[0-1]|2.5.[0-1]'('*)
+						eerror "Can't deal with Cygwin before 2.5.2 or so, sorry!"
+						exit 1
 					;;
 					*)
 						CHOST="`uname -m`-pc-cygwin"
