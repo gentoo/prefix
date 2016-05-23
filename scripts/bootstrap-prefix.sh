@@ -1169,6 +1169,7 @@ do_emerge_pkgs() {
 		[[ -n ${pvdb} ]] && continue
 
 		local myuse=(
+			-acl
 			-berkdb
 			-fortran
 			-gdbm
