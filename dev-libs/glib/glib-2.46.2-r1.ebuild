@@ -24,6 +24,11 @@ HOMEPAGE="http://www.gtk.org/"
 SRC_URI="${SRC_URI}
 	http://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz" # pkg.m4 for eautoreconf
 
+CYGWINPORTS_GITREV="07d4a86e74b9b12a562b57ce5fa3a275bf0fe774"
+
+[[ -n ${CYGWINPORTS_GITREV} ]] &&
+SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/glib2.0/archive/${CYGWINPORTS_GITREV}.zip )"
+
 LICENSE="LGPL-2+"
 SLOT="2"
 IUSE="dbus fam kernel_linux +mime selinux static-libs systemtap test utils xattr"
@@ -147,6 +152,16 @@ src_prepare() {
 	# leave python shebang alone
 	sed -e '/${PYTHON}/d' \
 		-i glib/Makefile.{am,in} || die
+
+	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
+	    local p d="${WORKDIR}/glib2.0-${CYGWINPORTS_GITREV}"
+	    for p in $(
+		    eval "$(sed -ne '/PATCH_URI="/,/"/p' < "${d}"/glib2.0.cygport)"
+		    echo ${PATCH_URI}
+	    ); do
+		    epatch "${d}/${p}"
+	    done
+	fi
 
 	epatch_user
 
