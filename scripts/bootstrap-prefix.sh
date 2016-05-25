@@ -1373,6 +1373,10 @@ bootstrap_stage3() {
 		virtual/os-headers
 		sys-apps/portage
 	)
+	if [[ ! -x "${ROOT}"/sbin/openrc-run ]]; then
+		echo "We need openrc-run at ${ROOT}/sbin to merge rsync." > "${ROOT}"/sbin/openrc-run
+		chmod +x "${ROOT}"/sbin/openrc-run
+	fi
 	USE="ssl" \
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
