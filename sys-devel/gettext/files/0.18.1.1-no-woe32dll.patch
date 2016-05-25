@@ -31,9 +31,9 @@ Derived from Cygwin: gettext-0.19.7-1.src/0.18.1.1-no-woe32dll
        AC_MSG_CHECKING([for auto-import of symbols])
        AC_CACHE_VAL([gl_cv_ld_autoimport], [
          gl_save_LDFLAGS="$LDFLAGS"
---- gentoo/gettext-0.19.7/gettext-tools/configure
-+++ gentoo/gettext-0.19.7/gettext-tools/configure
-@@ -9622,7 +9622,7 @@
+--- origsrc/gettext-0.19.7/gettext-runtime/configure
++++ src/gettext-0.19.7/gettext-runtime/configure
+@@ -7286,7 +7275,7 @@
  
  
    case "$host_os" in
@@ -42,16 +42,38 @@ Derived from Cygwin: gettext-0.19.7-1.src/0.18.1.1-no-woe32dll
        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for auto-import of symbols" >&5
  $as_echo_n "checking for auto-import of symbols... " >&6; }
        if ${gl_cv_ld_autoimport+:} false; then :
-@@ -21863,7 +21863,7 @@
+--- origsrc/gettext-0.19.7/gettext-runtime/libasprintf/configure
++++ src/gettext-0.19.7/gettext-runtime/libasprintf/configure
+@@ -5479,7 +5467,7 @@
  
-                 if test "$enable_shared" = yes; then
-     case "$host_os" in
--      mingw* | cygwin*) is_woe32dll=yes ;;
-+      mingw*) is_woe32dll=yes ;;
-       *) is_woe32dll=no ;;
-     esac
-   else
-@@ -71977,7 +71977,7 @@
+ 
+   case "$host_os" in
+-    mingw* | cygwin*)
++    mingw*)
+       { $as_echo "$as_me:${as_lineno-$LINENO}: checking for auto-import of symbols" >&5
+ $as_echo_n "checking for auto-import of symbols... " >&6; }
+       if ${gl_cv_ld_autoimport+:} false; then :
+--- origsrc/gettext-0.19.7/gettext-tools/configure
++++ src/gettext-0.19.7/gettext-tools/configure
+@@ -9622,7 +9611,7 @@
+ 
+ 
+   case "$host_os" in
+-    mingw* | cygwin*)
++    mingw*)
+       { $as_echo "$as_me:${as_lineno-$LINENO}: checking for auto-import of symbols" >&5
+ $as_echo_n "checking for auto-import of symbols... " >&6; }
+       if ${gl_cv_ld_autoimport+:} false; then :
+@@ -17726,7 +17715,7 @@
+ 
+ 
+ case "$host_os" in
+-  mingw* | cygwin*) is_woe32=yes ;;
++  mingw*) is_woe32=yes ;;
+   *) is_woe32=no ;;
+ esac
+  if test $is_woe32 = yes; then
+@@ -71977,7 +71966,7 @@
  
  if test "$enable_shared" = yes; then
    case "$host_os" in
@@ -60,43 +82,3 @@ Derived from Cygwin: gettext-0.19.7-1.src/0.18.1.1-no-woe32dll
      *) is_woe32dll=no ;;
    esac
  else
---- gentoo/gettext-0.19.7/gettext-runtime/configure
-+++ gentoo/gettext-0.19.7/gettext-runtime/configure
-@@ -7286,7 +7286,7 @@
- 
- 
-   case "$host_os" in
--    mingw* | cygwin*)
-+    mingw*)
-       { $as_echo "$as_me:${as_lineno-$LINENO}: checking for auto-import of symbols" >&5
- $as_echo_n "checking for auto-import of symbols... " >&6; }
-       if ${gl_cv_ld_autoimport+:} false; then :
-@@ -19523,7 +19523,7 @@
- 
-                 if test "$enable_shared" = yes; then
-     case "$host_os" in
--      mingw* | cygwin*) is_woe32dll=yes ;;
-+      mingw*) is_woe32dll=yes ;;
-       *) is_woe32dll=no ;;
-     esac
-   else
-@@ -31871,7 +31871,7 @@
- 
- if test "$enable_shared" = yes; then
-   case "$host_os" in
--    mingw* | cygwin*) is_woe32dll=yes ;;
-+    mingw*) is_woe32dll=yes ;;
-     *) is_woe32dll=no ;;
-   esac
- else
---- gentoo/gettext-0.19.7/gettext-runtime/libasprintf/configure
-+++ gentoo/gettext-0.19.7/gettext-runtime/libasprintf/configure
-@@ -5479,7 +5479,7 @@
- 
- 
-   case "$host_os" in
--    mingw* | cygwin*)
-+    mingw*)
-       { $as_echo "$as_me:${as_lineno-$LINENO}: checking for auto-import of symbols" >&5
- $as_echo_n "checking for auto-import of symbols... " >&6; }
-       if ${gl_cv_ld_autoimport+:} false; then :
