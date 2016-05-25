@@ -61,6 +61,13 @@ src_prepare() {
 
 	epunt_cxx
 	elibtoolize
+
+	# Never build libintl since it's in dev-libs/libintl now.
+	einfo "Deactivating included intl library ..."
+	sed -i -e \
+		'/gt_use_preinstalled_gnugettext=yes/s/^/:;fi;if :;then /' \
+		gettext-{runtime,tools}/configure || die
+	eend $?
 }
 
 multilib_src_configure() {
@@ -79,8 +86,6 @@ multilib_src_configure() {
 		# this will _disable_ libunistring (since it is not bundled),
 		# see bug #326477
 		--with-included-libunistring
-		# Never build libintl since it's in dev-libs/libintl now.
-		--without-included-gettext
 
 		$(use_enable acl)
 		$(use_enable cxx c++)
