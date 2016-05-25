@@ -29,6 +29,8 @@ RDEPEND="${DEPEND}
 S="${WORKDIR}/${MY_P}/gettext-runtime"
 
 src_prepare() {
+	epatch "${FILESDIR}"/0.19.3-localename.patch # Cygwin
+
 	# The libtool files are stored higher up, so make sure we run in the
 	# whole tree and not just the subdir we build.
 	elibtoolize "${WORKDIR}"
