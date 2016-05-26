@@ -2449,3 +2449,8 @@ fi
 einfo "ready to bootstrap ${TODO}"
 # bootstrap_interactive proceeds with guessed defaults when TODO=noninteractive
 bootstrap_${TODO#non} || exit 1
+
+# Local Variables:
+# sh-indentation: 8
+# sh-basic-offset: 8
+# End:
