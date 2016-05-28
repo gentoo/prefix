@@ -1103,6 +1103,23 @@ bootstrap_stage1() { (
 			chmod 755 "${ROOT}"/tmp/usr/bin/java{,c}
 			;;
 	esac
+	# Host compiler can output a variety of libdirs.  At stage1,
+	# they should be the same as lib.  Otherwise libffi may not be
+	# found by python.
+	if is-rap ; then
+		[[ -d ${ROOT}/tmp/usr/lib ]] || mkdir -p "${ROOT}"/tmp/usr/lib
+		local libdir
+		for libdir in lib64 lib32 libx32; do
+			if [[ ! -L ${ROOT}/tmp/usr/${libdir} ]] ; then
+				if [[ -e "${ROOT}"/tmp/usr/${libdir} ]] ; then
+					echo "${ROOT}"/tmp/usr/${libdir} should be a symlink to lib
+					return 1
+				fi
+				ln -s lib "${ROOT}"/tmp/usr/${libdir}
+			fi
+		done
+	fi
+
 	# important to have our own (non-flawed one) since Python (from
 	# Portage) and binutils use it
 	for zlib in ${ROOT}/tmp/usr/lib/libz.* ; do
