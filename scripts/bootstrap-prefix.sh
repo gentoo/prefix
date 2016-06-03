@@ -484,6 +484,13 @@ bootstrap_startscript() {
 	# currently I think right into the prefix is the best location, as
 	# putting it in /bin or /usr/bin just hides it some more for the
 	# user
+	if is-rap ; then
+		mkdir -p "${ROOT}"/usr/portage/scripts
+		wget --no-check-certificate \
+		     https://gitweb.gentoo.org/repo/proj/prefix.git/plain/scripts/startprefix.in \
+		     -O "${ROOT}"/usr/portage/scripts/startprefix.in
+	fi
+
 	sed \
 		-e "s|@GENTOO_PORTAGE_EPREFIX@|${ROOT}|g" \
 		"${ROOT}"/usr/portage/scripts/startprefix.in \
