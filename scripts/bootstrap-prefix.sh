@@ -1438,7 +1438,7 @@ bootstrap_stage3() {
 	# linker, we can't since we want the compiler to pick it up.
 	# Therefore, inject some kludgy workaround, for deps like gmp that
 	# use c++
-	[[ ${CHOST} != *-darwin* ]] && export CXX="${CHOST}-g++ -lgcc_s"
+	[[ ${CHOST} != *-darwin* ]] && ! is-rap && export CXX="${CHOST}-g++ -lgcc_s"
 
 	# Clang unconditionally requires python, the eclasses are really not
 	# setup for a scenario where python doesn't live in the target
