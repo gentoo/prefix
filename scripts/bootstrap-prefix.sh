@@ -1520,12 +1520,6 @@ bootstrap_stage3() {
 	# Switch to the proper portage.
 	hash -r
 
-	# Get rid of the temporary tools.
-	if [[ -d ${ROOT}/tmp/var/tmp ]] ; then
-		rm -rf "${ROOT}"/tmp
-		mkdir "${ROOT}"/tmp
-	fi
-
 	# Update the portage tree.
 	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
@@ -2173,7 +2167,13 @@ EOF
 
 	hash -r  # tmp/* stuff is removed in stage3
 
-	if ! emerge -e system ; then
+	if emerge -e system ; then
+		# Now, after 'emerge -e system', we can get rid of the temporary tools.
+		if [[ -d ${EPREFIX}/tmp/var/tmp ]] ; then
+			rm -Rf "${EPREFIX}"/tmp || return 1
+			mkdir -p "${EPREFIX}"/tmp || return 1
+		fi
+	else
 		# emerge -e system fail
 		cat << EOF
 
