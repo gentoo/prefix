@@ -897,7 +897,7 @@ bootstrap_findutils() {
 }
 
 bootstrap_wget() {
-	bootstrap_gnu wget 1.13.4
+	bootstrap_gnu wget 1.17.1 || bootstrap_gnu wget 1.13.4
 }
 
 bootstrap_grep() {
