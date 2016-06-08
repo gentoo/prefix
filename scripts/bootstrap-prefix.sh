@@ -138,7 +138,11 @@ configure_cflags() {
 			export CXX="${CXX-g++} -m32"
 			export HOSTCC="${CC}"
 			;;
-		*)
+		i*86-pc-linux-gnu)
+			if [[ $(${CC} -dumpspecs | grep -A1 multilib_default) != *m32 ]]; then
+				export CC="${CC-gcc} -m32"
+				export CXX="${CXX-g++} -m32"
+			fi
 			;;
 	esac
 }
