@@ -42,13 +42,13 @@ efetch() {
 			# curl, FreeBSD's fetch and ftp.
 			if [[ x$(type -t wget) == "xfile" ]] ; then
 				FETCH_COMMAND="wget"
-			elif [[ x$(type -t ftp) == "xfile" ]] ; then
-				FETCH_COMMAND="ftp"
 			elif [[ x$(type -t curl) == "xfile" ]] ; then
 				einfo "WARNING: curl doesn't fail when downloading fails, please check its output carefully!"
-				FETCH_COMMAND="curl -L -O"
+				FETCH_COMMAND="curl -f -L -O"
 			elif [[ x$(type -t fetch) == "xfile" ]] ; then
 				FETCH_COMMAND="fetch"
+			elif [[ x$(type -t ftp) == "xfile" ]] ; then
+				FETCH_COMMAND="ftp"
 			else
 				eerror "no suitable download manager found (need wget, curl, fetch or ftp)"
 				eerror "could not download ${1##*/}"
