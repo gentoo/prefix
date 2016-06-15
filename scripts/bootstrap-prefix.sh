@@ -1356,6 +1356,7 @@ bootstrap_stage3() {
 	pkgs=(
 		sys-apps/coreutils
 		sys-apps/findutils
+		app-arch/gzip
 		app-arch/tar
 		sys-apps/grep
 		sys-apps/gawk
