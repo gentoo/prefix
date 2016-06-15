@@ -1208,10 +1208,10 @@ bootstrap_stage2() {
 		dev-libs/libffi
 		sys-devel/m4
 		sys-devel/flex
+		sys-apps/diffutils # needed by bison-3 build system
 		sys-devel/bison
 		sys-devel/patch
 		sys-devel/binutils-config
-		$([[ ${CHOST} == *-aix* ]] && echo sys-apps/diffutils ) # gcc can't deal with aix diffutils, gcc PR14251
 	)
 
 	# Most binary Linux distributions seem to fancy toolchains that
