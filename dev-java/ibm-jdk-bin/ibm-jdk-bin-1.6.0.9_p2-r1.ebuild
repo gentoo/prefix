@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ibm-jdk-bin/ibm-jdk-bin-1.6.0.9_p2-r1.ebuild,v 1.3 2012/10/05 15:17:00 ranger Exp $
 
-EAPI="4"
+EAPI="5"
 
 inherit java-vm-2 versionator eutils
 
@@ -69,7 +69,7 @@ SRC_URI="
 # until someone downloads this thing so it can be added to the Manifest
 #	ppc-aix? ( ${PPC_AIX_JDK_DIST} )
 
-LICENSE="IBM-J1.6"
+LICENSE="IBM"
 SLOT="1.6"
 KEYWORDS="-* ~ppc-aix"
 RESTRICT="fetch"

@@ -1,8 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ibm-jdk-bin/ibm-jdk-bin-1.6.0.9_p2-r1.ebuild,v 1.3 2012/10/05 15:17:00 ranger Exp $
 
-EAPI="4"
+EAPI="5"
 
 inherit java-vm-2 versionator eutils
 
@@ -29,10 +29,7 @@ SRC_URI+=" ppc64?     ( ${PPC64_JDK_DIST}     )"
 SRC_URI+=" ppc-aix?   ( ${PPC_AIX_JDK_DIST}   )"
 #SRC_URI+=" ppc64-aix? ( ${PPC64_AIX_JDK_DIST} )"
 
-LICENSE="
-	kernel_Linux? ( IBM-J${JDK_MAJOR}.${JDK_MINOR} )
-	kernel_AIX?   ( IBM-J${JDK_MAJOR}.AIX          )
-"
+LICENSE="IBM"
 
 SLOT="${JDK_MAJOR}"
 KEYWORDS="-* ~amd64 ~ppc ~ppc64 ~x86 ~ppc-aix"
