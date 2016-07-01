@@ -9,7 +9,7 @@ inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolcha
 
 MY_P="Python-${PV}"
 PATCHSET_VERSION="2.7.11-0"
-PREFIX_PATCHREV="r0"
+PREFIX_PATCHREV="r1"
 CYGWINPORTS_GITREV="7be648659ef46f33db6913ca0ca5a809219d5629"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
