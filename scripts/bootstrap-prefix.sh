@@ -1286,9 +1286,11 @@ bootstrap_stage2() {
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	
 	# Build a linker and compiler that live in ${ROOT}/tmp, but
-	# produce binaries in ${ROOT}.
+	# produce binaries in ${ROOT}. Debian multiarch supported by RAP
+	# needs ld to support sysroot.
 	USE="${USE} -cxx" \
 	TPREFIX="${ROOT}" \
+	EXTRA_ECONF=$(rapx --with-sysroot=/) \
 	emerge_pkgs --nodeps ${linker} || return 1
 
 	# gmp has cxx flag enabled by default. When dealing with a host
@@ -1296,6 +1298,7 @@ bootstrap_stage2() {
 	# package.use to disable in the temporary prefix.  
 	echo "dev-libs/gmp -cxx" >> "${ROOT}"/tmp/etc/portage/package.use
 
+	BOOTSTRAP_RAP_STAGE2=yes \
 	EXTRA_ECONF="--disable-bootstrap" \
 	GCC_MAKE_TARGET=all \
 	TPREFIX="${ROOT}" \
@@ -1322,7 +1325,7 @@ bootstrap_stage2() {
 		# multilib.eclass -- can't blame it at this point really)
 		# do it ourselves here to make the bootstrap continue
 		( cd "${ROOT}"/tmp/usr/bin && ln -s clang ${CHOST}-clang && ln -s clang++ ${CHOST}-clang++ )
-	else
+	elif ! is-rap ; then
 		# make sure the EPREFIX gcc shared libraries are there
 		mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
 		cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
@@ -1363,6 +1366,8 @@ bootstrap_stage3() {
 	unset CC CXX
 
 	emerge_pkgs() {
+		# stage3 tools should be used first.
+		DEFAULT_PATH="${ROOT}"$(echo /{,tmp/}{,usr/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" \
 		do_emerge_pkgs "$@"
 	}
@@ -1370,25 +1375,63 @@ bootstrap_stage3() {
 	# GCC sometimes decides that it needs to run makeinfo to update some
 	# info pages from .texi files.  Obviously we don't care at this
 	# stage and rather have it continue instead of abort the build
-	export MAKEINFO="echo makeinfo GNU texinfo 4.13"
-	
-	# Build a native compiler.
-	pkgs=(
-		$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
-		sys-libs/ncurses
-		sys-libs/readline
-		app-shells/bash
-		sys-apps/sed
-		app-arch/xz-utils
-		sys-apps/gentoo-functions
-		sys-apps/baselayout-prefix
-		sys-devel/m4
-		sys-devel/flex
-		sys-devel/binutils-config
-		sys-libs/zlib
-		${linker}
-	)
-	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+	[[ -x "${ROOT}"/usr/bin/makeinfo ]] || cat > "${ROOT}"/usr/bin/makeinfo <<-EOF
+		#!${ROOT}/bin/bash
+		echo "makeinfo GNU texinfo 4.13"
+		for a in \$@; do
+		case \$a in
+		--*) f=\$(echo "\$a" | sed -r 's,--.*=(.*),\1,') ;;
+		-*) ;;
+		*) f=\$a ;;
+		esac
+		[[ -e \$f ]] || touch \$f
+		done
+		EOF
+	chmod +x "${ROOT}"/usr/bin/makeinfo
+	export INSTALL_INFO="${ROOT}"/usr/bin/makeinfo
+
+	if is-rap ; then
+		# We need ${ROOT}/usr/bin/perl to merge glibc.
+		if [[ ! -x "${ROOT}"/usr/bin/perl ]]; then
+			# trick "perl -V:apiversion" check of glibc-2.19.
+			echo -e "#!${ROOT}/bin/sh\necho 'apiversion=9999'" > "${ROOT}"/usr/bin/perl
+			chmod +x "${ROOT}"/usr/bin/perl
+		fi
+		# Tell dynamic loader the path of libgcc_s.so of stage2
+		if [[ ! -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf ]]; then
+			mkdir -p "${ROOT}"/etc/ld.so.conf.d
+			dirname $(gcc -print-libgcc-file-name) > "${ROOT}"/etc/ld.so.conf.d/stage2.conf
+		fi
+
+		pkgs=(
+			sys-apps/baselayout
+			sys-apps/gentoo-functions
+			sys-kernel/linux-headers
+			sys-libs/glibc
+			sys-libs/zlib
+		)
+
+		BOOTSTRAP_RAP=yes \
+		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+	else
+		pkgs=(
+			$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
+			sys-libs/ncurses
+			sys-libs/readline
+			app-shells/bash
+			sys-apps/sed
+			app-arch/xz-utils
+			sys-apps/gentoo-functions
+			sys-apps/baselayout-prefix
+			sys-devel/m4
+			sys-devel/flex
+			sys-devel/binutils-config
+			sys-libs/zlib
+			${linker}
+		)
+
+		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+	fi
 
 	# On some hosts, gcc gets confused now when it uses the new linker,
 	# see for instance bug #575480.  While we would like to hide that
@@ -1403,11 +1446,23 @@ bootstrap_stage3() {
 	( cd "${ROOT}"/usr/bin && test ! -e python && ln -s "${ROOT}"/tmp/usr/bin/python2.7 )
 	# in addition, avoid collisions
 	rm -Rf "${ROOT}"/tmp/usr/lib/python2.7/site-packages/clang
-	# try to get ourself out of the mudd, bug #575324
-	EXTRA_ECONF="--disable-compiler-version-checks" \
-	emerge_pkgs --nodeps ${compiler} || return 1
-	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python2.7 )
 
+	RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9])
+	# try to get ourself out of the mudd, bug #575324
+	EXTRA_ECONF="--disable-compiler-version-checks $(rapx --disable-lto)" \
+	LDFLAGS="${LDFLAGS} $(rapx -Wl,--dynamic-linker=${RAP_DLINKER})" \
+	emerge_pkgs --nodeps ${compiler} || return 1
+	# undo libgcc_s.so path of stage2
+
+	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
+	if is-rap ; then
+		"${ROOT}"/usr/sbin/ldconfig
+		# should be linked against stage3 zlib, and can only
+		# be compiled after gcc has the headers of Prefix glibc.
+		emerge_pkgs --nodeps sys-devel/binutils-config ${linker} || return 1
+	fi
+
+	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python2.7 )
 	# Use $ROOT tools where possible from now on.
 	rm -f "${ROOT}"/bin/sh
 	ln -s bash "${ROOT}"/bin/sh
@@ -1478,6 +1533,9 @@ bootstrap_stage3() {
 	# very well on Darwin (-DGNUSTEP_BASE_VERSION hack)
 	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
 	CFLAGS= CXXFLAGS= USE="-git" emerge -u system || return 1
+
+	# TODO, glibc should depend on texinfo
+	is-rap && { emerge sys-apps/texinfo || return 1; }
 
 	# remove anything that we don't need (compilers most likely)
 	emerge --depclean
