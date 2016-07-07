@@ -218,6 +218,11 @@ configure_toolchain() {
 bootstrap_setup() {
 	local profile=""
 	einfo "setting up some guessed defaults"
+
+	# 2.6.32.1 -> 2*256^3 + 6*256^2 + 32 * 256 + 1 = 33955841
+	kver() { uname -r|cut -d\- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
+	# >=glibc-2.20 requires >=linux-2.6.32.
+	profile-legacy() { [[ $(kver) -ge 33955840 ]] || echo /legacy; }
 	
 	if [[ ! -f ${ROOT}/etc/portage/make.conf ]] ; then
 		{
@@ -267,6 +272,7 @@ bootstrap_setup() {
 			ln -sf {,"${ROOT}"}/etc/group
 		[[ -f ${ROOT}/etc/resolv.conf ]] || ln -s {,"${ROOT}"}/etc/resolv.conf
 		[[ -f ${ROOT}/etc/hosts ]] || cp {,"${ROOT}"}/etc/hosts
+		local legacy=$(profile-legacy)
 	fi
 
 	local linux=$(rapx linux-standalone linux)
@@ -296,22 +302,22 @@ bootstrap_setup() {
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
 		i*86-pc-linux-gnu)
-			profile="prefix/${linux}/x86"
+			profile="prefix/${linux}/x86${legacy}"
 			;;
 		x86_64-pc-linux-gnu)
-			profile="prefix/${linux}/amd64"
+			profile="prefix/${linux}/amd64${legacy}"
 			;;
 		ia64-pc-linux-gnu)
-			profile="prefix/${linux}/ia64"
+			profile="prefix/${linux}/ia64${legacy}"
 			;;
 		powerpc-unknown-linux-gnu)
-			profile="prefix/${linux}/ppc"
+			profile="prefix/${linux}/ppc${legacy}"
 			;;
 		powerpc64-unknown-linux-gnu)
-			profile="prefix/${linux}/ppc64"
+			profile="prefix/${linux}/ppc64${legacy}"
 			;;
 		armv7l-pc-linux-gnu)
-			profile="prefix/${linux}/arm"
+			profile="prefix/${linux}/arm${legacy}"
 			;;
 		sparc-sun-solaris2.9)
 			profile="prefix/sunos/solaris/5.9/sparc"
