@@ -227,6 +227,8 @@ bootstrap_setup() {
 			echo 'CXXFLAGS="${CFLAGS}"'
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
 			echo "CONFIG_SHELL=\"${ROOT}/bin/bash\""
+			echo "# sandbox does not work well on Prefix, bug 490246"
+			echo 'FEATURES="-usersandbox -sandbox"'
 			if [[ -n ${PREFIX_DISABLE_USR_SPLIT} ]] ; then
 				echo
 				echo "# This disables /usr-split, removing this will break"
