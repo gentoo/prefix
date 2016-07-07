@@ -412,7 +412,7 @@ bootstrap_setup() {
 
 do_tree() {
 	local x
-	for x in etc{,/portage} usr/{{,s}bin,lib} var/tmp var/lib/portage var/log/portage var/db;
+	for x in etc{,/portage} usr/{{,s}bin,$(rapx "" lib)} var/tmp var/lib/portage var/log/portage var/db;
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
@@ -428,7 +428,7 @@ do_tree() {
 			[[ -e ${ROOT}/${x} ]] || ( cd "${ROOT}" && ln -s usr/${x} )
 		done
 	else
-		for x in lib sbin ; do
+		for x in $(rapx "" lib) sbin ; do
 			[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 		done
 	fi
@@ -537,7 +537,8 @@ bootstrap_portage() {
 	[[ -x ${ROOT}/tmp/bin/bash ]] || [[ ! -x ${ROOT}/tmp/usr/bin/bash ]] || ln -s ../usr/bin/bash "${ROOT}"/tmp/bin/bash || return 1
 	[[ -x ${ROOT}/tmp/bin/bash ]] || ln -s "${BASH}" "${ROOT}"/tmp/bin/bash || return 1
 	[[ -x ${ROOT}/tmp/bin/sh ]] || ln -s bash "${ROOT}"/tmp/bin/sh || return 1
-	[[ -x ${ROOT}/bin/sh ]] || ln -s ../tmp/bin/sh "${ROOT}"/bin/sh || return 1
+	[[ -x ${ROOT}/bin/bash ]] || ln -s ../tmp/bin/bash "${ROOT}"/bin/bash || return 1
+	[[ -x ${ROOT}/bin/sh ]] || ln -s bash "${ROOT}"/bin/sh || return 1
 	export PORTAGE_BASH="${ROOT}"/tmp/bin/bash
 
 	einfo "Compiling ${A%-*}"
@@ -1336,10 +1337,12 @@ bootstrap_stage3() {
 		fi
 	fi
 
+	get_libdir() { portageq envvar LIBDIR_$(portageq envvar ABI) || echo lib; }
+
 	configure_toolchain || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	export CPPFLAGS="-I${ROOT}/usr/include"
-	export LDFLAGS="-L${ROOT}/usr/lib"
+	export LDFLAGS="-L${ROOT}/usr/$(get_libdir)"
 	unset CC CXX
 
 	emerge_pkgs() {
