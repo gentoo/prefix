@@ -239,6 +239,34 @@ bootstrap_setup() {
 		} > "${ROOT}"/etc/portage/make.conf
 	fi
 
+	if is-rap && [[ ! -f ${ROOT}/etc/portage/repos.conf ]] ; then
+		cat  >"${ROOT}"/etc/portage/repos.conf <<-EOF
+			[DEFAULT]
+			main-repo = gentoo
+			eclass-overrides = rap
+
+			[gentoo]
+			location = ${ROOT}/usr/portage
+			sync-type = rsync
+			sync-uri = rsync://rsync.gentoo.org/gentoo-portage
+
+			[rap]
+			location = ${ROOT}/usr/portage-stage
+			sync-type = git
+			sync-uri = https://anongit.gentoo.org/git/proj/android.git
+			auto-sync = no
+			EOF
+	fi
+
+	if is-rap ; then
+		[[ -f ${ROOT}/etc/passwd ]] || getent passwd > "${ROOT}"/etc/passwd || \
+			ln -sf {,"${ROOT}"}/etc/passwd
+		[[ -f ${ROOT}/etc/group ]] || getent group > "${ROOT}"/etc/group || \
+			ln -sf {,"${ROOT}"}/etc/group
+		[[ -f ${ROOT}/etc/resolv.conf ]] || ln -s {,"${ROOT}"}/etc/resolv.conf
+		[[ -f ${ROOT}/etc/hosts ]] || cp {,"${ROOT}"}/etc/hosts
+	fi
+
 	local linux=$(rapx linux-standalone linux)
 	
 	case ${CHOST} in
@@ -421,6 +449,10 @@ bootstrap_tree() {
 	else
 		do_tree http://dev.gentoo.org/~grobian/distfiles prefix-overlay-${PV}.tar.bz2
 	fi
+	if is-rap; then
+		PORTDIR="${ROOT}/usr/portage-stage" \
+		       do_tree http://dev.gentoo.org/~heroxbd android-master.tar.bz2
+	fi
 }
 
 bootstrap_startscript() {
@@ -530,7 +562,9 @@ bootstrap_portage() {
 
 	[[ -e "${ROOT}"/tmp/usr/portage ]] || ln -s "${PORTDIR}" "${ROOT}"/tmp/usr/portage
 
-	if [[ -s ${PORTDIR}/profiles/repo_name ]]; then
+	if is-rap; then
+		cp -f "${ROOT}"/etc/portage/repos.conf "${ROOT}"/tmp/usr/share/portage/config/repos.conf
+	elif [[ -s ${PORTDIR}/profiles/repo_name ]]; then
 		# sync portage's repos.conf with the tree being used
 		sed -i -e "s,gentoo_prefix,$(<"${PORTDIR}"/profiles/repo_name)," "${ROOT}"/tmp/usr/share/portage/config/repos.conf || return 1
 	fi
