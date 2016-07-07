@@ -7,6 +7,9 @@ trap 'exit 1' TERM KILL INT QUIT ABRT
 # some basic output functions
 eerror() { echo "!!! $*" 1>&2; }
 einfo() { echo "* $*"; }
+# RAP (libc) mode is triggered if the script is renamed to bootstrap-rap.sh.
+is-rap() { [[ ${BASH_SOURCE} = *rap.sh ]]; }
+rapx() { is-rap && echo $1 || echo $2; }
 
 # prefer gtar over tar
 [[ x$(type -t gtar) == "xfile" ]] \
@@ -235,6 +238,8 @@ bootstrap_setup() {
 				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
 		} > "${ROOT}"/etc/portage/make.conf
 	fi
+
+	local linux=$(rapx linux-standalone linux)
 	
 	case ${CHOST} in
 		powerpc-apple-darwin7)
@@ -261,22 +266,22 @@ bootstrap_setup() {
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
 		i*86-pc-linux-gnu)
-			profile="prefix/linux/x86"
+			profile="prefix/${linux}/x86"
 			;;
 		x86_64-pc-linux-gnu)
-			profile="prefix/linux/amd64"
+			profile="prefix/${linux}/amd64"
 			;;
 		ia64-pc-linux-gnu)
-			profile="prefix/linux/ia64"
+			profile="prefix/${linux}/ia64"
 			;;
 		powerpc-unknown-linux-gnu)
-			profile="prefix/linux/ppc"
+			profile="prefix/${linux}/ppc"
 			;;
 		powerpc64-unknown-linux-gnu)
-			profile="prefix/linux/ppc64"
+			profile="prefix/${linux}/ppc64"
 			;;
 		armv7l-pc-linux-gnu)
-			profile="prefix/linux/arm"
+			profile="prefix/${linux}/arm"
 			;;
 		sparc-sun-solaris2.9)
 			profile="prefix/sunos/solaris/5.9/sparc"
@@ -408,6 +413,8 @@ do_tree() {
 }
 
 bootstrap_tree() {
+	# RAP uses the latest gentoo main repo snapshot to bootstrap.
+	is-rap && LATEST_TREE_YES=1
 	local PV="20160614"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
@@ -2405,9 +2412,10 @@ export PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
 export DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
 PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/tmp/var/tmp}
 DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
-SNAPSHOT_URL=${SNAPSHOT_URL:-"http://rsync.prefix.bitzolder.nl/snapshots"}
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
+SNAPSHOT_HOST=$(rapx ${GENTOO_MIRRORS} http://rsync.prefix.bitzolder.nl)
+SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 
 export MAKE CONFIG_SHELL
