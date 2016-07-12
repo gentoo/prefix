@@ -1635,6 +1635,7 @@ EOF
 		PERL_MM_OPT \
 		PKG_CONFIG_PATH \
 		PYTHONPATH \
+		ROOT \
 	; do
 		# starting on purpose a shell here iso ${!flag} because I want
 		# to know if the shell initialisation files trigger this
