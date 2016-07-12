@@ -16,7 +16,7 @@ KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x
 IUSE=""
 
 DEPEND="dev-lang/perl
-	 dev-perl/DateManip
+	 dev-perl/Date-Manip
 	 dev-perl/libwww-perl"
 RDEPEND="${DEPEND}"
 
