@@ -2168,14 +2168,14 @@ EOF
 		exit 1
 	fi
 
-	hash -r  # tmp/* stuff is removed in stage3
-
 	if emerge -e system ; then
 		# Now, after 'emerge -e system', we can get rid of the temporary tools.
 		if [[ -d ${EPREFIX}/tmp/var/tmp ]] ; then
 			rm -Rf "${EPREFIX}"/tmp || return 1
 			mkdir -p "${EPREFIX}"/tmp || return 1
 		fi
+
+		hash -r  # tmp/* stuff is removed in stage3
 	else
 		# emerge -e system fail
 		cat << EOF
