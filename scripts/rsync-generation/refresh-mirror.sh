@@ -25,8 +25,11 @@ else
 #			&& ./gen-timing-rsync0-graph.sh \
 #			&& popd > /dev/null
 	}
-	(((genandpush | tee -a "${LOGFILE}") 3>&1 1>&2 2>&3 \
+	# get a free filedescriptor in FD
+	exec {FD}>/tmp/rsync-master-busy
+	(((genandpush | tee -a "${LOGFILE}") ${FD}>&1 1>&2 2>&${FD} \
 	    | tee -a "${LOGFILE}") 2> /dev/null)
 	echo "generation done $(date)" >> ${LOGFILE}
+	exec {FD}>&-
 	rm -f /tmp/rsync-master-busy
 fi
