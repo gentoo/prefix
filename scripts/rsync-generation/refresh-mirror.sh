@@ -10,13 +10,23 @@ if [[ -f /tmp/rsync-master-busy ]] ; then
 	# allow one run to be skipped quietly
 	if [[ $((laststart + (40 * 60))) -lt ${now} ]] ; then
 		echo "another rsync-master generation process is still busy"
+		type pstree > /dev/null && pstree -p $(< /tmp/rsync-master-busy)
 		ps -ef | grep '[r]efresh-mirror'
 		tail ${LOGFILE}
+	fi
+	# if the log reports done, kill it as it seems that for some reason
+	# it hangs after doing this
+	if [[ $(tail -n1 ${LOGFILE}) == *"rsync done" ]] ; then
+		pid=$(< /tmp/rsync-master-busy)
+		if [[ ${pid} -gt 0 ]] ; then
+			pstree -A -c -p ${pid} | grep -o '[0-9]\+' | xargs kill
+			rm /tmp/rsync-master-busy
+		fi
 	fi
 else
 	mv ${LOGFILE} ${LOGFILE%.log}-prev.log
 	cd "$(readlink -f "${BASH_SOURCE[0]%/*}")"
-	touch /tmp/rsync-master-busy
+	echo $$ > /tmp/rsync-master-busy
 	echo "starting generation $(date)" > ${LOGFILE}
 	genandpush() {
 		./update-rsync-master.sh \
