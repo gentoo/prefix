@@ -552,7 +552,7 @@ bootstrap_portage() {
 	[[ -x ${ROOT}/tmp/bin/bash ]] || [[ ! -x ${ROOT}/tmp/usr/bin/bash ]] || ln -s ../usr/bin/bash "${ROOT}"/tmp/bin/bash || return 1
 	[[ -x ${ROOT}/tmp/bin/bash ]] || ln -s "${BASH}" "${ROOT}"/tmp/bin/bash || return 1
 	[[ -x ${ROOT}/tmp/bin/sh ]] || ln -s bash "${ROOT}"/tmp/bin/sh || return 1
-	[[ -x ${ROOT}/bin/bash ]] || ln -s ../tmp/bin/bash "${ROOT}"/bin/bash || return 1
+	[[ -x ${ROOT}/bin/bash ]] || ln -s "${ROOT}"{/tmp,}/bin/bash || return 1
 	[[ -x ${ROOT}/bin/sh ]] || ln -s bash "${ROOT}"/bin/sh || return 1
 	export PORTAGE_BASH="${ROOT}"/tmp/bin/bash
 
@@ -1430,10 +1430,6 @@ bootstrap_stage3() {
 		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	else
 		pkgs=(
-			$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
-			sys-libs/ncurses
-			sys-libs/readline
-			app-shells/bash
 			sys-apps/sed
 			app-arch/xz-utils
 			sys-apps/gentoo-functions
