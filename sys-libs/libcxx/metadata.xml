@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <herd>prefix</herd>
+  <maintainer type="project">
+    <email>prefix@gentoo.org</email>
+    <name>Prefix Project</name>
+  </maintainer>
   <use>
 	<flag name="libcxxrt">Build against <pkg>sys-libs/libcxxr</pkg></flag>
   </use>
