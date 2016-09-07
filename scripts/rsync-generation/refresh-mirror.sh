@@ -21,6 +21,7 @@ if [[ -f /tmp/rsync-master-busy ]] ; then
 	if [[ $(tail -n1 ${LOGFILE}) == *"rsync done" ]] ; then
 		pid=$(head -n1 ${LOGFILE})
 		if [[ ${pid} -gt 0 ]] ; then
+			echo "Killing stray/stuck process"
 			pstree -A -c -p ${pid} | grep -o '[0-9]\+' | xargs kill
 			rm /tmp/rsync-master-busy
 		fi
