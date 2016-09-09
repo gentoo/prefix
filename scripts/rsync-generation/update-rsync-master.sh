@@ -191,12 +191,6 @@ TIME_MANISIGN=$((STOP - START))
 echo "($(date +"%F %R")) setting repo_name and making the prefix profiles development ones (iso exp)"
 echo "gentoo_prefix" > "${RSYNCDIR}"/profiles/repo_name
 touch -r "${CVSDIR}"/profiles/repo_name "${RSYNCDIR}"/profiles/repo_name
-{
-	echo ""
-	echo "# Let the Prefix tree satisfy depends on the main gx86 tree"
-	echo "aliases = gentoo"
-} >> "${RSYNCDIR}"/metadata/layout.conf
-touch -r "${CVSDIR}"/metadata/layout.conf "${RSYNCDIR}"/metadata/layout.conf
 # reset Prefix profiles to dev status
 sed -i -e '/prefix/s/exp/dev/' "${RSYNCDIR}"/profiles/profiles.desc
 touch -r "${CVSDIR}"/profiles/profiles.desc "${RSYNCDIR}"/profiles/profiles.desc
