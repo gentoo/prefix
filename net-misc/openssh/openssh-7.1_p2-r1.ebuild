@@ -1,17 +1,18 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="4"
+EAPI="5"
+
 inherit eutils user flag-o-matic multilib autotools pam systemd versionator
 
 # Make it more portable between straight releases
 # and _p? releases.
 PARCH=${P/_}
 
-HPN_PATCH="${PARCH}-hpnssh14v9.tar.xz"
-LDAP_PATCH="${PN}-lpk-6.8p1-0.3.14.patch.xz"
-X509_VER="8.6" X509_PATCH="${PN}-${PV//_/}+x509-${X509_VER}.diff.gz"
+HPN_PATCH="${PARCH}-hpnssh14v10.tar.xz"
+LDAP_PATCH="${PN}-lpk-7.1p2-0.3.14.patch.xz"
+X509_VER="8.7" X509_PATCH="${PN}-${PV/_}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
@@ -19,7 +20,6 @@ SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
 	mirror://gentoo/${PN}-6.8_p1-sctp.patch.xz
 	${HPN_PATCH:+hpn? (
 		mirror://gentoo/${HPN_PATCH}
-		https://dev.gentoo.org/~polynomial-c/${HPN_PATCH}
 		mirror://sourceforge/hpnssh/${HPN_PATCH}
 	)}
 	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
@@ -116,14 +116,15 @@ src_prepare() {
 
 	if use X509 ; then
 		pushd .. >/dev/null
-		pushd ${HPN_PATCH%.*.*} >/dev/null
-		epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
-		popd >/dev/null
+		if use hpn ; then
+			pushd ${HPN_PATCH%.*.*} >/dev/null
+			epatch "${FILESDIR}"/${PN}-7.1_p1-hpn-x509-glue.patch
+			popd >/dev/null
+		fi
 		epatch "${FILESDIR}"/${PN}-7.0_p1-sctp-x509-glue.patch
 		popd >/dev/null
 		epatch "${WORKDIR}"/${X509_PATCH%.*}
-		epatch "${FILESDIR}"/${PN}-6.3_p1-x509-hpn14v2-glue.patch
-		epatch "${FILESDIR}"/${PN}-6.9_p1-x509-warnings.patch
+		epatch "${FILESDIR}"/${PN}-7.1_p2-x509-hpn14v10-glue.patch
 		save_version X509
 	fi
 	if use ldap ; then
@@ -157,8 +158,6 @@ src_prepare() {
 	)
 	sed -i "${sed_args[@]}" configure{.ac,} || die
 
-	sed -i -e 's/-m 4711/-m 0711/' "${S}"/Makefile.in || die
-
 	epatch_user #473004
 
 	# Now we can build a sane merged version.h
@@ -174,7 +173,6 @@ src_prepare() {
 
 src_configure() {
 	addwrite /dev/ptmx
-	addpredict /etc/skey/skeykeys # skey configure code triggers this
 
 	use debug && append-cppflags -DSANDBOX_SECCOMP_FILTER_DEBUG
 	use static && append-ldflags -static
@@ -200,8 +198,7 @@ src_configure() {
 		$(use_with selinux)
 		$(use_with skey)
 		$(use_with ssh1)
-		# The X509 patch deletes this option entirely.
-		$(use X509 || use_with ssl openssl)
+		$(use_with ssl openssl)
 		$(use_with ssl md5-passwords)
 		$(use_with ssl ssl-engine)
 	)
@@ -295,7 +292,6 @@ src_test() {
 pkg_preinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
-	fperms 4711 /usr/$(get_libdir)/misc/ssh-keysign
 }
 
 pkg_postinst() {
@@ -312,12 +308,16 @@ pkg_postinst() {
 		elog "Make sure to update any configs that you might have.  Note that xinetd might"
 		elog "be an alternative for you as it supports USE=tcpd."
 	fi
-	if has_version "<${CATEGORY}/${PN}-7.1_p1" ; then #557388
+	if has_version "<${CATEGORY}/${PN}-7.1_p1" ; then #557388 #555518
 		elog "Starting with openssh-7.0, support for ssh-dss keys were disabled due to their"
 		elog "weak sizes.  If you rely on these key types, you can re-enable the key types by"
 		elog "adding to your sshd_config or ~/.ssh/config files:"
 		elog "	PubkeyAcceptedKeyTypes=+ssh-dss"
 		elog "You should however generate new keys using rsa or ed25519."
+
+		elog "Starting with openssh-7.0, the default for PermitRootLogin changed from 'yes'"
+		elog "to 'prohibit-password'.  That means password auth for root users no longer works"
+		elog "out of the box.  If you need this, please update your sshd_config explicitly."
 	fi
 	if ! use ssl && has_version "${CATEGORY}/${PN}[ssl]" ; then
 		elog "Be aware that by disabling openssl support in openssh, the server and clients"
