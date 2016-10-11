@@ -1317,6 +1317,7 @@ bootstrap_stage2() {
 	EXTRA_ECONF="--disable-bootstrap" \
 	GCC_MAKE_TARGET=all \
 	TPREFIX="${ROOT}" \
+	PYTHON_COMPAT_OVERRIDE=python2.7 \
 	emerge_pkgs --nodeps ${compiler_stage1} || return 1
 
 	# undo gmp cxx hack
