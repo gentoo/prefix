@@ -157,6 +157,7 @@ sign_manifest() {
 		cat "${RSYNCDIR}/${pkg}"/Manifest > "${MANIFEST_CACHE}"/${mc}
 		# remember, HOME is set to misc/ so .gnupg keychain lives there
 		gpg --batch --no-tty --passphrase-fd 0 --default-key C6317B3C \
+			--pinentry-mode loopback \
 			--sign --clearsign --digest-algo SHA256 \
 			--yes "${MANIFEST_CACHE}"/${mc} \
 			< "${BASE_PATH}"/autosigner.pwd >& /dev/null
