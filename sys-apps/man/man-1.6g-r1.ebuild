@@ -77,6 +77,21 @@ src_prepare() {
 			-e 's/@man_install_flags@//g' \
 			"${S}"/src/Makefile.in
 		eend $?
+		(
+			local d cat=() dflt
+			dflt=( $(sed -n '/^tmpsections=/s/^[^"]\+"\([^"]\+\)".*$/\1/p' \
+				configure) )
+			IFS=:
+			for d in /usr/share/man/man* ; do
+				[[ -d ${d} ]] || continue
+				[[ ":${dflt[*]}:" == *":${d##*man}:"* ]] \
+					|| cat+=( ${d##*man} )
+			done
+			if [[ ${#cat[@]} -gt 0 ]] ; then
+				einfo "Adding host manpage sections: ${cat[*]}"
+				sed -i -e "/^MANSECT\t/s/\$/:${cat[*]}/" src/man.conf.in || die
+			fi
+		)
 	fi
 
 }
