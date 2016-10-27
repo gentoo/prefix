@@ -261,8 +261,9 @@ bootstrap_setup() {
 
 			[rap]
 			location = ${ROOT}/usr/portage-stage
-			sync-type = webrsync
-			sync-uri = http://dev.gentoo.org/~heroxbd/android-master.tar.bz2
+			sync-type = git
+			sync-uri = https://anongit.gentoo.org/git/proj/android.git
+			auto-sync = no
 			EOF
 	fi
 
