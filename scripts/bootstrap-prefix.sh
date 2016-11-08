@@ -1476,12 +1476,18 @@ bootstrap_stage3() {
 
 	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python2.7 )
 	# Use $ROOT tools where possible from now on.
-	rm -f "${ROOT}"/bin/sh
-	ln -s bash "${ROOT}"/bin/sh
+	if [[ $(readlink "${ROOT}"/bin/sh) == "${ROOT}/tmp/"* ]] ; then
+		rm -f "${ROOT}"/bin/sh
+		ln -s bash "${ROOT}"/bin/sh
+	fi
 	unset CONFIG_SHELL
 	unset MAKEINFO
 	unset CXX
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
+
+	# get a sane bash, overwriting tmp symlinks
+	FEATURES="${FEATURES} -collision-protect" \
+		emerge_pkgs "" "app-shells/bash" || return 1
 
 	# Build portage and dependencies.
 	pkgs=(
