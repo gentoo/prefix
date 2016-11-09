@@ -1729,6 +1729,10 @@ EOF
 			[[ -e /Library/Developer/CommandLineTools/usr/bin/clang ]] \
 				&& PATH="/Library/Developer/CommandLineTools/usr/bin:${PATH}"
 			;;
+		*-cygwin*)
+			# Keep some Windows
+			PATH+=":$(cygpath -S):$(cygpath -W)"
+			;;
 	esac
 
 	# TODO: should we better use cc here? or check both?
@@ -1849,11 +1853,10 @@ EOF
 			exit 1
 		fi
 	fi
-	
 	echo
 	local ncpu=
     case "${CHOST}" in
-		*-cygwin*)     ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%')  ;;
+		*-cygwin*)     ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%' | dos2unix) ;;
 		*-darwin*)     ncpu=$(/usr/sbin/sysctl -n hw.ncpu)                 ;;
 		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
 		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
@@ -2291,10 +2294,10 @@ if [[ -z ${CHOST} ]]; then
 				;;
 			CYGWIN*)
 				case `uname -r` in
-					[0-1].*|2.[0-4].*|2.5.[0-1]|2.5.[0-1]'('*)
-						eerror "Can't deal with Cygwin before 2.5.2 or so, sorry!"
-						exit 1
-					;;
+#					[0-1].*|2.[0-4].*|2.5.[0-1]|2.5.[0-1]'('*)
+#						eerror "Can't deal with Cygwin before 2.5.2 or so, sorry!"
+#						exit 1
+#					;;
 					*)
 						CHOST="`uname -m`-pc-cygwin"
 					;;
