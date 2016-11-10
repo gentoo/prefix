@@ -9,7 +9,7 @@ inherit eutils flag-o-matic toolchain-funcs multilib multilib-minimal
 MY_P=${P/_/-}
 DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="http://www.openssl.org/"
-SRC_URI="mirror://openssl/source/${MY_P}.tar.gz"
+SRC_URI="mirror://openssl/source/old/1.0.2/${MY_P}.tar.gz"
 
 LICENSE="openssl"
 # subslot set to 1.0.2g version as this is the first release without SSLv2
