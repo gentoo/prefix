@@ -1622,6 +1622,10 @@ EOF
 	echo
 	echo "It seems to me you are '${USER:-$(whoami 2> /dev/null)}' (${UID}), that looks cool to me."
 
+	# Expect noninteractive users to know what they do:
+	# Take EPREFIX from argv1 (=ROOT), not from env var.
+	[[ ${TODO} == 'noninteractive' ]] && EPREFIX=${ROOT}
+
 	echo
 	echo "I'm going to check for some variables in your environment now:"
 	local flag dvar badflags=
@@ -2018,7 +2022,7 @@ EOF
 				|| EPREFIX=$HOME/gentoo
 		fi
 		echo
-		[[ ${TODO} == 'noninteractive' ]] && ans=${ROOT} ||
+		[[ ${TODO} == 'noninteractive' ]] && ans= ||
 		read -p "What do you want EPREFIX to be? [$EPREFIX] " ans
 		case "${ans}" in
 			"")
