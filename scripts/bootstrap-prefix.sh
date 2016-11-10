@@ -2298,10 +2298,10 @@ if [[ -z ${CHOST} ]]; then
 				;;
 			CYGWIN*)
 				case `uname -r` in
-#					[0-1].*|2.[0-4].*|2.5.[0-1]|2.5.[0-1]'('*)
-#						eerror "Can't deal with Cygwin before 2.5.2 or so, sorry!"
-#						exit 1
-#					;;
+					[0-1].*|2.[0-6].*)
+						eerror "Can't deal with Cygwin before 2.6.x or so, sorry!"
+						exit 1
+					;;
 					*)
 						CHOST="`uname -m`-pc-cygwin"
 					;;
