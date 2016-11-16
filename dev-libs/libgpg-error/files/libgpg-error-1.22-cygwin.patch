@@ -1,0 +1,94 @@
+Based on https://lists.gnupg.org/pipermail/gnupg-devel/2016-May/031119.html
+
+From 0d91eff701c9c2b435def1a28047cffc4f72ca98 Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <michael.haubenwallner@ssi-schaefer.com>
+Date: Fri, 20 May 2016 16:09:17 +0200
+Subject: [PATCH] Use EXEEXT and -no-undefined flag even on Unix.
+
+* src/Makefile.am: Always use the -no-undefined libtool flag.
+Use EXEEXT with gen-posix-lock-obj in extra make target.
+
+Cygwin is not identified as W32 system, but requires undefined symbols
+to create a shared library.  As the shared library should not have
+undefined symbols anywhere at all, we can use the -no-undefined libtool
+flag unconditionally.
+Although Cygwin tries to hide the .exe extension in general, automake
+uses EXEEXT with PROGRAMS targets, which we have to match here.
+---
+ src/Makefile.am | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+#diff --git a/src/Makefile.am b/src/Makefile.am
+#index 5623aff..2cf9dfb 100644
+#--- a/src/Makefile.am
+#+++ b/src/Makefile.am
+@@ -118,7 +118,6 @@ SUFFIXES = .rc .lo
+ 	$(LTRCCOMPILE) -i "$<" -o "$@"
+ 
+ gpg_error_res = versioninfo.lo
+-no_undefined = -no-undefined
+ export_symbols = -export-symbols gpg-error.def
+ # i686-w64-mingw32.gcc version 4.9.1 takes the long long helper
+ # functions from libgcc_s_sjlj-1.dll and not from a static libgcc.  As
+@@ -147,7 +146,6 @@ else
+ #
+ arch_sources = posix-lock.c posix-lock-obj.h posix-thread.c
+ gpg_error_res =
+-no_undefined =
+ export_symbols =
+ extra_ltoptions =
+ 
+@@ -168,7 +166,7 @@ else
+ endif
+ 
+ libgpg_error_la_LDFLAGS = \
+-  $(no_undefined) $(export_symbols) $(libgpg_error_vers_opt) \
++  -no-undefined $(export_symbols) $(libgpg_error_vers_opt) \
+   $(extra_ltoptions) -version-info \
+   @LIBGPG_ERROR_LT_CURRENT@:@LIBGPG_ERROR_LT_REVISION@:@LIBGPG_ERROR_LT_AGE@
+ 
+@@ -288,8 +286,8 @@ else
+ pre_mkheader_cmds = :
+ parts_of_gpg_error_h += ./lock-obj-pub.native.h
+ 
+-./lock-obj-pub.native.h: Makefile gen-posix-lock-obj posix-lock-obj.h
+-	./gen-posix-lock-obj >$@
++./lock-obj-pub.native.h: Makefile gen-posix-lock-obj$(EXEEXT) posix-lock-obj.h
++	./gen-posix-lock-obj$(EXEEXT) >$@
+ endif
+ 
+ # We also depend on versioninfo.rc because that is build by
+-- 
+2.7.3
+
+--- a/src/Makefile.in
++++ b/src/Makefile.in
+@@ -524,8 +524,6 @@
+ @HAVE_W32_SYSTEM_TRUE@SUFFIXES = .rc .lo
+ @HAVE_W32_SYSTEM_FALSE@gpg_error_res = 
+ @HAVE_W32_SYSTEM_TRUE@gpg_error_res = versioninfo.lo
+-@HAVE_W32_SYSTEM_FALSE@no_undefined = 
+-@HAVE_W32_SYSTEM_TRUE@no_undefined = -no-undefined
+ @HAVE_W32_SYSTEM_FALSE@export_symbols = 
+ @HAVE_W32_SYSTEM_TRUE@export_symbols = -export-symbols gpg-error.def
+ @HAVE_W32_SYSTEM_FALSE@extra_ltoptions = 
+@@ -544,7 +542,7 @@
+ #
+ @HAVE_LD_VERSION_SCRIPT_TRUE@libgpg_error_vers_opt = -Wl,--version-script=$(srcdir)/gpg-error.vers
+ libgpg_error_la_LDFLAGS = \
+-  $(no_undefined) $(export_symbols) $(libgpg_error_vers_opt) \
++  -no-undefined $(export_symbols) $(libgpg_error_vers_opt) \
+   $(extra_ltoptions) -version-info \
+   @LIBGPG_ERROR_LT_CURRENT@:@LIBGPG_ERROR_LT_REVISION@:@LIBGPG_ERROR_LT_AGE@
+ 
+@@ -1316,8 +1314,8 @@
+ mkheader: mkheader.c Makefile
+ 	$(CC_FOR_BUILD) -g -O0 -I. -I$(srcdir) -o $@ $(srcdir)/mkheader.c
+ 
+-@FORCE_USE_SYSCFG_FALSE@./lock-obj-pub.native.h: Makefile gen-posix-lock-obj posix-lock-obj.h
+-@FORCE_USE_SYSCFG_FALSE@	./gen-posix-lock-obj >$@
++@FORCE_USE_SYSCFG_FALSE@./lock-obj-pub.native.h: Makefile gen-posix-lock-obj$(EXEEXT) posix-lock-obj.h
++@FORCE_USE_SYSCFG_FALSE@	./gen-posix-lock-obj$(EXEEXT) >$@
+ 
+ # We also depend on versioninfo.rc because that is build by
+ # config.status and thus has up-to-date version numbers.

@@ -31,6 +31,7 @@ MULTILIB_WRAPPED_HEADERS=(
 )
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PN}-1.22-cygwin.patch
 	epatch_user
 	elibtoolize
 }
