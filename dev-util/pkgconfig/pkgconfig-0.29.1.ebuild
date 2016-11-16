@@ -19,14 +19,21 @@ if [[ ${PV} == *9999* ]]; then
 else
 	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 	SRC_URI="https://pkgconfig.freedesktop.org/releases/${MY_P}.tar.gz"
+	INTERNAL_GLIB_CYGWIN_PATCHES=2.38.2
 fi
+
+[[ -n ${INTERNAL_GLIB_CYGWIN_PATCHES} ]] &&
+SRC_URI+=" internal-glib? ( elibc_Cygwin? (
+	https://github.com/haubi/pkgconfig-glib-cygwin-patches/archive/v${INTERNAL_GLIB_CYGWIN_PATCHES}.zip
+	-> pkgconfig-glib-cygwin-patches-${INTERNAL_GLIB_CYGWIN_PATCHES}.zip
+) )"
 
 DESCRIPTION="Package config system that manages compile/link flags"
 HOMEPAGE="https://pkgconfig.freedesktop.org/wiki/"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="elibc_FreeBSD elibc_glibc hardened internal-glib"
+IUSE="elibc_FreeBSD elibc_glibc elibc_Cygwin hardened internal-glib"
 
 RDEPEND="!internal-glib? ( >=dev-libs/glib-2.34.3[${MULTILIB_USEDEP}] )
 	!dev-util/pkgconf[pkg-config]
@@ -41,6 +48,11 @@ DOCS=( AUTHORS NEWS README )
 
 src_prepare() {
 	sed -i -e "s|^prefix=/usr\$|prefix=${EPREFIX}/usr|" check/simple.pc || die #434320
+
+	[[ -n ${INTERNAL_GLIB_CYGWIN_PATCHES} ]] &&
+	use internal-glib && use elibc_Cygwin &&
+	EPATCH_FORCE=yes EPATCH_SUFFIX=patch \
+	epatch "${WORKDIR}"/pkgconfig-glib-cygwin-patches-${INTERNAL_GLIB_CYGWIN_PATCHES}
 
 	eapply_user
 
