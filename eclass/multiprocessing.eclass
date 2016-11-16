@@ -107,8 +107,8 @@ multijob_init() {
 	# when you open a FIFO for simultaneous read/write. #487056
 	local pipe="${T}/multijob.pipe"
 	mkfifo -m 600 "${pipe}"
-	redirect_alloc_fd mj_write_fd "${pipe}"
 	redirect_alloc_fd mj_read_fd "${pipe}"
+	redirect_alloc_fd mj_write_fd "${pipe}" '>'
 	rm -f "${pipe}"
 
 	# See how many children we can fork based on the user's settings.
