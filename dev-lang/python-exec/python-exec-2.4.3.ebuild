@@ -30,6 +30,10 @@ RDEPEND="
 	!<dev-lang/python-3.4.3-r4:3.4
 	!<dev-lang/python-3.5.0-r3:3.5"
 
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-cygwin.patch
+}
+
 src_configure() {
 	local pyimpls=() i EPYTHON
 	for i in "${PYTHON_COMPAT[@]}"; do

@@ -1,0 +1,50 @@
+From 904043041517e77a5748119448c42a5444604329 Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <michael.haubenwallner@ssi-schaefer.com>
+Date: Wed, 11 May 2016 10:35:37 +0000
+Subject: [PATCH] Cygwin drops the .exe from argv0.
+
+The real executable file still has the .exe extension, but Cygwin
+transparently hides (adds/removes) the .exe extension in POSIX API.
+---
+ src/python-exec.c  | 4 +++-
+ src/python-exec.in | 2 +-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/python-exec.c b/src/python-exec.c
+index d5797e9..e5a58f6 100644
+--- a/src/python-exec.c
++++ b/src/python-exec.c
+@@ -247,6 +247,7 @@ int resolve_symlinks(char* outbuf, const char* path)
+ 				/* ok, curr_path was the last symlink;
+ 				 * now let's see if it's python-exec2 */
+ 				if (!strcmp(curr_fnpos, "python-exec2")
++						|| !strcmp(curr_fnpos, "python-exec2c")
+ 						|| !strcmp(curr_fnpos, "python-exec2c" EXEEXT))
+ 				{
+ 					/* let's see if we succeeded at least once */
+@@ -585,7 +586,8 @@ int main(int argc, char* argv[])
+ 	slash = strrchr(argv[0], path_sep);
+ 	/* if we are called directly (via a shebang), script comes
+ 	 * as argv[1] */
+-	if (!strcmp(slash ? &slash[1] : argv[0], "python-exec2c" EXEEXT))
++	if (!strcmp(slash ? &slash[1] : argv[0], "python-exec2c") ||
++		!strcmp(slash ? &slash[1] : argv[0], "python-exec2c" EXEEXT))
+ 	{
+ 		script = argv[1];
+ 
+diff --git a/src/python-exec.in b/src/python-exec.in
+index 8e3a1ce..8b75aad 100644
+--- a/src/python-exec.in
++++ b/src/python-exec.in
+@@ -39,7 +39,7 @@ while True:
+ 			continue
+ 		elif e.errno == errno.EINVAL:
+ 			# if the final target is python-exec2, use last symlink
+-			if os.path.basename(target) == 'python-exec2@exeext@':
++			if os.path.basename(target) in ( 'python-exec2', 'python-exec2@exeext@' ):
+ 				if prev_target is None:
+ 					sys.stderr.write('%s: python-exec2 is a wrapper, it must not be run directly.\n'
+ 							% target)
+-- 
+2.8.2
+
