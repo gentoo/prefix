@@ -93,6 +93,7 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}"/${PN}-2.2.28-ebuildshell.patch # 155161
+	epatch "${FILESDIR}"/${PN}-2.2.28-cygwin.patch # 583962
 	use prefix-chaining &&
 		epatch "${FILESDIR}"/${PN}-2.2.14-prefix-chaining.patch
 

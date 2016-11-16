@@ -1,0 +1,16 @@
+--- prefix-portage-2.2.28/bin/helper-functions.sh.orig	2016-11-16 15:43:02.338368826 +0100
++++ prefix-portage-2.2.28/bin/helper-functions.sh	2016-11-16 15:43:21.498359600 +0100
+@@ -21,11 +21,12 @@
+ 	# Setup a pipe for children to write their pids to when they finish.
+ 	# We have to allocate two fd's because POSIX has undefined behavior
+ 	# when you open a FIFO for simultaneous read/write. #487056
++	# And Cygwin supports just one read/write fd at once. #583962
+ 	local pipe=$(mktemp -t multijob.XXXXXX)
+ 	rm -f "${pipe}"
+ 	mkfifo -m 600 "${pipe}"
+-	__redirect_alloc_fd mj_write_fd "${pipe}"
+ 	__redirect_alloc_fd mj_read_fd "${pipe}"
++	__redirect_alloc_fd mj_write_fd "${pipe}" '>'
+ 	rm -f "${pipe}"
+ 
+ 	# See how many children we can fork based on the user's settings.
