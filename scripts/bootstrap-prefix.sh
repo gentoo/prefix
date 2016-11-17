@@ -540,6 +540,9 @@ bootstrap_portage() {
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
+	# Cygwin
+	patch -p1 < "${PORTDIR}"/sys-apps/portage/files/portage-2.2.28-cygwin.patch
+
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
 		-i pym/_emerge/AbstractEbuildProcess.py || \
@@ -919,6 +922,8 @@ bootstrap_zlib_core() {
 	fi
 	# 1.2.5 suffers from a concurrency problem
 	[[ ${PV} == 1.2.5 ]] && MAKEOPTS=
+
+	[[ ${CHOST} == *-cygwin* ]] && export LDSHARED="${CC} -shared"
 
 	einfo "Compiling ${A%-*}"
 	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
