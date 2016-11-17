@@ -30,8 +30,13 @@ MULTILIB_WRAPPED_HEADERS=(
 	/usr/include/gpg-error.h
 )
 
+# https://lists.gnupg.org/pipermail/gnupg-devel/2016-November/032190.html
+EXTRA_EMAKE=no_undefined=-no-undefined
+
 src_prepare() {
+	# https://lists.gnupg.org/pipermail/gnupg-devel/2016-November/032189.html
 	epatch "${FILESDIR}"/${PN}-1.22-cygwin.patch
+
 	epatch_user
 	elibtoolize
 }
