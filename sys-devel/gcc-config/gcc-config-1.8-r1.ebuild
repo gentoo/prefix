@@ -24,6 +24,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-prefix-${PV}-r${PREFIXREV}.patch
 	epatch "${FILESDIR}"/${P}-copy-gcc-libs.patch
 	epatch "${FILESDIR}"/${P}-copy-gcc-libs-darwin.patch
+	epatch "${FILESDIR}"/${P}-cygwin.patch
 }
 
 src_compile() {

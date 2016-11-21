@@ -1,0 +1,37 @@
+--- gcc-config-1.8/gcc-config.orig	2016-11-21 17:50:00.700959745 +0100
++++ gcc-config-1.8/gcc-config	2016-11-21 17:55:03.354280232 +0100
+@@ -9,6 +9,7 @@
+ : ${ROOT:=/}
+ [[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
+ [[ ${ROOT} != /* ]] && ROOT="${PWD%/}/${ROOT}"
++[[ // -ef / ]] || ROOT="/.${ROOT}" # stick to filesystem (Cygwin)
+ BPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+ : ${EPREFIX:=${BPREFIX}}
+ EROOT="${ROOT%/}${EPREFIX}/"
+@@ -181,6 +182,8 @@
+ 
+ uniq_wrapper_list() {
+ 	local ver=$1; shift
++	# Leave Cygwin alone handling the .exe extension.
++	set -- "${@%.exe}"
+ 	# We want to normalize away existing target prefix.
+ 	set -- "${@#${CTARGET}-*}"
+ 	# And we want to filter out any version suffixed progs.
+@@ -659,7 +662,7 @@
+ 
+ 	update_wrappers ${CTARGET}
+ 
+-	if [[ ${ROOT} == "/" ]] && \
++	if [[ ${ROOT#/.} == "/" ]] && \
+ 	   [[ ${FORCE} == "yes" || ${envd_changed} -gt 0 ]]
+ 	then
+ 		# in case python is broken ...
+@@ -720,7 +723,7 @@
+ 	local i=0
+ 	local filter=
+ 
+-	if [[ ${ROOT} != "/" ]] ; then
++	if [[ ${ROOT#/.} != "/" ]] ; then
+ 		echo "Using gcc-config info in ${ROOT}"
+ 	fi
+ 
