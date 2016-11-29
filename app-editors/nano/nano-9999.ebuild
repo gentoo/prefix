@@ -82,3 +82,11 @@ src_install() {
 	dodir /usr/bin
 	dosym /bin/nano /usr/bin/nano
 }
+
+pkg_preinst() {
+	# hack while sorting out #601060
+	if [[ ${EROOT}bin/. -ef ${EROOT}usr/bin/. ]]; then
+		# found the /bin -> /usr/bin symlink
+		rm -f "${ED}"usr/bin/nano
+	fi
+}
