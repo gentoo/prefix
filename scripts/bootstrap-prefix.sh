@@ -1284,6 +1284,7 @@ bootstrap_stage2() {
 	# Build a basic compiler and portage dependencies in $ROOT/tmp.
 	pkgs=(
 		$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
+		$([[ ${CHOST} == *-cygwin* ]] && echo dev-libs/libiconv ) # bash dependency
 		sys-libs/ncurses
 		sys-libs/readline
 		app-shells/bash
