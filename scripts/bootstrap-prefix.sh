@@ -1614,6 +1614,85 @@ EOF
 			;;
 	esac
 
+	if [[ ${CHOST} == *-cygwin* ]]; then
+		have_cygfork=false
+		if [[ -r /var/run/cygfork/. ]]; then
+			if [[ -e /var/run/cygfork/.needed ]] ||
+			   [[ -e /var/run/cygfork/.unchecked ]]
+			then
+				cygfork_clean=:
+			else
+			  > /var/run/cygfork/.needed
+			  cygfork_clean='rm -f /var/run/cygfork/.needed'
+			fi
+			if ( [[ -n $(ls /var/run/cygfork/*/*/*.exe 2>/dev/null) ]] )
+			then
+				have_cygfork=true
+			fi
+			${cygfork_clean}
+		fi
+
+		if ${have_cygfork}; then
+			cat << EOF
+
+Whoah there, I've found the working fork() in your Cygwin instance,
+seems you really know what I can do for you when you help me out!
+EOF
+		else
+			echo
+			[[ ${TODO} == 'noninteractive' ]] && ans="yes" ||
+			read -p "Are you really, really sure what you want me to do for you? [no] " ans
+			case "${ans}" in
+			[Yy][Ee][Ss]) ;;
+			*)
+				cat << EOF
+
+Puh, I'm glad you agree with me here, thanks!
+EOF
+				exit 1
+				;;
+			esac
+
+			cat << EOF
+
+Well...
+EOF
+			[[ ${TODO} == 'noninteractive' ]] || sleep 1
+			cat << EOF
+
+Nope, seems you aren't: This is Windows after all,
+which I'm traditionally incompatible with!
+EOF
+			[[ ${TODO} == 'noninteractive' ]] || sleep 1
+			cat << EOF
+
+But wait, there might be help!
+EOF
+			[[ ${TODO} == 'noninteractive' ]] || sleep 1
+			cat << EOF
+
+Once upon a time there was a guy, probably as freaky as you, my master.
+And whether you believe or not, he has been able to do something useful
+to Windows, in that he completed a piece of code to support myself.
+
+Although you already use that piece of code - yes, it's called Cygwin,
+you seem to not use this freaky guy's completions yet.
+
+So let me tell you how to help me out of the incompatibility hole:
+First, make sure you have installed your Cygwin instance on the very same
+NTFS partition you want myself to work on. And yes, I really need NTFS.
+Second, 'Clone or download' the Cygwin source including this guy's fixes
+from https://github.com/haubi/newlib-cygwin/tree/gentoo
+Third, compile these Cygwin sources to get another cygwin1.dll.
+Fourth, stop all your Cygwin processes.
+Fifth, replace your current cygwin1.dll with that new one.
+Sixth, start your Cygwin processes again, or reboot your Windows.
+Finally, start over with myself to continue.
+EOF
+		  exit 1
+		fi
+	fi
+
 	if [[ ${UID} == 0 ]] ; then
 		cat << EOF
 
@@ -2303,15 +2382,7 @@ if [[ -z ${CHOST} ]]; then
 				esac
 				;;
 			CYGWIN*)
-				case `uname -r` in
-					[0-1].*|2.[0-6].*)
-						eerror "Can't deal with Cygwin before 2.6.x or so, sorry!"
-						exit 1
-					;;
-					*)
-						CHOST="`uname -m`-pc-cygwin"
-					;;
-				esac
+				CHOST="`uname -m`-pc-cygwin"
 				;;
 			HP-UX)
 				case `uname -m` in
