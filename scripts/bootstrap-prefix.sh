@@ -1679,15 +1679,27 @@ Although you already use that piece of code - yes, it's called Cygwin,
 you seem to not use this freaky guy's completions yet.
 
 So let me tell you how to help me out of the incompatibility hole:
-First, make sure you have installed your Cygwin instance on the very same
-NTFS partition you want myself to work on. And yes, I really need NTFS.
-Second, 'Clone or download' the Cygwin source including this guy's fixes
-from https://github.com/haubi/newlib-cygwin/tree/gentoo
-Third, compile these Cygwin sources to get another cygwin1.dll.
-Fourth, stop all your Cygwin processes.
-Fifth, replace your current cygwin1.dll with that new one.
-Sixth, start your Cygwin processes again, or reboot your Windows.
-Finally, start over with myself to continue.
+1) Make sure you have installed your Cygwin instance on the very same
+   NTFS partition you want myself to work on. And yes, I really need NTFS.
+2) 'Clone or download' the Cygwin source including this guy's fixes
+   from https://github.com/haubi/newlib-cygwin/tree/gentoo
+3) Back up your current /bin/cygwin1.dll:
+     $ cp /bin/cygwin1.dll /bin/cygwin1.dll.orig
+4) Compile these Cygwin sources to get some cygwin0.dll, as in:
+     $ unzip newlib-cygwin-gentoo.zip
+     $ cd newlib-cygwin-gentoo
+     $ ./configure
+     $ make
+5) Prepare the new cygwin0.dll for replacing your current one:
+     $ cp *-cygwin/winsup/cygwin0.dll /bin/cygwin1.dll.new
+6) Create the /var/run/cygfork directory:
+     $ mkdir -t 1777 /var/run/cygfork
+7) Stop all your Cygwin processes.
+8) Replace your old cygwin1.dll with the new one, using your
+   Windows Explorer in $(cygpath -w /bin)
+9) Start your Cygwin processes again, or reboot your Windows.
+10) Start over with myself to continue.
+11) Remember that you won't get support from upstream Cygwin now.
 EOF
 		  exit 1
 		fi
