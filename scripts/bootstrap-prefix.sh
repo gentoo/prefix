@@ -50,7 +50,8 @@ efetch() {
 				FETCH_COMMAND="curl -f -L -O"
 			elif [[ x$(type -t fetch) == "xfile" ]] ; then
 				FETCH_COMMAND="fetch"
-			elif [[ x$(type -t ftp) == "xfile" ]] ; then
+			elif [[ x$(type -t ftp) == "xfile" ]] &&
+				 [[ ${CHOST} != *-cygwin* || ! $(type -P ftp) -ef $(cygpath -S)/ftp ]] ; then
 				FETCH_COMMAND="ftp"
 			else
 				eerror "no suitable download manager found (need wget, curl, fetch or ftp)"
@@ -1957,7 +1958,7 @@ EOF
 	echo
 	local ncpu=
     case "${CHOST}" in
-		*-cygwin*)     ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%' | dos2unix) ;;
+		*-cygwin*)     ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%' | tr -d "\\r") ;;
 		*-darwin*)     ncpu=$(/usr/sbin/sysctl -n hw.ncpu)                 ;;
 		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
 		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
