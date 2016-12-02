@@ -10,7 +10,7 @@ if [[ -f /tmp/rsync-master-busy ]] ; then
 	# allow one run to be skipped quietly
 	if [[ $((laststart + (40 * 60))) -lt ${now} ]] ; then
 		echo "another rsync-master generation process is still busy"
-		type pstree > /dev/null && pstree -p $(head -n1 ${LOGFILE})
+		type pstree > /dev/null && pstree -A -p $(head -n1 ${LOGFILE})
 		ps -ef | grep '[r]efresh-mirror'
 		tail ${LOGFILE}
 	else
