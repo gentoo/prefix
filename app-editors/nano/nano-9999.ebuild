@@ -19,7 +19,7 @@ HOMEPAGE="https://www.nano-editor.org/ https://wiki.gentoo.org/wiki/Nano/Basics_
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="debug justify +magic minimal ncurses nls slang +spell static unicode"
+IUSE="debug justify +magic minimal ncurses nls prefix slang +spell static unicode"
 
 LIB_DEPEND=">=sys-libs/ncurses-5.9-r1:0=[unicode?]
 	sys-libs/ncurses:0=[static-libs(+)]
@@ -78,15 +78,8 @@ src_install() {
 			-e '/^# include /s:# *::' \
 			"${ED}"/etc/nanorc || die
 	fi
-
-	dodir /usr/bin
-	dosym /bin/nano /usr/bin/nano
-}
-
-pkg_preinst() {
-	# hack while sorting out #601060
-	if [[ ${EROOT}bin/. -ef ${EROOT}usr/bin/. ]]; then
-		# found the /bin -> /usr/bin symlink
-		rm -f "${ED}"usr/bin/nano
+	if ! use prefix || [[ ${PREFIX_DISABLE_USR_SPLIT} != yes ]] ; then
+		dodir /usr/bin
+		dosym /bin/nano /usr/bin/nano
 	fi
 }

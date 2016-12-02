@@ -817,6 +817,10 @@ EOP
 			# know better, so force it to listen to us
 			myconf="${myconf} --with-gcc=yes"
 		;;
+		*-*-cygwin*)
+			# ctypes dynamically loads "libpythonX.Y.dll"
+			myconf="${myconf} --enable-shared"
+		;;
 		*-openbsd*)
 			CFLAGS="${CFLAGS} -D_BSD_SOURCE=1"
 		;;
