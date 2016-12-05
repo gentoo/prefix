@@ -948,6 +948,10 @@ bootstrap_zlib_core() {
 		# rpath ordering issues.
 		rm -f "${ROOT}"/tmp/usr/lib/libz.so.1
 	fi
+	if [[ ${CHOST} == *-cygwin* ]]; then
+		# No proper Cygwin support in zlib makefiles
+		ln -s libz.so "${ROOT}"/tmp/usr/lib/libz.dll
+	fi
 
 	einfo "${A%-*} bootstrapped"
 }
