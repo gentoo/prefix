@@ -9,6 +9,12 @@ DESCRIPTION="GNU utility to convert program --help output to a man page"
 HOMEPAGE="https://www.gnu.org/software/help2man/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 
+CYGWIN_PATCHREV="60ae068c5e01fbed4ee3f86107f7df64d596a864"
+CYGWIN_PATCH="1.40.4-cygwin-nls.patch"
+SRC_URI+=" elibc_Cygwin? (
+https://raw.githubusercontent.com/cygwinports/help2man/${CYGWIN_PATCHREV}/${CYGWIN_PATCH} -> ${P}-${CYGWIN_PATCH}
+)"
+
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
@@ -31,6 +37,7 @@ src_prepare() {
 			Makefile.in || die
 	fi
 	epatch "${PATCHES[@]}"
+	use elibc_Cygwin && epatch "${DISTDIR}/${P}-${CYGWIN_PATCH}"
 }
 
 src_configure() {
