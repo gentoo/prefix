@@ -1275,6 +1275,18 @@ do_emerge_pkgs() {
 			emerge -v --oneshot --root-deps ${opts} "${pkg}" 
 		)
 		[[ $? -eq 0 ]] || return 1
+
+		case ${pkg},${CHOST} in
+		app-shells/bash,*-cygwin*)
+			# Cygwin would resolve 'bin/bash' to 'bin/bash.exe', but
+			# merging bin/bash.exe does not replace the bin/bash symlink.
+			# When we can execute both bin/bash and bin/bash.exe, but
+			# they are different files, then we need to drop the symlink.
+			[[ -x ${EPREFIX}/bin/bash && -x ${EPREFIX}/bin/bash.exe &&
+			 !    ${EPREFIX}/bin/bash  -ef  ${EPREFIX}/bin/bash.exe ]] &&
+				rm -f "${EPREFIX}"/bin/bash
+			;;
+		esac
 	done
 }
 
