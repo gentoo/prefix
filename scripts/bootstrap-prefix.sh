@@ -935,11 +935,15 @@ bootstrap_zlib_core() {
 		makeopts=(
 			-f win32/Makefile.gcc
 			SHARED_MODE=1
+			SHAREDLIB=libz.dll
+			IMPLIB=libz.dll.a
 			BINARY_PATH="${ROOT}"/tmp/usr/bin
 			INCLUDE_PATH="${ROOT}"/tmp/usr/include
 			LIBRARY_PATH="${ROOT}"/tmp/usr/lib
 			"${makeopts[@]}"
 		)
+		# stage1 python searches for lib/libz.dll
+		ln -sf libz.dll.a "${ROOT}"/tmp/usr/lib/libz.dll
 	fi
 
 	einfo "Compiling ${A%-*}"
