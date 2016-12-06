@@ -925,21 +925,37 @@ bootstrap_zlib_core() {
 		# compiler to 32-bits code generation if requested here
 		export CC="${CC} -m32"
 	fi
+	local makeopts=( ${MAKEOPTS} )
 	# 1.2.5 suffers from a concurrency problem
-	[[ ${PV} == 1.2.5 ]] && MAKEOPTS=
+	[[ ${PV} == 1.2.5 ]] && makeopts=()
 
-	[[ ${CHOST} == *-cygwin* ]] && export LDSHARED="${CC} -shared"
+	if [[ ${CHOST} == *-cygwin* ]] ; then
+		# gzopen_w is for real _WIN32 only
+		sed -i -e '/gzopen_w/d' win32/zlib.def
+		makeopts=(
+			-f win32/Makefile.gcc
+			SHARED_MODE=1
+			BINARY_PATH="${ROOT}"/tmp/usr/bin
+			INCLUDE_PATH="${ROOT}"/tmp/usr/include
+			LIBRARY_PATH="${ROOT}"/tmp/usr/lib
+			"${makeopts[@]}"
+		)
+	fi
 
 	einfo "Compiling ${A%-*}"
 	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
-	$MAKE ${MAKEOPTS} || return 1
+	$MAKE "${makeopts[@]}" || return 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE install || return 1
+	$MAKE "${makeopts[@]}" -j1 install || return 1
 
 	# this lib causes issues when emerging python again on Solaris
 	# because the tmp lib path is in the library search path there
-	rm -Rf "${ROOT}"/tmp/usr/lib/libz*.a
+	local x
+	for x in "${ROOT}"/tmp/usr/lib/libz*.a ; do
+		[[ ${x} == *.dll.a ]] && continue # keep Cygwin import lib
+		rm -Rf "${x}"
+	done
 
 	if [[ ${CHOST} == *-aix* ]]; then
 		# No aix-soname support, but symlinks when built with gcc. This breaks
@@ -947,10 +963,6 @@ bootstrap_zlib_core() {
 		# is an archive then, while finding this one first due to possible
 		# rpath ordering issues.
 		rm -f "${ROOT}"/tmp/usr/lib/libz.so.1
-	fi
-	if [[ ${CHOST} == *-cygwin* ]]; then
-		# No proper Cygwin support in zlib makefiles
-		ln -s libz.so "${ROOT}"/tmp/usr/lib/libz.dll
 	fi
 
 	einfo "${A%-*} bootstrapped"
