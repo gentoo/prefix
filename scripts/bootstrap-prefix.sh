@@ -1097,6 +1097,14 @@ bootstrap_stage1() { (
 	# whatever the native toolchain is here, is what in general works
 	# best.
 
+	if [[ ${PREFIX_DISABLE_USR_SPLIT} == "yes" ]] ; then
+		# See comments in do_tree().
+		for x in lib sbin bin; do
+			mkdir -p "${ROOT}"/tmp/usr/${x}
+			[[ -e ${ROOT}/tmp/${x} ]] || ( cd "${ROOT}"/tmp && ln -s usr/${x} )
+		done
+	fi
+
 	configure_toolchain
 	export CC CXX
 
