@@ -1,0 +1,26 @@
+diff --git a/bfd/configure b/bfd/configure
+index eeeb89a..6b7c5b8 100755
+--- a/bfd/configure
++++ b/bfd/configure
+@@ -15105,7 +15105,7 @@ if test "$enable_shared" = "yes"; then
+   case "${host}" in
+   *-*-cygwin*)
+     SHARED_LDFLAGS="-no-undefined"
+-    SHARED_LIBADD="-L`pwd`/../libiberty -liberty -L`pwd`/../intl -lintl -lcygwin -lkernel32"
++	SHARED_LIBADD="-L`pwd`/../libiberty -liberty -L`pwd`/../intl \$(LIBINTL) -lcygwin -lkernel32"
+   ;;
+ 
+   # Hack to build or1k-src on OSX
+diff --git a/opcodes/configure b/opcodes/configure
+index e5048e2..1e9ca69 100755
+--- a/opcodes/configure
++++ b/opcodes/configure
+@@ -12456,7 +12456,7 @@ if test "$enable_shared" = "yes"; then
+   case "${host}" in
+     *-*-cygwin*)
+       SHARED_LDFLAGS="-no-undefined"
+-      SHARED_LIBADD="-L`pwd`/../bfd -lbfd -L`pwd`/../libiberty -liberty -L`pwd`/../intl -lintl -lcygwin"
++	  SHARED_LIBADD="-L`pwd`/../bfd -lbfd -L`pwd`/../libiberty -liberty -L`pwd`/../intl \$(LIBINTL) -lcygwin"
+       ;;
+    *-*-darwin*)
+      SHARED_LIBADD="-Wl,`pwd`/../bfd/.libs/libbfd.dylib ${SHARED_LIBADD}"

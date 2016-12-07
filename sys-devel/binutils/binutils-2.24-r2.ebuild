@@ -13,6 +13,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.22-mint.patch
 	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
+	epatch "${FILESDIR}"/${PN}-2.24-cygwin-nointl.patch
 }
 
 src_compile() {
