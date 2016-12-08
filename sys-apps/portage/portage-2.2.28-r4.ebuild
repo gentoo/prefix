@@ -97,10 +97,6 @@ python_prepare_all() {
 	use prefix-chaining &&
 		epatch "${FILESDIR}"/${PN}-2.2.14-prefix-chaining.patch
 
-	# solved in git already, remove at next version
-	sed -i -e "s/version = '2.2.27'/version = '2.2.27-prefix'/" \
-		setup.py || die
-
 	if ! use ipc ; then
 		einfo "Disabling ipc..."
 		sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
@@ -168,6 +164,10 @@ python_prepare_all() {
 					die "sed failed"
 			fi
 		done < <(find . -type f -print0)
+
+		einfo "Setting gentoo_prefix as reponame for emerge-webrsync"
+		sed -i -e 's/repo_name=gentoo/repo_name=gentoo_prefix/' \
+			bin/emerge-webrsync || die
 		# END PREFIX LOCAL
 	fi
 
