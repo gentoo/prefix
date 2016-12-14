@@ -1984,16 +1984,16 @@ EOF
 	fi
 	echo
 	local ncpu=
-    case "${CHOST}" in
+	case "${CHOST}" in
 		*-cygwin*)     ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%' | tr -d "\\r") ;;
 		*-darwin*)     ncpu=$(/usr/sbin/sysctl -n hw.ncpu)                 ;;
 		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
 		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
-        *-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
-        *-aix*)        ncpu=$(/usr/sbin/bindprocessor -q | cut -d: -f2 | wc -w) ;;
-        *-hpux*)       ncpu=$(/sbin/ioscan -kC processor | grep -c processor) ;;
-        *)             ncpu=1                                              ;;
-    esac
+		*-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
+		*-aix*)        ncpu=$(/usr/sbin/bindprocessor -q | cut -d: -f2 | wc -w) ;;
+		*-hpux*)       ncpu=$(/sbin/ioscan -kC processor | grep -c processor) ;;
+		*)             ncpu=1                                              ;;
+	esac
 	# get rid of excess spaces (at least Solaris wc does)
 	ncpu=$((ncpu + 0))
 	# Suggest usage of 100% to 60% of the available CPUs in the range
