@@ -997,14 +997,14 @@ bootstrap_grep() {
 	# don't use 2.13, it contains a bug that bites, bug #425668
 	# 2.9 is the last version provided as tar.gz (platforms without xz)
 	# 2.7 is necessary for Solaris/OpenIndiana (2.8, 2.9 fail to configure)
-	bootstrap_gnu grep 2.14 || bootstrap_gnu grep 2.12 || \
-		bootstrap_gnu grep 2.9 || bootstrap_gnu grep 2.7
+	bootstrap_gnu grep 2.9 || bootstrap_gnu grep 2.7 || \
+		bootstrap_gnu grep 2.14 || bootstrap_gnu grep 2.12
 }
 
 bootstrap_coreutils() {
 	# 8.12 for FreeBSD 9.1, bug #415439
 	# 8.16 is the last version released as tar.gz
-	bootstrap_gnu coreutils 8.17 || bootstrap_gnu coreutils 8.16 || \
+	bootstrap_gnu coreutils 8.16 || bootstrap_gnu coreutils 8.17 || \
 	bootstrap_gnu coreutils 8.12 
 }
 
