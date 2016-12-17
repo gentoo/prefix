@@ -1588,7 +1588,7 @@ bootstrap_stage3() {
 	fi
 
 	# temporarily work around c_rehash missing openssl dependency, bug #572790
-	CFLAGS= CXXFLAGS= emerge -1 openssl || return 1
+	CFLAGS= CXXFLAGS= emerge -u1 openssl || return 1
 
 	# Portage should figure out itself what it needs to do, if anything.
 	# Avoid glib compiling for Cocoa libs if it finds them, since we're
