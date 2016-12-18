@@ -162,53 +162,99 @@ configure_toolchain() {
 	  compiler_stage1+=" sys-devel/gcc"
 	  ;;
 	*)
-	  # The host may not have a functioning c++ toolchain, so use a stage1 compiler that can build with C only.
+	  # The host may not have a functioning c++ toolchain, so use a
+	  # stage1 compiler that can build with C only.
 	  compiler_stage1+=" <sys-devel/gcc-4.8"
 	esac
 
+	# unfortunately, gmp needs c++, thus libcxx, so have to drag
+	# it in early (gmp is necessary for >3.5)
+	local cdep="3.5.9999"
+	local libcxx="
+		<sys-libs/libcxx-headers-${cdep}
+		<sys-libs/libcxxabi-${cdep}
+		<sys-libs/libcxx-${cdep}"
+
 	CC=gcc
 	CXX=g++
+	# cmake dep is pending #603012
+	llvm_deps="
+		app-arch/libarchive
+		<dev-util/cmake-3.7
+		dev-util/ninja"
 	case ${CHOST} in
 		*-darwin*)
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
 			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
-			case "$( (unset CHOST; gcc --version 2>/dev/null) )" in
-				*"(GCC) 4.2.1 "*|*"Apple LLVM version "*)
+			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
+			local mycc=
+			case "${ccvers}" in
+				*"Apple LLVM version "*)
+					vers=${ccvers#*Apple LLVM version }
+					vers=${vers% (clang-*}
+					# let's assume that >=llvm-3.6 is able to compile
+					# libcxx, so select the matching Apple versions, see
+					# https://gist.github.com/yamaya/2924292
+					case ${vers} in
+						[345]"."*|"6.0"*)
+							# bleh, old (<llvm-3.6)
+							mycc=gcc
+							;;
+						*)
+							# newish, try direct bootstrap to recent
+							mycc=clang
+							compiler_stage1+="
+								${llvm_deps}
+								sys-devel/llvm
+								sys-devel/clang
+								${libcxx}"
+							;;
+					esac
+					CC=clang
+					CXX=clang++
 					linker=sys-devel/binutils-apple
-					if type -P clang > /dev/null ; then
-						CC=clang
-						CXX=clang++
-					fi
+					;;
+				*"(GCC) 4.2.1 "*)
+					linker=sys-devel/binutils-apple
+					mycc=gcc
 					;;
 				*"(GCC) 4.0.1 "*)
+					# need gcc-4.2.1 to compile llvm
 					linker="=sys-devel/binutils-apple-3.2"
-					compiler_stage1+=" ${gcc_deps} sys-devel/gcc-config sys-devel/gcc-apple"
+					compiler_stage1+="
+						${gcc_deps}
+						sys-devel/gcc-config
+						sys-devel/gcc-apple
+						sys-devel/binutils-apple"
+					mycc=gcc
 					;;
 				*)
 					eerror "unknown compiler"
 					return 1
 					;;
 			esac
-			# we always have to bootstrap with 3.4 for else we'd need
-			# libcxx, which only compiles with clang
-			compiler_stage1+=" dev-libs/libffi <sys-devel/llvm-3.5"
-			# similar, the deps for 3.6+ are too high (cmake, ninja,
-			# python) so we have to do this with an intermediate
-			local cdep="3.5.9999"
-			# unfortunately, gmp needs c++, thus libcxx, so have to drag
-			# it in early (gmp is necessary for 3.5+)
-			local libcxx="
-				<sys-libs/libcxx-headers-${cdep}
-				<sys-libs/libcxxabi-${cdep}
-				<sys-libs/libcxx-${cdep}"
-			compiler_stage1+=" ${libcxx}"
+
+			if [[ ${mycc} == gcc ]] ; then
+				# The deps for 3.6+ are too high (cmake, ninja, python) so
+				# we have to install this with an intermediate
+				# we always have to bootstrap with 3.4 for else we'd need
+				# libcxx, which only compiles with clang
+				compiler_stage1+="
+					dev-libs/libffi
+					<sys-devel/llvm-3.5
+					${libcxx}
+					<sys-devel/llvm-${cdep}
+					<sys-devel/clang-${cdep}"
+			fi
+
 			compiler="
-				${libcxx}
 				sys-libs/csu
 				dev-libs/libffi
-				<sys-devel/llvm-${cdep}
-				<sys-devel/clang-${cdep}"
+				${llvm_deps}
+				${libcxx}
+				sys-devel/llvm
+				sys-devel/clang"
 			;;
 		*-*-aix*)
 			linker=sys-devel/native-cctools
@@ -1514,6 +1560,7 @@ bootstrap_stage3() {
 	# try to get ourself out of the mudd, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx --disable-lto)" \
 	LDFLAGS="${LDFLAGS} $(rapx -Wl,--dynamic-linker=${RAP_DLINKER})" \
+	PYTHON_COMPAT_OVERRIDE=python2.7 \
 	emerge_pkgs --nodeps ${compiler} || return 1
 	# undo libgcc_s.so path of stage2
 
