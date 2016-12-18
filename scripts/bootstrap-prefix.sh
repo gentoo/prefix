@@ -1521,7 +1521,7 @@ bootstrap_stage3() {
 	# However for some reason this nm doesn't quite get it on newer
 	# platforms at least, resulting in bugs like #598336.  To cater for
 	# that, get rid of this nm and rely on the host one at this stage
-	[[ ${CHOST} == *-darwin* ]] && rm -f "${ROOT}"/usr/bin/{,${CHOST}-}nm
+	[[ ${CHOST} == *-darwin* ]] && rm -f "${ROOT}"{,/tmp}/usr/bin/{,${CHOST}-}nm
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 	if is-rap ; then
