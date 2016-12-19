@@ -159,7 +159,8 @@ configure_toolchain() {
 	case ${CHOST} in
 	*-cygwin*)
 	  # not supported in gcc-4.7 yet, easy enough to install g++
-	  compiler_stage1+=" sys-devel/gcc"
+	  # Cygwin patches come as .zip from github
+	  compiler_stage1+=" app-arch/unzip sys-devel/gcc"
 	  ;;
 	*)
 	  # The host may not have a functioning c++ toolchain, so use a
