@@ -1408,6 +1408,9 @@ bootstrap_stage2() {
 	# gmp has cxx flag enabled by default. When dealing with a host
 	# compiler without cxx support this causes configure failure. Use
 	# package.use to disable in the temporary prefix.  
+	# Strange enough, -cxx causes wrong libtool config on Cygwin,
+	# but we require a C++ compiler there anyway - so just use it.
+	[[ ${CHOST} == *-cygwin* ]] ||
 	echo "dev-libs/gmp -cxx" >> "${ROOT}"/tmp/etc/portage/package.use
 
 	BOOTSTRAP_RAP_STAGE2=yes \
