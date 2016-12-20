@@ -90,6 +90,10 @@ src_configure() {
 		-DLIBCXX_INSTALL_HEADERS=NO
 	)
 
+	# make sure we build multilib on OSX, because llvm insists on
+	# building multilib too
+	[[ ${CHOST} == *86*-darwin* ]] && append-flags -arch i386 -arch x86_64
+
 	if use libcxxabi ; then
 		mycmakeargs+=(
 			-DLIBCXX_CXX_ABI=libcxxabi 
