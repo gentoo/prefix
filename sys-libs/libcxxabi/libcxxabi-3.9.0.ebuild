@@ -38,6 +38,13 @@ src_configure() {
 		-DLIBCXXABI_LIBCXX_PATH=shutup
 	)
 
+	# make sure we build multilib on OSX, because llvm insists on
+	# building multilib too
+	if [[ ${CHOST} == *86*-darwin* ]] ; then
+		append-flags -arch i386 -arch x86_64
+		append-cxxflags -std=c++11
+	fi
+
 	use static-libs && \
 		mycmakeargs+=( -DLIBCXXABI_ENABLE_STATIC=ON ) || \
 		mycmakeargs+=( -DLIBCXXABI_ENABLE_STATIC=OFF )
