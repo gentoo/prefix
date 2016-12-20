@@ -36,6 +36,16 @@ src_prepare() {
 	# make sure we don't use host libtool on Darwin #419499
 	sed -i -e 's:AR="/usr/bin/libtool":AR=libtool:' configure || die
 
+	case ${CHOST} in
+	*-cygwin*)
+		# gzopen_w is a mingw symbol
+		sed -i -e '/gzopen_w/d' win32/zlib.def || die
+		# zlib1.dll is the mingw name, need cygz.dll
+		# cygz.dll is loaded by toolchain, put into subdir
+		sed -i -e 's|zlib1.dll|win32/cygz.dll|' win32/Makefile.gcc || die
+		;;
+	esac
+
 	multilib_copy_sources
 }
 
@@ -44,7 +54,7 @@ echoit() { echo "$@"; "$@"; }
 multilib_src_configure() {
 	tc-export CC
 	case ${CHOST} in
-	*-mingw*|mingw*)
+	*-mingw*|mingw*|*-cygwin*)
 		;;
 	*)      # not an autoconf script, so can't use econf
 		local uname=$("${EPREFIX}"/usr/share/gnuconfig/config.sub "${CHOST}" | cut -d- -f3) #347167
@@ -65,7 +75,7 @@ multilib_src_configure() {
 
 multilib_src_compile() {
 	case ${CHOST} in
-	*-mingw*|mingw*)
+	*-mingw*|mingw*|*-cygwin*)
 		emake -f win32/Makefile.gcc STRIP=true PREFIX=${CHOST}-
 		sed \
 			-e "s|@prefix@|${EPREFIX}/usr|g" \
@@ -96,7 +106,7 @@ install_minizip() {
 
 multilib_src_install() {
 	case ${CHOST} in
-	*-mingw*|mingw*)
+	*-mingw*|mingw*|*-cygwin*)
 		emake -f win32/Makefile.gcc install \
 			BINARY_PATH="${ED}/usr/bin" \
 			LIBRARY_PATH="${ED}/usr/$(get_libdir)" \
