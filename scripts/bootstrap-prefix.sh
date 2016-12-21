@@ -983,7 +983,8 @@ bootstrap_zlib_core() {
 		makeopts=(
 			-f win32/Makefile.gcc
 			SHARED_MODE=1
-			SHAREDLIB=libz.dll
+			# avoid toolchain finding ./cygz.dll (esp. in parallel build)
+			SHAREDLIB=win32/cygz.dll
 			IMPLIB=libz.dll.a
 			BINARY_PATH="${ROOT}"/tmp/usr/bin
 			INCLUDE_PATH="${ROOT}"/tmp/usr/include
