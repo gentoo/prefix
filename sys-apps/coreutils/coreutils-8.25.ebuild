@@ -90,7 +90,7 @@ src_prepare() {
 
 	# Avoid perl dep for compiled in dircolors default #348642
 	if ! has_version dev-lang/perl ; then
-		touch src/dircolors.h
+		touch src/{dircolors,fs-is-local,fs}.h # more?
 		touch ${@/%x/1}
 	fi
 }
