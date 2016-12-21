@@ -599,7 +599,8 @@ bootstrap_portage() {
 	# Portage checks for valid shebangs. These may (xz-utils) originate
 	# in CONFIG_SHELL (AIX), which originates in PORTAGE_BASH then.
 	# So we need to ensure portage's bash is valid as shebang too.
-	mkdir -p "${ROOT}"/tmp/bin "${ROOT}"/bin || return 1
+	# Solaris mkdir chokes on existing symlink-to-dir, trailing /. helps.
+	mkdir -p "${ROOT}"/tmp/bin/. "${ROOT}"/bin/. || return 1
 	[[ -x ${ROOT}/tmp/bin/bash ]] || [[ ! -x ${ROOT}/tmp/usr/bin/bash ]] || ln -s ../usr/bin/bash "${ROOT}"/tmp/bin/bash || return 1
 	[[ -x ${ROOT}/tmp/bin/bash ]] || ln -s "${BASH}" "${ROOT}"/tmp/bin/bash || return 1
 	[[ -x ${ROOT}/tmp/bin/sh ]] || ln -s bash "${ROOT}"/tmp/bin/sh || return 1
@@ -1241,7 +1242,7 @@ bootstrap_stage1() { (
 
 	# setup a profile
 	[[ -e ${ROOT}/etc/portage/make.profile && -e ${ROOT}/etc/portage/make.conf ]] || (bootstrap_setup) || return 1
-	mkdir -p "${ROOT}"/tmp/etc || return 1
+	mkdir -p "${ROOT}"/tmp/etc/. || return 1
 	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || cp -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc || return 1
 
 	# setup portage
@@ -2221,7 +2222,7 @@ EOF
 				continue
 				;;
 		esac
-		if [[ ! -d ${EPREFIX} ]] && ! mkdir -p "${EPREFIX}" ; then
+		if [[ ! -d ${EPREFIX} ]] && ! mkdir -p "${EPREFIX}"/. ; then
 			echo
 			echo "It seems I cannot create ${EPREFIX}."
 			[[ ${TODO} == 'noninteractive' ]] && exit 1
