@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/unzip-6.0-r3.ebuild,v 1.10 2014/01/18 05:01:26 vapier Exp $
+# $Id$
 
 EAPI="2"
 inherit eutils toolchain-funcs flag-o-matic
@@ -26,19 +26,19 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-no-exec-stack.patch
 	use natspec && epatch "${FILESDIR}/${PN}-6.0-natspec.patch" #275244
 	epatch "${FILESDIR}"/${P}-irix.patch
-	sed -i \
+	sed -i -r \
 		-e '/^CFLAGS/d' \
-		-e '/CFLAGS/s:-O[0-9]\?:$(CFLAGS) $(CPPFLAGS):' \
+		-e '/CFLAGS/s:-O[0-9]?:$(CFLAGS) $(CPPFLAGS):' \
 		-e '/^STRIP/s:=.*:=true:' \
-		-e "s:\<CC = cc\>:CC = $(tc-getCC):" \
-		-e "s:\<AS = as\>:AS = $(tc-getCC):" \
+		-e "s:\<CC *= *\"?g?cc2?\"?\>:CC=\"$(tc-getCC)\":" \
+		-e "s:\<LD *= *\"?(g?cc2?|ld)\"?\>:LD=\"$(tc-getCC)\":" \
+		-e "s:\<AS *= *\"?(g?cc2?|as)\"?\>:AS=\"$(tc-getCC)\":" \
 		-e 's:LF2 = -s:LF2 = :' \
 		-e 's:LF = :LF = $(LDFLAGS) :' \
 		-e 's:SL = :SL = $(LDFLAGS) :' \
 		-e 's:FL = :FL = $(LDFLAGS) :' \
 		-e "/^#L_BZ2/s:^$(use bzip2 && echo .)::" \
 		-e 's:$(AS) :$(AS) $(ASFLAGS) :g' \
-		-e 's:STRIP =.*$:STRIP = true:' \
 		-e "s!CF = \$(CFLAGS) \$(CF_NOOPT)!CF = \$(CFLAGS) \$(CF_NOOPT) \$(CPPFLAGS)!" \
 		unix/Makefile \
 		|| die "sed unix/Makefile failed"
