@@ -41,7 +41,8 @@ RDEPEND="
 	!elibc_Darwin? (
 		libcxxrt? ( sys-libs/libcxxrt[libunwind=,static-libs?,${MULTILIB_USEDEP}] )
 		!libcxxabi? ( !libcxxrt? ( >=sys-devel/gcc-4.7:=[cxx] ) )
-	)"
+	)
+	elibc_Darwin? ( !sys-libs/libcxx-headers )"
 # llvm-3.9.0 needed because its cmake files installation path changed, which is
 # needed by libcxx
 # clang-3.9.0 installs necessary target symlinks unconditionally

@@ -1,5 +1,5 @@
 Older OS X does not have Availability.h. Use AvailabilityMacros.h instead.
-Since those platforms don't know anything about the oPhone, we can drop those
+Since those platforms don't know anything about the iPhone, we can drop those
 checks.
 
 --- libcxx-3.5.1.src/include/iterator.orig	2015-01-26 22:39:31.000000000 +0100
