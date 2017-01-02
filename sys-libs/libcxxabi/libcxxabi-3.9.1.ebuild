@@ -13,7 +13,7 @@ DESCRIPTION="Low level support for a standard C++ library"
 HOMEPAGE="http://libcxxabi.llvm.org/"
 # also needs libcxx sources for headers
 SRC_URI="http://llvm.org/releases/${PV}/${P}.src.tar.xz
-	!elibc_Darwin? ( http://llvm.org/releases/${PV}/${P/abi/}.src.tar.xz )"
+	http://llvm.org/releases/${PV}/${P/abi/}.src.tar.xz"
 LICENSE="|| ( UoI-NCSA MIT )"
 SLOT="0"
 KEYWORDS="~x64-macos ~x86-macos"
@@ -27,7 +27,6 @@ RDEPEND="
 		)
 	)"
 DEPEND="${RDEPEND}
-	elibc_Darwin? ( =sys-libs/libcxx-headers-${PV} )
 	>=sys-devel/llvm-3.9.0
 	test? ( >=sys-devel/clang-3.9.0
 		~sys-libs/libcxx-${PV}[libcxxabi(-)]
@@ -67,22 +66,13 @@ multilib_src_configure() {
 		-DLIBCXXABI_USE_LLVM_UNWINDER=$(usex libunwind)
 		-DLLVM_INCLUDE_TESTS=$(usex test)
 
+		-DLIBCXXABI_LIBCXX_INCLUDES="${WORKDIR}"/libcxx-${PV}.src/include
 		# upstream is omitting standard search path for this
 		# probably because gcc & clang are bundling their own unwind.h
 		-DLIBCXXABI_LIBUNWIND_INCLUDES="${EPREFIX}"/usr/include
 		# this only needs to exist, it does not have to make sense
 		-DLIBCXXABI_LIBUNWIND_SOURCES="${T}"
 	)
-	if use elibc_Darwin; then
-		# we use the sys-libs/libcxx-headers files
-		mycmakeargs+=(
-			-DLIBCXXABI_LIBCXX_INCLUDES="${EPREFIX}"/usr/include/c++/v1
-		)
-	else
-		mycmakeargs+=(
-			-DLIBCXXABI_LIBCXX_INCLUDES="${WORKDIR}"/libcxx-${PV}.src/include
-		)
-	fi
 	if use test; then
 		mycmakeargs+=(
 			-DLIT_COMMAND="${EPREFIX}"/usr/bin/lit
