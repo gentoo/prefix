@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-6.1.23.ebuild,v 1.1 2015/05/29 06:31:25 polynomial-c Exp $
+# $Id$
 
 EAPI=5
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools multilib multilib-minimal versionator toolchain-funcs
@@ -20,7 +20,7 @@ fi
 S_BASE="${WORKDIR}/${MY_P}"
 S="${S_BASE}/build_unix"
 DESCRIPTION="Oracle Berkeley DB"
-HOMEPAGE="http://www.oracle.com/technology/software/products/berkeley-db/index.html"
+HOMEPAGE="http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html"
 SRC_URI="http://download.oracle.com/berkeley-db/${MY_P}.tar.gz"
 for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
 	export SRC_URI="${SRC_URI} http://www.oracle.com/technology/products/berkeley-db/db/update/${MY_PV}/patch.${MY_PV}.${i}"
@@ -48,6 +48,29 @@ MULTILIB_WRAPPED_HEADERS=(
 	/usr/include/db$(get_version_component_range 1-2)/db.h
 )
 
+PATCHES=(
+	# bug #510506
+	"${FILESDIR}"/${PN}-4.8.24-java-manifest-location.patch
+
+	# use the includes from the prefix
+	"${FILESDIR}"/${PN}-6.2-jni-check-prefix-first.patch
+	"${FILESDIR}"/${PN}-4.3-listen-to-java-options.patch
+
+	# sqlite configure call has an extra leading ..
+	# upstreamed:5.2.36, missing in 5.3.x/6.x
+	# still needs to be patched in 6.0.20
+	"${FILESDIR}"/${PN}-6.1.19-sqlite-configure-path.patch
+
+	# The upstream testsuite copies .lib and the binaries for each parallel test
+	# core, ~300MB each. This patch uses links instead, saves a lot of space.
+	"${FILESDIR}"/${PN}-6.0.20-test-link.patch
+
+	# Set of patches to make this thing compile with C++11, Oracle
+	# promised to fix this for the next release
+	# https://community.oracle.com/thread/3952592
+	"${FILESDIR}"/${PN}-6.2-c++11.patch
+)
+
 src_prepare() {
 	cd "${WORKDIR}"/"${MY_P}"
 	for (( i=1 ; i<=${PATCHNO} ; i++ ))
@@ -55,40 +78,8 @@ src_prepare() {
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
 
-	# bug #510506
-	epatch "${FILESDIR}"/${PN}-4.8.24-java-manifest-location.patch
-
-	pushd dist > /dev/null || die "Cannot cd to 'dist'"
-
-	# need to upgrade local copy of libtool.m4
-	# for correct shared libs on aix (#213277).
-	local g="" ; type -P glibtoolize > /dev/null && g=g
-	local _ltpath="$(dirname "$(dirname "$(type -P ${g}libtoolize)")")"
-	cp -f "${_ltpath}"/share/aclocal/libtool.m4 aclocal/libtool.m4 \
-		|| die "cannot update libtool.ac from libtool.m4"
-
-	# need to upgrade ltmain.sh for AIX,
-	# but aclocal.m4 is created in ./s_config,
-	# and elibtoolize does not work when there is no aclocal.m4, so:
-	${g}libtoolize --force --copy || die "${g}libtoolize failed."
-	# now let shipped script do the autoconf stuff, it really knows best.
-	#see code below
-	#sh ./s_config || die "Cannot execute ./s_config"
-
-	# use the includes from the prefix
-	epatch "${FILESDIR}"/${PN}-4.6-jni-check-prefix-first.patch
-	epatch "${FILESDIR}"/${PN}-4.3-listen-to-java-options.patch
-
-	popd > /dev/null
-
-	# sqlite configure call has an extra leading ..
-	# upstreamed:5.2.36, missing in 5.3.x/6.x
-	# still needs to be patched in 6.0.20
-	epatch "${FILESDIR}"/${PN}-6.1.19-sqlite-configure-path.patch
-
-	# The upstream testsuite copies .lib and the binaries for each parallel test
-	# core, ~300MB each. This patch uses links instead, saves a lot of space.
-	epatch "${FILESDIR}"/${PN}-6.0.20-test-link.patch
+	epatch "${PATCHES[@]}"
+	epatch_user
 
 	# Upstream release script grabs the dates when the script was run, so lets
 	# end-run them to keep the date the same.
@@ -126,16 +117,6 @@ src_prepare() {
 	done
 }
 
-src_configure() {
-	# Add linker versions to the symbols. Easier to do, and safer than header file
-	# mumbo jumbo.
-	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
-		append-ldflags -Wl,--default-symver
-	fi
-
-	multilib-minimal_src_configure
-}
-
 multilib_src_configure() {
 	local myconf=()
 
@@ -146,6 +127,12 @@ multilib_src_configure() {
 		local CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS}
 		replace-flags -O0 -O2
 		is-flagq -O[s123] || append-flags -O2
+	fi
+
+	# Add linker versions to the symbols. Easier to do, and safer than header file
+	# mumbo jumbo.
+	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
+		append-ldflags -Wl,--default-symver
 	fi
 
 	# use `set` here since the java opts will contain whitespace
@@ -162,7 +149,7 @@ multilib_src_configure() {
 	if use tcl || use test ; then
 		myconf+=(
 			--enable-tcl
-			--with-tcl=${EPREFIX}/usr/$(get_libdir)
+			--with-tcl="${EPREFIX}/usr/$(get_libdir)"
 		)
 	else
 		myconf+=(--disable-tcl )
@@ -170,6 +157,7 @@ multilib_src_configure() {
 
 	# sql_compat will cause a collision with sqlite3
 	# --enable-sql_compat
+	# dbm or historic interface clashes with c++11 (llvm-3.8+)
 	ECONF_SOURCE="${S_BASE}"/dist \
 	STRIP="true" \
 	econf \
