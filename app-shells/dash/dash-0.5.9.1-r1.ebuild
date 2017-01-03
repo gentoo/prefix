@@ -54,6 +54,10 @@ src_prepare() {
 }
 
 src_configure() {
+	# don't redefine stat on Solaris
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		export ac_cv_func_stat64=yes
+	fi
 	append-cppflags -DJOBS=$(usex libedit 1 0)
 	use static && append-ldflags -static
 	# Do not pass --enable-glob due to #443552.
