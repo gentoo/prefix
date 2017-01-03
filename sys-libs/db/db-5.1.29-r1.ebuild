@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-5.1.29-r1.ebuild,v 1.3 2015/03/20 14:41:50 jlec Exp $
 
@@ -53,6 +53,10 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.8-libtool.patch
 	epatch "${FILESDIR}"/${PN}-4.8.24-java-manifest-location.patch
 	epatch "${FILESDIR}"/${PN}-4.8.30-rename-atomic-compare-exchange.patch
+	# Set of patches to make this thing compile with C++11, Oracle
+	# promised to fix this for the next release
+	# https://community.oracle.com/thread/3952592
+	epatch "${FILESDIR}"/${PN}-6.2-c++11.patch
 
 	pushd dist > /dev/null || die "Cannot cd to 'dist'"
 
