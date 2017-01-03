@@ -1656,6 +1656,9 @@ bootstrap_stage3() {
 	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
 	CFLAGS= CXXFLAGS= USE="-git" emerge -u system || return 1
 
+	# remove temp makeinfo, texinfo provides it
+	[[ -f "${ROOT}"/usr/bin/makeinfo ]] && rm -f "${ROOT}"/usr/bin/makeinfo
+
 	# TODO, glibc should depend on texinfo
 	is-rap && { emerge sys-apps/texinfo || return 1; }
 
