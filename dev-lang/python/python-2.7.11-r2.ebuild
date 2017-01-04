@@ -252,6 +252,10 @@ src_configure() {
 	# http://bugs.python.org/issue15506
 	export ac_cv_path_PKG_CONFIG=$(tc-getPKG_CONFIG)
 
+	# Fix compilation on Solaris, easier to force the compiler in the
+	# standard mode that this Python version assumed (contrast to C99)
+	[[ ${CHOST} == *-solaris* ]] && CC="${CC} -std=gnu89"
+
 	local dbmliborder
 	if use gdbm; then
 		dbmliborder+="${dbmliborder:+:}gdbm"
