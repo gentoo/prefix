@@ -1532,6 +1532,7 @@ bootstrap_stage3() {
 
 		BOOTSTRAP_RAP=yes \
 		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+		rm "${ROOT}"/usr/bin/perl
 	else
 		pkgs=(
 			sys-apps/sed
