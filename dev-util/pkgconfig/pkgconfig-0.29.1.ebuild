@@ -17,7 +17,7 @@ if [[ ${PV} == *9999* ]]; then
 	EGIT_CHECKOUT_DIR=${WORKDIR}/${MY_P}
 	inherit autotools git-r3
 else
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+	KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 	SRC_URI="https://pkgconfig.freedesktop.org/releases/${MY_P}.tar.gz"
 	INTERNAL_GLIB_CYGWIN_PATCHES=2.38.2
 fi
@@ -60,6 +60,14 @@ src_prepare() {
 		eautoreconf
 	else
 		elibtoolize # Required for FreeMiNT wrt #333429
+	fi
+
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# fix standards conflicts
+		sed -i \
+			-e 's/\<\(_XOPEN_SOURCE_EXTENDED\)\>/\1_DISABLED/' \
+			-e '/\<_XOPEN_SOURCE\>/s/2/600/' \
+			glib/configure || die
 	fi
 }
 
