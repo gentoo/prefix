@@ -1134,7 +1134,7 @@ bootstrap_bzip2() {
 	einfo "${A%-*} successfully bootstrapped"
 }
 
-bootstrap_stage1() { (
+bootstrap_stage1() {
 	# NOTE: stage1 compiles all tools (no libraries) in the native
 	# bits-size of the compiler, which needs not to match what we're
 	# bootstrapping for.  This is no problem since they're just tools,
@@ -1250,7 +1250,7 @@ bootstrap_stage1() { (
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
 
 	einfo "stage1 successfully finished"
-); }
+}
 
 bootstrap_stage1_log() {
 	bootstrap_stage1 ${@} 2>&1 | tee -a ${ROOT}/stage1.log
