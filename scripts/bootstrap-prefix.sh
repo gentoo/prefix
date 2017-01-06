@@ -1578,7 +1578,7 @@ bootstrap_stage3() {
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 	if is-rap ; then
-		"${ROOT}"/usr/sbin/ldconfig
+		"${ROOT}"/sbin/ldconfig
 		# should be linked against stage3 zlib, and can only
 		# be compiled after gcc has the headers of Prefix glibc.
 		emerge_pkgs --nodeps sys-devel/binutils-config ${linker} || return 1
