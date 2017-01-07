@@ -565,6 +565,13 @@ bootstrap_startscript() {
 	fi
 }
 
+prepare_portage() {
+	# see bootstrap_portage for explanations.
+	mkdir -p "${ROOT}"/bin/. "${ROOT}"/var/log
+	[[ -x ${ROOT}/bin/bash ]] || ln -s "${ROOT}"{/tmp,}/bin/bash || return 1
+	[[ -x ${ROOT}/bin/sh ]] || ln -s bash "${ROOT}"/bin/sh || return 1
+}
+
 bootstrap_portage() {
 	# Set TESTING_PV in env if you want to test a new portage before bumping the
 	# STABLE_PV that is known to work. Intended for power users only.
@@ -600,12 +607,10 @@ bootstrap_portage() {
 	# in CONFIG_SHELL (AIX), which originates in PORTAGE_BASH then.
 	# So we need to ensure portage's bash is valid as shebang too.
 	# Solaris mkdir chokes on existing symlink-to-dir, trailing /. helps.
-	mkdir -p "${ROOT}"/tmp/bin/. "${ROOT}"/bin/. || return 1
+	mkdir -p "${ROOT}"/tmp/bin/. || return 1
 	[[ -x ${ROOT}/tmp/bin/bash ]] || [[ ! -x ${ROOT}/tmp/usr/bin/bash ]] || ln -s ../usr/bin/bash "${ROOT}"/tmp/bin/bash || return 1
 	[[ -x ${ROOT}/tmp/bin/bash ]] || ln -s "${BASH}" "${ROOT}"/tmp/bin/bash || return 1
 	[[ -x ${ROOT}/tmp/bin/sh ]] || ln -s bash "${ROOT}"/tmp/bin/sh || return 1
-	[[ -x ${ROOT}/bin/bash ]] || ln -s "${ROOT}"{/tmp,}/bin/bash || return 1
-	[[ -x ${ROOT}/bin/sh ]] || ln -s bash "${ROOT}"/bin/sh || return 1
 	export PORTAGE_BASH="${ROOT}"/tmp/bin/bash
 
 	einfo "Compiling ${A%-*}"
@@ -625,7 +630,7 @@ bootstrap_portage() {
 
 	# Some people will skip the tree() step and hence var/log is not created 
 	# As such, portage complains..
-	mkdir -p "${ROOT}"/var/log "${ROOT}"/tmp/var/log
+	mkdir -p "${ROOT}"/tmp/var/log
 
 	# in Prefix the sed wrapper is deadly, so kill it
 	rm -f "${ROOT}"/tmp/usr/lib/portage/bin/ebuild-helpers/sed
@@ -1120,6 +1125,24 @@ bootstrap_bzip2() {
 	einfo "${A%-*} successfully bootstrapped"
 }
 
+bootstrap_stage_host_gentoo() {
+	if [[ ! -L ${ROOT}/tmp ]] ; then
+		if [[ -e ${ROOT}/tmp ]] ; then
+			echo "${ROOT}/tmp should be a symlink to ${HOST_GENTOO_EROOT}"
+			return 1
+		fi
+		ln -s "${HOST_GENTOO_EROOT}" "${ROOT}"/tmp
+	fi
+
+	# checks itself if things need to be done still
+	(bootstrap_tree) || return 1
+
+	# setup a profile
+	[[ -e ${ROOT}/etc/portage/make.profile && -e ${ROOT}/etc/portage/make.conf ]] || (bootstrap_setup) || return 1
+
+	prepare_portage
+}
+
 bootstrap_stage1() {
 	# NOTE: stage1 compiles all tools (no libraries) in the native
 	# bits-size of the compiler, which needs not to match what we're
@@ -1223,7 +1246,6 @@ bootstrap_stage1() {
 	# too vital to rely on a host-provided one
 	[[ -x ${ROOT}/tmp/usr/bin/python ]] || (bootstrap_python) || return 1
 
-
 	# checks itself if things need to be done still
 	(bootstrap_tree) || return 1
 
@@ -1234,6 +1256,7 @@ bootstrap_stage1() {
 
 	# setup portage
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
+	prepare_portage
 
 	einfo "stage1 successfully finished"
 }
@@ -1472,8 +1495,11 @@ bootstrap_stage3() {
 
 	emerge_pkgs() {
 		# stage3 tools should be used first.
-		DEFAULT_PATH="${ROOT}"$(echo /{,tmp/}{,usr/}{s,}bin | sed "s, ,:${ROOT},g") \
-		EPREFIX="${ROOT}" \
+		# PORTAGE_TMPDIR, EMERGE_LOG_DIR, FEATURES=force-prefix are
+		# needed with host portage.
+		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{,usr/}{s,}bin | sed "s, ,:${ROOT},g") \
+		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" FEATURES=force-prefix \
+		EMERGE_LOG_DIR="${ROOT}"/var/log \
 		do_emerge_pkgs "$@"
 	}
 
@@ -1876,11 +1902,6 @@ EOF
 	[[ ${TODO} == 'noninteractive' ]] &&
 	usergcc=$(type -P gcc 2>/dev/null)
 
-	# the standard path we want to start with, override anything from
-	# the user on purpose
-	PATH="/usr/bin:/bin"
-	# don't exclude the path to bash if it isn't in a standard location
-	type -P bash > /dev/null || PATH="${BASH%/bash}:${PATH}"
 	case "${CHOST}" in
 		*-solaris*)
 			cat << EOF
@@ -2174,6 +2195,29 @@ EOF
 	fi
 	export CHOST
 
+	# Figure out if we are bootstrapping from an existing Gentoo
+	# It can be forced by setting HOST_GENTOO_EROOT manually
+	local t_GENTOO_EROOT=$(portageq envvar EROOT 2> /dev/null)
+	if [[ ! -d ${HOST_GENTOO_EROOT} ]] && [[ -d ${t_GENTOO_EROOT} ]]; then
+		cat <<EOF
+
+Sweet, a Gentoo Penguin is found at ${t_GENTOO_EROOT}.  Hey, you are
+really a Gentoo lover, aren't you?  Me too!  By leveraging the existing
+portage, we can save a lot of time."
+EOF
+		[[ ${TODO} == 'noninteractive' ]] && ans=no ||
+		read -p "  Do you want me to take the shortcut? [yN] " ans
+		case "${ans}" in
+			[Yy][Ee][Ss]|[Yy])
+				echo "Good!"
+				export HOST_GENTOO_EROOT="${t_GENTOO_EROOT}"
+				: ;;
+			*)
+				echo "Fine, I will bootstrap from scratch."
+				;;
+		esac
+	fi
+
 	# choose EPREFIX, we do this last, since we have to actually write
 	# to the filesystem here to check that the EPREFIX is sane
 	cat << EOF
@@ -2271,7 +2315,24 @@ EOF
 	fi
 	echo
 
-	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1_log ; then
+	if [[ -d ${HOST_GENTOO_EROOT} ]]; then
+		if ! [[ -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage_host_gentoo ; then
+			# stage host gentoo fail
+			cat << EOF
+
+I tried running
+  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage_host_gentoo
+but that failed :(  I have no clue, really.  Please find friendly folks
+in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
+or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
+Sorry that I have failed you master.  I shall now return to my humble cave.
+EOF
+			exit 1
+		fi
+	fi
+	
+	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/bin/emerge  ]] \
+			&& ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1_log ; then
 		# stage 1 fail
 		cat << EOF
 
@@ -2646,7 +2707,7 @@ esac
 CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
 export PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
 export DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
-PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/tmp/var/tmp}
+PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
 DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
