@@ -35,11 +35,20 @@ src_prepare() {
 
 	case ${CHOST} in
 	*-cygwin*)
-		# gzopen_w is a mingw symbol
+		# do not use _wopen, is a mingw symbol only
+		sed -i -e '/define WIDECHAR/d' "${S}"/gzguts.h
+		# do not export gzopen_w, is a mingw symbol only
 		sed -i -e '/gzopen_w/d' win32/zlib.def || die
 		# zlib1.dll is the mingw name, need cygz.dll
 		# cygz.dll is loaded by toolchain, put into subdir
 		sed -i -e 's|zlib1.dll|win32/cygz.dll|' win32/Makefile.gcc || die
+		;;
+	esac
+
+	case ${CHOST} in
+	*-mingw*|mingw*|*-cygwin*)
+		# uses preconfigured Makefile rather than configure script
+		multilib_copy_sources
 		;;
 	esac
 }
