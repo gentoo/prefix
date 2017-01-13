@@ -136,6 +136,7 @@ src_prepare() {
 	epatch "${FILESDIR}/python-2.7.9-ncurses-pkg-config.patch"
 	epatch "${FILESDIR}/python-2.7.10-cross-compile-warn-test.patch"
 	epatch "${FILESDIR}/python-2.7.10-system-libffi.patch"
+	epatch "${FILESDIR}/python-3.4-pyfpe-dll.patch" # Cygwin: --with-fpectl
 
 	# Make sure python doesn't use the host libffi.
 	use prefix && epatch "${FILESDIR}/python-2.7-libffi-pkgconfig.patch"
