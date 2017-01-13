@@ -200,7 +200,8 @@ multilib_src_install_all() {
 	# build system: the static archives are built as PIC all the time.
 	# Only way around this would be to manually configure+compile openssl
 	# twice; once with shared lib support enabled and once without.
-	use static-libs || rm -f "${ED}"/usr/lib*/lib*.a
+	use static-libs || find "${ED}"usr/lib* -mindepth 1 -maxdepth 1 \
+		-name "lib*.a" -not -name "lib*$(get_libname)" -delete
 
 	# create the certs directory
 	keepdir ${SSL_CNF_DIR}/certs
