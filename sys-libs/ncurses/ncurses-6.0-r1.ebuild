@@ -186,7 +186,7 @@ do_configure() {
 
 	# Force bash until upstream rebuilds the configure script with a newer
 	# version of autotools. #545532
-	CONFIG_SHELL=${BASH} \
+	CONFIG_SHELL=${EPREFIX}/bin/bash \
 	ECONF_SOURCE=${S} \
 	econf "${conf[@]}" "$@"
 }
