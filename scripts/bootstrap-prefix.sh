@@ -1623,6 +1623,7 @@ bootstrap_stage3() {
 		sys-devel/make
 		sys-apps/file
 		app-admin/eselect
+		$( [[ ${CHOST} == *-cygwin* ]] && echo sys-libs/cygwin-crypt )
 	)
 	# for grep we need to do a little workaround as we use llvm-3.4
 	# here, which doesn't necessarily grok the system headers on newer
