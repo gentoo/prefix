@@ -1,0 +1,354 @@
+From bd58cc5f041558ab0885a1bf733319c38a24f24b Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <michael.haubenwallner@salomon.at>
+Date: Wed, 6 Nov 2013 12:40:05 +0100
+Subject: [PATCH] Add the ebuildshell feature, bug#155161.
+
+---
+ bin/ebuild.sh                        | 145 ++++++++++++++++++++++++++++++++++-
+ bin/filter-bash-environment.py       |  57 ++++++++++----
+ bin/save-ebuild-env.sh               |   2 +-
+ man/make.conf.5                      |   6 ++
+ pym/_emerge/AbstractEbuildProcess.py |   1 +
+ pym/portage/const.py                 |   1 +
+ 6 files changed, 194 insertions(+), 18 deletions(-)
+
+diff --git a/bin/ebuild.sh b/bin/ebuild.sh
+index a400ef7..b5a4eaa 100755
+--- a/bin/ebuild.sh
++++ b/bin/ebuild.sh
+@@ -112,7 +112,7 @@ __qa_source() {
+ __qa_call() {
+ 	local shopts=$(shopt) OLDIFS="$IFS"
+ 	local retval
+-	"$@"
++	__call-ebuildshell "$@"
+ 	retval=$?
+ 	set +e
+ 	[[ $shopts != $(shopt) ]] &&
+@@ -524,6 +524,149 @@ if [[ -n ${QA_INTERCEPTORS} ]] ; then
+ 	unset BIN_PATH BIN BODY FUNC_SRC
+ fi
+ 
++__call-ebuildshell() {
++	if ! has ebuildshell ${FEATURES}; then
++		"$@"
++		return $?
++	fi
++	local __ebuildshell_args=( "$@" )
++	# These are the variables I have seen 'bash -i' maintaining the values for:
++	local __ebuildshell_bash_i_vars="__ebuildshell_.*
++		_ BASH_ARGC BASH_ARGV BASH_COMMAND BASH_LINENO BASH_SOURCE
++		BASH_VERSINFO BASH_SUBSHELL BASHOPTS BASHPID COMP_WORDBREAKS
++		DIRSTACK EUID FUNCNAME GROUPS HISTCMD HISTFILE LINENO PIPESTATUS
++		PPID PS1 PS2 PS3 PS4 PWD RANDOM SECONDS SHELLOPTS UID"
++	# Allow recursive ebuildshell, for use in multibuild.eclass and similar:
++	local __ebuildshell_pid=${BASHPID:-$(__bashpid)}
++	local __ebuildshell_tmpf="${T}/ebuildshell.${__ebuildshell_pid}"
++	rm -f "${__ebuildshell_tmpf}."{ebuild,return}-{env,rovars}
++	(
++		cat <<-EOE
++			# local variables of functions using recursive ebuildshell are
++			# visible to the EXIT trap of that recursive ebuildshell.  To
++			# keep them local, we have to filter them from that recursive
++			# ebuildshell's return-env.  As 'declare -p' is unable to tell
++			# local-ity of variables, we abuse the trace attribute for local
++			# variables to filter them from the return-env.  So we need the
++			# local alias active before declaring any functions.
++			# On a sidehand, this allows for copy&paste of function body
++			# lines including the local keyword.
++			alias local='declare -t'
++			shopt -s expand_aliases
++		EOE
++		(
++			declare -p
++			declare -fp
++			shopt -p
++			[[ ${BASH_VERSINFO[0]} == 3 ]] && export
++		) |
++		(
++			# we need everything but the bash vars after 'env -i'
++			2>"${__ebuildshell_tmpf}.ebuild-rovars" \
++			"${PORTAGE_PYTHON:-/tools/haubi/gentoo/s01en24/usr/bin/python}" \
++				"${PORTAGE_BIN_PATH}"/filter-bash-environment.py \
++					--report-readonly-variables \
++					--preserve-readonly-attribute \
++					"${__ebuildshell_bash_i_vars}" \
++				|| die "filter-bash-environment.py failed"
++		)
++		# 'declare -g' is available since bash-4.2,
++		# https://bugs.gentoo.org/show_bug.cgi?id=155161#c35
++		if (( ${BASH_VERSINFO[0]} > 4 )) ||
++		   (( ${BASH_VERSINFO[0]} == 4 && ${BASH_VERSINFO[1]} >= 2 ))
++		then
++			__ebuildshell_bash42_true=
++			__ebuildshell_bash42_false='#bash-4.2#'
++		else
++		    __ebuildshell_bash42_true='#bash-4.2#'
++		    __ebuildshell_bash42_false=
++		fi
++		# The already readonly variables, without bash maintained ones:
++		__ebuildshell_ro_ebuild_vars=$(<"${__ebuildshell_tmpf}.ebuild-rovars")
++		cat <<-EOE
++			# properly quote the function arguments
++			$(declare -p __ebuildshell_args)
++			set -- "\${__ebuildshell_args[@]}"
++			unset __ebuildshell_args
++			# be informative about what to do
++			PS1="EBUILD ${PN} $1 \$ "
++			type $1
++			${__ebuildshell_bash42_false}echo 'warning: preserving variables across phases requires bash-4.2'
++			echo "WANTED: \$@"
++			echo "or use: \"\\\$@\""
++			# use bash history, but not the 'user's real one
++			HISTFILE=~/.bash_history
++			# but do not use history-expansion with '!',
++			# for copy&paste of function body lines containing: !
++			set +H
++			# this is a debugging shell already
++			shopt -u extdebug
++			trap - DEBUG
++			# at exit, dump the current environment
++			trap "
++				unalias local
++				unset -f __call-ebuildshell
++				rm -f '${__ebuildshell_tmpf}.return-'*
++				(
++					(
++						# declare -p does not tell the -g flag,
++						# so we add it by aliasing declare.
++						${__ebuildshell_bash42_true}echo \"alias declare='declare -g'\"
++						declare -p
++						${__ebuildshell_bash42_true}echo \"unalias declare\"
++						declare -fp
++						shopt -p | grep -v '\\(expand_aliases\\|extdebug\\)$'
++						$([[ ${BASH_VERSINFO[0]} == 3 ]] && echo export)
++					) |
++					(
++						# We may have more readonly variables now, yet we
++						# need to filter variables that were readonly before.
++						# And filter local variables by their trace attribute.
++						2>'${__ebuildshell_tmpf}.return-rovars' \\
++						'${PORTAGE_PYTHON:-/tools/haubi/gentoo/s01en24/usr/bin/python}' \\
++							'${PORTAGE_BIN_PATH}'/filter-bash-environment.py \\
++								--report-readonly-variables \\
++								--preserve-readonly-attribute \\
++								--filter-traced-variables \\
++								'${__ebuildshell_bash_i_vars} \
++								 ${__ebuildshell_ro_ebuild_vars}' \\
++							|| die 'filter-bash-environment.py failed'
++					)
++				) > '${__ebuildshell_tmpf}.return-env'
++				" EXIT
++			# can do some cleanup right now
++			rm -f '${__ebuildshell_tmpf}.ebuild-'*
++		EOE
++	) > "${__ebuildshell_tmpf}.ebuild-env"
++
++	# pre-fill the history with "$@"
++	echo '"$@"' >> ~/.bash_history
++
++	env -i ${BASH} --rcfile "${__ebuildshell_tmpf}.ebuild-env" -i
++
++	# The environment- and exit-status handling after leaving the ebuildshell
++	# prompt is expected to be identical as without the ebuildshell prompt.
++	local __ebuildshell_status=$?
++
++	# We might be in a recursive ebuildshell, but do not want
++	# any aliases being active while sourcing the return-env.
++	local __ebuildshell_orig_aliases=$(alias)
++	unalias -a
++	source "${__ebuildshell_tmpf}.return-env"
++	unalias -a
++	eval "${__ebuildshell_orig_aliases}"
++
++	# Portage has a whitelist of readonly variables: If an ebuild defines
++	# additional readonly variables, their readonly attribute is removed
++	# across ebuild phases.  If we ever want to preserve the readonly
++	# attribute of additional ebuild-defined variables across phases,
++	# when returning from the ebuildshell their names are in
++	# "${__ebuildshell_tmpf}.return-rovars"
++	rm -f "${__ebuildshell_tmpf}."{ebuild,return}-{env,rovars}
++
++	return ${__ebuildshell_status}
++}
++
+ # Subshell/helper die support (must export for the die helper).
+ export EBUILD_MASTER_PID=${BASHPID:-$(__bashpid)}
+ trap 'exit 1' SIGTERM
+diff --git a/bin/filter-bash-environment.py b/bin/filter-bash-environment.py
+index a4cdc54..1c4ad58 100755
+--- a/bin/filter-bash-environment.py
++++ b/bin/filter-bash-environment.py
+@@ -14,7 +14,8 @@ func_end_re = re.compile(r'^\}$')
+ 
+ var_assign_re = re.compile(r'(^|^declare\s+-\S+\s+|^declare\s+|^export\s+)([^=\s]+)=("|\')?.*$')
+ close_quote_re = re.compile(r'(\\"|"|\')\s*$')
+-readonly_re = re.compile(r'^declare\s+-(\S*)r(\S*)\s+')
++readonly_re = re.compile(r'^declare\s+-(\S*)r(\S*)\s+([^=\s]+)')
++trace_re = re.compile(r'^declare\s+-\S*t\S*\s+')
+ # declare without assignment
+ var_declare_re = re.compile(r'^declare(\s+-\S+)?\s+([^=\s]+)\s*$')
+ 
+@@ -29,7 +30,7 @@ def have_end_quote(quote, line):
+ 	return close_quote_match is not None and \
+ 		close_quote_match.group(1) == quote
+ 
+-def filter_declare_readonly_opt(line):
++def filter_declare_readonly_opt(line, options):
+ 	readonly_match = readonly_re.match(line)
+ 	if readonly_match is not None:
+ 		declare_opts = ''
+@@ -37,14 +38,19 @@ def filter_declare_readonly_opt(line):
+ 			group = readonly_match.group(i)
+ 			if group is not None:
+ 				declare_opts += group
++		var = readonly_match.group(3)
++		if '--report-readonly-variables' in options:
++			sys.stderr.write(var + "\n")
++		if '--preserve-readonly-attribute' in options:
++			declare_opts += 'r'
+ 		if declare_opts:
+-			line = 'declare -%s %s' % \
+-				(declare_opts, line[readonly_match.end():])
++			line = 'declare -%s %s%s' % \
++				(declare_opts, var, line[readonly_match.end():])
+ 		else:
+-			line = 'declare ' + line[readonly_match.end():]
++			line = 'declare ' + var + line[readonly_match.end():]
+ 	return line
+ 
+-def filter_bash_environment(pattern, file_in, file_out):
++def filter_bash_environment(pattern, file_in, file_out, options):
+ 	# Filter out any instances of the \1 character from variable values
+ 	# since this character multiplies each time that the environment
+ 	# is saved (strange bash behavior). This can eventually result in
+@@ -68,6 +74,8 @@ def filter_bash_environment(pattern, file_in, file_out):
+ 				quote = var_assign_match.group(3)
+ 				filter_this = pattern.match(var_assign_match.group(2)) \
+ 					is not None
++				if not filter_this and '--filter-traced-variables' in options:
++					filter_this = trace_re.match(line) is not None
+ 				# Exclude the start quote when searching for the end quote,
+ 				# to ensure that the start quote is not misidentified as the
+ 				# end quote (happens if there is a newline immediately after
+@@ -77,7 +85,7 @@ def filter_bash_environment(pattern, file_in, file_out):
+ 					multi_line_quote = quote
+ 					multi_line_quote_filter = filter_this
+ 				if not filter_this:
+-					line = filter_declare_readonly_opt(line)
++					line = filter_declare_readonly_opt(line, options)
+ 					file_out.write(line.replace("\1", ""))
+ 				continue
+ 			else:
+@@ -86,8 +94,10 @@ def filter_bash_environment(pattern, file_in, file_out):
+ 					# declare without assignment
+ 					filter_this = pattern.match(declare_match.group(2)) \
+ 						is not None
++					if not filter_this and '--filter-traced-variables' in options:
++						filter_this = trace_re.match(line) is not None
+ 					if not filter_this:
+-						line = filter_declare_readonly_opt(line)
++						line = filter_declare_readonly_opt(line, options)
+ 						file_out.write(line)
+ 					continue
+ 
+@@ -124,13 +134,28 @@ if __name__ == "__main__":
+ 		"while leaving bash function definitions and here-documents " + \
+ 		"intact. The PATTERN is a space separated list of variable names" + \
+ 		" and it supports python regular expression syntax."
+-	usage = "usage: %s PATTERN" % os.path.basename(sys.argv[0])
+-	args = sys.argv[1:]
+-
+-	if '-h' in args or '--help' in args:
+-		sys.stdout.write(usage + "\n")
+-		sys.stdout.flush()
+-		sys.exit(os.EX_OK)
++	usage = "usage: %s [-h|<options>] PATTERN" % os.path.basename(sys.argv[0])
++	args = []
++	known_options = {
++		'--report-readonly-variables':
++			"Write names of readonly variables to stderr.",
++		'--preserve-readonly-attribute':
++			"Preserve the '-r' flag in 'declare -r'.",
++		'--filter-traced-variables':
++			"Filter out variables declared with '-t' attribute."
++	}
++	options = {}
++	for arg in sys.argv[1:]:
++		if arg in known_options.keys():
++			options[arg] = True
++			continue
++		if '-h' == arg or '--help' == arg:
++			sys.stdout.write(usage + "\n\nKnown <options>:\n\n")
++			for option, descr in known_options.items():
++				sys.stdout.write("  " + option + "\t" + descr + "\n")
++			sys.stdout.flush()
++			sys.exit(os.EX_OK)
++		args.append(arg)
+ 
+ 	if len(args) != 1:
+ 		sys.stderr.write(usage + "\n")
+@@ -154,5 +179,5 @@ if __name__ == "__main__":
+ 
+ 	var_pattern = "^(%s)$" % "|".join(var_pattern)
+ 	filter_bash_environment(
+-		re.compile(var_pattern), file_in, file_out)
++		re.compile(var_pattern), file_in, file_out, options)
+ 	file_out.flush()
+diff --git a/bin/save-ebuild-env.sh b/bin/save-ebuild-env.sh
+index f0bf001..706660d 100644
+--- a/bin/save-ebuild-env.sh
++++ b/bin/save-ebuild-env.sh
+@@ -53,7 +53,7 @@ __save_ebuild_env() {
+ 		einfo einfon ewarn eerror ebegin __eend eend KV_major \
+ 		KV_minor KV_micro KV_to_int get_KV has \
+ 		__has_phase_defined_up_to \
+-		hasv hasq __qa_source __qa_call \
++		hasv hasq __qa_source __qa_call __call-ebuildshell \
+ 		addread addwrite adddeny addpredict __sb_append_var \
+ 		use usev useq has_version portageq \
+ 		best_version use_with use_enable register_die_hook \
+diff --git a/man/make.conf.5 b/man/make.conf.5
+index aea189e..46b0aa4 100644
+--- a/man/make.conf.5
++++ b/man/make.conf.5
+@@ -380,6 +380,12 @@ exist). Also see the related \fIunmerge\-backup\fR feature.
+ Use locks to ensure that unsandboxed ebuild phases never execute
+ concurrently. Also see \fIparallel\-install\fR.
+ .TP
++.B ebuildshell
++Drop into an interactive shell for each phase function, meant for
++debugging.  Because the shell would normally be used to execute the
++phase function, commands like src_unpack or epatch are available in the
++interactive shell.  Use `die` to terminate the merge.
++.TP
+ .B fail\-clean
+ Clean up temporary files after a build failure. This is particularly useful
+ if you have \fBPORTAGE_TMPDIR\fR on tmpfs. If this feature is enabled, you
+diff --git a/pym/_emerge/AbstractEbuildProcess.py b/pym/_emerge/AbstractEbuildProcess.py
+index 8bd30a6..4ff78b4 100644
+--- a/pym/_emerge/AbstractEbuildProcess.py
++++ b/pym/_emerge/AbstractEbuildProcess.py
+@@ -161,6 +161,7 @@ class AbstractEbuildProcess(SpawnProcess):
+ 			self.fd_pipes = {}
+ 		null_fd = None
+ 		if 0 not in self.fd_pipes and \
++			"ebuildshell" not in self.settings.features and \
+ 			self.phase not in self._phases_interactive_whitelist and \
+ 			"interactive" not in self.settings.get("PROPERTIES", "").split():
+ 			null_fd = os.open('/dev/null', os.O_RDONLY)
+diff --git a/pym/portage/const.py b/pym/portage/const.py
+index 179efce..0a91aaf 100644
+--- a/pym/portage/const.py
++++ b/pym/portage/const.py
+@@ -142,6 +142,7 @@ SUPPORTED_FEATURES       = frozenset([
+ 	"distlocks",
+ 	"downgrade-backup",
+ 	"ebuild-locks",
++	"ebuildshell",
+ 	"fail-clean",
+ 	"fakeroot",
+ 	"fixlafiles",
+-- 
+2.10.2
+
