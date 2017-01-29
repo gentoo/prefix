@@ -1902,6 +1902,11 @@ EOF
 	[[ ${TODO} == 'noninteractive' ]] &&
 	usergcc=$(type -P gcc 2>/dev/null)
 
+	# the standard path we want to start with, override anything from
+	# the user on purpose
+	PATH="/usr/bin:/bin"
+	# don't exclude the path to bash if it isn't in a standard location
+	type -P bash > /dev/null || PATH="${BASH%/bash}:${PATH}"
 	case "${CHOST}" in
 		*-solaris*)
 			cat << EOF
