@@ -2202,7 +2202,7 @@ EOF
 
 	# Figure out if we are bootstrapping from an existing Gentoo
 	# It can be forced by setting HOST_GENTOO_EROOT manually
-	local t_GENTOO_EROOT=$(portageq envvar EROOT 2> /dev/null)
+	local t_GENTOO_EROOT=$(/usr/bin/portageq envvar EROOT 2> /dev/null)
 	if [[ ! -d ${HOST_GENTOO_EROOT} ]] && [[ -d ${t_GENTOO_EROOT} ]]; then
 		cat <<EOF
 
