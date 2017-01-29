@@ -1544,7 +1544,7 @@ bootstrap_stage3() {
 
 		BOOTSTRAP_RAP=yes \
 		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
-		grep -q 'apiversion=9999' && rm "${ROOT}"/usr/bin/perl
+		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && rm "${ROOT}"/usr/bin/perl
 	else
 		pkgs=(
 			sys-apps/sed
