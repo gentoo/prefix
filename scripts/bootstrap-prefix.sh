@@ -1391,8 +1391,8 @@ bootstrap_stage2() {
 		sys-libs/ncurses
 		sys-libs/readline
 		app-shells/bash
-		sys-apps/sed
 		app-arch/xz-utils
+		sys-apps/sed
 		sys-apps/gentoo-functions
 		sys-apps/baselayout-prefix
 		dev-libs/libffi
@@ -1547,8 +1547,8 @@ bootstrap_stage3() {
 		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && rm "${ROOT}"/usr/bin/perl
 	else
 		pkgs=(
-			sys-apps/sed
 			app-arch/xz-utils
+			sys-apps/sed
 			sys-apps/gentoo-functions
 			sys-apps/baselayout-prefix
 			sys-devel/m4
