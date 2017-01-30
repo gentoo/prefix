@@ -1,8 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.1.2.ebuild,v 1.37 2014/01/19 01:51:34 dirtyepic Exp $
 
-EAPI="2"
+EAPI="5"
 
 PATCH_VER="1.5"
 UCLIBC_VER="1.0"
@@ -13,7 +13,7 @@ inherit eutils toolchain flag-o-matic
 DESCRIPTION="The GNU Compiler Collection"
 
 LICENSE="GPL-2+ LGPL-2.1+ FDL-1.2+"
-KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}

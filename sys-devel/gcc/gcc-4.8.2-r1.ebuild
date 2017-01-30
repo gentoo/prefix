@@ -1,8 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.8.2-r1.ebuild,v 1.3 2014/01/19 01:51:34 dirtyepic Exp $
 
-EAPI="2"
+EAPI="5"
 
 PATCH_VER="1.4-ssptest"
 UCLIBC_VER="1.0"
