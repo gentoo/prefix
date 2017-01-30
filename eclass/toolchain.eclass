@@ -1,11 +1,11 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.647 2014/11/15 08:45:33 vapier Exp $
+# $Id$
 
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
 DESCRIPTION="The GNU Compiler Collection"
-HOMEPAGE="http://gcc.gnu.org/"
+HOMEPAGE="https://gcc.gnu.org/"
 RESTRICT="strip" # cross-compilers need controlled stripping
 
 inherit eutils fixheadtails flag-o-matic gnuconfig libtool multilib pax-utils toolchain-funcs versionator prefix
@@ -26,7 +26,7 @@ FEATURES=${FEATURES/multilib-strict/}
 
 EXPORTED_FUNCTIONS="pkg_setup src_unpack src_compile src_test src_install pkg_postinst pkg_postrm"
 case ${EAPI:-0} in
-	0|1)	;;
+	0|1)    die "Need to upgrade to at least EAPI=2";;
 	2|3)    EXPORTED_FUNCTIONS+=" src_prepare src_configure" ;;
 	4*|5*)  EXPORTED_FUNCTIONS+=" pkg_pretend src_prepare src_configure" ;;
 	*)      die "I don't speak EAPI ${EAPI}."
@@ -37,8 +37,8 @@ EXPORT_FUNCTIONS ${EXPORTED_FUNCTIONS}
 
 export CTARGET=${CTARGET:-${CHOST}}
 if [[ ${CTARGET} = ${CHOST} ]] ; then
-	if [[ ${CATEGORY/cross-} != ${CATEGORY} ]] ; then
-		export CTARGET=${CATEGORY/cross-}
+	if [[ ${CATEGORY} == cross-* ]] ; then
+		export CTARGET=${CATEGORY#cross-}
 	fi
 fi
 : ${TARGET_ABI:=${ABI}}
@@ -89,14 +89,14 @@ elif [[ ${GCC_PV} == *_rc* ]] ; then
 	SNAPSHOT=${GCC_PV%_rc*}-RC-${GCC_PV##*_rc}
 fi
 
-if [[ ${SNAPSHOT} == 5.0-* ]] ; then
-	# The gcc-5 release has dropped the .0 for some reason.
-	SNAPSHOT=${SNAPSHOT/5.0/5}
+if [[ ${SNAPSHOT} == [56789].0-* ]] ; then
+	# The gcc-5+ releases have dropped the .0 for some reason.
+	SNAPSHOT=${SNAPSHOT/.0}
 fi
 
 export GCC_FILESDIR=${GCC_FILESDIR:-${FILESDIR}}
 
-PREFIX=${TOOLCHAIN_PREFIX:-/usr}
+PREFIX=${TOOLCHAIN_PREFIX:-${EPREFIX}/usr}
 
 if tc_version_is_at_least 3.4.0 ; then
 	LIBPATH=${TOOLCHAIN_LIBPATH:-${PREFIX}/lib/gcc/${CTARGET}/${GCC_CONFIG_VER}}
@@ -107,6 +107,7 @@ INCLUDEPATH=${TOOLCHAIN_INCLUDEPATH:-${LIBPATH}/include}
 
 if is_crosscompile ; then
 	BINPATH=${TOOLCHAIN_BINPATH:-${PREFIX}/${CHOST}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}}
+	HOSTLIBPATH=${PREFIX}/${CHOST}/${CTARGET}/lib/${GCC_CONFIG_VER}
 else
 	BINPATH=${TOOLCHAIN_BINPATH:-${PREFIX}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}}
 fi
@@ -133,11 +134,11 @@ else
 	LICENSE="GPL-2+ LGPL-2.1+ FDL-1.1+"
 fi
 
-IUSE="multislot regression-test vanilla"
+IUSE="regression-test vanilla"
 IUSE_DEF=( nls nptl )
 
 if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
-	IUSE+=" altivec"
+	IUSE+=" altivec debug"
 	IUSE_DEF+=( cxx fortran )
 	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
 	[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
@@ -149,20 +150,19 @@ if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
 	tc_version_is_at_least 4.1 && IUSE+=" libssp objc++"
 	tc_version_is_at_least 4.2 && IUSE_DEF+=( openmp )
 	tc_version_is_at_least 4.3 && IUSE+=" fixed-point"
-	tc_version_is_at_least 4.6 && IUSE+=" graphite"
 	tc_version_is_at_least 4.7 && IUSE+=" go"
-	tc_version_is_at_least 4.8 && IUSE_DEF+=( sanitize )
+	# Note: while <=gcc-4.7 also supported graphite, it required forked ppl
+	# versions which we dropped.  Since graphite was also experimental in
+	# the older versions, we don't want to bother supporting it.  #448024
+	tc_version_is_at_least 4.8 && IUSE+=" graphite" IUSE_DEF+=( sanitize )
+	tc_version_is_at_least 4.9 && IUSE+=" cilk +vtv"
+	tc_version_is_at_least 5.0 && IUSE+=" jit mpx"
+	tc_version_is_at_least 6.0 && IUSE+=" pie ssp +pch"
 fi
 
-[[ ${EAPI:-0} != 0 ]] && IUSE_DEF=( "${IUSE_DEF[@]/#/+}" )
-IUSE+=" ${IUSE_DEF[*]}"
+IUSE+=" ${IUSE_DEF[*]/#/+}"
 
-# Support upgrade paths here or people get pissed
-if use multislot ; then
-	SLOT="${GCC_CONFIG_VER}"
-else
-	SLOT="${GCC_BRANCH_VER}"
-fi
+SLOT="${GCC_CONFIG_VER}"
 
 #---->> DEPEND <<----
 
@@ -172,7 +172,7 @@ RDEPEND="sys-libs/zlib
 tc_version_is_at_least 3 && RDEPEND+=" virtual/libiconv"
 
 if tc_version_is_at_least 4 ; then
-	GMP_MPFR_DEPS=">=dev-libs/gmp-4.3.2 >=dev-libs/mpfr-2.4.2"
+	GMP_MPFR_DEPS=">=dev-libs/gmp-4.3.2:0 >=dev-libs/mpfr-2.4.2:0"
 	if tc_version_is_at_least 4.3 ; then
 		RDEPEND+=" ${GMP_MPFR_DEPS}"
 	elif in_iuse fortran ; then
@@ -180,20 +180,16 @@ if tc_version_is_at_least 4 ; then
 	fi
 fi
 
-tc_version_is_at_least 4.5 && RDEPEND+=" >=dev-libs/mpc-0.8.1"
+tc_version_is_at_least 4.5 && RDEPEND+=" >=dev-libs/mpc-0.8.1:0"
 
 if in_iuse graphite ; then
-	if tc_version_is_at_least 4.8 ; then
+	if tc_version_is_at_least 5.0 ; then
+		RDEPEND+=" graphite? ( >=dev-libs/isl-0.14 )"
+	elif tc_version_is_at_least 4.8 ; then
 		RDEPEND+="
 			graphite? (
 				>=dev-libs/cloog-0.18.0
 				>=dev-libs/isl-0.11.1
-			)"
-	else
-		RDEPEND+="
-			graphite? (
-				>=dev-libs/cloog-ppl-0.15.10
-				>=dev-libs/ppl-0.11
 			)"
 	fi
 fi
@@ -217,10 +213,6 @@ if in_iuse gcj ; then
 		x11-proto/xextproto
 		=x11-libs/gtk+-2*
 		virtual/pkgconfig
-		amd64? ( multilib? (
-			app-emulation/emul-linux-x86-gtklibs
-			app-emulation/emul-linux-x86-xlibs
-		) )
 	"
 	tc_version_is_at_least 3.4 && GCJ_GTK_DEPS+=" x11-libs/pango"
 	tc_version_is_at_least 4.2 && GCJ_DEPS+=" app-arch/zip app-arch/unzip"
@@ -245,8 +237,8 @@ S=$(
 
 gentoo_urls() {
 	local devspace="HTTP~vapier/dist/URI HTTP~rhill/dist/URI
-	HTTP~halcy0n/patches/URI HTTP~zorry/patches/gcc/URI"
-	devspace=${devspace//HTTP/http:\/\/dev.gentoo.org\/}
+	HTTP~zorry/patches/gcc/URI HTTP~blueness/dist/URI"
+	devspace=${devspace//HTTP/https:\/\/dev.gentoo.org\/}
 	echo mirror://gentoo/$1 ${devspace//URI/$1}
 }
 
@@ -399,8 +391,8 @@ toolchain_pkg_pretend() {
 #---->> pkg_setup <<----
 
 toolchain_pkg_setup() {
-	case "${EAPI:-0}" in
-		0|1|2|3)    toolchain_pkg_pretend ;;
+	case ${EAPI} in
+	2|3) toolchain_pkg_pretend ;;
 	esac
 
 	# we dont want to use the installed compiler's specs to build gcc
@@ -425,10 +417,6 @@ toolchain_src_unpack() {
 	else
 		gcc_quick_unpack
 	fi
-
-	case ${EAPI:-0} in
-		0|1)   toolchain_src_prepare ;;
-	esac
 }
 
 gcc_quick_unpack() {
@@ -678,6 +666,50 @@ do_gcc_CYGWINPORTS_patches() {
 
 # configure to build with the hardened GCC specs as the default
 make_gcc_hard() {
+
+	local gcc_hard_flags=""
+	# Gcc >= 6.X we can use configurations options to turn pie/ssp on as default
+	if tc_version_is_at_least 6.0 ; then
+		if use pie ; then
+			einfo "Updating gcc to use automatic PIE building ..."
+		fi
+		if use ssp ; then
+			einfo "Updating gcc to use automatic SSP building ..."
+		fi
+		if use hardened ; then
+			# Will add some optimatizion as default.
+			gcc_hard_flags+=" -DEXTRA_OPTIONS"
+			# rebrand to make bug reports easier
+			BRANDING_GCC_PKGVERSION=${BRANDING_GCC_PKGVERSION/Gentoo/Gentoo Hardened}
+		fi
+	else
+		if use hardened ; then
+			# rebrand to make bug reports easier
+			BRANDING_GCC_PKGVERSION=${BRANDING_GCC_PKGVERSION/Gentoo/Gentoo Hardened}
+			if hardened_gcc_works ; then
+				einfo "Updating gcc to use automatic PIE + SSP building ..."
+				gcc_hard_flags+=" -DEFAULT_PIE_SSP"
+			elif hardened_gcc_works pie ; then
+				einfo "Updating gcc to use automatic PIE building ..."
+				ewarn "SSP has not been enabled by default"
+				gcc_hard_flags+=" -DEFAULT_PIE"
+			elif hardened_gcc_works ssp ; then
+				einfo "Updating gcc to use automatic SSP building ..."
+				ewarn "PIE has not been enabled by default"
+				gcc_hard_flags+=" -DEFAULT_SSP"
+			else
+				# do nothing if hardened isn't supported, but don't die either
+				ewarn "hardened is not supported for this arch in this gcc version"
+				return 0
+			fi
+		else
+			if hardened_gcc_works ssp ; then
+				einfo "Updating gcc to use automatic SSP building ..."
+				gcc_hard_flags+=" -DEFAULT_SSP"
+			fi
+		fi
+	fi
+
 	# we want to be able to control the pie patch logic via something other
 	# than ALL_CFLAGS...
 	sed -e '/^ALL_CFLAGS/iHARD_CFLAGS = ' \
@@ -686,36 +718,8 @@ make_gcc_hard() {
 	# Need to add HARD_CFLAGS to ALL_CXXFLAGS on >= 4.7
 	if tc_version_is_at_least 4.7 ; then
 		sed -e '/^ALL_CXXFLAGS/iHARD_CFLAGS = ' \
-                        -e 's|^ALL_CXXFLAGS = |ALL_CXXFLAGS = $(HARD_CFLAGS) |' \
-                        -i "${S}"/gcc/Makefile.in
-	fi
-
-	# defaults to enable for all toolchains
-	local gcc_hard_flags=""
-	if use hardened ; then
-		if hardened_gcc_works ; then
-			einfo "Updating gcc to use automatic PIE + SSP building ..."
-			gcc_hard_flags+=" -DEFAULT_PIE_SSP"
-		elif hardened_gcc_works pie ; then
-			einfo "Updating gcc to use automatic PIE building ..."
-			ewarn "SSP has not been enabled by default"
-			gcc_hard_flags+=" -DEFAULT_PIE"
-		elif hardened_gcc_works ssp ; then
-			einfo "Updating gcc to use automatic SSP building ..."
-			ewarn "PIE has not been enabled by default"
-			gcc_hard_flags+=" -DEFAULT_SSP"
-		else
-			# do nothing if hardened is't supported, but don't die either
-			ewarn "hardened is not supported for this arch in this gcc version"
-			return 0
-		fi
-		# rebrand to make bug reports easier
-		BRANDING_GCC_PKGVERSION=${BRANDING_GCC_PKGVERSION/Gentoo/Gentoo Hardened}
-	else
-		if hardened_gcc_works ssp ; then
-			einfo "Updating gcc to use automatic SSP building ..."
-			gcc_hard_flags+=" -DEFAULT_SSP"
-		fi
+			-e 's|^ALL_CXXFLAGS = |ALL_CXXFLAGS = $(HARD_CFLAGS) |' \
+			-i "${S}"/gcc/Makefile.in
 	fi
 
 	sed -i \
@@ -858,13 +862,13 @@ toolchain_src_configure() {
 	[[ -n ${CBUILD} ]] && confgcc+=( --build=${CBUILD} )
 
 	confgcc+=(
-		--prefix="${EPREFIX}${PREFIX}"
-		--bindir="${EPREFIX}${BINPATH}"
-		--includedir="${EPREFIX}${INCLUDEPATH}"
-		--datadir="${EPREFIX}${DATAPATH}"
-		--mandir="${EPREFIX}${DATAPATH}/man"
-		--infodir="${EPREFIX}${DATAPATH}/info"
-		--with-gxx-include-dir="${EPREFIX}${STDCXX_INCDIR}"
+		--prefix="${PREFIX}"
+		--bindir="${BINPATH}"
+		--includedir="${INCLUDEPATH}"
+		--datadir="${DATAPATH}"
+		--mandir="${DATAPATH}/man"
+		--infodir="${DATAPATH}/info"
+		--with-gxx-include-dir="${STDCXX_INCDIR}"
 	)
 
 	# Stick the python scripts in their own slotted directory (bug #279252)
@@ -877,7 +881,7 @@ toolchain_src_configure() {
 	#
 	# This should translate into "/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}/python"
 	if tc_version_is_at_least 4.4 ; then
-		confgcc+=( --with-python-dir=${EPREFIX}${DATAPATH/$PREFIX/}/python )
+		confgcc+=( --with-python-dir=${DATAPATH/$PREFIX/}/python )
 	fi
 
 	### language options
@@ -887,6 +891,7 @@ toolchain_src_configure() {
 	is_d   && GCC_LANG+=",d"
 	is_gcj && GCC_LANG+=",java"
 	is_go  && GCC_LANG+=",go"
+	is_jit && GCC_LANG+=",jit"
 	if is_objc || is_objcxx ; then
 		GCC_LANG+=",objc"
 		if tc_version_is_at_least 4 ; then
@@ -926,10 +931,10 @@ toolchain_src_configure() {
 
 	# Use the default ("release") checking because upstream usually neglects
 	# to test "disabled" so it has a history of breaking. #317217
-	if tc_version_is_at_least 4 || [[ -n ${GCC_CHECKS_LIST} ]] ; then
-		confgcc+=( --enable-checking=${GCC_CHECKS_LIST:-release} )
-	else
-		confgcc+=( --disable-checking )
+	if tc_version_is_at_least 3.4 ; then
+		# The "release" keyword is new to 4.0. #551636
+		local off=$(tc_version_is_at_least 4.0 && echo release || echo no)
+		confgcc+=( --enable-checking="${GCC_CHECKS_LIST:-$(usex debug yes ${off})}" )
 	fi
 
 	# Branding
@@ -949,6 +954,14 @@ toolchain_src_configure() {
 	if tc_version_is_at_least 4.4 && is_cxx ; then
 		confgcc+=( --enable-libstdcxx-time )
 	fi
+
+	# Support to disable pch when building libstdcxx
+	if tc_version_is_at_least 6.0 && ! use pch ; then
+		confgcc+=( --disable-libstdcxx-pch )
+	fi
+
+	# The jit language requires this.
+	is_jit && confgcc+=( --enable-host-shared )
 
 	# # Turn on the -Wl,--build-id flag by default for ELF targets. #525942
 	# # This helps with locating debug files.
@@ -1015,10 +1028,10 @@ toolchain_src_configure() {
 			elif built_with_use --hidden --missing false ${CATEGORY}/${needed_libc} crosscompile_opts_headers-only ; then
 				confgcc+=(
 					"${confgcc_no_libc[@]}"
-					--with-sysroot=${PREFIX}/${CTARGET}
+					--with-sysroot="${PREFIX}"/${CTARGET}
 				)
 			else
-				confgcc+=( --with-sysroot=${PREFIX}/${CTARGET} )
+				confgcc+=( --with-sysroot="${PREFIX}"/${CTARGET} )
 			fi
 		fi
 
@@ -1143,7 +1156,7 @@ toolchain_src_configure() {
 	amd64)
 		# drop the older/ABI checks once this get's merged into some
 		# version of gcc upstream
-		if tc_version_is_at_least 4.7 && has x32 $(get_all_abis TARGET) ; then
+		if tc_version_is_at_least 4.8 && has x32 $(get_all_abis TARGET) ; then
 			confgcc+=( --with-abi=$(gcc-abi-map ${TARGET_DEFAULT_ABI}) )
 		fi
 		;;
@@ -1227,7 +1240,21 @@ toolchain_src_configure() {
 			fi
 			confgcc+=( --disable-libssp )
 		fi
+	fi
 
+	if in_iuse cilk ; then
+		confgcc+=( $(use_enable cilk libcilkrts) )
+	fi
+
+	if in_iuse mpx ; then
+		confgcc+=( $(use_enable mpx libmpx) )
+	fi
+
+	if in_iuse vtv ; then
+		confgcc+=(
+			$(use_enable vtv vtable-verify)
+			$(use_enable vtv libvtv)
+		)
 	fi
 
 	# newer gcc's come with libquadmath, but only fortran uses
@@ -1242,25 +1269,28 @@ toolchain_src_configure() {
 		confgcc+=( --disable-lto )
 	fi
 
-	# graphite was added in 4.4 but we only support it in 4.6+ due to external
-	# library issues.  4.6/4.7 uses cloog-ppl which is a fork of CLooG with a
-	# PPL backend.  4.8+ uses upstream CLooG with the ISL backend.  We install
-	# cloog-ppl into a non-standard location to prevent collisions.
-	if tc_version_is_at_least 4.8 ; then
+	# graphite was added in 4.4 but we only support it in 4.8+ due to external
+	# library issues.  #448024
+	if tc_version_is_at_least 5.0 ; then
+		confgcc+=( $(use_with graphite isl) )
+		use graphite && confgcc+=( --disable-isl-version-check )
+	elif tc_version_is_at_least 4.8 ; then
 		confgcc+=( $(use_with graphite cloog) )
 		use graphite && confgcc+=( --disable-isl-version-check )
-	elif tc_version_is_at_least 4.6 ; then
-		confgcc+=( $(use_with graphite cloog) )
-		confgcc+=( $(use_with graphite ppl) )
-		use graphite && confgcc+=( --with-cloog-include="${EPREFIX}"/usr/include/cloog-ppl )
-		use graphite && confgcc+=( --disable-ppl-version-check )
 	elif tc_version_is_at_least 4.4 ; then
-		confgcc+=( --without-cloog )
-		confgcc+=( --without-ppl )
+		confgcc+=( --without-{cloog,ppl} )
 	fi
 
 	if tc_version_is_at_least 4.8 ; then
 		confgcc+=( $(use_enable sanitize libsanitizer) )
+	fi
+
+	if tc_version_is_at_least 6.0 ; then
+		confgcc+=(
+			$(use_enable pie default-pie)
+			# This defaults to -fstack-protector-strong.
+			$(use_enable ssp default-ssp)
+		)
 	fi
 
 	# Disable gcc info regeneration -- it ships with generated info pages
@@ -1277,11 +1307,11 @@ toolchain_src_configure() {
 
 	# Nothing wrong with a good dose of verbosity
 	echo
-	einfo "PREFIX:          ${EPREFIX}${PREFIX}"
-	einfo "BINPATH:         ${EPREFIX}${BINPATH}"
-	einfo "LIBPATH:         ${EPREFIX}${LIBPATH}"
-	einfo "DATAPATH:        ${EPREFIX}${DATAPATH}"
-	einfo "STDCXX_INCDIR:   ${EPREFIX}${STDCXX_INCDIR}"
+	einfo "PREFIX:          ${PREFIX}"
+	einfo "BINPATH:         ${BINPATH}"
+	einfo "LIBPATH:         ${LIBPATH}"
+	einfo "DATAPATH:        ${DATAPATH}"
+	einfo "STDCXX_INCDIR:   ${STDCXX_INCDIR}"
 	echo
 	einfo "Languages:       ${GCC_LANG}"
 	echo
@@ -1295,7 +1325,10 @@ toolchain_src_configure() {
 	# and now to do the actual configuration
 	addwrite /dev/zero
 	echo "${S}"/configure "${confgcc[@]}"
-	"${S}"/configure "${confgcc[@]}" || die "failed to run configure"
+	# Older gcc versions did not detect bash and re-exec itself, so force the
+	# use of bash.  Newer ones will auto-detect, but this is not harmeful.
+	CONFIG_SHELL="${EPREFIX}/bin/bash" \
+	bash "${S}"/configure "${confgcc[@]}" || die "failed to run configure"
 
 	# return to whatever directory we were in before
 	popd > /dev/null
@@ -1534,7 +1567,7 @@ gcc-multilib-configure() {
 	if [[ -n ${list} ]] ; then
 		case ${CTARGET} in
 		x86_64*)
-			tc_version_is_at_least 4.7 && confgcc+=( --with-multilib-list=${list:1} )
+			tc_version_is_at_least 4.8 && confgcc+=( --with-multilib-list=${list:1} )
 			;;
 		esac
 	fi
@@ -1558,15 +1591,11 @@ gcc-abi-map() {
 #----> src_compile <----
 
 toolchain_src_compile() {
-	case ${EAPI:-0} in
-		0|1)   toolchain_src_configure ;;
-	esac
-
 	touch "${S}"/gcc/c-gperf.h
 
 	# Do not make manpages if we do not have perl ...
 	[[ ! -x /usr/bin/perl ]] \
-		&& find "${WORKDIR}"/build -name '*.[17]' | xargs touch
+		&& find "${WORKDIR}"/build -name '*.[17]' -exec touch {} +
 
 	gcc_do_make ${GCC_MAKE_TARGET}
 }
@@ -1625,7 +1654,7 @@ gcc_do_make() {
 		T= \
 		LDFLAGS="${LDFLAGS}" \
 		STAGE1_CFLAGS="${STAGE1_CFLAGS}" \
-		LIBPATH="${EPREFIX}${LIBPATH}" \
+		LIBPATH="${LIBPATH}" \
 		BOOT_CFLAGS="${BOOT_CFLAGS}" \
 		${GCC_MAKE_TARGET} \
 		|| die "emake failed with ${GCC_MAKE_TARGET}"
@@ -1639,6 +1668,13 @@ gcc_do_make() {
 				cd "${CTARGET}"/libstdc++-v3
 				emake doxygen-man || ewarn "failed to make docs"
 			fi
+			# Clean bogus manpages.  #113902
+			find -name '*_build_*' -delete
+			# Blow away generated directory references.  Newer versions of gcc
+			# have gotten better at this, but not perfect.  This is easier than
+			# backporting all of the various doxygen patches.  #486754
+			find -name '*_.3' -exec grep -l ' Directory Reference ' {} + | \
+				xargs rm -f
 		else
 			ewarn "Skipping libstdc++ manpage generation since you don't have doxygen installed"
 		fi
@@ -1685,6 +1721,7 @@ toolchain_src_install() {
 
 	# Do the 'make install' from the build directory
 	S="${WORKDIR}"/build emake -j1 DESTDIR="${D}" install || die
+
 	# Punt some tools which are really only useful while building gcc
 	find "${ED}" -name install-tools -prune -type d -exec rm -rf "{}" \;
 	# This one comes with binutils
@@ -1697,7 +1734,7 @@ toolchain_src_install() {
 	if ! is_crosscompile ; then
 		local EXEEXT
 		eval $(grep ^EXEEXT= "${WORKDIR}"/build/gcc/config.log)
-		[[ -r ${ED}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${ED}"
+		[[ -r ${D}${BINPATH}/gcc${EXEEXT} ]] || die "gcc not found in ${ED}"
 	fi
 
 	dodir /etc/env.d/gcc
@@ -1711,22 +1748,27 @@ toolchain_src_install() {
 	gcc_slot_java
 
 	dodir /usr/bin
-	cd "${ED}"${BINPATH}
+	cd "${D}"${BINPATH}
 	# Ugh: we really need to auto-detect this list.
 	#      It's constantly out of date.
 	for x in cpp gcc g++ c++ gcov g77 gcj gcjh gfortran gccgo ; do
 		# For some reason, g77 gets made instead of ${CTARGET}-g77...
 		# this should take care of that
-		[[ -f ${x} ]] && mv ${x} ${CTARGET}-${x}
+		if [[ -f ${x} ]] ; then
+			# In case they're hardlinks, clear out the target first
+			# otherwise the mv below will complain.
+			rm -f ${CTARGET}-${x}
+			mv ${x} ${CTARGET}-${x}
+		fi
 
 		if [[ -f ${CTARGET}-${x} ]] ; then
 			if ! is_crosscompile ; then
 				ln -sf ${CTARGET}-${x} ${x}
-				dosym ${BINPATH}/${CTARGET}-${x} \
+				dosym ${BINPATH#${EPREFIX}}/${CTARGET}-${x} \
 					/usr/bin/${x}-${GCC_CONFIG_VER}
 			fi
 			# Create versioned symlinks
-			dosym ${BINPATH}/${CTARGET}-${x} \
+			dosym ${BINPATH#${EPREFIX}}/${CTARGET}-${x} \
 				/usr/bin/${CTARGET}-${x}-${GCC_CONFIG_VER}
 		fi
 
@@ -1735,33 +1777,40 @@ toolchain_src_install() {
 			ln -sf ${CTARGET}-${x} ${CTARGET}-${x}-${GCC_CONFIG_VER}
 		fi
 	done
+	# Rename the main go binaries as we don't want to clobber dev-lang/go
+	# when gcc-config runs. #567806
+	if tc_version_is_at_least 5 && is_go ; then
+		for x in go gofmt; do
+			mv ${x} ${x}-${GCCMAJOR} || die
+		done
+	fi
 
 	# Now do the fun stripping stuff
-	env RESTRICT="" CHOST=${CHOST} prepstrip "${ED}${BINPATH}"
-	env RESTRICT="" CHOST=${CTARGET} prepstrip "${ED}${LIBPATH}"
+	env RESTRICT="" CHOST=${CHOST} prepstrip "${D}${BINPATH}"
+	is_crosscompile && \
+		env RESTRICT="" CHOST=${CHOST} prepstrip "${D}${HOSTLIBPATH}"
+	env RESTRICT="" CHOST=${CTARGET} prepstrip "${D}${LIBPATH}"
 	# gcc used to install helper binaries in lib/ but then moved to libexec/
-	[[ -d ${ED}${PREFIX}/libexec/gcc ]] && \
-		env RESTRICT="" CHOST=${CHOST} prepstrip "${ED}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}"
+	[[ -d ${D}${PREFIX}/libexec/gcc ]] && \
+		env RESTRICT="" CHOST=${CHOST} prepstrip "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}"
 
 	cd "${S}"
 	if is_crosscompile; then
-		rm -rf "${ED}"/usr/share/{man,info}
-		rm -rf "${ED}"${DATAPATH}/{man,info}
+		rm -rf "${ED}"usr/share/{man,info}
+		rm -rf "${D}"${DATAPATH}/{man,info}
 	else
 		if tc_version_is_at_least 3.0 ; then
 			local cxx_mandir=$(find "${WORKDIR}/build/${CTARGET}/libstdc++-v3" -name man)
 			if [[ -d ${cxx_mandir} ]] ; then
-				# clean bogus manpages #113902
-				find "${cxx_mandir}" -name '*_build_*' -exec rm {} \;
-				cp -r "${cxx_mandir}"/man? "${ED}/${DATAPATH}"/man/
+				cp -r "${cxx_mandir}"/man? "${D}/${DATAPATH}"/man/
 			fi
 		fi
 		has noinfo ${FEATURES} \
-			&& rm -r "${ED}/${DATAPATH}"/info \
-			|| prepinfo "${DATAPATH}"
+			&& rm -r "${D}${DATAPATH}"/info \
+			|| prepinfo "${DATAPATH#${EPREFIX}}"
 		has noman ${FEATURES} \
-			&& rm -r "${ED}/${DATAPATH}"/man \
-			|| prepman "${DATAPATH}"
+			&& rm -r "${D}${DATAPATH}"/man \
+			|| prepman "${DATAPATH#${EPREFIX}}"
 	fi
 	# prune empty dirs left behind
 	find "${ED}" -depth -type d -delete 2>/dev/null
@@ -1769,34 +1818,57 @@ toolchain_src_install() {
 	# install testsuite results
 	if use regression-test; then
 		docinto testsuite
-		find "${WORKDIR}"/build -type f -name "*.sum" -print0 | xargs -0 dodoc
-		find "${WORKDIR}"/build -type f -path "*/testsuite/*.log" -print0 \
-			| xargs -0 dodoc
+		find "${WORKDIR}"/build -type f -name "*.sum" -exec dodoc {} +
+		find "${WORKDIR}"/build -type f -path "*/testsuite/*.log" -exec dodoc {} +
 	fi
 
 	# Rather install the script, else portage with changing $FILESDIR
 	# between binary and source package borks things ....
 	if ! is_crosscompile ; then
-		cp "${GCC_FILESDIR}"/fix_libtool_files.sh "${T}"
-		cp "${GCC_FILESDIR}"/awk/fixlafiles.awk-no_gcc_la "${T}"
-		cp "${GCC_FILESDIR}"/awk/fixlafiles.awk "${T}"
-		eprefixify \
-			"${T}"/fix_libtool_files.sh \
-			"${T}"/fixlafiles.awk-no_gcc_la \
-			"${T}"/fixlafiles.awk
-
-		insinto "${DATAPATH}"
-		if tc_version_is_at_least 4.0 ; then
-			newins "${T}"/fixlafiles.awk-no_gcc_la fixlafiles.awk || die
-			find "${ED}/${LIBPATH}" -name libstdc++.la -type f -exec rm "{}" \;
-			find "${ED}/${LIBPATH}" -name "lib?san.la" -type f -exec rm "{}" \; # 487550
-		else
-			doins "${T}"/fixlafiles.awk || die
-		fi
-		exeinto "${DATAPATH}"
-		doexe "${T}"/fix_libtool_files.sh || die
+		insinto "${DATAPATH#${EPREFIX}}"
+		newins "$(prefixify_ro "${GCC_FILESDIR}"/awk/fixlafiles.awk-no_gcc_la)" fixlafiles.awk || die
+		exeinto "${DATAPATH#${EPREFIX}}"
+		doexe "$(prefixify_ro "${GCC_FILESDIR}"/fix_libtool_files.sh)" || die
 		doexe "${GCC_FILESDIR}"/c{89,99} || die
 	fi
+
+	# libstdc++.la: Delete as it doesn't add anything useful: g++ itself
+	# handles linkage correctly in the dynamic & static case.  It also just
+	# causes us pain: any C++ progs/libs linking with libtool will gain a
+	# reference to the full libstdc++.la file which is gcc version specific.
+	# libstdc++fs.la: It doesn't link against anything useful.
+	# libsupc++.la: This has no dependencies.
+	# libcc1.la: There is no static library, only dynamic.
+	# libcc1plugin.la: Same as above, and it's loaded via dlopen.
+	# libgomp.la: gcc itself handles linkage (libgomp.spec).
+	# libgomp-plugin-*.la: Same as above, and it's an internal plugin only
+	# loaded via dlopen.
+	# libgfortran.la: gfortran itself handles linkage correctly in the
+	# dynamic & static case (libgfortran.spec). #573302
+	# libgfortranbegin.la: Same as above, and it's an internal lib.
+	# libmpx.la: gcc itself handles linkage correctly (libmpx.spec).
+	# libmpxwrappers.la: See above.
+	# libitm.la: gcc itself handles linkage correctly (libitm.spec).
+	# libvtv.la: gcc itself handles linkage correctly.
+	# lib*san.la: Sanitizer linkage is handled internally by gcc, and they
+	# do not support static linking. #487550 #546700
+	find "${D}/${LIBPATH}" \
+		'(' \
+			-name libstdc++.la -o \
+			-name libstdc++fs.la -o \
+			-name libsupc++.la -o \
+			-name libcc1.la -o \
+			-name libcc1plugin.la -o \
+			-name 'libgomp.la' -o \
+			-name 'libgomp-plugin-*.la' -o \
+			-name libgfortran.la -o \
+			-name libgfortranbegin.la -o \
+			-name libmpx.la -o \
+			-name libmpxwrappers.la -o \
+			-name libitm.la -o \
+			-name libvtv.la -o \
+			-name 'lib*san.la' \
+		')' -type f -delete
 
 	# Use gid of 0 because some stupid ports don't have
 	# the group 'root' set to gid 0.  Send to /dev/null
@@ -1805,7 +1877,7 @@ toolchain_src_install() {
 
 	# Move pretty-printers to gdb datadir to shut ldconfig up
 	local py gdbdir=/usr/share/gdb/auto-load${LIBPATH/\/lib\//\/$(get_libdir)\/}
-	pushd "${ED}"${LIBPATH} >/dev/null
+	pushd "${D}${LIBPATH}" >/dev/null
 	for py in $(find . -name '*-gdb.py') ; do
 		local multidir=${py%/*}
 		insinto "${gdbdir}/${multidir}"
@@ -1821,8 +1893,8 @@ toolchain_src_install() {
 
 	# Disable RANDMMAP so PCH works. #301299
 	if tc_version_is_at_least 4.3 ; then
-		pax-mark -r "${ED}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1"
-		pax-mark -r "${ED}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1plus"
+		pax-mark -r "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1"
+		pax-mark -r "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1plus"
 	fi
 }
 
@@ -1833,6 +1905,17 @@ gcc_movelibs() {
 	# older versions of gcc did not support --print-multi-os-directory
 	tc_version_is_at_least 3.2 || return 0
 
+	# For non-target libs which are for CHOST and not CTARGET, we want to
+	# move them to the compiler-specific CHOST internal dir.  This is stuff
+	# that you want to link against when building tools rather than building
+	# code to run on the target.
+	if tc_version_is_at_least 5 && is_crosscompile ; then
+		dodir "${HOSTLIBPATH#${EPREFIX}}"
+		mv "${ED}"usr/$(get_libdir)/libcc1* "${D}${HOSTLIBPATH}" || die
+	fi
+
+	# For all the libs that are built for CTARGET, move them into the
+	# compiler-specific CTARGET internal dir.
 	local x multiarg removedirs=""
 	for multiarg in $($(XGCC) -print-multi-lib) ; do
 		multiarg=${multiarg#*;}
@@ -1840,23 +1923,23 @@ gcc_movelibs() {
 
 		local OS_MULTIDIR=$($(XGCC) ${multiarg} --print-multi-os-directory)
 		local MULTIDIR=$($(XGCC) ${multiarg} --print-multi-directory)
-		local TODIR=${ED}${LIBPATH}/${MULTIDIR}
+		local TODIR="${D}${LIBPATH}"/${MULTIDIR}
 		local FROMDIR=
 
 		[[ -d ${TODIR} ]] || mkdir -p ${TODIR}
 
 		for FROMDIR in \
-			${LIBPATH}/${OS_MULTIDIR} \
-			${LIBPATH}/../${MULTIDIR} \
-			${PREFIX}/lib/${OS_MULTIDIR} \
-			${PREFIX}/${CTARGET}/lib/${OS_MULTIDIR}
+			"${LIBPATH}"/${OS_MULTIDIR} \
+			"${LIBPATH}"/../${MULTIDIR} \
+			"${PREFIX}"/lib/${OS_MULTIDIR} \
+			"${PREFIX}"/${CTARGET}/lib/${OS_MULTIDIR}
 		do
 			removedirs="${removedirs} ${FROMDIR}"
-			FROMDIR=${ED}${FROMDIR}
+			FROMDIR=${D}${FROMDIR}
 			if [[ ${FROMDIR} != "${TODIR}" && -d ${FROMDIR} ]] ; then
 				local files=$(find "${FROMDIR}" -maxdepth 1 ! -type d 2>/dev/null)
 				if [[ -n ${files} ]] ; then
-					mv ${files} "${TODIR}"
+					mv ${files} "${TODIR}" || die
 				fi
 			fi
 		done
@@ -1864,10 +1947,10 @@ gcc_movelibs() {
 
 		# SLOT up libgcj.pc if it's available (and let gcc-config worry about links)
 		FROMDIR="${PREFIX}/lib/${OS_MULTIDIR}"
-		for x in "${ED}${FROMDIR}"/pkgconfig/libgcj*.pc ; do
+		for x in "${D}${FROMDIR}"/pkgconfig/libgcj*.pc ; do
 			[[ -f ${x} ]] || continue
-			sed -i "/^libdir=/s:=.*:=${LIBPATH}/${MULTIDIR}:" "${x}"
-			mv "${x}" "${ED}${FROMDIR}"/pkgconfig/libgcj-${GCC_PV}.pc || die
+			sed -i "/^libdir=/s:=.*:=${LIBPATH}/${MULTIDIR}:" "${x}" || die
+			mv "${x}" "${D}${FROMDIR}"/pkgconfig/libgcj-${GCC_PV}.pc || die
 		done
 	done
 
@@ -1876,30 +1959,34 @@ gcc_movelibs() {
 	#	rmdir SRC/lib/../lib/
 	#	mv SRC/lib/../lib32/*.o DEST  # Bork
 	for FROMDIR in ${removedirs} ; do
-		rmdir "${ED}"${FROMDIR} >& /dev/null
+		rmdir "${D}"${FROMDIR} >& /dev/null
 	done
-	find "${ED}" -type d | xargs rmdir >& /dev/null
+	find -depth "${ED}" -type d -exec rmdir {} + >& /dev/null
 }
 
 # make sure the libtool archives have libdir set to where they actually
 # -are-, and not where they -used- to be.  also, any dependencies we have
 # on our own .la files need to be updated.
 fix_libtool_libdir_paths() {
-	pushd "${ED}" >/dev/null
+	local libpath="$1"
 
-	pushd "./${1}" >/dev/null
+	pushd "${D}" >/dev/null
+
+	pushd "./${libpath}" >/dev/null
 	local dir="${PWD#${D%/}}"
 	local allarchives=$(echo *.la)
 	allarchives="\(${allarchives// /\\|}\)"
 	popd >/dev/null
 
-	sed -i \
-		-e "/^libdir=/s:=.*:='${EPREFIX}${dir}':" \
-		./${dir}/*.la
-	sed -i \
-		-e "/^dependency_libs=/s:/[^ ]*/${allarchives}:${EPREFIX}${LIBPATH}/\1:g" \
-		$(find ./${PREFIX}/lib* -maxdepth 3 -name '*.la') \
-		./${dir}/*.la
+	# The libdir might not have any .la files. #548782
+	find "./${dir}" -maxdepth 1 -name '*.la' \
+		-exec sed -i -e "/^libdir=/s:=.*:='${dir}':" {} + || die
+	# Would be nice to combine these, but -maxdepth can not be specified
+	# on sub-expressions.
+	find "./${PREFIX}"/lib* -maxdepth 3 -name '*.la' \
+		-exec sed -i -e "/^dependency_libs=/s:/[^ ]*/${allarchives}:${libpath}/\1:g" {} + || die
+	find "./${dir}/" -maxdepth 1 -name '*.la' \
+		-exec sed -i -e "/^dependency_libs=/s:/[^ ]*/${allarchives}:${libpath}/\1:g" {} + || die
 
 	popd >/dev/null
 }
@@ -1930,7 +2017,7 @@ create_gcc_env_entry() {
 		local mdir mosdir abi ldpath
 		for abi in $(get_all_abis TARGET) ; do
 			mdir=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
-			ldpath=${EPREFIX}${LIBPATH}
+			ldpath=${LIBPATH}
 			[[ ${mdir} != "." ]] && ldpath+="/${mdir}"
 			ldpaths="${ldpath}${ldpaths:+:${ldpaths}}"
 
@@ -1939,16 +2026,16 @@ create_gcc_env_entry() {
 		done
 	else
 		# Older gcc's didn't do multilib, so logic is simple.
-		ldpaths=${EPREFIX}${LIBPATH}
+		ldpaths=${LIBPATH}
 	fi
 
 	cat <<-EOF > ${gcc_envd_file}
-	PATH="${EPREFIX}${BINPATH}"
-	ROOTPATH="${EPREFIX}${BINPATH}"
-	GCC_PATH="${EPREFIX}${BINPATH}"
+	PATH="${BINPATH}"
+	ROOTPATH="${BINPATH}"
+	GCC_PATH="${BINPATH}"
 	LDPATH="${ldpaths}"
-	MANPATH="${EPREFIX}${DATAPATH}/man"
-	INFOPATH="${EPREFIX}${DATAPATH}/info"
+	MANPATH="${DATAPATH}/man"
+	INFOPATH="${DATAPATH}/info"
 	STDCXX_INCDIR="${STDCXX_INCDIR##*/}"
 	CTARGET="${CTARGET}"
 	GCC_SPECS="${gcc_specs_file}"
@@ -1957,6 +2044,11 @@ create_gcc_env_entry() {
 }
 
 copy_minispecs_gcc_specs() {
+	# on gcc 6 we don't need minispecs
+	if tc_version_is_at_least 6.0 ; then
+		return 0
+	fi
+
 	# setup the hardenedno* specs files and the vanilla specs file.
 	if hardened_gcc_works ; then
 		create_gcc_env_entry hardenednopiessp
@@ -1968,7 +2060,7 @@ copy_minispecs_gcc_specs() {
 		create_gcc_env_entry hardenednossp
 	fi
 	create_gcc_env_entry vanilla
-	insinto ${LIBPATH}
+	insinto ${LIBPATH#${EPREFIX}}
 	doins "${WORKDIR}"/specs/*.specs || die "failed to install specs"
 	# Build system specs file which, if it exists, must be a complete set of
 	# specs as it completely and unconditionally overrides the builtin specs.
@@ -1983,32 +2075,32 @@ gcc_slot_java() {
 	local x
 
 	# Move Java headers to compiler-specific dir
-	for x in "${ED}"${PREFIX}/include/gc*.h "${ED}"${PREFIX}/include/j*.h ; do
-		[[ -f ${x} ]] && mv -f "${x}" "${ED}"${LIBPATH}/include/
+	for x in "${D}${PREFIX}"/include/gc*.h "${D}${PREFIX}"/include/j*.h ; do
+		[[ -f ${x} ]] && mv -f "${x}" "${D}${LIBPATH}"/include/
 	done
 	for x in gcj gnu java javax org ; do
-		if [[ -d ${ED}${PREFIX}/include/${x} ]] ; then
-			dodir /${LIBPATH}/include/${x}
-			mv -f "${ED}"${PREFIX}/include/${x}/* "${ED}"${LIBPATH}/include/${x}/
-			rm -rf "${ED}"${PREFIX}/include/${x}
+		if [[ -d ${D}${PREFIX}/include/${x} ]] ; then
+			dodir /${LIBPATH#${EPREFIX}}/include/${x}
+			mv -f "${D}${PREFIX}"/include/${x}/* "${D}${LIBPATH}"/include/${x}/
+			rm -rf "${D}${PREFIX}"/include/${x}
 		fi
 	done
 
-	if [[ -d ${ED}${PREFIX}/lib/security ]] || [[ -d ${ED}${PREFIX}/$(get_libdir)/security ]] ; then
-		dodir /${LIBPATH}/security
-		mv -f "${ED}"${PREFIX}/lib*/security/* "${ED}"${LIBPATH}/security
-		rm -rf "${ED}"${PREFIX}/lib*/security
+	if [[ -d ${D}${PREFIX}/lib/security ]] || [[ -d ${D}${PREFIX}/$(get_libdir)/security ]] ; then
+		dodir /${LIBPATH#${EPREFIX}}/security
+		mv -f "${D}${PREFIX}"/lib*/security/* "${D}${LIBPATH}"/security
+		rm -rf "${D}${PREFIX}"/lib*/security
 	fi
 
 	# Move random gcj files to compiler-specific directories
 	for x in libgcj.spec logging.properties ; do
-		x="${ED}${PREFIX}/lib/${x}"
-		[[ -f ${x} ]] && mv -f "${x}" "${ED}"${LIBPATH}/
+		x="${D}${PREFIX}/lib/${x}"
+		[[ -f ${x} ]] && mv -f "${x}" "${D}${LIBPATH}"/
 	done
 
 	# Rename jar because it could clash with Kaffe's jar if this gcc is
 	# primary compiler (aka don't have the -<version> extension)
-	cd "${ED}"${BINPATH}
+	cd "${D}${BINPATH}"
 	[[ -f jar ]] && mv -f jar gcj-jar
 }
 
@@ -2024,20 +2116,21 @@ toolchain_pkg_postinst() {
 		echo
 		ewarn "You might want to review the GCC upgrade guide when moving between"
 		ewarn "major versions (like 4.2 to 4.3):"
-		ewarn "http://www.gentoo.org/doc/en/gcc-upgrading.xml"
+		ewarn "https://wiki.gentoo.org/wiki/Upgrading_GCC"
 		echo
 
 		# Clean up old paths
-		rm -f "${EROOT}"/*/rcscripts/awk/fixlafiles.awk "${EROOT}"/sbin/fix_libtool_files.sh
-		rmdir "${EROOT}"/*/rcscripts{/awk,} 2>/dev/null
+		rm -f "${EROOT}"*/rcscripts/awk/fixlafiles.awk "${EROOT}"sbin/fix_libtool_files.sh
+		rmdir "${EROOT}"*/rcscripts{/awk,} 2>/dev/null
 
-		mkdir -p "${EROOT}"/usr/{share/gcc-data,sbin,bin}
-		cp "${EROOT}/${DATAPATH}"/fixlafiles.awk "${EROOT}"/usr/share/gcc-data/ || die
-		cp "${EROOT}/${DATAPATH}"/fix_libtool_files.sh "${EROOT}"/usr/sbin/ || die
+		mkdir -p "${EROOT}"usr/{share/gcc-data,sbin,bin}
+		# DATAPATH has EPREFIX already, use ROOT with it
+		cp "${ROOT}${DATAPATH}"/fixlafiles.awk "${EROOT}"usr/share/gcc-data/ || die
+		cp "${ROOT}${DATAPATH}"/fix_libtool_files.sh "${EROOT}"usr/sbin/ || die
 
 		# Since these aren't critical files and portage sucks with
 		# handling of binpkgs, don't require these to be found
-		cp "${EROOT}/${DATAPATH}"/c{89,99} "${EROOT}"/usr/bin/ 2>/dev/null
+		cp "${ROOT}${DATAPATH}"/c{89,99} "${EROOT}"usr/bin/ 2>/dev/null
 	fi
 
 	if use regression-test ; then
@@ -2060,10 +2153,10 @@ toolchain_pkg_postrm() {
 
 	# clean up the cruft left behind by cross-compilers
 	if is_crosscompile ; then
-		if [[ -z $(ls "${EROOT}"/etc/env.d/gcc/${CTARGET}* 2>/dev/null) ]] ; then
-			rm -f "${EROOT}"/etc/env.d/gcc/config-${CTARGET}
-			rm -f "${EROOT}"/etc/env.d/??gcc-${CTARGET}
-			rm -f "${EROOT}"/usr/bin/${CTARGET}-{gcc,{g,c}++}{,32,64}
+		if [[ -z $(ls "${EROOT}"etc/env.d/gcc/${CTARGET}* 2>/dev/null) ]] ; then
+			rm -f "${EROOT}"etc/env.d/gcc/config-${CTARGET}
+			rm -f "${EROOT}"etc/env.d/??gcc-${CTARGET}
+			rm -f "${EROOT}"usr/bin/${CTARGET}-{gcc,{g,c}++}{,32,64}
 		fi
 		return 0
 	fi
@@ -2071,15 +2164,15 @@ toolchain_pkg_postrm() {
 	# ROOT isnt handled by the script
 	[[ ${ROOT} != "/" ]] && return 0
 
-	if [[ ! -e ${EPREFIX}${LIBPATH}/libstdc++.so ]] ; then
+	if [[ ! -e ${LIBPATH}/libstdc++.so ]] ; then
 		# make sure the profile is sane during same-slot upgrade #289403
 		do_gcc_config
 
 		einfo "Running 'fix_libtool_files.sh ${GCC_RELEASE_VER}'"
-		"${EPREFIX}"/usr/sbin/fix_libtool_files.sh ${GCC_RELEASE_VER}
+		fix_libtool_files.sh ${GCC_RELEASE_VER}
 		if [[ -n ${BRANCH_UPDATE} ]] ; then
 			einfo "Running 'fix_libtool_files.sh ${GCC_RELEASE_VER}-${BRANCH_UPDATE}'"
-			"${EPREFIX}"/usr/sbin/fix_libtool_files.sh ${GCC_RELEASE_VER}-${BRANCH_UPDATE}
+			fix_libtool_files.sh ${GCC_RELEASE_VER}-${BRANCH_UPDATE}
 		fi
 	fi
 
@@ -2092,26 +2185,36 @@ do_gcc_config() {
 		return 0
 	fi
 
-	local current_gcc_config="" current_specs="" use_specs=""
+	local current_gcc_config target
 
 	current_gcc_config=$(env -i ROOT="${ROOT}" "${EPREFIX}"/usr/bin/gcc-config -c ${CTARGET} 2>/dev/null)
 	if [[ -n ${current_gcc_config} ]] ; then
+		local current_specs use_specs
 		# figure out which specs-specific config is active
 		current_specs=$(gcc-config -S ${current_gcc_config} | awk '{print $3}')
 		[[ -n ${current_specs} ]] && use_specs=-${current_specs}
-	fi
-	if [[ -n ${use_specs} ]] && \
-	   [[ ! -e ${EROOT}/etc/env.d/gcc/${CTARGET}-${GCC_CONFIG_VER}${use_specs} ]]
-	then
-		ewarn "The currently selected specs-specific gcc config,"
-		ewarn "${current_specs}, doesn't exist anymore. This is usually"
-		ewarn "due to enabling/disabling hardened or switching to a version"
-		ewarn "of gcc that doesnt create multiple specs files. The default"
-		ewarn "config will be used, and the previous preference forgotten."
-		use_specs=""
+
+		if [[ -n ${use_specs} ]] && \
+		   [[ ! -e ${ROOT}/etc/env.d/gcc/${CTARGET}-${GCC_CONFIG_VER}${use_specs} ]]
+		then
+			ewarn "The currently selected specs-specific gcc config,"
+			ewarn "${current_specs}, doesn't exist anymore. This is usually"
+			ewarn "due to enabling/disabling hardened or switching to a version"
+			ewarn "of gcc that doesnt create multiple specs files. The default"
+			ewarn "config will be used, and the previous preference forgotten."
+			use_specs=""
+		fi
+
+		target="${CTARGET}-${GCC_CONFIG_VER}${use_specs}"
+	else
+		# The curent target is invalid.  Attempt to switch to a valid one.
+		# Blindly pick the latest version.  #529608
+		# TODO: Should update gcc-config to accept `-l ${CTARGET}` rather than
+		# doing a partial grep like this.
+		target=$(gcc-config -l 2>/dev/null | grep " ${CTARGET}-[0-9]" | tail -1 | awk '{print $2}')
 	fi
 
-	gcc-config ${CTARGET}-${GCC_CONFIG_VER}${use_specs}
+	gcc-config "${target}"
 }
 
 should_we_gcc_config() {
@@ -2126,10 +2229,6 @@ should_we_gcc_config() {
 	local curr_config_ver=$(env -i ROOT="${ROOT}" "${EPREFIX}"/usr/bin/gcc-config -S ${curr_config} | awk '{print $2}')
 
 	local curr_branch_ver=$(get_version_component_range 1-2 ${curr_config_ver})
-
-	# If we're using multislot, just run gcc-config if we're installing
-	# to the same profile as the current one.
-	use multislot && return $([[ ${curr_config_ver} == ${GCC_CONFIG_VER} ]])
 
 	if [[ ${curr_branch_ver} == ${GCC_BRANCH_VER} ]] ; then
 		return 0
@@ -2210,6 +2309,11 @@ is_go() {
 	use cxx && use_if_iuse go
 }
 
+is_jit() {
+	gcc-lang-supported jit || return 1
+	use_if_iuse jit
+}
+
 is_multilib() {
 	tc_version_is_at_least 3 || return 1
 	use multilib
@@ -2286,6 +2390,10 @@ hardened_gcc_is_stable() {
 }
 
 want_minispecs() {
+	# on gcc 6 we don't need minispecs
+	if tc_version_is_at_least 6.0 ; then
+		return 0
+	fi
 	if tc_version_is_at_least 4.3.2 && use hardened ; then
 		if ! want_pie ; then
 			ewarn "PIE_VER or SPECS_VER is not defined in the GCC ebuild."
