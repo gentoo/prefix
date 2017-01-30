@@ -5,4 +5,7 @@
 	<email>toolchain@gentoo.org</email>
 	<name>Gentoo Toolchain Project</name>
 </maintainer>
+  <use>
+	<flag name="sunld">Use Solaris linker instead of GNU binutils on Solaris</flag>
+  </use>
 </pkgmetadata>
