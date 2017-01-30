@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.19.1-r1.ebuild,v 1.9 2011/09/22 17:29:31 vapier Exp $
 
@@ -6,7 +6,7 @@ PATCHVER="1.2"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~x86-freebsd ~hppa-hpux ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack
