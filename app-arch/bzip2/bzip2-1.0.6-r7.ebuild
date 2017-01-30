@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.6-r7.ebuild,v 1.2 2014/04/28 17:18:31 mgorny Exp $
 
@@ -15,7 +15,7 @@ SRC_URI="http://www.bzip.org/${PV}/${P}.tar.gz"
 
 LICENSE="BZIP2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="static static-libs"
 
 RDEPEND="abi_x86_32? (
