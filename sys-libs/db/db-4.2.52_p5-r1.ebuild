@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.2.52_p5-r1.ebuild,v 1.17 2014/01/18 04:14:32 vapier Exp $
 
@@ -26,7 +26,7 @@ done
 
 LICENSE="Sleepycat"
 SLOT="4.2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x64-macos"
 IUSE="tcl java doc cxx rpc"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
