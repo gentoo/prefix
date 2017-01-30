@@ -1,5 +1,5 @@
---- src/constants.h
-+++ src/constants.h
+--- a/src/constants.h
++++ b/src/constants.h
 @@ -103,7 +103,7 @@
  #define INCLUDES	8
  #define	FIELDS		9
