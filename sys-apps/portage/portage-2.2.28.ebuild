@@ -49,7 +49,6 @@ RDEPEND="
 	kernel_SunOS? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
-	kernel_HPUX? ( !hppa-hpux? ( >=app-misc/pax-utils-0.1.19 ) )
 	kernel_AIX? ( >=sys-apps/aix-miscutils-0.1.1634 )
 	selinux? ( >=sys-libs/libselinux-2.0.94[python,${PYTHON_USEDEP}] )
 	xattr? ( kernel_linux? (
