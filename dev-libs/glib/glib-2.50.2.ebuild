@@ -132,6 +132,8 @@ src_prepare() {
 		    eval "$(sed -ne '/PATCH_URI="/,/"/p' < "${d}"/glib2.0.cygport)"
 		    echo ${PATCH_URI}
 	    ); do
+		    # Cygwin hasn't updated to 2.50.2 yet, which has patches merged.
+		    [[ ${p} == 2.46-glocalfilemonitor.patch ]] && continue
 		    epatch "${d}/${p}"
 	    done
 	fi
