@@ -1,12 +1,12 @@
 certificate version 0.1
-pusher 0x5F75F607C5C74E89 1486030467 +0100
+pusher 0x5F75F607C5C74E89 1486714906 +0100
 pushee git+ssh://git.gentoo.org/repo/proj/prefix.git
-nonce 1486030467-b69f07539515067819c6
+nonce 1486714906-eb69ac9e4e97c52e4d40
 
-12c7d4c6758925c9c07fd6698455ad58fd48eb4a 89e1b17daf9eb9ffe6df9c675718148539abd56a refs/heads/master
+03cb03d9c03f5a510221326074b9c96a2fcf9ebe d1a9cd8cb707fb0a8e2b8a7d8c3b7505aa1e2e71 refs/heads/master
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABEKAB0WIQSDHIpHdkhfn9Ptmh5fdfYHxcdOiQUCWJMGgwAKCRBfdfYHxcdO
-ib40AJwOkfU7A7GBcbs/aI+yQmoM7EAdFACcCnbodwvUS+37wex3W1/mQI57s9Y=
-=ugYU
+iEYEABEKAAYFAlideBoACgkQX3X2B8XHTon8kQCgoNlk/HM9xbNML81pC9gpi6mc
+CfIAoJ9epQZx+hi4jVjnkEyRwkzKwdon
+=qe1P
 -----END PGP SIGNATURE-----
