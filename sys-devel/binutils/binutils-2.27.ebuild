@@ -7,4 +7,24 @@ PATCHVER="1.0"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd -sparc-fbsd ~x86-fbsd"
+KEYWORDS="~amd64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+
+src_unpack() {
+	toolchain-binutils_src_unpack
+	cd "${S}"
+	[[ ${CHOST} == *-mint* ]] && die "mint patches require rebasing to ${P}" # 609274
+#	epatch "${FILESDIR}"/${PN}-2.22-mint.patch
+#	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
+	epatch "${FILESDIR}"/${PN}-2.24-cygwin-nointl.patch
+}
+
+src_compile() {
+	if has noinfo "${FEATURES}" \
+	|| ! type -p makeinfo >/dev/null
+	then
+		# binutils >= 2.17 (accidentally?) requires 'makeinfo'
+		export EXTRA_EMAKE="MAKEINFO=true"
+	fi
+
+	toolchain-binutils_src_compile
+}
