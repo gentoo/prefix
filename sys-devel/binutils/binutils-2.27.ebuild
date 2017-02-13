@@ -9,13 +9,13 @@ inherit toolchain-binutils
 
 KEYWORDS="~amd64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
-src_unpack() {
-	toolchain-binutils_src_unpack
-	cd "${S}"
+PATCHES=(
+#	"${FILESDIR}"/${PN}-2.22-mint.patch
+#	"${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
+	"${FILESDIR}"/${PN}-2.24-cygwin-nointl.patch
+)
+pkg_setup() {
 	[[ ${CHOST} == *-mint* ]] && die "mint patches require rebasing to ${P}" # 609274
-#	epatch "${FILESDIR}"/${PN}-2.22-mint.patch
-#	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
-	epatch "${FILESDIR}"/${PN}-2.24-cygwin-nointl.patch
 }
 
 src_compile() {
