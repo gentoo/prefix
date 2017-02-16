@@ -177,9 +177,9 @@ src_install() {
 		           mktemp readlink seq sleep sort tail touch tr tty vdir wc yes"
 		mv ${com} ../../bin/ || die "could not move common bins"
 		# create a symlink for uname in /usr/bin/ since autotools require it,
-		# as long as /bin is not a symlink (to /usr/bin eventually)
+		# as long as /bin resolves to a different directory than /usr/bin
 		local x
-		[[ -L ${EROOT}/bin ]] ||
+		[[ ${EROOT}bin/. -ef ${EROOT}usr/bin/. ]] ||
 		for x in ${com} uname ; do
 			dosym /bin/${x} /usr/bin/${x}
 		done
