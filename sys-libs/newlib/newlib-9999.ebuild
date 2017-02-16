@@ -43,10 +43,28 @@ pkg_setup() {
 	fi
 }
 
+PATCHES=(
+	# https://cygwin.com/ml/cygwin-patches/2017-q1/msg00036.html
+	"${FILESDIR}"/cygwin-2.7.0-parallel-build.patch
+)
+
+src_prepare() {
+	default
+	if [[ ${CHOST} == *-cygwin* ]] ; then
+		local pvgr="${PV}-gentoo-${PR}"
+		pvgr=${pvgr%-r0}
+		einfo "Branding Gentoo/Cygwin ${pvgr} ..."
+		sed -i -e "/Cygwin dll release/a\
+			  __small_sprintf (name->release, \"%s\", \"${pvgr}\") ||
+		  " winsup/cygwin/uname.cc || die
+		eend $?
+	fi
+}
+
 src_configure() {
 	# we should fix this ...
 	unset LDFLAGS
-	CHOST=${CTARGET} strip-unsupported-flags
+	CHOST=${CTARGET:-${CHOST}} strip-unsupported-flags
 
 	local myconf=(
 		# Disable legacy syscall stub code in newlib.  These have been
