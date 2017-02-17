@@ -43,11 +43,6 @@ pkg_setup() {
 	fi
 }
 
-PATCHES=(
-	# https://cygwin.com/ml/cygwin-patches/2017-q1/msg00036.html
-	"${FILESDIR}"/cygwin-2.7.0-parallel-build.patch
-)
-
 src_prepare() {
 	default
 	if [[ ${CHOST} == *-cygwin* ]] ; then
