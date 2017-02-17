@@ -1736,7 +1736,7 @@ EOF
 	esac
 
 	if [[ ${CHOST} == *-cygwin* ]]; then
-		if [[ -r /var/run/cygfork/. ]]; then
+		if [[ $(uname -r) == *-gentoo* && -r /var/run/cygfork/. ]]; then
 			cat << EOF
 
 Whoah there, I've found the working fork() in your Cygwin instance,
@@ -1797,7 +1797,7 @@ So let me tell you how to help me out of the incompatibility hole:
 5) Prepare the new cygwin0.dll for replacing your current one:
      $ cp *-cygwin/winsup/cygwin0.dll /bin/cygwin1.dll.new
 6) Create the /var/run/cygfork directory:
-     $ mkdir --mode=a+rwt /var/run/cygfork
+     $ mkdir --mode=a=rwxt /var/run/cygfork
 7) Stop all your Cygwin processes.
 8) Replace your old cygwin1.dll with the new one, using your
    Windows Explorer in $(cygpath -w /bin)
