@@ -17,7 +17,7 @@ if [[ ${PV} == *9999* ]]; then
 	EGIT_CHECKOUT_DIR=${WORKDIR}/${MY_P}
 	inherit autotools git-r3
 else
-	KEYWORDS="~ppc-aix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+	KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 	SRC_URI="https://pkgconfig.freedesktop.org/releases/${MY_P}.tar.gz"
 	INTERNAL_GLIB_CYGWIN_PATCHES=2.38.2
 fi
