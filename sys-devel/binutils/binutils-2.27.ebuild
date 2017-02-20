@@ -7,7 +7,7 @@ PATCHVER="1.0"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~amd64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 PATCHES=(
 #	"${FILESDIR}"/${PN}-2.22-mint.patch
