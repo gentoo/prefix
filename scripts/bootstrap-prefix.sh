@@ -1498,7 +1498,8 @@ bootstrap_stage3() {
 		# PORTAGE_TMPDIR, EMERGE_LOG_DIR, FEATURES=force-prefix are
 		# needed with host portage.
 		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{,usr/}{s,}bin | sed "s, ,:${ROOT},g") \
-		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" FEATURES=force-prefix \
+		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
+		FEATURES="${FEATURES} force-prefix" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
 		do_emerge_pkgs "$@"
 	}
