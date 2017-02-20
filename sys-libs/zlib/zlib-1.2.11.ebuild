@@ -15,7 +15,7 @@ SRC_URI="http://zlib.net/${P}.tar.gz
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="minizip static-libs"
 
 DEPEND="minizip? ( ${AUTOTOOLS_DEPEND} )"
