@@ -14,7 +14,7 @@ SRC_URI="mirror://gnu/wget/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug gnutls idn ipv6 libressl nls ntlm pcre +ssl static test uuid zlib"
 REQUIRED_USE=" ntlm? ( !gnutls ssl ) gnutls? ( ssl )"
 
