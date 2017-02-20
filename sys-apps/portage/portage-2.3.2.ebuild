@@ -16,7 +16,7 @@ inherit eutils distutils-r1 multilib
 DESCRIPTION="Portage package manager used in Gentoo Prefix"
 HOMEPAGE="http://prefix.gentoo.org/"
 LICENSE="GPL-2"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 IUSE="build doc epydoc +ipc linguas_ru selinux xattr prefix-chaining"
 
