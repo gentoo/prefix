@@ -1,0 +1,39 @@
+From c0153776be692d11a4af156e77bad50aa8c7bd12 Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <haubi@gentoo.org>
+Date: Thu, 2 Mar 2017 10:37:19 +0100
+Subject: [PATCH] econf: multijob-safe shebang tweaking
+
+Using econf in parallel for multiple configurations (multilib, or
+ncurses' wide+narrow), both may try to fix configure's shebang.
+On Cygwin at least, this may cause 'sed -i' to fail with:
+ sed: cannot rename /.../work/ncurses-6.0/sedXZsjI6: Permission denied
+Instead of 'sed -i', better use 'mv -f' towards the original file.
+---
+ bin/phase-helpers.sh | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/bin/phase-helpers.sh b/bin/phase-helpers.sh
+index 9e4e6a2..b72cb1a 100644
+--- a/bin/phase-helpers.sh
++++ b/bin/phase-helpers.sh
+@@ -573,13 +573,13 @@ econf() {
+ 		if [[ -n $CONFIG_SHELL && \
+ 			"$(head -n1 "$ECONF_SOURCE/configure")" =~ ^'#!'[[:space:]]*/bin/sh([[:space:]]|$) ]] ; then
+ 			# preserve timestamp, see bug #440304
+-			touch -r "${ECONF_SOURCE}/configure" "${ECONF_SOURCE}/configure._portage_tmp_.${pid}" || die
++			cp "${ECONF_SOURCE}/configure" "${ECONF_SOURCE}/configure._portage_tmp_.${pid}" || die
+ 			sed -i \
+ 				-e "1s:^#![[:space:]]*/bin/sh:#!$CONFIG_SHELL:" \
+-				"${ECONF_SOURCE}/configure" \
++				"${ECONF_SOURCE}/configure._portage_tmp_.${pid}" \
+ 				|| die "Substition of shebang in '${ECONF_SOURCE}/configure' failed"
+-			touch -r "${ECONF_SOURCE}/configure._portage_tmp_.${pid}" "${ECONF_SOURCE}/configure" || die
+-			rm -f "${ECONF_SOURCE}/configure._portage_tmp_.${pid}"
++			touch -r "${ECONF_SOURCE}/configure" "${ECONF_SOURCE}/configure._portage_tmp_.${pid}" || die
++			mv -f "${ECONF_SOURCE}/configure._portage_tmp_.${pid}" "${ECONF_SOURCE}/configure" || die
+ 		fi
+ 		if [ -e "${EPREFIX}"/usr/share/gnuconfig/ ]; then
+ 			find "${WORKDIR}" -type f '(' \
+-- 
+2.10.2
+
