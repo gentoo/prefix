@@ -578,7 +578,7 @@ bootstrap_portage() {
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
 	STABLE_PV="2.2.28"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.2.28"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.4"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
@@ -598,6 +598,9 @@ bootstrap_portage() {
 	# Cygwin
 	patch -p1 < "${PORTDIR}"/sys-apps/portage/files/portage-2.2.28-cygwin.patch
 	patch -p1 < "${PORTDIR}"/sys-apps/portage/files/portage-2.3.4-mj-safe-econf.patch
+
+	# >=2.3
+	[[ -r bin/repoman ]] || sed -i -e '/repoman/d' {man,bin}/Makefile.in
 
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
