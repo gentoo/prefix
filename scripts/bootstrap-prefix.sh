@@ -597,6 +597,7 @@ bootstrap_portage() {
 
 	# Cygwin
 	patch -p1 < "${PORTDIR}"/sys-apps/portage/files/portage-2.2.28-cygwin.patch
+	patch -p1 < "${PORTDIR}"/sys-apps/portage/files/portage-2.3.4-mj-safe-econf.patch
 
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
