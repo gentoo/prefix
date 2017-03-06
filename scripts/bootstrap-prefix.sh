@@ -607,6 +607,9 @@ bootstrap_portage() {
 		-i pym/_emerge/AbstractEbuildProcess.py || \
 		return 1
 
+	# host-provided wget may lack certificates, stage1 wget is without ssl
+	sed -e '/wget/s/ --passive-ftp /&--no-check-certificate /' -i cnf/make.globals
+
 	# Portage checks for valid shebangs. These may (xz-utils) originate
 	# in CONFIG_SHELL (AIX), which originates in PORTAGE_BASH then.
 	# So we need to ensure portage's bash is valid as shebang too.
