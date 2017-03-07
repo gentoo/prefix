@@ -536,7 +536,7 @@ bootstrap_startscript() {
 	# user
 	if is-rap ; then
 		mkdir -p "${ROOT}"/usr/portage/scripts
-		wget --no-check-certificate \
+		wget $([[ $(wget -h) == *"--no-check-certificate"* ]] && echo --no-check-certificate) \
 		     https://gitweb.gentoo.org/repo/proj/prefix.git/plain/scripts/startprefix.in \
 		     -O "${ROOT}"/usr/portage/scripts/startprefix.in
 	fi
@@ -608,6 +608,7 @@ bootstrap_portage() {
 		return 1
 
 	# host-provided wget may lack certificates, stage1 wget is without ssl
+	[[ $(wget -h) == *"--no-check-certificate"* ]] &&
 	sed -e '/wget/s/ --passive-ftp /&--no-check-certificate /' -i cnf/make.globals
 
 	# Portage checks for valid shebangs. These may (xz-utils) originate
