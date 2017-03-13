@@ -819,8 +819,27 @@ bootstrap_python() {
 		patch -p0 < "${DISTDIR}"/02_all_disable_modules_and_ssl.patch
 	fi
 
+	# ./Python/ dir hides ./python.exe on Cygwin.
 	# With dlltool, find_library("c") can return "cygwin1.dll".
 	patch -p0 <<'EOP'
+--- Modules/getpath.c
++++ Modules/getpath.c
+@@ -436,6 +436,15 @@
+                         if (isxfile(progpath))
+                                 break;
+ 
++#ifdef __CYGWIN__
++                        if (isdir(progpath)) {
++                                # found /.../Python/ but want /.../python.exe
++                                strncat(progpath, ".exe", MAXPATHLEN - strlen(progpath));
++                                if (isxfile(progpath))
++                                        break;
++                        }
++#endif /* __CYGWIN__ */
++
+                         if (!delim) {
+                                 progpath[0] = '\0';
+                                 break;
 --- Lib/ctypes/util.py
 +++ Lib/ctypes/util.py
 @@ -41,6 +41,20 @@
