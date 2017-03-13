@@ -830,7 +830,7 @@ bootstrap_python() {
  
 +#ifdef __CYGWIN__
 +                        if (isdir(progpath)) {
-+                                # found /.../Python/ but want /.../python.exe
++                                /* found /.../Python/ but want /.../python.exe */
 +                                strncat(progpath, ".exe", MAXPATHLEN - strlen(progpath));
 +                                if (isxfile(progpath))
 +                                        break;
