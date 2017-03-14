@@ -1764,10 +1764,11 @@ EOF
 	esac
 
 	if [[ ${CHOST} == *-cygwin* ]]; then
-		if [[ $(uname -r) == *-gentoo* && -r /var/run/cygfork/. ]]; then
+		if [[ -r /var/run/cygfork/. ]]; then
 			cat << EOF
 
-Whoah there, I've found the working fork() in your Cygwin instance,
+Whoah there, I've found the /var/run/cygfork/ directory.  This makes
+me believe you have a working fork() in your Cygwin instance, which
 seems you really know what I can do for you when you help me out!
 EOF
 		else
