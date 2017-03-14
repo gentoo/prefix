@@ -106,6 +106,10 @@ src_prepare() {
 		epatch "${FILESDIR}"/4.7.2/pr52714.patch
 	fi
 
+	# Apply https://gcc.gnu.org/viewcvs/gcc?view=revision&revision=226138
+	find libstdc++-v3 -name Makefile.in -exec sed -i -e \
+		'/^AM_CPPFLAGS = \$(GLIBCXX_INCLUDES)$/s/$/ $(CPPFLAGS)/p' {} +
+
 	#Use -r1 for newer piepatchet that use DRIVER_SELF_SPECS for the hardened specs.
 	#[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env-r1.patch
 }
