@@ -186,6 +186,10 @@ main(int argc, char *argv[])
 	/* add the 4 paths we want (-L + -R) and a null-terminator */
 	newargc += 8 + 1;
 #endif
+#ifdef _AIX
+	/* AIX ld accepts -R only with -bsvr4 */
+	newargc++; /* -bsvr4 */
+#endif
 
 	/* let's first try to find the real ld */
 	find_real_ld(&ld, verbose, wrapper);
@@ -215,6 +219,18 @@ main(int argc, char *argv[])
 	/* position k right after the original arguments */
 	k = j - 1 + argc;
 	for (i = 1; i < argc; i++, j++) {
+#ifdef _AIX
+		/* AIX ld has this problem:
+		 *   $ /usr/ccs/bin/ld -bsvr4 -bE:xx.exp -bnoentry xx.o
+		 *   ld: 0706-005 Cannot find or open file: l
+		 *       ld:open(): No such file or directory
+		 * Simplest workaround is to put -bsvr4 last.
+		 */
+		if (strcmp(argv[i], "-bsvr4") == 0) {
+			--j; --k;
+			continue;
+		}
+#endif
 		newargv[j] = argv[i];
 #ifndef TARGET_DARWIN
 		/* on ELF targets we add runpaths for all found search paths */
@@ -267,6 +283,9 @@ main(int argc, char *argv[])
 	newargv[k++] = "-R" EPREFIX "/usr/lib";
 	newargv[k++] = "-L" EPREFIX "/lib";
 	newargv[k++] = "-R" EPREFIX "/lib";
+#endif
+#ifdef _AIX
+	newargv[k++] = "-bsvr4"; /* last one, see above */
 #endif
 	newargv[k] = NULL;
 
