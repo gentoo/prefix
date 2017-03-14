@@ -19,7 +19,7 @@ SRC_URI="https://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches-${PREFIX_PATCHREV}.tar.xz"
 
 [[ -n ${CYGWINPORTS_GITREV} ]] &&
-SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/python/archive/${CYGWINPORTS_GITREV}.zip )"
+SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/python2/archive/${CYGWINPORTS_GITREV}.zip )"
 
 LICENSE="PSF-2"
 SLOT="2.7"
@@ -142,7 +142,7 @@ src_prepare() {
 	use prefix && epatch "${FILESDIR}/python-2.7-libffi-pkgconfig.patch"
 
 	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
-	    local p d="${WORKDIR}/python-${CYGWINPORTS_GITREV}"
+	    local p d="${WORKDIR}/python2-${CYGWINPORTS_GITREV}"
 	    for p in $(
 		    eval "$(sed -ne '/PATCH_URI="/,/"/p' < "${d}"/python.cygport)"
 		    echo ${PATCH_URI}
