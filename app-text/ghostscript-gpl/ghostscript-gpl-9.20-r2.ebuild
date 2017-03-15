@@ -240,9 +240,20 @@ src_install() {
 	done
 
 	# install the CMaps from poppler-data properly, bug #409361
-	dosym "${EPREFIX}/usr/share/poppler/cMaps" "/usr/share/ghostscript/${PVM}/Resource/CMap"
+	dosym "/usr/share/poppler/cMaps" "/usr/share/ghostscript/${PVM}/Resource/CMap"
 
 	use static-libs || find "${ED}" -name '*.la' -delete
+
+	# fix install_names
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		local lib
+		for lib in "${ED%/}"/usr/$(get_libdir)/*.dylib ; do
+			install_name_tool -id "${lib#${D%/}}" "${lib}"
+		done
+		local libgs="libgs.${PV}.dylib"
+		install_name_tool -change "${libgs}" @executable_path/../$(get_libdir)/"${libgs}" \
+			"${ED}"/usr/bin/gs
+	fi
 
 	if ! use l10n_de; then
 		rm -r "${ED}"/usr/share/man/de || die
