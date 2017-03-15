@@ -32,6 +32,10 @@ _emake() {
 		"$@"
 }
 
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-solaris.patch # stpcpy, euidaccess
+}
+
 src_configure() {
 	# Avoid slow configure+gnulib+make if on an up-to-date Linux system
 	if use prefix || ! use kernel_linux || \
