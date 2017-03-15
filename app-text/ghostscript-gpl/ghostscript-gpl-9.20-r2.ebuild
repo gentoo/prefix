@@ -99,6 +99,8 @@ src_prepare() {
 	# http://pkgs.fedoraproject.org/cgit/ghostscript.git
 	eapply "${WORKDIR}/patches/"*.patch
 
+	eapply $FILESDIR/ghostscript-gpl-9.10-darwin.patch
+
 #	if use djvu ; then
 #		unpack gsdjvu-${GSDJVU_PV}.tar.gz
 #
@@ -167,12 +169,12 @@ src_configure() {
 		"${EPREFIX}"/usr/share/poppler/cMap/Adobe-Japan2 \
 		"${EPREFIX}"/usr/share/poppler/cMap/Adobe-Korea1
 	do
-		FONTPATH="$FONTPATH${FONTPATH:+:}${EPREFIX}$path"
+		FONTPATH="$FONTPATH${FONTPATH:+:}$path"
 	done
 
 	PKGCONFIG=$(type -P $(tc-getPKG_CONFIG)) \
 	econf \
-		--enable-dynamic \
+		--enable-dynamic$(tc-is-static-only && echo =no) \
 		--enable-freetype \
 		--enable-fontconfig \
 		--enable-openjpeg \
@@ -198,19 +200,21 @@ src_configure() {
 
 	cd "${S}/ijs" || die
 	econf \
-		--enable-shared \
+		--enable-shared$(tc-is-static-only && echo =no) \
 		$(use_enable static-libs static)
 }
 
 src_compile() {
-	emake so all
+	tc-is-static-only || emake so
+	emake all
 
 	cd "${S}/ijs" || die
 	emake
 }
 
 src_install() {
-	emake DESTDIR="${D}" install-so install
+	tc-is-static-only || emake DESTDIR="${D}" install-so
+	emake DESTDIR="${D}" install
 
 #	use djvu && dobin gsdjvu
 
