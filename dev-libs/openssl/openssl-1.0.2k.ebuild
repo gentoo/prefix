@@ -55,6 +55,9 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-1.0.1p-default-source.patch #554338
 
 		epatch_user #332661
+
+		# Solaris /bin/sh does not support "[ -e file ]", added by patches
+		sed -e 's/\[ -e /\[ -r /' -i Makefile.shared
 	fi
 
 	# disable fips in the build
