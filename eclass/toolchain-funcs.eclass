@@ -462,7 +462,14 @@ tc-has-tls() {
 		-l) ;;
 		-*) die "Usage: tc-has-tls [-c|-l] [toolchain prefix]";;
 	esac
-	: ${flags:=-fPIC -shared -Wl,-z,defs}
+	case "${CHOST}" in
+		*-darwin*)
+			# bug #612370
+			: ${flags:=-dynamiclib}
+			;;
+		*)
+			: ${flags:=-fPIC -shared -Wl,-z,defs}
+	esac
 	[[ $1 == -* ]] && shift
 	$(tc-getCC "$@") ${flags} "${base}.c" -o "${base}" >&/dev/null
 	local ret=$?
