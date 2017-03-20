@@ -1,0 +1,32 @@
+https://savannah.gnu.org/bugs/index.php?50595
+
+From 03d14880627f78cb3b8dd509f85c26bf973b1fcc Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <michael.haubenwallner@ssi-schaefer.com>
+Date: Mon, 20 Mar 2017 13:43:58 +0100
+Subject: [PATCH] libintl.h: expose newlocale when requested only
+
+When available, locale_t is declared by <locale.h> only when either
+(_POSIX_C_SOURCE >= 200809L) or (_XOPEN_SOURCE >= 700), seen on both
+glibc and newlib (Cygwin).
+---
+ gettext-runtime/intl/libgnuintl.in.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/gettext-runtime/intl/libgnuintl.in.h b/gettext-runtime/intl/libgnuintl.in.h
+index dc1947f..7d5018c 100644
+--- a/gettext-runtime/intl/libgnuintl.in.h
++++ b/gettext-runtime/intl/libgnuintl.in.h
+@@ -435,7 +435,9 @@ extern int vswprintf (wchar_t *, size_t, const wchar_t *, va_list);
+ extern char *setlocale (int, const char *);
+ #endif
+ 
+-#if @HAVE_NEWLOCALE@
++#if @HAVE_NEWLOCALE@ && \
++    ( (defined _POSIX_C_SOURCE && (_POSIX_C_SOURCE - 0) >= 200809L) || \
++      (defined _XOPEN_SOURCE && (_XOPEN_SOURCE - 0) >= 700) )
+ 
+ #undef newlocale
+ #define newlocale libintl_newlocale
+-- 
+2.10.2
+
