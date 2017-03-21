@@ -1,32 +1,31 @@
-https://savannah.gnu.org/bugs/index.php?50595
+From 41e5199f0e4a3e9d518d6f95a3efdfae5e2c7913 Mon Sep 17 00:00:00 2001
+From: Bruno Haible <bruno@clisp.org>
+Date: Mon, 20 Mar 2017 22:36:36 +0100
+Subject: [PATCH] Fix compilation error in <libintl.h> on Cygwin.
 
-From 03d14880627f78cb3b8dd509f85c26bf973b1fcc Mon Sep 17 00:00:00 2001
-From: Michael Haubenwallner <michael.haubenwallner@ssi-schaefer.com>
-Date: Mon, 20 Mar 2017 13:43:58 +0100
-Subject: [PATCH] libintl.h: expose newlocale when requested only
+Reported by Michael Haubenwallner at https://savannah.gnu.org/bugs/?50595 .
 
-When available, locale_t is declared by <locale.h> only when either
-(_POSIX_C_SOURCE >= 200809L) or (_XOPEN_SOURCE >= 700), seen on both
-glibc and newlib (Cygwin).
+* gettext-runtime/intl/libgnuintl.in.h (newlocale): Hide declaration if
+  locale_t type is not visible on Cygwin.
 ---
- gettext-runtime/intl/libgnuintl.in.h | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ gettext-runtime/intl/libgnuintl.in.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/gettext-runtime/intl/libgnuintl.in.h b/gettext-runtime/intl/libgnuintl.in.h
-index dc1947f..7d5018c 100644
+index dc1947f..95dcc16 100644
 --- a/gettext-runtime/intl/libgnuintl.in.h
 +++ b/gettext-runtime/intl/libgnuintl.in.h
-@@ -435,7 +435,9 @@ extern int vswprintf (wchar_t *, size_t, const wchar_t *, va_list);
- extern char *setlocale (int, const char *);
- #endif
- 
--#if @HAVE_NEWLOCALE@
-+#if @HAVE_NEWLOCALE@ && \
-+    ( (defined _POSIX_C_SOURCE && (_POSIX_C_SOURCE - 0) >= 200809L) || \
-+      (defined _XOPEN_SOURCE && (_XOPEN_SOURCE - 0) >= 700) )
+@@ -439,7 +439,10 @@ extern char *setlocale (int, const char *);
  
  #undef newlocale
  #define newlocale libintl_newlocale
++/* Declare newlocale() only if the system headers define the 'locale_t' type. */
++#if !(defined __CYGWIN__ && !defined LC_ALL_MASK)
+ extern locale_t newlocale (int, const char *, locale_t);
++#endif
+ 
+ #endif
+ 
 -- 
-2.10.2
+1.9.1
 
