@@ -271,7 +271,12 @@ bootstrap_setup() {
 	kver() { uname -r|cut -d\- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
 	# >=glibc-2.20 requires >=linux-2.6.32.
 	profile-legacy() { [[ $(kver) -ge 33955840 ]] || echo /legacy; }
-	
+
+	local FS_INSENSITIVE=0
+	touch "${ROOT}"/FOO.$$
+	[[ -e ${ROOT}/foo.$$ ]] && FS_INSENSITIVE=1
+	rm "${ROOT}"/FOO.$$
+
 	if [[ ! -f ${ROOT}/etc/portage/make.conf ]] ; then
 		{
 			echo "# Added by bootstrap-prefix.sh for ${CHOST}"
@@ -282,12 +287,17 @@ bootstrap_setup() {
 			echo "CONFIG_SHELL=\"${ROOT}/bin/bash\""
 			if is-rap ; then
 				echo "# sandbox does not work well on Prefix, bug 490246"
-				echo 'FEATURES="-usersandbox -sandbox"'
+				echo 'FEATURES="${FEATURES} -usersandbox -sandbox"'
 			fi
 			if [[ !is-rap && -n ${PREFIX_DISABLE_USR_SPLIT} ]] ; then
 				echo
 				echo "# This disables /usr-split, removing this will break"
 				echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
+			fi
+			if [[ ${FS_INSENSITIVE} == 1 ]] ; then
+				echo
+				echo "# Avoid problems due to case-insensitivity, bug #524236"
+				echo 'FEATURES="${FEATURES} case-insensitive-fs"'
 			fi
 			[[ -n $PORTDIR_OVERLAY ]] && \
 				echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
