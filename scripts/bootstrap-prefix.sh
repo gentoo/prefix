@@ -153,7 +153,7 @@ configure_cflags() {
 
 configure_toolchain() {
 	linker="sys-devel/binutils"
-	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc"
+	local gcc_deps="app-portage/elt-patches dev-libs/gmp dev-libs/mpfr dev-libs/mpc"
 	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
 	case ${CHOST} in
