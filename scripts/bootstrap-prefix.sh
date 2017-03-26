@@ -1428,6 +1428,7 @@ bootstrap_stage2() {
 		sys-libs/ncurses
 		sys-libs/readline
 		app-shells/bash
+		app-portage/elt-patches
 		app-arch/xz-utils
 		sys-apps/sed
 		sys-apps/gentoo-functions
