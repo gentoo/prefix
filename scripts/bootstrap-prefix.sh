@@ -1250,6 +1250,23 @@ bootstrap_stage1() {
 			cp "${ROOT}"/tmp/usr/bin/java{,c}
 			chmod 755 "${ROOT}"/tmp/usr/bin/java{,c}
 			;;
+		*-linux*)
+			if [[ ! -x "${ROOT}"/tmp/usr/bin/gcc ]] \
+			&& [[ $(gcc -print-prog-name=as),$(gcc -print-prog-name=ld) != /*,/* ]] || true
+			then
+				# RHEL's system gcc is set up to use binutils via PATH search.
+				# If the version of our binutils an older one, they may not
+				# provide what the system gcc is configured to use.
+				# We need to direct the system gcc to find the system binutils.
+				cat >> "${ROOT}"/tmp/usr/bin/gcc <<-EOF
+					#! /bin/sh
+					PATH="${STAGE1_PATH}" export PATH
+					exec "\${0##*/}" "\$@"
+				EOF
+				cp "${ROOT}"/tmp/usr/bin/g{cc,++}
+				chmod 755 "${ROOT}"/tmp/usr/bin/g{cc,++}
+			fi
+			;;
 	esac
 	# Host compiler can output a variety of libdirs.  At stage1,
 	# they should be the same as lib.  Otherwise libffi may not be
@@ -2074,55 +2091,6 @@ EOF
 		echo "Great!  You appear to have a compiler in your PATH"
 	fi
 
-	if [[ $(gcc -print-prog-name=as),$(gcc -print-prog-name=ld) != /*,/* ]] ; then
-		# RHEL's system gcc is set up to use binutils via PATH search.
-		# If the version of our binutils an older one, they may not
-		# provide what the system gcc is configured to use.
-		# So better have the system gcc use its system binutils.
-		cat << EOF
-
-But wait...
-Getting a closer look at your compiler setup makes me believe there
-is room for improvement: Your compiler does search the assembler
-and linker binaries using the PATH environment variable.
-EOF
-		local gccprefix="/usr/local" gcctarget=.
-		eval $(LC_ALL=C gcc -v 2>&1 | LC_ALL=C sed -n \
-			-e '/^Configured with:/{s/.* --prefix=/gccprefix="/g;s/ .*/"/;p;}' \
-			-e '/^Target:/s/.* /gcctarget=/p' \
-		)
-		if [[ -d ${gccprefix}/${gcctarget}/. ]] ; then
-			echo
-			echo "Unfortunately, I have no idea for how to improve this situation."
-			echo
-			[[ ${TODO} == 'noninteractive' ]] && ans="y" ||
-			read -p "Shall I continue with this suboptimal situation? [yN] " ans
-			case "${ans}" in
-				[Yy][Ee][Ss]|[Yy])
-					: ;;
-				*)
-					echo "Right.  Aborting..."
-					cat << EOF
-
-For reference, these are the commands I've used to detect this situation,
-where both should provide an absolute path name:
-  $(type -P gcc) -print-prog-name=as
-  $(type -P gcc) -print-prog-name=ld
-EOF
-					exit 1
-					;;
-			esac
-		else
-			cat << EOF
-
-Please execute:
-  ln -s . "${gccprefix}/${gcctarget}"
-
-EOF
-			exit 1
-		fi
-	fi
-
 	if type -P xcode-select > /dev/null ; then
 		if [[ ! -d /usr/include ]] ; then
 			# bug #512032
@@ -2385,6 +2353,7 @@ EOF
 		# location seems ok
 		break;
 	done
+	export STAGE1_PATH=${PATH}
 	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:${PATH}"
 
 	cat << EOF
