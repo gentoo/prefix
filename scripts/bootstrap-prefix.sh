@@ -1252,7 +1252,7 @@ bootstrap_stage1() {
 			;;
 		*-linux*)
 			if [[ ! -x "${ROOT}"/tmp/usr/bin/gcc ]] \
-			&& [[ $(gcc -print-prog-name=as),$(gcc -print-prog-name=ld) != /*,/* ]] || true
+			&& [[ $(gcc -print-prog-name=as),$(gcc -print-prog-name=ld) != /*,/* ]]
 			then
 				# RHEL's system gcc is set up to use binutils via PATH search.
 				# If the version of our binutils an older one, they may not
