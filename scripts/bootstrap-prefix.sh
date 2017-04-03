@@ -1608,6 +1608,7 @@ bootstrap_stage3() {
 		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && rm "${ROOT}"/usr/bin/perl
 	else
 		pkgs=(
+			app-portage/elt-patches
 			app-arch/xz-utils
 			sys-apps/sed
 			sys-apps/gentoo-functions
