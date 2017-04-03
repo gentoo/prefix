@@ -1440,12 +1440,12 @@ bootstrap_stage2() {
 
 	# Build a basic compiler and portage dependencies in $ROOT/tmp.
 	pkgs=(
+		app-portage/elt-patches
 		$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
 		$([[ ${CHOST} == *-cygwin* ]] && echo dev-libs/libiconv ) # bash dependency
 		sys-libs/ncurses
 		sys-libs/readline
 		app-shells/bash
-		app-portage/elt-patches
 		app-arch/xz-utils
 		sys-apps/sed
 		sys-apps/gentoo-functions
