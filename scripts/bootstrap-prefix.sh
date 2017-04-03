@@ -1133,6 +1133,10 @@ bootstrap_gzip() {
 	bootstrap_gnu gzip 1.4
 }
 
+bootstrap_xz() {
+	GNU_URL=${XZ_URL:-http://tukaani.org} bootstrap_gnu xz 5.2.3
+}
+
 bootstrap_bzip2() {
 	local PN PV A S
 	PN=bzip2
@@ -1226,6 +1230,7 @@ bootstrap_stage1() {
 		|| [[ -x ${ROOT}/tmp/usr/bin/bash ]] \
 		|| (bootstrap_bash) || return 1
 	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
+	type -P xz > /dev/null || (bootstrap_xz) || return 1
 	case ${CHOST} in
 		*-*-aix*)
 			# sys-devel/native-cctools installs the wrapper below,
