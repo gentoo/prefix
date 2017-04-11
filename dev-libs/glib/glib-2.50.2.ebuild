@@ -26,7 +26,7 @@ SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/glib2.0/archive/${CYGW
 
 LICENSE="LGPL-2+"
 SLOT="2"
-IUSE="dbus debug fam kernel_linux +mime selinux static-libs systemtap test utils xattr"
+IUSE="dbus +doc debug fam kernel_linux +mime selinux static-libs systemtap test utils xattr"
 REQUIRED_USE="
 	utils? ( ${PYTHON_REQUIRED_USE} )
 	test? ( ${PYTHON_REQUIRED_USE} )
@@ -221,7 +221,7 @@ multilib_src_configure() {
 		$(use_enable systemtap systemtap) \
 		$(multilib_native_use_enable utils libelf) \
 		--disable-compile-warnings \
-		--enable-man \
+		$(use_enable doc man) \
 		--with-pcre=system \
 		--with-xml-catalog="${EPREFIX}/etc/xml/catalog"
 
@@ -260,7 +260,7 @@ multilib_src_install() {
 }
 
 multilib_src_install_all() {
-	einstalldocs
+	use doc && einstalldocs
 
 	if use utils ; then
 		python_replicate_script "${ED}"/usr/bin/gtester-report
