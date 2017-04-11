@@ -340,7 +340,39 @@ python_export() {
 				;;
 			PYTHON)
 				export PYTHON=${EPREFIX}/usr/bin/${impl}
+				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
+				&& [[ ! -x ${PYTHON} ]] \
+				&& use prefix-chain; then
+					# Need to search in parent prefixes
+					local parent
+					local parents=()
+					IFS=: eval 'parents=(${PORTAGE_READONLY_EPREFIXES})'
+					for parent in "${parents[@]}"; do
+						if [[ -x ${parent}/usr/bin/${impl} ]]; then
+							PYTHON=${parent}/usr/bin/${impl}
+							break
+						fi
+					done
+				fi
 				debug-print "${FUNCNAME}: PYTHON = ${PYTHON}"
+				;;
+			PYTHON_EPREFIX)
+				export PYTHON_EPREFIX=${EPREFIX}
+				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
+				&& [[ ! -x ${PYTHON_EPREFIX}/usr/bin/${impl} ]] \
+				&& use prefix-chain; then
+					# Need to search in parent prefixes
+					local parent
+					local parents=()
+					IFS=: eval 'parents=(${PORTAGE_READONLY_EPREFIXES})'
+					for parent in "${parents[@]}"; do
+						if [[ -x ${parent}/usr/bin/${impl} ]]; then
+							PYTHON_EPREFIX=${parent}
+							break
+						fi
+					done
+				fi
+				debug-print "${FUNCNAME}: PYTHON_EPREFIX = ${PYTHON_EPREFIX}"
 				;;
 			PYTHON_SITEDIR)
 				[[ -n ${PYTHON} ]] || die "PYTHON needs to be set for ${var} to be exported, or requested before it"
@@ -451,6 +483,20 @@ python_export() {
 			PYTHON_SCRIPTDIR)
 				local dir
 				export PYTHON_SCRIPTDIR=${EPREFIX}/usr/lib/python-exec/${impl}
+				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
+				&& [[ ! -d ${PYTHON_SCRIPTDIR} ]] \
+				&& use prefix-chain; then
+					# Need to search in parent prefixes
+					local parent
+					local parents=()
+					IFS=: eval 'parents=(${PORTAGE_READONLY_EPREFIXES})'
+					for parent in "${parents[@]}"; do
+						if [[ -e ${parent}/usr/lib/python-exec/${impl} ]]; then
+							PYTHON_SCRIPTDIR=${parent}/usr/lib/python-exec/${impl}
+							break
+						fi
+					done
+				fi
 				debug-print "${FUNCNAME}: PYTHON_SCRIPTDIR = ${PYTHON_SCRIPTDIR}"
 				;;
 			*)
@@ -737,8 +783,8 @@ python_newexe() {
 	local newfn=${2}
 
 	local PYTHON_SCRIPTDIR d
-	python_export PYTHON_SCRIPTDIR
-	d=${PYTHON_SCRIPTDIR#${EPREFIX}}
+	python_export PYTHON_SCRIPTDIR PYTHON_EPREFIX
+	d=${PYTHON_SCRIPTDIR#${PYTHON_EPREFIX}}
 
 	(
 		dodir "${wrapd}"
@@ -865,9 +911,9 @@ python_domodule() {
 	else
 		# relative to site-packages
 		local PYTHON_SITEDIR=${PYTHON_SITEDIR}
-		[[ ${PYTHON_SITEDIR} ]] || python_export PYTHON_SITEDIR
+		[[ ${PYTHON_SITEDIR} ]] || python_export PYTHON_SITEDIR PYTHON_EPREFIX
 
-		d=${PYTHON_SITEDIR#${EPREFIX}}/${python_moduleroot}
+		d=${PYTHON_SITEDIR#${PYTHON_EPREFIX:-${EPREFIX}}}/${python_moduleroot}
 	fi
 
 	(
@@ -900,9 +946,9 @@ python_doheader() {
 	fi
 
 	local d PYTHON_INCLUDEDIR=${PYTHON_INCLUDEDIR}
-	[[ ${PYTHON_INCLUDEDIR} ]] || python_export PYTHON_INCLUDEDIR
+	[[ ${PYTHON_INCLUDEDIR} ]] || python_export PYTHON_INCLUDEDIR PYTHON_EPREFIX
 
-	d=${PYTHON_INCLUDEDIR#${EPREFIX}}
+	d=${PYTHON_INCLUDEDIR#${PYTHON_EPREFIX:-${EPREFIX}}}
 
 	(
 		insinto "${d}"
