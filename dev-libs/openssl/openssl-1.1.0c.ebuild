@@ -80,6 +80,7 @@ src_prepare() {
 	append-flags $(test-flags-CC -Wa,--noexecstack)
 	append-cppflags -DOPENSSL_NO_BUF_FREELISTS
 
+	use prefix-chain ||
 	# Prefixify Configure shebang (#141906)
 	sed \
 		-e "1s,/usr/bin/env,${EPREFIX}&," \
