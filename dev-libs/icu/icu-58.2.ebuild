@@ -109,6 +109,8 @@ multilib_src_configure() {
 	# make sure we configure with the same shell as we run icu-config
 	# with, or ECHO_N, ECHO_T and ECHO_C will be wrongly defined
 	export CONFIG_SHELL=${EPREFIX}/bin/sh
+	# probably have no /bin/sh in prefix-chain
+	[[ -x ${CONFIG_SHELL} ]] || CONFIG_SHELL=${BASH}
 
 	ECONF_SOURCE=${S} \
 	econf "${myeconfargs[@]}"
