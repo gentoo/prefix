@@ -19,6 +19,16 @@ _LIBTOOL_ECLASS=1
 DEPEND=">=app-portage/elt-patches-20170317"
 
 libtool_elt_patch_dir() {
+	if use prefix-chain; then
+		local parent parents
+		IFS=: eval 'parents=(${PORTAGE_READONLY_EPREFIXES})'
+		for parent in "${parents[@]}"; do
+			if [[ -d ${parent}/usr/share/elt-patches ]]; then
+				echo "${parent}/usr/share/elt-patches"
+				return 0
+			fi
+		done
+	fi
 	echo "${EPREFIX}/usr/share/elt-patches"
 }
 
