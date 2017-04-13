@@ -1231,6 +1231,10 @@ bootstrap_stage1() {
 		|| (bootstrap_bash) || return 1
 	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
 	type -P xz > /dev/null || (bootstrap_xz) || return 1
+	# Some host tools need to be wrapped to be useful for us.
+	# We put them in tmp/usr/local/bin, to not accidentally
+	# be identified as stage1-installed like in bug#615410.
+	mkdir -p "${ROOT}"/tmp/usr/local/bin
 	case ${CHOST} in
 		*-*-aix*)
 			# sys-devel/native-cctools installs the wrapper below,
@@ -1239,8 +1243,8 @@ bootstrap_stage1() {
 				echo '#!/bin/sh'
 				echo 'test ${#TMPDIR} -le 85 || TMPDIR=/tmp export TMPDIR'
 				echo 'exec /usr/ccs/bin/nm ${1+"$@"}'
-			} > "${ROOT}"/tmp/usr/bin/nm
-			chmod 755 "${ROOT}"/tmp/usr/bin/nm
+			} > "${ROOT}"/tmp/usr/local/bin/nm
+			chmod 755 "${ROOT}"/tmp/usr/local/bin/nm
 			;;
 		*-darwin*)
 			# Recent Mac OS X have a nice popup to install java when
@@ -1251,9 +1255,9 @@ bootstrap_stage1() {
 			# detected, so hide during the stage builds
 			{
 				echo "#!$(type -P false)"
-			} > "${ROOT}"/tmp/usr/bin/java
-			cp "${ROOT}"/tmp/usr/bin/java{,c}
-			chmod 755 "${ROOT}"/tmp/usr/bin/java{,c}
+			} > "${ROOT}"/tmp/usr/local/bin/java
+			cp "${ROOT}"/tmp/usr/local/bin/java{,c}
+			chmod 755 "${ROOT}"/tmp/usr/local/bin/java{,c}
 			;;
 		*-linux*)
 			if [[ ! -x "${ROOT}"/tmp/usr/bin/gcc ]] \
@@ -1263,13 +1267,13 @@ bootstrap_stage1() {
 				# If the version of our binutils an older one, they may not
 				# provide what the system gcc is configured to use.
 				# We need to direct the system gcc to find the system binutils.
-				cat >> "${ROOT}"/tmp/usr/bin/gcc <<-EOF
+				cat >> "${ROOT}"/tmp/usr/local/bin/gcc <<-EOF
 					#! /bin/sh
 					PATH="${STAGE1_PATH}" export PATH
 					exec "\${0##*/}" "\$@"
 				EOF
-				cp "${ROOT}"/tmp/usr/bin/g{cc,++}
-				chmod 755 "${ROOT}"/tmp/usr/bin/g{cc,++}
+				cp "${ROOT}"/tmp/usr/local/bin/g{cc,++}
+				chmod 755 "${ROOT}"/tmp/usr/local/bin/g{cc,++}
 			fi
 			;;
 	esac
@@ -2360,7 +2364,7 @@ EOF
 		break;
 	done
 	export STAGE1_PATH=${PATH}
-	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:${PATH}"
+	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$EPREFIX/tmp/usr/local/bin:${PATH}"
 
 	cat << EOF
 
