@@ -970,10 +970,7 @@ bootstrap_zlib_core() {
 
 	einfo "Bootstrapping ${A%-*}"
 
-	if ! efetch ${GENTOO_MIRRORS}/distfiles/${A} ; then
-		A=zlib-${PV}.tar.bz2
-		efetch ${GENTOO_MIRRORS}/distfiles/${A} || return 1
-	fi
+	efetch ${GENTOO_MIRRORS}/distfiles/${A} || return 1
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
