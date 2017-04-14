@@ -964,8 +964,8 @@ EOP
 }
 
 bootstrap_zlib_core() {
-	# use 1.2.5 by default, current bootstrap guides
-	PV="${1:-1.2.5}"
+	# use 1.2.8 by default, current bootstrap guides
+	PV="${1:-1.2.8}"
 	A=zlib-${PV}.tar.gz
 
 	einfo "Bootstrapping ${A%-*}"
