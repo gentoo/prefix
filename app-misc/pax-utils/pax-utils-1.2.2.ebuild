@@ -34,6 +34,7 @@ _emake() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-solaris.patch # stpcpy, euidaccess
+	epatch "${FILESDIR}"/${P}-linux-2.6.32.patch # no linux/securebits.h
 }
 
 src_configure() {
