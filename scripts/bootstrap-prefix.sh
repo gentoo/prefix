@@ -178,10 +178,9 @@ configure_toolchain() {
 
 	CC=gcc
 	CXX=g++
-	# cmake dep is pending #603012
 	llvm_deps="
 		app-arch/libarchive
-		<dev-util/cmake-3.7
+		dev-util/cmake
 		dev-util/ninja"
 	case ${CHOST} in
 		*-darwin*)
@@ -1485,6 +1484,10 @@ bootstrap_stage2() {
 	# but we require a C++ compiler there anyway - so just use it.
 	[[ ${CHOST} == *-cygwin* ]] ||
 	echo "dev-libs/gmp -cxx" >> "${ROOT}"/tmp/etc/portage/package.use
+
+	# cmake has some external dependencies which require autoconf, etc.
+	# unless we only build the buildtool, bug #603012
+	echo "dev-util/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
 
 	BOOTSTRAP_RAP_STAGE2=yes \
 	EXTRA_ECONF="--disable-bootstrap" \
