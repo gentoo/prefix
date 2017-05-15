@@ -1553,7 +1553,7 @@ bootstrap_stage3() {
 
 	configure_toolchain || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
-	export CPPFLAGS="-I${ROOT}/usr/include"
+	is-rap || export CPPFLAGS="-I${ROOT}/usr/include"
 	export LDFLAGS="-L${ROOT}/usr/$(get_libdir)"
 	unset CC CXX
 
