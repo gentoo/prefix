@@ -1485,6 +1485,10 @@ bootstrap_stage2() {
 	[[ ${CHOST} == *-cygwin* ]] ||
 	echo "dev-libs/gmp -cxx" >> "${ROOT}"/tmp/etc/portage/package.use
 
+	# Old versions of gcc has been masked.  We need gcc-4.7 to bootstrap
+	# on systems without a c++ compiler.
+	echo '<sys-devel/gcc-4.8' >> "${ROOT}"/tmp/etc/portage/package.unmask
+	
 	# cmake has some external dependencies which require autoconf, etc.
 	# unless we only build the buildtool, bug #603012
 	echo "dev-util/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
