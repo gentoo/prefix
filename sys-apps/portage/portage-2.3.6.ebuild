@@ -145,7 +145,7 @@ python_prepare_all() {
 			-e "s|@sysconfdir@|${EPREFIX}/etc|" \
 			-i '{}' + || \
 			die "Failed to patch sources"
-		# We don't need the below, since setup.py deal with this (and
+		# We don't need the below, since setup.py deals with this (and
 		# more) so we don't have to make this correct
 		#	-e "s|@PORTAGE_BASE@|${EPREFIX}/usr/lib/portage/${EPYTHON}|" \
 
