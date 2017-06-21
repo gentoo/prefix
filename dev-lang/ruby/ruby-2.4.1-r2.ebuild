@@ -91,7 +91,10 @@ src_prepare() {
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
 		configure.in || die "sed failed"
 	# Fix hardcoded SHELL var in mkmf library
-	sed -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" -i lib/mkmf.rb
+	sed -i -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" lib/mkmf.rb
+	# avoid symlink loop on Darwin (?!)
+	sed -i -e '/LIBRUBY_ALIASES=/s/lib$(RUBY_INSTALL_NAME).dylib//' \
+		configure.in || die "sed failed"
 
 	eapply_user
 
@@ -198,11 +201,12 @@ src_install() {
 	local MINIRUBY=$(echo -e 'include Makefile\ngetminiruby:\n\t@echo $(MINIRUBY)'|make -f - getminiruby)
 
 	LD_LIBRARY_PATH="${S}:${ED}/usr/$(get_libdir)${LD_LIBRARY_PATH+:}${LD_LIBRARY_PATH}"
+	DYLD_LIBRARY_PATH="${S}:${ED}/usr/$(get_libdir)${DYLD_LIBRARY_PATH+:}${DYLD_LIBRARY_PATH}"
 	RUBYLIB="${S}:${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}"
 	for d in $(find "${S}/ext" -type d) ; do
 		RUBYLIB="${RUBYLIB}:$d"
 	done
-	export LD_LIBRARY_PATH RUBYLIB
+	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH RUBYLIB
 
 	emake V=1 DESTDIR="${D}" install || die "make install failed"
 
