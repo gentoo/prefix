@@ -98,7 +98,6 @@ rsync -v \
 	--exclude=metadata/cache \
 	--exclude=metadata/dtd \
 	--exclude=metadata/glsa \
-	--exclude=metadata/herds.xml \
 	--exclude=metadata/projects.xml \
 	--exclude=metadata/md5-cache \
 	--exclude=metadata/news \
