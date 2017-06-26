@@ -5,8 +5,8 @@ eval $(env SHELL=/bin/bash keychain -q --noask --eval)
 
 BASE_PATH="$(readlink -f "${BASH_SOURCE[0]%/*}")"
 
-HGDIR="${BASE_PATH}/repos/prefix-tree"
-CVSDIR="${BASE_PATH}/repos/gentoo-x86"
+PREFIXTREEDIR="${BASE_PATH}/repos/prefix-tree"
+GENTOOX86DIR="${BASE_PATH}/repos/gentoo-x86"
 DTDDIR="${BASE_PATH}/repos/dtd"
 GLSADIR="${BASE_PATH}/repos/glsa"
 NEWSDIR="${BASE_PATH}/repos/gentoo-news"
@@ -88,7 +88,7 @@ TIME_METADATA=$((STOP - START))
 START=$(date +%s)
 
 echo "($(date +"%F %R")) updating the gx86 tree"
-pushd "${CVSDIR}" || exit 1
+pushd "${GENTOOX86DIR}" || exit 1
 git pull -q
 popd || exit 1
 rsync -v \
@@ -100,33 +100,33 @@ rsync -v \
 	--exclude=metadata/news \
 	--exclude=scripts \
 	--exclude=.#* \
-	--delete -aC "${CVSDIR}"/ "${RSYNCDIR}"/
-echo "($(date +"%F %R")) entire CVS tree copied"
+	--delete -aC "${GENTOOX86DIR}"/ "${RSYNCDIR}"/
+echo "($(date +"%F %R")) entire gx86 tree copied"
 
 STOP=$(date +%s)
 TIME_CVSGX86=$((STOP - START))
 
 START=$(date +%s)
 
-# update the Mercurial image
+# update the prefix-tree image
 echo "($(date +"%F %R")) updating Prefix tree (Git image)"
-pushd "$HGDIR" || exit 1
+pushd "$PREFIXTREEDIR" || exit 1
 git pull -q || echo "Failed to pull!"
-echo "($(date +"%F %R")) Mercurial image updated"
+echo "($(date +"%F %R")) git image updated"
 
 # rsync the SVN image to the rsync master
-echo "($(date +"%F %R")) rsync Mercurial image to rsync-master"
+echo "($(date +"%F %R")) rsync Prefix tree to rsync-master"
 for entry in scripts *-*/* ; do
 	# copy it over
 	[[ -e ${RSYNCDIR}/${entry} ]] || mkdir -p "${RSYNCDIR}"/${entry}
-	rsync -v --delete -aC "${HGDIR}"/${entry}/ "${RSYNCDIR}"/${entry}/
+	rsync -v --delete -aC "${PREFIXTREEDIR}"/${entry}/ "${RSYNCDIR}"/${entry}/
 done
 
 # we excluded the eclasses above, because we "overlay" them from gx86
 # with the Prefix ones (inside the directory, so no --delete)
-rsync -v -aC "${HGDIR}"/eclass/ "${RSYNCDIR}"/eclass/ || exit 1
+rsync -v -aC "${PREFIXTREEDIR}"/eclass/ "${RSYNCDIR}"/eclass/ || exit 1
 popd || exit 1
-echo "($(date +"%F %R")) Mercurial image rsynced"
+echo "($(date +"%F %R")) Prefix tree rsynced"
 
 STOP=$(date +%s)
 TIME_SVNPREFIX=$((STOP - START))
@@ -191,10 +191,10 @@ TIME_MANISIGN=$((STOP - START))
 # define repo_name, can't use gx86's name as we're different
 echo "($(date +"%F %R")) setting repo_name and making the prefix profiles development ones (iso exp)"
 echo "gentoo_prefix" > "${RSYNCDIR}"/profiles/repo_name
-touch -r "${CVSDIR}"/profiles/repo_name "${RSYNCDIR}"/profiles/repo_name
+touch -r "${GENTOOX86DIR}"/profiles/repo_name "${RSYNCDIR}"/profiles/repo_name
 # reset Prefix profiles to dev status
 sed -i -e '/prefix/s/exp/dev/' "${RSYNCDIR}"/profiles/profiles.desc
-touch -r "${CVSDIR}"/profiles/profiles.desc "${RSYNCDIR}"/profiles/profiles.desc
+touch -r "${GENTOOX86DIR}"/profiles/profiles.desc "${RSYNCDIR}"/profiles/profiles.desc
 echo "($(date +"%F %R")) set up repo $(< "${RSYNCDIR}"/profiles/repo_name)"
 
 
