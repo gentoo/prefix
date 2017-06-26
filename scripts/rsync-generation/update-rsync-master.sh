@@ -37,6 +37,34 @@ EGENCACHE_OPTS="--jobs=4 --load-average=3 --tolerant --update-use-local-desc"
 export PYTHONPATH PORTDIR PORTAGE_BASE_PATH PORTAGE_CONFIGROOT  \
 	ROOT PORTAGE_TMPFS FEATURES HOME
 
+#### ---- git mtime helper ---- ####
+
+apply_git_mtimes() {
+	local from=$1
+	local to=$2
+
+	local ts=0
+	local files=()
+	{
+		git log --pretty=%at --name-status --reverse "${from}..${to}"
+		echo 999  # end marker to trigger the last block to be done
+	} | \
+	while read line ; do
+		case ${line} in
+			[0-9][0-9][0-9]*)
+				if [[ ${ts} -gt 0 ]] ; then
+					touch -m -d @${ts} -- "${files[@]}"
+				fi
+				ts=${line}
+				files=()
+				;;
+			[ACMRT]*)
+				files+=( ${line##* } )
+				;;
+		esac
+	done
+}
+
 #### ---- section metadata add-ons ---- ####
 
 START=$(date +%s)
@@ -45,8 +73,10 @@ GLOBALSTART=${START}
 # update DTDs
 echo "($(date +"%F %R")) updating DTDs"
 pushd "$DTDDIR" || exit 1
+fromcommit=$(git log --pretty=format:'%H' -n1)
 git pull -q
-${BASE_PATH}/set-git-mtimes.sh
+tocommit=$(git log --pretty=format:'%H' -n1)
+apply_git_mtimes "${fromcommit}" "${tocommit}"
 popd || exit 1
 # rsync the DTDs
 rsync -v --delete -aC "${DTDDIR}" "${RSYNCDIR}"/metadata/ || exit 1
@@ -56,8 +86,10 @@ echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/dtd/timestamp.ch
 # update GLSAs
 echo "($(date +"%F %R")) updating GLSAs"
 pushd "$GLSADIR" || exit 1
+fromcommit=$(git log --pretty=format:'%H' -n1)
 git pull -q
-${BASE_PATH}/set-git-mtimes.sh
+tocommit=$(git log --pretty=format:'%H' -n1)
+apply_git_mtimes "${fromcommit}" "${tocommit}"
 popd || exit 1
 # rsync the GLSAs
 rsync -v --delete -aC "${GLSADIR}" "${RSYNCDIR}"/metadata/ || exit 1
@@ -67,8 +99,10 @@ echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/glsa/timestamp.c
 # update news
 echo "($(date +"%F %R")) updating news"
 pushd "$NEWSDIR" || exit 1
+fromcommit=$(git log --pretty=format:'%H' -n1)
 git pull -q
-${BASE_PATH}/set-git-mtimes.sh
+tocommit=$(git log --pretty=format:'%H' -n1)
+apply_git_mtimes "${fromcommit}" "${tocommit}"
 popd || exit 1
 mkdir -p "${RSYNCDIR}"/metadata/news
 rsync -v -Wa --exclude .git --delete "${NEWSDIR}" "${RSYNCDIR}"/metadata/news/
@@ -92,7 +126,10 @@ START=$(date +%s)
 
 echo "($(date +"%F %R")) updating the gx86 tree"
 pushd "${GENTOOX86DIR}" || exit 1
+fromcommit=$(git log --pretty=format:'%H' -n1)
 git pull -q
+tocommit=$(git log --pretty=format:'%H' -n1)
+apply_git_mtimes "${fromcommit}" "${tocommit}"
 popd || exit 1
 rsync -v \
 	--exclude=metadata/cache \
@@ -114,7 +151,10 @@ START=$(date +%s)
 # update the prefix-tree image
 echo "($(date +"%F %R")) updating Prefix tree (Git image)"
 pushd "$PREFIXTREEDIR" || exit 1
-git pull -q || echo "Failed to pull!"
+fromcommit=$(git log --pretty=format:'%H' -n1)
+git pull -q
+tocommit=$(git log --pretty=format:'%H' -n1)
+apply_git_mtimes "${fromcommit}" "${tocommit}"
 echo "($(date +"%F %R")) git image updated"
 
 # rsync the SVN image to the rsync master
@@ -165,7 +205,8 @@ sign_manifest() {
 			--yes "${MANIFEST_CACHE}"/${mc} \
 			< "${BASE_PATH}"/autosigner.pwd >& /dev/null
 		if [[ -f ${MANIFEST_CACHE}/${mc}.asc ]] ; then
-			touch -r "${MANIFEST_CACHE}"/${mc}{,.asc}
+			touch -r "${RSYNCDIR}/${pkg}"/Manifest \
+				"${MANIFEST_CACHE}"/${mc}.asc
 			mv "${MANIFEST_CACHE}"/${mc}{.asc,}
 		else
 			rm "${MANIFEST_CACHE}"/${mc}
