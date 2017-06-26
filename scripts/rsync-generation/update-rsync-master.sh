@@ -46,6 +46,7 @@ GLOBALSTART=${START}
 echo "($(date +"%F %R")) updating DTDs"
 pushd "$DTDDIR" || exit 1
 git pull -q
+${BASE_PATH}/set-git-mtimes.sh
 popd || exit 1
 # rsync the DTDs
 rsync -v --delete -aC "${DTDDIR}" "${RSYNCDIR}"/metadata/ || exit 1
@@ -56,6 +57,7 @@ echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/dtd/timestamp.ch
 echo "($(date +"%F %R")) updating GLSAs"
 pushd "$GLSADIR" || exit 1
 git pull -q
+${BASE_PATH}/set-git-mtimes.sh
 popd || exit 1
 # rsync the GLSAs
 rsync -v --delete -aC "${GLSADIR}" "${RSYNCDIR}"/metadata/ || exit 1
@@ -66,6 +68,7 @@ echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/glsa/timestamp.c
 echo "($(date +"%F %R")) updating news"
 pushd "$NEWSDIR" || exit 1
 git pull -q
+${BASE_PATH}/set-git-mtimes.sh
 popd || exit 1
 mkdir -p "${RSYNCDIR}"/metadata/news
 rsync -v -Wa --exclude .git --delete "${NEWSDIR}" "${RSYNCDIR}"/metadata/news/
@@ -78,7 +81,7 @@ pushd "${RSYNCDIR}"/metadata/ || exit 1
 rm -f projects.xml
 wget -q "https://api.gentoo.org/metastructure/projects.xml" || exit 1
 popd || exit 1
-echo "($(date +"%F %R")) projectss.xml updated"
+echo "($(date +"%F %R")) projects.xml updated"
 
 STOP=$(date +%s)
 TIME_METADATA=$((STOP - START))
@@ -96,6 +99,7 @@ rsync -v \
 	--exclude=metadata/dtd \
 	--exclude=metadata/glsa \
 	--exclude=metadata/herds.xml \
+	--exclude=metadata/projects.xml \
 	--exclude=metadata/md5-cache \
 	--exclude=metadata/news \
 	--exclude=scripts \
