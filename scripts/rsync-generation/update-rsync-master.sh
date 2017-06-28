@@ -59,11 +59,12 @@ apply_git_mtimes() {
 				files=()
 				;;
 			[ACMT]*)
-				files+=( ${line##* } )
+				set -- ${line}
+				files+=( $2 )
 				;;
 			[R]*)
-				set -- ${line##* }
-				files+=( $2 )
+				set -- ${line}
+				files+=( $3 )
 				;;
 		esac
 	done
