@@ -53,7 +53,8 @@ apply_git_mtimes() {
 		case ${line} in
 			[0-9][0-9][0-9]*)
 				if [[ ${ts} -gt 0 ]] ; then
-					touch -m -d @${ts} -- "${files[@]}"
+					[[ ${#files[@]} == 0 ]] || \
+						touch -m -d @${ts} -- "${files[@]}"
 				fi
 				ts=${line}
 				files=()
