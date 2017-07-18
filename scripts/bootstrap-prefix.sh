@@ -162,10 +162,22 @@ configure_toolchain() {
 	  # Cygwin patches come as .zip from github
 	  compiler_stage1+=" app-arch/unzip sys-devel/gcc"
 	  ;;
+	*-darwin*)
+	  # handled below
+	  ;;
 	*)
 	  # The host may not have a functioning c++ toolchain, so use a
 	  # stage1 compiler that can build with C only.
-	  compiler_stage1+=" <sys-devel/gcc-4.8"
+	  # But gcc-4.7 fails to build with gcc-5.4, so we check for
+	  # >gcc-4.7, as anything newer provides c++ anyway (#619542).
+	  eval $( (gcc -E - | grep compiler_stage1) <<-EOP
+		#if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ > 7))
+		  compiler_stage1+=" sys-devel/gcc"
+		#else
+		  compiler_stage1+=" <sys-devel/gcc-4.8"
+		#endif
+		EOP
+	  )
 	esac
 
 	# unfortunately, gmp needs c++, thus libcxx, so have to drag
