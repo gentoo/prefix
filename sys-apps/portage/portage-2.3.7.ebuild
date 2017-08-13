@@ -90,7 +90,6 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}"/${PN}-2.2.28-ebuildshell-r1.patch # 155161
-	epatch "${FILESDIR}"/${PN}-2.3.4-mj-safe-econf.patch
 	use prefix-chaining &&
 		epatch "${FILESDIR}"/${PN}-2.3.5-prefix-chaining.patch
 
@@ -114,18 +113,12 @@ python_prepare_all() {
 
 	if [[ -n ${EPREFIX} ]] ; then
 		# PREFIX LOCAL: only hack const_autotool
-		local extrapath="/usr/bin:/bin"
+		local extrapath="/usr/sbin:/usr/bin:/sbin:/bin"
 		# ok, we can't rely on PORTAGE_ROOT_USER being there yet, as people
 		# tend not to update that often, as long as we are a separate ebuild
 		# we can assume when unset, it's time for some older trick
 		if [[ -z ${PORTAGE_ROOT_USER} ]] ; then
 			PORTAGE_ROOT_USER=$(python -c 'from portage.const import rootuser; print rootuser')
-		fi
-		# lazy check, but works for now
-		if [[ ${PORTAGE_ROOT_USER} == "root" ]] ; then
-			# we need this for e.g. mtree on FreeBSD (and Darwin) which is in
-			# /usr/sbin
-			extrapath="/usr/sbin:/usr/bin:/sbin:/bin"
 		fi
 		local defaultpath="${EPREFIX}/usr/sbin:${EPREFIX}/usr/bin:${EPREFIX}/sbin:${EPREFIX}/bin"
 		# We need to probe for bash in the Prefix, because it may not
@@ -151,7 +144,7 @@ python_prepare_all() {
 			-e "s|@sysconfdir@|${EPREFIX}/etc|" \
 			-i '{}' + || \
 			die "Failed to patch sources"
-		# We don't need the below, since setup.py deal with this (and
+		# We don't need the below, since setup.py deals with this (and
 		# more) so we don't have to make this correct
 		#	-e "s|@PORTAGE_BASE@|${EPREFIX}/usr/lib/portage/${EPYTHON}|" \
 
