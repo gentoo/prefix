@@ -67,7 +67,7 @@ PDEPEND="
 
 REQUIRED_USE="epydoc? ( $(python_gen_useflags 'python2*') )"
 
-SRC_ARCHIVES="https://dev.gentoo.org/~dolsen/releases/portage http://dev.gentoo.org/~grobian/distfiles"
+SRC_ARCHIVES="https://dev.gentoo.org/~dolsen/releases/portage https://dev.gentoo.org/~grobian/distfiles"
 
 prefix_src_archives() {
 	local x y
