@@ -127,9 +127,11 @@ src_prepare() {
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
 	# On AIX, we've wrapped /usr/ccs/bin/nm to work around long TMPDIR.
 	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
-	# fix header standards conflicts on Solaris
-	sed -i -e "/_XOPEN_SOURCE/s/500/600/" \
-		Modules/_multiprocessing/multiprocessing.h || die
+	# fix header standards conflicts on Solaris 11+
+	if [[ ${CHOST} == *-solaris2.* && ${CHOST##*.} -ge 11 ]] ; then
+		sed -i -e "/_XOPEN_SOURCE/s/500/600/" \
+			Modules/_multiprocessing/multiprocessing.h || die
+	fi
 
 	# Fix for cross-compiling.
 	epatch "${FILESDIR}/python-2.7.5-nonfatal-compileall.patch"
