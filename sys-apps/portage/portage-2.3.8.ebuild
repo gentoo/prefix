@@ -90,7 +90,6 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}"/${PN}-2.2.28-ebuildshell-r1.patch # 155161
-	epatch "${FILESDIR}"/${PN}-2.3.4-mj-safe-econf.patch
 	use prefix-chaining &&
 		epatch "${FILESDIR}"/${PN}-2.3.5-prefix-chaining.patch
 
