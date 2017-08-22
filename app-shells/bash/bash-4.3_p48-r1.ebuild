@@ -1,13 +1,12 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.2_p53.ebuild,v 1.4 2014/10/08 06:21:18 armin76 Exp $
 
-EAPI="4"
+EAPI="5"
 
-inherit eutils flag-o-matic toolchain-funcs multilib prefix
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 # Official patchlevel
-# See ftp://ftp.cwru.edu/pub/bash/bash-4.2-patches/
+# See ftp://ftp.cwru.edu/pub/bash/bash-4.3-patches/
 PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
 MY_PV=${MY_PV/_/-}
@@ -28,23 +27,36 @@ patches() {
 	fi
 }
 
+# The version of readline this bash normally ships with.
+READLINE_VER="6.3"
+
 DESCRIPTION="The standard GNU Bourne again shell"
 HOMEPAGE="http://tiswww.case.edu/php/chet/bash/bashtop.html"
 SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)"
+[[ ${PV} == *_rc* ]] && SRC_URI+=" ftp://ftp.cwru.edu/pub/bash/${MY_P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="afs bashlogger examples mem-scramble +net nls plugins +readline vanilla"
+KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="afs bashlogger examples mem-scramble +net nls plugins +readline"
 
-DEPEND=">=sys-libs/ncurses-5.2-r2
-	readline? ( >=sys-libs/readline-6.2 )
+DEPEND=">=sys-libs/ncurses-5.2-r2:0=
+	readline? ( >=sys-libs/readline-${READLINE_VER}:0= )
 	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}
-	!!<sys-apps/portage-2.1.6.7_p1
-	!!<sys-apps/paludis-0.26.0_alpha5"
+	!<sys-apps/portage-2.1.6.7_p1
+	!<sys-apps/paludis-0.26.0_alpha5"
 # we only need yacc when the .y files get patched (bash42-005)
 DEPEND+=" virtual/yacc"
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-4.3-mapfile-improper-array-name-validation.patch
+	"${FILESDIR}"/${PN}-4.3-arrayfunc.patch
+	"${FILESDIR}"/${PN}-4.3-protos.patch
+	"${FILESDIR}"/${PN}-4.4-popd-offset-overflow.patch #600174
+	"${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
+	"${FILESDIR}"/${PN}-4.3_p39-cygwin-r2.patch
+)
 
 S=${WORKDIR}/${MY_P}
 
@@ -68,57 +80,25 @@ src_prepare() {
 	# Include official patches
 	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
 
-	# Clean out local libs so we know we use system ones
-	rm -rf lib/{readline,termcap}/*
-	touch lib/{readline,termcap}/Makefile.in # for config.status
-	sed -ri -e 's:\$[(](RL|HIST)_LIBSRC[)]/[[:alpha:]]*.h::g' Makefile.in || die
+	# Clean out local libs so we know we use system ones w/releases.
+	if [[ ${PV} != *_rc* ]] ; then
+		rm -rf lib/{readline,termcap}/*
+		touch lib/{readline,termcap}/Makefile.in # for config.status
+		sed -ri -e 's:\$[(](RL|HIST)_LIBSRC[)]/[[:alpha:]]*.h::g' Makefile.in || die
+	fi
+
+	# Prefixify hardcoded path names. No-op for non-prefix.
+	hprefixify pathnames.h.in
 
 	# Avoid regenerating docs after patches #407985
 	sed -i -r '/^(HS|RL)USER/s:=.*:=:' doc/Makefile.in || die
 	touch -r . doc/*
 
-	epatch "${FILESDIR}"/${PN}-4.2-execute-job-control.patch #383237
-	epatch "${FILESDIR}"/${PN}-4.2-parallel-build.patch
-	epatch "${FILESDIR}"/${PN}-4.2-no-readline.patch
-	epatch "${FILESDIR}"/${PN}-4.2-read-retry.patch #447810
-	if ! use vanilla ; then
-		epatch "${FILESDIR}"/${PN}-4.2-speed-up-read-N.patch
-	fi
-
-	# this adds additional prefixes
-	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
-	eprefixify pathnames.h.in
-
-	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
-	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
-
-	epatch "${FILESDIR}"/${PN}-4.2-darwin13.patch # patch from 4.3
-	epatch "${FILESDIR}"/${PN}-4.1-blocking-namedpipe.patch # aix lacks /dev/fd/
-	epatch "${FILESDIR}"/${PN}-4.0-childmax-pids.patch # AIX, Interix
-	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
-	fi
-
-	# Fix not to reference a disabled symbol if USE=-readline, breaks
-	# Darwin, bug #500932
-	if use !readline ; then
-		sed -i -e 's/enable_hostname_completion//' builtins/shopt.def || die
-	fi
+	epatch "${PATCHES[@]}"
 
 	# Nasty trick to set bashbug's shebang to bash instead of sh. We don't have
 	# sh while bootstrapping for the first time, This works around bug 309825
 	sed -i -e '1s:sh:bash:' support/bashbug.sh || die
-
-	# modify the bashrc file for prefix
-	pushd "${T}" > /dev/null || die
-	cp "${FILESDIR}"/bashrc .
-	epatch "${FILESDIR}"/bashrc-prefix.patch
-	eprefixify bashrc
-	popd > /dev/null
-
-	# DON'T YOU EVER PUT eautoreconf OR SIMILAR HERE!  THIS IS A CRITICAL
-	# PACKAGE THAT MUST NOT RELY ON AUTOTOOLS, USE A SELF-SUFFICIENT PATCH
-	# INSTEAD!!!
 
 	epatch_user
 }
@@ -127,28 +107,16 @@ src_configure() {
 	local myconf=()
 
 	# For descriptions of these, see config-top.h
-	# bashrc/#26952 bash_logout/#90488 ssh/#24762
-	if use prefix ; then
-		append-cppflags \
-			-DDEFAULT_PATH_VALUE=\'\"${EPREFIX}/usr/sbin:${EPREFIX}/usr/bin:${EPREFIX}/sbin:${EPREFIX}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\' \
-			-DSTANDARD_UTILS_PATH=\'\"${EPREFIX}/bin:${EPREFIX}/usr/bin:${EPREFIX}/sbin:${EPREFIX}/usr/sbin:/bin:/usr/bin:/sbin:/usr/sbin\"\' \
-			-DSYS_BASHRC=\'\"${EPREFIX}/etc/bash/bashrc\"\' \
-			-DSYS_BASH_LOGOUT=\'\"${EPREFIX}/etc/bash/bash_logout\"\' \
-			-DNON_INTERACTIVE_LOGIN_SHELLS \
-			-DSSH_SOURCE_BASHRC \
-			$(use bashlogger && echo -DSYSLOG_HISTORY)
-	else
+	# bashrc/#26952 bash_logout/#90488 ssh/#24762 mktemp/#574426
 	append-cppflags \
-		-DDEFAULT_PATH_VALUE=\'\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\' \
-		-DSTANDARD_UTILS_PATH=\'\"/bin:/usr/bin:/sbin:/usr/sbin\"\' \
-		-DSYS_BASHRC=\'\"/etc/bash/bashrc\"\' \
-		-DSYS_BASH_LOGOUT=\'\"/etc/bash/bash_logout\"\' \
+		-DDEFAULT_PATH_VALUE=\'\"${EPREFIX}/usr/local/sbin:${EPREFIX}/usr/local/bin:${EPREFIX}/usr/sbin:${EPREFIX}/usr/bin:${EPREFIX}/sbin:${EPREFIX}/bin\"\' \
+		-DSTANDARD_UTILS_PATH=\'\"${EPREFIX}/bin:${EPREFIX}/usr/bin:${EPREFIX}/sbin:${EPREFIX}/usr/sbin\"\' \
+		-DSYS_BASHRC=\'\"${EPREFIX}/etc/bash/bashrc\"\' \
+		-DSYS_BASH_LOGOUT=\'\"${EPREFIX}/etc/bash/bash_logout\"\' \
 		-DNON_INTERACTIVE_LOGIN_SHELLS \
 		-DSSH_SOURCE_BASHRC \
+		-DUSE_MKTEMP -DUSE_MKSTEMP \
 		$(use bashlogger && echo -DSYSLOG_HISTORY)
-	fi
-
-	# IRIX's MIPSpro produces garbage with >= -O2, bug #209137
 	[[ ${CHOST} == mips-sgi-irix* ]] && replace-flags -O? -O1
 
 	if [[ ${CHOST} == *-aix* ]] || [[ ${CHOST} == *-hpux* ]] ; then
@@ -166,6 +134,10 @@ src_configure() {
 		export ac_cv_lib_tinfo_tgetent=no
 		export ac_cv_lib_curses_tgetent=no # found on AIX
 		#export ac_cv_lib_ncurses_tgetent=no
+
+		# Without /dev/fd/*, bash uses named pipes instead, but the
+		# pipe names are not unique enough for portage's multijob.
+		append-cppflags -DUSE_MKTEMP
 	fi
 
 	# Don't even think about building this statically without
@@ -181,22 +153,38 @@ src_configure() {
 	# be safe.
 	# Exact cached version here doesn't really matter as long as it
 	# is at least what's in the DEPEND up above.
-	export ac_cv_rl_version=6.2
+	export ac_cv_rl_version=${READLINE_VER}
 
 	# Force linking with system curses ... the bundled termcap lib
 	# sucks bad compared to ncurses.  For the most part, ncurses
 	# is here because readline needs it.  But bash itself calls
 	# ncurses in one or two small places :(.
 
-	use plugins && case ${CHOST} in
-		*-linux-gnu | *-solaris* | *-freebsd* )
-			append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/bash
-		;;
-		# Darwin doesn't need an rpath here (in fact doesn't grok the argument)
-	esac
+	if [[ ${PV} != *_rc* ]] ; then
+		# Use system readline only with released versions.
+		myconf+=( --with-installed-readline=. )
+	fi
+
+	if use plugins; then
+		case ${CHOST} in
+			*-linux-gnu | *-solaris* | *-freebsd* )
+				append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/bash
+				;;
+				# Darwin doesn't need an rpath here (in fact doesn't grok the argument)
+		esac
+	else
+		# Disable the plugins logic by hand since bash doesn't
+		# provide a way of doing it.
+		export ac_cv_func_dl{close,open,sym}=no \
+			ac_cv_lib_dl_dlopen=no ac_cv_header_dlfcn_h=no
+		sed -i \
+			-e '/LOCAL_LDFLAGS=/s:-rdynamic::' \
+			configure || die
+	fi
 	tc-export AR #444070
 	econf \
-		--with-installed-readline=. \
+		--docdir='$(datarootdir)'/doc/${PF} \
+		--htmldir='$(docdir)/html' \
 		--with-curses \
 		$(use_with afs) \
 		$(use_enable net net-redirections) \
@@ -218,15 +206,18 @@ src_compile() {
 }
 
 src_install() {
-	emake install DESTDIR="${D}"
+	local d f
+
+	default
 
 	dodir /bin
 	mv "${ED}"/usr/bin/bash "${ED}"/bin/ || die
 	dosym bash /bin/rbash
 
 	insinto /etc/bash
-	doins "${T}"/bashrc
 	doins "${FILESDIR}"/bash_logout
+	doins "$(prefixify_ro "${FILESDIR}"/bashrc)"
+	keepdir /etc/bash/bashrc.d
 	insinto /etc/skel
 	for f in bash{_logout,_profile,rc} ; do
 		newins "${FILESDIR}"/dot-${f} .${f}
@@ -251,12 +242,11 @@ src_install() {
 		exeinto /usr/$(get_libdir)/bash
 		doexe $(echo examples/loadables/*.o | sed 's:\.o::g')
 		insinto /usr/include/bash-plugins
-		doins *.h builtins/*.h examples/loadables/*.h include/*.h \
-			lib/{glob/glob.h,tilde/tilde.h}
+		doins *.h builtins/*.h include/*.h lib/{glob/glob.h,tilde/tilde.h}
 	fi
 
 	if use examples ; then
-		for d in examples/{functions,misc,scripts,scripts.noah,scripts.v2} ; do
+		for d in examples/{functions,misc,scripts,startup-files} ; do
 			exeinto /usr/share/doc/${PF}/${d}
 			insinto /usr/share/doc/${PF}/${d}
 			for f in ${d}/* ; do
@@ -270,7 +260,7 @@ src_install() {
 	fi
 
 	doman doc/*.1
-	dodoc README NEWS AUTHORS CHANGES COMPAT Y2K doc/FAQ doc/INTRO
+	newdoc CWRU/changelog ChangeLog
 	dosym bash.info /usr/share/info/bashref.info
 }
 
@@ -280,7 +270,7 @@ pkg_preinst() {
 		mv -f "${EROOT}"/etc/bashrc "${EROOT}"/etc/bash/
 	fi
 
-	if [[ -L ${EROOT}/bin/sh ]]; then
+	if [[ -L ${EROOT}/bin/sh ]] ; then
 		# rewrite the symlink to ensure that its mtime changes. having /bin/sh
 		# missing even temporarily causes a fatal error with paludis.
 		local target=$(readlink "${EROOT}"/bin/sh)
@@ -292,7 +282,7 @@ pkg_preinst() {
 
 pkg_postinst() {
 	# If /bin/sh does not exist, provide it
-	if [[ ! -e ${EROOT}/bin/sh ]]; then
+	if [[ ! -e ${EROOT}/bin/sh ]] ; then
 		ln -sf bash "${EROOT}"/bin/sh
 	fi
 }
