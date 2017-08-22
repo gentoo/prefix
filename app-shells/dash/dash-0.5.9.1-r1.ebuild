@@ -30,16 +30,11 @@ DEPEND="${RDEPEND}
 
 #S=${WORKDIR}/${MY_P}
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-0.5.8.1-eval-warnx.patch
-)
-
 src_prepare() {
 	if [[ -n "${DEB_PATCH}" ]] ; then
 		epatch "${WORKDIR}"/${DEB_PF}.diff
 		epatch */debian/diff/*
 	fi
-	epatch "${PATCHES[@]}"
 
 	#337329 #527848
 	use vanilla ||  epatch "${FILESDIR}"/${PN}-0.5.9.1-dumb-echo.patch
