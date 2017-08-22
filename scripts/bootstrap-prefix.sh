@@ -153,7 +153,7 @@ configure_cflags() {
 
 configure_toolchain() {
 	linker="sys-devel/binutils"
-	local gcc_deps="app-portage/elt-patches dev-libs/gmp dev-libs/mpfr dev-libs/mpc"
+	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc"
 	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
 	case ${CHOST} in
@@ -1457,6 +1457,7 @@ bootstrap_stage2() {
 
 	# Build a basic compiler and portage dependencies in $ROOT/tmp.
 	pkgs=(
+		sys-apps/gentoo-functions
 		app-portage/elt-patches
 		$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
 		$([[ ${CHOST} == *-cygwin* ]] && echo dev-libs/libiconv ) # bash dependency
@@ -1465,7 +1466,6 @@ bootstrap_stage2() {
 		app-shells/bash
 		app-arch/xz-utils
 		sys-apps/sed
-		sys-apps/gentoo-functions
 		sys-apps/baselayout-prefix
 		dev-libs/libffi
 		sys-devel/m4
@@ -1618,6 +1618,7 @@ bootstrap_stage3() {
 		pkgs=(
 			sys-apps/baselayout
 			sys-apps/gentoo-functions
+			app-portage/elt-patches
 			sys-kernel/linux-headers
 			sys-libs/glibc
 			sys-libs/zlib
@@ -1628,10 +1629,10 @@ bootstrap_stage3() {
 		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && rm "${ROOT}"/usr/bin/perl
 	else
 		pkgs=(
+			sys-apps/gentoo-functions
 			app-portage/elt-patches
 			app-arch/xz-utils
 			sys-apps/sed
-			sys-apps/gentoo-functions
 			sys-apps/baselayout-prefix
 			sys-devel/m4
 			sys-devel/flex
