@@ -127,7 +127,7 @@ src_configure() {
 		;;
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
-			myconf+=( --with-gnu-ld --with-gnu-as )
+			myconf+=( --with-gnu-ld --with-gnu-as --enable-largefile )
 		;;
 		*-aix*)
 			# AIX doesn't use GNU binutils, because it doesn't produce usable

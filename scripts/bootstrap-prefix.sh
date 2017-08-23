@@ -522,7 +522,7 @@ do_tree() {
 bootstrap_tree() {
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
-	local PV="20170708"
+	local PV="20170822"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
@@ -598,8 +598,8 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
-	STABLE_PV="2.3.5"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.5"
+	STABLE_PV="2.3.8"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.8"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
@@ -615,10 +615,6 @@ bootstrap_portage() {
 	bzip2 -dc "${DISTDIR}/${A}" | $TAR -xf - || return 1
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
-
-	# Cygwin
-	patch -p1 < "${PORTDIR}"/sys-apps/portage/files/portage-2.2.28-cygwin.patch
-	patch -p1 < "${PORTDIR}"/sys-apps/portage/files/portage-2.3.4-mj-safe-econf.patch
 
 	# >=2.3
 	[[ -r bin/repoman ]] || sed -i -e '/repoman/d' {man,bin}/Makefile.in
