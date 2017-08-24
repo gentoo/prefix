@@ -127,10 +127,14 @@ src_prepare() {
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
 	# On AIX, we've wrapped /usr/ccs/bin/nm to work around long TMPDIR.
 	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
-	# fix header standards conflicts on Solaris 11+
-	if [[ ${CHOST} == *-solaris2.* && ${CHOST##*.} -ge 11 ]] ; then
-		sed -i -e "/_XOPEN_SOURCE/s/500/600/" \
-			Modules/_multiprocessing/multiprocessing.h || die
+	# fix header standards conflicts on Solaris
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# GCC5 switched the default from gnu89 to gnu11, a standards
+		# conflict arises from that, which can be solved by upgrading
+		# _XOPEN_SOURCE from 500 to 600, but since it is compiler
+		# version specific, just force the old standard onto the
+		# compiler.  Python 3 properly detects this.
+		CC="$(tc-getCC) -std=gnu89"
 	fi
 
 	# Fix for cross-compiling.
