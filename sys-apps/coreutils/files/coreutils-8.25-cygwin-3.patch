@@ -286,7 +286,7 @@ coreutils-8.25-3 source package, modified to avoid re-running autotools:
      optional_bin_progs=stdbuf
 --- origsrc/coreutils-8.25/doc/coreutils.texi	2016-01-13 04:16:39.000000000 -0700
 +++ src/coreutils-8.25/doc/coreutils.texi	2016-04-12 12:49:47.318287500 -0600
-@@ -7665,6 +7665,14 @@ These options change how file names them
+#@@ -7665,6 +7665,14 @@ These options change how file names them
  
  @table @samp
  
@@ -301,7 +301,7 @@ coreutils-8.25-3 source package, modified to avoid re-running autotools:
  @item -b
  @itemx --escape
  @itemx --quoting-style=escape
-@@ -11679,6 +11687,14 @@ With this option, @command{stat} acts on
+#@@ -11679,6 +11687,14 @@ With this option, @command{stat} acts on
  by each symbolic link argument.
  Without it, @command{stat} acts on any symbolic link argument directly.
  
