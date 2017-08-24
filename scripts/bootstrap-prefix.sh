@@ -320,13 +320,7 @@ bootstrap_setup() {
 	if is-rap && [[ ! -f ${ROOT}/etc/portage/repos.conf ]] ; then
 		cat  >"${ROOT}"/etc/portage/repos.conf <<-EOF
 			[DEFAULT]
-			main-repo = gentoo
 			eclass-overrides = rap
-
-			[gentoo]
-			location = ${ROOT}/usr/portage
-			sync-type = rsync
-			sync-uri = rsync://rsync.gentoo.org/gentoo-portage
 
 			[rap]
 			location = ${ROOT}/usr/portage-stage
