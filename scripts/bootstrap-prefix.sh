@@ -192,6 +192,7 @@ configure_toolchain() {
 	CXX=g++
 	llvm_deps="
 		app-arch/libarchive
+		app-crypt/rhash
 		dev-util/cmake
 		dev-util/ninja"
 	case ${CHOST} in
