@@ -1375,6 +1375,7 @@ do_emerge_pkgs() {
 			bootstrap
 			clang
 			internal-glib
+			build
 		)
 		myuse=" ${myuse[*]} "
 		local use
