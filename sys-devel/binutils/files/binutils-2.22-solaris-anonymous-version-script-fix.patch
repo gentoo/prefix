@@ -1,0 +1,24 @@
+https://sourceware.org/bugzilla/show_bug.cgi?id=12548
+
+diff --git a/ld/emultempl/solaris2.em b/ld/emultempl/solaris2.em
+index dfb173d..84c9629 100644
+--- a/ld/emultempl/solaris2.em
++++ b/ld/emultempl/solaris2.em
+@@ -100,8 +100,15 @@ elf_solaris2_before_allocation (void)
+       if (soname == NULL)
+ 	soname = lbasename (bfd_get_filename (link_info.output_bfd));
+ 
+-      /* Register the node.  */
+-      lang_register_vers_node (soname, basever, NULL);
++      /* PR 12548: For compatibility with the Solaris linker we convert
++	 an already existing anonymous version tag into base version tag.  */
++      if (link_info.version_info != NULL
++	  && (soname == NULL || soname[0] == '\0'
++	      || link_info.version_info->name[0] == '\0'))
++	basever->vernum = 0;
++      else
++	/* Register the node.  */
++	lang_register_vers_node (soname, basever, NULL);
+       /* Enforce base version.  The encoded vd_ndx is vernum + 1.  */
+       basever->vernum = 0;
+     }
