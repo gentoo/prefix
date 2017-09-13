@@ -13,7 +13,7 @@ inherit eutils toolchain flag-o-matic
 DESCRIPTION="The GNU Compiler Collection"
 
 LICENSE="GPL-2+ LGPL-2.1+ FDL-1.2+"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
