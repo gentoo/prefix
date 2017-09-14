@@ -757,6 +757,9 @@ bootstrap_gnu() {
 	# Gentoo Bug 400831, fails on Ubuntu with libssl-dev installed
 	[[ ${PN} == "wget" ]] && myconf="${myconf} --without-ssl"
 
+	# SuSE 11.1 has GNU binutils-2.20, choking on crc32_x86
+	[[ ${PN} == "xz" ]] && myconf="${myconf} --disable-assembler"
+
 	# we do not have pkg-config to find lib/libffi-*/include/ffi.h
 	[[ ${PN} == "libffi" ]] && 
 	sed -i -e '/includesdir =/s/=.*/= $(includedir)/' include/Makefile.in
