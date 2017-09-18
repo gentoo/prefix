@@ -91,7 +91,7 @@ python_prepare_all() {
 
 	epatch "${FILESDIR}"/${PN}-2.2.28-ebuildshell-r1.patch # 155161
 	use prefix-chaining &&
-		epatch "${FILESDIR}"/${PN}-2.3.5-prefix-chaining.patch
+		epatch "${FILESDIR}"/${PN}-2.3.8-prefix-chaining.patch
 
 	if use native-extensions; then
 		printf "[build_ext]\nportage-ext-modules=true\n" >> \
