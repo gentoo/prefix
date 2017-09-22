@@ -359,11 +359,11 @@ bootstrap_setup() {
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
 			;;
-		i*86-apple-darwin1[0123])
+		i*86-apple-darwin1[01234567])
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
 			;;
-		x86_64-apple-darwin9|x86_64-apple-darwin1[0123456])
+		x86_64-apple-darwin9|x86_64-apple-darwin1[01234567])
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
