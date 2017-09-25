@@ -27,7 +27,7 @@ done
 
 LICENSE="Sleepycat"
 SLOT="5.3"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="doc java cxx tcl test"
 
 REQUIRED_USE="test? ( tcl )"
@@ -94,6 +94,8 @@ src_prepare() {
 
 	# Needed when compiling with clang
 	epatch "${FILESDIR}"/${PN}-5.1.29-rename-atomic-compare-exchange.patch
+
+	epatch "${FILESDIR}"/${PN}-6.0.35-winnt.patch
 
 	# Upstream release script grabs the dates when the script was run, so lets
 	# end-run them to keep the date the same.
@@ -168,6 +170,14 @@ multilib_src_configure() {
 		)
 	else
 		myconf+=(--disable-tcl )
+	fi
+
+	if [[ ${CHOST} == *-winnt* ]]; then
+		# this one should really sound --enable-windows, but
+		# seems the db devs only support mingw ... doesn't enable
+		# anything too specific to mingw.
+		myconf+=(--enable-mingw)
+		myconf+=(--with-mutex=win32)
 	fi
 
 	# sql_compat will cause a collision with sqlite3
