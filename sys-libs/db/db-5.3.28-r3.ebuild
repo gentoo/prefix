@@ -27,7 +27,7 @@ done
 
 LICENSE="Sleepycat"
 SLOT="5.3"
-KEYWORDS=""
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc java cxx tcl test"
 
 REQUIRED_USE="test? ( tcl )"
@@ -36,7 +36,10 @@ REQUIRED_USE="test? ( tcl )"
 DEPEND="tcl? ( >=dev-lang/tcl-8.5.15-r1:0=[${MULTILIB_USEDEP}] )
 	test? ( >=dev-lang/tcl-8.5.15-r1:0=[${MULTILIB_USEDEP}] )
 	java? ( >=virtual/jdk-1.5 )
-	>=sys-devel/binutils-2.16.1"
+	|| ( sys-devel/binutils-apple
+		 sys-devel/native-cctools
+		 >=sys-devel/binutils-2.16.1
+	)"
 RDEPEND="tcl? ( >=dev-lang/tcl-8.5.15-r1:0=[${MULTILIB_USEDEP}] )
 	java? ( >=virtual/jre-1.5 )"
 
@@ -53,10 +56,33 @@ src_prepare() {
 
 	# bug #510506
 	epatch "${FILESDIR}"/${PN}-4.8.24-java-manifest-location.patch
+	# Set of patches to make this thing compile with C++11, Oracle
+	# promised to fix this for the next release
+	# https://community.oracle.com/thread/3952592
+	epatch "${FILESDIR}"/${PN}-6.2-c++11.patch
+
+	pushd dist > /dev/null || die "Cannot cd to 'dist'"
+
+	# need to upgrade local copy of libtool.m4
+	# for correct shared libs on aix (#213277).
+	local g="" ; type -P glibtoolize > /dev/null && g=g
+	local _ltpath="$(dirname "$(dirname "$(type -P ${g}libtoolize)")")"
+	cp -f "${_ltpath}"/share/aclocal/libtool.m4 aclocal/libtool.m4 \
+		|| die "cannot update libtool.ac from libtool.m4"
+
+	# need to upgrade ltmain.sh for AIX,
+	# but aclocal.m4 is created in ./s_config,
+	# and elibtoolize does not work when there is no aclocal.m4, so:
+	${g}libtoolize --force --copy || die "${g}libtoolize failed."
+	# now let shipped script do the autoconf stuff, it really knows best.
+	#see code below
+	#sh ./s_config || die "Cannot execute ./s_config"
 
 	# use the includes from the prefix
 	epatch "${FILESDIR}"/${PN}-4.6-jni-check-prefix-first.patch
 	epatch "${FILESDIR}"/${PN}-4.3-listen-to-java-options.patch
+
+	popd > /dev/null
 
 	# sqlite configure call has an extra leading ..
 	# upstreamed:5.2.36, missing in 5.3.x
@@ -119,9 +145,12 @@ multilib_src_configure() {
 
 	# Add linker versions to the symbols. Easier to do, and safer than header file
 	# mumbo jumbo.
-	if use userland_GNU ; then
+	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] ; then
+		# we hopefully use a GNU binutils linker in this case
 		append-ldflags -Wl,--default-symver
 	fi
+
+	tc-export CC CXX # would use CC=xlc_r on aix if not set
 
 	# use `set` here since the java opts will contain whitespace
 	if multilib_is_native_abi && use java ; then
@@ -172,7 +201,9 @@ multilib_src_install() {
 	db_src_install_usrlibcleanup
 
 	if multilib_is_native_abi && use java; then
-		java-pkg_regso "${ED}"/usr/"$(get_libdir)"/libdb_java*.so
+		local ext=so
+		[[ ${CHOST} == *-darwin* ]] && ext=jnilib #313085
+		java-pkg_regso "${ED}"/usr/"$(get_libdir)"/libdb_java*.${ext}
 		java-pkg_dojar "${ED}"/usr/"$(get_libdir)"/*.jar
 		rm -f "${ED}"/usr/"$(get_libdir)"/*.jar
 	fi
