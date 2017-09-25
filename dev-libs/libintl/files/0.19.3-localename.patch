@@ -55,7 +55,7 @@
  #endif
  
 -#if defined WINDOWS_NATIVE || defined __CYGWIN__ /* Native Windows or Cygwin */
-+#if defined WINDOWS_NATIVE_ /* Native Windows */
++#if defined WINDOWS_NATIVE /* Native Windows */
  # define WIN32_LEAN_AND_MEAN
  # include <windows.h>
  # include <winnls.h>
@@ -114,7 +114,7 @@
  #endif
  
 -#if defined WINDOWS_NATIVE || defined __CYGWIN__ /* Native Windows or Cygwin */
-+#if defined WINDOWS_NATIVE_ /* Native Windows */
++#if defined WINDOWS_NATIVE /* Native Windows */
  # define WIN32_LEAN_AND_MEAN
  # include <windows.h>
  # include <winnls.h>

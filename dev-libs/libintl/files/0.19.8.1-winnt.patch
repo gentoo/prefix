@@ -1,0 +1,11 @@
+--- gettext-0.19.8.1/gettext-runtime/intl/export.h.orig	2017-09-25 17:11:21.466134600 +0200
++++ gettext-0.19.8.1/gettext-runtime/intl/export.h	2017-09-25 17:11:23.294289400 +0200
+@@ -1,6 +1,8 @@
+ 
+ #if @HAVE_VISIBILITY@ && BUILDING_LIBINTL
+ #define LIBINTL_DLL_EXPORTED __attribute__((__visibility__("default")))
++#elif defined(_MSC_VER) && BUILDING_LIBINTL
++#define LIBINTL_DLL_EXPORTED __declspec(dllexport)
+ #else
+ #define LIBINTL_DLL_EXPORTED
+ #endif
