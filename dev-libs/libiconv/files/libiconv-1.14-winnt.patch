@@ -1,0 +1,31 @@
+--- libiconv-1.14/configure.orig	2017-09-21 10:12:09.263109700 +0200
++++ libiconv-1.14/configure	2017-09-21 10:12:26.809908100 +0200
+@@ -13478,7 +13478,7 @@
+ 
+ 
+ case "$host_os" in
+-  mingw* | cygwin*) is_woe32=yes ;;
++  mingw* | cygwin* | winnt*) is_woe32=yes ;;
+   *) is_woe32=no ;;
+ esac
+ WOE32=$is_woe32
+@@ -21687,7 +21687,7 @@
+ 
+ if test "$enable_shared" = yes; then
+   case "$host_os" in
+-    mingw* | cygwin*) is_woe32dll=yes ;;
++    mingw* | cygwin* | winnt*) is_woe32dll=yes ;;
+     *) is_woe32dll=no ;;
+   esac
+ else
+--- libiconv-1.14/woe32dll/export.h.orig	2017-09-21 10:02:45.106778900 +0200
++++ libiconv-1.14/woe32dll/export.h	2017-09-21 10:10:06.856742200 +0200
+@@ -104,3 +104,8 @@
+  /* Allocate a pseudo-variable IMP(x).  */                              \
+  extern int x;                                                          \
+  void * IMP(x) = &x;
++
++#if defined(_MSC_VER)
++# undef VARIABLE
++# define VARIABLE(x) extern __declspec(dllexport) __declspec(dllimport) int x;
++#endif

@@ -21,6 +21,7 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-no-gets.patch
+	epatch "${FILESDIR}"/${P}-winnt.patch
 	elibtoolize
 }
 
