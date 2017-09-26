@@ -89,7 +89,7 @@ pkg_setup() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	epatch "${FILESDIR}"/${PN}-2.2.28-ebuildshell-r1.patch # 155161
+	epatch "${FILESDIR}"/${PN}-2.3.10-ebuildshell.patch # 155161
 	use prefix-chaining &&
 		epatch "${FILESDIR}"/${PN}-2.3.8-prefix-chaining.patch
 
