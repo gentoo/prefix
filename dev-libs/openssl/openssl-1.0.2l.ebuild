@@ -78,6 +78,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-1.0.0b-darwin-bundle-compile-fix.patch
 	epatch "${FILESDIR}"/${PN}-1.0.2-gethostbyname2-solaris.patch
+	epatch "${FILESDIR}"/${PN}-1.0.2l-winnt.patch # parity
 
 	# remove -arch for Darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure || die

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 #
@@ -33,7 +33,7 @@ if [[ $1 == "test" ]] ; then
 		"i686-apple-darwinX           |darwin-i386-cc" \
 		"i386-apple-darwinX           |darwin-i386-cc" \
 		"powerpc-apple-darwinX        |darwin-ppc-cc" \
-		"i586-pc-winnt                |winnt-parity" \
+		"i586-pc-winnt                |mingwvc-parity" \
 		"i586-pc-cygwin2.0            |Cygwin" \
 		"x86_64-pc-cygwin             |Cygwin-x86_64" \
 		"s390-ibm-linux-gnu           |linux-generic32 -DB_ENDIAN" \
@@ -65,7 +65,7 @@ case ${CHOST} in
 	*-hpux*)         system="hpux";;
 	*-linux*)        system="linux";;
 	*-solaris*)      system="solaris";;
-	*-winnt*)        system="winnt";;
+	*-winnt*)        system="mingwvc";;
 	x86_64-*-mingw*) system="mingw64";;
 	*mingw*)         system="mingw";;
 	*)               exit 0;;
@@ -160,7 +160,7 @@ solaris)
 		sparc*)       machine=sparcv8-${compiler};;
 	esac
 	;;
-winnt)
+mingwvc)
 	machine=parity
 	;;
 mingw*)

@@ -1,6 +1,5 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -13,7 +12,7 @@ SRC_URI="mirror://openssl/source/${MY_P}.tar.gz"
 
 LICENSE="openssl"
 SLOT="0/1.1" # .so version of libssl/libcrypto
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="+asm bindist rfc3779 sctp cpu_flags_x86_sse2 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
@@ -50,6 +49,8 @@ src_prepare() {
 		epatch "${PATCHES[@]}"
 		epatch_user #332661
 	fi
+
+	epatch "${FILESDIR}"/${PN}-1.1.0f-winnt.patch # parity
 
 	# make sure the man pages are suffixed #302165
 	# don't bother building man pages if they're disabled
@@ -136,7 +137,7 @@ multilib_src_configure() {
 	echoit \
 	./${config} \
 		${sslout} \
-		--api=1.1.0 \
+		--api=1.0.0 \
 		$(use cpu_flags_x86_sse2 || echo "no-sse2") \
 		enable-camellia \
 		disable-deprecated \
