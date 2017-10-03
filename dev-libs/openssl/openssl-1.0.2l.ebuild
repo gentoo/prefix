@@ -225,7 +225,7 @@ multilib_src_install_all() {
 	# Only way around this would be to manually configure+compile openssl
 	# twice; once with shared lib support enabled and once without.
 	use static-libs || find "${ED}"usr/lib* -mindepth 1 -maxdepth 1 \
-		-name "lib*.a" -not -name "lib*$(get_libname)" -delete
+		-name "lib*.a" -not -name "*.dll.a" -not -name "*$(get_libname)" -delete
 
 	# create the certs directory
 	dodir ${SSL_CNF_DIR}/certs
