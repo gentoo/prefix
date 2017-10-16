@@ -1,12 +1,5 @@
-# Base eclass for Java packages
-#
-# Copyright (c) 2004-2005, Thomas Matthijs <axxo@gentoo.org>
-# Copyright (c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
-# Copyright (c) 2004-2011, Gentoo Foundation
-#
-# Licensed under the GNU General Public License, v2
-#
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.156 2014/04/09 21:55:12 radhermit Exp $
+# Copyright 2004-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: java-utils-2.eclass
 # @MAINTAINER:
@@ -21,13 +14,16 @@
 # This eclass should not be inherited this directly from an ebuild. Instead,
 # you should inherit java-pkg-2 for Java packages or java-pkg-opt-2 for packages
 # that have optional Java support. In addition you can inherit java-ant-2 for
-# Ant-based packages. 
+# Ant-based packages.
 inherit eutils versionator multilib
 
 IUSE="elibc_FreeBSD"
 
 # Make sure we use java-config-2
 export WANT_JAVA_CONFIG="2"
+
+# Prefix variables are only available for EAPI>=3
+has "${EAPI:-0}" 0 1 2 && ED="${D}" EPREFIX= EROOT="${ROOT}"
 
 # @VARIABLE: JAVA_PKG_PORTAGE_DEP
 # @INTERNAL
@@ -43,7 +39,7 @@ has "${EAPI}" 0 1 && JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
 # This is a convience variable to be used from the other java eclasses. This is
 # the version of java-config we want to use. Usually the latest stable version
 # so that ebuilds can use new features without depending on specific versions.
-JAVA_PKG_E_DEPEND="!x86-winnt? ( >=dev-java/java-config-2.1.9-r1 ${JAVA_PKG_PORTAGE_DEP} )"
+JAVA_PKG_E_DEPEND="!x86-winnt? ( >=dev-java/java-config-2.2.0-r3 ${JAVA_PKG_PORTAGE_DEP} )"
 has source ${JAVA_PKG_IUSE} && JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
 
 # @ECLASS-VARIABLE: JAVA_PKG_WANT_BOOTCLASSPATH
@@ -126,20 +122,43 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 #	JAVA_PKG_WANT_TARGET=1.3 emerge bar
 # @CODE
 
+# @ECLASS-VARIABLE: JAVA_PKG_DEBUG
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# A variable to be set with "yes" or "y", or ANY string of length non equal to
+# zero. When set, verbosity across java eclasses is increased and extra
+# logging is displayed.
+# @CODE
+#	JAVA_PKG_DEBUG="yes"
+# @CODE
+
+# @ECLASS-VARIABLE: JAVA_RM_FILES
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# An array containing a list of files to remove. If defined, this array will be
+# automatically handed over to java-pkg_rm_files for processing during the
+# src_prepare phase.
+#
+# @CODE
+#	JAVA_RM_FILES=(
+#		path/to/File1.java
+#		DELETEME.txt
+#	)
+# @CODE
+
 # @VARIABLE: JAVA_PKG_COMPILER_DIR
 # @INTERNAL
 # @DESCRIPTION:
 # Directory where compiler settings are saved, without trailing slash.
 # You probably shouldn't touch this variable except local testing.
-JAVA_PKG_COMPILER_DIR=${JAVA_PKG_COMPILER_DIR:="${EPREFIX}"/usr/share/java-config-2/compiler}
-
+JAVA_PKG_COMPILER_DIR=${JAVA_PKG_COMPILER_DIR:="${EPREFIX}/usr/share/java-config-2/compiler"}
 
 # @VARIABLE: JAVA_PKG_COMPILERS_CONF
 # @INTERNAL
 # @DESCRIPTION:
 # Path to file containing information about which compiler to use.
 # Can be overloaded, but it should be overloaded only for local testing.
-JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="${EPREFIX}"/etc/java-config-2/build/compilers.conf}
+JAVA_PKG_COMPILERS_CONF=${JAVA_PKG_COMPILERS_CONF:="${EPREFIX}/etc/java-config-2/build/compilers.conf"}
 
 # @ECLASS-VARIABLE: JAVA_PKG_FORCE_COMPILER
 # @INTERNAL
@@ -218,6 +237,73 @@ java-pkg_doexamples() {
 	dosym "${dest}" "${JAVA_PKG_SHAREPATH}/examples" || die
 }
 
+# @FUNCTION: java-pkg_addres
+# @USAGE: <jar> <dir> [<find arguments> ...]
+# @DESCRIPTION:
+# Adds resource files to an existing jar.
+# It is important that the directory given is actually the root of the
+# corresponding resource tree. The target directory as well as
+# sources.lst, MANIFEST.MF, *.class, *.jar, and *.java files are
+# automatically excluded. Symlinks are always followed. Additional
+# arguments are passed through to find.
+#
+# @CODE
+#	java-pkg_addres ${PN}.jar resources ! -name "*.html"
+# @CODE
+#
+# @param $1 - jar file
+# @param $2 - resource tree directory
+# @param $* - arguments to pass to find
+java-pkg_addres() {
+	debug-print-function ${FUNCNAME} $*
+
+	[[ ${#} -lt 2 ]] && die "at least two arguments needed"
+
+	local jar=$(realpath "$1" || die "realpath $1 failed")
+	local dir="$2"
+	shift 2
+
+	pushd "${dir}" > /dev/null || die "pushd ${dir} failed"
+	find -L -type f ! -path "./target/*" ! -path "./sources.lst" ! -name "MANIFEST.MF" ! -regex ".*\.\(class\|jar\|java\)" "${@}" -print0 | xargs -r0 jar uf "${jar}" || die "jar failed"
+	popd > /dev/null || die "popd failed"
+}
+
+# @FUNCTION: java-pkg_rm_files
+# @USAGE: java-pkg_rm_files File1.java File2.java ...
+# @DESCRIPTION:
+# Remove unneeded files in ${S}.
+#
+# Every now and then, you'll run into situations whereby a file needs removing,
+# be it a unit test or a regular java class.
+#
+# You can use this function by either:
+# - calling it yourself in src_prepare() and feeding java-pkg_rm_files with
+# the list of files you wish to remove.
+# - defining an array in the ebuild named JAVA_RM_FILES with the list of files
+# you wish to remove.
+#
+# Both way work and it is left to the developer's preferences. If the
+# JAVA_RM_FILES array is defined, it will be automatically handed over to
+# java-pkg_rm_files during the src_prepare phase.
+#
+# See java-utils-2_src_prepare.
+#
+# @CODE
+#	java-pkg_rm_files File1.java File2.java
+# @CODE
+#
+# @param $* - list of files to remove.
+java-pkg_rm_files() {
+	debug-print-function ${FUNCNAME} $*
+	local IFS="\n"
+	for filename in "$@"; do
+		[[ ! -f "${filename}" ]] && die "${filename} is not a regular file. Aborting."
+		einfo "Removing unneeded file ${filename}"
+		rm -f "${S}/${filename}" || die "cannot remove ${filename}"
+		eend $?
+	done
+}
+
 # @FUNCTION: java-pkg_dojar
 # @USAGE: <jar1> [<jar2> ...]
 # @DESCRIPTION:
@@ -264,8 +350,10 @@ java-pkg_dojar() {
 				#but first check class version when in strict mode.
 				is-java-strict && java-pkg_verify-classes "${jar}"
 
-				INSDESTTREE="${JAVA_PKG_JARDEST}" \
-					doins "${jar}" || die "failed to install ${jar}"
+				(
+					insinto "${JAVA_PKG_JARDEST}"
+					doins "${jar}"
+				) || die "failed to install ${jar}"
 				java-pkg_append_ JAVA_PKG_CLASSPATH "${EPREFIX}/${JAVA_PKG_JARDEST}/${jar_basename}"
 				debug-print "installed ${jar} to ${ED}${JAVA_PKG_JARDEST}"
 			# make a symlink to the original jar if it's symlink
@@ -280,19 +368,16 @@ java-pkg_dojar() {
 		fi
 	done
 
-	java-pkg_do_write_
-}
+	# Extra logging if enabled.
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Jar file(s) destination: ${JAVA_PKG_JARDEST}"
+		einfo "Jar file(s) created: ${@}"
+		einfo "Complete command:"
+		einfo "${FUNCNAME} ${@}"
+	fi
 
-# @FUNCTION: depend-java-query
-# @INTERNAL
-# @DESCRIPTION:
-# Wrapper for the depend-java-query binary to enable passing USE in env.
-# Using env variables keeps this eclass working with java-config versions that
-# do not handle use flags.
-depend-java-query() {
-	# Used to have a which call here but it caused endless loops for some people
-	# that had some weird bashrc voodoo for which.
-	USE="${USE}" "${EPREFIX}"/usr/bin/depend-java-query "${@}"
+	java-pkg_do_write_
 }
 
 # @FUNCTION: java-pkg_regjar
@@ -412,9 +497,11 @@ java-pkg_doso() {
 		if [[ -e "${lib}" ]] ; then
 			# install if it isn't a symlink
 			if [[ ! -L "${lib}" ]] ; then
-				INSDESTTREE="${JAVA_PKG_LIBDEST}" \
-					INSOPTIONS="${LIBOPTIONS}" \
-					doins "${lib}" || die "failed to install ${lib}"
+				(
+					insinto "${JAVA_PKG_LIBDEST}"
+					insopts -m0755
+					doins "${lib}"
+				) || die "failed to install ${lib}"
 				java-pkg_append_ JAVA_PKG_LIBRARY "${JAVA_PKG_LIBDEST}"
 				debug-print "Installing ${lib} to ${JAVA_PKG_LIBDEST}"
 			# otherwise make a symlink to the symlink's origin
@@ -502,13 +589,13 @@ java-pkg_sointo() {
 java-pkg_dohtml() {
 	debug-print-function ${FUNCNAME} $*
 
-	[[ ${#} -lt 1 ]] &&  die "At least one argument required for ${FUNCNAME}"
+	[[ ${#} -lt 1 ]] && die "At least one argument required for ${FUNCNAME}"
 
-	# from /usr/lib/portage/bin/dohtml -h
-	#  -f   Set list of allowed extensionless file names.
-	dohtml -f package-list "$@"
+	# Do away with dohtml and rely on dodoc instead to do the deed.
+	docinto html
+	dodoc "$@"
 
-	# this probably shouldn't be here but it provides
+	# This probably shouldn't be here but it provides
 	# a reasonable way to catch # docs for all of the
 	# old ebuilds.
 	java-pkg_recordjavadoc
@@ -570,7 +657,6 @@ java-pkg_dojavadoc() {
 	fi
 
 	# Actual installation
-
 	java-pkg_dohtml -r "${dir_to_install}"
 
 	# Let's make a symlink to the directory we have everything else under
@@ -579,6 +665,15 @@ java-pkg_dojavadoc() {
 	if [[ ${symlink} ]]; then
 		debug-print "symlinking ${dest}/{api,${symlink}}"
 		dosym ${dest}/{api,${symlink}} || die
+	fi
+
+	# Extra logging if enabled.
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Documentation destination: ${dest}"
+		einfo "Directory to install: ${dir_to_install}"
+		einfo "Complete command:"
+		einfo "${FUNCNAME} ${@}"
 	fi
 }
 
@@ -631,14 +726,27 @@ java-pkg_dosrc() {
 		if [[ ${result} != 12 && ${result} != 0 ]]; then
 			die "failed to zip ${dir_name}"
 		fi
-		popd >/dev/null
+		popd >/dev/null || die
 	done
 
 	# Install the zip
-	INSDESTTREE=${JAVA_PKG_SOURCESPATH} \
-		doins ${zip_path} || die "Failed to install source"
+	(
+		insinto "${JAVA_PKG_SOURCESPATH}"
+		doins ${zip_path}
+	) || die "Failed to install source"
 
 	JAVA_SOURCES="${JAVA_PKG_SOURCESPATH}/${zip_name}"
+
+	# Extra logging if enabled.
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Zip filename created: ${zip_name}"
+		einfo "Zip file destination: ${JAVA_PKG_SOURCESPATH}"
+		einfo "Directories zipped: ${@}"
+		einfo "Complete command:"
+		einfo "${FUNCNAME} ${@}"
+	fi
+
 	java-pkg_do_write_
 }
 
@@ -725,7 +833,10 @@ java-pkg_dolauncher() {
 	echo "source ${EPREFIX}/usr/share/java-config-2/launcher/launcher.bash" >> "${target}"
 
 	if [[ -n "${target_dir}" ]]; then
-		DESTTREE="${target_dir}" dobin "${target}"
+		(
+			into "${target_dir}"
+			dobin "${target}"
+		)
 		local ret=$?
 		return ${ret}
 	else
@@ -764,9 +875,11 @@ java-pkg_dowar() {
 		fi
 
 		# Install those files like you mean it
-		INSOPTIONS="-m 0644" \
-			INSDESTTREE=${JAVA_PKG_WARDEST} \
+		(
+			insopts -m0644
+			insinto "${JAVA_PKG_WARDEST}"
 			doins ${warpath}
+		)
 	done
 }
 
@@ -921,7 +1034,7 @@ java-pkg_jar-from() {
 					java-pkg_record-jar_ --build-only "${target_pkg}" "${jar}"
 				fi
 			fi
-			# otherwise, if the current jar is the target jar, link it
+		# otherwise, if the current jar is the target jar, link it
 		elif [[ "${jar_name}" == "${target_jar}" ]] ; then
 			[[ -f "${destjar}" ]]  && rm "${destjar}"
 			ln -snf "${jar}" "${destjar}" \
@@ -930,14 +1043,14 @@ java-pkg_jar-from() {
 				if [[ -z "${build_only}" ]]; then
 					java-pkg_record-jar_ "${target_pkg}" "${jar}"
 				else
-					java-pkg_record-jar_ --build-only "${target_jar}" "${jar}"
+					java-pkg_record-jar_ --build-only "${target_pkg}" "${jar}"
 				fi
 			fi
-			popd > /dev/null
+			popd > /dev/null || die
 			return 0
 		fi
 	done
-	popd > /dev/null
+	popd > /dev/null || die
 	# if no target was specified, we're ok
 	if [[ -z "${target_jar}" ]] ; then
 		return 0
@@ -1515,7 +1628,7 @@ java-pkg_get-target() {
 java-pkg_get-javac() {
 	debug-print-function ${FUNCNAME} $*
 
-
+	java-pkg_init-compiler_
 	local compiler="${GENTOO_COMPILER}"
 
 	local compiler_executable
@@ -1534,18 +1647,15 @@ java-pkg_get-javac() {
 			export JAVAC=${old_javac}
 
 			if [[ -z ${compiler_executable} ]]; then
-				echo "JAVAC is empty or undefined in ${compiler_env}"
-				return 1
+				die "JAVAC is empty or undefined in ${compiler_env}"
 			fi
 
 			# check that it's executable
 			if [[ ! -x ${compiler_executable} ]]; then
-				echo "${compiler_executable} doesn't exist, or isn't executable"
-				return 1
+				die "${compiler_executable} doesn't exist, or isn't executable"
 			fi
 		else
-			echo "Could not find environment file for ${compiler}"
-			return 1
+			die "Could not find environment file for ${compiler}"
 		fi
 	fi
 	echo ${compiler_executable}
@@ -1570,15 +1680,9 @@ java-pkg_javac-args() {
 	debug-print "want target: ${want_target}"
 
 	if [[ -z "${want_source}" || -z "${want_target}" ]]; then
-		debug-print "could not find valid -source/-target values for javac"
-		echo "Could not find valid -source/-target values for javac"
-		return 1
+		die "Could not find valid -source/-target values for javac"
 	else
-		if java-pkg_is-vm-version-ge "1.4"; then
-			echo "${source_str} ${target_str}"
-		else
-			echo "${target_str}"
-		fi
+		echo "${source_str} ${target_str}"
 	fi
 }
 
@@ -1715,8 +1819,8 @@ ejunit_() {
 	if [[ "${junit}" == "junit-4" ]] ; then
 		runner=org.junit.runner.JUnitCore
 	fi
-	debug-print "Calling: java -cp \"${cp}\" -Djava.awt.headless=true ${runner} ${@}"
-	java -cp "${cp}" -Djava.awt.headless=true ${runner} "${@}" || die "Running junit failed"
+	debug-print "Calling: java -cp \"${cp}\" -Djava.io.tmpdir=\"${T}\" -Djava.awt.headless=true ${runner} ${@}"
+	java -cp "${cp}" -Djava.io.tmpdir="${T}/" -Djava.awt.headless=true ${runner} "${@}" || die "Running junit failed"
 }
 
 # @FUNCTION: ejunit
@@ -1769,18 +1873,28 @@ ejunit4() {
 # src_prepare Searches for bundled jars
 # Don't call directly, but via java-pkg-2_src_prepare!
 java-utils-2_src_prepare() {
-	[[ ${EBUILD_PHASE} == prepare ]] &&
-		java-pkg_func-exists java_prepare && java_prepare
+	case ${EAPI:-0} in
+		[0-5])
+			java-pkg_func-exists java_prepare && java_prepare ;;
+		*)
+			java-pkg_func-exists java_prepare &&
+				eqawarn "java_prepare is no longer called, define src_prepare instead."
+			eapply_user ;;
+	esac
 
-	# Remember that eant will call this unless called via Portage
-	if [[ ! -e "${T}/java-utils-2_src_prepare-run" ]] && is-java-strict; then
+	# Check for files in JAVA_RM_FILES array.
+	if [[ ${JAVA_RM_FILES[@]} ]]; then
+		debug-print "$FUNCNAME: removing unneeded files"
+		java-pkg_rm_files "${JAVA_RM_FILES[@]}"
+	fi
+
+	if is-java-strict; then
 		echo "Searching for bundled jars:"
 		java-pkg_find-normal-jars || echo "None found."
 		echo "Searching for bundled classes (no output if none found):"
 		find "${WORKDIR}" -name "*.class"
 		echo "Search done."
 	fi
-	touch "${T}/java-utils-2_src_prepare-run"
 }
 
 # @FUNCTION: java-utils-2_pkg_preinst
@@ -1789,18 +1903,13 @@ java-utils-2_src_prepare() {
 # Don't call directly, but via java-pkg-2_pkg_preinst!
 java-utils-2_pkg_preinst() {
 	if is-java-strict; then
+		if [[ ! -e "${JAVA_PKG_ENV}" ]] || has ant-tasks ${INHERITED}; then
+			return
+		fi
+
 		if has_version dev-java/java-dep-check; then
-			[[ -e "${JAVA_PKG_ENV}" ]] || return
-			local output=$(GENTOO_VM= java-dep-check --image "${ED}" "${JAVA_PKG_ENV}")
-			if [[ ${output} && has_version <=dev-java/java-dep-check-0.2 ]]; then
-				ewarn "Possibly unneeded dependencies found in package.env:"
-				for dep in ${output}; do
-					ewarn "\t${dep}"
-				done
-			fi
-			if [[ ${output} && has_version >dev-java/java-dep-check-0.2 ]]; then
-				ewarn "${output}"
-			fi
+			local output=$(GENTOO_VM= java-dep-check --image "${D}" "${JAVA_PKG_ENV}")
+			[[ ${output} ]] && ewarn "${output}"
 		else
 			eerror "Install dev-java/java-dep-check for dependency checking"
 		fi
@@ -1813,7 +1922,7 @@ java-utils-2_pkg_preinst() {
 # Ant wrapper function. Will use the appropriate compiler, based on user-defined
 # compiler. Will also set proper ANT_TASKS from the variable ANT_TASKS,
 # variables:
-# 
+#
 # @CODE
 # Variables:
 # EANT_GENTOO_CLASSPATH - calls java-pkg_getjars for the value and adds to the
@@ -1828,7 +1937,6 @@ eant() {
 
 	if [[ ${EBUILD_PHASE} = compile ]]; then
 		java-ant-2_src_configure
-		java-utils-2_src_prepare
 	fi
 
 	if ! has java-ant-2 ${INHERITED}; then
@@ -1914,8 +2022,10 @@ eant() {
 
 	if [[ ${EBUILD_PHASE} = "test" ]]; then
 		antflags="${antflags} -DJunit.present=true"
-		[[ ${ANT_TASKS} = *ant-junit* ]] && gcp="${gcp} junit"
 		getjarsarg="--with-dependencies"
+
+		local re="\bant-junit4?([-:]\S+)?\b"
+		[[ ${ANT_TASKS} =~ ${re} ]] && gcp+=" ${BASH_REMATCH[0]}"
 	else
 		antflags="${antflags} -Dmaven.test.skip=true"
 	fi
@@ -1923,17 +2033,15 @@ eant() {
 	local cp
 
 	for atom in ${gcp}; do
-		cp="${cp}:$(java-pkg_getjars ${getjarsarg} ${atom})"
+		cp+=":$(java-pkg_getjars ${getjarsarg} ${atom})"
 	done
 
-	[[ -n "${EANT_NEEDS_TOOLS}" ]] && cp="${cp}:$(java-config --tools)"
+	[[ ${EANT_NEEDS_TOOLS} ]] && cp+=":$(java-config --tools)"
+	[[ ${EANT_GENTOO_CLASSPATH_EXTRA} ]] && cp+=":${EANT_GENTOO_CLASSPATH_EXTRA}"
 
-	if [[ ${cp} ]]; then
+	if [[ ${cp#:} ]]; then
 		# It seems ant does not like single quotes around ${cp}
-		cp=${cp#:}
-		[[ ${EANT_GENTOO_CLASSPATH_EXTRA} ]] && \
-			cp="${cp}:${EANT_GENTOO_CLASSPATH_EXTRA}"
-		antflags="${antflags} -Dgentoo.classpath=\"${cp}\""
+		antflags="${antflags} -Dgentoo.classpath=\"${cp#:}\""
 	fi
 
 	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ant ${antflags} "${@}"
@@ -1949,24 +2057,48 @@ eant() {
 ejavac() {
 	debug-print-function ${FUNCNAME} $*
 
-	java-pkg_init-compiler_
-
 	local compiler_executable
 	compiler_executable=$(java-pkg_get-javac)
-	if [[ ${?} != 0 ]]; then
-		eerror "There was a problem determining compiler: ${compiler_executable}"
-		die "get-javac failed"
-	fi
 
 	local javac_args
 	javac_args="$(java-pkg_javac-args)"
-	if [[ ${?} != 0 ]]; then
-		eerror "There was a problem determining JAVACFLAGS: ${javac_args}"
-		die "java-pkg_javac-args failed"
+
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Compiler executable: ${compiler_executable}"
+		einfo "Extra arguments: ${javac_args}"
+		einfo "Complete command:"
+		einfo "${compiler_executable} ${javac_args} ${@}"
 	fi
 
-	[[ -n ${JAVA_PKG_DEBUG} ]] && echo ${compiler_executable} ${javac_args} "${@}"
+	ebegin "Compiling"
 	${compiler_executable} ${javac_args} "${@}" || die "ejavac failed"
+}
+
+# @FUNCTION: ejavadoc
+# @USAGE: <javadoc_arguments>
+# @DESCRIPTION:
+# javadoc wrapper function. Will set some flags based on the VM version
+# due to strict javadoc rules in 1.8.
+ejavadoc() {
+	debug-print-function ${FUNCNAME} $*
+
+	local javadoc_args=""
+
+	if java-pkg_is-vm-version-ge "1.8" ; then
+		javadoc_args="-Xdoclint:none"
+	fi
+
+	if [[ -n ${JAVA_PKG_DEBUG} ]]; then
+		einfo "Verbose logging for \"${FUNCNAME}\" function"
+		einfo "Javadoc executable: javadoc"
+		einfo "Extra arguments: ${javadoc_args}"
+		einfo "Complete command:"
+		einfo "javadoc ${javadoc_args} ${@}"
+	fi
+
+	ebegin "Generating JavaDoc"
+	javadoc ${javadoc_args} "${@}" || die "ejavadoc failed"
 }
 
 # @FUNCTION: java-pkg_filter-compiler
@@ -2045,7 +2177,7 @@ java-pkg_init() {
 	}
 
 	# People do all kinds of weird things.
-	# http://forums.gentoo.org/viewtopic-p-3943166.html
+	# https://forums.gentoo.org/viewtopic-p-3943166.html
 	local silence="${SILENCE_JAVA_OPTIONS_WARNING}"
 	local accept="${I_WANT_GLOBAL_JAVA_OPTIONS}"
 	if [[ -n ${_JAVA_OPTIONS} && -z ${accept} && -z ${silence} ]]; then
@@ -2063,10 +2195,6 @@ java-pkg_init() {
 		unset _JAVA_OPTIONS
 		# phase hooks make this run many times without this
 		I_WANT_GLOBAL_JAVA_OPTIONS="true"
-	fi
-
-	if java-pkg_func-exists ant_src_unpack; then
-		java-pkg_announce-qa-violation "Using old ant_src_unpack. Should be src_unpack"
 	fi
 
 	java-pkg_switch-vm
@@ -2148,7 +2276,7 @@ java-pkg_init-compiler_() {
 
 		if has ${compiler} ${JAVA_PKG_FILTER_COMPILER}; then
 			if [[ -z ${JAVA_PKG_FORCE_COMPILER} ]]; then
-				einfo "Filtering ${compiler}"
+				einfo "Filtering ${compiler}" >&2
 				continue
 			fi
 		fi
@@ -2168,14 +2296,11 @@ java-pkg_init-compiler_() {
 				continue
 			fi
 
-			# -source was introduced in 1.3, so only check 1.3 and on
-			if version_is_at_least "${desired_soure}" "1.3"; then
-				# Verify that the compiler supports source
-				local supported_source=$(source ${compiler_env} 1>/dev/null 2>&1; echo ${SUPPORTED_SOURCE})
-				if ! has ${desired_source} ${supported_source}; then
-					ewarn "${compiler} does not support -source ${desired_source}, skipping"
-					continue
-				fi
+			# Verify that the compiler supports source
+			local supported_source=$(source ${compiler_env} 1>/dev/null 2>&1; echo ${SUPPORTED_SOURCE})
+			if ! has ${desired_source} ${supported_source}; then
+				ewarn "${compiler} does not support -source ${desired_source}, skipping"
+				continue
 			fi
 
 			# if you get here, then the compiler should be good to go
@@ -2191,10 +2316,10 @@ java-pkg_init-compiler_() {
 	# If it hasn't been defined already, default to javac
 	if [[ -z ${GENTOO_COMPILER} ]]; then
 		if [[ -n ${compilers} ]]; then
-			einfo "No suitable compiler found: defaulting to JDK default for compilation"
+			einfo "No suitable compiler found: defaulting to JDK default for compilation" >&2
 		else
 			# probably don't need to notify users about the default.
-			:;#einfo "Defaulting to javac for compilation"
+			:;#einfo "Defaulting to javac for compilation" >&2
 		fi
 		if java-config -g GENTOO_COMPILER 2> /dev/null; then
 			export GENTOO_COMPILER=$(java-config -g GENTOO_COMPILER)
@@ -2202,7 +2327,7 @@ java-pkg_init-compiler_() {
 			export GENTOO_COMPILER=javac
 		fi
 	else
-		einfo "Using ${GENTOO_COMPILER} for compilation"
+		einfo "Using ${GENTOO_COMPILER} for compilation" >&2
 	fi
 
 }
@@ -2222,14 +2347,14 @@ java-pkg_init_paths_() {
 		JAVA_PKG_NAME="${PN}-${SLOT%/*}"
 	fi
 
-	JAVA_PKG_SHAREPATH="${DESTTREE}/share/${JAVA_PKG_NAME}"
+	JAVA_PKG_SHAREPATH="/usr/share/${JAVA_PKG_NAME}"
 	JAVA_PKG_SOURCESPATH="${JAVA_PKG_SHAREPATH}/sources/"
 	JAVA_PKG_ENV="${ED}${JAVA_PKG_SHAREPATH}/package.env"
-	JAVA_PKG_VIRTUALS_PATH="${DESTTREE}/share/java-config-2/virtuals"
-	JAVA_PKG_VIRTUAL_PROVIDER="${ED}/${JAVA_PKG_VIRTUALS_PATH}/${JAVA_PKG_NAME}"
+	JAVA_PKG_VIRTUALS_PATH="/usr/share/java-config-2/virtuals"
+	JAVA_PKG_VIRTUAL_PROVIDER="${ED}${JAVA_PKG_VIRTUALS_PATH}/${JAVA_PKG_NAME}"
 
 	[[ -z "${JAVA_PKG_JARDEST}" ]] && JAVA_PKG_JARDEST="${JAVA_PKG_SHAREPATH}/lib"
-	[[ -z "${JAVA_PKG_LIBDEST}" ]] && JAVA_PKG_LIBDEST="${DESTTREE}/$(get_libdir)/${JAVA_PKG_NAME}"
+	[[ -z "${JAVA_PKG_LIBDEST}" ]] && JAVA_PKG_LIBDEST="/usr/$(get_libdir)/${JAVA_PKG_NAME}"
 	[[ -z "${JAVA_PKG_WARDEST}" ]] && JAVA_PKG_WARDEST="${JAVA_PKG_SHAREPATH}/webapps"
 
 	# TODO maybe only print once?
@@ -2251,62 +2376,54 @@ java-pkg_do_write_() {
 	java-pkg_init_paths_
 	# Create directory for package.env
 	dodir "${JAVA_PKG_SHAREPATH}"
-	if [[ -n "${JAVA_PKG_CLASSPATH}" || -n "${JAVA_PKG_LIBRARY}" || -f \
-			"${JAVA_PKG_DEPEND_FILE}" || -f \
-			"${JAVA_PKG_OPTIONAL_DEPEND_FILE}" ]]; then
-		# Create package.env
-		(
-			echo "DESCRIPTION=\"${DESCRIPTION}\""
-			echo "GENERATION=\"2\""
-			echo "SLOT=\"${SLOT}\""
-			echo "CATEGORY=\"${CATEGORY}\""
-			echo "PVR=\"${PVR}\""
 
-			[[ -n "${JAVA_PKG_CLASSPATH}" ]] && echo "CLASSPATH=\"${JAVA_PKG_CLASSPATH}\""
-			[[ -n "${JAVA_PKG_LIBRARY}" ]] && echo "LIBRARY_PATH=\"${JAVA_PKG_LIBRARY}\""
-			[[ -n "${JAVA_PROVIDE}" ]] && echo "PROVIDES=\"${JAVA_PROVIDE}\""
-			[[ -f "${JAVA_PKG_DEPEND_FILE}" ]] \
-				&& echo "DEPEND=\"$(sort -u "${JAVA_PKG_DEPEND_FILE}" | tr '\n' ':')\""
-			[[ -f "${JAVA_PKG_OPTIONAL_DEPEND_FILE}" ]] \
-				&& echo "OPTIONAL_DEPEND=\"$(sort -u "${JAVA_PKG_OPTIONAL_DEPEND_FILE}" | tr '\n' ':')\""
-			echo "VM=\"$(echo ${RDEPEND} ${DEPEND} | sed -e 's/ /\n/g' | sed -n -e '/virtual\/\(jre\|jdk\)/ { p;q }')\"" # TODO cleanup !
-			[[ -f "${JAVA_PKG_BUILD_DEPEND_FILE}" ]] \
-				&& echo "BUILD_DEPEND=\"$(sort -u "${JAVA_PKG_BUILD_DEPEND_FILE}" | tr '\n' ':')\""
-		) > "${JAVA_PKG_ENV}"
+	# Create package.env
+	(
+		echo "DESCRIPTION=\"${DESCRIPTION}\""
+		echo "GENERATION=\"2\""
+		echo "SLOT=\"${SLOT}\""
+		echo "CATEGORY=\"${CATEGORY}\""
+		echo "PVR=\"${PVR}\""
 
-		# register target/source
-		local target="$(java-pkg_get-target)"
-		local source="$(java-pkg_get-source)"
-		[[ -n ${target} ]] && echo "TARGET=\"${target}\"" >> "${JAVA_PKG_ENV}"
-		[[ -n ${source} ]] && echo "SOURCE=\"${source}\"" >> "${JAVA_PKG_ENV}"
+		[[ -n "${JAVA_PKG_CLASSPATH}" ]] && echo "CLASSPATH=\"${JAVA_PKG_CLASSPATH}\""
+		[[ -n "${JAVA_PKG_LIBRARY}" ]] && echo "LIBRARY_PATH=\"${JAVA_PKG_LIBRARY}\""
+		[[ -n "${JAVA_PROVIDE}" ]] && echo "PROVIDES=\"${JAVA_PROVIDE}\""
+		[[ -f "${JAVA_PKG_DEPEND_FILE}" ]] \
+			&& echo "DEPEND=\"$(sort -u "${JAVA_PKG_DEPEND_FILE}" | tr '\n' ':')\""
+		[[ -f "${JAVA_PKG_OPTIONAL_DEPEND_FILE}" ]] \
+			&& echo "OPTIONAL_DEPEND=\"$(sort -u "${JAVA_PKG_OPTIONAL_DEPEND_FILE}" | tr '\n' ':')\""
+		echo "VM=\"$(echo ${RDEPEND} ${DEPEND} | sed -e 's/ /\n/g' | sed -n -e '/virtual\/\(jre\|jdk\)/ { p;q }')\"" # TODO cleanup !
+		[[ -f "${JAVA_PKG_BUILD_DEPEND_FILE}" ]] \
+			&& echo "BUILD_DEPEND=\"$(sort -u "${JAVA_PKG_BUILD_DEPEND_FILE}" | tr '\n' ':')\""
+	) > "${JAVA_PKG_ENV}"
 
-		# register javadoc info
-		[[ -n ${JAVADOC_PATH} ]] && echo "JAVADOC_PATH=\"${JAVADOC_PATH}\"" \
-			>> ${JAVA_PKG_ENV}
-		# register source archives
-		[[ -n ${JAVA_SOURCES} ]] && echo "JAVA_SOURCES=\"${JAVA_SOURCES}\"" \
-			>> ${JAVA_PKG_ENV}
+	# register target/source
+	local target="$(java-pkg_get-target)"
+	local source="$(java-pkg_get-source)"
+	[[ -n ${target} ]] && echo "TARGET=\"${target}\"" >> "${JAVA_PKG_ENV}"
+	[[ -n ${source} ]] && echo "SOURCE=\"${source}\"" >> "${JAVA_PKG_ENV}"
 
+	# register javadoc info
+	[[ -n ${JAVADOC_PATH} ]] && echo "JAVADOC_PATH=\"${JAVADOC_PATH}\"" \
+		>> ${JAVA_PKG_ENV}
+	# register source archives
+	[[ -n ${JAVA_SOURCES} ]] && echo "JAVA_SOURCES=\"${JAVA_SOURCES}\"" \
+		>> ${JAVA_PKG_ENV}
 
-		echo "MERGE_VM=\"${GENTOO_VM}\"" >> "${JAVA_PKG_ENV}"
-		[[ -n ${GENTOO_COMPILER} ]] && echo "MERGE_COMPILER=\"${GENTOO_COMPILER}\"" >> "${JAVA_PKG_ENV}"
+	echo "MERGE_VM=\"${GENTOO_VM}\"" >> "${JAVA_PKG_ENV}"
+	[[ -n ${GENTOO_COMPILER} ]] && echo "MERGE_COMPILER=\"${GENTOO_COMPILER}\"" >> "${JAVA_PKG_ENV}"
 
-		# extra env variables
-		if [[ -n "${JAVA_PKG_EXTRA_ENV_VARS}" ]]; then
-			cat "${JAVA_PKG_EXTRA_ENV}" >> "${JAVA_PKG_ENV}" || die
-			# nested echo to remove leading/trailing spaces
-			echo "ENV_VARS=\"$(echo ${JAVA_PKG_EXTRA_ENV_VARS})\"" \
-				>> "${JAVA_PKG_ENV}" || die
-		fi
-
-		# Strip unnecessary leading and trailing colons
-		# TODO try to cleanup if possible
-		sed -e "s/=\":/=\"/" -e "s/:\"$/\"/" -i "${JAVA_PKG_ENV}" || die "Did you forget to call java_init ?"
-	else
-		debug-print "JAVA_PKG_CLASSPATH, JAVA_PKG_LIBRARY, JAVA_PKG_DEPEND_FILE"
-		debug-print "or JAVA_PKG_OPTIONAL_DEPEND_FILE not defined so can't"
-		debug-print "write package.env."
+	# extra env variables
+	if [[ -n "${JAVA_PKG_EXTRA_ENV_VARS}" ]]; then
+		cat "${JAVA_PKG_EXTRA_ENV}" >> "${JAVA_PKG_ENV}" || die
+		# nested echo to remove leading/trailing spaces
+		echo "ENV_VARS=\"$(echo ${JAVA_PKG_EXTRA_ENV_VARS})\"" \
+			>> "${JAVA_PKG_ENV}" || die
 	fi
+
+	# Strip unnecessary leading and trailing colons
+	# TODO try to cleanup if possible
+	sed -e "s/=\":/=\"/" -e "s/:\"$/\"/" -i "${JAVA_PKG_ENV}" || die "Did you forget to call java_init ?"
 }
 
 # @FUNCTION: java-pkg_record-jar_
@@ -2386,9 +2503,9 @@ java-pkg_append_() {
 # @CODE
 # @RETURN: path to $1's parent directory
 java-pkg_expand_dir_() {
-	pushd "$(dirname "${1}")" >/dev/null 2>&1
+	pushd "$(dirname "${1}")" >/dev/null 2>&1 || die
 	pwd
-	popd >/dev/null 2>&1
+	popd >/dev/null 2>&1 || die
 }
 
 # @FUNCTION: java-pkg_func-exists
@@ -2559,10 +2676,6 @@ java-pkg_switch-vm() {
 		export JAVA=$(java-config --java)
 		export JAVAC=$(java-config --javac)
 		JAVACFLAGS="$(java-pkg_javac-args)"
-		if [[ ${?} != 0 ]]; then
-			eerror "There was a problem determining JAVACFLAGS: ${JAVACFLAGS}"
-			die "java-pkg_javac-args failed"
-		fi
 		[[ -n ${JAVACFLAGS_EXTRA} ]] && JAVACFLAGS="${JAVACFLAGS_EXTRA} ${JAVACFLAGS}"
 		export JAVACFLAGS
 
@@ -2665,7 +2778,8 @@ java-pkg_verify-classes() {
 # @INTERNAL
 # @DESCRIPTION:
 # Check that a package being used in jarfrom, getjars and getjar is contained
-# within DEPEND or RDEPEND.
+# within DEPEND or RDEPEND with the correct SLOT. See this mail for details:
+# https://archives.gentoo.org/gentoo-dev/message/dcb644f89520f4bbb61cc7bbe45fdf6e
 # @CODE
 # Parameters:
 # $1 - empty - check both vars; "runtime" or "build" - check only
@@ -2679,43 +2793,56 @@ java-pkg_ensure-dep() {
 	local target_pkg="${2}"
 	local dev_error=""
 
-	# remove the version specification, which may include globbing (* and [123])
-	local stripped_pkg=$(echo "${target_pkg}" | sed \
-		's/-\([0-9*]*\(\[[0-9]*\]\)*\)*\(\.\([0-9*]*\(\[[0-9]*\]\)*\)*\)*$//')
+	# Transform into a regular expression to look for a matching package
+	# and SLOT. SLOTs don't have to be numeric so foo-bar could either
+	# mean foo-bar:0 or foo:bar. So you want to get your head around the
+	# line below?
+	#
+	# * The target package first has any dots escaped, e.g. foo-1.2
+	#   becomes foo-1\.2.
+	#
+	# * sed then looks at the component following the last - or :
+	#   character, or the whole string if there is no - or :
+	#   character. It uses this to build a new regexp with two
+	#   significant branches.
+	#
+	# * The first checks for the whole target package string, optionally
+	#   followed by a version number, and then :0.
+	#
+	# * The second checks for the first part of the target package
+	#   string, optionally followed by a version number, followed by the
+	#   aforementioned component, treating that as a SLOT.
+	#
+	local stripped_pkg=/$(sed -r 's/[-:]?([^-:]+)$/(\0(-[^:]+)?:0|(-[^:]+)?:\1)/' <<< "${target_pkg//./\\.}")\\b
 
 	debug-print "Matching against: ${stripped_pkg}"
 
-	if [[ ${limit_to} != runtime && ! ( "${DEPEND}" =~ "$stripped_pkg" ) ]]; then
-		dev_error="The ebuild is attempting to use ${target_pkg} that is not"
-		dev_error="${dev_error} declared in DEPEND."
-		if is-java-strict; then
-			eerror "${dev_error}"
-			die "${dev_error}"
-		elif [[ ${BASH_SUBSHELL} = 0 ]]; then
-			eerror "${dev_error}"
-			elog "Because you have this package installed the package will"
-			elog "build without problems, but please report this to"
-			elog "http://bugs.gentoo.org"
-		fi
-	fi
+	# Uncomment the lines below once we've dealt with more of these
+	# otherwise we'll be tempted to turn JAVA_PKG_STRICT off while
+	# getting hit with a wave of bug reports. :(
 
-	if [[ ${limit_to} != build ]]; then
-		if [[ ! ( ${RDEPEND} =~ "${stripped_pkg}" ) ]]; then
-			if [[ ! ( ${PDEPEND} =~ "${stripped_pkg}" ) ]]; then
-				dev_error="The ebuild is attempting to use ${target_pkg},"
-				dev_error="${dev_error} without specifying --build-only, that is not declared in RDEPEND"
-				dev_error="${dev_error} or PDEPEND."
-				if is-java-strict; then
-					eerror "${dev_error}"
-					die "${dev_error}"
-				elif [[ ${BASH_SUBSHELL} = 0 ]]; then
-					eerror "${dev_error}"
-					elog "The package will build without problems, but may fail to run"
-					elog "if you don't have ${target_pkg} installed, so please report"
-					elog "this to http://bugs.gentoo.org"
-				fi
-			fi
-		fi
+	if [[ ${limit_to} != runtime && ! ( "${DEPEND}" =~ $stripped_pkg ) ]]; then
+		dev_error="The ebuild is attempting to use ${target_pkg}, which is not "
+		dev_error+="declared with a SLOT in DEPEND."
+#		if is-java-strict; then
+#			die "${dev_error}"
+#		else
+			eqawarn "java-pkg_ensure-dep: ${dev_error}"
+#			eerror "Because you have ${target_pkg} installed,"
+#			eerror "the package will build without problems, but please"
+#			eerror "report this to https://bugs.gentoo.org."
+#		fi
+	elif [[ ${limit_to} != build && ! ( "${RDEPEND}${PDEPEND}" =~ ${stripped_pkg} ) ]]; then
+		dev_error="The ebuild is attempting to use ${target_pkg}, which is not "
+		dev_error+="declared with a SLOT in [RP]DEPEND and --build-only wasn't given."
+#		if is-java-strict; then
+#			die "${dev_error}"
+#		else
+			eqawarn "java-pkg_ensure-dep: ${dev_error}"
+#			eerror "The package will build without problems, but may fail to run"
+#			eerror "if you don't have ${target_pkg} installed,"
+#			eerror "so please report this to https://bugs.gentoo.org."
+#		fi
 	fi
 }
 
@@ -2761,4 +2888,40 @@ increment-qa-violations() {
 is-java-strict() {
 	[[ -n ${JAVA_PKG_STRICT} ]]
 	return $?
+}
+
+# @FUNCTION: java-pkg_clean
+# @DESCRIPTION:
+# Java package cleaner function. This will remove all *.class and *.jar
+# files, removing any bundled dependencies.
+java-pkg_clean() {
+	if [[ -z "${JAVA_PKG_NO_CLEAN}" ]]; then
+		find "${@}" '(' -name '*.class' -o -name '*.jar' ')' -type f -delete -print || die
+	fi
+}
+
+# @FUNCTION: java-pkg_gen-cp
+# @INTERNAL
+# @DESCRIPTION:
+# Java package generate classpath will create a classpath based on
+# special variable CP_DEPEND in the ebuild.
+#
+# @CODE
+# Parameters:
+# $1 - classpath variable either EANT_GENTOO_CLASSPATH or JAVA_GENTOO_CLASSPATH
+# @CODE
+java-pkg_gen-cp() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	local atom
+	for atom in ${CP_DEPEND}; do
+		if [[ ${atom} =~ /(([[:alnum:]+_-]+)-[0-9]+(\.[0-9]+)*[a-z]?(_[[:alnum:]]+)?(-r[0-9]*)?|[[:alnum:]+_-]+):([[:alnum:]+_.-]+) ]]; then
+			atom=${BASH_REMATCH[2]:-${BASH_REMATCH[1]}}
+			[[ ${BASH_REMATCH[6]} != 0 ]] && atom+=-${BASH_REMATCH[6]}
+			local regex="(^|\s|,)${atom}($|\s|,)"
+			[[ ${!1} =~ ${regex} ]] || declare -g ${1}+=${!1:+,}${atom}
+		else
+			die "Invalid CP_DEPEND atom ${atom}, ensure a SLOT is included"
+		fi
+	done
 }
