@@ -1083,8 +1083,10 @@ bootstrap_grep() {
 bootstrap_coreutils() {
 	# 8.12 for FreeBSD 9.1, bug #415439
 	# 8.16 is the last version released as tar.gz
-	bootstrap_gnu coreutils 8.16 || bootstrap_gnu coreutils 8.17 || \
-	bootstrap_gnu coreutils 8.12 
+	# 8.18 is necessary for macOS High Sierra (darwin17) and converted
+	#      to tar.gz for this case
+	bootstrap_gnu coreutils 8.28 || bootstrap_gnu coreutils 8.16 || \
+	bootstrap_gnu coreutils 8.17 || bootstrap_gnu coreutils 8.12
 }
 
 bootstrap_tar() {
