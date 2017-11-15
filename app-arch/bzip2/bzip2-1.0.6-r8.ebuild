@@ -1,11 +1,10 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.6-r7.ebuild,v 1.2 2014/04/28 17:18:31 mgorny Exp $
 
 # XXX: atm, libbz2.a is always PIC :(, so it is always built quickly
 #      (since we're building shared libs) ...
 
-EAPI=4
+EAPI=5
 
 inherit eutils toolchain-funcs multilib multilib-minimal prefix
 
@@ -14,30 +13,27 @@ HOMEPAGE="http://www.bzip.org/"
 SRC_URI="http://www.bzip.org/${PV}/${P}.tar.gz"
 
 LICENSE="BZIP2"
-SLOT="0"
+SLOT="0/1" # subslot = SONAME
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="static static-libs"
 
-RDEPEND="abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20130224
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-	)"
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.0.4-makefile-CFLAGS.patch
+	"${FILESDIR}"/${PN}-1.0.6-saneso.patch
+	"${FILESDIR}"/${PN}-1.0.4-man-links.patch #172986
+	"${FILESDIR}"/${PN}-1.0.6-progress.patch
+	"${FILESDIR}"/${PN}-1.0.3-no-test.patch
+	"${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
+	"${FILESDIR}"/${PN}-1.0.6-mingw.patch #393573
+	"${FILESDIR}"/${PN}-1.0.6-out-of-tree-build.patch
+	"${FILESDIR}"/${PN}-1.0.6-CVE-2016-3189.patch #620466
+
+	"${FILESDIR}"/${PN}-1.0.6-r7-checkenv.patch # for AIX, Darwin?
+	"${FILESDIR}"/${PN}-1.0.6-prefix.patch
+)
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.0.4-makefile-CFLAGS.patch
-	epatch "${FILESDIR}"/${PN}-1.0.6-saneso.patch
-	epatch "${FILESDIR}"/${PN}-1.0.4-man-links.patch #172986
-	epatch "${FILESDIR}"/${PN}-1.0.6-progress.patch
-	epatch "${FILESDIR}"/${PN}-1.0.3-no-test.patch
-	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
-	epatch "${FILESDIR}"/${PN}-1.0.6-mingw.patch #393573
-	epatch "${FILESDIR}"/${PN}-1.0.6-out-of-tree-build.patch
-
-	epatch "${FILESDIR}"/${PN}-1.0.6-r7-checkenv.patch # for AIX, Darwin?
-	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
-	eprefixify bz{diff,grep,more}
-	# this a makefile for Darwin, which already "includes" saneso
-	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
+	epatch "${PATCHES[@]}"
 
 	# - Use right man path
 	# - Generate symlinks instead of hardlinks
@@ -47,6 +43,10 @@ src_prepare() {
 		-e 's:ln -s -f $(PREFIX)/bin/:ln -s -f :' \
 		-e 's:$(PREFIX)/lib:$(PREFIX)/$(LIBDIR):g' \
 		Makefile || die
+
+	eprefixify bz{diff,grep,more}
+	# this a makefile for Darwin, which already "includes" saneso
+	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
 
 	if [[ ${CHOST} == *-hpux* ]] ; then
 		sed -i -e 's,-soname,+h,' Makefile-libbz2_so || die "cannot replace -soname with +h"
@@ -73,24 +73,9 @@ bemake() {
 }
 
 multilib_src_compile() {
-	local checkopts=
-	case "${CHOST}" in
-		*-darwin*)
-			bemake PREFIX="${EPREFIX}"/usr -f "${S}"/Makefile-libbz2_dylib all
-			# FWIW, #504648 like for .so below
-			ln -sf libbz2.${PV}.dylib libbz2.dylib
-		;;
-		*-mint*)
-			# do nothing, no shared libraries
-			:
-		;;
-		*)
-			bemake -f "${S}"/Makefile-libbz2_so all
-			# Make sure we link against the shared lib #504648
-			[[ $(get_libname) != $(get_libname ${PV}) ]] &&
-			ln -sf libbz2$(get_libname ${PV}) libbz2$(get_libname)
-		;;
-	esac
+	bemake -f "${S}"/Makefile-libbz2_so all
+	# Make sure we link against the shared lib #504648
+	ln -sf libbz2.so.${PV} libbz2.so
 	bemake -f "${S}"/Makefile all LDFLAGS="${LDFLAGS} $(usex static -static '')"
 }
 
@@ -111,7 +96,7 @@ multilib_src_install() {
 		dosym libbz2$(get_libname ${PV}) /usr/$(get_libdir)/${v}
 	done
 
-	fi
+	fi  # tc-is-static-only
 
 	use static-libs && dolib.a libbz2.a
 
