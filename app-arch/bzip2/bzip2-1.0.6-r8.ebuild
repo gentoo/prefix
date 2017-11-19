@@ -73,9 +73,24 @@ bemake() {
 }
 
 multilib_src_compile() {
-	bemake -f "${S}"/Makefile-libbz2_so all
-	# Make sure we link against the shared lib #504648
-	ln -sf libbz2.so.${PV} libbz2.so
+	local checkopts=
+	case "${CHOST}" in
+		*-darwin*)
+			bemake PREFIX="${EPREFIX}"/usr -f "${S}"/Makefile-libbz2_dylib all
+			# FWIW, #504648 like for .so below
+			ln -sf libbz2.${PV}.dylib libbz2.dylib
+		;;
+		*-mint*)
+			# do nothing, no shared libraries
+			:
+		;;
+		*)
+			bemake -f "${S}"/Makefile-libbz2_so all
+			# Make sure we link against the shared lib #504648
+			[[ $(get_libname) != $(get_libname ${PV}) ]] &&
+			ln -sf libbz2$(get_libname ${PV}) libbz2$(get_libname)
+		;;
+	esac
 	bemake -f "${S}"/Makefile all LDFLAGS="${LDFLAGS} $(usex static -static '')"
 }
 
