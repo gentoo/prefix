@@ -151,6 +151,7 @@ src_configure() {
 		--enable-shared \
 		--enable-pthread \
 		--disable-rpath \
+		--disable-dtrace \
 		--with-out-ext="${modules}" \
 		$(use_enable jemalloc jemalloc) \
 		$(use_enable socks5 socks) \
