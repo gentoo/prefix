@@ -1,7 +1,8 @@
 /*
- * Copyright 1999-2013 Gentoo Foundation
+ * Copyright 1999-2017 Gentoo Foundation
  * Distributed under the terms of the GNU General Public License v2
  * Authors: Fabian Groffen <grobian@gentoo.org>
+ *          Michael Haubenwallner <haubi@gentoo.org>
  */
 
 #include <stdio.h>
@@ -19,6 +20,7 @@
  *
  * On Darwin it adds -search_path_first to make sure the given paths are
  * searched before the default search path.
+ * On AIX it ensures -bsvr4 is the last argument.
  * The wrapper will inject -L entries for:
  *   - EPREFIX/usr/CHOST/lib/gcc (when gcc)
  *   - EPREFIX/usr/CHOST/lib     (when binutils)
@@ -44,7 +46,7 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	char *ldoveride;
 	char *path;
 #define ESIZ 1024
-	char *e;
+	char e[ESIZ];
 	struct stat lde;
 
 	/* we may not succeed finding the linker */
@@ -63,12 +65,6 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 		fprintf(stdout, "%s: BINUTILS_CONFIG_LD not found in environment\n",
 				wrapper);
 	
-	if ((e = malloc(sizeof(char) * ESIZ)) == NULL) {
-		fprintf(stderr, "%s: out of memory allocating string for path to ld\n",
-				wrapper);
-		exit(1);
-	}
-
 	/* find ld in PATH, allowing easy PATH overrides */
 	path = getenv("PATH");
 	while (path > (char*)1 && *path != '\0') {
@@ -92,7 +88,7 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	/* parse EPREFIX/etc/env.d/binutils/config-CHOST to get CURRENT, then
 	 * consider $EPREFIX/usr/CHOST/binutils-bin/CURRENT where we should
 	 * be able to find ld */
-	*e = '\0';
+	e[0] = '\0';
 	if ((f = fopen(EPREFIX "/etc/env.d/binutils/config-" CHOST, "r")) != NULL) {
 		char p[ESIZ];
 		while (fgets(p, ESIZ, f) != NULL) {
@@ -121,7 +117,7 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	
 	/* last try, call binutils-config to tell us what the linker is
 	 * supposed to be */
-	*e = '\0';
+	e[0] = '\0';
 	if ((f = popen("binutils-config -c", "r")) != NULL) {
 		char p[ESIZ];
 		char *q;
