@@ -30,6 +30,8 @@ S="${WORKDIR}/${MY_P}/gettext-runtime"
 
 src_prepare() {
 	epatch "${FILESDIR}"/0.19.3-localename.patch # Cygwin
+	epatch "${FILESDIR}"/0.19.8.1-hide-newlocale.patch # feature test
+	epatch "${FILESDIR}"/0.19.8.1-winnt.patch
 
 	# The libtool files are stored higher up, so make sure we run in the
 	# whole tree and not just the subdir we build.
