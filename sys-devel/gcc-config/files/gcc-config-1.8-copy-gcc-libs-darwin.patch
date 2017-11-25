@@ -1,7 +1,7 @@
 diff --git a/a/gcc-config b/b/gcc-config
 index d747840..b1e0517 100755
---- a/a/gcc-config
-+++ b/b/gcc-config
+--- a/gcc-config
++++ b/gcc-config
 @@ -364,11 +364,6 @@ prefix_copy_gcc_libs() {
  			# static only, nothing to do here
  			return 0
