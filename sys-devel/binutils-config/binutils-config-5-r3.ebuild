@@ -1,16 +1,18 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI="5"
 
 inherit eutils prefix
 
 DESCRIPTION="Utility to change the binutils version being used"
 HOMEPAGE="https://www.gentoo.org/"
+SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE=""
 
 # We also RDEPEND on sys-apps/findutils which is in base @system
 RDEPEND="sys-apps/gentoo-functions
@@ -43,6 +45,7 @@ src_compile() {
 		-DEPREFIX=\"${EPREFIX}\"
 		-DCHOST=\"${CHOST}\"
 		$([[ ${CHOST} == *-darwin* ]] && echo -DTARGET_DARWIN)
+		$([[ ${CHOST} == *-aix* ]] && echo -DTARGET_AIX)
 		${LDFLAGS}
 	)
 	echo ${args[*]}
@@ -50,7 +53,9 @@ src_compile() {
 }
 
 src_install() {
-	newbin "${S}"/${PN} ${PN}
+	newbin "${FILESDIR}"/${PN}-${PV} ${PN}
+	use prefix && eprefixify "${ED}"/usr/bin/${PN}
+	sed -i "s:@PV@:${PVR}:g" "${ED}"/usr/bin/${PN} || die
 	doman "${FILESDIR}"/${PN}.8
 
 	dodir /usr/$(get_libdir)/misc/binutils-config
@@ -69,13 +74,5 @@ pkg_preinst() {
 		if current=$("${bc}" -c) ; then
 			"${bc}" "${current}"
 		fi
-	fi
-}
-
-pkg_postinst() {
-	# refresh all links and the wrapper
-	if [[ ${ROOT%/} == "" ]] ; then
-		[[ -f ${EROOT}/etc/env.d/binutils/config-${CHOST} ]] \
-			&& binutils-config $(binutils-config --get-current-profile)
 	fi
 }

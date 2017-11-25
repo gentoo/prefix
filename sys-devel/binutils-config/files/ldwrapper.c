@@ -189,7 +189,7 @@ main(int argc, char *argv[])
 	/* add the 4 paths we want (-L + -R) and a null-terminator */
 	newargc += 8 + 1;
 #endif
-#ifdef _AIX
+#ifdef TARGET_AIX
 	/* AIX ld accepts -R only with -bsvr4 */
 	newargc++; /* -bsvr4 */
 #endif
@@ -222,7 +222,7 @@ main(int argc, char *argv[])
 	/* position k right after the original arguments */
 	k = j - 1 + argc;
 	for (i = 1; i < argc; i++, j++) {
-#ifdef _AIX
+#ifdef TARGET_AIX
 		/* AIX ld has this problem:
 		 *   $ /usr/ccs/bin/ld -bsvr4 -bE:xx.exp -bnoentry xx.o
 		 *   ld: 0706-005 Cannot find or open file: l
@@ -291,7 +291,7 @@ main(int argc, char *argv[])
 	newargv[k++] = "-L" EPREFIX "/lib";
 	newargv[k++] = "-R" EPREFIX "/lib";
 #endif
-#ifdef _AIX
+#ifdef TARGET_AIX
 	newargv[k++] = "-bsvr4"; /* last one, see above */
 #endif
 	newargv[k] = NULL;

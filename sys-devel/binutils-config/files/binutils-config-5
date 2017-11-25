@@ -1,15 +1,15 @@
 #!/bin/bash
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # Format of /etc/env.d/binutils/:
 #  config-TARGET:	CURRENT=version for TARGET
 #  TARGET-VER:		has a TARGET and VER variable
 
-: ${EPREFIX:="@GENTOO_PORTAGE_EPREFIX@"}
-[[ ${EPREFIX} = */ ]] && EPREFIX="${EPREFIX%/}"
-[[ -n ${EPREFIX} && ${EPREFIX} != /* ]] && EPREFIX="${PWD%/}/${EPREFIX}"
+EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+if [[ ${EPREFIX} == "@"GENTOO_PORTAGE_EPREFIX"@" ]] ; then
+	EPREFIX=""
+fi
 
 : ${ROOT:=/}
 [[ ${ROOT} != */ ]] && ROOT="${ROOT}/"
@@ -22,7 +22,7 @@ cd "${EPREFIX}/"
 trap ":" INT QUIT TSTP
 
 argv0=${0##*/}
-FUNCTIONS_SH="@GENTOO_PORTAGE_EPREFIX@/lib/gentoo/functions.sh"
+FUNCTIONS_SH="${EPREFIX}/lib/gentoo/functions.sh"
 source ${FUNCTIONS_SH} || {
 	echo "${argv0}: Could not source ${FUNCTIONS_SH}!" 1>&2
 	exit 1
@@ -103,7 +103,7 @@ setup_env() {
 		# Newer paths: /usr/${HOST}/${TARGET}/...
 		# Older paths: /usr/${TARGET}/...
 		#
-		if [[ -d ${ROOT}${EPREFIX}/usr/${HOST}/${TARGET}/binutils-bin/${VER} ]] ; then
+		if [[ -d "${EROOT}"/usr/${HOST}/${TARGET}/binutils-bin/${VER} ]] ; then
 			BINPATH="${EPREFIX}"/usr/${HOST}/${TARGET}/binutils-bin/${VER}
 			BINPATH_LINKS="${EPREFIX}"/usr/libexec/gcc/${TARGET}
 		fi
@@ -145,26 +145,21 @@ switch_profile() {
 	cd "${ROOT}/${LIBPATH}" || exit 1
 	if [[ ${TARGET} == ${HOST} ]] ; then
 		dstlib=${EROOT}/usr/${HOST}/lib
+	elif [[ -d ${EROOT}/usr/${TARGET}/lib ]] ; then
+		# true for at least avr and msp targets
+		dstlib=${EROOT}/usr/${TARGET}/lib
 	else
 		dstlib=${EROOT}/usr/${HOST}/${TARGET}/lib
 	fi
 	# When upgrading, we need to clean up ldscripts and libs.
 	# Don't symlink back in the libs -- the binutils-lib package handles
 	# these now.
-	# TODO: Stop requiring even the ldscripts symlink.
+	# TODO: Stop requiring even the ldscripts symlink, except
+	# we can't for bare-metal toolchains, so...  bug #147155
 	mkdir -p "${dstlib}"
 	rm -rf "${ROOT}/${BINPATH_LINKS}"/ldscripts
 	atomic_ln "${LIBPATH}/ldscripts" "${dstlib}" "ldscripts"
-	find -L "${dstlib}" -xtype l -name 'lib*' -delete
-	# Detect older binutils w/broken rpaths. #562460
-	# We can hardcode the "/lib" part since that's what the binutils
-	# configure scripts have.  They did not include any other path.
-	if [[ $(scanelf -qF '%r#F' "${ROOT}/${BINPATH}/as") == */lib ]] ; then
-		ewarn "Old cross-binutils detected; please re-emerge to fix (see bug #562460)."
-		for x in lib* ; do
-			atomic_ln "${LIBPATH}/${x}" "${dstlib}" "${x}"
-		done
-	fi
+	find -L "${dstlib}" -xtype l -name 'lib*' -exec rm -f {} +
 
 	#
 	# Clean out old generated include symlinks
@@ -257,7 +252,7 @@ uninstall_target() {
 
 	local x
 	for x in \
-		addr2line ar as c++filt dwp elf2flt elfedit flthdr gprof \
+		addr2line ar as c++filt elf2flt elfedit flthdr gprof \
 		ld ld.{bfd,gold,real} \
 		nm objcopy objdump ranlib readelf size strings strip
 	do
@@ -412,12 +407,8 @@ while [[ $# -gt 0 ]] ; do
 		-d|--debug)                DEBUG="yes" ;;
 		-h|--help)                 usage 0 ;;
 		-V|--version)
-			unset Header
-			cvsver="$Id$"
-			cvsver=${cvsver##*binutils-config-}
-			bver=${cvsver%%,v *}
-			cvsver=${cvsver#* }
-			echo "binutils-config-${bver} (r${cvsver%% *})"
+			ver="@PV@"
+			echo "binutils-config-${ver/@'PV'@/git}"
 			exit 0
 			;;
 		-*)
