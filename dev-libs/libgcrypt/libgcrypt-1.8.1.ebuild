@@ -1,12 +1,9 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI=5
-AUTOTOOLS_AUTORECONF=1
-WANT_AUTOMAKE=1.14
+EAPI=6
 
-inherit autotools-multilib flag-o-matic
+inherit autotools flag-o-matic ltprune multilib-minimal
 
 DESCRIPTION="General purpose crypto library based on the code used in GnuPG"
 HOMEPAGE="http://www.gnupg.org/"
@@ -17,7 +14,7 @@ SLOT="0/20" # subslot = soname major version
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc static-libs"
 
-RDEPEND=">=dev-libs/libgpg-error-1.12[${MULTILIB_USEDEP}]
+RDEPEND=">=dev-libs/libgpg-error-1.25[${MULTILIB_USEDEP}]
 	abi_x86_32? (
 		!<=app-emulation/emul-linux-x86-baselibs-20131008-r19
 		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32]
@@ -39,7 +36,8 @@ MULTILIB_CHOST_TOOLS=(
 src_prepare() {
 	# missing attribute(sysv_abi) for Cygwin?
 	[[ ${CHOST} == *-cygwin* ]] && rm -f mpi/*/*.S
-	autotools-multilib_src_prepare
+	default
+	eautoreconf
 }
 
 multilib_src_configure() {
@@ -59,22 +57,24 @@ multilib_src_configure() {
 		# after libgcrypt drops them (bug #468616)
 		--without-capabilities
 
-		# http://trac.videolan.org/vlc/ticket/620
-		# causes bus-errors on sparc64-solaris
-		$([[ ${CHOST} == *86*-darwin* ]] && echo "--disable-asm")
 		$([[ ${CHOST} == sparcv9-*-solaris* ]] && echo "--disable-asm")
 		# no cygwin patch yet
 		$([[ ${CHOST} == *-cygwin* ]] && echo gcry_cv_gcc_win64_platform_as_ok=no)
 	)
-	autotools-utils_src_configure
+	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
 }
 
 multilib_src_compile() {
-	emake no_undefined=-no-undefined
+	default
 	multilib_is_native_abi && use doc && VARTEXFONTS="${T}/fonts" emake -C doc gcrypt.pdf
 }
 
 multilib_src_install() {
 	emake DESTDIR="${D}" install
 	multilib_is_native_abi && use doc && dodoc doc/gcrypt.pdf
+}
+
+multilib_src_install_all() {
+	default
+	prune_libtool_files
 }
