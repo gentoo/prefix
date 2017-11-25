@@ -149,6 +149,8 @@ main(int argc, char *argv[])
 	char **newargv = NULL;
 	char *wrapper = argc > 0 ? argv[0] : "ld-wrapper";
 	char verbose = getenv("BINUTILS_CONFIG_VERBOSE") != NULL;
+	char *builddir = getenv("PORTAGE_BUILDDIR");
+	size_t builddirlen;
 	char *p;
 	int i;
 	int j;
@@ -160,6 +162,11 @@ main(int argc, char *argv[])
 	p = CHOST "-";
 	if (strncmp(wrapper, p, strlen(p)) == 0)
 		wrapper += strlen(p);
+
+	/* ensure builddir is something useful */
+	if (builddir != NULL && *builddir != '/')
+		builddir = NULL;
+	builddirlen = builddir == NULL ? 0 : strlen(builddir);
 
 	/* walk over the arguments to see if there's anything interesting
 	 * for us and calculate the final number of arguments */
@@ -252,6 +259,10 @@ main(int argc, char *argv[])
 			}
 			/* not absolute (or empty)?!? skip */
 			if (*path != '/')
+				continue;
+
+			/* does it refer to the build directory? skip */
+			if (builddir != NULL && strncmp(builddir, path, builddirlen) != 0)
 				continue;
 
 			len = 2 + strlen(path) + 1;
