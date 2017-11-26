@@ -318,19 +318,6 @@ bootstrap_setup() {
 		} > "${ROOT}"/etc/portage/make.conf
 	fi
 
-	if is-rap && [[ ! -f ${ROOT}/etc/portage/repos.conf ]] ; then
-		cat  >"${ROOT}"/etc/portage/repos.conf <<-EOF
-			[DEFAULT]
-			eclass-overrides = rap
-
-			[rap]
-			location = ${ROOT}/usr/portage-stage
-			sync-type = git
-			sync-uri = https://anongit.gentoo.org/git/proj/android.git
-			auto-sync = no
-			EOF
-	fi
-
 	if is-rap ; then
 		[[ -f ${ROOT}/etc/passwd ]] || getent passwd > "${ROOT}"/etc/passwd || \
 			ln -sf {,"${ROOT}"}/etc/passwd
@@ -522,10 +509,6 @@ bootstrap_tree() {
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
 		do_tree http://dev.gentoo.org/~grobian/distfiles prefix-overlay-${PV}.tar.bz2
-	fi
-	if is-rap; then
-		PORTDIR="${ROOT}/usr/portage-stage" \
-		       do_tree http://dev.gentoo.org/~heroxbd android-master.tar.bz2
 	fi
 }
 
