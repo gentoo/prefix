@@ -20,6 +20,15 @@
  *   ${CC} -o hashgen -fopenmp ${CFLAGS} -lssl -lcrypto -lb2 hashgen.c
  */
 
+enum hash_impls {
+	HASH_SHA256    = 1<<0,
+	HASH_SHA512    = 1<<1,
+	HASH_WHIRLPOOL = 1<<2,
+	HASH_BLAKE2B   = 1<<3
+};
+/* default changed from sha256, sha512, whirlpool to blake2b, sha512 */
+static int hashes = HASH_BLAKE2B | HASH_SHA512;
+
 static inline void
 hex_hash(char *out, const unsigned char *buf, const int length)
 {
@@ -61,19 +70,23 @@ write_hashes(const char *root, const char *name, const char *type, FILE *m)
 		{
 #pragma omp section
 			{
-				SHA256_Update(&s256, data, len);
+				if (hashes & HASH_SHA256)
+					SHA256_Update(&s256, data, len);
 			}
 #pragma omp section
 			{
-				SHA512_Update(&s512, data, len);
+				if (hashes & HASH_SHA512)
+					SHA512_Update(&s512, data, len);
 			}
 #pragma omp section
 			{
-				WHIRLPOOL_Update(&whrl, data, len);
+				if (hashes & HASH_WHIRLPOOL)
+					WHIRLPOOL_Update(&whrl, data, len);
 			}
 #pragma omp section
 			{
-				blake2b_update(&bl2b, data, len);
+				if (hashes & HASH_BLAKE2B)
+					blake2b_update(&bl2b, data, len);
 			}
 		}
 	}
@@ -81,33 +94,49 @@ write_hashes(const char *root, const char *name, const char *type, FILE *m)
 #pragma omp parallel sections
 	{
 		{
-			unsigned char sha256buf[SHA256_DIGEST_LENGTH];
-			SHA256_Final(sha256buf, &s256);
-			hex_hash(sha256, sha256buf, SHA256_DIGEST_LENGTH);
+			if (hashes & HASH_SHA256) {
+				unsigned char sha256buf[SHA256_DIGEST_LENGTH];
+				SHA256_Final(sha256buf, &s256);
+				hex_hash(sha256, sha256buf, SHA256_DIGEST_LENGTH);
+			}
 		}
 #pragma omp section
 		{
-			unsigned char sha512buf[SHA512_DIGEST_LENGTH];
-			SHA512_Final(sha512buf, &s512);
-			hex_hash(sha512, sha512buf, SHA512_DIGEST_LENGTH);
+			if (hashes & HASH_SHA512) {
+				unsigned char sha512buf[SHA512_DIGEST_LENGTH];
+				SHA512_Final(sha512buf, &s512);
+				hex_hash(sha512, sha512buf, SHA512_DIGEST_LENGTH);
+			}
 		}
 #pragma omp section
 		{
-			unsigned char whrlplbuf[WHIRLPOOL_DIGEST_LENGTH];
-			WHIRLPOOL_Final(whrlplbuf, &whrl);
-			hex_hash(whrlpl, whrlplbuf, WHIRLPOOL_DIGEST_LENGTH);
+			if (hashes & HASH_WHIRLPOOL) {
+				unsigned char whrlplbuf[WHIRLPOOL_DIGEST_LENGTH];
+				WHIRLPOOL_Final(whrlplbuf, &whrl);
+				hex_hash(whrlpl, whrlplbuf, WHIRLPOOL_DIGEST_LENGTH);
+			}
 		}
 #pragma omp section
 		{
-			unsigned char blak2bbuf[BLAKE2B_OUTBYTES];
-			blake2b_final(&bl2b, blak2bbuf, BLAKE2B_OUTBYTES);
-			hex_hash(blak2b, blak2bbuf, WHIRLPOOL_DIGEST_LENGTH);
+			if (hashes & HASH_BLAKE2B) {
+				unsigned char blak2bbuf[BLAKE2B_OUTBYTES];
+				blake2b_final(&bl2b, blak2bbuf, BLAKE2B_OUTBYTES);
+				hex_hash(blak2b, blak2bbuf, WHIRLPOOL_DIGEST_LENGTH);
+			}
 		}
 	}
 	fclose(f);
 
-	fprintf(m, "%s %s %zd SHA256 %s SHA512 %s WHIRLPOOL %s BLAKE2B %s\n",
-			type, name, flen, sha256, sha512, whrlpl, blak2b);
+	fprintf(m, "%s %s %zd",type, name, flen);
+	if (hashes & HASH_BLAKE2B)
+		fprintf(m, " BLAKE2B %s", blak2b);
+	if (hashes & HASH_SHA256)
+		fprintf(m, " SHA256 %s", sha256);
+	if (hashes & HASH_SHA512)
+		fprintf(m, " SHA512 %s", sha512);
+	if (hashes & HASH_WHIRLPOOL)
+		fprintf(m, " WHIRLPOOL %s", whrlpl);
+	fprintf(m, "\n");
 }
 
 static char
