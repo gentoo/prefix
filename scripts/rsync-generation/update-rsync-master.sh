@@ -212,7 +212,7 @@ sign_manifest() {
 		# remember, HOME is set to misc/ so .gnupg keychain lives there
 		gpg --batch --no-tty --passphrase-fd 0 --default-key C6317B3C \
 			--pinentry-mode loopback \
-			--sign --clearsign --digest-algo SHA256 \
+			--sign --clearsign --digest-algo SHA512 \
 			--yes "${MANIFEST_CACHE}"/${mc} \
 			< "${BASE_PATH}"/autosigner.pwd >& /dev/null
 		if [[ -f ${MANIFEST_CACHE}/${mc}.asc ]] ; then
