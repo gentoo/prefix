@@ -1,4 +1,4 @@
-/* Copyright 2006-2015 Gentoo Foundation; Distributed under the GPL v2 */
+/* Copyright 2006-2017 Gentoo Foundation; Distributed under the GPL v2 */
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
@@ -9,9 +9,16 @@
 #include <sys/time.h>
 #include <openssl/sha.h>
 #include <openssl/whrlpool.h>
+#include <blake2.h>
 
 /* Generate thick Manifests based on thin Manifests */
-/* gcc -o hashgen -fopenmp -Wall -Werror -O3 -pipe -lssl -lcrypto hashgen.c */
+
+/* In order to build this program, the following packages are required:
+ * - app-crypt/libb2 (for BLAKE2, for as long as openssl doesn't include it)
+ * - dev-libs/openssl (for SHA, WHIRLPOOL)
+ * compile like this
+ *   ${CC} -o hashgen -fopenmp ${CFLAGS} -lssl -lcrypto -lb2 hashgen.c
+ */
 
 static inline void
 hex_hash(char *out, const unsigned char *buf, const int length)
@@ -31,11 +38,13 @@ write_hashes(const char *root, const char *name, const char *type, FILE *m)
 	char sha256[(SHA256_DIGEST_LENGTH * 2) + 1];
 	char sha512[(SHA512_DIGEST_LENGTH * 2) + 1];
 	char whrlpl[(WHIRLPOOL_DIGEST_LENGTH * 2) + 1];
+	char blak2b[(BLAKE2B_OUTBYTES * 2) + 1];
 	char data[8096];
 	size_t len;
 	SHA256_CTX s256;
 	SHA512_CTX s512;
 	WHIRLPOOL_CTX whrl;
+	blake2b_state bl2b;
 
 	snprintf(fname, sizeof(fname), "%s/%s", root, name);
 	if ((f = fopen(fname, "r")) == NULL)
@@ -44,6 +53,7 @@ write_hashes(const char *root, const char *name, const char *type, FILE *m)
 	SHA256_Init(&s256);
 	SHA512_Init(&s512);
 	WHIRLPOOL_Init(&whrl);
+	blake2b_init(&bl2b, BLAKE2B_OUTBYTES);
 
 	while ((len = fread(data, 1, sizeof(data), f)) > 0) {
 		flen += len;
@@ -60,6 +70,10 @@ write_hashes(const char *root, const char *name, const char *type, FILE *m)
 #pragma omp section
 			{
 				WHIRLPOOL_Update(&whrl, data, len);
+			}
+#pragma omp section
+			{
+				blake2b_update(&bl2b, data, len);
 			}
 		}
 	}
@@ -83,11 +97,17 @@ write_hashes(const char *root, const char *name, const char *type, FILE *m)
 			WHIRLPOOL_Final(whrlplbuf, &whrl);
 			hex_hash(whrlpl, whrlplbuf, WHIRLPOOL_DIGEST_LENGTH);
 		}
+#pragma omp section
+		{
+			unsigned char blak2bbuf[BLAKE2B_OUTBYTES];
+			blake2b_final(&bl2b, blak2bbuf, BLAKE2B_OUTBYTES);
+			hex_hash(blak2b, blak2bbuf, WHIRLPOOL_DIGEST_LENGTH);
+		}
 	}
 	fclose(f);
 
-	fprintf(m, "%s %s %zd SHA256 %s SHA512 %s WHIRLPOOL %s\n",
-			type, name, flen, sha256, sha512, whrlpl);
+	fprintf(m, "%s %s %zd SHA256 %s SHA512 %s WHIRLPOOL %s BLAKE2B %s\n",
+			type, name, flen, sha256, sha512, whrlpl, blak2b);
 }
 
 static char
@@ -149,7 +169,7 @@ process_dir(const char *dir)
 		struct timeval tv[2];
 
 		/* set mtime of Manifest to the one of the parent dir, this way
-		 * we enure the Manifest gets mtime bumped upon any change made
+		 * we ensure the Manifest gets mtime bumped upon any change made
 		 * to the directory, that is, a DIST change (Manifest itself) or
 		 * any other change (ebuild, files, metadata) */
 		if (stat(dir, &s)) {
