@@ -1,10 +1,9 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.3_p8-r1.ebuild,v 1.2 2014/12/29 07:42:08 polynomial-c Exp $
 
-EAPI=4
+EAPI=5
 
-inherit eutils multilib toolchain-funcs flag-o-matic multilib-minimal libtool
+inherit eutils multilib toolchain-funcs flag-o-matic multilib-minimal libtool ltprune
 
 # Official patches
 # See ftp://ftp.cwru.edu/pub/bash/readline-6.3-patches/
@@ -32,18 +31,16 @@ DESCRIPTION="Another cute console display library"
 HOMEPAGE="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html"
 HOSTLTV="0.1.0"
 HOSTLT="host-libtool-${HOSTLTV}"
-HOSTLT_URI="http://github.com/haubi/host-libtool/releases/download/v${HOSTLTV}/${HOSTLT}.tar.gz"
+HOSTLT_URI="https://github.com/haubi/host-libtool/releases/download/v${HOSTLTV}/${HOSTLT}.tar.gz"
 SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz $(patches) ${HOSTLT_URI}"
 HOSTLT_S=${WORKDIR}/${HOSTLT}
 
 LICENSE="GPL-3"
 SLOT="0"
+KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="static-libs utils"
 
-# see bug 530890 before installing on OS X
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="static-libs"
-
-RDEPEND=">=sys-libs/ncurses-5.9-r3[${MULTILIB_USEDEP}]
+RDEPEND=">=sys-libs/ncurses-5.9-r3:0=[${MULTILIB_USEDEP}]
 	abi_x86_32? (
 		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
 		!<=app-emulation/emul-linux-x86-baselibs-20131008-r7
@@ -53,6 +50,25 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/${MY_P}
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-5.0-no_rpath.patch
+	"${FILESDIR}"/${PN}-6.2-rlfe-tgoto.patch #385091
+	"${FILESDIR}"/${PN}-6.3-fix-long-prompt-vi-search.patch
+	"${FILESDIR}"/${PN}-6.3-read-eof.patch
+
+	"${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
+	"${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
+	"${FILESDIR}"/${PN}-5.2-ia64hpux.patch
+	"${FILESDIR}"/${PN}-6.0-mint.patch
+	"${FILESDIR}"/${PN}-6.0-rlfe-solaris.patch
+	"${FILESDIR}"/${PN}-6.1-aix-soname.patch
+	"${FILESDIR}"/${PN}-6.1-aix-expfull.patch
+	"${FILESDIR}"/${PN}-6.3-interix.patch
+	"${FILESDIR}"/${PN}-6.3-darwin-shlib-versioning.patch
+
+	"${FILESDIR}"/${PN}-6.3-libtool.patch # this enables building via libtool
+)
+
 src_unpack() {
 	unpack ${HOSTLT}.tar.gz
 	S="${HOSTLT_S}" elibtoolize
@@ -61,21 +77,7 @@ src_unpack() {
 
 src_prepare() {
 	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
-
-	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
-	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
-	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
-	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
-	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
-	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
-	epatch "${FILESDIR}"/${PN}-6.0-rlfe-solaris.patch
-	epatch "${FILESDIR}"/${PN}-6.1-aix-soname.patch
-	epatch "${FILESDIR}"/${PN}-6.1-aix-expfull.patch
-	epatch "${FILESDIR}"/${PN}-6.2-rlfe-tgoto.patch #385091
-	epatch "${FILESDIR}"/${PN}-6.3-libtool.patch
-	epatch "${FILESDIR}"/${PN}-6.3-interix.patch
-	epatch "${FILESDIR}"/${PN}-6.3-darwin-shlib-versioning.patch
-	epatch "${FILESDIR}"/${PN}-6.3-fix-long-prompt-vi-search.patch
+	epatch "${PATCHES[@]}"
 
 	# Force ncurses linking. #71420
 	# Use pkg-config to get the right values. #457558
@@ -98,14 +100,17 @@ src_prepare() {
 }
 
 src_configure() {
-	cd "${HOSTLT_S}" || die
-	econf $(use_enable static-libs static)
-	export PATH="${HOSTLT_S}:${PATH}"
-	cd "${S}"
+	mkdir -p "${WORKDIR}/${HOSTLT}-${ABI}" || die
+	cd "${WORKDIR}/${HOSTLT}-${ABI}" || die
+	ECONF_SOURCE="${HOSTLT_S}" econf $(use_enable static-libs static)
+	cd "${BUILD_DIR}"
+
+	export PATH="${WORKDIR}/${HOSTLT}-${ABI}:${PATH}"
+	export ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
 
 	# fix implicit decls with widechar funcs
 	append-cppflags -D_GNU_SOURCE
-	# http://lists.gnu.org/archive/html/bug-readline/2010-07/msg00013.html
+	# https://lists.gnu.org/archive/html/bug-readline/2010-07/msg00013.html
 	append-cppflags -Dxrealloc=_rl_realloc -Dxmalloc=_rl_malloc -Dxfree=_rl_free
 
 	# Make sure configure picks a better ar than `ar`. #484866
@@ -126,7 +131,7 @@ src_configure() {
 	# This is for rlfe, but we need to make sure LDFLAGS doesn't change
 	# so we can re-use the config cache file between the two.
 	append-ldflags -L.
-	export LDFLAGS="-L${S}/shlib ${LDFLAGS}" # search local dirs first
+	export LDFLAGS="-L${BUILD_DIR}/shlib ${LDFLAGS}" # search local dirs first
 
 	multilib-minimal_src_configure
 }
@@ -135,11 +140,11 @@ multilib_src_configure() {
 	ECONF_SOURCE=${S} \
 	econf \
 		--cache-file="${BUILD_DIR}"/config.cache \
-		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
+		--docdir='$(datarootdir)'/doc/${PF} \
 		--with-curses \
 		--disable-shared # use libtool instead
 
-	if multilib_is_native_abi && ! tc-is-cross-compiler ; then
+	if use utils && multilib_is_native_abi && ! tc-is-cross-compiler ; then
 		# code is full of AC_TRY_RUN()
 		mkdir -p examples/rlfe || die
 		cd examples/rlfe || die
@@ -149,9 +154,11 @@ multilib_src_configure() {
 }
 
 multilib_src_compile() {
-	emake shared || die
+	export PATH="${WORKDIR}/${HOSTLT}-${ABI}:${PATH}"
+	export ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
+	emake shared
 
-	if multilib_is_native_abi && ! tc-is-cross-compiler ; then
+	if use utils && multilib_is_native_abi && ! tc-is-cross-compiler ; then
 		# code is full of AC_TRY_RUN()
 		cd examples/rlfe || die
 		local l
@@ -159,21 +166,21 @@ multilib_src_compile() {
 			ln -s ../../shlib/lib${l}$(get_libname)* lib${l}$(get_libname)
 			ln -sf ../../lib${l}.a lib${l}.a
 		done
-		emake LTLINK='libtool --mode=link --tag=CC' || die
+		emake LTLINK='libtool --mode=link --tag=CC'
 	fi
 }
 
 multilib_src_install() {
-	export PATH="${HOSTLT_S}:${PATH}"
-	emake DESTDIR="${D}" install-shared || die
+	export PATH="${WORKDIR}/${HOSTLT}-${ABI}:${PATH}"
+	export ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
+	emake DESTDIR="${D}" install-shared
 
 	if multilib_is_native_abi ; then
-		if ! tc-is-cross-compiler; then
+		gen_usr_ldscript -a readline history #4411
+
+		if use utils && ! tc-is-cross-compiler; then
 			dobin examples/rlfe/rlfe
 		fi
-
-		# must come after installing rlfe, bug #455512
-		gen_usr_ldscript -a readline history #4411
 	fi
 }
 
@@ -183,14 +190,14 @@ multilib_src_install_all() {
 	dohtml -r doc/.
 	docinto ps
 	dodoc doc/*.ps
+
+	prune_libtool_files --all
 }
 
 pkg_preinst() {
 	preserve_old_lib /$(get_libdir)/lib{history,readline}$(get_libname 4) #29865
-	preserve_old_lib /$(get_libdir)/lib{history,readline}$(get_libname 5) #29865
 }
 
 pkg_postinst() {
 	preserve_old_lib_notify /$(get_libdir)/lib{history,readline}$(get_libname 4)
-	preserve_old_lib_notify /$(get_libdir)/lib{history,readline}$(get_libname 5)
 }
