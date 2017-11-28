@@ -45,6 +45,7 @@ efetch() {
 			# curl, FreeBSD's fetch and ftp.
 			if [[ x$(type -t wget) == "xfile" ]] ; then
 				FETCH_COMMAND="wget"
+				[[ $(wget -h) == *"--no-check-certificate"* ]] && FETCH_COMMAND+=" --no-check-certificate"
 			elif [[ x$(type -t curl) == "xfile" ]] ; then
 				einfo "WARNING: curl doesn't fail when downloading fails, please check its output carefully!"
 				FETCH_COMMAND="curl -f -L -O"
