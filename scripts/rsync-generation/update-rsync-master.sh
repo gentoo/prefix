@@ -187,57 +187,28 @@ TIME_SVNPREFIX=$((STOP - START))
 
 START=$(date +%s)
 
-echo "($(date +"%F %R")) signing unsigned Manifests"
+echo "($(date +"%F %R")) signing Manifest"
 
 # generate Thick Manifests
-${BASE_PATH}/hashgen ${RSYNCDIR}
+${BASE_PATH}/hashgen "${RSYNCDIR}"
 
-# We store signed Manifests in a "cache", so we don't have to
-# generate them all-over all the time.  Generation needs to take place
-# if:
-# 1. the original Manifest isn't signed
-# 2. we don't have one generated file
-# 3. the Manifest modification time is newer than our generated file
-# Signing is done with our snapshot signing key
-sign_manifest() {
-	local pkg=$1
-	local mc=${pkg//\//_}.manifest
-	[[ -z ${pkg} ]] && return 1
+# Signing is done with our snapshot signing key, and only on the top
+# level Manifest, for it covers indirectly the entire tree
 
-	if [[ ! -f ${MANIFEST_CACHE}/${mc} || ${RSYNCDIR}/${pkg}/Manifest -nt ${MANIFEST_CACHE}/${mc} ]] ; then
-		mkdir -p "${MANIFEST_CACHE}"
+# remember, HOME is set to misc/ so .gnupg keychain lives there
+gpg --batch --no-tty --passphrase-fd 0 --default-key C6317B3C \
+	--pinentry-mode loopback \
+	--sign --clearsign --digest-algo SHA512 \
+	--yes "${RSYNCDIR}"/Manifest \
+	< "${BASE_PATH}"/autosigner.pwd >& /dev/null
+if [[ -f ${RSYNCDIR}/Manifest.asc ]] ; then
+	touch -r "${RSYNCDIR}"/Manifest "${RSYNCDIR}"/Manifest.asc
+	mv "${RSYNCDIR}"/Manifest{.asc,}
+else
+	echo "signing failed!" >> /dev/stderr
+fi
 
-		echo "Signing Manifest for ${pkg}"
-		cat "${RSYNCDIR}/${pkg}"/Manifest > "${MANIFEST_CACHE}"/${mc}
-		# remember, HOME is set to misc/ so .gnupg keychain lives there
-		gpg --batch --no-tty --passphrase-fd 0 --default-key C6317B3C \
-			--pinentry-mode loopback \
-			--sign --clearsign --digest-algo SHA512 \
-			--yes "${MANIFEST_CACHE}"/${mc} \
-			< "${BASE_PATH}"/autosigner.pwd >& /dev/null
-		if [[ -f ${MANIFEST_CACHE}/${mc}.asc ]] ; then
-			touch -r "${RSYNCDIR}/${pkg}"/Manifest \
-				"${MANIFEST_CACHE}"/${mc}.asc
-			mv "${MANIFEST_CACHE}"/${mc}{.asc,}
-		else
-			rm "${MANIFEST_CACHE}"/${mc}
-			echo "signing failed!" >> /dev/stderr
-			return 0
-		fi
-	fi
-
-	cp -a "${MANIFEST_CACHE}"/${mc} "${RSYNCDIR}/${pkg}"/Manifest
-
-	return 0
-}
-
-for entry in "${RSYNCDIR}"/*/* ; do
-	[[ ! -f "${entry}"/Manifest ]] && continue
-	entry=${entry#${RSYNCDIR}/}
-	sign_manifest "${entry}"
-done
-
-echo "($(date +"%F %R")) unsigned Manifests signed"
+echo "($(date +"%F %R")) Manifest signed"
 
 STOP=$(date +%s)
 TIME_MANISIGN=$((STOP - START))
