@@ -289,24 +289,27 @@ process_dir(const char *dir)
 		hashes = newhashes;
 	}
 
-	snprintf(manifest, sizeof(manifest), "%s/Manifest", dir);
+	snprintf(manifest, sizeof(manifest), "%s/%s", dir, str_manifest);
 	if ((f = fopen(manifest, "r")) == NULL) {
 		gzFile mf;
-
-		/* open up a gzipped Manifest to keep the hashes of the
-		 * Manifests in the subdirs */
-		snprintf(manifest, sizeof(manifest), "%s/Manifest.gz", dir);
-		if ((mf = gzopen(manifest, "wb9")) == NULL) {
-			fprintf(stderr, "failed to open file '%s' for writing: %s\n",
-					manifest, strerror(errno));
-			return NULL;
-		}
 
 		/* recurse into subdirs */
 		if ((d = opendir(dir)) != NULL) {
 			struct stat s;
+
+			/* open up a gzipped Manifest to keep the hashes of the
+			 * Manifests in the subdirs */
+			snprintf(manifest, sizeof(manifest), "%s/%s", dir, str_manifest_gz);
+			if ((mf = gzopen(manifest, "wb9")) == NULL) {
+				fprintf(stderr, "failed to open file '%s' for writing: %s\n",
+						manifest, strerror(errno));
+				return NULL;
+			}
+
 			while ((e = readdir(d)) != NULL) {
 				if (e->d_name[0] == '.')
+					continue;
+				if (strcmp(e->d_name, str_manifest_gz) == 0)
 					continue;
 				snprintf(path, sizeof(path), "%s/%s", dir, e->d_name);
 				if (!stat(path, &s)) {
@@ -324,13 +327,13 @@ process_dir(const char *dir)
 				}
 			}
 			closedir(d);
-		}
 
-		gzclose(mf);
-		if (tv[0].tv_sec != 0) {
-			/* restore dir mtime, and set Manifest mtime to match it */
-			utimes(manifest, tv);
-			utimes(dir, tv);
+			gzclose(mf);
+			if (tv[0].tv_sec != 0) {
+				/* restore dir mtime, and set Manifest mtime to match it */
+				utimes(manifest, tv);
+				utimes(dir, tv);
+			}
 		}
 
 		return str_manifest_gz;
