@@ -53,7 +53,7 @@ src_compile() {
 }
 
 src_install() {
-	newbin "${FILESDIR}"/${PN}-${PV} ${PN}
+	dobin ${PN}
 	use prefix && eprefixify "${ED}"/usr/bin/${PN}
 	sed -i "s:@PV@:${PVR}:g" "${ED}"/usr/bin/${PN} || die
 	doman "${FILESDIR}"/${PN}.8
