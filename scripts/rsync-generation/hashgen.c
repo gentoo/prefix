@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
+#include <ctype.h>
 #include <dirent.h>
 #include <errno.h>
 #include <sys/stat.h>
@@ -10,14 +11,16 @@
 #include <openssl/sha.h>
 #include <openssl/whrlpool.h>
 #include <blake2.h>
+#include <zlib.h>
 
 /* Generate thick Manifests based on thin Manifests */
 
 /* In order to build this program, the following packages are required:
  * - app-crypt/libb2 (for BLAKE2, for as long as openssl doesn't include it)
  * - dev-libs/openssl (for SHA, WHIRLPOOL)
+ * - sys-libs/zlib (for compressing Manifest files)
  * compile like this
- *   ${CC} -o hashgen -fopenmp ${CFLAGS} -lssl -lcrypto -lb2 hashgen.c
+ *   ${CC} -o hashgen -fopenmp ${CFLAGS} -lssl -lcrypto -lb2 -lz hashgen.c
  */
 
 enum hash_impls {
@@ -26,7 +29,8 @@ enum hash_impls {
 	HASH_WHIRLPOOL = 1<<2,
 	HASH_BLAKE2B   = 1<<3
 };
-/* default changed from sha256, sha512, whirlpool to blake2b, sha512 */
+/* default changed from sha256, sha512, whirlpool
+ * to blake2b, sha512 on 2017-11-21 */
 static int hashes = HASH_BLAKE2B | HASH_SHA512;
 
 static inline void
@@ -39,16 +43,21 @@ hex_hash(char *out, const unsigned char *buf, const int length)
 }
 
 static void
-write_hashes(const char *root, const char *name, const char *type, FILE *m)
+write_hashes(
+		const char *root,
+		const char *name,
+		const char *type,
+		FILE *m,
+		gzFile gm)
 {
 	FILE *f;
-	char fname[8096];
+	char fname[8192];
 	size_t flen = 0;
 	char sha256[(SHA256_DIGEST_LENGTH * 2) + 1];
 	char sha512[(SHA512_DIGEST_LENGTH * 2) + 1];
 	char whrlpl[(WHIRLPOOL_DIGEST_LENGTH * 2) + 1];
 	char blak2b[(BLAKE2B_OUTBYTES * 2) + 1];
-	char data[8096];
+	char data[8192];
 	size_t len;
 	SHA256_CTX s256;
 	SHA512_CTX s512;
@@ -121,28 +130,37 @@ write_hashes(const char *root, const char *name, const char *type, FILE *m)
 			if (hashes & HASH_BLAKE2B) {
 				unsigned char blak2bbuf[BLAKE2B_OUTBYTES];
 				blake2b_final(&bl2b, blak2bbuf, BLAKE2B_OUTBYTES);
-				hex_hash(blak2b, blak2bbuf, WHIRLPOOL_DIGEST_LENGTH);
+				hex_hash(blak2b, blak2bbuf, BLAKE2B_OUTBYTES);
 			}
 		}
 	}
 	fclose(f);
 
-	fprintf(m, "%s %s %zd",type, name, flen);
+	len = snprintf(data, sizeof(data), "%s %s %zd", type, name, flen);
 	if (hashes & HASH_BLAKE2B)
-		fprintf(m, " BLAKE2B %s", blak2b);
+		len += snprintf(data + len, sizeof(data) - len,
+				" BLAKE2B %s", blak2b);
 	if (hashes & HASH_SHA256)
-		fprintf(m, " SHA256 %s", sha256);
+		len += snprintf(data + len, sizeof(data) - len,
+				" SHA256 %s", sha256);
 	if (hashes & HASH_SHA512)
-		fprintf(m, " SHA512 %s", sha512);
+		len += snprintf(data + len, sizeof(data) - len,
+				" SHA512 %s", sha512);
 	if (hashes & HASH_WHIRLPOOL)
-		fprintf(m, " WHIRLPOOL %s", whrlpl);
-	fprintf(m, "\n");
+		len += snprintf(data + len, sizeof(data) - len,
+				" WHIRLPOOL %s", whrlpl);
+	len += snprintf(data + len, sizeof(data) - len, "\n");
+
+	if (m != NULL)
+		fwrite(data, 1, len, m);
+	if (gm != NULL)
+		gzwrite(gm, data, len);
 }
 
 static char
 process_files(const char *dir, const char *off, FILE *m)
 {
-	char path[8096];
+	char path[8192];
 	DIR *d;
 	struct dirent *e;
 
@@ -157,7 +175,7 @@ process_files(const char *dir, const char *off, FILE *m)
 			if (process_files(dir, path, m))
 				continue;
 			/* regular file */
-			write_hashes(dir, path, "AUX", m);
+			write_hashes(dir, path, "AUX", m, NULL);
 		}
 		closedir(d);
 		return 1;
@@ -166,17 +184,124 @@ process_files(const char *dir, const char *off, FILE *m)
 	}
 }
 
-static void
+static int
+parse_layout_conf(const char *path)
+{
+	FILE *f;
+	char buf[8192];
+	size_t len = 0;
+	size_t sz;
+	char *p;
+	char *q;
+	char *tok;
+	char *last_nl;
+	int ret = 0;
+
+	if ((f = fopen(path, "r")) == NULL)
+		return 0;
+
+	/* read file, examine lines after encountering a newline, that is,
+	 * if the file doesn't end with a newline, the final bit is ignored */
+	while (sz = fread(buf + len, 1, sizeof(buf) - len, f) > 0) {
+		len += sz;
+		last_nl = NULL;
+		for (p = buf; p - buf < len; p++) {
+			if (*p == '\n') {
+				last_nl = p;
+				sz = strlen("manifest-hashes");
+				if (strncmp(buf, "manifest-hashes", sz))
+					continue;
+				if ((q = strchr(buf + sz, '=')) == NULL)
+					continue;
+				q++;
+				while (isspace((int)*q))
+					q++;
+				/* parse the tokens, whitespace separated */
+				tok = q;
+				do {
+					while (!isspace((int)*q))
+						q++;
+					sz = q - tok;
+					if (strncmp(tok, "SHA256", sz) == 0) {
+						ret |= HASH_SHA256;
+					} else if (strncmp(tok, "SHA512", sz) == 0) {
+						ret |= HASH_SHA512;
+					} else if (strncmp(tok, "WHIRLPOOL", sz) == 0) {
+						ret |= HASH_WHIRLPOOL;
+					} else if (strncmp(tok, "BLAKE2B", sz) == 0) {
+						ret |= HASH_BLAKE2B;
+					}
+					while (isspace((int)*q) && *q != '\n')
+						q++;
+					tok = q;
+				} while (*q != '\n');
+				/* got it, expect only once, so stop processing */
+				fclose(f);
+				return ret;
+			}
+		}
+		if (last_nl != NULL) {
+			last_nl++;  /* skip \n */
+			len = last_nl - buf;
+			memmove(buf, last_nl, len);
+		} else {
+			/* too long line, just skip */
+			len = 0;
+		}
+	}
+
+	fclose(f);
+	return 0;
+}
+
+static char *str_manifest = "Manifest";
+static char *str_manifest_gz = "Manifest.gz";
+static char *
 process_dir(const char *dir)
 {
-	char manifest[8096];
+	char manifest[8192];
 	FILE *f;
 	DIR *d;
 	struct dirent *e;
-	char path[8096];
+	char path[8192];
+	int newhashes;
+	char global_manifest = 0;
+	struct stat s;
+	struct timeval tv[2];
+
+	/* set mtime of Manifest(.gz) to the one of the parent dir, this way
+	 * we ensure the Manifest gets mtime bumped upon any change made
+	 * to the directory, that is, a DIST change (Manifest itself) or
+	 * any other change (ebuild, files, metadata) */
+	if (stat(dir, &s)) {
+		tv[0].tv_sec = 0;
+		tv[0].tv_usec = 0;
+	} else {
+		tv[0].tv_sec = s.st_atim.tv_sec;
+		tv[0].tv_usec = s.st_atim.tv_nsec / 1000;
+		tv[1].tv_sec = s.st_mtim.tv_sec;
+		tv[1].tv_usec = s.st_mtim.tv_nsec / 1000;
+	}
+
+	snprintf(path, sizeof(path), "%s/metadata/layout.conf", dir);
+	if ((newhashes = parse_layout_conf(path)) != 0) {
+		global_manifest = 1;
+		hashes = newhashes;
+	}
 
 	snprintf(manifest, sizeof(manifest), "%s/Manifest", dir);
 	if ((f = fopen(manifest, "r")) == NULL) {
+		gzFile mf;
+
+		/* open up a gzipped Manifest to keep the hashes of the
+		 * Manifests in the subdirs */
+		snprintf(manifest, sizeof(manifest), "%s/Manifest.gz", dir);
+		if ((mf = gzopen(manifest, "wb9")) == NULL) {
+			fprintf(stderr, "failed to open file '%s' for writing: %s\n",
+					manifest, strerror(errno));
+			return NULL;
+		}
+
 		/* recurse into subdirs */
 		if ((d = opendir(dir)) != NULL) {
 			struct stat s;
@@ -184,38 +309,42 @@ process_dir(const char *dir)
 				if (e->d_name[0] == '.')
 					continue;
 				snprintf(path, sizeof(path), "%s/%s", dir, e->d_name);
-				if (!stat(path, &s) && s.st_mode & S_IFDIR)
-					process_dir(path);
+				if (!stat(path, &s)) {
+					if (s.st_mode & S_IFDIR) {
+						char *mfest = process_dir(path);
+						if (mfest == NULL) {
+							gzclose(mf);
+							return NULL;
+						}
+						snprintf(path, sizeof(path), "%s/%s", e->d_name, mfest);
+						write_hashes(dir, path, "MANIFEST", NULL, mf);
+					} else if (s.st_mode & S_IFREG) {
+						write_hashes(dir, e->d_name, "DATA", NULL, mf);
+					}
+				}
 			}
 			closedir(d);
 		}
+
+		gzclose(mf);
+		if (tv[0].tv_sec != 0) {
+			/* restore dir mtime, and set Manifest mtime to match it */
+			utimes(manifest, tv);
+			utimes(dir, tv);
+		}
+
+		return str_manifest_gz;
 	} else {
 		/* this looks like an ebuild dir, so update the Manifest */
 		FILE *m;
-		char newmanifest[8096];
-		char buf[8096];
-		struct stat s;
-		struct timeval tv[2];
-
-		/* set mtime of Manifest to the one of the parent dir, this way
-		 * we ensure the Manifest gets mtime bumped upon any change made
-		 * to the directory, that is, a DIST change (Manifest itself) or
-		 * any other change (ebuild, files, metadata) */
-		if (stat(dir, &s)) {
-			tv[0].tv_sec = 0;
-			tv[0].tv_usec = 0;
-		} else {
-			tv[0].tv_sec = s.st_atim.tv_sec;
-			tv[0].tv_usec = s.st_atim.tv_nsec / 1000;
-			tv[1].tv_sec = s.st_mtim.tv_sec;
-			tv[1].tv_usec = s.st_mtim.tv_nsec / 1000;
-		}
+		char newmanifest[8192];
+		char buf[8192];
 
 		snprintf(newmanifest, sizeof(newmanifest), "%s/.Manifest.new", dir);
 		if ((m = fopen(newmanifest, "w")) == NULL) {
 			fprintf(stderr, "failed to open file '%s' for writing: %s\n",
 					newmanifest, strerror(errno));
-			return;
+			return NULL;
 		}
 
 		/* we know the Manifest is sorted, and stuff in files/ is
@@ -232,7 +361,7 @@ process_dir(const char *dir)
 					fprintf(stderr, "failed to write to %s/.Manifest.new: %s\n",
 							dir, strerror(errno));
 					fclose(f);
-					return;
+					return NULL;
 				}
 		}
 		fclose(f);
@@ -246,13 +375,13 @@ process_dir(const char *dir)
 					continue;
 				if (strcmp(e->d_name + strlen(e->d_name) - 7, ".ebuild") != 0)
 					continue;
-				write_hashes(dir, e->d_name, "EBUILD", m);
+				write_hashes(dir, e->d_name, "EBUILD", m, NULL);
 			}
 			closedir(d);
 		}
 
-		write_hashes(dir, "ChangeLog", "MISC", m);
-		write_hashes(dir, "metadata.xml", "MISC", m);
+		write_hashes(dir, "ChangeLog", "MISC", m, NULL);
+		write_hashes(dir, "metadata.xml", "MISC", m, NULL);
 
 		fflush(m);
 		fclose(m);
@@ -263,6 +392,8 @@ process_dir(const char *dir)
 			utimes(manifest, tv);
 			utimes(dir, tv);
 		}
+
+		return str_manifest;
 	}
 }
 
