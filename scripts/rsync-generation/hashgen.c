@@ -327,6 +327,8 @@ process_dir(const char *dir)
 					continue;
 				if (strcmp(e->d_name, my_manifest) == 0)
 					continue;
+				if (strcmp(e->d_name, str_manifest) == 0)
+					continue;
 				snprintf(path, sizeof(path), "%s/%s", dir, e->d_name);
 				if (!stat(path, &s)) {
 					if (s.st_mode & S_IFDIR) {
