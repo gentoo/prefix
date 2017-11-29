@@ -1549,7 +1549,7 @@ bootstrap_stage3() {
 
 	configure_toolchain || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
-	is-rap || export CPPFLAGS="-I${ROOT}/usr/include"
+	export CPPFLAGS="-isystem ${ROOT}/usr/include"
 	export LDFLAGS="-L${ROOT}/usr/$(get_libdir)"
 	unset CC CXX
 
@@ -1666,9 +1666,7 @@ bootstrap_stage3() {
 		rm -f "${ROOT}"/bin/sh
 		ln -s bash "${ROOT}"/bin/sh
 	fi
-	unset CONFIG_SHELL
-	unset MAKEINFO
-	unset CXX
+	unset CONFIG_SHELL MAKEINFO CXX CPPFLAGS LDFLAGS
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
 	# get a sane bash, overwriting tmp symlinks
