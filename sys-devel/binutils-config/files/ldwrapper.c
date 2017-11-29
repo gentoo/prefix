@@ -45,8 +45,8 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	FILE *f = NULL;
 	char *ldoveride;
 	char *path;
-#define ESIZ 1024
-	char e[ESIZ];
+#define ESIZ 1024  /* POSIX_MAX_PATH */
+	char *ret;
 	struct stat lde;
 
 	/* we may not succeed finding the linker */
@@ -65,6 +65,10 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 		fprintf(stdout, "%s: BINUTILS_CONFIG_LD not found in environment\n",
 				wrapper);
 	
+	ret = malloc(sizeof(char) * ESIZ);
+	if (ret == NULL)
+		return;
+
 	/* find ld in PATH, allowing easy PATH overrides */
 	path = getenv("PATH");
 	while (path > (char*)1 && *path != '\0') {
@@ -72,9 +76,9 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 		if (q)
 			*q = '\0';
 		if (strstr(path, "/" CHOST "/binutils-bin/") != NULL) {
-			snprintf(e, ESIZ, "%s/%s", path, wrapper);
-			if (stat(e, &lde) == 0)
-				*ld = e;
+			snprintf(ret, ESIZ, "%s/%s", path, wrapper);
+			if (stat(ret, &lde) == 0)
+				*ld = ret;
 		}
 		if (q)
 			*q = ':'; /* restore PATH value */
@@ -88,7 +92,7 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 	/* parse EPREFIX/etc/env.d/binutils/config-CHOST to get CURRENT, then
 	 * consider $EPREFIX/usr/CHOST/binutils-bin/CURRENT where we should
 	 * be able to find ld */
-	e[0] = '\0';
+	ret[0] = '\0';
 	if ((f = fopen(EPREFIX "/etc/env.d/binutils/config-" CHOST, "r")) != NULL) {
 		char p[ESIZ];
 		while (fgets(p, ESIZ, f) != NULL) {
@@ -99,25 +103,25 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 				for (q--; isspace(*q); q--)
 					*q = '\0';
 					;
-				snprintf(e, ESIZ, EPREFIX "/usr/" CHOST "/binutils-bin/%s/%s",
+				snprintf(ret, ESIZ, EPREFIX "/usr/" CHOST "/binutils-bin/%s/%s",
 						p + strlen("CURRENT="), wrapper);
 				break;
 			}
 		}
 		fclose(f);
-		if (stat(e, &lde) == 0) {
-			*ld = e;
+		if (stat(ret, &lde) == 0) {
+			*ld = ret;
 			return;
 		}
 	}
 	if (verbose)
 		fprintf(stdout, "%s: linker not found via " EPREFIX
 				"/etc/env.d/binutils/config-" CHOST " (ld=%s)\n",
-				wrapper, e);
+				wrapper, ret);
 	
 	/* last try, call binutils-config to tell us what the linker is
 	 * supposed to be */
-	e[0] = '\0';
+	ret[0] = '\0';
 	if ((f = popen("binutils-config -c", "r")) != NULL) {
 		char p[ESIZ];
 		char *q;
@@ -125,20 +129,21 @@ find_real_ld(char **ld, char verbose, char *wrapper)
 			q = p;
 			if (strncmp(q, CHOST "-", strlen(CHOST "-")) == 0)
 				q += strlen(CHOST "-");
-			snprintf(e, ESIZ, EPREFIX "/usr/" CHOST "/binutils-bin/%s/%s",
+			snprintf(ret, ESIZ, EPREFIX "/usr/" CHOST "/binutils-bin/%s/%s",
 					q, wrapper);
 		} else {
 			*p = '\0';
 		}
 		fclose(f);
-		if (*p && stat(e, &lde) == 0) {
-			*ld = e;
+		if (*p && stat(ret, &lde) == 0) {
+			*ld = ret;
 			return;
 		}
 	}
 	if (verbose)
 		fprintf(stdout, "%s: linker not found via binutils-config -c (ld=%s)\n",
-				wrapper, e);
+				wrapper, ret);
+	free(ret);
 }
 
 int
