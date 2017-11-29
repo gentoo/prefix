@@ -4,6 +4,7 @@
 #include <strings.h>
 #include <ctype.h>
 #include <dirent.h>
+#include <time.h>
 #include <errno.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -95,7 +96,7 @@ write_hashes(
 #pragma omp section
 			{
 				if (hashes & HASH_BLAKE2B)
-					blake2b_update(&bl2b, data, len);
+					blake2b_update(&bl2b, (unsigned char *)data, len);
 			}
 		}
 	}
@@ -152,7 +153,7 @@ write_hashes(
 	len += snprintf(data + len, sizeof(data) - len, "\n");
 
 	if (m != NULL)
-		fwrite(data, 1, len, m);
+		fwrite(data, len, 1, m);
 	if (gm != NULL)
 		gzwrite(gm, data, len);
 }
@@ -202,7 +203,7 @@ parse_layout_conf(const char *path)
 
 	/* read file, examine lines after encountering a newline, that is,
 	 * if the file doesn't end with a newline, the final bit is ignored */
-	while (sz = fread(buf + len, 1, sizeof(buf) - len, f) > 0) {
+	while ((sz = fread(buf + len, 1, sizeof(buf) - len, f)) > 0) {
 		len += sz;
 		last_nl = NULL;
 		for (p = buf; p - buf < len; p++) {
@@ -256,6 +257,7 @@ parse_layout_conf(const char *path)
 
 static char *str_manifest = "Manifest";
 static char *str_manifest_gz = "Manifest.gz";
+static char *str_manifest_files_gz = "Manifest.files.gz";
 static char *
 process_dir(const char *dir)
 {
@@ -296,10 +298,12 @@ process_dir(const char *dir)
 		/* recurse into subdirs */
 		if ((d = opendir(dir)) != NULL) {
 			struct stat s;
+			char *my_manifest =
+				global_manifest ? str_manifest_files_gz : str_manifest_gz;
 
 			/* open up a gzipped Manifest to keep the hashes of the
 			 * Manifests in the subdirs */
-			snprintf(manifest, sizeof(manifest), "%s/%s", dir, str_manifest_gz);
+			snprintf(manifest, sizeof(manifest), "%s/%s", dir, my_manifest);
 			if ((mf = gzopen(manifest, "wb9")) == NULL) {
 				fprintf(stderr, "failed to open file '%s' for writing: %s\n",
 						manifest, strerror(errno));
@@ -309,7 +313,7 @@ process_dir(const char *dir)
 			while ((e = readdir(d)) != NULL) {
 				if (e->d_name[0] == '.')
 					continue;
-				if (strcmp(e->d_name, str_manifest_gz) == 0)
+				if (strcmp(e->d_name, my_manifest) == 0)
 					continue;
 				snprintf(path, sizeof(path), "%s/%s", dir, e->d_name);
 				if (!stat(path, &s)) {
@@ -328,7 +332,47 @@ process_dir(const char *dir)
 			}
 			closedir(d);
 
-			gzclose(mf);
+			if (global_manifest) {
+				char globmanifest[8192];
+				char buf[2048];
+				size_t len;
+				FILE *m;
+				time_t rtime;
+
+				len = snprintf(buf, sizeof(buf),
+						"IGNORE distfiles\n"
+						"IGNORE local\n"
+						"IGNORE lost+found\n"
+						"IGNORE packages\n");
+				gzwrite(mf, buf, len);
+				gzclose(mf);
+
+				/* create global Manifest */
+				snprintf(globmanifest, sizeof(globmanifest),
+						"%s/%s", dir, str_manifest);
+				if ((m = fopen(globmanifest, "w")) == NULL) {
+					fprintf(stderr, "failed to open file '%s' "
+							"for writing: %s\n",
+							globmanifest, strerror(errno));
+					return NULL;
+				}
+
+				write_hashes(dir, my_manifest, "MANIFEST", m, NULL);
+				time(&rtime);
+				len = strftime(buf, sizeof(buf),
+						"TIMESTAMP %Y-%m-%dT%H:%M:%SZ\n", gmtime(&rtime));
+				fwrite(buf, len, 1, m);
+				fflush(m);
+				fclose(m);
+
+				if (tv[0].tv_sec != 0) {
+					/* restore dir mtime, and set Manifest mtime to match it */
+					utimes(globmanifest, tv);
+				}
+			} else {
+				gzclose(mf);
+			}
+
 			if (tv[0].tv_sec != 0) {
 				/* restore dir mtime, and set Manifest mtime to match it */
 				utimes(manifest, tv);
