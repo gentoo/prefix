@@ -140,7 +140,7 @@ src_configure() {
 	# kill/uptime - procps
 	# groups/su   - shadow
 	# hostname    - net-tools
-	econf ${myconf[@]}
+	econf "${myconf[@]}"
 }
 
 src_test() {
