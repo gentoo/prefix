@@ -231,6 +231,9 @@ parse_layout_conf(const char *path)
 						ret |= HASH_WHIRLPOOL;
 					} else if (strncmp(tok, "BLAKE2B", sz) == 0) {
 						ret |= HASH_BLAKE2B;
+					} else {
+						fprintf(stderr, "warning: unsupported hash from "
+								"layout.conf: %.*s\n", (int)sz, tok);
 					}
 					while (isspace((int)*q) && *q != '\n')
 						q++;
