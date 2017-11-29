@@ -292,7 +292,7 @@ process_dir(const char *dir)
 	}
 
 	snprintf(manifest, sizeof(manifest), "%s/%s", dir, str_manifest);
-	if ((f = fopen(manifest, "r")) == NULL) {
+	if (global_manifest || (f = fopen(manifest, "r")) == NULL) {
 		gzFile mf;
 
 		/* recurse into subdirs */
