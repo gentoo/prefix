@@ -32,7 +32,8 @@ enum hash_impls {
 };
 /* default changed from sha256, sha512, whirlpool
  * to blake2b, sha512 on 2017-11-21 */
-static int hashes = HASH_BLAKE2B | HASH_SHA512;
+#define HASH_DEFAULT  (HASH_BLAKE2B | HASH_SHA512);
+static int hashes = HASH_DEFAULT;
 
 static inline void
 hex_hash(char *out, const unsigned char *buf, const int length)
@@ -196,6 +197,7 @@ parse_layout_conf(const char *path)
 	char *q;
 	char *tok;
 	char *last_nl;
+	char *start;
 	int ret = 0;
 
 	if ((f = fopen(path, "r")) == NULL)
@@ -205,57 +207,64 @@ parse_layout_conf(const char *path)
 	 * if the file doesn't end with a newline, the final bit is ignored */
 	while ((sz = fread(buf + len, 1, sizeof(buf) - len, f)) > 0) {
 		len += sz;
+		start = buf;
 		last_nl = NULL;
 		for (p = buf; p - buf < len; p++) {
 			if (*p == '\n') {
+				if (last_nl != NULL)
+					start = last_nl + 1;
 				last_nl = p;
-				sz = strlen("manifest-hashes");
-				if (strncmp(buf, "manifest-hashes", sz))
-					continue;
-				if ((q = strchr(buf + sz, '=')) == NULL)
-					continue;
-				q++;
-				while (isspace((int)*q))
-					q++;
-				/* parse the tokens, whitespace separated */
-				tok = q;
 				do {
-					while (!isspace((int)*q))
+					sz = strlen("manifest-hashes");
+					if (strncmp(start, "manifest-hashes", sz))
+						break;
+					if ((q = strchr(start + sz, '=')) == NULL)
+						break;
+					q++;
+					while (isspace((int)*q))
 						q++;
-					sz = q - tok;
-					if (strncmp(tok, "SHA256", sz) == 0) {
-						ret |= HASH_SHA256;
-					} else if (strncmp(tok, "SHA512", sz) == 0) {
-						ret |= HASH_SHA512;
-					} else if (strncmp(tok, "WHIRLPOOL", sz) == 0) {
-						ret |= HASH_WHIRLPOOL;
-					} else if (strncmp(tok, "BLAKE2B", sz) == 0) {
-						ret |= HASH_BLAKE2B;
-					} else {
-						fprintf(stderr, "warning: unsupported hash from "
-								"layout.conf: %.*s\n", (int)sz, tok);
-					}
-					while (isspace((int)*q) && *q != '\n')
-						q++;
+					/* parse the tokens, whitespace separated */
 					tok = q;
-				} while (*q != '\n');
-				/* got it, expect only once, so stop processing */
-				fclose(f);
-				return ret;
+					do {
+						while (!isspace((int)*q))
+							q++;
+						sz = q - tok;
+						if (strncmp(tok, "SHA256", sz) == 0) {
+							ret |= HASH_SHA256;
+						} else if (strncmp(tok, "SHA512", sz) == 0) {
+							ret |= HASH_SHA512;
+						} else if (strncmp(tok, "WHIRLPOOL", sz) == 0) {
+							ret |= HASH_WHIRLPOOL;
+						} else if (strncmp(tok, "BLAKE2B", sz) == 0) {
+							ret |= HASH_BLAKE2B;
+						} else {
+							fprintf(stderr, "warning: unsupported hash from "
+									"layout.conf: %.*s\n", (int)sz, tok);
+						}
+						while (isspace((int)*q) && *q != '\n')
+							q++;
+						tok = q;
+					} while (*q != '\n');
+					/* got it, expect only once, so stop processing */
+					fclose(f);
+					return ret;
+				} while (0);
 			}
 		}
 		if (last_nl != NULL) {
 			last_nl++;  /* skip \n */
 			len = last_nl - buf;
 			memmove(buf, last_nl, len);
+			last_nl = buf;
 		} else {
-			/* too long line, just skip */
+			/* skip too long line */
 			len = 0;
 		}
 	}
 
 	fclose(f);
-	return 0;
+	/* if we didn't find anything, return the default set */
+	return HASH_DEFAULT;
 }
 
 static char *str_manifest = "Manifest";
