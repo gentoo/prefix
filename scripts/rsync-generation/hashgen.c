@@ -160,6 +160,33 @@ write_hashes(
 }
 
 static char
+write_hashes_dir(const char *root, const char *name, gzFile zm)
+{
+	char path[8192];
+	DIR *d;
+	struct dirent *e;
+
+	snprintf(path, sizeof(path), "%s/%s", root, name);
+	if ((d = opendir(path)) != NULL) {
+		while ((e = readdir(d)) != NULL) {
+			/* skip all dotfiles */
+			if (e->d_name[0] == '.')
+				continue;
+			snprintf(path, sizeof(path), "%s/%s",
+					name, e->d_name);
+			if (write_hashes_dir(root, path, zm))
+				continue;
+			/* regular file */
+			write_hashes(root, path, "DATA", NULL, zm);
+		}
+		closedir(d);
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+static char
 process_files(const char *dir, const char *off, FILE *m)
 {
 	char path[8192];
@@ -278,8 +305,14 @@ process_dir(const char *dir)
 	DIR *d;
 	struct dirent *e;
 	char path[8192];
+	const char *p;
 	int newhashes;
-	char global_manifest = 0;
+	enum {
+		GLOBAL_MANIFEST,   /* Manifest.files.gz + Manifest */
+		SUBTREE_MANIFEST,  /* Manifest.gz for recursive list of files */
+		EBUILD_MANIFEST,   /* Manifest thick from thin */
+		CATEGORY_MANIFEST  /* Manifest.gz with Manifest entries */
+	} type_manifest;
 	struct stat s;
 	struct timeval tv[2];
 
@@ -297,24 +330,48 @@ process_dir(const char *dir)
 		tv[1].tv_usec = s.st_mtim.tv_nsec / 1000;
 	}
 
+	type_manifest = CATEGORY_MANIFEST;
 	snprintf(path, sizeof(path), "%s/metadata/layout.conf", dir);
 	if ((newhashes = parse_layout_conf(path)) != 0) {
-		global_manifest = 1;
+		type_manifest = GLOBAL_MANIFEST;
 		hashes = newhashes;
+	} else {
+		if ((p = strrchr(dir, '/')) != NULL) {
+			p++;
+		} else {
+			p = dir;
+		}
+
+		if (
+				strcmp(p, "eclass") == 0 ||
+				strcmp(p, "licenses") == 0 ||
+				strcmp(p, "metadata") == 0 ||
+				strcmp(p, "profiles") == 0 ||
+				strcmp(p, "scripts") == 0
+			)
+		{
+			type_manifest = SUBTREE_MANIFEST;
+		}
 	}
 
+	/* If a Manifest file exists, this is an ebuild dir, unless we
+	 * already established this is the top level dir which also has a
+	 * Manifest file. */
 	snprintf(manifest, sizeof(manifest), "%s/%s", dir, str_manifest);
-	if (global_manifest || (f = fopen(manifest, "r")) == NULL) {
+	if (type_manifest == GLOBAL_MANIFEST ||
+			(f = fopen(manifest, "r")) == NULL)
+	{
+		/* all of these types (GLOBAL, SUBTREE, CATEGORY) have a gzipped
+		 * Manifest */
 		gzFile mf;
 
-		/* recurse into subdirs */
 		if ((d = opendir(dir)) != NULL) {
 			struct stat s;
-			char *my_manifest =
-				global_manifest ? str_manifest_files_gz : str_manifest_gz;
+			char *my_manifest = str_manifest_gz;
 
-			/* open up a gzipped Manifest to keep the hashes of the
-			 * Manifests in the subdirs */
+			if (type_manifest == GLOBAL_MANIFEST)
+				my_manifest = str_manifest_files_gz;
+
 			snprintf(manifest, sizeof(manifest), "%s/%s", dir, my_manifest);
 			if ((mf = gzopen(manifest, "wb9")) == NULL) {
 				fprintf(stderr, "failed to open file '%s' for writing: %s\n",
@@ -323,22 +380,40 @@ process_dir(const char *dir)
 			}
 
 			while ((e = readdir(d)) != NULL) {
+				/* ignore dotfiles (including . and ..) */
 				if (e->d_name[0] == '.')
 					continue;
+				/* ignore existing Manifests */
 				if (strcmp(e->d_name, my_manifest) == 0)
 					continue;
 				if (strcmp(e->d_name, str_manifest) == 0)
 					continue;
+
 				snprintf(path, sizeof(path), "%s/%s", dir, e->d_name);
 				if (!stat(path, &s)) {
 					if (s.st_mode & S_IFDIR) {
-						char *mfest = process_dir(path);
-						if (mfest == NULL) {
-							gzclose(mf);
-							return NULL;
+						if (type_manifest == SUBTREE_MANIFEST) {
+							write_hashes_dir(dir, e->d_name, mf);
+							if (strcmp(e->d_name, "metadata") == 0) {
+								char buf[2048];
+								size_t len;
+								len = snprintf(buf, sizeof(buf),
+										"IGNORE timestamp\n"
+										"IGNORE timestamp.chk\n"
+										"IGNORE timestamp.commit\n"
+										"IGNORE timestamp.x\n");
+								gzwrite(mf, buf, len);
+							}
+						} else {
+							char *mfest = process_dir(path);
+							if (mfest == NULL) {
+								gzclose(mf);
+								return NULL;
+							}
+							snprintf(path, sizeof(path), "%s/%s",
+									e->d_name, mfest);
+							write_hashes(dir, path, "MANIFEST", NULL, mf);
 						}
-						snprintf(path, sizeof(path), "%s/%s", e->d_name, mfest);
-						write_hashes(dir, path, "MANIFEST", NULL, mf);
 					} else if (s.st_mode & S_IFREG) {
 						write_hashes(dir, e->d_name, "DATA", NULL, mf);
 					}
@@ -346,7 +421,7 @@ process_dir(const char *dir)
 			}
 			closedir(d);
 
-			if (global_manifest) {
+			if (type_manifest == GLOBAL_MANIFEST) {
 				char globmanifest[8192];
 				char buf[2048];
 				size_t len;
