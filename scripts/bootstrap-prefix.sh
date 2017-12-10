@@ -641,9 +641,7 @@ bootstrap_portage() {
 
 	[[ -e "${ROOT}"/tmp/usr/portage ]] || ln -s "${PORTDIR}" "${ROOT}"/tmp/usr/portage
 
-	if is-rap; then
-		cp -f "${ROOT}"/etc/portage/repos.conf "${ROOT}"/tmp/usr/share/portage/config/repos.conf
-	elif [[ -s ${PORTDIR}/profiles/repo_name ]]; then
+	if [[ -s ${PORTDIR}/profiles/repo_name ]]; then
 		# sync portage's repos.conf with the tree being used
 		sed -i -e "s,gentoo_prefix,$(<"${PORTDIR}"/profiles/repo_name)," "${ROOT}"/tmp/usr/share/portage/config/repos.conf || return 1
 	fi
