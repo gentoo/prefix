@@ -370,6 +370,9 @@ bootstrap_setup() {
 		powerpc64-unknown-linux-gnu)
 			profile="prefix/${linux}/ppc64${legacy}"
 			;;
+		aarch64-unknown-linux-gnu)
+			profile="prefix/${linux}/arm64${legacy}"
+			;;
 		armv7l-pc-linux-gnu)
 			profile="prefix/${linux}/arm${legacy}"
 			;;
@@ -2555,7 +2558,7 @@ if [[ -z ${CHOST} ]]; then
 					ppc*)
 						CHOST="`uname -m | sed -e 's/^ppc/powerpc/'`-unknown-linux-gnu"
 						;;
-					powerpc*)
+					powerpc*|aarch64*)
 						CHOST="`uname -m`-unknown-linux-gnu"
 						;;
 					*)
