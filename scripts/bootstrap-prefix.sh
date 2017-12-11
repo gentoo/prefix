@@ -438,6 +438,28 @@ bootstrap_setup() {
 		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${fullprofile}."
 	fi
+
+	# Use package.use to disable in the portage tree to be shared between
+	# stage2 and stage3. The hack will be undone during tree sync in stage3.
+	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
+	# Most binary Linux distributions seem to fancy toolchains that
+	# do not do c++ support (need to install a separate package).
+	sys-libs/ncurses -cxx
+	sys-devel/binutils -cxx
+	EOF
+
+	# Strange enough, -cxx causes wrong libtool config on Cygwin,
+	# but we require a C++ compiler there anyway - so just use it.
+	[[ ${CHOST} == *-cygwin* ]] ||
+		cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
+	# gmp has cxx flag enabled by default. When dealing with a host
+	# compiler without cxx support this causes configure failure.
+	# In addition, The stage2 g++ is only for compiling stage3 compiler,
+	# because the host libstdc++.so runtime may be not compatible and
+	# stage2 libstdc++.so might conflict with that of stage3.  The
+	# trade-off is just not to use cxx.
+	dev-libs/gmp -cxx
+	EOF
 }
 
 do_tree() {
@@ -1412,26 +1434,14 @@ bootstrap_stage2() {
 		sys-devel/binutils-config
 	)
 
-	# Most binary Linux distributions seem to fancy toolchains that
-	# do not do c++ support (need to install a separate package).
-	USE="${USE} -cxx" \
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	
 	# Build a linker and compiler that live in ${ROOT}/tmp, but
 	# produce binaries in ${ROOT}. Debian multiarch supported by RAP
 	# needs ld to support sysroot.
-	USE="${USE} -cxx" \
 	TPREFIX="${ROOT}" \
 	EXTRA_ECONF=$(rapx --with-sysroot=/) \
 	emerge_pkgs --nodeps ${linker} || return 1
-
-	# gmp has cxx flag enabled by default. When dealing with a host
-	# compiler without cxx support this causes configure failure. Use
-	# package.use to disable in the temporary prefix.  
-	# Strange enough, -cxx causes wrong libtool config on Cygwin,
-	# but we require a C++ compiler there anyway - so just use it.
-	[[ ${CHOST} == *-cygwin* ]] ||
-	echo "dev-libs/gmp -cxx" >> "${ROOT}"/tmp/etc/portage/package.use
 
 	# Old versions of gcc has been masked.  We need gcc-4.7 to bootstrap
 	# on systems without a c++ compiler.
@@ -1448,9 +1458,6 @@ bootstrap_stage2() {
 	PYTHON_COMPAT_OVERRIDE=python2.7 \
 	emerge_pkgs --nodeps ${compiler_stage1} || return 1
 
-	# undo gmp cxx hack
-	rm -f "${ROOT}"/tmp/etc/portage/package.use
-	
 	if [[ ${CHOST} == *darwin* ]] ; then
 		# we use Clang as our toolchain compiler, so we need to make
 		# sure we actually use it
