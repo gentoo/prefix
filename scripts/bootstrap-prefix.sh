@@ -114,9 +114,6 @@ configure_cflags() {
 		*-solaris* | *-irix*)
 			export LDFLAGS="-L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib"
 			;;
-		*-hp-hpux*)
-			export LDFLAGS="-L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib -L/usr/local/lib -R/usr/local/lib"
-			;;
 		*-*-aix*)
 			# The bootstrap compiler unlikely has runtime linking
 			# enabled already, but elibtoolize switches to the
@@ -409,9 +406,6 @@ bootstrap_setup() {
 		powerpc-ibm-aix*)
 			profile="prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
 			;;
-		mips-sgi-irix*)
-			profile="prefix/irix/${CHOST#mips-sgi-irix}/mips"
-			;;
 		i586-pc-interix*)
 			profile="prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
 			;;
@@ -423,33 +417,6 @@ bootstrap_setup() {
 			;;
 		x86_64-pc-cygwin*)
 			profile="prefix/windows/cygwin/x64"
-			;;
-		hppa64*-hp-hpux11*)
-			profile="prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa64"
-			;;
-		hppa2.0*-hp-hpux11*)
-			profile="prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa2.0"
-			;;
-		ia64-hp-hpux11*)
-			profile="prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
-			;;
-		i386-pc-freebsd*)
-			profile="prefix/bsd/freebsd/${CHOST#i386-pc-freebsd}/x86"
-			;;
-		x86_64-pc-freebsd*)
-			profile="prefix/bsd/freebsd/${CHOST#x86_64-pc-freebsd}/x64"
-			;;
-		i386-pc-netbsd*)
-			profile="prefix/bsd/netbsd/${CHOST#i386-pc-netbsdelf}/x86"
-			;;
-		powerpc-unknown-openbsd*)
-			profile="prefix/bsd/openbsd/${CHOST#powerpc-unknown-openbsd}/ppc"
-			;;
-		i386-pc-openbsd*)
-			profile="prefix/bsd/openbsd/${CHOST#i386-pc-openbsd}/x86"
-			;;
-		x86_64-pc-openbsd*)
-			profile="prefix/bsd/openbsd/${CHOST#x86_64-pc-openbsd}/x64"
 			;;
 		*)	
 			eerror "UNKNOWN ARCH: You need to set up a make.profile symlink to a"
@@ -720,9 +687,6 @@ bootstrap_gnu() {
 	[[ ${PN},${CHOST} == bash,*-aix* ]] &&
 	export CPPFLAGS="${CPPFLAGS}${CPPFLAGS:+ }-DUSE_MKTEMP"
 
-	# NetBSD has strange openssl headers, which make wget fail.
-	[[ $CHOST == *-netbsd* ]] && myconf="${myconf} --disable-ntlm"
-
 	# Darwin9 in particular doesn't compile when using system readline,
 	# but we don't need any groovy input at all, so just disable it
 	[[ ${PN} == "bash" ]] && myconf="${myconf} --disable-readline"
@@ -733,11 +697,6 @@ bootstrap_gnu() {
 	# there, and if so, the buildsystem assumes the header exists too
 	[[ ${PN} == "coreutils" ]] && \
 		myconf="${myconf} --disable-acl --without-gmp"
-
-	if [[ ${PN} == "tar" && ${CHOST} == *-hpux* ]] ; then
-		# Fix a compilation error due to a missing definition
-		export CPPFLAGS="${CPPFLAGS} -DCHAR_BIT=8"
-	fi
 
 	# Gentoo Bug 400831, fails on Ubuntu with libssl-dev installed
 	[[ ${PN} == "wget" ]] && myconf="${myconf} --without-ssl"
@@ -887,9 +846,6 @@ EOP
 			# And ctypes dynamically loads "libpythonX.Y.dll" anyway.
 			myconf="${myconf} --enable-shared"
 		;;
-		*-openbsd*)
-			CFLAGS="${CFLAGS} -D_BSD_SOURCE=1"
-		;;
 		*-linux*)
 			# Bug 382263: make sure Python will know about the libdir in use for
 			# the current arch
@@ -908,7 +864,7 @@ EOP
 	export LDFLAGS="${CFLAGS} -L${ROOT}/tmp/usr/lib -L${ROOT}/tmp/usr/lib64"
 	# set correct flags for runtime for ELF platforms
 	case $CHOST in
-		*-*bsd*|*-linux*)
+		*-linux*)
 			# GNU ld
 			export LDFLAGS="${LDFLAGS} -Wl,-rpath,${ROOT}/tmp/usr/lib ${libdir}"
 		;;
@@ -1066,12 +1022,11 @@ bootstrap_grep() {
 }
 
 bootstrap_coreutils() {
-	# 8.12 for FreeBSD 9.1, bug #415439
 	# 8.16 is the last version released as tar.gz
 	# 8.18 is necessary for macOS High Sierra (darwin17) and converted
 	#      to tar.gz for this case
 	bootstrap_gnu coreutils 8.28 || bootstrap_gnu coreutils 8.16 || \
-	bootstrap_gnu coreutils 8.17 || bootstrap_gnu coreutils 8.12
+	bootstrap_gnu coreutils 8.17
 }
 
 bootstrap_tar() {
@@ -2127,11 +2082,9 @@ EOF
 	case "${CHOST}" in
 		*-cygwin*)     ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%' | tr -d "\\r") ;;
 		*-darwin*)     ncpu=$(/usr/sbin/sysctl -n hw.ncpu)                 ;;
-		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
 		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
 		*-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
 		*-aix*)        ncpu=$(/usr/sbin/bindprocessor -q | cut -d: -f2 | wc -w) ;;
-		*-hpux*)       ncpu=$(/sbin/ioscan -kC processor | grep -c processor) ;;
 		*)             ncpu=1                                              ;;
 	esac
 	# get rid of excess spaces (at least Solaris wc does)
@@ -2591,9 +2544,6 @@ if [[ -z ${CHOST} ]]; then
 				# guessing here, instead of what IBM uses itself.
 				CHOST="`/usr/bin/uname -p`-ibm-aix`oslevel`"
 				;;
-			IRIX|IRIX64)
-				CHOST="mips-sgi-irix`uname -r`"
-				;;
 			Interix)
 				case `uname -m` in
 					x86) CHOST="i586-pc-interix`uname -r`" ;;
@@ -2604,82 +2554,6 @@ if [[ -z ${CHOST} ]]; then
 				;;
 			CYGWIN*)
 				CHOST="`uname -m`-pc-cygwin"
-				;;
-			HP-UX)
-				case `uname -m` in
-				ia64) HP_ARCH=ia64 ;;
-				9000/[678][0-9][0-9])
-					if [ ! -x /usr/bin/getconf ]; then
-						eerror "Need /usr/bin/getconf to determine cpu"
-						exit 1
-					fi
-					# from config.guess
-					sc_cpu_version=`/usr/bin/getconf SC_CPU_VERSION 2>/dev/null`
-					sc_kernel_bits=`/usr/bin/getconf SC_KERNEL_BITS 2>/dev/null`
-					case "${sc_cpu_version}" in
-					523) HP_ARCH="hppa1.0" ;; # CPU_PA_RISC1_0
-					528) HP_ARCH="hppa1.1" ;; # CPU_PA_RISC1_1
-					532)                      # CPU_PA_RISC2_0
-						case "${sc_kernel_bits}" in
-						32) HP_ARCH="hppa2.0n" ;;
-						64) HP_ARCH="hppa2.0w" ;;
-						'') HP_ARCH="hppa2.0" ;;   # HP-UX 10.20
-						esac ;;
-					esac
-					;;
-				esac
-				uname_r=`uname -r`
-				if [ -z "${HP_ARCH}" ]; then
-					error "Cannot determine cpu/kernel type"
-					exit ;
-				fi
-				CHOST="${HP_ARCH}-hp-hpux${uname_r#B.}"
-				unset HP_ARCH uname_r
-				;;
-			FreeBSD)
-				case `uname -p` in
-					i386)
-						CHOST="i386-pc-freebsd`uname -r | sed 's|-.*$||'`"
-					;;
-					amd64)
-						CHOST="x86_64-pc-freebsd`uname -r | sed 's|-.*$||'`"
-					;;
-					sparc64)
-						CHOST="sparc64-unknown-freebsd`uname -r | sed 's|-.*$||'`"
-					;;
-					*)
-						eerror "Sorry, don't know about FreeBSD on `uname -p` yet"
-						exit 1
-					;;
-				esac
-				;;
-			NetBSD)
-				case `uname -p` in
-					i386)
-						CHOST="`uname -p`-pc-netbsdelf`uname -r`"
-					;;
-					*)
-						eerror "Sorry, don't know about NetBSD on `uname -p` yet"
-						exit 1
-					;;
-				esac
-				;;
-			OpenBSD)
-				case `uname -m` in
-					macppc)
-						CHOST="powerpc-unknown-openbsd`uname -r`"
-					;;
-					i386)
-						CHOST="i386-pc-openbsd`uname -r`"
-					;;
-					amd64)
-						CHOST="x86_64-pc-openbsd`uname -r`"
-					;;
-					*)
-						eerror "Sorry, don't know about OpenBSD on `uname -m` yet"
-						exit 1
-					;;
-				esac
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
