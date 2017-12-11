@@ -2694,4 +2694,5 @@ bootstrap_${TODO#non} || exit 1
 # Local Variables:
 # sh-indentation: 8
 # sh-basic-offset: 8
+# indent-tabs-mode: t
 # End:
