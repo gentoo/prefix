@@ -5,7 +5,7 @@ EAPI=5
 
 PYTHON_COMPAT=(
 	pypy
-	python3_3 python3_4 python3_5 python3_6
+	python3_4 python3_5 python3_6
 	python2_7
 )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
@@ -13,7 +13,7 @@ PYTHON_REQ_USE='bzip2(+),threads(+)'
 inherit eutils distutils-r1 multilib
 
 DESCRIPTION="Portage package manager used in Gentoo Prefix"
-HOMEPAGE="http://prefix.gentoo.org/"
+HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
@@ -39,6 +39,8 @@ RDEPEND="
 		>=sys-apps/sed-4.0.5
 		app-shells/bash:0[readline]
 		>=app-admin/eselect-1.2
+		$(python_gen_cond_dep 'dev-python/pyblake2[${PYTHON_USEDEP}]' \
+			python{2_7,3_4,3_5} pypy)
 	)
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
@@ -54,7 +56,7 @@ RDEPEND="
 		$(python_gen_cond_dep 'dev-python/pyxattr[${PYTHON_USEDEP}]' \
 			python2_7 pypy)
 	) )
-	!prefix? ( !<app-admin/logrotate-3.8.0 )"
+	!<app-admin/logrotate-3.8.0"
 PDEPEND="
 	!build? (
 		>=net-misc/rsync-2.6.4
@@ -65,7 +67,7 @@ PDEPEND="
 
 REQUIRED_USE="epydoc? ( $(python_gen_useflags 'python2*') )"
 
-SRC_ARCHIVES="https://dev.gentoo.org/~dolsen/releases/portage https://dev.gentoo.org/~grobian/distfiles"
+SRC_ARCHIVES="https://dev.gentoo.org/~zmedico/portage/archives https://dev.gentoo.org/~grobian/distfiles"
 
 prefix_src_archives() {
 	local x y
@@ -213,8 +215,14 @@ python_install_all() {
 	distutils-r1_python_install_all
 
 	local targets=()
-	use doc && targets+=( install_docbook )
-	use epydoc && targets+=( install_epydoc )
+	use doc && targets+=(
+		install_docbook
+		--htmldir="${EPREFIX}/usr/share/doc/${PF}/html"
+	)
+	use epydoc && targets+=(
+		install_epydoc
+		--htmldir="${EPREFIX}/usr/share/doc/${PF}/html"
+	)
 
 	# install docs
 	if [[ ${targets[@]} ]]; then
