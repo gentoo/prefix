@@ -1,0 +1,46 @@
+From 748d20380aa1b27149dc1b80c7eaf15fde7c6aba Mon Sep 17 00:00:00 2001
+From: Fabian Groffen <grobian@gentoo.org>
+Date: Fri, 15 Dec 2017 09:30:17 +0100
+Subject: gcc-config: ensure we run env-update for prefix too
+
+The intention of commit cfbb9e94ca23c360d5801946e39da29c7d422dfc was to
+disable running ldconfig and updating ld.so.conf for prefix, but the
+implementation was too greedy and also disabled env-update, which we
+need to activate a compiler, see bug #641096.
+
+Bug: https://bugs.gentoo.org/641096
+---
+ gcc-config | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/gcc-config b/gcc-config
+index 7fcde15..ff8d8ac 100755
+--- a/gcc-config
++++ b/gcc-config
+@@ -693,16 +693,18 @@ switch_profile() {
+ 	   [[ ${FORCE} == "yes" || ${envd_changed} -gt 0 ]]
+ 	then
+ 		# in case python is broken ...
+-		if [[ -z ${EPREFIX} ]] && ! env-update ; then
++		if ! env-update ; then
+ 			echo ""
+ 			ewarn "env-update failed to work properly; making sure ld.so.conf paths"
+ 			ewarn "are setup properly.  Please rerun gcc-config with the -f option."
+ 			echo ""
+-			if [[ ! -d /etc/ld.so.conf.d ]] ; then
+-				show_var LDPATH "${ROOT}"/etc/env.d/05gcc-${CTARGET} \
+-					| ${SED} -e 's|:|\n|g' >> /etc/ld.so.conf
++			if [[ -z ${EPREFIX} ]] ; then
++				if [[ ! -d /etc/ld.so.conf.d ]] ; then
++					show_var LDPATH "${ROOT}"/etc/env.d/05gcc-${CTARGET} \
++						| ${SED} -e 's|:|\n|g' >> /etc/ld.so.conf
++				fi
++				ldconfig
+ 			fi
+-			ldconfig
+ 		fi
+ 	else
+ 		envd_changed=0
+-- 
+cgit v1.1
+

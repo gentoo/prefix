@@ -20,6 +20,7 @@ RDEPEND=">=sys-apps/gentoo-functions-0.10"
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.8-copy-gcc-libs-darwin.patch
 	"${FILESDIR}"/${PN}-1.9-cygwin.patch
+	"${FILESDIR}"/${PN}-1.9.0-ensure-env-update-for-prefix.patch
 )
 
 src_compile() {
