@@ -7,8 +7,8 @@ trap 'exit 1' TERM KILL INT QUIT ABRT
 # some basic output functions
 eerror() { echo "!!! $*" 1>&2; }
 einfo() { echo "* $*"; }
-# RAP (libc) mode is triggered if the script is renamed to bootstrap-rap.sh.
-is-rap() { [[ ${BASH_SOURCE} = *rap.sh ]]; }
+# RAP (libc) mode is triggered on Linux kernel and glibc.
+is-rap() { [[ ${PREFIX_DISABLE_RAP} != "yes" && ${CHOST} = *linux-gnu* ]]; }
 rapx() { is-rap && echo $1 || echo $2; }
 
 # prefer gtar over tar
