@@ -37,6 +37,8 @@ src_prepare() {
 	# missing attribute(sysv_abi) for Cygwin?
 	[[ ${CHOST} == *-cygwin* ]] && rm -f mpi/*/*.S
 	default
+	# always use -no-undefined even if upstream is not convinced yet
+	sed -i -e 's/^no_undefined\s*=\s*$/& -no-undefined/' src/Makefile.am || die
 	eautoreconf
 }
 
