@@ -7,9 +7,7 @@ inherit eutils prefix
 
 DESCRIPTION="Utility to change the binutils version being used"
 HOMEPAGE="https://www.gentoo.org/"
-GIT_REV="d469b099b5e8aed45ff2edf78f91822b805440d3"
-WRAPPER_REV="${PV}.3.1"
-SRC_URI="https://gitweb.gentoo.org/repo/proj/prefix.git/plain/sys-devel/binutils-config/files/ldwrapper.c?id=${GIT_REV} -> ${PN}-ldwrapper-${WRAPPER_REV}.c"
+SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -41,11 +39,9 @@ src_compile() {
 		$(tc-getCC)
 		${CPPFLAGS}
 		${CFLAGS}
-		-o ldwrapper "${S}"/${PN}-ldwrapper-${WRAPPER_REV}.c
+		-o ldwrapper "${FILESDIR}"/ldwrapper.c
 		-DEPREFIX=\"${EPREFIX}\"
 		-DCHOST=\"${CHOST}\"
-		$([[ ${CHOST} == *-darwin* ]] && echo -DTARGET_DARWIN)
-		$([[ ${CHOST} == *-aix* ]] && echo -DTARGET_AIX)
 		${LDFLAGS}
 	)
 	echo ${args[*]}
