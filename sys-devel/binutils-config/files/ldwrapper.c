@@ -205,8 +205,10 @@ main(int argc, char *argv[])
 	char ldbuf[ESIZ];
 	char *ld = ldbuf;
 	char ctarget[128];
+	char *darwin_dt = getenv("MACOSX_DEPLOYMENT_TARGET");
 	char is_cross = 0;
 	char is_darwin = 0;
+	char darwin_use_rpath = 1;
 	char is_aix = 0;
 	char *p;
 	size_t len;
@@ -287,18 +289,52 @@ main(int argc, char *argv[])
 				newargc++;
 			if (argv[i][1] == 'v' || argv[i][1] == 'V')
 				verbose = 1;
+			if (strcmp(argv[i], "-macosx_version_min") == 0 && i < argc - 1)
+				darwin_dt = argv[i + 1];
+			/* ld64 will refuse to accept -rpath if any of the
+			 * following options are given */
+			if (strcmp(argv[i], "-static") == 0 ||
+					strcmp(argv[i], "-dylinker") == 0 ||
+					strcmp(argv[i], "-preload") == 0 ||
+					strcmp(argv[i], "-r") == 0 ||
+					strcmp(argv[i], "-kext") == 0)
+				darwin_use_rpath = 0;
 		}
 	}
-	/* account the original arguments */
-	newargc += argc;
-	/* we always add a sentinel */
-	newargc++;
+
+	/* Note: Code below assumes that newargc is the count of -L arguments. */
 
 	/* If a package being cross-compiled injects standard directories, it's
 	 * non-cross-compilable on any platform, prefix or no prefix. So no
 	 * need to add PREFIX- or CTARGET-aware libdirs. */
 	if (!is_cross) {
 		if (is_darwin) {
+			/* check deployment target if nothing prevents us from
+			 * using -rpath as of yet
+			 * # ld64 -rpath foo
+			 * ld: -rpath can only be used when targeting Mac OS X
+			 * 10.5 or later */
+			if (darwin_use_rpath) {
+				/* version format is x.y.z. atoi will stop
+				 * parsing at dots. darwin_dt != NULL isn't
+				 * just for safety: ld64 also refuses -rpath
+				 * when not given a deployment target at all */
+				darwin_use_rpath = darwin_dt != NULL &&
+					(atoi(darwin_dt) > 10 ||
+					 (strncmp(darwin_dt, "10.", 3) == 0 &&
+					  atoi(darwin_dt + 3) >= 5));
+			}
+
+			if (darwin_use_rpath) {
+				/* We need two additional arguments for each:
+				 * -rpath and the path itself */
+				newargc *= 2;
+
+				/* and we will be adding two for the each of
+				 * the two system paths as well */
+				newargc += 4;
+			}
+
 			/* add the 2 prefix paths (-L) and -search_paths_first */
 			newargc += 2 + 1;
 		} else {
@@ -311,6 +347,11 @@ main(int argc, char *argv[])
 			newargc++; /* -bsvr4 */
 		}
 	}
+
+	/* account the original arguments */
+	newargc += argc;
+	/* we always add a sentinel */
+	newargc++;
 
 	/* let's first try to find the real ld */
 	if (find_real_ld(&ld, sizeof(ldbuf), verbose, is_cross,
@@ -358,7 +399,7 @@ main(int argc, char *argv[])
 
 		newargv[j] = argv[i];
 
-		if (is_cross || is_darwin)
+		if (is_cross || (is_darwin && !darwin_use_rpath))
 			continue;
 
 		/* on ELF targets we add runpaths for all found search paths */
@@ -390,14 +431,21 @@ main(int argc, char *argv[])
 			if (builddir != NULL && strncmp(builddir, path, len) != 0)
 				continue;
 
-			sze = 2 + strlen(path) + 1;
-			newargv[k] = malloc(sizeof(char) * sze);
-			if (newargv[k] == NULL) {
-				fprintf(stderr, "%s: failed to allocate memory for "
-						"'%s' -R argument\n", wrapper, argv[i]);
-				exit(1);
+			if (is_darwin) {
+				newargv[k] = "-rpath";
+				newargv[++k] = path;
+			} else {
+				sze = 2 + strlen(path) + 1;
+				newargv[k] = malloc(sizeof(char) * sze);
+				if (newargv[k] == NULL) {
+					fprintf(stderr, "%s: failed to allocate memory for "
+							"'%s' -R argument\n", wrapper, argv[i]);
+					exit(1);
+				}
+
+				snprintf(newargv[k], sze, "-R%s", path);
 			}
-			snprintf(newargv[k], sze, "-R%s", path);
+
 			k++;
 		}
 	}
@@ -407,6 +455,13 @@ main(int argc, char *argv[])
 			/* FIXME: no support for cross-compiling *to* Darwin */
 			newargv[k++] = "-L" EPREFIX "/usr/lib";
 			newargv[k++] = "-L" EPREFIX "/lib";
+
+			if (darwin_use_rpath) {
+				newargv[k++] = "-rpath";
+				newargv[k++] = EPREFIX "/usr/lib";
+				newargv[k++] = "-rpath";
+				newargv[k++] = EPREFIX "/lib";
+			}
 		} else {
 			newargv[k++] = "-L" EPREFIX "/usr/" CHOST "/lib/gcc";
 			newargv[k++] = "-R" EPREFIX "/usr/" CHOST "/lib/gcc";
