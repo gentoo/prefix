@@ -228,7 +228,7 @@ main(int argc, char *argv[])
 
 		/* see to case 2 first */
 		*p = '\0';
-		if ((q = strrchr(p - 1, '/')) != NULL) {
+		if ((q = strrchr(wrapper, '/')) != NULL) {
 			/* q points to "/<CTARGET>" now */
 			len = strlen("/gcc");
 			if (q - len > wrapper && strncmp(q - len, "/gcc", len) == 0)
