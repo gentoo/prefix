@@ -61,6 +61,9 @@ DEPEND="${RDEPEND}
 RDEPEND+=" !build? ( app-misc/mime-types )"
 PDEPEND=">=app-eselect/eselect-python-20140125-r1"
 
+[[ -n ${CYGWINPORTS_GITREV} ]] &&
+DEPEND+=" elibc_Cygwin? ( app-arch/unzip )"
+
 S="${WORKDIR}/${MY_P}"
 
 PYVER=${SLOT%/*}
