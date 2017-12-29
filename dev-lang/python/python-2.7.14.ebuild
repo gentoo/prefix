@@ -231,6 +231,13 @@ src_configure() {
 		replace-flags -Os -O3  # comment #14
 	fi
 
+	# Set LDFLAGS so we link modules with -lpython2.7 correctly.
+	# Needed on FreeBSD unless Python 2.7 is already installed.
+	# Please query BSD team before removing this!
+	# On AIX this is not needed, but would record '.' as runpath.
+	[[ ${CHOST} == *-aix* ]] ||
+	append-ldflags "-L."
+
 	if use prefix ; then
 		# for Python's setup.py not to do false assumptions (only looking in
 		# host paths) we need to make explicit where Prefix stuff is
@@ -255,13 +262,6 @@ src_configure() {
 	# The configure script fails to use pkg-config correctly.
 	# http://bugs.python.org/issue15506
 	export ac_cv_path_PKG_CONFIG=$(tc-getPKG_CONFIG)
-
-	# Set LDFLAGS so we link modules with -lpython2.7 correctly.
-	# Needed on FreeBSD unless Python 2.7 is already installed.
-	# Please query BSD team before removing this!
-	# On AIX this is not needed, but would record '.' as runpath.
-	[[ ${CHOST} == *-aix* ]] ||
-	append-ldflags "-L."
 
 	local dbmliborder
 	if use gdbm; then
