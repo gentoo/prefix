@@ -1,14 +1,14 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 
 inherit eutils prefix
 
 DESCRIPTION="Utility to change the binutils version being used"
 HOMEPAGE="https://www.gentoo.org/"
-GIT_REV="d469b099b5e8aed45ff2edf78f91822b805440d3"
-WRAPPER_REV="${PV}.3.1"
+GIT_REV="b93602ba2a0f76a9a85cb36a1740a4522e45ce36"
+WRAPPER_REV="${PV}.3.3"
 SRC_URI="https://gitweb.gentoo.org/repo/proj/prefix.git/plain/sys-devel/binutils-config/files/ldwrapper.c?id=${GIT_REV} -> ${PN}-ldwrapper-${WRAPPER_REV}.c"
 
 LICENSE="GPL-2"
@@ -29,6 +29,7 @@ src_prepare() {
 		epatch "${FILESDIR}/${PN}-5-ldwrapper.patch"
 	fi
 	eprefixify ${PN}
+	eapply_user
 }
 
 src_configure() {
@@ -44,8 +45,6 @@ src_compile() {
 		-o ldwrapper "${DISTDIR}"/${PN}-ldwrapper-${WRAPPER_REV}.c
 		-DEPREFIX=\"${EPREFIX}\"
 		-DCHOST=\"${CHOST}\"
-		$([[ ${CHOST} == *-darwin* ]] && echo -DTARGET_DARWIN)
-		$([[ ${CHOST} == *-aix* ]] && echo -DTARGET_AIX)
 		${LDFLAGS}
 	)
 	echo ${args[*]}

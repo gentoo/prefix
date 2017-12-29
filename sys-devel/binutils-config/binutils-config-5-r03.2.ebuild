@@ -41,7 +41,7 @@ src_compile() {
 		$(tc-getCC)
 		${CPPFLAGS}
 		${CFLAGS}
-		-o ldwrapper "${S}"/${PN}-ldwrapper-${WRAPPER_REV}.c
+		-o ldwrapper "${DISTDIR}"/${PN}-ldwrapper-${WRAPPER_REV}.c
 		-DEPREFIX=\"${EPREFIX}\"
 		-DCHOST=\"${CHOST}\"
 		${LDFLAGS}
