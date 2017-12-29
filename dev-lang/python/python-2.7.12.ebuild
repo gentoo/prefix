@@ -237,10 +237,12 @@ src_configure() {
 		append-ldflags -L"${EPREFIX}"/$(get_libdir)
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)
 		# fix compilation on some 64-bits Linux hosts, #381163, #473520
-		for hostlibdir in /usr/lib32 /usr/lib64 /usr/lib /lib32 /lib64; do
-			[[ -d ${hostlibdir} ]] || continue
-			append-ldflags -L${hostlibdir}
-		done
+		if use amd64-linux ; then
+			for hostlibdir in /usr/lib32 /usr/lib64 /usr/lib /lib32 /lib64; do
+				[[ -d ${hostlibdir} ]] || continue
+				append-ldflags -L${hostlibdir}
+			done
+		fi
 		# Have to move $(CPPFLAGS) to before $(CFLAGS) to ensure that
 		# local include paths - set in $(CPPFLAGS) - are searched first.
 		sed -i -e "/^PY_CFLAGS[ \\t]*=/s,\\\$(CFLAGS)[ \\t]*\\\$(CPPFLAGS),\$(CPPFLAGS) \$(CFLAGS)," Makefile.pre.in || die

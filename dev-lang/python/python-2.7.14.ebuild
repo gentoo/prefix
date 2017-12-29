@@ -175,27 +175,27 @@ src_prepare() {
 }
 
 src_configure() {
-		# dbm module can be linked against berkdb or gdbm.
-		# Defaults to gdbm when both are enabled, #204343.
-		local disable
-		use berkdb   || use gdbm || disable+=" dbm"
-		use berkdb   || disable+=" _bsddb"
-		use gdbm     || disable+=" gdbm"
-		use ncurses  || disable+=" _curses _curses_panel"
-		use readline || disable+=" readline"
-		use sqlite   || disable+=" _sqlite3"
-		use ssl      || export PYTHON_DISABLE_SSL="1"
-		use tk       || disable+=" _tkinter"
-		use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
-		[[ ${CHOST} == *64-apple-darwin* ]] && disable+=" Nav _Qt" # Carbon
-		[[ ${CHOST} == *-apple-darwin11 ]] && disable+=" _Fm _Qd _Qdoffs"
-		export PYTHON_DISABLE_MODULES="${disable}"
+	# dbm module can be linked against berkdb or gdbm.
+	# Defaults to gdbm when both are enabled, #204343.
+	local disable
+	use berkdb   || use gdbm || disable+=" dbm"
+	use berkdb   || disable+=" _bsddb"
+	use gdbm     || disable+=" gdbm"
+	use ncurses  || disable+=" _curses _curses_panel"
+	use readline || disable+=" readline"
+	use sqlite   || disable+=" _sqlite3"
+	use ssl      || export PYTHON_DISABLE_SSL="1"
+	use tk       || disable+=" _tkinter"
+	use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
+	[[ ${CHOST} == *64-apple-darwin* ]] && disable+=" Nav _Qt" # Carbon
+	[[ ${CHOST} == *-apple-darwin11 ]] && disable+=" _Fm _Qd _Qdoffs"
+	export PYTHON_DISABLE_MODULES="${disable}"
 
-		if ! use xml; then
-			ewarn "You have configured Python without XML support."
-			ewarn "This is NOT a recommended configuration as you"
-			ewarn "may face problems parsing any XML documents."
-		fi
+	if ! use xml; then
+		ewarn "You have configured Python without XML support."
+		ewarn "This is NOT a recommended configuration as you"
+		ewarn "may face problems parsing any XML documents."
+	fi
 
 	if [[ -n "${PYTHON_DISABLE_MODULES}" ]]; then
 		einfo "Disabled modules: ${PYTHON_DISABLE_MODULES}"
@@ -228,7 +228,6 @@ src_configure() {
 		replace-flags -Os -O3  # comment #14
 	fi
 
-
 	if use prefix ; then
 		# for Python's setup.py not to do false assumptions (only looking in
 		# host paths) we need to make explicit where Prefix stuff is
@@ -236,10 +235,12 @@ src_configure() {
 		append-ldflags -L"${EPREFIX}"/$(get_libdir)
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)
 		# fix compilation on some 64-bits Linux hosts, #381163, #473520
-		for hostlibdir in /usr/lib32 /usr/lib64 /usr/lib /lib32 /lib64; do
-			[[ -d ${hostlibdir} ]] || continue
-			append-ldflags -L${hostlibdir}
-		done
+		if use amd64-linux ; then
+			for hostlibdir in /usr/lib32 /usr/lib64 /usr/lib /lib32 /lib64; do
+				[[ -d ${hostlibdir} ]] || continue
+				append-ldflags -L${hostlibdir}
+			done
+		fi
 		# Have to move $(CPPFLAGS) to before $(CFLAGS) to ensure that
 		# local include paths - set in $(CPPFLAGS) - are searched first.
 		sed -i -e "/^PY_CFLAGS[ \\t]*=/s,\\\$(CFLAGS)[ \\t]*\\\$(CPPFLAGS),\$(CPPFLAGS) \$(CFLAGS)," Makefile.pre.in || die
