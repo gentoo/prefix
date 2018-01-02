@@ -61,6 +61,15 @@ PATCHES=(
 	"${FILESDIR}/${PN}-3.9-cmake-link-flags.patch"
 )
 
+src_prepare() {
+	default
+
+	# eprefixify static path references to libc++abi for symbol re-export to
+	# avoid linking against it twice in both /usr/lib and ${EPREFIX}/usr/lib
+	local lcpa=/usr/lib/libc++abi.dylib
+	sed -i -e "s,${lcpa},${EPREFIX}${lcpa},g" lib/CMakeLists.txt
+}
+
 python_check_deps() {
 	has_version "dev-python/lit[${PYTHON_USEDEP}]"
 }
