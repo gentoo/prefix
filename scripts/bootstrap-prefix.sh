@@ -178,14 +178,6 @@ configure_toolchain() {
 	  )
 	esac
 
-	# unfortunately, gmp needs c++, thus libcxx, so have to drag
-	# it in early (gmp is necessary for >3.5)
-	local cdep="3.5.9999"
-	local libcxx="
-		<sys-libs/libcxx-headers-${cdep}
-		<sys-libs/libcxxabi-${cdep}
-		<sys-libs/libcxx-${cdep}"
-
 	CC=gcc
 	CXX=g++
 	llvm_deps="
@@ -219,7 +211,8 @@ configure_toolchain() {
 								${llvm_deps}
 								sys-devel/llvm
 								sys-devel/clang
-								${libcxx}"
+								sys-libs/libcxxabi
+								sys-libs/libcxx"
 							;;
 					esac
 					CC=clang
@@ -249,12 +242,17 @@ configure_toolchain() {
 			if [[ ${mycc} == gcc ]] ; then
 				# The deps for 3.6+ are too high (cmake, ninja, python) so
 				# we have to install this with an intermediate
+				# unfortunately, gmp needs c++, thus libcxx, so have to drag
+				# it in early (gmp is necessary for >3.5)
 				# we always have to bootstrap with 3.4 for else we'd need
 				# libcxx, which only compiles with clang
+				local cdep="3.5.9999"
 				compiler_stage1+="
 					dev-libs/libffi
 					<sys-devel/llvm-3.5
-					${libcxx}
+					<sys-libs/libcxx-headers-${cdep}
+					<sys-libs/libcxxabi-${cdep}
+					<sys-libs/libcxx-${cdep}
 					<sys-devel/llvm-${cdep}
 					<sys-devel/clang-${cdep}"
 			fi
@@ -263,7 +261,8 @@ configure_toolchain() {
 				sys-libs/csu
 				dev-libs/libffi
 				${llvm_deps}
-				${libcxx}
+				sys-libs/libcxxabi
+				sys-libs/libcxx
 				sys-devel/llvm
 				sys-devel/clang"
 			;;
@@ -1453,6 +1452,7 @@ bootstrap_stage2() {
 
 	BOOTSTRAP_RAP_STAGE2=yes \
 	EXTRA_ECONF="--disable-bootstrap" \
+	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 	GCC_MAKE_TARGET=all \
 	TPREFIX="${ROOT}" \
 	PYTHON_COMPAT_OVERRIDE=python2.7 \
@@ -1520,7 +1520,7 @@ bootstrap_stage3() {
 		# stage3 tools should be used first.
 		# PORTAGE_TMPDIR, EMERGE_LOG_DIR, FEATURES=force-prefix are
 		# needed with host portage.
-		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{,usr/}{s,}bin | sed "s, ,:${ROOT},g") \
+		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{,usr/}{,lib/llvm/5/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		FEATURES="${FEATURES} force-prefix" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
@@ -1604,6 +1604,7 @@ bootstrap_stage3() {
 	RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9])
 	# try to get ourself out of the mudd, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx --disable-lto)" \
+	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 	LDFLAGS="${LDFLAGS} $(rapx -Wl,--dynamic-linker=${RAP_DLINKER})" \
 	PYTHON_COMPAT_OVERRIDE=python2.7 \
 	emerge_pkgs --nodeps ${compiler} || return 1
