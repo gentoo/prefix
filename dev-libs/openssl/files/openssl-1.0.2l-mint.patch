@@ -1,0 +1,33 @@
+--- Configure
++++ Configure
+@@ -502,6 +502,9 @@
+ # Interix (GCC)
+ "interix-gcc", "gcc:-D_ALL_SOURCE -DL_ENDIAN -DTERMIOS -O2 -Wall::-D_REENTRANT::-ldl:::::::::::::dlfcn:gnu:::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+ 
++# FreeMiNT (GCC)
++"mint-gcc", "gcc:-O2 -fomit-frame-pointer -DB_ENDIAN -DTERMIOS::-D_REENTRANT:::BN_LLONG:::",
++
+ # Borland C++ 4.5
+ "BC-32","bcc32::::WIN32::BN_LLONG DES_PTR RC4_INDEX EXPORT_VAR_AS_FN:${no_asm}:win32",
+ 
+--- config
++++ config
+@@ -170,6 +170,10 @@
+ 	echo "${MACHINE}-whatever-linux1"; exit 0
+ 	;;
+ 
++    FreeMiNT*)
++	echo "m68k-atari-mint"; exit 0;
++	;;
++
+     GNU*)
+ 	echo "hurd-x86"; exit 0;
+ 	;;
+@@ -859,6 +863,7 @@
+   *-*-qnx6) OUT="QNX6" ;;
+   x86-*-android|i?86-*-android) OUT="android-x86" ;;
+   armv[7-9]*-*-android) OUT="android-armv7" ;;
++  *-mint*) OUT="mint-gcc" ;;
+   *) OUT=`echo $GUESSOS | awk -F- '{print $3}'`;;
+ esac
+ 
