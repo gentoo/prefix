@@ -251,8 +251,9 @@ multilib_src_install_all() {
 #	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026
 		einfo "Installing basic terminfo files in /etc..."
-		for x in ansi console dumb linux rxvt rxvt-unicode screen sun vt{52,100,102,200,220} \
-				 xterm xterm-color xterm-xfree86
+		local x
+		for x in ansi console dumb linux rxvt rxvt-unicode screen{,-256color} vt{52,100,102,200,220} \
+				 xterm xterm-{,256}color
 		do
 			local termfile=$(find "${ED}"/usr/share/terminfo/ -name "${x}" 2>/dev/null)
 			local basedir=$(basename $(dirname "${termfile}"))

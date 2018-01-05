@@ -1,12 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # This version is just for the ABI .5 library
 
 EAPI="5"
 
-inherit eutils toolchain-funcs multilib-minimal multiprocessing flag-o-matic libtool
+inherit eutils toolchain-funcs multilib-minimal flag-o-matic libtool
 
 MY_PV=${PV:0:3}
 MY_P=${PN}-${MY_PV}
@@ -108,8 +107,6 @@ src_configure() {
 		$(usex unicode 'ncursesw' '')
 	)
 
-	multijob_init
-
 	# When installing ncurses, we have to use a compatible version of tic.
 	# This comes up when cross-compiling, doing multilib builds, upgrading,
 	# or installing for the first time.  Build a local copy of tic whenever
@@ -133,16 +130,15 @@ src_configure() {
 		CXXFLAGS=${BUILD_CXXFLAGS} \
 		CPPFLAGS=${BUILD_CPPFLAGS} \
 		LDFLAGS="${BUILD_LDFLAGS} ${lbuildflags}" \
-		multijob_child_init do_configure cross --without-shared --with-normal
+		do_configure cross --without-shared --with-normal
 	fi
 	multilib-minimal_src_configure
-	multijob_finish
 }
 
 multilib_src_configure() {
 	local t
 	for t in "${NCURSES_TARGETS[@]}" ; do
-		multijob_child_init do_configure "${t}"
+		do_configure "${t}"
 	done
 }
 
