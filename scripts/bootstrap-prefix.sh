@@ -1181,8 +1181,9 @@ bootstrap_stage1() {
 	[[ ${OFFLINE_MODE} ]] || type -P wget > /dev/null || (bootstrap_wget) || return 1
 	[[ $(sed --version 2>&1) == *GNU* ]] || (bootstrap_sed) || return 1
 	[[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] || (bootstrap_m4) || return 1
-	[[ $(bison --version 2>&1) =~ GNU" "Bison") "(2.[3-7]|[3-9]) ]] \
-		|| [[ -x ${ROOT}/tmp/usr/bin/bison ]] \
+	[[ -x ${ROOT}/tmp/usr/bin/bison ]] \
+		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "2.[3-7]* ]] \
+		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "[3-9]* ]] \
 		|| (bootstrap_bison) || return 1
 	[[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]] \
 		|| (bootstrap_coreutils) || return 1
