@@ -294,7 +294,17 @@ bootstrap_setup() {
 	# 2.6.32.1 -> 2*256^3 + 6*256^2 + 32 * 256 + 1 = 33955841
 	kver() { uname -r|cut -d\- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
 	# >=glibc-2.20 requires >=linux-2.6.32.
-	profile-legacy() { [[ $(kver) -ge 33955840 ]] || echo /legacy; }
+	profile-kernel() {
+		if [[ $(kver) -ge 50462720 ]] ; then # 3.2
+			echo kernel-3.2+
+		elif [[ $(kver) -ge 33955840 ]] ; then # 2.6.32
+			echo kernel-2.6.32+
+		elif [[ $(kver) -ge 33951744 ]] ; then # 2.6.16
+			echo kernel-2.6.16+
+		elif [[ $(kver) -ge 33947648 ]] ; then # 2.6
+			echo kernel-2.6+
+		fi
+	}
 
 	local FS_INSENSITIVE=0
 	touch "${ROOT}"/FOO.$$
@@ -337,11 +347,11 @@ bootstrap_setup() {
 			ln -sf {,"${ROOT}"}/etc/group
 		[[ -f ${ROOT}/etc/resolv.conf ]] || ln -s {,"${ROOT}"}/etc/resolv.conf
 		[[ -f ${ROOT}/etc/hosts ]] || cp {,"${ROOT}"}/etc/hosts
-		local legacy=$(profile-legacy)
+		local profile_linux=default/linux/ARCH/17.0/prefix/$(profile-kernel)
+	else
+		local profile_linux=prefix/linux/ARCH
 	fi
 
-	local linux=$(rapx linux-standalone linux)
-	
 	case ${CHOST} in
 		powerpc-apple-darwin7)
 			profile="prefix/darwin/macos/10.3"
@@ -367,25 +377,26 @@ bootstrap_setup() {
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
 		i*86-pc-linux-gnu)
-			profile="prefix/${linux}/x86${legacy}"
+			profile=${profile_linux/ARCH/x86}
 			;;
 		x86_64-pc-linux-gnu)
-			profile="prefix/${linux}/amd64${legacy}"
+			profile=${profile_linux/ARCH/amd64}
+			profile=${profile/prefix/no-multilib/prefix}
 			;;
 		ia64-pc-linux-gnu)
-			profile="prefix/${linux}/ia64${legacy}"
+			profile=${profile_linux/ARCH/ia64}
 			;;
 		powerpc-unknown-linux-gnu)
-			profile="prefix/${linux}/ppc${legacy}"
+			profile=${profile_linux/ARCH/powerpc/ppc}
 			;;
 		powerpc64-unknown-linux-gnu)
-			profile="prefix/${linux}/ppc64${legacy}"
+			profile=${profile_linux/ARCH/powerpc/ppc64}
 			;;
 		aarch64-unknown-linux-gnu)
-			profile="prefix/${linux}/arm64${legacy}"
+			profile=${profile_linux/ARCH/arm64}
 			;;
 		armv7l-pc-linux-gnu)
-			profile="prefix/${linux}/arm${legacy}"
+			profile=${profile_linux/ARCH/arm}
 			;;
 		sparc-sun-solaris2.9)
 			profile="prefix/sunos/solaris/5.9/sparc"
@@ -446,6 +457,11 @@ bootstrap_setup() {
 		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${fullprofile}."
 	fi
+
+	is-rap && cat >> "${ROOT}"/etc/portage/make.profile/make.defaults <<-'EOF'
+	# For baselayout-prefix in stage2 only.
+	ACCEPT_KEYWORDS="~${ARCH}-linux"
+	EOF
 
 	# Use package.use to disable in the portage tree to be shared between
 	# stage2 and stage3. The hack will be undone during tree sync in stage3.
