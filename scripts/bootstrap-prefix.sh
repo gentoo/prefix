@@ -427,12 +427,6 @@ bootstrap_setup() {
 	profile=${PROFILE_BASE:-prefix}/${profile#prefix/}${PROFILE_VARIANT:+/${PROFILE_VARIANT}}
 	if [[ -n ${profile} && ! -e ${ROOT}/etc/portage/make.profile ]] ; then
 		local fullprofile="${PORTDIR}/profiles/${profile}"
-		for base in ${PORTDIR_OVERLAY} ; do
-			if [[ -e ${base}/profiles/${profile}/parent ]] ; then
-				fullprofile="${base}/profiles/${profile}"
-				break
-			fi
-		done
 		
 		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${fullprofile}."
@@ -1138,10 +1132,11 @@ bootstrap_bzip2() {
 bootstrap_stage_host_gentoo() {
 	if [[ ! -L ${ROOT}/tmp ]] ; then
 		if [[ -e ${ROOT}/tmp ]] ; then
-			echo "${ROOT}/tmp should be a symlink to ${HOST_GENTOO_EROOT}"
-			return 1
+			einfo "${ROOT}/tmp exists and is not a symlink to ${HOST_GENTOO_EROOT}"
+			einfo "Let's ignore the shortcut and continue."
+		else
+			ln -s "${HOST_GENTOO_EROOT}" "${ROOT}"/tmp
 		fi
-		ln -s "${HOST_GENTOO_EROOT}" "${ROOT}"/tmp
 	fi
 
 	# checks itself if things need to be done still
@@ -2232,7 +2227,7 @@ EOF
 
 	# Figure out if we are bootstrapping from an existing Gentoo
 	# It can be forced by setting HOST_GENTOO_EROOT manually
-	local t_GENTOO_EROOT=$(/usr/bin/portageq envvar EROOT 2> /dev/null)
+	local t_GENTOO_EROOT=$(env -u EPREFIX portageq envvar EROOT 2> /dev/null)
 	if [[ ! -d ${HOST_GENTOO_EROOT} ]] && [[ -d ${t_GENTOO_EROOT} ]]; then
 		cat <<EOF
 
