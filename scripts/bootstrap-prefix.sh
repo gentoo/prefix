@@ -1190,7 +1190,7 @@ bootstrap_stage1() {
 	[[ $(tar --version 2>&1) == *GNU* ]] || (bootstrap_tar) || return 1
 	[[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] || (bootstrap_patch) || return 1
 	[[ $(grep --version 2>&1) == *GNU* ]] || (bootstrap_grep) || return 1
-	[[ $(awk --version < /dev/null 2>&1) == *GNU* ]] || bootstrap_gawk || return 1
+	[[ $(awk --version < /dev/null 2>&1) == *GNU" Awk "[456789]* ]] || bootstrap_gawk || return 1
 	[[ $(LANG=C bash --version 2>&1) == "GNU bash, version 4."[23456789]* && ${CHOST} != *-aix* ]] \
 		|| [[ -x ${ROOT}/tmp/usr/bin/bash ]] \
 		|| (bootstrap_bash) || return 1
