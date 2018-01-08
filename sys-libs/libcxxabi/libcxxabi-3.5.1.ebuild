@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id $
 
@@ -58,6 +58,10 @@ src_prepare() {
 			-e "s,-arch i386 -arch x86_64,,g" \
 			lib/buildit
 
+	if [[ ${CHOST} == powerpc*-darwin* ]] ; then
+		sed -i -e '/RC_CFLAGS=""/s/""/"-fPIC"/' lib/buildit || die
+	fi
+
 	# assert.h refers to eprintf which is nowhere to be found. That's why
 	# everyone (libstdc++, clang compiler-rt) bring their own
 	# implementation. Ours is nicked from Apple's patch to libstdc++-39.
@@ -65,7 +69,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-3.5.1-eprintf.patch
 
 	sed -i -e "s,/usr/lib/libc++abi\.dylib,${EPREFIX}/usr/lib/libc++abi.dylib,g" \
-		lib/buildit
+		lib/buildit || die
 }
 
 src_compile() {
