@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id: $
 
@@ -24,11 +24,11 @@ src_prepare() {
 		cmake/Modules/HandleOutOfTreeLLVM.cmake
 
 	if [[ ${CHOST} == *darwin* ]] ; then
-		[[ "${CHOST##*-darwin}" -le 10 ]] && \
-			epatch "${FILESDIR}"/${PN}-3.5.1-cmath-conv.patch
 		[[ "${CHOST##*-darwin}" -le 8 ]] && \
 			epatch "${FILESDIR}"/${PN}-3.5.1-availability.patch
 	fi
+
+	cmake-utils_src_prepare
 }
 
 src_configure() {
