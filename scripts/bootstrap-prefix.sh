@@ -1412,6 +1412,12 @@ bootstrap_stage2() {
 	# stage and rather have it continue instead of abort the build
 	export MAKEINFO="echo makeinfo GNU texinfo 4.13"
 
+	# Disable RAP directory hacks of binutils and gcc.  If libc.so
+	# linker script provides no hint of ld-linux*.so*, ld should
+	# look into its default library path.  Prefix library pathes
+	# are taken care of by LDFLAGS in configure_cflags().
+	export BOOTSTRAP_RAP_STAGE2=yes
+
 	# Build a basic compiler and portage dependencies in $ROOT/tmp.
 	pkgs=(
 		sys-apps/gentoo-functions
@@ -1435,10 +1441,7 @@ bootstrap_stage2() {
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	
-	# Build a linker and compiler that live in ${ROOT}/tmp, but
-	# produce binaries in ${ROOT}. Debian multiarch supported by RAP
-	# needs ld to support sysroot.
-	TPREFIX="${ROOT}" \
+	# Debian multiarch supported by RAP needs ld to support sysroot.
 	EXTRA_ECONF=$(rapx --with-sysroot=/) \
 	emerge_pkgs --nodeps ${linker} || return 1
 
@@ -1450,11 +1453,11 @@ bootstrap_stage2() {
 	# unless we only build the buildtool, bug #603012
 	echo "dev-util/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
 
-	BOOTSTRAP_RAP_STAGE2=yes \
-	EXTRA_ECONF="--disable-bootstrap" \
-	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
+	# <glibc-2.5 does not understand .gnu.hash, use
+	# --hash-style=both to produce also sysv hash.
+	EXTRA_ECONF="--disable-bootstrap $(rapx --with-linker-hash-style=both)" \
+        MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \		   
 	GCC_MAKE_TARGET=all \
-	TPREFIX="${ROOT}" \
 	PYTHON_COMPAT_OVERRIDE=python2.7 \
 	emerge_pkgs --nodeps ${compiler_stage1} || return 1
 
