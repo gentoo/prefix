@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id $
 
@@ -96,6 +96,10 @@ src_prepare() {
 		if [[ "${CHOST##*-darwin}" -le 8 ]] ; then
 			epatch "${FILESDIR}"/${PN}-3.5.1-availability.patch
 			epatch "${FILESDIR}"/${PN}-3.5.1-eprintf.patch
+		fi
+
+		if [[ ${CHOST} == powerpc*-darwin* ]] ; then
+			sed -i -e '/RC_CFLAGS=""/s/""/"-fPIC"/' lib/buildit || die
 		fi
 
 		# fix library install names
