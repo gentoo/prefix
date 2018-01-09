@@ -16,7 +16,7 @@ SRC_URI="http://llvm.org/releases/${PV}/${P}.src.tar.xz"
 
 LICENSE="|| ( UoI-NCSA MIT )"
 SLOT="0"
-KEYWORDS="~x64-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 IUSE=""
 
 RDEPEND=""
