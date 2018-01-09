@@ -249,11 +249,10 @@ configure_toolchain() {
 				local cdep="3.5.9999"
 				compiler_stage1+="
 					dev-libs/libffi
-					<sys-devel/llvm-3.5
+					<sys-devel/llvm-${cdep}
 					<sys-libs/libcxx-headers-${cdep}
 					<sys-libs/libcxxabi-${cdep}
 					<sys-libs/libcxx-${cdep}
-					<sys-devel/llvm-${cdep}
 					<sys-devel/clang-${cdep}"
 			fi
 
@@ -1361,6 +1360,10 @@ do_emerge_pkgs() {
 		echo "USE=${myuse[*]} PKG=${pkg}"
 		(
 			unset CFLAGS CXXFLAGS
+			[[ -n ${OVERRIDE_CFLAGS} ]] \
+				&& export CFLAGS=${OVERRIDE_CFLAGS}
+			[[ -n ${OVERRIDE_CXXFLAGS} ]] \
+				&& export CXXFLAGS=${OVERRIDE_CXXFLAGS}
 			PORTAGE_CONFIGROOT="${EPREFIX}" \
 			PORTAGE_SYNC_STALE=0 \
 			FEATURES="-news ${FEATURES}" \
@@ -1453,13 +1456,24 @@ bootstrap_stage2() {
 	# unless we only build the buildtool, bug #603012
 	echo "dev-util/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
 
-	# <glibc-2.5 does not understand .gnu.hash, use
-	# --hash-style=both to produce also sysv hash.
-	EXTRA_ECONF="--disable-bootstrap $(rapx --with-linker-hash-style=both)" \
-        MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \		   
-	GCC_MAKE_TARGET=all \
-	PYTHON_COMPAT_OVERRIDE=python2.7 \
-	emerge_pkgs --nodeps ${compiler_stage1} || return 1
+	for pkg in ${compiler_stage1} ; do
+		# <glibc-2.5 does not understand .gnu.hash, use
+		# --hash-style=both to produce also sysv hash.
+		EXTRA_ECONF="--disable-bootstrap $(rapx --with-linker-hash-style=both)" \
+		MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
+		GCC_MAKE_TARGET=all \
+		TPREFIX="${ROOT}" \
+		PYTHON_COMPAT_OVERRIDE=python2.7 \
+		emerge_pkgs --nodeps ${pkg} || return 1
+
+		if [[ "${pkg}" == *sys-devel/llvm* || ${pkg} == *sys-devel/clang* ]] ;
+		then
+			# we need llvm/clang ASAP for libcxx* doesn't build
+			# without C++11
+			[[ -x ${ROOT}/tmp/usr/bin/clang   ]] && CC=clang
+			[[ -x ${ROOT}/tmp/usr/bin/clang++ ]] && CXX=clang++
+		fi
+	done
 
 	if [[ ${CHOST} == *darwin* ]] ; then
 		# we use Clang as our toolchain compiler, so we need to make
@@ -1603,6 +1617,19 @@ bootstrap_stage3() {
 	( cd "${ROOT}"/usr/bin && test ! -e python && ln -s "${ROOT}"/tmp/usr/bin/python2.7 )
 	# in addition, avoid collisions
 	rm -Rf "${ROOT}"/tmp/usr/lib/python2.7/site-packages/clang
+
+	# llvm-3.5 doesn't find c++11 headers/lib by default, make it so
+	if [[ ${CHOST} == *-darwin9 ]] ; then
+		export OVERRIDE_CXXFLAGS="-I${ROOT}/tmp/usr/include/c++/v1 -fPIC"
+		# -fPIC is here because we need it, but the toolchain doesn't
+		# default to it (like for x86_64)
+		export OVERRIDE_CFLAGS="-fPIC"
+		# replace GCC's libstdc++ with libcxx (super hack!)
+		( cd "${ROOT}"/tmp/usr/lib/gcc/${CHOST}/4.2.1 \
+			&& ! test -e libstdc++.6.0.9.dylib-gcc \
+			&& mv libstdc++.6.0.9.dylib{,-gcc} \
+			&& ln -s ../../../libc++.1.dylib libstdc++.6.0.9.dylib )
+	fi
 
 	RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9])
 	# try to get ourself out of the mudd, bug #575324
@@ -2085,7 +2112,15 @@ continue.  Please execute:
   xcode-select -s /Library/Developer/CommandLineTools
 and try running me again.
 EOF
-			exit 1
+			if ! xcode-select -p > /dev/null && [[ ${CHOST} == powerpc* ]]; then
+				# ancient Xcode (3.0/3.1)
+				cat << EOF
+
+Ok, this is an old system, let's just try and see what happens.
+EOF
+			else
+				exit 1
+			fi
 		fi
 	fi
 	echo
@@ -2394,10 +2429,12 @@ EOF
 	# deal with the bash-constructs we use in stage3 and onwards
 	hash -r
 
-	if ! [[ -x ${EPREFIX}/usr/bin/gcc \
-		|| -x ${EPREFIX}/usr/bin/clang \
-		|| -x ${EPREFIX}/tmp/usr/bin/gcc \
-		|| -x ${EPREFIX}/tmp/usr/bin/clang ]] \
+	# stage 2 on Darwin gets llvm/clang, so we must not get confused
+	# when we find gcc there (it's needed to bootstrap llvm)
+	local compiler=gcc
+	[[ ${CHOST} == *-darwin* ]] && compiler=clang
+	if ! [[ -x ${EPREFIX}/usr/bin/${compiler} \
+		|| -x ${EPREFIX}/tmp/usr/bin/${compiler} ]] \
 		&& ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2_log ; then
 		# stage 2 fail
 		cat << EOF
