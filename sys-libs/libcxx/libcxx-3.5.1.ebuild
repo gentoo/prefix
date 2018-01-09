@@ -21,11 +21,7 @@ fi
 
 LICENSE="|| ( UoI-NCSA MIT )"
 SLOT="0"
-if [ "${PV%9999}" = "${PV}" ] ; then
-	KEYWORDS="~x64-macos ~x86-macos"
-else
-	KEYWORDS=""
-fi
+KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 IUSE="elibc_glibc +libcxxrt static-libs test"
 
 REQUIRED_USE="kernel_Darwin? ( libcxxrt !static-libs )"
