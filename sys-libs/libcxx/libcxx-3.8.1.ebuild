@@ -74,9 +74,6 @@ src_prepare() {
 	if [[ ${CHOST} == *darwin* ]] ; then
 		epatch "${FILESDIR}"/${PN}-3.5.1-olddarwin.patch
 
-		[[ "${CHOST##*-darwin}" -le 10 ]] && \
-			epatch "${FILESDIR}"/${PN}-3.5.1-cmath-conv.patch
-
 		# libc++abi needs stack unwinding functions provided by libSystem on
 		# Mac OS X >= 10.6. On < 10.6 they're in libgcc_s. So force link
 		# against that. Additionally, the crt1.o provided by our gcc-apple
