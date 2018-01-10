@@ -94,6 +94,10 @@ src_prepare() {
 			epatch "${FILESDIR}"/${PN}-3.5.1-eprintf.patch
 		fi
 
+		if [[ ${CHOST} == powerpc*-darwin* ]] ; then
+			sed -i -e '/RC_CFLAGS=""/s/""/"-fPIC"/' lib/buildit || die
+		fi
+
 		# fix library install names
 		sed -i \
 			-e "s,/usr/lib/libc++abi\.dylib,${EPREFIX}/usr/lib/libc++abi.dylib,g" \
