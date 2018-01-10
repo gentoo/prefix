@@ -190,8 +190,9 @@ do_configure() {
 src_compile() {
 	# See comments in src_configure.
 	if ! ROOT=/ has_version "~sys-libs/${P}:0" ; then
+		# We make 'tic$(x)' here, for Cygwin having x=".exe".
 		BUILD_DIR="${WORKDIR}" \
-		do_compile cross -C progs tic
+		do_compile cross -C progs all PROGS='tic$(x)'
 	fi
 
 	multilib-minimal_src_compile
