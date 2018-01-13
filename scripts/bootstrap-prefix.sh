@@ -880,11 +880,13 @@ EOP
 	case $CHOST in
 		*-linux*)
 			# GNU ld
-			export LDFLAGS="${LDFLAGS} -Wl,-rpath,${ROOT}/tmp/usr/lib ${libdir}"
+			LDFLAGS="${LDFLAGS} -Wl,-rpath,${ROOT}/tmp/usr/lib ${libdir}"
+			LDFLAGS="${LDFLAGS} -Wl,-rpath,${libdir#-L}"
 		;;
 		*-solaris*)
 			# Sun ld
-			export LDFLAGS="${LDFLAGS} -R${ROOT}/tmp/usr/lib ${libdir}"
+			LDFLAGS="${LDFLAGS} -R${ROOT}/tmp/usr/lib ${libdir}"
+			LDFLAGS="${LDFLAGS} -R${libdir#-L}"
 		;;
 	esac
 
