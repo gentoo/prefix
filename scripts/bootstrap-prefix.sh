@@ -1,12 +1,19 @@
 #!/usr/bin/env bash
-# Copyright 2006-2017 Gentoo Foundation; Distributed under the GPL v2
-# $Id$
+# Copyright 2006-2018 Gentoo Foundation; Distributed under the GPL v2
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
 
 # some basic output functions
 eerror() { echo "!!! $*" 1>&2; }
 einfo() { echo "* $*"; }
+
+if [[ ! ${BASH_VERSION:-0} == 4.[23456789]* ]]; then
+	eerror "This script requires GNU bash 4.2 or newer to run."
+	eerror "If you don't have one, please bootstrap bash 4.2 first:"
+	eerror "https://wiki.gentoo.org/wiki/Project:Prefix/Bootstrap"
+	exit 1
+fi
+
 # RAP (libc) mode is triggered on Linux kernel and glibc.
 is-rap() { [[ ${PREFIX_DISABLE_RAP} != "yes" && ${CHOST} = *linux-gnu* ]]; }
 rapx() { is-rap && echo $1 || echo $2; }
