@@ -158,6 +158,9 @@ configure_cflags() {
 			fi
 			;;
 	esac
+
+	# point possible host pkg-config to stage2 files
+	export PKG_CONFIG_PATH=${ROOT}/tmp/usr/lib/pkgconfig
 }
 
 configure_toolchain() {
