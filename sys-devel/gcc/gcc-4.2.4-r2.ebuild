@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.16 2014/01/19 01:51:34 dirtyepic Exp $
 
@@ -13,6 +13,8 @@ DESCRIPTION="The GNU Compiler Collection"
 
 LICENSE="GPL-3+ LGPL-2.1+ || ( GPL-3+ libgcc libstdc++ ) FDL-1.2+"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+
+SRC_URI+=" https://dev.gentoo.org/~grobian/distfiles/gcc-4.2.3-mint.patch"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -84,7 +86,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-interix-long-double.patch
 
 	if [[ ${CHOST} == *-mint* ]] ; then
-		epatch "${FILESDIR}"/gcc-4.2.3-mint.patch
+		epatch "${DISTDIR}"/gcc-4.2.3-mint.patch
 		epatch "${FILESDIR}"/gcc-4.2.3-mint2.patch
 	fi
 
