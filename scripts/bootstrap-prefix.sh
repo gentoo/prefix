@@ -1428,6 +1428,12 @@ bootstrap_stage2() {
 	# stage and rather have it continue instead of abort the build
 	export MAKEINFO="echo makeinfo GNU texinfo 4.13"
 
+	# on Solaris 64-bits, (at least up to 10) libgcc_s resides in a
+	# non-standard location, and the compiler doesn't seem to record
+	# this in rpath while it does find it, resulting in a runtime trap
+	[[ ${CHOST} == x86_64-*-solaris* || ${CHOST} == sparcv9-*-solaris* ]] && \
+		cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/ >& /dev/null
+
 	# Disable RAP directory hacks of binutils and gcc.  If libc.so
 	# linker script provides no hint of ld-linux*.so*, ld should
 	# look into its default library path.  Prefix library pathes
