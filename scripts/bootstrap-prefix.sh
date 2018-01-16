@@ -1570,7 +1570,7 @@ bootstrap_stage3() {
 	configure_toolchain || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	export CPPFLAGS="-isystem ${ROOT}/usr/include"
-	export LDFLAGS="-L${ROOT}/usr/$(get_libdir)"
+	export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,-rpath=${ROOT}/usr/$(get_libdir)"
 	unset CC CXX
 
 	emerge_pkgs() {
@@ -1621,12 +1621,16 @@ bootstrap_stage3() {
 			app-portage/elt-patches
 			sys-kernel/linux-headers
 			sys-libs/glibc
+			sys-devel/binutils-config
 			sys-libs/zlib
+			${linker}
 		)
 
 		BOOTSTRAP_RAP=yes \
 		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && rm "${ROOT}"/usr/bin/perl
+		# remove stage2 ld so that stage3 ld is used by stage2 gcc.
+		[[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && mv ${ROOT}/tmp/usr/${CHOST}/bin/ld{,.stage2}
 	else
 		pkgs=(
 			sys-apps/gentoo-functions
@@ -1687,12 +1691,6 @@ bootstrap_stage3() {
 	[[ ${CHOST} == *-darwin* ]] && rm -f "${ROOT}"{,/tmp}/usr/bin/{,${CHOST}-}nm
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
-	if is-rap ; then
-		"${ROOT}"/sbin/ldconfig
-		# should be linked against stage3 zlib, and can only
-		# be compiled after gcc has the headers of Prefix glibc.
-		emerge_pkgs --nodeps sys-devel/binutils-config ${linker} || return 1
-	fi
 
 	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python2.7 )
 	# Use $ROOT tools where possible from now on.
