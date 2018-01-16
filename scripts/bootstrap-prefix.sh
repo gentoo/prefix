@@ -1163,6 +1163,12 @@ bootstrap_bzip2() {
 }
 
 bootstrap_stage_host_gentoo() {
+	if ! is-rap ; then
+		einfo "Shortcut only supports prefix-standalone, but we are bootstrapping"
+		einfo "prefix-rpath. Do nothing."
+		return 0
+	fi
+	
 	if [[ ! -L ${ROOT}/tmp ]] ; then
 		if [[ -e ${ROOT}/tmp ]] ; then
 			einfo "${ROOT}/tmp exists and is not a symlink to ${HOST_GENTOO_EROOT}"
@@ -2305,7 +2311,7 @@ EOF
 	# Figure out if we are bootstrapping from an existing Gentoo
 	# It can be forced by setting HOST_GENTOO_EROOT manually
 	local t_GENTOO_EROOT=$(env -u EPREFIX portageq envvar EROOT 2> /dev/null)
-	if [[ ! -d ${HOST_GENTOO_EROOT} ]] && [[ -d ${t_GENTOO_EROOT} ]]; then
+	if [[ ! -d ${HOST_GENTOO_EROOT} && -d ${t_GENTOO_EROOT} ]]; then
 		cat <<EOF
 
 Sweet, a Gentoo Penguin is found at ${t_GENTOO_EROOT}.  Hey, you are
