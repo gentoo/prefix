@@ -1,12 +1,23 @@
 certificate version 0.1
-pusher 0x5F75F607C5C74E89 1516045098 +0100
+pusher Benda Xu <heroxbd@gentoo.org> 1516073389 +0900
 pushee git+ssh://git.gentoo.org/repo/proj/prefix.git
-nonce 1516045098-3b8aa795f78dbb77f59c
+nonce 1516073389-413d8b9ad50718ae4152
 
-93a6d4fe02ee652fdf235715eb101a1e1e0623ec 004fd45113ceea3526e700807ed5cecbcfe566f6 refs/heads/master
+004fd45113ceea3526e700807ed5cecbcfe566f6 08bda7505668e5a9afbe06f62ee5483bca843532 refs/heads/master
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABEKAB0WIQSDHIpHdkhfn9Ptmh5fdfYHxcdOiQUCWl0DKgAKCRBfdfYHxcdO
-iSpaAJ9kvuHGHZ7qmtczkbZxM51qWoOBqACaAwguyMY927mxr5+76F/NKsNQwO4=
-=ZwQ8
+iQJHBAABCgAxFiEENTS8ZhMowhj4Iw2H33YQtSHxcSIFAlpdca0THGhlcm94YmRA
+Z2VudG9vLm9yZwAKCRDfdhC1IfFxImmoEADGV1RCi0+ecBup8438Dzq0hs3tgn4x
+jcGLN88ZD+oHMssjwA8NknR8iuVb38T1EdSBiyro+JDeQl3j1vWzzMc6gDjKDDK7
+rPMg+NwtMJC5jsr9I2l/tRLTp4behFCSxyba6LtA/bdS/KiFkOQ+Sh17uPMd6oAD
+d1XPSFRwucRZrDfISAJV1I3nFQ7tlpPZiBeqQiiD1JlolQ4+nHSuJr78cMex8TnX
++uXuJ90fNY3/d8ii4GcuD4GkLtvEX7MWNxObaVwf6XVLpSbLvANBX4dIbQuODzVG
+7TbOQ5sh79IpDep9V3eToPntd3ML5u9vaqfl5IRR0mzeKfrWc9WzFRgeK352/LzO
+L0dGNOF5rrYjdlXJheao03+gc1AjLZIbYvxTYeCXIEdehOkX2+yiZSFhmzkntuyw
+iqmUabAiit7GVtOli0b8WQjCLpPR388m82RF8cezDJ01QBm8wLAmfLGq/9E5HwH8
+dOX6gLVNzzHmv1Ar3rdstKHbleQsZgMESVLwN2BwzMtGy2UUGTgDkQ3IC5mVWkXM
+jovwllxsCM5f+ivtJXoFyG9XOV67SPjbDLvLsMG6vtDnKW45zR/AhSDJgyIVwn8w
+wIjau5EjOL1P8wEZZnTwbrGXccdOq2W2eNtdM/XvN+aTiOPSGkU/6gOQpJkJHfME
+kv9L1sJEivgFwQ==
+=Ydrn
 -----END PGP SIGNATURE-----
