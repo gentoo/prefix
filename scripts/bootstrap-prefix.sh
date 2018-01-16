@@ -1722,6 +1722,7 @@ bootstrap_stage3() {
 	# here, which doesn't necessarily grok the system headers on newer
 	# OSX, confusing the buildsystem
 	ac_cv_c_decl_report=warning \
+	TIME_T_32_BIT_OK=yes \
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# gettext pulls in portage, which since 2.2.28 needs ssl enabled, so
