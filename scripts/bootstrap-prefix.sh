@@ -381,7 +381,7 @@ bootstrap_setup() {
 			;;
 		x86_64-pc-linux-gnu)
 			profile=${profile_linux/ARCH/amd64}
-			profile=${profile/prefix/no-multilib/prefix}
+			profile=${profile/17.0/17.0/no-multilib}
 			;;
 		ia64-pc-linux-gnu)
 			profile=${profile_linux/ARCH/ia64}
