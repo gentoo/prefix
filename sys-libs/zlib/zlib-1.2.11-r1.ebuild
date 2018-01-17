@@ -6,11 +6,17 @@ AUTOTOOLS_AUTO_DEPEND="no"
 
 inherit autotools toolchain-funcs multilib multilib-minimal
 
+CYGWINPATCHES=(
+	"https://github.com/cygwinports/zlib/raw/22a3462cae33a82ad966ea0a7d6cbe8fc1368fec/1.2.11-gzopen_w.patch"
+	"https://github.com/cygwinports/zlib/raw/22a3462cae33a82ad966ea0a7d6cbe8fc1368fec/1.2.7-minizip-cygwin.patch"
+)
+
 DESCRIPTION="Standard (de)compression library"
 HOMEPAGE="https://zlib.net/"
 SRC_URI="https://zlib.net/${P}.tar.gz
 	http://www.gzip.org/zlib/${P}.tar.gz
-	http://www.zlib.net/current/beta/${P}.tar.gz"
+	http://www.zlib.net/current/beta/${P}.tar.gz
+	elibc_Cygwin? ( ${CYGWINPATCHES[*]} )"
 
 LICENSE="ZLIB"
 SLOT="0/1" # subslot = SONAME
@@ -27,9 +33,16 @@ RDEPEND="abi_x86_32? (
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.2.11-fix-deflateParams-usage.patch
 
+	local p
+	use elibc_Cygwin &&
+	for p in "${CYGWINPATCHES[@]}"; do
+		epatch "${DISTDIR}/${p##*/}"
+	done
+
 	if use minizip ; then
-		cd contrib/minizip || die
+		pushd contrib/minizip >/dev/null || die
 		eautoreconf
+		popd >/dev/null || die
 	fi
 
 #	epatch "${FILESDIR}"/${PN}-1.2.7-aix-soname.patch #213277
@@ -38,8 +51,6 @@ src_prepare() {
 	*-cygwin*)
 		# do not use _wopen, is a mingw symbol only
 		sed -i -e '/define WIDECHAR/d' "${S}"/gzguts.h
-		# do not export gzopen_w, is a mingw symbol only
-		sed -i -e '/gzopen_w/d' win32/zlib.def || die
 		# zlib1.dll is the mingw name, need cygz.dll
 		# cygz.dll is loaded by toolchain, put into subdir
 		sed -i -e 's|zlib1.dll|win32/cygz.dll|' win32/Makefile.gcc || die
