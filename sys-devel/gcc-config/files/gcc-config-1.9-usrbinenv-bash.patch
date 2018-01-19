@@ -1,0 +1,18 @@
+--- gcc-config-1.9.0/gcc-config
++++ gcc-config-1.9.0/gcc-config
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/usr/bin/env bash
+ # Copyright 1999-2012 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ 
+--- gcc-config-1.9.1/Makefile
++++ gcc-config-1.9.1/Makefile
+@@ -26,7 +26,6 @@
+ 
+ .gcc-config: gcc-config
+ 	sed \
+-		-e '1s:/:$(EPREFIX)/:' \
+ 		-e 's:@GENTOO_EPREFIX@:$(EPREFIX):g' \
+ 		-e 's:@GENTOO_LIBDIR@:$(SUBLIBDIR):g' \
+ 		-e 's:@PV@:$(PV):g' \
