@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -244,8 +244,8 @@ src_configure() {
 		append-cppflags -I"${EPREFIX}"/usr/include
 		append-ldflags -L"${EPREFIX}"/$(get_libdir)
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)
-		# fix compilation on some 64-bits Linux hosts, #381163, #473520
-		if use amd64-linux ; then
+		# fix compilation on some Linux hosts, #381163, #473520
+		if use elibc_glibc ; then
 			for hostlibdir in /usr/lib32 /usr/lib64 /usr/lib /lib32 /lib64; do
 				[[ -d ${hostlibdir} ]] || continue
 				append-ldflags -L${hostlibdir}
