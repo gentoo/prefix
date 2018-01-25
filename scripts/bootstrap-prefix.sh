@@ -1627,14 +1627,22 @@ bootstrap_stage3() {
 			app-portage/elt-patches
 			sys-kernel/linux-headers
 			sys-libs/glibc
-			sys-devel/binutils-config
-			sys-libs/zlib
-			${linker}
 		)
 
 		BOOTSTRAP_RAP=yes \
 		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && rm "${ROOT}"/usr/bin/perl
+
+		pkgs=(
+			sys-devel/binutils-config
+			sys-libs/zlib
+			${linker}
+		)
+		# use the new dynamic linker in place of rpath from now on.
+		RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9])
+		export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,--dynamic-linker=${RAP_DLINKER}"
+		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+
 		# remove stage2 ld so that stage3 ld is used by stage2 gcc.
 		[[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && mv ${ROOT}/tmp/usr/${CHOST}/bin/ld{,.stage2}
 	else
@@ -1681,11 +1689,9 @@ bootstrap_stage3() {
 			&& ln -s ../../../libc++.1.dylib libstdc++.6.0.9.dylib )
 	fi
 
-	RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9])
 	# try to get ourself out of the mudd, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx --disable-lto)" \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
-	LDFLAGS="${LDFLAGS} $(rapx -Wl,--dynamic-linker=${RAP_DLINKER})" \
 	PYTHON_COMPAT_OVERRIDE=python2.7 \
 	emerge_pkgs --nodeps ${compiler} || return 1
 	# undo libgcc_s.so path of stage2
