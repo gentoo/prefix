@@ -428,7 +428,7 @@ main(int argc, char *argv[])
 				continue;
 
 			/* does it refer to the build directory? skip */
-			if (builddir != NULL && strncmp(builddir, path, len) != 0)
+			if (builddir != NULL && strncmp(builddir, path, len) == 0)
 				continue;
 
 			if (is_darwin) {
