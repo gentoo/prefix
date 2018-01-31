@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -7,8 +7,8 @@ inherit eutils prefix
 
 DESCRIPTION="Utility to change the binutils version being used"
 HOMEPAGE="https://www.gentoo.org/"
-GIT_REV="b93602ba2a0f76a9a85cb36a1740a4522e45ce36"
-WRAPPER_REV="${PV}.3.3"
+GIT_REV="edc0d44f70c27daebcc080ac5d08e8e191bccd95"
+WRAPPER_REV="${PV}.3.4"
 SRC_URI="https://gitweb.gentoo.org/repo/proj/prefix.git/plain/sys-devel/binutils-config/files/ldwrapper.c?id=${GIT_REV} -> ${PN}-ldwrapper-${WRAPPER_REV}.c"
 
 LICENSE="GPL-2"
