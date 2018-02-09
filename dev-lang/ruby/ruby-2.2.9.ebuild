@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-2.2.1.ebuild,v 1.2 2015/03/31 18:33:50 ulm Exp $
 
 EAPI=5
 
@@ -28,20 +27,27 @@ fi
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
 SRC_URI="mirror://ruby/2.2/${MY_P}.tar.xz
-		 http://dev.gentoo.org/~flameeyes/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
+		 https://dev.gentoo.org/~flameeyes/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
 
 LICENSE="|| ( Ruby-BSD BSD-2 )"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc examples gdbm ipv6 jemalloc +rdoc rubytests socks5 ssl xemacs ncurses +readline"
+IUSE="berkdb debug doc examples gdbm ipv6 jemalloc libressl +rdoc rubytests socks5 ssl tk xemacs ncurses +readline"
 
 RDEPEND="
-	berkdb? ( sys-libs/db )
-	gdbm? ( sys-libs/gdbm )
+	berkdb? ( sys-libs/db:= )
+	gdbm? ( sys-libs/gdbm:= )
 	jemalloc? ( dev-libs/jemalloc )
-	ssl? ( dev-libs/openssl )
+	ssl? (
+		!libressl? ( dev-libs/openssl:0= )
+		libressl? ( dev-libs/libressl )
+	)
 	socks5? ( >=net-proxy/dante-1.1.13 )
-	ncurses? ( sys-libs/ncurses )
-	readline?  ( sys-libs/readline )
+	tk? (
+		dev-lang/tcl:0=[threads]
+		dev-lang/tk:0=[threads]
+	)
+	ncurses? ( sys-libs/ncurses:0= )
+	readline?  ( sys-libs/readline:0= )
 	dev-libs/libyaml
 	virtual/libffi
 	sys-libs/zlib
@@ -66,7 +72,6 @@ PDEPEND="
 	xemacs? ( app-xemacs/ruby-modes )"
 
 src_prepare() {
-#	epatch "${FILESDIR}/${PN}-1.9.1-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.9.1-prefix.patch"
 
 	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
@@ -77,7 +82,7 @@ src_prepare() {
 	# rubygems, but remove the bits that would cause a file collision.
 	einfo "Unbundling gems..."
 	cd "$S"
-	rm -r \
+	rm -rf \
 		{bin,lib}/rake lib/rake.rb man/rake.1 \
 		bin/gem || die "removal failed"
 	# Remove bundled gems that we will install via PDEPEND, bug
@@ -96,12 +101,7 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf=
-
-	# The Tk module can no longer be built because the module code is no
-	# longer compatible with newer stable versions.
-	# https://bugs.gentoo.org/show_bug.cgi?id=500894
-	local modules="tk"
+	local modules= myconf=
 
 	# -fomit-frame-pointer makes ruby segfault, see bug #150413.
 	filter-flags -fomit-frame-pointer
@@ -143,8 +143,14 @@ src_configure() {
 	if ! use ncurses ; then
 		modules="${modules},curses"
 	fi
+	if ! use tk ; then
+		modules="${modules},tk"
+	fi
 
-	INSTALL="${EPREFIX}/usr/bin/install -c" econf \
+	# Provide an empty LIBPATHENV because we disable rpath but we do not
+	# need LD_LIBRARY_PATH by default since that breaks USE=multitarget
+	# #564272
+	INSTALL="${EPREFIX}/usr/bin/install -c" LIBPATHENV="" econf \
 		--program-suffix=${MY_SUFFIX} \
 		--with-soname=ruby${MY_SUFFIX} \
 		--docdir=${EPREFIX}/usr/share/doc/${P} \
@@ -153,7 +159,7 @@ src_configure() {
 		--disable-rpath \
 		--disable-dtrace \
 		--with-out-ext="${modules}" \
-		$(use_enable jemalloc jemalloc) \
+		$(use_with jemalloc jemalloc) \
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		--enable-ipv6 \
@@ -197,7 +203,7 @@ src_install() {
 
 	local MINIRUBY=$(echo -e 'include Makefile\ngetminiruby:\n\t@echo $(MINIRUBY)'|make -f - getminiruby)
 
-	LD_LIBRARY_PATH="${ED}/usr/$(get_libdir)${LD_LIBRARY_PATH+:}${LD_LIBRARY_PATH}"
+	LD_LIBRARY_PATH="${S}:${ED}/usr/$(get_libdir)${LD_LIBRARY_PATH+:}${LD_LIBRARY_PATH}"
 	RUBYLIB="${S}:${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}"
 	for d in $(find "${S}/ext" -type d) ; do
 		RUBYLIB="${RUBYLIB}:$d"
@@ -207,9 +213,9 @@ src_install() {
 	emake V=1 DESTDIR="${D}" install || die "make install failed"
 
 	# Remove installed rubygems copy
-	rm -r "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}/rubygems" || die "rm rubygems failed"
-	rm -r "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}"/rdoc* || die "rm rdoc failed"
-	rm -r "${ED}/usr/bin/"{ri,rdoc}"${MY_SUFFIX}" || die "rm rdoc bins failed"
+	rm -rf "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}/rubygems" || die "rm rubygems failed"
+	rm -rf "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}"/rdoc* || die "rm rdoc failed"
+	rm -rf "${ED}/usr/bin/"{ri,rdoc}"${MY_SUFFIX}" || die "rm rdoc bins failed"
 
 	if use doc; then
 		make DESTDIR="${D}" install-doc || die "make install-doc failed"
@@ -237,7 +243,7 @@ pkg_postinst() {
 
 	elog
 	elog "To switch between available Ruby profiles, execute as root:"
-	elog "\teselect ruby set ruby(19|20|...)"
+	elog "\teselect ruby set ruby(21|22|...)"
 	elog
 }
 
