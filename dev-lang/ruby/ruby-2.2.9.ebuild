@@ -93,7 +93,7 @@ src_prepare() {
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
 		configure.in || die "sed failed"
-	
+
 	# Fix hardcoded SHELL var in mkmf library
 	sed -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" -i lib/mkmf.rb
 
