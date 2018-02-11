@@ -9,7 +9,7 @@ einfo() { echo "* $*"; }
 
 if [[ ! ${BASH_VERSION:-0} == 4.[23456789]* ]]; then
 	eerror "This script requires GNU bash 4.2 or newer to run."
-	eerorr "You are using ${BASH} which is ${BASH_VERSION}"
+	eerror "You are using ${BASH} which is ${BASH_VERSION}"
 	eerror "If you don't have a newer one, please bootstrap bash 4.2 first:"
 	eerror "  https://wiki.gentoo.org/wiki/Project:Prefix/Bootstrap"
 	eerror "You can prepend a better bash's location to your PATH, or call"
