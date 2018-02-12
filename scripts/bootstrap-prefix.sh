@@ -732,6 +732,9 @@ bootstrap_gnu() {
 	# but portage's multijob needs more unique pipe names
 	[[ ${PN},${CHOST} == bash,*-aix* ]] &&
 	export CPPFLAGS="${CPPFLAGS}${CPPFLAGS:+ }-DUSE_MKTEMP"
+	# pod2man may be too old (not understanding --utf8) but we don't
+	# care about manpages at this stage
+	export ac_cv_path_POD2MAN=no
 
 	# Darwin9 in particular doesn't compile when using system readline,
 	# but we don't need any groovy input at all, so just disable it
