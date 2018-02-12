@@ -1579,7 +1579,9 @@ bootstrap_stage3() {
 	configure_toolchain || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	export CPPFLAGS="-isystem ${ROOT}/usr/include"
-	export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,-rpath=${ROOT}/usr/$(get_libdir)"
+	export LDFLAGS="-L${ROOT}/usr/$(get_libdir)"
+	[[ ${CHOST} == *-darwin* ]] || \
+		LDFLAGS+=" -Wl,-rpath=${ROOT}/usr/$(get_libdir)"
 	unset CC CXX
 
 	emerge_pkgs() {
