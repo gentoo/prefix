@@ -185,34 +185,6 @@ echo "($(date +"%F %R")) Prefix tree rsynced"
 STOP=$(date +%s)
 TIME_SVNPREFIX=$((STOP - START))
 
-START=$(date +%s)
-
-echo "($(date +"%F %R")) signing Manifest"
-
-# generate Thick Manifests
-${BASE_PATH}/hashgen "${RSYNCDIR}"
-
-# Signing is done with our snapshot signing key, and only on the top
-# level Manifest, for it covers indirectly the entire tree
-
-# remember, HOME is set to misc/ so .gnupg keychain lives there
-gpg --batch --no-tty --passphrase-fd 0 --default-key C6317B3C \
-	--pinentry-mode loopback \
-	--sign --clearsign --digest-algo SHA512 \
-	--yes "${RSYNCDIR}"/Manifest \
-	< "${BASE_PATH}"/autosigner.pwd >& /dev/null
-if [[ -f ${RSYNCDIR}/Manifest.asc ]] ; then
-	touch -r "${RSYNCDIR}"/Manifest "${RSYNCDIR}"/Manifest.asc
-	mv "${RSYNCDIR}"/Manifest{.asc,}
-else
-	echo "signing failed!" >> /dev/stderr
-fi
-
-echo "($(date +"%F %R")) Manifest signed"
-
-STOP=$(date +%s)
-TIME_MANISIGN=$((STOP - START))
-
 
 # define repo_name, can't use gx86's name as we're different
 echo "($(date +"%F %R")) setting repo_name and making the prefix profiles development ones (iso exp)"
@@ -263,6 +235,34 @@ chmod -R u-s,g-s "${RSYNCDIR}"/metadata
 
 STOP=$(date +%s)
 TIME_TOTAL=$((STOP - GLOBALSTART))
+
+START=$(date +%s)
+
+echo "($(date +"%F %R")) signing Manifest"
+
+# generate Thick Manifests
+${BASE_PATH}/hashgen "${RSYNCDIR}"
+
+# Signing is done with our snapshot signing key, and only on the top
+# level Manifest, for it covers indirectly the entire tree
+
+# remember, HOME is set to misc/ so .gnupg keychain lives there
+gpg --batch --no-tty --passphrase-fd 0 --default-key C6317B3C \
+	--pinentry-mode loopback \
+	--sign --clearsign --digest-algo SHA512 \
+	--yes "${RSYNCDIR}"/Manifest \
+	< "${BASE_PATH}"/autosigner.pwd 2>&1
+if [[ -f ${RSYNCDIR}/Manifest.asc ]] ; then
+	touch -r "${RSYNCDIR}"/Manifest "${RSYNCDIR}"/Manifest.asc
+	mv "${RSYNCDIR}"/Manifest{.asc,}
+else
+	echo "signing failed!" >> /dev/stderr
+fi
+
+echo "($(date +"%F %R")) Manifest signed"
+
+STOP=$(date +%s)
+TIME_MANISIGN=$((STOP - START))
 
 # feed timings to graphite
 prefix="gentoo.rsync-generation.$(hostname -s)"
