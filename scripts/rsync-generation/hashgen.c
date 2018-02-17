@@ -44,8 +44,23 @@ hex_hash(char *out, const unsigned char *buf, const int length)
 	}
 }
 
+static inline void
+update_times(struct timeval *tv, struct stat *s)
+{
+	if (tv[1].tv_sec < s->st_mtim.tv_sec ||
+			(tv[1].tv_sec == s->st_mtim.tv_sec &&
+			 tv[1].tv_usec < s->st_mtim.tv_nsec / 1000))
+	{
+		tv[0].tv_sec = s->st_atim.tv_sec;
+		tv[0].tv_usec = s->st_atim.tv_nsec / 1000;
+		tv[1].tv_sec = s->st_mtim.tv_sec;
+		tv[1].tv_usec = s->st_mtim.tv_nsec / 1000;
+	}
+}
+
 static void
 write_hashes(
+		struct timeval *tv,
 		const char *root,
 		const char *name,
 		const char *type,
@@ -65,10 +80,14 @@ write_hashes(
 	SHA512_CTX s512;
 	WHIRLPOOL_CTX whrl;
 	blake2b_state bl2b;
+	struct stat s;
 
 	snprintf(fname, sizeof(fname), "%s/%s", root, name);
 	if ((f = fopen(fname, "r")) == NULL)
 		return;
+
+	if (stat(fname, &s) == 0)
+		update_times(tv, &s);
 
 	SHA256_Init(&s256);
 	SHA512_Init(&s512);
@@ -160,7 +179,11 @@ write_hashes(
 }
 
 static char
-write_hashes_dir(const char *root, const char *name, gzFile zm)
+write_hashes_dir(
+		struct timeval *tv,
+		const char *root,
+		const char *name,
+		gzFile zm)
 {
 	char path[8192];
 	DIR *d;
@@ -172,12 +195,11 @@ write_hashes_dir(const char *root, const char *name, gzFile zm)
 			/* skip all dotfiles */
 			if (e->d_name[0] == '.')
 				continue;
-			snprintf(path, sizeof(path), "%s/%s",
-					name, e->d_name);
-			if (write_hashes_dir(root, path, zm))
+			snprintf(path, sizeof(path), "%s/%s", name, e->d_name);
+			if (write_hashes_dir(tv, root, path, zm))
 				continue;
 			/* regular file */
-			write_hashes(root, path, "DATA", NULL, zm);
+			write_hashes(tv, root, path, "DATA", NULL, zm);
 		}
 		closedir(d);
 		return 1;
@@ -192,6 +214,7 @@ process_files(const char *dir, const char *off, FILE *m)
 	char path[8192];
 	DIR *d;
 	struct dirent *e;
+	struct timeval tv[2]; /* dummy, won't use its result */
 
 	snprintf(path, sizeof(path), "%s/%s", dir, off);
 	if ((d = opendir(path)) != NULL) {
@@ -204,7 +227,7 @@ process_files(const char *dir, const char *off, FILE *m)
 			if (process_files(dir, path, m))
 				continue;
 			/* regular file */
-			write_hashes(dir, path, "AUX", m, NULL);
+			write_hashes(tv, dir, path, "AUX", m, NULL);
 		}
 		closedir(d);
 		return 1;
@@ -316,19 +339,18 @@ process_dir(const char *dir)
 	struct stat s;
 	struct timeval tv[2];
 
-	/* set mtime of Manifest(.gz) to the one of the parent dir, this way
-	 * we ensure the Manifest gets mtime bumped upon any change made
-	 * to the directory, that is, a DIST change (Manifest itself) or
-	 * any other change (ebuild, files, metadata) */
-	if (stat(dir, &s)) {
-		tv[0].tv_sec = 0;
-		tv[0].tv_usec = 0;
-	} else {
-		tv[0].tv_sec = s.st_atim.tv_sec;
-		tv[0].tv_usec = s.st_atim.tv_nsec / 1000;
-		tv[1].tv_sec = s.st_mtim.tv_sec;
-		tv[1].tv_usec = s.st_mtim.tv_nsec / 1000;
-	}
+	/* our timestamp strategy is as follows:
+	 * - when a Manifest exists, use its timestamp
+	 * - when a meta-Manifest is written (non-ebuilds) use the timestamp
+	 *   of the latest Manifest referenced
+	 * - when a Manifest is written for something like eclasses, use the
+	 *   timestamp of the latest file in the dir
+	 * this way we should keep updates limited to where changes are, and
+	 * also get reproducible mtimes. */
+	tv[0].tv_sec = 0;
+	tv[0].tv_usec = 0;
+	tv[1].tv_sec = 0;
+	tv[1].tv_usec = 0;
 
 	type_manifest = CATEGORY_MANIFEST;
 	snprintf(path, sizeof(path), "%s/metadata/layout.conf", dir);
@@ -366,7 +388,6 @@ process_dir(const char *dir)
 		gzFile mf;
 
 		if ((d = opendir(dir)) != NULL) {
-			struct stat s;
 			char *my_manifest = str_manifest_gz;
 
 			if (type_manifest == GLOBAL_MANIFEST)
@@ -393,7 +414,7 @@ process_dir(const char *dir)
 				if (!stat(path, &s)) {
 					if (s.st_mode & S_IFDIR) {
 						if (type_manifest == SUBTREE_MANIFEST) {
-							write_hashes_dir(dir, e->d_name, mf);
+							write_hashes_dir(tv, dir, e->d_name, mf);
 							if (strcmp(e->d_name, "metadata") == 0) {
 								char buf[2048];
 								size_t len;
@@ -412,10 +433,10 @@ process_dir(const char *dir)
 							}
 							snprintf(path, sizeof(path), "%s/%s",
 									e->d_name, mfest);
-							write_hashes(dir, path, "MANIFEST", NULL, mf);
+							write_hashes(tv, dir, path, "MANIFEST", NULL, mf);
 						}
 					} else if (s.st_mode & S_IFREG) {
-						write_hashes(dir, e->d_name, "DATA", NULL, mf);
+						write_hashes(tv, dir, e->d_name, "DATA", NULL, mf);
 					}
 				}
 			}
@@ -427,6 +448,7 @@ process_dir(const char *dir)
 				size_t len;
 				FILE *m;
 				time_t rtime;
+				struct timeval ntv[2]; /* dummy, not used */
 
 				len = snprintf(buf, sizeof(buf),
 						"IGNORE distfiles\n"
@@ -446,18 +468,13 @@ process_dir(const char *dir)
 					return NULL;
 				}
 
-				write_hashes(dir, my_manifest, "MANIFEST", m, NULL);
+				write_hashes(ntv, dir, my_manifest, "MANIFEST", m, NULL);
 				time(&rtime);
 				len = strftime(buf, sizeof(buf),
 						"TIMESTAMP %Y-%m-%dT%H:%M:%SZ\n", gmtime(&rtime));
 				fwrite(buf, len, 1, m);
 				fflush(m);
 				fclose(m);
-
-				if (tv[0].tv_sec != 0) {
-					/* restore dir mtime, and set Manifest mtime to match it */
-					utimes(globmanifest, tv);
-				}
 			} else {
 				gzclose(mf);
 			}
@@ -511,16 +528,26 @@ process_dir(const char *dir)
 					continue;
 				if (strcmp(e->d_name + strlen(e->d_name) - 7, ".ebuild") != 0)
 					continue;
-				write_hashes(dir, e->d_name, "EBUILD", m, NULL);
+				write_hashes(tv, dir, e->d_name, "EBUILD", m, NULL);
 			}
 			closedir(d);
 		}
 
-		write_hashes(dir, "ChangeLog", "MISC", m, NULL);
-		write_hashes(dir, "metadata.xml", "MISC", m, NULL);
+		write_hashes(tv, dir, "ChangeLog", "MISC", m, NULL);
+		write_hashes(tv, dir, "metadata.xml", "MISC", m, NULL);
 
 		fflush(m);
 		fclose(m);
+
+		if (stat(manifest, &s)) {
+			tv[0].tv_sec = 0;
+			tv[0].tv_usec = 0;
+		} else {
+			tv[0].tv_sec = s.st_atim.tv_sec;
+			tv[0].tv_usec = s.st_atim.tv_nsec / 1000;
+			tv[1].tv_sec = s.st_mtim.tv_sec;
+			tv[1].tv_usec = s.st_mtim.tv_nsec / 1000;
+		}
 
 		rename(newmanifest, manifest);
 		if (tv[0].tv_sec != 0) {
