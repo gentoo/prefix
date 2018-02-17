@@ -168,6 +168,7 @@ configure_toolchain() {
 	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc"
 	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
+	compiler_type="gcc"
 	case ${CHOST} in
 	*-cygwin*)
 	  # not supported in gcc-4.7 yet, easy enough to install g++
@@ -202,10 +203,37 @@ configure_toolchain() {
 		dev-util/cmake
 		dev-util/ninja"
 	case ${CHOST} in
+		powerpc-*darwin*)
+			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
+			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
+			local mycc=
+			case "${ccvers}" in
+				*"(GCC) 4.2.1 "*)
+					linker=sys-devel/binutils-apple
+					mycc=gcc
+					;;
+				*"(GCC) 4.0.1 "*)
+					# need gcc-4.2.1 to compile llvm
+					linker="=sys-devel/binutils-apple-3.2"
+					compiler_stage1+="
+						${gcc_deps}
+						sys-devel/gcc-config
+						sys-devel/gcc-apple
+						sys-devel/binutils-apple"
+					mycc=gcc
+					;;
+				*)
+					eerror "unknown compiler"
+					return 1
+					;;
+			esac
+			compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc-apple"
+			;;
 		*-darwin*)
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
 			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
+			compiler_type="clang"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
 			local mycc=
 			case "${ccvers}" in
@@ -1524,12 +1552,12 @@ bootstrap_stage2() {
 		fi
 	done
 
-	if [[ ${CHOST} == *darwin* ]] ; then
+	if [[ ${compiler_type} == clang ]] ; then
 		# we use Clang as our toolchain compiler, so we need to make
 		# sure we actually use it
 		{
 			echo
-			echo "# System compiler on Darwin Prefix is Clang, do not remove this"
+			echo "# System compiler on $(uname) Prefix is Clang, do not remove this"
 			echo "CC=${CHOST}-clang"
 			echo "CXX=${CHOST}-clang++"
 			echo "OBJC=${CHOST}-clang"
@@ -1548,6 +1576,7 @@ bootstrap_stage2() {
 		cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
 	fi
 
+	touch "${ROOT}/tmp/.stage2-finished"
 	einfo "stage2 successfully finished"
 }
 
@@ -1561,8 +1590,10 @@ bootstrap_stage3() {
 		eerror "emerge not found, did you bootstrap stage1?"
 		return 1
 	fi
-	
-	if [[ ${CHOST} == *-darwin* ]] ; then
+
+	configure_toolchain || return 1
+
+	if [[ ${compiler_type} == clang ]] ; then
 		if ! type -P clang > /dev/null ; then
 			eerror "clang not found, did you bootstrap stage2?"
 			return 1
@@ -1576,7 +1607,6 @@ bootstrap_stage3() {
 
 	get_libdir() { portageq envvar LIBDIR_$(portageq envvar ABI) || echo lib; }
 
-	configure_toolchain || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	export CPPFLAGS="-isystem ${ROOT}/usr/include"
 	export LDFLAGS="-L${ROOT}/usr/$(get_libdir)"
@@ -1681,7 +1711,7 @@ bootstrap_stage3() {
 	# in addition, avoid collisions
 	rm -Rf "${ROOT}"/tmp/usr/lib/python2.7/site-packages/clang
 
-	# llvm-3.5 doesn't find c++11 headers/lib by default, make it so
+	# llvm-3.5 doesn't find C++11 headers/lib by default, make it so
 	if [[ ${CHOST} == *-darwin9 ]] ; then
 		export OVERRIDE_CXXFLAGS="-I${ROOT}/tmp/usr/include/c++/v1 -fPIC"
 		# -fPIC is here because we need it, but the toolchain doesn't
@@ -2489,8 +2519,7 @@ EOF
 	# when we find gcc there (it's needed to bootstrap llvm)
 	local compiler=gcc
 	[[ ${CHOST} == *-darwin* ]] && compiler=clang
-	if ! [[ -x ${EPREFIX}/usr/bin/${compiler} \
-		|| -x ${EPREFIX}/tmp/usr/bin/${compiler} ]] \
+	if ! [[ -e ${EPREFIX}/tmp/.stage2-finished ]] \
 		&& ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2_log ; then
 		# stage 2 fail
 		cat << EOF
