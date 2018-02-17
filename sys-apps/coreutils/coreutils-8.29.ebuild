@@ -67,6 +67,23 @@ src_prepare() {
 	eapply_user
 
 	epatch "${FILESDIR}"/${PN}-8.22-mint.patch
+	# fixup libstdbuf non-libtool stuff
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i \
+			-e "/src_libstdbuf_so_LDFLAGS = -shared/s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/libexec/coreutils/libstdbuf.dylib:" \
+			Makefile.in \
+			|| die
+	elif use elibc_Cygwin ; then
+		epatch "${FILESDIR}"/${P}-cygwin-8.26-3.patch
+		sed -i -e 's|\(libstdbuf\.so\)$(EXEEXT)|\1|g' Makefile.in || die
+	fi
+	sed -i \
+		-e "s/libstdbuf\\.so/libstdbuf$(get_libname)/" \
+		src/stdbuf.c \
+		Makefile.in \
+		configure \
+		|| die
+
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
