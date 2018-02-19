@@ -74,7 +74,7 @@ src_prepare() {
 			Makefile.in \
 			|| die
 	elif use elibc_Cygwin ; then
-		epatch "${FILESDIR}"/${P}-cygwin-8.26-3.patch
+		epatch "${FILESDIR}"/${PN}-8.28-cygwin-8.26-3.patch
 		sed -i -e 's|\(libstdbuf\.so\)$(EXEEXT)|\1|g' Makefile.in || die
 	fi
 	sed -i \
