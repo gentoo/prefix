@@ -1676,6 +1676,7 @@ bootstrap_stage3() {
 		# use the new dynamic linker in place of rpath from now on.
 		RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9])
 		export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,--dynamic-linker=${RAP_DLINKER}"
+		BOOTSTRAP_RAP=yes \
 		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 		# remove stage2 ld so that stage3 ld is used by stage2 gcc.
