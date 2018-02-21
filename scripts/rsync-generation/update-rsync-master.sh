@@ -46,7 +46,7 @@ apply_git_mtimes() {
 	local ts=0
 	local files=()
 	{
-		git log --pretty=%at --name-status --reverse "${from}..${to}"
+		git log --pretty=%ct --name-status --reverse "${from}..${to}"
 		echo 999  # end marker to trigger the last block to be done
 	} | \
 	while read line ; do
