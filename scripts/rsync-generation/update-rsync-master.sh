@@ -193,8 +193,6 @@ touch -r "${GENTOOX86DIR}"/profiles/repo_name "${RSYNCDIR}"/profiles/repo_name
 # reset Prefix profiles to dev status
 sed -i -e '/prefix/s/exp/dev/' "${RSYNCDIR}"/profiles/profiles.desc
 touch -r "${GENTOOX86DIR}"/profiles/profiles.desc "${RSYNCDIR}"/profiles/profiles.desc
-# we will generate thick manifests, so ensure Portage knows that
-sed -i -e '/^thin-manifests/s/true/false/' "${RSYNCDIR}"/metadata/layout.conf
 echo "($(date +"%F %R")) set up repo $(< "${RSYNCDIR}"/profiles/repo_name)"
 
 
@@ -241,6 +239,9 @@ TIME_TOTAL=$((STOP - GLOBALSTART))
 START=$(date +%s)
 
 echo "($(date +"%F %R")) signing Manifest"
+
+# we will generate thick manifests, so ensure Portage knows that
+sed -i -e '/^thin-manifests/s/true/false/' "${RSYNCDIR}"/metadata/layout.conf
 
 # generate Thick Manifests
 ${BASE_PATH}/hashgen "${RSYNCDIR}"
