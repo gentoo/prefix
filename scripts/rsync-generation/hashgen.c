@@ -1093,7 +1093,11 @@ verify_dir(
 				curdentry++;
 			}
 		}
+
+		while (dentrieslen-- > 0)
+			free(dentries[dentrieslen]);
 		free(dentries);
+
 		return ret;
 	} else {
 		return 1;
@@ -1205,6 +1209,9 @@ verify_manifest(const char *dir, const char *manifest)
 	qsort(elems, elemslen, sizeof(elems[0]), compare_elems);
 	snprintf(buf, sizeof(buf), "%s/%s", dir, manifest);
 	ret = verify_dir(dir, elems, elemslen, 0, buf + 2);
+
+	while (elemslen-- > 0)
+		free(elems[elemslen]);
 	free(elems);
 
 	return ret;
@@ -1213,7 +1220,6 @@ verify_manifest(const char *dir, const char *manifest)
 static char *
 process_dir_vrfy(const char *dir)
 {
-	char *ret = NULL;
 	char buf[8192];
 	int newhashes;
 
@@ -1222,8 +1228,7 @@ process_dir_vrfy(const char *dir)
 	if ((newhashes = parse_layout_conf(buf)) != 0) {
 		hashes = newhashes;
 	} else {
-		fprintf(stderr, "verification must be done on a full tree\n");
-		return "not on full tree";
+		return "verification must be done on a full tree";
 	}
 
 	if (chdir(dir) != 0) {
@@ -1232,7 +1237,7 @@ process_dir_vrfy(const char *dir)
 	}
 
 	if (verify_gpg_sig(str_manifest) != 0)
-		ret = "gpg signature invalid";
+		return "gpg signature invalid";
 
 	/* verification goes like this:
 	 * - verify the signature of the top-level Manifest file (done
@@ -1240,12 +1245,12 @@ process_dir_vrfy(const char *dir)
 	 * - read the contents of the Manifest file, and process the
 	 *   entries - verify them, check there are no files which shouldn't
 	 *   be there
-	 * - recurse into directories for which Manifest files are defined */
-
+	 * - recurse into directories for which Manifest files are defined
+	 */
 	if (verify_manifest(".\0", str_manifest) != 0)
-		ret = "manifest verification failed";
+		return "manifest verification failed";
 
-	return ret;
+	return NULL;
 }
 
 int
