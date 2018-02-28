@@ -725,7 +725,7 @@ verify_gpg_sig(const char *path)
 }
 
 static char
-verify_file(const char *dir, char *mfline)
+verify_file(const char *dir, char *mfline, const char *mfest)
 {
 	char *path;
 	char *size;
@@ -741,14 +741,15 @@ verify_file(const char *dir, char *mfline)
 	char blak2b[(BLAKE2B_OUTBYTES * 2) + 1];
 	char ret = 0;
 
-	/* mfline is a Manifest file line with type stripped, something like:
-	 * path/to/file <SIZE> <HASHTYPE HASH ...>
+	/* mfline is a Manifest file line with type and leading path
+	 * stripped, something like:
+	 * file <SIZE> <HASHTYPE HASH ...>
 	 * we parse this, and verify the size and hashes */
 
 	path = mfline;
 	p = strchr(path, ' ');
 	if (p == NULL) {
-		fprintf(stderr, "%s: corrupt manifest line: %s\n", dir, path);
+		fprintf(stderr, "%s: corrupt manifest line: %s\n", mfest, path);
 		return 1;
 	}
 	*p++ = '\0';
@@ -757,14 +758,14 @@ verify_file(const char *dir, char *mfline)
 	p = strchr(size, ' ');
 	if (p == NULL) {
 		fprintf(stderr, "%s: corrupt manifest line, need size for %s\n",
-				dir, path);
+				mfest, path);
 		return 1;
 	}
 	*p++ = '\0';
 	fsize = strtoll(size, NULL, 10);
 	if (fsize == 0 && errno == EINVAL) {
 		fprintf(stderr, "%s: corrupt manifest line, size is not a number: %s\n",
-				dir, size);
+				dir + 2, size);
 		return 1;
 	}
 
@@ -773,13 +774,15 @@ verify_file(const char *dir, char *mfline)
 	get_hashes(buf, sha256, sha512, whrlpl, blak2b, &flen);
 
 	if (flen == 0) {
-		fprintf(stderr, "cannot locate %s\n", path);
+		fprintf(stderr, "cannot locate %s/%s\n", dir + 2, path);
 		return 1;
 	}
 
 	if (flen != fsize) {
-		fprintf(stderr, "%s: size mismatch, got: %zd, expected: %lld\n",
-				path, flen, fsize);
+		printf("%s:%s:\n- file size mismatch\n"
+				"       got: %zd\n"
+				"  expected: %lld\n",
+				mfest, path, flen, fsize);
 		return 1;
 	}
 
@@ -790,7 +793,7 @@ verify_file(const char *dir, char *mfline)
 		p = strchr(hashtype, ' ');
 		if (p == NULL) {
 			fprintf(stderr, "%s: corrupt manifest line, missing hash type\n",
-					path);
+					mfest);
 			return 1;
 		}
 		*p++ = '\0';
@@ -800,11 +803,14 @@ verify_file(const char *dir, char *mfline)
 		if (p != NULL)
 			*p++ = '\0';
 
+#define idif(X) if (X == 0) printf("%s:%s:\n", mfest, path);
 		if (strcmp(hashtype, "SHA256") == 0) {
 			if (!(hashes & HASH_SHA256)) {
+				idif(ret);
 				printf("- warning: hash SHA256 ignored as "
 						"it is not enabled for this repository\n");
 			} else if (strcmp(hash, sha256) != 0) {
+				idif(ret);
 				printf("- SHA256 hash mismatch\n"
 						"              computed: '%s'\n"
 						"  recorded in manifest: '%s'\n",
@@ -814,9 +820,11 @@ verify_file(const char *dir, char *mfline)
 			sha256[0] = '\0';
 		} else if (strcmp(hashtype, "SHA512") == 0) {
 			if (!(hashes & HASH_SHA512)) {
+				idif(ret);
 				printf("- warning: hash SHA512 ignored as "
 						"it is not enabled for this repository\n");
 			} else if (strcmp(hash, sha512) != 0) {
+				idif(ret);
 				printf("- SHA512 hash mismatch\n"
 						"              computed: '%s'\n"
 						"  recorded in manifest: '%s'\n",
@@ -826,9 +834,11 @@ verify_file(const char *dir, char *mfline)
 			sha512[0] = '\0';
 		} else if (strcmp(hashtype, "WHIRLPOOL") == 0) {
 			if (!(hashes & HASH_WHIRLPOOL)) {
+				idif(ret);
 				printf("- warning: hash WHIRLPOOL ignored as "
 						"it is not enabled for this repository\n");
 			} else if (strcmp(hash, whrlpl) != 0) {
+				idif(ret);
 				printf("- WHIRLPOOL hash mismatch\n"
 						"              computed: '%s'\n"
 						"  recorded in manifest: '%s'\n",
@@ -838,9 +848,11 @@ verify_file(const char *dir, char *mfline)
 			whrlpl[0] = '\0';
 		} else if (strcmp(hashtype, "BLAKE2B") == 0) {
 			if (!(hashes & HASH_BLAKE2B)) {
+				idif(ret);
 				printf("- warning: hash BLAKE2B ignored as "
 						"it is not enabled for this repository\n");
 			} else if (strcmp(hash, blak2b) != 0) {
+				idif(ret);
 				printf("- BLAKE2B hash mismatch\n"
 						"              computed: '%s'\n"
 						"  recorded in manifest: '%s'\n",
@@ -849,24 +861,29 @@ verify_file(const char *dir, char *mfline)
 			}
 			blak2b[0] = '\0';
 		} else {
+			idif(ret);
 			printf("- unsupported hash: %s\n", hashtype);
 			ret = 1;
 		}
 	}
 
 	if (sha256[0] != '\0') {
+		idif(ret);
 		printf("- missing hash: SHA256\n");
 		ret = 1;
 	}
 	if (sha512[0] != '\0') {
+		idif(ret);
 		printf("- missing hash: SHA512\n");
 		ret = 1;
 	}
 	if (whrlpl[0] != '\0') {
+		idif(ret);
 		printf("- missing hash: WHIRLPOOL\n");
 		ret = 1;
 	}
 	if (blak2b[0] != '\0') {
+		idif(ret);
 		printf("- missing hash: BLAKE2B\n");
 		ret = 1;
 	}
@@ -904,7 +921,12 @@ static char verify_manifest(const char *dir, const char *manifest);
 
 #define LISTSZ 64
 static char
-verify_dir(const char *dir, char **elems, size_t elemslen, size_t skippath)
+verify_dir(
+		const char *dir,
+		char **elems,
+		size_t elemslen,
+		size_t skippath,
+		const char *mfest)
 {
 	DIR *d;
 	struct dirent *e;
@@ -924,7 +946,7 @@ verify_dir(const char *dir, char **elems, size_t elemslen, size_t skippath)
 	if (elemslen == 1 && skippath == 0 &&
 			**elems == 'M' && strchr(*elems + 2, '/') == NULL)
 	{
-		if ((ret = verify_file(dir, *elems + 2)) == 0) {
+		if ((ret = verify_file(dir, *elems + 2, mfest)) == 0) {
 			slash = strchr(*elems + 2, ' ');
 			if (slash != NULL)
 				*slash = '\0';
@@ -997,13 +1019,12 @@ verify_dir(const char *dir, char **elems, size_t elemslen, size_t skippath)
 					size_t skiplen = strlen(dir) + 1 + sublen;
 					/* sub-Manifest, we need to do a proper recurse */
 					slash = strrchr(entry, '/');  /* cannot be NULL */
-					snprintf(ndir, sizeof(ndir),
-							"%s/%s", dir, entry);
+					snprintf(ndir, sizeof(ndir), "%s/%s", dir, entry);
 					ndir[skiplen] = '\0';
 					slash = strchr(ndir + skiplen + 1, ' ');
 					if (slash != NULL)  /* path should fit in ndir ... */
 						*slash = '\0';
-					if (verify_file(dir, entry) != 0 ||
+					if (verify_file(dir, entry, mfest) != 0 ||
 						verify_manifest(ndir, ndir + skiplen + 1) != 0)
 						ret |= 1;
 				} else {
@@ -1019,7 +1040,7 @@ verify_dir(const char *dir, char **elems, size_t elemslen, size_t skippath)
 					snprintf(ndir, sizeof(ndir), "%s/%.*s", dir,
 							(int)sublen, elems[elemstart] + 2 + skippath);
 					ret |= verify_dir(ndir, subelems,
-							curelem - elemstart, skippath + sublen + 1);
+							curelem - elemstart, skippath + sublen + 1, mfest);
 					curelem--; /* move back, see below */
 				}
 				
@@ -1045,7 +1066,7 @@ verify_dir(const char *dir, char **elems, size_t elemslen, size_t skippath)
 			if (cmp == 0) {
 				/* equal, so yay */
 				if (etpe == 'D') {
-					ret |= verify_file(dir, entry);
+					ret |= verify_file(dir, entry, mfest);
 				}
 				/* else this is I(GNORE) or S(ubdir), which means it is
 				 * ok in any way (M shouldn't happen) */
@@ -1061,14 +1082,14 @@ verify_dir(const char *dir, char **elems, size_t elemslen, size_t skippath)
 					if (slash != NULL)
 						*slash = '\0';
 					fprintf(stderr, "%s: missing %s file: %s\n",
-							dir, etpe == 'M' ? "MANIFEST" : "DATA", entry);
+							mfest, etpe == 'M' ? "MANIFEST" : "DATA", entry);
 				}
 				curelem++;
 			} else if (cmp > 0) {
 				/* dir has extra element */
 				ret |= 1;
 				fprintf(stderr, "%s: stray file not in Manifest: %s\n",
-						dir, dentries[curdentry]);
+						mfest, dentries[curdentry]);
 				curdentry++;
 			}
 		}
@@ -1085,6 +1106,7 @@ verify_manifest(const char *dir, const char *manifest)
 	char buf[8192];
 	FILE *f;
 	gzFile mf;
+	char ret = 0;
 
 	size_t elemssize = 0;
 	size_t elemslen = 0;
@@ -1181,10 +1203,11 @@ verify_manifest(const char *dir, const char *manifest)
 	 *   the larger Manifest.files.gz
 	 */
 	qsort(elems, elemslen, sizeof(elems[0]), compare_elems);
-	verify_dir(dir, elems, elemslen, 0);
+	snprintf(buf, sizeof(buf), "%s/%s", dir, manifest);
+	ret = verify_dir(dir, elems, elemslen, 0, buf + 2);
 	free(elems);
 
-	return 0;
+	return ret;
 }
 
 static char *
@@ -1194,6 +1217,7 @@ process_dir_vrfy(const char *dir)
 	char buf[8192];
 	int newhashes;
 
+	fprintf(stdout, "verifying %s...\n", dir);
 	snprintf(buf, sizeof(buf), "%s/metadata/layout.conf", dir);
 	if ((newhashes = parse_layout_conf(buf)) != 0) {
 		hashes = newhashes;
@@ -1202,8 +1226,12 @@ process_dir_vrfy(const char *dir)
 		return "not on full tree";
 	}
 
-	snprintf(buf, sizeof(buf), "%s/%s", dir, str_manifest);
-	if (verify_gpg_sig(buf) != 0)
+	if (chdir(dir) != 0) {
+		fprintf(stderr, "cannot chdir() to %s: %s\n", dir, strerror(errno));
+		return "not a directory";
+	}
+
+	if (verify_gpg_sig(str_manifest) != 0)
 		ret = "gpg signature invalid";
 
 	/* verification goes like this:
@@ -1214,7 +1242,7 @@ process_dir_vrfy(const char *dir)
 	 *   be there
 	 * - recurse into directories for which Manifest files are defined */
 
-	if (verify_manifest(dir, str_manifest) != 0)
+	if (verify_manifest(".\0", str_manifest) != 0)
 		ret = "manifest verification failed";
 
 	return ret;
@@ -1226,6 +1254,8 @@ main(int argc, char *argv[])
 	char *prog;
 	char *(*runfunc)(const char *);
 	int arg = 1;
+	int ret = 0;
+	char *rsn;
 
 	if ((prog = strrchr(argv[0], '/')) == NULL)
 		prog = argv[0];
@@ -1249,11 +1279,20 @@ main(int argc, char *argv[])
 	gpgme_check_version(NULL);
 
 	if (argc > 1) {
-		for (; arg < argc; arg++)
-			runfunc(argv[arg]);
+		for (; arg < argc; arg++) {
+			rsn = runfunc(argv[arg]);
+			if (rsn != NULL) {
+				printf("%s\n", rsn);
+				ret |= 1;
+			}
+		}
 	} else {
-		runfunc(".");
+		rsn = runfunc(".");
+		if (rsn != NULL) {
+			printf("%s\n", rsn);
+			ret |= 1;
+		}
 	}
 
-	return 0;
+	return ret;
 }
