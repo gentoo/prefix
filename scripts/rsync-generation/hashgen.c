@@ -1,5 +1,6 @@
-/* Copyright 2006-2017 Gentoo Foundation; Distributed under the GPL v2 */
+/* Copyright 2006-2018 Gentoo Foundation; Distributed under the GPL v2 */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <strings.h>
 #include <ctype.h>
@@ -13,6 +14,7 @@
 #include <openssl/whrlpool.h>
 #include <blake2.h>
 #include <zlib.h>
+#include <gpgme.h>
 
 /* Generate thick Manifests based on thin Manifests */
 
@@ -20,8 +22,10 @@
  * - app-crypt/libb2 (for BLAKE2, for as long as openssl doesn't include it)
  * - dev-libs/openssl (for SHA, WHIRLPOOL)
  * - sys-libs/zlib (for compressing Manifest files)
- * compile like this
- *   ${CC} -o hashgen -fopenmp ${CFLAGS} -lssl -lcrypto -lb2 -lz hashgen.c
+ * - app-crypt/gpgme (for signing/verifying the top level manifest)
+ * compile like this:
+ *   ${CC} -o hashgen -fopenmp ${CFLAGS} \
+ *         -lssl -lcrypto -lb2 -lz `gpgme-config --libs` hashgen.c
  */
 
 enum hash_impls {
@@ -38,9 +42,57 @@ static int hashes = HASH_DEFAULT;
 static inline void
 hex_hash(char *out, const unsigned char *buf, const int length)
 {
-	int i;
-	for (i = 0; i < length; i++) {
-		snprintf(&out[i * 2], 3, "%02x", buf[i]);
+	switch (length) {
+		/* SHA256_DIGEST_LENGTH */
+		case 32:
+			snprintf(out, 64 + 1,
+					"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+					"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+					"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+					"%02x%02x",
+					buf[ 0], buf[ 1], buf[ 2], buf[ 3], buf[ 4],
+					buf[ 5], buf[ 6], buf[ 7], buf[ 8], buf[ 9],
+					buf[10], buf[11], buf[12], buf[13], buf[14],
+					buf[15], buf[16], buf[17], buf[18], buf[19],
+					buf[20], buf[21], buf[22], buf[23], buf[24],
+					buf[25], buf[26], buf[27], buf[28], buf[29],
+					buf[30], buf[31]
+					);
+			break;
+		/* SHA512_DIGEST_LENGTH, WHIRLPOOL_DIGEST_LENGTH, BLAKE2B_OUTBYTES */
+		case 64:
+			snprintf(out, 128 + 1,
+					"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+					"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+					"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+					"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+					"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+					"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+					"%02x%02x%02x%02x",
+					buf[ 0], buf[ 1], buf[ 2], buf[ 3], buf[ 4],
+					buf[ 5], buf[ 6], buf[ 7], buf[ 8], buf[ 9],
+					buf[10], buf[11], buf[12], buf[13], buf[14],
+					buf[15], buf[16], buf[17], buf[18], buf[19],
+					buf[20], buf[21], buf[22], buf[23], buf[24],
+					buf[25], buf[26], buf[27], buf[28], buf[29],
+					buf[30], buf[31], buf[32], buf[33], buf[34],
+					buf[35], buf[36], buf[37], buf[38], buf[39],
+					buf[40], buf[41], buf[42], buf[43], buf[44],
+					buf[45], buf[46], buf[47], buf[48], buf[49],
+					buf[50], buf[51], buf[52], buf[53], buf[54],
+					buf[55], buf[56], buf[57], buf[58], buf[59],
+					buf[60], buf[61], buf[62], buf[63]
+					);
+			break;
+		/* fallback case, should never be necessary */
+		default:
+			{
+				int i;
+				for (i = 0; i < length; i++) {
+					snprintf(&out[i * 2], 3, "%02x", buf[i]);
+				}
+			}
+			break;
 	}
 }
 
@@ -59,35 +111,24 @@ update_times(struct timeval *tv, struct stat *s)
 }
 
 static void
-write_hashes(
-		struct timeval *tv,
-		const char *root,
-		const char *name,
-		const char *type,
-		FILE *m,
-		gzFile gm)
+get_hashes(
+		const char *fname,
+		char *sha256,
+		char *sha512,
+		char *whrlpl,
+		char *blak2b,
+		size_t *flen)
 {
 	FILE *f;
-	char fname[8192];
-	size_t flen = 0;
-	char sha256[(SHA256_DIGEST_LENGTH * 2) + 1];
-	char sha512[(SHA512_DIGEST_LENGTH * 2) + 1];
-	char whrlpl[(WHIRLPOOL_DIGEST_LENGTH * 2) + 1];
-	char blak2b[(BLAKE2B_OUTBYTES * 2) + 1];
 	char data[8192];
 	size_t len;
 	SHA256_CTX s256;
 	SHA512_CTX s512;
 	WHIRLPOOL_CTX whrl;
 	blake2b_state bl2b;
-	struct stat s;
 
-	snprintf(fname, sizeof(fname), "%s/%s", root, name);
 	if ((f = fopen(fname, "r")) == NULL)
 		return;
-
-	if (stat(fname, &s) == 0)
-		update_times(tv, &s);
 
 	SHA256_Init(&s256);
 	SHA512_Init(&s512);
@@ -95,7 +136,7 @@ write_hashes(
 	blake2b_init(&bl2b, BLAKE2B_OUTBYTES);
 
 	while ((len = fread(data, 1, sizeof(data), f)) > 0) {
-		flen += len;
+		*flen += len;
 #pragma omp parallel sections
 		{
 #pragma omp section
@@ -120,6 +161,7 @@ write_hashes(
 			}
 		}
 	}
+	fclose(f);
 
 #pragma omp parallel sections
 	{
@@ -155,7 +197,33 @@ write_hashes(
 			}
 		}
 	}
-	fclose(f);
+}
+
+static void
+write_hashes(
+		struct timeval *tv,
+		const char *root,
+		const char *name,
+		const char *type,
+		FILE *m,
+		gzFile gm)
+{
+	size_t flen = 0;
+	char sha256[(SHA256_DIGEST_LENGTH * 2) + 1];
+	char sha512[(SHA512_DIGEST_LENGTH * 2) + 1];
+	char whrlpl[(WHIRLPOOL_DIGEST_LENGTH * 2) + 1];
+	char blak2b[(BLAKE2B_OUTBYTES * 2) + 1];
+	char data[8192];
+	char fname[8192];
+	size_t len;
+	struct stat s;
+
+	snprintf(fname, sizeof(fname), "%s/%s", root, name);
+
+	if (stat(fname, &s) == 0)
+		update_times(tv, &s);
+
+	get_hashes(fname, sha256, sha512, whrlpl, blak2b, &flen);
 
 	len = snprintf(data, sizeof(data), "%s %s %zd", type, name, flen);
 	if (hashes & HASH_BLAKE2B)
@@ -321,7 +389,7 @@ static char *str_manifest = "Manifest";
 static char *str_manifest_gz = "Manifest.gz";
 static char *str_manifest_files_gz = "Manifest.files.gz";
 static char *
-process_dir(const char *dir)
+process_dir_gen(const char *dir)
 {
 	char manifest[8192];
 	FILE *f;
@@ -426,7 +494,7 @@ process_dir(const char *dir)
 								gzwrite(mf, buf, len);
 							}
 						} else {
-							char *mfest = process_dir(path);
+							char *mfest = process_dir_gen(path);
 							if (mfest == NULL) {
 								gzclose(mf);
 								return NULL;
@@ -560,15 +628,631 @@ process_dir(const char *dir)
 	}
 }
 
+static char
+verify_gpg_sig(const char *path)
+{
+	gpgme_ctx_t g_ctx;
+	gpgme_data_t manifest;
+	gpgme_data_t out;
+	gpgme_verify_result_t vres;
+	gpgme_signature_t sig;
+	gpgme_key_t key;
+	char buf[32];
+	FILE *f;
+	struct tm *ctime;
+	char ret = 1;  /* fail */
+
+	if ((f = fopen(path, "r")) == NULL) {
+		fprintf(stderr, "failed to open %s: %s\n", path, strerror(errno));
+		return ret;
+	}
+
+	if (gpgme_new(&g_ctx) != GPG_ERR_NO_ERROR) {
+		fprintf(stderr, "failed to create gpgme context\n");
+		return ret;
+	}
+
+	if (gpgme_data_new(&out) != GPG_ERR_NO_ERROR) {
+		fprintf(stderr, "failed to create new gpgme data\n");
+		return ret;
+	}
+
+	if (gpgme_data_new_from_stream(&manifest, f) != GPG_ERR_NO_ERROR) {
+		fprintf(stderr, "failed to create new gpgme data from stream\n");
+		return ret;
+	}
+
+	if (gpgme_op_verify(g_ctx, manifest, NULL, out) != GPG_ERR_NO_ERROR) {
+		fprintf(stderr, "failed to verify signature\n");
+		return ret;
+	}
+
+	vres = gpgme_op_verify_result(g_ctx);
+	fclose(f);
+
+	for (sig = vres->signatures; sig != NULL; sig = sig->next) {
+		ctime = gmtime((time_t *)&sig->timestamp);
+		strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S UTC", ctime);
+		printf("%s key fingerprint "
+				"%.4s %.4s %.4s %.4s %.4s  %.4s %.4s %.4s %.4s %.4s\n"
+				"%s signature made %s by\n",
+				gpgme_pubkey_algo_name(sig->pubkey_algo),
+				sig->fpr +  0, sig->fpr +  4, sig->fpr +  8, sig->fpr + 12,
+				sig->fpr + 16, sig->fpr + 20, sig->fpr + 24, sig->fpr + 28,
+				sig->fpr + 32, sig->fpr + 36,
+				sig->status == GPG_ERR_NO_ERROR ? "good" : "BAD",
+				buf);
+
+		if (gpgme_get_key(g_ctx, sig->fpr, &key, 0) == GPG_ERR_NO_ERROR) {
+			ret = 0;  /* valid */
+			if (key->uids != NULL)
+				printf("%s\n", key->uids->uid);
+			gpgme_key_release(key);
+		}
+
+		switch (sig->status) {
+			case GPG_ERR_NO_ERROR:
+				/* nothing, handled above */
+				break;
+			case GPG_ERR_SIG_EXPIRED:
+				printf("the signature is valid but expired\n");
+				break;
+			case GPG_ERR_KEY_EXPIRED:
+				printf("the signature is valid but the key used to verify "
+						"the signature has expired\n");
+				break;
+			case GPG_ERR_CERT_REVOKED:
+				printf("the signature is valid but the key used to verify "
+						"the signature has been revoked\n");
+				break;
+			case GPG_ERR_BAD_SIGNATURE:
+				printf("the signature is invalid\n");
+				break;
+			case GPG_ERR_NO_PUBKEY:
+				printf("the signature could not be verified due to a "
+						"missing key\n");
+				break;
+			default:
+				printf("there was some other error which prevented the "
+						"signature verification\n");
+				break;
+		}
+	}
+
+	gpgme_release(g_ctx);
+
+	return ret;
+}
+
+static char
+verify_file(const char *dir, char *mfline)
+{
+	char *path;
+	char *size;
+	long long int fsize;
+	char *hashtype;
+	char *hash;
+	char *p;
+	char buf[8192];
+	size_t flen = 0;
+	char sha256[(SHA256_DIGEST_LENGTH * 2) + 1];
+	char sha512[(SHA512_DIGEST_LENGTH * 2) + 1];
+	char whrlpl[(WHIRLPOOL_DIGEST_LENGTH * 2) + 1];
+	char blak2b[(BLAKE2B_OUTBYTES * 2) + 1];
+	char ret = 0;
+
+	/* mfline is a Manifest file line with type stripped, something like:
+	 * path/to/file <SIZE> <HASHTYPE HASH ...>
+	 * we parse this, and verify the size and hashes */
+
+	path = mfline;
+	p = strchr(path, ' ');
+	if (p == NULL) {
+		fprintf(stderr, "%s: corrupt manifest line: %s\n", dir, path);
+		return 1;
+	}
+	*p++ = '\0';
+
+	size = p;
+	p = strchr(size, ' ');
+	if (p == NULL) {
+		fprintf(stderr, "%s: corrupt manifest line, need size for %s\n",
+				dir, path);
+		return 1;
+	}
+	*p++ = '\0';
+	fsize = strtoll(size, NULL, 10);
+	if (fsize == 0 && errno == EINVAL) {
+		fprintf(stderr, "%s: corrupt manifest line, size is not a number: %s\n",
+				dir, size);
+		return 1;
+	}
+
+	sha256[0] = sha512[0] = whrlpl[0] = blak2b[0] = '\0';
+	snprintf(buf, sizeof(buf), "%s/%s", dir, path);
+	get_hashes(buf, sha256, sha512, whrlpl, blak2b, &flen);
+
+	if (flen == 0) {
+		fprintf(stderr, "cannot locate %s\n", path);
+		return 1;
+	}
+
+	if (flen != fsize) {
+		fprintf(stderr, "%s: size mismatch, got: %zd, expected: %lld\n",
+				path, flen, fsize);
+		return 1;
+	}
+
+	/* now we are in free territory, we read TYPE HASH pairs until we
+	 * drained the string, and match them against what we computed */
+	while (p != NULL && *p != '\0') {
+		hashtype = p;
+		p = strchr(hashtype, ' ');
+		if (p == NULL) {
+			fprintf(stderr, "%s: corrupt manifest line, missing hash type\n",
+					path);
+			return 1;
+		}
+		*p++ = '\0';
+
+		hash = p;
+		p = strchr(hash, ' ');
+		if (p != NULL)
+			*p++ = '\0';
+
+		if (strcmp(hashtype, "SHA256") == 0) {
+			if (!(hashes & HASH_SHA256)) {
+				printf("- warning: hash SHA256 ignored as "
+						"it is not enabled for this repository\n");
+			} else if (strcmp(hash, sha256) != 0) {
+				printf("- SHA256 hash mismatch\n"
+						"              computed: '%s'\n"
+						"  recorded in manifest: '%s'\n",
+						sha256, hash);
+				ret = 1;
+			}
+			sha256[0] = '\0';
+		} else if (strcmp(hashtype, "SHA512") == 0) {
+			if (!(hashes & HASH_SHA512)) {
+				printf("- warning: hash SHA512 ignored as "
+						"it is not enabled for this repository\n");
+			} else if (strcmp(hash, sha512) != 0) {
+				printf("- SHA512 hash mismatch\n"
+						"              computed: '%s'\n"
+						"  recorded in manifest: '%s'\n",
+						sha512, hash);
+				ret = 1;
+			}
+			sha512[0] = '\0';
+		} else if (strcmp(hashtype, "WHIRLPOOL") == 0) {
+			if (!(hashes & HASH_WHIRLPOOL)) {
+				printf("- warning: hash WHIRLPOOL ignored as "
+						"it is not enabled for this repository\n");
+			} else if (strcmp(hash, whrlpl) != 0) {
+				printf("- WHIRLPOOL hash mismatch\n"
+						"              computed: '%s'\n"
+						"  recorded in manifest: '%s'\n",
+						whrlpl, hash);
+				ret = 1;
+			}
+			whrlpl[0] = '\0';
+		} else if (strcmp(hashtype, "BLAKE2B") == 0) {
+			if (!(hashes & HASH_BLAKE2B)) {
+				printf("- warning: hash BLAKE2B ignored as "
+						"it is not enabled for this repository\n");
+			} else if (strcmp(hash, blak2b) != 0) {
+				printf("- BLAKE2B hash mismatch\n"
+						"              computed: '%s'\n"
+						"  recorded in manifest: '%s'\n",
+						blak2b, hash);
+				ret = 1;
+			}
+			blak2b[0] = '\0';
+		} else {
+			printf("- unsupported hash: %s\n", hashtype);
+			ret = 1;
+		}
+	}
+
+	if (sha256[0] != '\0') {
+		printf("- missing hash: SHA256\n");
+		ret = 1;
+	}
+	if (sha512[0] != '\0') {
+		printf("- missing hash: SHA512\n");
+		ret = 1;
+	}
+	if (whrlpl[0] != '\0') {
+		printf("- missing hash: WHIRLPOOL\n");
+		ret = 1;
+	}
+	if (blak2b[0] != '\0') {
+		printf("- missing hash: BLAKE2B\n");
+		ret = 1;
+	}
+
+	return ret;
+}
+
+static int
+compare_elems(const void *l, const void *r)
+{
+	const char *strl = *((const char **)l) + 2;
+	const char *strr = *((const char **)r) + 2;
+	unsigned char cl;
+	unsigned char cr;
+	/* compare treating / as end of string */
+	while ((cl = *strl++) == (cr = *strr++))
+		if (cl == '\0')
+			return 0;
+	if (cl == '/')
+		cl = '\0';
+	if (cr == '/')
+		cr = '\0';
+	return cl - cr;
+}
+
+static int
+compare_strings(const void *l, const void *r)
+{
+	const char **strl = (const char **)l;
+	const char **strr = (const char **)r;
+	return strcmp(*strl, *strr);
+}
+
+static char verify_manifest(const char *dir, const char *manifest);
+
+#define LISTSZ 64
+static char
+verify_dir(const char *dir, char **elems, size_t elemslen, size_t skippath)
+{
+	DIR *d;
+	struct dirent *e;
+	char **dentries = NULL;
+	size_t dentrieslen = 0;
+	size_t dentriessize = 0;
+	size_t curelem = 0;
+	size_t curdentry = 0;
+	char *entry;
+	char *slash;
+	char etpe;
+	char ret = 0;
+	int cmp;
+
+	/* shortcut a single Manifest entry pointing to the same dir
+	 * (happens at top-level) */
+	if (elemslen == 1 && skippath == 0 &&
+			**elems == 'M' && strchr(*elems + 2, '/') == NULL)
+	{
+		if ((ret = verify_file(dir, *elems + 2)) == 0) {
+			slash = strchr(*elems + 2, ' ');
+			if (slash != NULL)
+				*slash = '\0';
+			/* else, verify_manifest will fail, so ret will be handled */
+			ret = verify_manifest(dir, *elems + 2);
+		}
+		return ret;
+	}
+
+	/*
+	 * We have a list of entries from the manifest just read, now we
+	 * need to match these onto the directory layout.  From what we got
+	 * - we can ignore TIMESTAMP and DIST entries
+	 * - IGNOREs need to be handled separate (shortcut)
+	 * - MANIFESTs need to be handled on their own, for memory
+	 *   consumption reasons, we defer them to until we've verified
+	 *   what's left, we treat the path the Manifest refers to as IGNORE
+	 * - DATAs, EBUILDs and MISCs needs verifying
+	 * - AUXs need verifying, but in files/ subdir
+	 * If we sort both lists, we should be able to do a merge-join, to
+	 * easily flag missing entries in either list without hashing or
+	 * anything.
+	 */
+	if ((d = opendir(dir)) != NULL) {
+		while ((e = readdir(d)) != NULL) {
+			/* skip all dotfiles and Manifest files */
+			if (e->d_name[0] == '.' ||
+					strcmp(e->d_name, str_manifest) == 0 ||
+					strcmp(e->d_name, str_manifest_gz) == 0 ||
+					strcmp(e->d_name, str_manifest_files_gz) == 0)
+			{
+				continue;
+			}
+
+			if (dentrieslen == dentriessize) {
+				dentriessize += LISTSZ;
+				dentries = realloc(dentries,
+						dentriessize * sizeof(dentries[0]));
+				if (dentries == NULL) {
+					fprintf(stderr, "out of memory\n");
+					return 1;
+				}
+			}
+			dentries[dentrieslen] = strdup(e->d_name);
+			if (dentries[dentrieslen] == NULL) {
+				fprintf(stderr, "out of memory\n");
+				return 1;
+			}
+			dentrieslen++;
+		}
+		closedir(d);
+
+		qsort(dentries, dentrieslen, sizeof(dentries[0]), compare_strings);
+
+		while (curdentry < dentrieslen) {
+			if (curelem < elemslen) {
+				entry = elems[curelem] + 2 + skippath;
+				etpe = *elems[curelem];
+			} else {
+				entry = "";
+				etpe = 'I';
+			}
+
+			/* handle subdirs first */
+			if ((slash = strchr(entry, '/')) != NULL) {
+				size_t sublen = slash - entry;
+				char ndir[8192];
+
+				if (etpe == 'M') {
+					size_t skiplen = strlen(dir) + 1 + sublen;
+					/* sub-Manifest, we need to do a proper recurse */
+					slash = strrchr(entry, '/');  /* cannot be NULL */
+					snprintf(ndir, sizeof(ndir),
+							"%s/%s", dir, entry);
+					ndir[skiplen] = '\0';
+					slash = strchr(ndir + skiplen + 1, ' ');
+					if (slash != NULL)  /* path should fit in ndir ... */
+						*slash = '\0';
+					if (verify_file(dir, entry) != 0 ||
+						verify_manifest(ndir, ndir + skiplen + 1) != 0)
+						ret |= 1;
+				} else {
+					int elemstart = curelem;
+					char **subelems = &elems[curelem];
+					/* collect all entries like this one (same subdir) into
+					 * a sub-list that we can verify */
+					curelem++;
+					while (curelem < elemslen &&
+							strncmp(entry, elems[curelem] + 2 + skippath,
+								sublen + 1) == 0)
+						curelem++;
+					snprintf(ndir, sizeof(ndir), "%s/%.*s", dir,
+							(int)sublen, elems[elemstart] + 2 + skippath);
+					ret |= verify_dir(ndir, subelems,
+							curelem - elemstart, skippath + sublen + 1);
+					curelem--; /* move back, see below */
+				}
+				
+				/* modify the last entry to be the subdir, such that we
+				 * can let the code below synchronise with dentries */
+				elems[curelem][2 + skippath + sublen] = '\0';
+				entry = elems[curelem] + 2 + skippath;
+				etpe = 'S';  /* flag this was a subdir */
+			}
+
+			/* does this entry exist in list? */
+			if (*entry == '\0') {
+				/* end of list reached, force dir to catch up */
+				cmp = 1;
+			} else {
+				slash = strchr(entry, ' ');
+				if (slash != NULL)
+					*slash = '\0';
+				cmp = strcmp(entry, dentries[curdentry]);
+				if (slash != NULL)
+					*slash = ' ';
+			}
+			if (cmp == 0) {
+				/* equal, so yay */
+				if (etpe == 'D') {
+					ret |= verify_file(dir, entry);
+				}
+				/* else this is I(GNORE) or S(ubdir), which means it is
+				 * ok in any way (M shouldn't happen) */
+				curelem++;
+				curdentry++;
+			} else if (cmp < 0) {
+				/* entry is missing from dir */
+				if (etpe == 'I') {
+					/* right, we can ignore this */
+				} else {
+					ret |= 1;
+					slash = strchr(entry, ' ');
+					if (slash != NULL)
+						*slash = '\0';
+					fprintf(stderr, "%s: missing %s file: %s\n",
+							dir, etpe == 'M' ? "MANIFEST" : "DATA", entry);
+				}
+				curelem++;
+			} else if (cmp > 0) {
+				/* dir has extra element */
+				ret |= 1;
+				fprintf(stderr, "%s: stray file not in Manifest: %s\n",
+						dir, dentries[curdentry]);
+				curdentry++;
+			}
+		}
+		free(dentries);
+		return ret;
+	} else {
+		return 1;
+	}
+}
+
+static char
+verify_manifest(const char *dir, const char *manifest)
+{
+	char buf[8192];
+	FILE *f;
+	gzFile mf;
+
+	size_t elemssize = 0;
+	size_t elemslen = 0;
+	char **elems = NULL;
+#define append_list(STR) \
+	if (strncmp(STR, "TIMESTAMP ", 10) != 0 || strncmp(STR, "DIST ", 5) != 0) {\
+		char *endp = STR + strlen(STR) - 1;\
+		while (isspace(*endp))\
+			*endp-- = '\0';\
+		if (elemslen == elemssize) {\
+			elemssize += LISTSZ;\
+			elems = realloc(elems, elemssize * sizeof(elems[0]));\
+			if (elems == NULL) {\
+				fprintf(stderr, "out of memory\n");\
+				return 1;\
+			}\
+		}\
+		if (strncmp(STR, "IGNORE ", 7) == 0) {\
+			STR[5] = 'I';\
+			elems[elemslen] = strdup(STR + 5);\
+			if (elems[elemslen] == NULL) {\
+				fprintf(stderr, "out of memory\n");\
+				return 1;\
+			}\
+			elemslen++;\
+		} else if (strncmp(STR, "MANIFEST ", 9) == 0) {\
+			STR[7] = 'M';\
+			elems[elemslen] = strdup(STR + 7);\
+			if (elems[elemslen] == NULL) {\
+				fprintf(stderr, "out of memory\n");\
+				return 1;\
+			}\
+			elemslen++;\
+		} else if (strncmp(STR, "DATA ", 5) == 0 ||\
+				strncmp(STR, "MISC ", 5) == 0 ||\
+				strncmp(STR, "EBUILD ", 7) == 0)\
+		{\
+			if (*STR == 'E') {\
+				STR[5] = 'D';\
+				elems[elemslen] = strdup(STR + 5);\
+			} else {\
+				STR[3] = 'D';\
+				elems[elemslen] = strdup(STR + 3);\
+			}\
+			if (elems[elemslen] == NULL) {\
+				fprintf(stderr, "out of memory\n");\
+				return 1;\
+			}\
+			elemslen++;\
+		} else if (strncmp(STR, "AUX ", 4) == 0) {\
+			/* translate directly into what it is: DATA in files/ */\
+			size_t slen = strlen(STR + 2) + sizeof("files/");\
+			elems[elemslen] = malloc(slen);\
+			if (elems[elemslen] == NULL) {\
+				fprintf(stderr, "out of memory\n");\
+				return 1;\
+			}\
+			snprintf(elems[elemslen], slen, "D files/%s", STR + 4);\
+			elemslen++;\
+		}\
+	}
+
+	snprintf(buf, sizeof(buf), "%s/%s", dir, manifest);
+	if (strcmp(manifest, str_manifest) == 0) {
+		if ((f = fopen(buf, "r")) == NULL) {
+			fprintf(stderr, "failed to open %s: %s\n",
+					buf, strerror(errno));
+			return 1;
+		}
+		while (fgets(buf, sizeof(buf), f) != NULL) {
+			append_list(buf);
+		}
+		fclose(f);
+	} else if (strcmp(manifest, str_manifest_files_gz) == 0 ||
+			strcmp(manifest, str_manifest_gz) == 0)
+	{
+		if ((mf = gzopen(buf, "rb9")) == NULL) {
+			fprintf(stderr, "failed to open file '%s' for reading: %s\n",
+					buf, strerror(errno));
+			return 1;
+		}
+		while (gzgets(mf, buf, sizeof(buf)) != NULL) {
+			append_list(buf);
+		}
+		gzclose(mf);
+	}
+
+	/* The idea:
+	 * - Manifest without MANIFEST entries, we need to scan the entire
+	 *   subtree
+	 * - Manifest with MANIFEST entries, assume they are just one level
+	 *   deeper, thus ignore that subdir, further like above
+	 * - Manifest at top-level, needs to be igored as it only points to
+	 *   the larger Manifest.files.gz
+	 */
+	qsort(elems, elemslen, sizeof(elems[0]), compare_elems);
+	verify_dir(dir, elems, elemslen, 0);
+	free(elems);
+
+	return 0;
+}
+
+static char *
+process_dir_vrfy(const char *dir)
+{
+	char *ret = NULL;
+	char buf[8192];
+	int newhashes;
+
+	snprintf(buf, sizeof(buf), "%s/metadata/layout.conf", dir);
+	if ((newhashes = parse_layout_conf(buf)) != 0) {
+		hashes = newhashes;
+	} else {
+		fprintf(stderr, "verification must be done on a full tree\n");
+		return "not on full tree";
+	}
+
+	snprintf(buf, sizeof(buf), "%s/%s", dir, str_manifest);
+	if (verify_gpg_sig(buf) != 0)
+		ret = "gpg signature invalid";
+
+	/* verification goes like this:
+	 * - verify the signature of the top-level Manifest file (done
+	 *   above)
+	 * - read the contents of the Manifest file, and process the
+	 *   entries - verify them, check there are no files which shouldn't
+	 *   be there
+	 * - recurse into directories for which Manifest files are defined */
+
+	if (verify_manifest(dir, str_manifest) != 0)
+		ret = "manifest verification failed";
+
+	return ret;
+}
+
 int
 main(int argc, char *argv[])
 {
+	char *prog;
+	char *(*runfunc)(const char *);
+	int arg = 1;
+
+	if ((prog = strrchr(argv[0], '/')) == NULL)
+		prog = argv[0];
+
 	if (argc > 1) {
-		int i;
-		for (i = 1; i < argc; i++)
-			process_dir(argv[i]);
+		if (strcmp(argv[1], "hashverify") == 0 ||
+				strcmp(argv[1], "hashgen") == 0)
+		{
+			prog = argv[1];
+			arg = 2;
+		}
+	}
+
+	if (strcmp(prog, "hashverify") == 0) {
+		runfunc = &process_dir_vrfy;
 	} else {
-		process_dir(".");
+		/* default mode: hashgen */
+		runfunc = &process_dir_gen;
+	}
+
+	gpgme_check_version(NULL);
+
+	if (argc > 1) {
+		for (; arg < argc; arg++)
+			runfunc(argv[arg]);
+	} else {
+		runfunc(".");
 	}
 
 	return 0;
