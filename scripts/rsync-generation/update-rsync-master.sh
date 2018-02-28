@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+SCRIPTSTARTTIME=$(date +%s)
+
 # get keys for ssh and signing
 eval $(env SHELL=/bin/bash keychain -q --noask --eval)
 
@@ -43,6 +45,15 @@ apply_git_mtimes() {
 	local from=$1
 	local to=$2
 
+	# As of 28-02-2018 we no longer take author or committer time,
+	# because both can be garbage (in the future, or terribly in the
+	# past).  Instead, we take the starttime of this script, rounded to
+	# the minute.  Because all generators should have this set off from
+	# cron at the same start-time, this should result in the trees
+	# staying in sync.  A scheduled synchronisation should wipe out any
+	# differences that may happen.
+	local thistime="$(((SCRIPTSTARTTIME / 60) * 60))"
+
 	local ts=0
 	local files=()
 	{
@@ -54,7 +65,7 @@ apply_git_mtimes() {
 			[0-9][0-9][0-9]*)
 				if [[ ${ts} -gt 0 ]] ; then
 					[[ ${#files[@]} == 0 ]] || \
-						touch -m -d @${ts} -- "${files[@]}"
+						touch -m -d @${thistime} -- "${files[@]}"
 				fi
 				ts=${line}
 				files=()
