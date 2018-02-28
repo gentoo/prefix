@@ -99,6 +99,10 @@ hex_hash(char *out, const unsigned char *buf, const int length)
 static inline void
 update_times(struct timeval *tv, struct stat *s)
 {
+#ifdef __MACH__
+# define st_mtim st_mtimespec
+# define st_atim st_atimespec
+#endif
 	if (tv[1].tv_sec < s->st_mtim.tv_sec ||
 			(tv[1].tv_sec == s->st_mtim.tv_sec &&
 			 tv[1].tv_usec < s->st_mtim.tv_nsec / 1000))
