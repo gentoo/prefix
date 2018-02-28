@@ -919,6 +919,12 @@ compare_strings(const void *l, const void *r)
 
 static char verify_manifest(const char *dir, const char *manifest);
 
+struct subdir_workload {
+	size_t subdirlen;
+	size_t elemslen;
+	char **elems;
+};
+
 #define LISTSZ 64
 static char
 verify_dir(
@@ -940,6 +946,9 @@ verify_dir(
 	char etpe;
 	char ret = 0;
 	int cmp;
+	struct subdir_workload **subdir = NULL;
+	size_t subdirsize = 0;
+	size_t subdirlen = 0;
 
 	/* shortcut a single Manifest entry pointing to the same dir
 	 * (happens at top-level) */
@@ -1013,40 +1022,41 @@ verify_dir(
 			/* handle subdirs first */
 			if ((slash = strchr(entry, '/')) != NULL) {
 				size_t sublen = slash - entry;
-				char ndir[8192];
+				int elemstart = curelem;
+				char **subelems = &elems[curelem];
 
-				if (etpe == 'M') {
-					size_t skiplen = strlen(dir) + 1 + sublen;
-					/* sub-Manifest, we need to do a proper recurse */
-					slash = strrchr(entry, '/');  /* cannot be NULL */
-					snprintf(ndir, sizeof(ndir), "%s/%s", dir, entry);
-					ndir[skiplen] = '\0';
-					slash = strchr(ndir + skiplen + 1, ' ');
-					if (slash != NULL)  /* path should fit in ndir ... */
-						*slash = '\0';
-					if (verify_file(dir, entry, mfest) != 0 ||
-						verify_manifest(ndir, ndir + skiplen + 1) != 0)
-						ret |= 1;
-				} else {
-					int elemstart = curelem;
-					char **subelems = &elems[curelem];
-					/* collect all entries like this one (same subdir) into
-					 * a sub-list that we can verify */
+				/* collect all entries like this one (same subdir) into
+				 * a sub-list that we can verify */
+				curelem++;
+				while (curelem < elemslen &&
+						strncmp(entry, elems[curelem] + 2 + skippath,
+							sublen + 1) == 0)
 					curelem++;
-					while (curelem < elemslen &&
-							strncmp(entry, elems[curelem] + 2 + skippath,
-								sublen + 1) == 0)
-						curelem++;
-					snprintf(ndir, sizeof(ndir), "%s/%.*s", dir,
-							(int)sublen, elems[elemstart] + 2 + skippath);
-					ret |= verify_dir(ndir, subelems,
-							curelem - elemstart, skippath + sublen + 1, mfest);
-					curelem--; /* move back, see below */
+
+				if (subdirlen == subdirsize) {
+					subdirsize += LISTSZ;
+					subdir = realloc(subdir,
+							subdirsize * sizeof(subdir[0]));
+					if (subdir == NULL) {
+						fprintf(stderr, "out of memory\n");
+						return 1;
+					}
 				}
-				
+				subdir[subdirlen] = malloc(sizeof(struct subdir_workload));
+				if (subdir[subdirlen] == NULL) {
+					fprintf(stderr, "out of memory\n");
+					return 1;
+				}
+				subdir[subdirlen]->subdirlen = sublen;
+				subdir[subdirlen]->elemslen = curelem - elemstart;
+				subdir[subdirlen]->elems = subelems;
+				subdirlen++;
+
+				curelem--; /* move back, see below */
+
 				/* modify the last entry to be the subdir, such that we
 				 * can let the code below synchronise with dentries */
-				elems[curelem][2 + skippath + sublen] = '\0';
+				elems[curelem][2 + skippath + sublen] = ' ';
 				entry = elems[curelem] + 2 + skippath;
 				etpe = 'S';  /* flag this was a subdir */
 			}
@@ -1083,6 +1093,8 @@ verify_dir(
 						*slash = '\0';
 					fprintf(stderr, "%s: missing %s file: %s\n",
 							mfest, etpe == 'M' ? "MANIFEST" : "DATA", entry);
+					if (slash != NULL)
+						*slash = ' ';
 				}
 				curelem++;
 			} else if (cmp > 0) {
@@ -1097,6 +1109,43 @@ verify_dir(
 		while (dentrieslen-- > 0)
 			free(dentries[dentrieslen]);
 		free(dentries);
+
+#pragma omp parallel for shared(ret) private(entry, etpe, slash)
+		for (cmp = 0; cmp < subdirlen; cmp++) {
+			char ndir[8192];
+
+			entry = subdir[cmp]->elems[0] + 2 + skippath;
+			etpe = subdir[cmp]->elems[0][0];
+
+			/* restore original entry format */
+			subdir[cmp]->elems[subdir[cmp]->elemslen - 1]
+				[2 + skippath + subdir[cmp]->subdirlen] = '/';
+
+			if (etpe == 'M') {
+				size_t skiplen = strlen(dir) + 1 + subdir[cmp]->subdirlen;
+				/* sub-Manifest, we need to do a proper recurse */
+				slash = strrchr(entry, '/');  /* cannot be NULL */
+				snprintf(ndir, sizeof(ndir), "%s/%s", dir, entry);
+				ndir[skiplen] = '\0';
+				slash = strchr(ndir + skiplen + 1, ' ');
+				if (slash != NULL)  /* path should fit in ndir ... */
+					*slash = '\0';
+				if (verify_file(dir, entry, mfest) != 0 ||
+						verify_manifest(ndir, ndir + skiplen + 1) != 0)
+					ret |= 1;
+			} else {
+				snprintf(ndir, sizeof(ndir), "%s/%.*s", dir,
+						(int)subdir[cmp]->subdirlen, entry);
+				ret |= verify_dir(ndir, subdir[cmp]->elems,
+						subdir[cmp]->elemslen,
+						skippath + subdir[cmp]->subdirlen + 1, mfest);
+			}
+
+			free(subdir[cmp]);
+		}
+
+		if (subdir)
+			free(subdir);
 
 		return ret;
 	} else {
