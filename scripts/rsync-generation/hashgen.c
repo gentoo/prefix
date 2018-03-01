@@ -795,6 +795,10 @@ verify_gpg_sig(const char *path)
 	return ret;
 }
 
+static size_t checked_manifests = 0;
+static size_t checked_files = 0;
+static size_t failed_files = 0;
+
 static char
 verify_file(const char *dir, char *mfline, const char *mfest)
 {
@@ -849,11 +853,14 @@ verify_file(const char *dir, char *mfline, const char *mfest)
 		return 1;
 	}
 
+	checked_files++;
+
 	if (flen != fsize) {
 		printf("%s:%s:\n- file size mismatch\n"
 				"       got: %zd\n"
 				"  expected: %lld\n",
 				mfest, path, flen, fsize);
+		failed_files++;
 		return 1;
 	}
 
@@ -959,6 +966,7 @@ verify_file(const char *dir, char *mfline, const char *mfest)
 		ret = 1;
 	}
 
+	failed_files += ret;
 	return ret;
 }
 
@@ -1295,6 +1303,7 @@ verify_manifest(const char *dir, const char *manifest)
 	qsort(elems, elemslen, sizeof(elems[0]), compare_elems);
 	snprintf(buf, sizeof(buf), "%s/%s", dir, manifest);
 	ret = verify_dir(dir, elems, elemslen, 0, buf + 2);
+	checked_manifests++;
 
 	while (elemslen-- > 0)
 		free(elems[elemslen]);
@@ -1309,6 +1318,11 @@ process_dir_vrfy(const char *dir)
 	char buf[8192];
 	int newhashes;
 	char *ret = NULL;
+	struct timeval startt;
+	struct timeval finisht;
+	double etime;
+
+	gettimeofday(&startt, NULL);
 
 	fprintf(stdout, "verifying %s...\n", dir);
 	snprintf(buf, sizeof(buf), "%s/metadata/layout.conf", dir);
@@ -1337,6 +1351,12 @@ process_dir_vrfy(const char *dir)
 	if (verify_manifest(".\0", str_manifest) != 0)
 		ret = "manifest verification failed";
 
+	gettimeofday(&finisht, NULL);
+
+	etime = ((double)((finisht.tv_sec - startt.tv_sec) * 1000000 +
+				finisht.tv_usec) - (double)startt.tv_usec) / 1000000.0;
+	printf("checked %zd Manifests, %zd files, %zd failures in %.02fs\n",
+			checked_manifests, checked_files, failed_files, etime);
 	return ret;
 }
 
