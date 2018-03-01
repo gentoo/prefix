@@ -203,6 +203,65 @@ get_hashes(
 	}
 }
 
+#define LISTSZ 64
+
+static int
+compare_strings(const void *l, const void *r)
+{
+	const char **strl = (const char **)l;
+	const char **strr = (const char **)r;
+	return strcmp(*strl, *strr);
+}
+
+/**
+ * Return a sorted list of entries in the given directory.  All entries
+ * starting with a dot are ignored, and not present in the returned
+ * list.  The list and all entries are allocated using malloc() and need
+ * to be freed.
+ */
+static char
+list_dir(char ***retlist, size_t *retcnt, const char *path)
+{
+	DIR *d;
+	struct dirent *e;
+	size_t rlen = 0;
+	size_t rsize = 0;
+	char **rlist = NULL;
+
+	if ((d = opendir(path)) != NULL) {
+		while ((e = readdir(d)) != NULL) {
+			/* skip all dotfiles */
+			if (e->d_name[0] == '.')
+				continue;
+
+			if (rlen == rsize) {
+				rsize += LISTSZ;
+				rlist = realloc(rlist,
+						rsize * sizeof(rlist[0]));
+				if (rlist == NULL) {
+					fprintf(stderr, "out of memory\n");
+					return 1;
+				}
+			}
+			rlist[rlen] = strdup(e->d_name);
+			if (rlist[rlen] == NULL) {
+				fprintf(stderr, "out of memory\n");
+				return 1;
+			}
+			rlen++;
+		}
+		closedir(d);
+
+		qsort(rlist, rlen, sizeof(rlist[0]), compare_strings);
+
+		*retlist = rlist;
+		*retcnt = rlen;
+		return 0;
+	} else {
+		return 1;
+	}
+}
+
 static void
 write_hashes(
 		struct timeval *tv,
@@ -260,25 +319,24 @@ write_hashes_dir(
 		gzFile zm)
 {
 	char path[8192];
-	DIR *d;
-	struct dirent *e;
+	char **dentries;
+	size_t dentrieslen;
+	size_t i;
 
 	snprintf(path, sizeof(path), "%s/%s", root, name);
-	if ((d = opendir(path)) != NULL) {
-		while ((e = readdir(d)) != NULL) {
-			/* skip all dotfiles */
-			if (e->d_name[0] == '.')
-				continue;
-			snprintf(path, sizeof(path), "%s/%s", name, e->d_name);
-			if (write_hashes_dir(tv, root, path, zm))
+	if (list_dir(&dentries, &dentrieslen, path) != 0) {
+		for (i = 0; i < dentrieslen; i++) {
+			snprintf(path, sizeof(path), "%s/%s", name, dentries[i]);
+			free(dentries[i]);
+			if (write_hashes_dir(tv, root, path, zm) == 0)
 				continue;
 			/* regular file */
 			write_hashes(tv, root, path, "DATA", NULL, zm);
 		}
-		closedir(d);
-		return 1;
-	} else {
+		free(dentries);
 		return 0;
+	} else {
+		return 1;
 	}
 }
 
@@ -286,27 +344,26 @@ static char
 process_files(const char *dir, const char *off, FILE *m)
 {
 	char path[8192];
-	DIR *d;
-	struct dirent *e;
+	char **dentries;
+	size_t dentrieslen;
+	size_t i;
 	struct timeval tv[2]; /* dummy, won't use its result */
 
 	snprintf(path, sizeof(path), "%s/%s", dir, off);
-	if ((d = opendir(path)) != NULL) {
-		while ((e = readdir(d)) != NULL) {
-			/* skip all dotfiles */
-			if (e->d_name[0] == '.')
-				continue;
+	if (list_dir(&dentries, &dentrieslen, path) != 0) {
+		for (i = 0; i < dentrieslen; i++) {
 			snprintf(path, sizeof(path), "%s%s%s",
-					off, *off == '\0' ? "" : "/", e->d_name);
-			if (process_files(dir, path, m))
+					off, *off == '\0' ? "" : "/", dentries[i]);
+			free(dentries[i]);
+			if (process_files(dir, path, m) == 0)
 				continue;
 			/* regular file */
 			write_hashes(tv, dir, path, "AUX", m, NULL);
 		}
-		closedir(d);
-		return 1;
-	} else {
+		free(dentries);
 		return 0;
+	} else {
+		return 1;
 	}
 }
 
@@ -399,8 +456,6 @@ process_dir_gen(const char *dir)
 {
 	char manifest[8192];
 	FILE *f;
-	DIR *d;
-	struct dirent *e;
 	char path[8192];
 	const char *p;
 	int newhashes;
@@ -460,8 +515,11 @@ process_dir_gen(const char *dir)
 		/* all of these types (GLOBAL, SUBTREE, CATEGORY) have a gzipped
 		 * Manifest */
 		gzFile mf;
+		char **dentries;
+		size_t dentrieslen;
+		size_t i;
 
-		if ((d = opendir(dir)) != NULL) {
+		if (list_dir(&dentries, &dentrieslen, dir) != 0) {
 			char *my_manifest = str_manifest_gz;
 
 			if (type_manifest == GLOBAL_MANIFEST)
@@ -474,22 +532,21 @@ process_dir_gen(const char *dir)
 				return NULL;
 			}
 
-			while ((e = readdir(d)) != NULL) {
-				/* ignore dotfiles (including . and ..) */
-				if (e->d_name[0] == '.')
-					continue;
+			for (i = 0; i < dentrieslen; i++) {
 				/* ignore existing Manifests */
-				if (strcmp(e->d_name, my_manifest) == 0)
+				if (strcmp(dentries[i], my_manifest) == 0 ||
+						strcmp(dentries[i], str_manifest) == 0)
+				{
+					free(dentries[i]);
 					continue;
-				if (strcmp(e->d_name, str_manifest) == 0)
-					continue;
+				}
 
-				snprintf(path, sizeof(path), "%s/%s", dir, e->d_name);
+				snprintf(path, sizeof(path), "%s/%s", dir, dentries[i]);
 				if (!stat(path, &s)) {
 					if (s.st_mode & S_IFDIR) {
 						if (type_manifest == SUBTREE_MANIFEST) {
-							write_hashes_dir(tv, dir, e->d_name, mf);
-							if (strcmp(e->d_name, "metadata") == 0) {
+							write_hashes_dir(tv, dir, dentries[i], mf);
+							if (strcmp(dentries[i], "metadata") == 0) {
 								char buf[2048];
 								size_t len;
 								len = snprintf(buf, sizeof(buf),
@@ -499,22 +556,26 @@ process_dir_gen(const char *dir)
 										"IGNORE timestamp.x\n");
 								gzwrite(mf, buf, len);
 							}
+							free(dentries[i]);
 						} else {
 							char *mfest = process_dir_gen(path);
 							if (mfest == NULL) {
 								gzclose(mf);
+								free(dentries[i]);
 								return NULL;
 							}
 							snprintf(path, sizeof(path), "%s/%s",
-									e->d_name, mfest);
+									dentries[i], mfest);
+							free(dentries[i]);
 							write_hashes(tv, dir, path, "MANIFEST", NULL, mf);
 						}
 					} else if (s.st_mode & S_IFREG) {
-						write_hashes(tv, dir, e->d_name, "DATA", NULL, mf);
+						write_hashes(tv, dir, dentries[i], "DATA", NULL, mf);
+						free(dentries[i]);
 					}
 				}
 			}
-			closedir(d);
+			free(dentries);
 
 			if (type_manifest == GLOBAL_MANIFEST) {
 				char globmanifest[8192];
@@ -566,6 +627,9 @@ process_dir_gen(const char *dir)
 		FILE *m;
 		char newmanifest[8192];
 		char buf[8192];
+		char **dentries;
+		size_t dentrieslen;
+		size_t i;
 
 		snprintf(newmanifest, sizeof(newmanifest), "%s/.Manifest.new", dir);
 		if ((m = fopen(newmanifest, "w")) == NULL) {
@@ -593,18 +657,18 @@ process_dir_gen(const char *dir)
 		}
 		fclose(f);
 
-		if ((d = opendir(dir)) != NULL) {
-			while ((e = readdir(d)) != NULL) {
-				/* in ebuild land, stuff starting with a . isn't valid,
-				 * so can safely ignore it, while at the same time
-				 * skipping over . and .. (+need for .Manifest.new) */
-				if (e->d_name[0] == '.')
+		if (list_dir(&dentries, &dentrieslen, dir) != 0) {
+			for (i = 0; i < dentrieslen; i++) {
+				if (strcmp(dentries[i] + strlen(dentries[i]) - 7,
+							".ebuild") != 0)
+				{
+					free(dentries[i]);
 					continue;
-				if (strcmp(e->d_name + strlen(e->d_name) - 7, ".ebuild") != 0)
-					continue;
-				write_hashes(tv, dir, e->d_name, "EBUILD", m, NULL);
+				}
+				write_hashes(tv, dir, dentries[i], "EBUILD", m, NULL);
+				free(dentries[i]);
 			}
-			closedir(d);
+			free(dentries);
 		}
 
 		write_hashes(tv, dir, "ChangeLog", "MISC", m, NULL);
@@ -915,23 +979,14 @@ compare_elems(const void *l, const void *r)
 	return cl - cr;
 }
 
-static int
-compare_strings(const void *l, const void *r)
-{
-	const char **strl = (const char **)l;
-	const char **strr = (const char **)r;
-	return strcmp(*strl, *strr);
-}
-
-static char verify_manifest(const char *dir, const char *manifest);
-
 struct subdir_workload {
 	size_t subdirlen;
 	size_t elemslen;
 	char **elems;
 };
 
-#define LISTSZ 64
+static char verify_manifest(const char *dir, const char *manifest);
+
 static char
 verify_dir(
 		const char *dir,
@@ -940,11 +995,8 @@ verify_dir(
 		size_t skippath,
 		const char *mfest)
 {
-	DIR *d;
-	struct dirent *e;
 	char **dentries = NULL;
 	size_t dentrieslen = 0;
-	size_t dentriessize = 0;
 	size_t curelem = 0;
 	size_t curdentry = 0;
 	char *entry;
@@ -985,38 +1037,16 @@ verify_dir(
 	 * easily flag missing entries in either list without hashing or
 	 * anything.
 	 */
-	if ((d = opendir(dir)) != NULL) {
-		while ((e = readdir(d)) != NULL) {
-			/* skip all dotfiles and Manifest files */
-			if (e->d_name[0] == '.' ||
-					strcmp(e->d_name, str_manifest) == 0 ||
-					strcmp(e->d_name, str_manifest_gz) == 0 ||
-					strcmp(e->d_name, str_manifest_files_gz) == 0)
+	if (list_dir(&dentries, &dentrieslen, dir) == 0) {
+		while (curdentry < dentrieslen) {
+			if (strcmp(dentries[curdentry], str_manifest) == 0 ||
+					strcmp(dentries[curdentry], str_manifest_gz) == 0 ||
+					strcmp(dentries[curdentry], str_manifest_files_gz) == 0)
 			{
+				curdentry++;
 				continue;
 			}
 
-			if (dentrieslen == dentriessize) {
-				dentriessize += LISTSZ;
-				dentries = realloc(dentries,
-						dentriessize * sizeof(dentries[0]));
-				if (dentries == NULL) {
-					fprintf(stderr, "out of memory\n");
-					return 1;
-				}
-			}
-			dentries[dentrieslen] = strdup(e->d_name);
-			if (dentries[dentrieslen] == NULL) {
-				fprintf(stderr, "out of memory\n");
-				return 1;
-			}
-			dentrieslen++;
-		}
-		closedir(d);
-
-		qsort(dentries, dentrieslen, sizeof(dentries[0]), compare_strings);
-
-		while (curdentry < dentrieslen) {
 			if (curelem < elemslen) {
 				entry = elems[curelem] + 2 + skippath;
 				etpe = *elems[curelem];
