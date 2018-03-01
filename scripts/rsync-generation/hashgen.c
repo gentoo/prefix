@@ -218,6 +218,7 @@ compare_strings(const void *l, const void *r)
  * starting with a dot are ignored, and not present in the returned
  * list.  The list and all entries are allocated using malloc() and need
  * to be freed.
+ * This function returns 0 when everything is fine, non-zero otherwise.
  */
 static char
 list_dir(char ***retlist, size_t *retcnt, const char *path)
@@ -324,7 +325,7 @@ write_hashes_dir(
 	size_t i;
 
 	snprintf(path, sizeof(path), "%s/%s", root, name);
-	if (list_dir(&dentries, &dentrieslen, path) != 0) {
+	if (list_dir(&dentries, &dentrieslen, path) == 0) {
 		for (i = 0; i < dentrieslen; i++) {
 			snprintf(path, sizeof(path), "%s/%s", name, dentries[i]);
 			free(dentries[i]);
@@ -350,7 +351,7 @@ process_files(const char *dir, const char *off, FILE *m)
 	struct timeval tv[2]; /* dummy, won't use its result */
 
 	snprintf(path, sizeof(path), "%s/%s", dir, off);
-	if (list_dir(&dentries, &dentrieslen, path) != 0) {
+	if (list_dir(&dentries, &dentrieslen, path) == 0) {
 		for (i = 0; i < dentrieslen; i++) {
 			snprintf(path, sizeof(path), "%s%s%s",
 					off, *off == '\0' ? "" : "/", dentries[i]);
@@ -519,7 +520,7 @@ process_dir_gen(const char *dir)
 		size_t dentrieslen;
 		size_t i;
 
-		if (list_dir(&dentries, &dentrieslen, dir) != 0) {
+		if (list_dir(&dentries, &dentrieslen, dir) == 0) {
 			char *my_manifest = str_manifest_gz;
 
 			if (type_manifest == GLOBAL_MANIFEST)
@@ -657,7 +658,7 @@ process_dir_gen(const char *dir)
 		}
 		fclose(f);
 
-		if (list_dir(&dentries, &dentrieslen, dir) != 0) {
+		if (list_dir(&dentries, &dentrieslen, dir) == 0) {
 			for (i = 0; i < dentrieslen; i++) {
 				if (strcmp(dentries[i] + strlen(dentries[i]) - 7,
 							".ebuild") != 0)
@@ -1348,8 +1349,11 @@ main(int argc, char *argv[])
 	int ret = 0;
 	char *rsn;
 
-	if ((prog = strrchr(argv[0], '/')) == NULL)
+	if ((prog = strrchr(argv[0], '/')) == NULL) {
 		prog = argv[0];
+	} else {
+		prog++;
+	}
 
 	if (argc > 1) {
 		if (strcmp(argv[1], "hashverify") == 0 ||
