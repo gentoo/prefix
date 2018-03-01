@@ -1128,8 +1128,8 @@ verify_dir(
 					slash = strchr(entry, ' ');
 					if (slash != NULL)
 						*slash = '\0';
-					fprintf(stderr, "%s: missing %s file: %s\n",
-							mfest, etpe == 'M' ? "MANIFEST" : "DATA", entry);
+					printf("%s:%s:\n- %s file not found\n",
+							mfest, entry, etpe == 'M' ? "MANIFEST" : "DATA");
 					if (slash != NULL)
 						*slash = ' ';
 				}
@@ -1137,7 +1137,7 @@ verify_dir(
 			} else if (cmp > 0) {
 				/* dir has extra element */
 				ret |= 1;
-				fprintf(stderr, "%s: stray file not in Manifest: %s\n",
+				printf("%s:\n- found excess file: %s\n",
 						mfest, dentries[curdentry]);
 				curdentry++;
 			}
