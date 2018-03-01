@@ -224,8 +224,10 @@ write_hashes(
 
 	snprintf(fname, sizeof(fname), "%s/%s", root, name);
 
-	if (stat(fname, &s) == 0)
-		update_times(tv, &s);
+	if (stat(fname, &s) != 0)
+		return;
+
+	update_times(tv, &s);
 
 	get_hashes(fname, sha256, sha512, whrlpl, blak2b, &flen);
 
@@ -1275,6 +1277,7 @@ process_dir_vrfy(const char *dir)
 {
 	char buf[8192];
 	int newhashes;
+	char *ret = NULL;
 
 	fprintf(stdout, "verifying %s...\n", dir);
 	snprintf(buf, sizeof(buf), "%s/metadata/layout.conf", dir);
@@ -1290,7 +1293,7 @@ process_dir_vrfy(const char *dir)
 	}
 
 	if (verify_gpg_sig(str_manifest) != 0)
-		return "gpg signature invalid";
+		ret = "gpg signature invalid";
 
 	/* verification goes like this:
 	 * - verify the signature of the top-level Manifest file (done
@@ -1301,9 +1304,9 @@ process_dir_vrfy(const char *dir)
 	 * - recurse into directories for which Manifest files are defined
 	 */
 	if (verify_manifest(".\0", str_manifest) != 0)
-		return "manifest verification failed";
+		ret = "manifest verification failed";
 
-	return NULL;
+	return ret;
 }
 
 int
@@ -1339,14 +1342,14 @@ main(int argc, char *argv[])
 	if (argc > 1) {
 		for (; arg < argc; arg++) {
 			rsn = runfunc(argv[arg]);
-			if (rsn != NULL) {
+			if (runfunc == &process_dir_vrfy && rsn != NULL) {
 				printf("%s\n", rsn);
 				ret |= 1;
 			}
 		}
 	} else {
 		rsn = runfunc(".");
-		if (rsn != NULL) {
+		if (runfunc == &process_dir_vrfy && rsn != NULL) {
 			printf("%s\n", rsn);
 			ret |= 1;
 		}
