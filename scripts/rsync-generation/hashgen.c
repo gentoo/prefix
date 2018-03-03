@@ -342,13 +342,12 @@ write_hashes_dir(
 }
 
 static char
-process_files(const char *dir, const char *off, FILE *m)
+process_files(struct timeval *tv, const char *dir, const char *off, FILE *m)
 {
 	char path[8192];
 	char **dentries;
 	size_t dentrieslen;
 	size_t i;
-	struct timeval tv[2]; /* dummy, won't use its result */
 
 	snprintf(path, sizeof(path), "%s/%s", dir, off);
 	if (list_dir(&dentries, &dentrieslen, path) == 0) {
@@ -356,7 +355,7 @@ process_files(const char *dir, const char *off, FILE *m)
 			snprintf(path, sizeof(path), "%s%s%s",
 					off, *off == '\0' ? "" : "/", dentries[i]);
 			free(dentries[i]);
-			if (process_files(dir, path, m) == 0)
+			if (process_files(tv, dir, path, m) == 0)
 				continue;
 			/* regular file */
 			write_hashes(tv, dir, path, "AUX", m, NULL);
@@ -452,22 +451,22 @@ parse_layout_conf(const char *path)
 static char *str_manifest = "Manifest";
 static char *str_manifest_gz = "Manifest.gz";
 static char *str_manifest_files_gz = "Manifest.files.gz";
+enum type_manifest {
+	GLOBAL_MANIFEST,   /* Manifest.files.gz + Manifest */
+	SUBTREE_MANIFEST,  /* Manifest.gz for recursive list of files */
+	EBUILD_MANIFEST,   /* Manifest thick from thin */
+	CATEGORY_MANIFEST  /* Manifest.gz with Manifest entries */
+};
 static char *
-process_dir_gen(const char *dir)
+generate_dir(const char *dir, enum type_manifest mtype)
 {
-	char manifest[8192];
 	FILE *f;
 	char path[8192];
-	const char *p;
-	int newhashes;
-	enum {
-		GLOBAL_MANIFEST,   /* Manifest.files.gz + Manifest */
-		SUBTREE_MANIFEST,  /* Manifest.gz for recursive list of files */
-		EBUILD_MANIFEST,   /* Manifest thick from thin */
-		CATEGORY_MANIFEST  /* Manifest.gz with Manifest entries */
-	} type_manifest;
 	struct stat s;
 	struct timeval tv[2];
+	char **dentries;
+	size_t dentrieslen;
+	size_t i;
 
 	/* our timestamp strategy is as follows:
 	 * - when a Manifest exists, use its timestamp
@@ -482,155 +481,216 @@ process_dir_gen(const char *dir)
 	tv[1].tv_sec = 0;
 	tv[1].tv_usec = 0;
 
-	type_manifest = CATEGORY_MANIFEST;
-	snprintf(path, sizeof(path), "%s/metadata/layout.conf", dir);
-	if ((newhashes = parse_layout_conf(path)) != 0) {
-		type_manifest = GLOBAL_MANIFEST;
-		hashes = newhashes;
-	} else {
-		if ((p = strrchr(dir, '/')) != NULL) {
-			p++;
-		} else {
-			p = dir;
-		}
-
-		if (
-				strcmp(p, "eclass") == 0 ||
-				strcmp(p, "licenses") == 0 ||
-				strcmp(p, "metadata") == 0 ||
-				strcmp(p, "profiles") == 0 ||
-				strcmp(p, "scripts") == 0
-			)
-		{
-			type_manifest = SUBTREE_MANIFEST;
-		}
-	}
-
-	/* If a Manifest file exists, this is an ebuild dir, unless we
-	 * already established this is the top level dir which also has a
-	 * Manifest file. */
-	snprintf(manifest, sizeof(manifest), "%s/%s", dir, str_manifest);
-	if (type_manifest == GLOBAL_MANIFEST ||
-			(f = fopen(manifest, "r")) == NULL)
-	{
-		/* all of these types (GLOBAL, SUBTREE, CATEGORY) have a gzipped
-		 * Manifest */
+	if (mtype == GLOBAL_MANIFEST) {
+		char *mfest;
+		size_t len;
 		gzFile mf;
-		char **dentries;
-		size_t dentrieslen;
-		size_t i;
+		time_t rtime;
 
-		if (list_dir(&dentries, &dentrieslen, dir) == 0) {
-			char *my_manifest = str_manifest_gz;
+		snprintf(path, sizeof(path), "%s/%s", dir, str_manifest_files_gz);
+		if ((mf = gzopen(path, "wb9")) == NULL) {
+			fprintf(stderr, "failed to open file '%s' for writing: %s\n",
+					path, strerror(errno));
+			return NULL;
+		}
 
-			if (type_manifest == GLOBAL_MANIFEST)
-				my_manifest = str_manifest_files_gz;
+		/* These "IGNORE" entries are taken from gx86, there is no
+		 * standardisation on this, on purpose, apparently. */
+		len = snprintf(path, sizeof(path),
+				"IGNORE distfiles\n"
+				"IGNORE local\n"
+				"IGNORE lost+found\n"
+				"IGNORE packages\n");
+		gzwrite(mf, path, len);
 
-			snprintf(manifest, sizeof(manifest), "%s/%s", dir, my_manifest);
-			if ((mf = gzopen(manifest, "wb9")) == NULL) {
-				fprintf(stderr, "failed to open file '%s' for writing: %s\n",
-						manifest, strerror(errno));
-				return NULL;
+		if (list_dir(&dentries, &dentrieslen, dir) != 0)
+			return NULL;
+
+		for (i = 0; i < dentrieslen; i++) {
+			/* ignore existing Manifests */
+			if (strcmp(dentries[i], str_manifest_files_gz) == 0 ||
+					strcmp(dentries[i], str_manifest) == 0)
+			{
+				free(dentries[i]);
+				continue;
 			}
 
-			for (i = 0; i < dentrieslen; i++) {
-				/* ignore existing Manifests */
-				if (strcmp(dentries[i], my_manifest) == 0 ||
-						strcmp(dentries[i], str_manifest) == 0)
-				{
-					free(dentries[i]);
-					continue;
-				}
+			snprintf(path, sizeof(path), "%s/%s", dir, dentries[i]);
 
-				snprintf(path, sizeof(path), "%s/%s", dir, dentries[i]);
-				if (!stat(path, &s)) {
-					if (s.st_mode & S_IFDIR) {
-						if (type_manifest == SUBTREE_MANIFEST) {
-							write_hashes_dir(tv, dir, dentries[i], mf);
-							if (strcmp(dentries[i], "metadata") == 0) {
-								char buf[2048];
-								size_t len;
-								len = snprintf(buf, sizeof(buf),
-										"IGNORE timestamp\n"
-										"IGNORE timestamp.chk\n"
-										"IGNORE timestamp.commit\n"
-										"IGNORE timestamp.x\n");
-								gzwrite(mf, buf, len);
-							}
-							free(dentries[i]);
-						} else {
-							char *mfest = process_dir_gen(path);
-							if (mfest == NULL) {
-								gzclose(mf);
-								free(dentries[i]);
-								return NULL;
-							}
-							snprintf(path, sizeof(path), "%s/%s",
-									dentries[i], mfest);
-							free(dentries[i]);
-							write_hashes(tv, dir, path, "MANIFEST", NULL, mf);
-						}
-					} else if (s.st_mode & S_IFREG) {
-						write_hashes(tv, dir, dentries[i], "DATA", NULL, mf);
-						free(dentries[i]);
+			mfest = NULL;
+			if (!stat(path, &s)) {
+				if (s.st_mode & S_IFDIR) {
+					if (
+							strcmp(dentries[i], "eclass")   == 0 ||
+							strcmp(dentries[i], "licenses") == 0 ||
+							strcmp(dentries[i], "metadata") == 0 ||
+							strcmp(dentries[i], "profiles") == 0 ||
+							strcmp(dentries[i], "scripts")  == 0
+					   )
+					{
+						mfest = generate_dir(path, SUBTREE_MANIFEST);
+					} else {
+						mfest = generate_dir(path, CATEGORY_MANIFEST);
 					}
-				}
-			}
-			free(dentries);
 
-			if (type_manifest == GLOBAL_MANIFEST) {
-				char globmanifest[8192];
-				char buf[2048];
-				size_t len;
-				FILE *m;
-				time_t rtime;
-				struct timeval ntv[2]; /* dummy, not used */
+					if (mfest == NULL) {
+						fprintf(stderr, "generating Manifest for %s failed!\n",
+								path);
+						gzclose(mf);
+						return NULL;
+					}
 
-				len = snprintf(buf, sizeof(buf),
-						"IGNORE distfiles\n"
-						"IGNORE local\n"
-						"IGNORE lost+found\n"
-						"IGNORE packages\n");
-				gzwrite(mf, buf, len);
-				gzclose(mf);
-
-				/* create global Manifest */
-				snprintf(globmanifest, sizeof(globmanifest),
-						"%s/%s", dir, str_manifest);
-				if ((m = fopen(globmanifest, "w")) == NULL) {
-					fprintf(stderr, "failed to open file '%s' "
-							"for writing: %s\n",
-							globmanifest, strerror(errno));
-					return NULL;
-				}
-
-				write_hashes(ntv, dir, my_manifest, "MANIFEST", m, NULL);
-				time(&rtime);
-				len = strftime(buf, sizeof(buf),
-						"TIMESTAMP %Y-%m-%dT%H:%M:%SZ\n", gmtime(&rtime));
-				fwrite(buf, len, 1, m);
-				fflush(m);
-				fclose(m);
+					snprintf(path, sizeof(path), "%s/%s",
+							dentries[i], mfest);
+					write_hashes(tv, dir, path, "MANIFEST", NULL, mf);
+				} else if (s.st_mode & S_IFREG) {
+					write_hashes(tv, dir, dentries[i], "DATA", NULL, mf);
+				} /* ignore other "things" (like symlinks) as they
+					 don't belong in a tree */
 			} else {
-				gzclose(mf);
+				fprintf(stderr, "stat(%s) failed: %s\n",
+						path, strerror(errno));
+			}
+			free(dentries[i]);
+		}
+		free(dentries);
+		gzclose(mf);
+
+		if (tv[0].tv_sec != 0) {
+			snprintf(path, sizeof(path), "%s/%s", dir, str_manifest_files_gz);
+			utimes(path, tv);
+		}
+
+		/* create global Manifest */
+		snprintf(path, sizeof(path), "%s/%s", dir, str_manifest);
+		if ((f = fopen(path, "w")) == NULL) {
+			fprintf(stderr, "failed to open file '%s' for writing: %s\n",
+					path, strerror(errno));
+			return NULL;
+		}
+
+		write_hashes(tv, dir, str_manifest_files_gz, "MANIFEST", f, NULL);
+		time(&rtime);
+		len = strftime(path, sizeof(path),
+				"TIMESTAMP %Y-%m-%dT%H:%M:%SZ\n", gmtime(&rtime));
+		fwrite(path, len, 1, f);
+		fflush(f);
+		fclose(f);
+
+		/* because we write a timestamp in Manifest, we don't mess with
+		 * its mtime, else it would obviously lie */
+		return str_manifest_files_gz;
+	} else if (mtype == SUBTREE_MANIFEST) {
+		const char *ldir;
+		gzFile mf;
+
+		snprintf(path, sizeof(path), "%s/%s", dir, str_manifest_gz);
+		if ((mf = gzopen(path, "wb9")) == NULL) {
+			fprintf(stderr, "failed to open file '%s' for writing: %s\n",
+					path, strerror(errno));
+			return NULL;
+		}
+
+		ldir = strrchr(dir, '/');
+		if (ldir == NULL)
+			ldir = dir;
+		if (strcmp(ldir, "metadata") == 0) {
+			size_t len;
+			len = snprintf(path, sizeof(path),
+					"IGNORE timestamp\n"
+					"IGNORE timestamp.chk\n"
+					"IGNORE timestamp.commit\n"
+					"IGNORE timestamp.x\n");
+			gzwrite(mf, path, len);
+		}
+
+		if (list_dir(&dentries, &dentrieslen, dir) != 0)
+			return NULL;
+
+		for (i = 0; i < dentrieslen; i++) {
+			/* ignore existing Manifests */
+			if (strcmp(dentries[i], str_manifest_gz) == 0) {
+				free(dentries[i]);
+				continue;
 			}
 
-			if (tv[0].tv_sec != 0) {
-				/* restore dir mtime, and set Manifest mtime to match it */
-				utimes(manifest, tv);
-				utimes(dir, tv);
-			}
+			if (write_hashes_dir(tv, dir, dentries[i], mf) != 0)
+				write_hashes(tv, dir, dentries[i], "DATA", NULL, mf);
+			free(dentries[i]);
+		}
+
+		free(dentries);
+		gzclose(mf);
+
+		if (tv[0].tv_sec != 0) {
+			/* set Manifest and dir mtime to most recent file found */
+			snprintf(path, sizeof(path), "%s/%s", dir, str_manifest_gz);
+			utimes(path, tv);
+			utimes(dir, tv);
 		}
 
 		return str_manifest_gz;
-	} else {
-		/* this looks like an ebuild dir, so update the Manifest */
-		FILE *m;
+	} else if (mtype == CATEGORY_MANIFEST) {
+		char *mfest;
+		gzFile mf;
+
+		snprintf(path, sizeof(path), "%s/%s", dir, str_manifest_gz);
+		if ((mf = gzopen(path, "wb9")) == NULL) {
+			fprintf(stderr, "failed to open file '%s' for writing: %s\n",
+					path, strerror(errno));
+			return NULL;
+		}
+
+		if (list_dir(&dentries, &dentrieslen, dir) != 0)
+			return NULL;
+
+		for (i = 0; i < dentrieslen; i++) {
+			/* ignore existing Manifests */
+			if (strcmp(dentries[i], str_manifest_gz) == 0) {
+				free(dentries[i]);
+				continue;
+			}
+
+			snprintf(path, sizeof(path), "%s/%s", dir, dentries[i]);
+			if (!stat(path, &s)) {
+				if (s.st_mode & S_IFDIR) {
+					mfest = generate_dir(path, EBUILD_MANIFEST);
+
+					if (mfest == NULL) {
+						fprintf(stderr, "generating Manifest for %s failed!\n",
+								path);
+						gzclose(mf);
+						return NULL;
+					}
+
+					snprintf(path, sizeof(path), "%s/%s",
+							dentries[i], mfest);
+					write_hashes(tv, dir, path, "MANIFEST", NULL, mf);
+				} else if (s.st_mode & S_IFREG) {
+					write_hashes(tv, dir, dentries[i], "DATA", NULL, mf);
+				} /* ignore other "things" (like symlinks) as they
+					 don't belong in a tree */
+			} else {
+				fprintf(stderr, "stat(%s) failed: %s\n",
+						path, strerror(errno));
+			}
+			free(dentries[i]);
+		}
+
+		free(dentries);
+		gzclose(mf);
+
+		if (tv[0].tv_sec != 0) {
+			/* set Manifest and dir mtime to most ebuild dir found */
+			snprintf(path, sizeof(path), "%s/%s", dir, str_manifest_gz);
+			utimes(path, tv);
+			utimes(dir, tv);
+		}
+
+		return str_manifest_gz;
+	} else if (mtype == EBUILD_MANIFEST) {
 		char newmanifest[8192];
-		char buf[8192];
-		char **dentries;
-		size_t dentrieslen;
-		size_t i;
+		FILE *m;
 
 		snprintf(newmanifest, sizeof(newmanifest), "%s/.Manifest.new", dir);
 		if ((m = fopen(newmanifest, "w")) == NULL) {
@@ -643,20 +703,30 @@ process_dir_gen(const char *dir)
 		 * prefixed with AUX, hence, if it exists, we need to do it
 		 * first */
 		snprintf(path, sizeof(path), "%s/files", dir);
-		process_files(path, "", m);
+		process_files(tv, path, "", m);
 
-		/* copy the DIST entries, we could do it unconditional, but this
-		 * way we can re-run without producing invalid Manifests */
-		while (fgets(buf, sizeof(buf), f) != NULL) {
-			if (strncmp(buf, "DIST ", 5) == 0)
-				if (fwrite(buf, strlen(buf), 1, m) != 1) {
-					fprintf(stderr, "failed to write to %s/.Manifest.new: %s\n",
-							dir, strerror(errno));
-					fclose(f);
-					return NULL;
-				}
+		/* the Manifest file may be missing in case there are no DIST
+		 * entries to be stored */
+		snprintf(path, sizeof(path), "%s/%s", dir, str_manifest);
+		if (!stat(path, &s))
+			update_times(tv, &s);
+		f = fopen(path, "r");
+		if (f != NULL) {
+			/* copy the DIST entries, we could do it unconditional, but this
+			 * way we can re-run without producing invalid Manifests */
+			while (fgets(path, sizeof(path), f) != NULL) {
+				if (strncmp(path, "DIST ", 5) == 0)
+					if (fwrite(path, strlen(path), 1, m) != 1) {
+						fprintf(stderr, "failed to write to "
+								"%s/.Manifest.new: %s\n",
+								dir, strerror(errno));
+						fclose(f);
+						fclose(m);
+						return NULL;
+					}
+			}
+			fclose(f);
 		}
-		fclose(f);
 
 		if (list_dir(&dentries, &dentrieslen, dir) == 0) {
 			for (i = 0; i < dentrieslen; i++) {
@@ -678,25 +748,43 @@ process_dir_gen(const char *dir)
 		fflush(m);
 		fclose(m);
 
-		if (stat(manifest, &s)) {
-			tv[0].tv_sec = 0;
-			tv[0].tv_usec = 0;
-		} else {
-			tv[0].tv_sec = s.st_atim.tv_sec;
-			tv[0].tv_usec = s.st_atim.tv_nsec / 1000;
-			tv[1].tv_sec = s.st_mtim.tv_sec;
-			tv[1].tv_usec = s.st_mtim.tv_nsec / 1000;
-		}
+		snprintf(path, sizeof(path), "%s/%s", dir, str_manifest);
+		rename(newmanifest, path);
 
-		rename(newmanifest, manifest);
 		if (tv[0].tv_sec != 0) {
-			/* restore dir mtime, and set Manifest mtime to match it */
-			utimes(manifest, tv);
+			/* set Manifest and dir mtime to most recent file we found */
+			utimes(path, tv);
 			utimes(dir, tv);
 		}
 
 		return str_manifest;
+	} else {
+		return NULL;
 	}
+}
+
+static char *
+process_dir_gen(const char *dir)
+{
+	char path[8192];
+	int newhashes;
+
+	snprintf(path, sizeof(path), "%s/metadata/layout.conf", dir);
+	if ((newhashes = parse_layout_conf(path)) != 0) {
+		hashes = newhashes;
+	} else {
+		return "generation must be done on a full tree";
+	}
+
+	if (chdir(dir) != 0) {
+		fprintf(stderr, "cannot chdir() to %s: %s\n", dir, strerror(errno));
+		return "not a directory";
+	}
+
+	if (generate_dir(".\0", GLOBAL_MANIFEST) == NULL)
+		return "generation failed";
+
+	return NULL;
 }
 
 static char
@@ -1396,14 +1484,14 @@ main(int argc, char *argv[])
 	if (argc > 1) {
 		for (; arg < argc; arg++) {
 			rsn = runfunc(argv[arg]);
-			if (runfunc == &process_dir_vrfy && rsn != NULL) {
+			if (rsn != NULL) {
 				printf("%s\n", rsn);
 				ret |= 1;
 			}
 		}
 	} else {
 		rsn = runfunc(".");
-		if (runfunc == &process_dir_vrfy && rsn != NULL) {
+		if (rsn != NULL) {
 			printf("%s\n", rsn);
 			ret |= 1;
 		}
