@@ -1228,6 +1228,7 @@ verify_dir(
 							mfest, entry, etpe == 'M' ? "MANIFEST" : "DATA");
 					if (slash != NULL)
 						*slash = ' ';
+					failed_files++;
 				}
 				curelem++;
 			} else if (cmp > 0) {
@@ -1236,6 +1237,7 @@ verify_dir(
 				printf("%s:\n- found excess file: %s\n",
 						mfest, dentries[curdentry]);
 				curdentry++;
+				failed_files++;
 			}
 		}
 
