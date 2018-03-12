@@ -829,24 +829,31 @@ verify_gpg_sig(const char *path)
 	vres = gpgme_op_verify_result(g_ctx);
 	fclose(f);
 
-	for (sig = vres->signatures; sig != NULL; sig = sig->next) {
-		ctime = gmtime((time_t *)&sig->timestamp);
-		strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S UTC", ctime);
-		printf("%s key fingerprint "
-				"%.4s %.4s %.4s %.4s %.4s  %.4s %.4s %.4s %.4s %.4s\n"
-				"%s signature made %s by\n",
-				gpgme_pubkey_algo_name(sig->pubkey_algo),
-				sig->fpr +  0, sig->fpr +  4, sig->fpr +  8, sig->fpr + 12,
-				sig->fpr + 16, sig->fpr + 20, sig->fpr + 24, sig->fpr + 28,
-				sig->fpr + 32, sig->fpr + 36,
-				sig->status == GPG_ERR_NO_ERROR ? "good" : "BAD",
-				buf);
+	if (vres == NULL || vres->signatures == NULL) {
+		fprintf(stderr, "verification failed due to a missing gpg keyring\n");
+		return ret;
+	}
 
-		if (gpgme_get_key(g_ctx, sig->fpr, &key, 0) == GPG_ERR_NO_ERROR) {
-			ret = 0;  /* valid */
-			if (key->uids != NULL)
-				printf("%s\n", key->uids->uid);
-			gpgme_key_release(key);
+	for (sig = vres->signatures; sig != NULL; sig = sig->next) {
+		if (sig->status != GPG_ERR_NO_PUBKEY) {
+			ctime = gmtime((time_t *)&sig->timestamp);
+			strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S UTC", ctime);
+			printf("%s key fingerprint "
+					"%.4s %.4s %.4s %.4s %.4s  %.4s %.4s %.4s %.4s %.4s\n"
+					"%s signature made %s by\n",
+					gpgme_pubkey_algo_name(sig->pubkey_algo),
+					sig->fpr +  0, sig->fpr +  4, sig->fpr +  8, sig->fpr + 12,
+					sig->fpr + 16, sig->fpr + 20, sig->fpr + 24, sig->fpr + 28,
+					sig->fpr + 32, sig->fpr + 36,
+					sig->status == GPG_ERR_NO_ERROR ? "good" : "BAD",
+					buf);
+
+			if (gpgme_get_key(g_ctx, sig->fpr, &key, 0) == GPG_ERR_NO_ERROR) {
+				ret = 0;  /* valid */
+				if (key->uids != NULL)
+					printf("%s\n", key->uids->uid);
+				gpgme_key_release(key);
+			}
 		}
 
 		switch (sig->status) {
