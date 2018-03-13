@@ -7,17 +7,6 @@ trap 'exit 1' TERM KILL INT QUIT ABRT
 eerror() { echo "!!! $*" 1>&2; }
 einfo() { echo "* $*"; }
 
-if [[ ! ${BASH_VERSION:-0} == 4.[23456789]* ]]; then
-	eerror "This script requires GNU bash 4.2 or newer to run."
-	eerror "You are using ${BASH} which is ${BASH_VERSION}"
-	eerror "If you don't have a newer one, please bootstrap bash 4.2 first:"
-	eerror "  https://wiki.gentoo.org/wiki/Project:Prefix/Bootstrap"
-	eerror "You can prepend a better bash's location to your PATH, or call"
-	eerror "this script with the alternative bash like so:"
-	eerror "  /path/to/bash-4.2 ${BASH_SOURCE[0]}"
-	exit 1
-fi
-
 # RAP (libc) mode is triggered on Linux kernel and glibc.
 is-rap() { [[ ${PREFIX_DISABLE_RAP} != "yes" && ${CHOST} = *linux-gnu* ]]; }
 rapx() { is-rap && echo $1 || echo $2; }
@@ -768,6 +757,13 @@ bootstrap_gnu() {
 	# but we don't need any groovy input at all, so just disable it
 	[[ ${PN} == "bash" ]] && myconf="${myconf} --disable-readline"
 
+	# ensure we don't read system-wide shell initialisation, it may
+	# contain cruft, bug #650284
+	[[ ${PN} == "bash" ]] && \
+		export CPPFLAGS="${CPPFLAGS} \
+			-DSYS_BASHRC=\'\"${ROOT}/etc/bash/bashrc\"\' \
+			-DSYS_BASH_LOGOUT=\'\"${ROOT}/etc/bash/bash_logout\"\'"
+
 	# Don't do ACL stuff on Darwin, especially Darwin9 will make
 	# coreutils completely useless (install failing on everything)
 	# Don't try using gmp either, it may be that just the library is
@@ -1261,14 +1257,15 @@ bootstrap_stage1() {
 	[[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] || (bootstrap_patch) || return 1
 	[[ $(grep --version 2>&1) == *GNU* ]] || (bootstrap_grep) || return 1
 	[[ $(awk --version < /dev/null 2>&1) == *GNU" Awk "[456789]* ]] || bootstrap_gawk || return 1
-	[[ $(LANG=C bash --version 2>&1) == "GNU bash, version 4."[23456789]* && ${CHOST} != *-aix* ]] \
-		|| [[ -x ${ROOT}/tmp/usr/bin/bash ]] \
+	# always build our own bash, for we don't know what devilish thing
+	# we're working with now, bug #650284
+	[[ -x ${ROOT}/tmp/usr/bin/bash ]] \
 		|| (bootstrap_bash) || return 1
 	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
 	type -P xz > /dev/null || (bootstrap_xz) || return 1
 	# Some host tools need to be wrapped to be useful for us.
 	# We put them in tmp/usr/local/bin, to not accidentally
-	# be identified as stage1-installed like in bug#615410.
+	# be identified as stage1-installed like in bug #615410.
 	mkdir -p "${ROOT}"/tmp/usr/local/bin
 	case ${CHOST} in
 		*-*-aix*)
@@ -1331,6 +1328,8 @@ bootstrap_stage1() {
 
 	# important to have our own (non-flawed one) since Python (from
 	# Portage) and binutils use it
+	# note that this actually breaks the concept of stage1, this will be
+	# compiled for the target prefix
 	for zlib in ${ROOT}/tmp/usr/lib/libz.* ; do
 		[[ -e ${zlib} ]] && break
 		zlib=
@@ -1992,7 +1991,7 @@ EOF
 		# starting on purpose a shell here iso ${!flag} because I want
 		# to know if the shell initialisation files trigger this
 		# note that this code is so complex because it handles both
-		# C-shell as sh
+		# C-shell as well as *sh
 		dvar="echo \"((${flag}=\${${flag}}))\""
 		dvar="$(echo "${dvar}" | env -i HOME=$HOME $SHELL -l 2>/dev/null)"
 		if [[ ${dvar} == *"((${flag}="?*"))" ]] ; then
@@ -2471,6 +2470,11 @@ EOF
 	fi
 	echo
 
+	# because we unset ROOT from environment above, and we didn't set
+	# ROOT as argument in the script, we set ROOT here to the EPREFIX we
+	# just harvested
+	ROOT=${EPREFIX}
+
 	if [[ -d ${HOST_GENTOO_EROOT} ]]; then
 		if ! [[ -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage_host_gentoo ; then
 			# stage host gentoo fail
@@ -2488,7 +2492,7 @@ EOF
 	fi
 	
 	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/bin/emerge  ]] \
-			&& ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1_log ; then
+			&& ! bootstrap_stage1_log ; then
 		# stage 1 fail
 		cat << EOF
 
