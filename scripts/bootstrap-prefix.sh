@@ -2749,6 +2749,19 @@ case ${CHOST}:${LC_ALL}:${LANG} in
 	;;
 esac
 
+CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
+export PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
+export DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
+PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
+DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
+GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
+GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
+SNAPSHOT_HOST=$(rapx ${GENTOO_MIRRORS} http://rsync.prefix.bitzolder.nl)
+SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
+GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
+
+export MAKE CONFIG_SHELL
+
 # Just guessing a prefix is kind of scary.  Hence, to make it a bit less
 # scary, we force the user to give the prefix location here.  This also
 # makes the script a bit less dangerous as it will die when just run to
@@ -2785,19 +2798,6 @@ case $ROOT in
 		exit 1
 	;;
 esac
-
-CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
-export PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
-export DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
-PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
-DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
-GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
-GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
-SNAPSHOT_HOST=$(rapx ${GENTOO_MIRRORS} http://rsync.prefix.bitzolder.nl)
-SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
-GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
-
-export MAKE CONFIG_SHELL
 
 
 einfo "Bootstrapping Gentoo prefixed portage installation using"
