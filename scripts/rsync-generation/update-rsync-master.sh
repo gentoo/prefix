@@ -81,7 +81,8 @@ apply_git_mtimes() {
 			[D]*)
 				# in case a file is removed, ensure Manifest gets
 				# updated by touching a file which should be there
-				files+=( metadata.xml )
+				[[ $2 == */* ]] && \
+					files+=( ${2%/*}/metadata.xml )
 				;;
 		esac
 	done
