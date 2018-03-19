@@ -69,6 +69,14 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-8.22-mint.patch
 	# fixup libstdbuf non-libtool stuff
 	if [[ ${CHOST} == *-darwin* ]] ; then
+		if [[ ${CHOST} == *-darwin9* ]] ; then
+			# we need replacement libs from libcoreutils.a here in order
+			# to finish the linking
+			sed -i \
+				-e "/src_libstdbuf_so_LDADD/s:$:lib/libcoreutils.a:" \
+				Makefile.in \
+				|| die
+		fi
 		sed -i \
 			-e "/src_libstdbuf_so_LDFLAGS = -shared/s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/libexec/coreutils/libstdbuf.dylib:" \
 			Makefile.in \
