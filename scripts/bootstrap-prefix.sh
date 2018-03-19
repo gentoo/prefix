@@ -1828,6 +1828,21 @@ bootstrap_stage3_log() {
 	return ${PIPESTATUS[0]}
 }
 
+set_helper_vars() {
+	CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
+	export PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
+	export DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
+	PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
+	DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
+	GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
+	GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
+	SNAPSHOT_HOST=$(rapx ${GENTOO_MIRRORS} http://rsync.prefix.bitzolder.nl)
+	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
+	GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
+
+	export MAKE CONFIG_SHELL
+}
+
 bootstrap_interactive() {
 	# No longer support gen_usr_ldscript stuff and the /usr split it
 	# works around for in new bootstraps, this must be in line with what
@@ -2470,11 +2485,6 @@ EOF
 	fi
 	echo
 
-	# because we unset ROOT from environment above, and we didn't set
-	# ROOT as argument in the script, we set ROOT here to the EPREFIX we
-	# just harvested
-	ROOT=${EPREFIX}
-
 	if [[ -d ${HOST_GENTOO_EROOT} ]]; then
 		if ! [[ -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage_host_gentoo ; then
 			# stage host gentoo fail
@@ -2491,13 +2501,19 @@ EOF
 		fi
 	fi
 	
+	# because we unset ROOT from environment above, and we didn't set
+	# ROOT as argument in the script, we set ROOT here to the EPREFIX we
+	# just harvested
+	ROOT="${EPREFIX}"
+	set_helper_vars
+
 	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/bin/emerge  ]] \
 			&& ! bootstrap_stage1_log ; then
 		# stage 1 fail
 		cat << EOF
 
 I tried running
-  ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage1
+  bootstrap_stage1_log
 but that failed :(  I have no clue, really.  Please find friendly folks
 in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
 or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
@@ -2506,6 +2522,8 @@ You can find a log of what happened in ${EPREFIX}/stage1.log
 EOF
 		exit 1
 	fi
+
+	unset ROOT
 
 	# stage1 has set a profile, which defines CHOST, so unset any CHOST
 	# we've got here to avoid cross-compilation due to slight
@@ -2749,19 +2767,6 @@ case ${CHOST}:${LC_ALL}:${LANG} in
 	;;
 esac
 
-CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
-export PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
-export DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
-PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
-DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
-GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
-GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
-SNAPSHOT_HOST=$(rapx ${GENTOO_MIRRORS} http://rsync.prefix.bitzolder.nl)
-SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
-GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
-
-export MAKE CONFIG_SHELL
-
 # Just guessing a prefix is kind of scary.  Hence, to make it a bit less
 # scary, we force the user to give the prefix location here.  This also
 # makes the script a bit less dangerous as it will die when just run to
@@ -2784,6 +2789,7 @@ elif [[ -z $1 ]] ; then
 fi
 
 ROOT="$1"
+set_helper_vars
 
 case $ROOT in
 	chost.guess)
