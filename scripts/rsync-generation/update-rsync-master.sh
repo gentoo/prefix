@@ -83,9 +83,14 @@ apply_git_mtimes() {
 				# in case a file is removed, ensure Manifest gets
 				# updated by touching a file which should be there
 				if [[ $2 == */*/* ]] ; then
-					[[ -f ${2%/*}/metadata.xml ]] \
-						&& files+=( ${2%/*}/metadata.xml ) \
-						|| files+=( ${2%/*/*}/metadata.xml )
+					local f=${2}
+					# treat anything in files at the package level
+					[[ ${f} == */files/* ]] && f=${f%/files/*}/foo
+					# if the entire package was removed, touch the
+					# category level metadata
+					[[ -f ${f%/*}/metadata.xml ]] \
+						&& files+=( ${f%/*}/metadata.xml ) \
+						|| files+=( ${f%/*/*}/metadata.xml )
 				fi
 				;;
 		esac
