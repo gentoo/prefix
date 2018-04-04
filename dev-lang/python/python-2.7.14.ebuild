@@ -584,6 +584,7 @@ EOF
 		local -x PYTHON=./python$(sed -n '/BUILDEXE=/s/^.*=\s\+//p' Makefile)
 		local -x LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
 		local -x DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH+${DYLD_LIBRARY_PATH}:}.
+		local -x DYLD_FRAMEWORK_PATH="${S}/${CHOST}"
 	else
 		vars=( PYTHON "${vars[@]}" )
 	fi
