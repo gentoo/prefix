@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 # Format of /etc/env.d/binutils/:
@@ -159,7 +159,10 @@ switch_profile() {
 	mkdir -p "${dstlib}"
 	rm -rf "${ROOT}/${BINPATH_LINKS}"/ldscripts
 	atomic_ln "${LIBPATH}/ldscripts" "${dstlib}" "ldscripts"
-	find -L "${dstlib}" -xtype l -name 'lib*' -exec rm -f {} +
+	# PREFIX LOCAL: we have gcc under dstlib here, and wiping symlinks
+	# is a very bad idea there, or our symlinked sonames disappear!
+	find -L "${dstlib}"/ldscripts -xtype l -name 'lib*' -exec rm -f {} +
+	# END PREFIX LOCAL
 
 	#
 	# Clean out old generated include symlinks
