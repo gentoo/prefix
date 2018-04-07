@@ -73,7 +73,7 @@ src_prepare() {
 			# we need replacement libs from libcoreutils.a here in order
 			# to finish the linking
 			sed -i \
-				-e "/src_libstdbuf_so_LDADD/s:$:lib/libcoreutils.a:" \
+				-e "/src_libstdbuf_so_LDADD/s:$: lib/libcoreutils.a:" \
 				Makefile.in \
 				|| die
 		fi
