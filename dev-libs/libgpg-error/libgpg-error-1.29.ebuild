@@ -3,22 +3,19 @@
 
 EAPI=6
 
-inherit eutils libtool multilib-minimal toolchain-funcs
+inherit libtool ltprune multilib-minimal toolchain-funcs autotools
 
 DESCRIPTION="Contains error handling functions used by GnuPG software"
 HOMEPAGE="http://www.gnupg.org/related_software/libgpg-error"
-SRC_URI="mirror://gnupg/${PN}/${P}.tar.bz2"
+SRC_URI="mirror://gnupg/${PN}/${P}.tar.bz2
+	https://github.com/gpg/libgpg-error/commit/e35749023ca68de6f1f85d3072f7b36fd6f6fe7c.patch -> ${P}-solaris.patch"
 
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="common-lisp nls static-libs"
 
-RDEPEND="nls? ( >=virtual/libintl-0-r1[${MULTILIB_USEDEP}] )
-	abi_x86_32? (
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-		!<=app-emulation/emul-linux-x86-baselibs-20131008-r12
-	)"
+RDEPEND="nls? ( >=virtual/libintl-0-r1[${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
@@ -32,14 +29,14 @@ MULTILIB_WRAPPED_HEADERS=(
 
 src_prepare() {
 	default
+	eapply "${DISTDIR}"/${P}-solaris.patch
+	eautoreconf
 	elibtoolize
-	# https://lists.gnupg.org/pipermail/gnupg-devel/2017-March/032666.html
-	sed -e '/@no_undefined\s*=\s*$/s/$/-no-undefined/' -i src/Makefile.in || die
 }
 
 multilib_src_configure() {
 	ECONF_SOURCE="${S}" econf \
-		CC_FOR_BUILD=$(tc-getBUILD_CC) \
+		CC_FOR_BUILD="$(tc-getBUILD_CC)" \
 		--enable-threads \
 		$(use_enable nls) \
 		$(use_enable static-libs static) \
