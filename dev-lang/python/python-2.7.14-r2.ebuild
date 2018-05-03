@@ -23,7 +23,7 @@ SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/python2/archive/${CYGW
 LICENSE="PSF-2"
 SLOT="2.7"
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
+IUSE="aqua -berkdb bluetooth build doc elibc_uclibc examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
 # If you need to apply a patch which requires python for bootstrapping, please
@@ -48,14 +48,12 @@ RDEPEND="app-arch/bzip2:0=
 		sys-libs/db:4.2
 	) )
 	gdbm? ( sys-libs/gdbm:0=[berkdb] )
-	ncurses? (
-		>=sys-libs/ncurses-5.2:0=
-		readline? ( >=sys-libs/readline-4.1:0= )
-	)
+	ncurses? ( >=sys-libs/ncurses-5.2:0= )
+	readline? ( >=sys-libs/readline-4.1:0= )
 	sqlite? ( >=dev-db/sqlite-3.3.8:3= )
 	ssl? (
 		!libressl? ( dev-libs/openssl:0= )
-		libressl? ( dev-libs/libressl:= )
+		libressl? ( dev-libs/libressl:0= )
 	)
 	tk? (
 		>=dev-lang/tcl-8.0:0=
@@ -65,7 +63,9 @@ RDEPEND="app-arch/bzip2:0=
 	)
 	xml? ( >=dev-libs/expat-2.1 )
 	!!<sys-apps/portage-2.1.9"
+# bluetooth requires headers from bluez
 DEPEND="${RDEPEND}
+	bluetooth? ( net-wireless/bluez )
 	virtual/pkgconfig
 	>=sys-devel/autoconf-2.65
 	!sys-devel/gcc[libffi(-)]"
@@ -113,6 +113,9 @@ src_prepare() {
 	# http://prefix.gentooexperimental.org:8000/python-patches-2_7
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
 		epatch "${WORKDIR}"/python-prefix-${PV}-gentoo-patches-${PREFIX_PATCHREV}
+	epatch "${FILESDIR}/python-3.4-pyfpe-dll.patch" # Cygwin: --with-fpectl
+	# Make sure python doesn't use the host libffi.
+	use prefix && epatch "${FILESDIR}/python-2.7.14-libffi-pkgconfig.patch"
 
 	if use aqua ; then
 		# make sure we don't get a framework reference here
@@ -139,16 +142,6 @@ src_prepare() {
 		CC="$(tc-getCC) -std=gnu89"
 	fi
 
-	# Fix for cross-compiling.
-	epatch "${FILESDIR}/python-2.7.5-nonfatal-compileall.patch"
-	epatch "${FILESDIR}/python-2.7.9-ncurses-pkg-config.patch"
-	epatch "${FILESDIR}/python-2.7.10-cross-compile-warn-test.patch"
-	epatch "${FILESDIR}/python-2.7.10-system-libffi.patch"
-	epatch "${FILESDIR}/python-3.4-pyfpe-dll.patch" # Cygwin: --with-fpectl
-
-	# Make sure python doesn't use the host libffi.
-	use prefix && epatch "${FILESDIR}/python-2.7.14-libffi-pkgconfig.patch"
-
 	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
 	    local p d="${WORKDIR}/python2-${CYGWINPORTS_GITREV}"
 	    for p in $(
@@ -160,6 +153,15 @@ src_prepare() {
 		    epatch "${d}/${p}"
 	    done
 	fi
+
+	# Fix for cross-compiling.
+	epatch "${FILESDIR}/python-2.7.5-nonfatal-compileall.patch"
+	epatch "${FILESDIR}/python-2.7.9-ncurses-pkg-config.patch"
+	epatch "${FILESDIR}/python-2.7.10-cross-compile-warn-test.patch"
+	epatch "${FILESDIR}/python-2.7.10-system-libffi.patch"
+	epatch "${FILESDIR}/2.7-disable-nis.patch"
+	epatch "${FILESDIR}/python-2.7-libressl-compatibility.patch"
+
 
 	epatch_user
 
@@ -178,27 +180,29 @@ src_prepare() {
 }
 
 src_configure() {
-	# dbm module can be linked against berkdb or gdbm.
-	# Defaults to gdbm when both are enabled, #204343.
-	local disable
-	use berkdb   || use gdbm || disable+=" dbm"
-	use berkdb   || disable+=" _bsddb"
-	use gdbm     || disable+=" gdbm"
-	use ncurses  || disable+=" _curses _curses_panel"
-	use readline || disable+=" readline"
-	use sqlite   || disable+=" _sqlite3"
-	use ssl      || export PYTHON_DISABLE_SSL="1"
-	use tk       || disable+=" _tkinter"
-	use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
-	[[ ${CHOST} == *64-apple-darwin* ]] && disable+=" Nav _Qt" # Carbon
-	[[ ${CHOST} == *-apple-darwin11 ]] && disable+=" _Fm _Qd _Qdoffs"
-	export PYTHON_DISABLE_MODULES="${disable}"
+		# dbm module can be linked against berkdb or gdbm.
+		# Defaults to gdbm when both are enabled, #204343.
+		local disable
+		use berkdb   || use gdbm || disable+=" dbm"
+		use berkdb   || disable+=" _bsddb"
+		# disable automagic bluetooth headers detection
+		use bluetooth || export ac_cv_header_bluetooth_bluetooth_h=no
+		use gdbm     || disable+=" gdbm"
+		use ncurses  || disable+=" _curses _curses_panel"
+		use readline || disable+=" readline"
+		use sqlite   || disable+=" _sqlite3"
+		use ssl      || export PYTHON_DISABLE_SSL="1"
+		use tk       || disable+=" _tkinter"
+		use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
+		[[ ${CHOST} == *64-apple-darwin* ]] && disable+=" Nav _Qt" # Carbon
+		[[ ${CHOST} == *-apple-darwin11 ]] && disable+=" _Fm _Qd _Qdoffs"
+		export PYTHON_DISABLE_MODULES="${disable}"
 
-	if ! use xml; then
-		ewarn "You have configured Python without XML support."
-		ewarn "This is NOT a recommended configuration as you"
-		ewarn "may face problems parsing any XML documents."
-	fi
+		if ! use xml; then
+			ewarn "You have configured Python without XML support."
+			ewarn "This is NOT a recommended configuration as you"
+			ewarn "may face problems parsing any XML documents."
+		fi
 
 	if [[ -n "${PYTHON_DISABLE_MODULES}" ]]; then
 		einfo "Disabled modules: ${PYTHON_DISABLE_MODULES}"
@@ -231,6 +235,13 @@ src_configure() {
 		replace-flags -Os -O3  # comment #14
 	fi
 
+	# Export CC so even AIX will use gcc instead of xlc_r.
+	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
+	tc-export CC CXX
+	# The configure script fails to use pkg-config correctly.
+	# http://bugs.python.org/issue15506
+	export ac_cv_path_PKG_CONFIG=$(tc-getPKG_CONFIG)
+
 	# Set LDFLAGS so we link modules with -lpython2.7 correctly.
 	# Needed on FreeBSD unless Python 2.7 is already installed.
 	# Please query BSD team before removing this!
@@ -255,13 +266,6 @@ src_configure() {
 		# local include paths - set in $(CPPFLAGS) - are searched first.
 		sed -i -e "/^PY_CFLAGS[ \\t]*=/s,\\\$(CFLAGS)[ \\t]*\\\$(CPPFLAGS),\$(CPPFLAGS) \$(CFLAGS)," Makefile.pre.in || die
 	fi
-
-	# Export CC so even AIX will use gcc instead of xlc_r.
-	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
-	tc-export CC CXX
-	# The configure script fails to use pkg-config correctly.
-	# http://bugs.python.org/issue15506
-	export ac_cv_path_PKG_CONFIG=$(tc-getPKG_CONFIG)
 
 	local dbmliborder
 	if use gdbm; then
@@ -543,10 +547,10 @@ EOF
 		's:^\(^#define \(_POSIX_C_SOURCE\|_XOPEN_SOURCE\|_XOPEN_SOURCE_EXTENDED\).*$\):/* \1 */:' \
 		 "${ED}"/usr/include/python${SLOT}/pyconfig.h
 
-		use berkdb || rm -r "${libdir}/"{bsddb,dbhash.py,test/test_bsddb*} || die
-		use sqlite || rm -r "${libdir}/"{sqlite3,test/test_sqlite*} || die
-		use tk || rm -r "${ED}usr/bin/idle${SLOT}" "${libdir}/"{idlelib,lib-tk} || die
-		use elibc_uclibc && rm -fr "${libdir}/"{bsddb/test,test}
+	use berkdb || rm -r "${libdir}/"{bsddb,dbhash.py*,test/test_bsddb*} || die
+	use sqlite || rm -r "${libdir}/"{sqlite3,test/test_sqlite*} || die
+	use tk || rm -r "${ED}usr/bin/idle${SLOT}" "${libdir}/"{idlelib,lib-tk} || die
+	use elibc_uclibc && rm -fr "${libdir}/"{bsddb/test,test}
 
 	use threads || rm -r "${libdir}/multiprocessing" || die
 	use wininst || rm -r "${libdir}/distutils/command/"wininst-*.exe || die
@@ -582,8 +586,8 @@ EOF
 	# if not using a cross-compiler, use the fresh binary
 	if ! tc-is-cross-compiler; then
 		local -x PYTHON=./python$(sed -n '/BUILDEXE=/s/^.*=\s\+//p' Makefile)
-		local -x LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}.
-		local -x DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH+${DYLD_LIBRARY_PATH}:}.
+		local -x LD_LIBRARY_PATH=${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}:}${PWD}
+		local -x DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH+${DYLD_LIBRARY_PATH}:}${PWD}
 		local -x DYLD_FRAMEWORK_PATH="${WORKDIR}/${CHOST}"
 	else
 		vars=( PYTHON "${vars[@]}" )
