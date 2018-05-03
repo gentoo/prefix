@@ -8,7 +8,7 @@ inherit autotools flag-o-matic pax-utils python-utils-r1 toolchain-funcs epatch
 
 MY_P="Python-${PV}"
 PATCHSET_VERSION="3.6.4"
-PREFIX_PATCHREV="3.6.3-gentoo-patches-r0"
+PREFIX_PATCHREV="3.6.5-gentoo-patches-r0"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
@@ -77,7 +77,6 @@ src_prepare() {
 	default
 
 	# Prefix' round of patches
-	# http://prefix.gentooexperimental.org:8000/python-patches-3_3
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
 		epatch "${WORKDIR}"/python-prefix-${PREFIX_PATCHREV}
 
