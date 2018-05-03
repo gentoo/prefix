@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit libtool ltprune multilib-minimal toolchain-funcs autotools
+inherit libtool ltprune multilib-minimal toolchain-funcs autotools prefix
 
 DESCRIPTION="Contains error handling functions used by GnuPG software"
 HOMEPAGE="http://www.gnupg.org/related_software/libgpg-error"
@@ -30,6 +30,9 @@ MULTILIB_WRAPPED_HEADERS=(
 src_prepare() {
 	default
 	eapply "${DISTDIR}"/${P}-solaris.patch
+	# autogen is needed for getting a version number, it needs a
+	# POSIX compliant shell
+	hprefixify "${S}"/autogen.sh
 	eautoreconf
 	elibtoolize
 }
