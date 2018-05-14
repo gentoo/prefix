@@ -11,11 +11,6 @@ einfo() { echo "* $*"; }
 is-rap() { [[ ${PREFIX_DISABLE_RAP} != "yes" && ${CHOST} = *linux-gnu* ]]; }
 rapx() { is-rap && echo $1 || echo $2; }
 
-# prefer gtar over tar
-[[ x$(type -t gtar) == "xfile" ]] \
-	&& TAR="gtar" \
-	|| TAR="tar"
-
 ## Functions Start Here
 
 econf() {
@@ -90,7 +85,7 @@ efetch() {
 # 	rm -rf ${S}
 # 	mkdir -p ${S}
 # 	cd ${S}
-# 	$TAR -zxf ${DISTDIR}/${A} || return 1
+# 	tar -zxf ${DISTDIR}/${A} || return 1
 # 	S=${S}/${PN}-${PV}
 # 	cd ${S}
 
@@ -530,7 +525,7 @@ do_tree() {
 		efetch "$1/$2" || return 1
 		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
 		einfo "Unpacking, this may take a while"
-		bzip2 -dc ${DISTDIR}/$2 | $TAR -xf - -C ${PORTDIR} --strip-components=1 || return 1
+		bzip2 -dc ${DISTDIR}/$2 | tar -xf - -C ${PORTDIR} --strip-components=1 || return 1
 		touch ${PORTDIR}/.unpacked
 	fi
 }
@@ -624,7 +619,7 @@ bootstrap_portage() {
 	rm -rf "${S}" >& /dev/null
 	mkdir -p "${S}" >& /dev/null
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}/${A}" | $TAR -xf - || return 1
+	bzip2 -dc "${DISTDIR}/${A}" | tar -xf - || return 1
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
@@ -712,13 +707,13 @@ bootstrap_gnu() {
 		mkdir -p "${S}"
 		cd "${S}"
 		if [[ ${t} == "tar.gz" ]] ; then
-			gzip -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || continue
+			gzip -dc "${DISTDIR}"/${URL##*/} | tar -xf - || continue
 		elif [[ ${t} == "tar.xz" ]] ; then
-			xz -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || continue
+			xz -dc "${DISTDIR}"/${URL##*/} | tar -xf - || continue
 		elif [[ ${t} == "tar.bz2" ]] ; then
-			bzip2 -dc "${DISTDIR}"/${URL##*/} | $TAR -xf - || continue
+			bzip2 -dc "${DISTDIR}"/${URL##*/} | tar -xf - || continue
 		elif [[ ${t} == "tar" ]] ; then
-			$TAR -xf "${DISTDIR}"/${A} || continue
+			tar -xf "${DISTDIR}"/${A} || continue
 		else
 			einfo "unhandled extension: $t"
 			return 1
@@ -856,7 +851,7 @@ bootstrap_python() {
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
+	bzip2 -dc "${DISTDIR}"/${A} | tar -xf - || return 1
 	S="${S}"/Python-${PV}
 	cd "${S}"
 	rm -rf Modules/_ctypes/libffi* || return 1
@@ -1017,9 +1012,9 @@ bootstrap_zlib_core() {
 	mkdir -p "${S}"
 	cd "${S}"
 	if [[ ${A} == *.tar.gz ]] ; then
-		gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
+		gzip -dc "${DISTDIR}"/${A} | tar -xf - || return 1
 	else
-		bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
+		bzip2 -dc "${DISTDIR}"/${A} | tar -xf - || return 1
 	fi
 	S="${S}"/zlib-${PV}
 	cd "${S}"
@@ -1193,7 +1188,7 @@ bootstrap_bzip2() {
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	gzip -dc "${DISTDIR}"/${A} | $TAR -xf - || return 1
+	gzip -dc "${DISTDIR}"/${A} | tar -xf - || return 1
 	S="${S}"/${PN}-${PV}
 	cd "${S}"
 
