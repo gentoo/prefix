@@ -165,6 +165,7 @@ fromcommit=$(git log --pretty=format:'%H' -n1)
 git clean -dfq
 git pull -q
 tocommit=$(git log --pretty=format:'%H' -n1)
+gx86tscommit=$(git log --pretty=format:'%H %ct %cI' -n1 "${tocommit}")
 apply_git_mtimes "${fromcommit}" "${tocommit}"
 popd || exit 1
 rsync -v \
@@ -191,6 +192,7 @@ fromcommit=$(git log --pretty=format:'%H' -n1)
 git clean -dfq
 git pull -q
 tocommit=$(git log --pretty=format:'%H' -n1)
+pfxtscommit=$(git log --pretty=format:'%H %ct %cI' -n1 "${tocommit}")
 apply_git_mtimes "${fromcommit}" "${tocommit}"
 echo "($(date +"%F %R")) git image updated"
 
@@ -253,6 +255,8 @@ TIME_EGENCACHE=$((STOP - START))
 date -u > "${RSYNCDIR}"/metadata/timestamp
 date -u '+%s %c %Z' > "${RSYNCDIR}"/metadata/timestamp.x
 date -R -u > "${RSYNCDIR}"/metadata/timestamp.chk
+echo "${gx86tscommit}" > "${RSYNCDIR}"/metadata/timestamp.commit
+echo "${pfxtscommit}" > "${RSYNCDIR}"/metadata/timestamp.commit.prefix-tree
 echo "($(date +"%F %R")) set date to $(<"${RSYNCDIR}"/metadata/timestamp.chk)"
 
 
