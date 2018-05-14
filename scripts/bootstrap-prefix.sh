@@ -729,6 +729,23 @@ bootstrap_gnu() {
 	[[ -d ${S} ]] || return 1
 	cd "${S}" || return 1
 
+	if [[ ${PN}-${PV} == "bash-4.3" && ${CHOST} == *-cygwin* ]] ; then
+		local p patchopts
+		for p in \
+			"-p0" \
+			"${GENTOO_MIRRORS}/distfiles/bash43-"{001..048} \
+			"-p2" \
+			https://gitweb.gentoo.org/repo/proj/prefix.git/plain/app-shells/bash/files/bash-4.3_p39-cygwin-r2.patch \
+		; do
+			if [[ ${p} == -* ]] ; then
+				patchopts=${p}
+				continue
+			fi
+			efetch "${p}" || return 1
+			patch --forward --no-backup-if-mismatch ${patchopts} < "${DISTDIR}/${p##*/}" || return 1
+		done
+	fi
+
 	local myconf=""
 	if [[ ${PN} == "grep" ]] ; then
 		# Solaris and OSX don't like it when --disable-nls is set,
@@ -754,8 +771,9 @@ bootstrap_gnu() {
 	export ac_cv_path_POD2MAN=no
 
 	# Darwin9 in particular doesn't compile when using system readline,
-	# but we don't need any groovy input at all, so just disable it
-	[[ ${PN} == "bash" ]] && myconf="${myconf} --disable-readline"
+	# but we don't need any groovy input at all, so just disable it,
+	# except for Cygwin, where the patch above would fail to compile
+	[[ ${PN} == "bash" && ${CHOST} != *-cygwin* ]] && myconf="${myconf} --disable-readline"
 
 	# ensure we don't read system-wide shell initialisation, it may
 	# contain cruft, bug #650284
@@ -1139,6 +1157,7 @@ bootstrap_texinfo() {
 }
 
 bootstrap_bash() {
+	bootstrap_gnu bash 4.3 ||
 	bootstrap_gnu bash 4.2
 }
 
