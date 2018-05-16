@@ -942,6 +942,9 @@ EOP
 			# libgcc_s.so is on Solaris
 			libdir="-L/usr/sfw/lib/64"
 		;;
+		*-solaris*) # 32bit
+			libdir="-L/usr/sfw/lib"
+		;;
 	esac
 
 	# python refuses to find the zlib headers that are built in the offset,
