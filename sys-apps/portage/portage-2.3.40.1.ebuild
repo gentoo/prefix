@@ -91,10 +91,9 @@ pkg_setup() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	# fails to apply
-	#epatch "${FILESDIR}"/${PN}-2.3.10-ebuildshell.patch # 155161
+	epatch "${FILESDIR}"/${PN}-2.3.40-ebuildshell.patch # 155161
 	use prefix-chaining &&
-		epatch "${FILESDIR}"/${PN}-2.3.18-prefix-chaining.patch
+		epatch "${FILESDIR}"/${PN}-2.3.40-prefix-chaining.patch
 
 	if use native-extensions; then
 		printf "[build_ext]\nportage-ext-modules=true\n" >> \
