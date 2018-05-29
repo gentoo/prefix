@@ -165,6 +165,13 @@ python_prepare_all() {
 		einfo "Setting gentoo_prefix as reponame for emerge-webrsync"
 		sed -i -e 's/repo_name=gentoo/repo_name=gentoo_prefix/' \
 			bin/emerge-webrsync || die
+
+		if [[ ${CHOST} == powerpc*-darwin* ]] ; then
+			# asyncio triggers some python bug, not worth fixing on
+			# ppc-macos, bug #656830
+			sed -i -e '/^_asyncio_enabled/s/=.*$/= False/' \
+				pym/portage/util/_eventloop/global_event_loop.py || die
+		fi
 		# END PREFIX LOCAL
 	fi
 
