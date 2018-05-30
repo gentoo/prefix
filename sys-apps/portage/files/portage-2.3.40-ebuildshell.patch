@@ -1,4 +1,4 @@
-From 9075d30d24af87f69d23ae129dc75e1305cd3aa8 Mon Sep 17 00:00:00 2001
+From 8c6b115fa0325b5bed2e1a9c4c8e8af45cdecc2e Mon Sep 17 00:00:00 2001
 From: Michael Haubenwallner <michael.haubenwallner@salomon.at>
 Date: Wed, 6 Nov 2013 12:40:05 +0100
 Subject: [PATCH 1/2] Add ebuildshell feature, bug#155161.
@@ -13,7 +13,7 @@ Subject: [PATCH 1/2] Add ebuildshell feature, bug#155161.
  6 files changed, 194 insertions(+), 17 deletions(-)
 
 diff --git a/bin/ebuild.sh b/bin/ebuild.sh
-index f76a48d8e..51ba95cb1 100755
+index f76a48d8e..683a4e9c1 100755
 --- a/bin/ebuild.sh
 +++ b/bin/ebuild.sh
 @@ -121,7 +121,7 @@ __qa_source() {
@@ -148,7 +148,7 @@ index f76a48d8e..51ba95cb1 100755
 +	echo '"$@"' >> ~/.bash_history
 +	chown ${PORTAGE_USER:-portage}:${PORTAGE_GROUP:-portage} ~/.bash_history &>/dev/null
 +
-+	env -i ${BASH} --rcfile "${__ebuildshell_tmpf}.ebuild-env" -i
++	env -i HOME=~ ${BASH} --rcfile "${__ebuildshell_tmpf}.ebuild-env" -i
 +
 +	# The environment- and exit-status handling after leaving the ebuildshell
 +	# prompt is expected to be identical as without the ebuildshell prompt.
