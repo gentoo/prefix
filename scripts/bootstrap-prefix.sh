@@ -533,7 +533,7 @@ do_tree() {
 bootstrap_tree() {
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
-	local PV="20180528"
+	local PV="20180530"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
@@ -1585,7 +1585,9 @@ bootstrap_stage2() {
 		# we're in a cross-ish situation (at least according to
 		# multilib.eclass -- can't blame it at this point really)
 		# do it ourselves here to make the bootstrap continue
-		( cd "${ROOT}"/tmp/usr/bin && ln -s clang ${CHOST}-clang && ln -s clang++ ${CHOST}-clang++ )
+		if [[ -x "${ROOT}"/tmp/usr/bin/${CHOST}-clang ]] ; then
+			( cd "${ROOT}"/tmp/usr/bin && ln -s clang ${CHOST}-clang && ln -s clang++ ${CHOST}-clang++ )
+		fi
 	elif ! is-rap ; then
 		# make sure the EPREFIX gcc shared libraries are there
 		mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
@@ -1634,7 +1636,7 @@ bootstrap_stage3() {
 		# stage3 tools should be used first.
 		# PORTAGE_TMPDIR, EMERGE_LOG_DIR, FEATURES=force-prefix are
 		# needed with host portage.
-		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/5/}{s,}bin | sed "s, ,:${ROOT},g") \
+		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{10,9,8,7,6,5}/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		FEATURES="${FEATURES} force-prefix" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
