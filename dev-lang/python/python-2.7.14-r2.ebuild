@@ -127,6 +127,8 @@ src_prepare() {
 			configure.ac configure || die
 		# we handle creation of symlinks in src_install
 		sed -i -e '/ln -fs .*PYTHONFRAMEWORK/d' Makefile.pre.in || die
+		# build the Python framework without DESTDIR in install_name
+		sed -i -e '/-install_name/s/$(DESTDIR)//' Makefile.pre.in || die
 	fi
 	# don't try to do fancy things on Darwin
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
