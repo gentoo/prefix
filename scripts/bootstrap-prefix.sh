@@ -1791,18 +1791,19 @@ bootstrap_stage3() {
 	TIME_T_32_BIT_OK=yes \
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
-	# gettext pulls in portage, which since 2.2.28 needs ssl enabled, so
-	# we need to lift our mask for that.
-	pkgs=(
-		$( [[ ${OFFLINE_MODE} ]] || echo sys-devel/gettext )
-		$( [[ ${OFFLINE_MODE} ]] || echo net-misc/wget )
-		virtual/os-headers
-		sys-apps/portage
-	)
 	if [[ ! -x "${ROOT}"/sbin/openrc-run ]]; then
 		echo "We need openrc-run at ${ROOT}/sbin to merge rsync." > "${ROOT}"/sbin/openrc-run
 		chmod +x "${ROOT}"/sbin/openrc-run
 	fi
+
+	# gettext pulls in portage, which since 2.2.28 needs ssl enabled, so
+	# we need to lift our mask for that.
+	pkgs=(
+		virtual/os-headers
+		$( [[ ${OFFLINE_MODE} ]] \
+			&& echo sys-apps/portage \
+			|| echo sys-devel/gettext )
+	)
 	USE="ssl" \
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
