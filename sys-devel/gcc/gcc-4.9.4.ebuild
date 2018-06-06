@@ -1,10 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI="4"
+EAPI="5"
 
-PATCH_VER="1.5"
+PATCH_VER="1.3"
 UCLIBC_VER="1.0"
 
 # Hardened gcc 4 stuff
@@ -54,6 +53,7 @@ src_prepare() {
 	toolchain_src_prepare
 
 	use vanilla && return 0
+	# Use -r1 for newer piepatchet that use DRIVER_SELF_SPECS for the hardened specs.
 
 	# make sure solaris-x64 doesn't misdetect tls support, bug #505446
 	#epatch "${FILESDIR}"/4.7.2/solaris-x64-tls-gnu-as.patch
@@ -198,25 +198,4 @@ src_install() {
 		cp "${FILESDIR}"/interix-3.5-stdint.h "${ED}${INCLUDEPATH}/stdint.h" \
 		|| die "Cannot install stdint.h for interix3"
 	fi
-
-	# create a small profile.d script, unsetting some of the bad
-	# environment variables that the sustem could set from the outside.
-	# (GCC_SPECS, GCC_EXEC_PREFIX, CPATH, LIBRARY_PATH, LD_LIBRARY_PATH,
-	#  C_INCLUDE_PATH, CPLUS_INCLUDE_PATH, LIBPATH, SHLIB_PATH, LIB, INCLUDE,
-	#  LD_LIBRARY_PATH_32, LD_LIBRARY_PATH_64).
-	# Maybe there is a better location for doing this ...? Feel free to move
-	# it there if you want to.
-
-	cat > "${T}"/00-gcc-paths.sh <<- _EOF
-		#!/bin/env bash
-		# GCC specific variables
-		unset GCC_SPECS GCC_EXEC_PREFIX
-		# include path variables
-		unset CPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH INCLUDE
-		# library path variables
-		unset LIBRARY_PATH LD_LIBRARY_PATH LIBPATH SHLIB_PATH LIB LD_LIBRARY_PATH_32 LD_LIBRARY_PATH_64
-	_EOF
-
-	insinto /etc/profile.d
-	doins "${T}"/00-gcc-paths.sh
 }

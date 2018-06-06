@@ -1,15 +1,14 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
 
-PATCH_VER="1.1"
-UCLIBC_VER="1.0"
+PATCH_VER="1.4"
+#UCLIBC_VER="1.0"
 CYGWINPORTS_GITREV="a03d77536f40d1a6335b6d313a4e4a4dff38ce66" # gcc-6.4.0-3
 
 inherit eutils toolchain flag-o-matic
 
-#KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=""
@@ -71,29 +70,4 @@ src_configure() {
 	# in case that doesn't exist yet
 	export CONFIG_SHELL="${CONFIG_SHELL:-${BASH}}"
 	toolchain_src_configure "${myconf[@]}"
-}
-
-src_install() {
-	toolchain_src_install
-
-	# create a small profile.d script, unsetting some of the bad
-	# environment variables that the system could set from the outside.
-	# (GCC_SPECS, GCC_EXEC_PREFIX, CPATH, LIBRARY_PATH, LD_LIBRARY_PATH,
-	#  C_INCLUDE_PATH, CPLUS_INCLUDE_PATH, LIBPATH, SHLIB_PATH, LIB, INCLUDE,
-	#  LD_LIBRARY_PATH_32, LD_LIBRARY_PATH_64).
-	# Maybe there is a better location for doing this ...? Feel free to move
-	# it there if you want to.
-
-	cat > "${T}"/00-gcc-paths.sh <<- _EOF
-		#!/bin/env bash
-		# GCC specific variables
-		unset GCC_SPECS GCC_EXEC_PREFIX
-		# include path variables
-		unset CPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH INCLUDE
-		# library path variables
-		unset LIBRARY_PATH LD_LIBRARY_PATH LIBPATH SHLIB_PATH LIB LD_LIBRARY_PATH_32 LD_LIBRARY_PATH_64
-	_EOF
-
-	insinto /etc/profile.d
-	doins "${T}"/00-gcc-paths.sh
 }

@@ -1,14 +1,14 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI="4"
+EAPI="5"
 
-PATCH_VER="1.3"
+PATCH_VER="1.8"
 UCLIBC_VER="1.0"
+CYGWINPORTS_GITREV="f44d762eb3551ea0d81aa8e4b428bcb7caabb628" # gcc-5.3.0-3
 
 # Hardened gcc 4 stuff
-PIE_VER="0.6.2"
+PIE_VER="0.6.5"
 SPECS_VER="0.2.0"
 SPECS_GCC_VER="4.4.3"
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
@@ -22,7 +22,7 @@ SSP_UCLIBC_STABLE="x86 amd64 mips ppc ppc64 arm"
 
 inherit eutils toolchain flag-o-matic
 
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -56,11 +56,12 @@ src_prepare() {
 	use vanilla && return 0
 
 	# make sure solaris-x64 doesn't misdetect tls support, bug #505446
-	epatch "${FILESDIR}"/4.7.2/solaris-x64-tls-gnu-as.patch
+	#epatch "${FILESDIR}"/4.7.2/solaris-x64-tls-gnu-as.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
-	epatch "${FILESDIR}"/4.7.1/solaris-searchpath.patch
+	#epatch "${FILESDIR}"/4.7.1/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
+	epatch "${FILESDIR}"/${P}-libc_name_p.patch #631976
 	if use prefix; then
 		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
 		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
@@ -71,15 +72,15 @@ src_prepare() {
 	# make it have correct install_names on Darwin
 	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
 	# filename based versioning of libgcc_s for AIX
-	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libgcc.patch.xz
+	#epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libgcc.patch.xz
 	# let --with-specs=-pthread work for libgcc_s on AIX without multilib
-	epatch "${FILESDIR}"/gcc-4.8.4-aix-pthread-specs.patch
+	#epatch "${FILESDIR}"/gcc-4.8.4-aix-pthread-specs.patch
 	# drop -B flag when ./nm encounters -P
-	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-nm-weak.patch
+	#epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-nm-weak.patch
 	# support --with-aix-soname=aix|both|svr4 for libtool libs
-	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libtool.patch.xz
-	epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-regen.patch.xz
-	epatch "${FILESDIR}"/gcc-4.8-aix-extref.patch # PR target/65058
+	#epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libtool.patch.xz
+	#epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-regen.patch.xz
+	#epatch "${FILESDIR}"/gcc-4.8-aix-extref.patch # PR target/65058
 	if [[ ${CHOST} == *-aix* ]]; then
 		# -fPIC breaks stage2/3 comparison, use per-build random seed
 		local myseed=$(echo $(
@@ -105,8 +106,13 @@ src_prepare() {
 		epatch "${FILESDIR}"/4.7.2/pr52714.patch
 	fi
 
+	# Apply https://gcc.gnu.org/viewcvs/gcc?view=revision&revision=226138,
+	# upstream shipped since gcc-6.1.0.
+	find libstdc++-v3 -name Makefile.in -exec sed -i -e \
+		'/^AM_CPPFLAGS = \$(GLIBCXX_INCLUDES)$/s/$/ $(CPPFLAGS)/p' {} +
+
 	#Use -r1 for newer piepatchet that use DRIVER_SELF_SPECS for the hardened specs.
-	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env-r1.patch
+	#[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env-r1.patch
 }
 
 src_configure() {
@@ -121,7 +127,7 @@ src_configure() {
 		;;
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
-			myconf+=( --with-gnu-ld --with-gnu-as )
+			myconf+=( --with-gnu-ld --with-gnu-as --enable-largefile )
 		;;
 		*-aix*)
 			# AIX doesn't use GNU binutils, because it doesn't produce usable
@@ -198,25 +204,4 @@ src_install() {
 		cp "${FILESDIR}"/interix-3.5-stdint.h "${ED}${INCLUDEPATH}/stdint.h" \
 		|| die "Cannot install stdint.h for interix3"
 	fi
-
-	# create a small profile.d script, unsetting some of the bad
-	# environment variables that the sustem could set from the outside.
-	# (GCC_SPECS, GCC_EXEC_PREFIX, CPATH, LIBRARY_PATH, LD_LIBRARY_PATH,
-	#  C_INCLUDE_PATH, CPLUS_INCLUDE_PATH, LIBPATH, SHLIB_PATH, LIB, INCLUDE,
-	#  LD_LIBRARY_PATH_32, LD_LIBRARY_PATH_64).
-	# Maybe there is a better location for doing this ...? Feel free to move
-	# it there if you want to.
-
-	cat > "${T}"/00-gcc-paths.sh <<- _EOF
-		#!/bin/env bash
-		# GCC specific variables
-		unset GCC_SPECS GCC_EXEC_PREFIX
-		# include path variables
-		unset CPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH INCLUDE
-		# library path variables
-		unset LIBRARY_PATH LD_LIBRARY_PATH LIBPATH SHLIB_PATH LIB LD_LIBRARY_PATH_32 LD_LIBRARY_PATH_64
-	_EOF
-
-	insinto /etc/profile.d
-	doins "${T}"/00-gcc-paths.sh
 }

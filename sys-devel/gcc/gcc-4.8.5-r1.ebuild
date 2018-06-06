@@ -1,14 +1,13 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.8.3.ebuild,v 1.11 2014/11/04 03:20:47 vapier Exp $
 
-EAPI="4"
+EAPI="5"
 
-PATCH_VER="1.0"
+PATCH_VER="1.3"
 UCLIBC_VER="1.0"
 
 # Hardened gcc 4 stuff
-PIE_VER="0.6.1"
+PIE_VER="0.6.2"
 SPECS_VER="0.2.0"
 SPECS_GCC_VER="4.4.3"
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
@@ -22,8 +21,7 @@ SSP_UCLIBC_STABLE="x86 amd64 mips ppc ppc64 arm"
 
 inherit eutils toolchain flag-o-matic
 
-#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -199,25 +197,4 @@ src_install() {
 		cp "${FILESDIR}"/interix-3.5-stdint.h "${ED}${INCLUDEPATH}/stdint.h" \
 		|| die "Cannot install stdint.h for interix3"
 	fi
-
-	# create a small profile.d script, unsetting some of the bad
-	# environment variables that the sustem could set from the outside.
-	# (GCC_SPECS, GCC_EXEC_PREFIX, CPATH, LIBRARY_PATH, LD_LIBRARY_PATH,
-	#  C_INCLUDE_PATH, CPLUS_INCLUDE_PATH, LIBPATH, SHLIB_PATH, LIB, INCLUDE,
-	#  LD_LIBRARY_PATH_32, LD_LIBRARY_PATH_64).
-	# Maybe there is a better location for doing this ...? Feel free to move
-	# it there if you want to.
-
-	cat > "${T}"/00-gcc-paths.sh <<- _EOF
-		#!/bin/env bash
-		# GCC specific variables
-		unset GCC_SPECS GCC_EXEC_PREFIX
-		# include path variables
-		unset CPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH INCLUDE
-		# library path variables
-		unset LIBRARY_PATH LD_LIBRARY_PATH LIBPATH SHLIB_PATH LIB LD_LIBRARY_PATH_32 LD_LIBRARY_PATH_64
-	_EOF
-
-	insinto /etc/profile.d
-	doins "${T}"/00-gcc-paths.sh
 }
