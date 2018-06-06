@@ -1,11 +1,12 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/db.eclass,v 1.49 2013/07/21 09:23:45 pacho Exp $
-# This is a common location for functions used in the sys-libs/db ebuilds
-#
-# Bugs: maintainer-needed@gentoo.org
 
-inherit eutils multilib
+# @ECLASS: db.eclass
+# @MAINTAINER:
+# base-system@gentoo.org
+# @BLURB: Internal eclass used by sys-libs/db ebuilds
+
+inherit eutils multilib multiprocessing
 
 IUSE="doc test examples"
 
@@ -22,11 +23,9 @@ db_fix_so() {
 	cd "${LIB}"
 
 	# first clean up old symlinks
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1_-]*'"$(get_libname)" -delete
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1_-]*'"$(get_libname "[23]")" -delete
-	find "${LIB}" -maxdepth 1 -type l -name "libdb$(get_libname)" -delete #519364
-	find "${LIB}" -maxdepth 1 -type l -name "libdb$(get_libname "[23]")" -delete #519364
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -delete
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname)" -exec rm \{} \;
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname "[23]")" -exec rm \{} \;
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
 
 	# now rebuild all the correct ones
 	for ext in so a dylib sl; do
@@ -152,12 +151,10 @@ db_src_install_usrlibcleanup() {
 		mv "${LIB}/libdb_cxx.a" "${LIB}/libdb_cxx-${SLOT}.a"
 	fi
 
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1_-]*'"$(get_libname)" -delete
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1_-]*'"$(get_libname "[23]")" -delete
-	find "${LIB}" -maxdepth 1 -type l -name "libdb$(get_libname)" -delete #519364
-	find "${LIB}" -maxdepth 1 -type l -name "libdb$(get_libname "[23]")" -delete #519364
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname)" -exec rm \{} \;
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*'"$(get_libname "[23]")" -exec rm \{} \;
 	einfo "removing unversioned static archives"
-	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -delete
+	find "${LIB}" -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
 
 	rm -f \
 		"${ED}"/usr/include/{db,db_185}.h \

@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -17,7 +16,7 @@ inherit eutils toolchain-funcs multilib
 
 # Return all the flag variables that our high level funcs operate on.
 all-flag-vars() {
-	echo {C,CPP,CXX,CCAS,F,FC,LD}FLAGS
+	echo {ADA,C,CPP,CXX,CCAS,F,FC,LD}FLAGS
 }
 
 # {C,CPP,CXX,CCAS,F,FC,LD}FLAGS that we allow in strip-flags
@@ -25,10 +24,10 @@ all-flag-vars() {
 setup-allowed-flags() {
 	ALLOWED_FLAGS=(
 		-pipe -O '-O[12sg]' -mcpu -march -mtune
-		'-fstack-protector*' '-fsanitize*'
+		'-fstack-protector*' '-fsanitize*' '-fstack-check*' -fno-stack-check
 		-fbounds-check -fbounds-checking -fno-strict-overflow
 		-fno-PIE -fno-pie -nopie -no-pie -fno-unit-at-a-time
-		-g '-g[0-9]' -ggdb '-ggdb[0-9]' '-gdwarf-*' gstabs -gstabs+
+		-g '-g[0-9]' -ggdb '-ggdb[0-9]' '-gdwarf-*' gstabs -gstabs+ -gz
 		-fno-ident -fpermissive -frecord-gcc-switches
 		'-fdiagnostics*' '-fplugin*'
 		'-W*' -w
@@ -117,7 +116,7 @@ _filter-var() {
 		done
 		new+=( "${f}" )
 	done
-	eval export ${var}=\""${new[*]}"\"
+	export ${var}="${new[*]}"
 }
 
 # @FUNCTION: filter-flags
@@ -274,7 +273,7 @@ replace-flags() {
 			[[ ${f} == ${1} ]] && f=${2}
 			new+=( "${f}" )
 		done
-		eval export ${var}=\""${new[*]}"\"
+		export ${var}="${new[*]}"
 	done
 
 	return 0
@@ -299,9 +298,8 @@ replace-cpu-flags() {
 }
 
 _is_flagq() {
-	local x var
-	eval var=\""\${$1[*]}"\"
-	for x in ${var} ; do
+	local x var="$1[*]"
+	for x in ${!var} ; do
 		[[ ${x} == $2 ]] && return 0
 	done
 	return 1
@@ -415,7 +413,7 @@ strip-flags() {
 		if [[ ${!var} != "${new[*]}" ]] ; then
 			einfo "strip-flags: ${var}: changed '${!var}' to '${new[*]}'"
 		fi
-		eval export ${var}=\""${new[*]}"\"
+		export ${var}="${new[*]}"
 	done
 
 	set +f	# re-enable pathname expansion
@@ -426,9 +424,9 @@ strip-flags() {
 test-flag-PROG() {
 	local comp=$1
 	local lang=$2
-	local flag=$3
+	shift 2
 
-	[[ -z ${comp} || -z ${flag} ]] && return 1
+	[[ -z ${comp} || -z $1 ]] && return 1
 
 	local src=${T}/tf-${comp}-${SECONDS}.${lang}
 	local cmdline=(
@@ -440,12 +438,21 @@ test-flag-PROG() {
 		# don't use -o /dev/null: /usr/ccs/bin/as: File exists (Sun LD)
 		-c -o "${src}.o"
 	)
-	if "${cmdline[@]}" -x${lang} - </dev/null >/dev/null 2>&1 ; then
-		"${cmdline[@]}" "${flag}" -x${lang} - </dev/null >/dev/null 2>&1
+	if "${cmdline[@]}" -x${lang} - </dev/null &>/dev/null ; then
+		cmdline+=( "$@" -x${lang} - )
 	else
 		# don't use /dev/null as input: -xc flag needs not to exist #254120
 		echo "int main() { return 0; }" > "${src}"
-		"${cmdline[@]}" "${flag}" -c -o "${src}.o" "${src}" >/dev/null 2>&1
+		cmdline+=( "$@" -c -o "${src}.o" "${src}" )
+	fi
+
+	if ! "${cmdline[@]}" </dev/null &>/dev/null; then
+		# -Werror makes clang bail out on unused arguments as well;
+		# try to add -Qunused-arguments to work-around that
+		# other compilers don't support it but then, it's failure like
+		# any other
+		cmdline+=( -Qunused-arguments )
+		"${cmdline[@]}" </dev/null &>/dev/null
 	fi
 	local ret=$?
 	rm -f "${src}"{,.o}
@@ -456,25 +463,25 @@ test-flag-PROG() {
 # @USAGE: <flag>
 # @DESCRIPTION:
 # Returns shell true if <flag> is supported by the C compiler, else returns shell false.
-test-flag-CC() { test-flag-PROG "CC" c "$1"; }
+test-flag-CC() { test-flag-PROG "CC" c "$@"; }
 
 # @FUNCTION: test-flag-CXX
 # @USAGE: <flag>
 # @DESCRIPTION:
 # Returns shell true if <flag> is supported by the C++ compiler, else returns shell false.
-test-flag-CXX() { test-flag-PROG "CXX" c++ "$1"; }
+test-flag-CXX() { test-flag-PROG "CXX" c++ "$@"; }
 
 # @FUNCTION: test-flag-F77
 # @USAGE: <flag>
 # @DESCRIPTION:
 # Returns shell true if <flag> is supported by the Fortran 77 compiler, else returns shell false.
-test-flag-F77() { test-flag-PROG "F77" f77 "$1"; }
+test-flag-F77() { test-flag-PROG "F77" f77 "$@"; }
 
 # @FUNCTION: test-flag-FC
 # @USAGE: <flag>
 # @DESCRIPTION:
 # Returns shell true if <flag> is supported by the Fortran 90 compiler, else returns shell false.
-test-flag-FC() { test-flag-PROG "FC" f95 "$1"; }
+test-flag-FC() { test-flag-PROG "FC" f95 "$@"; }
 
 test-flags-PROG() {
 	local comp=$1
@@ -485,8 +492,21 @@ test-flags-PROG() {
 
 	[[ -z ${comp} ]] && return 1
 
-	for x ; do
-		test-flag-${comp} "${x}" && flags+=( "${x}" )
+	while (( $# )); do
+		case "$1" in
+			--param)
+				if test-flag-${comp} "$1" "$2"; then
+					flags+=( "$1" "$2" )
+				fi
+				shift 2
+				;;
+			*)
+				if test-flag-${comp} "$1"; then
+					flags+=( "$1" )
+				fi
+				shift 1
+				;;
+		esac
 	done
 
 	echo "${flags[*]}"
@@ -547,6 +567,9 @@ strip-unsupported-flags() {
 	export CXXFLAGS=$(test-flags-CXX ${CXXFLAGS})
 	export FFLAGS=$(test-flags-F77 ${FFLAGS})
 	export FCFLAGS=$(test-flags-FC ${FCFLAGS})
+	# note: this does not verify the linker flags but it is enough
+	# to strip invalid C flags which are much more likely, #621274
+	export LDFLAGS=$(test-flags-CC ${LDFLAGS})
 }
 
 # @FUNCTION: get-flag
@@ -578,21 +601,7 @@ get-flag() {
 # WORKS. Non-multilib gcc will take both -m32 and -m64. If the flag works
 # return code is 0, else the return code is 1.
 has_m64() {
-	eqawarn "${FUNCNAME}: don't use this anymore"
-
-	# this doesnt test if the flag is accepted, it tests if the flag
-	# actually -WORKS-. non-multilib gcc will take both -m32 and -m64!
-	# please dont replace this function with test_flag in some future
-	# clean-up!
-
-	local temp="$(emktemp)"
-	echo "int main() { return(0); }" > "${temp}".c
-	MY_CC=$(tc-getCC)
-	${MY_CC/ .*/} -m64 -o "$(emktemp)" "${temp}".c > /dev/null 2>&1
-	local ret=$?
-	rm -f "${temp}".c
-	[[ ${ret} != 1 ]] && return 0
-	return 1
+	die "${FUNCNAME}: don't use this anymore"
 }
 
 has_m32() {

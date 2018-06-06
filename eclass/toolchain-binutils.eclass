@@ -1,6 +1,5 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -76,11 +75,12 @@ add_src_uri() {
 	else
 		a+=".bz2"
 	fi
-	set -- mirror://gentoo https://dev.gentoo.org/~vapier/dist
+	set -- mirror://gentoo https://dev.gentoo.org/~vapier/dist https://dev.gentoo.org/~tamiko/distfiles https://dev.gentoo.org/~dilfridge/distfiles
 	SRC_URI="${SRC_URI} ${@/%//${a}}"
 }
-add_src_uri binutils-${BVER}-patches-${PATCHVER}.tar ${PATCHVER}
-add_src_uri binutils-${BVER}-uclibc-patches-${UCLIBC_PATCHVER}.tar ${UCLIBC_PATCHVER}
+PATCH_BINUTILS_VER=${PATCH_BINUTILS_VER:-${BVER}}
+add_src_uri binutils-${PATCH_BINUTILS_VER}-patches-${PATCHVER}.tar ${PATCHVER}
+add_src_uri binutils-${PATCH_BINUTILS_VER}-uclibc-patches-${UCLIBC_PATCHVER}.tar ${UCLIBC_PATCHVER}
 add_src_uri elf2flt-${ELF2FLT_VER}.tar ${ELF2FLT_VER}
 
 if version_is_at_least 2.18 ; then
@@ -218,7 +218,7 @@ toolchain-binutils_src_prepare() {
 }
 
 _eprefix_init() {
-	has "${EAPI:-0}" 0 1 2 && : ${ED:=${D}} ${EPREFIX:=} ${EROOT:=${ROOT}}
+	has "${EAPI:-0}" 0 1 2 && ED=${D} EPREFIX= EROOT=${ROOT}
 }
 
 # Intended for ebuilds to override to set their own versioning information.

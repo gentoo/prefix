@@ -1,13 +1,9 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/user.eclass,v 1.24 2014/07/11 08:21:58 ulm Exp $
 
 # @ECLASS: user.eclass
 # @MAINTAINER:
 # base-system@gentoo.org (Linux)
-# Joe Jezak <josejx@gmail.com> (OS X)
-# usata@gentoo.org (OS X)
-# Aaron Walker <ka0ttic@gentoo.org> (FreeBSD)
 # @BLURB: user management in ebuilds
 # @DESCRIPTION:
 # The user eclass contains a suite of functions that allow ebuilds
@@ -107,6 +103,10 @@ egetent() {
 # Default uid is (pass -1 for this) next available, default shell is
 # /bin/false, default homedir is /dev/null, and there are no default groups.
 enewuser() {
+	if [[ ${EUID} != 0 ]] ; then
+		einfo "Insufficient privileges to execute ${FUNCNAME[0]}"
+		return 0
+	fi
 	_assert_pkg_ebuild_phase ${FUNCNAME}
 
 	# get the username
@@ -114,14 +114,6 @@ enewuser() {
 	if [[ -z ${euser} ]] ; then
 		eerror "No username specified !"
 		die "Cannot call enewuser without a username"
-	fi
-
-	# in Gentoo Prefix, we may be unprivileged, such that we can't handle this
-	rootuid=$(python -c 'from portage.const import rootuid; print(rootuid)')
-	if [[ ${rootuid} != 0 ]] ; then
-		ewarn "'enewuser()'  disabled in Gentoo Prefix with non-root user (by design)"
-		ewarn "    User: '$euser' not created"
-		return 0
 	fi
 
 	# lets see if the username already exists
@@ -196,7 +188,6 @@ enewuser() {
 	local egroups=$1; shift
 	local g egroups_arr
 	IFS="," read -r -a egroups_arr <<<"${egroups}"
-	shift
 	if [[ ${#egroups_arr[@]} -gt 0 ]] ; then
 		local defgroup exgroups
 		for g in "${egroups_arr[@]}" ; do
@@ -275,6 +266,10 @@ enewuser() {
 # do the rest.  You may specify the gid for the group or allow the group to
 # allocate the next available one.
 enewgroup() {
+	if [[ ${EUID} != 0 ]] ; then
+		einfo "Insufficient privileges to execute ${FUNCNAME[0]}"
+		return 0
+	fi
 	_assert_pkg_ebuild_phase ${FUNCNAME}
 
 	# get the group
@@ -282,14 +277,6 @@ enewgroup() {
 	if [[ -z ${egroup} ]] ; then
 		eerror "No group specified !"
 		die "Cannot call enewgroup without a group"
-	fi
-
-	# in Gentoo Prefix, we may be unprivileged, such that we can't handle this
-	rootuid=$(python -c 'from portage.const import rootuid; print(rootuid)')
-	if [[ ${rootuid} != 0 ]] ; then
-		ewarn "'enewgroup()' disabled in Gentoo Prefix with non-root user (by design)"
-		ewarn "    Group: '$egroup' not created"
-		return 0
 	fi
 
 	# see if group already exists
