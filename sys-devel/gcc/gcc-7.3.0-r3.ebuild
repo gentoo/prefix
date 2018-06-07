@@ -38,6 +38,9 @@ src_prepare() {
 
 	# make it have correct install_names on Darwin
 	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
+
+	# fix for powerpc-darwin, from upstream, fixed for 7.4
+	epatch "${FILESDIR}"/${P}-powerpc-darwin.patch
 }
 
 src_configure() {
