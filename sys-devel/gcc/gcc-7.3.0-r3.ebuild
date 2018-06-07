@@ -46,6 +46,17 @@ src_configure() {
 		powerpc*-darwin*)
 			# bug #381179
 			filter-flags "-mcpu=*" "-mtune=*"
+			# bug #657522
+			# A bug in configure checks whether -no-pie works, but the
+			# compiler doesn't pass -no-pie onto the linker if -fno-PIE
+			# isn't passed, so the configure check always finds -no-pie
+			# is accepted.  (Likewise, when -fno-PIE is passed, the
+			# compiler passes -no_pie onto the linker.)
+			# Since our linker doesn't grok this, avoid above checks to
+			# be run
+			# NOTE: later ld64 does grok -no_pie, not -no-pie (as checked)
+			export gcc_cv_c_no_fpie=no
+			export gcc_cv_no_pie=no
 		;;
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
