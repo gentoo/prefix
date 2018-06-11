@@ -1541,6 +1541,17 @@ bootstrap_stage2() {
 	EXTRA_ECONF=$(rapx --with-sysroot=/) \
 	emerge_pkgs --nodeps ${linker} || return 1
 
+	# automake and autoconf need to be installed in /tmp in order for
+	# autotools.eclass to run successfully, bug #655414, #657414
+	# rely on Perl from host, let's hope it's there
+	unset PERL
+	if [[ -x $(type -P perl) ]] ; then
+		( cd "${ROOT}"/tmp/usr/bin && ln -s $(type -P perl) )
+		emerge_pkgs --nodeps sys-devel/autoconf sys-devel/automake || return 1
+	else
+		einfo "You don't have perl available, you'll likely run into bug #657414"
+	fi
+
 	# Old versions of gcc has been masked.  We need gcc-4.7 to bootstrap
 	# on systems without a c++ compiler.
 	echo '<sys-devel/gcc-4.8' >> "${ROOT}"/tmp/etc/portage/package.unmask
