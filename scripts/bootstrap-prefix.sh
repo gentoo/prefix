@@ -197,7 +197,6 @@ configure_toolchain() {
 					mycc=gcc
 					;;
 				*"(GCC) 4.0.1 "*)
-					# need gcc-4.2.1 to compile llvm
 					linker="=sys-devel/binutils-apple-3.2"
 					compiler_stage1+="
 						${gcc_deps}
@@ -206,12 +205,17 @@ configure_toolchain() {
 						sys-devel/binutils-apple"
 					mycc=gcc
 					;;
+				*"(Gentoo "*)
+					# probably the result of a bootstrap in progress
+					linker=sys-devel/binutils-apple
+					mycc=gcc
+					;;
 				*)
 					eerror "unknown compiler"
 					return 1
 					;;
 			esac
-			compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc-apple"
+			compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 			;;
 		*-darwin*)
 			# for compilers choice, see bug:
