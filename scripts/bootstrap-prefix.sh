@@ -1808,12 +1808,10 @@ bootstrap_stage3() {
 	fi
 
 	# gettext pulls in portage, which since 2.2.28 needs ssl enabled, so
-	# we need to lift our mask for that.
+	# we need to lift our mask for that. (USE=ssl)
 	pkgs=(
 		virtual/os-headers
-		$( [[ ${OFFLINE_MODE} ]] \
-			&& echo sys-apps/portage \
-			|| echo sys-devel/gettext )
+		sys-apps/portage
 	)
 	USE="ssl" \
 	emerge_pkgs "" "${pkgs[@]}" || return 1
@@ -1832,15 +1830,20 @@ bootstrap_stage3() {
 		emerge --sync || emerge-webrsync || return 1
 	fi
 
+	# avoid installing git just for fun while completing @system
+	export USE="-git"
+
 	# temporarily work around c_rehash missing openssl dependency, bug #572790
+	einfo "running emerge -u1 openssl"
 	CFLAGS= CXXFLAGS= emerge -u1 openssl || return 1
 
 	# Portage should figure out itself what it needs to do, if anything.
 	# Avoid glib compiling for Cocoa libs if it finds them, since we're
 	# still with an old llvm that may not understand the system headers
 	# very well on Darwin (-DGNUSTEP_BASE_VERSION hack)
+	einfo "running emerge -u system"
 	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
-	CFLAGS= CXXFLAGS= USE="-git" emerge -u system || return 1
+	CFLAGS= CXXFLAGS= emerge -u system || return 1
 
 	# remove temp makeinfo, texinfo provides it
 	[[ -f "${ROOT}"/usr/bin/makeinfo ]] && rm -f "${ROOT}"/usr/bin/makeinfo
@@ -1849,6 +1852,7 @@ bootstrap_stage3() {
 	is-rap && { emerge sys-apps/texinfo || return 1; }
 
 	# remove anything that we don't need (compilers most likely)
+	einfo "running emerge --depclean"
 	emerge --depclean
 
 	einfo "stage3 successfully finished"
@@ -2624,7 +2628,14 @@ EOF
 		exit 1
 	fi
 
-	if emerge -e system ; then
+	local cmd="emerge -e system"
+	if [[ -e ${EPREFIX}/var/cache/edb/mtimedb ]] && \
+		grep -q resume_backup "${EPREFIX}"/var/cache/edb/mtimedb ;
+	then
+		cmd="emerge --resume"
+	fi
+	einfo "running ${cmd}"
+	if ${cmd} ; then
 		# Now, after 'emerge -e system', we can get rid of the temporary tools.
 		if [[ -d ${EPREFIX}/tmp/var/tmp ]] ; then
 			rm -Rf "${EPREFIX}"/tmp || return 1
@@ -2637,7 +2648,7 @@ EOF
 		cat << EOF
 
 Oh yeah, I thought I was almost there, and then this!  I did
-  emerge -e system
+  ${cmd}
 and it failed at some point :(  Details might be found in the build log:
 EOF
 		for log in "${EPREFIX}"/var/tmp/portage/*/*/temp/build.log ; do
