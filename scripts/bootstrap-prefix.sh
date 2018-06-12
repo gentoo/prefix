@@ -1855,6 +1855,10 @@ bootstrap_stage3() {
 	einfo "running emerge --depclean"
 	emerge --depclean
 
+	# "wipe" mtimedb such that the resume list is proper after this stage
+	# (--depclean may fail, which is ok)
+	sed -i -e 's/resume_backup/cleared/' "${EPREFIX}"/var/cache/edb/mtimedb
+
 	einfo "stage3 successfully finished"
 }
 
