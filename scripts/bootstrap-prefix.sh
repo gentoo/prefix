@@ -1377,7 +1377,9 @@ bootstrap_stage1() {
 
 bootstrap_stage1_log() {
 	bootstrap_stage1 ${@} 2>&1 | tee -a ${ROOT}/stage1.log
-	return ${PIPESTATUS[0]}
+	local ret=${PIPESTATUS[0]}
+	[[ ${ret} == 0 ]] && touch ${ROOT}/.stage1-finished
+	return ${ret}
 }
 
 do_emerge_pkgs() {
@@ -1605,13 +1607,14 @@ bootstrap_stage2() {
 		cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
 	fi
 
-	touch "${ROOT}/tmp/.stage2-finished"
 	einfo "stage2 successfully finished"
 }
 
 bootstrap_stage2_log() {
 	bootstrap_stage2 ${@} 2>&1 | tee -a ${ROOT}/stage2.log
-	return ${PIPESTATUS[0]}
+	local ret=${PIPESTATUS[0]}
+	[[ ${ret} == 0 ]] && touch "${ROOT}/.stage2-finished"
+	return ${ret}
 }
 
 bootstrap_stage3() {
@@ -1837,6 +1840,9 @@ bootstrap_stage3() {
 	einfo "running emerge -u1 openssl"
 	CFLAGS= CXXFLAGS= emerge -u1 openssl || return 1
 
+	# remove temp makeinfo, texinfo provides it
+	[[ -f "${ROOT}"/usr/bin/makeinfo ]] && rm -f "${ROOT}"/usr/bin/makeinfo
+
 	# Portage should figure out itself what it needs to do, if anything.
 	# Avoid glib compiling for Cocoa libs if it finds them, since we're
 	# still with an old llvm that may not understand the system headers
@@ -1844,12 +1850,6 @@ bootstrap_stage3() {
 	einfo "running emerge -u system"
 	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
 	CFLAGS= CXXFLAGS= emerge -u system || return 1
-
-	# remove temp makeinfo, texinfo provides it
-	[[ -f "${ROOT}"/usr/bin/makeinfo ]] && rm -f "${ROOT}"/usr/bin/makeinfo
-
-	# TODO, glibc should depend on texinfo
-	is-rap && { emerge sys-apps/texinfo || return 1; }
 
 	# remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
@@ -1860,7 +1860,9 @@ bootstrap_stage3() {
 
 bootstrap_stage3_log() {
 	bootstrap_stage3 ${@} 2>&1 | tee -a ${ROOT}/stage3.log
-	return ${PIPESTATUS[0]}
+	local ret=${PIPESTATUS[0]}
+	[[ ${ret} == 0 ]] && touch "${ROOT}/.stage3-finished"
+	return ${ret}
 }
 
 set_helper_vars() {
@@ -2542,8 +2544,7 @@ EOF
 	ROOT="${EPREFIX}"
 	set_helper_vars
 
-	if ! [[ -x ${EPREFIX}/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge || -x ${EPREFIX}/tmp/usr/bin/emerge  ]] \
-			&& ! bootstrap_stage1_log ; then
+	if ! [[ -e ${EPREFIX}/.stage1-finished ]] && ! bootstrap_stage1_log ; then
 		# stage 1 fail
 		cat << EOF
 
@@ -2573,11 +2574,7 @@ EOF
 	# deal with the bash-constructs we use in stage3 and onwards
 	hash -r
 
-	# stage 2 on Darwin gets llvm/clang, so we must not get confused
-	# when we find gcc there (it's needed to bootstrap llvm)
-	local compiler=gcc
-	[[ ${CHOST} == *-darwin* ]] && compiler=clang
-	if ! [[ -e ${EPREFIX}/tmp/.stage2-finished ]] \
+	if ! [[ -e ${EPREFIX}/.stage2-finished ]] \
 		&& ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2_log ; then
 		# stage 2 fail
 		cat << EOF
@@ -2604,7 +2601,8 @@ EOF
 	# new bash
 	hash -r
 
-	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" stage3_log ; then
+	if ! [[ -e ${EPREFIX}/.stage3-finished ]] \
+		&& ! bash ${BASH_SOURCE[0]} "${EPREFIX}" stage3_log ; then
 		# stage 3 fail
 		hash -r  # previous cat (tmp/usr/bin/cat) may have been removed
 		cat << EOF
