@@ -658,6 +658,9 @@ bootstrap_portage() {
 		|| return 1
 	$MAKE ${MAKEOPTS} || return 1
 
+	# bug 658060
+	find . -name __pycache__ -delete
+
  	einfo "Installing ${A%-*}"
 	$MAKE install || return 1
 
