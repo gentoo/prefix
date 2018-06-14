@@ -1849,9 +1849,6 @@ bootstrap_stage3() {
 	einfo "running emerge -u1 openssl"
 	CFLAGS= CXXFLAGS= emerge -u1 openssl || return 1
 
-	# remove temp makeinfo, texinfo provides it
-	[[ -f "${ROOT}"/usr/bin/makeinfo ]] && rm -f "${ROOT}"/usr/bin/makeinfo
-
 	# Portage should figure out itself what it needs to do, if anything.
 	# Avoid glib compiling for Cocoa libs if it finds them, since we're
 	# still with an old llvm that may not understand the system headers
