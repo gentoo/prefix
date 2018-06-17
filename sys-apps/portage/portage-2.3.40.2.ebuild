@@ -166,6 +166,10 @@ python_prepare_all() {
 		sed -i -e 's/repo_name=gentoo/repo_name=gentoo_prefix/' \
 			bin/emerge-webrsync || die
 
+		einfo "Making absent gemato non-fatal"
+		sed -i -e '/exitcode = 127/d' \
+			pym/portage/sync/modules/rsync/rsync.py || die
+
 		if [[ ${CHOST} == powerpc*-darwin* ]] ; then
 			# asyncio triggers some python bug, not worth fixing on
 			# ppc-macos, bug #656830
