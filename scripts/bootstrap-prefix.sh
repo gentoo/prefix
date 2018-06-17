@@ -609,8 +609,8 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
-	STABLE_PV="2.3.40.1"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.40.1"
+	STABLE_PV="2.3.40.2"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.40.2"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
@@ -657,9 +657,6 @@ bootstrap_portage() {
 		--with-extra-path="${PATH}" \
 		|| return 1
 	$MAKE ${MAKEOPTS} || return 1
-
-	# bug 658060
-	find . -name __pycache__ -delete
 
  	einfo "Installing ${A%-*}"
 	$MAKE install || return 1
