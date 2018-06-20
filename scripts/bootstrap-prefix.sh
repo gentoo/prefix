@@ -1845,10 +1845,6 @@ bootstrap_stage3() {
 	# avoid installing git just for fun while completing @system
 	export USE="-git"
 
-	# temporarily work around c_rehash missing openssl dependency, bug #572790
-	einfo "running emerge -u1 openssl"
-	CFLAGS= CXXFLAGS= emerge -u1 openssl || return 1
-
 	# Portage should figure out itself what it needs to do, if anything.
 	# Avoid glib compiling for Cocoa libs if it finds them, since we're
 	# still with an old llvm that may not understand the system headers
