@@ -543,8 +543,14 @@ toolchain_src_prepare() {
 		"${S}"/gcc/config/darwin.h || die "sed gcc/config/darwin.h failed"
 	# add prefixed Frameworks to default search paths (may want to
 	# change this in a cross-compile)
-	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \    \"${EPREFIX}/Frameworks\"\, " \
-		"${S}"/gcc/config/darwin-c.c || die "sed gcc/config/darwin-c.c failed"
+	# 2018-06-20 (grobian): disabled this because
+	#                       1. no packages seem to use this
+	#                       2. absence of this dir causes
+	#                          warnings->errors with gcc-7
+	#                       3. after 2. would need to create the dir
+	#                          somewhere, but 1. still applies
+	#sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \    \"${EPREFIX}/Frameworks\"\, " \
+	#	"${S}"/gcc/config/darwin-c.c || die "sed gcc/config/darwin-c.c failed"
 
 	# make sure the pkg config files install into multilib dirs.
 	# since we configure with just one --libdir, we can't use that
