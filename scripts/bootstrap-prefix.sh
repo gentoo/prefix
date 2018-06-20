@@ -670,8 +670,6 @@ bootstrap_portage() {
 
 	# in Prefix the sed wrapper is deadly, so kill it
 	rm -f "${ROOT}"/tmp/usr/lib/portage/bin/ebuild-helpers/sed
-	# stage3 PATH should come before stage2
-	sed -e '/DEFAULT_PATH/d' -i "${ROOT}"/tmp/usr/share/portage/config/make.globals
 
 	[[ -e "${ROOT}"/tmp/usr/portage ]] || ln -s "${PORTDIR}" "${ROOT}"/tmp/usr/portage
 
@@ -1645,7 +1643,7 @@ bootstrap_stage3() {
 		# stage3 tools should be used first.
 		# PORTAGE_TMPDIR, EMERGE_LOG_DIR, FEATURES=force-prefix are
 		# needed with host portage.
-		PREROOTPATH="${ROOT}"$(echo usr/lib/llvm/{10,9,8,7,6,5}/bin | sed "s, ,:${ROOT},g") \
+		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{10,9,8,7,6,5}/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		FEATURES="${FEATURES} force-prefix" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
@@ -1724,20 +1722,6 @@ bootstrap_stage3() {
 
 		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	fi
-
-	# Move portage from stage2 to stage3, because build
-	# dependencies are bootstrapped by stage3.  After the
-	# introduction of EAPI-7, eclasses now strictly distinguish
-	# between build dependencies that are binary compatible with
-	# the native build system (CBUILD, BDEPEND) and with the
-	# system being built (CHOST, DEPEND).
-	#
-	# As we don't know the layout of ${ROOT}/usr/lib, do this hack
-	# after baselayout.
-	[[ -d "${ROOT}"/usr/share/portage ]] || cp -a "${ROOT}"{/tmp,}/usr/share/portage
-	[[ -d "${ROOT}"/usr/lib/portage ]] || cp -a "${ROOT}"{/tmp,}/usr/lib/portage
-	cp -f "${ROOT}"/tmp/usr/{bin,lib/portage/bin/ebuild-helpers}/portageq
-	export PORTAGE_OVERRIDE_EPREFIX="${ROOT}"
 
 	# On some hosts, gcc gets confused now when it uses the new linker,
 	# see for instance bug #575480.  While we would like to hide that
