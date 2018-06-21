@@ -41,10 +41,6 @@ src_prepare() {
 
 	# fix for powerpc-darwin, from upstream, fixed for 7.4
 	epatch "${FILESDIR}"/${P}-powerpc-darwin.patch
-
-	# fix compilation on >=Solaris-11, bug #657514
-	sed -i -e '/-linux.*-cygwin/s/)/ | *-solaris*)/' \
-		libstdc++-v3/configure || die
 }
 
 src_configure() {
