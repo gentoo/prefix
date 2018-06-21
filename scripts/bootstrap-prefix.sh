@@ -1561,7 +1561,6 @@ bootstrap_stage2() {
 
 	emerge_pkgs() {
 		EPREFIX="${ROOT}"/tmp \
-		FEATURES="${FEATURES} -collision-protect" \
 		do_emerge_pkgs "$@"
 	}
 
@@ -1841,8 +1840,7 @@ bootstrap_stage3() {
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
 	# get a sane bash, overwriting tmp symlinks
-	FEATURES="${FEATURES} -collision-protect" \
-		emerge_pkgs "" "app-shells/bash" || return 1
+	emerge_pkgs "" "app-shells/bash" || return 1
 
 	# Build portage and dependencies.
 	pkgs=(
