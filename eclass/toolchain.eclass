@@ -312,6 +312,14 @@ gentoo_urls() {
 #			ten Brugge's bounds-checking patches. If you want to use a patch
 #			for an older gcc version with a new gcc, make sure you set
 #			HTB_GCC_VER to that version of gcc.
+#
+#	CYGWINPORTS_GITREV
+#			If set, this variable signals that we should apply additional patches
+#			maintained by upstream Cygwin developers at github/cygwinports/gcc,
+#			using the specified git commit id there.  The list of patches to
+#			apply is extracted from gcc.cygport, maintained there as well.
+#			This is done for compilers running on Cygwin, not for cross compilers
+#			with a Cygwin target.
 get_gcc_src_uri() {
 	export PATCH_GCC_VER=${PATCH_GCC_VER:-${GCC_RELEASE_VER}}
 	export UCLIBC_GCC_VER=${UCLIBC_GCC_VER:-${PATCH_GCC_VER}}
@@ -380,7 +388,8 @@ get_gcc_src_uri() {
 
 	# Cygwin patches from https://github.com/cygwinports/gcc
 	[[ -n ${CYGWINPORTS_GITREV} ]] && \
-		GCC_SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/gcc/archive/${CYGWINPORTS_GITREV}.zip )"
+		GCC_SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/gcc/archive/${CYGWINPORTS_GITREV}.tar.gz
+			-> gcc-cygwinports-${CYGWINPORTS_GITREV}.tar.gz )"
 
 	echo "${GCC_SRC_URI}"
 }
@@ -497,7 +506,7 @@ gcc_quick_unpack() {
 
 	use_if_iuse boundschecking && unpack "bounds-checking-gcc-${HTB_GCC_VER}-${HTB_VER}.patch.bz2"
 
-	[[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin && unpack "${CYGWINPORTS_GITREV}.zip"
+	[[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin && unpack "gcc-cygwinports-${CYGWINPORTS_GITREV}.tar.gz"
 
 	popd > /dev/null
 }
@@ -682,11 +691,10 @@ do_gcc_CYGWINPORTS_patches() {
 	[[ -n ${CYGWINPORTS_GITREV} ]] || return 0
 	use elibc_Cygwin || return 0
 
+	local -a patches
 	local p d="${WORKDIR}/gcc-${CYGWINPORTS_GITREV}"
-	for p in $(
-		eval "$(sed -ne '/PATCH_URI="/,/"/p' < "${d}"/gcc.cygport)"
-		echo ${PATCH_URI}
-	); do
+	readarray -t patches < <(sed -e '1,/PATCH_URI="/d;/"/,$d' < "${d}"/gcc.cygport)
+	for p in ${patches[*]}; do
 		epatch "${d}/${p}"
 	done
 }
@@ -1864,13 +1872,13 @@ toolchain_src_install() {
 
 	cd "${S}"
 	if is_crosscompile; then
-		rm -rf "${ED}"usr/share/{man,info}
+		rm -rf "${ED}"/usr/share/{man,info}
 		rm -rf "${D}"${DATAPATH}/{man,info}
 	else
 		if tc_version_is_at_least 3.0 ; then
 			local cxx_mandir=$(find "${WORKDIR}/build/${CTARGET}/libstdc++-v3" -name man)
 			if [[ -d ${cxx_mandir} ]] ; then
-				cp -r "${cxx_mandir}"/man? "${D}/${DATAPATH}"/man/
+				cp -r "${cxx_mandir}"/man? "${D}${DATAPATH}"/man/
 			fi
 		fi
 		has noinfo ${FEATURES} \
@@ -1921,7 +1929,7 @@ toolchain_src_install() {
 	# libvtv.la: gcc itself handles linkage correctly.
 	# lib*san.la: Sanitizer linkage is handled internally by gcc, and they
 	# do not support static linking. #487550 #546700
-	find "${D}/${LIBPATH}" \
+	find "${D}${LIBPATH}" \
 		'(' \
 			-name libstdc++.la -o \
 			-name libstdc++fs.la -o \
@@ -1943,7 +1951,7 @@ toolchain_src_install() {
 	# Use gid of 0 because some stupid ports don't have
 	# the group 'root' set to gid 0.  Send to /dev/null
 	# for people who are testing as non-root.
-	chown -R ${PORTAGE_INST_UID:-0}:${PORTAGE_INST_GID:-0} "${ED}"${LIBPATH} 2>/dev/null
+	chown -R ${PORTAGE_INST_UID:-0}:${PORTAGE_INST_GID:-0} "${D}${LIBPATH}" 2>/dev/null
 
 	# Move pretty-printers to gdb datadir to shut ldconfig up
 	local py gdbdir=/usr/share/gdb/auto-load${LIBPATH/\/lib\//\/$(get_libdir)\/}
@@ -1987,7 +1995,7 @@ gcc_movelibs() {
 	# code to run on the target.
 	if tc_version_is_at_least 5 && is_crosscompile ; then
 		dodir "${HOSTLIBPATH#${EPREFIX}}"
-		mv "${ED}"usr/$(get_libdir)/libcc1* "${D}${HOSTLIBPATH}" || die
+		mv "${ED}"/usr/$(get_libdir)/libcc1* "${D}${HOSTLIBPATH}" || die
 	fi
 
 	# For all the libs that are built for CTARGET, move them into the
@@ -2184,7 +2192,7 @@ gcc_slot_java() {
 
 toolchain_pkg_postinst() {
 	do_gcc_config
-	if [[ ${ROOT} == / && -f ${EPREFIX}/usr/share/eselect/modules/compiler-shadow.eselect ]] ; then
+	if [[ ! ${ROOT%/} && -f ${EPREFIX}/usr/share/eselect/modules/compiler-shadow.eselect ]] ; then
 		eselect compiler-shadow update all
 	fi
 
@@ -2199,17 +2207,17 @@ toolchain_pkg_postinst() {
 		echo
 
 		# Clean up old paths
-		rm -f "${EROOT}"*/rcscripts/awk/fixlafiles.awk "${EROOT}"sbin/fix_libtool_files.sh
-		rmdir "${EROOT}"*/rcscripts{/awk,} 2>/dev/null
+		rm -f "${EROOT%/}"/*/rcscripts/awk/fixlafiles.awk "${EROOT%/}"/sbin/fix_libtool_files.sh
+		rmdir "${EROOT%/}"/*/rcscripts{/awk,} 2>/dev/null
 
-		mkdir -p "${EROOT}"usr/{share/gcc-data,sbin,bin}
+		mkdir -p "${EROOT%/}"/usr/{share/gcc-data,sbin,bin}
 		# DATAPATH has EPREFIX already, use ROOT with it
-		cp "${ROOT}${DATAPATH}"/fixlafiles.awk "${EROOT}"usr/share/gcc-data/ || die
-		cp "${ROOT}${DATAPATH}"/fix_libtool_files.sh "${EROOT}"usr/sbin/ || die
+		cp "${ROOT%/}${DATAPATH}"/fixlafiles.awk "${EROOT%/}"/usr/share/gcc-data/ || die
+		cp "${ROOT%/}${DATAPATH}"/fix_libtool_files.sh "${EROOT%/}"/usr/sbin/ || die
 
 		# Since these aren't critical files and portage sucks with
 		# handling of binpkgs, don't require these to be found
-		cp "${ROOT}${DATAPATH}"/c{89,99} "${EROOT}"usr/bin/ 2>/dev/null
+		cp "${ROOT%/}${DATAPATH}"/c{89,99} "${EROOT%/}"/usr/bin/ 2>/dev/null
 	fi
 
 	if use regression-test ; then
@@ -2225,7 +2233,7 @@ toolchain_pkg_postinst() {
 }
 
 toolchain_pkg_postrm() {
-	if [[ ${ROOT} == / && -f ${EPREFIX}/usr/share/eselect/modules/compiler-shadow.eselect ]] ; then
+	if [[ ! ${ROOT%/} && -f ${EPREFIX}/usr/share/eselect/modules/compiler-shadow.eselect ]] ; then
 		eselect compiler-shadow clean all
 	fi
 
@@ -2236,16 +2244,16 @@ toolchain_pkg_postrm() {
 
 	# clean up the cruft left behind by cross-compilers
 	if is_crosscompile ; then
-		if [[ -z $(ls "${EROOT}"etc/env.d/gcc/${CTARGET}* 2>/dev/null) ]] ; then
-			rm -f "${EROOT}"etc/env.d/gcc/config-${CTARGET}
-			rm -f "${EROOT}"etc/env.d/??gcc-${CTARGET}
-			rm -f "${EROOT}"usr/bin/${CTARGET}-{gcc,{g,c}++}{,32,64}
+		if [[ -z $(ls "${EROOT%/}"/etc/env.d/gcc/${CTARGET}* 2>/dev/null) ]] ; then
+			rm -f "${EROOT%/}"/etc/env.d/gcc/config-${CTARGET}
+			rm -f "${EROOT%/}"/etc/env.d/??gcc-${CTARGET}
+			rm -f "${EROOT%/}"/usr/bin/${CTARGET}-{gcc,{g,c}++}{,32,64}
 		fi
 		return 0
 	fi
 
 	# ROOT isnt handled by the script
-	[[ ${ROOT} != "/" ]] && return 0
+	[[ ${ROOT%/} ]] && return 0
 
 	if [[ ! -e ${LIBPATH}/libstdc++.so ]] ; then
 		# make sure the profile is sane during same-slot upgrade #289403
@@ -2278,7 +2286,7 @@ do_gcc_config() {
 		[[ -n ${current_specs} ]] && use_specs=-${current_specs}
 
 		if [[ -n ${use_specs} ]] && \
-		   [[ ! -e ${ROOT}/etc/env.d/gcc/${CTARGET}-${GCC_CONFIG_VER}${use_specs} ]]
+		   [[ ! -e ${EROOT%/}/etc/env.d/gcc/${CTARGET}-${GCC_CONFIG_VER}${use_specs} ]]
 		then
 			ewarn "The currently selected specs-specific gcc config,"
 			ewarn "${current_specs}, doesn't exist anymore. This is usually"
