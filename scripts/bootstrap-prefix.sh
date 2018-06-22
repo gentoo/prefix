@@ -628,8 +628,7 @@ bootstrap_portage() {
 	cd "${S}"
 
 	# patch temporary included here: fail when it should be dropped
-	mkdir -p "${ROOT}"/etc/portage/patches/sys-apps/portage || return 1
-	cat > "${ROOT}"/etc/portage/patches/sys-apps/portage/0001-introduce-the-stacked-prefix-FEATURE.patch <<'EOP'
+	patch -p1 <<'EOP'
 From 902fad63990eb4516d3e3815994b2dcbd16155fd Mon Sep 17 00:00:00 2001
 From: Michael Haubenwallner <haubi@gentoo.org>
 Date: Tue, 19 Jun 2018 16:39:12 +0200
@@ -691,7 +690,6 @@ index a3d927c3b..ed54425b5 100644
 
 EOP
 	[[ $? -eq 0 ]] || return 1
-	patch -p1 < "${ROOT}"/etc/portage/patches/sys-apps/portage/0001-introduce-the-stacked-prefix-FEATURE.patch || return 1
 
 	# >=2.3
 	[[ -r bin/repoman ]] || sed -i -e '/repoman/d' {man,bin}/Makefile.in
@@ -1875,9 +1873,6 @@ bootstrap_stage3() {
 	)
 	USE="ssl" \
 	emerge_pkgs "" "${pkgs[@]}" || return 1
-
-	# patch temporary included here: fail when it should be dropped
-	rm "${ROOT}"/etc/portage/patches/sys-apps/portage/0001-introduce-the-stacked-prefix-FEATURE.patch || return 1
 
 	# Switch to the proper portage.
 	hash -r
