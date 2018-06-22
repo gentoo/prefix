@@ -95,6 +95,9 @@ src_prepare() {
 
 	eapply_user
 
+	# <=Solaris-10 /bin/sh does not support "[ -e file ]", added by patches
+	sed -e 's/\[ -e /\[ -r /' -i Makefile.shared
+
 	# disable fips in the build
 	# make sure the man pages are suffixed #302165
 	# don't bother building man pages if they're disabled
