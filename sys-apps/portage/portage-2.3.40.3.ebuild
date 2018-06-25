@@ -92,7 +92,6 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}"/${PN}-2.3.40-ebuildshell.patch # 155161
-	epatch "${FILESDIR}"/${PN}-2.3.40-stacked-prefix.patch # 658572
 	use prefix-chaining && # maybe useful even with stacked-prefix
 		epatch "${FILESDIR}"/${PN}-2.3.40-prefix-chaining.patch
 
