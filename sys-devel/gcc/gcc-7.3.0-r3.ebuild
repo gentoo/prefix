@@ -64,6 +64,11 @@ src_configure() {
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
 			myconf+=( --with-gnu-ld --with-gnu-as --enable-largefile )
+			# Solaris 11 defines this in its headers, but that causes a
+			# mismatch whilst compiling, bug #657514
+			export ac_cv_func_aligned_alloc=no
+			export ac_cv_func_memalign=no
+			export ac_cv_func_posix_memalign=no
 		;;
 		i[34567]86-*-linux*:*" prefix "*)
 			# to allow the linux-x86-on-amd64.patch become useful, we need
