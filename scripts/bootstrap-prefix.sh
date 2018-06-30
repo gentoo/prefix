@@ -537,7 +537,7 @@ do_tree() {
 bootstrap_tree() {
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
-	local PV="20180620"
+	local PV="20180629"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
@@ -609,8 +609,8 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
-	STABLE_PV="2.3.40.2"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.40.2"
+	STABLE_PV="2.3.40.3"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.40.3"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
@@ -626,73 +626,6 @@ bootstrap_portage() {
 	bzip2 -dc "${DISTDIR}/${A}" | tar -xf - || return 1
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
-
-	# patch temporary included here: fail when it should be dropped
-	patch -p1 <<'EOP'
-From 902fad63990eb4516d3e3815994b2dcbd16155fd Mon Sep 17 00:00:00 2001
-From: Michael Haubenwallner <haubi@gentoo.org>
-Date: Tue, 19 Jun 2018 16:39:12 +0200
-Subject: [PATCH] introduce the 'stacked-prefix' FEATURE
-
-When we merge into another EPREFIX, but not into some ROOT,
-and CHOST is equal to CBUILD, build tools found in EPREFIX
-perfectly work for the current build environment.
-In a "stacked prefix" we explicitly utilize this situation.
-
-This is useful during prefix bootstrap (#655414, #655326), but also to
-build packages for targets unable to support the full portage toolchain
-(native Windows, MinGW), but otherwise do not require a full cross
-compilation setup.
----
- bin/phase-helpers.sh | 14 ++++++++++++++
- pym/portage/const.py |  1 +
- 2 files changed, 15 insertions(+)
-
-diff --git a/bin/phase-helpers.sh b/bin/phase-helpers.sh
-index c32533fb3..fea2362cf 100644
---- a/bin/phase-helpers.sh
-+++ b/bin/phase-helpers.sh
-@@ -927,6 +927,20 @@ ___best_version_and_has_version_common() {
- 			fi ;;
- 	esac
- 
-+	if ___eapi_has_prefix_variables         &&
-+	   has "${root_arg}" '--host-root' '-b' &&
-+	   has stacked-prefix ${FEATURES}       &&
-+	   [[ -z ${ROOT%/} ]]                   &&
-+	   [[ ${CBUILD} == ${CHOST} ]]          &&
-+	   [[ ${EPREFIX} != ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}} ]] &&
-+	:; then
-+		# When we merge into another EPREFIX, but not into some ROOT,
-+		# and CHOST is equal to CBUILD, build tools found in EPREFIX
-+		# perfectly work for the current build environment.
-+		# In a "stacked prefix" we explicitly utilize this situation.
-+		"${FUNCNAME[1]}" "${atom}" && return 0
-+	fi
-+
- 	if [[ -n $PORTAGE_IPC_DAEMON ]] ; then
- 		cmd+=("${PORTAGE_BIN_PATH}"/ebuild-ipc "${FUNCNAME[1]}" "${root}" "${atom}")
- 	else
-diff --git a/pym/portage/const.py b/pym/portage/const.py
-index a3d927c3b..ed54425b5 100644
---- a/pym/portage/const.py
-+++ b/pym/portage/const.py
-@@ -204,6 +204,7 @@ SUPPORTED_FEATURES       = frozenset([
- 	"splitdebug",
- 	"split-elog",
- 	"split-log",
-+	"stacked-prefix",
- 	"strict",
- 	"strict-keepdir",
- 	"stricter",
--- 
-2.16.1
-
-EOP
-	[[ $? -eq 0 ]] || return 1
-
-	# >=2.3
-	[[ -r bin/repoman ]] || sed -i -e '/repoman/d' {man,bin}/Makefile.in
 
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
