@@ -30,6 +30,7 @@ MULTILIB_WRAPPED_HEADERS=(
 src_prepare() {
 	default
 	eapply "${DISTDIR}"/${P}-solaris.patch
+	eapply "${FILESDIR}"/1.29-yat2m-dep-exeext.patch
 	# autogen is needed for getting a version number, it needs a
 	# POSIX compliant shell
 	hprefixify "${S}"/autogen.sh

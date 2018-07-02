@@ -1,0 +1,96 @@
+From b174418aaf00b82c12b291a86a06855d35a10e10 Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <michael.haubenwallner@ssi-schaefer.com>
+Date: Mon, 2 Jul 2018 15:20:41 +0200
+Subject: [PATCH] doc: if ever, depend on yat2m$(EXEEXT)
+
+Cygwin is not a "real" w32 system, and transparently hides the still
+required '.exe' extension whenever possible.  Unfortunately, this does
+not apply to Makefile targets, so we still have to use '.exe' here.
+Fortunately, there is the portable EXEEXT Makefile variable we can use.
+
+Furthermore, we want to use a detected yat2m utility only if we are
+cross compiling, but we do not need a Makefile dependency then.
+Otherwise, the just created yat2m utility should work fine.
+
+* doc/Makefile.am (CROSS_COMPILING, HAVE_YAT2M): Set empty YAT2M_DEP.
+(not CROSS_COMPILING): Ignore detected yat2m, use local one.  Use EXEEXT
+in YAT2M_DEP rather than explicit '.exe' based on HAVE_W32_SYSTEM.
+--
+
+Analysis for the problem on Cygwin when YAT2M_DEP does lack EXEEXT:
+* make has a default rule to create 'yat2m' from 'yat2m.c' (uses CC)
+* gcc transparently adds '.exe' when creating executables for Cygwin
+* 'yat2m.exe' created from default rule does perfectly work
+* automake generates the 'yat2m$(EXEEXT)' Makefile target (uses libtool)
+* with EXEEXT=.exe, Makefile has both targets 'yat2m' and 'yat2m.exe'
+* parallel make does execute commands for both targets in parallel
+* both targets really create 'yat2m.exe', overwriting each other...
+---
+ doc/Makefile.am | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
+
+diff --git a/doc/Makefile.am b/doc/Makefile.am
+index 6f3e5a1..3fff0a6 100644
+--- a/doc/Makefile.am
++++ b/doc/Makefile.am
+#@@ -37,26 +37,21 @@ myman_pages   = gpg-error-config.1
+ 
+ man_MANS = $(myman_pages)
+ 
++if CROSS_COMPILING
+ if HAVE_YAT2M
+ YAT2M_CMD = $(YAT2M)
+-YAT2M_DEP = $(YAT2M)
++YAT2M_DEP =
+ else
+-if CROSS_COMPILING
+ YAT2M_CMD = ./yat2m-for-build
+ YAT2M_DEP = yat2m-for-build
+ CLEANFILES += yat2m-for-build
+ 
+ yat2m-for-build: yat2m.c
+ 	$(CC_FOR_BUILD) -o $@ $(srcdir)/yat2m.c
+-else
+-if HAVE_W32_SYSTEM
+-YAT2M_CMD = ./yat2m.exe
+-YAT2M_DEP = yat2m.exe
+-else
+-YAT2M_CMD = ./yat2m
+-YAT2M_DEP = yat2m
+-endif
+ endif
++else
++YAT2M_CMD = ./yat2m$(EXEEXT)
++YAT2M_DEP = yat2m$(EXEEXT)
+ endif
+ 
+ yat2m-stamp: $(myman_sources) $(srcdir)/version.texi
+-- 
+2.16.1
+
+@@ -37,21 +37,21 @@
+ 
+ man_MANS = $(myman_pages)
+ 
++if CROSS_COMPILING
+ if HAVE_YAT2M
+ YAT2M_CMD = $(YAT2M)
+ YAT2M_DEP = $(YAT2M)
+ else
+-if CROSS_COMPILING
+ YAT2M_CMD = ./yat2m-for-build
+ YAT2M_DEP = yat2m-for-build
+ CLEANFILES += yat2m-for-build
+ 
+ yat2m-for-build$(EXEEXT): yat2m.c
+ 	$(CC_FOR_BUILD) -o $@ $(srcdir)/yat2m.c
+-else
+-YAT2M_CMD = ./yat2m
+-YAT2M_DEP = yat2m
+ endif
++else
++YAT2M_CMD = ./yat2m$(EXEEXT)
++YAT2M_DEP = yat2m$(EXEEXT)
+ endif
+ 
+ yat2m-stamp: $(myman_sources)
