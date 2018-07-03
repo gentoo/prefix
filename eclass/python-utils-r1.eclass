@@ -388,36 +388,24 @@ python_export() {
 			PYTHON)
 				export PYTHON=${EPREFIX}/usr/bin/${impl}
 				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
-				&& [[ ! -x ${PYTHON} ]] \
-				&& use prefix-chain; then
-					# Need to search in parent prefixes
-					local parent
-					local parents=()
-					IFS=: eval 'parents=(${PORTAGE_READONLY_EPREFIXES})'
-					for parent in "${parents[@]}"; do
-						if [[ -x ${parent}/usr/bin/${impl} ]]; then
-							PYTHON=${parent}/usr/bin/${impl}
-							break
-						fi
-					done
+				&& [[ ! -x ${EPREFIX}/usr/bin/${impl} ]] \
+				&& has stacked-prefix ${FEATURES}; then
+					# Need to look in build prefix
+					if [[ -x ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/bin/${impl} ]]; then
+						PYTHON=${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/bin/${impl}
+					fi
 				fi
 				debug-print "${FUNCNAME}: PYTHON = ${PYTHON}"
 				;;
 			PYTHON_EPREFIX)
 				export PYTHON_EPREFIX=${EPREFIX}
 				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
-				&& [[ ! -x ${PYTHON_EPREFIX}/usr/bin/${impl} ]] \
-				&& use prefix-chain; then
-					# Need to search in parent prefixes
-					local parent
-					local parents=()
-					IFS=: eval 'parents=(${PORTAGE_READONLY_EPREFIXES})'
-					for parent in "${parents[@]}"; do
-						if [[ -x ${parent}/usr/bin/${impl} ]]; then
-							PYTHON_EPREFIX=${parent}
-							break
-						fi
-					done
+				&& [[ ! -x ${EPREFIX}/usr/bin/${impl} ]] \
+				&& has stacked-prefix ${FEATURES}; then
+					# Need to look in build prefix
+					if [[ -x ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/bin/${impl} ]]; then
+						PYTHON_EPREFIX=${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}
+					fi
 				fi
 				debug-print "${FUNCNAME}: PYTHON_EPREFIX = ${PYTHON_EPREFIX}"
 				;;
@@ -531,18 +519,12 @@ python_export() {
 				local dir
 				export PYTHON_SCRIPTDIR=${EPREFIX}/usr/lib/python-exec/${impl}
 				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
-				&& [[ ! -d ${PYTHON_SCRIPTDIR} ]] \
-				&& use prefix-chain; then
-					# Need to search in parent prefixes
-					local parent
-					local parents=()
-					IFS=: eval 'parents=(${PORTAGE_READONLY_EPREFIXES})'
-					for parent in "${parents[@]}"; do
-						if [[ -e ${parent}/usr/lib/python-exec/${impl} ]]; then
-							PYTHON_SCRIPTDIR=${parent}/usr/lib/python-exec/${impl}
-							break
-						fi
-					done
+				&& [[ ! -x ${EPREFIX}/usr/bin/${impl} ]] \
+				&& has stacked-prefix ${FEATURES}; then
+					# Need to look in build prefix
+					if [[ -x ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/bin/${impl} ]]; then
+						PYTHON_SCRIPTDIR=${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/lib/python-exec/${impl}
+					fi
 				fi
 				debug-print "${FUNCNAME}: PYTHON_SCRIPTDIR = ${PYTHON_SCRIPTDIR}"
 				;;
