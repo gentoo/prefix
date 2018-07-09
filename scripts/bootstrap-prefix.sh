@@ -1648,14 +1648,14 @@ bootstrap_stage3() {
 
 	# GCC sometimes decides that it needs to run makeinfo to update some
 	# info pages from .texi files.  Obviously we don't care at this
-	# stage and rather have it continue instead of abort the build
+	# stage and rather have it continue instead of aborting the build
 	[[ -x "${ROOT}"/usr/bin/makeinfo ]] || cat > "${ROOT}"/usr/bin/makeinfo <<-EOF
 		#!${ROOT}/bin/bash
 		echo "makeinfo GNU texinfo 4.13"
 		for a in \$@; do
 		case \$a in
 		--*) f=\$(echo "\$a" | sed -r 's,--.*=(.*),\1,') ;;
-		-*) ;;
+		-*) continue ;;
 		*) f=\$a ;;
 		esac
 		[[ -e \$f ]] || touch \$f
