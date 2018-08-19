@@ -2561,6 +2561,7 @@ EOF
 	# deal with the bash-constructs we use in stage3 and onwards
 	hash -r
 
+	local https_needed=no
 	if ! [[ -e ${EPREFIX}/.stage2-finished ]] \
 		&& ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2_log ; then
 		# stage 2 fail
@@ -2573,14 +2574,23 @@ EOF
 		for log in "${EPREFIX}"{/tmp,}/var/tmp/portage/*/*/temp/build.log ; do
 			[[ -e ${log} ]] || continue
 			echo "  ${log}"
+			grep -q "HTTPS support not compiled in" "${log}" && https_needed=yes
 		done
 		[[ -e ${log} ]] || echo "  (no build logs found?!?)"
+		if [[ ${https_needed} == "yes" ]] ; then
+			cat << EOF
+It seems one of your logs indicates a download problem due to missing
+HTTPS support.  If this appears to be the problem for real, you can work
+around this for now by downloading the file manually and placing it in
+  "${EPREFIX}"/usr/portage/distfiles
+I will find it when you run me again.  If this is NOT the problem, then
+EOF
+		fi
 		cat << EOF
 I have no clue, really.  Please find friendly folks in #gentoo-prefix on
 irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
-at bugs.gentoo.org under Gentoo/Alt, Prefix Support. I am defeated.
-I am of no use here any more.
-Maybe you can find some clues in ${EPREFIX}/stage2.log
+at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
+Remember you might find some clues in ${EPREFIX}/stage2.log
 EOF
 		exit 1
 	fi
@@ -2601,8 +2611,18 @@ EOF
 		for log in "${EPREFIX}"{/tmp,}/var/tmp/portage/*/*/temp/build.log ; do
 			[[ -e ${log} ]] || continue
 			echo "  ${log}"
+			grep -q "HTTPS support not compiled in" "${log}" && https_needed=yes
 		done
 		[[ -e ${log} ]] || echo "  (no build logs found?!?)"
+		if [[ ${https_needed} == "yes" ]] ; then
+			cat << EOF
+It seems one of your logs indicates a download problem due to missing
+HTTPS support.  If this appears to be the problem for real, you can work
+around this for now by downloading the file manually and placing it in
+  "${EPREFIX}"/usr/portage/distfiles
+I will find it when you run me again.  If this is NOT the problem, then
+EOF
+		fi
 		cat << EOF
 I have no clue, really.  Please find friendly folks in #gentoo-prefix on
 irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
