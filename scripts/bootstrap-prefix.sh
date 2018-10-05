@@ -832,7 +832,8 @@ bootstrap_python() {
 	case $CHOST in
 		*-*-aix*)
 			# TODO: freebsd 10 also seems to need this
-			A=Python-${PV}.tar.bz2 # patched one breaks
+			PV=2.7.15
+			A=Python-${PV}.tar.xz # patched one breaks
 			patch=true
 		;;
 		*)
@@ -852,7 +853,12 @@ bootstrap_python() {
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}"/${A} | tar -xf - || return 1
+	case ${A} in
+	*bz2) bzip2 -dc "${DISTDIR}"/${A} | tar -xf - ;;
+	*xz) xz -dc "${DISTDIR}"/${A} | tar -xf - ;;
+	*) einfo "Don't know to unpack ${A}" ;;
+	esac
+	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/Python-${PV}
 	cd "${S}"
 	rm -rf Modules/_ctypes/libffi* || return 1
@@ -861,7 +867,7 @@ bootstrap_python() {
 	if ${patch}; then
 		# This patch is critical and needs to be applied even
 		# when using the otherwise unpatched sources.
-		efetch "http://dev.gentoo.org/~redlizard/distfiles/02_all_disable_modules_and_ssl.patch"
+		efetch "http://dev.gentoo.org/~haubi/distfiles/02_all_disable_modules_and_ssl.patch"
 		patch -p0 < "${DISTDIR}"/02_all_disable_modules_and_ssl.patch
 	fi
 
