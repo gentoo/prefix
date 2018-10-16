@@ -1,13 +1,13 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 ESVN_REPO_URI="http://llvm.org/svn/llvm-project/libcxx/trunk"
 
 [ "${PV%9999}" != "${PV}" ] && SCM="subversion" || SCM=""
 
-inherit ${SCM} flag-o-matic toolchain-funcs multilib multilib-minimal
+inherit ${SCM} flag-o-matic toolchain-funcs multilib multilib-minimal epatch
 
 DESCRIPTION="New implementation of the C++ standard library, targeting C++11"
 HOMEPAGE="http://libcxx.llvm.org/"
@@ -103,6 +103,8 @@ src_prepare() {
 			-e "s,/usr/lib/libc++\.1\.dylib,${EPREFIX}/usr/lib/libc++.1.dylib,g" \
 			lib/buildit
 	fi
+
+	eapply_user
 
 	multilib_copy_sources
 }
