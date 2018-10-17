@@ -7,7 +7,7 @@ inherit flag-o-matic
 
 S="${WORKDIR}/${P}.src"
 
-inherit eutils
+inherit eutils epatch
 
 DESCRIPTION="New implementation of low level support for a standard C++ library"
 HOMEPAGE="http://libcxxabi.llvm.org/"
@@ -65,6 +65,8 @@ src_prepare() {
 
 	sed -i -e "s,/usr/lib/libc++abi\.dylib,${EPREFIX}/usr/lib/libc++abi.dylib,g" \
 		lib/buildit
+
+	eapply_user
 }
 
 src_compile() {

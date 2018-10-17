@@ -1,13 +1,13 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 inherit flag-o-matic
 
 S="${WORKDIR}/${P}.src"
 
-inherit eutils
+inherit eutils epatch
 
 DESCRIPTION="New implementation of low level support for a standard C++ library"
 HOMEPAGE="http://libcxxabi.llvm.org/"
@@ -69,6 +69,8 @@ src_prepare() {
 
 	sed -i -e "s,/usr/lib/libc++abi\.dylib,${EPREFIX}/usr/lib/libc++abi.dylib,g" \
 		lib/buildit
+
+	eapply_user
 }
 
 src_compile() {
