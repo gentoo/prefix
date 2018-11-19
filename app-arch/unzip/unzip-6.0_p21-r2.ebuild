@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 
 inherit eutils toolchain-funcs flag-o-matic
 
@@ -27,14 +27,12 @@ S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	local deb="${WORKDIR}"/debian/patches
-	rm \
-		"${deb}"/series \
-		"${deb}"/02-branding-patch-this-is-debian-unzip \
-		|| die
-	epatch "${deb}"/*
+	rm "${deb}"/02-this-is-debian-unzip.patch || die
+	eapply "${deb}"/*.patch
 
-	epatch "${FILESDIR}"/${PN}-6.0-no-exec-stack.patch
-	use natspec && epatch "${FILESDIR}/${PN}-6.0-natspec.patch" #275244
+	eapply "${FILESDIR}"/${PN}-6.0-no-exec-stack.patch
+	eapply "${FILESDIR}"/${PN}-6.0-format-security.patch
+	use natspec && eapply "${FILESDIR}/${PN}-6.0-natspec.patch" #275244
 	sed -i -r \
 		-e '/^CFLAGS/d' \
 		-e '/CFLAGS/s:-O[0-9]?:$(CFLAGS) $(CPPFLAGS):' \
@@ -54,7 +52,7 @@ src_prepare() {
 	# Delete bundled code to make sure we don't use it.
 	rm -r bzip2 || die
 
-	epatch_user
+	eapply_user
 }
 
 src_configure() {
@@ -75,7 +73,7 @@ src_configure() {
 
 	[[ ${CHOST} == *linux* ]] && append-cppflags -DNO_LCHMOD
 	use bzip2 && append-cppflags -DUSE_BZIP2
-	use unicode && append-cppflags -DUNICODE_SUPPORT -DUNICODE_WCHAR -DUTF8_MAYBE_NATIVE
+	use unicode && append-cppflags -DUNICODE_SUPPORT -DUNICODE_WCHAR -DUTF8_MAYBE_NATIVE -DUSE_ICONV_MAPPING
 	append-cppflags -DLARGE_FILE_SUPPORT #281473
 }
 
