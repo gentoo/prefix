@@ -1,16 +1,16 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 # XXX: atm, libbz2.a is always PIC :(, so it is always built quickly
 #      (since we're building shared libs) ...
 
-EAPI=5
+EAPI=6
 
-inherit eutils toolchain-funcs multilib multilib-minimal prefix
+inherit toolchain-funcs multilib-minimal prefix
 
 DESCRIPTION="A high-quality data compressor used extensively by Gentoo Linux"
-HOMEPAGE="http://www.bzip.org/"
-SRC_URI="http://www.bzip.org/${PV}/${P}.tar.gz"
+HOMEPAGE="https://sourceware.org/bzip2/"
+SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="BZIP2"
 SLOT="0/1" # subslot = SONAME
@@ -27,13 +27,16 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-1.0.6-mingw.patch #393573
 	"${FILESDIR}"/${PN}-1.0.6-out-of-tree-build.patch
 	"${FILESDIR}"/${PN}-1.0.6-CVE-2016-3189.patch #620466
+	"${FILESDIR}"/${PN}-1.0.6-ubsan-error.patch
 
 	"${FILESDIR}"/${PN}-1.0.6-r7-checkenv.patch # for AIX, Darwin?
-	"${FILESDIR}"/${PN}-1.0.6-prefix.patch
 )
 
+DOCS=( CHANGES README{,.COMPILATION.PROBLEMS,.XML.STUFF} manual.pdf )
+HTML_DOCS=( manual.html )
+
 src_prepare() {
-	epatch "${PATCHES[@]}"
+	default
 
 	# - Use right man path
 	# - Generate symlinks instead of hardlinks
@@ -44,7 +47,7 @@ src_prepare() {
 		-e 's:$(PREFIX)/lib:$(PREFIX)/$(LIBDIR):g' \
 		Makefile || die
 
-	eprefixify bz{diff,grep,more}
+	hprefixify -w "/^PATH=/" bz{diff,grep,more}
 	# this a makefile for Darwin, which already "includes" saneso
 	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
 
@@ -148,8 +151,7 @@ multilib_src_install_all() {
 		dosym bzgrep.1 /usr/share/man/man1/${x}.1
 	done
 
-	dodoc README* CHANGES manual.pdf
-	dohtml manual.html
+	einstalldocs
 
 	# move "important" bzip2 binaries to /bin and use the shared libbz2.so
 	dosym bzip2 /bin/bzcat
