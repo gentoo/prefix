@@ -69,3 +69,9 @@ src_configure() {
 	)
 	econf "${myconf[@]}"
 }
+
+src_install() {
+	default
+	# don't want charset.alias, installed by libiconv
+	rm -f "${ED}"/lib/charset.alias
+}
