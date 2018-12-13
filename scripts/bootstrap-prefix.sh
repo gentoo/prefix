@@ -1567,6 +1567,9 @@ bootstrap_stage2() {
 		echo "sys-apps/help2man -nls"
 		# avoid hefty set of deps from glib
 		echo "dev-util/pkgconfig internal-glib"
+		# libffi-3.0_rc0 has broken Solaris ld support, which we still
+		# use at this stage (host compiler)
+		[[ ${CHOST} == *-solaris* ]] && echo "=dev-libs/libffi-3.3_rc0"
 	} >> "${ROOT}"/tmp/etc/portage/package.use
 
 	for pkg in ${compiler_stage1} ; do
