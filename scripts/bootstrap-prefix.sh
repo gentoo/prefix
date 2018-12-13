@@ -1543,16 +1543,14 @@ bootstrap_stage2() {
 		sys-devel/binutils-config
 	)
 
-	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
-	
-	# Debian multiarch supported by RAP needs ld to support sysroot.
-	EXTRA_ECONF=$(rapx --with-sysroot=/) \
-	emerge_pkgs --nodeps ${linker} || return 1
-
 	# Old versions of gcc has been masked.  We need gcc-4.7 to bootstrap
 	# on systems without a c++ compiler.
 	echo '<sys-devel/gcc-4.8' >> "${ROOT}"/tmp/etc/portage/package.unmask
-	
+
+	# libffi-3.0_rc0 has broken Solaris ld support, which we still
+	# use at this stage (host compiler)
+	[[ ${CHOST} == *-solaris* ]] && echo "=dev-libs/libffi-3.3_rc0" \
+		>> "${ROOT}"/tmp/etc/portage/package.mask
 
 	# kill some dependencies here while we're still fragile
 	{
@@ -1567,10 +1565,13 @@ bootstrap_stage2() {
 		echo "sys-apps/help2man -nls"
 		# avoid hefty set of deps from glib
 		echo "dev-util/pkgconfig internal-glib"
-		# libffi-3.0_rc0 has broken Solaris ld support, which we still
-		# use at this stage (host compiler)
-		[[ ${CHOST} == *-solaris* ]] && echo "=dev-libs/libffi-3.3_rc0"
 	} >> "${ROOT}"/tmp/etc/portage/package.use
+
+	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+
+	# Debian multiarch supported by RAP needs ld to support sysroot.
+	EXTRA_ECONF=$(rapx --with-sysroot=/) \
+	emerge_pkgs --nodeps ${linker} || return 1
 
 	for pkg in ${compiler_stage1} ; do
 		# <glibc-2.5 does not understand .gnu.hash, use
