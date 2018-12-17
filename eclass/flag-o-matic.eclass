@@ -34,6 +34,9 @@ setup-allowed-flags() {
 
 		# CPPFLAGS and LDFLAGS
 		'-[DUILR]*' '-Wl,*'
+
+		# Linker choice flag
+		'-fuse-ld'
 	)
 
 	# allow a bunch of flags that negate features / control ABI
@@ -595,11 +598,6 @@ get-flag() {
 	return 1
 }
 
-# @FUNCTION: has_m64
-# @DESCRIPTION:
-# This doesn't test if the flag is accepted, it tests if the flag actually
-# WORKS. Non-multilib gcc will take both -m32 and -m64. If the flag works
-# return code is 0, else the return code is 1.
 has_m64() {
 	die "${FUNCNAME}: don't use this anymore"
 }
