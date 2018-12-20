@@ -1137,7 +1137,7 @@ bootstrap_tar() {
 
 bootstrap_make() {
 	MAKEOPTS= # no GNU make yet
-	bootstrap_gnu make 3.82
+	bootstrap_gnu make 4.2.1
 	if [[ ${MAKE} == gmake ]] ; then
 		# make make available as gmake
 		( cd ${ROOT}/tmp/usr/bin && ln -s make gmake )
@@ -1270,7 +1270,7 @@ bootstrap_stage1() {
 	# packages following (e.g. zlib builds 64-bits)
 
 	# don't rely on $MAKE, if make == gmake packages that call 'make' fail
-	[[ $(make --version 2>&1) == *GNU* ]] || (bootstrap_make) || return 1
+	[[ $(make --version 2>&1) == *GNU" Make "4* ]] || (bootstrap_make) || return 1
 	[[ ${OFFLINE_MODE} ]] || type -P wget > /dev/null || (bootstrap_wget) || return 1
 	[[ $(sed --version 2>&1) == *GNU* ]] || (bootstrap_sed) || return 1
 	[[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] || (bootstrap_m4) || return 1
