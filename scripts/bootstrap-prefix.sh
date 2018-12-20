@@ -669,6 +669,10 @@ bootstrap_portage() {
 	rm -f "${ROOT}"/tmp/usr/lib/portage/bin/ebuild-helpers/sed
 
 	[[ -e "${ROOT}"/tmp/usr/portage ]] || ln -s "${PORTDIR}" "${ROOT}"/tmp/usr/portage
+	for d in "${ROOT}"/tmp/usr/lib/python?.?; do
+		[[ -e ${d}/portage ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/pym/portage ${d}/portage
+		[[ -e ${d}/_emerge ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/pym/_emerge ${d}/_emerge
+	done
 
 	if [[ -s ${PORTDIR}/profiles/repo_name ]]; then
 		# sync portage's repos.conf with the tree being used
@@ -1463,7 +1467,6 @@ do_emerge_pkgs() {
 			PORTAGE_CONFIGROOT="${EPREFIX}" \
 			PORTAGE_SYNC_STALE=0 \
 			FEATURES="-news ${FEATURES}" \
-			PYTHONPATH="${ROOT}"/tmp/usr/lib/portage/pym \
 			USE="${myuse[*]}" \
 			emerge -v --oneshot --root-deps ${opts} "${pkg}" 
 		)
