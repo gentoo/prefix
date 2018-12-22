@@ -1827,6 +1827,7 @@ bootstrap_stage3() {
 	# we need to lift our mask for that. (USE=ssl)
 	pkgs=(
 		virtual/os-headers
+		sys-devel/gettext
 		sys-apps/portage
 	)
 	USE="ssl" \
