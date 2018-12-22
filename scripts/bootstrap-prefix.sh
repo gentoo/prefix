@@ -1664,9 +1664,17 @@ bootstrap_stage3() {
 		# stage3 tools should be used first.
 		# PORTAGE_TMPDIR, EMERGE_LOG_DIR, FEATURES=force-prefix are
 		# needed with host portage.
+		#
+		# After the introduction of EAPI-7, eclasses now
+		# strictly distinguish between build dependencies that
+		# are binary compatible with the native build system
+		# (CBUILD, BDEPEND) and with the system being built
+		# (CHOST, RDEPEND).  To correctly bootstrap stage3,
+		# PORTAGE_OVERRIDE_EPREFIX as BROOT is needed.
 		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{10,9,8,7,6,5}/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
-		FEATURES="${FEATURES} force-prefix stacked-prefix" \
+		PORTAGE_OVERRIDE_EPREFIX="$(rapx "${ROOT}" "${ROOT}/tmp")" \
+		FEATURES="${FEATURES} force-prefix $(rapx "" stacked-prefix)" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
 		do_emerge_pkgs "$@"
 	}
@@ -1690,6 +1698,13 @@ bootstrap_stage3() {
 	export INSTALL_INFO="${ROOT}"/usr/bin/makeinfo
 
 	if is-rap ; then
+		# Bug 655414. Copy portage global config from stage2
+		# to stage3.
+		if [[ ! -d "${ROOT}"/usr/share/portage ]]; then
+			mkdir -p "${ROOT}"/usr/share
+			cp -a "${ROOT}"{/tmp,}/usr/share/portage
+		fi
+
 		# We need ${ROOT}/usr/bin/perl to merge glibc.
 		if [[ ! -x "${ROOT}"/usr/bin/perl ]]; then
 			# trick "perl -V:apiversion" check of glibc-2.19.
