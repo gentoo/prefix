@@ -627,6 +627,11 @@ bootstrap_portage() {
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
+	# https://github.com/gentoo/portage/pull/389
+	sed -e 's,\${PORTAGE_OVERRIDE_EPREFIX}/usr/lib\*/portage/\*,\*/portage/\*/ebuild-helpers\*,' \
+		-i bin/ebuild-helpers/portageq || \
+		return 1
+
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
 		-i pym/_emerge/AbstractEbuildProcess.py || \
