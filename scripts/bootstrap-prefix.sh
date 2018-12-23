@@ -543,6 +543,15 @@ bootstrap_tree() {
 	else
 		do_tree http://dev.gentoo.org/~grobian/distfiles prefix-overlay-${PV}.tar.bz2
 	fi
+	local ret=$?
+	if [[ -n ${TREE_FROM_SRC} ]]; then
+		rsync -av --delete \
+			--exclude=.unpacked \
+			--exclude=distfiles \
+			--exclude=snapshots \
+			"${TREE_FROM_SRC}"/ "${PORTDIR}"/
+	fi
+	return $ret
 }
 
 bootstrap_startscript() {
