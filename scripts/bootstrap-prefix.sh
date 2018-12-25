@@ -611,118 +611,6 @@ prepare_portage() {
 	mkdir -p "${ROOT}"/bin/. "${ROOT}"/var/log
 	[[ -x ${ROOT}/bin/bash ]] || ln -s "${ROOT}"{/tmp,}/bin/bash || return 1
 	[[ -x ${ROOT}/bin/sh ]] || ln -s bash "${ROOT}"/bin/sh || return 1
-
-	# remove me after Bug 585986
-	mkdir -p "${ROOT}"/etc/portage/patches/sys-apps/portage-2.3.52
-	cat > "${ROOT}"/etc/portage/patches/sys-apps/portage-2.3.52/path.patch <<EOP
-From 1b5edbb5ec70f1ae95b8f538a02037bb9a1ded9f Mon Sep 17 00:00:00 2001
-From: Benda Xu <heroxbd@gentoo.org>
-Date: Thu, 13 Dec 2018 16:53:16 +0800
-Subject: _doebuild_path: do not use host PATH by default and prepend EPREFIX
- PATH.
-
-  EPREFIX could be overridden in cross-eprefix, in that case tools
-  inside EPREFIX should be prioritized.
-
-  Link necessary binary tools to the test environment.
-
-Bug: https://bugs.gentoo.org/585986
-Closes: https://github.com/gentoo/portage/pull/387
-Signed-off-by: Zac Medico <zmedico@gentoo.org>
----
- lib/portage/package/ebuild/doebuild.py           |  9 ++++---
- lib/portage/tests/resolver/ResolverPlayground.py | 34 ++++++++++++++++++++++++
- 2 files changed, 39 insertions(+), 4 deletions(-)
-
-diff --git a/lib/portage/package/ebuild/doebuild.py b/lib/portage/package/ebuild/doebuild.py
-index 5da9c9503..47c69967c 100644
---- a/lib/portage/package/ebuild/doebuild.py
-+++ b/lib/portage/package/ebuild/doebuild.py
-@@ -211,7 +211,6 @@ def _doebuild_path(settings, eapi=None):
- 	if portage_bin_path[0] != portage.const.PORTAGE_BIN_PATH:
- 		# Add a fallback path for restarting failed builds (bug 547086)
- 		portage_bin_path.append(portage.const.PORTAGE_BIN_PATH)
--	eprefix = portage.const.EPREFIX
- 	prerootpath = [x for x in settings.get("PREROOTPATH", "").split(":") if x]
- 	rootpath = [x for x in settings.get("ROOTPATH", "").split(":") if x]
- 	rootpath_set = frozenset(rootpath)
-@@ -219,9 +218,10 @@ def _doebuild_path(settings, eapi=None):
- 		"__PORTAGE_TEST_PATH_OVERRIDE", "").split(":") if x]
- 
- 	prefixes = []
--	if eprefix:
--		prefixes.append(eprefix)
--	prefixes.append("/")
-+	# settings["EPREFIX"] should take priority over portage.const.EPREFIX
-+	if portage.const.EPREFIX != settings["EPREFIX"] and settings["ROOT"] == os.sep:
-+		prefixes.append(settings["EPREFIX"])
-+	prefixes.append(portage.const.EPREFIX)
- 
- 	path = overrides
- 
-@@ -245,6 +245,7 @@ def _doebuild_path(settings, eapi=None):
- 	path.extend(prerootpath)
- 
- 	for prefix in prefixes:
-+		prefix = prefix if prefix else "/"
- 		for x in ("usr/local/sbin", "usr/local/bin", "usr/sbin", "usr/bin", "sbin", "bin"):
- 			# Respect order defined in ROOTPATH
- 			x_abs = os.path.join(prefix, x)
-diff --git a/lib/portage/tests/resolver/ResolverPlayground.py b/lib/portage/tests/resolver/ResolverPlayground.py
-index e2e061669..3997ad26e 100644
---- a/lib/portage/tests/resolver/ResolverPlayground.py
-+++ b/lib/portage/tests/resolver/ResolverPlayground.py
-@@ -10,6 +10,7 @@ from portage import os
- from portage import shutil
- from portage.const import (GLOBAL_CONFIG_PATH, PORTAGE_BASE_PATH,
- 	USER_CONFIG_PATH)
-+from portage.process import find_binary
- from portage.dep import Atom, _repo_separator
- from portage.package.ebuild.config import config
- from portage.package.ebuild.digestgen import digestgen
-@@ -76,6 +77,39 @@ class ResolverPlayground(object):
- 		self.debug = debug
- 		if eprefix is None:
- 			self.eprefix = normalize_path(tempfile.mkdtemp())
-+
-+			# EPREFIX/bin is used by fake true_binaries. Real binaries goes into EPREFIX/usr/bin
-+			eubin = os.path.join(self.eprefix, "usr", "bin")
-+			ensure_dirs(eubin)
-+			essential_binaries = (
-+				"awk",
-+				"basename",
-+				"bzip2",
-+				"cat",
-+				"chmod",
-+				"chown",
-+				"cp",
-+				"egrep",
-+				"env",
-+				"find",
-+				"grep",
-+				"head",
-+				"install",
-+				"ln",
-+				"mkdir",
-+				"mktemp",
-+				"mv",
-+				"rm",
-+				"sed",
-+				"sort",
-+				"tar",
-+				"tr",
-+				"uname",
-+				"uniq",
-+				"xargs",
-+			)
-+			for x in essential_binaries:
-+				os.symlink(find_binary(x), os.path.join(eubin, x))
- 		else:
- 			self.eprefix = normalize_path(eprefix)
- 
--- 
-cgit v1.2.1
-EOP
 }
 
 bootstrap_portage() {
@@ -730,8 +618,8 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
-	STABLE_PV="2.3.40.3"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.40.3"
+	STABLE_PV="2.3.52.2"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.52.2"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
@@ -748,14 +636,9 @@ bootstrap_portage() {
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
-	# https://github.com/gentoo/portage/pull/389
-	sed -e 's,\${PORTAGE_OVERRIDE_EPREFIX}/usr/lib\*/portage/\*,\*/portage/\*/ebuild-helpers\*,' \
-		-i bin/ebuild-helpers/portageq || \
-		return 1
-
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
-		-i pym/_emerge/AbstractEbuildProcess.py || \
+		-i lib/_emerge/AbstractEbuildProcess.py || \
 		return 1
 
 	# host-provided wget may lack certificates, stage1 wget is without ssl
@@ -796,8 +679,8 @@ bootstrap_portage() {
 
 	[[ -e "${ROOT}"/tmp/usr/portage ]] || ln -s "${PORTDIR}" "${ROOT}"/tmp/usr/portage
 	for d in "${ROOT}"/tmp/usr/lib/python?.?; do
-		[[ -e ${d}/portage ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/pym/portage ${d}/portage
-		[[ -e ${d}/_emerge ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/pym/_emerge ${d}/_emerge
+		[[ -e ${d}/portage ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/portage ${d}/portage
+		[[ -e ${d}/_emerge ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/_emerge ${d}/_emerge
 	done
 
 	if [[ -s ${PORTDIR}/profiles/repo_name ]]; then
