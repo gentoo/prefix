@@ -4,8 +4,8 @@
   on pure luck that it is defined in one of the includes, just use the
   function that was made for this purpose of retrieving the value.
 
---- examples/rlfe/pty.c
-+++ examples/rlfe/pty.c
+--- a/examples/rlfe/pty.c
++++ b/examples/rlfe/pty.c
 @@ -70,7 +70,7 @@
  # undef HAVE_SVR4_PTYS
  #endif

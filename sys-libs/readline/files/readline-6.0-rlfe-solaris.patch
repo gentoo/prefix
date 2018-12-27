@@ -1,8 +1,8 @@
 <grobian@gentoo.org>:
 * Panic is just used, but never defined or included (at least not on Solaris)
 
---- examples/rlfe/pty.c
-+++ examples/rlfe/pty.c
+--- a/examples/rlfe/pty.c
++++ b/examples/rlfe/pty.c
 @@ -54,6 +54,11 @@
  # include <sys/sysmacros.h>
  #endif /* sgi */

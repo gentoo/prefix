@@ -1,0 +1,215 @@
+# Copyright 1999-2018 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=6
+
+inherit flag-o-matic multilib-minimal toolchain-funcs libtool ltprune
+
+# Official patches
+# See ftp://ftp.cwru.edu/pub/bash/readline-7.0-patches/
+PLEVEL="${PV##*_p}"
+MY_PV="${PV/_p*}"
+MY_PV="${MY_PV/_/-}"
+MY_P="${PN}-${MY_PV}"
+[[ ${PV} != *_p* ]] && PLEVEL=0
+patches() {
+	[[ ${PLEVEL} -eq 0 ]] && return 1
+	local opt=$1
+	eval set -- {1..${PLEVEL}}
+	set -- $(printf "${PN}${MY_PV/\.}-%03d " "$@")
+	if [[ ${opt} == -s ]] ; then
+		echo "${@/#/${DISTDIR}/}"
+	else
+		local u
+		for u in ftp://ftp.cwru.edu/pub/bash mirror://gnu/${PN} ; do
+			printf "${u}/${PN}-${MY_PV}-patches/%s " "$@"
+		done
+	fi
+}
+
+DESCRIPTION="Another cute console display library"
+HOMEPAGE="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html"
+
+case ${PV} in
+	*_alpha*|*_beta*|*_rc*)
+		SRC_URI+=" ftp://ftp.cwru.edu/pub/bash/${MY_P}.tar.gz"
+	;;
+	*)
+		SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz $(patches)"
+	;;
+esac
+
+HOSTLTV="0.1.0"
+HOSTLT="host-libtool-${HOSTLTV}"
+HOSTLT_URI="https://github.com/haubi/host-libtool/releases/download/v${HOSTLTV}/${HOSTLT}.tar.gz"
+SRC_URI+=" ${HOSTLT_URI}"
+HOSTLT_S=${WORKDIR}/${HOSTLT}
+
+LICENSE="GPL-3"
+SLOT="0/7"  # subslot matches SONAME major
+KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="static-libs utils"
+
+RDEPEND=">=sys-libs/ncurses-5.9-r3:0=[static-libs?,${MULTILIB_USEDEP}]"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig"
+
+S=${WORKDIR}/${MY_P}
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-5.0-no_rpath.patch
+	"${FILESDIR}"/${PN}-6.2-rlfe-tgoto.patch #385091
+	"${FILESDIR}"/${PN}-7.0-headers.patch
+	"${FILESDIR}"/${PN}-7.0-missing-echo-proto.patch
+	"${FILESDIR}"/${PN}-7.0-mingw.patch
+
+	"${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
+	"${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
+	"${FILESDIR}"/${PN}-5.2-ia64hpux.patch
+	"${FILESDIR}"/${PN}-6.0-mint.patch
+	"${FILESDIR}"/${PN}-6.0-rlfe-solaris.patch
+	"${FILESDIR}"/${PN}-6.1-aix-soname.patch
+	"${FILESDIR}"/${PN}-6.1-aix-expfull.patch
+	"${FILESDIR}"/${PN}-6.3-interix.patch
+	"${FILESDIR}"/${PN}-6.3-darwin-shlib-versioning.patch
+
+	"${FILESDIR}"/${PN}-7.0-libtool.patch # this enables building via libtool
+)
+
+# Needed because we don't want the patches being unpacked
+# (which emits annoying and useless error messages)
+src_unpack() {
+	unpack ${HOSTLT}.tar.gz
+	S="${HOSTLT_S}" elibtoolize
+	unpack ${MY_P}.tar.gz
+}
+
+src_prepare() {
+	[[ ${PLEVEL} -gt 0 ]] && eapply -p0 $(patches -s)
+	default
+
+	# Force ncurses linking. #71420
+	# Use pkg-config to get the right values. #457558
+	local ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
+	sed -i \
+		-e "/^SHLIB_LIBS=/s:=.*:='${ncurses_libs}':" \
+		support/shobj-conf || die
+	sed -i \
+		-e "/^[[:space:]]*LIBS=.-lncurses/s:-lncurses:${ncurses_libs}:" \
+		examples/rlfe/configure || die
+
+	# fix building under Gentoo/FreeBSD; upstream FreeBSD deprecated
+	# objformat for years, so we don't want to rely on that.
+	sed -i -e '/objformat/s:if .*; then:if true; then:' support/shobj-conf || die
+
+	ln -s ../.. examples/rlfe/readline || die # for local readline headers
+}
+
+src_configure() {
+	mkdir -p "${WORKDIR}/${HOSTLT}-${ABI}" || die
+	cd "${WORKDIR}/${HOSTLT}-${ABI}" || die
+	ECONF_SOURCE="${HOSTLT_S}" econf $(use_enable static-libs static)
+	cd "${BUILD_DIR}"
+
+	export PATH="${WORKDIR}/${HOSTLT}-${ABI}:${PATH}"
+	export ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
+
+	# fix implicit decls with widechar funcs
+	append-cppflags -D_GNU_SOURCE
+	# https://lists.gnu.org/archive/html/bug-readline/2010-07/msg00013.html
+	append-cppflags -Dxrealloc=_rl_realloc -Dxmalloc=_rl_malloc -Dxfree=_rl_free
+
+	# Make sure configure picks a better ar than `ar`. #484866
+	export ac_cv_prog_AR=$(tc-getAR)
+
+	# Force the test since we used sed above to force it.
+	export bash_cv_termcap_lib=ncurses
+
+	# Control cross-compiling cases when we know the right answer.
+	# In cases where the C library doesn't support wide characters, readline
+	# itself won't work correctly, so forcing the answer below should be OK.
+	if tc-is-cross-compiler ; then
+		use kernel_Winnt || export bash_cv_func_sigsetjmp='present'
+		export bash_cv_func_ctype_nonascii='yes'
+		export bash_cv_wcwidth_broken='no' #503312
+	fi
+
+	# This is for rlfe, but we need to make sure LDFLAGS doesn't change
+	# so we can re-use the config cache file between the two.
+	append-ldflags -L.
+	export LDFLAGS="-L${BUILD_DIR}/shlib ${LDFLAGS}" # search local dirs first
+
+	multilib-minimal_src_configure
+}
+
+multilib_src_configure() {
+	local myeconfargs=(
+		--cache-file="${BUILD_DIR}"/config.cache
+		--with-curses
++		--disable-shared # use libtool instead
+	)
+	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
+
+	if use utils && multilib_is_native_abi && ! tc-is-cross-compiler ; then
+		# code is full of AC_TRY_RUN()
+		mkdir -p examples/rlfe || die
+		cd examples/rlfe || die
+		ECONF_SOURCE="${S}"/examples/rlfe \
+		econf --cache-file="${BUILD_DIR}"/config.cache
+	fi
+}
+
+multilib_src_compile() {
+	export PATH="${WORKDIR}/${HOSTLT}-${ABI}:${PATH}"
+	export ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
+	emake shared
+
+	if use utils && multilib_is_native_abi && ! tc-is-cross-compiler ; then
+		# code is full of AC_TRY_RUN()
+		cd examples/rlfe || die
+		local l
+		for l in readline history ; do
+			ln -s ../../shlib/lib${l}$(get_libname)* lib${l}$(get_libname) || die
+			ln -s ../../lib${l}.a lib${l}.a || die
+		done
+		emake LTLINK='libtool --mode=link --tag=CC'
+	fi
+}
+
+multilib_src_install() {
+	export PATH="${WORKDIR}/${HOSTLT}-${ABI}:${PATH}"
+	export ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
+	emake DESTDIR="${D}" install-shared
+
+	if multilib_is_native_abi ; then
+		gen_usr_ldscript -a readline history #4411
+
+		if use utils && ! tc-is-cross-compiler; then
+			dobin examples/rlfe/rlfe
+		fi
+	fi
+}
+
+multilib_src_install_all() {
+	HTML_DOCS="doc/history.html doc/readline.html doc/rluserman.html" einstalldocs
+	dodoc USAGE
+	docinto ps
+	dodoc doc/*.ps
+
+	prune_libtool_files --all
+}
+pkg_preinst() {
+	# bug #29865
+	# Reappeared in #595324 with paludis so keeping this for now...
+	preserve_old_lib \
+		/$(get_libdir)/lib{history,readline}$(get_libname 4) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 5) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 6)
+}
+
+pkg_postinst() {
+	preserve_old_lib_notify \
+		/$(get_libdir)/lib{history,readline}$(get_libname 4) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 5) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 6)
+}
