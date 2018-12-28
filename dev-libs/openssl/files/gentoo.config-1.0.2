@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 #
@@ -157,7 +157,12 @@ solaris)
 		i386)         machine=x86-${compiler} ;;
 		x86_64*)      machine=x86_64-${compiler}; system=${system}64;;
 		sparcv9*)     machine=sparcv9-${compiler}; system=${system}64;;
-		sparc*)       machine=sparcv8-${compiler};;
+		sparc*)
+			# this is a bit retarded, but openssl uses sparcv9
+			# with 32-bits to target the CPU specific features,
+			# so we need to figure out if we do v9 here
+			machine=$(isainfo -k)-${compiler}
+			;;
 	esac
 	;;
 mingwvc)

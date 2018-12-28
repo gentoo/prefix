@@ -145,7 +145,8 @@ multilib_src_configure() {
 	unset SCRIPTS #312551
 	unset CROSS_COMPILE #311473
 
-	tc-export CC AR RANLIB RC
+	tc-export CC AR RANLIB RC CPP
+	# for CPP, see: https://github.com/openssl/openssl/issues/5867
 
 	# Clean out patent-or-otherwise-encumbered code
 	# Camellia: Royalty Free            https://en.wikipedia.org/wiki/Camellia_(cipher)
