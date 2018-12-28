@@ -56,8 +56,7 @@ MULTILIB_WRAPPED_HEADERS=(
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
-	"${FILESDIR}"/${P}-CVE-2018-0734.patch
-	"${FILESDIR}"/${P}-CVE-2018-0735.patch
+	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
 )
 
 src_prepare() {
@@ -88,9 +87,6 @@ src_prepare() {
 	if ! use vanilla ; then
 		eapply "${PATCHES[@]}"
 	fi
-
-	# 2018-06-21 grobian: still necessary/in use?
-	#epatch "${FILESDIR}"/${PN}-1.1.0f-winnt.patch # parity
 
 	eapply_user #332661
 
