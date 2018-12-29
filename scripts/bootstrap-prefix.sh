@@ -339,11 +339,6 @@ bootstrap_setup() {
 				echo "# sandbox does not work well on Prefix, bug 490246"
 				echo 'FEATURES="${FEATURES} -usersandbox -sandbox"'
 			fi
-			if [[ !is-rap && -n ${PREFIX_DISABLE_USR_SPLIT} ]] ; then
-				echo
-				echo "# This disables /usr-split, removing this will break"
-				echo "PREFIX_DISABLE_GEN_USR_LDSCRIPT=yes"
-			fi
 			if [[ ${FS_INSENSITIVE} == 1 ]] ; then
 				echo
 				echo "# Avoid problems due to case-insensitivity, bug #524236"
@@ -508,22 +503,14 @@ do_tree() {
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
-	if [[ ${PREFIX_DISABLE_USR_SPLIT} == "yes" ]] ; then
-		# note to self: since coreutils now listens to
-		# PREFIX_DISABLE_GEN_USR_LDSCRIPT to avoid symlinks
-		# from usr/bin to bin, we can make bin a symlink as well
-		# This is necessary for Cygwin, as there is no such thing
-		# like an embedded runpath. Instead we put all the dlls
-		# next to the exes, to get them working even without the
-		# PATH environment variable being set up.
-		for x in lib sbin bin; do
-			[[ -e ${ROOT}/${x} ]] || ( cd "${ROOT}" && ln -s usr/${x} )
-		done
-	else
-		for x in $(rapx "" lib) sbin ; do
-			[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
-		done
-	fi
+	# We can make bin a symlink because /usr is never split, this is
+	# necessary for Cygwin, as there is no such thing like an
+	# embedded runpath. Instead we put all the dlls next to the
+	# exes, to get them working even without the PATH environment
+	# variable being set up.
+	for x in lib sbin bin; do
+		[[ -e ${ROOT}/${x} ]] || ( cd "${ROOT}" && ln -s usr/${x} )
+	done
 	mkdir -p "${PORTDIR}"
 	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
 		efetch "$1/$2" || return 1
@@ -1263,13 +1250,11 @@ bootstrap_stage1() {
 	# whatever the native toolchain is here, is what in general works
 	# best.
 
-	if [[ ${PREFIX_DISABLE_USR_SPLIT} == "yes" ]] ; then
-		# See comments in do_tree().
-		for x in lib sbin bin; do
-			mkdir -p "${ROOT}"/tmp/usr/${x}
-			[[ -e ${ROOT}/tmp/${x} ]] || ( cd "${ROOT}"/tmp && ln -s usr/${x} )
-		done
-	fi
+	# See comments in do_tree().
+	for x in lib sbin bin; do
+		mkdir -p "${ROOT}"/tmp/usr/${x}
+		[[ -e ${ROOT}/tmp/${x} ]] || ( cd "${ROOT}"/tmp && ln -s usr/${x} )
+	done
 
 	configure_toolchain
 	export CC CXX
@@ -1916,13 +1901,6 @@ set_helper_vars() {
 }
 
 bootstrap_interactive() {
-	# No longer support gen_usr_ldscript stuff and the /usr split it
-	# works around for in new bootstraps, this must be in line with what
-	# eventually ends up in make.conf, see the end of stage3.  We don't
-	# do this in bootstrap_setup() because in that case we'd also have
-	# to cater for getting this right with manual bootstraps.
-	is-rap || export PREFIX_DISABLE_USR_SPLIT=yes
-
 	# TODO should immediately die on platforms that we know are
 	# impossible due extremely hard dependency chains
 	# (NetBSD/OpenBSD)

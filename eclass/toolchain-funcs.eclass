@@ -997,14 +997,7 @@ gen_usr_ldscript() {
 	[[ -z ${ED+set} ]] && local ED=${D%/}${EPREFIX}/
 
 	tc-is-static-only && return
-
-	# In Prefix we like to avoid people moving over, while we do want to get
-	# rid of this, like toolchain (see below).  We implement it differently,
-	# that is, we allow new bootstraps to disable this function, while existing
-	# installs just remain doing what they did to avoid breakage.  Due to this,
-	# the case below is modified and emptied, because for known Prefix targets
-	# we keep on using gen_usr_ldscript.
-	[[ -n ${PREFIX_DISABLE_GEN_USR_LDSCRIPT} ]] && return
+	use prefix && return
 
 	# We only care about stuffing / for the native ABI. #479448
 	if [[ $(type -t multilib_is_native_abi) == "function" ]] ; then
