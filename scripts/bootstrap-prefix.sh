@@ -1549,20 +1549,9 @@ bootstrap_stage2() {
 	[[ ${CHOST} == *-solaris* ]] && echo "=dev-libs/libffi-3.3_rc0" \
 		>> "${ROOT}"/tmp/etc/portage/package.mask
 
-	# kill some dependencies here while we're still fragile
-	{
-		# cmake has some external dependencies which require autoconf, etc.
-		# unless we only build the buildtool, bug #603012
-		echo "dev-util/cmake -server"
-		# avoid sys-apps/acl -> attr -> gettext cycle on Linux
-		echo "sys-devel/gettext -acl"
-		# gdbm depends on berkdb by default, which pulls in binutils
-		echo "dev-lang/perl -gdbm -berkdb"
-		# package needs perl, nls pulls in specific package
-		echo "sys-apps/help2man -nls"
-		# avoid hefty set of deps from glib
-		echo "dev-util/pkgconfig internal-glib"
-	} >> "${ROOT}"/tmp/etc/portage/package.use
+	# cmake has some external dependencies which require autoconf, etc.
+	# unless we only build the buildtool, bug #603012
+	echo "dev-util/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
