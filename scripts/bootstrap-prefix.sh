@@ -503,14 +503,21 @@ do_tree() {
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
-	# We can make bin a symlink because /usr is never split, this is
+	# Make symlinks as USE=split-usr is masked in prefix/rpath. This is
 	# necessary for Cygwin, as there is no such thing like an
 	# embedded runpath. Instead we put all the dlls next to the
 	# exes, to get them working even without the PATH environment
 	# variable being set up.
-	for x in lib sbin bin; do
-		[[ -e ${ROOT}/${x} ]] || ( cd "${ROOT}" && ln -s usr/${x} )
-	done
+	#
+	# In prefix/standalone, however, no symlink is desired.
+	# Because we keep USE=split-usr enabled to align with the
+	# default of Gentoo vanilla.
+	if ! is-rap; then
+		for x in lib sbin bin; do
+			[[ -e ${ROOT}/${x} ]] || ( cd "${ROOT}" && ln -s usr/${x} )
+		done
+	fi
+
 	mkdir -p "${PORTDIR}"
 	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
 		efetch "$1/$2" || return 1
