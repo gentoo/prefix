@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -78,7 +78,7 @@ src_prepare() {
 				Makefile.in \
 				|| die
 			# and we need serial building :(
-			export MAKEOPTS+="-j1"
+			export MAKEOPTS+=" -j1"
 		fi
 		sed -i \
 			-e "/src_libstdbuf_so_LDFLAGS = -shared/s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/libexec/coreutils/libstdbuf.dylib:" \
