@@ -1452,6 +1452,22 @@ do_emerge_pkgs() {
 		done
 		myuse=( ${myuse} )
 
+		# Portage seems to ignore USE= for build dependencies.  Since
+		# that's what we're more or less doing all the time, encode the
+		# USE-flags in profiles/use.mask and profiles/use.force which
+		# normally do not exist.
+		rm -f "${EPREFIX}"/usr/portage/profiles/use.{mask,force}
+		for use in "${myuse[@]}" ; do
+			case "${use}" in
+				-*) echo "${use#-}" \
+						>> "${EPREFIX}"/usr/portage/profiles/use.mask
+					;;
+				*)  echo "${use}" \
+						>> "${EPREFIX}"/usr/portage/profiles/use.force
+					;;
+				esac
+		done
+
 		# Disable the STALE warning because the snapshot frequently gets stale.
 		#
 		# Need need to spam the user about news until the emerge -e system
@@ -1472,6 +1488,7 @@ do_emerge_pkgs() {
 			emerge -v --oneshot --root-deps ${opts} "${pkg}" 
 		)
 		[[ $? -eq 0 ]] || return 1
+		rm -f "${EPREFIX}"/usr/portage/profiles/use.{mask,force}
 
 		case ${pkg},${CHOST} in
 		app-shells/bash,*-cygwin*)
@@ -1663,7 +1680,7 @@ bootstrap_stage3() {
 		# PORTAGE_OVERRIDE_EPREFIX as BROOT is needed.
 		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{10,9,8,7,6,5}/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
-		PORTAGE_OVERRIDE_EPREFIX="$(rapx "${ROOT}" "${ROOT}/tmp")" \
+		PORTAGE_OVERRIDE_EPREFIX="$(rapx "${ROOT}" "${ROOT}"/tmp)" \
 		FEATURES="${FEATURES} force-prefix $(rapx "" stacked-prefix)" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
 		do_emerge_pkgs "$@"
@@ -1816,7 +1833,7 @@ bootstrap_stage3() {
 		app-admin/eselect
 		$( [[ ${CHOST} == *-cygwin* ]] && echo sys-libs/cygwin-crypt )
 	)
-	# for grep we need to do a little workaround as we use llvm-3.4
+	# for grep we need to do a little workaround as we might use llvm-3.4
 	# here, which doesn't necessarily grok the system headers on newer
 	# OSX, confusing the buildsystem
 	ac_cv_c_decl_report=warning \
@@ -1824,7 +1841,8 @@ bootstrap_stage3() {
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	if [[ ! -x "${ROOT}"/sbin/openrc-run ]]; then
-		echo "We need openrc-run at ${ROOT}/sbin to merge rsync." > "${ROOT}"/sbin/openrc-run
+		echo "We need openrc-run at ${ROOT}/sbin to merge rsync." \
+			> "${ROOT}"/sbin/openrc-run
 		chmod +x "${ROOT}"/sbin/openrc-run
 	fi
 
