@@ -1668,7 +1668,11 @@ bootstrap_stage3() {
 		fi
 	fi
 
-	get_libdir() { portageq envvar LIBDIR_$(portageq envvar ABI) || echo lib; }
+	get_libdir() {
+		local l=$(portageq envvar LIBDIR_$(portageq envvar ABI) 2>/dev/null)
+		[[ -z ${l} ]] && l=lib
+		echo ${l}
+	}
 
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	export CPPFLAGS="-isystem ${ROOT}/usr/include"
