@@ -172,8 +172,10 @@ configure_toolchain() {
 	  eval $( (gcc -E - | grep compiler_stage1) <<-EOP
 		#if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ > 7))
 		  compiler_stage1+=" sys-devel/gcc"
-		#else
+		#elif defined(__GNUC__) && __GNUC__ >= 4
 		  compiler_stage1+=" <sys-devel/gcc-4.8"
+		#else
+		  compiler_stage1+=" <sys-devel/gcc-4.7"
 		#endif
 		EOP
 	  )
