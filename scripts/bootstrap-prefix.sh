@@ -1536,8 +1536,16 @@ bootstrap_stage2() {
 	# on Solaris 64-bits, (at least up to 10) libgcc_s resides in a
 	# non-standard location, and the compiler doesn't seem to record
 	# this in rpath while it does find it, resulting in a runtime trap
-	[[ ${CHOST} == x86_64-*-solaris* || ${CHOST} == sparcv9-*-solaris* ]] && \
-		cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/ >& /dev/null
+	if [[ ${CHOST} == x86_64-*-solaris* || ${CHOST} == sparcv9-*-solaris* ]] ;
+	then
+		[[ -e ${ROOT}/tmp/usr/bin/gcc ]] || \
+			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/ >& /dev/null
+		# save another copy for after gcc-config gets run and removes
+		# usr/lib/libgcc_s.* because new links should use the compiler
+		# specific libgcc_s.
+		LDFLAGS="${LDFLAGS} -R${ROOT}/tmp/tmp"
+		cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/tmp/ >& /dev/null
+	fi
 
 	# Disable RAP directory hacks of binutils and gcc.  If libc.so
 	# linker script provides no hint of ld-linux*.so*, ld should
