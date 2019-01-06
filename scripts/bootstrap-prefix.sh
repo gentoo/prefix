@@ -1538,13 +1538,15 @@ bootstrap_stage2() {
 	# this in rpath while it does find it, resulting in a runtime trap
 	if [[ ${CHOST} == x86_64-*-solaris* || ${CHOST} == sparcv9-*-solaris* ]] ;
 	then
+		local libgccs64=/usr/sfw/lib/64/libgcc_s.so.1
 		[[ -e ${ROOT}/tmp/usr/bin/gcc ]] || \
-			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/ >& /dev/null
+			cp "${libgccs64}" "${ROOT}"/tmp/usr/lib/
 		# save another copy for after gcc-config gets run and removes
 		# usr/lib/libgcc_s.* because new links should use the compiler
-		# specific libgcc_s.
+		# specific libgcc_s, but existing objs need to find this
+		# libgcc_s for as long as they are around (bash->libreadline)
 		LDFLAGS="${LDFLAGS} -R${ROOT}/tmp/tmp"
-		cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/tmp/ >& /dev/null
+		cp "${libgccs64}" "${ROOT}"/tmp/tmp/
 	fi
 
 	# Disable RAP directory hacks of binutils and gcc.  If libc.so
