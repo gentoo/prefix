@@ -1705,20 +1705,30 @@ bootstrap_stage3() {
 	# GCC sometimes decides that it needs to run makeinfo to update some
 	# info pages from .texi files.  Obviously we don't care at this
 	# stage and rather have it continue instead of aborting the build
-	[[ -x "${ROOT}"/usr/bin/makeinfo ]] || cat > "${ROOT}"/usr/bin/makeinfo <<-EOF
+	if [[ ! -x "${ROOT}"/usr/bin/makeinfo ]]
+	then
+		cat > "${ROOT}"/usr/bin/makeinfo <<-EOF
 		#!${ROOT}/bin/bash
+		### bootstrap-prefix.sh will act on this line ###
 		echo "makeinfo GNU texinfo 4.13"
-		for a in \$@; do
+		f=
+		while (( \$# > 0 )); do
+		a=\$1
+		shift
 		case \$a in
-		--*) f=\$(echo "\$a" | sed -r 's,--.*=(.*),\1,') ;;
-		-*) continue ;;
-		*) f=\$a ;;
+		--output=) continue ;;
+		--output=*) f=\${a#--output=} ;;
+		-o) f=\$1; shift;;
 		esac
-		[[ -e \$f ]] || touch \$f
 		done
+		[[ -z \$f ]] || [[ -e \$f ]] || touch "\$f"
 		EOF
-	chmod +x "${ROOT}"/usr/bin/makeinfo
-	export INSTALL_INFO="${ROOT}"/usr/bin/makeinfo
+		cat > "${ROOT}"/usr/bin/install-info <<-EOF
+		#!${ROOT}/bin/bash
+		:
+		EOF
+		chmod +x "${ROOT}"/usr/bin/{makeinfo,install-info}
+	fi
 
 	if is-rap ; then
 		# Bug 655414. Copy portage global config from stage2
