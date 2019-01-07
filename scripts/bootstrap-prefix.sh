@@ -740,7 +740,7 @@ bootstrap_gnu() {
 			"-p0" \
 			"${GENTOO_MIRRORS}/distfiles/bash43-"{001..048} \
 			"-p2" \
-			https://gitweb.gentoo.org/repo/proj/prefix.git/plain/app-shells/bash/files/bash-4.3_p39-cygwin-r2.patch \
+			https://dev.gentoo.org/~haubi/distfiles/bash-4.3_p39-cygwin-r2.patch \
 		; do
 			if [[ ${p} == -* ]] ; then
 				patchopts=${p}
