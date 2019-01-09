@@ -1670,6 +1670,15 @@ bootstrap_stage3() {
 		fi
 	fi
 
+	# if we resume this stage and python-exec was installed already in
+	# tmp, we basically made the system unusable, so remove python-exec
+	# here so we can use the python in tmp
+	for pef in python{,2} python{,2}-config ; do
+		rm -f "${ROOT}"/tmp/usr/bin/${pef}
+		[[ ${pef} == *-config ]] && ppf=-config || ppf=
+		( cd "${ROOT}"/tmp/usr/bin && ln -s python2.7${ppf} ${pef} )
+	done
+
 	get_libdir() {
 		local l=$(portageq envvar LIBDIR_$(portageq envvar ABI) 2>/dev/null)
 		[[ -z ${l} ]] && l=lib
