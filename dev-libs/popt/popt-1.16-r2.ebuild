@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -13,8 +13,10 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls static-libs"
 
-RDEPEND="nls? ( >=virtual/libintl-0-r1[${MULTILIB_USEDEP}] )"
-DEPEND="nls? ( sys-devel/gettext )"
+RDEPEND="nls? ( >=virtual/libintl-0-r1[${MULTILIB_USEDEP}] )
+	virtual/libiconv"
+DEPEND="nls? ( sys-devel/gettext )
+	virtual/libiconv"
 
 src_prepare() {
 	epatch "${FILESDIR}"/fix-popt-pkgconfig-libdir.patch #349558
