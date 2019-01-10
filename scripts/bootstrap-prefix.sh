@@ -1454,10 +1454,11 @@ do_emerge_pkgs() {
 		done
 		myuse=( ${myuse} )
 
-		# Portage seems to ignore USE= for build dependencies.  Since
-		# that's what we're more or less doing all the time, encode the
-		# USE-flags in profiles/use.mask and profiles/use.force which
-		# normally do not exist.
+		# Portage seems to ignore USE=, *FLAGS for target dependencies.
+		# Since that's what we're more or less doing all the time,
+		# encode the USE-flags in profiles/use.mask and
+		# profiles/use.force which normally do not exist.  Get LDFLAGS
+		# set through make.conf.
 		rm -f "${EPREFIX}"/usr/portage/profiles/use.{mask,force}
 		for use in "${myuse[@]}" ; do
 			case "${use}" in
@@ -1469,6 +1470,12 @@ do_emerge_pkgs() {
 					;;
 				esac
 		done
+		sed -i -e '/#stage3_temp#/d' "${EPREFIX}"/tmp/etc/portage/make.conf
+		{
+			echo "CFLAGS=\"\${CFLAGS} ${OVERRIDE_CFLAGS}\" #stage3_temp#"
+			echo "CXXFLAGS=\"\${CXXFLAGS} ${OVERRIDE_CXXFLAGS}\" #stage3_temp#"
+			echo "LDFLAGS=\"\${LDFLAGS} ${LDFLAGS}\" #stage3_temp#"
+		} >> "${EPREFIX}"/tmp/etc/portage/make.conf
 
 		# Disable the STALE warning because the snapshot frequently gets stale.
 		#
@@ -1491,6 +1498,7 @@ do_emerge_pkgs() {
 		)
 		[[ $? -eq 0 ]] || return 1
 		rm -f "${EPREFIX}"/usr/portage/profiles/use.{mask,force}
+		sed -i -e '/#stage3_temp#/d' "${EPREFIX}"/tmp/etc/portage/make.conf
 
 		case ${pkg},${CHOST} in
 		app-shells/bash,*-cygwin*)
