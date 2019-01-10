@@ -1857,7 +1857,7 @@ bootstrap_stage3() {
 		rm -f "${ROOT}"/bin/sh
 		ln -s bash "${ROOT}"/bin/sh
 	fi
-	unset CONFIG_SHELL MAKEINFO CXX CPPFLAGS LDFLAGS
+	# start using apps from new target
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
 	# get a sane bash, overwriting tmp symlinks
@@ -1900,6 +1900,7 @@ bootstrap_stage3() {
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# Switch to the proper portage.
+	unset CONFIG_SHELL MAKEINFO CXX CPPFLAGS LDFLAGS
 	hash -r
 
 	# Update the portage tree.
