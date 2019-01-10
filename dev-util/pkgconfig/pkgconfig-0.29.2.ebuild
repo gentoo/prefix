@@ -1,10 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
 # Do not inherit autotools in non-live ebuild - causes circular dependency, bug #550856
-inherit eutils flag-o-matic libtool multilib multilib-minimal
+inherit eutils flag-o-matic libtool multilib multilib-minimal toolchain-funcs
 
 MY_P=pkg-config-${PV}
 
@@ -62,11 +62,15 @@ src_prepare() {
 	fi
 
 	if [[ ${CHOST} == *-solaris* ]] ; then
-		# fix standards conflicts
-		sed -i \
-			-e 's/\<\(_XOPEN_SOURCE_EXTENDED\)\>/\1_DISABLED/' \
-			-e '/\<_XOPEN_SOURCE\>/s/2/600/' \
-			glib/configure || die
+		# fix standards conflict, since gcc-4.5 default is gnu90
+		if tc-is-gcc && [[ $(gcc-major-version) -gt 4 || \
+			( $(gcc-major-version) -eq 4 && $(gcc-minor-version) -ge 5 ) ]] ;
+		then
+			sed -i \
+				-e 's/\<\(_XOPEN_SOURCE_EXTENDED\)\>/\1_DISABLED/' \
+				-e '/\<_XOPEN_SOURCE\>/s/2/600/' \
+				glib/configure || die
+		fi
 	fi
 }
 
