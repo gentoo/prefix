@@ -1539,7 +1539,30 @@ bootstrap_stage2() {
 	# GCC sometimes decides that it needs to run makeinfo to update some
 	# info pages from .texi files.  Obviously we don't care at this
 	# stage and rather have it continue instead of abort the build
-	export MAKEINFO="echo makeinfo GNU texinfo 4.13"
+	if [[ ! -x "${ROOT}"/tmp/usr/bin/makeinfo ]]
+	then
+		cat > "${ROOT}"/tmp/usr/bin/makeinfo <<-EOF
+		#!${ROOT}/bin/bash
+		### bootstrap-prefix.sh will act on this line ###
+		echo "makeinfo GNU texinfo 4.13"
+		f=
+		while (( \$# > 0 )); do
+		a=\$1
+		shift
+		case \$a in
+		--output=) continue ;;
+		--output=*) f=\${a#--output=} ;;
+		-o) f=\$1; shift;;
+		esac
+		done
+		[[ -z \$f ]] || [[ -e \$f ]] || touch "\$f"
+		EOF
+		cat > "${ROOT}"/tmp/usr/bin/install-info <<-EOF
+		#!${ROOT}/bin/bash
+		:
+		EOF
+		chmod +x "${ROOT}"/tmp/usr/bin/{makeinfo,install-info}
+	fi
 
 	# on Solaris 64-bits, (at least up to 10) libgcc_s resides in a
 	# non-standard location, and the compiler doesn't seem to record
@@ -1719,32 +1742,12 @@ bootstrap_stage3() {
 		do_emerge_pkgs "$@"
 	}
 
-	# GCC sometimes decides that it needs to run makeinfo to update some
-	# info pages from .texi files.  Obviously we don't care at this
-	# stage and rather have it continue instead of aborting the build
+	# Some packages fail to properly depend on sys-apps/texinfo.
+	# We don't really need that package, so we fake it instead,
+	# explicitly emerging it later on will overwrite the fakes.
 	if [[ ! -x "${ROOT}"/usr/bin/makeinfo ]]
 	then
-		cat > "${ROOT}"/usr/bin/makeinfo <<-EOF
-		#!${ROOT}/bin/bash
-		### bootstrap-prefix.sh will act on this line ###
-		echo "makeinfo GNU texinfo 4.13"
-		f=
-		while (( \$# > 0 )); do
-		a=\$1
-		shift
-		case \$a in
-		--output=) continue ;;
-		--output=*) f=\${a#--output=} ;;
-		-o) f=\$1; shift;;
-		esac
-		done
-		[[ -z \$f ]] || [[ -e \$f ]] || touch "\$f"
-		EOF
-		cat > "${ROOT}"/usr/bin/install-info <<-EOF
-		#!${ROOT}/bin/bash
-		:
-		EOF
-		chmod +x "${ROOT}"/usr/bin/{makeinfo,install-info}
+		cp -p "${ROOT}"/tmp/usr/bin/{makeinfo,install-info} "${ROOT}"/usr/bin
 	fi
 
 	if is-rap ; then
@@ -1900,7 +1903,7 @@ bootstrap_stage3() {
 	emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# Switch to the proper portage.
-	unset CONFIG_SHELL MAKEINFO CXX CPPFLAGS LDFLAGS
+	unset CONFIG_SHELL CXX CPPFLAGS LDFLAGS
 	hash -r
 
 	# Update the portage tree.
