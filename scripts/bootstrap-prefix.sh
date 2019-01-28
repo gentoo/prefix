@@ -1736,10 +1736,20 @@ bootstrap_stage3() {
 		# PORTAGE_OVERRIDE_EPREFIX as BROOT is needed.
 		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{10,9,8,7,6,5}/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
-		PORTAGE_OVERRIDE_EPREFIX="$(rapx "${ROOT}" "${ROOT}"/tmp)" \
-		FEATURES="${FEATURES} force-prefix $(rapx "" stacked-prefix)" \
+		FEATURES="${FEATURES} force-prefix" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
 		do_emerge_pkgs "$@"
+	}
+
+	with_stack_emerge_pkgs() {
+		FEATURES="${FEATURES} stacked-prefix" \
+		PORTAGE_OVERRIDE_EPREFIX="${ROOT}/tmp" \
+		emerge_pkgs "$@"
+	}
+
+	without_stack_emerge_pkgs() {
+		PORTAGE_OVERRIDE_EPREFIX="${ROOT}" \
+		emerge_pkgs "$@"
 	}
 
 	# Some packages fail to properly depend on sys-apps/texinfo.
@@ -1751,13 +1761,6 @@ bootstrap_stage3() {
 	fi
 
 	if is-rap ; then
-		# Bug 655414. Copy portage global config from stage2
-		# to stage3.
-		if [[ ! -d "${ROOT}"/usr/share/portage ]]; then
-			mkdir -p "${ROOT}"/usr/share
-			cp -a "${ROOT}"{/tmp,}/usr/share/portage
-		fi
-
 		# We need ${ROOT}/usr/bin/perl to merge glibc.
 		if [[ ! -x "${ROOT}"/usr/bin/perl ]]; then
 			# trick "perl -V:apiversion" check of glibc-2.19.
@@ -1779,7 +1782,7 @@ bootstrap_stage3() {
 		)
 
 		BOOTSTRAP_RAP=yes \
-		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && rm "${ROOT}"/usr/bin/perl
 
 		pkgs=(
@@ -1791,7 +1794,7 @@ bootstrap_stage3() {
 		RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9])
 		export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,--dynamic-linker=${RAP_DLINKER}"
 		BOOTSTRAP_RAP=yes \
-		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 		# remove stage2 ld so that stage3 ld is used by stage2 gcc.
 		[[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && mv ${ROOT}/tmp/usr/${CHOST}/bin/ld{,.stage2}
@@ -1809,7 +1812,7 @@ bootstrap_stage3() {
 			${linker}
 		)
 
-		emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	fi
 
 	# On some hosts, gcc gets confused now when it uses the new linker,
@@ -1843,8 +1846,11 @@ bootstrap_stage3() {
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx --disable-lto)" \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 	PYTHON_COMPAT_OVERRIDE=python2.7 \
-	emerge_pkgs --nodeps ${compiler} || return 1
+	with_stack_emerge_pkgs --nodeps ${compiler} || return 1
 	# undo libgcc_s.so path of stage2
+
+	# now we have the compiler right there
+	unset CXX CPPFLAGS LDFLAGS
 
 	# On Darwin we have llvm-3.5 at this point, which provides nm.
 	# However for some reason this nm doesn't quite get it on newer
@@ -1864,7 +1870,10 @@ bootstrap_stage3() {
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
 	# get a sane bash, overwriting tmp symlinks
-	emerge_pkgs "" "app-shells/bash" || return 1
+	with_stack_emerge_pkgs "" "app-shells/bash" || return 1
+
+	# now we have a shell right there
+	unset CONFIG_SHELL
 
 	# Build portage and dependencies.
 	pkgs=(
@@ -1884,7 +1893,7 @@ bootstrap_stage3() {
 	# OSX, confusing the buildsystem
 	ac_cv_c_decl_report=warning \
 	TIME_T_32_BIT_OK=yes \
-	emerge_pkgs "" "${pkgs[@]}" || return 1
+	with_stack_emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	if [[ ! -x "${ROOT}"/sbin/openrc-run ]]; then
 		echo "We need openrc-run at ${ROOT}/sbin to merge rsync." \
@@ -1899,11 +1908,23 @@ bootstrap_stage3() {
 		sys-devel/gettext
 		sys-apps/portage
 	)
+
+	# Bug 655414, 676096.
+	# Enough packages emerged using stacked-prefix with tmp/ as base prefix
+	# to allow for sys-apps/portage itself and dependencies without any
+	# dependency into tmp/ now.
+	# Portage does search it's global config using PORTAGE_OVERRIDE_EPREFIX,
+	# so we need to provide it there - emerging portage itself is expected
+	# to finally overwrite it.
+	if [[ ! -d "${ROOT}"/usr/share/portage ]]; then
+		mkdir -p "${ROOT}"/usr/share
+		cp -a "${ROOT}"{/tmp,}/usr/share/portage
+	fi
+
 	USE="ssl" \
-	emerge_pkgs "" "${pkgs[@]}" || return 1
+	without_stack_emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# Switch to the proper portage.
-	unset CONFIG_SHELL CXX CPPFLAGS LDFLAGS
 	hash -r
 
 	# Update the portage tree.
