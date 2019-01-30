@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -38,6 +38,12 @@ src_prepare() {
 
 	# make it have correct install_names on Darwin
 	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
+
+	if [[ ${CHOST} == powerpc*-darwin* ]] ; then
+		# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=44107
+		sed -i -e 's|^ifeq (/usr/lib,|ifneq (/usr/lib,|' \
+			libgcc/config/t-slibgcc-darwin || die
+	fi
 }
 
 src_configure() {
