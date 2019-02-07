@@ -299,6 +299,17 @@ configure_toolchain() {
 				sys-devel/llvm
 				sys-devel/clang"
 			;;
+		*-solaris*)
+			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
+			case "${ccvers}" in
+				*"gcc (GCC) 3.4.3"*)
+					# host compiler doesn't cope with the asm introduced
+					# in mpfr-4, so force using an older one during
+					# bootstrap for this target
+					compiler_stage1="<dev-libs/mpfr-4 ${compiler_stage1}"
+					;;
+			esac
+			;;
 		*-*-aix*)
 			linker=sys-devel/native-cctools
 			;;
