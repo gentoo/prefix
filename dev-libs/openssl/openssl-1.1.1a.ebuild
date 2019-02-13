@@ -84,6 +84,8 @@ src_prepare() {
 		if [[ $(declare -p PATCHES 2>/dev/null) == "declare -a"* ]] ; then
 			[[ ${#PATCHES[@]} -gt 0 ]] && eapply "${PATCHES[@]}"
 		fi
+		# for Cygwin, https://github.com/openssl/openssl/pull/8226
+		sed -i -e '/chmod 644 .*bin/s/644/755/' Configurations/unix-Makefile.tmpl || die
 	fi
 
 	eapply_user #332661
