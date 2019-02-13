@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 #
 # Openssl doesn't play along nicely with cross-compiling
 # like autotools based projects, so let's teach it new tricks.
@@ -85,8 +84,8 @@ chost_machine=${CHOST%%-*}
 case ${system} in
 linux)
 	case ${chost_machine}:${ABI} in
-		aarch64*be*)  machine="generic64 -DB_ENDIAN";;
-		aarch64*)     machine="generic64 -DL_ENDIAN";;
+		aarch64*be*)  machine="aarch64 -DB_ENDIAN";;
+		aarch64*)     machine="aarch64 -DL_ENDIAN";;
 		alphaev56*|\
 		alphaev[678]*)machine=alpha+bwx-${compiler};;
 		alpha*)       machine=alpha-${compiler};;
@@ -111,8 +110,13 @@ linux)
 	#	sh64*)        machine=elf;;
 		sh*b*)        machine="generic32 -DB_ENDIAN";;
 		sh*)          machine="generic32 -DL_ENDIAN";;
+		# TODO: Might want to do -mcpu probing like glibc to determine a
+		# better default for sparc-linux-gnu targets.  This logic will
+		# break v7 and older systems when they use it.
 		sparc*v7*)    machine="generic32 -DB_ENDIAN";;
-		sparc64*)     machine=sparcv9;;
+		sparc64*)     machine=sparcv9 system=linux64;;
+		sparc*v9*)    machine=sparcv9;;
+		sparc*v8*)    machine=sparcv8;;
 		sparc*)       machine=sparcv8;;
 		s390x*)       machine=s390x system=linux64;;
 		s390*)        machine="generic32 -DB_ENDIAN";;
