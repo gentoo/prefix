@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -9,6 +9,7 @@ inherit autotools flag-o-matic pax-utils python-utils-r1 toolchain-funcs epatch
 MY_P="Python-${PV}"
 PATCHSET_VERSION="3.6.4"
 PREFIX_PATCHREV="3.6.5-gentoo-patches-r0"
+CYGWINPORTS_GITREV="f11d606e98b00f5b143cba92bfee8b7f5ba779b0"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
@@ -16,9 +17,12 @@ SRC_URI="https://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~floppym/python/python-gentoo-patches-${PATCHSET_VERSION}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/python-prefix-${PREFIX_PATCHREV}.tar.xz"
 
+[[ -n ${CYGWINPORTS_GITREV} ]] &&
+SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/python3/archive/${CYGWINPORTS_GITREV}.zip )"
+
 LICENSE="PSF-2"
 SLOT="3.6/3.6m"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua bluetooth build examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl test +threads tk wininst +xml"
 RESTRICT="!test? ( test )"
 
@@ -57,6 +61,9 @@ DEPEND="${RDEPEND}
 RDEPEND+=" !build? ( app-misc/mime-types )"
 PDEPEND=">=app-eselect/eselect-python-20140125-r1"
 
+[[ -n ${CYGWINPORTS_GITREV} ]] &&
+DEPEND+=" elibc_Cygwin? ( app-arch/unzip )"
+
 S="${WORKDIR}/${MY_P}"
 PYVER=${SLOT%/*}
 
@@ -79,6 +86,18 @@ src_prepare() {
 	# Prefix' round of patches
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" \
 		epatch "${WORKDIR}"/python-prefix-${PREFIX_PATCHREV}
+
+	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
+	    local p d="${WORKDIR}/python3-${CYGWINPORTS_GITREV}"
+	    for p in $(
+			sed -ne '/PATCH_URI="/,/"/{s/.*="//;s/".*$//;p}' \
+			< "${d}/python3.cygport"
+	    ); do
+			# dropped by 01_all_prefix-no-patch-invention.patch
+			[[ ${p} == *-tkinter-* ]] && continue
+		    epatch "${d}/${p}"
+	    done
+	fi
 
 	# we provide a fully working readline also on Darwin, so don't force
 	# usage of less functional libedit
@@ -176,7 +195,7 @@ src_configure() {
 	# pymalloc #452720
 	local myeconfargs=(
 		$(use aqua && echo --config-cache) \
-		--with-fpectl
+		$(use_with !elibc_Cygwin fpectl)
 		--enable-shared
 		$(use_enable ipv6)
 		$(use_with threads)
