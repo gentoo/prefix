@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -16,10 +16,12 @@ DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="https://www.gtk.org/"
 SRC_URI="${SRC_URI}
 	https://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz" # pkg.m4 for eautoreconf
-#needs update CYGWINPORTS_GITREV="07d4a86e74b9b12a562b57ce5fa3a275bf0fe774"
+CYGWINPORTS_GITREV="3a873fdd1b9a9e649563fe8e6b8ae6951b0dd3be"
 
 [[ -n ${CYGWINPORTS_GITREV} ]] &&
-SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/glib2.0/archive/${CYGWINPORTS_GITREV}.zip )"
+SRC_URI+=" elibc_Cygwin? (
+	https://github.com/cygwinports/glib2.0/archive/${CYGWINPORTS_GITREV}.zip
+	-> ${PN}-cygwinports-${CYGWINPORTS_GITREV}.zip )"
 
 LICENSE="LGPL-2.1+"
 SLOT="2"
@@ -123,15 +125,18 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-2.54.3-external-gdbus-codegen.patch
 
 	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
-	    local p d="${WORKDIR}/glib2.0-${CYGWINPORTS_GITREV}"
-	    for p in $(
-		    eval "$(sed -ne '/PATCH_URI="/,/"/p' < "${d}"/glib2.0.cygport)"
-		    echo ${PATCH_URI}
-	    ); do
-		    # Cygwin hasn't updated to 2.50.2 yet, which has patches merged.
-		    [[ ${p} == 2.46-glocalfilemonitor.patch ]] && continue
-		    epatch "${d}/${p}"
-	    done
+		local p d="${WORKDIR}/glib2.0-${CYGWINPORTS_GITREV}"
+		for p in $(
+			sed -ne '/PATCH_URI="/,/"/{s/.*="//;s/".*//;p}' \
+				< "${d}"/glib2.0.cygport
+		); do
+			if [[ ${p} == 2.50-gmodule-cygwin.patch ]]; then
+				# Cygwinports has not upgraded to 2.56 yet
+				epatch "${FILESDIR}"/2.56-gmodule-cygwin.patch
+				continue
+			fi
+			epatch "${d}/${p}"
+		done
 	fi
 
 	# make default sane for us
