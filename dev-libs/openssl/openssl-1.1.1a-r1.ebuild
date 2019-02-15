@@ -139,6 +139,8 @@ src_prepare() {
 	fi
 	# The config script does stupid stuff to prompt the user.  Kill it.
 	sed -i '/stty -icanon min 0 time 50; read waste/d' config || die
+	# The MS Azure build agent does set SYSTEM=build. Ignore such vars.
+	sed -i '1aunset MACHINE RELEASE SYSTEM VERSION' config || die
 	./config --test-sanity || die "I AM NOT SANE"
 
 	multilib_copy_sources
