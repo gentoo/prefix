@@ -1,0 +1,32 @@
+For the setmode(O_TEXT), not submitted upstream yet:
+https://cygwin.com/ml/cygwin/2019-02/msg00150.html
+https://cygwin.com/ml/cygwin/2019-02/msg00190.html
+
+For the chmod 644, accepted upstream:
+https://github.com/openssl/openssl/pull/8226
+--- openssl-1.1.1a/crypto/bio/bss_file.c.orig	2019-02-15 19:41:48.605378800 +0100
++++ openssl-1.1.1a/crypto/bio/bss_file.c	2019-02-15 19:42:53.136709200 +0100
+@@ -251,12 +251,6 @@
+                 } else
+                     _setmode(fd, _O_BINARY);
+             }
+-#  elif defined(OPENSSL_SYS_WIN32_CYGWIN)
+-            int fd = fileno((FILE *)ptr);
+-            if (num & BIO_FP_TEXT)
+-                setmode(fd, O_TEXT);
+-            else
+-                setmode(fd, O_BINARY);
+ #  endif
+         }
+         break;
+--- openssl-1.1.1a/Configurations/unix-Makefile.tmpl.orig	2019-02-15 19:47:36.464755100 +0100
++++ openssl-1.1.1a/Configurations/unix-Makefile.tmpl	2019-02-15 19:47:42.605379700 +0100
+@@ -650,7 +650,7 @@
+ 		: {- output_off() unless windowsdll(); "" -}; \
+ 		$(ECHO) "install $$s -> $(DESTDIR)$(INSTALLTOP)/bin/$$fn"; \
+ 		cp $$s $(DESTDIR)$(INSTALLTOP)/bin/$$fn.new; \
+-		chmod 644 $(DESTDIR)$(INSTALLTOP)/bin/$$fn.new; \
++		chmod 755 $(DESTDIR)$(INSTALLTOP)/bin/$$fn.new; \
+ 		mv -f $(DESTDIR)$(INSTALLTOP)/bin/$$fn.new \
+ 		      $(DESTDIR)$(INSTALLTOP)/bin/$$fn; \
+ 		: {- output_on() unless windowsdll(); "" -}{- output_off() if windowsdll(); "" -}; \

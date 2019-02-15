@@ -37,6 +37,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-preserve-system-error-number-in-a-few-more-places.patch
 	"${FILESDIR}"/${P}-fix-a-minor-nit-in-hkdflabel-size.patch
 	"${FILESDIR}"/${P}-fix-cert-with-rsa-instead-of-rsaEncryption.patch
+	"${FILESDIR}"/${P}-cygwin-binmode.patch
 )
 
 # This does not copy the entire Fedora patchset, but JUST the parts that
@@ -95,8 +96,6 @@ src_prepare() {
 		if [[ $(declare -p PATCHES 2>/dev/null) == "declare -a"* ]] ; then
 			[[ ${#PATCHES[@]} -gt 0 ]] && eapply "${PATCHES[@]}"
 		fi
-		# for Cygwin, https://github.com/openssl/openssl/pull/8226
-		sed -i -e '/chmod 644 .*bin/s/644/755/' Configurations/unix-Makefile.tmpl || die
 	fi
 
 	eapply_user #332661
@@ -138,7 +137,6 @@ src_prepare() {
 			-e '/^$config{dirs}/s@ "test",@@' \
 			-i Configure || die
 	fi
-
 	# The config script does stupid stuff to prompt the user.  Kill it.
 	sed -i '/stty -icanon min 0 time 50; read waste/d' config || die
 	./config --test-sanity || die "I AM NOT SANE"
