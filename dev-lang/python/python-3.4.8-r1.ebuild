@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -18,7 +18,9 @@ SRC_URI="https://www.python.org/ftp/python/${PV%_rc*}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches-${PREFIX_PATCHREV}.tar.xz"
 
 [[ -n ${CYGWINPORTS_GITREV} ]] &&
-SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/python3/archive/${CYGWINPORTS_GITREV}.zip )"
+SRC_URI+=" elibc_Cygwin? (
+	https://github.com/cygwinports/python34/archive/${CYGWINPORTS_GITREV}.zip
+	-> python34-cygwinports-${CYGWINPORTS_GITREV}.zip )"
 
 LICENSE="PSF-2"
 SLOT="3.4/3.4m"
@@ -108,7 +110,7 @@ src_prepare() {
 	use prefix && epatch "${FILESDIR}/python-3.2-libffi-pkgconfig.patch"
 
 	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
-	    local p d="${WORKDIR}/python3-${CYGWINPORTS_GITREV}"
+	    local p d="${WORKDIR}/python34-${CYGWINPORTS_GITREV}"
 	    for p in $(
 		    eval "$(sed -ne '/PATCH_URI="/,/"/p' < "${d}"/python3.cygport)"
 		    echo ${PATCH_URI}

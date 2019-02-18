@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -18,7 +18,9 @@ SRC_URI="https://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches-${PREFIX_PATCHREV}.tar.xz"
 
 [[ -n ${CYGWINPORTS_GITREV} ]] &&
-SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/python2/archive/${CYGWINPORTS_GITREV}.zip )"
+SRC_URI+=" elibc_Cygwin? (
+	https://github.com/cygwinports/python2/archive/${CYGWINPORTS_GITREV}.zip
+	-> python2-cygwinports-${CYGWINPORTS_GITREV}.zip )"
 
 LICENSE="PSF-2"
 SLOT="2.7"

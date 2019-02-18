@@ -18,7 +18,9 @@ SRC_URI="https://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/python-prefix-${PREFIX_PATCHREV}.tar.xz"
 
 [[ -n ${CYGWINPORTS_GITREV} ]] &&
-SRC_URI+=" elibc_Cygwin? ( https://github.com/cygwinports/python3/archive/${CYGWINPORTS_GITREV}.zip )"
+SRC_URI+=" elibc_Cygwin? (
+	https://github.com/cygwinports/python36/archive/${CYGWINPORTS_GITREV}.zip
+	-> python36-cygwinports-${CYGWINPORTS_GITREV}.zip )"
 
 LICENSE="PSF-2"
 SLOT="3.6/3.6m"
@@ -84,7 +86,7 @@ src_prepare() {
 		epatch "${WORKDIR}"/python-prefix-${PREFIX_PATCHREV}
 
 	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
-	    local p d="${WORKDIR}/python3-${CYGWINPORTS_GITREV}"
+	    local p d="${WORKDIR}/python36-${CYGWINPORTS_GITREV}"
 	    for p in $(
 			sed -ne '/PATCH_URI="/,/"/{s/.*="//;s/".*$//;p}' \
 			< "${d}/python3.cygport"
