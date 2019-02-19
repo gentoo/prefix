@@ -124,6 +124,15 @@ src_prepare() {
 		configure.ac configure || die
 	sed -i -e '/find/s/$/ || true/' Mac/PythonLauncher/Makefile.in || die
 
+	# workaround a problem on ppc-macos with >=GCC-8 where dtoa gets
+	# miscompiled when optimisation is being used
+	if [[ ${CHOST} == powerpc*-darwin* ]] && \
+		tc-is-gcc && [[ $(gcc-major-version) -ge 8 ]] ;
+	then
+		sed -i \
+			-e '/^CFLAGS_ALIASING=/s/$/ -fno-tree-ter/' Makefile.pre.in || die
+	fi
+
 	eautoreconf
 }
 
