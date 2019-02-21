@@ -35,6 +35,7 @@ for d in ${UPLOADDIR}/* ; do
 		bootstrap-prefix.sh \
 		emerge.log \
 		startprefix \
+		elapsedtime \
 		distfiles ;
 	do
 		[[ -e "${d}/${dir}/${f}" ]] && \

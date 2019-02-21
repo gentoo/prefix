@@ -104,6 +104,7 @@ do_prepare() {
 	keepalive=$(type -P caffeinate)
 	[[ -x ${keepalive} ]] && keepalive+=" -i -m -s" || keepalive=
 
+	starttime=${SECONDS}
 	env -i \
 		HOME=${EPREFIX} \
 		SHELL=/bin/bash \
@@ -117,8 +118,10 @@ do_prepare() {
 		${LATEST_TREE_YES+LATEST_TREE_YES=1} \
 		${TREE_FROM_SRC+TREE_FROM_SRC=}${TREE_FROM_SRC} \
 		${keepalive} /bin/bash -l -c "${BASH} ${bootstrapscript} bootstrap"
+	endtime=${SECONDS}
 
 	if [[ -n ${DOPUBLISH} ]] ; then
+		echo $((endtime - starttime)) > elapsedtime
 		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
 		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
 		rsync -rltv \
@@ -130,6 +133,7 @@ do_prepare() {
 			{stage,.stage}* \
 			bootstrap-prefix.sh \
 			startprefix \
+			elapsedtime \
 			usr/portage/distfiles \
 			var/tmp/portage \
 			var/log/emerge.log \

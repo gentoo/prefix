@@ -115,7 +115,17 @@ with os.scandir(resultsdir) as it:
             continue
         arch = f.name
         fail, state, suc = analyse_arch(os.path.join(resultsdir, arch))
-        archs[arch] = (fail, state, suc)
+
+        elapsedtime = None
+        if suc:
+            elapsedf = os.path.join(resultsdir, arch, suc, "elapsedtime")
+            if os.path.exists(elapsedf):
+                with open(elapsedf, 'rb') as f:
+                    l = f.readline()
+                    if l not is '':
+                        elapsedtime = int(l)
+
+        archs[arch] = (fail, state, suc, elapsedtime)
         if not suc:
             color = '\033[1;31m'  # red
         elif fail and suc < fail:
@@ -136,7 +146,7 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
     h.write("<th>last successful run</th><th>last failed run</th>")
     h.write("<th>failure</th>")
     for arch in archs:
-        fail, errcode, suc = archs[arch]
+        fail, errcode, suc, et = archs[arch]
         if not suc:
             state = 'red'
         elif fail and suc < fail:
@@ -152,7 +162,15 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
 
         h.write("<td>")
         if suc:
-            h.write('<a href="%s/%s">%s</a>' % (arch, suc, suc))
+            etxt = ''
+            if et:
+                if et > 86400:
+                    etxt = ' (%.1f days)' % (et / 86400)
+                elif et > 3600:
+                    etxt = ' (%.1f hours)' % (et / 3600)
+                else
+                    etxt = ' (%d minutes)' % (et / 60)
+            h.write('<a href="%s/%s">%s</a>%s' % (arch, suc, suc, etxt))
         else:
             h.write('<i>never</i>')
         h.write("</td>")
