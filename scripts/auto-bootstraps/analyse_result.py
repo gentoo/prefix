@@ -118,11 +118,11 @@ with os.scandir(resultsdir) as it:
 
         elapsedtime = None
         if suc:
-            elapsedf = os.path.join(resultsdir, arch, suc, "elapsedtime")
+            elapsedf = os.path.join(resultsdir, arch, "%s" % suc, "elapsedtime")
             if os.path.exists(elapsedf):
                 with open(elapsedf, 'rb') as f:
                     l = f.readline()
-                    if l not is '':
+                    if l is not '':
                         elapsedtime = int(l)
 
         archs[arch] = (fail, state, suc, elapsedtime)
@@ -168,7 +168,7 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
                     etxt = ' (%.1f days)' % (et / 86400)
                 elif et > 3600:
                     etxt = ' (%.1f hours)' % (et / 3600)
-                else
+                else:
                     etxt = ' (%d minutes)' % (et / 60)
             h.write('<a href="%s/%s">%s</a>%s' % (arch, suc, suc, etxt))
         else:
