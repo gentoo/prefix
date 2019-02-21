@@ -1,0 +1,167 @@
+#!/usr/bin/env bash
+
+BOOTSTRAP="${BASH_SOURCE[0]%/*}/bootstrap-prefix.sh"
+BOOTURL="http://rsync.prefix.bitzolder.nl/scripts/bootstrap-prefix.sh"
+UPLOAD="rsync1.prefix.bitzolder.nl::gentoo-portage-bootstraps"
+
+do_fetch() {
+	local FETCHCOMMAND
+	# Try to find a download manager, we only deal with wget,
+	# curl, FreeBSD's fetch and ftp.
+	if [[ x$(type -t wget) == "xfile" ]] ; then
+		FETCH_COMMAND="wget -O -"
+		[[ $(wget -h) == *"--no-check-certificate"* ]] && \
+			FETCH_COMMAND+=" --no-check-certificate"
+	elif [[ x$(type -t curl) == "xfile" ]] ; then
+		FETCH_COMMAND="curl -f -L"
+	else
+		echo "could not download ${1##*/}"
+		exit 1
+	fi
+
+	${FETCH_COMMAND} "${*}" || exit 1
+}
+
+do_prepare() {
+	local bitw=$1
+	local dte=$2
+	local bootstrap
+
+	if [[ -n ${RESUME} && -n ${bitw} && -n ${dte} ]] ; then
+		bootstrap=bootstrap${bitw}-${dte}/bootstrap-prefix.sh
+	elif [[ -n ${DOLOCAL} ]] ; then
+		bootstrap=${BOOTSTRAP}
+	else
+		bootstrap=dobootstrap-do_prepare-$$
+		do_fetch ${BOOTURL} > ${bootstrap}
+	fi
+
+	local chost=$(${BASH} ${bootstrap} chost.guess x)
+	case ${chost} in
+		*86-*)
+			if [[ ${bitw} == 64 ]] ; then
+				chost=x86_64-${chost#*-}
+			else
+				bitw=32
+				chost=i386-${chost#*-}
+			fi
+			;;
+		x86_64-*)
+			if [[ ${bitw} == 32 ]] ; then
+				chost=i386-${chost#*-}
+			else
+				bitw=64
+				chost=x86_64-${chost#*-}
+			fi
+			;;
+		powerpc-*)
+			bitw=32
+			;;
+		sparc-*)
+			if [[ ${bitw} == 64 ]] ; then
+				chost=sparcv9-${chost#*-}
+			else
+				bitw=32
+				chost=sparc-${chost#*-}
+			fi
+			;;
+		sparcv9-*|sparc64-*)
+			if [[ ${bitw} == 32 ]] ; then
+				chost=sparc-${chost#*-}
+			else
+				bitw=64
+				chost=sparcv9-${chost#*-}
+			fi
+			;;
+		*)
+			echo "unhandled CHOST: ${chost}"
+			rm -f dobootstrap-do_prepare-$$
+			exit 1
+			;;
+	esac
+
+	[[ -z ${dte} ]] && dte=$(date "+%Y%m%d")
+	EPREFIX=${PWD}/bootstrap${bitw}-${dte}
+	[[ -n ${OVERRIDE_EPREFIX} ]] && EPREFIX=${OVERRIDE_EPREFIX}
+
+	local bootstrapscript=$(realpath ${BASH_SOURCE[0]} 2>/dev/null)
+	if [[ -z ${bootstrapscript} ]] ; then
+		local b=${BASH_SOURCE[0]}
+		cd "${b%/*}"
+		bootstrapscript=$(pwd -P)/${b##*/}
+	fi
+	echo "EPREFIX=${EPREFIX}"
+	mkdir -p "${EPREFIX}"
+	if [[ ${bootstrap} == dobootstrap-do_prepare-$$ ]] ; then
+		mv "${bootstrap}" "${EPREFIX}"/bootstrap-prefix.sh
+	elif [[ ${bootstrap} != "${EPREFIX}"/bootstrap-prefix.sh ]] ; then
+		cp "${bootstrap}" "${EPREFIX}"/bootstrap-prefix.sh
+	fi
+	cd "${EPREFIX}" || exit 1
+
+	# optional program to keep the machine from sleeping
+	# macOS/BSD: caffeinate
+	keepalive=$(type -P caffeinate)
+	[[ -x ${keepalive} ]] && keepalive+=" -i -m -s" || keepalive=
+
+	env -i \
+		HOME=${EPREFIX} \
+		SHELL=/bin/bash \
+		TERM=${TERM} \
+		USER=${USER} \
+		CHOST=${chost} \
+		GENTOO_MIRRORS="http://distfileslocal/" \
+		EPREFIX=${EPREFIX} \
+		${DOLOCAL+DOLOCAL=1} \
+		${RESUME+RESUME=1} \
+		${LATEST_TREE_YES+LATEST_TREE_YES=1} \
+		${TREE_FROM_SRC+TREE_FROM_SRC=}${TREE_FROM_SRC} \
+		${keepalive} /bin/bash -l -c "${BASH} ${bootstrapscript} bootstrap"
+
+	if [[ -n ${DOPUBLISH} ]] ; then
+		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
+		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
+		rsync -rltv \
+			--exclude=work/ \
+			--exclude=homedir/ \
+			--exclude=files \
+			--exclude=distdir/ \
+			--exclude=image/ \
+			{stage,.stage}* \
+			bootstrap-prefix.sh \
+			startprefix \
+			usr/portage/distfiles \
+			var/tmp/portage \
+			var/log/emerge.log \
+			${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/
+		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/push-complete/
+	fi
+}
+
+do_bootstrap() {
+	chmod 755 bootstrap-prefix.sh || exit 1
+	${BASH} ./bootstrap-prefix.sh ${EPREFIX} noninteractive
+}
+
+case $1 in
+	bootstrap)
+		do_bootstrap
+		;;
+	local)
+		export DOLOCAL=1
+		do_prepare $2
+		;;
+	resume)
+		export RESUME=1
+		do_prepare "$2" ${3:-${BOOTSTRAP_DATE}}
+		;;
+	*)
+		if [[ ${0} == /net/* ]] ; then
+			echo "internal host, activating local and DOPUBLISH"
+			export DOLOCAL=1
+			export DOPUBLISH=1
+		fi
+		do_prepare $1
+		;;
+esac
+
