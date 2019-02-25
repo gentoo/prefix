@@ -308,6 +308,12 @@ src_install() {
 	# Fix collisions between different slots of Python.
 	rm -f "${ED}usr/$(get_libdir)/libpython3.so"
 
+	if use elibc_Cygwin; then
+		# We may recreate symlinks, but without any .exe extension.  Cygwin
+		# can resolv either without it, so just drop .exe from shebangs:
+		sed -i -e '1s/\.exe//' "$ED"/usr/bin/* || die
+	fi
+
 	# Cheap hack to get version with ABIFLAGS
 	local abiver=$(cd "${ED}usr/include"; echo python*)
 	if [[ ${abiver} != python${PYVER} ]]; then
