@@ -37,6 +37,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-preserve-system-error-number-in-a-few-more-places.patch
 	"${FILESDIR}"/${P}-fix-a-minor-nit-in-hkdflabel-size.patch
 	"${FILESDIR}"/${P}-fix-cert-with-rsa-instead-of-rsaEncryption.patch
+	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
 	"${FILESDIR}"/${P}-cygwin-binmode.patch
 )
 
