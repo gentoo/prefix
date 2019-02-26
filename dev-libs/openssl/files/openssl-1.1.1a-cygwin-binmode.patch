@@ -1,30 +1,37 @@
-For the setmode(O_TEXT), not submitted upstream yet:
-https://cygwin.com/ml/cygwin/2019-02/msg00150.html
-https://cygwin.com/ml/cygwin/2019-02/msg00280.html
-
-For the chmod, accepted upstream:
+https://github.com/openssl/openssl/pull/8249
 https://github.com/openssl/openssl/pull/8226
---- openssl-1.1.1a/crypto/bio/bss_file.c.orig	2019-02-15 19:41:48.605378800 +0100
-+++ openssl-1.1.1a/crypto/bio/bss_file.c	2019-02-15 19:42:53.136709200 +0100
-@@ -253,9 +253,14 @@ static long file_ctrl(BIO *b, int cmd, long num, void *ptr)
+
+From ba96d34ec2f8cf7823ad9ee5295f2e9b5653f2d2 Mon Sep 17 00:00:00 2001
+From: Corinna Vinschen <vinschen@redhat.com>
+Date: Fri, 15 Feb 2019 12:24:47 +0100
+Subject: [PATCH] cygwin: drop explicit O_TEXT
+
+Cygwin binaries should not enforce text mode these days, just
+use text mode if the underlying mount point requests it
+
+CLA: trivial
+
+Signed-off-by: Corinna Vinschen <vinschen@redhat.com>
+---
+ crypto/bio/bss_file.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/crypto/bio/bss_file.c b/crypto/bio/bss_file.c
+index a2b8700f22f..93ba00691bc 100644
+--- a/crypto/bio/bss_file.c
++++ b/crypto/bio/bss_file.c
+@@ -253,9 +253,7 @@ static long file_ctrl(BIO *b, int cmd, long num, void *ptr)
              }
  #  elif defined(OPENSSL_SYS_WIN32_CYGWIN)
              int fd = fileno((FILE *)ptr);
 -            if (num & BIO_FP_TEXT)
 -                setmode(fd, O_TEXT);
 -            else
-+            if (num & BIO_FP_TEXT) {
-+                /* Cygwin prefers text mode with text mounts only,
-+                 * so we can force text mode if we do reads only. */
-+                if (fcntl(fd, F_GETFL) & O_RDONLY)
-+                    setmode(fd, O_TEXT); /* Ignore \r with any read. */
-+                else
-+                    setmode(fd, 0); /* allow but do not force text mode */
-+            } else
++            if (!(num & BIO_FP_TEXT))
                  setmode(fd, O_BINARY);
  #  endif
          }
-@@ -279,11 +284,21 @@ static long file_ctrl(BIO *b, int cmd, long num, void *ptr)
+@@ -279,11 +277,14 @@ static long file_ctrl(BIO *b, int cmd, long num, void *ptr)
              ret = 0;
              break;
          }
@@ -37,31 +44,25 @@ https://github.com/openssl/openssl/pull/8226
 +#  elif defined(OPENSSL_SYS_WIN32_CYGWIN)
 +        if (!(num & BIO_FP_TEXT))
 +            OPENSSL_strlcat(p, "b", sizeof(p));
-+        else if (!(num & BIO_FP_APPEND) && !(num & BIO_FP_WRITE)) {
-+            /* Cygwin prefers text mode with text mounts only,
-+             * so we can force text mode if we do reads only.
-+             * Unfortunately, the only API to disable binmode
-+             * without forcing textmode is setmode(fd, 0). */
-+            OPENSSL_strlcat(p, "t", sizeof(p));
-+        }
  #  endif
          fp = openssl_fopen(ptr, p);
          if (fp == NULL) {
-@@ -293,6 +308,11 @@ static long file_ctrl(BIO *b, int cmd, long num, void *ptr)
-             ret = 0;
-             break;
-         }
-+#  if defined(OPENSSL_SYS_WIN32_CYGWIN)
-+        if ((num & BIO_FP_TEXT)
-+            && ((num & BIO_FP_APPEND) || (num & BIO_FP_WRITE)))
-+            setmode(fileno(fp), 0); /* allow but do not force text mode */
-+#  endif
-         b->ptr = fp;
-         b->init = 1;
-         BIO_clear_flags(b, BIO_FLAGS_UPLINK); /* we did fopen -> we disengage
---- openssl-1.1.1a/Configurations/unix-Makefile.tmpl.orig	2019-02-15 19:47:36.464755100 +0100
-+++ openssl-1.1.1a/Configurations/unix-Makefile.tmpl	2019-02-15 19:47:42.605379700 +0100
-@@ -650,7 +650,7 @@
+
+From fc9aa8bb86a5765f44d3167816aece4b9d954e4a Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <michael.haubenwallner@ssi-schaefer.com>
+Date: Wed, 13 Feb 2019 16:52:04 +0100
+Subject: [PATCH] Windows/Cygwin dlls need the executable bit set
+
+CLA: trivial
+---
+ Configurations/unix-Makefile.tmpl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Configurations/unix-Makefile.tmpl b/Configurations/unix-Makefile.tmpl
+index 7705b03b8e2..0b744bb7af4 100644
+--- a/Configurations/unix-Makefile.tmpl
++++ b/Configurations/unix-Makefile.tmpl
+@@ -622,7 +622,7 @@ install_runtime_libs: build_libs
  		: {- output_off() unless windowsdll(); "" -}; \
  		$(ECHO) "install $$s -> $(DESTDIR)$(INSTALLTOP)/bin/$$fn"; \
  		cp $$s $(DESTDIR)$(INSTALLTOP)/bin/$$fn.new; \
