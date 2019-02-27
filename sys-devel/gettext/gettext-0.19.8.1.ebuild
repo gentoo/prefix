@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Note: Keep version bumps in sync with dev-libs/libintl.
@@ -53,6 +53,13 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-0.19.7-disable-libintl.patch #564168
 	epatch "${FILESDIR}"/${PN}-0.19.8.1-format-security.patch
+
+	if use elibc_Cygwin; then
+		epatch "${FILESDIR}"/0.19.8.1-no-woe32dll.patch
+		epatch "${FILESDIR}"/0.19.3-localename.patch
+		epatch "${FILESDIR}"/0.19.8.1-tests-cygwin.patch
+		epatch "${FILESDIR}"/0.19.8.1-cygwin-ftm.patch
+	fi
 
 	# this script uses syntax that Solaris /bin/sh doesn't grok
 	sed -i -e '1c\#!/usr/bin/env sh' \
