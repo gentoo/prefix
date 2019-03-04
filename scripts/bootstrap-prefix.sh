@@ -1153,7 +1153,7 @@ bootstrap_tar() {
 
 bootstrap_make() {
 	MAKEOPTS= # no GNU make yet
-	bootstrap_gnu make 4.2.1
+	bootstrap_gnu make 4.2.1 || return 1
 	if [[ ${MAKE} == gmake ]] ; then
 		# make make available as gmake
 		( cd ${ROOT}/tmp/usr/bin && ln -s make gmake )
