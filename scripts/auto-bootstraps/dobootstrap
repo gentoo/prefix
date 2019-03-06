@@ -119,6 +119,7 @@ do_prepare() {
 		GENTOO_MIRRORS="http://distfileslocal/" \
 		EPREFIX=${EPREFIX} \
 		${DOLOCAL+DOLOCAL=1} \
+		${DOLIBRESSL+MAKE_CONF_ADDITIONAL_USE=libressl} \
 		${RESUME+RESUME=1} \
 		${LATEST_TREE_YES+LATEST_TREE_YES=1} \
 		${TREE_FROM_SRC+TREE_FROM_SRC=}${TREE_FROM_SRC} \
@@ -170,6 +171,12 @@ case $1 in
 			export DOLOCAL=1
 			export DOPUBLISH=1
 		fi
+		for arg in "${@:2}" ; do
+			case "${arg}" in
+				libressl)   export DOLIBRESSL=1      ;;
+				latesttree) export LATEST_TREE_YES=1 ;;
+			esac
+		done
 		do_prepare $1
 		;;
 esac
