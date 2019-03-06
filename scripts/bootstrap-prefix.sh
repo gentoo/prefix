@@ -1016,6 +1016,7 @@ EOP
 		--disable-toolbox-glue \
 		--disable-ipv6 \
 		--disable-shared \
+		--libdir="${ROOT}"/tmp/usr/lib \
 		${myconf} || return 1
 	$MAKE ${MAKEOPTS} || return 1
 
