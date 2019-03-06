@@ -116,8 +116,8 @@ do_prepare() {
 		TERM=${TERM} \
 		USER=${USER} \
 		CHOST=${chost} \
-		GENTOO_MIRRORS="http://distfileslocal/" \
 		EPREFIX=${EPREFIX} \
+		${GENTOO_MIRRORS+GENTOO_MIRRORS=}${GENTOO_MIRRORS} \
 		${DOLOCAL+DOLOCAL=1} \
 		${DOLIBRESSL+MAKE_CONF_ADDITIONAL_USE=libressl} \
 		${RESUME+RESUME=1} \
@@ -170,6 +170,7 @@ case $1 in
 			echo "internal host, activating local and DOPUBLISH"
 			export DOLOCAL=1
 			export DOPUBLISH=1
+			export GENTOO_MIRRORS="http://distfileslocal/"
 		fi
 		for arg in "${@:2}" ; do
 			case "${arg}" in
