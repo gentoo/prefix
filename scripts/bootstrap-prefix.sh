@@ -357,8 +357,10 @@ bootstrap_setup() {
 				echo "# Avoid problems due to case-insensitivity, bug #524236"
 				echo 'FEATURES="${FEATURES} case-insensitive-fs"'
 			fi
-			[[ -n $PORTDIR_OVERLAY ]] && \
+			[[ -n ${PORTDIR_OVERLAY} ]] && \
 				echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
+			[[ -n ${MAKE_CONF_ADDITIONAL_USE} ]] &&
+				echo "USE=\"\${USE} ${MAKE_CONF_ADDITIONAL_USE}\""
 			[[ ${OFFLINE_MODE} ]] && \
 				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
 		} > "${ROOT}"/etc/portage/make.conf
