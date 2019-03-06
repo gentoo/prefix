@@ -135,6 +135,8 @@ with os.scandir(resultsdir) as it:
         endc = '\033[0m'
         print("%s%24s: suc %8s  fail %8s%s" % (color, arch, suc, fail, endc))
 
+sarchs = sorted(archs, key=lambda a: '-'.join(a.split('-')[::-1]))
+
 # generate html edition
 with open(os.path.join(resultsdir, 'index.html'), "w") as h:
     h.write("<html>")
@@ -145,7 +147,7 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
     h.write("<th>architecture</th>")
     h.write("<th>last successful run</th><th>last failed run</th>")
     h.write("<th>failure</th>")
-    for arch in archs:
+    for arch in sarchs:
         fail, errcode, suc, et = archs[arch]
         if not suc:
             state = 'red'
