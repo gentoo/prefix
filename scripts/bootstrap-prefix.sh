@@ -813,20 +813,22 @@ bootstrap_gnu() {
 	# SuSE 11.1 has GNU binutils-2.20, choking on crc32_x86
 	[[ ${PN} == "xz" ]] && myconf="${myconf} --disable-assembler"
 
-	# we do not have pkg-config to find lib/libffi-*/include/ffi.h
-	[[ ${PN} == "libffi" ]] && 
-	sed -i -e '/includesdir =/s/=.*/= $(includedir)/' include/Makefile.in
-
-	# we have to build the libraries for correct bitwidth
-	[[ " libffi " == *" ${PN} "* ]] &&
-	case $CHOST in
-	(x86_64-*-*|sparcv9-*-*)
-		export CFLAGS="-m64"
-		;;
-	(i?86-*-*)
-		export CFLAGS="-m32"
-		;;
-	esac
+	if [[ ${PN} == "libffi" ]] ; then
+		# we do not have pkg-config to find lib/libffi-*/include/ffi.h
+		sed -i -e '/includesdir =/s/=.*/= $(includedir)/' include/Makefile.in
+		# force install into libdir
+		myconf="${myconf} --libdir=${ROOT}/tmp/usr/lib"
+		sed -i -e '/toolexeclibdir =/s/=.*/= $(libdir)/' Makefile.in
+		# we have to build the libraries for correct bitwidth
+		case $CHOST in
+		(x86_64-*-*|sparcv9-*-*)
+			export CFLAGS="-m64"
+			;;
+		(i?86-*-*)
+			export CFLAGS="-m32"
+			;;
+		esac
+	fi
 
 	einfo "Compiling ${PN}"
 	econf ${myconf} || return 1
@@ -979,7 +981,7 @@ EOP
 	# python refuses to find the zlib headers that are built in the offset,
 	# same for libffi, which installs into compiler's multilib-osdir
 	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
-	export LDFLAGS="${CFLAGS} -L${ROOT}/tmp/usr/lib -L${ROOT}/tmp/usr/lib64"
+	export LDFLAGS="${CFLAGS} -L${ROOT}/tmp/usr/lib"
 	# set correct flags for runtime for ELF platforms
 	case $CHOST in
 		*-linux*)
