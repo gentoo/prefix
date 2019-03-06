@@ -36,6 +36,7 @@ for d in ${UPLOADDIR}/* ; do
 		emerge.log \
 		startprefix \
 		elapsedtime \
+		make.conf \
 		distfiles ;
 	do
 		[[ -e "${d}/${dir}/${f}" ]] && \
@@ -43,6 +44,7 @@ for d in ${UPLOADDIR}/* ; do
 	done
 	if [[ -e "${d}/${dir}/portage" ]] ; then
 		for pkg in "${d}/${dir}/portage"/*/* ; do
+			[[ -e ${pkg} ]] || continue
 			w=${pkg#${d}/}
 			mkdir -p "${RESULTSDIR}/${w}"
 			[[ -e "${pkg}"/build-info ]] && \

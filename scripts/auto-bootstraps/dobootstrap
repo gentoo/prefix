@@ -143,6 +143,7 @@ do_prepare() {
 			usr/portage/distfiles \
 			var/tmp/portage \
 			var/log/emerge.log \
+			etc/portage/make.conf \
 			${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/
 		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/push-complete/
 	fi
