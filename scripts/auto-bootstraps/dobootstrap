@@ -55,7 +55,12 @@ do_prepare() {
 			fi
 			;;
 		powerpc-*)
-			bitw=32
+			if [[ ${bitw} == 64 ]] ; then
+				chost=powerpc64-${chost#*-}
+			else
+				bitw=32
+				chost=powerpc-${chost#*-}
+			fi
 			;;
 		sparc-*)
 			if [[ ${bitw} == 64 ]] ; then
