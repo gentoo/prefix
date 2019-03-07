@@ -1489,7 +1489,9 @@ do_emerge_pkgs() {
 					;;
 				esac
 		done
-		sed -i -e '/#stage3_temp#/d' "${EPREFIX}"/tmp/etc/portage/make.conf
+		mkdir -p "${EPREFIX}"/tmp/etc/portage
+		[[ -e "${EPREFIX}"/tmp/etc/portage/make.conf ]] && \
+			sed -i -e '/#stage3_temp#/d' "${EPREFIX}"/tmp/etc/portage/make.conf
 		{
 			echo "CFLAGS=\"\${CFLAGS} ${OVERRIDE_CFLAGS}\" #stage3_temp#"
 			echo "CXXFLAGS=\"\${CXXFLAGS} ${OVERRIDE_CXXFLAGS}\" #stage3_temp#"
