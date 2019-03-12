@@ -1598,6 +1598,7 @@ bootstrap_stage2() {
 		# specific libgcc_s, but existing objs need to find this
 		# libgcc_s for as long as they are around (bash->libreadline)
 		LDFLAGS="${LDFLAGS} -R${ROOT}/tmp/tmp"
+		mkdir -p "${ROOT}"/tmp/tmp/
 		cp "${libgccs64}" "${ROOT}"/tmp/tmp/
 	fi
 
