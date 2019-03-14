@@ -1473,37 +1473,13 @@ do_emerge_pkgs() {
 		done
 		myuse=( ${myuse} )
 
-		# Portage seems to ignore USE=, *FLAGS for target dependencies.
-		# Since that's what we're more or less doing all the time,
-		# encode the USE-flags in profiles/use.mask and
-		# profiles/use.force which normally do not exist.  Get LDFLAGS
-		# set through make.conf.
-		rm -f "${EPREFIX}"/usr/portage/profiles/use.{mask,force}
-		for use in "${myuse[@]}" ; do
-			case "${use}" in
-				-*) echo "${use#-}" \
-						>> "${EPREFIX}"/usr/portage/profiles/use.mask
-					;;
-				*)  echo "${use}" \
-						>> "${EPREFIX}"/usr/portage/profiles/use.force
-					;;
-				esac
-		done
-		mkdir -p "${EPREFIX}"/tmp/etc/portage
-		[[ -e "${EPREFIX}"/tmp/etc/portage/make.conf ]] && \
-			sed -i -e '/#stage3_temp#/d' "${EPREFIX}"/tmp/etc/portage/make.conf
-		{
-			echo "CFLAGS=\"\${CFLAGS} ${OVERRIDE_CFLAGS}\" #stage3_temp#"
-			echo "CXXFLAGS=\"\${CXXFLAGS} ${OVERRIDE_CXXFLAGS}\" #stage3_temp#"
-			echo "LDFLAGS=\"\${LDFLAGS} ${LDFLAGS}\" #stage3_temp#"
-		} >> "${EPREFIX}"/tmp/etc/portage/make.conf
-
 		# Disable the STALE warning because the snapshot frequently gets stale.
 		#
 		# Need need to spam the user about news until the emerge -e system
 		# because the tools aren't available to read the news item yet anyway.
 		#
-		# Avoid circular deps caused by the default profiles (and IUSE defaults).
+		# Avoid circular deps caused by the default profiles (and IUSE
+		# defaults).
 		echo "USE=${myuse[*]} PKG=${pkg}"
 		(
 			unset CFLAGS CXXFLAGS
@@ -1518,8 +1494,6 @@ do_emerge_pkgs() {
 			emerge -v --oneshot --root-deps ${opts} "${pkg}" 
 		)
 		[[ $? -eq 0 ]] || return 1
-		rm -f "${EPREFIX}"/usr/portage/profiles/use.{mask,force}
-		sed -i -e '/#stage3_temp#/d' "${EPREFIX}"/tmp/etc/portage/make.conf
 
 		case ${pkg},${CHOST} in
 		app-shells/bash,*-cygwin*)
@@ -1786,13 +1760,15 @@ bootstrap_stage3() {
 		# We need ${ROOT}/usr/bin/perl to merge glibc.
 		if [[ ! -x "${ROOT}"/usr/bin/perl ]]; then
 			# trick "perl -V:apiversion" check of glibc-2.19.
-			echo -e "#!${ROOT}/bin/sh\necho 'apiversion=9999'" > "${ROOT}"/usr/bin/perl
+			echo -e "#!${ROOT}/bin/sh\necho 'apiversion=9999'" \
+				> "${ROOT}"/usr/bin/perl
 			chmod +x "${ROOT}"/usr/bin/perl
 		fi
 		# Tell dynamic loader the path of libgcc_s.so of stage2
 		if [[ ! -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf ]]; then
 			mkdir -p "${ROOT}"/etc/ld.so.conf.d
-			dirname $(gcc -print-libgcc-file-name) > "${ROOT}"/etc/ld.so.conf.d/stage2.conf
+			dirname $(gcc -print-libgcc-file-name) \
+				> "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 		fi
 
 		pkgs=(
@@ -1805,7 +1781,8 @@ bootstrap_stage3() {
 
 		BOOTSTRAP_RAP=yes \
 		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
-		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && rm "${ROOT}"/usr/bin/perl
+		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && \
+			rm "${ROOT}"/usr/bin/perl
 
 		pkgs=(
 			sys-devel/binutils-config
@@ -1819,7 +1796,8 @@ bootstrap_stage3() {
 		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 		# remove stage2 ld so that stage3 ld is used by stage2 gcc.
-		[[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && mv ${ROOT}/tmp/usr/${CHOST}/bin/ld{,.stage2}
+		[[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && \
+			mv ${ROOT}/tmp/usr/${CHOST}/bin/ld{,.stage2}
 	else
 		pkgs=(
 			sys-apps/gentoo-functions
@@ -1847,7 +1825,8 @@ bootstrap_stage3() {
 	# Clang unconditionally requires python, the eclasses are really not
 	# setup for a scenario where python doesn't live in the target
 	# prefix and no helpers are available
-	( cd "${ROOT}"/usr/bin && test ! -e python && ln -s "${ROOT}"/tmp/usr/bin/python2.7 )
+	( cd "${ROOT}"/usr/bin && test ! -e python && \
+		ln -s "${ROOT}"/tmp/usr/bin/python2.7 )
 	# in addition, avoid collisions
 	rm -Rf "${ROOT}"/tmp/usr/lib/python2.7/site-packages/clang
 
@@ -1878,7 +1857,8 @@ bootstrap_stage3() {
 	# However for some reason this nm doesn't quite get it on newer
 	# platforms at least, resulting in bugs like #598336.  To cater for
 	# that, get rid of this nm and rely on the host one at this stage
-	[[ ${CHOST} == *-darwin* ]] && rm -f "${ROOT}"{,/tmp}/usr/bin/{,${CHOST}-}nm
+	[[ ${CHOST} == *-darwin* ]] && \
+		rm -f "${ROOT}"{,/tmp}/usr/bin/{,${CHOST}-}nm
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 
@@ -1952,9 +1932,11 @@ bootstrap_stage3() {
 	# Update the portage tree.
 	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
 	nowdate=$(date +%s)
-	[[ ( ! -e ${PORTDIR}/.unpacked ) && $((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || \
+	[[ ( ! -e ${PORTDIR}/.unpacked ) && \
+		$((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || \
 	if [[ ${OFFLINE_MODE} ]]; then
-		# --keep used ${DISTDIR}, which make it easier to download a snapshot beforehand
+		# --keep used ${DISTDIR}, which make it easier to download a
+		# snapshot beforehand
 		emerge-webrsync --keep || return 1
 	else
 		emerge --sync || emerge-webrsync || return 1
