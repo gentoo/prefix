@@ -29,7 +29,7 @@ econf() {
 efetch() {
 	if [[ ! -e ${DISTDIR}/${1##*/} ]] ; then
 	  	if [[ ${OFFLINE_MODE} ]]; then
-		  echo "I needed ${1##*/} from $1 or ${GENTOO_MIRRORS}/distfiles/${1##*/} in $DISTDIR"
+		  echo "I need ${1##*/} from $1 in $DISTDIR, can you give it to me?"
 		  read
 		  [[ -e ${DISTDIR}/${1##*/} ]] && return 0
 		  #Give fetch a try 
@@ -40,17 +40,19 @@ efetch() {
 			# curl, FreeBSD's fetch and ftp.
 			if [[ x$(type -t wget) == "xfile" ]] ; then
 				FETCH_COMMAND="wget"
-				[[ $(wget -h) == *"--no-check-certificate"* ]] && FETCH_COMMAND+=" --no-check-certificate"
+				[[ $(wget -h) == *"--no-check-certificate"* ]] \
+					&& FETCH_COMMAND+=" --no-check-certificate"
 			elif [[ x$(type -t curl) == "xfile" ]] ; then
-				einfo "WARNING: curl doesn't fail when downloading fails, please check its output carefully!"
 				FETCH_COMMAND="curl -f -L -O"
 			elif [[ x$(type -t fetch) == "xfile" ]] ; then
 				FETCH_COMMAND="fetch"
 			elif [[ x$(type -t ftp) == "xfile" ]] &&
-				 [[ ${CHOST} != *-cygwin* || ! $(type -P ftp) -ef $(cygpath -S)/ftp ]] ; then
+				 [[ ${CHOST} != *-cygwin* || \
+				 ! $(type -P ftp) -ef $(cygpath -S)/ftp ]] ; then
 				FETCH_COMMAND="ftp"
 			else
-				eerror "no suitable download manager found (need wget, curl, fetch or ftp)"
+				eerror "no suitable download manager found!"
+				eerror "tried: wget, curl, fetch and ftp"
 				eerror "could not download ${1##*/}"
 				exit 1
 			fi
@@ -59,10 +61,22 @@ efetch() {
 		mkdir -p "${DISTDIR}" >& /dev/null
 		einfo "Fetching ${1##*/}"
 		pushd "${DISTDIR}" > /dev/null
-		# try for mirrors first, then try given location
-		${FETCH_COMMAND} "${GENTOO_MIRRORS}/distfiles/${1##*/}" < /dev/null
-		[[ ! -f ${1##*/} && ${1} != ${GENTOO_MIRRORS}/distfiles/${1##*/} ]] \
-			&& ${FETCH_COMMAND} "$1" < /dev/null
+
+		# try for mirrors first, fall back to distfiles, then try given location
+		local locs=( )
+		local loc
+		for loc in ${GENTOO_MIRRORS} ${DISTFILES_G_O} ; do
+			locs=(
+				"${locs[@]}"
+				"${loc}/distfiles/${1##*/}"
+			)
+		done
+		locs=( "${locs[@]}" "$1" )
+
+		for loc in "${locs[@]}" ; do
+			${FETCH_COMMAND} "${loc}" < /dev/null
+			[[ -f ${1##*/} ]] && break
+		done
 		if [[ ! -f ${1##*/} ]] ; then
 			eerror "downloading ${1} failed!"
 			return 1
@@ -751,16 +765,17 @@ bootstrap_gnu() {
 		local p patchopts
 		for p in \
 			"-p0" \
-			"${GENTOO_MIRRORS}/distfiles/bash43-"{001..048} \
+			"${DISTFILES_G_O}/distfiles/bash43-"{001..048} \
 			"-p2" \
-			https://dev.gentoo.org/~haubi/distfiles/bash-4.3_p39-cygwin-r2.patch \
+			"https://dev.gentoo.org/~haubi/distfiles/bash-4.3_p39-cygwin-r2.patch" \
 		; do
 			if [[ ${p} == -* ]] ; then
 				patchopts=${p}
 				continue
 			fi
 			efetch "${p}" || return 1
-			patch --forward --no-backup-if-mismatch ${patchopts} < "${DISTDIR}/${p##*/}" || return 1
+			patch --forward --no-backup-if-mismatch ${patchopts} \
+				< "${DISTDIR}/${p##*/}" || return 1
 		done
 	fi
 
@@ -1039,7 +1054,7 @@ bootstrap_zlib_core() {
 
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GENTOO_MIRRORS}/distfiles/${A} || return 1
+	efetch ${DISTFILES_G_O}/distfiles/${A} || return 1
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
@@ -1151,7 +1166,7 @@ bootstrap_coreutils() {
 	# 8.16 is the last version released as tar.gz
 	# 8.18 is necessary for macOS High Sierra (darwin17) and converted
 	#      to tar.gz for this case
-	bootstrap_gnu coreutils 8.30 || bootstrap_gnu coreutils 8.28 || \
+	bootstrap_gnu coreutils 8.30 || \
 	bootstrap_gnu coreutils 8.16 || bootstrap_gnu coreutils 8.17
 }
 
@@ -1223,7 +1238,7 @@ bootstrap_bzip2() {
 	A=${PN}-${PV}.tar.gz
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch ${GENTOO_MIRRORS}/distfiles/${A} || return 1
+	efetch ${DISTFILES_G_O}/distfiles/${A} || return 1
 
 	einfo "Unpacking ${A%-*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
@@ -1986,7 +2001,8 @@ set_helper_vars() {
 	PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
 	DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
 	GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
-	GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
+	DISTFILES_G_O="http://distfiles.gentoo.org"
+	GENTOO_MIRRORS=${GENTOO_MIRRORS:=${DISTFILES_G_O}}
 	SNAPSHOT_HOST=$(rapx ${GENTOO_MIRRORS} http://rsync.prefix.bitzolder.nl)
 	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
 	GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
