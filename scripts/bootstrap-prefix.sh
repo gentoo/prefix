@@ -13,8 +13,13 @@ rapx() { is-rap && echo $1 || echo $2; }
 
 ## Functions Start Here
 
+v() {
+	echo "$@"
+	"$@"
+}
+
 econf() {
-	${CONFIG_SHELL} ./configure \
+	v ${CONFIG_SHELL} ./configure \
 		--host=${CHOST} \
 		--prefix="${ROOT}"/tmp/usr \
 		--mandir="${ROOT}"/tmp/usr/share/man \
@@ -65,7 +70,7 @@ efetch() {
 		# try for mirrors first, fall back to distfiles, then try given location
 		local locs=( )
 		local loc
-		for loc in ${GENTOO_MIRRORS} ${DISTFILES_G_O} ; do
+		for loc in ${GENTOO_MIRRORS} ; do
 			locs=(
 				"${locs[@]}"
 				"${loc}/distfiles/${1##*/}"
@@ -74,7 +79,7 @@ efetch() {
 		locs=( "${locs[@]}" "$1" )
 
 		for loc in "${locs[@]}" ; do
-			${FETCH_COMMAND} "${loc}" < /dev/null
+			v ${FETCH_COMMAND} "${loc}" < /dev/null
 			[[ -f ${1##*/} ]] && break
 		done
 		if [[ ! -f ${1##*/} ]] ; then
@@ -806,7 +811,8 @@ bootstrap_gnu() {
 	# Darwin9 in particular doesn't compile when using system readline,
 	# but we don't need any groovy input at all, so just disable it,
 	# except for Cygwin, where the patch above would fail to compile
-	[[ ${PN} == "bash" && ${CHOST} != *-cygwin* ]] && myconf="${myconf} --disable-readline"
+	[[ ${PN} == "bash" && ${CHOST} != *-cygwin* ]] \
+		&& myconf="${myconf} --disable-readline"
 
 	# ensure we don't read system-wide shell initialisation, it may
 	# contain cruft, bug #650284
@@ -819,11 +825,30 @@ bootstrap_gnu() {
 	# coreutils completely useless (install failing on everything)
 	# Don't try using gmp either, it may be that just the library is
 	# there, and if so, the buildsystem assumes the header exists too
-	[[ ${PN} == "coreutils" ]] && \
+	# stdbuf is giving many problems, and we don't really care about it
+	# at this level, so disable it too
+	if [[ ${PN} == "coreutils" ]] ; then
 		myconf="${myconf} --disable-acl --without-gmp"
+		myconf="${myconf} --enable-no-install-program=stdbuf"
+	fi
 
 	# Gentoo Bug 400831, fails on Ubuntu with libssl-dev installed
-	[[ ${PN} == "wget" ]] && myconf="${myconf} --without-ssl"
+	if [[ ${PN} == "wget" ]] ; then
+		if [[ -x ${ROOT}/tmp/usr/bin/openssl ]] ; then
+			myconf="${myconf} --with-ssl=openssl"
+			myconf="${myconf} --with-libssl-prefix=${ROOT}/tmp/usr"
+			export CPPFLAGS="${CPPFLAGS} -I${ROOT}/tmp/usr/include"
+			export LDFLAGS="${LDFLAGS} -L${ROOT}/tmp/usr/lib"
+		else
+			myconf="${myconf} --without-ssl"
+		fi
+	fi
+
+	# for libressl, only provide static lib, such that wget (above)
+	# links it in and we don't have to bother about RPATH or something
+	if [[ ${PN} == "libressl" ]] ; then
+		myconf="${myconf} --enable-static --disable-shared"
+	fi
 
 	# SuSE 11.1 has GNU binutils-2.20, choking on crc32_x86
 	[[ ${PN} == "xz" ]] && myconf="${myconf} --disable-assembler"
@@ -848,16 +873,16 @@ bootstrap_gnu() {
 	einfo "Compiling ${PN}"
 	econf ${myconf} || return 1
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
-		./build.sh || return 1
+		v ./build.sh || return 1
 	else
-		$MAKE ${MAKEOPTS} || return 1
+		v $MAKE ${MAKEOPTS} || return 1
 	fi
 
 	einfo "Installing ${PN}"
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
-		./make install MAKE="${S}/make" || return 1
+		v ./make install MAKE="${S}/make" || return 1
 	else
-		$MAKE install || return 1
+		v $MAKE install || return 1
 	fi
 
 	cd "${ROOT}"
@@ -1150,6 +1175,7 @@ bootstrap_findutils() {
 }
 
 bootstrap_wget() {
+	bootstrap_gnu wget 1.20.1 || \
 	bootstrap_gnu wget 1.17.1 || bootstrap_gnu wget 1.13.4
 }
 
@@ -1211,8 +1237,8 @@ bootstrap_bash() {
 
 bootstrap_bison() {
 	bootstrap_gnu bison 2.6.2 || bootstrap_gnu bison 2.6.1 || \
-		bootstrap_gnu bison 2.6 || bootstrap_gnu bison 2.5.1 || \
-		bootstrap_gnu bison 2.4
+	bootstrap_gnu bison 2.6 || bootstrap_gnu bison 2.5.1 || \
+	bootstrap_gnu bison 2.4
 }
 
 bootstrap_m4() {
@@ -1258,6 +1284,11 @@ bootstrap_bzip2() {
 	cd "${ROOT}"
 	rm -Rf "${S}"
 	einfo "${A%-*} successfully bootstrapped"
+}
+
+bootstrap_libressl() {
+	GNU_URL="https://ftp.openbsd.org/pub/OpenBSD/LibreSSL" \
+		bootstrap_gnu libressl 2.8.3
 }
 
 bootstrap_stage_host_gentoo() {
@@ -1313,6 +1344,8 @@ bootstrap_stage1() {
 	# don't rely on $MAKE, if make == gmake packages that call 'make' fail
 	[[ $(make --version 2>&1) == *GNU" Make "4* ]] \
 		|| (bootstrap_make) || return 1
+	[[ ${OFFLINE_MODE} ]] || [[ -x ${ROOT}/tmp/usr/bin/openssl ]] \
+		|| (bootstrap_libressl) # do not fail if this fails, we'll try without
 	[[ ${OFFLINE_MODE} ]] || type -P wget > /dev/null \
 		|| (bootstrap_wget) || return 1
 	[[ $(sed --version 2>&1) == *GNU* ]] || (bootstrap_sed) || return 1
