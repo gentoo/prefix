@@ -707,7 +707,7 @@ bootstrap_gnu() {
 
 	einfo "Bootstrapping ${PN}"
 
-	for t in tar.gz tar.xz tar.bz2 tar ; do
+	for t in tar.xz tar.bz2 tar.gz tar ; do
 		A=${PN}-${PV}.${t}
 
 		# save the user some useless downloading
@@ -1126,6 +1126,7 @@ bootstrap_libffi() {
 }
 
 bootstrap_sed() {
+	bootstrap_gnu sed 4.5 || \
 	bootstrap_gnu sed 4.2.2 || bootstrap_gnu sed 4.2.1
 }
 
@@ -1141,16 +1142,17 @@ bootstrap_grep() {
 	# don't use 2.13, it contains a bug that bites, bug #425668
 	# 2.9 is the last version provided as tar.gz (platforms without xz)
 	# 2.7 is necessary for Solaris/OpenIndiana (2.8, 2.9 fail to configure)
+	bootstrap_gnu grep 3.3 || \
 	bootstrap_gnu grep 2.9 || bootstrap_gnu grep 2.7 || \
-		bootstrap_gnu grep 2.14 || bootstrap_gnu grep 2.12
+	bootstrap_gnu grep 2.14 || bootstrap_gnu grep 2.12
 }
 
 bootstrap_coreutils() {
 	# 8.16 is the last version released as tar.gz
 	# 8.18 is necessary for macOS High Sierra (darwin17) and converted
 	#      to tar.gz for this case
-	bootstrap_gnu coreutils 8.28 || bootstrap_gnu coreutils 8.16 || \
-	bootstrap_gnu coreutils 8.17
+	bootstrap_gnu coreutils 8.30 || bootstrap_gnu coreutils 8.28 || \
+	bootstrap_gnu coreutils 8.16 || bootstrap_gnu coreutils 8.17
 }
 
 bootstrap_tar() {
@@ -1210,6 +1212,7 @@ bootstrap_gzip() {
 }
 
 bootstrap_xz() {
+	GNU_URL=${XZ_URL:-http://tukaani.org} bootstrap_gnu xz 5.2.4 || \
 	GNU_URL=${XZ_URL:-http://tukaani.org} bootstrap_gnu xz 5.2.3
 }
 
@@ -1293,9 +1296,13 @@ bootstrap_stage1() {
 	# packages following (e.g. zlib builds 64-bits)
 
 	# don't rely on $MAKE, if make == gmake packages that call 'make' fail
-	[[ $(make --version 2>&1) == *GNU" Make "4* ]] || (bootstrap_make) || return 1
-	[[ ${OFFLINE_MODE} ]] || type -P wget > /dev/null || (bootstrap_wget) || return 1
+	[[ $(make --version 2>&1) == *GNU" Make "4* ]] \
+		|| (bootstrap_make) || return 1
+	[[ ${OFFLINE_MODE} ]] || type -P wget > /dev/null \
+		|| (bootstrap_wget) || return 1
 	[[ $(sed --version 2>&1) == *GNU* ]] || (bootstrap_sed) || return 1
+	type -P xz > /dev/null || (bootstrap_xz) || return 1
+	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
 	[[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] || (bootstrap_m4) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/bison ]] \
 		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "2.[3-7]* ]] \
@@ -1305,15 +1312,15 @@ bootstrap_stage1() {
 		|| (bootstrap_coreutils) || return 1
 	[[ $(find --version 2>&1) == *GNU* ]] || (bootstrap_findutils) || return 1
 	[[ $(tar --version 2>&1) == *GNU* ]] || (bootstrap_tar) || return 1
-	[[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] || (bootstrap_patch) || return 1
+	[[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] \
+		|| (bootstrap_patch) || return 1
 	[[ $(grep --version 2>&1) == *GNU* ]] || (bootstrap_grep) || return 1
-	[[ $(awk --version < /dev/null 2>&1) == *GNU" Awk "[456789]* ]] || bootstrap_gawk || return 1
+	[[ $(awk --version < /dev/null 2>&1) == *GNU" Awk "[456789]* ]] \
+		|| bootstrap_gawk || return 1
 	# always build our own bash, for we don't know what devilish thing
 	# we're working with now, bug #650284
 	[[ -x ${ROOT}/tmp/usr/bin/bash ]] \
 		|| (bootstrap_bash) || return 1
-	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
-	type -P xz > /dev/null || (bootstrap_xz) || return 1
 	# Some host tools need to be wrapped to be useful for us.
 	# We put them in tmp/usr/local/bin, to not accidentally
 	# be identified as stage1-installed like in bug #615410.
