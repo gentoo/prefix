@@ -17,7 +17,7 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
-IUSE="build doc epydoc +ipc +native-extensions selinux xattr prefix-chaining"
+IUSE="build doc epydoc +ipc +native-extensions selinux xattr"
 
 DEPEND="!build? ( $(python_gen_impl_dep 'ssl(+)') )
 	>=app-arch/tar-1.27
@@ -92,8 +92,6 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	epatch "${FILESDIR}"/${PN}-2.3.45-ebuildshell.patch # 155161
-	use prefix-chaining && # maybe useful even with stacked-prefix
-		epatch "${FILESDIR}"/${PN}-2.3.40-prefix-chaining.patch
 
 	if use native-extensions; then
 		printf "[build_ext]\nportage-ext-modules=true\n" >> \

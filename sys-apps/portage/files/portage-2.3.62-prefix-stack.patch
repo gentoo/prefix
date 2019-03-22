@@ -1,0 +1,80 @@
+From 1fe30e79c368ce71e024d70c3ec07a6aed3ef262 Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <haubi@gentoo.org>
+Date: Fri, 22 Mar 2019 17:52:05 +0100
+Subject: [PATCH] from FEATURES=stacked-prefix to USE=prefix-stack
+
+Rather than telling the base prefix' portage to support stacked prefix,
+be explicit in the stacked prefix about to USE that feature.
+Bug: https://bugs.gentoo.org/658572
+---
+ bin/install-qa-check.d/05prefix | 10 +++-------
+ bin/phase-helpers.sh            | 12 ++++--------
+ lib/portage/const.py            |  1 -
+ 3 files changed, 7 insertions(+), 16 deletions(-)
+
+diff --git a/bin/install-qa-check.d/05prefix b/bin/install-qa-check.d/05prefix
+index 03da3bbce..4f48e4216 100644
+--- a/bin/install-qa-check.d/05prefix
++++ b/bin/install-qa-check.d/05prefix
+@@ -36,16 +36,12 @@ install_qa_check_prefix() {
+ 	local WHITELIST=" /usr/bin/env "
+ 	# shebang can be an absolutised path, bug #342929
+ 	local eprefix=$(canonicalize ${EPREFIX})
+-	# Without the stacked-prefix feature, tests using BPREFIX
+-	# are redundant to EPREFIX, but run only if we will fail.
++	# Without USE=prefix-stack, tests using BPREFIX are
++	# redundant to EPREFIX, but run only if we will fail.
+ 	# Otherways, BPREFIX really is BROOT (the EAPI 7 one).
+ 	local BPREFIX=${EPREFIX}
+ 	local bprefix=${eprefix}
+-	if has stacked-prefix ${FEATURES} &&
+-	   [[ -z ${ROOT%/} ]]             &&
+-	   [[ ${CBUILD} == ${CHOST} ]]    &&
+-	   [[ ${EPREFIX} != ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}} ]] &&
+-	:; then
++	if has prefix-stack ${USE} ; then
+ 		BPREFIX=${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}
+ 		bprefix=$(canonicalize ${BPREFIX})
+ 	fi
+diff --git a/bin/phase-helpers.sh b/bin/phase-helpers.sh
+index 606b1cdfd..c64f1106b 100644
+--- a/bin/phase-helpers.sh
++++ b/bin/phase-helpers.sh
+@@ -932,18 +932,14 @@ ___best_version_and_has_version_common() {
+ 			fi ;;
+ 	esac
+ 
+-	# PREFIX LOCAL: stacked-prefix feature
++	# PREFIX LOCAL: prefix-stack feature
+ 	if ___eapi_has_prefix_variables         &&
+ 	   has "${root_arg}" '--host-root' '-b' &&
+-	   has stacked-prefix ${FEATURES}       &&
++	   has prefix-stack ${USE}              &&
+ 	   [[ -z ${ROOT%/} ]]                   &&
+-	   [[ ${CBUILD} == ${CHOST} ]]          &&
+-	   [[ ${EPREFIX} != ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}} ]] &&
+ 	:; then
+-		# When we merge into another EPREFIX, but not into some ROOT,
+-		# and CHOST is equal to CBUILD, build tools found in EPREFIX
+-		# perfectly work for the current build environment.
+-		# In a "stacked prefix" we explicitly utilize this situation.
++		# When we merge into "stacked" EPREFIX, but not into some ROOT, build
++		# tools found in EPREFIX perfectly work for current build environment.
+ 		"${FUNCNAME[1]}" "${atom}" && return 0
+ 	fi
+ 	# END PREFIX LOCAL
+diff --git a/lib/portage/const.py b/lib/portage/const.py
+index eddce377d..db02cbc56 100644
+--- a/lib/portage/const.py
++++ b/lib/portage/const.py
+@@ -207,7 +207,6 @@ SUPPORTED_FEATURES       = frozenset([
+ 	"splitdebug",
+ 	"split-elog",
+ 	"split-log",
+-	"stacked-prefix",  # PREFIX LOCAL
+ 	"strict",
+ 	"strict-keepdir",
+ 	"stricter",
+-- 
+2.19.2
+

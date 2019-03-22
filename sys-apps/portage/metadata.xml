@@ -23,6 +23,5 @@
     <flag name="xattr">Preserve extended attributes (filesystem-stored metadata)
         when installing files. Usually only required for hardened systems.
     </flag>
-    <flag name="prefix-chaining">mduft's experimental prefix chaining facilities</flag>
   </use>
 </pkgmetadata>
