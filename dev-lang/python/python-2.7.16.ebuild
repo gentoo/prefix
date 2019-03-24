@@ -300,6 +300,12 @@ src_configure() {
 		--without-ensurepip
 	)
 
+	# we need to build in a separate dir to avoid problems due to
+	# case-insensitivity on Darwin
+	BUILD_DIR="${WORKDIR}/${CHOST}"
+	mkdir -p "${BUILD_DIR}" || die
+	cd "${BUILD_DIR}" || die
+
 	OPT= econf "${myeconfargs[@]}"
 
 	if use threads && grep -q "#define POSIX_SEMAPHORES_NOT_ENABLED 1" pyconfig.h; then
@@ -313,6 +319,7 @@ src_compile() {
 	# Avoid invoking pgen for cross-compiles.
 	touch Include/graminit.h Python/graminit.c
 
+	cd "${BUILD_DIR}" || die
 	emake
 
 	# Work around bug 329499. See also bug 413751 and 457194.
@@ -329,6 +336,8 @@ src_test() {
 		elog "Disabling tests due to crosscompiling."
 		return
 	fi
+
+	cd "${BUILD_DIR}" || die
 
 	# Skip failing tests.
 	local skipped_tests="distutils gdb"
@@ -370,6 +379,7 @@ src_test() {
 src_install() {
 	local libdir=${ED}/usr/$(get_libdir)/python${SLOT}
 
+	cd "${BUILD_DIR}" || die
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${SLOT}/lib-dynload/
 	if use aqua ; then
 		local fwdir="${EPREFIX}"/usr/$(get_libdir)/Python.framework
@@ -388,7 +398,7 @@ src_install() {
 		rmdir "${ED}"/Applications/Python* || die
 		rmdir "${ED}"/Applications || die
 
-		# avoid framework incompatability, degrade to a normal UNIX lib
+		# avoid framework incompatibility, degrade to a normal UNIX lib
 		mkdir -p "${ED}"/usr/$(get_libdir)
 		cp "${D}${fwdir}"/Versions/${SLOT}/Python \
 			"${ED}"/usr/$(get_libdir)/libpython${SLOT}.dylib || die
@@ -536,7 +546,7 @@ EOF
 	# http://bugs.python.org/issue1759169
 	[[ ${CHOST} == *-solaris* ]] && sed -i -e \
 		's:^\(^#define \(_POSIX_C_SOURCE\|_XOPEN_SOURCE\|_XOPEN_SOURCE_EXTENDED\).*$\):/* \1 */:' \
-		 "${ED}"/usr/include/python${SLOT}/pyconfig.h
+		"${ED}"/usr/include/python${SLOT}/pyconfig.h
 
 	use berkdb || rm -r "${libdir}/"{bsddb,dbhash.py*,test/test_bsddb*} || die
 	use sqlite || rm -r "${libdir}/"{sqlite3,test/test_sqlite*} || die
