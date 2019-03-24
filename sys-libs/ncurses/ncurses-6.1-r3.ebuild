@@ -3,7 +3,7 @@
 
 EAPI="6"
 
-inherit flag-o-matic toolchain-funcs multilib-minimal multilib-build
+inherit flag-o-matic toolchain-funcs multilib-minimal preserve-libs
 
 MY_PV=${PV:0:3}
 PV_SNAP=${PV:4}
@@ -25,8 +25,7 @@ RDEPEND="${DEPEND}
 	!<=sys-libs/ncurses-5.9-r4:5
 	!<sys-libs/slang-2.3.2_pre23
 	!<x11-terms/rxvt-unicode-9.06-r3
-	!<x11-terms/st-0.6-r1
-	!app-emulation/emul-linux-x86-baselibs"
+	!<x11-terms/st-0.6-r1"
 
 S=${WORKDIR}/${MY_P}
 
@@ -104,7 +103,7 @@ do_configure() {
 	local target=$1
 	shift
 
-	mkdir "${BUILD_DIR}/${target}"
+	mkdir "${BUILD_DIR}/${target}" || die
 	cd "${BUILD_DIR}/${target}" || die
 
 	local conf=(
@@ -135,6 +134,9 @@ do_configure() {
 		# The configure script uses ldd to parse the linked output which
 		# is flaky for cross-compiling/multilib/ldd versions/etc...
 		$(use_with gpm gpm libgpm.so.1)
+		# Required for building  on mingw-w64, and possibly other windows
+		# platforms, bug #639670
+		$(use_enable kernel_Winnt term-driver)
 		--disable-termcap
 		--enable-symlinks
 		--with-rcs-ids
@@ -221,7 +223,7 @@ do_compile() {
 	# compiled libraries which depends on sources which ...
 	# Manually delete the pc-files file so the install step will
 	# create the .pc files we want.
-	rm -f misc/pc-files
+	rm -f misc/pc-files || die
 	emake "$@"
 }
 
@@ -242,7 +244,10 @@ multilib_src_install() {
 		# Provide a link for -lcurses.
 		ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses$(get_libname) || die
 	fi
-	use static-libs || find "${ED}"/usr/ -name '*.a' -not -name "*$(get_libname)" -delete
+	# don't delete '*.dll.a', needed for linking #631468
+	if ! use static-libs; then
+		find "${ED}"/usr/ -name '*.a' ! -name '*.dll.a' -a ! -name "*$(get_libname)" -delete || die
+	fi
 
 	# Build fails to create this ...
 	dosym ../share/terminfo /usr/$(get_libdir)/terminfo
@@ -285,11 +290,11 @@ multilib_src_install_all() {
 	# Because ncurses5-config --terminfo returns the directory we keep it
 	keepdir /usr/share/terminfo #245374
 
-	cd "${S}"
+	cd "${S}" || die
 	dodoc ANNOUNCE MANIFEST NEWS README* TO-DO doc/*.doc
 	if use doc ; then
 		docinto html
-		dohtml -r doc/html/
+		dodoc -r doc/html/
 	fi
 }
 
