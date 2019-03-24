@@ -1,6 +1,5 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdv/libdv-1.0.0-r3.ebuild,v 1.7 2014/07/28 13:45:41 ago Exp $
 
 EAPI=4
 
@@ -39,8 +38,7 @@ multilib_src_configure() {
 		--without-debug \
 		--disable-gtk \
 		--disable-gtktest \
-		$(use x86-macos && echo "--disable-asm") \
-		$(use x64-macos && echo "--disable-asm")
+		$([[ ${CHOST} == *86*-darwin* ]] && echo "--disable-asm")
 	if ! multilib_is_native_abi ; then
 		sed -i \
 			-e 's/ encodedv//' \
