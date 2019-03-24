@@ -1,10 +1,10 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libdv/libdv-1.0.0-r3.ebuild,v 1.7 2014/07/28 13:45:41 ago Exp $
 
 EAPI=4
 
-inherit eutils libtool flag-o-matic multilib-minimal
+inherit epatch epunt-cxx libtool ltprune flag-o-matic multilib-minimal
 
 DESCRIPTION="Software codec for dv-format video (camcorders etc)"
 HOMEPAGE="http://libdv.sourceforge.net/"
@@ -16,9 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="static-libs"
 
-RDEPEND="dev-libs/popt
-	abi_x86_32? ( !<=app-emulation/emul-linux-x86-medialibs-20130224-r12
-		!app-emulation/emul-linux-x86-medialibs[-abi_x86_32(-)] )"
+RDEPEND="dev-libs/popt"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
