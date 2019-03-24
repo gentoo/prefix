@@ -1,9 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 
-inherit eutils flag-o-matic toolchain-funcs multilib-minimal
+inherit flag-o-matic toolchain-funcs multilib-minimal multilib-build
 
 MY_PV=${PV:0:3}
 PV_SNAP=${PV:4}
@@ -23,6 +23,7 @@ DEPEND="gpm? ( sys-libs/gpm[${MULTILIB_USEDEP}] )"
 # Block the older ncurses that installed all files w/SLOT=5. #557472
 RDEPEND="${DEPEND}
 	!<=sys-libs/ncurses-5.9-r4:5
+	!<sys-libs/slang-2.3.2_pre23
 	!<x11-terms/rxvt-unicode-9.06-r3
 	!<x11-terms/st-0.6-r1
 	!app-emulation/emul-linux-x86-baselibs"
@@ -37,11 +38,12 @@ PATCHES=(
 	"${FILESDIR}/${PN}-5.9-gcc-5.patch" #545114
 	"${FILESDIR}/${PN}-6.0-ticlib.patch" #557360
 	"${FILESDIR}/${PN}-6.0-cppflags-cross.patch" #601426
+	"${FILESDIR}/${PN}-6.1-st07_terminfo_typo.patch" #651494
 )
 
 src_prepare() {
-	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
-	epatch "${PATCHES[@]}"
+	[[ -n ${PV_SNAP} ]] && eapply "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
+	default
 }
 
 src_configure() {
@@ -116,11 +118,8 @@ do_configure() {
 		# Disabled until #245417 is sorted out.
 		#$(use_with berkdb hashed-db)
 
-		# ncurses is dumb and doesn't install .pc files unless pkg-config
-		# is also installed.  Force the tests to go our way.  Note that it
-		# doesn't actually use pkg-config ... it just looks for set vars.
+		# Enable installation of .pc files.
 		--enable-pc-files
-		--with-pkg-config="$(tc-getPKG_CONFIG)"
 		# This path is used to control where the .pc files are installed.
 		--with-pkg-config-libdir="${EPREFIX}/usr/$(get_libdir)/pkgconfig"
 
@@ -153,6 +152,7 @@ do_configure() {
 		$(use_with test tests)
 		$(use_with trace)
 		$(use_with tinfo termlib)
+		--disable-stripping
 	)
 
 	if [[ ${target} == ncurses*w ]] ; then
@@ -183,7 +183,7 @@ do_configure() {
 	# Force bash until upstream rebuilds the configure script with a newer
 	# version of autotools. #545532
 	CONFIG_SHELL=${BASH} \
-	ECONF_SOURCE=${S} \
+	ECONF_SOURCE="${S}" \
 	econf "${conf[@]}" "$@"
 }
 
@@ -250,26 +250,36 @@ multilib_src_install() {
 
 multilib_src_install_all() {
 #	if ! use berkdb ; then
-		# We need the basic terminfo files in /etc, bug #37026
+		# We need the basic terminfo files in /etc for embedded/recovery. #37026
 		einfo "Installing basic terminfo files in /etc..."
+		local terms=(
+			# Dumb/simple values that show up when using the in-kernel VT.
+			ansi console dumb linux
+			vt{52,100,102,200,220}
+			# [u]rxvt users used to be pretty common.  Probably should drop this
+			# since upstream is dead and people are moving away from it.
+			rxvt{,-unicode}{,-256color}
+			# xterm users are common, as is terminals re-using/spoofing it.
+			xterm xterm-{,256}color
+			# screen is common (and reused by tmux).
+			screen{,-256color}
+			screen.xterm-256color
+		)
 		local x
-		for x in ansi console dumb linux rxvt rxvt-unicode screen{,-256color} vt{52,100,102,200,220} \
-				 xterm xterm-{,256}color
-		do
+		for x in "${terms[@]}"; do
 			local termfile=$(find "${ED}"/usr/share/terminfo/ -name "${x}" 2>/dev/null)
-			local basedir=$(basename $(dirname "${termfile}"))
+			local basedir=$(basename "$(dirname "${termfile}")")
 
 			if [[ -n ${termfile} ]] ; then
-				dodir /etc/terminfo/${basedir}
-				mv ${termfile} "${ED}"/etc/terminfo/${basedir}/
-				dosym ../../../../etc/terminfo/${basedir}/${x} \
-					/usr/share/terminfo/${basedir}/${x}
+				dodir "/etc/terminfo/${basedir}"
+				mv "${termfile}" "${ED}/etc/terminfo/${basedir}/" || die
+				dosym "../../../../etc/terminfo/${basedir}/${x}" \
+					"/usr/share/terminfo/${basedir}/${x}"
 			fi
 		done
 #	fi
 
-	echo "CONFIG_PROTECT_MASK=\"/etc/terminfo\"" > "${T}"/50ncurses
-	doenvd "${T}"/50ncurses
+	echo "CONFIG_PROTECT_MASK=\"/etc/terminfo\"" | newenvd - 50ncurses
 
 	use minimal && rm -r "${ED}"/usr/share/terminfo*
 	# Because ncurses5-config --terminfo returns the directory we keep it
@@ -277,7 +287,10 @@ multilib_src_install_all() {
 
 	cd "${S}"
 	dodoc ANNOUNCE MANIFEST NEWS README* TO-DO doc/*.doc
-	use doc && dohtml -r doc/html/
+	if use doc ; then
+		docinto html
+		dohtml -r doc/html/
+	fi
 }
 
 pkg_preinst() {
