@@ -607,22 +607,27 @@ bootstrap_startscript() {
 		eerror "automate starting your prefix, set SHELL and rerun this script" > /dev/stderr
 		return 1
 	fi
-	einfo "Creating the Prefix start script (startprefix)"
-	# currently I think right into the prefix is the best location, as
-	# putting it in /bin or /usr/bin just hides it some more for the
-	# user
-	if is-rap ; then
-		mkdir -p "${ROOT}"/usr/portage/scripts
-		wget $([[ $(wget -h) == *"--no-check-certificate"* ]] && echo --no-check-certificate) \
-		     https://gitweb.gentoo.org/repo/proj/prefix.git/plain/scripts/startprefix.in \
-		     -O "${ROOT}"/usr/portage/scripts/startprefix.in
-	fi
+	if [[ -d ${ROOT}/usr/portage/app-portage/prefix-toolkit ]] ; then
+		einfo "Finally, emerging prefix-toolkit for your convenience"
+		emerge -u app-portage/prefix-toolkit || return 1
+	else
+		einfo "Creating the Prefix start script (startprefix)"
+		# currently I think right into the prefix is the best location, as
+		# putting it in /bin or /usr/bin just hides it some more for the
+		# user
+		if is-rap ; then
+			mkdir -p "${ROOT}"/usr/portage/scripts
+			wget $([[ $(wget -h) == *"--no-check-certificate"* ]] && echo --no-check-certificate) \
+				 https://gitweb.gentoo.org/repo/proj/prefix.git/plain/scripts/startprefix.in \
+				 -O "${ROOT}"/usr/portage/scripts/startprefix.in
+		fi
 
-	sed \
-		-e "s|@GENTOO_PORTAGE_EPREFIX@|${ROOT}|g" \
-		"${ROOT}"/usr/portage/scripts/startprefix.in \
-		> "${ROOT}"/startprefix
-	chmod 755 "${ROOT}"/startprefix
+		sed \
+			-e "s|@GENTOO_PORTAGE_EPREFIX@|${ROOT}|g" \
+			"${ROOT}"/usr/portage/scripts/startprefix.in \
+			> "${ROOT}"/startprefix
+		chmod 755 "${ROOT}"/startprefix
+	fi
 	einfo "To start Gentoo Prefix, run the script ${ROOT}/startprefix"
 	einfo "You can copy this file to a more convenient place if you like."
 
