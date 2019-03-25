@@ -390,7 +390,7 @@ python_export() {
 				export PYTHON=${EPREFIX}/usr/bin/${impl}
 				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
 				&& [[ ! -x ${EPREFIX}/usr/bin/${impl} ]] \
-				&& has stacked-prefix ${FEATURES}; then
+				&& { has prefix-stack ${USE} || has stacked-prefix ${FEATURES} ;} ; then
 					# Need to look in build prefix
 					if [[ -x ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/bin/${impl} ]]; then
 						PYTHON=${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/bin/${impl}
@@ -402,7 +402,7 @@ python_export() {
 				export PYTHON_EPREFIX=${EPREFIX}
 				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
 				&& [[ ! -x ${EPREFIX}/usr/bin/${impl} ]] \
-				&& has stacked-prefix ${FEATURES}; then
+				&& { has prefix-stack ${USE} || has stacked-prefix ${FEATURES} ;} ; then
 					# Need to look in build prefix
 					if [[ -x ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/bin/${impl} ]]; then
 						PYTHON_EPREFIX=${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}
@@ -521,7 +521,7 @@ python_export() {
 				export PYTHON_SCRIPTDIR=${EPREFIX}/usr/lib/python-exec/${impl}
 				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
 				&& [[ ! -x ${EPREFIX}/usr/bin/${impl} ]] \
-				&& has stacked-prefix ${FEATURES}; then
+				&& { has prefix-stack ${USE} || has stacked-prefix ${FEATURES} ;} ; then
 					# Need to look in build prefix
 					if [[ -x ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/bin/${impl} ]]; then
 						PYTHON_SCRIPTDIR=${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/lib/python-exec/${impl}
