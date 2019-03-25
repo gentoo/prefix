@@ -1802,7 +1802,9 @@ bootstrap_stage3() {
 	}
 
 	with_stack_emerge_pkgs() {
+		# keep FEATURES=stacked-prefix until we bump portage in stage1
 		FEATURES="${FEATURES} stacked-prefix" \
+		USE="${USE} prefix-stack" \
 		PORTAGE_OVERRIDE_EPREFIX="${ROOT}/tmp" \
 		emerge_pkgs "$@"
 	}
@@ -1976,7 +1978,7 @@ bootstrap_stage3() {
 	)
 
 	# Bug 655414, 676096.
-	# Enough packages emerged using stacked-prefix with tmp/ as base prefix
+	# Enough packages emerged with USE=prefix-stack with tmp/ as base prefix
 	# to allow for sys-apps/portage itself and dependencies without any
 	# dependency into tmp/ now.
 	# Portage does search it's global config using PORTAGE_OVERRIDE_EPREFIX,
