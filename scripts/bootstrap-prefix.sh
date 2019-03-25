@@ -629,7 +629,6 @@ bootstrap_startscript() {
 		chmod 755 "${ROOT}"/startprefix
 	fi
 	einfo "To start Gentoo Prefix, run the script ${ROOT}/startprefix"
-	einfo "You can copy this file to a more convenient place if you like."
 
 	# see if PATH is kept/respected
 	local minPATH="preamble:${BASH%/*}:postlude"
