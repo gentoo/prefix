@@ -554,10 +554,18 @@ do_tree() {
 
 	mkdir -p "${PORTDIR}"
 	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
-		efetch "$1/$2" || return 1
+		# latest tree cannot be fetched from mirrors, always have to
+		# respect the source to get the latest
+		if [[ -n ${LATEST_TREE_YES} ]] ; then
+			echo "$1"
+			( export GENTOO_MIRRORS= ; efetch "$1/$2" ) || return 1
+		else
+			efetch "$1/$2" || return 1
+		fi
 		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
 		einfo "Unpacking, this may take a while"
-		bzip2 -dc ${DISTDIR}/$2 | tar -xf - -C ${PORTDIR} --strip-components=1 || return 1
+		bzip2 -dc ${DISTDIR}/$2 | \
+			tar -xf - -C ${PORTDIR} --strip-components=1 || return 1
 		touch ${PORTDIR}/.unpacked
 	fi
 }
@@ -2036,7 +2044,7 @@ set_helper_vars() {
 	GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 	DISTFILES_G_O="http://distfiles.gentoo.org"
 	GENTOO_MIRRORS=${GENTOO_MIRRORS:=${DISTFILES_G_O}}
-	SNAPSHOT_HOST=$(rapx ${GENTOO_MIRRORS} http://rsync.prefix.bitzolder.nl)
+	SNAPSHOT_HOST=$(rapx ${DISTFILES_G_O} http://rsync.prefix.bitzolder.nl)
 	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
 	GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 
