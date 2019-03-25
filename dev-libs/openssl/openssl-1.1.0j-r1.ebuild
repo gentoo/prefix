@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -37,14 +37,15 @@ PATCH1=openssl-1.1.0-build.patch # Fixes EVP testcase for EC
 PATCH37=openssl-1.1.0-ec-curves.patch
 FEDORA_GIT_BASE='https://src.fedoraproject.org/cgit/rpms/openssl.git/plain/'
 FEDORA_GIT_BRANCH='f28'
+FEDORA_GIT_COMMIT="d2ede125556ac99aa0faa7744c703af3f559094e"
 FEDORA_SRC_URI=()
 FEDORA_SOURCE=( $SOURCE1 $SOURCE12 $SOURCE13 )
 FEDORA_PATCH=( $PATCH1 $PATCH37 )
 for i in "${FEDORA_SOURCE[@]}" ; do
-	FEDORA_SRC_URI+=( "${FEDORA_GIT_BASE}/${i}?h=${FEDORA_GIT_BRANCH} -> ${P}_${i}" )
+	FEDORA_SRC_URI+=( "${FEDORA_GIT_BASE}/${i}?h=${FEDORA_GIT_BRANCH}&id=${FEDORA_GIT_COMMIT} -> ${P}_${FEDORA_GIT_COMMIT}_${i}" )
 done
 for i in "${FEDORA_PATCH[@]}" ; do # Already have a version prefix
-	FEDORA_SRC_URI+=( "${FEDORA_GIT_BASE}/${i}?h=${FEDORA_GIT_BRANCH} -> ${i}" )
+	FEDORA_SRC_URI+=( "${FEDORA_GIT_BASE}/${i}?h=${FEDORA_GIT_BRANCH}&id=${FEDORA_GIT_COMMIT} -> ${i%.patch}_${FEDORA_GIT_COMMIT}.patch" )
 done
 SRC_URI+=" bindist? ( ${FEDORA_SRC_URI[@]} )"
 
@@ -56,22 +57,34 @@ MULTILIB_WRAPPED_HEADERS=(
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.0.2a-x32-asm.patch #542618
-	"${FILESDIR}"/${P}-CVE-2018-0734.patch
-	"${FILESDIR}"/${P}-CVE-2018-0735.patch
+	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
+	"${FILESDIR}"/${PN}-1.1.1b-CVE-2019-1543.patch
 )
 
 src_prepare() {
 	if use bindist; then
+		# we need to patch the patch but we cannot patch in DISTDIR...
+		mkdir "${WORKDIR}"/fedora_patches || die
+		for i in "${FEDORA_PATCH[@]}" ; do
+			cp "${DISTDIR}"/"${i%.patch}_${FEDORA_GIT_COMMIT}.patch" "${WORKDIR}"/fedora_patches || die
+		done
+
+		# now patch the path, due to OpenSSL change cb193560e0da17a41b40ce574a2349f1d4d59ed1
+		sed -i -e 's#test/evptests.txt#test/recipes/30-test_evp_data/evppkey.txt#g' \
+			"${WORKDIR}"/fedora_patches/openssl-1.1.0-build_d2ede125556ac99aa0faa7744c703af3f559094e.patch || \
+			die
+
 		# This just removes the prefix, and puts it into WORKDIR like the RPM.
 		for i in "${FEDORA_SOURCE[@]}" ; do
-			cp -f "${DISTDIR}"/"${P}_${i}" "${WORKDIR}"/"${i}" || die
+			cp -f "${DISTDIR}"/"${P}_${FEDORA_GIT_COMMIT}_${i}" "${WORKDIR}"/"${i}" || die
 		done
 		# .spec %prep
 		bash "${WORKDIR}"/"${SOURCE1}" || die
 		cp -f "${WORKDIR}"/"${SOURCE12}" "${S}"/crypto/ec/ || die
 		cp -f "${WORKDIR}"/"${SOURCE13}" "${S}"/test/ || die
 		for i in "${FEDORA_PATCH[@]}" ; do
-			eapply "${DISTDIR}"/"${i}"
+			#eapply "${DISTDIR}"/"${i%.patch}_${FEDORA_GIT_COMMIT}.patch"
+			eapply "${WORKDIR}/fedora_patches/${i%.patch}_${FEDORA_GIT_COMMIT}.patch"
 		done
 		# Also see the configure parts below:
 		# enable-ec \
@@ -88,9 +101,6 @@ src_prepare() {
 	if ! use vanilla ; then
 		eapply "${PATCHES[@]}"
 	fi
-
-	# 2018-06-21 grobian: still necessary/in use?
-	#epatch "${FILESDIR}"/${PN}-1.1.0f-winnt.patch # parity
 
 	eapply_user #332661
 
@@ -123,7 +133,8 @@ src_prepare() {
 	append-flags $(test-flags-CC -Wa,--noexecstack)
 	append-cppflags -DOPENSSL_NO_BUF_FREELISTS
 
-	# Prefixify Configure shebang (#141906)
+	# Prefixify Configure shebang (#141906), need to
+	# search PATH for EAPI 7 cross prefix situations.
 	sed \
 		-e "1s,/usr/bin/env,$(type -P env)," \
 		-i Configure || die
