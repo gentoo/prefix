@@ -181,6 +181,9 @@ configure_toolchain() {
 	*-darwin*)
 	  # handled below
 	  ;;
+	*-freebsd*)
+	  # comes with clang, handled below
+	  ;;
 	*)
 	  # The host may not have a functioning c++ toolchain, so use a
 	  # stage1 compiler that can build with C only.
@@ -317,6 +320,11 @@ configure_toolchain() {
 				sys-libs/libcxx
 				sys-devel/llvm
 				sys-devel/clang"
+			;;
+		*-freebsd*)
+			CC=clang
+			CXX=clang++
+			# TODO: target clang toolchain someday?
 			;;
 		*-solaris*)
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
@@ -2290,7 +2298,7 @@ EOF
 	esac
 
 	# TODO: should we better use cc here? or check both?
-	if ! type -P gcc > /dev/null ; then
+	if ! type -P gcc > /dev/null && ! type -P clang > /dev/null ; then
 		case "${CHOST}" in
 			*-darwin*)
 				cat << EOF
@@ -2420,6 +2428,7 @@ EOF
 	case "${CHOST}" in
 		*-cygwin*)     ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%' | tr -d "\\r") ;;
 		*-darwin*)     ncpu=$(/usr/sbin/sysctl -n hw.ncpu)                 ;;
+		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
 		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
 		*-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
 		*-aix*)        ncpu=$(/usr/sbin/bindprocessor -q | cut -d: -f2 | wc -w) ;;
@@ -2924,6 +2933,13 @@ if [[ -z ${CHOST} ]]; then
 				;;
 			CYGWIN*)
 				CHOST="`uname -m`-pc-cygwin"
+				;;
+			FreeBSD)
+				case `uname -m` in
+					amd64)
+						CHOST="x86_64-pc-freebsd`uname -r | sed 's|-.*$||'`"
+					;;
+				esac
 				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
