@@ -2284,6 +2284,7 @@ EOF
 			# OpenIndiana 151a5
 			[[ -d /usr/gnu/bin ]] && PATH="${PATH}:/usr/gnu/bin"
 			# SmartOS
+			[[ -d /opt/local/gcc7/bin ]] && PATH="${PATH}:/opt/local/gcc7/bin"
 			[[ -d /opt/local/gcc47/bin ]] && PATH="${PATH}:/opt/local/gcc47/bin"
 			;;
 		*-darwin1*)
