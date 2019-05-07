@@ -17,9 +17,11 @@ KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x8
 IUSE="+asm bindist elibc_musl rfc3779 sctp cpu_flags_x86_sse2 sslv3 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 
-RDEPEND=">=app-misc/c_rehash-1.7-r1
+MY_PKGINSTDEPS=">=app-misc/c_rehash-1.7-r1"
+RDEPEND="!prefix-stack? ( ${MY_PKGINSTDEPS} )
 	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
+	prefix-stack? ( ${MY_PKGINSTDEPS} )
 	>=dev-lang/perl-5
 	sctp? ( >=net-misc/lksctp-tools-1.0.12 )
 	test? (
