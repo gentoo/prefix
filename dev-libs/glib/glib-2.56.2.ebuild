@@ -40,7 +40,7 @@ RDEPEND="
 	>=virtual/libffi-3.0.13-r1[${MULTILIB_USEDEP}]
 	>=virtual/libintl-0-r2[${MULTILIB_USEDEP}]
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
-	kernel_linux? ( sys-apps/util-linux[${MULTILIB_USEDEP}] )
+	!prefix-stack? ( kernel_linux? ( sys-apps/util-linux[${MULTILIB_USEDEP}] ) )
 	selinux? ( >=sys-libs/libselinux-2.2.2-r5[${MULTILIB_USEDEP}] )
 	xattr? ( >=sys-apps/attr-2.4.47-r1[${MULTILIB_USEDEP}] )
 	fam? ( >=virtual/fam-0-r1[${MULTILIB_USEDEP}] )
@@ -66,7 +66,7 @@ DEPEND="${RDEPEND}
 # python depending package, which can be buildtime depended in packages that
 # need these tools, without pulling in python at runtime.
 RDEPEND="${RDEPEND}
-	>=dev-util/glib-utils-${PV}"
+	!prefix-stack? ( >=dev-util/glib-utils-${PV} )"
 PDEPEND="
 	dbus? ( gnome-base/dconf )
 	mime? ( x11-misc/shared-mime-info )
@@ -205,6 +205,11 @@ multilib_src_configure() {
 		append-libs "-L${EPREFIX}/usr/$(get_libdir)"
 	fi
 
+	local xmlcatalog="${EPREFIX}/etc/xml/catalog"
+	grep -q catalog= "${xmlcatalog}" ||
+	grep -q catalog= "${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/etc/xml/catalog" &&
+	xmlcatalog="${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/etc/xml/catalog"
+
 	# libelf used only by the gresource bin
 	ECONF_SOURCE="${S}" gnome2_src_configure ${myconf} \
 		$(usex debug --enable-debug=yes ' ') \
@@ -220,7 +225,7 @@ multilib_src_configure() {
 		--disable-compile-warnings \
 		--enable-man \
 		--with-pcre=system \
-		--with-xml-catalog="${EPREFIX}/etc/xml/catalog"
+		--with-xml-catalog="${xmlcatalog}"
 
 	if multilib_is_native_abi; then
 		local d
