@@ -128,9 +128,9 @@ do_prepare() {
 
 	if [[ -n ${DOPUBLISH} ]] ; then
 		echo $((endtime - starttime)) > elapsedtime
-		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
-		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
-		rsync -rltv \
+		${keepalive} rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
+		${keepalive} rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
+		${keepalive} rsync -rltv \
 			--exclude=work/ \
 			--exclude=homedir/ \
 			--exclude=files \
@@ -145,7 +145,8 @@ do_prepare() {
 			var/log/emerge.log \
 			etc/portage/make.conf \
 			${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/
-		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/push-complete/
+		${keepalive} rsync -q /dev/null \
+			${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/push-complete/
 	fi
 }
 
