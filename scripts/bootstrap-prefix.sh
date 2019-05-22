@@ -911,20 +911,9 @@ bootstrap_gnu() {
 }
 
 bootstrap_python() {
-	PV=2.7.3
-
-	case $CHOST in
-		*-*-aix*)
-			# TODO: freebsd 10 also seems to need this
-			PV=2.7.15
-			A=Python-${PV}.tar.xz # patched one breaks
-			patch=true
-		;;
-		*)
-			A=python-${PV}-patched.tar.bz2
-			patch=false
-		;;
-	esac
+	PV=3.6.8
+	A=Python-${PV}.tar.xz
+	patch=true
 
 	einfo "Bootstrapping ${A%-*}"
 
@@ -951,55 +940,11 @@ bootstrap_python() {
 	if ${patch}; then
 		# This patch is critical and needs to be applied even
 		# when using the otherwise unpatched sources.
-		efetch "http://dev.gentoo.org/~haubi/distfiles/02_all_disable_modules_and_ssl.patch"
-		patch -p0 < "${DISTDIR}"/02_all_disable_modules_and_ssl.patch
+		efetch "http://dev.gentoo.org/~grobian/distfiles/python-3.6-02_all_disable_modules_and_ssl.patch"
+		patch -p0 < "${DISTDIR}"/python-3.6-02_all_disable_modules_and_ssl.patch
 	fi
 
-	# ./Python/ dir hides ./python.exe on Cygwin.
-	# With dlltool, find_library("c") can return "cygwin1.dll".
-	patch -p0 <<'EOP'
---- Modules/getpath.c
-+++ Modules/getpath.c
-@@ -436,6 +436,15 @@
-                         if (isxfile(progpath))
-                                 break;
- 
-+#ifdef __CYGWIN__
-+                        if (isdir(progpath)) {
-+                                /* found /.../Python/ but want /.../python.exe */
-+                                strncat(progpath, ".exe", MAXPATHLEN - strlen(progpath));
-+                                if (isxfile(progpath))
-+                                        break;
-+                        }
-+#endif /* __CYGWIN__ */
-+
-                         if (!delim) {
-                                 progpath[0] = '\0';
-                                 break;
---- Lib/ctypes/util.py
-+++ Lib/ctypes/util.py
-@@ -41,6 +41,20 @@
-                 continue
-         return None
- 
-+elif sys.platform == "cygwin":
-+    def find_library(name):
-+        for libdir in ['/usr/lib', '/usr/local/lib']:
-+            for libext in ['lib%s.dll.a' % name, 'lib%s.a' % name]:
-+                implib = os.path.join(libdir, libext)
-+                if not os.path.exists(implib):
-+                    continue
-+                cmd = "dlltool -I " + implib + " 2>/dev/null"
-+                res = os.popen(cmd).read().replace("\n","")
-+                if not res:
-+                    continue
-+                return res
-+        return None
-+
- elif os.name == "posix":
-     # Andreas Degert's find functions, using gcc, /sbin/ldconfig, objdump
-     import re, tempfile, errno
-EOP
+	# Cygwin TODO: use cygwin python sources here?
 	local myconf=""
 
 	case $CHOST in
@@ -1067,13 +1012,13 @@ EOP
 
 	einfo "Compiling ${A%-*}"
 
-	#some ancient versions of hg fail with "hg id -i", so help configure to not find them
-	# do not find libffi via pkg-config
+	# some ancient versions of hg fail with "hg id -i", so help
+	# configure to not find them using HAS_HG
+	# do not find libffi via pkg-config using PKG_CONFIG
 	HAS_HG=no \
 	PKG_CONFIG= \
 	econf \
 		--with-system-ffi \
-		--disable-toolbox-glue \
 		--disable-ipv6 \
 		--disable-shared \
 		--libdir="${ROOT}"/tmp/usr/lib \
@@ -1705,7 +1650,7 @@ bootstrap_stage2() {
 		MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 		GCC_MAKE_TARGET=all \
 		TPREFIX="${ROOT}" \
-		PYTHON_COMPAT_OVERRIDE=python2.7 \
+		PYTHON_COMPAT_OVERRIDE=python3.6 \
 		emerge_pkgs --nodeps ${pkg} || return 1
 
 		if [[ "${pkg}" == *sys-devel/llvm* || ${pkg} == *sys-devel/clang* ]] ;
