@@ -910,6 +910,7 @@ bootstrap_gnu() {
 	einfo "${PN}-${PV} successfully bootstrapped"
 }
 
+PYTHONMAJMIN=3.6   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
 	PV=3.6.8
 	A=Python-${PV}.tar.xz
@@ -1650,7 +1651,7 @@ bootstrap_stage2() {
 		MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 		GCC_MAKE_TARGET=all \
 		TPREFIX="${ROOT}" \
-		PYTHON_COMPAT_OVERRIDE=python3.6 \
+		PYTHON_COMPAT_OVERRIDE=python${PYTHONMAJMIN} \
 		emerge_pkgs --nodeps ${pkg} || return 1
 
 		if [[ "${pkg}" == *sys-devel/llvm* || ${pkg} == *sys-devel/clang* ]] ;
@@ -1721,10 +1722,10 @@ bootstrap_stage3() {
 	# if we resume this stage and python-exec was installed already in
 	# tmp, we basically made the system unusable, so remove python-exec
 	# here so we can use the python in tmp
-	for pef in python{,2} python{,2}-config ; do
+	for pef in python{,3} python{,3}-config ; do
 		rm -f "${ROOT}"/tmp/usr/bin/${pef}
 		[[ ${pef} == *-config ]] && ppf=-config || ppf=
-		( cd "${ROOT}"/tmp/usr/bin && ln -s python2.7${ppf} ${pef} )
+		( cd "${ROOT}"/tmp/usr/bin && ln -s python${PYTHONMAJMIN}${ppf} ${pef} )
 	done
 
 	get_libdir() {
@@ -1849,9 +1850,9 @@ bootstrap_stage3() {
 	# setup for a scenario where python doesn't live in the target
 	# prefix and no helpers are available
 	( cd "${ROOT}"/usr/bin && test ! -e python && \
-		ln -s "${ROOT}"/tmp/usr/bin/python2.7 )
+		ln -s "${ROOT}"/tmp/usr/bin/python${PYTHONMAJMIN} )
 	# in addition, avoid collisions
-	rm -Rf "${ROOT}"/tmp/usr/lib/python2.7/site-packages/clang
+	rm -Rf "${ROOT}"/tmp/usr/lib/python${PYTHONMAJMIN}/site-packages/clang
 
 	# llvm-3.5 doesn't find C++11 headers/lib by default, make it so
 	if [[ ${CHOST} == *-darwin9 ]] ; then
@@ -1869,7 +1870,7 @@ bootstrap_stage3() {
 	# try to get ourself out of the mudd, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx --disable-lto)" \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
-	PYTHON_COMPAT_OVERRIDE=python2.7 \
+	PYTHON_COMPAT_OVERRIDE=python${PYTHONMAJMIN} \
 	with_stack_emerge_pkgs --nodeps ${compiler} || return 1
 	# undo libgcc_s.so path of stage2
 
@@ -1885,7 +1886,7 @@ bootstrap_stage3() {
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 
-	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python2.7 )
+	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python${PYTHONMAJMIN} )
 	# Use $ROOT tools where possible from now on.
 	if [[ $(readlink "${ROOT}"/bin/sh) == "${ROOT}/tmp/"* ]] ; then
 		rm -f "${ROOT}"/bin/sh
