@@ -112,18 +112,18 @@ do_prepare() {
 	starttime=${SECONDS}
 	env -i \
 		HOME=${EPREFIX} \
-		SHELL=/bin/bash \
+		SHELL=/bin/sh \
 		TERM=${TERM} \
 		USER=${USER} \
 		CHOST=${chost} \
 		EPREFIX=${EPREFIX} \
-		${GENTOO_MIRRORS+GENTOO_MIRRORS=}${GENTOO_MIRRORS} \
+		${GENTOO_MIRRORS+GENTOO_MIRRORS="${GENTOO_MIRRORS}"} \
 		${DOLOCAL+DOLOCAL=1} \
 		${DOLIBRESSL+MAKE_CONF_ADDITIONAL_USE=libressl} \
 		${RESUME+RESUME=1} \
 		${LATEST_TREE_YES+LATEST_TREE_YES=1} \
 		${TREE_FROM_SRC+TREE_FROM_SRC=}${TREE_FROM_SRC} \
-		${keepalive} /bin/bash -l -c "${BASH} ${bootstrapscript} bootstrap"
+		${keepalive} ${BASH} ${bootstrapscript} bootstrap
 	endtime=${SECONDS}
 
 	if [[ -n ${DOPUBLISH} ]] ; then
