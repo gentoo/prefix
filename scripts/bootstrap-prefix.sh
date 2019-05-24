@@ -1818,10 +1818,6 @@ bootstrap_stage3() {
 		export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,--dynamic-linker=${RAP_DLINKER}"
 		BOOTSTRAP_RAP=yes \
 		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
-
-		# remove stage2 ld so that stage3 ld is used by stage2 gcc.
-		[[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && \
-			mv ${ROOT}/tmp/usr/${CHOST}/bin/ld{,.stage2}
 	else
 		pkgs=(
 			sys-apps/gentoo-functions
@@ -1838,6 +1834,9 @@ bootstrap_stage3() {
 
 		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	fi
+	# remove stage2 ld so that stage3 ld is used by stage2 gcc.
+	is-rap && [[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && \
+		mv ${ROOT}/tmp/usr/${CHOST}/bin/ld{,.stage2}
 
 	# On some hosts, gcc gets confused now when it uses the new linker,
 	# see for instance bug #575480.  While we would like to hide that
