@@ -945,7 +945,34 @@ bootstrap_python() {
 		patch -p0 < "${DISTDIR}"/python-3.6-02_all_disable_modules_and_ssl.patch
 	fi
 
-	# Cygwin TODO: use cygwin python sources here?
+	case ${CHOST} in
+	(*-*-cygwin*)
+		# apply patches from cygwinports much like the ebuild does
+		local gitrev pf pn
+		gitrev="71f2ac2444946c97d892be3892e47d2a509e0e96" # python36 3.6.8
+		efetch "https://github.com/cygwinports/python36/archive/${gitrev}.tar.gz" \
+			|| return 1
+		gzip -dc "${DISTDIR}"/${gitrev}.tar.gz | tar -xf -
+		[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
+		for pf in $(
+			sed -ne '/PATCH_URI="/,/"/{s/.*="//;s/".*$//;p}' \
+			< python36-${gitrev}/python3.cygport
+		); do
+			pf="python36-${gitrev}/${pf}"
+			for pn in {1..2} fail; do
+				if [[ ${pn} == fail ]]; then
+					eerror "failed to apply ${pf}"
+					return 1
+				fi
+				patch -N -p${pn} -i "${pf}" --dry-run >/dev/null 2>&1 || continue
+				echo "applying (-p${pn}) ${pf}"
+				patch -N -p${pn} -i "${pf}" || return 1
+				break
+			done
+		done
+		;;
+	esac
+
 	local myconf=""
 
 	case $CHOST in
