@@ -5,7 +5,7 @@ EAPI=5
 
 PYTHON_COMPAT=(
 	pypy
-	python3_4 python3_5 python3_6 python3_7
+	python3_5 python3_6 python3_7
 	python2_7
 )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
@@ -91,6 +91,7 @@ pkg_setup() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
+	epatch "${FILESDIR}"/${PN}-2.3.62-prefix-stack.patch # 658572
 	epatch "${FILESDIR}"/${PN}-2.3.45-ebuildshell.patch # 155161
 
 	if use native-extensions; then
