@@ -2,12 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
+# @SUPPORTED_EAPIS: 5 6
 
 DESCRIPTION="The GNU Compiler Collection"
 HOMEPAGE="https://gcc.gnu.org/"
 RESTRICT="strip" # cross-compilers need controlled stripping
 
-inherit eutils fixheadtails flag-o-matic gnuconfig libtool multilib pax-utils toolchain-funcs versionator prefix
+inherit eutils fixheadtails flag-o-matic gnuconfig libtool multilib pax-utils toolchain-funcs prefix
 
 if [[ ${PV} == *_pre9999* ]] ; then
 	EGIT_REPO_URI="git://gcc.gnu.org/git/gcc.git"
@@ -25,8 +26,8 @@ FEATURES=${FEATURES/multilib-strict/}
 
 case ${EAPI:-0} in
 	0|1|2|3|4*) die "Need to upgrade to at least EAPI=5" ;;
-	5*)   ;;
-	*)       die "I don't speak EAPI ${EAPI}." ;;
+	5*|6) inherit eapi7-ver ;;
+	*) die "I don't speak EAPI ${EAPI}." ;;
 esac
 EXPORT_FUNCTIONS pkg_pretend pkg_setup src_unpack src_prepare src_configure \
 	src_compile src_test src_install pkg_postinst pkg_postrm
@@ -52,7 +53,7 @@ is_crosscompile() {
 
 # General purpose version check.  Without a second arg matches up to minor version (x.x.x)
 tc_version_is_at_least() {
-	version_is_at_least "$1" "${2:-${GCC_RELEASE_VER}}"
+	ver_test "${2:-${GCC_RELEASE_VER}}" -ge "$1"
 }
 
 # General purpose version range check
@@ -64,17 +65,17 @@ tc_version_is_between() {
 GCC_PV=${TOOLCHAIN_GCC_PV:-${PV}}
 GCC_PVR=${GCC_PV}
 [[ ${PR} != "r0" ]] && GCC_PVR=${GCC_PVR}-${PR}
-GCC_RELEASE_VER=$(get_version_component_range 1-3 ${GCC_PV})
-GCC_BRANCH_VER=$(get_version_component_range 1-2 ${GCC_PV})
-GCCMAJOR=$(get_version_component_range 1 ${GCC_PV})
-GCCMINOR=$(get_version_component_range 2 ${GCC_PV})
-GCCMICRO=$(get_version_component_range 3 ${GCC_PV})
+GCC_RELEASE_VER=$(ver_cut 1-3 ${GCC_PV})
+GCC_BRANCH_VER=$(ver_cut 1-2 ${GCC_PV})
+GCCMAJOR=$(ver_cut 1 ${GCC_PV})
+GCCMINOR=$(ver_cut 2 ${GCC_PV})
+GCCMICRO=$(ver_cut 3 ${GCC_PV})
 [[ ${BRANCH_UPDATE-notset} == "notset" ]] && \
-	BRANCH_UPDATE=$(get_version_component_range 4 ${GCC_PV})
+	BRANCH_UPDATE=$(ver_cut 4 ${GCC_PV})
 
 # According to gcc/c-cppbuiltin.c, GCC_CONFIG_VER MUST match this regex.
 # ([^0-9]*-)?[0-9]+[.][0-9]+([.][0-9]+)?([- ].*)?
-GCC_CONFIG_VER=${GCC_CONFIG_VER:-$(replace_version_separator 3 '-' ${GCC_PV})}
+GCC_CONFIG_VER=${GCC_CONFIG_VER:-$(ver_rs 3 '-' ${GCC_PV})}
 
 # Pre-release support
 if [[ ${GCC_PV} == *_pre* ]] ; then
@@ -130,38 +131,54 @@ else
 	LICENSE="GPL-2+ LGPL-2.1+ FDL-1.1+"
 fi
 
-IUSE="regression-test vanilla"
-IUSE_DEF=( nls nptl )
+if tc_version_is_at_least 8.3; then
+	GCC_EBUILD_TEST_FLAG='test'
+else
+	# Don't force USE regression-test->test change on every
+	# gcc ebuild just yet. Let's do the change when >=gcc-8.3
+	# is commonly used as a main compiler.
+	GCC_EBUILD_TEST_FLAG='regression-test'
+fi
+IUSE="${GCC_EBUILD_TEST_FLAG} vanilla +nls +nptl"
+
+TC_FEATURES=()
+
+tc_has_feature() {
+	has "$1" "${TC_FEATURES[@]}"
+}
 
 if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
-	IUSE+=" altivec debug"
-	IUSE_DEF+=( cxx fortran )
+	IUSE+=" altivec debug +cxx +fortran" TC_FEATURES+=(fortran)
 	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
 	[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
 	[[ -n ${D_VER}   ]] && IUSE+=" d"
 	[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
 	tc_version_is_at_least 3 && IUSE+=" doc hardened multilib objc"
-	tc_version_is_between 3 7 && IUSE+=" awt gcj"
+	tc_version_is_between 3 7 && IUSE+=" awt gcj" TC_FEATURES+=(gcj)
 	tc_version_is_at_least 3.3 && IUSE+=" pgo"
-	tc_version_is_at_least 4.0 && IUSE+=" objc-gc"
+	tc_version_is_at_least 4.0 &&
+		IUSE+=" objc-gc" TC_FEATURES+=(objc-gc)
 	tc_version_is_between 4.0 4.9 && IUSE+=" mudflap"
 	tc_version_is_at_least 4.1 && IUSE+=" libssp objc++"
-	tc_version_is_at_least 4.2 && IUSE_DEF+=( openmp )
+	tc_version_is_at_least 4.2 && IUSE+=" +openmp"
 	tc_version_is_at_least 4.3 && IUSE+=" fixed-point"
 	tc_version_is_at_least 4.7 && IUSE+=" go"
 	# Note: while <=gcc-4.7 also supported graphite, it required forked ppl
 	# versions which we dropped.  Since graphite was also experimental in
 	# the older versions, we don't want to bother supporting it.  #448024
-	tc_version_is_at_least 4.8 && IUSE+=" graphite" IUSE_DEF+=( sanitize )
+	tc_version_is_at_least 4.8 &&
+		IUSE+=" graphite +sanitize" TC_FEATURES+=(graphite)
 	tc_version_is_between 4.9 8 && IUSE+=" cilk"
 	tc_version_is_at_least 4.9 && IUSE+=" +vtv"
-	tc_version_is_at_least 5.0 && IUSE+=" jit mpx"
+	tc_version_is_at_least 5.0 && IUSE+=" jit"
+	tc_version_is_between 5.0 9 && IUSE+=" mpx"
 	tc_version_is_at_least 6.0 && IUSE+=" +pie +ssp +pch"
 	# systemtap is a gentoo-specific switch: bug #654748
-	tc_version_is_at_least 8.0 && IUSE+=" systemtap"
+	tc_version_is_at_least 8.0 &&
+		IUSE+=" systemtap" TC_FEATURES+=(systemtap)
+	tc_version_is_at_least 9.0 && IUSE+=" d"
+	tc_version_is_at_least 9.1 && IUSE+=" lto"
 fi
-
-IUSE+=" ${IUSE_DEF[*]/#/+}"
 
 SLOT="${GCC_CONFIG_VER}"
 
@@ -176,20 +193,20 @@ if tc_version_is_at_least 4 ; then
 	GMP_MPFR_DEPS=">=dev-libs/gmp-4.3.2:0= >=dev-libs/mpfr-2.4.2:0="
 	if tc_version_is_at_least 4.3 ; then
 		RDEPEND+=" ${GMP_MPFR_DEPS}"
-	elif in_iuse fortran ; then
+	elif tc_has_feature fortran ; then
 		RDEPEND+=" fortran? ( ${GMP_MPFR_DEPS} )"
 	fi
 fi
 
 tc_version_is_at_least 4.5 && RDEPEND+=" >=dev-libs/mpc-0.8.1:0="
 
-if in_iuse objc-gc ; then
+if tc_has_feature objc-gc ; then
 	if tc_version_is_at_least 7 ; then
 		RDEPEND+=" objc-gc? ( >=dev-libs/boehm-gc-7.4.2 )"
 	fi
 fi
 
-if in_iuse graphite ; then
+if tc_has_feature graphite ; then
 	if tc_version_is_at_least 5.0 ; then
 		RDEPEND+=" graphite? ( >=dev-libs/isl-0.14:0= )"
 	elif tc_version_is_at_least 4.8 ; then
@@ -205,12 +222,12 @@ DEPEND="${RDEPEND}
 	>=sys-devel/bison-1.875
 	>=sys-devel/flex-2.5.4
 	nls? ( sys-devel/gettext )
-	regression-test? (
+	${GCC_EBUILD_TEST_FLAG}? (
 		>=dev-util/dejagnu-1.4.4
 		>=sys-devel/autogen-5.5.4
 	)"
 
-if in_iuse gcj ; then
+if tc_has_feature gcj ; then
 	GCJ_DEPS=">=media-libs/libart_lgpl-2.1"
 	GCJ_GTK_DEPS="
 		x11-base/xorg-proto
@@ -225,7 +242,7 @@ if in_iuse gcj ; then
 	DEPEND+=" gcj? ( awt? ( ${GCJ_GTK_DEPS} ) ${GCJ_DEPS} )"
 fi
 
-if in_iuse systemtap ; then
+if tc_has_feature systemtap ; then
 	# gcc needs sys/sdt.h headers on target
 	DEPEND+=" systemtap? ( dev-util/systemtap )"
 fi
@@ -378,7 +395,7 @@ get_gcc_src_uri() {
 	[[ -n ${D_VER} ]] && \
 		GCC_SRC_URI+=" d? ( mirror://sourceforge/dgcc/gdc-${D_VER}-src.tar.bz2 )"
 
-	if in_iuse gcj ; then
+	if tc_has_feature gcj ; then
 		if tc_version_is_at_least 4.5 ; then
 			GCC_SRC_URI+=" gcj? ( ftp://sourceware.org/pub/java/ecj-4.5.jar )"
 		elif tc_version_is_at_least 4.3 ; then
@@ -533,7 +550,12 @@ toolchain_src_prepare() {
 	do_gcc_HTB_patches
 	do_gcc_PIE_patches
 	do_gcc_CYGWINPORTS_patches
-	epatch_user
+
+	case ${EAPI:-0} in
+		5*) epatch_user;;
+		6) eapply_user ;;
+		*) die "Update toolchain_src_prepare() for ${EAPI}." ;;
+	esac
 
 	if ( tc_version_is_at_least 4.8.2 || use_if_iuse hardened ) && ! use vanilla ; then
 		make_gcc_hard
@@ -998,6 +1020,11 @@ toolchain_src_configure() {
 		confgcc+=( --enable-libstdcxx-time )
 	fi
 
+	# Build compiler using LTO
+	if tc_version_is_at_least 9.1 && use_if_iuse lto ; then
+		confgcc+=( --with-build-config=bootstrap-lto )
+	fi
+
 	# Support to disable pch when building libstdcxx
 	if tc_version_is_at_least 6.0 && ! use_if_iuse pch ; then
 		confgcc+=( --disable-libstdcxx-pch )
@@ -1042,7 +1069,7 @@ toolchain_src_configure() {
 			# Undoing it here.
 			confgcc+=( --disable-libstdcxx-time )
 			;;
-		*-gentoo-freebsd*)		 needed_libc=freebsd-lib;;
+		*-gentoo-freebsd*) needed_libc=freebsd-lib;;
 		*-gnu*)			 needed_libc=glibc;;
 		*-klibc)		 needed_libc=klibc;;
 		*-musl*)		 needed_libc=musl;;
@@ -1053,7 +1080,7 @@ toolchain_src_configure() {
 			then #291870
 				confgcc+=( --disable-shared )
 			fi
-			needed_libc=uclibc
+			needed_libc=uclibc-ng
 			;;
 		*-cygwin)		 needed_libc=cygwin;;
 		x86_64-*-mingw*|\
@@ -1122,6 +1149,9 @@ toolchain_src_configure() {
 		;;
 	*-elf|*-eabi)
 		confgcc+=( --with-newlib )
+		;;
+	*-musl*)
+		confgcc+=( --enable-__cxa_atexit )
 		;;
 	*-gnu*)
 		confgcc+=(
@@ -1224,6 +1254,10 @@ toolchain_src_configure() {
 		is-flagq -mfloat-gprs=double && confgcc+=( --enable-e500-double )
 		[[ ${CTARGET//_/-} == *-e500v2-* ]] && confgcc+=( --enable-e500-double )
 		;;
+	riscv)
+		# Add --with-abi flags to set default ABI
+		confgcc+=( --with-abi=$(gcc-abi-map ${TARGET_DEFAULT_ABI}) )
+		;;
 	esac
 
 	# if the target can do biarch (-m32/-m64), enable it.  overhead should
@@ -1246,10 +1280,12 @@ toolchain_src_configure() {
 
 	### library options
 
-	if ! is_gcj ; then
-		confgcc+=( --disable-libgcj )
-	elif use awt ; then
-		confgcc+=( --enable-java-awt=gtk )
+	if tc_version_is_between 3.0 7.0 ; then
+		if ! is_gcj ; then
+			confgcc+=( --disable-libgcj )
+		elif use awt ; then
+			confgcc+=( --enable-java-awt=gtk )
+		fi
 	fi
 
 	if tc_version_is_at_least 4.2 ; then
@@ -1317,7 +1353,8 @@ toolchain_src_configure() {
 	if in_iuse vtv ; then
 		confgcc+=(
 			$(use_enable vtv vtable-verify)
-			$(use_enable vtv libvtv)
+			# See Note [implicitly enabled flags]
+			$(usex vtv '' --disable-libvtv)
 		)
 	fi
 
@@ -1346,7 +1383,8 @@ toolchain_src_configure() {
 	fi
 
 	if tc_version_is_at_least 4.8 && in_iuse sanitize ; then
-		confgcc+=( $(use_enable sanitize libsanitizer) )
+		# See Note [implicitly enabled flags]
+		confgcc+=( $(usex sanitize '' --disable-libsanitizer) )
 	fi
 
 	if tc_version_is_at_least 6.0 && in_iuse pie ; then
@@ -1393,7 +1431,7 @@ toolchain_src_configure() {
 	addwrite /dev/zero
 	echo "${S}"/configure "${confgcc[@]}"
 	# Older gcc versions did not detect bash and re-exec itself, so force the
-	# use of bash.  Newer ones will auto-detect, but this is not harmeful.
+	# use of bash.  Newer ones will auto-detect, but this is not harmful.
 	CONFIG_SHELL="${EPREFIX}/bin/bash" \
 	bash "${S}"/configure "${confgcc[@]}" || die "failed to run configure"
 
@@ -1550,6 +1588,12 @@ gcc_do_filter_flags() {
 		filter-flags -f{no-,}unit-at-a-time -f{no-,}web -mno-tls-direct-seg-refs
 		filter-flags -f{no-,}stack-protector{,-all}
 		filter-flags -fvisibility-inlines-hidden -fvisibility=hidden
+		# and warning options
+		filter-flags -Wextra -Wstack-protector
+	fi
+	if ! tc_version_is_at_least 4.1 ; then
+		filter-flags -fdiagnostics-show-option
+		filter-flags -Wstack-protector
 	fi
 
 	if tc_version_is_at_least 3.4 ; then
@@ -1646,6 +1690,7 @@ gcc-abi-map() {
 	local map=()
 	case ${CTARGET} in
 	mips*)   map=("o32 32" "n32 n32" "n64 64") ;;
+	riscv*)  map=("lp64d lp64d" "lp64 lp64") ;;
 	x86_64*) map=("amd64 m64" "x86 m32" "x32 mx32") ;;
 	esac
 
@@ -1665,6 +1710,11 @@ toolchain_src_compile() {
 	[[ ! -x /usr/bin/perl ]] \
 		&& find "${WORKDIR}"/build -name '*.[17]' -exec touch {} +
 
+	# Older gcc versions did not detect bash and re-exec itself, so force the
+	# use of bash.  Newer ones will auto-detect, but this is not harmful.
+	# This needs to be set for compile as well, as it's used in libtool
+	# generation, which will break install otherwise (at least in 3.3.6): #664486
+	CONFIG_SHELL="${EPREFIX}/bin/bash" \
 	gcc_do_make ${GCC_MAKE_TARGET}
 }
 
@@ -1758,9 +1808,10 @@ gcc_do_make() {
 #---->> src_test <<----
 
 toolchain_src_test() {
-	if use regression-test ; then
+	if use ${GCC_EBUILD_TEST_FLAG} ; then
 		cd "${WORKDIR}"/build
-		emake -k check
+		# enable verbose test run and result logging
+		emake -k check RUNTESTFLAGS='-a -v'
 	fi
 }
 
@@ -1853,22 +1904,28 @@ toolchain_src_install() {
 			ln -sf ${CTARGET}-${x} ${CTARGET}-${x}-${GCC_CONFIG_VER}
 		fi
 	done
-	# Rename the main go binaries as we don't want to clobber dev-lang/go
-	# when gcc-config runs. #567806
-	if tc_version_is_at_least 5 && is_go ; then
-		for x in go gofmt; do
-			mv ${x} ${x}-${GCCMAJOR} || die
-		done
+
+	# When gcc builds a crosscompiler it does not install unprefixed tools.
+	# When cross-building gcc does install native tools.
+	if ! is_crosscompile; then
+		# Rename the main go binaries as we don't want to clobber dev-lang/go
+		# when gcc-config runs. #567806
+		if tc_version_is_at_least 5 && is_go ; then
+			for x in go gofmt; do
+				mv ${x} ${x}-${GCCMAJOR} || die
+			done
+		fi
 	fi
 
-	# Now do the fun stripping stuff
-	env RESTRICT="" CHOST=${CHOST} prepstrip "${D}${BINPATH}"
-	is_crosscompile && \
-		env RESTRICT="" CHOST=${CHOST} prepstrip "${D}${HOSTLIBPATH}"
-	env RESTRICT="" CHOST=${CTARGET} prepstrip "${D}${LIBPATH}"
-	# gcc used to install helper binaries in lib/ but then moved to libexec/
-	[[ -d ${D}${PREFIX}/libexec/gcc ]] && \
-		env RESTRICT="" CHOST=${CHOST} prepstrip "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}"
+	# TODO: implement stripping (we use RESTRICT=strip)
+	# As gcc installs object files both build against ${CHOST} and ${CTARGET}
+	# we will ned to run stripping using different tools:
+	# Using ${CHOST} tools:
+	#  - "${D}${BINPATH}"
+	#  - (for is_crosscompile) "${D}${HOSTLIBPATH}"
+	#  - "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}"
+	# Using ${CTARGET} tools:
+	#  - "${D}${LIBPATH}"
 
 	cd "${S}"
 	if is_crosscompile; then
@@ -1881,18 +1938,20 @@ toolchain_src_install() {
 				cp -r "${cxx_mandir}"/man? "${D}${DATAPATH}"/man/
 			fi
 		fi
-		has noinfo ${FEATURES} \
-			&& rm -r "${D}${DATAPATH}"/info \
-			|| prepinfo "${DATAPATH#${EPREFIX}}"
-		has noman ${FEATURES} \
-			&& rm -r "${D}${DATAPATH}"/man \
-			|| prepman "${DATAPATH#${EPREFIX}}"
 	fi
+
+	# portage regenerates 'dir' files on it's own: bug #672408
+	# Drop 'dir' files to avoid collisions.
+	if [[ -f "${D}${DATAPATH}"/info/dir ]]; then
+		einfo "Deleting '${D}${DATAPATH}/info/dir'"
+		rm "${D}${DATAPATH}"/info/dir || die
+	fi
+
 	# prune empty dirs left behind
 	find "${ED}" -depth -type d -delete 2>/dev/null
 
 	# install testsuite results
-	if use regression-test; then
+	if use ${GCC_EBUILD_TEST_FLAG}; then
 		docinto testsuite
 		find "${WORKDIR}"/build -type f -name "*.sum" -exec dodoc {} +
 		find "${WORKDIR}"/build -type f -path "*/testsuite/*.log" -exec dodoc {} +
@@ -2220,7 +2279,7 @@ toolchain_pkg_postinst() {
 		cp "${ROOT%/}${DATAPATH}"/c{89,99} "${EROOT%/}"/usr/bin/ 2>/dev/null
 	fi
 
-	if use regression-test ; then
+	if use ${GCC_EBUILD_TEST_FLAG} ; then
 		elog "Testsuite results have been installed into /usr/share/doc/${PF}/testsuite"
 		echo
 	fi
@@ -2319,7 +2378,7 @@ should_we_gcc_config() {
 	# for being in the same SLOT, make sure we run gcc-config.
 	local curr_config_ver=$(env -i ROOT="${ROOT}" "${EPREFIX}"/usr/bin/gcc-config -S ${curr_config} | awk '{print $2}')
 
-	local curr_branch_ver=$(get_version_component_range 1-2 ${curr_config_ver})
+	local curr_branch_ver=$(ver_cut 1-2 ${curr_config_ver})
 
 	if [[ ${curr_branch_ver} == ${GCC_BRANCH_VER} ]] ; then
 		return 0
@@ -2402,6 +2461,10 @@ is_go() {
 
 is_jit() {
 	gcc-lang-supported jit || return 1
+	# cross-compiler does not really support jit as it has
+	# to generate code for a target. On target like avr
+	# libgcclit.so can't link at all: bug #594572
+	is_crosscompile && return 1
 	use_if_iuse jit
 }
 
@@ -2527,3 +2590,21 @@ toolchain_death_notice() {
 		popd >/dev/null
 	fi
 }
+
+# Note [implicitly enabled flags]
+# -------------------------------
+# Usually configure-based packages handle explicit feature requests
+# like
+#     ./configure --enable-foo
+# as explicit request to check for support of 'foo' and bail out at
+# configure time.
+#
+# GCC does not follow this pattern and instead overrides autodetection
+# of the feature and enables it unconditionally.
+# See bugs:
+#    https://gcc.gnu.org/PR85663 (libsanitizer on mips)
+#    https://bugs.gentoo.org/661252 (libvtv on powerpc64)
+#
+# Thus safer way to enable/disable the feature is to rely on implicit
+# enabled-by-default state:
+#    econf $(usex foo '' --disable-foo)
