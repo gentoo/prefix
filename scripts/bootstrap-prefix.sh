@@ -945,18 +945,6 @@ bootstrap_python() {
 		patch -p0 < "${DISTDIR}"/python-3.6-02_all_disable_modules_and_ssl.patch
 	fi
 
-	# Solaris' host compiler (if old -- 3.4.3) doesn't grok HUGE_VAL,
-	# and barfs on isnan() so patch it out
-	case ${CHOST} in
-	(*-solaris*)
-		sed -i \
-			-e '/^#define Py_HUGE_VAL/s/HUGE_VAL$/(__builtin_huge_val())/' \
-			-e '/defined HAVE_DECL_ISNAN/s/ISNAN/USE_FALLBACK/' \
-			Include/pymath.h
-		;;
-	esac
-
-
 	case ${CHOST} in
 	(*-*-cygwin*)
 		# apply patches from cygwinports much like the ebuild does
@@ -982,6 +970,22 @@ bootstrap_python() {
 				break
 			done
 		done
+		;;
+	(*-solaris*)
+		# Solaris' host compiler (if old -- 3.4.3) doesn't grok HUGE_VAL,
+		# and barfs on isnan() so patch it out
+		sed -i \
+			-e '/^#define Py_HUGE_VAL/s/HUGE_VAL$/(__builtin_huge_val())/' \
+			-e '/defined HAVE_DECL_ISNAN/s/ISNAN/USE_FALLBACK/' \
+			Include/pymath.h
+		;;
+	(*-darwin9)
+		# Darwin 9's kqueue seems to act up (at least at this stage), so
+		# make Python's selectors resort to poll() or select() for the
+		# time being
+		sed -i \
+			-e 's/KQUEUE/KQUEUE_DISABLED/' \
+			configure
 		;;
 	esac
 
