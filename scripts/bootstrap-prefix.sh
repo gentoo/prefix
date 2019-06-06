@@ -581,7 +581,7 @@ do_tree() {
 bootstrap_tree() {
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
-	local PV="20190326"
+	local PV="20190602"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
@@ -615,7 +615,7 @@ bootstrap_startscript() {
 		eerror "automate starting your prefix, set SHELL and rerun this script" > /dev/stderr
 		return 1
 	fi
-	if [[ -d ${ROOT}/usr/portage/app-portage/prefix-toolkit ]] ; then
+	if [[ -d ${PORTDIR}/app-portage/prefix-toolkit ]] ; then
 		einfo "Finally, emerging prefix-toolkit for your convenience"
 		emerge -u app-portage/prefix-toolkit || return 1
 	else
@@ -624,15 +624,15 @@ bootstrap_startscript() {
 		# putting it in /bin or /usr/bin just hides it some more for the
 		# user
 		if is-rap ; then
-			mkdir -p "${ROOT}"/usr/portage/scripts
+			mkdir -p "${PORTDIR}"/scripts
 			wget $([[ $(wget -h) == *"--no-check-certificate"* ]] && echo --no-check-certificate) \
 				 https://gitweb.gentoo.org/repo/proj/prefix.git/plain/scripts/startprefix.in \
-				 -O "${ROOT}"/usr/portage/scripts/startprefix.in
+				 -O "${PORTDIR}"/scripts/startprefix.in
 		fi
 
 		sed \
 			-e "s|@GENTOO_PORTAGE_EPREFIX@|${ROOT}|g" \
-			"${ROOT}"/usr/portage/scripts/startprefix.in \
+			"${PORTDIR}"/scripts/startprefix.in \
 			> "${ROOT}"/startprefix
 		chmod 755 "${ROOT}"/startprefix
 	fi
@@ -666,8 +666,8 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
-	STABLE_PV="2.3.52.2"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.52.2"
+	STABLE_PV="2.3.67"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="2.3.67"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
@@ -725,7 +725,8 @@ bootstrap_portage() {
 	# in Prefix the sed wrapper is deadly, so kill it
 	rm -f "${ROOT}"/tmp/usr/lib/portage/bin/ebuild-helpers/sed
 
-	[[ -e "${ROOT}"/tmp/usr/portage ]] || ln -s "${PORTDIR}" "${ROOT}"/tmp/usr/portage
+	local tmpportdir=${ROOT}/tmp/${PORTDIR#${ROOT}}
+	[[ -e "${tmpportdir}" ]] || ln -s "${PORTDIR}" "${tmpportdir}"
 	for d in "${ROOT}"/tmp/usr/lib/python?.?; do
 		[[ -e ${d}/portage ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/portage ${d}/portage
 		[[ -e ${d}/_emerge ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/_emerge ${d}/_emerge
@@ -1996,7 +1997,7 @@ bootstrap_stage3() {
 	hash -r
 
 	# Update the portage tree.
-	treedate=$(date -f "${ROOT}"/usr/portage/metadata/timestamp +%s)
+	treedate=$(date -f "${PORTDIR}"/metadata/timestamp +%s)
 	nowdate=$(date +%s)
 	[[ ( ! -e ${PORTDIR}/.unpacked ) && \
 		$((nowdate - (60 * 60 * 24))) -lt ${treedate} ]] || \
@@ -2039,8 +2040,8 @@ bootstrap_stage3_log() {
 
 set_helper_vars() {
 	CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
-	export PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
-	export DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
+	export PORTDIR=${PORTDIR:-"${ROOT}/var/db/repos/gentoo"}
+	export DISTDIR=${DISTDIR:-"${ROOT}/var/cache/distfiles"}
 	PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
 	DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
 	GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
@@ -2747,7 +2748,7 @@ EOF
 It seems one of your logs indicates a download problem due to missing
 HTTPS support.  If this appears to be the problem for real, you can work
 around this for now by downloading the file manually and placing it in
-  "${EPREFIX}"/usr/portage/distfiles
+  "${DISTDIR}"
 I will find it when you run me again.  If this is NOT the problem, then
 EOF
 		fi
@@ -2784,7 +2785,7 @@ EOF
 It seems one of your logs indicates a download problem due to missing
 HTTPS support.  If this appears to be the problem for real, you can work
 around this for now by downloading the file manually and placing it in
-  "${EPREFIX}"/usr/portage/distfiles
+  "${DISTDIR}"
 I will find it when you run me again.  If this is NOT the problem, then
 EOF
 		fi
