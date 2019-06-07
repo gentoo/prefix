@@ -4,6 +4,7 @@
 EAPI="5"
 
 PATCH_VER="1.0"
+CYGWINPORTS_GITREV="0de6b2ae6b6577eb0891a7ca8d551bdfa79bf5e8" # gcc-8.3.0-1
 
 inherit eutils toolchain flag-o-matic
 

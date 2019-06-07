@@ -1,10 +1,10 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
 
 PATCH_VER="1.1"
-#CYGWINPORTS_GITREV="d83e3d1ac0a9adfacdf120f013870472e8e712c3" # gcc-7.3.0
+CYGWINPORTS_GITREV="11fa2eec213324d64673ad41358f726f6523667f" # gcc-7.4.0-1
 
 inherit eutils toolchain flag-o-matic
 
