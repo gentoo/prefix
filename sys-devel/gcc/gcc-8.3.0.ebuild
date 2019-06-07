@@ -22,6 +22,10 @@ if [[ ${CATEGORY} != cross-* ]] ; then
 fi
 
 src_prepare() {
+	if use elibc_Cygwin; then
+		sed -e '/0001-share-mingw-fset-stack-executable-with-cygwin.patch/d' \
+			-i "${WORKDIR}/gcc-${CYGWINPORTS_GITREV}/gcc.cygport" || die
+	fi
 	toolchain_src_prepare
 
 	use vanilla && return 0
