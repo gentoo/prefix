@@ -1,9 +1,5 @@
-- fix shebang of bin/egencache
-- fix pym/portage/const_autotool.py
-- fix bin/ebuild.sh (PORTAGE_BASE)
-
-- set prefix symlink to point to the portage sources dir
-
+- unpack the sources of the portage to use
+- run (adapt prefix/offset-prefix arguments):
 configure \
 	--prefix="/home/prefix/rsync-master/scripts/prefix/usr" \
 	--with-offset-prefix="/home/prefix/rsync-master/scripts/prefix" \
