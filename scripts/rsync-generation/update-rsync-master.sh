@@ -274,23 +274,12 @@ echo "($(date +"%F %R")) signing Manifest"
 sed -i -e '/^thin-manifests/s/true/false/' "${RSYNCDIR}"/metadata/layout.conf
 
 # generate Thick Manifests
-${BASE_PATH}/hashgen "${RSYNCDIR}"
-
 # Signing is done with our snapshot signing key, and only on the top
 # level Manifest, for it covers indirectly the entire tree
-
 # remember, HOME is set to misc/ so .gnupg keychain lives there
-gpg --batch --no-tty --passphrase-fd 0 --default-key C6317B3C \
-	--pinentry-mode loopback \
-	--sign --clearsign --digest-algo SHA512 \
-	--yes "${RSYNCDIR}"/Manifest \
-	< "${BASE_PATH}"/autosigner.pwd 2>&1
-if [[ -f ${RSYNCDIR}/Manifest.asc ]] ; then
-	touch -r "${RSYNCDIR}"/Manifest "${RSYNCDIR}"/Manifest.asc
-	mv "${RSYNCDIR}"/Manifest{.asc,}
-else
-	echo "signing failed!" >> /dev/stderr
-fi
+cat "${BASE_PATH}"/autosigner.pwd | \
+	qmanifest -g -p -s "0xC6317B3C" "${RSYNCDIR}" || \
+	echo "Manifest generation and/or signing failed!" >> /dev/stderr
 
 echo "($(date +"%F %R")) Manifest signed"
 
