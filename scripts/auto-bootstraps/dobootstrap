@@ -129,6 +129,18 @@ do_prepare() {
 
 	if [[ -n ${DOPUBLISH} ]] ; then
 		echo $((endtime - starttime)) > elapsedtime
+
+		# massage CHOST on Linux systems
+		if [[ ${chost} == *-linux-gnu* ]] ; then
+			# two choices here: x86_64_ubuntu16-linux-gnu
+			#                   x86_64-pc-linux-ubuntu16
+			# I choose the latter because it is compatible with most
+			# UNIX vendors
+			local dist=$(lsb_release -si)
+			local rel=$(lsb_release -sr)
+			chost=${chost%%-*}-pc-linux-${dist,,}${rel}
+		fi
+
 		${keepalive} rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
 		${keepalive} rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
 		${keepalive} rsync -rltv \
