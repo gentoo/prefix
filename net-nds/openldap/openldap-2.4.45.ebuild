@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -342,6 +342,9 @@ src_prepare() {
 
 	# bug #622464
 	epatch "${FILESDIR}"/${PN}-2.4.45-libressl.patch
+
+	# winnt (using parity)
+	epatch "${FILESDIR}"/${PN}-2.4.45-winnt.patch
 
 	# unbundle lmdb
 	epatch "${FILESDIR}"/${PN}-2.4.42-mdb-unbundle.patch
