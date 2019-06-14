@@ -153,7 +153,7 @@ do_prepare() {
 			bootstrap-prefix.sh \
 			startprefix \
 			elapsedtime \
-			usr/portage/distfiles \
+			var/cache/distfiles \
 			var/tmp/portage \
 			var/log/emerge.log \
 			etc/portage/make.conf \
