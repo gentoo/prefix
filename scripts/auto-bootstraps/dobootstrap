@@ -138,7 +138,9 @@ do_prepare() {
 			# UNIX vendors
 			local dist=$(lsb_release -si)
 			local rel=$(lsb_release -sr)
-			chost=${chost%%-*}-pc-linux-${dist,,}${rel}
+			local platform=pc
+			[[ -e usr/lib/libc.so ]] && platform=rap
+			chost=${chost%%-*}-${platform}-linux-${dist,,}${rel}
 		fi
 
 		${keepalive} rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
