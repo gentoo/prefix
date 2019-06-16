@@ -806,6 +806,23 @@ bootstrap_gnu() {
 	fi
 
 	local myconf=""
+	if [[ ${PN} == "make" && ${PV} == "4.2.1" ]] ; then
+		# mimick http://git.savannah.gnu.org/cgit/make.git/commit/?id=48c8a116a914a325a0497721f5d8b58d5bba34d4
+		local oldl="# if _GNU_GLOB_INTERFACE_VERSION == GLOB_INTERFACE_VERSION"
+		local newl="# if _GNU_GLOB_INTERFACE_VERSION == 1 || _GNU_GLOB_INTERFACE_VERSION == 2"
+		mv configure.ac{,.orig}
+		mv configure{,.orig}
+		sed -e '/^#define GLOB_INTERFACE_VERSION 1/d' \
+			-e "s/^${oldl}/${newl}/" \
+			configure.ac.orig > configure.ac
+		sed -e '/^#define GLOB_INTERFACE_VERSION 1/d' \
+			-e "s/^${oldl}/${newl}/" \
+			configure.orig > configure
+		chmod 755 configure
+		touch -r configure.ac{.orig,}
+		touch -r configure{.orig,}
+	fi
+
 	if [[ ${PN} == "grep" ]] ; then
 		# Solaris and OSX don't like it when --disable-nls is set,
 		# so just don't set it at all.
