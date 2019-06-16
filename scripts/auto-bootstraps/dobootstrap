@@ -139,7 +139,8 @@ do_prepare() {
 			local dist=$(lsb_release -si)
 			local rel=$(lsb_release -sr)
 			local platform=pc
-			[[ -e usr/lib/libc.so ]] && platform=rap
+			# this is the logic used in bootstrap-prefix.sh
+			[[ ${PREFIX_DISABLE_RAP} != "yes" ]] && platform=rap
 			chost=${chost%%-*}-${platform}-linux-${dist,,}${rel}
 		fi
 
