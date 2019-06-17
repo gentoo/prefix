@@ -807,25 +807,16 @@ bootstrap_gnu() {
 
 	local myconf=""
 	if [[ ${PN} == "make" && ${PV} == "4.2.1" ]] ; then
-		# mimick http://git.savannah.gnu.org/cgit/make.git/commit/?id=48c8a116a914a325a0497721f5d8b58d5bba34d4
-		local oldl="# if _GNU_GLOB_INTERFACE_VERSION == GLOB_INTERFACE_VERSION"
-		local newl="# if _GNU_GLOB_INTERFACE_VERSION == 1 || _GNU_GLOB_INTERFACE_VERSION == 2"
-		mv configure.ac{,.orig}
-		mv configure{,.orig}
-		sed -e '/^#define GLOB_INTERFACE_VERSION 1/d' \
-			-e "s/^${oldl}/${newl}/" \
-			configure.ac.orig > configure.ac
-		sed -e '/^#define GLOB_INTERFACE_VERSION 1/d' \
-			-e "s/^${oldl}/${newl}/" \
-			configure.orig > configure
-		chmod 755 configure
-		touch -r configure.ac{.orig,}
-		touch -r configure{.orig,}
+		if [[ ${CHOST} == *-linux-gnu* ]] ; then
+			# force this, macros aren't set correctly with newer glibc
+			export CPPFLAGS="${CPPFLAGS} -D__alloca=alloca -D__stat=stat"
+		fi
 	fi
 
 	if [[ ${PN} == "m4" ]] ; then
 		# drop _GL_WARN_ON_USE which gets turned into an error with
-		# recent GCC
+		# recent GCC 1.4.17 and below only, on 1.4.18 this expression
+		# doesn't match
 		sed -i -e '/_GL_WARN_ON_USE (gets/d' lib/stdio.in.h lib/stdio.h
 	fi
 
