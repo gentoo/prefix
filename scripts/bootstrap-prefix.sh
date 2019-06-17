@@ -823,6 +823,12 @@ bootstrap_gnu() {
 		touch -r configure{.orig,}
 	fi
 
+	if [[ ${PN} == "m4" ]] ; then
+		# drop _GL_WARN_ON_USE which gets turned into an error with
+		# recent GCC
+		sed -i -e '/_GL_WARN_ON_USE (gets/d' lib/stdio.in.h lib/stdio.h
+	fi
+
 	if [[ ${PN} == "grep" ]] ; then
 		# Solaris and OSX don't like it when --disable-nls is set,
 		# so just don't set it at all.
