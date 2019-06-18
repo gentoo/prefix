@@ -133,6 +133,14 @@ src_prepare() {
 			-e '/^CFLAGS_ALIASING=/s/$/ -fno-tree-ter/' Makefile.pre.in || die
 	fi
 
+	# Darwin 9's kqueue seems to act up (at least at this stage), so
+	# make Python's selectors resort to poll() or select()
+	if [[ ${CHOST} == powerpc*-darwin* ]] ; then
+		sed -i \
+			-e 's/KQUEUE/KQUEUE_DISABLED/' \
+			configure.ac configure || die
+	fi
+
 	eautoreconf
 }
 
