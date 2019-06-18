@@ -191,7 +191,7 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
 
         h.write("</tr>")
     h.write("</table>")
-    now = time.strftime('%Y-%m-%d %H:%M', time.gmtime())
+    now = time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime())
     h.write("<p><i>generated: %s</i></p>" % now) 
     h.write("<p>See also <a href='https://dev.azure.com/12719821/12719821/_build?definitionId=6'>awesomebytes</a>")
     h.write(" and <a href='https://dev.azure.com/gentoo-prefix/ci-builds/_build/'>Azure Gentoo Prefix CI pipelines</a></p>")
