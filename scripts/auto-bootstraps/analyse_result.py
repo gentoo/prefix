@@ -117,6 +117,7 @@ with os.scandir(resultsdir) as it:
         fail, state, suc = analyse_arch(os.path.join(resultsdir, arch))
 
         elapsedtime = None
+        haslssl = False
         if suc:
             elapsedf = os.path.join(resultsdir, arch, "%s" % suc, "elapsedtime")
             if os.path.exists(elapsedf):
@@ -124,8 +125,16 @@ with os.scandir(resultsdir) as it:
                     l = f.readline()
                     if l is not '':
                         elapsedtime = int(l)
+            mconf = os.path.join(resultsdir, arch, "%s" % suc, "make.conf")
+            if os.path.exists(mconf):
+                with open(mconf, 'rb') as f:
+                    l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
+                    l = list(filter(lambda x: 'USE=' in x, l))
+                    for x in l:
+                        if 'libressl' in x:
+                            haslssl = True
 
-        archs[arch] = (fail, state, suc, elapsedtime)
+        archs[arch] = (fail, state, suc, elapsedtime, haslssl)
         if not suc:
             color = '\033[1;31m'  # red
         elif fail and suc < fail:
@@ -133,7 +142,7 @@ with os.scandir(resultsdir) as it:
         else:
             color = '\033[1;32m'  # green
         endc = '\033[0m'
-        print("%s%24s: suc %8s  fail %8s%s" % (color, arch, suc, fail, endc))
+        print("%s%30s: suc %8s  fail %8s%s" % (color, arch, suc, fail, endc))
 
 sarchs = sorted(archs, key=lambda a: '-'.join(a.split('-')[::-1]))
 
@@ -148,13 +157,20 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
     h.write("<th>last successful run</th><th>last failed run</th>")
     h.write("<th>failure</th>")
     for arch in sarchs:
-        fail, errcode, suc, et = archs[arch]
+        fail, errcode, suc, et, lssl = archs[arch]
         if not suc:
             state = 'red'
         elif fail and suc < fail:
             state = 'orange'
         else:
             state = 'limegreen'
+
+        tags = ''
+        if lssl:
+            tags = tags + '''
+<span style="border-radius: 5px; background-color: purple; color: white;
+display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">libressl</span>
+'''
 
         h.write('<tr>')
 
@@ -172,14 +188,14 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
                     etxt = ' (%.1f hours)' % (et / 3600)
                 else:
                     etxt = ' (%d minutes)' % (et / 60)
-            h.write('<a href="%s/%s">%s</a>%s' % (arch, suc, suc, etxt))
+            h.write('<a href="%s/%s">%s</a>%s%s' % (arch, suc, suc, etxt, tags))
         else:
             h.write('<i>never</i>')
         h.write("</td>")
 
         h.write("<td>")
         if fail:
-            h.write('<a href="%s/%s">%s</a>' % (arch, fail, fail))
+            h.write('<a href="%s/%s">%s</a>%s' % (arch, fail, fail, tags))
         else:
             h.write('<i>never</i>')
         h.write("</td>")
