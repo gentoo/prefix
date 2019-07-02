@@ -116,40 +116,48 @@ with os.scandir(resultsdir) as it:
         arch = f.name
         fail, state, suc = analyse_arch(os.path.join(resultsdir, arch))
 
-        elapsedtime = None
-        haslssl = False
-        snapshot = None
-        if suc:
-            elapsedf = os.path.join(resultsdir, arch, "%s" % suc, "elapsedtime")
+        infos = {}
+        for d in [ fail, suc ]:
+            elapsedtime = None
+            haslssl = False
+            snapshot = None
+
+            elapsedf = os.path.join(resultsdir, arch, "%s" % d, "elapsedtime")
             if os.path.exists(elapsedf):
                 with open(elapsedf, 'rb') as f:
                     l = f.readline()
                     if l is not '':
                         elapsedtime = int(l)
 
-        mconf = os.path.join(resultsdir, arch, "%s" % suc, "make.conf")
-        if os.path.exists(mconf):
-            with open(mconf, 'rb') as f:
-                l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
-                l = list(filter(lambda x: 'USE=' in x, l))
-                for x in l:
-                    if 'libressl' in x:
-                        haslssl = True
+            mconf = os.path.join(resultsdir, arch, "%s" % d, "make.conf")
+            if os.path.exists(mconf):
+                with open(mconf, 'rb') as f:
+                    l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
+                    l = list(filter(lambda x: 'USE=' in x, l))
+                    for x in l:
+                        if 'libressl' in x:
+                            haslssl = True
 
-        mconf = os.path.join(resultsdir, arch, "%s" % suc, "stage1.log")
-        if os.path.exists(mconf):
-            with open(mconf, 'rb') as f:
-                l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
-                for x in l:
-                    if 'Fetching ' in x:
-                        if 'portage-latest.tar.bz2' in x:
-                            snapshot = 'latest'
-                        elif 'prefix-overlay-' in x:
-                            snapshot = re.split('[-.]', x)[2]
-                    elif 'total size is' in x:
-                        snapshot = 'rsync'
+            mconf = os.path.join(resultsdir, arch, "%s" % d, "stage1.log")
+            if os.path.exists(mconf):
+                with open(mconf, 'rb') as f:
+                    l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
+                    for x in l:
+                        if 'Fetching ' in x:
+                            if 'portage-latest.tar.bz2' in x:
+                                snapshot = 'latest'
+                            elif 'prefix-overlay-' in x:
+                                snapshot = re.split('[-.]', x)[2]
+                        elif 'total size is' in x:
+                            snapshot = 'rsync'
 
-        archs[arch] = (fail, state, suc, elapsedtime, haslssl, snapshot)
+            infos[d] = {
+                    'etime': elapsedtime,
+                    'libressl': haslssl,
+                    'snapshot': snapshot
+            }
+
+        archs[arch] = (fail, state, suc, infos)
         if not suc:
             color = '\033[1;31m'  # red
         elif fail and suc < fail:
@@ -160,6 +168,23 @@ with os.scandir(resultsdir) as it:
         print("%s%30s: suc %8s  fail %8s%s" % (color, arch, suc, fail, endc))
 
 sarchs = sorted(archs, key=lambda a: '-'.join(a.split('-')[::-1]))
+
+def gentags(infos):
+    tags = ''
+    if infos.get('libressl', None):
+        tags = tags + '''
+<span style="border-radius: 5px; background-color: purple; color: white;
+display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">libressl</span>
+'''
+
+    snap = infos.get('snapshot', None)
+    if snap:
+        tags = tags + '''
+<span style="border-radius: 5px; background-color: darkblue; color: white;
+display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">''' + snap + '''</span>
+'''
+
+    return tags
 
 # generate html edition
 with open(os.path.join(resultsdir, 'index.html'), "w") as h:
@@ -172,25 +197,13 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
     h.write("<th>last successful run</th><th>last failed run</th>")
     h.write("<th>failure</th>")
     for arch in sarchs:
-        fail, errcode, suc, et, lssl, snap = archs[arch]
+        fail, errcode, suc, infos = archs[arch]
         if not suc:
             state = 'red'
         elif fail and suc < fail:
             state = 'orange'
         else:
             state = 'limegreen'
-
-        tags = ''
-        if lssl:
-            tags = tags + '''
-<span style="border-radius: 5px; background-color: purple; color: white;
-display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">libressl</span>
-'''
-        if snap:
-            tags = tags + '''
-<span style="border-radius: 5px; background-color: darkblue; color: white;
-display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">''' + snap + '''</span>
-'''
 
         h.write('<tr>')
 
@@ -200,7 +213,9 @@ display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: upp
 
         h.write("<td>")
         if suc:
+            tags = gentags(infos[suc])
             etxt = ''
+            et = infos[suc].get('elapsedtime', None)
             if et:
                 if et > 86400:
                     etxt = ' (%.1f days)' % (et / 86400)
@@ -215,6 +230,7 @@ display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: upp
 
         h.write("<td>")
         if fail:
+            tags = gentags(infos[fail])
             h.write('<a href="%s/%s">%s</a>%s' % (arch, fail, fail, tags))
         else:
             h.write('<i>never</i>')
