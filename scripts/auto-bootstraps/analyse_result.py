@@ -152,7 +152,7 @@ with os.scandir(resultsdir) as it:
                             snapshot = 'rsync'
 
             infos[d] = {
-                    'etime': elapsedtime,
+                    'elapsedtime': elapsedtime,
                     'libressl': haslssl,
                     'snapshot': snapshot
             }
