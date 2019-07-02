@@ -118,6 +118,7 @@ with os.scandir(resultsdir) as it:
 
         elapsedtime = None
         haslssl = False
+        snapshot = None
         if suc:
             elapsedf = os.path.join(resultsdir, arch, "%s" % suc, "elapsedtime")
             if os.path.exists(elapsedf):
@@ -125,16 +126,30 @@ with os.scandir(resultsdir) as it:
                     l = f.readline()
                     if l is not '':
                         elapsedtime = int(l)
-            mconf = os.path.join(resultsdir, arch, "%s" % suc, "make.conf")
-            if os.path.exists(mconf):
-                with open(mconf, 'rb') as f:
-                    l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
-                    l = list(filter(lambda x: 'USE=' in x, l))
-                    for x in l:
-                        if 'libressl' in x:
-                            haslssl = True
 
-        archs[arch] = (fail, state, suc, elapsedtime, haslssl)
+        mconf = os.path.join(resultsdir, arch, "%s" % suc, "make.conf")
+        if os.path.exists(mconf):
+            with open(mconf, 'rb') as f:
+                l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
+                l = list(filter(lambda x: 'USE=' in x, l))
+                for x in l:
+                    if 'libressl' in x:
+                        haslssl = True
+
+        mconf = os.path.join(resultsdir, arch, "%s" % suc, "stage1.log")
+        if os.path.exists(mconf):
+            with open(mconf, 'rb') as f:
+                l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
+                for x in l:
+                    if 'Fetching ' in x:
+                        if 'portage-latest.tar.bz2' in x:
+                            snapshot = 'latest'
+                        elif 'prefix-overlay-' in x:
+                            snapshot = re.split('[-.]', x)[2]
+                    elif 'total size is' in x:
+                        snapshot = 'rsync'
+
+        archs[arch] = (fail, state, suc, elapsedtime, haslssl, snapshot)
         if not suc:
             color = '\033[1;31m'  # red
         elif fail and suc < fail:
@@ -157,7 +172,7 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
     h.write("<th>last successful run</th><th>last failed run</th>")
     h.write("<th>failure</th>")
     for arch in sarchs:
-        fail, errcode, suc, et, lssl = archs[arch]
+        fail, errcode, suc, et, lssl, snap = archs[arch]
         if not suc:
             state = 'red'
         elif fail and suc < fail:
@@ -170,6 +185,11 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
             tags = tags + '''
 <span style="border-radius: 5px; background-color: purple; color: white;
 display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">libressl</span>
+'''
+        if snap:
+            tags = tags + '''
+<span style="border-radius: 5px; background-color: darkblue; color: white;
+display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">''' + snap + '''</span>
 '''
 
         h.write('<tr>')
