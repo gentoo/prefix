@@ -1,41 +1,28 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
-#PATCHSET=1
+inherit autotools flag-o-matic multilib
 
-inherit autotools eutils flag-o-matic multilib versionator
-
-MY_P="${PN}-$(get_version_component_range 1-3)"
+MY_P="${PN}-$(ver_cut 1-3)"
 S=${WORKDIR}/${MY_P}
 
-SLOT=$(get_version_component_range 1-2)
-MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
-RUBYVERSION=2.2.0
-
-if [[ -n ${PATCHSET} ]]; then
-	if [[ ${PVR} == ${PV} ]]; then
-		PATCHSET="${PV}-r0.${PATCHSET}"
-	else
-		PATCHSET="${PVR}.${PATCHSET}"
-	fi
-else
-	PATCHSET="${PVR}"
-fi
+SLOT=$(ver_cut 1-2)
+MY_SUFFIX=$(ver_rs 1 '' ${SLOT})
+RUBYVERSION=${SLOT}.0
 
 DESCRIPTION="An object-oriented scripting language"
-HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/2.2/${MY_P}.tar.xz
-		 https://dev.gentoo.org/~flameeyes/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
+HOMEPAGE="https://www.ruby-lang.org/"
+SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.xz"
 
 LICENSE="|| ( Ruby-BSD BSD-2 )"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc examples gdbm ipv6 jemalloc libressl +rdoc rubytests socks5 ssl tk xemacs ncurses +readline"
+IUSE="berkdb debug doc examples gdbm ipv6 jemalloc libressl +rdoc rubytests socks5 +ssl static-libs tk xemacs"
 
 RDEPEND="
 	berkdb? ( sys-libs/db:= )
-	gdbm? ( sys-libs/gdbm )
+	gdbm? ( sys-libs/gdbm:= )
 	jemalloc? ( dev-libs/jemalloc )
 	ssl? (
 		!libressl? ( dev-libs/openssl:0= )
@@ -46,56 +33,52 @@ RDEPEND="
 		dev-lang/tcl:0=[threads]
 		dev-lang/tk:0=[threads]
 	)
-	ncurses? ( sys-libs/ncurses:0= )
-	readline?  ( sys-libs/readline:0= )
 	dev-libs/libyaml
-	virtual/libffi
+	virtual/libffi:=
+	sys-libs/readline:0=
 	sys-libs/zlib
-	>=app-eselect/eselect-ruby-20141227
-	!<dev-ruby/rdoc-3.9.4
-	!<dev-ruby/rubygems-1.8.10-r1"
+	>=app-eselect/eselect-ruby-20171225
+"
 
 DEPEND="${RDEPEND}"
 
 BUNDLED_GEMS="
-	>=dev-ruby/minitest-5.4.3[ruby_targets_ruby22]
-	>=dev-ruby/power_assert-0.2.2[ruby_targets_ruby22]
-	>=dev-ruby/test-unit-3.0.8[ruby_targets_ruby22]
+	>=dev-ruby/did_you_mean-1.2.0:2.5[ruby_targets_ruby25]
+	>=dev-ruby/minitest-5.10.3[ruby_targets_ruby25]
+	>=dev-ruby/net-telnet-0.1.1[ruby_targets_ruby25]
+	>=dev-ruby/power_assert-1.1.1[ruby_targets_ruby25]
+	>=dev-ruby/rake-12.3.0[ruby_targets_ruby25]
+	>=dev-ruby/test-unit-3.2.7[ruby_targets_ruby25]
+	>=dev-ruby/xmlrpc-0.3.0[ruby_targets_ruby25]
 "
 
 PDEPEND="
 	${BUNDLED_GEMS}
-	virtual/rubygems[ruby_targets_ruby22]
-	>=dev-ruby/json-1.8.1[ruby_targets_ruby22]
-	>=dev-ruby/rake-0.9.6[ruby_targets_ruby22]
-	rdoc? ( >=dev-ruby/rdoc-4.0.1[ruby_targets_ruby22] )
+	virtual/rubygems[ruby_targets_ruby25]
+	>=dev-ruby/json-2.0.2[ruby_targets_ruby25]
+	rdoc? ( >=dev-ruby/rdoc-5.1.0[ruby_targets_ruby25] )
 	xemacs? ( app-xemacs/ruby-modes )"
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-1.9.1-prefix.patch"
+	eapply "${FILESDIR}"/${SLOT}/{001,005,011}*.patch
 
-	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
-		epatch "${WORKDIR}/patches"
-
-	# We can no longer unbundle all of rake because rubygems now depends
-	# on this. We leave the actual rake code around to bootstrap
-	# rubygems, but remove the bits that would cause a file collision.
 	einfo "Unbundling gems..."
 	cd "$S"
-	rm -rf \
-		{bin,lib}/rake lib/rake.rb man/rake.1 \
-		bin/gem || die "removal failed"
 	# Remove bundled gems that we will install via PDEPEND, bug
 	# 539700. Use explicit version numbers to ensure rm fails when they
 	# change so we can update dependencies accordingly.
-	rm gems/{minitest-5.4.3,power_assert-0.2.2,test-unit-3.0.8}.gem || die
+	rm -f gems/{did_you_mean-1.2.0,minitest-5.10.3,net-telnet-0.1.1,power_assert-1.1.1,rake-12.3.0,test-unit-3.2.7,xmlrpc-0.3.0}.gem || die
 
-	# Fix a hardcoded lib path in configure script
-	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
-		configure.in || die "sed failed"
+	einfo "Removing bundled libraries..."
+	rm -fr ext/fiddle/libffi-3.2.1 || die
 
 	# Fix hardcoded SHELL var in mkmf library
-	sed -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" -i lib/mkmf.rb
+	sed -i -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" lib/mkmf.rb
+	# avoid symlink loop on Darwin (?!)
+	sed -i -e '/LIBRUBY_ALIASES=/s/lib$(RUBY_INSTALL_NAME).dylib//' \
+		configure.ac || die "sed failed"
+
+	eapply_user
 
 	eautoreconf
 }
@@ -128,9 +111,6 @@ src_configure() {
 	use ipv6 || myconf="${myconf} --with-lookup-order-hack=INET"
 
 	# Determine which modules *not* to build depending in the USE flags.
-	if ! use readline ; then
-		modules="${modules},readline"
-	fi
 	if ! use berkdb ; then
 		modules="${modules},dbm"
 	fi
@@ -139,9 +119,6 @@ src_configure() {
 	fi
 	if ! use ssl ; then
 		modules="${modules},openssl"
-	fi
-	if ! use ncurses ; then
-		modules="${modules},curses"
 	fi
 	if ! use tk ; then
 		modules="${modules},tk"
@@ -163,6 +140,9 @@ src_configure() {
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		--enable-ipv6 \
+		$(use_enable static-libs static) \
+		$(use_enable static-libs install-static-library) \
+		$(use_with static-libs static-linked-ext) \
 		$(use_enable debug) \
 		${myconf} \
 		--with-readline-dir="${EPREFIX}"/usr \
@@ -204,16 +184,18 @@ src_install() {
 	local MINIRUBY=$(echo -e 'include Makefile\ngetminiruby:\n\t@echo $(MINIRUBY)'|make -f - getminiruby)
 
 	LD_LIBRARY_PATH="${S}:${ED}/usr/$(get_libdir)${LD_LIBRARY_PATH+:}${LD_LIBRARY_PATH}"
+	DYLD_LIBRARY_PATH="${S}:${ED}/usr/$(get_libdir)${DYLD_LIBRARY_PATH+:}${DYLD_LIBRARY_PATH}"
 	RUBYLIB="${S}:${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}"
 	for d in $(find "${S}/ext" -type d) ; do
 		RUBYLIB="${RUBYLIB}:$d"
 	done
-	export LD_LIBRARY_PATH RUBYLIB
+	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH RUBYLIB
 
 	emake V=1 DESTDIR="${D}" install || die "make install failed"
 
-	# Remove installed rubygems copy
+	# Remove installed rubygems and rdoc copy
 	rm -rf "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}/rubygems" || die "rm rubygems failed"
+	rm -rf "${ED}/usr/bin/"gem"${MY_SUFFIX}" || die "rm rdoc bins failed"
 	rm -rf "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}"/rdoc* || die "rm rdoc failed"
 	rm -rf "${ED}/usr/bin/"{ri,rdoc}"${MY_SUFFIX}" || die "rm rdoc bins failed"
 
@@ -243,7 +225,7 @@ pkg_postinst() {
 
 	elog
 	elog "To switch between available Ruby profiles, execute as root:"
-	elog "\teselect ruby set ruby(21|22|...)"
+	elog "\teselect ruby set ruby(23|24|...)"
 	elog
 }
 

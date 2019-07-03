@@ -1,41 +1,28 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-#PATCHSET=1
+inherit autotools flag-o-matic multilib
 
-inherit autotools eutils flag-o-matic multilib versionator
-
-MY_P="${PN}-$(get_version_component_range 1-3)"
+MY_P="${PN}-$(ver_cut 1-3)"
 S=${WORKDIR}/${MY_P}
 
-SLOT=$(get_version_component_range 1-2)
-MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
+SLOT=$(ver_cut 1-2)
+MY_SUFFIX=$(ver_rs 1 '' ${SLOT})
 RUBYVERSION=${SLOT}.0
 
-if [[ -n ${PATCHSET} ]]; then
-	if [[ ${PVR} == ${PV} ]]; then
-		PATCHSET="${PV}-r0.${PATCHSET}"
-	else
-		PATCHSET="${PVR}.${PATCHSET}"
-	fi
-else
-	PATCHSET="${PVR}"
-fi
-
 DESCRIPTION="An object-oriented scripting language"
-HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.xz
-		 https://dev.gentoo.org/~graaff/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
+HOMEPAGE="https://www.ruby-lang.org/"
+SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.xz"
 
 LICENSE="|| ( Ruby-BSD BSD-2 )"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc examples gdbm ipv6 jemalloc libressl +rdoc rubytests socks5 ssl static-libs tk xemacs"
+IUSE="berkdb debug doc examples gdbm ipv6 jemalloc libressl +rdoc rubytests socks5 +ssl static-libs tk xemacs"
 
 RDEPEND="
 	berkdb? ( sys-libs/db:= )
-	gdbm? ( sys-libs/gdbm )
+	gdbm? ( sys-libs/gdbm:= )
 	jemalloc? ( dev-libs/jemalloc )
 	ssl? (
 		!libressl? ( dev-libs/openssl:0= )
@@ -47,7 +34,8 @@ RDEPEND="
 		dev-lang/tk:0=[threads]
 	)
 	dev-libs/libyaml
-	virtual/libffi
+	virtual/libffi:=
+	sys-libs/readline:0=
 	sys-libs/zlib
 	>=app-eselect/eselect-ruby-20161226
 	!<dev-ruby/rdoc-3.9.4
@@ -73,9 +61,8 @@ PDEPEND="
 	xemacs? ( app-xemacs/ruby-modes )"
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-1.9.1-prefix.patch"
-	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
-		epatch "${WORKDIR}/patches"
+	eapply "${FILESDIR}/${PN}-1.9.1-prefix.patch"
+	eapply "${FILESDIR}"/${SLOT}/{002,005,009,012}*.patch
 
 	einfo "Unbundling gems..."
 	cd "$S"
@@ -95,6 +82,9 @@ src_prepare() {
 	# avoid symlink loop on Darwin (?!)
 	sed -i -e '/LIBRUBY_ALIASES=/s/lib$(RUBY_INSTALL_NAME).dylib//' \
 		configure.in || die "sed failed"
+	# Fix using installed ruby
+	sed -i -e '/^libs << File.expand_path("lib", srcdir)/s/^/#/' \
+		tool/runruby.rb || die
 
 	eapply_user
 

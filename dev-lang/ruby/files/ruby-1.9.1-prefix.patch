@@ -1,5 +1,5 @@
---- configure.in
-+++ configure.in
+--- a/configure.in
++++ b/configure.in
 @@ -2111,7 +2111,7 @@
  			esac
  		])
@@ -9,8 +9,8 @@
  	if ${NROFF} -mdoc ${srcdir}/man/ruby.1 >/dev/null 2>&1; then
  		MANTYPE=doc
  	else
---- configure
-+++ configure
+--- a/configure
++++ b/configure
 @@ -22605,7 +22605,7 @@
    ;;
    *)
