@@ -184,19 +184,21 @@ case $1 in
 		do_prepare "$2" ${3:-${BOOTSTRAP_DATE}}
 		;;
 	*)
+		bitw=
 		if [[ ${0} == /net/* ]] ; then
 			echo "internal host, activating local and DOPUBLISH"
 			export DOLOCAL=1
 			export DOPUBLISH=1
 			export GENTOO_MIRRORS="http://distfileslocal http://distfiles.gentoo.org"
 		fi
-		for arg in "${@:2}" ; do
+		for arg in "${@:1}" ; do
 			case "${arg}" in
 				libressl)   export DOLIBRESSL=1      ;;
 				latesttree) export LATEST_TREE_YES=1 ;;
+				32|64)      bitw=${arg}              ;;
 			esac
 		done
-		do_prepare $1
+		do_prepare ${bitw}
 		;;
 esac
 
