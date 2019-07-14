@@ -390,6 +390,13 @@ bootstrap_setup() {
 				echo "USE=\"\${USE} ${MAKE_CONF_ADDITIONAL_USE}\""
 			[[ ${OFFLINE_MODE} ]] && \
 				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
+			if [[ ${compiler_type} == clang ]] ; then
+				local ptrgs=$(sed -n 's/^PYTHON_TARGETS="\([^"]\+\)".*$/\1/' \
+					"${PORTDIR}"/profiles/prefix/make.conf)
+				ptrgs=${ptrgs/-python2_7/}
+				echo "# python2 is required by sys-devel/clang-6"
+				echo "PYTHON_TARGETS=\"python2_7 ${ptrgs}\""
+			fi
 		} > "${ROOT}"/etc/portage/make.conf
 	fi
 
