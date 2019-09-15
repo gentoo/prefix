@@ -1,5 +1,5 @@
---- Makefile.shared
-+++ Makefile.shared
+--- a/Makefile.shared
++++ b/Makefile.shared
 @@ -226,7 +226,7 @@
  link_o.darwin:
  	@ $(CALC_VERSIONS); \
@@ -18,8 +18,8 @@
  	$(LINK_SO_O)
  link_a.darwin:
  	@ $(CALC_VERSIONS); \
---- engines/Makefile
-+++ engines/Makefile
+--- a/engines/Makefile
++++ b/engines/Makefile
 @@ -114,7 +114,12 @@
  			  if [ "$(PLATFORM)" != "Cygwin" ]; then \
  				case "$(CFLAGS)" in \
@@ -34,8 +34,8 @@
  				*DSO_DL*)	sfx=".sl";;	\
  				*DSO_WIN32*)	sfx="eay32.dll"; pfx=;;	\
  				*)		sfx=".bad";;	\
---- engines/ccgost/Makefile
-+++ engines/ccgost/Makefile
+--- a/engines/ccgost/Makefile
++++ b/engines/ccgost/Makefile
 @@ -48,7 +48,12 @@
  		if [ "$(PLATFORM)" != "Cygwin" ]; then \
  			case "$(CFLAGS)" in \

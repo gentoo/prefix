@@ -1,5 +1,5 @@
---- Configure
-+++ Configure
+--- a/Configure
++++ b/Configure
 @@ -967,6 +967,10 @@
  				{
  				$cross_compile_prefix=$1;
@@ -22,8 +22,8 @@
  if (!$no_shared)
  	{
  	if ($shared_cflag ne "")
---- Makefile.shared
-+++ Makefile.shared
+--- a/Makefile.shared
++++ b/Makefile.shared
 @@ -545,6 +545,38 @@
  	NOALLSYMSFLAGS=''; \
  	SHAREDFLAGS='$(CFLAGS) $(SHARED_LDFLAGS) -Wl,-bexpall,-bnolibpath,-bM:SRE'; \
