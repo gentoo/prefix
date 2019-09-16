@@ -14,8 +14,7 @@ MY_P=${P/_/-}
 # - ec_curve.c (SOURCE12) -- MODIFIED
 # - ectest.c (SOURCE13)
 # - openssl-1.1.0-ec-curves.patch (PATCH37) -- MODIFIED
-############# MISSING: FIX WHEN #694516 gets fixed: see KEYWORDS #############
-BINDIST_PATCH_SET="openssl-1.1.0k-bindist-1.0.tar.xz"
+BINDIST_PATCH_SET="openssl-1.1.0l-bindist-1.0.tar.xz"
 
 DESCRIPTION="full-strength general purpose cryptography library (including SSL and TLS)"
 HOMEPAGE="https://www.openssl.org/"
@@ -27,7 +26,7 @@ SRC_URI="mirror://openssl/source/${MY_P}.tar.gz
 
 LICENSE="openssl"
 SLOT="0/1.1" # .so version of libssl/libcrypto
-#KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="+asm bindist elibc_musl rfc3779 sctp cpu_flags_x86_sse2 sslv3 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )"
 

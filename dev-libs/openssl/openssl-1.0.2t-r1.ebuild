@@ -47,7 +47,8 @@ RDEPEND="!prefix-stack? ( ${MY_PKGINSTDEPS} )
 	kerberos? ( >=app-crypt/mit-krb5-1.11.4[${MULTILIB_USEDEP}] )
 	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
-	prefix-stack? ( ${MY_PKGINSTDEPS} )
+	prefix-stack? ( ${MY_PKGINSTDEPS} )"
+BDEPEND="
 	>=dev-lang/perl-5
 	sctp? ( >=net-misc/lksctp-tools-1.0.12 )
 	test? (
@@ -86,9 +87,7 @@ src_prepare() {
 	rm -f Makefile
 
 	if ! use vanilla ; then
-		if [[ $(declare -p PATCHES 2>/dev/null) == "declare -a"* ]] ; then
-			[[ ${#PATCHES[@]} -gt 0 ]] && eapply "${PATCHES[@]}"
-		fi
+		eapply "${WORKDIR}"/patch/*.patch
 	fi
 
 	eapply_user
@@ -114,6 +113,7 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-1.0.2a-aix-soname.patch # like libtool
 	eapply "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	eapply "${FILESDIR}"/${PN}-1.0.0b-darwin-bundle-compile-fix.patch
+	eapply "${FILESDIR}"/${PN}-1.0.2-gethostbyname2-solaris.patch
 	eapply "${FILESDIR}"/${PN}-1.0.2l-winnt.patch # parity
 
 	# remove -arch for Darwin

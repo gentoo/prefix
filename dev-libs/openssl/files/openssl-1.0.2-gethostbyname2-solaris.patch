@@ -1,5 +1,7 @@
---- apps/s_socket.c
-+++ apps/s_socket.c
+introduced by Gentoo's own patches, not present upstream
+
+--- a/apps/s_socket.c
++++ b/apps/s_socket.c
 @@ -718,8 +718,13 @@
          if (domain == AF_INET)
      	    ret = gethostbyname(name);
