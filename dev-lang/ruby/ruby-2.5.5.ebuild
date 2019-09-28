@@ -73,10 +73,14 @@ src_prepare() {
 	rm -fr ext/fiddle/libffi-3.2.1 || die
 
 	# Fix hardcoded SHELL var in mkmf library
-	sed -i -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" lib/mkmf.rb
+	sed -i -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" lib/mkmf.rb || die
 	# avoid symlink loop on Darwin (?!)
-	sed -i -e '/LIBRUBY_ALIASES=/s/lib$(RUBY_INSTALL_NAME).dylib//' \
-		configure.ac || die "sed failed"
+	sed -i -e '/LIBRUBY_ALIASES=/s/lib$(RUBY_INSTALL_NAME).$(SOEXT)//' \
+		configure.ac || die
+	# make ar/libtool hack for Darwin work
+	sed -i \
+		-e "s/ac_cv_prog_ac_ct_AR='libtool/ac_cv_prog_AR='${CHOST}-libtool/" \
+		configure.ac || die
 
 	eapply_user
 

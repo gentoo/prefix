@@ -78,10 +78,14 @@ src_prepare() {
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
 		configure.in || die "sed failed"
 	# Fix hardcoded SHELL var in mkmf library
-	sed -i -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" lib/mkmf.rb
+	sed -i -e "s#\(SHELL = \).*#\1${EPREFIX}/bin/sh#" lib/mkmf.rb || die
 	# avoid symlink loop on Darwin (?!)
 	sed -i -e '/LIBRUBY_ALIASES=/s/lib$(RUBY_INSTALL_NAME).dylib//' \
-		configure.in || die "sed failed"
+		configure.in || die
+	# make ar/libtool hack for Darwin work
+	sed -i \
+		-e "s/ac_cv_prog_ac_ct_AR='libtool/ac_cv_prog_AR='${CHOST}-libtool/" \
+		configure.in || die
 	# Fix using installed ruby
 	sed -i -e '/^libs << File.expand_path("lib", srcdir)/s/^/#/' \
 		tool/runruby.rb || die
