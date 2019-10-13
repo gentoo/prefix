@@ -9,7 +9,7 @@ DESCRIPTION="Utility to change the binutils version being used"
 HOMEPAGE="https://www.gentoo.org/"
 GIT_REV="edc0d44f70c27daebcc080ac5d08e8e191bccd95"
 WRAPPER_REV="${PV%%.*}.3.4"
-SRC_URI="https://gitweb.gentoo.org/repo/proj/prefix.git/plain/sys-devel/binutils-config/files/ldwrapper.c?id=${GIT_REV} -> ${PN}-ldwrapper-${WRAPPER_REV}.c"
+#SRC_URI="https://gitweb.gentoo.org/repo/proj/prefix.git/plain/sys-devel/binutils-config/files/ldwrapper.c?id=${GIT_REV} -> ${PN}-ldwrapper-${WRAPPER_REV}.c"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -25,6 +25,7 @@ S=${WORKDIR}
 # NOTE: the ld wrapper is only enabled on rpath versions of prefix.
 src_prepare() {
 	cp "${FILESDIR}"/${PN}-${PV} ./${PN} || die
+	cp "${FILESDIR}"/ldwrapper.c ./${PN}-ldwrapper-${WRAPPER_REV}.c || die
 	if use prefix-guest; then
 		epatch "${FILESDIR}/${PN}-5-ldwrapper.patch"
 	fi
@@ -42,7 +43,7 @@ src_compile() {
 		$(tc-getCC)
 		${CPPFLAGS}
 		${CFLAGS}
-		-o ldwrapper "${DISTDIR}"/${PN}-ldwrapper-${WRAPPER_REV}.c
+		-o ldwrapper ${PN}-ldwrapper-${WRAPPER_REV}.c
 		-DEPREFIX=\"${EPREFIX}\"
 		-DCHOST=\"${CHOST}\"
 		${LDFLAGS}

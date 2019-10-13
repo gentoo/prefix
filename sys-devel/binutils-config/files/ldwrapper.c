@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2017 Gentoo Foundation
+ * Copyright 1999-2019 Gentoo Foundation
  * Distributed under the terms of the GNU General Public License v2
  * Authors: Fabian Groffen <grobian@gentoo.org>
  *          Michael Haubenwallner <haubi@gentoo.org>
@@ -58,13 +58,13 @@ find_real_ld(char **ld, size_t ldlen, const char verbose, const char is_cross,
 	ldoverride = getenv("BINUTILS_CONFIG_LD");
 	if (ldoverride != NULL && *ldoverride != '\0') {
 		if (verbose)
-			fprintf(stdout, "%s: using BINUTILS_CONFIG_LD=%s "
+			fprintf(stderr, "%s: using BINUTILS_CONFIG_LD=%s "
 					"from environment\n", wrapper, ldoverride);
 		snprintf(*ld, ldlen, "%s", ldoverride);
 		return 0;
 	}
 	if (verbose)
-		fprintf(stdout, "%s: BINUTILS_CONFIG_LD not found in environment\n",
+		fprintf(stderr, "%s: BINUTILS_CONFIG_LD not found in environment\n",
 				wrapper);
 
 	/* Find ld in PATH, allowing easy PATH overrides.
@@ -94,14 +94,14 @@ find_real_ld(char **ld, size_t ldlen, const char verbose, const char is_cross,
 			/* glue it together */
 			snprintf(*ld, ldlen, "%.*s/%s", (int)(q - p), p, wrapper);
 			if (verbose)
-				fprintf(stdout, "%s: trying from PATH: %s\n",
+				fprintf(stderr, "%s: trying from PATH: %s\n",
 						wrapper, *ld);
 			if (stat(*ld, &lde) == 0)
 				return 0;
 		}
 	}
 	if (verbose)
-		fprintf(stdout, "%s: linker not found in PATH\n", wrapper);
+		fprintf(stderr, "%s: linker not found in PATH\n", wrapper);
 
 	/* parse EPREFIX/etc/env.d/binutils/config-CTARGET to get CURRENT, then
 	 * consider $EPREFIX/usr/CTARGET/binutils-bin/CURRENT where we should
@@ -123,7 +123,7 @@ find_real_ld(char **ld, size_t ldlen, const char verbose, const char is_cross,
 
 			q = p + len;
 			if (verbose)
-				fprintf(stdout, "%s: %s defines CURRENT=%s\n",
+				fprintf(stderr, "%s: %s defines CURRENT=%s\n",
 						wrapper, config, q);
 			if (is_cross) {
 				snprintf(*ld, ldlen,
@@ -138,13 +138,13 @@ find_real_ld(char **ld, size_t ldlen, const char verbose, const char is_cross,
 		}
 		fclose(f);
 		if (verbose)
-			fprintf(stdout, "%s: trying from %s: %s\n",
+			fprintf(stderr, "%s: trying from %s: %s\n",
 					wrapper, config, *ld);
 		if (stat(*ld, &lde) == 0)
 			return 0;
 	}
 	if (verbose)
-		fprintf(stdout, "%s: linker not found via %s\n", wrapper, config);
+		fprintf(stderr, "%s: linker not found via %s\n", wrapper, config);
 
 	/* last try, shell out to binutils-config to tell us what the linker
 	 * is supposed to be */
@@ -178,7 +178,7 @@ find_real_ld(char **ld, size_t ldlen, const char verbose, const char is_cross,
 				}
 
 				if (verbose)
-					fprintf(stdout, "%s: trying from %s: %s\n",
+					fprintf(stderr, "%s: trying from %s: %s\n",
 							wrapper, config, *ld);
 				if (stat(*ld, &lde) == 0)
 					return 0;
@@ -186,7 +186,7 @@ find_real_ld(char **ld, size_t ldlen, const char verbose, const char is_cross,
 		}
 	}
 	if (verbose)
-		fprintf(stdout, "%s: linker not found via %s\n",
+		fprintf(stderr, "%s: linker not found via %s\n",
 				wrapper, config);
 
 	/* we didn't succeed finding the linker */
@@ -210,6 +210,7 @@ main(int argc, char *argv[])
 	char is_darwin = 0;
 	char darwin_use_rpath = 1;
 	char is_aix = 0;
+	char has_missing = getenv("BINUTILS_CONFIG_DISABLE_MISSING") == NULL;
 	char *p;
 	size_t len;
 	int i;
@@ -308,6 +309,8 @@ main(int argc, char *argv[])
 	 * non-cross-compilable on any platform, prefix or no prefix. So no
 	 * need to add PREFIX- or CTARGET-aware libdirs. */
 	if (!is_cross) {
+		struct stat st;
+
 		if (is_darwin) {
 			/* check deployment target if nothing prevents us from
 			 * using -rpath as of yet
@@ -345,6 +348,14 @@ main(int argc, char *argv[])
 		if (is_aix) {
 			/* AIX ld accepts -R only with -bsvr4 */
 			newargc++; /* -bsvr4 */
+		}
+
+		/* BINUTILS_CONFIG_DISABLE_MISSING overrides this such that we
+		 * can disable this behaviour */
+		if (has_missing && stat(EPREFIX "/usr/lib/libmissing.a", &st) == 0) {
+			newargc++; /* -lmissing */
+		} else {
+			has_missing = 0;
 		}
 	}
 
@@ -394,6 +405,20 @@ main(int argc, char *argv[])
 			if (strcmp(argv[i], "-bsvr4") == 0) {
 				--j; --k;
 				continue;
+			}
+		}
+
+		if (!is_cross && is_darwin && has_missing) {
+			if (argv[i][0] == '-' && argv[i][1] == 'l' &&
+					(strcmp(&argv[i][2], "System") == 0 ||
+					 strcmp(&argv[i][2], "SystemStubs") == 0))
+			{
+				/* inject -lmissing before -lSystem or -lSystemStubs */
+				memmove(&newargv[j + 1], &newargv[j],
+						sizeof(newargv[j]) * (k - j));
+				newargv[j++] = "-lmissing";
+				k++;
+				has_missing = 0;  /* avoid duplicate insertion */
 			}
 		}
 
@@ -473,15 +498,17 @@ main(int argc, char *argv[])
 			newargv[k++] = "-R" EPREFIX "/lib";
 		}
 
+		if (has_missing)
+			newargv[k++] = "-lmissing";
 		if (is_aix)
 			newargv[k++] = "-bsvr4"; /* last one, see above */
 	}
 	newargv[k] = NULL;
 
 	if (verbose) {
-		fprintf(stdout, "%s: invoking %s with arguments:\n", wrapper, ld);
+		fprintf(stderr, "%s: invoking %s with arguments:\n", wrapper, ld);
 		for (j = 0; newargv[j] != NULL; j++)
-			fprintf(stdout, "  %s\n", newargv[j]);
+			fprintf(stderr, "  %s\n", newargv[j]);
 	}
 
 	/* finally, execute the real ld */
