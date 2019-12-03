@@ -2047,7 +2047,7 @@ bootstrap_stage3() {
 
 	# "wipe" mtimedb such that the resume list is proper after this stage
 	# (--depclean may fail, which is ok)
-	sed -i -e 's/resume_backup/cleared/' "${EPREFIX}"/var/cache/edb/mtimedb
+	sed -i -e 's/resume/cleared/' "${ROOT}"/var/cache/edb/mtimedb
 
 	einfo "stage3 successfully finished"
 }
@@ -2822,7 +2822,7 @@ EOF
 
 	local cmd="emerge -e system"
 	if [[ -e ${EPREFIX}/var/cache/edb/mtimedb ]] && \
-		grep -q resume_backup "${EPREFIX}"/var/cache/edb/mtimedb ;
+		grep -q resume "${EPREFIX}"/var/cache/edb/mtimedb ;
 	then
 		cmd="emerge --resume"
 	fi
