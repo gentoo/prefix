@@ -164,11 +164,12 @@ _python_set_impls() {
 }
 
 # @FUNCTION: _python_impl_matches
-# @USAGE: <impl> <pattern>...
+# @USAGE: <impl> [<pattern>...]
 # @INTERNAL
 # @DESCRIPTION:
 # Check whether the specified <impl> matches at least one
 # of the patterns following it. Return 0 if it does, 1 otherwise.
+# Matches if no patterns are provided.
 #
 # <impl> can be in PYTHON_COMPAT or EPYTHON form. The patterns can be
 # either:
@@ -176,17 +177,17 @@ _python_set_impls() {
 # b) '-2' to indicate all Python 2 variants (= !python_is_python3)
 # c) '-3' to indicate all Python 3 variants (= python_is_python3)
 _python_impl_matches() {
-	[[ ${#} -ge 2 ]] || die "${FUNCNAME}: takes at least 2 parameters"
+	[[ ${#} -ge 1 ]] || die "${FUNCNAME}: takes at least 1 parameter"
+	[[ ${#} -eq 1 ]] && return 0
 
 	local impl=${1} pattern
 	shift
 
 	for pattern; do
 		if [[ ${pattern} == -2 ]]; then
-			! python_is_python3 "${impl}"
-			return
+			python_is_python3 "${impl}" || return 0
 		elif [[ ${pattern} == -3 ]]; then
-			python_is_python3 "${impl}"
+			python_is_python3 "${impl}" && return 0
 			return
 		# unify value style to allow lax matching
 		elif [[ ${impl/./_} == ${pattern/./_} ]]; then
@@ -1370,6 +1371,31 @@ python_export_utf8_locale() {
 	fi
 
 	return 0
+}
+
+# @FUNCTION: build_sphinx
+# @USAGE: <directory>
+# @DESCRIPTION:
+# Build HTML documentation using dev-python/sphinx in the specified
+# <directory>.  Takes care of disabling Intersphinx and appending
+# to HTML_DOCS.
+#
+# If <directory> is relative to the current directory, care needs
+# to be taken to run einstalldocs from the same directory
+# (usually ${S}).
+build_sphinx() {
+	debug-print-function ${FUNCNAME} "${@}"
+	[[ ${#} -eq 1 ]] || die "${FUNCNAME} takes 1 arg: <directory>"
+
+	local dir=${1}
+
+	sed -i -e 's:^intersphinx_mapping:disabled_&:' \
+		"${dir}"/conf.py || die
+	# not all packages include the Makefile in pypi tarball
+	sphinx-build -b html -d "${dir}"/_build/doctrees "${dir}" \
+		"${dir}"/_build/html || die
+
+	HTML_DOCS+=( "${dir}/_build/html/." )
 }
 
 # -- python.eclass functions --
