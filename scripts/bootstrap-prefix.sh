@@ -2035,8 +2035,8 @@ bootstrap_stage3() {
 		emerge --sync || emerge-webrsync || return 1
 	fi
 
-	# avoid installing git just for fun while completing @system
-	export USE="-git"
+	# avoid installing git or encryption just for fun while completing @system
+	export USE="-git -crypt"
 
 	# Portage should figure out itself what it needs to do, if anything.
 	# Avoid glib compiling for Cocoa libs if it finds them, since we're
