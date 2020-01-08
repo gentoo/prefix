@@ -1,11 +1,11 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 
 PYTHON_COMPAT=(
-	pypy
-	python3_4 python3_5 python3_6 python3_7
+	pypy3
+	python3_6 python3_7
 	python2_7
 )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
@@ -166,13 +166,6 @@ python_prepare_all() {
 		einfo "Making absent gemato non-fatal"
 		sed -i -e '/exitcode = 127/d' \
 			lib/portage/sync/modules/rsync/rsync.py || die
-
-		if [[ ${CHOST} == powerpc*-darwin* ]] ; then
-			# asyncio triggers some python bug, not worth fixing on
-			# ppc-macos, bug #656830
-			sed -i -e '/^_asyncio_enabled/s/=.*$/= False/' \
-				lib/portage/util/_eventloop/global_event_loop.py || die
-		fi
 		# END PREFIX LOCAL
 	fi
 
