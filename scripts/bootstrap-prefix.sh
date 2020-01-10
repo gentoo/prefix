@@ -939,7 +939,7 @@ bootstrap_gnu() {
 
 PYTHONMAJMIN=3.6   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
-	PV=3.6.8
+	PV=3.6.10
 	A=Python-${PV}.tar.xz
 	patch=true
 
