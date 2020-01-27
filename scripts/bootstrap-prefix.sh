@@ -1858,6 +1858,24 @@ bootstrap_stage3() {
 				> "${ROOT}"/usr/bin/perl
 			chmod +x "${ROOT}"/usr/bin/perl
 		fi
+
+		# Need rsync to for linux-headers installation
+		if [[ ! -x "${ROOT}"/usr/bin/rsync ]]; then
+			cat > "${ROOT}"/usr/bin/rsync <<-EOF
+		#!${ROOT}/bin/bash
+		while (( \$# > 0 )); do
+		case \$1 in
+		-*) shift; continue ;;
+		*) break ;;
+		esac
+		done
+		dst="\$2"/\$(basename \$1)
+		mkdir -p "\${dst}"
+		cp -rv \$1/* "\${dst}"/
+		EOF
+			chmod +x "${ROOT}"/usr/bin/rsync
+		fi
+
 		# Tell dynamic loader the path of libgcc_s.so of stage2
 		if [[ ! -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf ]]; then
 			mkdir -p "${ROOT}"/etc/ld.so.conf.d
@@ -1877,6 +1895,8 @@ bootstrap_stage3() {
 		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && \
 			rm "${ROOT}"/usr/bin/perl
+		grep -q 'esac' "${ROOT}"/usr/bin/rsync && \
+			rm "${ROOT}"/usr/bin/rsync
 
 		pkgs=(
 			sys-devel/binutils-config
