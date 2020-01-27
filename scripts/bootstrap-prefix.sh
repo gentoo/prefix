@@ -1551,7 +1551,7 @@ do_emerge_pkgs() {
 			-pcre
 			-ssl
 			-python
-			-qmanifest
+			-qmanifest -qtegrity
 			bootstrap
 			clang
 			internal-glib
