@@ -1556,6 +1556,17 @@ do_emerge_pkgs() {
 			clang
 			internal-glib
 		)
+		if [[ " ${USE} " == *" prefix-stack "* ]] &&
+		   [[ ${PORTAGE_OVERRIDE_EPREFIX} == */tmp ]] &&
+		   ! grep -q '^USE=".*" # by bootstrap-prefix.sh$' "${PORTAGE_OVERRIDE_EPREFIX}/etc/portage/make.conf"
+		then
+			# With prefix-stack, the USE env var does apply to the stacked
+			# prefix only, not the base prefix (any more? since some portage
+			# version?), so we have to persist the base USE flags into the
+			# base prefix - without the additional incoming USE flags.
+			echo "USE=\"\${USE} ${myuse[*]}\" # by bootstrap-prefix.sh" \
+				>> "${PORTAGE_OVERRIDE_EPREFIX}/etc/portage/make.conf"
+		fi
 		myuse=" ${myuse[*]} "
 		local use
 		for use in ${USE} ; do
