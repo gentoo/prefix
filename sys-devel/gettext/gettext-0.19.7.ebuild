@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -59,7 +59,6 @@ src_prepare() {
 	sed -i -e '1c\#!/usr/bin/env sh' \
 		gettext-tools/misc/convert-archive.in || die
 
-	epunt_cxx
 	elibtoolize
 
 	# Never build libintl since it's in dev-libs/libintl now.

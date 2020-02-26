@@ -1,11 +1,11 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Note: Keep version bumps in sync with dev-libs/libintl.
 
 EAPI="5"
 
-inherit epatch epunt-cxx ltprune mono-env libtool java-pkg-opt-2 multilib-minimal
+inherit epatch ltprune mono-env libtool java-pkg-opt-2 multilib-minimal
 
 DESCRIPTION="GNU locale utilities"
 HOMEPAGE="https://www.gnu.org/software/gettext/"
@@ -65,7 +65,6 @@ src_prepare() {
 	sed -i -e '1c\#!/usr/bin/env sh' \
 		gettext-tools/misc/convert-archive.in || die
 
-	epunt_cxx
 	elibtoolize
 }
 
