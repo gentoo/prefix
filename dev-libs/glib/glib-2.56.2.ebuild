@@ -1,11 +1,11 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 PYTHON_COMPAT=( python{2_7,3_5,3_6,3_7} )
 GNOME2_EAUTORECONF=yes
 
-inherit autotools bash-completion-r1 epunt-cxx flag-o-matic gnome2 libtool linux-info \
+inherit autotools bash-completion-r1 flag-o-matic gnome2 libtool linux-info \
 	multilib multilib-minimal pax-utils python-any-r1 toolchain-funcs virtualx
 
 # Until bug #537330 glib is a reverse dependency of pkgconfig and, then
@@ -157,7 +157,6 @@ src_prepare() {
 	fi
 
 	gnome2_src_prepare
-	epunt_cxx
 }
 
 multilib_src_configure() {
