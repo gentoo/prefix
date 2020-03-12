@@ -1207,7 +1207,9 @@ bootstrap_sed() {
 }
 
 bootstrap_findutils() {
-	bootstrap_gnu findutils 4.5.10 || bootstrap_gnu findutils 4.2.33
+	bootstrap_gnu findutils 4.7.0 ||
+	bootstrap_gnu findutils 4.5.10 ||
+	bootstrap_gnu findutils 4.2.33
 }
 
 bootstrap_wget() {
