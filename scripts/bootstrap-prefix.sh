@@ -1923,6 +1923,15 @@ bootstrap_stage3() {
 		export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,--dynamic-linker=${RAP_DLINKER}"
 		BOOTSTRAP_RAP=yes \
 		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+
+		# avoid circular deps with sys-libs/pam, bug#712020
+		pkgs=(
+				sys-apps/attr
+				sys-libs/libcap
+		)
+		BOOTSTRAP_RAP=yes \
+		USE="${USE} -pam" \
+		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	else
 		pkgs=(
 			sys-apps/gentoo-functions
