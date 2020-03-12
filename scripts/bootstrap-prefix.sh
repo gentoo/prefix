@@ -375,6 +375,7 @@ bootstrap_setup() {
 			echo 'CXXFLAGS="${CFLAGS}"'
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
 			echo "CONFIG_SHELL=\"${ROOT}/bin/bash\""
+			echo "DISTDIR=\"${DISTDIR:-${ROOT}/var/cache/distfiles}\""
 			if is-rap ; then
 				echo "# sandbox does not work well on Prefix, bug 490246"
 				echo 'FEATURES="${FEATURES} -usersandbox -sandbox"'
