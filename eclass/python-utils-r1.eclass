@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: python-utils-r1.eclass
@@ -7,7 +7,7 @@
 # @AUTHOR:
 # Author: Michał Górny <mgorny@gentoo.org>
 # Based on work of: Krzysztof Pawlik <nelchael@gentoo.org>
-# @SUPPORTED_EAPIS: 0 1 2 3 4 5 6 7
+# @SUPPORTED_EAPIS: 5 6 7
 # @BLURB: Utility functions for packages with Python parts.
 # @DESCRIPTION:
 # A utility eclass providing functions to query Python implementations,
@@ -16,15 +16,13 @@
 # This eclass does not set any metadata variables nor export any phase
 # functions. It can be inherited safely.
 #
-# For more information, please see the wiki:
-# https://wiki.gentoo.org/wiki/Project:Python/python-utils-r1
+# For more information, please see the Python Guide:
+# https://dev.gentoo.org/~mgorny/python-guide/
 
 case "${EAPI:-0}" in
-	0|1|2|3|4|5|6|7)
-		;;
-	*)
-		die "Unsupported EAPI=${EAPI} (unknown) for ${ECLASS}"
-		;;
+	[0-4]) die "Unsupported EAPI=${EAPI:-0} (too old) for ${ECLASS}" ;;
+	[5-7]) ;;
+	*)     die "Unsupported EAPI=${EAPI} (unknown) for ${ECLASS}" ;;
 esac
 
 if [[ ${_PYTHON_ECLASS_INHERITED} ]]; then
@@ -33,7 +31,7 @@ fi
 
 if [[ ! ${_PYTHON_UTILS_R1} ]]; then
 
-[[ ${EAPI:-0} == [012345] ]] && inherit eutils multilib
+[[ ${EAPI} == 5 ]] && inherit eutils multilib
 inherit toolchain-funcs
 
 # @ECLASS-VARIABLE: _PYTHON_ALL_IMPLS
@@ -41,10 +39,9 @@ inherit toolchain-funcs
 # @DESCRIPTION:
 # All supported Python implementations, most preferred last.
 _PYTHON_ALL_IMPLS=(
-	jython2_7
-	pypy pypy3
+	pypy3
 	python2_7
-	python3_5 python3_6 python3_7 python3_8
+	python3_6 python3_7 python3_8
 )
 readonly _PYTHON_ALL_IMPLS
 
@@ -80,16 +77,11 @@ _python_impl_supported() {
 	# keep in sync with _PYTHON_ALL_IMPLS!
 	# (not using that list because inline patterns shall be faster)
 	case "${impl}" in
-		python2_7|python3_[5678]|jython2_7)
+		python2_7|python3_[678]|pypy3)
 			return 0
 			;;
-		pypy1_[89]|pypy2_0|python2_[56]|python3_[1234])
+		jython2_7|pypy|pypy1_[89]|pypy2_0|python2_[56]|python3_[12345])
 			return 1
-			;;
-		pypy|pypy3)
-			if [[ ${EAPI:-0} == [01234] ]]; then
-				die "PyPy is supported in EAPI 5 and newer only."
-			fi
 			;;
 		*)
 			[[ ${PYTHON_COMPAT_NO_STRICT} ]] && return 1
@@ -206,7 +198,7 @@ _python_impl_matches() {
 # This variable is set automatically in the following contexts:
 #
 # python-r1: Set in functions called by python_foreach_impl() or after
-# calling python_export_best().
+# calling python_setup().
 #
 # python-single-r1: Set after calling python-single-r1_pkg_setup().
 #
@@ -225,7 +217,7 @@ _python_impl_matches() {
 # This variable is set automatically in the following contexts:
 #
 # python-r1: Set in functions called by python_foreach_impl() or after
-# calling python_export_best().
+# calling python_setup().
 #
 # python-single-r1: Set after calling python-single-r1_pkg_setup().
 #
@@ -500,9 +492,9 @@ python_export() {
 					python*)
 						PYTHON_PKG_DEP="dev-lang/python:${impl#python}";;
 					pypy)
-						PYTHON_PKG_DEP='>=virtual/pypy-5:0=';;
+						PYTHON_PKG_DEP='>=dev-python/pypy-5:0=';;
 					pypy3)
-						PYTHON_PKG_DEP='>=virtual/pypy3-5:0=';;
+						PYTHON_PKG_DEP='>=dev-python/pypy3-5:0=';;
 					jython2.7)
 						PYTHON_PKG_DEP='dev-java/jython:2.7';;
 					*)
@@ -804,9 +796,6 @@ python_newexe() {
 
 	[[ ${EPYTHON} ]] || die 'No Python implementation set (EPYTHON is null).'
 	[[ ${#} -eq 2 ]] || die "Usage: ${FUNCNAME} <path> <new-name>"
-	if [[ ${EAPI:-0} == [0123] ]]; then
-		die "python_do* and python_new* helpers are banned in EAPIs older than 4."
-	fi
 
 	local wrapd=${python_scriptroot:-/usr/bin}
 
@@ -934,9 +923,6 @@ python_domodule() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	[[ ${EPYTHON} ]] || die 'No Python implementation set (EPYTHON is null).'
-	if [[ ${EAPI:-0} == [0123] ]]; then
-		die "python_do* and python_new* helpers are banned in EAPIs older than 4."
-	fi
 
 	local d
 	if [[ ${python_moduleroot} == /* ]]; then
@@ -976,9 +962,6 @@ python_doheader() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	[[ ${EPYTHON} ]] || die 'No Python implementation set (EPYTHON is null).'
-	if [[ ${EAPI:-0} == [0123] ]]; then
-		die "python_do* and python_new* helpers are banned in EAPIs older than 4."
-	fi
 
 	local d PYTHON_INCLUDEDIR=${PYTHON_INCLUDEDIR}
 	[[ ${PYTHON_INCLUDEDIR} ]] || python_export PYTHON_INCLUDEDIR PYTHON_EPREFIX
@@ -1023,7 +1006,7 @@ python_wrapper_setup() {
 		# Clean up, in case we were supposed to do a cheap update.
 		rm -f "${workdir}"/bin/python{,2,3}{,-config} || die
 		rm -f "${workdir}"/bin/2to3 || die
-		rm -f "${workdir}"/pkgconfig/python{,2,3}.pc || die
+		rm -f "${workdir}"/pkgconfig/python{2,3}{,-embed}.pc || die
 
 		local EPYTHON PYTHON
 		python_export "${impl}" EPYTHON PYTHON
@@ -1066,8 +1049,13 @@ python_wrapper_setup() {
 
 			# Python 2.7+.
 			ln -s "${EPREFIX}"/usr/$(get_libdir)/pkgconfig/${EPYTHON/n/n-}.pc \
-				"${workdir}"/pkgconfig/python.pc || die
-			ln -s python.pc "${workdir}"/pkgconfig/python${pyver}.pc || die
+				"${workdir}"/pkgconfig/python${pyver}.pc || die
+
+			# Python 3.8+.
+			if [[ ${EPYTHON} != python[23].[67] ]]; then
+				ln -s "${EPREFIX}"/usr/$(get_libdir)/pkgconfig/${EPYTHON/n/n-}-embed.pc \
+					"${workdir}"/pkgconfig/python${pyver}-embed.pc || die
+			fi
 		else
 			nonsupp+=( 2to3 python-config "python${pyver}-config" )
 		fi
@@ -1121,10 +1109,7 @@ python_is_installed() {
 	[[ ${impl} ]] || die "${FUNCNAME}: no impl nor EPYTHON"
 	local hasv_args=()
 
-	case ${EAPI:-0} in
-		0|1|2|3|4)
-			local -x ROOT=/
-			;;
+	case ${EAPI} in
 		5|6)
 			hasv_args+=( --host-root )
 			;;
@@ -1133,23 +1118,9 @@ python_is_installed() {
 			;;
 	esac
 
-	case "${impl}" in
-		pypy|pypy3)
-			local append=
-			if [[ ${PYTHON_REQ_USE} ]]; then
-				append=[${PYTHON_REQ_USE}]
-			fi
-
-			# be happy with just the interpeter, no need for the virtual
-			has_version "${hasv_args[@]}" "dev-python/${impl}${append}" \
-				|| has_version "${hasv_args[@]}" "dev-python/${impl}-bin${append}"
-			;;
-		*)
-			local PYTHON_PKG_DEP
-			python_export "${impl}" PYTHON_PKG_DEP
-			has_version "${hasv_args[@]}" "${PYTHON_PKG_DEP}"
-			;;
-	esac
+	local PYTHON_PKG_DEP
+	python_export "${impl}" PYTHON_PKG_DEP
+	has_version "${hasv_args[@]}" "${PYTHON_PKG_DEP}"
 }
 
 # @FUNCTION: python_fix_shebang
@@ -1293,7 +1264,7 @@ python_fix_shebang() {
 
 		if [[ ! ${any_fixed} ]]; then
 			local cmd=eerror
-			[[ ${EAPI:-0} == [012345] ]] && cmd=eqawarn
+			[[ ${EAPI} == 5 ]] && cmd=eqawarn
 
 			"${cmd}" "QA warning: ${FUNCNAME}, ${path#${D%/}} did not match any fixable files."
 			if [[ ${any_correct} ]]; then
@@ -1309,6 +1280,7 @@ python_fix_shebang() {
 
 # @FUNCTION: _python_check_locale_sanity
 # @USAGE: <locale>
+# @INTERNAL
 # @RETURN: 0 if sane, 1 otherwise
 # @DESCRIPTION:
 # Check whether the specified locale sanely maps between lowercase
