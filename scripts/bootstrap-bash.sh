@@ -10,7 +10,7 @@
 
 if [ -z "$1" ] ; then
 	echo "usage: ${0} <location>" > /dev/stderr
-	exit -1
+	exit 255
 fi
 
 mkdir -p "$1"
@@ -20,6 +20,22 @@ cd bash-build
 
 GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org/distfiles"}
 
+command_exists() {
+	check_cmd="$1"
+	command -v $check_cmd >/dev/null 2>&1
+}
+
+same_file() {
+	file1="$1"
+	file2="$2"
+
+	if [ "$(stat -c '%i%d' "$file1" "$file2" | sort -u | wc -l)" -eq 1 ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 if [ ! -e bash-4.2.tar.gz ] ; then
 	eerror() { echo "!!! $*" 1>&2; }
 	einfo() { echo "* $*"; }
@@ -27,18 +43,29 @@ if [ ! -e bash-4.2.tar.gz ] ; then
 	if [ -z ${FETCH_COMMAND} ] ; then
 		# Try to find a download manager, we only deal with wget,
 		# curl, FreeBSD's fetch and ftp.
-		if [ x$(type -t wget) == "xfile" ] ; then
+		if command_exists wget; then
 			FETCH_COMMAND="wget"
-			[ $(wget -h) == *"--no-check-certificate"* ] && FETCH_COMMAND+=" --no-check-certificate"
-		elif [ x$(type -t curl) == "xfile" ] ; then
+			case "$(wget -h 2>&1)" in
+				*"--no-check-certificate"*)
+					FETCH_COMMAND="$FETCH_COMMAND --no-check-certificate"
+					;;
+			esac
+		elif command_exists curl; then
 			einfo "WARNING: curl doesn't fail when downloading fails, please check its output carefully!"
 			FETCH_COMMAND="curl -f -L -O"
-		elif [ x$(type -t fetch) == "xfile" ] ; then
+		elif command_exists fetch; then
 			FETCH_COMMAND="fetch"
-		elif [ x$(type -t ftp) == "xfile" ] &&
-			 [ ${CHOST} != *-cygwin* || ! $(type -P ftp) -ef $(cygpath -S)/ftp ] ; then
+		elif command_exists ftp; then
 			FETCH_COMMAND="ftp"
-		else
+			case "${CHOST}" in
+				*-cygwin*)
+					if same_file "$(command -v ftp)" "$(cygpath -S)/ftp"; then
+						FETCH_COMMAND=''
+					fi
+					;;
+			esac
+		fi
+		if [ -z ${FETCH_COMMAND} ]; then
 			eerror "no suitable download manager found (need wget, curl, fetch or ftp)"
 			eerror "could not download ${1##*/}"
 			eerror "download the file manually, and put it in ${PWD}"
