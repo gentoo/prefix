@@ -2714,10 +2714,20 @@ EOF
 			EPREFIX=
 			continue
 		fi
+		if [[ $(stat -c '%U/%G' "${EPREFIX}"/.canihaswrite) != \
+			$(stat -c '%U/%G' "${EPREFIX}") ]] ;
+		then
+			echo
+			echo "The $EPREFIX directory has different ownership than expected."
+			echo "Ensure the directory is owned (user and group) by your"
+			echo "primary ids"
+			EPREFIX=
+			continue
+		fi
 		# don't really expect this one to fail
 		rm -f "${EPREFIX}"/.canihaswrite || exit 1
 		# location seems ok
-		break;
+		break
 	done
 	export STAGE1_PATH=${PATH}
 	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$EPREFIX/tmp/usr/local/bin:${PATH}"
