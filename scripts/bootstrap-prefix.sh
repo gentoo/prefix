@@ -1981,7 +1981,8 @@ bootstrap_stage3() {
 	fi
 
 	# try to get ourself out of the mudd, bug #575324
-	EXTRA_ECONF="--disable-compiler-version-checks $(rapx --disable-lto)" \
+	EXTRA_ECONF="--disable-compiler-version-checks $(rapx '--disable-lto --disable-bootstrap')" \
+	GCC_MAKE_TARGET=$(rapx all) \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 	PYTHON_COMPAT_OVERRIDE=python${PYTHONMAJMIN} \
 	with_stack_emerge_pkgs --nodeps ${compiler} || return 1
