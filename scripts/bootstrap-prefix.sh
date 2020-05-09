@@ -1999,6 +1999,9 @@ bootstrap_stage3() {
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 
+	# need special care, it depends on texinfo, #717786
+	emerge_pkgs --nodeps sys-apps/gawk || return 1
+
 	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python${PYTHONMAJMIN} )
 	# Use $ROOT tools where possible from now on.
 	if [[ $(readlink "${ROOT}"/bin/sh) == "${ROOT}/tmp/"* ]] ; then
@@ -2021,7 +2024,6 @@ bootstrap_stage3() {
 		app-arch/gzip
 		app-arch/tar
 		sys-apps/grep
-		sys-apps/gawk
 		sys-devel/make
 		sys-apps/file
 		app-admin/eselect
