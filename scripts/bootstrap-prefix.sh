@@ -938,9 +938,9 @@ bootstrap_gnu() {
 	einfo "${PN}-${PV} successfully bootstrapped"
 }
 
-PYTHONMAJMIN=3.6   # keep this number in line with PV below for stage1,2
+PYTHONMAJMIN=3.7   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
-	PV=3.6.10
+	PV=3.7.7
 	A=Python-${PV}.tar.xz
 	patch=true
 
