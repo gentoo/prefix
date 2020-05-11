@@ -1857,12 +1857,24 @@ bootstrap_stage3() {
 		emerge_pkgs "$@"
 	}
 
+	# pre_emerge_pkgs relies on stage 2 portage.
+	pre_emerge_pkgs() { is-rap && without_stack_emerge_pkgs "$@" || with_stack_emerge_pkgs "$@"; }
+
 	# Some packages fail to properly depend on sys-apps/texinfo.
 	# We don't really need that package, so we fake it instead,
 	# explicitly emerging it later on will overwrite the fakes.
 	if [[ ! -x "${ROOT}"/usr/bin/makeinfo ]]
 	then
 		cp -p "${ROOT}"/tmp/usr/bin/{makeinfo,install-info} "${ROOT}"/usr/bin
+	fi
+
+	# Bug 655414, 676096.
+	# Portage does search it's global config using PORTAGE_OVERRIDE_EPREFIX,
+	# so we need to provide it there - emerging portage itself is expected
+	# to finally overwrite it.
+	if [[ ! -d "${ROOT}"/usr/share/portage ]]; then
+		mkdir -p "${ROOT}"/usr/share
+		cp -a "${ROOT}"{/tmp,}/usr/share/portage
 	fi
 
 	if is-rap ; then
@@ -1907,7 +1919,7 @@ bootstrap_stage3() {
 		)
 
 		BOOTSTRAP_RAP=yes \
-		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 		grep -q 'apiversion=9999' "${ROOT}"/usr/bin/perl && \
 			rm "${ROOT}"/usr/bin/perl
 		grep -q 'esac' "${ROOT}"/usr/bin/rsync && \
@@ -1922,7 +1934,7 @@ bootstrap_stage3() {
 		RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9])
 		export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,--dynamic-linker=${RAP_DLINKER}"
 		BOOTSTRAP_RAP=yes \
-		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 		# avoid circular deps with sys-libs/pam, bug#712020
 		pkgs=(
@@ -1931,7 +1943,7 @@ bootstrap_stage3() {
 		)
 		BOOTSTRAP_RAP=yes \
 		USE="${USE} -pam" \
-		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	else
 		pkgs=(
 			sys-apps/gentoo-functions
@@ -1946,7 +1958,7 @@ bootstrap_stage3() {
 			${linker}
 		)
 
-		with_stack_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	fi
 	# remove stage2 ld so that stage3 ld is used by stage2 gcc.
 	is-rap && [[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && \
@@ -1985,7 +1997,7 @@ bootstrap_stage3() {
 	GCC_MAKE_TARGET=$(rapx all) \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 	PYTHON_COMPAT_OVERRIDE=python${PYTHONMAJMIN} \
-	with_stack_emerge_pkgs --nodeps ${compiler} || return 1
+	pre_emerge_pkgs --nodeps ${compiler} || return 1
 	# undo libgcc_s.so path of stage2
 
 	# now we have the compiler right there
@@ -2001,7 +2013,7 @@ bootstrap_stage3() {
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 
 	# need special care, it depends on texinfo, #717786
-	emerge_pkgs --nodeps sys-apps/gawk || return 1
+	pre_emerge_pkgs --nodeps sys-apps/gawk || return 1
 
 	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python${PYTHONMAJMIN} )
 	# Use $ROOT tools where possible from now on.
@@ -2013,7 +2025,7 @@ bootstrap_stage3() {
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
 	# get a sane bash, overwriting tmp symlinks
-	with_stack_emerge_pkgs "" "app-shells/bash" || return 1
+	pre_emerge_pkgs "" "app-shells/bash" || return 1
 
 	# now we have a shell right there
 	unset CONFIG_SHELL
@@ -2035,7 +2047,7 @@ bootstrap_stage3() {
 	# OSX, confusing the buildsystem
 	ac_cv_c_decl_report=warning \
 	TIME_T_32_BIT_OK=yes \
-	with_stack_emerge_pkgs "" "${pkgs[@]}" || return 1
+	pre_emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	if [[ ! -x "${ROOT}"/sbin/openrc-run ]]; then
 		echo "We need openrc-run at ${ROOT}/sbin to merge rsync." \
@@ -2050,18 +2062,6 @@ bootstrap_stage3() {
 		sys-devel/gettext
 		sys-apps/portage
 	)
-
-	# Bug 655414, 676096.
-	# Enough packages emerged with USE=prefix-stack with tmp/ as base prefix
-	# to allow for sys-apps/portage itself and dependencies without any
-	# dependency into tmp/ now.
-	# Portage does search it's global config using PORTAGE_OVERRIDE_EPREFIX,
-	# so we need to provide it there - emerging portage itself is expected
-	# to finally overwrite it.
-	if [[ ! -d "${ROOT}"/usr/share/portage ]]; then
-		mkdir -p "${ROOT}"/usr/share
-		cp -a "${ROOT}"{/tmp,}/usr/share/portage
-	fi
 
 	USE="ssl" \
 	without_stack_emerge_pkgs "" "${pkgs[@]}" || return 1
