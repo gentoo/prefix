@@ -831,6 +831,10 @@ bootstrap_gnu() {
 		# recent GCC 1.4.17 and below only, on 1.4.18 this expression
 		# doesn't match
 		sed -i -e '/_GL_WARN_ON_USE (gets/d' lib/stdio.in.h lib/stdio.h
+
+		# Bug 715880
+		efetch http://dev.gentoo.org/~heroxbd/m4-1.4.18-glibc228.patch || return 1
+		patch -p1 < "${DISTDIR}"/m4-1.4.18-glibc228.patch || return 1
 	fi
 
 	if [[ ${PN} == "grep" ]] ; then
@@ -1390,6 +1394,8 @@ bootstrap_stage1() {
 	[[ $(sed --version 2>&1) == *GNU* ]] || (bootstrap_sed) || return 1
 	type -P xz > /dev/null || (bootstrap_xz) || return 1
 	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
+	[[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] \
+		|| (bootstrap_patch) || return 1
 	[[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] || (bootstrap_m4) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/bison ]] \
 		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "2.[3-7]* ]] \
@@ -1399,8 +1405,6 @@ bootstrap_stage1() {
 		|| (bootstrap_coreutils) || return 1
 	[[ $(find --version 2>&1) == *GNU* ]] || (bootstrap_findutils) || return 1
 	[[ $(tar --version 2>&1) == *GNU* ]] || (bootstrap_tar) || return 1
-	[[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] \
-		|| (bootstrap_patch) || return 1
 	[[ $(grep --version 2>&1) == *GNU* ]] || (bootstrap_grep) || return 1
 	[[ $(awk --version < /dev/null 2>&1) == *GNU" Awk "[456789]* ]] \
 		|| bootstrap_gawk || return 1
