@@ -628,27 +628,8 @@ bootstrap_startscript() {
 		eerror "automate starting your prefix, set SHELL and rerun this script" > /dev/stderr
 		return 1
 	fi
-	if [[ -d ${PORTDIR}/app-portage/prefix-toolkit ]] ; then
-		einfo "Finally, emerging prefix-toolkit for your convenience"
-		emerge -u app-portage/prefix-toolkit || return 1
-	else
-		einfo "Creating the Prefix start script (startprefix)"
-		# currently I think right into the prefix is the best location, as
-		# putting it in /bin or /usr/bin just hides it some more for the
-		# user
-		if is-rap ; then
-			mkdir -p "${PORTDIR}"/scripts
-			wget $([[ $(wget -h) == *"--no-check-certificate"* ]] && echo --no-check-certificate) \
-				 https://gitweb.gentoo.org/repo/proj/prefix.git/plain/scripts/startprefix.in \
-				 -O "${PORTDIR}"/scripts/startprefix.in
-		fi
-
-		sed \
-			-e "s|@GENTOO_PORTAGE_EPREFIX@|${ROOT}|g" \
-			"${PORTDIR}"/scripts/startprefix.in \
-			> "${ROOT}"/startprefix
-		chmod 755 "${ROOT}"/startprefix
-	fi
+	einfo "Finally, emerging prefix-toolkit for your convenience"
+	emerge -u app-portage/prefix-toolkit || return 1
 	einfo "To start Gentoo Prefix, run the script ${ROOT}/startprefix"
 
 	# see if PATH is kept/respected
