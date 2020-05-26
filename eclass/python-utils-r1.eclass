@@ -41,7 +41,7 @@ inherit toolchain-funcs
 _PYTHON_ALL_IMPLS=(
 	pypy3
 	python2_7
-	python3_6 python3_7 python3_8
+	python3_6 python3_7 python3_8 python3_9
 )
 readonly _PYTHON_ALL_IMPLS
 
@@ -77,7 +77,7 @@ _python_impl_supported() {
 	# keep in sync with _PYTHON_ALL_IMPLS!
 	# (not using that list because inline patterns shall be faster)
 	case "${impl}" in
-		python2_7|python3_[678]|pypy3)
+		python2_7|python3_[6789]|pypy3)
 			return 0
 			;;
 		jython2_7|pypy|pypy1_[89]|pypy2_0|python2_[56]|python3_[12345])
@@ -361,9 +361,13 @@ _python_export() {
 				local val
 
 				case "${impl}" in
-					python*)
-						# python-2.7, python-3.2, etc.
+					python2*|python3.6|python3.7*)
+						# python* up to 3.7
 						val=$($(tc-getPKG_CONFIG) --libs ${impl/n/n-}) || die
+						;;
+					python*)
+						# python3.8+
+						val=$($(tc-getPKG_CONFIG) --libs ${impl/n/n-}-embed) || die
 						;;
 					*)
 						die "${impl}: obtaining ${var} not supported"
@@ -395,16 +399,12 @@ _python_export() {
 				case ${impl} in
 					python2.7)
 						PYTHON_PKG_DEP='>=dev-lang/python-2.7.5-r2:2.7';;
-					python3.3)
-						PYTHON_PKG_DEP='>=dev-lang/python-3.3.2-r2:3.3';;
 					python*)
 						PYTHON_PKG_DEP="dev-lang/python:${impl#python}";;
 					pypy)
-						PYTHON_PKG_DEP='>=dev-python/pypy-5:0=';;
+						PYTHON_PKG_DEP='>=dev-python/pypy-7.3.0:0=';;
 					pypy3)
-						PYTHON_PKG_DEP='>=dev-python/pypy3-5:0=';;
-					jython2.7)
-						PYTHON_PKG_DEP='dev-java/jython:2.7';;
+						PYTHON_PKG_DEP='>=dev-python/pypy3-7.3.0:0=';;
 					*)
 						die "Invalid implementation: ${impl}"
 				esac
