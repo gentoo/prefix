@@ -1076,6 +1076,7 @@ bootstrap_python() {
 	PKG_CONFIG= \
 	econf \
 		--with-system-ffi \
+		--without-ensurepip \
 		--disable-ipv6 \
 		--disable-shared \
 		--libdir="${ROOT}"/tmp/usr/lib \
