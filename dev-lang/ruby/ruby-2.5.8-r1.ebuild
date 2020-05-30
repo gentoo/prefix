@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -14,11 +14,11 @@ RUBYVERSION=${SLOT}.0
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="https://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.xz"
+SRC_URI="https://cache.ruby-lang.org/pub/ruby/${SLOT}/${MY_P}.tar.xz"
 
 LICENSE="|| ( Ruby-BSD BSD-2 )"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc examples gdbm ipv6 jemalloc libressl +rdoc rubytests socks5 +ssl static-libs tk xemacs"
+IUSE="berkdb debug doc examples gdbm ipv6 jemalloc libressl +rdoc rubytests socks5 +ssl static-libs systemtap tk xemacs"
 
 RDEPEND="
 	berkdb? ( sys-libs/db:= )
@@ -29,12 +29,13 @@ RDEPEND="
 		libressl? ( dev-libs/libressl )
 	)
 	socks5? ( >=net-proxy/dante-1.1.13 )
+	systemtap? ( dev-util/systemtap )
 	tk? (
 		dev-lang/tcl:0=[threads]
 		dev-lang/tk:0=[threads]
 	)
 	dev-libs/libyaml
-	virtual/libffi:=
+	dev-libs/libffi:=
 	sys-libs/readline:0=
 	sys-libs/zlib
 	>=app-eselect/eselect-ruby-20171225
@@ -56,7 +57,7 @@ PDEPEND="
 	${BUNDLED_GEMS}
 	virtual/rubygems[ruby_targets_ruby25]
 	>=dev-ruby/json-2.0.2[ruby_targets_ruby25]
-	rdoc? ( >=dev-ruby/rdoc-5.1.0[ruby_targets_ruby25] )
+	rdoc? ( >=dev-ruby/rdoc-6.1.2[ruby_targets_ruby25] )
 	xemacs? ( app-xemacs/ruby-modes )"
 
 src_prepare() {
@@ -95,8 +96,6 @@ src_configure() {
 	# In many places aliasing rules are broken; play it safe
 	# as it's risky with newer compilers to leave it as it is.
 	append-flags -fno-strict-aliasing
-	# SuperH needs this
-	use sh && append-flags -mieee
 
 	# Socks support via dante
 	if use socks5 ; then
@@ -142,6 +141,7 @@ src_configure() {
 		--with-out-ext="${modules}" \
 		$(use_with jemalloc jemalloc) \
 		$(use_enable socks5 socks) \
+		$(use_enable systemtap dtrace) \
 		$(use_enable doc install-doc) \
 		--enable-ipv6 \
 		$(use_enable static-libs static) \
@@ -150,16 +150,15 @@ src_configure() {
 		$(use_enable debug) \
 		${myconf} \
 		--with-readline-dir="${EPREFIX}"/usr \
-		--enable-option-checking=no \
-		|| die "econf failed"
+		--enable-option-checking=no
 }
 
 src_compile() {
-	emake V=1 EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
+	emake V=1 EXTLDFLAGS="${LDFLAGS}"
 }
 
 src_test() {
-	emake -j1 V=1 test || die "make test failed"
+	emake -j1 V=1 test
 
 	elog "Ruby's make test has been run. Ruby also ships with a make check"
 	elog "that cannot be run until after ruby has been installed."
@@ -195,7 +194,7 @@ src_install() {
 	done
 	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH RUBYLIB
 
-	emake V=1 DESTDIR="${D}" install || die "make install failed"
+	emake V=1 DESTDIR="${D}" install
 
 	# Remove installed rubygems and rdoc copy
 	rm -rf "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}/rubygems" || die "rm rubygems failed"
@@ -208,11 +207,10 @@ src_install() {
 	fi
 
 	if use examples; then
-		insinto /usr/share/doc/${PF}
-		doins -r sample
+		dodoc -r sample
 	fi
 
-	dodoc ChangeLog NEWS doc/NEWS* README* || die
+	dodoc ChangeLog NEWS doc/NEWS* README*
 
 	if use rubytests; then
 		pushd test
@@ -223,7 +221,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
+	if [[ ! -n $(readlink "${EROOT}"/usr/bin/ruby) ]] ; then
 		eselect ruby set ruby${MY_SUFFIX}
 	fi
 

@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -14,7 +14,7 @@ RUBYVERSION=${SLOT}.0
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="https://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.xz"
+SRC_URI="https://cache.ruby-lang.org/pub/ruby/${SLOT}/${MY_P}.tar.xz"
 
 LICENSE="|| ( Ruby-BSD BSD-2 )"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
@@ -34,7 +34,7 @@ RDEPEND="
 		dev-lang/tk:0=[threads]
 	)
 	dev-libs/libyaml
-	virtual/libffi:=
+	dev-libs/libffi:=
 	sys-libs/readline:0=
 	sys-libs/zlib
 	>=app-eselect/eselect-ruby-20161226
@@ -103,8 +103,6 @@ src_configure() {
 	# In many places aliasing rules are broken; play it safe
 	# as it's risky with newer compilers to leave it as it is.
 	append-flags -fno-strict-aliasing
-	# SuperH needs this
-	use sh && append-flags -mieee
 
 	# Socks support via dante
 	if use socks5 ; then
@@ -158,16 +156,15 @@ src_configure() {
 		$(use_enable debug) \
 		${myconf} \
 		--with-readline-dir="${EPREFIX}"/usr \
-		--enable-option-checking=no \
-		|| die "econf failed"
+		--enable-option-checking=no
 }
 
 src_compile() {
-	emake V=1 EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
+	emake V=1 EXTLDFLAGS="${LDFLAGS}"
 }
 
 src_test() {
-	emake -j1 V=1 test || die "make test failed"
+	emake -j1 V=1 test
 
 	elog "Ruby's make test has been run. Ruby also ships with a make check"
 	elog "that cannot be run until after ruby has been installed."
@@ -203,7 +200,7 @@ src_install() {
 	done
 	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH RUBYLIB
 
-	emake V=1 DESTDIR="${D}" install || die "make install failed"
+	emake V=1 DESTDIR="${D}" install
 
 	# Remove installed rubygems and rdoc copy
 	rm -rf "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}/rubygems" || die "rm rubygems failed"
@@ -216,11 +213,10 @@ src_install() {
 	fi
 
 	if use examples; then
-		insinto /usr/share/doc/${PF}
-		doins -r sample
+		dodoc -r sample
 	fi
 
-	dodoc ChangeLog NEWS doc/NEWS* README* || die
+	dodoc ChangeLog NEWS doc/NEWS* README*
 
 	if use rubytests; then
 		pushd test
