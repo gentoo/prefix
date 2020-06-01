@@ -7,7 +7,7 @@ import sys
 distfilessrc='./distfiles'
 
 def hash_file(f):
-    hsh = hashlib.new('sha1')
+    hsh = hashlib.sha1()
     with open(f, 'rb') as fle:
         hsh.update(fle.read())
     return hsh.hexdigest()
@@ -20,6 +20,7 @@ with os.scandir(path=sys.argv[1]) as it:
         h = hash_file(srcfile)
         distname = os.path.join(distfilessrc,
                 f.name + "@" + h).lower()
+        isnew = False
         if os.path.exists(distname):
             print("DUP %s" % distname.split('/')[-1])
             os.remove(srcfile)
@@ -27,3 +28,16 @@ with os.scandir(path=sys.argv[1]) as it:
         else:
             print("NEW %s" % distname.split('/')[-1])
             os.link(srcfile, distname)
+            isnew = True
+
+        # generate a name match for distfiles serving along the
+        # specification from gentoo-dev ML 18 Oct 2019 15:41:32 +0200
+        # 4c7465824f1fb69924c826f6bbe3ee73afa08ec8.camel@gentoo.org
+        blh = hashlib.blake2b(bytes(f.name.encode('us-ascii'))).hexdigest()
+        trgpth = os.path.join(distfilessrc, 'public', blh[:2], f.name);
+        if isnew or !os.path.exists(trgpth):
+            if os.path.exists(trgpth):
+                os.remove(trgpth)
+            os.makedirs(os.path.join(distfilessrc, 'public', blh[:2]),
+                    exist_ok=True)
+            os.link(distname, trgpth);
