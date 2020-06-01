@@ -70,7 +70,7 @@ efetch() {
 		# try for mirrors first, fall back to distfiles, then try given location
 		local locs=( )
 		local loc
-		for loc in ${GENTOO_MIRRORS} ; do
+		for loc in ${GENTOO_MIRRORS} ${DISTFILES_G_O} ${DISTFILES_PFX}; do
 			locs=(
 				"${locs[@]}"
 				"${loc}/distfiles/${1##*/}"
@@ -579,7 +579,8 @@ do_tree() {
 		# respect the source to get the latest
 		if [[ -n ${LATEST_TREE_YES} ]] ; then
 			echo "$1"
-			( export GENTOO_MIRRORS= ; efetch "$1/$2" ) || return 1
+			( export GENTOO_MIRRORS= DISTFILES_G_O= DISTFILES_PFX= ;
+			  efetch "$1/$2" ) || return 1
 		else
 			efetch "$1/$2" || return 1
 		fi
@@ -2104,8 +2105,9 @@ set_helper_vars() {
 	PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
 	DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
 	GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
-	DISTFILES_G_O="http://distfiles.gentoo.org"
-	GENTOO_MIRRORS=${GENTOO_MIRRORS:=${DISTFILES_G_O}}
+	DISTFILES_G_O="http://distfiles.prefix.gentoo.org"
+	DISTFILES_PFX="http://distfiles.prefix.gentoo.org/prefix"
+	GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 	SNAPSHOT_HOST=$(rapx ${DISTFILES_G_O} http://rsync.prefix.bitzolder.nl)
 	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
 	GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
