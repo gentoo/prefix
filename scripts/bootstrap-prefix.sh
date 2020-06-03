@@ -723,9 +723,9 @@ bootstrap_simple() {
 	mkdir -p "${S}"
 	cd "${S}"
 	case $3 in
-		xz)  decomp=xz    ;;
-		bz2) decomp=bzip2 ;;
-		gz|) decomp=gzip  ;;
+		xz)    decomp=xz    ;;
+		bz2)   decomp=bzip2 ;;
+		gz|"") decomp=gzip  ;;
 	esac
 	${decomp} -dc "${DISTDIR}"/${A} | tar -xf - || return 1
 	S="${S}"/${PN}-${PV}
