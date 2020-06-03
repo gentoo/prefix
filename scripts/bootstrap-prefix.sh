@@ -91,33 +91,6 @@ efetch() {
 	return 0
 }
 
-# template
-# bootstrap_() {
-# 	PV=
-# 	A=
-# 	einfo "Bootstrapping ${A%-*}"
-
-# 	efetch ${A} || return 1
-
-# 	einfo "Unpacking ${A%-*}"
-# 	export S="${PORTAGE_TMPDIR}/${PN}"
-# 	rm -rf ${S}
-# 	mkdir -p ${S}
-# 	cd ${S}
-# 	tar -zxf ${DISTDIR}/${A} || return 1
-# 	S=${S}/${PN}-${PV}
-# 	cd ${S}
-
-# 	einfo "Compiling ${A%-*}"
-# 	econf || return 1
-# 	$MAKE ${MAKEOPTS} || return 1
-
-# 	einfo "Installing ${A%-*}"
-# 	$MAKE install || return 1
-
-# 	einfo "${A%-*} successfully bootstrapped"
-# }
-
 configure_cflags() {
 	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
 	
@@ -735,6 +708,40 @@ bootstrap_portage() {
 	einfo "${A%-*} successfully bootstrapped"
 }
 
+bootstrap_simple() {
+	local PN PV A S
+	PN=$1
+	PV=$2
+	A=${PN}-${PV}.tar.${3:-gz}
+	einfo "Bootstrapping ${A%-*}"
+
+	efetch ${4:-${DISTFILES_G_O}/distfiles}/${A} || return 1
+
+	einfo "Unpacking ${A%-*}"
+	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
+	rm -rf "${S}"
+	mkdir -p "${S}"
+	cd "${S}"
+	case $3 in
+		xz)  decomp=xz    ;;
+		bz2) decomp=bzip2 ;;
+		gz|) decomp=gzip  ;;
+	esac
+	${decomp} -dc "${DISTDIR}"/${A} | tar -xf - || return 1
+	S="${S}"/${PN}-${PV}
+	cd "${S}"
+
+	einfo "Compiling ${A%-*}"
+	v $MAKE || return 1
+
+	einfo "Installing ${A%-*}"
+	v $MAKE PREFIX="${ROOT}"/tmp/usr install || return 1
+
+	cd "${ROOT}"
+	rm -Rf "${S}"
+	einfo "${PN}-${PV} successfully bootstrapped"
+}
+
 bootstrap_gnu() {
 	local PN PV A S
 	PN=$1
@@ -1279,42 +1286,18 @@ bootstrap_gzip() {
 }
 
 bootstrap_xz() {
-	GNU_URL=${XZ_URL:-http://tukaani.org} bootstrap_gnu xz 5.2.4 || \
-	GNU_URL=${XZ_URL:-http://tukaani.org} bootstrap_gnu xz 5.2.3
+	GNU_URL=http://tukaani.org/xz bootstrap_gnu xz 5.2.4 || \
+	GNU_URL=http://tukaani.org/xz bootstrap_gnu xz 5.2.3
 }
 
 bootstrap_bzip2() {
-	local PN PV A S
-	PN=bzip2
-	PV=1.0.6
-	A=${PN}-${PV}.tar.gz
-	einfo "Bootstrapping ${A%-*}"
-
-	efetch ${DISTFILES_G_O}/distfiles/${A} || return 1
-
-	einfo "Unpacking ${A%-*}"
-	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
-	rm -rf "${S}"
-	mkdir -p "${S}"
-	cd "${S}"
-	gzip -dc "${DISTDIR}"/${A} | tar -xf - || return 1
-	S="${S}"/${PN}-${PV}
-	cd "${S}"
-
-	einfo "Compiling ${A%-*}"
-	$MAKE || return 1
-
-	einfo "Installing ${A%-*}"
-	$MAKE PREFIX="${ROOT}"/tmp/usr install || return 1
-
-	cd "${ROOT}"
-	rm -Rf "${S}"
-	einfo "${A%-*} successfully bootstrapped"
+	bootstrap_simple bzip2 1.0.6 gz \
+		https://sourceware.org/pub/bzip2
 }
 
 bootstrap_libressl() {
-	GNU_URL="https://ftp.openbsd.org/pub/OpenBSD/LibreSSL" \
-		bootstrap_gnu libressl 2.8.3
+	bootstrap_simple libressl 2.8.3 gz \
+		https://ftp.openbsd.org/pub/OpenBSD/LibreSSL
 }
 
 bootstrap_stage_host_gentoo() {
