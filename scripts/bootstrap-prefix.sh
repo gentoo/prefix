@@ -709,7 +709,7 @@ bootstrap_portage() {
 }
 
 bootstrap_simple() {
-	local PN PV A S
+	local PN PV A S myconf
 	PN=$1
 	PV=$2
 	A=${PN}-${PV}.tar.${3:-gz}
@@ -731,7 +731,14 @@ bootstrap_simple() {
 	S="${S}"/${PN}-${PV}
 	cd "${S}"
 
+	# for libressl, only provide static lib, such that wget (above)
+	# links it in and we don't have to bother about RPATH or something
+	if [[ ${PN} == "libressl" ]] ; then
+		myconf="${myconf} --enable-static --disable-shared"
+	fi
+
 	einfo "Compiling ${A%-*}"
+	econf ${myconf} || return 1
 	v $MAKE || return 1
 
 	einfo "Installing ${A%-*}"
@@ -883,12 +890,6 @@ bootstrap_gnu() {
 		else
 			myconf="${myconf} --without-ssl"
 		fi
-	fi
-
-	# for libressl, only provide static lib, such that wget (above)
-	# links it in and we don't have to bother about RPATH or something
-	if [[ ${PN} == "libressl" ]] ; then
-		myconf="${myconf} --enable-static --disable-shared"
 	fi
 
 	# SuSE 11.1 has GNU binutils-2.20, choking on crc32_x86
