@@ -4,7 +4,7 @@
 EAPI="7"
 WANT_LIBTOOL="none"
 
-inherit autotools flag-o-matic pax-utils python-utils-r1 toolchain-funcs
+inherit autotools flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs
 
 MY_P="Python-${PV}"
 PYVER=$(ver_cut 1-2)
@@ -123,6 +123,7 @@ src_configure() {
 	use ssl       || export PYTHON_DISABLE_SSL="1"
 	use tk        || disable+=" _tkinter"
 	use xml       || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
+	[[ ${CHOST} == *-darwin* ]] && disable+=" _scproxy"  # header issue
 	export PYTHON_DISABLE_MODULES="${disable}"
 
 	if ! use xml; then
@@ -289,7 +290,7 @@ src_install() {
 		-i "${libdir}/config-${PYVER}"*/Makefile || die "sed failed"
 
 	# Fix collisions between different slots of Python.
-	rm "${ED}/usr/$(get_libdir)/libpython3.so" || die
+	rm -f "${ED}/usr/$(get_libdir)/libpython3$(get_libname)" || die
 
 	# Cheap hack to get version with ABIFLAGS
 	local abiver=$(cd "${ED}/usr/include"; echo python*)
