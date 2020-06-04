@@ -9,7 +9,7 @@ inherit autotools flag-o-matic pax-utils python-utils-r1 toolchain-funcs
 MY_P="Python-${PV}"
 PYVER=$(ver_cut 1-2)
 PATCHSET="python-gentoo-patches-3.8.3"
-PREFIX_PATCHSET="python-prefix-gentoo-3.8.3-patches-r0"
+PREFIX_PATCHSET="python-prefix-gentoo-3.8.3-patches-r1"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
