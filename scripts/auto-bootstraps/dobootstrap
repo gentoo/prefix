@@ -189,7 +189,7 @@ case $1 in
 			echo "internal host, activating local and DOPUBLISH"
 			export DOLOCAL=1
 			export DOPUBLISH=1
-			export GENTOO_MIRRORS="http://distfileslocal http://distfiles.gentoo.org"
+			export GENTOO_MIRRORS="http://distfileslocal"
 		fi
 		for arg in "${@:1}" ; do
 			case "${arg}" in
