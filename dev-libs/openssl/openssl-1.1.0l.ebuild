@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
@@ -28,7 +28,8 @@ LICENSE="openssl"
 SLOT="0/1.1" # .so version of libssl/libcrypto
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="+asm bindist elibc_musl rfc3779 sctp cpu_flags_x86_sse2 sslv3 static-libs test tls-heartbeat vanilla zlib"
-RESTRICT="!bindist? ( bindist )"
+RESTRICT="!bindist? ( bindist )
+	!test? ( test )"
 
 MY_PKGINSTDEPS=">=app-misc/c_rehash-1.7-r1"
 RDEPEND="!prefix-stack? ( ${MY_PKGINSTDEPS} )
