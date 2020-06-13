@@ -2767,6 +2767,8 @@ EOF
 		exit 1
 	fi
 
+	[[ ${STOP_BOOTSTRAP_AFTER} == stage1 ]] && exit 0
+
 	unset ROOT
 
 	# stage1 has set a profile, which defines CHOST, so unset any CHOST
@@ -2816,6 +2818,8 @@ EOF
 		exit 1
 	fi
 
+	[[ ${STOP_BOOTSTRAP_AFTER} == stage2 ]] && exit 0
+
 	# new bash
 	hash -r
 
@@ -2853,6 +2857,8 @@ Should you want to give it a try, there is ${EPREFIX}/stage3.log
 EOF
 		exit 1
 	fi
+
+	[[ ${STOP_BOOTSTRAP_AFTER} == stage3 ]] && exit 0
 
 	local cmd="emerge -e system"
 	if [[ -e ${EPREFIX}/var/cache/edb/mtimedb ]] && \
