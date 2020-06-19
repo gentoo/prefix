@@ -738,7 +738,9 @@ bootstrap_simple() {
 	fi
 
 	einfo "Compiling ${A%-*}"
-	econf ${myconf} || return 1
+	if [[ -x configure ]] ; then
+		econf ${myconf} || return 1
+	fi
 	v $MAKE || return 1
 
 	einfo "Installing ${A%-*}"
