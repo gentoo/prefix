@@ -538,7 +538,7 @@ toolchain_src_prepare() {
 		"${S}"/gcc/config/darwin.h || die "sed gcc/config/darwin.h failed"
 	# add prefixed Frameworks to default search paths (may want to
 	# change this in a cross-compile)
-	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \   \"${EPREFIX}/MacOSX.sdk/Frameworks\"\, \"${EPREFIX}/Frameworks\"\, " \
+	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \   \"${EPREFIX}/MacOSX.sdk/System/Library/Frameworks\"\, \"${EPREFIX}/Frameworks\"\, " \
 		"${S}"/gcc/config/darwin-c.c || die "sed gcc/config/darwin-c.c failed"
 
 	# make sure the pkg config files install into multilib dirs.
