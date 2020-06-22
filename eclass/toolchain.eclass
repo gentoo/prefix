@@ -14,7 +14,7 @@ tc_is_live() {
 }
 
 if tc_is_live ; then
-	EGIT_REPO_URI="git://gcc.gnu.org/git/gcc.git"
+	EGIT_REPO_URI="https://gcc.gnu.org/git/gcc.git"
 	# naming style:
 	# gcc-10.1.0_pre9999 -> gcc-10-branch
 	#  Note that the micro version is required or lots of stuff will break.
@@ -158,7 +158,13 @@ tc_has_feature() {
 }
 
 if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
-	IUSE+=" altivec debug +cxx +nptl" TC_FEATURES+=(nptl)
+	# --enable-altivec was dropped before gcc-4. We don't set it.
+	# We drop USE=altivec for newer gccs only to avoid rebuilds
+	# for most stable users. Once gcc-10 is stable we can drop it.
+	if ! tc_version_is_at_least 10; then
+		IUSE+=" altivec"
+	fi
+	IUSE+=" debug +cxx +nptl" TC_FEATURES+=(nptl)
 	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
 	[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
 	[[ -n ${D_VER}   ]] && IUSE+=" d"
@@ -175,8 +181,9 @@ if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
 	tc_version_is_at_least 4.2 && IUSE+=" +openmp"
 	tc_version_is_at_least 4.3 && IUSE+=" fixed-point"
 	tc_version_is_at_least 4.7 && IUSE+=" go"
-	tc_version_is_at_least 4.8 &&
-		IUSE+=" +sanitize"
+	# sanitizer support appeared in gcc-4.8, but <gcc-5 does not
+	# support modern glibc.
+	tc_version_is_at_least 5 && IUSE+=" +sanitize"
 	# Note:
 	#   <gcc-4.8 supported graphite, it required forked ppl
 	#     versions which we dropped.  Since graphite was also experimental in
@@ -186,7 +193,7 @@ if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
 	tc_version_is_at_least 6.5 &&
 		IUSE+=" graphite" TC_FEATURES+=(graphite)
 	tc_version_is_between 4.9 8 && IUSE+=" cilk"
-	tc_version_is_at_least 4.9 && IUSE+=" +vtv"
+	tc_version_is_at_least 4.9 && IUSE+=" ada +vtv"
 	tc_version_is_at_least 5.0 && IUSE+=" jit"
 	tc_version_is_between 5.0 9 && IUSE+=" mpx"
 	tc_version_is_at_least 6.0 && IUSE+=" +pie +ssp +pch"
@@ -428,17 +435,7 @@ SRC_URI=$(get_gcc_src_uri)
 
 #---->> pkg_pretend <<----
 
-toolchain_is_unsupported() {
-	[[ -n ${SNAPSHOT} ]] || tc_is_live
-}
-
 toolchain_pkg_pretend() {
-	if toolchain_is_unsupported &&
-	   [[ -z ${I_PROMISE_TO_SUPPLY_PATCHES_WITH_BUGS} ]] ; then
-		die "Please \`export I_PROMISE_TO_SUPPLY_PATCHES_WITH_BUGS=1\` or define it" \
-			"in your make.conf if you want to use this version."
-	fi
-
 	if ! use_if_iuse cxx ; then
 		use_if_iuse go && ewarn 'Go requires a C++ compiler, disabled due to USE="-cxx"'
 		use_if_iuse objc++ && ewarn 'Obj-C++ requires a C++ compiler, disabled due to USE="-cxx"'
@@ -541,7 +538,7 @@ toolchain_src_prepare() {
 		"${S}"/gcc/config/darwin.h || die "sed gcc/config/darwin.h failed"
 	# add prefixed Frameworks to default search paths (may want to
 	# change this in a cross-compile)
-	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \    \"${EPREFIX}/Frameworks\"\, " \
+	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \   \"${EPREFIX}/MacOSX.sdk/Frameworks\"\, \"${EPREFIX}/Frameworks\"\, " \
 		"${S}"/gcc/config/darwin-c.c || die "sed gcc/config/darwin-c.c failed"
 
 	# make sure the pkg config files install into multilib dirs.
@@ -666,9 +663,13 @@ do_gcc_CYGWINPORTS_patches() {
 
 	local p d="${WORKDIR}/gcc-${CYGWINPORTS_GITREV}"
 	# readarray -t is available since bash-4.4 only, #690686
-	local patches=( $(for p in $(
-		sed -e '1,/PATCH_URI="/d;/"/,$d' < "${d}"/gcc.cygport
-	); do echo "${d}/${p}"; done) )
+	local patches=( $(
+		for p in $(
+			sed -e '1,/PATCH_URI="/d;/"/,$d' < "${d}"/gcc.cygport
+		); do
+			echo "${d}/${p}"
+		done
+	) )
 	tc_apply_patches "Applying cygwin port patches ..." ${patches[*]}
 }
 
@@ -924,8 +925,7 @@ toolchain_src_configure() {
 	is_f77 && GCC_LANG+=",f77"
 	is_f95 && GCC_LANG+=",f95"
 
-	# We do NOT want 'ADA support' in here!
-	# is_ada && GCC_LANG+=",ada"
+	is_ada && GCC_LANG+=",ada"
 
 	confgcc+=( --enable-languages=${GCC_LANG} )
 
@@ -1087,6 +1087,13 @@ toolchain_src_configure() {
 			# for, which is unrelated to TOOLCHAIN_PREFIX, a.k.a.
 			# PREFIX
 			confgcc+=( --with-local-prefix="${TPREFIX}/usr" )
+
+			# enable the CommandLine SDK, Apple no longer installs stuff
+			# into /usr
+			if [[ ${CTARGET} == *-darwin* && ${CTARGET##*-darwin} -gt 9 ]]
+			then
+				confgcc+=( --with-native-system-header-dir="${EPREFIX}/MacOSX.sdk/usr/include" )
+			fi
 		fi
 	fi
 
@@ -1131,9 +1138,6 @@ toolchain_src_configure() {
 	### arch options
 
 	gcc-multilib-configure
-
-	# ppc altivec support
-	in_iuse altivec && confgcc+=( $(use_enable altivec) )
 
 	# gcc has fixed-point arithmetic support in 4.3 for mips targets that can
 	# significantly increase compile time by several hours.  This will allow
@@ -1306,6 +1310,10 @@ toolchain_src_configure() {
 		fi
 	fi
 
+	if in_iuse ada ; then
+		confgcc+=( --disable-libada )
+	fi
+
 	if in_iuse cilk ; then
 		confgcc+=( $(use_enable cilk libcilkrts) )
 	fi
@@ -1355,9 +1363,13 @@ toolchain_src_configure() {
 		confgcc+=( --without-{cloog,ppl} )
 	fi
 
-	if tc_version_is_at_least 4.8 && in_iuse sanitize ; then
-		# See Note [implicitly enabled flags]
-		confgcc+=( $(usex sanitize '' --disable-libsanitizer) )
+	if tc_version_is_at_least 4.8; then
+		if in_iuse sanitize ; then
+			# See Note [implicitly enabled flags]
+			confgcc+=( $(usex sanitize '' --disable-libsanitizer) )
+		else
+			confgcc+=( --disable-libsanitizer )
+		fi
 	fi
 
 	if tc_version_is_at_least 6.0 && in_iuse pie ; then
@@ -1442,6 +1454,7 @@ downgrade_arch_flags() {
 
 	# "added" "arch" "replacement"
 	local archlist=(
+		9 znver2 znver1
 		4.9 bdver4 bdver3
 		4.9 bonnell atom
 		4.9 broadwell core-avx2
@@ -1605,8 +1618,9 @@ gcc_do_filter_flags() {
 				;;
 			*-macos)
 				# http://gcc.gnu.org/PR25127
-				tc_version_is_between 4.0 4.2 && \
-					filter-flags '-mcpu=*' '-march=*' '-mtune=*'
+				# used to break on 4.1 4.2 now breaks on 10 too, so
+				# filter everywhere
+				filter-flags '-mcpu=*' '-march=*' '-mtune=*'
 				;;
 		esac
 	fi
@@ -1695,6 +1709,11 @@ toolchain_src_compile() {
 	[[ ! -x /usr/bin/perl ]] \
 		&& find "${WORKDIR}"/build -name '*.[17]' -exec touch {} +
 
+	# To compile ada library standard files special compiler options are passed
+	# via ADAFLAGS in the Makefile.
+	# Unset ADAFLAGS as setting this override the options
+	unset ADAFLAGS
+
 	# Older gcc versions did not detect bash and re-exec itself, so force the
 	# use of bash.  Newer ones will auto-detect, but this is not harmful.
 	# This needs to be set for compile as well, as it's used in libtool
@@ -1765,6 +1784,17 @@ gcc_do_make() {
 		BOOT_CFLAGS="${BOOT_CFLAGS}" \
 		${GCC_MAKE_TARGET} \
 		|| die "emake failed with ${GCC_MAKE_TARGET}"
+
+	if is_ada; then
+		# Without these links it is not getting the good compiler
+		# Need to check why
+		ln -s gcc ../build/prev-gcc || die
+		ln -s ${CHOST} ../build/prev-${CHOST} || die
+		# Building standard ada library
+		emake -C gcc gnatlib-shared
+		# Building gnat toold
+		emake -C gcc gnattools
+	fi
 
 	if ! is_crosscompile && use_if_iuse cxx && use_if_iuse doc ; then
 		if type -p doxygen > /dev/null ; then
@@ -1938,13 +1968,8 @@ toolchain_src_install() {
 	# prune empty dirs left behind
 	find "${ED}" -depth -type d -delete 2>/dev/null
 
-	# Rather install the script, else portage with changing $FILESDIR
-	# between binary and source package borks things ....
 	if ! is_crosscompile && [[ ${PN} != "kgcc64" ]] ; then
-		insinto "${DATAPATH#${EPREFIX}}"
-		newins "$(prefixify_ro "${FILESDIR}"/awk/fixlafiles.awk-no_gcc_la)" fixlafiles.awk || die
 		exeinto "${DATAPATH#${EPREFIX}}"
-		doexe "$(prefixify_ro "${FILESDIR}"/fix_libtool_files.sh)" || die
 		doexe "${FILESDIR}"/c{89,99} || die
 	fi
 
@@ -2249,33 +2274,15 @@ toolchain_pkg_postinst() {
 	fi
 
 	if ! is_crosscompile && [[ ${PN} != "kgcc64" ]] ; then
-		echo
-		ewarn "If you have issues with packages unable to locate libstdc++.la,"
-		ewarn "then try running 'fix_libtool_files.sh' on the old gcc versions."
-		echo
-		ewarn "You might want to review the GCC upgrade guide when moving between"
-		ewarn "major versions (like 4.2 to 4.3):"
-		ewarn "https://wiki.gentoo.org/wiki/Upgrading_GCC"
-		echo
+		# gcc stopped installing .la files fixer in June 2020.
+		# Cleaning can be removed in June 2022.
+		rm -f "${EROOT%/}"/sbin/fix_libtool_files.sh
+		rm -f "${EROOT%/}"/usr/share/gcc-data/fixlafiles.awk
 
-		# Clean up old paths
-		rm -f "${EROOT%/}"/*/rcscripts/awk/fixlafiles.awk "${EROOT%/}"/sbin/fix_libtool_files.sh
-		rmdir "${EROOT%/}"/*/rcscripts{/awk,} 2>/dev/null
-
-		mkdir -p "${EROOT%/}"/usr/{share/gcc-data,sbin,bin}
-		# DATAPATH has EPREFIX already, use ROOT with it
-		cp "${ROOT%/}${DATAPATH}"/fixlafiles.awk "${EROOT%/}"/usr/share/gcc-data/ || die
-		cp "${ROOT%/}${DATAPATH}"/fix_libtool_files.sh "${EROOT%/}"/usr/sbin/ || die
-
+		mkdir -p "${EROOT%/}"/usr/bin
 		# Since these aren't critical files and portage sucks with
 		# handling of binpkgs, don't require these to be found
 		cp "${ROOT%/}${DATAPATH}"/c{89,99} "${EROOT%/}"/usr/bin/ 2>/dev/null
-	fi
-
-	if toolchain_is_unsupported ; then
-		einfo "This GCC ebuild is provided for your convenience, and the use"
-		einfo "of this compiler is not supported by the Gentoo Developers."
-		einfo "Please report bugs to upstream at http://gcc.gnu.org/bugzilla/"
 	fi
 }
 
@@ -2301,15 +2308,10 @@ toolchain_pkg_postrm() {
 		return 0
 	fi
 
-	# ROOT isnt handled by the script
-	[[ ${ROOT%/} ]] && return 0
-
-	if [[ ! -e ${LIBPATH}/libstdc++.so ]] ; then
-		einfo "Running 'fix_libtool_files.sh ${GCC_RELEASE_VER}'"
-		fix_libtool_files.sh ${GCC_RELEASE_VER}
-	fi
-
-	return 0
+	# gcc stopped installing .la files fixer in June 2020.
+	# Cleaning can be removed in June 2022.
+	rm -f "${EROOT%/}"/sbin/fix_libtool_files.sh
+	rm -f "${EROOT%/}"/usr/share/gcc-data/fixlafiles.awk
 }
 
 do_gcc_config() {
