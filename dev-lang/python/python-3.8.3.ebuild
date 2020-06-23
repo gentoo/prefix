@@ -78,6 +78,9 @@ src_prepare() {
 	# usage of less functional libedit
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
 
+	# missed patch
+	sed -i -e '/is_macosx_sdk_path(zlib_h):/s/MACOS/False/' setup.py || die
+
 	# We may have wrapped /usr/ccs/bin/nm on AIX for long TMPDIR.
 	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
 
