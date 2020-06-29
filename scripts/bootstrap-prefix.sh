@@ -1525,7 +1525,6 @@ do_emerge_pkgs() {
 			-libcxx
 			-nls
 			-pcre
-			-ssl
 			-python
 			-qmanifest -qtegrity
 			bootstrap
@@ -2028,15 +2027,12 @@ bootstrap_stage3() {
 		chmod +x "${ROOT}"/sbin/openrc-run
 	fi
 
-	# gettext pulls in portage, which since 2.2.28 needs ssl enabled, so
-	# we need to lift our mask for that. (USE=ssl)
 	pkgs=(
 		virtual/os-headers
 		sys-devel/gettext
 		sys-apps/portage
 	)
 
-	USE="ssl" \
 	without_stack_emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# Switch to the proper portage.
