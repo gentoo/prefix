@@ -1,10 +1,10 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
 AUTOTOOLS_AUTO_DEPEND="no"
 
-inherit autotools toolchain-funcs multilib multilib-minimal
+inherit autotools toolchain-funcs multilib multilib-minimal usr-ldscript
 
 CYGWINPATCHES=(
 	"https://github.com/cygwinports/zlib/raw/22a3462cae33a82ad966ea0a7d6cbe8fc1368fec/1.2.11-gzopen_w.patch"
@@ -24,11 +24,7 @@ KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x8
 IUSE="minizip static-libs"
 
 DEPEND="minizip? ( ${AUTOTOOLS_DEPEND} )"
-RDEPEND="abi_x86_32? (
-		!<=app-emulation/emul-linux-x86-baselibs-20130224
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-	)
-	!<dev-libs/libxml2-2.7.7" #309623
+RDEPEND="!<dev-libs/libxml2-2.7.7" #309623
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.2.11-fix-deflateParams-usage.patch
@@ -41,12 +37,9 @@ src_prepare() {
 	done
 
 	if use minizip ; then
-		pushd contrib/minizip >/dev/null || die
+		cd contrib/minizip || die
 		eautoreconf
-		popd >/dev/null || die
 	fi
-
-#	epatch "${FILESDIR}"/${PN}-1.2.7-aix-soname.patch #213277
 
 	case ${CHOST} in
 	*-cygwin*)
