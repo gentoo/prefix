@@ -8,18 +8,23 @@ inherit autotools flag-o-matic multilib pax-utils python-utils-r1 toolchain-func
 
 MY_P="Python-${PV}"
 PYVER=$(ver_cut 1-2)
-PATCHSET="python-gentoo-patches-3.8.3"
-PREFIX_PATCHSET="python-prefix-gentoo-3.8.3-patches-r1"
+PATCHSET="python-gentoo-patches-3.7.8-r3"
+PREFIX_PATCHSET="python-prefix-gentoo-3.7.8-patches-r0"
+CYGWINPORTS_GITREV="6df749d21f131eeafa485d40eb1294b28d30ba6a"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
 SRC_URI="https://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~mgorny/dist/python/${PATCHSET}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/${PREFIX_PATCHSET}.tar.xz"
+[[ -n ${CYGWINPORTS_GITREV} ]] &&
+SRC_URI+=" elibc_Cygwin? (
+	https://github.com/cygwinports/python37/archive/${CYGWINPORTS_GITREV}.tar.gz
+	-> python37-cygwinports-${CYGWINPORTS_GITREV}.tar.gz )"
 S="${WORKDIR}/${MY_P}"
 
 LICENSE="PSF-2"
-SLOT="${PYVER}"
+SLOT="${PYVER}/${PYVER}m"
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua bluetooth build examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl test tk wininst +xml"
 RESTRICT="!test? ( test )"
@@ -72,14 +77,29 @@ src_prepare() {
 		"${WORKDIR}"/${PREFIX_PATCHSET}
 	)
 
+	[[ ${CHOST} != *mint* ]] \
+		&& rm "${WORKDIR}"/${PREFIX_PATCHSET}/*_m68k-mint_*
+
 	default
+
+	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
+	    local p d="${WORKDIR}/python37-${CYGWINPORTS_GITREV}"
+	    for p in $(
+			sed -ne '/PATCH_URI="/,/"/{s/.*="//;s/".*$//;p}' \
+			< "${d}/python3.cygport"
+	    ); do
+			# dropped by 01_all_prefix-no-patch-invention.patch
+			[[ ${p} == *-tkinter-* ]] && continue
+		    eapply "${d}/${p}"
+	    done
+	fi
 
 	# we provide a fully working readline also on Darwin, so don't force
 	# usage of less functional libedit
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
 
 	# missed patch
-	sed -i -e '/is_macosx_sdk_path(zlib_h):/s/MACOS/False/' setup.py || die
+	sed -i -e '/is_macosx_sdk_path(zlib_h):/s/darwin/no-darwin/' setup.py || die
 
 	# We may have wrapped /usr/ccs/bin/nm on AIX for long TMPDIR.
 	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
@@ -149,11 +169,6 @@ src_configure() {
 	if is-flagq -O3; then
 		is-flagq -fstack-protector-all && replace-flags -O3 -O2
 		use hardened && replace-flags -O3 -O2
-	fi
-
-	# https://bugs.gentoo.org/700012
-	if is-flagq -flto || is-flagq '-flto=*'; then
-		append-cflags $(test-flags-CC -ffat-lto-objects)
 	fi
 
 	# Export CC so even AIX will use gcc instead of xlc_r.
@@ -287,6 +302,12 @@ src_install() {
 	# Remove static library
 	rm "${ED}"/usr/$(get_libdir)/libpython*.a || die
 
+	if use elibc_Cygwin; then
+		# We may recreate symlinks, but without any .exe extension.  Cygwin
+		# can resolv either without it, so just drop .exe from shebangs:
+		sed -i -e '1s/\.exe//' "$ED"/usr/bin/* || die
+	fi
+
 	sed \
 		-e "s/\(CONFIGURE_LDFLAGS=\).*/\1/" \
 		-e "s/\(PY_LDFLAGS=\).*/\1/" \
@@ -377,11 +398,13 @@ src_install() {
 	chmod +x "${scriptdir}/python${pymajor}-config" || die
 	ln -s "python${pymajor}-config" \
 		"${scriptdir}/python-config" || die
-	# 2to3, pydoc
+	# 2to3, pydoc, pyvenv
 	ln -s "../../../bin/2to3-${PYVER}" \
 		"${scriptdir}/2to3" || die
 	ln -s "../../../bin/pydoc${PYVER}" \
 		"${scriptdir}/pydoc" || die
+	ln -s "../../../bin/pyvenv-${PYVER}" \
+		"${scriptdir}/pyvenv" || die
 	# idle
 	if use tk; then
 		ln -s "../../../bin/idle${PYVER}" \
