@@ -1,46 +1,49 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
-PYTHON_COMPAT=(
-	pypy3
-	python3_6 python3_7
-	python2_7
-)
+DISTUTILS_USE_SETUPTOOLS=no
+PYTHON_COMPAT=( pypy3 python3_{6..9} )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
 
-inherit eutils distutils-r1 multilib
+inherit distutils-r1 linux-info systemd prefix
 
 DESCRIPTION="Portage package manager used in Gentoo Prefix"
 HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
+
 LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
-IUSE="build doc epydoc +ipc +native-extensions selinux xattr"
+IUSE="apidoc build doc gentoo-dev +ipc +native-extensions rsync-verify selinux xattr"
 
 DEPEND="!build? ( $(python_gen_impl_dep 'ssl(+)') )
 	>=app-arch/tar-1.27
 	dev-lang/python-exec:2
 	>=sys-apps/sed-4.0.5 sys-devel/patch
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
-	epydoc? ( >=dev-python/epydoc-2.0[$(python_gen_usedep 'python2*')] )"
+	apidoc? (
+		dev-python/sphinx
+		dev-python/sphinx-epytext
+	)"
 # Require sandbox-2.2 for bug #288863.
-# For xattr, we can spawn getfattr and setfattr from sys-apps/attr, but that's
-# quite slow, so it's not considered in the dependencies as an alternative to
-# to python-3.3 / pyxattr. Also, xattr support is only tested with Linux, so
-# for now, don't pull in xattr deps for other kernels.
 # For whirlpool hash, require python[ssl] (bug #425046).
 # For compgen, require bash[readline] (bug #445576).
+# app-portage/gemato goes without PYTHON_USEDEP since we're calling
+# the executable.
 RDEPEND="
+	app-arch/zstd
 	>=app-arch/tar-1.27
 	dev-lang/python-exec:2
 	!build? (
 		>=sys-apps/sed-4.0.5
 		app-shells/bash:0[readline]
 		>=app-admin/eselect-1.2
-		$(python_gen_cond_dep 'dev-python/pyblake2[${PYTHON_USEDEP}]' \
-			python{2_7,3_4,3_5} pypy)
+		rsync-verify? (
+			>=app-portage/gemato-14[${PYTHON_USEDEP}]
+			>=app-crypt/openpgp-keys-gentoo-release-20180706
+			>=app-crypt/gnupg-2.2.4-r2[ssl(-)]
+		)
 	)
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
@@ -53,10 +56,10 @@ RDEPEND="
 	selinux? ( >=sys-libs/libselinux-2.0.94[python,${PYTHON_USEDEP}] )
 	xattr? ( kernel_linux? (
 		>=sys-apps/install-xattr-0.3
-		$(python_gen_cond_dep 'dev-python/pyxattr[${PYTHON_USEDEP}]' \
-			python2_7 pypy)
 	) )
-	!<app-admin/logrotate-3.8.0"
+	!<app-admin/logrotate-3.8.0
+	!<app-portage/gentoolkit-0.4.6
+	!<app-portage/repoman-2.3.10"
 PDEPEND="
 	!build? (
 		>=net-misc/rsync-2.6.4
@@ -64,8 +67,6 @@ PDEPEND="
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # NOTE: FEATURES=installsources requires debugedit and rsync
-
-REQUIRED_USE="epydoc? ( $(python_gen_useflags 'python2*') )"
 
 SRC_ARCHIVES="https://dev.gentoo.org/~zmedico/portage/archives https://dev.gentoo.org/~grobian/distfiles"
 
@@ -84,15 +85,27 @@ SRC_URI="mirror://gentoo/prefix-${PN}-${TARBALL_PV}.tar.bz2
 
 S="${WORKDIR}"/prefix-${PN}-${TARBALL_PV}
 
-pkg_setup() {
-	use epydoc && DISTUTILS_ALL_SUBPHASE_IMPLS=( python2.7 )
+pkg_pretend() {
+	local CONFIG_CHECK="~IPC_NS ~PID_NS ~NET_NS ~UTS_NS"
+
+	check_extra_config
 }
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	epatch "${FILESDIR}"/${PN}-2.3.62-prefix-stack.patch # 658572
-	epatch "${FILESDIR}"/${PN}-2.3.45-ebuildshell.patch # 155161
+	eapply "${FILESDIR}"/${PN}-2.3.62-prefix-stack.patch # 658572
+	eapply "${FILESDIR}"/${PN}-2.3.45-ebuildshell.patch # 155161
+	if use gentoo-dev; then
+		einfo "Disabling --dynamic-deps by default for gentoo-dev..."
+		sed -e 's:\("--dynamic-deps", \)\("y"\):\1"n":' \
+			-i lib/_emerge/create_depgraph_params.py || \
+			die "failed to patch create_depgraph_params.py"
+
+		einfo "Enabling additional FEATURES for gentoo-dev..."
+		echo 'FEATURES="${FEATURES} strict-keepdir"' \
+			>> cnf/make.globals || die
+	fi
 
 	if use native-extensions; then
 		printf "[build_ext]\nportage-ext-modules=true\n" >> \
@@ -110,6 +123,12 @@ python_prepare_all() {
 		einfo "Adding FEATURES=xattr to make.globals ..."
 		echo -e '\nFEATURES="${FEATURES} xattr"' >> cnf/make.globals \
 			|| die "failed to append to make.globals"
+	fi
+
+	if use build || ! use rsync-verify; then
+		sed -e '/^sync-rsync-verify-metamanifest/s|yes|no|' \
+			-e '/^sync-webrsync-verify-signature/s|yes|no|' \
+			-i cnf/repos.conf || die "sed failed"
 	fi
 
 	if [[ -n ${EPREFIX} ]] ; then
@@ -157,7 +176,7 @@ python_prepare_all() {
 				sed -i -e "1s:.*:#!${EPREFIX}${shebang:2}:" "$REPLY" || \
 					die "sed failed"
 			fi
-		done < <(find . -type f -print0)
+		done < <(find . -type f ! -name etc-update -print0)
 
 		einfo "Setting gentoo_prefix as reponame for emerge-webrsync"
 		sed -i -e 's/repo_name=gentoo/repo_name=gentoo_prefix/' \
@@ -187,7 +206,7 @@ python_prepare_all() {
 python_compile_all() {
 	local targets=()
 	use doc && targets+=( docbook )
-	use epydoc && targets+=( epydoc )
+	use apidoc && targets+=( apidoc )
 
 	if [[ ${targets[@]} ]]; then
 		esetup.py "${targets[@]}"
@@ -220,8 +239,8 @@ python_install_all() {
 		install_docbook
 		--htmldir="${EPREFIX}/usr/share/doc/${PF}/html"
 	)
-	use epydoc && targets+=(
-		install_epydoc
+	use apidoc && targets+=(
+		install_apidoc
 		--htmldir="${EPREFIX}/usr/share/doc/${PF}/html"
 	)
 
@@ -230,6 +249,8 @@ python_install_all() {
 		esetup.py "${targets[@]}"
 	fi
 
+	systemd_dotmpfilesd "${FILESDIR}"/portage-ccache.conf
+
 	# Due to distutils/python-exec limitations
 	# these must be installed to /usr/bin.
 	local sbin_relocations='archive-conf dispatch-conf emaint env-update etc-update fixpackages regenworld'
@@ -237,28 +258,42 @@ python_install_all() {
 	dodir /usr/sbin
 	for target in ${sbin_relocations}; do
 		einfo "Moving /usr/bin/${target} to /usr/sbin/${target}"
-		mv "${ED}usr/bin/${target}" "${ED}usr/sbin/${target}" || die "sbin scripts move failed!"
+		mv "${ED}/usr/bin/${target}" "${ED}/usr/sbin/${target}" || die "sbin scripts move failed!"
 	done
 }
 
 pkg_preinst() {
-	# comment out sanity test until it is fixed to work
-	# with the new PORTAGE_PYM_PATH
-	#if [[ $ROOT == / ]] ; then
-		## Run some minimal tests as a sanity check.
-		#local test_runner=$(find "${ED}" -name runTests)
-		#if [[ -n $test_runner && -x $test_runner ]] ; then
-			#einfo "Running preinst sanity tests..."
-			#"$test_runner" || die "preinst sanity tests failed"
-		#fi
-	#fi
+	python_setup
+	local sitedir=$(python_get_sitedir)
+	[[ -d ${D}${sitedir} ]] || die "${D}${sitedir}: No such directory"
+	env -u DISTDIR \
+		-u PORTAGE_OVERRIDE_EPREFIX \
+		-u PORTAGE_REPOSITORIES \
+		-u PORTDIR \
+		-u PORTDIR_OVERLAY \
+		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
+		"${PYTHON}" -m portage._compat_upgrade.default_locations || die
+
+	env -u BINPKG_COMPRESS \
+		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
+		"${PYTHON}" -m portage._compat_upgrade.binpkg_compression || die
 
 	# elog dir must exist to avoid logrotate error for bug #415911.
 	# This code runs in preinst in order to bypass the mapping of
 	# portage:portage to root:root which happens after src_install.
 	keepdir /var/log/portage/elog
 	# This is allowed to fail if the user/group are invalid for prefix users.
-	if chown ${PORTAGE_USER}:${PORTAGE_GROUP} "${ED}"var/log/portage{,/elog} 2>/dev/null ; then
-		chmod g+s,ug+rwx "${ED}"var/log/portage{,/elog}
+	if chown ${PORTAGE_USER}:${PORTAGE_GROUP} "${ED}"/var/log/portage{,/elog} 2>/dev/null ; then
+		chmod g+s,ug+rwx "${ED}"/var/log/portage{,/elog}
+	fi
+
+	if has_version "<${CATEGORY}/${PN}-2.3.77"; then
+		elog "The emerge --autounmask option is now disabled by default, except for"
+		elog "portions of behavior which are controlled by the --autounmask-use and"
+		elog "--autounmask-license options. For backward compatibility, previous"
+		elog "behavior of --autounmask=y and --autounmask=n is entirely preserved."
+		elog "Users can get the old behavior simply by adding --autounmask to the"
+		elog "make.conf EMERGE_DEFAULT_OPTS variable. For the rationale for this"
+		elog "change, see https://bugs.gentoo.org/658648."
 	fi
 }
