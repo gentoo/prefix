@@ -1,16 +1,16 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
-inherit eutils multilib toolchain-funcs flag-o-matic multilib-minimal libtool ltprune
+inherit flag-o-matic multilib-minimal preserve-libs toolchain-funcs usr-ldscript libtool
 
 # Official patches
-# See ftp://ftp.cwru.edu/pub/bash/readline-6.3-patches/
-PLEVEL=${PV##*_p}
-MY_PV=${PV/_p*}
-MY_PV=${MY_PV/_/-}
-MY_P=${PN}-${MY_PV}
+# See ftp://ftp.cwru.edu/pub/bash/readline-7.0-patches/
+PLEVEL="${PV##*_p}"
+MY_PV="${PV/_p*}"
+MY_PV="${MY_PV/_/-}"
+MY_P="${PN}-${MY_PV}"
 [[ ${PV} != *_p* ]] && PLEVEL=0
 patches() {
 	[[ ${PLEVEL} -eq 0 ]] && return 1
@@ -28,33 +28,41 @@ patches() {
 }
 
 DESCRIPTION="Another cute console display library"
-HOMEPAGE="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html"
+HOMEPAGE="https://tiswww.case.edu/php/chet/readline/rltop.html"
+
+case ${PV} in
+	*_alpha*|*_beta*|*_rc*)
+		SRC_URI+=" ftp://ftp.cwru.edu/pub/bash/${MY_P}.tar.gz"
+	;;
+	*)
+		SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz $(patches)"
+	;;
+esac
+
 HOSTLTV="0.1.0"
 HOSTLT="host-libtool-${HOSTLTV}"
 HOSTLT_URI="https://github.com/haubi/host-libtool/releases/download/v${HOSTLTV}/${HOSTLT}.tar.gz"
-SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz $(patches) ${HOSTLT_URI}"
+SRC_URI+=" ${HOSTLT_URI}"
 HOSTLT_S=${WORKDIR}/${HOSTLT}
 
 LICENSE="GPL-3"
-SLOT="0"
+SLOT="0/8"  # subslot matches SONAME major
 KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="static-libs utils"
+IUSE="static-libs +unicode utils"
 
-RDEPEND=">=sys-libs/ncurses-5.9-r3:0=[${MULTILIB_USEDEP}]
-	abi_x86_32? (
-		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
-		!<=app-emulation/emul-linux-x86-baselibs-20131008-r7
-	)"
-DEPEND="${RDEPEND}
-	virtual/pkgconfig"
+RDEPEND=">=sys-libs/ncurses-5.9-r3:0=[static-libs?,unicode?,${MULTILIB_USEDEP}]"
+DEPEND="${RDEPEND}"
+BDEPEND="
+	virtual/pkgconfig
+"
 
-S=${WORKDIR}/${MY_P}
+S="${WORKDIR}/${MY_P}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-5.0-no_rpath.patch
 	"${FILESDIR}"/${PN}-6.2-rlfe-tgoto.patch #385091
-	"${FILESDIR}"/${PN}-6.3-fix-long-prompt-vi-search.patch
-	"${FILESDIR}"/${PN}-6.3-read-eof.patch
+	"${FILESDIR}"/${PN}-7.0-headers.patch
+	"${FILESDIR}"/${PN}-8.0-headers.patch
 
 	"${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 	"${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
@@ -64,11 +72,13 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-6.1-aix-soname.patch
 	"${FILESDIR}"/${PN}-6.1-aix-expfull.patch
 	"${FILESDIR}"/${PN}-6.3-interix.patch
-	"${FILESDIR}"/${PN}-6.3-darwin-shlib-versioning.patch
+	"${FILESDIR}"/${PN}-8.0-darwin-shlib-versioning.patch
 
-	"${FILESDIR}"/${PN}-6.3-libtool.patch # this enables building via libtool
+	"${FILESDIR}"/${PN}-7.0-libtool.patch # this enables building via libtool
 )
 
+# Needed because we don't want the patches being unpacked
+# (which emits annoying and useless error messages)
 src_unpack() {
 	unpack ${HOSTLT}.tar.gz
 	S="${HOSTLT_S}" elibtoolize
@@ -76,12 +86,12 @@ src_unpack() {
 }
 
 src_prepare() {
-	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
-	epatch "${PATCHES[@]}"
+	[[ ${PLEVEL} -gt 0 ]] && eapply -p0 $(patches -s)
+	default
 
 	# Force ncurses linking. #71420
 	# Use pkg-config to get the right values. #457558
-	local ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
+	local ncurses_libs=$($(tc-getPKG_CONFIG) ncurses$(usex unicode w '') --libs)
 	sed -i \
 		-e "/^SHLIB_LIBS=/s:=.*:='${ncurses_libs}':" \
 		support/shobj-conf || die
@@ -93,10 +103,7 @@ src_prepare() {
 	# objformat for years, so we don't want to rely on that.
 	sed -i -e '/objformat/s:if .*; then:if true; then:' support/shobj-conf || die
 
-	# support more recent OS X versions
-	sed -i -e 's/darwin10\*/darwin1\[01234\]\*/g' support/shobj-conf || die
-
-	ln -s ../.. examples/rlfe/readline # for local readline headers
+	ln -s ../.. examples/rlfe/readline || die # for local readline headers
 }
 
 src_configure() {
@@ -123,7 +130,7 @@ src_configure() {
 	# In cases where the C library doesn't support wide characters, readline
 	# itself won't work correctly, so forcing the answer below should be OK.
 	if tc-is-cross-compiler ; then
-		export bash_cv_func_sigsetjmp='present'
+		use kernel_Winnt || export bash_cv_func_sigsetjmp='present'
 		export bash_cv_func_ctype_nonascii='yes'
 		export bash_cv_wcwidth_broken='no' #503312
 	fi
@@ -137,18 +144,18 @@ src_configure() {
 }
 
 multilib_src_configure() {
-	ECONF_SOURCE=${S} \
-	econf \
-		--cache-file="${BUILD_DIR}"/config.cache \
-		--docdir='$(datarootdir)'/doc/${PF} \
-		--with-curses \
+	local myeconfargs=(
+		--cache-file="${BUILD_DIR}"/config.cache
+		--with-curses
 		--disable-shared # use libtool instead
+	)
+	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
 
 	if use utils && multilib_is_native_abi && ! tc-is-cross-compiler ; then
 		# code is full of AC_TRY_RUN()
 		mkdir -p examples/rlfe || die
 		cd examples/rlfe || die
-		ECONF_SOURCE=${S}/examples/rlfe \
+		ECONF_SOURCE="${S}"/examples/rlfe \
 		econf --cache-file="${BUILD_DIR}"/config.cache
 	fi
 }
@@ -163,8 +170,8 @@ multilib_src_compile() {
 		cd examples/rlfe || die
 		local l
 		for l in readline history ; do
-			ln -s ../../shlib/lib${l}$(get_libname)* lib${l}$(get_libname)
-			ln -sf ../../lib${l}.a lib${l}.a
+			ln -s ../../shlib/lib${l}$(get_libname)* lib${l}$(get_libname) || die
+			ln -s ../../lib${l}.a lib${l}.a || die
 		done
 		emake LTLINK='libtool --mode=link --tag=CC'
 	fi
@@ -185,19 +192,27 @@ multilib_src_install() {
 }
 
 multilib_src_install_all() {
-	einstalldocs
+	HTML_DOCS="doc/history.html doc/readline.html doc/rluserman.html" einstalldocs
 	dodoc USAGE
-	dohtml -r doc/.
 	docinto ps
 	dodoc doc/*.ps
 
-	prune_libtool_files --all
+	find "${D}" -name '*.la' -type f -delete || die
 }
-
 pkg_preinst() {
-	preserve_old_lib /$(get_libdir)/lib{history,readline}$(get_libname 4) #29865
+	# bug #29865
+	# Reappeared in #595324 with paludis so keeping this for now...
+	preserve_old_lib \
+		/$(get_libdir)/lib{history,readline}$(get_libname 4) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 5) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 6) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 7)
 }
 
 pkg_postinst() {
-	preserve_old_lib_notify /$(get_libdir)/lib{history,readline}$(get_libname 4)
+	preserve_old_lib_notify \
+		/$(get_libdir)/lib{history,readline}$(get_libname 4) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 5) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 6) \
+		/$(get_libdir)/lib{history,readline}$(get_libname 7)
 }
