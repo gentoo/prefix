@@ -2687,8 +2687,15 @@ EOF
 			EPREFIX=
 			continue
 		fi
-		if [[ $(stat -c '%U/%G' "${EPREFIX}"/.canihaswrite) != \
-			$(stat -c '%U/%G' "${EPREFIX}") ]] ;
+		# GNU and BSD variants of stat take different arguments (and
+		# format specifiers are not equivalent)
+		case "${CHOST}" in
+			*-darwin* | *-freebsd*) STAT='stat -f %u/%g' ;;
+			*)                      STAT='stat -c %U/%G' ;;
+		esac
+
+		if [[ $(${STAT} "${EPREFIX}"/.canihaswrite) != \
+			$(${STAT} "${EPREFIX}") ]] ;
 		then
 			echo
 			echo "The $EPREFIX directory has different ownership than expected."
