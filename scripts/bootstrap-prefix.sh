@@ -222,6 +222,23 @@ configure_toolchain() {
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
 			local mycc=
 			case "${ccvers}" in
+				*"Apple clang version "*)
+					vers=${ccvers#*Apple clang version }
+					vers=${vers% (clang-*}
+					# this is Clang, recent enough to compile recent clang
+					mycc=clang
+					compiler_stage1+="
+						${llvm_deps}
+						sys-devel/llvm
+						sys-devel/clang
+						sys-libs/libcxxabi
+						sys-libs/libcxx"
+					;;
+					esac
+					CC=clang
+					CXX=clang++
+					linker=sys-devel/binutils-apple
+					;;
 				*"Apple LLVM version "*)
 					vers=${ccvers#*Apple LLVM version }
 					vers=${vers% (clang-*}
