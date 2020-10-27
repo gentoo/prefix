@@ -1349,6 +1349,8 @@ bootstrap_stage1() {
 	# best.
 
 	# See comments in do_tree().
+	local portroot=${PORTDIR%/*}
+	mkdir -p "${ROOT}"/tmp/${portroot#${ROOT}/}
 	for x in lib sbin bin; do
 		mkdir -p "${ROOT}"/tmp/usr/${x}
 		[[ -e ${ROOT}/tmp/${x} ]] || ( cd "${ROOT}"/tmp && ln -s usr/${x} )
