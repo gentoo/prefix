@@ -233,8 +233,6 @@ configure_toolchain() {
 						sys-devel/clang
 						sys-libs/libcxxabi
 						sys-libs/libcxx"
-					;;
-					esac
 					CC=clang
 					CXX=clang++
 					linker=sys-devel/binutils-apple
