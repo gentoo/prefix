@@ -178,11 +178,6 @@ configure_toolchain() {
 
 	CC=gcc
 	CXX=g++
-	llvm_deps="
-		app-arch/libarchive
-		app-crypt/rhash
-		dev-util/cmake
-		dev-util/ninja"
 
 	case ${CHOST}:${DARWIN_USE_GCC} in
 		powerpc-*darwin*|*:yes|*:1|*:true)
@@ -229,6 +224,11 @@ configure_toolchain() {
 			compiler_type="clang"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
 			local mycc=
+			local llvm_deps="
+				app-arch/libarchive
+				app-crypt/rhash
+				dev-util/cmake
+				dev-util/ninja"
 			case "${ccvers}" in
 				*"Apple clang version "*)
 					vers=${ccvers#*Apple clang version }
