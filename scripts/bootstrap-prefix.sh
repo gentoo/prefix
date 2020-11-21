@@ -183,8 +183,9 @@ configure_toolchain() {
 		app-crypt/rhash
 		dev-util/cmake
 		dev-util/ninja"
-	case ${CHOST} in
-		powerpc-*darwin*)
+
+	case ${CHOST}:${DARWIN_USE_GCC} in
+		powerpc-*darwin*|*:yes|*:1|*:true)
 			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
 			local mycc=
@@ -205,6 +206,13 @@ configure_toolchain() {
 				*"(Gentoo "*)
 					# probably the result of a bootstrap in progress
 					linker=sys-devel/binutils-apple
+					mycc=gcc
+					;;
+				*"Apple clang version "*)
+					# gcc cannot build (recent) binutils-apple due to
+					# missing blocks support, so use Xcode provided
+					# linker/assembler
+					linker=sys-devel/native-cctools
 					mycc=gcc
 					;;
 				*)
@@ -414,7 +422,7 @@ bootstrap_setup() {
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
 			;;
-		x86_64-apple-darwin19)
+		x86_64-apple-darwin19|x86_64-apple-darwin2[0123456789])
 			# handle newer releases on the last profile we have headers
 			# and stuff for (https://opensource.apple.com/)
 			profile="prefix/darwin/macos/10.14/x64"
@@ -505,6 +513,16 @@ bootstrap_setup() {
 		einfo "Your profile is set to ${fullprofile}."
 	fi
 
+	case ${DARWIN_USE_GCC} in
+		yes|1|true)
+			# setup MacOSX.sdk symlink for GCC, this should probably be
+			# managed using an eselect module in the future
+			( cd ${ROOT} && ln -s $(xcrun --show-sdk-path --sdk macosx) )
+			einfo "using system sources from $(\
+				xcrun --show-sdk-version --sdk macosx)"
+			;;
+	esac
+
 	is-rap && cat >> "${ROOT}"/etc/portage/make.profile/make.defaults <<-'EOF'
 	# For baselayout-prefix in stage2 only.
 	ACCEPT_KEYWORDS="~${ARCH}-linux"
@@ -576,7 +594,7 @@ do_tree() {
 bootstrap_tree() {
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
-	local PV="20200607"
+	local PV="20201120"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
