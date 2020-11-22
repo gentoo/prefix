@@ -181,43 +181,39 @@ configure_toolchain() {
 
 	case ${CHOST}:${DARWIN_USE_GCC} in
 		powerpc-*darwin*|*:yes|*:1|*:true)
-			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
+			einfo "Triggering Darwin with GCC toolchain path"
+			compiler_stage1+=" sys-apps/darwin-miscutils sys-libs/csu"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
-			local mycc=
 			case "${ccvers}" in
 				*"(GCC) 4.2.1 "*)
 					linker=sys-devel/binutils-apple
-					mycc=gcc
 					;;
 				*"(GCC) 4.0.1 "*)
 					linker="=sys-devel/binutils-apple-3.2"
+					# upgrade to 4.2.1 first
 					compiler_stage1+="
-						${gcc_deps}
-						sys-devel/gcc-config
 						sys-devel/gcc-apple
 						sys-devel/binutils-apple"
-					mycc=gcc
 					;;
 				*"(Gentoo "*)
 					# probably the result of a bootstrap in progress
 					linker=sys-devel/binutils-apple
-					mycc=gcc
 					;;
-				*"Apple clang version "*)
+				*"Apple clang version "*|*"Apple LLVM version "*)
 					# gcc cannot build (recent) binutils-apple due to
 					# missing blocks support, so use Xcode provided
 					# linker/assembler
 					linker=sys-devel/native-cctools
-					mycc=gcc
 					;;
 				*)
-					eerror "unknown compiler"
+					eerror "unknown compiler: ${ccvers}"
 					return 1
 					;;
 			esac
-			compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
+			compiler_stage1+=" sys-devel/gcc"
 			;;
 		*-darwin*)
+			einfo "Triggering Darwin with Clang toolchain path"
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
 			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
@@ -1733,6 +1729,21 @@ bootstrap_stage2() {
 	# use at this stage (host compiler)
 	[[ ${CHOST} == *-solaris* ]] && echo "=dev-libs/libffi-3.3_rc0" \
 		>> "${ROOT}"/tmp/etc/portage/package.mask
+
+	# unlock GCC on Darwin for DARWIN_USE_GCC bootstraps
+	if [[ ${DARWIN_USE_GCC} == 1 || ${DARWIN_USE_GCC} == "yes" || \
+		${DARWIN_USE_GCC} == "true" ]]
+	then
+		{
+			echo "# DARWIN_USE_GCC block"
+			echo "sys-devel/gcc"
+			echo "sys-devel/native-cctools"
+		} >> "${ROOT}"/tmp/etc/portage/package.unmask
+		{
+			echo "# DARWIN_USE_GCC block"
+			echo "sys-devel/gcc ~ppc-macos"
+		} >> "${ROOT}"/tmp/etc/portage/package.accept_keywords
+	fi
 
 	# cmake has some external dependencies which require autoconf, etc.
 	# unless we only build the buildtool, bug #603012
