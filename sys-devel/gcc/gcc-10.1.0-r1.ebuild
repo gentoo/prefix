@@ -12,7 +12,7 @@ KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solar
 RDEPEND=""
 BDEPEND="
 	kernel_linux? ( ${CATEGORY}/binutils )
-	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
+	kernel_Darwin? ( ${CATEGORY}/binutils-apple || ${CATEGORY}/native-cctools )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )"
 
 src_prepare() {

@@ -180,8 +180,8 @@ configure_toolchain() {
 	CXX=g++
 
 	case ${CHOST}:${DARWIN_USE_GCC} in
-		powerpc-*darwin*|*:yes|*:1|*:true)
-			einfo "Triggering Darwin with GCC toolchain path"
+		powerpc-*darwin*|*:1)
+			einfo "Triggering Darwin with GCC toolchain"
 			compiler_stage1+=" sys-apps/darwin-miscutils sys-libs/csu"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
 			case "${ccvers}" in
@@ -197,7 +197,9 @@ configure_toolchain() {
 					;;
 				*"(Gentoo "*)
 					# probably the result of a bootstrap in progress
-					linker=sys-devel/binutils-apple
+					[[ ${DARWIN_USE_GCC} == 1 ]] \
+						&& linker=sys-devel/native-cctools \
+						|| linker=sys-devel/binutils-apple
 					;;
 				*"Apple clang version "*|*"Apple LLVM version "*)
 					# gcc cannot build (recent) binutils-apple due to
@@ -213,7 +215,7 @@ configure_toolchain() {
 			compiler_stage1+=" sys-devel/gcc"
 			;;
 		*-darwin*)
-			einfo "Triggering Darwin with Clang toolchain path"
+			einfo "Triggering Darwin with LLVM/Clang toolchain"
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
 			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
@@ -418,14 +420,15 @@ bootstrap_setup() {
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
 			;;
-		x86_64-apple-darwin19|x86_64-apple-darwin2[0123456789])
-			# handle newer releases on the last profile we have headers
-			# and stuff for (https://opensource.apple.com/)
-			profile="prefix/darwin/macos/10.14/x64"
-			;;
 		x86_64-apple-darwin9|x86_64-apple-darwin1[012345678])
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
+			;;
+		x86_64-apple-darwin19|x86_64-apple-darwin2[0123456789])
+			# TODO: add profiles for these
+			# handle newer releases on the last profile we have headers
+			# and stuff for (https://opensource.apple.com/)
+			profile="prefix/darwin/macos/10.14/x64"
 			;;
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
@@ -500,6 +503,18 @@ bootstrap_setup() {
 			exit 1
 			;;
 	esac
+
+	if [[ ${DARWIN_USE_GCC} == 1 ]] ; then
+		# setup MacOSX.sdk symlink for GCC, this should probably be
+		# managed using an eselect module in the future
+		( cd ${ROOT} && ln -s $(xcrun --show-sdk-path --sdk macosx) )
+		einfo "using system sources from $(\
+			xcrun --show-sdk-version --sdk macosx)"
+
+		# amend profile, to use gcc one
+		profile="${profile}/gcc"
+	fi
+
 	[[ -n ${PROFILE_BASE}${PROFILE_VARIANT} ]] &&
 	profile=${PROFILE_BASE:-prefix}/${profile#prefix/}${PROFILE_VARIANT:+/${PROFILE_VARIANT}}
 	if [[ -n ${profile} && ! -e ${ROOT}/etc/portage/make.profile ]] ; then
@@ -508,16 +523,6 @@ bootstrap_setup() {
 		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${fullprofile}."
 	fi
-
-	case ${DARWIN_USE_GCC} in
-		yes|1|true)
-			# setup MacOSX.sdk symlink for GCC, this should probably be
-			# managed using an eselect module in the future
-			( cd ${ROOT} && ln -s $(xcrun --show-sdk-path --sdk macosx) )
-			einfo "using system sources from $(\
-				xcrun --show-sdk-version --sdk macosx)"
-			;;
-	esac
 
 	is-rap && cat >> "${ROOT}"/etc/portage/make.profile/make.defaults <<-'EOF'
 	# For baselayout-prefix in stage2 only.
@@ -1731,19 +1736,7 @@ bootstrap_stage2() {
 		>> "${ROOT}"/tmp/etc/portage/package.mask
 
 	# unlock GCC on Darwin for DARWIN_USE_GCC bootstraps
-	if [[ ${DARWIN_USE_GCC} == 1 || ${DARWIN_USE_GCC} == "yes" || \
-		${DARWIN_USE_GCC} == "true" ]]
-	then
-		{
-			echo "# DARWIN_USE_GCC block"
-			echo "sys-devel/gcc"
-			echo "sys-devel/native-cctools"
-		} >> "${ROOT}"/tmp/etc/portage/package.unmask
-		{
-			echo "# DARWIN_USE_GCC block"
-			echo "sys-devel/gcc ~ppc-macos"
-		} >> "${ROOT}"/tmp/etc/portage/package.accept_keywords
-
+	if [[ ${DARWIN_USE_GCC} == 1 ]] ; then
 		rm -f "${ROOT}"/tmp/MacOSX.sdk
 		( cd "${ROOT}"/tmp && ln -s ../MacOSX.sdk )
 	fi
@@ -3086,6 +3079,19 @@ case ${CHOST} in
 	*)
 		MAKE=make
 	;;
+esac
+
+# handle GCC install path on recent Darwin
+case ${CHOST} in
+	*-darwin*)
+		# normalise value of DARWIN_USE_GCC
+		case ${DARWIN_USE_GCC} in
+			yes|true|1)  DARWIN_USE_GCC=1  ;;
+		esac
+		;;
+	*)
+		unset DARWIN_USE_GCC
+		;;
 esac
 
 # deal with a problem on OSX with Python's locales
