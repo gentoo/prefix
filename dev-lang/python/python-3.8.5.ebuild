@@ -109,6 +109,11 @@ src_prepare() {
 			configure.ac configure || die
 	fi
 
+	# side-effect of disabling scproxy (see below), make sure we don't
+	# try to use it on Darwin either
+	sed -i -e '/sys.platform/s/darwin/disabled-darwin/' \
+		Lib/urllib/request.py || die
+
 	eautoreconf
 }
 
