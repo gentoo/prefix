@@ -2472,20 +2472,17 @@ EOF
 	fi
 
 	if type -P xcode-select > /dev/null ; then
-		if [[ ! -d /usr/include ]] ; then
-			# bug #512032
-			cat << EOF
+		if [[ -d /usr/include ]] ; then
+			# if we have /usr/include we're on an older system
+			if [[ ${CHOST} == powerpc* ]]; then
+				# ancient Xcode (3.0/3.1)
+				cat << EOF
 
-You don't have /usr/include, this thwarts me to build stuff.
-Please execute:
-  xcode-select --install
-or install /usr/include in another way and try running me again.
+Ok, this is an old system, let's just try and see what happens.
 EOF
-			exit 1
-		fi
-		if [[ $(xcode-select -p) != */CommandLineTools ]] ; then
-			# to an extent, bug #564814 and bug #562800
-			cat << EOF
+			elif [[ $(xcode-select -p) != */CommandLineTools ]] ; then
+				# to an extent, bug #564814 and bug #562800
+				cat << EOF
 
 Your xcode-select is not set to CommandLineTools.  This prevents builds
 from succeeding.  Switch to command line tools for the bootstrap to
@@ -2493,14 +2490,17 @@ continue.  Please execute:
   xcode-select -s /Library/Developer/CommandLineTools
 and try running me again.
 EOF
-			if ! xcode-select -p > /dev/null && [[ ${CHOST} == powerpc* ]]; then
-				# ancient Xcode (3.0/3.1)
+			fi
+		else
+			# let's see if we have an xcode install
+			if [[ ! -e $(xcrun -f gcc 2>/dev/null) ]] ; then
 				cat << EOF
 
-Ok, this is an old system, let's just try and see what happens.
+You don't have Xcode installed, or xcode-select isn't pointing to a
+valid install.  Try resetting it using:
+  sudo xcode-select -r
+and try running me again.
 EOF
-			else
-				exit 1
 			fi
 		fi
 	fi
