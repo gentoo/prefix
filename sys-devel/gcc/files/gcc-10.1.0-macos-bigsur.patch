@@ -1,0 +1,140 @@
+From 556ab5125912fa2233986eb19d6cd995cf7de1d2 Mon Sep 17 00:00:00 2001
+From: Iain Sandoe <iain@sandoe.co.uk>
+Date: Fri, 31 Jul 2020 21:05:28 +0100
+Subject: [PATCH] Darwin: Darwin 20 is to be macOS 11 (Big Sur).
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+As per Nigel Tufnel's assertion "... this one goes to 11".
+
+The various parts of the code that deal with mapping Darwin versions
+to macOS (X) versions need updating to deal with  a major version of
+11.
+
+So now we have, for example:
+
+Darwin  4 => macOS (X) 10.0
+…
+Darwin 14 => macOS (X) 10.10
+...
+Darwin 19 => macOS (X) 10.15
+
+Darwin 20 => macOS  11.0
+
+Because of the historical duplication of the "10" in macOSX 10.xx and
+the number of tools that expect this, it is likely that system tools will
+allow macos11.0 and/or macosx11.0 (despite that the latter makes little
+sense).
+
+Update the link test to cover Catalina (Darwin19/10.15) and
+Big Sur (Darwin20/11.0).
+
+gcc/ChangeLog:
+
+	* config/darwin-c.c: Allow for Darwin20 to correspond to macOS 11.
+	* config/darwin-driver.c: Likewise.
+
+gcc/testsuite/ChangeLog:
+
+	* gcc.dg/darwin-minversion-link.c: Allow for Darwin19 (macOS 10.15)
+	and Darwin20 (macOS 11.0).
+---
+ gcc/config/darwin-c.c                         |  4 ++--
+ gcc/config/darwin-driver.c                    | 21 ++++++++++++-------
+ gcc/testsuite/gcc.dg/darwin-minversion-link.c |  5 +++--
+ 3 files changed, 18 insertions(+), 12 deletions(-)
+
+diff --git a/gcc/config/darwin-c.c b/gcc/config/darwin-c.c
+index e3b999e166b..9034f49908e 100644
+--- a/gcc/config/darwin-c.c
++++ b/gcc/config/darwin-c.c
+@@ -692,10 +692,10 @@ macosx_version_as_macro (void)
+   if (!version_array)
+     goto fail;
+ 
+-  if (version_array[MAJOR] != 10)
++  if (version_array[MAJOR] < 10 || version_array[MAJOR] > 11)
+     goto fail;
+ 
+-  if (version_array[MINOR] < 10)
++  if (version_array[MAJOR] == 10 && version_array[MINOR] < 10)
+     version_macro = version_as_legacy_macro (version_array);
+   else
+     version_macro = version_as_modern_macro (version_array);
+diff --git a/gcc/config/darwin-driver.c b/gcc/config/darwin-driver.c
+index 8fdd32e2858..8ae300057fd 100644
+--- a/gcc/config/darwin-driver.c
++++ b/gcc/config/darwin-driver.c
+@@ -65,7 +65,7 @@ validate_macosx_version_min (const char *version_str)
+   major = strtoul (version_str, &end, 10);
+   version_str = end + ((*end == '.') ? 1 : 0);
+ 
+-  if (major != 10) /* So far .. all MacOS 10 ... */
++  if (major < 10 || major > 11 ) /* MacOS 10 and 11 are known. */
+     return NULL;
+ 
+   /* Version string components must be present and numeric.  */
+@@ -104,7 +104,7 @@ validate_macosx_version_min (const char *version_str)
+   if (need_rewrite)
+     {
+       char *new_version;
+-      asprintf (&new_version, "10.%lu.%lu", minor, tiny);
++      asprintf (&new_version, "%2lu.%lu.%lu", major, minor, tiny);
+       return new_version;
+     }
+ 
+@@ -115,6 +115,12 @@ validate_macosx_version_min (const char *version_str)
+ #include <sys/sysctl.h>
+ #include "xregex.h"
+ 
++/* Determine the version of the running OS.
++   We only look at the first two components (ignoring the patch one) and
++   report NN.MM.0 where NN is currently either 10 or 11 and MM is the OS
++   minor release number.
++   If we can't parse what the kernel gives us, warn the user, and do nothing.  */
++
+ static char *
+ darwin_find_version_from_kernel (void)
+ {
+@@ -125,8 +131,6 @@ darwin_find_version_from_kernel (void)
+   char * version_p;
+   char * new_flag;
+ 
+-  /* Determine the version of the running OS.  If we can't, warn user,
+-     and do nothing.  */
+   if (sysctl (osversion_name, ARRAY_SIZE (osversion_name), osversion,
+ 	      &osversion_len, NULL, 0) == -1)
+     {
+@@ -144,10 +148,11 @@ darwin_find_version_from_kernel (void)
+     major_vers = major_vers * 10 + (*version_p++ - '0');
+   if (*version_p++ != '.')
+     goto parse_failed;
+-  
+-  /* The major kernel version number is 4 plus the second OS version
+-     component.  */
+-  if (major_vers - 4 <= 4)
++
++  /* Darwin20 sees a transition to macOS 11.  */
++  if (major_vers >= 20)
++    asprintf (&new_flag, "11.%02d.00", major_vers - 20);
++  else if (major_vers - 4 <= 4)
+     /* On 10.4 and earlier, the old linker is used which does not
+        support three-component system versions.
+        FIXME: we should not assume this - a newer linker could be used.  */
+diff --git a/gcc/testsuite/gcc.dg/darwin-minversion-link.c b/gcc/testsuite/gcc.dg/darwin-minversion-link.c
+index 0a80048ba35..765fb799a91 100644
+--- a/gcc/testsuite/gcc.dg/darwin-minversion-link.c
++++ b/gcc/testsuite/gcc.dg/darwin-minversion-link.c
+@@ -13,8 +13,9 @@
+ /* { dg-additional-options "-mmacosx-version-min=010.011.06 -DCHECK=101106" { target *-*-darwin15* } } */
+ /* { dg-additional-options "-mmacosx-version-min=010.012.06 -DCHECK=101206" { target *-*-darwin16* } } */
+ /* { dg-additional-options "-mmacosx-version-min=010.013.06 -DCHECK=101306" { target *-*-darwin17* } } */
+-/* This next test covers 10.18 and (currently unreleased) 10.19 for now. */  
+-/* { dg-additional-options "-mmacosx-version-min=010.014.05 -DCHECK=101405" { target *-*-darwin1[89]* } } */
++/* { dg-additional-options "-mmacosx-version-min=010.014.05 -DCHECK=101405" { target *-*-darwin18* } } */
++/* { dg-additional-options "-mmacosx-version-min=010.015.06 -DCHECK=101506" { target *-*-darwin19* } } */
++/* { dg-additional-options "-mmacosx-version-min=011.000.00 -DCHECK=110000" { target *-*-darwin20 } } */
+ 
+ int
+ main ()

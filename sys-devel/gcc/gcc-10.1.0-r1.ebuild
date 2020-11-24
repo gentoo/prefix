@@ -45,20 +45,11 @@ src_prepare() {
 			libgcc/config/t-slibgcc-darwin || die
 	fi
 
-	# for Darwin, allow compilation of anything using Authorization
-	# Framework (e.g. gnutls)
-	cat >> fixincludes/inclhack.def <<- EOF
-		/* https://gcc.gnu.org/bugzilla/show_bug.cgi?id=93082 */
-		fix = {
-			hackname  = darwin_authorization;
-			mach      = "*-*-darwin*";
-			files     = Frameworks/Security.framework/Headers/Authorization.h;
-			select    = "static const size_t kAuthorizationExternalFormLength = 32;\n";
-			c_fix     = format;
-			c_fix_arg = "enum { kAuthorizationExternalFormLength = 32 };\n";
-			test_text = "static const size_t kAuthorizationExternalFormLength = 32;\n";
-		};
-	EOF
+	# fix for Big Sur versioning, remove with 11
+	eapply -p1 "${FILESDIR}"/${PN}-10.1.0-macos-bigsur.patch
+
+	# fix complaint about Authorization Framework
+	eapply -p1 "${FILESDIR}"/${PN}-10.1.0-darwin-auth-fixincludes.patch
 
 	eapply_user
 }

@@ -1,0 +1,22 @@
+--- a/fixincludes/inclhack.def
++++ b/fixincludes/inclhack.def
+@@ -1325,6 +1325,19 @@
+ };
+ 
+ /*
++ * https://gcc.gnu.org/bugzilla/show_bug.cgi?id=93082
++ */
++fix = {
++    hackname  = darwin_authorization;
++    mach      = "*-*-darwin*";
++    files     = Frameworks/Security.framework/Headers/Authorization.h;
++    select    = "static const size_t kAuthorizationExternalFormLength = 32;\n";
++    c_fix     = format;
++    c_fix_arg = "enum { kAuthorizationExternalFormLength = 32 };\n";
++    test_text = "static const size_t kAuthorizationExternalFormLength = 32;\n";
++};
++
++/*
+  *  For the AAB_darwin7_9_long_double_funcs fix (and later fixes for long long)
+  *  to be useful, the main math.h must use <> and not "" includes.
+  */
