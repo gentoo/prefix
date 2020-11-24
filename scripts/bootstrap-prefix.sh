@@ -505,7 +505,7 @@ bootstrap_setup() {
 	if [[ ${DARWIN_USE_GCC} == 1 ]] ; then
 		# setup MacOSX.sdk symlink for GCC, this should probably be
 		# managed using an eselect module in the future
-		( cd ${ROOT} && ln -s $(xcrun --show-sdk-path --sdk macosx) )
+		( cd ${ROOT} && ln -s $(xcrun --show-sdk-path --sdk macosx) MacOSX.sdk )
 		einfo "using system sources from $(\
 			xcrun --show-sdk-version --sdk macosx)"
 
