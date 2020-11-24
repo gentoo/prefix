@@ -124,6 +124,7 @@ do_prepare() {
 		${RESUME+RESUME=1} \
 		${LATEST_TREE_YES+LATEST_TREE_YES=1} \
 		${TREE_FROM_SRC+TREE_FROM_SRC=}${TREE_FROM_SRC} \
+		${DARWIN_USE_GCC+DARWIN_USE_GCC=}${DARWIN_USE_GCC} \
 		${keepalive} ${BASH} ${bootstrapscript} bootstrap
 	endtime=${SECONDS}
 
