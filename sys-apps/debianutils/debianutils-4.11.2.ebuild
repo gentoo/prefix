@@ -22,6 +22,8 @@ PDEPEND="
 		)
 	)"
 
+S="${WORKDIR}/${PN}"
+
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.4.2-no-bs-namespace.patch
 	"${FILESDIR}"/${PN}-4-nongnu.patch
