@@ -965,7 +965,7 @@ bootstrap_gnu() {
 
 PYTHONMAJMIN=3.7   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
-	PV=3.7.7
+	PV=3.7.8
 	A=Python-${PV}.tar.xz
 	patch=true
 
@@ -1296,6 +1296,7 @@ bootstrap_texinfo() {
 }
 
 bootstrap_bash() {
+	bootstrap_gnu bash 5.1-rc3 ||
 	bootstrap_gnu bash 4.3 ||
 	bootstrap_gnu bash 4.2
 }
