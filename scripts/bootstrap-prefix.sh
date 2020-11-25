@@ -1283,7 +1283,7 @@ bootstrap_patch() {
 }
 
 bootstrap_gawk() {
-	bootstrap_gnu gawk 4.0.1 || bootstrap_gnu gawk 4.0.0 || \
+	bootstrap_gnu gawk 5.0.1 || bootstrap_gnu gawk 4.0.1 || \
 		bootstrap_gnu gawk 3.1.8
 }
 
