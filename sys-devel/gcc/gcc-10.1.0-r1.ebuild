@@ -47,6 +47,9 @@ src_prepare() {
 
 	# fix for Big Sur versioning, remove with 11
 	eapply -p1 "${FILESDIR}"/${PN}-10.1.0-macos-bigsur.patch
+	find .  -name "configure" | xargs \
+	sed -i -e '/^\s*10\.\*)/N' \
+		-e '/^\s*10\.\*)\s*_lt_dar_allow_undefined/s/10\.\*/10.*|11.*/'
 
 	# fix complaint about Authorization Framework
 	eapply -p1 "${FILESDIR}"/${PN}-10.1.0-darwin-auth-fixincludes.patch
