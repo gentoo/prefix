@@ -388,7 +388,7 @@ main(int argc, char *argv[])
 		/* inject this first to make the intention clear */
 #ifdef DARWIN_LD_SYSLIBROOT
 		newargv[j++] = "-syslibroot";
-		newargv[j++] = EPREFIX "/MacOSX.sdk"
+		newargv[j++] = EPREFIX "/MacOSX.sdk";
 #endif
 		newargv[j++] = "-search_paths_first";
 	}
