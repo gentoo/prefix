@@ -210,7 +210,6 @@ main(int argc, char *argv[])
 	char is_darwin = 0;
 	char darwin_use_rpath = 1;
 	char is_aix = 0;
-	char has_missing = getenv("BINUTILS_CONFIG_DISABLE_MISSING") == NULL;
 	char *p;
 	size_t len;
 	int i;
@@ -349,14 +348,6 @@ main(int argc, char *argv[])
 			/* AIX ld accepts -R only with -bsvr4 */
 			newargc++; /* -bsvr4 */
 		}
-
-		/* BINUTILS_CONFIG_DISABLE_MISSING overrides this such that we
-		 * can disable this behaviour */
-		if (has_missing && stat(EPREFIX "/usr/lib/libmissing.a", &st) == 0) {
-			newargc++; /* -lmissing */
-		} else {
-			has_missing = 0;
-		}
 	}
 
 	/* account the original arguments */
@@ -405,20 +396,6 @@ main(int argc, char *argv[])
 			if (strcmp(argv[i], "-bsvr4") == 0) {
 				--j; --k;
 				continue;
-			}
-		}
-
-		if (!is_cross && is_darwin && has_missing) {
-			if (argv[i][0] == '-' && argv[i][1] == 'l' &&
-					(strcmp(&argv[i][2], "System") == 0 ||
-					 strcmp(&argv[i][2], "SystemStubs") == 0))
-			{
-				/* inject -lmissing before -lSystem or -lSystemStubs */
-				memmove(&newargv[j + 1], &newargv[j],
-						sizeof(newargv[j]) * (k - j));
-				newargv[j++] = "-lmissing";
-				k++;
-				has_missing = 0;  /* avoid duplicate insertion */
 			}
 		}
 
@@ -498,8 +475,6 @@ main(int argc, char *argv[])
 			newargv[k++] = "-R" EPREFIX "/lib";
 		}
 
-		if (has_missing)
-			newargv[k++] = "-lmissing";
 		if (is_aix)
 			newargv[k++] = "-bsvr4"; /* last one, see above */
 	}
