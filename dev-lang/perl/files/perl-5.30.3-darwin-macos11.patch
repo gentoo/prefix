@@ -30,28 +30,6 @@ index 0a91bc083c0..c0f06de1cab 100644
        add_macosx_version_min ldflags $prodvers
        ;;
 
-From a54d28f327d6431768994d49173afe479e17acc7 Mon Sep 17 00:00:00 2001
-From: Adam Hartley <git@ahartley.com>
-Date: Wed, 8 Jul 2020 19:04:45 +0100
-Subject: [PATCH 2/7] Update AUTHORS
-
----
- AUTHORS | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/AUTHORS b/AUTHORS
-index e4ea405d985..a05246b0474 100644
---- a/AUTHORS
-+++ b/AUTHORS
-@@ -31,6 +31,7 @@ Abir Viqar                     <abiviq@hushmail.com>
- Achim Bohnet                   <ach@mpe.mpg.de>
- Achim Gratz                    <achim.gratz@stromeko.de>
- Adam Flott                     <adam@npjh.com>
-+Adam Hartley                   <git@ahartley.com>
- Adam Kennedy                   <adam@ali.as>
- Adam Krolnik                   <adamk@gypsy.cyrix.com>
- Adam Milner                    <carmiac@nmt.edu>
-
 From 960d1a5c4225d1dd12636a469e10a568464e4e7c Mon Sep 17 00:00:00 2001
 From: Adam Hartley <git@ahartley.com>
 Date: Wed, 8 Jul 2020 19:10:33 +0100
