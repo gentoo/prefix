@@ -121,6 +121,7 @@ with os.scandir(resultsdir) as it:
             elapsedtime = None
             haslssl = False
             snapshot = None
+            darwingcc = False
 
             elapsedf = os.path.join(resultsdir, arch, "%s" % d, "elapsedtime")
             if os.path.exists(elapsedf):
@@ -150,11 +151,14 @@ with os.scandir(resultsdir) as it:
                                 snapshot = re.split('[-.]', x)[2]
                         elif 'total size is' in x:
                             snapshot = 'rsync'
+                        elif 'Darwin with GCC toolchain' in x:
+                            darwingcc = True
 
             infos[d] = {
                     'elapsedtime': elapsedtime,
                     'libressl': haslssl,
-                    'snapshot': snapshot
+                    'snapshot': snapshot,
+                    'darwingcc': darwingcc
             }
 
         archs[arch] = (fail, state, suc, infos)
@@ -182,6 +186,11 @@ display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: upp
         tags = tags + '''
 <span style="border-radius: 5px; background-color: darkblue; color: white;
 display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">''' + snap + '''</span>
+'''
+
+    if infos.get('darwingcc', False):
+        tags = tags + '''
+<span style="border-radius: 5px; background-color: dark-green; color: white; display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">GCC</span>
 '''
 
     return tags
