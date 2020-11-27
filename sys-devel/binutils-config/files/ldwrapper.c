@@ -20,8 +20,9 @@
  * ldwrapper: Prefix helper to inject -L and -R flags to the invocation
  * of ld.
  *
- * On Darwin it adds -search_path_first to make sure the given paths are
- * searched before the default search path.
+ * On Darwin it adds -search_paths_first to make sure the given paths are
+ * searched before the default search path, and sets -syslibroot
+ * starting from Big Sur 11.0.
  * On AIX it ensures -bsvr4 is the last argument.
  * The wrapper will inject -L entries for:
  *   - EPREFIX/usr/CHOST/lib/gcc (when gcc)
@@ -339,6 +340,11 @@ main(int argc, char *argv[])
 
 			/* add the 2 prefix paths (-L) and -search_paths_first */
 			newargc += 2 + 1;
+
+#ifdef DARWIN_LD_SYSLIBROOT
+			/* add -syslibroot <path> */
+			newargc += 2;
+#endif
 		} else {
 			/* add the 4 paths we want (-L + -R) */
 			newargc += 8;
@@ -380,6 +386,10 @@ main(int argc, char *argv[])
 
 	if (!is_cross && is_darwin) {
 		/* inject this first to make the intention clear */
+#ifdef DARWIN_LD_SYSLIBROOT
+		newargv[j++] = "-syslibroot";
+		newargv[j++] = EPREFIX "/MacOSX.sdk"
+#endif
 		newargv[j++] = "-search_paths_first";
 	}
 
