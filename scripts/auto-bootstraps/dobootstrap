@@ -28,7 +28,7 @@ do_prepare() {
 	local bootstrap
 
 	if [[ -n ${RESUME} && -n ${bitw} && -n ${dte} ]] ; then
-		bootstrap=bootstrap${bitw}-${dte}/bootstrap-prefix.sh
+		bootstrap=${OVERRIDE_EPREFIX:-bootstrap${bitw}-${dte}}/bootstrap-prefix.sh
 	elif [[ -n ${DOLOCAL} ]] ; then
 		bootstrap=${BOOTSTRAP}
 	else
