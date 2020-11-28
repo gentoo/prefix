@@ -190,7 +190,7 @@ display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: upp
 
     if infos.get('darwingcc', False):
         tags = tags + '''
-<span style="border-radius: 5px; background-color: dark-green; color: white; display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">GCC</span>
+<span style="border-radius: 5px; background-color: darkgreen; color: white; display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: uppercase !important;">GCC</span>
 '''
 
     return tags
