@@ -156,6 +156,10 @@ src_prepare() {
 			glib/giounix.c || die
 	fi
 
+	# disable native macOS integrations
+	sed -i -e '/glib_have_\(carbon\|cocoa\)=yes/s/yes/no/' \
+		configure{.ac,} || die
+
 	gnome2_src_prepare
 }
 
