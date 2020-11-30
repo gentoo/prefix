@@ -76,7 +76,7 @@ src_install() {
 			"${ED}"/etc/nanorc || die
 	fi
 
-	if use split-usr || ! use prefix-guest ; then
+	if use split-usr || ( use prefix && ! use prefix-guest ) ; then
 		 dosym ../../bin/nano /usr/bin/nano
 	fi
 }
