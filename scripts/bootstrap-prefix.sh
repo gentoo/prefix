@@ -3088,6 +3088,8 @@ case ${CHOST} in
 		# normalise value of DARWIN_USE_GCC
 		case ${DARWIN_USE_GCC} in
 			yes|true|1)  DARWIN_USE_GCC=1  ;;
+			no|false|0)  DARWIN_USE_GCC=0  ;;
+			*)           DARWIN_USE_GCC=1  ;;   # default to GCC build
 		esac
 		;;
 	*)
