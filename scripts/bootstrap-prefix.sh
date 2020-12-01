@@ -440,10 +440,13 @@ bootstrap_setup() {
 			profile=${profile_linux/ARCH/ia64}
 			;;
 		powerpc-unknown-linux-gnu)
-			profile=${profile_linux/ARCH/powerpc/ppc}
+			profile=${profile_linux/ARCH/ppc}
 			;;
 		powerpc64-unknown-linux-gnu)
-			profile=${profile_linux/ARCH/powerpc/ppc64}
+			profile=${profile_linux/ARCH/ppc64}
+			;;
+		powerpc64le-unknown-linux-gnu)
+			profile=${profile_linux/ARCH/ppc64le}
 			;;
 		aarch64-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/arm64}
