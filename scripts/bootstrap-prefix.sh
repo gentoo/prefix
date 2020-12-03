@@ -91,6 +91,17 @@ efetch() {
 	return 0
 }
 
+darwin_include_paths_for_clang() {
+	# only used on clang-based darwin installs
+
+	local XCODE_PATH=$(xcode-select -p)
+	# Xcode.app path is deeper than CommandLineTools path
+	[[ "${XCODE_PATH}" == */CommandLineTools ]] || XCODE_PATH+="/Toolchains/XcodeDefault.xctoolchain"
+
+	export C_INCLUDE_PATH="${ROOT}/MacOSX.sdk/usr/include"
+	export CPLUS_INCLUDE_PATH="${XCODE_PATH}/usr/include/c++/v1:${C_INCLUDE_PATH}"
+}
+
 configure_cflags() {
 	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
 	
@@ -242,6 +253,9 @@ configure_toolchain() {
 					CC=clang
 					CXX=clang++
 					linker=sys-devel/binutils-apple
+					if [[ ! -d /usr/include ]]; then
+						export FIX_CLANG_INCLUDE_PATHS=1
+					fi
 					;;
 				*"Apple LLVM version "*)
 					vers=${ccvers#*Apple LLVM version }
@@ -551,6 +565,14 @@ bootstrap_setup() {
 	# Use package.use to disable in the portage tree to be shared between
 	# stage2 and stage3. The hack will be undone during tree sync in stage3.
 	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
+	# rhash (dep of cmake) configure can't find the openssl/libressl.
+	# ssl use flag allows RHash to "use optimized algorithms"
+	# but rhash will work fine without, so disable during bootstrap.
+	app-crypt/rhash -ssl
+	# sys-libs/jsoncpp cannot be installed in stage2 and early stage3
+	# because jsoncpp requires meson which is not available yet.
+	# So, cmake needs to temporarily bootstrap its own jsconcpp.
+	dev-util/cmake -system-jsoncpp
 	# Most binary Linux distributions seem to fancy toolchains that
 	# do not do c++ support (need to install a separate package).
 	sys-libs/ncurses -cxx
@@ -1440,6 +1462,7 @@ bootstrap_stage1() {
 
 	configure_toolchain
 	export CC CXX
+	[[ ${FIX_CLANG_INCLUDE_PATHS} == 1 ]] && darwin_include_paths_for_clang
 
 	# run all bootstrap_* commands in a subshell since the targets
 	# frequently pollute the environment using exports which affect
@@ -1704,6 +1727,7 @@ bootstrap_stage2() {
 	# Find out what toolchain packages we need, and configure LDFLAGS
 	# and friends.
 	configure_toolchain || return 1
+	[[ ${FIX_CLANG_INCLUDE_PATHS} == 1 ]] && darwin_include_paths_for_clang
 	configure_cflags || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	export CC CXX
