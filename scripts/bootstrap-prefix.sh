@@ -1225,10 +1225,10 @@ bootstrap_python() {
 		--disable-shared \
 		--libdir="${ROOT}"/tmp/usr/lib \
 		${myconf} || return 1
-	$MAKE ${MAKEOPTS} || return 1
+	v $MAKE ${MAKEOPTS} || return 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE -k install || echo "??? Python failed to install *sigh* continuing anyway"
+	v $MAKE -k install || echo "??? Python failed to install *sigh* continuing anyway"
 	cd "${ROOT}"/tmp/usr/bin
 	ln -sf python${PV%.*} python
 	cd "${ROOT}"/tmp/usr/lib
@@ -1236,7 +1236,7 @@ bootstrap_python() {
 	# http://forums.gentoo.org/viewtopic-p-6890526.html
 	rm -f libpython${PV%.*}.a
 
-	einfo "${A%-*} bootstrapped"
+	einfo "${A%-*}-${PV} bootstrapped"
 }
 
 bootstrap_zlib_core() {
@@ -1298,10 +1298,10 @@ bootstrap_zlib_core() {
 
 	einfo "Compiling ${A%-*}"
 	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
-	$MAKE "${makeopts[@]}" || return 1
+	v $MAKE "${makeopts[@]}" || return 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE "${makeopts[@]}" -j1 install || return 1
+	v $MAKE "${makeopts[@]}" -j1 install || return 1
 
 	# this lib causes issues when emerging python again on Solaris
 	# because the tmp lib path is in the library search path there
@@ -1319,7 +1319,7 @@ bootstrap_zlib_core() {
 		rm -f "${ROOT}"/tmp/usr/lib/libz.so.1
 	fi
 
-	einfo "${A%-*} bootstrapped"
+	einfo "${A%-*}-${PV} bootstrapped"
 }
 
 bootstrap_zlib() {
@@ -3007,7 +3007,7 @@ EOF
 	export CHOST=$(portageq envvar CHOST)
 
 	# after stage1 and stage2 we should have a bash of our own, which
-	# is preferably over the host-provided one, because we know it can
+	# is preferable over the host-provided one, because we know it can
 	# deal with the bash-constructs we use in stage3 and onwards
 	hash -r
 
@@ -3087,11 +3087,11 @@ EOF
 
 	[[ ${STOP_BOOTSTRAP_AFTER} == stage3 ]] && exit 0
 
-	local cmd="emerge -e system"
+	local cmd="emerge -v -e system"
 	if [[ -e ${EPREFIX}/var/cache/edb/mtimedb ]] && \
 		grep -q resume "${EPREFIX}"/var/cache/edb/mtimedb ;
 	then
-		cmd="emerge --resume"
+		cmd="emerge -v --resume"
 	fi
 	einfo "running ${cmd}"
 	if ${cmd} ; then
