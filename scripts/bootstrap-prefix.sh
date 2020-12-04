@@ -3087,6 +3087,9 @@ esac
 
 # handle GCC install path on recent Darwin
 case ${CHOST} in
+	powerpc-*darwin*)
+		unset DARWIN_USE_GCC  # there is no choice here, don't trigger SDK path
+		;;
 	*-darwin*)
 		# normalise value of DARWIN_USE_GCC
 		case ${DARWIN_USE_GCC} in
