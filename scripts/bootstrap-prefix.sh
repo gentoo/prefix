@@ -2039,7 +2039,8 @@ bootstrap_stage3() {
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 
 	# need special care, it depends on texinfo, #717786
-	pre_emerge_pkgs --nodeps sys-apps/gawk || return 1
+	# but requires a recent readline else breaks on old, e.g. darwin9
+	pre_emerge_pkgs --nodeps sys-libs/readline sys-apps/gawk || return 1
 
 	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python${PYTHONMAJMIN} )
 	# Use $ROOT tools where possible from now on.
