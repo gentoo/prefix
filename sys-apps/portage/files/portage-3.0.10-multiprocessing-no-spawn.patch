@@ -1,4 +1,4 @@
-Alteration of the original patch to force fork mode iso spawn
+Alteration of the following patch to force fork mode iso spawn
 
 From f093da4a3a457d539e5682ccecdf91f254addd8c Mon Sep 17 00:00:00 2001
 From: Zac Medico <zmedico@gentoo.org>
@@ -10,23 +10,23 @@ Force fork mode because spawn mode requires all argument to be
 pickle-able, which currently is not the case.  This is an issue because
 Python 3.8 changed the default from fork to spawn on macOS.
 
-diff --git a/lib/portage/tests/runTests.py b/lib/portage/tests/runTests.py
-index 9514abebe0..6e33077aef 100755
---- a/lib/portage/tests/runTests.py
-+++ b/lib/portage/tests/runTests.py
-@@ -4,6 +4,7 @@
+diff --git a/bin/emerge b/bin/emerge
+index 8f1db61a6..3731a9081 100755
+--- a/bin/emerge
++++ b/bin/emerge
+@@ -2,6 +2,7 @@
+ # Copyright 2006-2020 Gentoo Authors
  # Distributed under the terms of the GNU General Public License v2
  
- import grp
 +import multiprocessing
- import os
- import os.path as osp
  import platform
-@@ -60,6 +61,7 @@ def debug_signal(signum, frame):
- 	os.environ["PATH"] = ":".join(path)
+ import signal
+ import sys
+@@ -44,6 +45,7 @@ try:
+ 	from _emerge.main import emerge_main
  
- if __name__ == "__main__":
-+	multiprocessing.set_start_method('fork')
- 	try:
- 		sys.exit(tests.main())
- 	finally:
+ 	if __name__ == "__main__":
++		multiprocessing.set_start_method('fork')
+ 		from portage.exception import IsADirectory, ParseError, \
+ 				PermissionDenied
+ 		portage.process.sanitize_fds()
