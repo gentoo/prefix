@@ -94,6 +94,9 @@ pkg_pretend() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
+	# drop this patch when bug 758230 gets resolved
+	eapply "${FILESDIR}"/${PN}-3.0.10-multiprocessing-no-spawn.patch # 758230
+
 	eapply "${FILESDIR}"/${PN}-2.3.62-prefix-stack.patch # 658572
 	eapply "${FILESDIR}"/${PN}-2.3.45-ebuildshell.patch # 155161
 	if use gentoo-dev; then
