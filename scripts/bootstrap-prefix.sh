@@ -1012,6 +1012,14 @@ bootstrap_python() {
 		;;
 	esac
 
+	case ${CHOST} in
+	(*-darwin*)
+		# avoid triggering compiled out system proxy retrieval code (_scproxy)
+		sed -i -e '/sys.platform/s/darwin/disabled-darwin/' \
+			Lib/urllib/request.py
+		;;
+	esac
+
 	fix_config_sub
 
 	local myconf=""
