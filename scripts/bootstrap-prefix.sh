@@ -1205,6 +1205,12 @@ bootstrap_python() {
 	export PYTHON_DISABLE_MODULES="_bsddb bsddb bsddb185 bz2 crypt _ctypes_test _curses _curses_panel dbm _elementtree gdbm _locale nis pyexpat readline _sqlite3 _tkinter"
 	export OPT="${CFLAGS}"
 
+	if [[ ${CHOST} == *-darwin* ]]; then
+		PYTHON_DISABLE_MODULES+=" _scproxy"
+		sed -i -e '/sys.platform/s/darwin/disabled-darwin/' \
+			Lib/urllib/request.py || return 1
+	fi
+
 	einfo "Compiling ${A%-*}"
 
 	# some ancient versions of hg fail with "hg id -i", so help
@@ -1920,7 +1926,7 @@ bootstrap_stage2() {
 		elif [[ "${pkg}" == *sys-devel/llvm* || ${pkg} == *sys-devel/clang* ]] ;
 		then
 			# we need llvm/clang ASAP for libcxx* doesn't build
-			# without C++11
+			# without C++11 (this is only for older clang builds)
 			[[ -x ${ROOT}/tmp/usr/bin/clang   ]] && CC=clang
 			[[ -x ${ROOT}/tmp/usr/bin/clang++ ]] && CXX=clang++
 
@@ -2024,7 +2030,7 @@ bootstrap_stage3() {
 		# (CBUILD, BDEPEND) and with the system being built
 		# (CHOST, RDEPEND).  To correctly bootstrap stage3,
 		# PORTAGE_OVERRIDE_EPREFIX as BROOT is needed.
-		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{10,9,8,7,6,5}/}{s,}bin | sed "s, ,:${ROOT},g") \
+		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{12,11,10,9,8,7,6,5}/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		FEATURES="${FEATURES} force-prefix" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
@@ -2190,11 +2196,11 @@ bootstrap_stage3() {
 	# now we have the compiler right there
 	unset CXX CPPFLAGS LDFLAGS
 
-	# On Darwin we have llvm-3.5 at this point, which provides nm.
+	# On old Darwin we have llvm-3.5 at this point, which provides nm.
 	# However for some reason this nm doesn't quite get it on newer
 	# platforms at least, resulting in bugs like #598336.  To cater for
 	# that, get rid of this nm and rely on the host one at this stage
-	[[ ${CHOST} == *-darwin* ]] && \
+	[[ ${CHOST} == *-darwin* && ! -d "${ROOT}/MacOSX.sdk" ]] && \
 		rm -f "${ROOT}"{,/tmp}/usr/bin/{,${CHOST}-}nm
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
