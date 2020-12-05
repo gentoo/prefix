@@ -1699,7 +1699,6 @@ do_emerge_pkgs() {
 			-gdbm
 			-git
 			-libcxx
-			-nls
 			-pcre
 			-python
 			-qmanifest -qtegrity
@@ -1708,6 +1707,7 @@ do_emerge_pkgs() {
 			clang
 			internal-glib
 		)
+		[[ -d "${EPREFIX}/MacOSX.sdk" ]] || myuse+=( -nls )
 		if [[ " ${USE} " == *" prefix-stack "* ]] &&
 		   [[ ${PORTAGE_OVERRIDE_EPREFIX} == */tmp ]] &&
 		   ! grep -q '^USE=".*" # by bootstrap-prefix.sh$' "${PORTAGE_OVERRIDE_EPREFIX}/etc/portage/make.conf"
