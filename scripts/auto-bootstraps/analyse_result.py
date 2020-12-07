@@ -127,7 +127,7 @@ with os.scandir(resultsdir) as it:
             if os.path.exists(elapsedf):
                 with open(elapsedf, 'rb') as f:
                     l = f.readline()
-                    if l is not '':
+                    if l != '':
                         elapsedtime = int(l)
 
             mconf = os.path.join(resultsdir, arch, "%s" % d, "make.conf")
