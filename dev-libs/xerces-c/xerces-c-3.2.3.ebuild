@@ -14,7 +14,7 @@ if [[ ${PV} == *9999 ]] ; then
 	inherit subversion
 else
 	SRC_URI="mirror://apache/xerces/c/3/sources/${P}.tar.gz"
-	KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris ~x86-winnt"
+	KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris ~x86-winnt"
 fi
 
 LICENSE="Apache-2.0"
