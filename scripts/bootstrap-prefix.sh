@@ -664,8 +664,8 @@ bootstrap_portage() {
 	# STABLE_PV that is known to work. Intended for power users only.
 	## It is critical that STABLE_PV is the lastest (non-masked) version that is
 	## included in the snapshot for bootstrap_tree.
-	STABLE_PV="3.0.10.2"
-	[[ ${TESTING_PV} == latest ]] && TESTING_PV="3.0.10.2"
+	STABLE_PV="3.0.12"
+	[[ ${TESTING_PV} == latest ]] && TESTING_PV="3.0.12"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
@@ -968,9 +968,9 @@ bootstrap_gnu() {
 	einfo "${PN}-${PV} successfully bootstrapped"
 }
 
-PYTHONMAJMIN=3.7   # keep this number in line with PV below for stage1,2
+PYTHONMAJMIN=3.8   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
-	PV=3.7.8
+	PV=3.8.5
 	A=Python-${PV}.tar.xz
 	patch=true
 
