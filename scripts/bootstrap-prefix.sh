@@ -92,14 +92,22 @@ efetch() {
 }
 
 darwin_include_paths_for_clang() {
-	# only used on clang-based darwin installs
+	# C_INCLUDE_PATH and CPLUS_INCLUDE_PATH are the only way to override
+	# clang's builtin header search path. (vs adding new paths w/ -I or -isystem)
+	# we need to carefully adjust these paths throughout stage 1 & stage 2 in order
+	# to successfully bootstrap with clang on darwin.
 
 	local XCODE_PATH=$(xcode-select -p)
 	# Xcode.app path is deeper than CommandLineTools path
 	[[ "${XCODE_PATH}" == */CommandLineTools ]] || XCODE_PATH+="/Toolchains/XcodeDefault.xctoolchain"
 
 	export C_INCLUDE_PATH="${ROOT}/MacOSX.sdk/usr/include"
+	# stage1&2: CPLUS_INCLUDE_PATH needs to have system c++ headers before libcxx is built
 	export CPLUS_INCLUDE_PATH="${XCODE_PATH}/usr/include/c++/v1:${C_INCLUDE_PATH}"
+	# stage2: CPLUS_INCLUDE_PATH must not have system c++ headers for building libcxx
+	export libcxx_CPLUS_INCLUDE_PATH="${C_INCLUDE_PATH}"
+	# stage2: CPLUS_INCLUDE_PATH should have EPREFIX/tmp c++ headers after libcxx is built
+	export post_libcxx_CPLUS_INCLUDE_PATH="${ROOT}/tmp/usr/include/c++/v1:${C_INCLUDE_PATH}"
 }
 
 configure_cflags() {
@@ -245,12 +253,14 @@ configure_toolchain() {
 					vers=${vers% (clang-*}
 					# this is Clang, recent enough to compile recent clang
 					mycc=clang
+					# llvm and clang must be built with the same libc++
+					# So, make sure that llvm and clang are always after libcxx*
 					compiler_stage1+="
 						${llvm_deps}
-						sys-devel/llvm
-						sys-devel/clang
 						sys-libs/libcxxabi
-						sys-libs/libcxx"
+						sys-libs/libcxx
+						sys-devel/llvm
+						sys-devel/clang"
 					CC=clang
 					CXX=clang++
 					linker=sys-devel/binutils-apple
@@ -274,10 +284,10 @@ configure_toolchain() {
 							mycc=clang
 							compiler_stage1+="
 								${llvm_deps}
-								sys-devel/llvm
-								sys-devel/clang
 								sys-libs/libcxxabi
-								sys-libs/libcxx"
+								sys-libs/libcxx
+								sys-devel/llvm
+								sys-devel/clang"
 							;;
 					esac
 					CC=clang
@@ -314,10 +324,10 @@ configure_toolchain() {
 				local cdep="3.5.9999"
 				compiler_stage1+="
 					dev-libs/libffi
-					<sys-devel/llvm-${cdep}
 					<sys-libs/libcxx-headers-${cdep}
 					<sys-libs/libcxxabi-${cdep}
 					<sys-libs/libcxx-${cdep}
+					<sys-devel/llvm-${cdep}
 					<sys-devel/clang-${cdep}"
 			fi
 
@@ -1882,7 +1892,18 @@ bootstrap_stage2() {
 	EXTRA_ECONF=$(rapx --with-sysroot=/) \
 	emerge_pkgs --nodeps ${linker} || return 1
 
+	local save_CPPFLAGS="${CPPFLAGS}"
 	for pkg in ${compiler_stage1} ; do
+		if [[ "${pkg}" == *sys-libs/libcxx* && ! -z ${libcxx_CPLUS_INCLUDE_PATH+x} ]] ;
+		then
+			# see darwin_include_paths_for_clang
+			export CPLUS_INCLUDE_PATH="${libcxx_CPLUS_INCLUDE_PATH}"
+		elif [[ "${pkg}" == *sys-devel/llvm* || "${pkg}" == *sys-devel/clang* ]] ;
+		then
+			# clang doesn't have the implicit framework paths configured yet.
+			export CPPFLAGS="${save_CPPFLAGS} -F${ROOT}/MacOSX.sdk/System/Library/Frameworks"
+		fi
+
 		# <glibc-2.5 does not understand .gnu.hash, use
 		# --hash-style=both to produce also sysv hash.
 		EXTRA_ECONF="--disable-bootstrap $(rapx --with-linker-hash-style=both) --with-local-prefix=${ROOT}" \
@@ -1892,12 +1913,25 @@ bootstrap_stage2() {
 		PYTHON_COMPAT_OVERRIDE=python${PYTHONMAJMIN} \
 		emerge_pkgs --nodeps ${pkg} || return 1
 
-		if [[ "${pkg}" == *sys-devel/llvm* || ${pkg} == *sys-devel/clang* ]] ;
+		if [[ "${pkg}" == *sys-libs/libcxx* && ! -z ${post_libcxx_CPLUS_INCLUDE_PATH+x} ]] ;
+		then
+			# see darwin_include_paths_for_clang
+			export CPLUS_INCLUDE_PATH="${post_libcxx_CPLUS_INCLUDE_PATH}"
+		elif [[ "${pkg}" == *sys-devel/llvm* || ${pkg} == *sys-devel/clang* ]] ;
 		then
 			# we need llvm/clang ASAP for libcxx* doesn't build
 			# without C++11
 			[[ -x ${ROOT}/tmp/usr/bin/clang   ]] && CC=clang
 			[[ -x ${ROOT}/tmp/usr/bin/clang++ ]] && CXX=clang++
+
+			# once clang is installed, drop the INCLUDE_PATH vars
+			# so that we do not duplicate internal include paths
+			# (duplicates can cause system header not found issues)
+			[[ ${INCLUDE_EPREFIX_DARWIN_SDK} == 1 && -d ${ROOT}/tmp/usr/lib/clang ]] \
+				&& unset C_INCLUDE_PATH CPLUS_INCLUDE_PATH
+
+			# reset CPPFLAGS to drop the framework path
+			export CPPFLAGS="${save_CPPFLAGS}"
 		fi
 	done
 
