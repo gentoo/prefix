@@ -7,13 +7,12 @@ DESCRIPTION="GNU utility to convert program --help output to a man page"
 HOMEPAGE="https://www.gnu.org/software/help2man/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 
-# Was: https://raw.githubusercontent.com/cygwinports/help2man/${CYGWIN_PATCHREV}/${CYGWIN_PATCH} -> ${PN}-${CYGWIN_PATCH}
-CYGWIN_PATCHREV="adf3e6f73a4857e55594f140d6282d9ff5362f5a"
-CYGWIN_PATCH="1.40.4-cygwin-nls.patch"
-CYGWIN_REV="-2"
-SRC_URI+=" elibc_Cygwin? (
-	https://raw.githubusercontent.com/msys2/MSYS2-packages/master/help2man/${CYGWIN_PATCH} -> ${PN}-${CYGWIN_PATCH}${CYGWIN_REV}
-)"
+# Needed to rebase the Makefile hunk, now in files/
+#CYGWIN_PATCHREV="60ae068c5e01fbed4ee3f86107f7df64d596a864"
+#CYGWIN_PATCH="1.40.4-cygwin-nls.patch"
+#SRC_URI+=" elibc_Cygwin? (
+#	https://raw.githubusercontent.com/cygwinports/help2man/${CYGWIN_PATCHREV}/${CYGWIN_PATCH} -> ${PN}-${CYGWIN_PATCH}
+#)"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -36,8 +35,11 @@ src_prepare() {
 			-e 's/-shared/-bundle/' \
 			Makefile.in || die
 	fi
+
 	default
-	use elibc_Cygwin && eapply -p2 "${DISTDIR}/${PN}-${CYGWIN_PATCH}${CYGWIN_REV}"
+
+	use elibc_Cygwin && eapply -p2 "${FILESDIR}"/${PN}-1.47.16-cygwin.patch
+	#use elibc_Cygwin && eapply -p2 "${DISTDIR}/${PN}-${CYGWIN_PATCH}"
 }
 
 src_configure() {
