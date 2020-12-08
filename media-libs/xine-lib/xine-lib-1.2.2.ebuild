@@ -61,7 +61,6 @@ RDEPEND="${NLS_RDEPEND}
 	real? (
 		amd64? ( media-libs/amd64codecs )
 		x86? ( media-libs/win32codecs )
-		x86-fbsd? ( media-libs/win32codecs )
 		)
 	samba? ( net-fs/samba )
 	sdl? ( media-libs/libsdl )

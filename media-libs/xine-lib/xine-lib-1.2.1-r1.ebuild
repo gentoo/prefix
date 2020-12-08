@@ -10,7 +10,7 @@ if [[ ${PV} == *9999* ]]; then
 	EHG_REPO_URI="http://hg.debian.org/hg/xine-lib/xine-lib-1.2"
 	inherit autotools mercurial
 else
-	#KEYWORDS="amd64 hppa ppc ppc64 x86 ~x86-fbsd"
+	#KEYWORDS="amd64 hppa ppc ppc64 x86"
 	SRC_URI="mirror://sourceforge/xine/${P}.tar.xz"
 fi
 
@@ -55,7 +55,6 @@ RDEPEND="dev-libs/libxdg-basedir
 	real? (
 		amd64? ( media-libs/amd64codecs )
 		x86? ( media-libs/win32codecs )
-		x86-fbsd? ( media-libs/win32codecs )
 		)
 	samba? ( net-fs/samba )
 	sdl? ( media-libs/libsdl )
