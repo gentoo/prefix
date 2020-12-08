@@ -54,6 +54,10 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.19.7-disable-libintl.patch #564168
 	epatch "${FILESDIR}"/${PN}-0.19.8.1-format-security.patch
 
+	# Avoid triggering Autotools regeneration due to modification of
+	# gettext.m4 in gettext-0.19.7-disable-libintl.patch
+	touch -r gettext-runtime/m4/iconv.m4 gettext-runtime/m4/gettext.m4
+
 	if use elibc_Cygwin; then
 		epatch "${FILESDIR}"/0.19.8.1-no-woe32dll.patch
 		epatch "${FILESDIR}"/0.19.3-localename.patch

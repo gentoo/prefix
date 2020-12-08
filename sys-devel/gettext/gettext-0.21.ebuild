@@ -84,6 +84,10 @@ src_prepare() {
 
 	default
 
+	# Avoid triggering Autotools regeneration due to modification of
+	# gettext.m4 in gettext-0.19.7-disable-libintl.patch
+	touch -r gettext-runtime/m4/iconv.m4 gettext-runtime/m4/gettext.m4
+
 	# this script uses syntax that Solaris /bin/sh doesn't grok
 	sed -i -e '1c\#!/usr/bin/env sh' \
 		gettext-tools/misc/convert-archive.in || die
