@@ -1575,6 +1575,7 @@ do_emerge_pkgs() {
 			-pcre
 			-python
 			-qmanifest -qtegrity
+			-readline
 			bootstrap
 			clang
 			internal-glib
