@@ -1618,7 +1618,7 @@ do_emerge_pkgs() {
 			PORTAGE_SYNC_STALE=0 \
 			FEATURES="-news ${FEATURES}" \
 			USE="${myuse[*]}" \
-			emerge -v --oneshot --root-deps ${opts} "${pkg}" 
+			emerge --color n -v --oneshot --root-deps ${opts} "${pkg}"
 		)
 		[[ $? -eq 0 ]] || return 1
 
@@ -2103,7 +2103,7 @@ bootstrap_stage3() {
 		# snapshot beforehand
 		emerge-webrsync --keep || return 1
 	else
-		emerge --sync || emerge-webrsync || return 1
+		emerge --color n --sync || emerge-webrsync || return 1
 	fi
 
 	# avoid installing git or encryption just for fun while completing @system
@@ -2115,11 +2115,11 @@ bootstrap_stage3() {
 	# very well on Darwin (-DGNUSTEP_BASE_VERSION hack)
 	einfo "running emerge -u system"
 	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
-	CFLAGS= CXXFLAGS= emerge -u system || return 1
+	CFLAGS= CXXFLAGS= emerge --color n -u system || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
-	emerge --depclean
+	emerge --color n --depclean
 
 	# "wipe" mtimedb such that the resume list is proper after this stage
 	# (--depclean may fail, which is ok)
