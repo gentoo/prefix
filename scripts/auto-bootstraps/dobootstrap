@@ -125,6 +125,7 @@ do_prepare() {
 		${LATEST_TREE_YES+LATEST_TREE_YES=1} \
 		${TREE_FROM_SRC+TREE_FROM_SRC=}${TREE_FROM_SRC} \
 		${DARWIN_USE_GCC+DARWIN_USE_GCC=}${DARWIN_USE_GCC} \
+		${PREFIX_DISABLE_RAP+PREFIX_DISABLE_RAP=}${PREFIX_DISABLE_RAP} \
 		${keepalive} ${BASH} ${bootstrapscript} bootstrap
 	endtime=${SECONDS}
 
@@ -194,9 +195,10 @@ case $1 in
 		fi
 		for arg in "${@:1}" ; do
 			case "${arg}" in
-				libressl)   export DOLIBRESSL=1      ;;
-				latesttree) export LATEST_TREE_YES=1 ;;
-				32|64)      bitw=${arg}              ;;
+				libressl)     export DOLIBRESSL=1           ;;
+				latesttree)   export LATEST_TREE_YES=1      ;;
+				norap|no-rap) export PREFIX_DISABLE_RAP=yes ;;
+				32|64)        bitw=${arg}                   ;;
 			esac
 		done
 		do_prepare ${bitw}
