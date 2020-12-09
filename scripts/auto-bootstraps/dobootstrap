@@ -140,6 +140,9 @@ do_prepare() {
 			# UNIX vendors
 			local dist=$(lsb_release -si)
 			local rel=$(lsb_release -sr)
+			while [[ ${rel} == *.*.* ]] ; do
+				rel=${rel%.*}
+			done
 			local platform=pc
 			# this is the logic used in bootstrap-prefix.sh
 			[[ ${PREFIX_DISABLE_RAP} != "yes" ]] && platform=rap
