@@ -574,6 +574,9 @@ bootstrap_setup() {
 	# because jsoncpp requires meson which is not available yet.
 	# So, cmake needs to temporarily bootstrap its own jsconcpp.
 	dev-util/cmake -system-jsoncpp
+	# disable bootstrapping libcxx* with libunwind
+	sys-libs/libcxxabi -libunwind
+	sys-libs/libcxx -libunwind
 	# Most binary Linux distributions seem to fancy toolchains that
 	# do not do c++ support (need to install a separate package).
 	sys-libs/ncurses -cxx
