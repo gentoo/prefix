@@ -1415,6 +1415,33 @@ bootstrap_libressl() {
 		https://ftp.openbsd.org/pub/OpenBSD/LibreSSL
 }
 
+bootstrap_libtapi() {
+	# grab the libtapi headers (which are actually compiled headers)
+	# but link with libtapi.dylib from CommaandLineTools
+
+	local PN PV A S
+	PN=libtapi
+	PV=1000.10.8_1
+	rev=${CHOST##*darwin}
+	A=${PN}-${PV}.darwin_${rev}.x86_64.tbz2
+	einfo "Bootstrapping ${A%-*} (link to system dylib)"
+
+	efetch "http://packages.macports.org/libtapi/${A}"
+
+	einfo "Unpacking ${A%-*}"
+	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
+	rm -rf "${S}"
+	mkdir -p "${S}"
+	cd "${S}"
+	bzip2 -dc "${DISTDIR}/${A}" | tar -xf - || return 1
+	cp -r opt/local/include/tapi "${ROOT}"/tmp/usr/include || return 1
+
+	# to link with this lib, pass '-client_name ld' in LDFLAGS
+	ln -s /Library/Developer/CommandLineTools/usr/lib/libtapi.dylib "${ROOT}"/tmp/usr/lib
+	# This should get replaced by sys-libs/tapi during "emerge -e system"
+	ln -s /Library/Developer/CommandLineTools/usr/lib/libtapi.dylib "${ROOT}"/usr/lib
+}
+
 bootstrap_stage_host_gentoo() {
 	if ! is-rap ; then
 		einfo "Shortcut only supports prefix-standalone, but we are bootstrapping"
@@ -1833,6 +1860,19 @@ bootstrap_stage2() {
 	echo "dev-util/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+
+	if [[ ${CHOST} == *-darwin* ]]; then
+		# libtapi.dylib is needed to build the binutils-apple linker,
+		# but building sys-libs/tapi requires llvm to be installed
+		# because it uses llvm.eclass which checks for which version
+		# of llvm is installed. Also, building libtapi includes
+		# re-building the sources of llvm & clang to get some internal
+		# binaries that don't get installed, but we haven't installed
+		# the llvm deps yet. So, we can't install tapi via portage yet.
+		[[ ${DARWIN_USE_GCC} == 1 ]] \
+			|| [[ -f "${ROOT}"/tmp/usr/lib/libtapi.dylib ]] \
+			|| (bootstrap_libtapi) || return 1
+	fi
 
 	# Debian multiarch supported by RAP needs ld to support sysroot.
 	EXTRA_ECONF=$(rapx --with-sysroot=/) \
