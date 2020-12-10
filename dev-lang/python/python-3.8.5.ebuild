@@ -107,6 +107,7 @@ src_prepare() {
 		sed -i \
 			-e 's/KQUEUE/KQUEUE_DISABLED/' \
 			configure.ac configure || die
+		eapply "${FILESDIR}"/${PN}-3.8.5-darwin9.patch
 	fi
 
 	# side-effect of disabling scproxy (see below), make sure we don't

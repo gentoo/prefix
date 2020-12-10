@@ -330,6 +330,11 @@ configure_toolchain() {
 					compiler_stage1=${compiler_stage1/" dev-libs/mpfr "/" <dev-libs/mpfr-4 "}
 					;;
 			esac
+			local nmout=$(nm -B 2>&1)
+			case "${nmout}" in
+				*/dev/null*)  :                            ;;  # apparently GNU
+				*)            export NM="$(type -P nm) -p" ;;  # Solaris nm
+			esac
 			;;
 		*-*-aix*)
 			linker=sys-devel/native-cctools
@@ -970,10 +975,8 @@ bootstrap_gnu() {
 
 PYTHONMAJMIN=3.8   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
-	PV=3.8.5
+	PV=3.8.6
 	A=Python-${PV}.tar.xz
-	patch=true
-
 	einfo "Bootstrapping ${A%-*}"
 
 	# don't really want to put this on the mirror, since they are
@@ -986,22 +989,15 @@ bootstrap_python() {
 	mkdir -p "${S}"
 	cd "${S}"
 	case ${A} in
-	*bz2) bzip2 -dc "${DISTDIR}"/${A} | tar -xf - ;;
-	*xz) xz -dc "${DISTDIR}"/${A} | tar -xf - ;;
-	*) einfo "Don't know to unpack ${A}" ;;
+		*bz2) bzip2 -dc "${DISTDIR}"/${A} | tar -xf - ;;
+		*xz)  xz -dc "${DISTDIR}"/${A} | tar -xf -    ;;
+		*)    einfo "Don't know to unpack ${A}"       ;;
 	esac
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/Python-${PV}
 	cd "${S}"
 	rm -rf Modules/_ctypes/libffi* || return 1
 	rm -rf Modules/zlib || return 1
-
-	if ${patch}; then
-		# This patch is critical and needs to be applied even
-		# when using the otherwise unpatched sources.
-		efetch "http://dev.gentoo.org/~grobian/distfiles/python-3.6-02_all_disable_modules_and_ssl.patch"
-		patch -p0 < "${DISTDIR}"/python-3.6-02_all_disable_modules_and_ssl.patch
-	fi
 
 	case ${CHOST} in
 	(*-*-cygwin*)
@@ -1044,6 +1040,9 @@ bootstrap_python() {
 		sed -i \
 			-e 's/KQUEUE/KQUEUE_DISABLED/' \
 			configure
+		# fixup thread id detection
+		efetch "http://dev.gentoo.org/~grobian/distfiles/python-3.8.6-darwin9.patch"
+		patch -p1 < "${DISTDIR}"/python-3.8.6-darwin9.patch
 		;;
 	esac
 
@@ -1109,7 +1108,6 @@ bootstrap_python() {
 	export HOME="${S}"
 
 	export PYTHON_DISABLE_MODULES="_bsddb bsddb bsddb185 bz2 crypt _ctypes_test _curses _curses_panel dbm _elementtree gdbm _locale nis pyexpat readline _sqlite3 _tkinter"
-	export PYTHON_DISABLE_SSL=1
 	export OPT="${CFLAGS}"
 
 	einfo "Compiling ${A%-*}"
