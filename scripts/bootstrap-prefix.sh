@@ -237,7 +237,8 @@ configure_toolchain() {
 				app-arch/libarchive
 				app-crypt/rhash
 				dev-util/cmake
-				dev-util/ninja"
+				dev-util/ninja
+				sys-devel/gnuconfig"
 			case "${ccvers}" in
 				*"Apple clang version "*)
 					vers=${ccvers#*Apple clang version }
