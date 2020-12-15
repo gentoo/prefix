@@ -16,7 +16,7 @@ RESTRICT="!test? ( test )"
 
 # meson/ninja buildsystem, breaks of course (at least on Solaris), most
 # likely will introduce problems during bootstrap too
-#KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+#KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 # * libelf isn't strictly necessary, but makes gresource tool more useful, and
 # the check is automagic in gio/meson.build. gresource is not a multilib tool
