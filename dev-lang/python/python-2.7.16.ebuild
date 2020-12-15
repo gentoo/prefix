@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -24,7 +24,7 @@ SRC_URI+=" elibc_Cygwin? (
 
 LICENSE="PSF-2"
 SLOT="2.7"
-KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua -berkdb bluetooth build doc elibc_uclibc examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
@@ -136,8 +136,6 @@ src_prepare() {
 	fi
 	# don't try to do fancy things on Darwin
 	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
-	# On AIX, we've wrapped /usr/ccs/bin/nm to work around long TMPDIR.
-	sed -i -e "/^NM=.*nm$/s,^.*$,NM=$(tc-getNM)," Modules/makexp_aix || die
 	# fix header standards conflicts on Solaris
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		# GCC5 switched the default from gnu89 to gnu11, a standards
@@ -241,7 +239,6 @@ src_configure() {
 	# Needed on FreeBSD unless Python 2.7 is already installed.
 	# Please query BSD team before removing this!
 	# On AIX this is not needed, but would record '.' as runpath.
-	[[ ${CHOST} == *-aix* ]] ||
 	append-ldflags "-L."
 
 	if use prefix ; then
@@ -520,20 +517,6 @@ EOF
 	fi
 
 	sed -e "s/\(LDFLAGS=\).*/\1/" -i "${libdir}/config/Makefile" || die "sed failed"
-	if [[ ${CHOST} == *-aix* ]]; then
-		# fix upstream bugs with quite large proposed diffs still to be sorted out:
-		# http://bugs.python.org/issue13493
-		# http://bugs.python.org/issue14150
-		# http://bugs.python.org/issue15590
-		# http://bugs.python.org/issue16189
-		sed -e "/Libs:/s|\$| -Wl,-bE:${EPREFIX}/${libdir#$ED}/config/python.exp -lld|" \
-			-i "${ED}"usr/$(get_libdir)/pkgconfig/python-${SLOT}.pc || die "sed failed"
-		sed -e "s|:Modules/python.exp|:${EPREFIX}/${libdir#$ED}/config/python.exp|" \
-			-e 's| -bI:| -Wl,-bI:|g' \
-			-e '/LINKFORSHARED/s|-bE:|-bI:|g' \
-			-e '/LINKFORSHARED/s| -lld||g' \
-			-i "${libdir}"/{_sysconfigdata.py,config/Makefile} || die "sed failed"
-	fi
 
 	# Fix collisions between different slots of Python.
 	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${SLOT}"
