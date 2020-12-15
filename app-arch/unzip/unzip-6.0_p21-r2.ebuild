@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="6"
@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/infozip/${MY_P}.tar.gz
 
 LICENSE="Info-ZIP"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="bzip2 natspec unicode"
 
 DEPEND="bzip2? ( app-arch/bzip2 )
@@ -64,8 +64,6 @@ src_configure() {
 	*bsd* | *dragonfly*) TARGET="bsd" ;;
 	*-darwin*)           TARGET="macosx" ;;
 	*-solaris*)          TARGET="generic" ;;
-	*-aix*)              TARGET="gcc"; append-cppflags "-DNO_LCHMOD"; append-ldflags "-Wl,-blibpath:${EPREFIX}/usr/$(get_libdir)" ;;
-	*-hpux*)             TARGET="gcc"; append-ldflags "-Wl,+b,${EPREFIX}/usr/$(get_libdir)" ;;
 	*-mint*)             TARGET="generic" ;;
 	*-cygwin*)           TARGET="generic" ;;
 	*) die "Unknown target; please update the ebuild to handle ${CHOST}	" ;;
