@@ -4,12 +4,13 @@
 EAPI="7"
 WANT_LIBTOOL="none"
 
-inherit autotools flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs
+inherit autotools flag-o-matic multiprocessing pax-utils \
+	python-utils-r1 toolchain-funcs
 
 MY_P="Python-${PV}"
 PYVER=$(ver_cut 1-2)
-PATCHSET="python-gentoo-patches-${PV}"
-PREFIX_PATCHSET="python-prefix-gentoo-${PV}-patches-r0"
+PATCHSET="python-gentoo-patches-${PV}-r1"
+PREFIX_PATCHSET="python-prefix-gentoo-${PV}-patches-r2"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
@@ -74,20 +75,14 @@ src_prepare() {
 
 	default
 
-	# we provide a fully working readline also on Darwin, so don't force
-	# usage of less functional libedit
-	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
-
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
-	# workaround a development build env problem and muck around
-	# framework install to get the best of both worlds (non-standard)
-	sed -i \
-		-e "s:FRAMEWORKINSTALLAPPSPREFIX=\":FRAMEWORKINSTALLAPPSPREFIX=\"${EPREFIX}:" \
-		-e '/RUNSHARED=DYLD_FRAMEWORK_PATH/s/FRAMEWORK/LIBRARY/g' \
-		configure.ac configure || die
-	sed -i -e '/find/s/$/ || true/' Mac/PythonLauncher/Makefile.in || die
+	# force correct number of jobs
+	# https://bugs.gentoo.org/737660
+	local jobs=$(makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
+	sed -i -e "s:-j0:-j${jobs}:" Makefile.pre.in || die
+	sed -i -e "/self\.parallel/s:True:${jobs}:" setup.py || die
 
 	# workaround a problem on ppc-macos with >=GCC-8 where dtoa gets
 	# miscompiled when optimisation is being used
@@ -100,7 +95,7 @@ src_prepare() {
 
 	# Darwin 9's kqueue seems to act up (at least at this stage), so
 	# make Python's selectors resort to poll() or select()
-	if [[ ${CHOST} == powerpc*-darwin* ]] ; then
+	if [[ ${CHOST} == powerpc*-darwin9 ]] ; then
 		sed -i \
 			-e 's/KQUEUE/KQUEUE_DISABLED/' \
 			configure.ac configure || die
@@ -110,6 +105,9 @@ src_prepare() {
 	# try to use it on Darwin either
 	sed -i -e '/sys.platform/s/darwin/disabled-darwin/' \
 		Lib/urllib/request.py || die
+
+	# disable SDK usage on Darwin/macOS
+	sed -i -e '/^MACOS = /s/darwin/no-darwin/' setup.py || die
 
 	eautoreconf
 }
@@ -176,7 +174,7 @@ src_configure() {
 	if use aqua ; then
 		ECONF_SOURCE="${S}" OPT="" \
 		econf \
-			--enable-framework="${EPREFIX}"/usr/lib \
+			--enable-framework="${EPREFIX}" \
 			--config-cache
 	fi
 
@@ -236,7 +234,6 @@ src_test() {
 
 	# bug 660358
 	local -x COLUMNS=80
-
 	local -x PYTHONDONTWRITEBYTECODE=
 
 	emake test EXTRATESTOPTS="-u-network" CPPFLAGS= CFLAGS= LDFLAGS= < /dev/tty
@@ -276,7 +273,7 @@ src_install() {
 		rmdir "${ED}"/Applications/Python* || die
 		rmdir "${ED}"/Applications || die
 
-		local fwdir=/usr/$(get_libdir)/Python.framework/Versions/${PYVER}
+		local fwdir=/Frameworks/Python.framework/Versions/${PYVER}
 		ln -s "${EPREFIX}"/usr/include/python${PYVER} \
 			"${ED}${fwdir}"/Headers || die
 		ln -s "${EPREFIX}"/usr/lib/libpython${PYVER}.dylib \
