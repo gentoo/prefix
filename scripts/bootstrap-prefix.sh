@@ -434,6 +434,10 @@ bootstrap_setup() {
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/11.$((rev - 20))/x64"
 			;;
+		arm64-apple-darwin2[0123456789])
+			rev=${CHOST##*darwin}
+			profile="prefix/darwin/macos/11.$((rev - 20))/arm64"
+			;;
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
 			;;
@@ -511,14 +515,21 @@ bootstrap_setup() {
 			;;
 	esac
 
-	if [[ ${DARWIN_USE_GCC} == 1 ]] ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		# setup MacOSX.sdk symlink for GCC, this should probably be
 		# managed using an eselect module in the future
 		rm -f "${ROOT}"/MacOSX.sdk
 		local SDKPATH=$(xcrun --show-sdk-path --sdk macosx)
+		if [[ -e ${SDKPATH} ]] ; then
+			SDKPATH=$(xcodebuild -showsdks | sort -nr \
+				| grep -o "macosx.*" | head -n1)
+			SDKPATH=$(xcode-select -print-path)/SDKs/MacOSX${SDKPATH#macosx}.sdk
+		fi
 		( cd "${ROOT}" && ln -s "${SDKPATH}" MacOSX.sdk )
 		einfo "using system sources from ${SDKPATH}"
+	fi
 
+	if [[ ${DARWIN_USE_GCC} == 1 ]] ; then
 		# amend profile, to use gcc one
 		profile="${profile}/gcc"
 	fi
@@ -687,6 +698,8 @@ bootstrap_portage() {
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
+	fix_config_sub
+
 	# disable ipc
 	sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
 		-i lib/_emerge/AbstractEbuildProcess.py || \
@@ -743,6 +756,20 @@ bootstrap_portage() {
 	einfo "${A%-*} successfully bootstrapped"
 }
 
+fix_config_sub() {
+	# macOS Big Sur (11.x, darwin20) supports Apple Silicon (arm64),
+	# which config.sub doesn't understand about.  It is, however, Apple
+	# who seem to use arm64-apple-darwin20 CHOST triplets, so patch that
+	# for various versions of autoconf
+	if [[ ${CHOST} == arm64-apple-darwin* ]] ; then
+		# Apple Silicon doesn't use aarch64, but arm64
+		find . -name "config.sub" | \
+			xargs sed -i -e 's/ arm\(-\*\)* / arm\1 | arm64\1 /'
+		find . -name "config.sub" | \
+			xargs sed -i -e 's/ aarch64 / aarch64 | arm64 /'
+	fi
+}
+
 bootstrap_simple() {
 	local PN PV A S myconf
 	PN=$1
@@ -765,6 +792,8 @@ bootstrap_simple() {
 	${decomp} -dc "${DISTDIR}"/${A} | tar -xf - || return 1
 	S="${S}"/${PN}-${PV}
 	cd "${S}"
+
+	fix_config_sub
 
 	# for libressl, only provide static lib, such that wget (above)
 	# links it in and we don't have to bother about RPATH or something
@@ -874,6 +903,8 @@ bootstrap_gnu() {
 		patch -p1 < "${DISTDIR}"/m4-1.4.18-glibc228.patch || return 1
 	fi
 
+	fix_config_sub
+
 	if [[ ${PN} == "grep" ]] ; then
 		# Solaris and OSX don't like it when --disable-nls is set,
 		# so just don't set it at all.
@@ -949,6 +980,10 @@ bootstrap_gnu() {
 			;;
 		(i?86-*-*)
 			export CFLAGS="-m32"
+			;;
+		(arm64-*-darwin*)
+			sed -i -e 's/aarch64\*-\*-\*/arm64*-*-*|&/' \
+				configure configure.host
 			;;
 		esac
 	fi
@@ -1044,7 +1079,15 @@ bootstrap_python() {
 		efetch "http://dev.gentoo.org/~grobian/distfiles/python-3.8.6-darwin9.patch"
 		patch -p1 < "${DISTDIR}"/python-3.8.6-darwin9.patch
 		;;
+	(arm64-*-darwin*)
+		# Teach Python a new trick (arm64)
+		sed -i \
+			-e "/Unexpected output of 'arch' on OSX/d" \
+			configure
+		;;
 	esac
+
+	fix_config_sub
 
 	local myconf=""
 
@@ -1228,6 +1271,7 @@ bootstrap_zlib() {
 }
 
 bootstrap_libffi() {
+	bootstrap_gnu libffi 3.3 || \
 	bootstrap_gnu libffi 3.2.1
 }
 
@@ -1738,8 +1782,8 @@ bootstrap_stage2() {
 	[[ ${CHOST} == *-solaris* ]] && echo "=dev-libs/libffi-3.3_rc0" \
 		>> "${ROOT}"/tmp/etc/portage/package.mask
 
-	# unlock GCC on Darwin for DARWIN_USE_GCC bootstraps
-	if [[ ${DARWIN_USE_GCC} == 1 ]] ; then
+	# provide active SDK link on Darwin
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		rm -f "${ROOT}"/tmp/MacOSX.sdk
 		( cd "${ROOT}"/tmp && ln -s ../MacOSX.sdk )
 	fi
@@ -2579,6 +2623,7 @@ EOF
 		*86*-darwin9|*86*-darwin1[012345])
 			# PPC/Darwin only works in 32-bits mode, so this is Intel
 			# only, and only starting from Leopard (10.5, darwin9)
+			# with Big Sur (11.0, darwin20) we have x64 or arm64 only
 			candomultilib=yes
 			t64=x86_64-${CHOST#*-}
 			t32=i686-${CHOST#*-}
@@ -3009,9 +3054,11 @@ if [[ -z ${CHOST} ]]; then
 				;;
 			Darwin)
 				rev="`uname -r | cut -d'.' -f 1`"
-				if [[ ${rev} -ge 11 ]] ; then
+				if [[ ${rev} -ge 11 && ${rev} -le 19 ]] ; then
 					# Lion and up are 64-bits default (and 64-bits CPUs)
 					CHOST="x86_64-apple-darwin$rev"
+				elif [[ ${rev} -ge 20 ]] ; then
+					CHOST="`uname -m`-apple-darwin$rev"
 				else
 					CHOST="`uname -p`-apple-darwin$rev"
 				fi
@@ -3086,8 +3133,8 @@ esac
 
 # handle GCC install path on recent Darwin
 case ${CHOST} in
-	powerpc-*darwin*)
-		unset DARWIN_USE_GCC  # there is no choice here, don't trigger SDK path
+	powerpc-*darwin*|arm64-*darwin*)
+		unset DARWIN_USE_GCC  # there is no choice here, don't trigger GCC path
 		;;
 	*-darwin*)
 		# normalise value of DARWIN_USE_GCC
