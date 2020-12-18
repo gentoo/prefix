@@ -520,7 +520,7 @@ bootstrap_setup() {
 		# managed using an eselect module in the future
 		rm -f "${ROOT}"/MacOSX.sdk
 		local SDKPATH=$(xcrun --show-sdk-path --sdk macosx)
-		if [[ -e ${SDKPATH} ]] ; then
+		if [[ ! -e ${SDKPATH} ]] ; then
 			SDKPATH=$(xcodebuild -showsdks | sort -nr \
 				| grep -o "macosx.*" | head -n1)
 			SDKPATH=$(xcode-select -print-path)/SDKs/MacOSX${SDKPATH#macosx}.sdk
@@ -3058,6 +3058,9 @@ if [[ -z ${CHOST} ]]; then
 					# Lion and up are 64-bits default (and 64-bits CPUs)
 					CHOST="x86_64-apple-darwin$rev"
 				elif [[ ${rev} -ge 20 ]] ; then
+					# uname -p returns arm, -m returns arm64 on this
+					# release while on Darwin 9 -m returns something
+					# like "PowerPC Machine", hence the distinction
 					CHOST="`uname -m`-apple-darwin$rev"
 				else
 					CHOST="`uname -p`-apple-darwin$rev"
