@@ -1401,7 +1401,7 @@ bootstrap_texinfo() {
 }
 
 bootstrap_bash() {
-	bootstrap_gnu bash 5.1-rc3 ||
+	bootstrap_gnu bash 5.1 ||
 	bootstrap_gnu bash 4.3 ||
 	bootstrap_gnu bash 4.2
 }
