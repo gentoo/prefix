@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.7.3-r1.ebuild,v 1.16 2014/01/19 01:51:34 dirtyepic Exp $
 
@@ -31,7 +31,6 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
-	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	kernel_linux? ( >=${CATEGORY}/binutils-2.18 )"
 
 if [[ ${CATEGORY} != cross-* ]] ; then
@@ -93,11 +92,6 @@ src_prepare() {
 		epatch "${FILESDIR}"/4.7.2/pr52714.patch
 	fi
 
-	# Always behave as if -pthread were passed on AIX and HPUX (#266548)
-# fails, likely still necessary though
-#	epatch "${FILESDIR}"/4.5.1/aix-force-pthread.patch
-#	epatch "${FILESDIR}"/4.5.1/ia64-hpux-always-pthread.patch
-
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 }
 
@@ -113,27 +107,6 @@ src_configure() {
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
 			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld --with-gnu-as"
-		;;
-		*-aix*)
-			# AIX doesn't use GNU binutils, because it doesn't produce usable
-			# code
-			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
-			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
-		;;
-		*-interix*)
-			# disable usage of poll() on interix, since poll() only
-			# works on the /proc filesystem (.......)
-			export glibcxx_cv_POLL=no
-
-			# if using the old system as, gcc's configure script fails
-			# to detect that as cannot handle .lcomm with alignment.
-			# on interix, it is rather easy to detect the as, since there
-			# is only _one_ build of it with a fixed date in the version
-			# header...
-			if as --version | grep 20021111 > /dev/null 2>&1; then
-				einfo "preventing gcc from detecting .lcomm alignment option in interix system as."
-				export gcc_cv_as_lcomm_with_alignment=no
-			fi
 		;;
 		i[34567]86-*-linux*:*" prefix "*)
 			# to allow the linux-x86-on-amd64.patch become useful, we need
@@ -160,25 +133,6 @@ src_configure() {
 
 src_install() {
 	toolchain_src_install
-
-	if [[ ${CTARGET} == *-interix* ]] && ! is_crosscompile; then
-		# interix delivers libdl and dlfcn.h with gcc-3.3.
-		# Since those parts are perfectly usable by this gcc (and
-		# required for example by perl), we simply can reuse them.
-		# As libdl is in /usr/lib, we only need to copy dlfcn.h.
-		# When cross compiling for interix once, ensure that sysroot
-		# contains dlfcn.h.
-		cp /opt/gcc.3.3/include/dlfcn.h "${ED}${INCLUDEPATH}" \
-		|| die "Cannot gain /opt/gcc.3.3/include/dlfcn.h"
-	fi
-
-	if [[ ${CTARGET} == *-interix3* ]]; then
-		# interix 3.5 has no stdint.h and no inttypes.h. This breaks
-		# so many packages, that i just install interix 5.2's stdint.h
-		# which should be ok.
-		cp "${FILESDIR}"/interix-3.5-stdint.h "${ED}${INCLUDEPATH}/stdint.h" \
-		|| die "Cannot install stdint.h for interix3"
-	fi
 
 	# create a small profile.d script, unsetting some of the bad
 	# environment variables that the sustem could set from the outside.

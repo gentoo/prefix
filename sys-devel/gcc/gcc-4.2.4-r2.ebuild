@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.16 2014/01/19 01:51:34 dirtyepic Exp $
 
@@ -12,20 +12,18 @@ inherit eutils toolchain flag-o-matic prefix
 DESCRIPTION="The GNU Compiler Collection"
 
 LICENSE="GPL-3+ LGPL-2.1+ || ( GPL-3+ libgcc libstdc++ ) FDL-1.2+"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 SRC_URI+=" https://dev.gentoo.org/~grobian/distfiles/gcc-4.2.3-mint.patch"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
-	kernel_AIX? ( ${CATEGORY}/native-cctools )
-	elibc_Interix? ( || ( ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 ) )
-	!kernel_Darwin? ( !kernel_AIX? ( !elibc_Interix? (
+	!kernel_Darwin? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94
-	) ) )"
+	)"
 
 src_prepare() {
 	toolchain_src_prepare
@@ -73,45 +71,13 @@ src_prepare() {
 		eprefixify "${S}"/gcc/gcc.c
 	fi
 
-	# interix patch from http://gcc.gnu.org/bugzilla/show_bug.cgi?id=15212
-	epatch "${FILESDIR}"/4.2.2/interix-x86.patch.bz2
-	# gcc sources are polluted with old stuff for interix 3.5 not needed here
-	epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
-	# define _ALL_SOURCE by default on Interix
-	epatch "${FILESDIR}"/${P}-interix-all-source.patch
-	# support for the $@#$% dir structure on 64bit SUA
-	epatch "${FILESDIR}"/${P}-interix-x64-support.patch
-	# make long double be 64bit on intierx, as libc was built with VC++ (which
-	# has 64 bit long doubles).
-	epatch "${FILESDIR}"/${P}-interix-long-double.patch
-
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${DISTDIR}"/gcc-4.2.3-mint.patch
 		epatch "${FILESDIR}"/gcc-4.2.3-mint2.patch
 	fi
 
-	# http://gcc.gnu.org/PR20366
-	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
-
-	# Always behave on AIX as if:
-	#   -fPIC was passed (packages know that "everything on AIX is PIC")
-	#   -pthread was passed (#266548)
-	#   -Wl,-bsvr4 was passed (#213277 runtime linking, hold -L paths off the runpath)
-	#   -Wl,-G,-bernotok was passed for shared libraries (runtime linking, --no-undefined)
-	epatch "${FILESDIR}"/4.2.2/aix-force-pthread-r1.patch
-	epatch "${FILESDIR}"/4.2.2/aix-runtimelinking-r1.patch
-	echo '#define DRIVER_SELF_SPECS "-fPIC -pthread %x{-bsvr4} %{shared:%x{-G} %x{-bernotok}}"' \
-		>> "${S}"/gcc/config/rs6000/aix.h || die
-
 	# allow gcj compilation to succeed on platforms with libiconv
 	epatch "${FILESDIR}"/gcj-${PV}-iconvlink.patch
-
-	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
-	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
-	epatch "${FILESDIR}"/4.2.2/pr26189-pa.patch
-	epatch "${FILESDIR}"/4.2.2/aix-bnoerok.patch
-	epatch "${FILESDIR}"/4.2.2/aix-lineno.patch
-	epatch "${FILESDIR}"/4.2.2/aix-pr46072.patch
 
 	# try /usr/lib32 in 32bit profile on x86_64-linux (needs --enable-multilib)
 	# but this does make sense in prefix only.
@@ -121,10 +87,6 @@ src_prepare() {
 
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.0.2/gcc-4.0.2-softfloat.patch
 
-	epatch "${FILESDIR}"/4.2.2/aix-minimal-toc.patch
-	epatch "${FILESDIR}"/4.2.2/aix61-longdouble64.patch
-	epatch "${FILESDIR}"/4.2.2/aix-soname.patch
-	epatch "${FILESDIR}"/4.2.2/aix-libssp.patch
 	epatch "${FILESDIR}"/4.2.2/ro-string.patch
 }
 
@@ -133,17 +95,6 @@ src_configure() {
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
 			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld --with-gnu-as"
-		;;
-		*-aix*)
-			# AIX doesn't use GNU binutils, because it doesn't produce usable
-			# code
-			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
-			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
-		;;
-		*-darwin7)
-			# libintl triggers inclusion of -lc which results in multiply
-			# defined symbols, so disable nls
-			EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
 		;;
 		i[34567]86-*-linux*:*" prefix "*)
 			# to allow the linux-x86-on-amd64.patch become useful, we need
@@ -158,15 +109,6 @@ src_configure() {
 				CXX="${CC} -m32"
 			fi
 		;;
-		*-interix*" bootstrap "*)
-			# with suacomp, on interix, we need to have some header files
-			# available, which complement the system headers. adding this
-			# to CC/CXX is the only way to get a stage1 gcc built during
-			# bootstrap. the rest will work as normal.
-			tc-export CC CXX
-			CC="${CC} -I${EPREFIX}/usr/include"
-			CXX="${CXX} -I${EPREFIX}/usr/include"
-		;;
 	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
@@ -178,17 +120,6 @@ src_configure() {
 
 src_install() {
 	toolchain_src_install
-
-	if [[ ${CTARGET} == *-interix* ]] && ! is_crosscompile; then
-		# interix delivers libdl and dlfcn.h with gcc-3.3.
-		# Since those parts are perfectly usable by this gcc (and
-		# required for example by perl), we simply can reuse them.
-		# As libdl is in /usr/lib, we only need to copy dlfcn.h.
-		# When cross compiling for interix once, ensure that sysroot
-		# contains dlfcn.h.
-		cp /opt/gcc.3.3/include/dlfcn.h "${ED}${INCLUDEPATH}" \
-		|| die "Cannot gain /opt/gcc.3.3/include/dlfcn.h"
-	fi
 
 	# create a small profile.d script, unsetting some of the bad
 	# environment variables that the system could set from the outside.
@@ -211,4 +142,3 @@ src_install() {
 	insinto /etc/profile.d
 	doins "${T}"/00-gcc-paths.sh
 }
-

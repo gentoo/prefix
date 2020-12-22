@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -28,7 +28,6 @@ DEPEND="${RDEPEND}
 	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )
 	kernel_linux? ( >=${CATEGORY}/binutils-2.20 )
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
-	kernel_AIX? ( ${CATEGORY}/native-cctools )
 "
 
 if [[ ${CATEGORY} != cross-* ]] ; then
@@ -55,11 +54,7 @@ src_prepare() {
 	use vanilla && return 0
 	# Use -r1 for newer piepatchet that use DRIVER_SELF_SPECS for the hardened specs.
 
-	# make sure solaris-x64 doesn't misdetect tls support, bug #505446
-	#epatch "${FILESDIR}"/4.7.2/solaris-x64-tls-gnu-as.patch
-
 	# make sure 64-bits native targets don't screw up the linker paths
-	#epatch "${FILESDIR}"/4.7.1/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
 	if use prefix; then
 		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
@@ -70,28 +65,6 @@ src_prepare() {
 
 	# make it have correct install_names on Darwin
 	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
-	# filename based versioning of libgcc_s for AIX
-	#epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libgcc.patch.xz
-	# let --with-specs=-pthread work for libgcc_s on AIX without multilib
-	#epatch "${FILESDIR}"/gcc-4.8.4-aix-pthread-specs.patch
-	# drop -B flag when ./nm encounters -P
-	#epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-nm-weak.patch
-	# support --with-aix-soname=aix|both|svr4 for libtool libs
-	#epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-libtool.patch.xz
-	#epatch "${FILESDIR}"/gcc-4.8.4-aix-soname-regen.patch.xz
-	#epatch "${FILESDIR}"/gcc-4.8-aix-extref.patch # PR target/65058
-	if [[ ${CHOST} == *-aix* ]]; then
-		# -fPIC breaks stage2/3 comparison, use per-build random seed
-		local myseed=$(echo $(
-			head -c32 /dev/urandom | uuencode - | tr -d -c a-zA-Z0-9_+/.,
-		))
-		echo "STAGE2_CFLAGS += -frandom-seed=${myseed}" >> config/mh-ppc-aix
-		echo "STAGE3_CFLAGS += -frandom-seed=${myseed}" >> config/mh-ppc-aix
-		is_crosscompile ||
-		echo "CFLAGS_FOR_TARGET += -frandom-seed=${myseed}" >> config/mh-ppc-aix
-		# build large insn-*.o one at a time
-		epatch "${FILESDIR}"/gcc-4.8.4-lowmem-build.patch
-	fi
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
@@ -123,39 +96,6 @@ src_configure() {
 			# todo: some magic for native vs. GNU linking?
 			myconf+=( --with-gnu-ld --with-gnu-as )
 		;;
-		*-aix*)
-			# AIX doesn't use GNU binutils, because it doesn't produce usable
-			# code
-			myconf+=( --without-gnu-ld --without-gnu-as --disable-lto )
-			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
-			# we have backports of the aix-soname upstream patches
-			myconf+=( --with-aix-soname=svr4 )
-			# Always behave on AIX as if:
-			#   -fPIC was passed (packages know that "everything on AIX is PIC")
-			#   -pthread was passed (#266548)
-			#   -Wl,-bsvr4 was passed (runtime linking, hold -L paths off the runpath)
-			#   -Wl,-G,-bernotok was passed for shared libraries (runtime linking, --no-undefined)
-			myconf+=( --with-specs="-fPIC -pthread %x{-bsvr4} %{shared:%x{-G} %x{-bernotok}}" )
-		;;
-		ia64*-*-hpux*)
-			# Always behave as if -pthread were passed on HPUX (#266548)
-			myconf+=( --with-specs=-pthread )
-			;;
-		*-interix*)
-			# disable usage of poll() on interix, since poll() only
-			# works on the /proc filesystem (.......)
-			export glibcxx_cv_POLL=no
-
-			# if using the old system as, gcc's configure script fails
-			# to detect that as cannot handle .lcomm with alignment.
-			# on interix, it is rather easy to detect the as, since there
-			# is only _one_ build of it with a fixed date in the version
-			# header...
-			if as --version | grep 20021111 > /dev/null 2>&1; then
-				einfo "preventing gcc from detecting .lcomm alignment option in interix system as."
-				export gcc_cv_as_lcomm_with_alignment=no
-			fi
-		;;
 		i[34567]86-*-linux*:*" prefix "*)
 			# to allow the linux-x86-on-amd64.patch become useful, we need
 			# to enable multilib, even if there is just one multilib option.
@@ -175,27 +115,4 @@ src_configure() {
 	# in case that doesn't exist yet
 	export CONFIG_SHELL="${CONFIG_SHELL:-${BASH}}"
 	toolchain_src_configure "${myconf[@]}"
-}
-
-src_install() {
-	toolchain_src_install
-
-	if [[ ${CTARGET} == *-interix* ]] && ! is_crosscompile; then
-		# interix delivers libdl and dlfcn.h with gcc-3.3.
-		# Since those parts are perfectly usable by this gcc (and
-		# required for example by perl), we simply can reuse them.
-		# As libdl is in /usr/lib, we only need to copy dlfcn.h.
-		# When cross compiling for interix once, ensure that sysroot
-		# contains dlfcn.h.
-		cp /opt/gcc.3.3/include/dlfcn.h "${ED}${INCLUDEPATH}" \
-		|| die "Cannot gain /opt/gcc.3.3/include/dlfcn.h"
-	fi
-
-	if [[ ${CTARGET} == *-interix3* ]]; then
-		# interix 3.5 has no stdint.h and no inttypes.h. This breaks
-		# so many packages, that i just install interix 5.2's stdint.h
-		# which should be ok.
-		cp "${FILESDIR}"/interix-3.5-stdint.h "${ED}${INCLUDEPATH}/stdint.h" \
-		|| die "Cannot install stdint.h for interix3"
-	fi
 }

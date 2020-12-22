@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -9,15 +9,13 @@ CYGWINPORTS_GITREV="a03d77536f40d1a6335b6d313a4e4a4dff38ce66" # gcc-6.4.0-3
 
 inherit eutils toolchain flag-o-matic
 
-#KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
 	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.13 ) )
 	kernel_linux? ( >=${CATEGORY}/binutils-2.20 )
-	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
-	kernel_AIX? ( ${CATEGORY}/native-cctools )"
+	kernel_Darwin? ( ${CATEGORY}/binutils-apple )"
 
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.13 ) )"

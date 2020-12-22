@@ -14,8 +14,7 @@ BDEPEND="
 	kernel_linux? ( ${CATEGORY}/binutils )
 	kernel_Darwin? (
 		|| ( ${CATEGORY}/binutils-apple ${CATEGORY}/native-cctools )
-	)
-	kernel_AIX? ( ${CATEGORY}/native-cctools )"
+	)"
 
 src_prepare() {
 	toolchain_src_prepare

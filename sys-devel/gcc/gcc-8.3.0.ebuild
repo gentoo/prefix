@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -14,8 +14,7 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.13 ) )
 	kernel_linux? ( >=${CATEGORY}/binutils-2.20 )
-	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
-	kernel_AIX? ( ${CATEGORY}/native-cctools )"
+	kernel_Darwin? ( ${CATEGORY}/binutils-apple )"
 
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.13 ) )"

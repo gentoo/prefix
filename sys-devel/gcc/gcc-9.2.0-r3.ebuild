@@ -13,8 +13,7 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.13 ) )
 	kernel_linux? ( >=${CATEGORY}/binutils-2.20 )
-	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
-	kernel_AIX? ( ${CATEGORY}/native-cctools )"
+	kernel_Darwin? ( ${CATEGORY}/binutils-apple )"
 
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.13 ) )"

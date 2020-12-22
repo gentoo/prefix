@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.1.2.ebuild,v 1.37 2014/01/19 01:51:34 dirtyepic Exp $
 
@@ -18,7 +18,6 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 RDEPEND=""
 DEPEND="${RDEPEND}
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
-	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	!kernel_Darwin? ( !kernel_AIX? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
@@ -60,16 +59,6 @@ src_configure() {
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
 			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld"
-		;;
-		*-aix*)
-			# AIX doesn't use GNU binutils, because it doesn't produce usable
-			# code
-			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
-		;;
-		*-darwin7)
-			# libintl triggers inclusion of -lc which results in multiply
-			# defined symbols, so disable nls
-			EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
 		;;
 	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
