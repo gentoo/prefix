@@ -16,7 +16,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls"
 
 RDEPEND="dev-lang/perl
@@ -39,7 +39,6 @@ src_prepare() {
 	default
 
 	use elibc_Cygwin && eapply -p2 "${FILESDIR}"/${PN}-1.47.16-cygwin.patch
-	#use elibc_Cygwin && eapply -p2 "${DISTDIR}/${PN}-${CYGWIN_PATCH}"
 }
 
 src_configure() {
