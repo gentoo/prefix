@@ -210,7 +210,6 @@ main(int argc, char *argv[])
 	char is_cross = 0;
 	char is_darwin = 0;
 	char darwin_use_rpath = 1;
-	char is_aix = 0;
 	char *p;
 	size_t len;
 	int i;
@@ -269,7 +268,6 @@ main(int argc, char *argv[])
 		snprintf(ctarget, sizeof(ctarget), "%s", CHOST);
 
 	is_darwin = strstr(ctarget, "-darwin") != NULL;
-	is_aix = strstr(ctarget, "-aix") != NULL;
 
 	/* cannonicanise wrapper step2: strip CTARGET from wrapper */
 	len = strlen(ctarget);
@@ -349,11 +347,6 @@ main(int argc, char *argv[])
 			/* add the 4 paths we want (-L + -R) */
 			newargc += 8;
 		}
-
-		if (is_aix) {
-			/* AIX ld accepts -R only with -bsvr4 */
-			newargc++; /* -bsvr4 */
-		}
 	}
 
 	/* account the original arguments */
@@ -396,19 +389,6 @@ main(int argc, char *argv[])
 	/* position k right after the original arguments */
 	k = j - 1 + argc;
 	for (i = 1; i < argc; i++, j++) {
-		if (is_aix) {
-			/* AIX ld has this problem:
-			 *   $ /usr/ccs/bin/ld -bsvr4 -bE:xx.exp -bnoentry xx.o
-			 *   ld: 0706-005 Cannot find or open file: l
-			 *       ld:open(): No such file or directory
-			 * Simplest workaround is to put -bsvr4 last.
-			 */
-			if (strcmp(argv[i], "-bsvr4") == 0) {
-				--j; --k;
-				continue;
-			}
-		}
-
 		newargv[j] = argv[i];
 
 		if (is_cross || (is_darwin && !darwin_use_rpath))
@@ -484,9 +464,6 @@ main(int argc, char *argv[])
 			newargv[k++] = "-L" EPREFIX "/lib";
 			newargv[k++] = "-R" EPREFIX "/lib";
 		}
-
-		if (is_aix)
-			newargv[k++] = "-bsvr4"; /* last one, see above */
 	}
 	newargv[k] = NULL;
 
