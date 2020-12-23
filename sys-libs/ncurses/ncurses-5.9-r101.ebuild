@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # This version is just for the ABI .5 library
@@ -13,18 +13,10 @@ DESCRIPTION="console display library"
 HOMEPAGE="https://www.gnu.org/software/ncurses/ http://dickey.his.com/ncurses/"
 SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
 
-HOSTLTV="0.1.0"
-HOSTLT="host-libtool-${HOSTLTV}"
-HOSTLT_URI="http://github.com/haubi/host-libtool/releases/download/v${HOSTLTV}/${HOSTLT}.tar.gz"
-SRC_URI="${SRC_URI}
-	kernel_AIX? ( ${HOSTLT_URI} )
-	kernel_HPUX? ( ${HOSTLT_URI} )
-"
-
 LICENSE="MIT"
 # The subslot reflects the SONAME.
 SLOT="5/5"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="gpm tinfo unicode"
 
 DEPEND="gpm? ( sys-libs/gpm[${MULTILIB_USEDEP}] )"
@@ -44,28 +36,11 @@ PATCHES=(
 	"${FILESDIR}"/${P}-gcc-5.patch #545114
 )
 
-need-libtool() {
-	# need libtool to build aix-style shared objects inside archive libs, but
-	# cannot depend on libtool, as this would create circular dependencies...
-	# And libtool-1.5.26 needs (a similar) patch for AIX (DESTDIR) as found in
-	# http://lists.gnu.org/archive/html/bug-libtool/2008-03/msg00124.html
-	# Use libtool on hpux too to get some soname.
-	[[ ${CHOST} == *'-aix'* || ${CHOST} == *'-hpux'* ]]
-}
-
 src_prepare() {
 	epatch "${PATCHES[@]}"
 
 	# /bin/sh is not always good enough
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
-
-	if need-libtool; then
-		S="${WORKDIR}"/${HOSTLT} elibtoolize
-
-		# Don't need local libraries (-L../lib) for libncurses,
-		# ends up as insecure runpath in libncurses.so[shr.o] on AIX
-		sed -i -e '/^SHLIB_LIST[ \t]*=/s/\$(SHLIB_DIRS)//' ncurses/Makefile.in || die
-	fi
 
 	# Don't mess with _XOPEN_SOURCE for C++ on (Open)Solaris.  The compiler
 	# defines a value for it, and depending on version, a different definition
@@ -86,13 +61,6 @@ src_prepare() {
 }
 
 src_configure() {
-	if need-libtool; then
-		cd "${WORKDIR}"/${HOSTLT} || die
-		econf
-		export PATH="${WORKDIR}"/${HOSTLT}:${PATH}
-		cd "${S}" || die
-	fi
-
 	unset TERMINFO #115036
 	tc-export_build_env BUILD_{CC,CPP}
 	BUILD_CPPFLAGS+=" -D_GNU_SOURCE" #214642
@@ -159,9 +127,7 @@ do_configure() {
 		--without-hashed-db
 		--disable-pc-files
 		--$(
-			if need-libtool ; then
-				echo with-libtool
-			elif tc-is-static-only ; then
+			if tc-is-static-only ; then
 				echo without-shared
 			else
 				echo with-shared
