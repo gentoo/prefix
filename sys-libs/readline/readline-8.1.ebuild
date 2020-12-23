@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit flag-o-matic multilib-minimal preserve-libs toolchain-funcs usr-ldscript libtool
+inherit flag-o-matic multilib-minimal preserve-libs toolchain-funcs usr-ldscript
 
 # Official patches
 # See ftp://ftp.cwru.edu/pub/bash/readline-7.0-patches/
@@ -39,16 +39,10 @@ case ${PV} in
 	;;
 esac
 
-HOSTLTV="0.1.0"
-HOSTLT="host-libtool-${HOSTLTV}"
-HOSTLT_URI="https://github.com/haubi/host-libtool/releases/download/v${HOSTLTV}/${HOSTLT}.tar.gz"
-SRC_URI+=" ${HOSTLT_URI}"
-HOSTLT_S=${WORKDIR}/${HOSTLT}
-
 LICENSE="GPL-3"
 SLOT="0/8"  # subslot matches SONAME major
 [[ "${PV}" == *_rc* ]] || \
-KEYWORDS="~ppc-aix ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static-libs +unicode utils"
 
 RDEPEND=">=sys-libs/ncurses-5.9-r3:0=[static-libs?,unicode?,${MULTILIB_USEDEP}]"
@@ -65,24 +59,14 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-7.0-headers.patch
 	"${FILESDIR}"/${PN}-8.0-headers.patch
 
-	"${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
-	"${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
-	"${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	"${FILESDIR}"/${PN}-6.0-mint.patch
 	"${FILESDIR}"/${PN}-6.0-rlfe-solaris.patch
-	"${FILESDIR}"/${PN}-6.1-aix-soname.patch
-	"${FILESDIR}"/${PN}-6.1-aix-expfull.patch
-	"${FILESDIR}"/${PN}-6.3-interix.patch
 	"${FILESDIR}"/${PN}-8.0-darwin-shlib-versioning.patch
-
-	"${FILESDIR}"/${PN}-7.0-libtool.patch # this enables building via libtool
 )
 
 # Needed because we don't want the patches being unpacked
 # (which emits annoying and useless error messages)
 src_unpack() {
-	unpack ${HOSTLT}.tar.gz
-	S="${HOSTLT_S}" elibtoolize
 	unpack ${MY_P}.tar.gz
 }
 
@@ -108,14 +92,6 @@ src_prepare() {
 }
 
 src_configure() {
-	mkdir -p "${WORKDIR}/${HOSTLT}-${ABI}" || die
-	cd "${WORKDIR}/${HOSTLT}-${ABI}" || die
-	ECONF_SOURCE="${HOSTLT_S}" econf $(use_enable static-libs static)
-	cd "${BUILD_DIR}"
-
-	export PATH="${WORKDIR}/${HOSTLT}-${ABI}:${PATH}"
-	export ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
-
 	# fix implicit decls with widechar funcs
 	append-cppflags -D_GNU_SOURCE
 	# https://lists.gnu.org/archive/html/bug-readline/2010-07/msg00013.html
@@ -139,7 +115,6 @@ src_configure() {
 	# This is for rlfe, but we need to make sure LDFLAGS doesn't change
 	# so we can re-use the config cache file between the two.
 	append-ldflags -L.
-	export LDFLAGS="-L${BUILD_DIR}/shlib ${LDFLAGS}" # search local dirs first
 
 	multilib-minimal_src_configure
 }
@@ -148,7 +123,7 @@ multilib_src_configure() {
 	local myeconfargs=(
 		--cache-file="${BUILD_DIR}"/config.cache
 		--with-curses
-		--disable-shared # use libtool instead
+		$(use_enable static-libs static)
 	)
 	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
 
@@ -162,9 +137,7 @@ multilib_src_configure() {
 }
 
 multilib_src_compile() {
-	export PATH="${WORKDIR}/${HOSTLT}-${ABI}:${PATH}"
-	export ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
-	emake shared
+	emake
 
 	if use utils && multilib_is_native_abi && ! tc-is-cross-compiler ; then
 		# code is full of AC_TRY_RUN()
@@ -174,14 +147,12 @@ multilib_src_compile() {
 			ln -s ../../shlib/lib${l}$(get_libname)* lib${l}$(get_libname) || die
 			ln -s ../../lib${l}.a lib${l}.a || die
 		done
-		emake LTLINK='libtool --mode=link --tag=CC'
+		emake
 	fi
 }
 
 multilib_src_install() {
-	export PATH="${WORKDIR}/${HOSTLT}-${ABI}:${PATH}"
-	export ncurses_libs=$($(tc-getPKG_CONFIG) ncurses --libs)
-	emake DESTDIR="${D}" install-shared
+	default
 
 	if multilib_is_native_abi ; then
 		gen_usr_ldscript -a readline history #4411
@@ -197,8 +168,6 @@ multilib_src_install_all() {
 	dodoc USAGE
 	docinto ps
 	dodoc doc/*.ps
-
-	find "${D}" -name '*.la' -type f -delete || die
 }
 pkg_preinst() {
 	# bug #29865
