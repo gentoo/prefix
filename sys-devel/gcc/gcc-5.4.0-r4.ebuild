@@ -54,12 +54,8 @@ src_prepare() {
 
 	use vanilla && return 0
 
-	# make sure solaris-x64 doesn't misdetect tls support, bug #505446
-	#epatch "${FILESDIR}"/4.7.2/solaris-x64-tls-gnu-as.patch
-
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
-	epatch "${FILESDIR}"/${P}-libc_name_p.patch #631976
 	if use prefix; then
 		epatch "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
 		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
