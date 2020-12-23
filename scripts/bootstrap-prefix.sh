@@ -862,6 +862,22 @@ bootstrap_gnu() {
 	[[ -d ${S} ]] || return 1
 	cd "${S}" || return 1
 
+	# Tar upstream bug #59755 for broken build on macOS:
+	# https://savannah.gnu.org/bugs/index.php?59755
+	if [[ ${PN}-${PV} == "tar-1.32" ]] ; then
+		local tar_patch_file="tar-1.32-check-sys-ioctl-header-configure.patch"
+		local tar_patch_id="file_id=50554"
+		local tar_patch_url="https://file.savannah.gnu.org/file/${tar_patch_file}?${tar_patch_id}"
+		efetch "${tar_patch_url}" || return 1
+		# If fetched from upstream url instead of mirror, filename will
+		# have a suffix. Remove suffix by copy, not move, to not
+		# trigger refetch on repeated invocations of this script.
+		if [[ -f "${DISTDIR}/${tar_patch_file}?${tar_patch_id}" ]]; then
+			cp ${DISTDIR}/${tar_patch_file}{?${tar_patch_id},} || return 1
+		fi
+		patch -p1 < ${DISTDIR}/${tar_patch_file} || return 1
+	fi
+
 	if [[ ${PN}-${PV} == "bash-4.3" && ${CHOST} == *-cygwin* ]] ; then
 		local p patchopts
 		for p in \
@@ -1309,7 +1325,7 @@ bootstrap_coreutils() {
 }
 
 bootstrap_tar() {
-	bootstrap_gnu tar 1.26
+	bootstrap_gnu tar 1.32
 }
 
 bootstrap_make() {
