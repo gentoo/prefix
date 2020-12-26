@@ -24,7 +24,7 @@ SRC_URI+=" elibc_Cygwin? (
 
 LICENSE="PSF-2"
 SLOT="2.7"
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua -berkdb bluetooth build doc elibc_uclibc examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
@@ -34,7 +34,7 @@ IUSE="aqua -berkdb bluetooth build doc elibc_uclibc examples gdbm hardened ipv6 
 
 RDEPEND="app-arch/bzip2:0=
 	>=sys-libs/zlib-1.1.3:0=
-	!m68k-mint? ( virtual/libffi )
+	virtual/libffi
 	virtual/libintl
 	berkdb? ( || (
 		sys-libs/db:5.3
@@ -267,8 +267,6 @@ src_configure() {
 		dbmliborder+="${dbmliborder:+:}bdb"
 	fi
 
-	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
-
 	# we need this to get pythonw, the GUI version of python
 	# --enable-framework and --enable-shared are mutually exclusive:
 	# http://bugs.python.org/issue5809
@@ -377,7 +375,6 @@ src_install() {
 	local libdir=${ED}/usr/$(get_libdir)/python${SLOT}
 
 	cd "${BUILD_DIR}" || die
-	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${SLOT}/lib-dynload/
 	if use aqua ; then
 		local fwdir="${EPREFIX}"/usr/$(get_libdir)/Python.framework
 
