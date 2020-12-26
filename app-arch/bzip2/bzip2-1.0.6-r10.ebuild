@@ -14,7 +14,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="BZIP2"
 SLOT="0/1" # subslot = SONAME
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="static static-libs"
 
 PATCHES=(
@@ -82,10 +82,6 @@ multilib_src_compile() {
 			bemake PREFIX="${EPREFIX}"/usr -f "${S}"/Makefile-libbz2_dylib all
 			# FWIW, #504648 like for .so below
 			ln -sf libbz2.${PV}.dylib libbz2.dylib
-		;;
-		*-mint*)
-			# do nothing, no shared libraries
-			:
 		;;
 		*)
 			bemake -f "${S}"/Makefile-libbz2_so all
