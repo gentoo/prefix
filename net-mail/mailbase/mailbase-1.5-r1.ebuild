@@ -27,8 +27,7 @@ src_install() {
 	insinto /etc/mail
 	doins "${FILESDIR}"/aliases
 	cp "${FILESDIR}"/mailcap .
-	eapply -p0 "${FILESDIR}"/mailcap-prefix.patch
-	eprefixify mailcap
+	hprefixify mailcap
 	insinto /etc
 	doins mailcap
 	doman "${FILESDIR}"/mailcap.5
