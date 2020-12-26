@@ -178,6 +178,10 @@ src_configure() {
 			--config-cache
 	fi
 
+	# flock on 32-bits sparc Solaris is broken
+	[[ ${CHOST} == sparc-*-solaris* ]] && \
+		export ac_cv_flock_decl=no
+
 	local myeconfargs=(
 		# glibc-2.30 removes it; since we can't cleanly force-rebuild
 		# Python on glibc upgrade, remove it proactively to give
