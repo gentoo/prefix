@@ -35,7 +35,7 @@ case ${PV} in
 	*)
 		SRC_URI="mirror://gnu/binutils/binutils-${PV}.tar.xz"
 		SLOT=$(get_version_component_range 1-2)
-		KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+		KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 		;;
 esac
 
@@ -87,10 +87,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.22-solaris-anonymous-version-script-fix.patch
 	"${FILESDIR}"/${PN}-2.24-cygwin-nointl.patch
 )
-
-pkg_setup() {
-	[[ ${CHOST} == *-mint* ]] && die "mint patches require rebasing to ${P}" # 609274
-}
 
 src_unpack() {
 	case ${PV} in
