@@ -12,9 +12,7 @@ inherit eutils toolchain flag-o-matic prefix
 DESCRIPTION="The GNU Compiler Collection"
 
 LICENSE="GPL-3+ LGPL-2.1+ || ( GPL-3+ libgcc libstdc++ ) FDL-1.2+"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-
-SRC_URI+=" https://dev.gentoo.org/~grobian/distfiles/gcc-4.2.3-mint.patch"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -69,11 +67,6 @@ src_prepare() {
 	if use prefix; then
 		epatch "${FILESDIR}"/4.2.2/prefix-search-dirs.patch
 		eprefixify "${S}"/gcc/gcc.c
-	fi
-
-	if [[ ${CHOST} == *-mint* ]] ; then
-		epatch "${DISTDIR}"/gcc-4.2.3-mint.patch
-		epatch "${FILESDIR}"/gcc-4.2.3-mint2.patch
 	fi
 
 	# allow gcj compilation to succeed on platforms with libiconv

@@ -25,7 +25,7 @@ inherit eutils toolchain flag-o-matic
 DESCRIPTION="The GNU Compiler Collection."
 
 LICENSE="GPL-3+ LGPL-3+ || ( GPL-3+ libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.3+"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -80,18 +80,6 @@ src_prepare() {
 	# make it have correct install_names on Darwin
 	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
 
-	if [[ ${CHOST} == *-mint* ]] ; then
-		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
-		epatch "${FILESDIR}"/4.7.2/mint1.patch
-		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint3.patch
-		epatch "${FILESDIR}"/4.7.2/mint2.patch
-		epatch "${FILESDIR}"/4.7.2/mint3.patch
-		epatch "${FILESDIR}"/4.7.2/pr52391.patch
-		epatch "${FILESDIR}"/4.7.2/mint-unroll.patch
-		epatch "${FILESDIR}"/4.7.2/pr52773.patch
-		epatch "${FILESDIR}"/4.7.2/pr52714.patch
-	fi
-
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 }
 
@@ -100,9 +88,6 @@ src_configure() {
 		powerpc*-darwin*)
 			# bug #381179
 			filter-flags "-mcpu=*" "-mtune=*"
-		;;
-		*-mint*)
-			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
 		;;
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
