@@ -28,8 +28,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-1.0.6-out-of-tree-build.patch
 	"${FILESDIR}"/${PN}-1.0.6-CVE-2016-3189.patch #620466
 	"${FILESDIR}"/${PN}-1.0.6-ubsan-error.patch
-
-	"${FILESDIR}"/${PN}-1.0.6-r7-checkenv.patch # for AIX, Darwin?
 )
 
 DOCS=( CHANGES README{,.COMPILATION.PROBLEMS,.XML.STUFF} manual.pdf )
@@ -51,13 +49,6 @@ src_prepare() {
 	# this a makefile for Darwin, which already "includes" saneso
 	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
 
-	if [[ ${CHOST} == *-hpux* ]] ; then
-		sed -i -e 's,-soname,+h,' Makefile-libbz2_so || die "cannot replace -soname with +h"
-		if [[ ${CHOST} == hppa*-hpux* && ${CHOST} != hppa64*-hpux* ]] ; then
-			sed -i -e '/^SOEXT/s,so,sl,' Makefile-libbz2_so || die "cannot replace so with sl"
-			sed -i -e '/^SONAME/s,=,=${EPREFIX}/lib/,' Makefile-libbz2_so || die "cannt set soname"
-		fi
-	fi
 	if [[ ${CHOST} == *-cygwin* ]] ; then
 		sed -i -e "s/-o libbz2\.so\.${PV}/-Wl,--out-implib=libbz2$(get_libname ${PV})/" \
 			   -e "s/-Wl,-soname -Wl,libbz2\.so\.1/-o cygbz2-${PV%%.*}.dll/" \
@@ -96,8 +87,6 @@ multilib_src_compile() {
 multilib_src_install() {
 	into /usr
 
-	if ! tc-is-static-only; then
-
 	# Install the shared lib manually.  We install:
 	#  .x.x.x - standard shared lib behavior
 	#  .x.x   - SONAME some distros use #338321
@@ -109,8 +98,6 @@ multilib_src_install() {
 	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
 		dosym libbz2$(get_libname ${PV}) /usr/$(get_libdir)/${v}
 	done
-
-	fi  # tc-is-static-only
 
 	use static-libs && dolib.a libbz2.a
 
