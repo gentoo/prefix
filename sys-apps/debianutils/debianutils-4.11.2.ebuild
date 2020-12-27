@@ -7,11 +7,12 @@ inherit flag-o-matic autotools
 
 DESCRIPTION="A selection of tools from Debian"
 HOMEPAGE="https://packages.qa.debian.org/d/debianutils.html"
-SRC_URI="mirror://debian/pool/main/d/${PN}/${PN}_${PV}.tar.xz"
+SRC_URI="mirror://debian/pool/main/d/${PN}/${PN}_${PV}.tar.xz
+	https://dev.gentoo.org/~grobian/distfiles/${PN}-4-nongnu.patch"
 
 LICENSE="BSD GPL-2 SMAIL"
 SLOT="0"
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="+installkernel static"
 
 PDEPEND="
@@ -26,7 +27,7 @@ S="${WORKDIR}/${PN}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.4.2-no-bs-namespace.patch
-	"${FILESDIR}"/${PN}-4-nongnu.patch
+	"${DISTDIR}"/${PN}-4-nongnu.patch
 )
 
 src_prepare() {
