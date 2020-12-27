@@ -71,16 +71,13 @@ multilib_src_compile() {
 	case "${CHOST}" in
 		*-darwin*)
 			bemake PREFIX="${EPREFIX}"/usr -f "${S}"/Makefile-libbz2_dylib all
-			# FWIW, #504648 like for .so below
-			ln -sf libbz2.${PV}.dylib libbz2.dylib
 		;;
 		*)
 			bemake -f "${S}"/Makefile-libbz2_so all
-			# Make sure we link against the shared lib #504648
-			[[ $(get_libname) != $(get_libname ${PV}) ]] &&
-			ln -sf libbz2$(get_libname ${PV}) libbz2$(get_libname)
 		;;
 	esac
+	# Make sure we link against the shared lib #504648
+	ln -sf libbz2$(get_libname ${PV}) libbz2$(get_libname)
 	bemake -f "${S}"/Makefile all LDFLAGS="${LDFLAGS} $(usex static -static '')"
 }
 
@@ -94,7 +91,6 @@ multilib_src_install() {
 	dolib.so libbz2$(get_libname ${PV})
 	[[ ${CHOST} == *-cygwin* ]] && dobin cygbz2-${PV%%.*}.dll
 	local v
-	[[ $(get_libname) != $(get_libname ${PV}) ]] &&
 	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
 		dosym libbz2$(get_libname ${PV}) /usr/$(get_libdir)/${v}
 	done
