@@ -15,11 +15,14 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.xz
 		mirror://gentoo/${PATCH}.tar.xz
 		https://dev.gentoo.org/~polynomial-c/dist/${PATCH}.tar.xz
 	)
+	elibc_Cygwin? (
+		https://dev.gentoo.org/~grobian/distfiles/${PN}-8.28-cygwin-8.26-3.patch
+	)
 "
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="acl caps gmp hostname kill multicall nls selinux +split-usr static test userland_BSD vanilla xattr"
 RESTRICT="!test? ( test )"
 
@@ -73,9 +76,11 @@ src_prepare() {
 		PATCHES+=( "${FILESDIR}"/${PN}-8.32-sandbox-env-test.patch )
 	fi
 
-	default
+	if use elibc_Cygwin ; then
+		PATCHES+=( "${DISTDIR}"/${PN}-8.28-cygwin-8.26-3.patch )
+	fi
 
-	eapply "${FILESDIR}"/${PN}-8.32-mint.patch
+	default
 
 	# fixup libstdbuf non-libtool stuff
 	if [[ ${CHOST} == *-darwin* ]] ; then
@@ -94,7 +99,6 @@ src_prepare() {
 			Makefile.in \
 			|| die
 	elif use elibc_Cygwin ; then
-		eapply "${FILESDIR}"/${PN}-8.28-cygwin-8.26-3.patch
 		sed -i -e 's|\(libstdbuf\.so\)$(EXEEXT)|\1|g' Makefile.in || die
 	fi
 	sed -i \
