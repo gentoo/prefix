@@ -224,14 +224,10 @@ configure_toolchain() {
 			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
 			compiler_type="clang"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
-			local mycc=
 			local llvm_deps="dev-util/ninja sys-devel/gnuconfig"
 			case "${ccvers}" in
-				*"Apple clang version "*)
-					vers=${ccvers#*Apple clang version }
-					vers=${vers% (clang-*}
+				*"Apple clang version "*|*"Apple LLVM version "*)
 					# this is Clang, recent enough to compile recent clang
-					mycc=clang
 					compiler_stage1+="
 						${llvm_deps}
 						sys-libs/libcxxabi
@@ -247,56 +243,11 @@ configure_toolchain() {
 					# from system set
 					linker=sys-devel/native-cctools
 					;;
-				*"Apple LLVM version "*)
-					vers=${ccvers#*Apple LLVM version }
-					vers=${vers% (clang-*}
-					# let's assume that >=llvm-3.6 is able to compile
-					# libcxx, so select the matching Apple versions, see
-					# https://gist.github.com/yamaya/2924292
-					case ${vers} in
-						[345]"."*|"6.0"*)
-							# bleh, old (<llvm-3.6)
-							mycc=gcc
-							;;
-						*)
-							# newish, try direct bootstrap to recent
-							mycc=clang
-							compiler_stage1+="
-								${llvm_deps}
-								sys-libs/libcxxabi
-								sys-libs/libcxx
-								sys-devel/llvm
-								sys-devel/clang
-							"
-							;;
-					esac
-					CC=clang
-					CXX=clang++
-					# see above for reasoning
-					linker=sys-devel/native-cctools
-					;;
 				*)
-					eerror "unknown compiler"
+					eerror "unknown/unsupported compiler"
 					return 1
 					;;
 			esac
-
-			if [[ ${mycc} == gcc ]] ; then
-				# The deps for 3.6+ are too high (cmake, ninja, python) so
-				# we have to install this with an intermediate
-				# unfortunately, gmp needs c++, thus libcxx, so have to drag
-				# it in early (gmp is necessary for >3.5)
-				# we always have to bootstrap with 3.4 for else we'd need
-				# libcxx, which only compiles with clang
-				local cdep="3.5.9999"
-				compiler_stage1+="
-					dev-libs/libffi
-					<sys-libs/libcxx-headers-${cdep}
-					<sys-libs/libcxxabi-${cdep}
-					<sys-libs/libcxx-${cdep}
-					<sys-devel/llvm-${cdep}
-					<sys-devel/clang-${cdep}"
-			fi
 
 			compiler="
 				sys-libs/csu
@@ -2120,19 +2071,6 @@ bootstrap_stage3() {
 		ln -s "${ROOT}"/tmp/usr/bin/python${PYTHONMAJMIN} )
 	# in addition, avoid collisions
 	rm -Rf "${ROOT}"/tmp/usr/lib/python${PYTHONMAJMIN}/site-packages/clang
-
-	# llvm-3.5 doesn't find C++11 headers/lib by default, make it so
-	if [[ ${CHOST} == *-darwin9 ]] ; then
-		export OVERRIDE_CXXFLAGS="-I${ROOT}/tmp/usr/include/c++/v1 -fPIC"
-		# -fPIC is here because we need it, but the toolchain doesn't
-		# default to it (like for x86_64)
-		export OVERRIDE_CFLAGS="-fPIC"
-		# replace GCC's libstdc++ with libcxx (super hack!)
-		( cd "${ROOT}"/tmp/usr/lib/gcc/${CHOST}/4.2.1 \
-			&& ! test -e libstdc++.6.0.9.dylib-gcc \
-			&& mv libstdc++.6.0.9.dylib{,-gcc} \
-			&& ln -s ../../../libc++.1.dylib libstdc++.6.0.9.dylib )
-	fi
 
 	# try to get ourself out of the mudd, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx '--disable-lto --disable-bootstrap')" \
