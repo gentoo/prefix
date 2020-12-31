@@ -225,7 +225,7 @@ configure_toolchain() {
 			compiler_type="clang"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
 			local mycc=
-			local llvm_deps="dev-util/ninja"
+			local llvm_deps="dev-util/ninja sys-devel/gnuconfig"
 			case "${ccvers}" in
 				*"Apple clang version "*)
 					vers=${ccvers#*Apple clang version }
