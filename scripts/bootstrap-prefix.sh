@@ -234,10 +234,11 @@ configure_toolchain() {
 					mycc=clang
 					compiler_stage1+="
 						${llvm_deps}
+						sys-libs/libcxxabi
+						sys-libs/libcxx
 						sys-devel/llvm
 						sys-devel/clang
-						sys-libs/libcxxabi
-						sys-libs/libcxx"
+					"
 					CC=clang
 					CXX=clang++
 					# avoid going through hoops and deps for
@@ -262,10 +263,11 @@ configure_toolchain() {
 							mycc=clang
 							compiler_stage1+="
 								${llvm_deps}
+								sys-libs/libcxxabi
+								sys-libs/libcxx
 								sys-devel/llvm
 								sys-devel/clang
-								sys-libs/libcxxabi
-								sys-libs/libcxx"
+							"
 							;;
 					esac
 					CC=clang
@@ -289,10 +291,10 @@ configure_toolchain() {
 				local cdep="3.5.9999"
 				compiler_stage1+="
 					dev-libs/libffi
-					<sys-devel/llvm-${cdep}
 					<sys-libs/libcxx-headers-${cdep}
 					<sys-libs/libcxxabi-${cdep}
 					<sys-libs/libcxx-${cdep}
+					<sys-devel/llvm-${cdep}
 					<sys-devel/clang-${cdep}"
 			fi
 
@@ -541,6 +543,9 @@ bootstrap_setup() {
 	# Use package.use to disable in the portage tree to be shared between
 	# stage2 and stage3. The hack will be undone during tree sync in stage3.
 	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
+	# disable bootstrapping libcxx* with libunwind
+	sys-libs/libcxxabi -libunwind
+	sys-libs/libcxx -libunwind
 	# Most binary Linux distributions seem to fancy toolchains that
 	# do not do c++ support (need to install a separate package).
 	sys-libs/ncurses -cxx
