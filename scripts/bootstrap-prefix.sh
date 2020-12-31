@@ -1974,7 +1974,7 @@ bootstrap_stage3() {
 		# (CBUILD, BDEPEND) and with the system being built
 		# (CHOST, RDEPEND).  To correctly bootstrap stage3,
 		# PORTAGE_OVERRIDE_EPREFIX as BROOT is needed.
-		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{10,9,8,7,6,5}/}{s,}bin | sed "s, ,:${ROOT},g") \
+		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{12,11,10}/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		FEATURES="${FEATURES} force-prefix" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
@@ -2139,13 +2139,6 @@ bootstrap_stage3() {
 
 	# now we have the compiler right there
 	unset CXX CPPFLAGS LDFLAGS
-
-	# On Darwin we have llvm-3.5 at this point, which provides nm.
-	# However for some reason this nm doesn't quite get it on newer
-	# platforms at least, resulting in bugs like #598336.  To cater for
-	# that, get rid of this nm and rely on the host one at this stage
-	[[ ${CHOST} == *-darwin* ]] && \
-		rm -f "${ROOT}"{,/tmp}/usr/bin/{,${CHOST}-}nm
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 
