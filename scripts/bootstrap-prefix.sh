@@ -185,26 +185,29 @@ configure_toolchain() {
 			compiler_stage1+=" sys-apps/darwin-miscutils sys-libs/csu"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
 			case "${ccvers}" in
-				*"(GCC) 4.2.1 "*)
-					linker=sys-devel/binutils-apple
-					;;
-				*"(GCC) 4.0.1 "*)
-					linker="=sys-devel/binutils-apple-3.2"
-					# upgrade to 4.2.1 first
-					compiler_stage1+="
-						sys-devel/gcc-apple
-						sys-devel/binutils-apple"
-					;;
 				*"(Gentoo "*)
 					# probably the result of a bootstrap in progress
 					[[ ${DARWIN_USE_GCC} == 1 ]] \
 						&& linker=sys-devel/native-cctools \
 						|| linker=sys-devel/binutils-apple
 					;;
+				*"(GCC) 4.2.1 "*)
+					linker=sys-devel/binutils-apple
+					;;
+				*"(GCC) 4.0.1 "*)
+					linker="=sys-devel/binutils-apple-3.2.6"
+					# upgrade to 4.2.1 first
+					compiler_stage1+="
+						sys-devel/gcc-apple
+						sys-devel/binutils-apple"
+					;;
 				*"Apple clang version "*|*"Apple LLVM version "*)
 					# gcc cannot build (recent) binutils-apple due to
 					# missing blocks support, so use Xcode provided
 					# linker/assembler
+					# UPDATE: binutils-8.2.1-r100 compiles, but the
+					# assembler isn't able to deal with AVX instructions
+					# (yet)
 					linker=sys-devel/native-cctools
 					;;
 				*)
@@ -222,11 +225,7 @@ configure_toolchain() {
 			compiler_type="clang"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
 			local mycc=
-			local llvm_deps="
-				app-arch/libarchive
-				app-crypt/rhash
-				dev-util/cmake
-				dev-util/ninja"
+			local llvm_deps="dev-util/ninja"
 			case "${ccvers}" in
 				*"Apple clang version "*)
 					vers=${ccvers#*Apple clang version }
@@ -241,7 +240,11 @@ configure_toolchain() {
 						sys-libs/libcxx"
 					CC=clang
 					CXX=clang++
-					linker=sys-devel/binutils-apple
+					# avoid going through hoops and deps for
+					# binutils-apple, rely on the host-installed ld to
+					# build a compiler, we'll pull in binutils-apple
+					# from system set
+					linker=sys-devel/native-cctools
 					;;
 				*"Apple LLVM version "*)
 					vers=${ccvers#*Apple LLVM version }
@@ -267,21 +270,8 @@ configure_toolchain() {
 					esac
 					CC=clang
 					CXX=clang++
-					linker=sys-devel/binutils-apple
-					;;
-				*"(GCC) 4.2.1 "*)
-					linker=sys-devel/binutils-apple
-					mycc=gcc
-					;;
-				*"(GCC) 4.0.1 "*)
-					# need gcc-4.2.1 to compile llvm
-					linker="=sys-devel/binutils-apple-3.2"
-					compiler_stage1+="
-						${gcc_deps}
-						sys-devel/gcc-config
-						sys-devel/gcc-apple
-						sys-devel/binutils-apple"
-					mycc=gcc
+					# see above for reasoning
+					linker=sys-devel/native-cctools
 					;;
 				*)
 					eerror "unknown compiler"
@@ -555,6 +545,14 @@ bootstrap_setup() {
 	# do not do c++ support (need to install a separate package).
 	sys-libs/ncurses -cxx
 	sys-devel/binutils -cxx
+	EOF
+
+	# On Darwin we might need this to bootstrap the compiler, since
+	# bootstrapping the linker (binutils-apple) requires a c++11
+	# compiler amongst other things
+	cat >> "${ROOT}"/etc/portage/make.profile/package.unmask <<-EOF
+	# For Darwin bootstraps
+	sys-devel/native-cctools
 	EOF
 
 	# Strange enough, -cxx causes wrong libtool config on Cygwin,
@@ -1197,6 +1195,34 @@ bootstrap_python() {
 	einfo "${A%-*} bootstrapped"
 }
 
+bootstrap_cmake() {
+	PV=${1:-3.13.4}
+	A=cmake-${PV}.tar.gz
+
+	einfo "Bootstrapping ${A%-*}"
+
+	efetch https://github.com/Kitware/CMake/releases/download/v${PV}/${A} \
+		|| return 1
+
+	einfo "Unpacking ${A%%-*}"
+	export S="${PORTAGE_TMPDIR}/cmake-${PV}"
+	rm -rf "${S}"
+	mkdir -p "${S}"
+	cd "${S}"
+	gzip -dc "${DISTDIR}"/${A} | tar -xf - || return 1
+	S="${S}"/cmake-${PV}
+	cd "${S}"
+
+	einfo "Compiling ${A%-*}"
+	./bootstrap --prefix="${ROOT}"/tmp/usr || return 1
+	$MAKE ${MAKEOPTS} || return 1
+
+	einfo "Installing ${A%-*}"
+	$MAKE ${MAKEOPTS} install || return 1
+
+	einfo "${A%-*} bootstrapped"
+}
+
 bootstrap_zlib_core() {
 	# use 1.2.8 by default, current bootstrap guides
 	PV="${1:-1.2.8}"
@@ -1566,6 +1592,15 @@ bootstrap_stage1() {
 	[[ -n ${libffi} ]] || (bootstrap_libffi) || return 1
 	# too vital to rely on a host-provided one
 	[[ -x ${ROOT}/tmp/usr/bin/python ]] || (bootstrap_python) || return 1
+
+	if [[ ! -e ${ROOT}/tmp/usr/bin/cmake ]] && [[ ${CHOST} == *-darwin* ]]
+	then
+		# TODO: make DARWIN_USE_GCC path also activated on ppc-macos,
+		# since it effectively is so
+		if [[ ${DARWIN_USE_GCC} != 1 && ${CHOST} != powerpc* ]] ; then
+			(bootstrap_cmake) || return 1
+		fi
+	fi
 
 	# checks itself if things need to be done still
 	(bootstrap_tree) || return 1
