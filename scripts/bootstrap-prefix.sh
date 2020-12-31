@@ -1152,7 +1152,7 @@ bootstrap_python() {
 }
 
 bootstrap_cmake() {
-	PV=${1:-3.13.4}
+	PV=${1:-3.16.5}
 	A=cmake-${PV}.tar.gz
 
 	einfo "Bootstrapping ${A%-*}"
@@ -1187,11 +1187,12 @@ bootstrap_cmake() {
 
 	# we need sysroot crap to build cmake itself, but it makes trouble
 	# lateron, so kill it in the installed version
+	ver=${A%-*} ; ver=${ver%.*}
 	sed -i -e '/cmake_gnu_set_sysroot_flag/d' \
-		"${EROOT}"/tmp/usr/share/cmake/Modules/Platform/Apple-GNU-*.cmake || die
+		"${ROOT}"/tmp/usr/share/${ver}/Modules/Platform/Apple-GNU-*.cmake || die
 	# disable isysroot usage with clang as well
 	sed -i -e '/_SYSROOT_FLAG/d' \
-		"${EROOT}"/tmp/usr/share/cmake/Modules/Platform/Apple-Clang.cmake || die
+		"${ROOT}"/tmp/usr/share/${ver}/Modules/Platform/Apple-Clang.cmake || die
 
 	einfo "${A%-*} bootstrapped"
 }
