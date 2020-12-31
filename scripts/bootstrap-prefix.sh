@@ -1213,12 +1213,29 @@ bootstrap_cmake() {
 	S="${S}"/cmake-${PV}
 	cd "${S}"
 
-	einfo "Compiling ${A%-*}"
+	# don't set a POSIX standard, system headers don't like that, #757426
+	sed -i -e 's/^#if !defined(_WIN32) && !defined(__sun)/& \&\& !defined(__APPLE__)/' \
+		Source/cmLoadCommandCommand.cxx \
+		Source/cmStandardLexer.h \
+		Source/cmSystemTools.cxx \
+		Source/cmTimestamp.cxx
+
+	einfo "Bootstrapping ${A%-*}"
 	./bootstrap --prefix="${ROOT}"/tmp/usr || return 1
+
+	einfo "Compiling ${A%-*}"
 	$MAKE ${MAKEOPTS} || return 1
 
 	einfo "Installing ${A%-*}"
 	$MAKE ${MAKEOPTS} install || return 1
+
+	# we need sysroot crap to build cmake itself, but it makes trouble
+	# lateron, so kill it in the installed version
+	sed -i -e '/cmake_gnu_set_sysroot_flag/d' \
+		"${EROOT}"/tmp/usr/share/cmake/Modules/Platform/Apple-GNU-*.cmake || die
+	# disable isysroot usage with clang as well
+	sed -i -e '/_SYSROOT_FLAG/d' \
+		"${EROOT}"/tmp/usr/share/cmake/Modules/Platform/Apple-Clang.cmake || die
 
 	einfo "${A%-*} bootstrapped"
 }
