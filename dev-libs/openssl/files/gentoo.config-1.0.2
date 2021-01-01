@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 #
 # Openssl doesn't play along nicely with cross-compiling
@@ -149,7 +149,7 @@ darwin)
 		powerpc)      machine=ppc-cc;;
 		i?86*)        machine=i386-cc;;
 		x86_64)       machine=x86_64-cc; system=${system}64;;
-		arm64)        machine=arm64-cc; system${system}64;;
+		arm64)        machine=arm64-cc; system=${system}64;;
 	esac
 	;;
 hpux)
