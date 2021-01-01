@@ -224,7 +224,7 @@ configure_toolchain() {
 			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
 			compiler_type="clang"
 			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
-			local llvm_deps="dev-util/ninja sys-devel/gnuconfig"
+			local llvm_deps="dev-util/ninja"
 			case "${ccvers}" in
 				*"Apple clang version "*|*"Apple LLVM version "*)
 					# this is Clang, recent enough to compile recent clang
@@ -1779,6 +1779,7 @@ bootstrap_stage2() {
 
 	# Build a basic compiler and portage dependencies in $ROOT/tmp.
 	pkgs=(
+		sys-devel/gnuconfig
 		sys-apps/gentoo-functions
 		app-portage/elt-patches
 		$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
