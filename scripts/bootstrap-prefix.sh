@@ -1915,7 +1915,8 @@ bootstrap_stage3() {
 	}
 
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
-	export CPPFLAGS="-isystem ${ROOT}/usr/include"
+	[[ ${compiler_type} == gcc ]] && \
+		export CPPFLAGS="-isystem ${ROOT}/usr/include"
 	export LDFLAGS="-L${ROOT}/usr/$(get_libdir)"
 	[[ ${CHOST} == *-darwin* ]] || \
 		LDFLAGS+=" -Wl,-rpath=${ROOT}/usr/$(get_libdir)"
