@@ -3,22 +3,26 @@
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
 
-# some basic output functions
-eerror() { echo "!!! $*" 1>&2; }
-einfo() { echo "* $*"; }
-
 # RAP (libc) mode is triggered on Linux kernel and glibc.
 is-rap() { [[ ${PREFIX_DISABLE_RAP} != "yes" && ${CHOST} = *linux-gnu* ]]; }
 rapx() { is-rap && echo $1 || echo $2; }
 
 ## Functions Start Here
 
-v() {
-	echo "$@"
-	"$@"
+estatus() {
+	# this can give some garbage in the logs, but it shouldn't be too
+	# disturbing -- if it works, it makes it easy to see where we are in
+	# the bootstrap from the terminal status line (usually the window
+	# name)
+	printf '\033]2;'"$*"'\007'
 }
 
+eerror() { estatus $*; echo "!!! $*" 1>&2; }
+einfo() { echo "* $*"; }
+v() { echo "$@"; "$@"; }
+
 econf() {
+	estatus "stage1: configuring ${PWD##*/}"
 	v ${CONFIG_SHELL} ./configure \
 		--host=${CHOST} \
 		--prefix="${ROOT}"/tmp/usr \
@@ -32,6 +36,9 @@ econf() {
 }
 
 emake() {
+	[[ $* == *install* ]] \
+		&& estatus "stage1: installing ${PWD##*/}" \
+		|| estatus "stage1: building ${PWD##*/}"
 	v $MAKE ${MAKEOPTS} "$@" || return 1
 }
 
@@ -41,7 +48,7 @@ efetch() {
 		  echo "I need ${1##*/} from $1 in $DISTDIR, can you give it to me?"
 		  read
 		  [[ -e ${DISTDIR}/${1##*/} ]] && return 0
-		  #Give fetch a try 
+		  # Give fetch a try
 		fi
 
 		if [[ -z ${FETCH_COMMAND} ]] ; then
@@ -69,6 +76,7 @@ efetch() {
 
 		mkdir -p "${DISTDIR}" >& /dev/null
 		einfo "Fetching ${1##*/}"
+		estatus "stage1: fetching ${1##*/}"
 		pushd "${DISTDIR}" > /dev/null
 
 		# try for mirrors first, fall back to distfiles, then try given location
@@ -513,6 +521,7 @@ do_tree() {
 		fi
 		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
 		einfo "Unpacking, this may take a while"
+		estatus "stage1: unpacking Portage tree"
 		bzip2 -dc ${DISTDIR}/$2 | \
 			tar -xf - -C ${PORTDIR} --strip-components=1 || return 1
 		touch ${PORTDIR}/.unpacked
@@ -530,6 +539,7 @@ bootstrap_tree() {
 	fi
 	local ret=$?
 	if [[ -n ${TREE_FROM_SRC} ]]; then
+		estatus "stage1: rsyncing Portage tree"
 		rsync -av --delete \
 			--exclude=.unpacked \
 			--exclude=distfiles \
@@ -904,6 +914,7 @@ bootstrap_gnu() {
 	einfo "Compiling ${A%.tar.*}"
 	econf ${myconf} || return 1
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
+		estatus "stage1: building ${A%.tar.*}"
 		v ./build.sh || return 1
 	else
 		emake || return 1
@@ -911,6 +922,7 @@ bootstrap_gnu() {
 
 	einfo "Installing ${A%.tar.*}"
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
+		estatus "stage1: installing ${A%.tar.*}"
 		v ./make install MAKE="${S}/make" || return 1
 	else
 		emake install || return 1
@@ -1115,6 +1127,7 @@ bootstrap_cmake() {
 		Source/cmTimestamp.cxx
 
 	einfo "Bootstrapping ${A%.tar.*}"
+	estatus "stage1: configuring ${A%.tar.*}"
 	./bootstrap --prefix="${ROOT}"/tmp/usr || return 1
 
 	einfo "Compiling ${A%.tar.*}"
@@ -1509,6 +1522,7 @@ bootstrap_stage1() {
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
 	prepare_portage
 
+	estatus "stage1 finished"
 	einfo "stage1 successfully finished"
 }
 
@@ -1598,6 +1612,7 @@ do_emerge_pkgs() {
 		# defaults).
 		echo "USE=${myuse[*]} PKG=${pkg}"
 		(
+			estatus "${STAGE}: emerge ${pkg}"
 			unset CFLAGS CXXFLAGS
 			[[ -n ${OVERRIDE_CFLAGS} ]] \
 				&& export CFLAGS=${OVERRIDE_CFLAGS}
@@ -1640,6 +1655,7 @@ bootstrap_stage2() {
 
 	emerge_pkgs() {
 		EPREFIX="${ROOT}"/tmp \
+		STAGE=stage2 \
 		do_emerge_pkgs "$@"
 	}
 
@@ -1789,6 +1805,7 @@ bootstrap_stage2() {
 		cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
 	fi
 
+	estatus "stage2 finished"
 	einfo "stage2 successfully finished"
 }
 
@@ -1857,6 +1874,7 @@ bootstrap_stage3() {
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		FEATURES="${FEATURES} force-prefix" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
+		STAGE=stage3 \
 		do_emerge_pkgs "$@"
 	}
 
@@ -1954,8 +1972,8 @@ bootstrap_stage3() {
 
 		# avoid circular deps with sys-libs/pam, bug#712020
 		pkgs=(
-				sys-apps/attr
-				sys-libs/libcap
+			sys-apps/attr
+			sys-libs/libcap
 		)
 		BOOTSTRAP_RAP=yes \
 		USE="${USE} -pam" \
@@ -2063,6 +2081,7 @@ bootstrap_stage3() {
 	hash -r
 
 	# Update the portage tree.
+	estatus "stage3: updating Portage tree"
 	treedate=$(date -f "${PORTDIR}"/metadata/timestamp +%s)
 	nowdate=$(date +%s)
 	[[ ( ! -e ${PORTDIR}/.unpacked ) && \
@@ -2094,6 +2113,7 @@ bootstrap_stage3() {
 	# (--depclean may fail, which is ok)
 	sed -i -e 's/resume/cleared/' "${ROOT}"/var/cache/edb/mtimedb
 
+	estatus "stage3 finished"
 	einfo "stage3 successfully finished"
 }
 
