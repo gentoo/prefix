@@ -102,16 +102,10 @@ configure_cflags() {
 		*-darwin*)
 			export LDFLAGS="-Wl,-search_paths_first -L${ROOT}/tmp/usr/lib"
 			;;
-		*-solaris* | *-irix*)
+		*-solaris*)
 			export LDFLAGS="-L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib"
 			;;
-		*-*-aix*)
-			# The bootstrap compiler unlikely has runtime linking
-			# enabled already, but elibtoolize switches to the
-			# "lib.so(shr.o)" sharedlib variant.
-			export LDFLAGS="-Wl,-brtl -L${ROOT}/tmp/usr/lib"
-			;;
-		i586-pc-interix* | i586-pc-winnt* | *-pc-cygwin*)
+		i586-pc-winnt* | *-pc-cygwin*)
 			export LDFLAGS="-L${ROOT}/tmp/usr/lib"
 			;;
 		*)
@@ -283,9 +277,6 @@ configure_toolchain() {
 				*)            export NM="$(type -P nm) -p" ;;  # Solaris nm
 			esac
 			;;
-		*-*-aix*)
-			linker=sys-devel/native-cctools
-			;;
 	esac
 }
 
@@ -353,26 +344,15 @@ bootstrap_setup() {
 	fi
 
 	case ${CHOST} in
-		powerpc-apple-darwin7)
-			profile="prefix/darwin/macos/10.3"
-			;;
-		powerpc-apple-darwin[89])
+		powerpc-apple-darwin9)
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/ppc"
 			;;
-		powerpc64-apple-darwin[89])
-			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/10.$((rev - 4))/ppc64"
-			;;
-		i*86-apple-darwin[89])
+		i*86-apple-darwin1[578])
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
 			;;
-		i*86-apple-darwin1[012345678])
-			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
-			;;
-		x86_64-apple-darwin9|x86_64-apple-darwin1[0123456789])
+		x86_64-apple-darwin1[5789])
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
@@ -392,9 +372,6 @@ bootstrap_setup() {
 			profile=${profile_linux/ARCH/amd64}
 			profile=${profile/17.0/17.1/no-multilib}
 			;;
-		ia64-pc-linux-gnu)
-			profile=${profile_linux/ARCH/ia64}
-			;;
 		powerpc-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/ppc}
 			;;
@@ -410,24 +387,6 @@ bootstrap_setup() {
 		armv7l-pc-linux-gnu)
 			profile=${profile_linux/ARCH/arm}
 			;;
-		sparc-sun-solaris2.9)
-			profile="prefix/sunos/solaris/5.9/sparc"
-			;;
-		sparcv9-sun-solaris2.9)
-			profile="prefix/sunos/solaris/5.9/sparc64"
-			;;
-		i386-pc-solaris2.10)
-			profile="prefix/sunos/solaris/5.10/x86"
-			;;
-		x86_64-pc-solaris2.10)
-			profile="prefix/sunos/solaris/5.10/x64"
-			;;
-		sparc-sun-solaris2.10)
-			profile="prefix/sunos/solaris/5.10/sparc"
-			;;
-		sparcv9-sun-solaris2.10)
-			profile="prefix/sunos/solaris/5.10/sparc64"
-			;;
 		i386-pc-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/x86"
 			;;
@@ -440,17 +399,8 @@ bootstrap_setup() {
 		sparcv9-sun-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/sparc64"
 			;;
-		powerpc-ibm-aix*)
-			profile="prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
-			;;
-		i586-pc-interix*)
-			profile="prefix/windows/interix/${CHOST#i586-pc-interix}/x86"
-			;;
 		i586-pc-winnt*)
 			profile="prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
-			;;
-		i686-pc-cygwin*)
-			profile="prefix/windows/cygwin/x86"
 			;;
 		x86_64-pc-cygwin*)
 			profile="prefix/windows/cygwin/x64"
@@ -885,19 +835,8 @@ bootstrap_gnu() {
 		# Solaris 11 has a messed up prce installation.  We don't need
 		# it anyway, so just disable it
 		myconf="${myconf} --disable-perl-regexp"
-		# Except interix really needs it for grep.
-		[[ $CHOST == *interix* ]] && myconf="${myconf} --disable-nls"
 	fi
 
-	# AIX doesn't like --enable-nls in general during bootstrap
-	[[ $CHOST == *-aix* ]] && myconf="${myconf} --disable-nls"
-	# AIX 7.1 has fstatat(), but broken without APAR IV23716:
-	[[ $CHOST == *-aix7* ]] && export ac_cv_func_fstatat=no
-	# AIX lacks /dev/fd/*, bash uses (blocking) named pipes instead
-	[[ ${PN} == "bash" ]] && sed -i -e 's/|O_NONBLOCK//' subst.c
-	# but portage's multijob needs more unique pipe names
-	[[ ${PN},${CHOST} == bash,*-aix* ]] &&
-	export CPPFLAGS="${CPPFLAGS}${CPPFLAGS:+ }-DUSE_MKTEMP"
 	# pod2man may be too old (not understanding --utf8) but we don't
 	# care about manpages at this stage
 	export ac_cv_path_POD2MAN=no
@@ -1075,11 +1014,6 @@ bootstrap_python() {
 	esac
 
 	case $CHOST in
-		*-*-aix*)
-			# Python stubbornly insists on using cc_r to compile.  We
-			# know better, so force it to listen to us
-			myconf="${myconf} --with-gcc=yes"
-		;;
 		*-*-cygwin*)
 			# --disable-shared would link modules against "python.exe"
 			# so renaming to "pythonX.Y.exe" will break them.
@@ -1273,14 +1207,6 @@ bootstrap_zlib_core() {
 		[[ ${x} == *.dll.a ]] && continue # keep Cygwin import lib
 		rm -Rf "${x}"
 	done
-
-	if [[ ${CHOST} == *-aix* ]]; then
-		# No aix-soname support, but symlinks when built with gcc. This breaks
-		# later on when aix-soname is added within Prefix, where the lib.so.1
-		# is an archive then, while finding this one first due to possible
-		# rpath ordering issues.
-		rm -f "${ROOT}"/tmp/usr/lib/libz.so.1
-	fi
 
 	einfo "${A%-*} bootstrapped"
 }
@@ -1497,16 +1423,6 @@ bootstrap_stage1() {
 	# be identified as stage1-installed like in bug #615410.
 	mkdir -p "${ROOT}"/tmp/usr/local/bin
 	case ${CHOST} in
-		*-*-aix*)
-			# sys-devel/native-cctools installs the wrapper below,
-			# but we need it early or gmp breaks
-			{
-				echo '#!/bin/sh'
-				echo 'test ${#TMPDIR} -le 85 || TMPDIR=/tmp export TMPDIR'
-				echo 'exec /usr/ccs/bin/nm ${1+"$@"}'
-			} > "${ROOT}"/tmp/usr/local/bin/nm
-			chmod 755 "${ROOT}"/tmp/usr/local/bin/nm
-			;;
 		*-darwin*)
 			# Recent Mac OS X have a nice popup to install java when
 			# it's called without being installed, this doesn't stop the
@@ -1787,7 +1703,6 @@ bootstrap_stage2() {
 		sys-devel/gnuconfig
 		sys-apps/gentoo-functions
 		app-portage/elt-patches
-		$([[ ${CHOST} == *-aix* ]] && echo dev-libs/libiconv ) # bash dependency
 		$([[ ${CHOST} == *-cygwin* ]] && echo dev-libs/libiconv ) # bash dependency
 		sys-libs/ncurses
 		sys-libs/readline
@@ -2573,7 +2488,6 @@ EOF
 		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
 		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
 		*-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
-		*-aix*)        ncpu=$(/usr/sbin/bindprocessor -q | cut -d: -f2 | wc -w) ;;
 		*)             ncpu=1                                              ;;
 	esac
 	# get rid of excess spaces (at least Solaris wc does)
@@ -3088,20 +3002,6 @@ if [[ -z ${CHOST} ]]; then
 					;;
 				esac
 				;;
-			AIX)
-				# GNU coreutils uname sucks, it doesn't know what
-				# processor it is using on AIX.  We mimick GNU CHOST
-				# guessing here, instead of what IBM uses itself.
-				CHOST="`/usr/bin/uname -p`-ibm-aix`oslevel`"
-				;;
-			Interix)
-				case `uname -m` in
-					x86) CHOST="i586-pc-interix`uname -r`" ;;
-					*) eerror "Can't deal with interix `uname -m` (yet)"
-					   exit 1
-					;;
-				esac
-				;;
 			CYGWIN*)
 				CHOST="`uname -m`-pc-cygwin"
 				;;
@@ -3133,14 +3033,6 @@ case ${CHOST} in
 			MAKE=make
 		fi
 	;;
-	*-sgi-irix*)
-		MAKE=gmake
-	;;
-	*-aix*)
-		MAKE=make
-		# We do run in bash here, no? It is ways faster than /bin/sh.
-		: ${CONFIG_SHELL:=${BASH}}
-		;;
 	*)
 		MAKE=make
 	;;
