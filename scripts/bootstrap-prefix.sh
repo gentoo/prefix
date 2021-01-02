@@ -2809,7 +2809,7 @@ EOF
 	export CHOST=$(portageq envvar CHOST)
 
 	# after stage1 and stage2 we should have a bash of our own, which
-	# is preferably over the host-provided one, because we know it can
+	# is preferable over the host-provided one, because we know it can
 	# deal with the bash-constructs we use in stage3 and onwards
 	hash -r
 
