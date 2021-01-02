@@ -112,21 +112,10 @@ src_prepare() {
 			configure.ac configure || die
 	fi
 
-	# Python doesn't know about arm64-macos yet
-	if [[ ${CHOST} == arm64-*-darwin* ]] ; then
-		# Teach Python a new trick (arm64)
-		sed -i \
-			-e "/Unexpected output of 'arch' on OSX/d" \
-			configure.ac configure || die
-	fi
-
 	# side-effect of disabling scproxy (see below), make sure we don't
 	# try to use it on Darwin either
 	sed -i -e '/sys.platform/s/darwin/disabled-darwin/' \
 		Lib/urllib/request.py || die
-
-	# disable SDK usage on Darwin/macOS
-	sed -i -e '/^MACOS = /s/darwin/no-darwin/' setup.py || die
 
 	eautoreconf
 }
