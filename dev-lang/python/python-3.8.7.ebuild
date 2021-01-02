@@ -114,9 +114,6 @@ src_prepare() {
 	sed -i -e '/sys.platform/s/darwin/disabled-darwin/' \
 		Lib/urllib/request.py || die
 
-	# disable SDK usage on Darwin/macOS
-	sed -i -e '/^MACOS = /s/darwin/no-darwin/' setup.py || die
-
 	eautoreconf
 }
 
