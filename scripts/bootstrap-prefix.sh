@@ -2889,11 +2889,11 @@ EOF
 
 	[[ ${STOP_BOOTSTRAP_AFTER} == stage3 ]] && exit 0
 
-	local cmd="emerge -e system"
+	local cmd="emerge -v -e system"
 	if [[ -e ${EPREFIX}/var/cache/edb/mtimedb ]] && \
 		grep -q resume "${EPREFIX}"/var/cache/edb/mtimedb ;
 	then
-		cmd="emerge --resume"
+		cmd="emerge -v --resume"
 	fi
 	einfo "running ${cmd}"
 	if ${cmd} ; then
