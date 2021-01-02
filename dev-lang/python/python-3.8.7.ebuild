@@ -10,7 +10,7 @@ inherit autotools flag-o-matic multiprocessing pax-utils \
 MY_P="Python-${PV}"
 PYVER=$(ver_cut 1-2)
 PATCHSET="python-gentoo-patches-3.8.6"
-PREFIX_PATCHSET="python-prefix-gentoo-${PV}-patches-r0"
+PREFIX_PATCHSET="python-prefix-gentoo-${PV}-patches-r1"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
@@ -109,11 +109,6 @@ src_prepare() {
 			configure.ac configure || die
 	fi
 
-	# side-effect of disabling scproxy (see below), make sure we don't
-	# try to use it on Darwin either
-	sed -i -e '/sys.platform/s/darwin/disabled-darwin/' \
-		Lib/urllib/request.py || die
-
 	eautoreconf
 }
 
@@ -128,7 +123,6 @@ src_configure() {
 	use ssl       || export PYTHON_DISABLE_SSL="1"
 	use tk        || disable+=" _tkinter"
 	use xml       || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
-	[[ ${CHOST} == *-darwin* ]] && disable+=" _scproxy"  # header issue
 	export PYTHON_DISABLE_MODULES="${disable}"
 
 	if ! use xml; then
