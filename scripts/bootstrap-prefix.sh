@@ -31,6 +31,10 @@ econf() {
 		"$@" || return 1
 }
 
+emake() {
+	v $MAKE ${MAKEOPTS} "$@" || return 1
+}
+
 efetch() {
 	if [[ ! -e ${DISTDIR}/${1##*/} ]] ; then
 	  	if [[ ${OFFLINE_MODE} ]]; then
@@ -680,10 +684,10 @@ bootstrap_portage() {
 		--with-portage-group="`id -gn`" \
 		--with-extra-path="${PATH}" \
 		|| return 1
-	$MAKE ${MAKEOPTS} || return 1
+	emake || return 1
 
  	einfo "Installing ${A%-*}"
-	$MAKE install || return 1
+	emake install || return 1
 
 	cd "${ROOT}"
 	rm -Rf ${ptmp} >& /dev/null
@@ -759,10 +763,10 @@ bootstrap_simple() {
 	if [[ -x configure ]] ; then
 		econf ${myconf} || return 1
 	fi
-	v $MAKE || return 1
+	emake || return 1
 
 	einfo "Installing ${A%-*}"
-	v $MAKE PREFIX="${ROOT}"/tmp/usr install || return 1
+	emake PREFIX="${ROOT}"/tmp/usr install || return 1
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
@@ -963,14 +967,14 @@ bootstrap_gnu() {
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
 		v ./build.sh || return 1
 	else
-		v $MAKE ${MAKEOPTS} || return 1
+		emake || return 1
 	fi
 
 	einfo "Installing ${PN}"
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
 		v ./make install MAKE="${S}/make" || return 1
 	else
-		v $MAKE install || return 1
+		emake install || return 1
 	fi
 
 	cd "${ROOT}"
@@ -1137,10 +1141,10 @@ bootstrap_python() {
 		--disable-shared \
 		--libdir="${ROOT}"/tmp/usr/lib \
 		${myconf} || return 1
-	$MAKE ${MAKEOPTS} || return 1
+	emake || return 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE -k install || echo "??? Python failed to install *sigh* continuing anyway"
+	emake -k install || echo "??? Python failed to install *sigh* continuing anyway"
 	cd "${ROOT}"/tmp/usr/bin
 	ln -sf python${PV%.*} python
 	cd "${ROOT}"/tmp/usr/lib
@@ -1180,10 +1184,10 @@ bootstrap_cmake() {
 	./bootstrap --prefix="${ROOT}"/tmp/usr || return 1
 
 	einfo "Compiling ${A%-*}"
-	$MAKE ${MAKEOPTS} || return 1
+	emake || return 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE ${MAKEOPTS} install || return 1
+	emake install || return 1
 
 	# we need sysroot crap to build cmake itself, but it makes trouble
 	# lateron, so kill it in the installed version
@@ -1256,10 +1260,11 @@ bootstrap_zlib_core() {
 
 	einfo "Compiling ${A%-*}"
 	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
-	$MAKE "${makeopts[@]}" || return 1
+	MAKEOPTS=
+	emake "${makeopts[@]}" || return 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE "${makeopts[@]}" -j1 install || return 1
+	emake "${makeopts[@]}" -j1 install || return 1
 
 	# this lib causes issues when emerging python again on Solaris
 	# because the tmp lib path is in the library search path there
