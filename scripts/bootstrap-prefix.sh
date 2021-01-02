@@ -592,11 +592,11 @@ bootstrap_portage() {
 	[[ ${TESTING_PV} == latest ]] && TESTING_PV="3.0.12"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
-	einfo "Bootstrapping ${A%-*}"
+	einfo "Bootstrapping ${A%.tar.*}"
 		
 	efetch ${DISTFILES_URL}/${A} || return 1
 
-	einfo "Unpacking ${A%-*}"
+	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}"/portage-${PV}
 	ptmp=${S}
 	rm -rf "${S}" >& /dev/null
@@ -627,7 +627,7 @@ bootstrap_portage() {
 	[[ -x ${ROOT}/tmp/bin/sh ]] || ln -s bash "${ROOT}"/tmp/bin/sh || return 1
 	export PORTAGE_BASH="${ROOT}"/tmp/bin/bash
 
-	einfo "Compiling ${A%-*}"
+	einfo "Compiling ${A%.tar.*}"
 	econf \
 		--with-offset-prefix="${ROOT}"/tmp \
 		--with-portage-user="`id -un`" \
@@ -636,7 +636,7 @@ bootstrap_portage() {
 		|| return 1
 	emake || return 1
 
- 	einfo "Installing ${A%-*}"
+	einfo "Installing ${A%.tar.*}"
 	emake install || return 1
 
 	cd "${ROOT}"
@@ -661,7 +661,7 @@ bootstrap_portage() {
 		sed -i -e "s,gentoo_prefix,$(<"${PORTDIR}"/profiles/repo_name)," "${ROOT}"/tmp/usr/share/portage/config/repos.conf || return 1
 	fi
 
-	einfo "${A%-*} successfully bootstrapped"
+	einfo "${A%.tar.*} successfully bootstrapped"
 }
 
 fix_config_sub() {
@@ -683,11 +683,11 @@ bootstrap_simple() {
 	PN=$1
 	PV=$2
 	A=${PN}-${PV}.tar.${3:-gz}
-	einfo "Bootstrapping ${A%-*}"
+	einfo "Bootstrapping ${A%.tar.*}"
 
 	efetch ${4:-${DISTFILES_G_O}/distfiles}/${A} || return 1
 
-	einfo "Unpacking ${A%-*}"
+	einfo "Unpacking ${A%.tar.*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
 	rm -rf "${S}"
 	mkdir -p "${S}"
@@ -709,18 +709,18 @@ bootstrap_simple() {
 		myconf="${myconf} --enable-static --disable-shared"
 	fi
 
-	einfo "Compiling ${A%-*}"
+	einfo "Compiling ${A%.tar.*}"
 	if [[ -x configure ]] ; then
 		econf ${myconf} || return 1
 	fi
 	emake || return 1
 
-	einfo "Installing ${A%-*}"
+	einfo "Installing ${A%.tar.*}"
 	emake PREFIX="${ROOT}"/tmp/usr install || return 1
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
-	einfo "${PN}-${PV} successfully bootstrapped"
+	einfo "${A%.tar.*} successfully bootstrapped"
 }
 
 bootstrap_gnu() {
@@ -728,7 +728,7 @@ bootstrap_gnu() {
 	PN=$1
 	PV=$2
 
-	einfo "Bootstrapping ${PN}"
+	einfo "Bootstrapping ${A%.tar.*}"
 
 	for t in tar.xz tar.bz2 tar.gz tar ; do
 		A=${PN}-${PV}.${t}
@@ -747,7 +747,7 @@ bootstrap_gnu() {
 		URL=${GNU_URL}/${PN}/${A}
 		efetch ${URL} || continue
 
-		einfo "Unpacking ${A%-*}"
+		einfo "Unpacking ${A%.tar.*}"
 		S="${PORTAGE_TMPDIR}/${PN}-${PV}"
 		rm -rf "${S}"
 		mkdir -p "${S}"
@@ -901,7 +901,7 @@ bootstrap_gnu() {
 		esac
 	fi
 
-	einfo "Compiling ${PN}"
+	einfo "Compiling ${A%.tar.*}"
 	econf ${myconf} || return 1
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
 		v ./build.sh || return 1
@@ -909,7 +909,7 @@ bootstrap_gnu() {
 		emake || return 1
 	fi
 
-	einfo "Installing ${PN}"
+	einfo "Installing ${A%.tar.*}"
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
 		v ./make install MAKE="${S}/make" || return 1
 	else
@@ -918,20 +918,20 @@ bootstrap_gnu() {
 
 	cd "${ROOT}"
 	rm -Rf "${S}"
-	einfo "${PN}-${PV} successfully bootstrapped"
+	einfo "${A%.tar.*} successfully bootstrapped"
 }
 
 PYTHONMAJMIN=3.8   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
 	PV=3.8.6
 	A=Python-${PV}.tar.xz
-	einfo "Bootstrapping ${A%-*}"
+	einfo "Bootstrapping ${A%.tar.*}"
 
 	# don't really want to put this on the mirror, since they are
 	# non-vanilla sources, bit specific for us
 	efetch ${DISTFILES_URL}/${A} || return 1
 
-	einfo "Unpacking ${A%%-*}"
+	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
 	rm -rf "${S}"
 	mkdir -p "${S}"
@@ -1061,7 +1061,7 @@ bootstrap_python() {
 	export PYTHON_DISABLE_MODULES="_bsddb bsddb bsddb185 bz2 crypt _ctypes_test _curses _curses_panel dbm _elementtree gdbm _locale nis pyexpat readline _sqlite3 _tkinter"
 	export OPT="${CFLAGS}"
 
-	einfo "Compiling ${A%-*}"
+	einfo "Compiling ${A%.tar.*}"
 
 	# some ancient versions of hg fail with "hg id -i", so help
 	# configure to not find them using HAS_HG
@@ -1077,7 +1077,7 @@ bootstrap_python() {
 		${myconf} || return 1
 	emake || return 1
 
-	einfo "Installing ${A%-*}"
+	einfo "Installing ${A%.tar.*}"
 	emake -k install || echo "??? Python failed to install *sigh* continuing anyway"
 	cd "${ROOT}"/tmp/usr/bin
 	ln -sf python${PV%.*} python
@@ -1086,19 +1086,19 @@ bootstrap_python() {
 	# http://forums.gentoo.org/viewtopic-p-6890526.html
 	rm -f libpython${PV%.*}.a
 
-	einfo "${A%-*} bootstrapped"
+	einfo "${A%.tar.*} bootstrapped"
 }
 
 bootstrap_cmake() {
 	PV=${1:-3.16.5}
 	A=cmake-${PV}.tar.gz
 
-	einfo "Bootstrapping ${A%-*}"
+	einfo "Bootstrapping ${A%.tar.*}"
 
 	efetch https://github.com/Kitware/CMake/releases/download/v${PV}/${A} \
 		|| return 1
 
-	einfo "Unpacking ${A%%-*}"
+	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/cmake-${PV}"
 	rm -rf "${S}"
 	mkdir -p "${S}"
@@ -1114,13 +1114,13 @@ bootstrap_cmake() {
 		Source/cmSystemTools.cxx \
 		Source/cmTimestamp.cxx
 
-	einfo "Bootstrapping ${A%-*}"
+	einfo "Bootstrapping ${A%.tar.*}"
 	./bootstrap --prefix="${ROOT}"/tmp/usr || return 1
 
-	einfo "Compiling ${A%-*}"
+	einfo "Compiling ${A%.tar.*}"
 	emake || return 1
 
-	einfo "Installing ${A%-*}"
+	einfo "Installing ${A%.tar.*}"
 	emake install || return 1
 
 	# we need sysroot crap to build cmake itself, but it makes trouble
@@ -1132,7 +1132,7 @@ bootstrap_cmake() {
 	sed -i -e '/_SYSROOT_FLAG/d' \
 		"${ROOT}"/tmp/usr/share/${ver}/Modules/Platform/Apple-Clang.cmake || die
 
-	einfo "${A%-*} bootstrapped"
+	einfo "${A%.tar.*} bootstrapped"
 }
 
 bootstrap_zlib_core() {
@@ -1140,11 +1140,11 @@ bootstrap_zlib_core() {
 	PV="${1:-1.2.8}"
 	A=zlib-${PV}.tar.gz
 
-	einfo "Bootstrapping ${A%-*}"
+	einfo "Bootstrapping ${A%.tar.*}"
 
 	efetch ${DISTFILES_G_O}/distfiles/${A} || return 1
 
-	einfo "Unpacking ${A%%-*}"
+	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
 	rm -rf "${S}"
 	mkdir -p "${S}"
@@ -1192,12 +1192,12 @@ bootstrap_zlib_core() {
 		ln -sf libz.dll.a "${ROOT}"/tmp/usr/lib/libz.dll
 	fi
 
-	einfo "Compiling ${A%-*}"
+	einfo "Compiling ${A%.tar.*}"
 	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
 	MAKEOPTS=
 	emake "${makeopts[@]}" || return 1
 
-	einfo "Installing ${A%-*}"
+	einfo "Installing ${A%.tar.*}"
 	emake "${makeopts[@]}" -j1 install || return 1
 
 	# this lib causes issues when emerging python again on Solaris
@@ -1208,7 +1208,7 @@ bootstrap_zlib_core() {
 		rm -Rf "${x}"
 	done
 
-	einfo "${A%-*} bootstrapped"
+	einfo "${A%.tar.*} bootstrapped"
 }
 
 bootstrap_zlib() {
