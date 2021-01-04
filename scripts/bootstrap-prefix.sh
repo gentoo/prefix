@@ -1516,7 +1516,7 @@ bootstrap_stage1() {
 	then
 		# TODO: make DARWIN_USE_GCC path also activated on ppc-macos,
 		# since it effectively is so
-		if [[ ${DARWIN_USE_GCC} != 1 && ${CHOST} != powerpc* ]] ; then
+		if [[ ${DARWIN_USE_GCC} != 1 || ${CHOST} == powerpc* ]] ; then
 			(bootstrap_cmake) || return 1
 		fi
 	fi
