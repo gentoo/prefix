@@ -1156,7 +1156,7 @@ bootstrap_cmake_core() {
 }
 
 bootstrap_cmake() {
-	bootrstrap_cmake_core 3.16.5 || bootrstrap_cmake_core 3.0.2
+	bootstrap_cmake_core 3.16.5 || bootstrap_cmake_core 3.0.2
 }
 
 bootstrap_zlib_core() {
