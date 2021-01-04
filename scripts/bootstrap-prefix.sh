@@ -2113,11 +2113,13 @@ bootstrap_stage3() {
 	# still with an old llvm that may not understand the system headers
 	# very well on Darwin (-DGNUSTEP_BASE_VERSION hack)
 	einfo "running emerge -u system"
+	estatus "stage3: emerge -u system"
 	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
 	CFLAGS= CXXFLAGS= emerge --color n -u system || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
+	estatus "stage3: emerge --depclean"
 	emerge --color n --depclean
 
 	# "wipe" mtimedb such that the resume list is proper after this stage
