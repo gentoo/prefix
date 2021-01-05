@@ -5,6 +5,7 @@ import glob
 import re
 import time
 import html
+from functools import cmp_to_key
 
 resultsdir='./results'
 
@@ -171,7 +172,36 @@ with os.scandir(resultsdir) as it:
         endc = '\033[0m'
         print("%s%30s: suc %8s  fail %8s%s" % (color, arch, suc, fail, endc))
 
-sarchs = sorted(archs, key=lambda a: '-'.join(a.split('-')[::-1]))
+def archSort(l, r):
+    """
+    Sort by os, vendor, cpu
+    """
+    lcpu, lvendor, los = l.split('-', 2)
+    losname = re.split('\d', los, 1)[0]
+    losver = los.split(losname, 1)[1]
+    rcpu, rvendor, ros = r.split('-', 2)
+    rosname = re.split('\d', ros, 1)[0]
+    rosver = ros.split(rosname, 1)[1]
+
+    if losname > rosname:
+        return 1
+    if losname < rosname:
+        return -1
+    if float(losver) > float(rosver):
+        return 1
+    if float(losver) < float(rosver):
+        return -1
+    if lvendor > rvendor:
+        return 1
+    if lvendor < rvendor:
+        return -1
+    if lcpu > rcpu:
+        return 1
+    if lcpu < rcpu:
+        return -1
+    return 0
+
+sarchs = sorted(archs, key=cmp_to_key(archSort))
 
 def gentags(infos):
     tags = ''
