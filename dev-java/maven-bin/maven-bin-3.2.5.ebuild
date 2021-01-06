@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-3.2.5.ebuild,v 1.2 2015/03/31 18:58:00 ulm Exp $
 
@@ -17,7 +17,7 @@ HOMEPAGE="http://maven.apache.org/"
 
 LICENSE="Apache-2.0"
 SLOT="3.2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-solaris"
 
 # TODO: Needs further resolution:
 #
