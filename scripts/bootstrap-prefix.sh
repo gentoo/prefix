@@ -186,34 +186,27 @@ configure_toolchain() {
 	CXX=g++
 
 	case ${CHOST}:${DARWIN_USE_GCC} in
-		powerpc-*darwin*|*:1)
+		*darwin*:1)
 			einfo "Triggering Darwin with GCC toolchain"
-			compiler_stage1+=" sys-apps/darwin-miscutils sys-libs/csu"
-			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
+			compiler_stage1+=" sys-apps/darwin-miscutils"
+			local ccvers="$(unset CHOST; /usr/bin/gcc --version 2>/dev/null)"
 			case "${ccvers}" in
-				*"(Gentoo "*)
-					# probably the result of a bootstrap in progress
-					[[ ${DARWIN_USE_GCC} == 1 ]] \
-						&& linker=sys-devel/native-cctools \
-						|| linker=sys-devel/binutils-apple
-					;;
 				*"(GCC) 4.2.1 "*)
-					linker=sys-devel/binutils-apple
+					linker="=sys-devel/binutils-apple-3.2.6"
 					;;
 				*"(GCC) 4.0.1 "*)
 					linker="=sys-devel/binutils-apple-3.2.6"
 					# upgrade to 4.2.1 first
 					compiler_stage1+="
 						sys-devel/gcc-apple
-						sys-devel/binutils-apple"
+						=sys-devel/binutils-apple-3.2.6"
 					;;
 				*"Apple clang version "*|*"Apple LLVM version "*)
-					# gcc cannot build (recent) binutils-apple due to
-					# missing blocks support, so use Xcode provided
-					# linker/assembler
-					# UPDATE: binutils-8.2.1-r100 compiles, but the
-					# assembler isn't able to deal with AVX instructions
-					# (yet)
+					# recent binutils-apple are hard to build (C++11
+					# features, and cmake buildsystem) so avoid going
+					# there, the system ld is good enough to bring us to
+					# stage3, after which system set will take care of
+					# the rest
 					linker=sys-devel/native-cctools
 					;;
 				*)
@@ -227,9 +220,9 @@ configure_toolchain() {
 			einfo "Triggering Darwin with LLVM/Clang toolchain"
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
-			compiler_stage1="sys-apps/darwin-miscutils sys-libs/csu"
+			compiler_stage1="sys-apps/darwin-miscutils"
 			compiler_type="clang"
-			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
+			local ccvers="$(unset CHOST; /usr/bin/gcc --version 2>/dev/null)"
 			local llvm_deps="dev-util/ninja"
 			case "${ccvers}" in
 				*"Apple clang version "*|*"Apple LLVM version "*)
@@ -256,7 +249,6 @@ configure_toolchain() {
 			esac
 
 			compiler="
-				sys-libs/csu
 				dev-libs/libffi
 				${llvm_deps}
 				sys-libs/libcxxabi
@@ -270,7 +262,7 @@ configure_toolchain() {
 			# TODO: target clang toolchain someday?
 			;;
 		*-solaris*)
-			local ccvers="$( (unset CHOST; gcc --version 2>/dev/null) )"
+			local ccvers="$(unset CHOST; gcc --version 2>/dev/null)"
 			case "${ccvers}" in
 				*"gcc (GCC) 3.4.3"*)
 					# host compiler doesn't cope with the asm introduced
@@ -531,7 +523,7 @@ do_tree() {
 bootstrap_tree() {
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
-	local PV="20210104"
+	local PV="20210105"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
@@ -1512,14 +1504,11 @@ bootstrap_stage1() {
 	# too vital to rely on a host-provided one
 	[[ -x ${ROOT}/tmp/usr/bin/python ]] || (bootstrap_python) || return 1
 
-	if [[ ! -e ${ROOT}/tmp/usr/bin/cmake ]] && [[ ${CHOST} == *-darwin* ]]
-	then
-		# TODO: make DARWIN_USE_GCC path also activated on ppc-macos,
-		# since it effectively is so
-		if [[ ${DARWIN_USE_GCC} != 1 || ${CHOST} == powerpc* ]] ; then
-			(bootstrap_cmake) || return 1
-		fi
-	fi
+	# cmake for llvm/clang toolchain on macOS
+	[[ -e ${ROOT}/tmp/usr/bin/cmake ]] \
+		|| [[ ${CHOST} != *-darwin* ]] \
+		|| [[ ${DARWIN_USE_GCC} == 1 ]] \
+		|| (bootstrap_cmake) || return 1
 
 	# checks itself if things need to be done still
 	(bootstrap_tree) || return 1
@@ -3073,8 +3062,11 @@ esac
 
 # handle GCC install path on recent Darwin
 case ${CHOST} in
-	powerpc-*darwin*|arm64-*darwin*)
-		unset DARWIN_USE_GCC  # there is no choice here, don't trigger GCC path
+	powerpc-*darwin*)
+		DARWIN_USE_GCC=1  # must use GCC, Clang is impossible
+		;;
+	arm64-*darwin*)
+		DARWIN_USE_GCC=0  # cannot use GCC yet (needs silicon support)
 		;;
 	*-darwin*)
 		# normalise value of DARWIN_USE_GCC
