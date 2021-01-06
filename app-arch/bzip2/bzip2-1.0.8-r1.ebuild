@@ -14,7 +14,7 @@ SRC_URI="https://sourceware.org/pub/${PN}/${P}.tar.gz"
 
 LICENSE="BZIP2"
 SLOT="0/1" # subslot = SONAME
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="static static-libs"
 
 PATCHES=(
