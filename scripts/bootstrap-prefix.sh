@@ -277,6 +277,9 @@ configure_toolchain() {
 				*)            export NM="$(type -P nm) -p" ;;  # Solaris nm
 			esac
 			;;
+		*-linux*)
+			is-rap && einfo "Triggering Linux RAP bootstrap"
+			;;
 	esac
 }
 
