@@ -2107,7 +2107,7 @@ bootstrap_stage3() {
 	einfo "running emerge -u system"
 	estatus "stage3: emerge -u system"
 	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
-	CFLAGS= CXXFLAGS= emerge --color n -u system || return 1
+	CFLAGS= CXXFLAGS= emerge --color n -u -v system || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
