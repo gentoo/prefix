@@ -67,15 +67,27 @@ def get_err_reason(arch, dte, err):
             with open(stagelog, 'rb') as f:
                 errexp = re.compile(r'^( \* (ERROR:|Fetch failed for)|emerge: there are no) ')
                 for line in f:
-                    res = errexp.match(line.decode('utf-8', 'ignore'))
+                    line = line.decode('utf-8', 'ignore')
+                    res = errexp.match(line)
                     if res:
                         break
             if not line:
                 return '<a href="%s/stage%d.log">stage %d</a> failed' % \
                         (os.path.join(arch, '%d' % dte), err, err)
-            return '<a href="%s/stage%d.log">stage %d</a> failed<br />%s' % \
-                        (os.path.join(arch, '%d' % dte), err, err, \
-                         html.escape(line.decode('utf-8', 'ignore')))
+            m = re.fullmatch(
+                    r'(\* ERROR: )([a-z-]+/[a-zA-Z0-9._-]+)(::gentoo.* failed.*)',
+                    line.strip())
+            if m:
+                return '<a href="%s/stage%d.log">stage %d</a> failed<br />' % \
+                        (os.path.join(arch, '%d' % dte), err, err) + \
+                        '%s<a href="%s/temp/build.log">%s</a>%s' % \
+                        (html.escape(m.group(1)), \
+                        os.path.join(arch, '%d' % dte, "portage", m.group(2)), \
+                        html.escape(m.group(2)), html.escape(m.group(3)))
+            else:
+                return '<a href="%s/stage%d.log">stage %d</a> failed<br />%s' % \
+                            (os.path.join(arch, '%d' % dte), err, err, \
+                             html.escape(line))
         else:
             return 'stage %d did not start' % err
     if err == 4:
