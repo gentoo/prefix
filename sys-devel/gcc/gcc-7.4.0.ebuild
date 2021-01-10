@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
@@ -64,6 +64,11 @@ src_configure() {
 			export ac_cv_func_aligned_alloc=no
 			export ac_cv_func_memalign=no
 			export ac_cv_func_posix_memalign=no
+		;;
+		*-cygwin*)
+			# use built-in SSP with Cygwin 2.10
+			# FIXME: --disable-libssp should suffice in GCC 8
+			export gcc_cv_libc_provides_ssp=yes
 		;;
 		i[34567]86-*-linux*:*" prefix "*)
 			# to allow the linux-x86-on-amd64.patch become useful, we need
