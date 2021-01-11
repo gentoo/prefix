@@ -57,9 +57,9 @@ db_fix_so() {
 	# what do we do if we ever get 3.3 ?
 	local i
 	for i in libdb libdb_{cxx,tcl,java,sql,stl}; do
-		if [[ -f $i-3$(get_libname 2) ]]; then
-			ln -sf $i-3$(get_libname 2) $i-3$(get_libname)
-			ln -sf $i-3$(get_libname 2) $i$(get_libname 3)
+		if [[ -f $i-3.2$(get_libname) ]]; then
+			ln -sf $i-3.2$(get_libname) $i-3$(get_libname)
+			ln -sf $i-3.2$(get_libname) $i$(get_libname 3)
 		fi
 	done
 
