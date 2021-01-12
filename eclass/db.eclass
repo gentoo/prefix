@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: db.eclass
@@ -29,22 +29,10 @@ db_fix_so() {
 
 	# now rebuild all the correct ones
 	local ext
-	for ext in so a dylib sl; do
+	for ext in so dylib a; do
 		for name in libdb libdb_{cxx,tcl,java,sql,stl}; do
 			target="$(find . -maxdepth 1 -type f -name "${name}-*.${ext}" |sort -V |tail -n 1)"
-			[[ -n "${target}" ]] || continue;
-			case ${CHOST} in 
-			*-aix*)
-				aixdll --merge-runtime \
-					--keepdir=false \
-					--target="${name}.${ext}" \
-					--current="${target}" \
-					`find . -maxdepth 1 -type f -name "${name}-*.${ext}"`
-				;;
-			*)
-				ln -sf ${target//.\//} ${name}.${ext}
-				;;
-			esac;
+			[[ -n "${target}" ]] && ln -sf ${target//.\//} ${name}.${ext}
 		done;
 	done;
 
