@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2019 Gentoo Foundation
+ * Copyright 1999-2021 Gentoo Authors
  * Distributed under the terms of the GNU General Public License v2
  * Authors: Fabian Groffen <grobian@gentoo.org>
  *          Michael Haubenwallner <haubi@gentoo.org>
@@ -218,6 +218,11 @@ main(int argc, char *argv[])
 	DIR *dirp;
 	struct dirent *dp;
 
+#ifdef DARWIN_LD_DEFAULT_TARGET
+	if (darwin_dt == NULL)
+		darwin_dt = DARWIN_LD_DEFAULT_TARGET;
+#endif
+
 	/* two ways to determine CTARGET from argv[0]:
 	 * 1. called as <CTARGET>-ld (manually)
 	 * 2. called as EPREFIX/usr/libexec/gcc/<CTARGET>/ld (by gcc's collect2)
@@ -340,8 +345,8 @@ main(int argc, char *argv[])
 			newargc += 2 + 1;
 
 #ifdef DARWIN_LD_SYSLIBROOT
-			/* add -syslibroot <path> */
-			newargc += 2;
+			/* add -syslibroot <path> -sdk_version <ver> */
+			newargc += 4;
 #endif
 		} else {
 			/* add the 4 paths we want (-L + -R) */
@@ -378,11 +383,22 @@ main(int argc, char *argv[])
 	newargv[j++] = ld;
 
 	if (!is_cross && is_darwin) {
-		/* inject this first to make the intention clear */
+		char target[ESIZ];
+		ssize_t trglen;
+
+		/* ld64 will try to infer sdk version when -syslibroot is used
+		 * from the path given, unfortunately this searches for the
+		 * first numbers it finds, which means anything random in
+		 * EPREFIX, causing errors.  Explicitly set the deployment
+		 * version here, for the sdk link can be versionless when set to
+		 * CommandLineTools */
 #ifdef DARWIN_LD_SYSLIBROOT
+		newargv[j++] = "-sdk_version";
+		newargv[j++] = darwin_dt;
 		newargv[j++] = "-syslibroot";
 		newargv[j++] = EPREFIX "/MacOSX.sdk";
 #endif
+		/* inject this first to make the intention clear */
 		newargv[j++] = "-search_paths_first";
 	}
 

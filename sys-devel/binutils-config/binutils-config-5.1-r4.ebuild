@@ -44,7 +44,10 @@ src_compile() {
 		# macOS Big Sur has an empty /usr/lib, so the linker really has
 		# to look into the SDK, for which it needs to be told where it
 		# is (symlinked right into our EPREFIX root as MacOSX.sdk)
-		extraargs+=( -DDARWIN_LD_SYSLIBROOT=1 )
+		extraargs+=(
+			-DDARWIN_LD_SYSLIBROOT=1
+			-DDARWIN_LD_DEFAULT_TARGET='"'${MACOSX_DEPLOYMENT_TARGET}'"'
+		)
 	fi
 	local args=(
 		$(tc-getCC)
