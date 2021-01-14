@@ -2080,6 +2080,19 @@ create_gcc_env_entry() {
 	GCC_SPECS="${gcc_specs_file}"
 	MULTIOSDIRS="${mosdirs}"
 	EOF
+
+	# crude hack, but necessary :(
+	# Darwin9's libstdc++ is incompatible with later GCC's libstdc++
+	# causing ugly malloc warnings about non-aligned pointers, but in
+	# cmake's case, also crashes, unfortunately.  See also:
+	#   https://trac.macports.org/ticket/59832
+	# our only way out here is to set DYLD_LIBRARY_PATH to replace the
+	# libstdc++ used by the Frameworks that cmake links in
+	if [[ ${CHOST} == *-darwin9 ]] ; then
+		cat <<-EOF >> ${gcc_envd_file}
+		DYLD_LIBRARY_PATH="${LIBPATH}"
+		EOF
+	fi
 }
 
 create_revdep_rebuild_entry() {
