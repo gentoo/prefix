@@ -9,6 +9,12 @@ from functools import cmp_to_key
 
 resultsdir='./results'
 
+deprecated_archs = (
+        'x86_64-pc-cygwin',
+        'sparc-sun-solaris2.10',
+        'sparcv9-sun-solaris2.10'
+)
+
 def find_last_stage(d):
     """
     Returns the last stage worked on.
@@ -238,9 +244,13 @@ display: inline-block; font-size: x-small; padding: 3px 4px; text-transform: upp
     return tags
 
 # generate html edition
+deprecated_count = 0
 with open(os.path.join(resultsdir, 'index.html'), "w") as h:
     h.write("<html>")
-    h.write("<head><title>Gentoo Prefix bootstrap results</title></head>")
+    h.write("<head>")
+    h.write("<meta charset='UTF-8'>")
+    h.write("<title>Gentoo Prefix bootstrap results</title>")
+    h.write("</head>")
     h.write("<body>")
     h.write("<h2>Gentoo Prefix bootstraps</h2>")
     h.write('<table border="1px">')
@@ -256,7 +266,11 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
         else:
             state = 'limegreen'
 
-        h.write('<tr>')
+        if arch in deprecated_archs:
+            deprecated_count = deprecated_count + 1
+            h.write('<tr id="deprecated_%d" style="display: none;">' % deprecated_count)
+        else:
+            h.write('<tr>')
 
         h.write('<td bgcolor="%s" nowrap="nowrap">' % state)
         h.write(arch)
@@ -294,6 +308,26 @@ with open(os.path.join(resultsdir, 'index.html'), "w") as h:
 
         h.write("</tr>")
     h.write("</table>")
+    h.write('''
+<script type="text/javascript"><!--
+    function toggle_hidden(id) {
+        var e = document.getElementById(id);
+        if (!e)
+            return;
+        if (e.style.display == 'none')
+            e.style.display = 'table-row';
+        else
+            e.style.display = 'none';
+    }
+    function toggle_all() {
+''')
+    for i in range(deprecated_count):
+        h.write("toggle_hidden('deprecated_%d');" % (i + 1))
+    h.write('''
+    }
+    //-->
+</script>''')
+    h.write("<a href='#' onclick='toggle_all();'>toggle visibility for %d deprecated arches</a>" % deprecated_count)
     now = time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime())
     h.write("<p><i>generated: %s</i></p>" % now) 
     h.write("<p>See also <a href='https://dev.azure.com/12719821/12719821/_build?definitionId=6'>awesomebytes</a>")
