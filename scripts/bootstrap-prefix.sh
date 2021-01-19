@@ -526,7 +526,7 @@ do_tree() {
 bootstrap_tree() {
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
-	local PV="20210114"
+	local PV="20210118"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
