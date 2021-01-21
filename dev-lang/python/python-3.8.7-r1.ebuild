@@ -4,27 +4,23 @@
 EAPI="7"
 WANT_LIBTOOL="none"
 
-inherit autotools flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs
+inherit autotools flag-o-matic multiprocessing pax-utils \
+	python-utils-r1 toolchain-funcs
 
 MY_P="Python-${PV}"
 PYVER=$(ver_cut 1-2)
-PATCHSET="python-gentoo-patches-3.7.8-r3"
-PREFIX_PATCHSET="python-prefix-gentoo-3.7.8-patches-r0"
-CYGWINPORTS_GITREV="6df749d21f131eeafa485d40eb1294b28d30ba6a"
+PATCHSET="python-gentoo-patches-3.8.7-r1"
+PREFIX_PATCHSET="python-prefix-gentoo-${PV}-patches-r2"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
 SRC_URI="https://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~mgorny/dist/python/${PATCHSET}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/${PREFIX_PATCHSET}.tar.xz"
-[[ -n ${CYGWINPORTS_GITREV} ]] &&
-SRC_URI+=" elibc_Cygwin? (
-	https://github.com/cygwinports/python37/archive/${CYGWINPORTS_GITREV}.tar.gz
-	-> python37-cygwinports-${CYGWINPORTS_GITREV}.tar.gz )"
 S="${WORKDIR}/${MY_P}"
 
 LICENSE="PSF-2"
-SLOT="${PYVER}/${PYVER}m"
+SLOT="${PYVER}"
 KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua bluetooth build examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl test tk wininst +xml"
 RESTRICT="!test? ( test )"
@@ -63,7 +59,6 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	!sys-devel/gcc[libffi(-)]"
 RDEPEND+=" !build? ( app-misc/mime-types )"
-PDEPEND=">=app-eselect/eselect-python-20140125-r1"
 
 src_prepare() {
 	# Ensure that internal copies of expat, libffi and zlib are not used.
@@ -77,39 +72,16 @@ src_prepare() {
 		"${WORKDIR}"/${PREFIX_PATCHSET}
 	)
 
-	rm "${WORKDIR}"/${PREFIX_PATCHSET}/*_m68k-mint_*
-
 	default
-
-	if [[ -n ${CYGWINPORTS_GITREV} ]] && use elibc_Cygwin; then
-	    local p d="${WORKDIR}/python37-${CYGWINPORTS_GITREV}"
-	    for p in $(
-			sed -ne '/PATCH_URI="/,/"/{s/.*="//;s/".*$//;p}' \
-			< "${d}/python3.cygport"
-	    ); do
-			# dropped by 01_all_prefix-no-patch-invention.patch
-			[[ ${p} == *-tkinter-* ]] && continue
-		    eapply "${d}/${p}"
-	    done
-	fi
-
-	# we provide a fully working readline also on Darwin, so don't force
-	# usage of less functional libedit
-	sed -i -e 's/__APPLE__/__NO_MUCKING_AROUND__/g' Modules/readline.c || die
-
-	# missed patch
-	sed -i -e '/is_macosx_sdk_path(zlib_h):/s/darwin/no-darwin/' setup.py || die
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
-	# workaround a development build env problem and muck around
-	# framework install to get the best of both worlds (non-standard)
-	sed -i \
-		-e "s:FRAMEWORKINSTALLAPPSPREFIX=\":FRAMEWORKINSTALLAPPSPREFIX=\"${EPREFIX}:" \
-		-e '/RUNSHARED=DYLD_FRAMEWORK_PATH/s/FRAMEWORK/LIBRARY/g' \
-		configure.ac configure || die
-	sed -i -e '/find/s/$/ || true/' Mac/PythonLauncher/Makefile.in || die
+	# force correct number of jobs
+	# https://bugs.gentoo.org/737660
+	local jobs=$(makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
+	sed -i -e "s:-j0:-j${jobs}:" Makefile.pre.in || die
+	sed -i -e "/self\.parallel/s:True:${jobs}:" setup.py || die
 
 	# workaround a problem on ppc-macos with >=GCC-8 where dtoa gets
 	# miscompiled when optimisation is being used
@@ -122,16 +94,19 @@ src_prepare() {
 
 	# Darwin 9's kqueue seems to act up (at least at this stage), so
 	# make Python's selectors resort to poll() or select()
-	if [[ ${CHOST} == powerpc*-darwin* ]] ; then
+	if [[ ${CHOST} == powerpc*-darwin9 ]] ; then
 		sed -i \
 			-e 's/KQUEUE/KQUEUE_DISABLED/' \
 			configure.ac configure || die
 	fi
 
-	# side-effect of disabling scproxy (see below), make sure we don't
-	# try to use it on Darwin either
-	sed -i -e '/sys.platform/s/darwin/disabled-darwin/' \
-		Lib/urllib/request.py || die
+	# Python doesn't know about arm64-macos yet
+	if [[ ${CHOST} == arm64-*-darwin* ]] ; then
+		# Teach Python a new trick (arm64)
+		sed -i \
+			-e "/Unexpected output of 'arch' on OSX/d" \
+			configure.ac configure || die
+	fi
 
 	eautoreconf
 }
@@ -147,7 +122,6 @@ src_configure() {
 	use ssl       || export PYTHON_DISABLE_SSL="1"
 	use tk        || disable+=" _tkinter"
 	use xml       || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
-	[[ ${CHOST} == *-darwin* ]] && disable+=" _scproxy"  # header issue
 	export PYTHON_DISABLE_MODULES="${disable}"
 
 	if ! use xml; then
@@ -172,9 +146,13 @@ src_configure() {
 		use hardened && replace-flags -O3 -O2
 	fi
 
-	# Export CC so even AIX will use gcc instead of xlc_r.
+	# https://bugs.gentoo.org/700012
+	if is-flagq -flto || is-flagq '-flto=*'; then
+		append-cflags $(test-flags-CC -ffat-lto-objects)
+	fi
+
 	# Export CXX so it ends up in /usr/lib/python3.X/config/Makefile.
-	tc-export CC CXX
+	tc-export CXX
 
 	# Set LDFLAGS so we link modules with -lpython3.2 correctly.
 	# Needed on FreeBSD unless Python 3.2 is already installed.
@@ -193,9 +171,13 @@ src_configure() {
 	if use aqua ; then
 		ECONF_SOURCE="${S}" OPT="" \
 		econf \
-			--enable-framework="${EPREFIX}"/usr/lib \
+			--enable-framework="${EPREFIX}" \
 			--config-cache
 	fi
+
+	# flock on 32-bits sparc Solaris is broken
+	[[ ${CHOST} == sparc-*-solaris* ]] && \
+		export ac_cv_flock_decl=no
 
 	local myeconfargs=(
 		# glibc-2.30 removes it; since we can't cleanly force-rebuild
@@ -253,10 +235,12 @@ src_test() {
 
 	# bug 660358
 	local -x COLUMNS=80
-
 	local -x PYTHONDONTWRITEBYTECODE=
 
-	emake test EXTRATESTOPTS="-u-network" CPPFLAGS= CFLAGS= LDFLAGS= < /dev/tty
+	local jobs=$(makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
+
+	emake test EXTRATESTOPTS="-u-network -j${jobs}" \
+		CPPFLAGS= CFLAGS= LDFLAGS= < /dev/tty
 	local result=$?
 
 	for test in ${skipped_tests}; do
@@ -293,7 +277,7 @@ src_install() {
 		rmdir "${ED}"/Applications/Python* || die
 		rmdir "${ED}"/Applications || die
 
-		local fwdir=/usr/$(get_libdir)/Python.framework/Versions/${PYVER}
+		local fwdir=/Frameworks/Python.framework/Versions/${PYVER}
 		ln -s "${EPREFIX}"/usr/include/python${PYVER} \
 			"${ED}${fwdir}"/Headers || die
 		ln -s "${EPREFIX}"/usr/lib/libpython${PYVER}.dylib \
@@ -302,12 +286,6 @@ src_install() {
 
 	# Remove static library
 	rm "${ED}"/usr/$(get_libdir)/libpython*.a || die
-
-	if use elibc_Cygwin; then
-		# We may recreate symlinks, but without any .exe extension.  Cygwin
-		# can resolv either without it, so just drop .exe from shebangs:
-		sed -i -e '1s/\.exe//' "$ED"/usr/bin/* || die
-	fi
 
 	sed \
 		-e "s/\(CONFIGURE_LDFLAGS=\).*/\1/" \
@@ -399,49 +377,14 @@ src_install() {
 	chmod +x "${scriptdir}/python${pymajor}-config" || die
 	ln -s "python${pymajor}-config" \
 		"${scriptdir}/python-config" || die
-	# 2to3, pydoc, pyvenv
+	# 2to3, pydoc
 	ln -s "../../../bin/2to3-${PYVER}" \
 		"${scriptdir}/2to3" || die
 	ln -s "../../../bin/pydoc${PYVER}" \
 		"${scriptdir}/pydoc" || die
-	ln -s "../../../bin/pyvenv-${PYVER}" \
-		"${scriptdir}/pyvenv" || die
 	# idle
 	if use tk; then
 		ln -s "../../../bin/idle${PYVER}" \
 			"${scriptdir}/idle" || die
 	fi
-}
-
-pkg_preinst() {
-	if has_version "<${CATEGORY}/${PN}-${PYVER}" && ! has_version ">=${CATEGORY}/${PN}-${PYVER}_alpha"; then
-		python_updater_warning="1"
-	fi
-}
-
-eselect_python_update() {
-	if [[ -z "$(eselect python show)" || \
-			! -f "${EROOT}/usr/bin/$(eselect python show)" ]]; then
-		eselect python update
-	fi
-
-	if [[ -z "$(eselect python show --python${PV%%.*})" || \
-			! -f "${EROOT}/usr/bin/$(eselect python show --python${PV%%.*})" ]]
-	then
-		eselect python update --python${PV%%.*}
-	fi
-}
-
-pkg_postinst() {
-	eselect_python_update
-
-	if [[ "${python_updater_warning}" == "1" ]]; then
-		ewarn "You have just upgraded from an older version of Python."
-		ewarn
-		ewarn "Please adjust PYTHON_TARGETS (if so desired), and run emerge with the --newuse or --changed-use option to rebuild packages installing python modules."
-	fi
-}
-
-pkg_postrm() {
-	eselect_python_update
 }
