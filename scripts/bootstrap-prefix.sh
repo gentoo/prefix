@@ -281,6 +281,8 @@ configure_toolchain() {
 			is-rap && einfo "Triggering Linux RAP bootstrap"
 			;;
 	esac
+
+	return
 }
 
 bootstrap_setup() {
