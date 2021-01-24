@@ -629,26 +629,11 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 
 	case ${host} in
 		powerpc-apple-darwin*)    echo ppc-macos;;
-		powerpc64-apple-darwin*)  echo ppc64-macos;;
-		i?86-apple-darwin*)       echo x86-macos;;
 		x86_64-apple-darwin*)     echo x64-macos;;
 		sparc-sun-solaris*)       echo sparc-solaris;;
 		sparcv9-sun-solaris*)     echo sparc64-solaris;;
 		i?86-pc-solaris*)         echo x86-solaris;;
 		x86_64-pc-solaris*)       echo x64-solaris;;
-		powerpc-ibm-aix*)         echo ppc-aix;;
-		mips-sgi-irix*)           echo mips-irix;;
-		ia64w-hp-hpux*)           echo ia64w-hpux;;
-		ia64-hp-hpux*)            echo ia64-hpux;;
-		hppa*64*-hp-hpux*)        echo hppa64-hpux;;
-		hppa*-hp-hpux*)           echo hppa-hpux;;
-		i?86-pc-freebsd*)         echo x86-freebsd;;
-		x86_64-pc-freebsd*)       echo x64-freebsd;;
-		powerpc-unknown-openbsd*) echo ppc-openbsd;;
-		i?86-pc-openbsd*)         echo x86-openbsd;;
-		x86_64-pc-openbsd*)       echo x64-openbsd;;
-		i?86-pc-netbsd*)          echo x86-netbsd;;
-		i?86-pc-interix*)         echo x86-interix;;
 		i?86-pc-winnt*)           echo x86-winnt;;
 
 		aarch64*)	echo arm64;;
