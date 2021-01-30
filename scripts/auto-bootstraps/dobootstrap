@@ -109,7 +109,8 @@ do_prepare() {
 	keepalive=$(type -P caffeinate)
 	[[ -x ${keepalive} ]] && keepalive+=" -i -m -s" || keepalive=
 
-	local libressluse="libressl -curl_ssl_openssl curl_ssl_libressl"
+	# reminder: MAKE_CONF_ADDITIONAL_USE can be set to add global
+	# USE-flags in make.conf prior to stage2 (first emerge usage)
 	starttime=${SECONDS}
 	env -i \
 		HOME=${EPREFIX} \
@@ -120,7 +121,6 @@ do_prepare() {
 		EPREFIX=${EPREFIX} \
 		${GENTOO_MIRRORS+GENTOO_MIRRORS="${GENTOO_MIRRORS}"} \
 		${DOLOCAL+DOLOCAL=1} \
-		${DOLIBRESSL+MAKE_CONF_ADDITIONAL_USE="${libressluse}"} \
 		${RESUME+RESUME=1} \
 		${LATEST_TREE_YES+LATEST_TREE_YES=1} \
 		${TREE_FROM_SRC+TREE_FROM_SRC=}${TREE_FROM_SRC} \
@@ -199,7 +199,6 @@ case $1 in
 		fi
 		for arg in "${@:1}" ; do
 			case "${arg}" in
-				libressl)     export DOLIBRESSL=1           ;;
 				latesttree)   export LATEST_TREE_YES=1      ;;
 				norap|no-rap) export PREFIX_DISABLE_RAP=yes ;;
 				32|64)        bitw=${arg}                   ;;
