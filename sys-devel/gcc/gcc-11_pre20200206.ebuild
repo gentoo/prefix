@@ -1,13 +1,16 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
 
-PATCH_VER="2"
+GCC_TARBALL_SRC_URI="https://dev.gentoo.org/~grobian/distfiles/gcc-pre11-apple-si-f1bedb9.tar.gz"
+PATCH_GCC_VER="11.0.0"
+PATCH_VER="6"
+TOOLCHAIN_GCC_PV=11.0.0
 
 inherit toolchain
 
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+#KEYWORDS="~ppc-macos ~x64-macos"
 
 RDEPEND=""
 BDEPEND="
@@ -16,10 +19,11 @@ BDEPEND="
 		|| ( ${CATEGORY}/binutils-apple ${CATEGORY}/native-cctools )
 	)"
 
-src_prepare() {
-	toolchain_src_prepare
+S="${WORKDIR}"/gcc-darwin-arm64-master-wip-apple-si
 
-	use vanilla && return 0
+src_prepare() {
+	has_version '>=sys-libs/glibc-2.32-r1' && rm -v "${WORKDIR}/patch/23_all_disable-riscv32-ABIs.patch"
+	toolchain_src_prepare
 
 	if use elibc_Cygwin; then
 		sed -e '/0001-share-mingw-fset-stack-executable-with-cygwin.patch/d' \
@@ -43,17 +47,6 @@ src_prepare() {
 		sed -i -e 's|^ifeq (/usr/lib,|ifneq (/usr/lib,|' \
 			libgcc/config/t-slibgcc-darwin || die
 	fi
-
-	# fix for Big Sur versioning, remove with 11
-	eapply -p1 "${FILESDIR}"/${PN}-10.1.0-macos-bigsur.patch
-	find .  -name "configure" | xargs \
-	sed -i -e '/^\s*10\.\*)/N' \
-		-e '/^\s*10\.\*)\s*_lt_dar_allow_undefined/s/10\.\*/10.*|11.*/' || die
-
-	# fix complaint about Authorization Framework
-	eapply -p1 "${FILESDIR}"/${PN}-10.1.0-darwin-auth-fixincludes.patch
-
-	eapply_user
 }
 
 src_configure() {
