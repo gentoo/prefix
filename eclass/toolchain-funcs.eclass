@@ -229,7 +229,7 @@ tc-detect-is-softfloat() {
 
 	case ${CTARGET:-${CHOST}} in
 		# Avoid autodetection for bare-metal targets. bug #666896
-		*-newlib|*-elf|*-eabi)
+		*-newlib|*-elf|*-eabi|arm64-apple-darwin*)
 			return 1 ;;
 
 		# arm-unknown-linux-gnueabi is ambiguous. We used to treat it as
