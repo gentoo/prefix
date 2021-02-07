@@ -47,6 +47,12 @@ src_prepare() {
 		sed -i -e 's|^ifeq (/usr/lib,|ifneq (/usr/lib,|' \
 			libgcc/config/t-slibgcc-darwin || die
 	fi
+
+	# fixup a what seems to be a typo, we need this at least to finish
+	# compilation on arm64-macos during bootstrap as gmp.h else won't be
+	# found
+	sed -i -e 's/ALL_SPPFLAGS/ALL_CPPFLAGS/' \
+		gcc/config/aarch64/t-aarch64 || die
 }
 
 src_configure() {
