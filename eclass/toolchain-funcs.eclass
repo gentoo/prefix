@@ -273,6 +273,8 @@ tc-tuple-is-softfloat() {
 		# bare-metal targets have their defaults. bug #666896
 		*-newlib|*-elf|*-eabi)
 			echo "no" ;;
+		arm64-apple-darwin*)
+			echo "no" ;;
 		arm*)
 			echo "yes" ;;
 		*)

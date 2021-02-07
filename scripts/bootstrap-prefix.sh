@@ -470,6 +470,10 @@ bootstrap_setup() {
 	sys-devel/native-cctools
 	EOF
 
+	cat >> "${ROOT}"/etc/portage/package.accept_keywords <<-EOF
+	sys-devel/gcc-11_pre20200206 **
+	EOF
+
 	# Strange enough, -cxx causes wrong libtool config on Cygwin,
 	# but we require a C++ compiler there anyway - so just use it.
 	[[ ${CHOST} == *-cygwin* ]] ||
@@ -3070,9 +3074,9 @@ case ${CHOST} in
 	powerpc-*darwin*)
 		DARWIN_USE_GCC=1  # must use GCC, Clang is impossible
 		;;
-	arm64-*darwin*)
-		DARWIN_USE_GCC=0  # cannot use GCC yet (needs silicon support)
-		;;
+#	arm64-*darwin*)
+#		DARWIN_USE_GCC=0  # cannot use GCC yet (needs silicon support)
+#		;;
 	*-darwin*)
 		# normalise value of DARWIN_USE_GCC
 		case ${DARWIN_USE_GCC} in
