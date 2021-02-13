@@ -470,8 +470,9 @@ bootstrap_setup() {
 	sys-devel/native-cctools
 	EOF
 
+	[[ ${CHOST} == arm64-*-darwin* ]] &&
 	cat >> "${ROOT}"/etc/portage/package.accept_keywords <<-EOF
-	sys-devel/gcc-11_pre20200206 **
+	=sys-devel/gcc-11_pre20200206 **
 	EOF
 
 	# Strange enough, -cxx causes wrong libtool config on Cygwin,
