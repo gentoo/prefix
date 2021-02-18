@@ -7,14 +7,14 @@ WANT_LIBTOOL="none"
 inherit autotools flag-o-matic multiprocessing pax-utils \
 	python-utils-r1 toolchain-funcs
 
-MY_P="Python-${PV}"
+MY_P="Python-${PV%_p*}"
 PYVER=$(ver_cut 1-2)
-PATCHSET="python-gentoo-patches-3.8.7-r1"
-PREFIX_PATCHSET="python-prefix-gentoo-${PV}-patches-r2"
+PATCHSET="python-gentoo-patches-${PV}"
+PREFIX_PATCHSET="python-prefix-gentoo-${PV%_p*}-patches-r2"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
-SRC_URI="https://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
+SRC_URI="https://www.python.org/ftp/python/${PV%_*}/${MY_P}.tar.xz
 	https://dev.gentoo.org/~mgorny/dist/python/${PATCHSET}.tar.xz
 	https://dev.gentoo.org/~grobian/distfiles/${PREFIX_PATCHSET}.tar.xz"
 S="${WORKDIR}/${MY_P}"
