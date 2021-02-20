@@ -104,11 +104,6 @@ do_prepare() {
 	fi
 	cd "${EPREFIX}" || exit 1
 
-	# optional program to keep the machine from sleeping
-	# macOS/BSD: caffeinate
-	keepalive=$(type -P caffeinate)
-	[[ -x ${keepalive} ]] && keepalive+=" -i -m -s" || keepalive=
-
 	# reminder: MAKE_CONF_ADDITIONAL_USE can be set to add global
 	# USE-flags in make.conf prior to stage2 (first emerge usage)
 	starttime=${SECONDS}
@@ -127,7 +122,8 @@ do_prepare() {
 		${USE_CPU_CORES+USE_CPU_CORES=}${USE_CPU_CORES} \
 		${DARWIN_USE_GCC+DARWIN_USE_GCC=}${DARWIN_USE_GCC} \
 		${PREFIX_DISABLE_RAP+PREFIX_DISABLE_RAP=}${PREFIX_DISABLE_RAP} \
-		${keepalive} ${BASH} ${bootstrapscript} bootstrap
+		${BP_KEEPALIVE_ACTIVE+BP_KEEPALIVE_ACTIVE=}${BP_KEEPALIVE_ACTIVE} \
+		${BASH} ${bootstrapscript} bootstrap
 	endtime=${SECONDS}
 
 	if [[ -n ${DOPUBLISH} ]] ; then
@@ -150,9 +146,9 @@ do_prepare() {
 			chost=${chost%%-*}-${platform}-linux-${dist,,}${rel}
 		fi
 
-		${keepalive} rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
-		${keepalive} rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
-		${keepalive} rsync -rltv \
+		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
+		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
+		rsync -rltv \
 			--exclude=work/ \
 			--exclude=homedir/ \
 			--exclude=files \
@@ -167,7 +163,7 @@ do_prepare() {
 			var/log/emerge.log \
 			etc/portage/make.conf \
 			${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/
-		${keepalive} rsync -q /dev/null \
+		rsync -q /dev/null \
 			${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/push-complete/
 	fi
 }
@@ -176,6 +172,19 @@ do_bootstrap() {
 	chmod 755 bootstrap-prefix.sh || exit 1
 	${BASH} ./bootstrap-prefix.sh ${EPREFIX} noninteractive
 }
+
+# re-exec under keepalive wrapper, such that the machine we're running
+# on doesn't go to sleep, until we as top-level caller terminate
+if [[ -z ${BP_KEEPALIVE_ACTIVE} ]] ; then
+	# optional program to keep the machine from sleeping
+	# macOS/BSD: caffeinate
+	keepalive=$(type -P caffeinate)
+	[[ -x ${keepalive} ]] && keepalive+=" -i -m -s" || keepalive=
+	if [[ -n ${keepalive} ]] ; then
+		export BP_KEEPALIVE_ACTIVE=1
+		exec ${keepalive} "${BASH_SOURCE[0]}" "${@}"
+	fi
+fi
 
 case $1 in
 	bootstrap)

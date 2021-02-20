@@ -48,9 +48,6 @@ src_prepare() {
 	find .  -name "configure" | xargs \
 	sed -i -e '/^\s*10\.\*)/N' \
 		-e '/^\s*10\.\*)\s*_lt_dar_allow_undefined/s/10\.\*/10.*|11.*/' || die
-
-	# fix complaint about Authorization Framework
-	eapply -p1 "${FILESDIR}"/${PN}-10.1.0-darwin-auth-fixincludes.patch
 }
 
 src_configure() {
@@ -71,7 +68,7 @@ src_configure() {
 			export gcc_cv_c_no_fpie=no
 			export gcc_cv_no_pie=no
 		;;
-		*-darwin20)
+		*-darwin19|*-darwin20)
 			# use sysroot with the linker, #756160
 			export gcc_cv_ld_sysroot=yes
 			;;
