@@ -62,6 +62,9 @@ do_prepare() {
 				chost=powerpc-${chost#*-}
 			fi
 			;;
+		arm64-*)
+			bitw=64
+			;;
 		sparc-*)
 			if [[ ${bitw} == 64 ]] ; then
 				chost=sparcv9-${chost#*-}
