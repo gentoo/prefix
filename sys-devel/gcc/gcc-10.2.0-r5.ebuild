@@ -43,6 +43,11 @@ src_prepare() {
 			libgcc/config/t-slibgcc-darwin || die
 	fi
 
+	# up macosx-version-min from 10.4 to 10.6 on Catalina, bug #767415
+	if [[ ${CHOST} == *-darwin19 ]] ; then
+		sed -i -e 's/=10.4/=10.6/' libgcc/config/t-darwin || die
+	fi
+
 	# fix for Big Sur versioning, remove with 11
 	eapply -p1 "${FILESDIR}"/${PN}-10.1.0-macos-bigsur.patch
 	find .  -name "configure" | xargs \
@@ -68,7 +73,7 @@ src_configure() {
 			export gcc_cv_c_no_fpie=no
 			export gcc_cv_no_pie=no
 		;;
-		*-darwin19|*-darwin20)
+		*-darwin20)
 			# use sysroot with the linker, #756160
 			export gcc_cv_ld_sysroot=yes
 			;;
