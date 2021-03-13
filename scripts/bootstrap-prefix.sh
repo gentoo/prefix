@@ -486,6 +486,7 @@ bootstrap_setup() {
 	# stage2 libstdc++.so might conflict with that of stage3.  The
 	# trade-off is just not to use cxx.
 	dev-libs/gmp -cxx
+	sys-devel/binutils -gold
 	EOF
 }
 
