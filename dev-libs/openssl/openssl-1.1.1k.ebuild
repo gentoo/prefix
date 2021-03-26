@@ -28,17 +28,14 @@ LICENSE="openssl"
 SLOT="0/1.1" # .so version of libssl/libcrypto
 [[ "${PV}" = *_pre* ]] || \
 KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="+asm bindist elibc_musl rfc3779 sctp cpu_flags_x86_sse2 kernel_linux sslv3 static-libs test tls-heartbeat vanilla zlib"
+IUSE="+asm bindist elibc_musl rfc3779 sctp cpu_flags_x86_sse2 sslv3 static-libs test tls-heartbeat vanilla zlib"
 RESTRICT="!bindist? ( bindist )
 	!test? ( test )"
 
-MY_PKGINSTDEPS=">=app-misc/c_rehash-1.7-r1"
-# Possible c_rehash dep is tricky
-# bug #572790
-RDEPEND="!prefix-stack? ( ${MY_PKGINSTDEPS} )
+RDEPEND="!prefix-stack? ( >=app-misc/c_rehash-1.7-r1 )
 	zlib? ( >=sys-libs/zlib-1.2.8-r1[static-libs(+)?,${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
-	prefix-stack? ( ${MY_PKGINSTDEPS} )"
+	prefix-stack? ( >=app-misc/c_rehash-1.7-r1 )"
 BDEPEND="
 	>=dev-lang/perl-5
 	sctp? ( >=net-misc/lksctp-tools-1.0.12 )
@@ -51,6 +48,7 @@ PDEPEND="app-misc/ca-certificates"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1.0j-parallel_install_fix.patch #671602
+	"${FILESDIR}"/${PN}-1.1.1i-riscv32.patch
 )
 
 S="${WORKDIR}/${MY_P}"
