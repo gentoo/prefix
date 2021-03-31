@@ -1447,6 +1447,7 @@ bootstrap_stage1() {
 	# we're working with now, bug #650284
 	[[ -x ${ROOT}/tmp/usr/bin/bash ]] \
 		|| (bootstrap_bash) || return 1
+
 	# Some host tools need to be wrapped to be useful for us.
 	# We put them in tmp/usr/local/bin, to not accidentally
 	# be identified as stage1-installed like in bug #615410.
@@ -1475,7 +1476,7 @@ bootstrap_stage1() {
 				# We need to direct the system gcc to find the system binutils.
 				cat >> "${ROOT}"/tmp/usr/local/bin/gcc <<-EOF
 					#! /bin/sh
-					PATH="${STAGE1_PATH}" export PATH
+					PATH="${ORIGINAL_PATH}" export PATH
 					exec "\${0##*/}" "\$@"
 				EOF
 				cp "${ROOT}"/tmp/usr/local/bin/g{cc,++}
@@ -2768,7 +2769,6 @@ EOF
 		# location seems ok
 		break
 	done
-	export STAGE1_PATH=${PATH}
 	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$EPREFIX/tmp/usr/local/bin:${PATH}"
 
 	cat << EOF
@@ -3078,9 +3078,6 @@ case ${CHOST} in
 	powerpc-*darwin*)
 		DARWIN_USE_GCC=1  # must use GCC, Clang is impossible
 		;;
-#	arm64-*darwin*)
-#		DARWIN_USE_GCC=0  # cannot use GCC yet (needs silicon support)
-#		;;
 	*-darwin*)
 		# normalise value of DARWIN_USE_GCC
 		case ${DARWIN_USE_GCC} in
@@ -3138,6 +3135,7 @@ elif [[ -z $1 ]] ; then
 fi
 
 ROOT="$1"
+ORIGINAL_PATH="${PATH}"
 set_helper_vars
 
 case $ROOT in
