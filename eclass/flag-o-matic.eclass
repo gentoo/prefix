@@ -234,10 +234,7 @@ append-fflags() {
 append-lfs-flags() {
 	[[ $# -ne 0 ]] && die "append-lfs-flags takes no arguments"
 	# see comments in filter-lfs-flags func for meaning of these
-	case ${CHOST} in
-	*-aix*) append-cppflags -D_LARGE_FILES -D_LARGE_FILE_API ;;
-	*) append-cppflags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE ;;
-	esac
+	append-cppflags -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
 }
 
 # @FUNCTION: append-ldflags
@@ -522,13 +519,13 @@ test-flag-PROG() {
 		"${test_in}" -o "${test_out}"
 	)
 
-	if ! "${cmdline[@]}" </dev/null &>/dev/null; then
+	if ! "${cmdline[@]}" &>/dev/null; then
 		# -Werror makes clang bail out on unused arguments as well;
 		# try to add -Qunused-arguments to work-around that
 		# other compilers don't support it but then, it's failure like
 		# any other
 		cmdline+=( -Qunused-arguments )
-		"${cmdline[@]}" </dev/null &>/dev/null
+		"${cmdline[@]}" &>/dev/null
 	fi
 }
 
@@ -573,7 +570,8 @@ test-flags-PROG() {
 
 	while (( $# )); do
 		case "$1" in
-			--param)
+			# '-B /foo': bug # 687198
+			--param|-B)
 				if test-flag-${comp} "$1" "$2"; then
 					flags+=( "$1" "$2" )
 				fi
