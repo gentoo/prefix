@@ -282,7 +282,7 @@ configure_toolchain() {
 			;;
 	esac
 
-	return
+	return 0
 }
 
 bootstrap_setup() {
