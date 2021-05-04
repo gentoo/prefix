@@ -1,4 +1,4 @@
-# Copyright 2004-2020 Gentoo Authors
+# Copyright 2004-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: java-utils-2.eclass
@@ -1484,7 +1484,6 @@ java-pkg_ensure-vm-version-sufficient() {
 
 # @FUNCTION: java-pkg_is-vm-version-sufficient
 # @INTERNAL
-# @DESCRIPTION:
 # @RETURN: zero - VM is sufficient; non-zero - VM is not sufficient
 java-pkg_is-vm-version-sufficient() {
 	debug-print-function ${FUNCNAME} $*
@@ -2194,8 +2193,6 @@ use_doc() {
 java-pkg_init() {
 	debug-print-function ${FUNCNAME} $*
 
-	[[ ${CHOST} == *-winnt* ]] && return
-
 	# Don't set up build environment if installing from binary. #206024 #258423
 	[[ "${MERGE_TYPE}" == "binary" ]] && return
 	# Also try Portage's nonstandard EMERGE_FROM for old EAPIs, if it doesn't
@@ -2600,14 +2597,14 @@ java-pkg_needs-vm() {
 
 # @FUNCTION: java-pkg_get-current-vm
 # @INTERNAL
-# @RETURN - The current VM being used
+# @RETURN: The current VM being used
 java-pkg_get-current-vm() {
 	java-config -f
 }
 
 # @FUNCTION: java-pkg_get-vm-vendor
 # @INTERNAL
-# @RETURN - The vendor of the current VM
+# @RETURN: The vendor of the current VM
 java-pkg_get-vm-vendor() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -2618,7 +2615,7 @@ java-pkg_get-vm-vendor() {
 
 # @FUNCTION: java-pkg_get-vm-version
 # @INTERNAL
-# @RETURN - The version of the current VM
+# @RETURN: The version of the current VM
 java-pkg_get-vm-version() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -2627,12 +2624,12 @@ java-pkg_get-vm-version() {
 
 # @FUNCTION: java-pkg_build-vm-from-handle
 # @INTERNAL
+# @RETURN: VM handle of an available JDK
 # @DESCRIPTION:
 # Selects a build vm from a list of vm handles. First checks for the system-vm
 # beeing usable, then steps through the listed handles till a suitable vm is
 # found.
 #
-# @RETURN - VM handle of an available JDK
 java-pkg_build-vm-from-handle() {
 	debug-print-function ${FUNCNAME} "$*"
 
