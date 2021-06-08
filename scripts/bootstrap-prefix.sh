@@ -3113,6 +3113,9 @@ case ${CHOST}:${LC_ALL}:${LANG} in
 	;;
 esac
 
+# save original path, need this before interactive, #788334
+ORIGINAL_PATH="${PATH}"
+
 # Just guessing a prefix is kind of scary.  Hence, to make it a bit less
 # scary, we force the user to give the prefix location here.  This also
 # makes the script a bit less dangerous as it will die when just run to
@@ -3135,7 +3138,6 @@ elif [[ -z $1 ]] ; then
 fi
 
 ROOT="$1"
-ORIGINAL_PATH="${PATH}"
 set_helper_vars
 
 case $ROOT in
