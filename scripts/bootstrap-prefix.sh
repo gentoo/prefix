@@ -1477,7 +1477,7 @@ bootstrap_stage1() {
 				cat >> "${ROOT}"/tmp/usr/local/bin/gcc <<-EOF
 					#! /bin/sh
 					PATH="${ORIGINAL_PATH}" export PATH
-					exec "\${0##*/}" "\$@"
+					exec "$(type -P gcc)" "\$@"
 				EOF
 				cp "${ROOT}"/tmp/usr/local/bin/g{cc,++}
 				chmod 755 "${ROOT}"/tmp/usr/local/bin/g{cc,++}
