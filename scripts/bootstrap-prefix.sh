@@ -450,6 +450,12 @@ bootstrap_setup() {
 	ACCEPT_KEYWORDS="~${ARCH}-linux"
 	EOF
 
+	# bug #788613 avoid gcc-11 during stage 2/3 prior sync/emerge -e
+	is-rap && cat >> "${ROOT}"/etc/portage/make.profile/package.mask <<-EOF
+	# during bootstrap mask, bug #788613
+	>=sys-devel/gcc-11
+	EOF
+
 	# Use package.use to disable in the portage tree to be shared between
 	# stage2 and stage3. The hack will be undone during tree sync in stage3.
 	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
@@ -1355,8 +1361,8 @@ bootstrap_libressl() {
 
 bootstrap_stage_host_gentoo() {
 	if ! is-rap ; then
-		einfo "Shortcut only supports prefix-standalone, but we are bootstrapping"
-		einfo "prefix-rpath. Do nothing."
+		einfo "Shortcut only supports prefix-standalone, but we "
+		einfo "are bootstrapping prefix-rpath.  Do nothing."
 		return 0
 	fi
 	
@@ -1479,7 +1485,11 @@ bootstrap_stage1() {
 					PATH="${ORIGINAL_PATH}" export PATH
 					exec "$(type -P gcc)" "\$@"
 				EOF
-				cp "${ROOT}"/tmp/usr/local/bin/g{cc,++}
+				cat >> "${ROOT}"/tmp/usr/local/bin/g++ <<-EOF
+					#! /bin/sh
+					PATH="${ORIGINAL_PATH}" export PATH
+					exec "$(type -P g++)" "\$@"
+				EOF
 				chmod 755 "${ROOT}"/tmp/usr/local/bin/g{cc,++}
 			fi
 			;;
@@ -1906,7 +1916,11 @@ bootstrap_stage3() {
 	}
 
 	# pre_emerge_pkgs relies on stage 2 portage.
-	pre_emerge_pkgs() { is-rap && without_stack_emerge_pkgs "$@" || with_stack_emerge_pkgs "$@"; }
+	pre_emerge_pkgs() {
+		is-rap \
+			&& without_stack_emerge_pkgs "$@" \
+			|| with_stack_emerge_pkgs "$@"
+	}
 
 	# Some packages fail to properly depend on sys-apps/texinfo.
 	# We don't really need that package, so we fake it instead,
