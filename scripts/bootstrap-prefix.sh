@@ -331,6 +331,8 @@ bootstrap_setup() {
 				echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
 			[[ -n ${MAKE_CONF_ADDITIONAL_USE} ]] &&
 				echo "USE=\"\${USE} ${MAKE_CONF_ADDITIONAL_USE}\""
+			[[ -n ${STABLE_PREFIX} ]] && \
+				echo "ACCEPT_KEYWORDS=\"amd64 -~amd64\""
 			[[ ${OFFLINE_MODE} ]] && \
 				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
 		} > "${ROOT}"/etc/portage/make.conf
@@ -2692,6 +2694,38 @@ EOF
 				echo "Fine, I will bootstrap from scratch."
 				;;
 		esac
+	fi
+
+	# The experimental support for Stable Prefix.
+	# When expanding this to other CHOSTs, don't forget to update
+	# make.conf generation in bootstrap_setup().
+	# TODO: Consider at some point removing the ~ARCH override from
+	# profiles/features/prefix/standalone/make.defaults.
+	# https://bugs.gentoo.org/759424
+	if is-rap ; then
+		if [[ "${CHOST}" == x86_64-pc-linux-gnu ]]; then
+			cat <<EOF
+
+Normally I can only give you ~amd64 packages, and you would be exposed
+to all the bugs of the newest untested software.  Well, ok, sometimes
+it also has new features, but who needs those.  But as you are a VIP
+customer who uses Linux on x86_64, I have a one-time offer for you!
+I can limit your Prefix to use only packages keyworded for stable amd64
+by default.  Of course, you can still enable testing ~amd64 for
+the packages you want, when the need arises.
+EOF
+			[[ ${TODO} == 'noninteractive' ]] && ans=yes ||
+			read -p "  Do you want to use stable Prefix? [Yn] " ans
+			case "${ans}" in
+				[Yy][Ee][Ss]|[Yy]|"")
+					echo "Okay, I'll disable ~amd64 by default."
+					export STABLE_PREFIX="yes"
+					: ;;
+				*)
+					echo "Fine, I will not disable ~amd64, no problem."
+					;;
+			esac
+		fi
 	fi
 
 	# choose EPREFIX, we do this last, since we have to actually write
