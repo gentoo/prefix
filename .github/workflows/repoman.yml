@@ -41,6 +41,7 @@ jobs:
         cd ..
         mkdir -p profiles && cd profiles
         ln -s /var/db/repos/gentoo/profiles/* . || true
+        rm repo_name
         echo "prefix" > repo_name
         cd ..
         python3 portage-*/repoman/bin/repoman full -dx
