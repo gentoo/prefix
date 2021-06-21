@@ -39,4 +39,7 @@ jobs:
         mkdir -p eclass && cd eclass
         ln -s /var/db/repos/gentoo/eclass/*.eclass . || true
         cd ..
+        mkdir -p profiles && cd profiles
+        ln -s /var/db/repos/gentoo/profiles/* . || true
+        echo "prefix" > repo_name
         python3 portage-*/repoman/bin/repoman full -dx
