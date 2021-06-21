@@ -37,6 +37,6 @@ jobs:
         ln -s /var/db/repos/gentoo/licenses/* .
         cd ..
         mkdir -p eclass && cd eclass
-        ln -s /var/db/repos/gentoo/eclass/*.eclass .
+        ln -s /var/db/repos/gentoo/eclass/*.eclass . || true
         cd ..
         python3 portage-*/repoman/bin/repoman full -dx
