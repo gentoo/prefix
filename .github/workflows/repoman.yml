@@ -31,4 +31,12 @@ jobs:
         sudo ln -s /var/db/repos/gentoo/profiles/default/linux/amd64/17.1 /etc/portage/make.profile
     - name: Test with repoman
       run: |
+		mkdir -p metadata
+		cp /var/db/repos/gentoo/metadata/layout.conf metadata/
+		mkdir -p licenses && cd licenses
+		ln -s /var/db/repos/gentoo/licenses/* .
+		cd ..
+		mkdir -p eclass && cd eclass
+		ln -s /var/db/repos/gentoo/eclass/*.eclass .
+		cd ..
         python3 portage-*/repoman/bin/repoman full -dx
