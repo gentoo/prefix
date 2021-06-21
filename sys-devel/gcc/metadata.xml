@@ -11,7 +11,7 @@
       (AWT) peer support on top of GTK+</flag>
     <flag name="cilk">Support the Cilk Plus language (C/C++ based languages for parallel programming)</flag>
     <flag name="d">Enable support for the D programming language</flag>
-    <flag name="fixed-point">Enable fixed-point arithmetic support for MIPS targets 
+    <flag name="fixed-point">Enable fixed-point arithmetic support for MIPS targets
       in gcc (Warning: significantly increases compile time!)</flag>
     <flag name="gcj">Build the GCJ Java language frontend.</flag>
     <flag name="go">Build the GCC Go language frontend.</flag>
@@ -23,8 +23,8 @@
       code in the C library (DO NOT ENABLE THIS IF YOU DON'T KNOW WHAT IT DOES)</flag>
     <flag name="lto">Build using Link Time Optimizations (LTO)</flag>
     <flag name="mpx">Enable support for Intel Memory Protection Extensions (MPX)</flag>
-	<flag name="nopie">Disable PIE support (NOT FOR GENERAL USE)</flag>
-	<flag name="nossp">Disable SSP support (NOT FOR GENERAL USE)</flag>
+    <flag name="nopie">Disable PIE support (NOT FOR GENERAL USE)</flag>
+    <flag name="nossp">Disable SSP support (NOT FOR GENERAL USE)</flag>
     <flag name="nptl">Enable support for Native POSIX Threads Library, the new threading module (requires linux-2.6 or better usually)</flag>
     <flag name="objc">Build support for the Objective C code language</flag>
     <flag name="objc++">Build support for the Objective C++ language</flag>
