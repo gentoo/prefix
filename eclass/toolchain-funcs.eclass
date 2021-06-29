@@ -4,6 +4,7 @@
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
 # Toolchain Ninjas <toolchain@gentoo.org>
+# @SUPPORTED_EAPIS: 5 6 7 8
 # @BLURB: functions to query common info about the toolchain
 # @DESCRIPTION:
 # The toolchain-funcs aims to provide a complete suite of functions
@@ -11,6 +12,12 @@
 # ugly things like cross-compiling and multilib.  All of this is done
 # in such a way that you can rely on the function always returning
 # something sane.
+
+case ${EAPI:-0} in
+	# EAPI=0 is still used by crossdev, bug #797367
+	0|5|6|7|8) ;;
+	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
+esac
 
 if [[ -z ${_TOOLCHAIN_FUNCS_ECLASS} ]]; then
 _TOOLCHAIN_FUNCS_ECLASS=1
@@ -1040,7 +1047,7 @@ gen_usr_ldscript() {
 
 	# Eventually we'd like to get rid of this func completely #417451
 	case ${CTARGET:-${CHOST}} in
-	*-darwin*) type -P scanmacho > /dev/null || return ;;  # excluded for now due to known breakage
+	*-darwin*) ;;
 	*-android*) return 0 ;;
 	*linux*|*-freebsd*|*-openbsd*|*-netbsd*)
 		use prefix && return 0 ;;
@@ -1115,26 +1122,6 @@ gen_usr_ldscript() {
 				-id "${EPREFIX}"/${libdir}/${tlib} \
 				"${ED}"/${libdir}/${tlib} || die "install_name_tool failed"
 			[[ -n ${nowrite} ]] && chmod u-w "${ED}${libdir}/${tlib}"
-			# In the build image, stuff may have already recorded the now moved
-			# install_name, so hunt those down and fix the install_name
-			# references.
-			local l obj needed lib
-			scanmacho -qyRF '%p;%n' "${D}" | { while IFS= read l ; do
-				obj=${l%%;*}
-				needed=${l#*;}
-				# this is ugly, paths with spaces won't work
-				for lib in ${needed//,/ } ; do
-					if [[ ${lib} == */usr/lib*/${tlib} ]] ; then
-						# don't masquerade other problems, only remove usr/
-						# from input
-						local s=${lib%usr/*}${lib##*/usr/}
-						[[ ${lib} != ${s} ]] || continue
-						einfo "gen_usr_ldscript: correcting install_name from ${lib} to ${s} in ${obj}"
-						install_name_tool -change \
-							"${lib}" "${s}" "${D}${obj}"
-					fi
-				done
-			done }
 			# Now as we don't use GNU binutils and our linker doesn't
 			# understand linker scripts, just create a symlink.
 			pushd "${ED}/usr/${libdir}" > /dev/null
