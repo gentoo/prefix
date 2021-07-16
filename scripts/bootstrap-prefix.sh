@@ -321,6 +321,9 @@ bootstrap_setup() {
 			if is-rap ; then
 				echo "# sandbox does not work well on Prefix, bug 490246"
 				echo 'FEATURES="${FEATURES} -usersandbox -sandbox"'
+				# bug 759424
+				[[ -n ${STABLE_PREFIX} ]] && \
+					echo 'ACCEPT_KEYWORDS="${ARCH} -~${ARCH}"'
 			fi
 			if [[ ${FS_INSENSITIVE} == 1 ]] ; then
 				echo
@@ -331,8 +334,6 @@ bootstrap_setup() {
 				echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
 			[[ -n ${MAKE_CONF_ADDITIONAL_USE} ]] &&
 				echo "USE=\"\${USE} ${MAKE_CONF_ADDITIONAL_USE}\""
-			[[ -n ${STABLE_PREFIX} ]] && \
-				echo "ACCEPT_KEYWORDS=\"amd64 -~amd64\""
 			[[ ${OFFLINE_MODE} ]] && \
 				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
 		} > "${ROOT}"/etc/portage/make.conf
@@ -2720,7 +2721,7 @@ EOF
 				[Yy][Ee][Ss]|[Yy]|"")
 					echo "Okay, I'll disable ~amd64 by default."
 					export STABLE_PREFIX="yes"
-					: ;;
+					;;
 				*)
 					echo "Fine, I will not disable ~amd64, no problem."
 					;;
