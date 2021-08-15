@@ -25,7 +25,7 @@ SRC_URI+=" elibc_Cygwin? (
 LICENSE="PSF-2"
 SLOT="2.7"
 KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua -berkdb bluetooth build doc elibc_uclibc examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
+IUSE="aqua -berkdb bluetooth build doc elibc_uclibc examples gdbm hardened ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
 # If you need to apply a patch which requires python for bootstrapping, please
@@ -51,10 +51,7 @@ RDEPEND="app-arch/bzip2:0=
 	ncurses? ( >=sys-libs/ncurses-5.2:0= )
 	readline? ( >=sys-libs/readline-4.1:0= )
 	sqlite? ( >=dev-db/sqlite-3.3.8:3= )
-	ssl? (
-		!libressl? ( dev-libs/openssl:0= )
-		libressl? ( dev-libs/libressl:0= )
-	)
+	ssl? ( dev-libs/openssl:0= )
 	tk? (
 		>=dev-lang/tcl-8.0:0=
 		>=dev-lang/tk-8.0:0=[-aqua]
