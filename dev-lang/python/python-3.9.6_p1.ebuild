@@ -124,6 +124,16 @@ src_prepare() {
 			configure.ac configure || die
 	fi
 
+	if [[ ${CHOST} == *-darwin19 ]] ; then
+		# HAVE_DYLD_SHARED_CACHE_CONTAINS_PATH is set because
+		# _dyld_shared_cache_contains_path could be found, yet it cannot
+		# be resolved when dlopen()ing, so simply pretend it doesn't
+		# exist here
+		sed -i \
+			-e 's/_dyld_shared_cache_contains_path/disabled&/' \
+			configure.ac configure || die
+	fi
+
 	eautoreconf
 }
 
