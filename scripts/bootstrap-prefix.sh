@@ -324,6 +324,10 @@ bootstrap_setup() {
 				# bug 759424
 				[[ -n ${STABLE_PREFIX} ]] && \
 					echo 'ACCEPT_KEYWORDS="${ARCH} -~${ARCH}"'
+			else
+				echo "# last mirror is for Prefix specific distfiles, you"
+				echo "# might experience fetch failures if you remove it"
+				echo "GENTOO_MIRRORS=\"${GENTOO_MIRRORS} ${DISTFILES_PFX}\""
 			fi
 			if [[ ${FS_INSENSITIVE} == 1 ]] ; then
 				echo
