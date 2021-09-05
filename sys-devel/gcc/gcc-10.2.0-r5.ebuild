@@ -53,6 +53,9 @@ src_prepare() {
 	find .  -name "configure" | xargs \
 	sed -i -e '/^\s*10\.\*)/N' \
 		-e '/^\s*10\.\*)\s*_lt_dar_allow_undefined/s/10\.\*/10.*|11.*/' || die
+
+	# fix interoperation with Xcode 12.5, bug #799170
+	eapply -p1 "${FILESDIR}"/${PN}-10.2.0-xcode-12.5.patch
 }
 
 src_configure() {
