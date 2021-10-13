@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -50,7 +50,7 @@ esac
 # The Gentoo patchset
 #
 PATCH_BINUTILS_VER=${PATCH_BINUTILS_VER:-${PV}}
-PATCH_DEV=${PATCH_DEV:-slyfox}
+PATCH_DEV=${PATCH_DEV:-sam}
 
 [[ -z ${PATCH_VER} ]] || SRC_URI="${SRC_URI}
 	https://dev.gentoo.org/~${PATCH_DEV}/distfiles/binutils-${PATCH_BINUTILS_VER}-patches-${PATCH_VER}.tar.xz"
