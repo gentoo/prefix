@@ -259,6 +259,13 @@ if tc_has_feature gcj ; then
 	DEPEND+=" gcj? ( awt? ( ${GCJ_GTK_DEPS} ) ${GCJ_DEPS} )"
 fi
 
+if tc_has_feature sanitize ; then
+	# libsanitizer relies on 'crypt.h' to be present
+	# on target. glibc userdto provide it unconditionally.
+	# Nowadays it's a standalone library: #802648
+	DEPEND+=" sanitize? ( virtual/libcrypt )"
+fi
+
 if tc_has_feature systemtap ; then
 	# gcc needs sys/sdt.h headers on target
 	DEPEND+=" systemtap? ( dev-util/systemtap )"
