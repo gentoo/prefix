@@ -2010,6 +2010,7 @@ bootstrap_stage3() {
 		pkgs=(
 			sys-apps/attr
 			sys-libs/libcap
+			sys-libs/libxcrypt
 		)
 		BOOTSTRAP_RAP=yes \
 		USE="${USE} -pam" \
