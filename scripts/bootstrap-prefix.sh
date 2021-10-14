@@ -1609,6 +1609,7 @@ do_emerge_pkgs() {
 			-python
 			-qmanifest -qtegrity
 			-readline
+			-sanitize
 			bootstrap
 			clang
 			internal-glib
