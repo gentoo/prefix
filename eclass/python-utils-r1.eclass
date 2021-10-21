@@ -35,7 +35,7 @@ fi
 if [[ ! ${_PYTHON_UTILS_R1} ]]; then
 
 [[ ${EAPI} == [67] ]] && inherit eapi8-dosym
-inherit toolchain-funcs
+inherit multiprocessing toolchain-funcs
 
 # @ECLASS-VARIABLE: _PYTHON_ALL_IMPLS
 # @INTERNAL
@@ -353,16 +353,13 @@ _python_export() {
 				;;
 			PYTHON_SITEDIR)
 				[[ -n ${PYTHON} ]] || die "PYTHON needs to be set for ${var} to be exported, or requested before it"
-				# sysconfig can't be used because:
-				# 1) pypy doesn't give site-packages but stdlib
-				# 2) jython gives paths with wrong case
-				PYTHON_SITEDIR=$("${PYTHON}" -c 'import distutils.sysconfig; print(distutils.sysconfig.get_python_lib())') || die
+				PYTHON_SITEDIR=$("${PYTHON}" -c 'import sysconfig; print(sysconfig.get_path("purelib"))') || die
 				export PYTHON_SITEDIR
 				debug-print "${FUNCNAME}: PYTHON_SITEDIR = ${PYTHON_SITEDIR}"
 				;;
 			PYTHON_INCLUDEDIR)
 				[[ -n ${PYTHON} ]] || die "PYTHON needs to be set for ${var} to be exported, or requested before it"
-				PYTHON_INCLUDEDIR=$("${PYTHON}" -c 'import distutils.sysconfig; print(distutils.sysconfig.get_python_inc())') || die
+				PYTHON_INCLUDEDIR=$("${PYTHON}" -c 'import sysconfig; print(sysconfig.get_path("platinclude"))') || die
 				export PYTHON_INCLUDEDIR
 				debug-print "${FUNCNAME}: PYTHON_INCLUDEDIR = ${PYTHON_INCLUDEDIR}"
 
@@ -580,46 +577,6 @@ python_get_scriptdir() {
 	echo "${PYTHON_SCRIPTDIR}"
 }
 
-# @FUNCTION: _python_ln_rel
-# @USAGE: <from> <to>
-# @INTERNAL
-# @DESCRIPTION:
-# Create a relative symlink.
-_python_ln_rel() {
-	debug-print-function ${FUNCNAME} "${@}"
-
-	local target=${1}
-	local symname=${2}
-
-	local tgpath=${target%/*}/
-	local sympath=${symname%/*}/
-	local rel_target=
-
-	while [[ ${sympath} ]]; do
-		local tgseg= symseg=
-
-		while [[ ! ${tgseg} && ${tgpath} ]]; do
-			tgseg=${tgpath%%/*}
-			tgpath=${tgpath#${tgseg}/}
-		done
-
-		while [[ ! ${symseg} && ${sympath} ]]; do
-			symseg=${sympath%%/*}
-			sympath=${sympath#${symseg}/}
-		done
-
-		if [[ ${tgseg} != ${symseg} ]]; then
-			rel_target=../${rel_target}${tgseg:+${tgseg}/}
-		fi
-	done
-	rel_target+=${tgpath}${target##*/}
-
-	debug-print "${FUNCNAME}: ${symname} -> ${target}"
-	debug-print "${FUNCNAME}: rel_target = ${rel_target}"
-
-	ln -fs "${rel_target}" "${symname}"
-}
-
 # @FUNCTION: python_optimize
 # @USAGE: [<directory>...]
 # @DESCRIPTION:
@@ -661,6 +618,9 @@ python_optimize() {
 		debug-print "${FUNCNAME}: using sys.path: ${*/%/;}"
 	fi
 
+	local jobs=$(makeopts_jobs "${MAKEOPTS}" INF)
+	[[ ${jobs} == INF ]] && jobs=$(get_nproc)
+
 	local d
 	for d; do
 		# make sure to get a nice path without //
@@ -672,11 +632,14 @@ python_optimize() {
 				"${PYTHON}" -m compileall -q -f -d "${instpath}" "${d}"
 				"${PYTHON}" -OO -m compileall -q -f -d "${instpath}" "${d}"
 				;;
-			python*|pypy3)
+			python3.[5678]|pypy3)
 				# both levels of optimization are separate since 3.5
-				"${PYTHON}" -m compileall -q -f -d "${instpath}" "${d}"
-				"${PYTHON}" -O -m compileall -q -f -d "${instpath}" "${d}"
-				"${PYTHON}" -OO -m compileall -q -f -d "${instpath}" "${d}"
+				"${PYTHON}" -m compileall -j "${jobs}" -q -f -d "${instpath}" "${d}"
+				"${PYTHON}" -O -m compileall -j "${jobs}" -q -f -d "${instpath}" "${d}"
+				"${PYTHON}" -OO -m compileall -j "${jobs}" -q -f -d "${instpath}" "${d}"
+				;;
+			python*)
+				"${PYTHON}" -m compileall -j "${jobs}" -o 0 -o 1 -o 2 --hardlink-dupes -q -f -d "${instpath}" "${d}"
 				;;
 			*)
 				"${PYTHON}" -m compileall -q -f -d "${instpath}" "${d}"
@@ -1316,17 +1279,46 @@ build_sphinx() {
 	HTML_DOCS+=( "${dir}/_build/html/." )
 }
 
+# @FUNCTION: _python_check_EPYTHON
+# @INTERNAL
+# @DESCRIPTION:
+# Check if EPYTHON is set, die if not.
+_python_check_EPYTHON() {
+	if [[ -z ${EPYTHON} ]]; then
+		die "EPYTHON unset, invalid call context"
+	fi
+}
+
+# @VARIABLE: EPYTEST_DESELECT
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Specifies an array of tests to be deselected via pytest's --deselect
+# parameter, when calling epytest.  The list can include file paths,
+# specific test functions or parametrized test invocations.
+#
+# Note that the listed files will still be subject to collection,
+# i.e. modules imported in global scope will need to be available.
+# If this is undesirable, EPYTEST_IGNORE can be used instead.
+
+# @VARIABLE: EPYTEST_IGNORE
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Specifies an array of paths to be ignored via pytest's --ignore
+# parameter, when calling epytest.  The listed files will be entirely
+# skipped from test collection.
+
 # @FUNCTION: epytest
 # @USAGE: [<args>...]
 # @DESCRIPTION:
-# Run pytest, passing the standard set of pytest options, followed
-# by user-specified options.
+# Run pytest, passing the standard set of pytest options, then
+# --deselect and --ignore options based on EPYTEST_DESELECT
+# and EPYTEST_IGNORE, then user-specified options.
 #
 # This command dies on failure and respects nonfatal.
 epytest() {
 	debug-print-function ${FUNCNAME} "${@}"
 
-	[[ -n ${EPYTHON} ]] || die "EPYTHON unset, invalid call context"
+	_python_check_EPYTHON
 
 	local args=(
 		# verbose progress reporting and tracebacks
@@ -1336,12 +1328,27 @@ epytest() {
 		-ra
 		# print local variables in tracebacks, useful for debugging
 		-l
+		# override filterwarnings=error, we do not really want -Werror
+		# for end users, as it tends to fail on new warnings from deps
+		-Wdefault
 	)
+	local x
+	for x in "${EPYTEST_DESELECT[@]}"; do
+		args+=( --deselect "${x}" )
+	done
+	for x in "${EPYTEST_IGNORE[@]}"; do
+		args+=( --ignore "${x}" )
+	done
 	set -- "${EPYTHON}" -m pytest "${args[@]}" "${@}"
 
 	echo "${@}" >&2
 	"${@}" || die -n "pytest failed with ${EPYTHON}"
-	return ${?}
+	local ret=${?}
+
+	# remove common temporary directories left over by pytest plugins
+	rm -rf .hypothesis .pytest_cache || die
+
+	return ${ret}
 }
 
 # @FUNCTION: eunittest
@@ -1354,7 +1361,7 @@ epytest() {
 eunittest() {
 	debug-print-function ${FUNCNAME} "${@}"
 
-	[[ -n ${EPYTHON} ]] || die "EPYTHON unset, invalid call context"
+	_python_check_EPYTHON
 
 	set -- "${EPYTHON}" -m unittest_or_fail discover -v "${@}"
 
