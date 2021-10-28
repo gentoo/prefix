@@ -344,10 +344,24 @@ bootstrap_setup() {
 	fi
 
 	if is-rap ; then
-		[[ -f ${ROOT}/etc/passwd ]] || getent passwd > "${ROOT}"/etc/passwd || \
-			ln -sf {,"${ROOT}"}/etc/passwd
-		[[ -f ${ROOT}/etc/group ]] || getent group > "${ROOT}"/etc/group || \
-			ln -sf {,"${ROOT}"}/etc/group
+		if [[ ! -f ${ROOT}/etc/passwd ]]; then
+			if grep -q $(id -un) /etc/passwd; then
+				ln -sf {,"${ROOT}"}/etc/passwd
+			else
+				getent passwd > "${ROOT}"/etc/passwd
+				# add user if it's not in /etc/passwd, bug 766417
+				getent passwd $(id -un) >> "${ROOT}"/etc/passwd
+			fi
+		fi
+		if [[ ! -f ${ROOT}/etc/group ]]; then
+			if grep -q $(id -gn) /etc/group; then
+				ln -sf {,"${ROOT}"}/etc/group
+			else
+				getent group > "${ROOT}"/etc/group
+				# add group if it's not in /etc/group, bug 766417
+				getent group $(id -gn) >> "${ROOT}"/etc/group
+			fi
+		fi
 		[[ -f ${ROOT}/etc/resolv.conf ]] || ln -s {,"${ROOT}"}/etc/resolv.conf
 		[[ -f ${ROOT}/etc/hosts ]] || cp {,"${ROOT}"}/etc/hosts
 		local profile_linux=default/linux/ARCH/17.0/prefix/$(profile-kernel)
