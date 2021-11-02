@@ -382,14 +382,24 @@ bootstrap_setup() {
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
-		x86_64-apple-darwin2[0123456789])
+		x86_64-apple-darwin20)
 			# Big Sur is 11.0
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/11.$((rev - 20))/x64"
 			;;
-		arm64-apple-darwin2[0123456789])
+		x86_64-apple-darwin2[123456789])
+			# Monterey is 12.0
+			rev=${CHOST##*darwin}
+			profile="prefix/darwin/macos/12.$((rev - 20))/x64"
+			;;
+		arm64-apple-darwin20)
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/11.$((rev - 20))/arm64"
+			;;
+		x86_64-apple-darwin2[123456789])
+			# Monterey is 12.0
+			rev=${CHOST##*darwin}
+			profile="prefix/darwin/macos/12.$((rev - 20))/x64"
 			;;
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
