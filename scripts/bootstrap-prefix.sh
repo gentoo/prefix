@@ -390,7 +390,7 @@ bootstrap_setup() {
 		x86_64-apple-darwin2[123456789])
 			# Monterey is 12.0
 			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/12.$((rev - 20))/x64"
+			profile="prefix/darwin/macos/12.$((rev - 21))/x64"
 			;;
 		arm64-apple-darwin20)
 			rev=${CHOST##*darwin}
@@ -399,7 +399,7 @@ bootstrap_setup() {
 		x86_64-apple-darwin2[123456789])
 			# Monterey is 12.0
 			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/12.$((rev - 20))/x64"
+			profile="prefix/darwin/macos/12.$((rev - 21))/x64"
 			;;
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
