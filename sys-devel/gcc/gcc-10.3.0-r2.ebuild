@@ -59,6 +59,8 @@ src_prepare() {
 
 	# fix interoperation with Xcode 12.5, bug #799170
 	eapply -p1 "${FILESDIR}"/${PN}-10.2.0-xcode-12.5.patch
+	# allow building with macOS 12
+	eapply -p1 "${FILESDIR}"/${PN}-10.3.0-monterey.patch
 }
 
 src_configure() {
