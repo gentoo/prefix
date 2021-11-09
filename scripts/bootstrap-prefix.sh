@@ -105,7 +105,7 @@ efetch() {
 
 configure_cflags() {
 	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
-	
+
 	case ${CHOST} in
 		*-darwin*)
 			export LDFLAGS="-Wl,-search_paths_first -L${ROOT}/tmp/usr/lib"
@@ -203,9 +203,9 @@ configure_toolchain() {
 					;;
 				*"Apple clang version "*|*"Apple LLVM version "*)
 					# recent binutils-apple are hard to build (C++11
-					# features, and cmake buildsystem) so avoid going
+					# features, and cmake build system) so avoid going
 					# there, the system ld is good enough to bring us to
-					# stage3, after which system set will take care of
+					# stage3, after which the @system set will take care of
 					# the rest
 					linker=sys-devel/native-cctools
 					;;
@@ -319,9 +319,9 @@ bootstrap_setup() {
 			echo "CONFIG_SHELL=\"${ROOT}/bin/bash\""
 			echo "DISTDIR=\"${DISTDIR:-${ROOT}/var/cache/distfiles}\""
 			if is-rap ; then
-				echo "# sandbox does not work well on Prefix, bug 490246"
+				echo "# sandbox does not work well on Prefix, bug #490246"
 				echo 'FEATURES="${FEATURES} -usersandbox -sandbox"'
-				# bug 759424
+				# bug #759424
 				[[ -n ${STABLE_PREFIX} ]] && \
 					echo 'ACCEPT_KEYWORDS="${ARCH} -~${ARCH}"'
 			else
@@ -349,7 +349,7 @@ bootstrap_setup() {
 				ln -sf {,"${ROOT}"}/etc/passwd
 			else
 				getent passwd > "${ROOT}"/etc/passwd
-				# add user if it's not in /etc/passwd, bug 766417
+				# add user if it's not in /etc/passwd, bug #766417
 				getent passwd $(id -un) >> "${ROOT}"/etc/passwd
 			fi
 		fi
@@ -358,7 +358,7 @@ bootstrap_setup() {
 				ln -sf {,"${ROOT}"}/etc/group
 			else
 				getent group > "${ROOT}"/etc/group
-				# add group if it's not in /etc/group, bug 766417
+				# add group if it's not in /etc/group, bug #766417
 				getent group $(id -gn) >> "${ROOT}"/etc/group
 			fi
 		fi
@@ -447,7 +447,7 @@ bootstrap_setup() {
 		x86_64-pc-cygwin*)
 			profile="prefix/windows/cygwin/x64"
 			;;
-		*)	
+		*)
 			eerror "UNKNOWN ARCH: You need to set up a make.profile symlink to a"
 			eerror "profile in ${PORTDIR} for your CHOST ${CHOST}"
 			exit 1
@@ -477,7 +477,7 @@ bootstrap_setup() {
 	profile=${PROFILE_BASE:-prefix}/${profile#prefix/}${PROFILE_VARIANT:+/${PROFILE_VARIANT}}
 	if [[ -n ${profile} && ! -e ${ROOT}/etc/portage/make.profile ]] ; then
 		local fullprofile="${PORTDIR}/profiles/${profile}"
-		
+
 		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${fullprofile}."
 	fi
@@ -649,7 +649,7 @@ bootstrap_portage() {
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%.tar.*}"
-		
+
 	efetch ${DISTFILES_URL}/${A} || return 1
 
 	einfo "Unpacking ${A%.tar.*}"
@@ -698,7 +698,7 @@ bootstrap_portage() {
 	cd "${ROOT}"
 	rm -Rf ${ptmp} >& /dev/null
 
-	# Some people will skip the tree() step and hence var/log is not created 
+	# Some people will skip the tree() step and hence var/log is not created
 	# As such, portage complains..
 	mkdir -p "${ROOT}"/tmp/var/log
 
@@ -1190,7 +1190,7 @@ bootstrap_cmake_core() {
 	emake install || return 1
 
 	# we need sysroot crap to build cmake itself, but it makes trouble
-	# lateron, so kill it in the installed version
+	# later on, so kill it in the installed version
 	ver=${A%-*} ; ver=${ver%.*}
 	sed -i -e '/cmake_gnu_set_sysroot_flag/d' \
 		"${ROOT}"/tmp/usr/share/${ver}/Modules/Platform/Apple-GNU-*.cmake || die
@@ -1402,7 +1402,7 @@ bootstrap_stage_host_gentoo() {
 		einfo "are bootstrapping prefix-rpath.  Do nothing."
 		return 0
 	fi
-	
+
 	if [[ ! -L ${ROOT}/tmp ]] ; then
 		if [[ -e ${ROOT}/tmp ]] ; then
 			einfo "${ROOT}/tmp exists and is not a symlink to ${HOST_GENTOO_EROOT}"
@@ -2080,7 +2080,7 @@ bootstrap_stage3() {
 	# in addition, avoid collisions
 	rm -Rf "${ROOT}"/tmp/usr/lib/python${PYTHONMAJMIN}/site-packages/clang
 
-	# try to get ourself out of the mudd, bug #575324
+	# try to get ourself out of the mud, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx '--disable-lto --disable-bootstrap')" \
 	GCC_MAKE_TARGET=$(rapx all) \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
