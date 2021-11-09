@@ -396,10 +396,16 @@ bootstrap_setup() {
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/11.$((rev - 20))/arm64"
 			;;
+		# TODO: Come up with something better for macOS 11+
 		x86_64-apple-darwin2[123456789])
 			# Monterey is 12.0
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/12.$((rev - 21))/x64"
+			;;
+		arm64-apple-darwin2[123456789])
+			# Monterey is 12.0
+			rev=${CHOST##*darwin}
+			profile="prefix/darwin/macos/12.$((rev - 21))/arm64"
 			;;
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
