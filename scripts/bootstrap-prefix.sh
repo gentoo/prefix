@@ -979,9 +979,9 @@ bootstrap_gnu() {
 	einfo "${A%.tar.*} successfully bootstrapped"
 }
 
-PYTHONMAJMIN=3.8   # keep this number in line with PV below for stage1,2
+PYTHONMAJMIN=3.9   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
-	PV=3.8.6
+	PV=3.9.6
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
 
@@ -1047,8 +1047,8 @@ bootstrap_python() {
 			-e 's/KQUEUE/KQUEUE_DISABLED/' \
 			configure
 		# fixup thread id detection
-		efetch "http://dev.gentoo.org/~grobian/distfiles/python-3.8.6-darwin9.patch"
-		patch -p1 < "${DISTDIR}"/python-3.8.6-darwin9.patch
+		efetch "https://dev.gentoo.org/~sam/distfiles/dev-lang/python/python-3.9.6-darwin9_pthreadid.patch"
+		patch -p1 < "${DISTDIR}"/python-3.9.6-darwin9_pthreadid.patch
 		;;
 	(arm64-*-darwin*)
 		# Teach Python a new trick (arm64)
