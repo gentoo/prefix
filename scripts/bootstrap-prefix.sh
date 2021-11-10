@@ -2171,7 +2171,7 @@ bootstrap_stage3() {
 	einfo "running emerge -uDNav system"
 	estatus "stage3: emerge -uDNav system"
 	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
-	CFLAGS= CXXFLAGS= emerge --color n -uDNav system || return 1
+	emerge --color n -uDNav system || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
