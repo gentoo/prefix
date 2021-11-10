@@ -53,6 +53,9 @@ src_prepare() {
 	# found
 	sed -i -e 's/ALL_SPPFLAGS/ALL_CPPFLAGS/' \
 		gcc/config/aarch64/t-aarch64 || die
+
+	# allow building with macOS 12
+	eapply -p1 "${FILESDIR}"/${PN}-10.3.0-monterey.patch
 }
 
 src_configure() {
