@@ -2168,10 +2168,10 @@ bootstrap_stage3() {
 	# Avoid glib compiling for Cocoa libs if it finds them, since we're
 	# still with an old llvm that may not understand the system headers
 	# very well on Darwin (-DGNUSTEP_BASE_VERSION hack)
-	einfo "running emerge -uDNav system"
-	estatus "stage3: emerge -uDNav system"
+	einfo "running emerge -uDNv system"
+	estatus "stage3: emerge -uDNv system"
 	CPPFLAGS="-DGNUSTEP_BASE_VERSION" \
-	CFLAGS= CXXFLAGS= emerge --color n -uDNav system || return 1
+	CFLAGS= CXXFLAGS= emerge --color n -uDNv system || return 1
 
 	# remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
