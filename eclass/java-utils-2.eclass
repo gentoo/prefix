@@ -6,7 +6,7 @@
 # java@gentoo.org
 # @AUTHOR:
 # Thomas Matthijs <axxo@gentoo.org>, Karl Trygve Kalleberg <karltk@gentoo.org>
-# @SUPPORTED_EAPIS: 5 6 7
+# @SUPPORTED_EAPIS: 5 6 7 8
 # @BLURB: Base eclass for Java packages
 # @DESCRIPTION:
 # This eclass provides functionality which is used by java-pkg-2.eclass,
@@ -18,7 +18,7 @@
 # Ant-based packages.
 
 case ${EAPI:-0} in
-	[567]) ;;
+	[5678]) ;;
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
@@ -118,11 +118,27 @@ JAVA_PKG_ALLOW_VM_CHANGE=${JAVA_PKG_ALLOW_VM_CHANGE:="yes"}
 # Normally this is determined from the jre/jdk version specified in RDEPEND.
 # See java-pkg_get-target function below.
 #
-# Should generallyonly be used for testing and debugging.
+# Should generally only be used for testing and debugging.
 #
 # emerge bar to be compatible with 1.3
 # @CODE
 #	JAVA_PKG_WANT_TARGET=1.3 emerge bar
+# @CODE
+
+# @ECLASS-VARIABLE: JAVA_TEST_EXTRA_ARGS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Array of extra arguments that should be passed to java command when running tests.
+# It is useful when you need to pass a value to a Java program that uses
+# System.getProperty(). If it uses System.getenv(), use `export var=value` instead.
+#
+# It is used only when running tests.
+#
+# @CODE
+#	JAVA_TEST_EXTRA_ARGS=(
+#		-Dsome.var=x
+#		"-Dother.var=\"y z\""
+#	)
 # @CODE
 
 # @ECLASS-VARIABLE: JAVA_PKG_DEBUG
@@ -1549,8 +1565,7 @@ java-pkg_ensure-vm-version-ge() {
 # Parameters:
 # $@ - VM version to compare current VM to
 # @CODE
-# @RETURN: zero - current VM version is greater than checked version;
-# 	non-zero - current VM version is not greater than checked version
+# @RETURN: zero - current VM version is greater than checked version; non-zero - current VM version is not greater than checked version
 java-pkg_is-vm-version-ge() {
 	debug-print-function ${FUNCNAME} $*
 
@@ -1801,8 +1816,8 @@ ejunit_() {
 	if [[ "${junit}" == "junit-4" ]] ; then
 		runner=org.junit.runner.JUnitCore
 	fi
-	debug-print "Calling: java -cp \"${cp}\" -Djava.io.tmpdir=\"${T}\" -Djava.awt.headless=true ${runner} ${@}"
-	java -cp "${cp}" -Djava.io.tmpdir="${T}/" -Djava.awt.headless=true ${runner} "${@}" || die "Running junit failed"
+	debug-print "Calling: java -cp \"${cp}\" -Djava.io.tmpdir=\"${T}\" -Djava.awt.headless=true ${JAVA_TEST_EXTRA_ARGS[@]} ${runner} ${@}"
+	java -cp "${cp}" -Djava.io.tmpdir="${T}/" -Djava.awt.headless=true ${JAVA_TEST_EXTRA_ARGS[@]} ${runner} "${@}" || die "Running junit failed"
 }
 
 # @FUNCTION: ejunit
@@ -1881,9 +1896,9 @@ etestng() {
 	done
 
 	debug-print "java -cp \"${cp}\" -Djava.io.tmpdir=\"${T}\""\
-		"-Djava.awt.headless=true ${runner}"\
+		"-Djava.awt.headless=true ${JAVA_TEST_EXTRA_ARGS[@]} ${runner}"\
 		"-usedefaultlisteners false -testclass ${tests}"
-	java -cp "${cp}" -Djava.io.tmpdir=\"${T}\" -Djava.awt.headless=true\
+	java -cp "${cp}" -Djava.io.tmpdir=\"${T}\" -Djava.awt.headless=true ${JAVA_TEST_EXTRA_ARGS[@]}\
 		${runner} -usedefaultlisteners false -testclass ${tests}\
 		|| die "Running TestNG failed."
 }
@@ -1894,7 +1909,7 @@ etestng() {
 # Don't call directly, but via java-pkg-2_src_prepare!
 java-utils-2_src_prepare() {
 	case ${EAPI:-0} in
-		[0-5])
+		5)
 			java-pkg_func-exists java_prepare && java_prepare ;;
 		*)
 			java-pkg_func-exists java_prepare &&
