@@ -2322,9 +2322,8 @@ EOF
 	echo
 	echo "It seems to me you are '${USER:-$(whoami 2> /dev/null)}' (${UID}), that looks cool to me."
 
-	# Expect noninteractive users to know what they do:
-	# Take EPREFIX from argv1 (=ROOT), not from env var.
-	[[ ${TODO} == 'noninteractive' ]] && EPREFIX=${ROOT}
+	# In case $ROOT were specified as $1, use it
+	[[ -z "${EPREFIX}" ]] && EPREFIX="${ROOT}"
 
 	echo
 	echo "I'm going to check for some variables in your environment now:"
