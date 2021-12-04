@@ -565,7 +565,6 @@ do_tree() {
 		else
 			efetch "$1/$2" || return 1
 		fi
-		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
 		einfo "Unpacking, this may take a while"
 		estatus "stage1: unpacking Portage tree"
 		bzip2 -dc ${DISTDIR}/$2 | \
