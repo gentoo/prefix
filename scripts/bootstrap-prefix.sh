@@ -309,7 +309,8 @@ bootstrap_setup() {
 	[[ -e ${ROOT}/foo.$$ ]] && FS_INSENSITIVE=1
 	rm "${ROOT}"/FOO.$$
 
-	if [[ ! -f ${ROOT}/etc/portage/make.conf ]] ; then
+	[[ ! -e "${MAKE_CONF_DIR}" ]] && mkdir -p -- "${MAKE_CONF_DIR}"
+	if [[ ! -f ${ROOT}/etc/portage/make.conf/0100_bootstrap_prefix_make.conf ]] ; then
 		{
 			echo "# Added by bootstrap-prefix.sh for ${CHOST}"
 			echo 'USE="unicode nls"'
@@ -340,7 +341,7 @@ bootstrap_setup() {
 				echo "USE=\"\${USE} ${MAKE_CONF_ADDITIONAL_USE}\""
 			[[ ${OFFLINE_MODE} ]] && \
 				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
-		} > "${ROOT}"/etc/portage/make.conf
+		} > "${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf"
 	fi
 
 	if is-rap ; then
@@ -1415,7 +1416,9 @@ bootstrap_stage_host_gentoo() {
 	(bootstrap_tree) || return 1
 
 	# setup a profile
-	[[ -e ${ROOT}/etc/portage/make.profile && -e ${ROOT}/etc/portage/make.conf ]] || (bootstrap_setup) || return 1
+	[[ -e ${ROOT}/etc/portage/make.profile && \
+		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
+		|| (bootstrap_setup) || return 1
 
 	prepare_portage
 }
@@ -1574,7 +1577,9 @@ bootstrap_stage1() {
 	(bootstrap_tree) || return 1
 
 	# setup a profile
-	[[ -e ${ROOT}/etc/portage/make.profile && -e ${ROOT}/etc/portage/make.conf ]] || (bootstrap_setup) || return 1
+	[[ -e ${ROOT}/etc/portage/make.profile && \
+		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
+		|| (bootstrap_setup) || return 1
 	mkdir -p "${ROOT}"/tmp/etc/. || return 1
 	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || cp -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc || return 1
 
@@ -1643,16 +1648,20 @@ do_emerge_pkgs() {
 			clang
 			internal-glib
 		)
+		local override_make_conf_dir=\
+			"${PORTAGE_OVERRIDE_EPREFIX}/etc/portage/make.conf/"
+
 		if [[ " ${USE} " == *" prefix-stack "* ]] &&
 		   [[ ${PORTAGE_OVERRIDE_EPREFIX} == */tmp ]] &&
-		   ! grep -q '^USE=".*" # by bootstrap-prefix.sh$' "${PORTAGE_OVERRIDE_EPREFIX}/etc/portage/make.conf"
+		   ! grep -Rq '^USE=".*" # by bootstrap-prefix.sh$' "${override_make_conf_dir}"
 		then
 			# With prefix-stack, the USE env var does apply to the stacked
 			# prefix only, not the base prefix (any more? since some portage
 			# version?), so we have to persist the base USE flags into the
 			# base prefix - without the additional incoming USE flags.
+			mkdir -p -- "${override_make_conf_dir}"
 			echo "USE=\"\${USE} ${myuse[*]}\" # by bootstrap-prefix.sh" \
-				>> "${PORTAGE_OVERRIDE_EPREFIX}/etc/portage/make.conf"
+				>> "${override_make_conf_dir}/0101_bootstrap_prefix_stack.conf"
 		fi
 		myuse=" ${myuse[*]} "
 		local use
@@ -1843,6 +1852,7 @@ bootstrap_stage2() {
 	if [[ ${compiler_type} == clang ]] ; then
 		# we use Clang as our toolchain compiler, so we need to make
 		# sure we actually use it
+		mkdir -p -- "${MAKE_CONF_DIR}"
 		{
 			echo
 			echo "# System compiler on $(uname) Prefix is Clang, do not remove this"
@@ -1852,7 +1862,7 @@ bootstrap_stage2() {
 			echo "OBJCXX=${CHOST}-clang++"
 			echo "BUILD_CC=${CHOST}-clang"
 			echo "BUILD_CXX=${CHOST}-clang++"
-		} >> "${ROOT}"/etc/portage/make.conf
+		} >> "${MAKE_CONF_DIR}/0100_bootstrap_prefix_clang.conf"
 		# llvm won't setup symlinks to CHOST-clang here because
 		# we're in a cross-ish situation (at least according to
 		# multilib.eclass -- can't blame it at this point really)
@@ -2197,6 +2207,7 @@ set_helper_vars() {
 	export PORTDIR=${PORTDIR:-"${ROOT}/var/db/repos/gentoo"}
 	export DISTDIR=${DISTDIR:-"${ROOT}/var/cache/distfiles"}
 	PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
+	MAKE_CONF_DIR="${ROOT}/etc/portage/make.conf/"
 	DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
 	GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 	DISTFILES_G_O="http://distfiles.prefix.bitzolder.nl"
