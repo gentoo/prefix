@@ -310,7 +310,7 @@ bootstrap_setup() {
 	rm "${ROOT}"/FOO.$$
 
 	[[ ! -e "${MAKE_CONF_DIR}" ]] && mkdir -p -- "${MAKE_CONF_DIR}"
-	if [[ ! -f ${ROOT}/etc/portage/make.conf/0100_bootstrap_prefix_make.conf ]] ; then
+	if [[ ! -f ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] ; then
 		{
 			echo "# Added by bootstrap-prefix.sh for ${CHOST}"
 			echo 'USE="unicode nls"'
@@ -1649,7 +1649,7 @@ do_emerge_pkgs() {
 			internal-glib
 		)
 		local override_make_conf_dir=\
-			"${PORTAGE_OVERRIDE_EPREFIX}/etc/portage/make.conf/"
+			"${PORTAGE_OVERRIDE_EPREFIX}${MAKE_CONF_DIR#${ROOT}}"
 
 		if [[ " ${USE} " == *" prefix-stack "* ]] &&
 		   [[ ${PORTAGE_OVERRIDE_EPREFIX} == */tmp ]] &&
