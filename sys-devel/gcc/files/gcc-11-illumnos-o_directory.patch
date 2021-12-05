@@ -1,0 +1,65 @@
+fix build on non Solaris 11 (including derivatives)
+
+Solaris 11 got post-release O_DIRECTORY added, so derivatives like
+Illumnos-based don't have this yet.  Nor does Solaris 10.
+Use posix_madvise instead of madvise, because the latter isn't declared
+on Solaris.
+
+--- a/c++tools/resolver.cc
++++ b/c++tools/resolver.cc
+@@ -58,6 +58,10 @@
+ #define O_CLOEXEC 0
+ #endif
+ 
++#ifndef O_DIRECTORY
++# define O_DIRECTORY 0
++#endif
++
+ #ifndef DIR_SEPARATOR
+ #define DIR_SEPARATOR '/'
+ #endif
+--- a/libcody/resolver.cc
++++ b/libcody/resolver.cc
+@@ -22,6 +22,10 @@
+ #define HAVE_FSTATAT 0
+ #endif
+ 
++#ifndef O_DIRECTORY
++# define O_DIRECTORY 0
++#endif
++
+ // Resolver code
+ 
+ #if __windows__
+--- a/libsanitizer/sanitizer_common/sanitizer_linux.cpp
++++ b/libsanitizer/sanitizer_common/sanitizer_linux.cpp
+@@ -900,6 +900,9 @@
+ #endif // !SANITIZER_SOLARIS
+ 
+ #if !SANITIZER_NETBSD
++#ifndef O_DIRECTORY
++# define O_DIRECTORY 0
++#endif
+ // ThreadLister implementation.
+ ThreadLister::ThreadLister(pid_t pid) : pid_(pid), buffer_(4096) {
+   char task_directory_path[80];
+--- a/gcc/cp/module.cc
++++ b/gcc/cp/module.cc
+@@ -1631,7 +1631,7 @@
+ 	      set_error (errno);
+ 	  else
+ 	    {
+-	      if (madvise (mapping, hdr.pos, MADV_RANDOM))
++	      if (posix_madvise (mapping, hdr.pos, MADV_RANDOM))
+ 		goto fail;
+ 
+ 	      /* These buffers are never NULL in this case.  */
+@@ -1742,7 +1742,7 @@
+     }
+   /* We'll be hopping over this randomly.  Some systems declare the
+      first parm as char *, and other declare it as void *.  */
+-  if (madvise (reinterpret_cast <char *> (mapping), size, MADV_RANDOM))
++  if (posix_madvise (reinterpret_cast <char *> (mapping), size, MADV_RANDOM))
+     goto fail;
+ 
+   hdr.buffer = (char *)mapping;

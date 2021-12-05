@@ -61,6 +61,8 @@ src_prepare() {
 	eapply -p1 "${FILESDIR}"/${PN}-10.2.0-xcode-12.5.patch
 	# allow building with macOS 12
 	eapply -p1 "${FILESDIR}"/${PN}-10.3.0-monterey.patch
+	# allow building on Solaris derivatives
+	eapply "${FILESDIR}"/${PN}-11-illumnos-o_directory.patch
 }
 
 src_configure() {
