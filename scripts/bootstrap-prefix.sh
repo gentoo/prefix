@@ -1648,12 +1648,12 @@ do_emerge_pkgs() {
 			clang
 			internal-glib
 		)
-		local override_make_conf_dir=\
-			"${PORTAGE_OVERRIDE_EPREFIX}${MAKE_CONF_DIR#${ROOT}}"
+		local override_make_conf_dir="${PORTAGE_OVERRIDE_EPREFIX}${MAKE_CONF_DIR#${ROOT}}"
 
 		if [[ " ${USE} " == *" prefix-stack "* ]] &&
 		   [[ ${PORTAGE_OVERRIDE_EPREFIX} == */tmp ]] &&
-		   ! grep -Rq '^USE=".*" # by bootstrap-prefix.sh$' "${override_make_conf_dir}"
+		   ! grep -Rq '^USE=".*" # by bootstrap-prefix.sh$' \
+		   "${override_make_conf_dir}"
 		then
 			# With prefix-stack, the USE env var does apply to the stacked
 			# prefix only, not the base prefix (any more? since some portage
