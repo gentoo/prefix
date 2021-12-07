@@ -150,13 +150,22 @@ with os.scandir(resultsdir) as it:
                         elapsedtime = int(l)
 
             mconf = os.path.join(resultsdir, arch, "%s" % d, "make.conf")
-            if os.path.exists(mconf):
-                with open(mconf, 'rb') as f:
-                    l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
-                    l = list(filter(lambda x: 'USE=' in x, l))
-                    for x in l:
-                        if 'libressl' in x:
-                            haslssl = True
+            conffiles = []
+            if os.path.isdir(mconf):
+                with os.scandir(mconf) as it:
+                    for f in it:
+                        if f.is_file():
+                            conffiles += [ f.name ]
+            else:
+                conffiles = [ mconf ]
+            for mconf in conffiles:
+                if os.path.exists(mconf):
+                    with open(mconf, 'rb') as f:
+                        l = [x.decode('utf-8', 'ignore') for x in f.readlines()]
+                        l = list(filter(lambda x: 'USE=' in x, l))
+                        for x in l:
+                            if 'libressl' in x:
+                                haslssl = True
 
             mconf = os.path.join(resultsdir, arch, "%s" % d, "stage1.log")
             if os.path.exists(mconf):
