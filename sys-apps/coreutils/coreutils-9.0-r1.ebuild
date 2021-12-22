@@ -67,7 +67,9 @@ pkg_setup() {
 }
 
 src_prepare() {
-	local PATCHES=()
+	local PATCHES=(
+		"${FILESDIR}"/${P}-fix-chmod-symlink-exit.patch
+	)
 
 	if ! use vanilla ; then
 		PATCHES+=( "${WORKDIR}"/patch )
