@@ -494,6 +494,18 @@ bootstrap_setup() {
 	>=sys-devel/gcc-11
 	EOF
 
+	# bug #824482 avoid glibc-2.34
+	if is-rap; then
+		if ! [ -d "${ROOT}"/etc/portage/package.mask ]; then
+			mkdir "${ROOT}"/etc/portage/package.mask
+		fi
+		cat >> "${ROOT}"/etc/portage/package.mask/glibc <<-EOF
+		# Temporary mask for newer glibc until bootstrapping issues are fixed.
+		# bug #824482: Avoid glibc-2.34 for now.
+		<sys-libs/glibc-2.34_p1
+		EOF
+	fi
+
 	# Use package.use to disable in the portage tree to be shared between
 	# stage2 and stage3. The hack will be undone during tree sync in stage3.
 	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
