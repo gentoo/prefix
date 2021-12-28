@@ -84,16 +84,16 @@ src_prepare() {
 
 	# fixup libstdbuf non-libtool stuff
 	if [[ ${CHOST} == *-darwin* ]] ; then
-		if [[ ${CHOST} == *-darwin9* ]] ; then
-			# we need replacement libs from libcoreutils.a here in order
-			# to finish the linking
-			sed -i \
-				-e "/src_libstdbuf_so_LDADD/s:$: lib/libcoreutils.a:" \
-				Makefile.in \
-				|| die
-			# and we need serial building :(
-			export MAKEOPTS+=" -j1"
-		fi
+		# we need replacement libs from libcoreutils.a here in order
+		# to finish the linking (they try to avoid this, but it doesn't
+		# during bootstrap, a re-install is fine though)
+		sed -i \
+			-e "/src_libstdbuf_so_LDADD/s:$: lib/libcoreutils.a:" \
+			Makefile.in \
+			|| die
+		# and we need serial building :(
+		export MAKEOPTS+=" -j1"
+		# set a proper install_name
 		sed -i \
 			-e "/src_libstdbuf_so_LDFLAGS = -shared/s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/libexec/coreutils/libstdbuf.dylib:" \
 			Makefile.in \
