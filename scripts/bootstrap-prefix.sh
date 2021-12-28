@@ -214,7 +214,9 @@ configure_toolchain() {
 					return 1
 					;;
 			esac
-			compiler_stage1+=" sys-devel/gcc"
+			# current compiler (gcc-11 requires C++11, which is
+			# available since 4.8, so need to bootstrap with <11)
+			compiler_stage1+=" <sys-devel/gcc-11"
 			;;
 		*-darwin*)
 			einfo "Triggering Darwin with LLVM/Clang toolchain"
