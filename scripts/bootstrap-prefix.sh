@@ -190,9 +190,11 @@ configure_toolchain() {
 			einfo "Triggering Darwin with GCC toolchain"
 			compiler_stage1+=" sys-apps/darwin-miscutils"
 			local ccvers="$(unset CHOST; /usr/bin/gcc --version 2>/dev/null)"
+			local isgcc=
 			case "${ccvers}" in
 				*"(GCC) 4.2.1 "*)
 					linker="=sys-devel/binutils-apple-3.2.6"
+					isgcc=true
 					;;
 				*"(GCC) 4.0.1 "*)
 					linker="=sys-devel/binutils-apple-3.2.6"
@@ -200,6 +202,7 @@ configure_toolchain() {
 					compiler_stage1+="
 						sys-devel/gcc-apple
 						=sys-devel/binutils-apple-3.2.6"
+					isgcc=true
 					;;
 				*"Apple clang version "*|*"Apple LLVM version "*)
 					# recent binutils-apple are hard to build (C++11
@@ -214,9 +217,15 @@ configure_toolchain() {
 					return 1
 					;;
 			esac
-			# current compiler (gcc-11 requires C++11, which is
-			# available since 4.8, so need to bootstrap with <11)
-			compiler_stage1+=" <sys-devel/gcc-11"
+			if [[ ${isgcc} == true ]] ; then
+				# current compiler (gcc-11) requires C++11, which is
+				# available since 4.8, so need to bootstrap with <11
+				compiler_stage1+=" <sys-devel/gcc-11"
+				compiler="${compiler%sys-devel/gcc} <sys-devel/gcc-11"
+			else
+				# assume LLVM/Clang has C++11 support
+				compiler_stage1+=" sys-devel/gcc"
+			fi
 			;;
 		*-darwin*)
 			einfo "Triggering Darwin with LLVM/Clang toolchain"
