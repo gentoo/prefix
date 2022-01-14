@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -15,8 +15,12 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 LICENSE="GPL-2"
 KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
-IUSE="apidoc build doc gentoo-dev +ipc +native-extensions rsync-verify selinux xattr"
+IUSE="apidoc build doc gentoo-dev +ipc +native-extensions rsync-verify selinux test xattr"
+RESTRICT="!test? ( test )"
 
+BDEPEND="
+	app-arch/xz-utils
+	test? ( dev-vcs/git )"
 DEPEND="!build? ( $(python_gen_impl_dep 'ssl(+)') )
 	>=app-arch/tar-1.27
 	dev-lang/python-exec:2
@@ -32,37 +36,38 @@ DEPEND="!build? ( $(python_gen_impl_dep 'ssl(+)') )
 # app-portage/gemato goes without PYTHON_USEDEP since we're calling
 # the executable.
 RDEPEND="
+	!prefix? ( acct-user/portage )
 	app-arch/zstd
 	>=app-arch/tar-1.27
 	dev-lang/python-exec:2
+	>=sys-apps/findutils-4.4
 	!build? (
 		>=sys-apps/sed-4.0.5
-		app-shells/bash:0[readline]
+		>=app-shells/bash-5.0:0[readline]
 		>=app-admin/eselect-1.2
 		rsync-verify? (
-			>=app-portage/gemato-14[${PYTHON_USEDEP}]
-			>=app-crypt/openpgp-keys-gentoo-release-20180706
+			>=app-portage/gemato-14.5[${PYTHON_USEDEP}]
+			>=sec-keys/openpgp-keys-gentoo-release-20180706
 			>=app-crypt/gnupg-2.2.4-r2[ssl(-)]
 		)
 	)
-	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
-	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
-	kernel_linux? ( >=app-misc/pax-utils-0.1.17 )
-	kernel_SunOS? ( >=app-misc/pax-utils-0.1.17 )
-	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.17 )
-	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
+	elibc_musl? ( >=sys-apps/sandbox-2.2 )
+	kernel_linux? ( sys-apps/util-linux )
+	>=app-misc/pax-utils-0.1.18
 	selinux? ( >=sys-libs/libselinux-2.0.94[python,${PYTHON_USEDEP}] )
 	xattr? ( kernel_linux? (
 		>=sys-apps/install-xattr-0.3
 	) )
 	!<app-admin/logrotate-3.8.0
 	!<app-portage/gentoolkit-0.4.6
-	!<app-portage/repoman-2.3.10"
+	!<app-portage/repoman-2.3.10
+	!~app-portage/repoman-3.0.0"
 PDEPEND="
 	!build? (
 		>=net-misc/rsync-2.6.4
-		userland_GNU? ( >=sys-apps/coreutils-6.4 )
+		>=sys-apps/file-5.41
+		>=sys-apps/coreutils-6.4
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # NOTE: FEATURES=installsources requires debugedit and rsync
@@ -107,7 +112,7 @@ python_prepare_all() {
 	fi
 
 	if use native-extensions; then
-		printf "[build_ext]\nportage-ext-modules=true\n" >> \
+		printf "[build_ext]\nportage_ext_modules=true\n" >> \
 			setup.cfg || die
 	fi
 
@@ -248,7 +253,7 @@ python_install_all() {
 		esetup.py "${targets[@]}"
 	fi
 
-	systemd_dotmpfilesd "${FILESDIR}"/portage-ccache.conf
+	dotmpfiles "${FILESDIR}"/portage-ccache.conf
 
 	# Due to distutils/python-exec limitations
 	# these must be installed to /usr/bin.
@@ -273,9 +278,13 @@ pkg_preinst() {
 		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
 		"${PYTHON}" -m portage._compat_upgrade.default_locations || die
 
-	env -u BINPKG_COMPRESS \
+	env -u BINPKG_COMPRESS -u PORTAGE_REPOSITORIES \
 		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
 		"${PYTHON}" -m portage._compat_upgrade.binpkg_compression || die
+
+	env -u FEATURES -u PORTAGE_REPOSITORIES \
+		PYTHONPATH="${D}${sitedir}${PYTHONPATH:+:${PYTHONPATH}}" \
+		"${PYTHON}" -m portage._compat_upgrade.binpkg_multi_instance || die
 
 	# elog dir must exist to avoid logrotate error for bug #415911.
 	# This code runs in preinst in order to bypass the mapping of
