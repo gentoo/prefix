@@ -510,10 +510,21 @@ bootstrap_setup() {
 		if ! [ -d "${ROOT}"/etc/portage/package.mask ]; then
 			mkdir "${ROOT}"/etc/portage/package.mask
 		fi
+
+		if ! [ -d "${ROOT}"/etc/portage/package.unmask ]; then
+			mkdir "${ROOT}"/etc/portage/package.unmask
+		fi
+
 		cat >> "${ROOT}"/etc/portage/package.mask/glibc <<-EOF
 		# Temporary mask for newer glibc until bootstrapping issues are fixed.
-		# bug #824482: Avoid glibc-2.34 for now.
-		<sys-libs/glibc-2.34_p1
+		# bug #824482: Avoid glibc-2.34 for now. See package.unmask/glibc too.
+		>=sys-libs/glibc-2.34
+		EOF
+
+		cat >> "${ROOT}"/etc/portage/package.unmask/glibc <<-EOF
+		# Temporary mask for newer glibc until bootstrapping issues are fixed.
+		# bug #824482: Avoid glibc-2.34 for now. See package.mask/glibc too.
+		>=sys-libs/glibc-2.34_p1
 		EOF
 	fi
 
