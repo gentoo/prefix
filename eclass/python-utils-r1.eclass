@@ -436,6 +436,12 @@ _python_export() {
 				case ${impl} in
 					python2.7)
 						PYTHON_PKG_DEP='>=dev-lang/python-2.7.5-r2:2.7';;
+					python3.8)
+						PYTHON_PKG_DEP=">=dev-lang/python-3.8.8_p1-r1:3.8";;
+					python3.9)
+						PYTHON_PKG_DEP=">=dev-lang/python-3.9.6_p1-r1:3.9";;
+					python3.10)
+						PYTHON_PKG_DEP=">=dev-lang/python-3.10.0_p1-r1:3.10";;
 					python*)
 						PYTHON_PKG_DEP="dev-lang/python:${impl#python}";;
 					pypy)
@@ -1273,7 +1279,8 @@ build_sphinx() {
 	sed -i -e 's:^intersphinx_mapping:disabled_&:' \
 		"${dir}"/conf.py || die
 	# not all packages include the Makefile in pypi tarball
-	sphinx-build -b html -d "${dir}"/_build/doctrees "${dir}" \
+	"${EPYTHON}" -m sphinx.cmd.build \
+		-b html -d "${dir}"/_build/doctrees "${dir}" \
 		"${dir}"/_build/html || die
 
 	HTML_DOCS+=( "${dir}/_build/html/." )
@@ -1320,6 +1327,16 @@ epytest() {
 
 	_python_check_EPYTHON
 
+	local color
+	case ${NOCOLOR} in
+		true|yes)
+			color=no
+			;;
+		*)
+			color=yes
+			;;
+	esac
+
 	local args=(
 		# verbose progress reporting and tracebacks
 		-vv
@@ -1331,6 +1348,8 @@ epytest() {
 		# override filterwarnings=error, we do not really want -Werror
 		# for end users, as it tends to fail on new warnings from deps
 		-Wdefault
+		# override color output
+		"--color=${color}"
 	)
 	local x
 	for x in "${EPYTEST_DESELECT[@]}"; do
