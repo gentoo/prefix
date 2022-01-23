@@ -37,6 +37,7 @@ RESTRICT="!test? ( test )"
 RDEPEND="app-arch/bzip2:=
 	app-arch/xz-utils:=
 	dev-libs/libffi:=
+	dev-lang/python-exec[python_targets_python3_8(-)]
 	kernel_linux? ( sys-apps/util-linux:= )
 	>=sys-libs/zlib-1.1.3:=
 	virtual/libcrypt:=
