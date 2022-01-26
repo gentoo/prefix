@@ -100,6 +100,7 @@ python_prepare_all() {
 
 	eapply "${FILESDIR}"/${PN}-3.0.30-prefix-stack.patch # 658572
 	eapply "${FILESDIR}"/${PN}-3.0.30-ebuildshell.patch # 155161
+	eapply "${FILESDIR}"/${PN}-3.0.30-interrevisions.patch # 832062
 	if use gentoo-dev; then
 		einfo "Disabling --dynamic-deps by default for gentoo-dev..."
 		sed -e 's:\("--dynamic-deps", \)\("y"\):\1"n":' \
