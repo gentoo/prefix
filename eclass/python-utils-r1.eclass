@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: python-utils-r1.eclass
@@ -17,7 +17,7 @@
 # functions. It can be inherited safely.
 #
 # For more information, please see the Python Guide:
-# https://dev.gentoo.org/~mgorny/python-guide/
+# https://projects.gentoo.org/python/guide/
 
 # NOTE: When dropping support for EAPIs here, we need to update
 # metadata/install-qa-check.d/60python-pyc
@@ -1350,6 +1350,14 @@ epytest() {
 		-Wdefault
 		# override color output
 		"--color=${color}"
+		# disable the undesirable-dependency plugins by default to
+		# trigger missing argument strips.  strip options that require
+		# them from config files.  enable them explicitly via "-p ..."
+		# if you *really* need them.
+		-p no:cov
+		-p no:flake8
+		-p no:flakes
+		-p no:pylint
 	)
 	local x
 	for x in "${EPYTEST_DESELECT[@]}"; do
