@@ -602,8 +602,8 @@ do_tree() {
 		fi
 		einfo "Unpacking, this may take a while"
 		estatus "stage1: unpacking Portage tree"
-		bzip2 -dc ${DISTDIR}/$2 | \
-			tar -xf - -C ${PORTDIR} --strip-components=1 || return 1
+		bzip2 -dc ${DISTDIR}/$2 | tar -xf - -C ${PORTDIR} --strip-components=1
+		[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 		touch ${PORTDIR}/.unpacked
 	fi
 }
@@ -692,7 +692,8 @@ bootstrap_portage() {
 	rm -rf "${S}" >& /dev/null
 	mkdir -p "${S}" >& /dev/null
 	cd "${S}"
-	bzip2 -dc "${DISTDIR}/${A}" | tar -xf - || return 1
+	bzip2 -dc "${DISTDIR}/${A}" | tar -xf -
+	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}/prefix-portage-${PV}"
 	cd "${S}"
 
@@ -787,7 +788,8 @@ bootstrap_simple() {
 		bz2)   decomp=bzip2 ;;
 		gz|"") decomp=gzip  ;;
 	esac
-	${decomp} -dc "${DISTDIR}"/${A} | tar -xf - || return 1
+	${decomp} -dc "${DISTDIR}"/${A} | tar -xf -
+	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/${PN}-${PV}
 	cd "${S}"
 
@@ -842,18 +844,21 @@ bootstrap_gnu() {
 		rm -rf "${S}"
 		mkdir -p "${S}"
 		cd "${S}"
-		if [[ ${t} == "tar.gz" ]] ; then
-			gzip -dc "${DISTDIR}"/${URL##*/} | tar -xf - || continue
-		elif [[ ${t} == "tar.xz" ]] ; then
-			xz -dc "${DISTDIR}"/${URL##*/} | tar -xf - || continue
-		elif [[ ${t} == "tar.bz2" ]] ; then
-			bzip2 -dc "${DISTDIR}"/${URL##*/} | tar -xf - || continue
-		elif [[ ${t} == "tar" ]] ; then
-			tar -xf "${DISTDIR}"/${A} || continue
-		else
-			einfo "unhandled extension: $t"
-			return 1
-		fi
+		case ${t} in
+			tar.xz)  decomp=xz    ;;
+			tar.bz2) decomp=bzip2 ;;
+			tar.gz)  decomp=gzip  ;;
+			tar)
+				tar -xf "${DISTDIR}"/${A} || continue
+				break
+				;;
+			*)
+				einfo "unhandled extension: $t"
+				return 1
+				;;
+		esac
+		${decomp} -dc "${DISTDIR}"/${URL##*/} | tar -xf -
+		[[ ${PIPESTATUS[*]} == '0 0' ]] || continue
 		break
 	done
 	S="${S}"/${PN}-${PV}
@@ -1202,7 +1207,8 @@ bootstrap_cmake_core() {
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	gzip -dc "${DISTDIR}"/${A} | tar -xf - || return 1
+	gzip -dc "${DISTDIR}"/${A} | tar -xf -
+	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/cmake-${PV}
 	cd "${S}"
 
@@ -1253,11 +1259,12 @@ bootstrap_zlib_core() {
 	rm -rf "${S}"
 	mkdir -p "${S}"
 	cd "${S}"
-	if [[ ${A} == *.tar.gz ]] ; then
-		gzip -dc "${DISTDIR}"/${A} | tar -xf - || return 1
-	else
-		bzip2 -dc "${DISTDIR}"/${A} | tar -xf - || return 1
-	fi
+	case ${A} in
+		*.tar.gz) decomp=gzip  ;;
+		*)        decomp=bzip2 ;;
+	esac
+	${decomp} -dc "${DISTDIR}"/${A} | tar -xf -
+	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/zlib-${PV}
 	cd "${S}"
 
