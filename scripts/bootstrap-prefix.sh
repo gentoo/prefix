@@ -913,13 +913,15 @@ bootstrap_gnu() {
 		# doesn't match
 		sed -i -e '/_GL_WARN_ON_USE (gets/d' lib/stdio.in.h lib/stdio.h
 
-		# macOS 10.13 have an issue with %n, which crashes m4
-		efetch "http://rsync.prefix.bitzolder.nl/sys-devel/m4/files/m4-1.4.18-darwin17-printf-n.patch" || return 1
-		patch -p1 < "${DISTDIR}"/m4-1.4.18-darwin17-printf-n.patch || return 1
+		if [[ ${PV} == "1.4.18" ]] ; then
+			# macOS 10.13 have an issue with %n, which crashes m4
+			efetch "http://rsync.prefix.bitzolder.nl/sys-devel/m4/files/m4-1.4.18-darwin17-printf-n.patch" || return 1
+			patch -p1 < "${DISTDIR}"/m4-1.4.18-darwin17-printf-n.patch || return 1
 
-		# Bug 715880
-		efetch http://dev.gentoo.org/~heroxbd/m4-1.4.18-glibc228.patch || return 1
-		patch -p1 < "${DISTDIR}"/m4-1.4.18-glibc228.patch || return 1
+			# Bug 715880
+			efetch http://dev.gentoo.org/~heroxbd/m4-1.4.18-glibc228.patch || return 1
+			patch -p1 < "${DISTDIR}"/m4-1.4.18-glibc228.patch || return 1
+		fi
 	fi
 
 	fix_config_sub
@@ -1413,7 +1415,7 @@ bootstrap_bison() {
 }
 
 bootstrap_m4() {
-	bootstrap_gnu m4 1.4.18 # version is patched, so beware
+	bootstrap_gnu m4 1.4.19 || bootstrap_gnu m4 1.4.18 # version is patched, so beware
 }
 
 bootstrap_gzip() {
