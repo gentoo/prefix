@@ -1362,7 +1362,7 @@ bootstrap_coreutils() {
 	# 8.16 is the last version released as tar.gz
 	# 8.18 is necessary for macOS High Sierra (darwin17) and converted
 	#      to tar.gz for this case
-	bootstrap_gnu coreutils 8.30 || \
+	bootstrap_gnu coreutils 8.32 || bootstrap_gnu coreutils 8.30 || \
 	bootstrap_gnu coreutils 8.16 || bootstrap_gnu coreutils 8.17
 }
 
