@@ -220,13 +220,6 @@ src_configure() {
 		fi
 	fi
 
-	if use aqua ; then
-		ECONF_SOURCE="${S}" OPT="" \
-		econf \
-			--enable-framework="${EPREFIX}" \
-			--config-cache
-	fi
-
 	# flock on 32-bits sparc Solaris is broken
 	[[ ${CHOST} == sparc-*-solaris* ]] && \
 		export ac_cv_flock_decl=no
@@ -265,6 +258,13 @@ src_configure() {
 	local -x CFLAGS_NODIST=${CFLAGS}
 	local -x LDFLAGS_NODIST=${LDFLAGS}
 	local -x CFLAGS= LDFLAGS=
+
+	if use aqua ; then
+		ECONF_SOURCE="${S}" OPT="" \
+		econf \
+			--enable-framework="${EPREFIX}" \
+			--config-cache
+	fi
 
 	econf "${myeconfargs[@]}"
 
