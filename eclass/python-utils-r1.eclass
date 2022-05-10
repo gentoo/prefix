@@ -37,17 +37,17 @@ if [[ ! ${_PYTHON_UTILS_R1} ]]; then
 [[ ${EAPI} == [67] ]] && inherit eapi8-dosym
 inherit multiprocessing toolchain-funcs
 
-# @ECLASS-VARIABLE: _PYTHON_ALL_IMPLS
+# @ECLASS_VARIABLE: _PYTHON_ALL_IMPLS
 # @INTERNAL
 # @DESCRIPTION:
 # All supported Python implementations, most preferred last.
 _PYTHON_ALL_IMPLS=(
 	pypy3
-	python3_{8..10}
+	python3_{8..11}
 )
 readonly _PYTHON_ALL_IMPLS
 
-# @ECLASS-VARIABLE: _PYTHON_HISTORICAL_IMPLS
+# @ECLASS_VARIABLE: _PYTHON_HISTORICAL_IMPLS
 # @INTERNAL
 # @DESCRIPTION:
 # All historical Python implementations that are no longer supported.
@@ -59,7 +59,7 @@ _PYTHON_HISTORICAL_IMPLS=(
 )
 readonly _PYTHON_HISTORICAL_IMPLS
 
-# @ECLASS-VARIABLE: PYTHON_COMPAT_NO_STRICT
+# @ECLASS_VARIABLE: PYTHON_COMPAT_NO_STRICT
 # @INTERNAL
 # @DESCRIPTION:
 # Set to a non-empty value in order to make eclass tolerate (ignore)
@@ -83,7 +83,7 @@ _python_verify_patterns() {
 	local impl pattern
 	for pattern; do
 		case ${pattern} in
-			-[23]|3.[89]|3.10)
+			-[23]|3.[89]|3.1[01])
 				continue
 				;;
 		esac
@@ -132,7 +132,7 @@ _python_set_impls() {
 			# please keep them in sync with _PYTHON_ALL_IMPLS
 			# and _PYTHON_HISTORICAL_IMPLS
 			case ${i} in
-				pypy3|python2_7|python3_[89]|python3_10)
+				pypy3|python2_7|python3_[89]|python3_1[01])
 					;;
 				jython2_7|pypy|pypy1_[89]|pypy2_0|python2_[5-6]|python3_[1-7])
 					obsolete+=( "${i}" )
@@ -240,12 +240,12 @@ _python_impl_matches() {
 				fi
 				return 0
 				;;
-			3.8)
-				# the only unmasked pypy3 version is pypy3.8 atm
+			3.9)
+				# the only unmasked pypy3 version is pypy3.9 atm
 				[[ ${impl} == python${pattern/./_} || ${impl} == pypy3 ]] &&
 					return 0
 				;;
-			3.9|3.10)
+			3.8|3.1[01])
 				[[ ${impl} == python${pattern/./_} ]] && return 0
 				;;
 			*)
@@ -258,7 +258,7 @@ _python_impl_matches() {
 	return 1
 }
 
-# @ECLASS-VARIABLE: PYTHON
+# @ECLASS_VARIABLE: PYTHON
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # The absolute path to the current Python interpreter.
@@ -277,7 +277,7 @@ _python_impl_matches() {
 # /usr/bin/python2.7
 # @CODE
 
-# @ECLASS-VARIABLE: EPYTHON
+# @ECLASS_VARIABLE: EPYTHON
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # The executable name of the current Python interpreter.
@@ -476,11 +476,13 @@ _python_export() {
 					python2.7)
 						PYTHON_PKG_DEP='>=dev-lang/python-2.7.5-r2:2.7';;
 					python3.8)
-						PYTHON_PKG_DEP=">=dev-lang/python-3.8.8_p1-r1:3.8";;
+						PYTHON_PKG_DEP=">=dev-lang/python-3.8.12_p1-r1:3.8";;
 					python3.9)
-						PYTHON_PKG_DEP=">=dev-lang/python-3.9.6_p1-r1:3.9";;
+						PYTHON_PKG_DEP=">=dev-lang/python-3.9.9-r1:3.9";;
 					python3.10)
 						PYTHON_PKG_DEP=">=dev-lang/python-3.10.0_p1-r1:3.10";;
+					python3.11)
+						PYTHON_PKG_DEP=">=dev-lang/python-3.11.0_beta1-r1:3.11";;
 					python*)
 						PYTHON_PKG_DEP="dev-lang/python:${impl#python}";;
 					pypy)
@@ -659,9 +661,7 @@ python_optimize() {
 		debug-print "${FUNCNAME}: using sys.path: ${*/%/;}"
 	fi
 
-	local jobs=$(makeopts_jobs "${MAKEOPTS}" INF)
-	[[ ${jobs} == INF ]] && jobs=$(get_nproc)
-
+	local jobs=$(makeopts_jobs)
 	local d
 	for d; do
 		# make sure to get a nice path without //
@@ -1029,25 +1029,30 @@ _python_wrapper_setup() {
 # @FUNCTION: python_fix_shebang
 # @USAGE: [-f|--force] [-q|--quiet] <path>...
 # @DESCRIPTION:
-# Replace the shebang in Python scripts with the current Python
-# implementation (EPYTHON). If a directory is passed, works recursively
-# on all Python scripts.
+# Replace the shebang in Python scripts with the full path
+# to the current Python implementation (PYTHON, including EPREFIX).
+# If a directory is passed, works recursively on all Python scripts
+# found inside the directory tree.
 #
-# Only files having a 'python*' shebang will be modified. Files with
-# other shebang will either be skipped when working recursively
-# on a directory or treated as error when specified explicitly.
+# Only files having a Python shebang (a path to any known Python
+# interpreter, optionally preceded by env(1) invocation) will
+# be processed.  Files with any other shebang will either be skipped
+# silently when a directory was passed, or an error will be reported
+# for any files without Python shebangs specified explicitly.
 #
-# Shebangs matching explicitly current Python version will be left
-# unmodified. Shebangs requesting another Python version will be treated
-# as fatal error, unless --force is given.
+# Shebangs that are compatible with the current Python version will be
+# mangled unconditionally.  Incompatible shebangs will cause a fatal
+# error, unless --force is specified.
 #
-# --force causes the function to replace even shebangs that require
-# incompatible Python version. --quiet causes the function not to list
-# modified files verbosely.
+# --force causes the function to replace shebangs with incompatible
+# Python version (but not non-Python shebangs).  --quiet causes
+# the function not to list modified files verbosely.
 python_fix_shebang() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	[[ ${EPYTHON} ]] || die "${FUNCNAME}: EPYTHON unset (pkg_setup not called?)"
+	local PYTHON
+	_python_export "${EPYTHON}" PYTHON
 
 	local force quiet
 	while [[ ${@} ]]; do
@@ -1063,13 +1068,13 @@ python_fix_shebang() {
 
 	local path f
 	for path; do
-		local any_correct any_fixed is_recursive
+		local any_fixed is_recursive
 
 		[[ -d ${path} ]] && is_recursive=1
 
 		while IFS= read -r -d '' f; do
 			local shebang i
-			local error= from=
+			local error= match=
 
 			# note: we can't ||die here since read will fail if file
 			# has no newline characters
@@ -1078,64 +1083,36 @@ python_fix_shebang() {
 			# First, check if it's shebang at all...
 			if [[ ${shebang} == '#!'* ]]; then
 				local split_shebang=()
-				read -r -a split_shebang <<<${shebang} || die
+				read -r -a split_shebang <<<${shebang#"#!"} || die
 
-				# Match left-to-right in a loop, to avoid matching random
-				# repetitions like 'python2.7 python2'.
-				for i in "${split_shebang[@]}"; do
-					case "${i}" in
-						*"${EPYTHON}")
-							debug-print "${FUNCNAME}: in file ${f#${D%/}}"
-							debug-print "${FUNCNAME}: shebang matches EPYTHON: ${shebang}"
+				local in_path=${split_shebang[0]}
+				local from='^#! *[^ ]*'
+				# if the first component is env(1), skip it
+				if [[ ${in_path} == */env ]]; then
+					in_path=${split_shebang[1]}
+					from+=' *[^ ]*'
+				fi
 
-							# Nothing to do, move along.
-							any_correct=1
-							from=${EPYTHON}
-							break
-							;;
-						*python|*python[23])
-							debug-print "${FUNCNAME}: in file ${f#${D%/}}"
-							debug-print "${FUNCNAME}: rewriting shebang: ${shebang}"
-
-							if [[ ${i} == *python2 ]]; then
-								from=python2
-								if [[ ! ${force} ]]; then
-									error=1
-								fi
-							elif [[ ${i} == *python3 ]]; then
-								from=python3
-							else
-								from=python
-							fi
-							break
-							;;
-						*python[23].[0-9]|*python3.[1-9][0-9]|*pypy|*pypy3|*jython[23].[0-9])
-							# Explicit mismatch.
-							if [[ ! ${force} ]]; then
-								error=1
-							else
-								case "${i}" in
-									*python[23].[0-9])
-										from="python[23].[0-9]";;
-									*python3.[1-9][0-9])
-										from="python3.[1-9][0-9]";;
-									*pypy)
-										from="pypy";;
-									*pypy3)
-										from="pypy3";;
-									*jython[23].[0-9])
-										from="jython[23].[0-9]";;
-									*)
-										die "${FUNCNAME}: internal error in 2nd pattern match";;
-								esac
-							fi
-							break
-							;;
-					esac
-				done
+				case ${in_path##*/} in
+					"${EPYTHON}")
+						match=1
+						;;
+					python|python[23])
+						match=1
+						[[ ${in_path##*/} == python2 ]] && error=1
+						;;
+					python[23].[0-9]|python3.[1-9][0-9]|pypy|pypy3|jython[23].[0-9])
+						# Explicit mismatch.
+						match=1
+						error=1
+						;;
+				esac
 			fi
 
-			if [[ ! ${error} && ! ${from} ]]; then
+			# disregard mismatches in force mode
+			[[ ${force} ]] && error=
+
+			if [[ ! ${match} ]]; then
 				# Non-Python shebang. Allowed in recursive mode,
 				# disallowed when specifying file explicitly.
 				[[ ${is_recursive} ]] && continue
@@ -1147,13 +1124,9 @@ python_fix_shebang() {
 			fi
 
 			if [[ ! ${error} ]]; then
-				# We either want to match ${from} followed by space
-				# or at end-of-string.
-				if [[ ${shebang} == *${from}" "* ]]; then
-					sed -i -e "1s:${from} :${EPYTHON} :" "${f}" || die
-				else
-					sed -i -e "1s:${from}$:${EPYTHON}:" "${f}" || die
-				fi
+				debug-print "${FUNCNAME}: in file ${f#${D%/}}"
+				debug-print "${FUNCNAME}: rewriting shebang: ${shebang}"
+				sed -i -e "1s@${from}@#!${PYTHON}@" "${f}" || die
 				any_fixed=1
 			else
 				eerror "The file has incompatible shebang:"
@@ -1166,12 +1139,7 @@ python_fix_shebang() {
 
 		if [[ ! ${any_fixed} ]]; then
 			eerror "QA error: ${FUNCNAME}, ${path#${D%/}} did not match any fixable files."
-			if [[ ${any_correct} ]]; then
-				eerror "All files have ${EPYTHON} shebang already."
-			else
-				eerror "There are no Python files in specified directory."
-			fi
-
+			eerror "There are no Python files in specified directory."
 			die "${FUNCNAME} did not match any fixable files"
 		fi
 	done
@@ -1348,6 +1316,9 @@ epytest() {
 		-Wdefault
 		# override color output
 		"--color=${color}"
+		# count is more precise when we're dealing with a large number
+		# of tests
+		-o console_output_style=count
 		# disable the undesirable-dependency plugins by default to
 		# trigger missing argument strips.  strip options that require
 		# them from config files.  enable them explicitly via "-p ..."
@@ -1423,6 +1394,48 @@ _python_run_check_deps() {
 	ebegin "  python_check_deps"
 	python_check_deps
 	eend ${?}
+}
+
+# @FUNCTION: python_has_version
+# @USAGE: [-b|-d|-r] <atom>...
+# @DESCRIPTION:
+# A convenience wrapper for has_version() with verbose output and better
+# defaults for use in python_check_deps().
+#
+# The wrapper accepts EAPI 7+-style -b/-d/-r options to indicate
+# the root to perform the lookup on.  Unlike has_version, the default
+# is -b.  In EAPI 6, -b and -d are translated to --host-root
+# for compatibility.
+#
+# The wrapper accepts multiple package specifications.  For the check
+# to succeed, *all* specified atoms must match.
+python_has_version() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	local root_arg=( -b )
+	case ${1} in
+		-b|-d|-r)
+			root_arg=( "${1}" )
+			shift
+			;;
+	esac
+
+	if [[ ${EAPI} == 6 ]]; then
+		if [[ ${root_arg} == -r ]]; then
+			root_arg=()
+		else
+			root_arg=( --host-root )
+		fi
+	fi
+
+	local pkg
+	for pkg; do
+		ebegin "    ${pkg}"
+		has_version "${root_arg[@]}" "${pkg}"
+		eend ${?} || return
+	done
+
+	return 0
 }
 
 _PYTHON_UTILS_R1=1
