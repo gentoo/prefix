@@ -201,17 +201,6 @@ src_configure() {
 		dbmliborder+="${dbmliborder:+:}gdbm"
 	fi
 
-	if use aqua ; then
-		ECONF_SOURCE="${S}" OPT="" \
-		econf \
-			--enable-framework="${EPREFIX}" \
-			--config-cache
-	fi
-
-	# flock on 32-bits sparc Solaris is broken
-	[[ ${CHOST} == sparc-*-solaris* ]] && \
-		export ac_cv_flock_decl=no
-
 	if use pgo; then
 		local jobs=$(makeopts_jobs "${MAKEOPTS}" "$(get_nproc)")
 		export PROFILE_TASK="-m test -j${jobs} --pgo-extended -x test_gdb -u-network"
@@ -226,6 +215,10 @@ src_configure() {
 			PROFILE_TASK+=" -x test_distutils"
 		fi
 	fi
+
+	# flock on 32-bits sparc Solaris is broken
+	[[ ${CHOST} == sparc-*-solaris* ]] && \
+		export ac_cv_flock_decl=no
 
 	local myeconfargs=(
 		# glibc-2.30 removes it; since we can't cleanly force-rebuild
@@ -259,6 +252,13 @@ src_configure() {
 	local -x CFLAGS_NODIST=${CFLAGS}
 	local -x LDFLAGS_NODIST=${LDFLAGS}
 	local -x CFLAGS= LDFLAGS=
+
+	if use aqua ; then
+		ECONF_SOURCE="${S}" OPT="" \
+		econf \
+			--enable-framework="${EPREFIX}" \
+			--config-cache
+	fi
 
 	econf "${myeconfargs[@]}"
 
@@ -379,8 +379,8 @@ src_install() {
 	# Remove static library
 	rm "${ED}"/usr/$(get_libdir)/libpython*.a || die
 
-	# Fix collisions between different slots of Python.
-	rm "${ED}/usr/$(get_libdir)/libpython3$(get_libname)" || die
+	# Fix collisions between different slots of Python. (if it exists, Darwin)
+	rm -f "${ED}/usr/$(get_libdir)/libpython3$(get_libname)" || die
 
 	# Cheap hack to get version with ABIFLAGS
 	local abiver=$(cd "${ED}/usr/include"; echo python*)
