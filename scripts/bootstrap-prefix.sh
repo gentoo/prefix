@@ -944,6 +944,11 @@ bootstrap_gnu() {
 	[[ ${PN} == "bash" && ${CHOST} != *-cygwin* ]] \
 		&& myconf="${myconf} --disable-readline"
 
+	# on e.g. musl systems bash will crash with a malloc error if we use
+	# bash' internal malloc, so disable it during it this stage
+	[[ ${PN} == "bash" ]] && \
+		myconf="${myconf} --without-bash-malloc"
+
 	# ensure we don't read system-wide shell initialisation, it may
 	# contain cruft, bug #650284
 	[[ ${PN} == "bash" ]] && \
