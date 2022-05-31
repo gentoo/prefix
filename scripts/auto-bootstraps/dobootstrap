@@ -140,6 +140,18 @@ do_prepare() {
 			# UNIX vendors
 			local dist=$(lsb_release -si)
 			local rel=$(lsb_release -sr)
+			if [[ -z ${dist} ]] || [[ -z ${rel} ]] ; then
+				source /etc/os-release  # this may fail if the file isn't there
+				[[ -z ${dist} ]] && dist=${NAME}
+				[[ -z ${dist} ]] && dist=${ID}
+				[[ -z ${rel} ]] && rel=${VERSION_ID}
+
+				# Gentoo's versioning isn't really relevant, since it is
+				# a rolling distro
+				[[ ${dist,,} == "gentoo" ]] && rel=
+			fi
+			[[ -z ${dist} ]] && dist=linux
+			# leave rel unset/empty if we don't know about it
 			while [[ ${rel} == *.*.* ]] ; do
 				rel=${rel%.*}
 			done
