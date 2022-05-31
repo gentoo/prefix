@@ -62,7 +62,7 @@ do_prepare() {
 				chost=powerpc-${chost#*-}
 			fi
 			;;
-		arm64-*)
+		aarch64-*|arm64-*)
 			bitw=64
 			;;
 		sparc-*)
