@@ -422,6 +422,9 @@ bootstrap_setup() {
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
 			;;
+		riscv64-pc-linux-gnu)
+			profile=${profile_linux/ARCH/riscv}
+			;;	
 		x86_64-pc-linux-gnu)
 			profile=${profile_linux/ARCH/amd64}
 			profile=${profile/17.0/17.1/no-multilib}
@@ -434,6 +437,9 @@ bootstrap_setup() {
 			;;
 		powerpc64le-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/ppc64le}
+			;;
+		riscv-pc-unknown-linux-gnu)
+			profile=${profile_linux/ARCH/riscv}	
 			;;
 		aarch64-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/arm64}
