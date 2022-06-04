@@ -1103,6 +1103,13 @@ bootstrap_python() {
 			-e "/Unexpected output of 'arch' on OSX/d" \
 			configure
 		;;
+	(*-openbsd*)
+		# OpenBSD is not a multilib system
+		sed -i \
+			-e '0,/#if defined(__ANDROID__)/{s/ANDROID/OpenBSD/}' \
+			-e '0,/MULTIARCH=/{s/\(MULTIARCH\)=.*/\1=""/}' \
+			configure
+		;;
 	esac
 
 	case ${CHOST} in
@@ -1158,6 +1165,10 @@ bootstrap_python() {
 			# GNU ld
 			LDFLAGS="${LDFLAGS} -Wl,-rpath,${ROOT}/tmp/usr/lib ${libdir}"
 			LDFLAGS="${LDFLAGS} -Wl,-rpath,${libdir#-L}"
+		;;
+		*-openbsd*)
+			# LLD
+			LDFLAGS="${LDFLAGS} -Wl,-rpath,${ROOT}/tmp/usr/lib"
 		;;
 		*-solaris*)
 			# Sun ld
