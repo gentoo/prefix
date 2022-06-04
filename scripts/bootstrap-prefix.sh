@@ -2895,8 +2895,8 @@ EOF
 		# GNU and BSD variants of stat take different arguments (and
 		# format specifiers are not equivalent)
 		case "${CHOST}" in
-			*-darwin* | *-freebsd*) STAT='stat -f %u/%g' ;;
-			*)                      STAT='stat -c %U/%G' ;;
+			*-darwin* | *-freebsd* | *-openbsd*) STAT='stat -f %u/%g' ;;
+			*)                                   STAT='stat -c %U/%G' ;;
 		esac
 
 		if [[ $(${STAT} "${EPREFIX}"/.canihaswrite) != \
