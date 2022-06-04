@@ -1641,7 +1641,7 @@ bootstrap_stage1() {
 		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
 		|| (bootstrap_setup) || return 1
 	mkdir -p "${ROOT}"/tmp/etc/. || return 1
-	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || cp -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc || return 1
+	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || "${ROOT}"/tmp/bin/cp -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc || return 1
 
 	# setup portage
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
