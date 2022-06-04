@@ -160,7 +160,7 @@ configure_toolchain() {
 	*-darwin*)
 	  # handled below
 	  ;;
-	*-freebsd*)
+	*-freebsd* | *-openbsd*)
 	  # comes with clang, handled below
 	  ;;
 	*)
@@ -267,7 +267,7 @@ configure_toolchain() {
 				sys-devel/llvm
 				sys-devel/clang"
 			;;
-		*-freebsd*)
+		*-freebsd* | *-openbsd*)
 			CC=clang
 			CXX=clang++
 			# TODO: target clang toolchain someday?
