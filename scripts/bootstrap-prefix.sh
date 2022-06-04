@@ -953,8 +953,9 @@ bootstrap_gnu() {
 	# contain cruft, bug #650284
 	[[ ${PN} == "bash" ]] && \
 		export CPPFLAGS="${CPPFLAGS} \
-			-DSYS_BASHRC=\'\"${ROOT}/etc/bash/bashrc\"\' \
-			-DSYS_BASH_LOGOUT=\'\"${ROOT}/etc/bash/bash_logout\"\'"
+			-DSYS_BASHRC=\\\"${ROOT}/etc/bash/bashrc\\\" \
+			-DSYS_BASH_LOGOUT=\\\"${ROOT}/etc/bash/bash_logout\\\" \
+		"
 
 	# Don't do ACL stuff on Darwin, especially Darwin9 will make
 	# coreutils completely useless (install failing on everything)
