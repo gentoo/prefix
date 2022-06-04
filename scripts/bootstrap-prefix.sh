@@ -3195,6 +3195,13 @@ if [[ -z ${CHOST} ]]; then
 					;;
 				esac
 				;;
+			OpenBSD)
+				case `uname -m` in
+					amd64)
+						CHOST="x86_64-pc-openbsd`uname -r | sed 's|-.*$||'`"
+					;;
+				esac
+				;;
 			*)
 				eerror "Nothing known about platform `uname -s`."
 				eerror "Please set CHOST appropriately for your system"
