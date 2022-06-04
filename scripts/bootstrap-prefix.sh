@@ -2626,12 +2626,18 @@ EOF
 	echo
 	local ncpu=
 	case "${CHOST}" in
-		*-cygwin*)     ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%' | tr -d "\\r") ;;
-		*-darwin*)     ncpu=$(/usr/sbin/sysctl -n hw.ncpu)                 ;;
-		*-freebsd*)    ncpu=$(/sbin/sysctl -n hw.ncpu)                     ;;
-		*-solaris*)    ncpu=$(/usr/sbin/psrinfo | wc -l)                   ;;
-		*-linux-gnu*)  ncpu=$(cat /proc/cpuinfo | grep processor | wc -l)  ;;
-		*)             ncpu=1                                              ;;
+		*-cygwin*)
+			ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%' | tr -d "\\r") ;;
+		*-darwin*)
+			ncpu=$(/usr/sbin/sysctl -n hw.ncpu) ;;
+		*-freebsd* | *-openbsd*)
+			ncpu=$(/sbin/sysctl -n hw.ncpu) ;;
+		*-solaris*)
+			ncpu=$(/usr/sbin/psrinfo | wc -l) ;;
+		*-linux-gnu*)
+			ncpu=$(cat /proc/cpuinfo | grep processor | wc -l) ;;
+		*)
+			ncpu=1 ;;
 	esac
 	# get rid of excess spaces (at least Solaris wc does)
 	ncpu=$((ncpu + 0))
