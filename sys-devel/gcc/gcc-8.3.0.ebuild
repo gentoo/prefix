@@ -1,7 +1,7 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="7"
 
 PATCH_VER="1.0"
 CYGWINPORTS_GITREV="0de6b2ae6b6577eb0891a7ca8d551bdfa79bf5e8" # gcc-8.3.0-1

@@ -1,39 +1,50 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="7"
+EAPI=7
 
-GCC_TARBALL_SRC_URI="https://dev.gentoo.org/~grobian/distfiles/gcc-pre11-apple-si-a172e87.tar.gz"
-PATCH_GCC_VER="11.0.0"
-PATCH_VER="6"
-TOOLCHAIN_GCC_PV=11.0.1
+TOOLCHAIN_PATCH_DEV="sam"
+PATCH_VER="7"
+PATCH_GCC_VER="12.1.0"
+MUSL_VER="4"
+MUSL_GCC_VER="12.1.0"
 
 inherit toolchain
 
-#KEYWORDS="~ppc-macos ~x64-macos"
+# Don't keyword live ebuilds
+if ! tc_is_live && [[ -z ${TOOLCHAIN_USE_GIT_PATCHES} ]] ; then
+	KEYWORDS="~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+fi
 
-RDEPEND=""
-BDEPEND="
-	kernel_linux? ( ${CATEGORY}/binutils )
-	kernel_Darwin? (
-		|| ( ${CATEGORY}/binutils-apple ${CATEGORY}/native-cctools )
-	)"
+# use alternate source for Apple M1 (also works for x86_64)
+IANSGCCVER="gcc-12.1-darwin-r0"
+SRC_URI+=" elibc_Darwin? (
+https://github.com/iains/gcc-12-branch/archive/refs/tags/${IANSGCCVER}.tar.gz )"
 
-S="${WORKDIR}"/gcc-darwin-arm64-master-wip-apple-si
+# Technically only if USE=hardened *too* right now, but no point in complicating it further.
+# If GCC is enabling CET by default, we need glibc to be built with support for it.
+# bug #830454
+RDEPEND="elibc_glibc? ( sys-libs/glibc[cet(-)?] )"
+DEPEND="${RDEPEND}"
+BDEPEND=">=${CATEGORY}/binutils-2.30[cet(-)?]"
+
+src_unpack() {
+	if use elibc_Darwin ; then
+		# just use Ian's source, not the main one
+		S="${WORKDIR}/gcc-12-branch-${IANSGCCVER}"
+	fi
+	default
+}
 
 src_prepare() {
-	has_version '>=sys-libs/glibc-2.32-r1' && rm -v "${WORKDIR}/patch/23_all_disable-riscv32-ABIs.patch"
 	toolchain_src_prepare
 
-	if use elibc_Cygwin; then
-		sed -e '/0001-share-mingw-fset-stack-executable-with-cygwin.patch/d' \
-			-i "${WORKDIR}/gcc-${CYGWINPORTS_GITREV}/gcc.cygport" || die
-	fi
+	eapply_user
 
 	# make sure 64-bits native targets don't screw up the linker paths
-	eapply -p0 "${FILESDIR}"/no-libs-for-startfile.patch
+	eapply "${FILESDIR}"/gcc-12-no-libs-for-startfile.patch
 	if use prefix; then
-		eapply -p0 "${FILESDIR}"/4.5.2/prefix-search-dirs.patch
+		eapply "${FILESDIR}"/gcc-12-prefix-search-dirs.patch
 		# try /usr/lib32 in 32bit profile on x86_64-linux (needs
 		# --enable-multilib), but this does make sense in prefix only
 		eapply -p0 "${FILESDIR}"/${PN}-4.8.3-linux-x86-on-amd64.patch
@@ -48,14 +59,11 @@ src_prepare() {
 			libgcc/config/t-slibgcc-darwin || die
 	fi
 
-	# fixup a what seems to be a typo, we need this at least to finish
-	# compilation on arm64-macos during bootstrap as gmp.h else won't be
-	# found
-	sed -i -e 's/ALL_SPPFLAGS/ALL_CPPFLAGS/' \
-		gcc/config/aarch64/t-aarch64 || die
-
-	# allow building with macOS 12
-	eapply -p1 "${FILESDIR}"/${PN}-10.3.0-monterey.patch
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# madvise is not available in the compatibility mode GCC uses,
+		# posix_madvise however, is
+		sed -i -e 's/madvise/posix_madvise/' gcc/cp/module.cc || die
+	fi
 }
 
 src_configure() {

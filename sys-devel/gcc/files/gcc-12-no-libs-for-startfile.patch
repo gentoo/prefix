@@ -1,0 +1,15 @@
+* do not generate multilib paths, since adding those dirs, e.g.
+  /usr/lib/amd64 or /usr/lib64, screws up Prefix badly (in %D)
+  see also: http://article.gmane.org/gmane.linux.gentoo.alt/3575
+
+--- a/gcc/gcc.cc
++++ b/gcc/gcc.cc
+@@ -4740,7 +4740,7 @@
+ #endif
+ 	      info.separate_options = false;
+ 
+-	      for_each_path (&startfile_prefixes, true, 0, spec_path, &info);
++	      for_each_path (&startfile_prefixes, false, 0, spec_path, &info);
+ 	    }
+ 	    break;
+ 
