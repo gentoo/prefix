@@ -615,13 +615,17 @@ toolchain_src_prepare() {
 		make_gcc_hard
 	fi
 
-	# we use our libtool on Darwin
+	# we use our libtool on Darwin (no longer applies since 12)
 	sed -i -e "s:/usr/bin/libtool:${EPREFIX}/usr/bin/${CTARGET}-libtool:" \
 		"${S}"/gcc/config/darwin.h || die "sed gcc/config/darwin.h failed"
 	# add prefixed Frameworks to default search paths (may want to
 	# change this in a cross-compile)
+	local darwindriver
+	tc_version_is_at_least 12 \
+		&& darwindriver=darwin-c.cc \
+		|| darwindriver=darwin-c.c
 	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \   \"${EPREFIX}/MacOSX.sdk/System/Library/Frameworks\"\, \"${EPREFIX}/Frameworks\"\, " \
-		"${S}"/gcc/config/darwin-c.c || die "sed gcc/config/darwin-c.c failed"
+		"${S}"/gcc/config/${darwindriver} || die "sed gcc/config/${darwindriver} failed"
 
 	# Make sure the pkg-config files install into multilib dirs.
 	# Since we configure with just one --libdir, we can't use that
