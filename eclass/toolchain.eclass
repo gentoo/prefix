@@ -202,7 +202,7 @@ tc_has_feature() {
 
 # Prefix: allow gcc-apple post 4.2.1
 if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ||
-	[[ ${PN} == "gcc-apple" && tc_version_is_at_least 12.1 ]] ; then
+	[[ ${PN} == "gcc-apple" && $(tc_version_is_at_least 12.1) == 0 ]] ; then
 	IUSE+=" debug +cxx +nptl" TC_FEATURES+=( nptl )
 	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
 	[[ -n ${SPECS_VER} ]] && IUSE+=" nossp"
