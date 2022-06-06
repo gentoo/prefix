@@ -3140,15 +3140,18 @@ if [[ -z ${CHOST} ]]; then
 	if [[ x$(type -t uname) == "xfile" ]]; then
 		case `uname -s` in
 			Linux)
+				plt="gnu"
+				[[ -e /lib/ld-musl-*.so.1 ]] && plt="musl"
+				sfx="unknown-linux-${plt}"
 				case `uname -m` in
 					ppc*)
-						CHOST="`uname -m | sed -e 's/^ppc/powerpc/'`-unknown-linux-gnu"
+						CHOST="`uname -m | sed -e 's/^ppc/powerpc/'`-${sfx}"
 						;;
 					powerpc*|aarch64*)
-						CHOST="`uname -m`-unknown-linux-gnu"
+						CHOST="`uname -m`-${sfx}"
 						;;
 					*)
-						CHOST="`uname -m`-pc-linux-gnu"
+						CHOST="`uname -m`-${sfx/unknown/pc}"
 						;;
 				esac
 				;;
