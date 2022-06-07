@@ -352,18 +352,6 @@ _python_export() {
 				fi
 				debug-print "${FUNCNAME}: PYTHON = ${PYTHON}"
 				;;
-			PYTHON_EPREFIX)
-				export PYTHON_EPREFIX=${EPREFIX}
-				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
-				&& [[ ! -x ${EPREFIX}/usr/bin/${impl} ]] \
-				&& { has prefix-stack ${USE} || has stacked-prefix ${FEATURES} ;} ; then
-					# Need to look in build prefix
-					if [[ -x ${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}/usr/bin/${impl} ]]; then
-						PYTHON_EPREFIX=${BROOT-${PORTAGE_OVERRIDE_EPREFIX}}
-					fi
-				fi
-				debug-print "${FUNCNAME}: PYTHON_EPREFIX = ${PYTHON_EPREFIX}"
-				;;
 			PYTHON_SITEDIR)
 				[[ -n ${PYTHON} ]] || die "PYTHON needs to be set for ${var} to be exported, or requested before it"
 				PYTHON_SITEDIR=$(
@@ -1327,6 +1315,9 @@ epytest() {
 		-p no:flake8
 		-p no:flakes
 		-p no:pylint
+		# sterilize pytest-markdown as it runs code snippets from all
+		# *.md files found without any warning
+		-p no:markdown
 	)
 	local x
 	for x in "${EPYTEST_DESELECT[@]}"; do
