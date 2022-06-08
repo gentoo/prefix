@@ -26,7 +26,11 @@ https://github.com/iains/gcc-12-branch/archive/refs/tags/${IANSGCCVER}.tar.gz )"
 # bug #830454
 RDEPEND="elibc_glibc? ( sys-libs/glibc[cet(-)?] )"
 DEPEND="${RDEPEND}"
-BDEPEND=">=${CATEGORY}/binutils-2.30[cet(-)?]"
+BDEPEND="
+	kernel_linux? ( >=${CATEGORY}/binutils-2.30[cet(-)?] )
+	kernel_Darwin? (
+		|| ( ${CATEGORY}/binutils-apple ${CATEGORY}/native-cctools )
+	)"
 
 src_unpack() {
 	if use elibc_Darwin ; then
