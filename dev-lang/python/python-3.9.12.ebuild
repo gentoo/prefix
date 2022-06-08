@@ -11,7 +11,7 @@ MY_PV=${PV/_rc/rc}
 MY_P="Python-${MY_PV%_p*}"
 PYVER=$(ver_cut 1-2)
 PATCHSET="python-gentoo-patches-${MY_PV}"
-PREFIX_PATCHSET="python-prefix-gentoo-${MY_PV}-patches-r0"
+PREFIX_PATCHSET="python-prefix-gentoo-${MY_PV}-patches-r1"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
