@@ -1,7 +1,7 @@
 # Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 TOOLCHAIN_PATCH_DEV="sam"
 PATCH_VER="7"
@@ -24,7 +24,7 @@ https://github.com/iains/gcc-12-branch/archive/refs/tags/${IANSGCCVER}.tar.gz )"
 # Technically only if USE=hardened *too* right now, but no point in complicating it further.
 # If GCC is enabling CET by default, we need glibc to be built with support for it.
 # bug #830454
-RDEPEND="elibc_glibc? ( sys-libs/glibc[cet(-)?] )"
+RDEPEND="!prefix-guest? ( elibc_glibc? ( sys-libs/glibc[cet(-)?] ) )"
 DEPEND="${RDEPEND}"
 BDEPEND="
 	kernel_linux? ( >=${CATEGORY}/binutils-2.30[cet(-)?] )
