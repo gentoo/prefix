@@ -946,10 +946,8 @@ bootstrap_gnu() {
 	export ac_cv_path_POD2MAN=no
 
 	# Darwin9 in particular doesn't compile when using system readline,
-	# but we don't need any groovy input at all, so just disable it,
-	# except for Cygwin, where the patch above would fail to compile
-	[[ ${PN} == "bash" && ${CHOST} != *-cygwin* ]] \
-		&& myconf="${myconf} --disable-readline"
+	# but we don't need any groovy input handling at all, so just disable it
+	[[ ${PN} == "bash" ]] && myconf="${myconf} --disable-readline"
 
 	# On e.g. musl systems bash will crash with a malloc error if we use
 	# bash' internal malloc, so disable it during it this stage
@@ -1059,16 +1057,37 @@ bootstrap_python() {
 
 	case ${CHOST} in
 	(*-*-cygwin*)
-		# apply patches from cygwinports much like the ebuild does
-		local gitrev pf pn
-		gitrev="71f2ac2444946c97d892be3892e47d2a509e0e96" # python36 3.6.8
-		efetch "https://github.com/cygwinports/python36/archive/${gitrev}.tar.gz" \
-			|| return 1
-		gzip -dc "${DISTDIR}"/${gitrev}.tar.gz | tar -xf -
-		[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
+		local gitrev cygpyver pf pn patch_folder ffail
+
+		# try github first, if that fails, it means that cygwin has not
+		# archived that repo yet
+		# ideally the version of python used by bootstrap would be one
+		# that cygwin has packaged if we don't do exact matches on the
+		# version then some patches may not apply cleanly
+
+		ffail=0
+		gitrev="42494e325a050ba03638568d7318f8f0075e25fb"
+		efetch "https://github.com/cygwinports/python39/archive/${gitrev}.tar.gz" \
+			|| ffail=1
+		if [[ -z ${ffail} ]]; then
+			gzip -dc "${DISTDIR}"/"${gitrev}.tar.gz" | tar -xf -
+			[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
+			patch_folder="python39-${gitrev}"
+		else
+			cygpyver="3.9.9-1"
+			efetch "https://mirrors.kernel.org/sourceware/cygwin/x86_64/release/python39/python39-${cygpyver}-src.tar.xz" \
+				|| return 1
+			xz -dc "${DISTDIR}"/"python39-${cygpyver}-src.tar.xz" | tar -xf -
+			[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
+			patch_folder="python39-${cygpyver}.src"
+			ffail=0
+		fi
+		[[ ${ffail} == 0 ]] || return 1
+
 		for pf in $(
 			sed -ne '/PATCH_URI="/,/"/{s/.*="//;s/".*$//;p}' \
-			< python36-${gitrev}/python3.cygport
+				< "${patch_folder}/python39.cygport" \
+				| grep -v rpm-wheels | grep -v revert-bpo
 		); do
 			pf="python36-${gitrev}/${pf}"
 			for pn in {1..2} fail; do
@@ -1076,7 +1095,8 @@ bootstrap_python() {
 					eerror "failed to apply ${pf}"
 					return 1
 				fi
-				patch -N -p${pn} -i "${pf}" --dry-run >/dev/null 2>&1 || continue
+				patch -N -p${pn} -i "${pf}" --dry-run >/dev/null 2>&1 \
+					|| continue
 				echo "applying (-p${pn}) ${pf}"
 				patch -N -p${pn} -i "${pf}" || return 1
 				break
