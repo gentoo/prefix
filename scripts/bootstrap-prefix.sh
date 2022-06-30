@@ -40,7 +40,7 @@ emake() {
 	[[ $* == *install* ]] \
 		&& estatus "stage1: installing ${PWD##*/}" \
 		|| estatus "stage1: building ${PWD##*/}"
-	v $MAKE ${MAKEOPTS} "$@" || return 1
+	v ${MAKE} ${MAKEOPTS} "$@" || return 1
 }
 
 efetch() {
@@ -80,7 +80,7 @@ efetch() {
 		estatus "stage1: fetching ${1##*/}"
 		pushd "${DISTDIR}" > /dev/null
 
-		# try for mirrors first, fall back to distfiles, then try given location
+		# Try for mirrors first, fall back to distfiles, then try given location
 		local locs=( )
 		local loc
 		for loc in ${GENTOO_MIRRORS} ${DISTFILES_G_O} ${DISTFILES_PFX}; do
@@ -299,7 +299,7 @@ configure_toolchain() {
 
 bootstrap_setup() {
 	local profile=""
-	einfo "setting up some guessed defaults"
+	einfo "Setting up some guessed defaults"
 
 	# 2.6.32.1 -> 2*256^3 + 6*256^2 + 32 * 256 + 1 = 33955841
 	kver() { uname -r|cut -d\- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
@@ -538,7 +538,7 @@ bootstrap_setup() {
 	# Use package.use to disable in the portage tree to be shared between
 	# stage2 and stage3. The hack will be undone during tree sync in stage3.
 	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
-	# disable bootstrapping libcxx* with libunwind
+	# Disable bootstrapping libcxx* with libunwind
 	sys-libs/libcxxabi -libunwind
 	sys-libs/libcxx -libunwind
 	# Most binary Linux distributions seem to fancy toolchains that
@@ -951,12 +951,12 @@ bootstrap_gnu() {
 	[[ ${PN} == "bash" && ${CHOST} != *-cygwin* ]] \
 		&& myconf="${myconf} --disable-readline"
 
-	# on e.g. musl systems bash will crash with a malloc error if we use
+	# On e.g. musl systems bash will crash with a malloc error if we use
 	# bash' internal malloc, so disable it during it this stage
 	[[ ${PN} == "bash" ]] && \
 		myconf="${myconf} --without-bash-malloc"
 
-	# ensure we don't read system-wide shell initialisation, it may
+	# Ensure we don't read system-wide shell initialisation, it may
 	# contain cruft, bug #650284
 	[[ ${PN} == "bash" ]] && \
 		export CPPFLAGS="${CPPFLAGS} \
@@ -1131,7 +1131,7 @@ bootstrap_python() {
 
 	local myconf=""
 
-	case $CHOST in
+	case ${CHOST} in
 	(x86_64-*-*|sparcv9-*-*)
 		export CFLAGS="-m64"
 		;;
@@ -1140,7 +1140,7 @@ bootstrap_python() {
 		;;
 	esac
 
-	case $CHOST in
+	case ${CHOST} in
 		*-*-cygwin*)
 			# --disable-shared would link modules against "python.exe"
 			# so renaming to "pythonX.Y.exe" will break them.
@@ -1167,7 +1167,7 @@ bootstrap_python() {
 	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
 	export LDFLAGS="${CFLAGS} -L${ROOT}/tmp/usr/lib"
 	# set correct flags for runtime for ELF platforms
-	case $CHOST in
+	case ${CHOST} in
 		*-linux*)
 			# GNU ld
 			LDFLAGS="${LDFLAGS} -Wl,-rpath,${ROOT}/tmp/usr/lib ${libdir}"
@@ -1193,9 +1193,9 @@ bootstrap_python() {
 
 	einfo "Compiling ${A%.tar.*}"
 
-	# some ancient versions of hg fail with "hg id -i", so help
+	# - Some ancient versions of hg fail with "hg id -i", so help
 	# configure to not find them using HAS_HG
-	# do not find libffi via pkg-config using PKG_CONFIG
+	# - Do not find libffi via pkg-config using PKG_CONFIG
 	HAS_HG=no \
 	PKG_CONFIG= \
 	econf \
@@ -1272,7 +1272,7 @@ bootstrap_cmake() {
 }
 
 bootstrap_zlib_core() {
-	# use 1.2.8 by default, current bootstrap guides
+	# Use 1.2.8 by default, current bootstrap guides
 	PV="${1:-1.2.8}"
 	A=zlib-${PV}.tar.gz
 
@@ -1495,8 +1495,8 @@ bootstrap_stage1() {
 	# bits-size of the compiler, which needs not to match what we're
 	# bootstrapping for.  This is no problem since they're just tools,
 	# for which it really doesn't matter how they run, as long AS they
-	# run.  For libraries, this is different, since they are relied on
-	# by packages we emerge lateron.
+	# run.  For libraries, this is different, since they are relied upon
+	# by packages we emerge later on.
 	# Changing this to compile the tools for the bits the bootstrap is
 	# for, is a BAD idea, since we're extremely fragile here, so
 	# whatever the native toolchain is here, is what in general works
@@ -1513,7 +1513,7 @@ bootstrap_stage1() {
 	configure_toolchain
 	export CC CXX
 
-	# run all bootstrap_* commands in a subshell since the targets
+	# Run all bootstrap_* commands in a subshell since the targets
 	# frequently pollute the environment using exports which affect
 	# packages following (e.g. zlib builds 64-bits)
 
@@ -1931,7 +1931,7 @@ bootstrap_stage2() {
 	done
 
 	if [[ ${compiler_type} == clang ]] ; then
-		# we use Clang as our toolchain compiler, so we need to make
+		# We use Clang as our toolchain compiler, so we need to make
 		# sure we actually use it
 		mkdir -p -- "${MAKE_CONF_DIR}"
 		{
@@ -1944,6 +1944,7 @@ bootstrap_stage2() {
 			echo "BUILD_CC=${CHOST}-clang"
 			echo "BUILD_CXX=${CHOST}-clang++"
 		} >> "${MAKE_CONF_DIR}/0100_bootstrap_prefix_clang.conf"
+
 		# llvm won't setup symlinks to CHOST-clang here because
 		# we're in a cross-ish situation (at least according to
 		# multilib.eclass -- can't blame it at this point really)
@@ -1988,7 +1989,7 @@ bootstrap_stage3() {
 		fi
 	fi
 
-	# if we resume this stage and python-exec was installed already in
+	# If we resume this stage and python-exec was installed already in
 	# tmp, we basically made the system unusable, so remove python-exec
 	# here so we can use the python in tmp
 	for pef in python{,3} python{,3}-config ; do
@@ -2170,15 +2171,15 @@ bootstrap_stage3() {
 	# in addition, avoid collisions
 	rm -Rf "${ROOT}"/tmp/usr/lib/python${PYTHONMAJMIN}/site-packages/clang
 
-	# try to get ourself out of the mud, bug #575324
+	# Try to get ourself out of the mud, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx '--disable-lto --disable-bootstrap')" \
 	GCC_MAKE_TARGET=$(rapx all) \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 	PYTHON_COMPAT_OVERRIDE=python${PYTHONMAJMIN} \
 	pre_emerge_pkgs --nodeps ${compiler} || return 1
-	# undo libgcc_s.so path of stage2
 
-	# now we have the compiler right there
+	# Undo libgcc_s.so path of stage2
+	# Now we have the compiler right there
 	unset CXX CPPFLAGS LDFLAGS
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
@@ -2192,10 +2193,11 @@ bootstrap_stage3() {
 		rm -f "${ROOT}"/bin/sh
 		ln -s bash "${ROOT}"/bin/sh
 	fi
-	# start using apps from new target
+
+	# Start using apps from new target
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
-	# get a sane bash, overwriting tmp symlinks
+	# Get a sane bash, overwriting tmp symlinks
 	pre_emerge_pkgs "" "app-shells/bash" || return 1
 
 	# now we have a shell right there
@@ -2213,7 +2215,8 @@ bootstrap_stage3() {
 		app-admin/eselect
 		$( [[ ${CHOST} == *-cygwin* ]] && echo sys-libs/cygwin-crypt )
 	)
-	# for grep we need to do a little workaround as we might use llvm-3.4
+
+	# For grep we need to do a little workaround as we might use llvm-3.4
 	# here, which doesn't necessarily grok the system headers on newer
 	# OSX, confusing the buildsystem
 	ac_cv_c_decl_report=warning \
@@ -2251,7 +2254,7 @@ bootstrap_stage3() {
 		emerge --color n --sync || emerge-webrsync || return 1
 	fi
 
-	# avoid installing git or encryption just for fun while completing @system
+	# Avoid installing git or encryption just for fun while completing @system
 	export USE="-git -crypt"
 
 	# Portage should figure out itself what it needs to do, if anything.
@@ -2260,7 +2263,7 @@ bootstrap_stage3() {
 	unset CFLAGS CXXFLAGS CPPFLAGS
 	emerge --color n -uDNv system || return 1
 
-	# remove anything that we don't need (compilers most likely)
+	# Remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
 	estatus "stage3: emerge --depclean"
 	emerge --color n --depclean
@@ -2300,7 +2303,7 @@ set_helper_vars() {
 
 bootstrap_interactive() {
 	# TODO should immediately die on platforms that we know are
-	# impossible due extremely hard dependency chains
+	# impossible due to extremely hard dependency chains
 	# (NetBSD/OpenBSD)
 
 	cat <<"EOF"
