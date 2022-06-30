@@ -3357,7 +3357,7 @@ then
 	exit 1
 fi
 
-if [[ -n ${LD_LIBARY_PATH} || -n ${DYLD_LIBRARY_PATH} ]] ; then
+if [[ -n ${LD_LIBRARY_PATH} || -n ${DYLD_LIBRARY_PATH} ]] ; then
 	eerror "EEEEEK!  You have LD_LIBRARY_PATH or DYLD_LIBRARY_PATH set"
 	eerror "in your environment.  This is a guarantee for TROUBLE."
 	eerror "Cowardly refusing to operate any further this way!"
