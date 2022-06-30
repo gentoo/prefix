@@ -1035,13 +1035,14 @@ bootstrap_gnu() {
 
 PYTHONMAJMIN=3.9   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
-	PV=3.9.6
+	PV=3.9.13
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
 
-	# don't really want to put this on the mirror, since they are
-	# non-vanilla sources, bit specific for us
-	efetch ${DISTFILES_URL}/${A} || return 1
+	# Don't really want to put this on the mirror, since they are
+	# non-vanilla sources, bit specific for us. Ideally use HTTPS / upstream
+	# but fall back to dev.gentoo.org w/ HTTP (host wget may not suport HTTPS).
+	efetch https://www.python.org/ftp/python/${PV}/${A} || efetch ${DISTFILES_URL}/${A} || return 1
 
 	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
