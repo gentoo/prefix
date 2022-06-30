@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Copyright 2006-2022 Gentoo Authors; Distributed under the GPL v2
+# Copyright 2006-2022 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
 
 trap 'exit 1' TERM KILL INT QUIT ABRT
 
