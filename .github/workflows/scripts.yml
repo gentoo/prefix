@@ -1,0 +1,19 @@
+name: scripts
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test scripts with `bash -n`
+      run: |
+        shopt -s globstar
+        for script in scripts/**/*.sh; do
+          bash -n "${script}"
+        done
