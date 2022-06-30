@@ -1542,13 +1542,20 @@ bootstrap_stage1() {
 		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "[3-9]* ]] \
 		|| (bootstrap_bison) || return 1
 	if [[ -x ${ROOT}/tmp/usr/bin/uniq ]]; then
+		# If the system has a uniq, let's use it to test whether
+		# coreutils is new enough (and GNU).
 		if [[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]]; then
 			CP="cp"
-		else
-			CP="${ROOT}/tmp/bin/cp"
-			(bootstrap_coreutils) || return 1
 		fi
 	fi
+
+	# But for e.g. OpenBSD, it isn't going to be, so if our test failed,
+	# bootstrap coreutils.
+	if [[ -z ${CP} ]] ; then
+		CP="${ROOT}/tmp/bin/cp"
+		(bootstrap_coreutils) || return 1
+	fi
+
 	[[ -x ${ROOT}/tmp/usr/bin/find ]] \
 		|| [[ $(find --version 2>&1) == *GNU* ]] \
 		|| (bootstrap_findutils) || return 1
