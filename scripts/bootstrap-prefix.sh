@@ -1541,7 +1541,7 @@ bootstrap_stage1() {
 		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "2.[3-7]* ]] \
 		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "[3-9]* ]] \
 		|| (bootstrap_bison) || return 1
-	if [[ -x ${ROOT}/tmp/usr/bin/uniq ]]
+	if [[ -x ${ROOT}/tmp/usr/bin/uniq ]]; then
 		if [[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]]; then
 			CP="cp"
 		else
