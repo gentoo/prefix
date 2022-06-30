@@ -1516,6 +1516,8 @@ bootstrap_stage1() {
 	# frequently pollute the environment using exports which affect
 	# packages following (e.g. zlib builds 64-bits)
 
+	local CP
+
 	# don't rely on $MAKE, if make == gmake packages that call 'make' fail
 	[[ -x ${ROOT}/tmp/usr/bin/make ]] \
 		|| [[ $(make --version 2>&1) == *GNU" Make "4* ]] \
@@ -1539,9 +1541,14 @@ bootstrap_stage1() {
 		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "2.[3-7]* ]] \
 		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "[3-9]* ]] \
 		|| (bootstrap_bison) || return 1
-	[[ -x ${ROOT}/tmp/usr/bin/uniq ]] \
-		|| [[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]] \
-		|| (bootstrap_coreutils) || return 1
+	if [[ -x ${ROOT}/tmp/usr/bin/uniq ]]
+		if [[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]]; then
+			CP="cp"
+		else
+			CP="${ROOT}/tmp/bin/cp"
+			(bootstrap_coreutils) || return 1
+		fi
+	fi
 	[[ -x ${ROOT}/tmp/usr/bin/find ]] \
 		|| [[ $(find --version 2>&1) == *GNU* ]] \
 		|| (bootstrap_findutils) || return 1
@@ -1647,7 +1654,7 @@ bootstrap_stage1() {
 		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
 		|| (bootstrap_setup) || return 1
 	mkdir -p "${ROOT}"/tmp/etc/. || return 1
-	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || "${ROOT}"/tmp/bin/cp -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc || return 1
+	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || "${CP}" -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc || return 1
 
 	# setup portage
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
