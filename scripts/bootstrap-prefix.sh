@@ -1039,10 +1039,7 @@ bootstrap_python() {
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
 
-	# Don't really want to put this on the mirror, since they are
-	# non-vanilla sources, bit specific for us. Ideally use HTTPS / upstream
-	# but fall back to dev.gentoo.org w/ HTTP (host wget may not suport HTTPS).
-	efetch https://www.python.org/ftp/python/${PV}/${A} || efetch ${DISTFILES_URL}/${A} || return 1
+	efetch https://www.python.org/ftp/python/${PV}/${A}
 
 	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
@@ -1195,7 +1192,7 @@ bootstrap_python() {
 	einfo "Compiling ${A%.tar.*}"
 
 	# - Some ancient versions of hg fail with "hg id -i", so help
-	# configure to not find them using HAS_HG
+	#   configure to not find them using HAS_HG (TODO: obsolete?)
 	# - Do not find libffi via pkg-config using PKG_CONFIG
 	HAS_HG=no \
 	PKG_CONFIG= \
