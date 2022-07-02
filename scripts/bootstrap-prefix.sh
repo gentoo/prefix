@@ -1089,7 +1089,7 @@ bootstrap_python() {
 				< "${patch_folder}/python39.cygport" \
 				| grep -v rpm-wheels | grep -v revert-bpo
 		); do
-			pf="python36-${gitrev}/${pf}"
+			pf="${patch_folder}/${pf}"
 			for pn in {1..2} fail; do
 				if [[ ${pn} == fail ]]; then
 					eerror "failed to apply ${pf}"
