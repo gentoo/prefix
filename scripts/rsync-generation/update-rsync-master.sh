@@ -34,7 +34,7 @@ echo "(init) PATH=$PATH"
 
 #### ---- egencache settings ---- ####
 
-EGENCACHE_OPTS="--jobs=4 --load-average=3 --tolerant --update-use-local-desc"
+EGENCACHE_OPTS="--jobs=$(nproc) --load-average=$(nproc) --tolerant --update-use-local-desc"
 
 export PYTHONPATH PORTDIR PORTAGE_BASE_PATH PORTAGE_CONFIGROOT  \
 	ROOT PORTAGE_TMPFS FEATURES HOME
