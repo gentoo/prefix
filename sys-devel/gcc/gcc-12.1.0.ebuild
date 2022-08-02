@@ -92,6 +92,13 @@ src_configure() {
 			# use sysroot with the linker, #756160
 			export gcc_cv_ld_sysroot=yes
 			;;
+		arm64-*-darwin*)
+			# only supported from darwin21, so no conflict with above
+			# case switch
+			# for the time being use system flex, for our doesn't work
+			# here (while it does fine elsewhere), #778014
+			export ac_cv_prog_FLEX=/usr/bin/flex
+			;;
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
 			myconf+=( --with-gnu-ld --with-gnu-as --enable-largefile )
