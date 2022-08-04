@@ -557,11 +557,6 @@ bootstrap_setup() {
 	sys-devel/native-cctools
 	EOF
 
-	[[ ${CHOST} == arm64-*-darwin* ]] &&
-	cat >> "${ROOT}"/etc/portage/package.accept_keywords <<-EOF
-	=sys-devel/gcc-11_pre20200206 **
-	EOF
-
 	# Strange enough, -cxx causes wrong libtool config on Cygwin,
 	# but we require a C++ compiler there anyway - so just use it.
 	[[ ${CHOST} == *-cygwin* ]] ||
@@ -620,7 +615,7 @@ do_tree() {
 bootstrap_tree() {
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
-	local PV="20220718"
+	local PV="20220803"
 	if [[ -n ${LATEST_TREE_YES} ]]; then
 		do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 	else
