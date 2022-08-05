@@ -746,7 +746,7 @@ bootstrap_portage() {
 
 	local tmpportdir=${ROOT}/tmp/${PORTDIR#${ROOT}}
 	[[ -e "${tmpportdir}" ]] || ln -s "${PORTDIR}" "${tmpportdir}"
-	for d in "${ROOT}"/tmp/usr/lib/python?.?; do
+	for d in "${ROOT}"/tmp/usr/lib/python${PYTHONMAJMIN}; do
 		[[ -e ${d}/portage ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/portage ${d}/portage
 		[[ -e ${d}/_emerge ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/_emerge ${d}/_emerge
 	done
@@ -1028,9 +1028,9 @@ bootstrap_gnu() {
 	einfo "${A%.tar.*} successfully bootstrapped"
 }
 
-PYTHONMAJMIN=3.9   # keep this number in line with PV below for stage1,2
+PYTHONMAJMIN=3.10   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
-	PV=3.9.13
+	PV=3.10.4
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
 
@@ -1118,12 +1118,6 @@ bootstrap_python() {
 		# fixup thread id detection
 		efetch "https://dev.gentoo.org/~sam/distfiles/dev-lang/python/python-3.9.6-darwin9_pthreadid.patch"
 		patch -p1 < "${DISTDIR}"/python-3.9.6-darwin9_pthreadid.patch
-		;;
-	(arm64-*-darwin*)
-		# Teach Python a new trick (arm64)
-		sed -i \
-			-e "/Unexpected output of 'arch' on OSX/d" \
-			configure
 		;;
 	(*-openbsd*)
 		# OpenBSD is not a multilib system
