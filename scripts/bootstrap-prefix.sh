@@ -503,11 +503,6 @@ bootstrap_setup() {
 		einfo "Your profile is set to ${fullprofile}."
 	fi
 
-	is-rap && cat >> "${ROOT}"/etc/portage/make.profile/make.defaults <<-'EOF'
-	# For baselayout-prefix in stage2 only.
-	ACCEPT_KEYWORDS="~${ARCH}-linux"
-	EOF
-
 	# bug #788613 avoid gcc-11 during stage 2/3 prior sync/emerge -e
 	is-rap && cat >> "${ROOT}"/etc/portage/make.profile/package.mask <<-EOF
 	# during bootstrap mask, bug #788613
@@ -1886,7 +1881,7 @@ bootstrap_stage2() {
 		app-shells/bash
 		app-arch/xz-utils
 		sys-apps/sed
-		sys-apps/baselayout-prefix
+		sys-apps/baselayout
 		dev-libs/libffi
 		sys-devel/m4
 		sys-devel/flex
@@ -2156,7 +2151,7 @@ bootstrap_stage3() {
 			app-portage/elt-patches
 			app-arch/xz-utils
 			sys-apps/sed
-			sys-apps/baselayout-prefix
+			sys-apps/baselayout
 			sys-devel/m4
 			sys-devel/flex
 			sys-devel/binutils-config
