@@ -45,11 +45,20 @@ emake() {
 
 efetch() {
 	if [[ ! -e ${DISTDIR}/${1##*/} ]] ; then
-	  	if [[ ${OFFLINE_MODE} ]]; then
-		  echo "I need ${1##*/} from $1 in $DISTDIR, can you give it to me?"
-		  read
-		  [[ -e ${DISTDIR}/${1##*/} ]] && return 0
-		  # Give fetch a try
+		mkdir -p "${DISTDIR}" >& /dev/null
+
+		# Try fetching from local mirrors first, as this requires no connection
+		for loc in ${GENTOO_MIRRORS} ; do
+			if [[ ${loc} = /* && -e "${loc}/${1##*/}" ]]; then
+				cp "${loc}/${1##*/}" "${DISTDIR}/${1##*/}" && return 0
+			fi
+		done
+
+		if [[ ${OFFLINE_MODE} ]] ; then
+			echo "I need ${1##*/} from $1 in $DISTDIR, can you give it to me?"
+			read
+			[[ -e ${DISTDIR}/${1##*/} ]] && return 0
+			# Give fetch a try
 		fi
 
 		if [[ -z ${FETCH_COMMAND} ]] ; then
@@ -75,7 +84,6 @@ efetch() {
 			fi
 		fi
 
-		mkdir -p "${DISTDIR}" >& /dev/null
 		einfo "Fetching ${1##*/}"
 		estatus "stage1: fetching ${1##*/}"
 		pushd "${DISTDIR}" > /dev/null
