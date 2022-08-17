@@ -106,6 +106,7 @@ GLOBALSTART=${START}
 echo "($(date +"%F %R")) updating DTDs"
 pushd "$DTDDIR" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
+git checkout -q .
 git clean -dfq
 git pull -q
 tocommit=$(git log --pretty=format:'%H' -n1)
@@ -120,6 +121,7 @@ echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/dtd/timestamp.ch
 echo "($(date +"%F %R")) updating GLSAs"
 pushd "$GLSADIR" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
+git checkout -q .
 git clean -dfq
 git pull -q
 tocommit=$(git log --pretty=format:'%H' -n1)
@@ -134,6 +136,7 @@ echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/glsa/timestamp.c
 echo "($(date +"%F %R")) updating news"
 pushd "$NEWSDIR" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
+git checkout -q .
 git clean -dfq
 git pull -q
 tocommit=$(git log --pretty=format:'%H' -n1)
@@ -162,6 +165,7 @@ START=$(date +%s)
 echo "($(date +"%F %R")) updating the gx86 tree"
 pushd "${GENTOOX86DIR}" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
+git checkout -q .
 git clean -dfq
 git pull -q
 tocommit=$(git log --pretty=format:'%H' -n1)
@@ -189,6 +193,7 @@ START=$(date +%s)
 echo "($(date +"%F %R")) updating Prefix tree (Git image)"
 pushd "$PREFIXTREEDIR" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
+git checkout -q .
 git clean -dfq
 git pull -q
 tocommit=$(git log --pretty=format:'%H' -n1)
