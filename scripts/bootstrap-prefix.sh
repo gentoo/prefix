@@ -503,35 +503,6 @@ bootstrap_setup() {
 		einfo "Your profile is set to ${fullprofile}."
 	fi
 
-	# bug #788613 avoid gcc-11 during stage 2/3 prior sync/emerge -e
-	is-rap && cat >> "${ROOT}"/etc/portage/make.profile/package.mask <<-EOF
-	# during bootstrap mask, bug #788613
-	>=sys-devel/gcc-11
-	EOF
-
-	# bug #824482 avoid glibc-2.34
-	if is-rap; then
-		if ! [ -d "${ROOT}"/etc/portage/package.mask ]; then
-			mkdir "${ROOT}"/etc/portage/package.mask
-		fi
-
-		if ! [ -d "${ROOT}"/etc/portage/package.unmask ]; then
-			mkdir "${ROOT}"/etc/portage/package.unmask
-		fi
-
-		cat >> "${ROOT}"/etc/portage/package.mask/glibc <<-EOF
-		# Temporary mask for newer glibc until bootstrapping issues are fixed.
-		# bug #824482: Avoid glibc-2.34 for now. See package.unmask/glibc too.
-		>=sys-libs/glibc-2.34
-		EOF
-
-		cat >> "${ROOT}"/etc/portage/package.unmask/glibc <<-EOF
-		# Temporary mask for newer glibc until bootstrapping issues are fixed.
-		# bug #824482: Avoid glibc-2.34 for now. See package.mask/glibc too.
-		>=sys-libs/glibc-2.34_p1
-		EOF
-	fi
-
 	# Use package.use to disable in the portage tree to be shared between
 	# stage2 and stage3. The hack will be undone during tree sync in stage3.
 	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
@@ -2131,8 +2102,14 @@ bootstrap_stage3() {
 			${linker}
 		)
 		# use the new dynamic linker in place of rpath from now on.
-		RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9])
+		RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9] | sed s"!${ROOT}/$(get_libdir)/ld-lsb.*!!")
 		export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,--dynamic-linker=${RAP_DLINKER}"
+		if [[ ${compiler_type} == gcc ]] ; then
+			# make sure these flags are used even in places that ignore/strip CPPFLAGS/LDFLAGS
+			export LDFLAGS="-B${ROOT}/usr/$(get_libdir) ${LDFLAGS}"
+			export CC="gcc ${CPPFLAGS} ${LDFLAGS}"
+			export CXX="g++ ${CPPFLAGS} ${LDFLAGS}"
+		fi
 		BOOTSTRAP_RAP=yes \
 		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
@@ -2189,7 +2166,7 @@ bootstrap_stage3() {
 
 	# Undo libgcc_s.so path of stage2
 	# Now we have the compiler right there
-	unset CXX CPPFLAGS LDFLAGS
+	unset CC CXX CPPFLAGS LDFLAGS
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 
