@@ -1,33 +1,36 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # XXX: atm, libbz2.a is always PIC :(, so it is always built quickly
 #      (since we're building shared libs) ...
 
-EAPI=6
+EAPI=7
 
-inherit toolchain-funcs multilib-minimal prefix
+VERIFY_SIG_OPENPGP_KEY_PATH="${BROOT}"/usr/share/openpgp-keys/bzip2.gpg
+inherit toolchain-funcs multilib-minimal usr-ldscript verify-sig prefix
 
 DESCRIPTION="A high-quality data compressor used extensively by Gentoo Linux"
 HOMEPAGE="https://sourceware.org/bzip2/"
-SRC_URI="mirror://gentoo/${P}.tar.gz"
+SRC_URI="https://sourceware.org/pub/${PN}/${P}.tar.gz"
+SRC_URI+=" verify-sig? ( https://sourceware.org/pub/${PN}/${P}.tar.gz.sig )"
 
 LICENSE="BZIP2"
 SLOT="0/1" # subslot = SONAME
 KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="static static-libs"
 
+BDEPEND="verify-sig? ( sec-keys/openpgp-keys-bzip2 )"
+RDEPEND="!app-arch/lbzip2[symlink(-)]
+	!app-arch/pbzip2[symlink(-)]"
+
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.0.4-makefile-CFLAGS.patch
-	"${FILESDIR}"/${PN}-1.0.6-saneso.patch
+	"${FILESDIR}"/${PN}-1.0.8-saneso.patch
 	"${FILESDIR}"/${PN}-1.0.4-man-links.patch #172986
 	"${FILESDIR}"/${PN}-1.0.6-progress.patch
 	"${FILESDIR}"/${PN}-1.0.3-no-test.patch
-	"${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
-	"${FILESDIR}"/${PN}-1.0.6-mingw.patch #393573
-	"${FILESDIR}"/${PN}-1.0.6-out-of-tree-build.patch
-	"${FILESDIR}"/${PN}-1.0.6-CVE-2016-3189.patch #620466
-	"${FILESDIR}"/${PN}-1.0.6-ubsan-error.patch
+	"${FILESDIR}"/${PN}-1.0.8-mingw.patch #393573
+	"${FILESDIR}"/${PN}-1.0.8-out-of-tree-build.patch
 )
 
 DOCS=( CHANGES README{,.COMPILATION.PROBLEMS,.XML.STUFF} manual.pdf )
@@ -48,13 +51,6 @@ src_prepare() {
 	hprefixify -w "/^PATH=/" bz{diff,grep,more}
 	# this a makefile for Darwin, which already "includes" saneso
 	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
-
-	if [[ ${CHOST} == *-cygwin* ]] ; then
-		sed -i -e "s/-o libbz2\.so\.${PV}/-Wl,--out-implib=libbz2$(get_libname ${PV})/" \
-			   -e "s/-Wl,-soname -Wl,libbz2\.so\.1/-o cygbz2-${PV%%.*}.dll/" \
-			   -e "s/libbz2\.so/libbz2$(get_libname)/g" \
-			Makefile-libbz2_so
-	fi
 }
 
 bemake() {
@@ -67,7 +63,6 @@ bemake() {
 }
 
 multilib_src_compile() {
-	local checkopts=
 	case "${CHOST}" in
 		*-darwin*)
 			bemake PREFIX="${EPREFIX}"/usr -f "${S}"/Makefile-libbz2_dylib all
@@ -77,8 +72,13 @@ multilib_src_compile() {
 		;;
 	esac
 	# Make sure we link against the shared lib #504648
-	ln -sf libbz2$(get_libname ${PV}) libbz2$(get_libname)
+	ln -sf libbz2$(get_libname ${PV}) libbz2$(get_libname) || die
 	bemake -f "${S}"/Makefile all LDFLAGS="${LDFLAGS} $(usex static -static '')"
+}
+
+multilib_src_test() {
+	cp "${S}"/sample* "${BUILD_DIR}" || die
+	bemake -f "${S}"/Makefile check
 }
 
 multilib_src_install() {
@@ -89,7 +89,6 @@ multilib_src_install() {
 	#  .x.x   - SONAME some distros use #338321
 	#  .x     - SONAME Gentoo uses
 	dolib.so libbz2$(get_libname ${PV})
-	[[ ${CHOST} == *-cygwin* ]] && dobin cygbz2-${PV%%.*}.dll
 	local v
 	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
 		dosym libbz2$(get_libname ${PV}) /usr/$(get_libdir)/${v}
