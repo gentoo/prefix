@@ -1,52 +1,40 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# NOTE: currently latest version on Solaris that works
+EAPI=7
 
-EAPI=6
-
-inherit eutils libtool flag-o-matic gnuconfig multilib versionator
+inherit libtool flag-o-matic gnuconfig strip-linguas toolchain-funcs
 
 DESCRIPTION="Tools necessary to build programs"
 HOMEPAGE="https://sourceware.org/binutils/"
+
 LICENSE="GPL-3+"
-IUSE="+cxx doc multitarget +nls static-libs test"
+IUSE="cet default-gold doc gold gprofng multitarget +nls pgo +plugins static-libs test vanilla"
+REQUIRED_USE="default-gold? ( gold )"
 
-PATCHVER="3"
-ELF2FLT_VER=""
+# Variables that can be set here  (ignored for live ebuilds)
+# PATCH_VER          - the patchset version
+#                      Default: empty, no patching
+# PATCH_BINUTILS_VER - the binutils version in the patchset name
+#                    - Default: PV
+# PATCH_DEV          - Use download URI https://dev.gentoo.org/~{PATCH_DEV}/distfiles/...
+#                      for the patchsets
 
-case ${PV} in
-	9999)
-		EGIT_REPO_URI="https://sourceware.org/git/binutils-gdb.git"
-		inherit git-r3
-		S=${WORKDIR}/binutils
-		EGIT_CHECKOUT_DIR=${S}
-		SLOT=${PV}
-		;;
-	*.9999)
-		EGIT_REPO_URI="https://sourceware.org/git/binutils-gdb.git"
-		inherit git-r3
-		S=${WORKDIR}/binutils
-		EGIT_CHECKOUT_DIR=${S}
-		EGIT_BRANCH=$(get_version_component_range 1-2)
-		EGIT_BRANCH="binutils-${EGIT_BRANCH/./_}-branch"
-		SLOT=$(get_version_component_range 1-2)
-		;;
-	*)
-		SRC_URI="mirror://gnu/binutils/binutils-${PV}.tar.xz"
-		SLOT=$(get_version_component_range 1-2)
-		KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-		;;
-esac
+PATCH_VER=4
+PATCH_DEV=dilfridge
 
-#
-# The Gentoo patchset
-#
-PATCH_BINUTILS_VER=${PATCH_BINUTILS_VER:-${PV}}
-PATCH_DEV=${PATCH_DEV:-sam}
-
-[[ -z ${PATCH_VER} ]] || SRC_URI="${SRC_URI}
-	https://dev.gentoo.org/~${PATCH_DEV}/distfiles/binutils-${PATCH_BINUTILS_VER}-patches-${PATCH_VER}.tar.xz"
+if [[ ${PV} == 9999* ]]; then
+	inherit git-r3
+	SLOT=${PV}
+else
+	PATCH_BINUTILS_VER=${PATCH_BINUTILS_VER:-${PV}}
+	PATCH_DEV=${PATCH_DEV:-dilfridge}
+	SRC_URI="mirror://gnu/binutils/binutils-${PV}.tar.xz https://dev.gentoo.org/~${PATCH_DEV}/distfiles/binutils-${PV}.tar.xz"
+	[[ -z ${PATCH_VER} ]] || SRC_URI="${SRC_URI}
+		https://dev.gentoo.org/~${PATCH_DEV}/distfiles/binutils-${PATCH_BINUTILS_VER}-patches-${PATCH_VER}.tar.xz"
+	SLOT=$(ver_cut 1-2)
+	KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+fi
 
 #
 # The cross-compile logic
@@ -66,60 +54,77 @@ RDEPEND="
 	>=sys-devel/binutils-config-3
 	sys-libs/zlib
 "
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	doc? ( sys-apps/texinfo )
-	test? ( dev-util/dejagnu )
+	test? (
+		dev-util/dejagnu
+		sys-devel/bc
+	)
 	nls? ( sys-devel/gettext )
 	sys-devel/flex
 	virtual/yacc
 "
-if is_cross ; then
-	# The build assumes the host has libiberty and such when cross-compiling
-	# its build tools.  We should probably make binutils itself build a local
-	# copy to use, but until then, be lazy.
-	DEPEND+=" >=sys-libs/binutils-libs-${PV}"
-fi
+
+RESTRICT="!test? ( test )"
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.22-solaris-anonymous-version-script-fix.patch
+)
 
 MY_BUILDDIR=${WORKDIR}/build
 
-PATCHES=(
-	"${FILESDIR}/${P}-nogoldtest.patch"
-	"${FILESDIR}"/${PN}-2.22-solaris-anonymous-version-script-fix.patch
-	"${FILESDIR}"/${PN}-2.24-cygwin-nointl.patch
-)
-
 src_unpack() {
-	case ${PV} in
-		*9999)
-			git-r3_src_unpack
-			;;
-		*)
-			;;
-	esac
-	default
-	mkdir -p "${MY_BUILDDIR}"
+	if [[ ${PV} == 9999* ]] ; then
+		EGIT_REPO_URI="https://anongit.gentoo.org/git/proj/toolchain/binutils-patches.git"
+		EGIT_CHECKOUT_DIR=${WORKDIR}/patches-git
+		git-r3_src_unpack
+		mv patches-git/9999 patch || die
+
+		EGIT_REPO_URI="https://sourceware.org/git/binutils-gdb.git"
+		S=${WORKDIR}/binutils
+		EGIT_CHECKOUT_DIR=${S}
+		git-r3_src_unpack
+	else
+		unpack ${P/-hppa64/}.tar.xz
+
+		cd "${WORKDIR}" || die
+		unpack binutils-${PATCH_BINUTILS_VER}-patches-${PATCH_VER}.tar.xz
+
+		# _p patch versions are Gentoo specific tarballs ...
+		local dir=${P%_p?}
+		dir=${dir/-hppa64/}
+
+		S=${WORKDIR}/${dir}
+	fi
+
+	cd "${WORKDIR}" || die
+	mkdir -p "${MY_BUILDDIR}" || die
 }
 
 src_prepare() {
-	if [[ ! -z ${PATCH_VER} ]] ; then
-		einfo "Applying binutils-${PATCH_BINUTILS_VER} patchset ${PATCH_VER}"
-		eapply "${WORKDIR}/patch"/*.patch
+	local patchsetname
+	if [[ ${PV} == 9999* ]] ; then
+		patchsetname="from git master"
+	else
+		patchsetname="${PATCH_BINUTILS_VER}-${PATCH_VER}"
 	fi
 
-	# This check should probably go somewhere else, like pkg_pretend.
-	if [[ ${CTARGET} == *-uclibc* ]] ; then
-		if grep -qs 'linux-gnu' "${S}"/ltconfig ; then
-			die "sorry, but this binutils doesn't yet support uClibc :("
+	if [[ -n ${PATCH_VER} ]] || [[ ${PV} == 9999* ]] ; then
+		if ! use vanilla; then
+			einfo "Applying binutils patchset ${patchsetname}"
+			eapply "${WORKDIR}/patch"
+			einfo "Done."
 		fi
 	fi
 
-	# Make sure our explicit libdir paths don't get clobbered. #562460
+	# Make sure our explicit libdir paths don't get clobbered, bug #562460
 	sed -i \
 		-e 's:@bfdlibdir@:@libdir@:g' \
 		-e 's:@bfdincludedir@:@includedir@:g' \
 		{bfd,opcodes}/Makefile.in || die
 
-	# Fix locale issues if possible #122216
+	# Fix locale issues if possible, bug #122216
 	if [[ -e ${FILESDIR}/binutils-configure-LANG.patch ]] ; then
 		einfo "Fixing misc issues in configure files"
 		for f in $(find "${S}" -name configure -exec grep -l 'autoconf version 2.13' {} +) ; do
@@ -128,11 +133,6 @@ src_prepare() {
 				|| eerror "Please file a bug about this"
 			eend $?
 		done
-	fi
-
-	# Fix conflicts with newer glibc #272594
-	if [[ -e libiberty/testsuite/test-demangle.c ]] ; then
-		sed -i 's:\<getline\>:get_line:g' libiberty/testsuite/test-demangle.c
 	fi
 
 	# Apply things from PATCHES and user dirs
@@ -152,6 +152,11 @@ toolchain-binutils_pkgversion() {
 }
 
 src_configure() {
+	# See https://www.gnu.org/software/make/manual/html_node/Parallel-Output.html
+	# Avoid really confusing logs from subconfigure spam, makes logs far
+	# more legible.
+	MAKEOPTS="--output-sync=line ${MAKEOPTS}"
+
 	# Setup some paths
 	LIBPATH=/usr/$(get_libdir)/binutils/${CTARGET}/${PV}
 	INCPATH=${LIBPATH}/include
@@ -164,11 +169,13 @@ src_configure() {
 	BINPATH=${TOOLPATH}/binutils-bin/${PV}
 
 	# Make sure we filter $LINGUAS so that only ones that
-	# actually work make it through #42033
+	# actually work make it through, bug #42033
 	strip-linguas -u */po
 
 	# Keep things sane
 	strip-flags
+
+	use elibc_musl && append-ldflags -Wl,-z,stack-size=2097152
 
 	local x
 	echo
@@ -177,33 +184,36 @@ src_configure() {
 	done
 	echo
 
-	cd "${MY_BUILDDIR}"
+	cd "${MY_BUILDDIR}" || die
 	local myconf=()
 
-	# enable gold (installed as ld.gold) and ld's plugin architecture
-	# PREFIX LOCAL: Linux only (fails to compile on Solaris, MiNT #353410)
-	[[ ${CHOST} == *-linux* ]] &&
-	if use cxx ; then
-		myconf+=( --enable-gold )
+	if use plugins ; then
 		myconf+=( --enable-plugins )
+	fi
+	# enable gold (installed as ld.gold) and ld's plugin architecture
+	if use gold ; then
+		myconf+=( --enable-gold )
+		if use default-gold; then
+			myconf+=( --enable-gold=default )
+		fi
 	fi
 
 	if use nls ; then
 		myconf+=( --without-included-gettext )
+		[[ ${CHOST} == *"-solaris"* ]] && append-libs -lintl
 	else
 		myconf+=( --disable-nls )
 	fi
 
 	myconf+=( --with-system-zlib )
 
-	# For bi-arch systems, enable a 64bit bfd.  This matches
-	# the bi-arch logic in toolchain.eclass. #446946
-	# We used to do it for everyone, but it's slow on 32bit arches. #438522
+	# For bi-arch systems, enable a 64bit bfd. This matches the bi-arch
+	# logic in toolchain.eclass. bug #446946
+	#
+	# We used to do it for everyone, but it's slow on 32bit arches. bug #438522
 	case $(tc-arch) in
 		ppc|sparc|x86) myconf+=( --enable-64-bit-bfd ) ;;
 	esac
-
-	[[ ${CHOST} == *"-solaris"* ]] && use nls && append-libs -lintl
 
 	use multitarget && myconf+=( --enable-targets=all --enable-64-bit-bfd )
 
@@ -214,13 +224,11 @@ src_configure() {
 		--enable-poison-system-directories
 	)
 
-	# glibc-2.3.6 lacks support for this ... so rather than force glibc-2.5+
-	# on everyone in alpha (for now), we'll just enable it when possible
-	has_version ">=${CATEGORY}/glibc-2.5" && myconf+=( --enable-secureplt )
-	has_version ">=sys-libs/glibc-2.5" && myconf+=( --enable-secureplt )
+	myconf+=( --enable-secureplt )
 
 	# mips can't do hash-style=gnu ...
-	if [[ $(tc-arch) != mips ]] ; then
+	# let's not do this on Solaris either
+	if [[ $(tc-arch) != mips && ${CHOST} != *-solaris* ]] ; then
 		myconf+=( --enable-default-hash-style=gnu )
 	fi
 
@@ -241,24 +249,69 @@ src_configure() {
 		--enable-threads
 		# Newer versions (>=2.27) offer a configure flag now.
 		--enable-relro
-		# Newer versions (>=2.24) make this an explicit option. #497268
+		# Newer versions (>=2.24) make this an explicit option, bug #497268
 		--enable-install-libiberty
+		# Available from 2.35 on
+		--enable-textrel-check=warning
+
+		# Available from 2.39 on
+		--enable-warn-execstack
+		--enable-warn-rwx-segments
+		# TODO: Available from 2.39+ on but let's try the warning on for a bit
+		# first... (--enable-warn-execstack)
+		# Could put it under USE=hardened?
+		#--disable-default-execstack (or is it --enable-default-execstack=no? docs are confusing)
+
+		# Things to think about
+		#--enable-deterministic-archives
+
+		# Works better than vapier's patch, bug #808787
+		--enable-new-dtags
+
+		--disable-jansson
 		--disable-werror
 		--with-bugurl="$(toolchain-binutils_bugurl)"
 		--with-pkgversion="$(toolchain-binutils_pkgversion)"
 		$(use_enable static-libs static)
-		${EXTRA_ECONF}
-		# Disable modules that are in a combined binutils/gdb tree. #490566
+		# Disable modules that are in a combined binutils/gdb tree, bug #490566
 		--disable-{gdb,libdecnumber,readline,sim}
 		# Strip out broken static link flags.
 		# https://gcc.gnu.org/PR56750
 		--without-stage1-ldflags
 		# Change SONAME to avoid conflict across
-		# {native,cross}/binutils, binutils-libs. #666100
+		# {native,cross}/binutils, binutils-libs. bug #666100
 		--with-extra-soversion-suffix=gentoo-${CATEGORY}-${PN}-$(usex multitarget mt st)
+
+		# Avoid automagic dependency on (currently prefix) systems
+		# systems with debuginfod library, bug #754753
+		--without-debuginfod
+
+		# Avoid automagic dev-libs/msgpack dep, bug #865875
+		--without-msgpack
+
+		# Allow user to opt into CET for host libraries.
+		# Ideally we would like automagic-or-disabled here.
+		# But the check does not quite work on i686: bug #760926.
+		$(use_enable cet)
+
+		# We can enable this by default in future, but it's brand new
+		# in 2.39 with several bugs:
+		# - Doesn't build on musl (https://sourceware.org/bugzilla/show_bug.cgi?id=29477)
+		# - No man pages (https://sourceware.org/bugzilla/show_bug.cgi?id=29521)
+		# - Broken at runtime without Java (https://sourceware.org/bugzilla/show_bug.cgi?id=29479)
+		# - binutils-config (and this ebuild?) needs adaptation first (https://bugs.gentoo.org/865113)
+		$(use_enable gprofng)
 	)
-	echo ./configure "${myconf[@]}"
-	"${S}"/configure "${myconf[@]}" || die
+
+	if ! is_cross ; then
+		myconf+=( $(use_enable pgo pgo-build lto) )
+
+		if use pgo ; then
+			export BUILD_CFLAGS="${CFLAGS}"
+		fi
+	fi
+
+	ECONF_SOURCE="${S}" econf "${myconf[@]}" || die
 
 	# Prevent makeinfo from running if doc is unset.
 	if ! use doc ; then
@@ -269,21 +322,14 @@ src_configure() {
 }
 
 src_compile() {
-	local makeargs=()
-	if has noinfo "${FEATURES}" \
-	|| ! type -p makeinfo >/dev/null
-	then
-		# binutils >= 2.17 (accidentally?) requires 'makeinfo'
-		makeargs+=("MAKEINFO=true")
-	fi
+	cd "${MY_BUILDDIR}" || die
 
-	cd "${MY_BUILDDIR}"
 	# see Note [tooldir hack for ldscripts]
-	emake tooldir="${EPREFIX}${TOOLPATH}" all "${makeargs[@]}"
+	emake V=1 tooldir="${EPREFIX}${TOOLPATH}" all
 
 	# only build info pages if the user wants them
 	if use doc ; then
-		emake info
+		emake V=1 info
 	fi
 
 	# we nuke the manpages when we're left with junk
@@ -292,21 +338,26 @@ src_compile() {
 }
 
 src_test() {
-	cd "${MY_BUILDDIR}"
-	emake -k check
+	cd "${MY_BUILDDIR}" || die
+
+	# bug #637066
+	filter-flags -Wall -Wreturn-type
+
+	emake -k V=1 check
 }
 
 src_install() {
 	local x d
 
-	cd "${MY_BUILDDIR}"
+	cd "${MY_BUILDDIR}" || die
+
 	# see Note [tooldir hack for ldscripts]
-	emake DESTDIR="${D}" tooldir="${EPREFIX}${LIBPATH}" install
-	rm -rf "${ED}"/${LIBPATH}/bin
+	emake V=1 DESTDIR="${D}" tooldir="${EPREFIX}${LIBPATH}" install
+	rm -rf "${ED}"/${LIBPATH}/bin || die
 	use static-libs || find "${ED}" -name '*.la' -delete
 
-	# Newer versions of binutils get fancy with ${LIBPATH} #171905
-	cd "${ED}"/${LIBPATH}
+	# Newer versions of binutils get fancy with ${LIBPATH}, bug #171905
+	cd "${ED}"/${LIBPATH} || die
 	for d in ../* ; do
 		[[ ${d} == ../${PV} ]] && continue
 		mv ${d}/* . || die
@@ -317,9 +368,9 @@ src_install() {
 	# When something is built to cross-compile, it installs into
 	# /usr/$CHOST/ by default ... we have to 'fix' that :)
 	if is_cross ; then
-		cd "${ED}"/${BINPATH}
+		cd "${ED}"/${BINPATH} || die
 		for x in * ; do
-			mv ${x} ${x/${CTARGET}-}
+			mv ${x} ${x/${CTARGET}-} || die
 		done
 
 		if [[ -d ${ED}/usr/${CHOST}/${CTARGET} ]] ; then
@@ -328,6 +379,7 @@ src_install() {
 			rm -r "${ED}"/usr/${CHOST}/{include,lib}
 		fi
 	fi
+
 	insinto ${INCPATH}
 	local libiberty_headers=(
 		# Not all the libiberty headers.  See libiberty/Makefile.in:install_to_libdir.
@@ -339,10 +391,10 @@ src_install() {
 		objalloc.h
 		splay-tree.h
 	)
-	doins "${libiberty_headers[@]/#/${S}/include/}" || die
+	doins "${libiberty_headers[@]/#/${S}/include/}"
 	if [[ -d ${ED}/${LIBPATH}/lib ]] ; then
-		mv "${ED}"/${LIBPATH}/lib/* "${ED}"/${LIBPATH}/
-		rm -r "${ED}"/${LIBPATH}/lib
+		mv "${ED}"/${LIBPATH}/lib/* "${ED}"/${LIBPATH}/ || die
+		rm -r "${ED}"/${LIBPATH}/lib || die
 	fi
 
 	# Generate an env.d entry for this binutils
@@ -356,20 +408,27 @@ src_install() {
 
 	# Handle documentation
 	if ! is_cross ; then
-		cd "${S}"
+		cd "${S}" || die
 		dodoc README
+
 		docinto bfd
 		dodoc bfd/ChangeLog* bfd/README bfd/PORTING bfd/TODO
+
 		docinto binutils
 		dodoc binutils/ChangeLog binutils/NEWS binutils/README
+
 		docinto gas
 		dodoc gas/ChangeLog* gas/CONTRIBUTORS gas/NEWS gas/README*
+
 		docinto gprof
 		dodoc gprof/ChangeLog* gprof/TEST gprof/TODO gprof/bbconv.pl
+
 		docinto ld
 		dodoc ld/ChangeLog* ld/README ld/NEWS ld/TODO
+
 		docinto libiberty
 		dodoc libiberty/ChangeLog* libiberty/README
+
 		docinto opcodes
 		dodoc opcodes/ChangeLog*
 	fi
