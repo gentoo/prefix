@@ -70,6 +70,7 @@ RESTRICT="!test? ( test )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.22-solaris-anonymous-version-script-fix.patch
+	"${FILESDIR}"/${PN}-2.39-protected-visibility-solaris.patch
 )
 
 MY_BUILDDIR=${WORKDIR}/build
