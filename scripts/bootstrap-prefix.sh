@@ -395,30 +395,17 @@ bootstrap_setup() {
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
-		x86_64-apple-darwin20)
+		*64-apple-darwin2[0123456789])
 			# Big Sur is 11.0
-			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/11.$((rev - 20))/x64"
-			;;
-		x86_64-apple-darwin2[123456789])
 			# Monterey is 12.0
+			# Ventura is 13.0
 			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/12.$((rev - 21))/x64"
-			;;
-		arm64-apple-darwin20)
-			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/11.$((rev - 20))/arm64"
-			;;
-		# TODO: Come up with something better for macOS 11+
-		x86_64-apple-darwin2[123456789])
-			# Monterey is 12.0
-			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/12.$((rev - 21))/x64"
-			;;
-		arm64-apple-darwin2[123456789])
-			# Monterey is 12.0
-			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/12.$((rev - 21))/arm64"
+			case ${CHOST%%-*} in
+				x86_64)  arch=x64    ;;
+				arm64)   arch=arm64  ;;
+				*)       arch=error  ;;
+			esac
+			profile="prefix/darwin/macos/$((rev - 9)).0/${arch}"
 			;;
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
@@ -2631,6 +2618,7 @@ continue.  Please execute:
   xcode-select -s /Library/Developer/CommandLineTools
 and try running me again.
 EOF
+				exit 1
 			fi
 		else
 			# let's see if we have an xcode install
@@ -2642,6 +2630,7 @@ valid install.  Try resetting it using:
   sudo xcode-select -r
 and try running me again.
 EOF
+				exit 1
 			fi
 		fi
 	fi
