@@ -1,0 +1,24 @@
+prefix_copy_gcc_libs: try and get latest libs copied last
+
+Try to get the most recent GCC libs copied to the shared place.  We need
+the latest because they should be backwards compatible, thus also work
+with older binaries.
+
+--- gcc-config-2.7/gcc-config
++++ gcc-config-2.7/gcc-config
+@@ -619,8 +619,13 @@
+ 		rmdir "${sourcedir}"
+ 	}
+ 
+-	# We don't rely on iteration order here.
+-	local GCC_PROFILES=$(LC_ALL="C" ls ${GCC_ENV_D}/${CHOST}-*)
++	# We want the latest version to provide the final link to an object,
++	# for gcc's libs should be backwards compatible, so use sort -V to
++	# get that ordering -- take into account that sort may not support
++	# -V (yet).  Then it is better to just do whatever order ls reports.
++	local srt='sort --version-sort'
++	sort --help | grep -q -- --version-sort || srt='cat'
++	local GCC_PROFILES=$(LC_ALL="C" ls ${GCC_ENV_D}/${CHOST}-* | ${srt})
+ 
+ 	local targetdirs= GCC_PATH= LDPATH=
+ 	for x in ${GCC_PROFILES} ; do

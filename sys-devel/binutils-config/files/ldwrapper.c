@@ -461,6 +461,7 @@ main(int argc, char *argv[])
 	if (!is_cross) {
 		if (is_darwin) {
 			/* FIXME: no support for cross-compiling *to* Darwin */
+			newargv[k++] = "-L" EPREFIX "/usr/" CHOST "/lib/gcc";
 			newargv[k++] = "-L" EPREFIX "/usr/lib";
 			newargv[k++] = "-L" EPREFIX "/lib";
 
