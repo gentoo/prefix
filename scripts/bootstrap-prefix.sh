@@ -298,23 +298,7 @@ configure_toolchain() {
 }
 
 bootstrap_setup() {
-	local profile=""
 	einfo "Setting up some guessed defaults"
-
-	# 2.6.32.1 -> 2*256^3 + 6*256^2 + 32 * 256 + 1 = 33955841
-	kver() { uname -r|cut -d\- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
-	# >=glibc-2.20 requires >=linux-2.6.32.
-	profile-kernel() {
-		if [[ $(kver) -ge 50462720 ]] ; then # 3.2
-			echo kernel-3.2+
-		elif [[ $(kver) -ge 33955840 ]] ; then # 2.6.32
-			echo kernel-2.6.32+
-		elif [[ $(kver) -ge 33951744 ]] ; then # 2.6.16
-			echo kernel-2.6.16+
-		elif [[ $(kver) -ge 33947648 ]] ; then # 2.6
-			echo kernel-2.6+
-		fi
-	}
 
 	local FS_INSENSITIVE=0
 	touch "${ROOT}"/FOO.$$
@@ -377,6 +361,30 @@ bootstrap_setup() {
 		fi
 		[[ -f ${ROOT}/etc/resolv.conf ]] || ln -s {,"${ROOT}"}/etc/resolv.conf
 		[[ -f ${ROOT}/etc/hosts ]] || cp {,"${ROOT}"}/etc/hosts
+	fi
+
+	bootstrap_profile
+}
+
+bootstrap_profile() {
+	local profile=""
+
+	# 2.6.32.1 -> 2*256^3 + 6*256^2 + 32 * 256 + 1 = 33955841
+	kver() { uname -r|cut -d\- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
+	# >=glibc-2.20 requires >=linux-2.6.32.
+	profile-kernel() {
+		if [[ $(kver) -ge 50462720 ]] ; then # 3.2
+			echo kernel-3.2+
+		elif [[ $(kver) -ge 33955840 ]] ; then # 2.6.32
+			echo kernel-2.6.32+
+		elif [[ $(kver) -ge 33951744 ]] ; then # 2.6.16
+			echo kernel-2.6.16+
+		elif [[ $(kver) -ge 33947648 ]] ; then # 2.6
+			echo kernel-2.6+
+		fi
+	}
+
+	if is-rap ; then
 		local profile_linux=default/linux/ARCH/17.0/prefix/$(profile-kernel)
 	else
 		local profile_linux=prefix/linux/ARCH
@@ -1624,8 +1632,13 @@ bootstrap_stage1() {
 	[[ -e ${ROOT}/etc/portage/make.profile && \
 		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
 		|| (bootstrap_setup) || return 1
+
+	# setup a profile for stage2
 	mkdir -p "${ROOT}"/tmp/etc/. || return 1
-	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || "${CP}" -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc || return 1
+	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || \
+		(	"${CP}" -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc && \
+			rm -f "${ROOT}"/tmp/etc/portage/make.profile && \
+			(ROOT="${ROOT}"/tmp PREFIX_DISABLE_RAP=yes bootstrap_profile) ) || return 1
 
 	# setup portage
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
@@ -1732,7 +1745,6 @@ do_emerge_pkgs() {
 				&& export CFLAGS=${OVERRIDE_CFLAGS}
 			[[ -n ${OVERRIDE_CXXFLAGS} ]] \
 				&& export CXXFLAGS=${OVERRIDE_CXXFLAGS}
-			PORTAGE_CONFIGROOT="${EPREFIX}" \
 			PORTAGE_SYNC_STALE=0 \
 			FEATURES="-news ${FEATURES}" \
 			USE="${myuse[*]}" \
@@ -1755,6 +1767,8 @@ do_emerge_pkgs() {
 }
 
 bootstrap_stage2() {
+	export PORTAGE_CONFIGROOT="${ROOT}"/tmp
+
 	if ! type -P emerge > /dev/null ; then
 		eerror "emerge not found, did you bootstrap stage1?"
 		return 1
@@ -1937,6 +1951,8 @@ bootstrap_stage2_log() {
 }
 
 bootstrap_stage3() {
+	export PORTAGE_CONFIGROOT="${ROOT}"
+
 	if ! type -P emerge > /dev/null ; then
 		eerror "emerge not found, did you bootstrap stage1?"
 		return 1
