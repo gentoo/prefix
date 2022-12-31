@@ -19,9 +19,12 @@ SLOT="0/1" # subslot = SONAME
 KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="static static-libs"
 
-BDEPEND="verify-sig? ( sec-keys/openpgp-keys-bzip2 )"
-RDEPEND="!app-arch/lbzip2[symlink(-)]
-	!app-arch/pbzip2[symlink(-)]"
+BDEPEND="
+	verify-sig? ( sec-keys/openpgp-keys-bzip2 )
+"
+PDEPEND="
+	app-alternatives/bzip2
+"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.0.4-makefile-CFLAGS.patch
@@ -101,7 +104,7 @@ multilib_src_install() {
 
 		dobin bzip2recover
 		into /
-		dobin bzip2
+		newbin bzip2 bzip2-reference
 	fi
 }
 
@@ -112,7 +115,8 @@ multilib_src_install_all() {
 	doins bzlib.h
 	into /usr
 	dobin bz{diff,grep,more}
-	doman *.1
+	doman bz{diff,grep,more}.1
+	newman bzip2.1 bzip2-reference.1
 
 	dosym bzdiff /usr/bin/bzcmp
 	dosym bzdiff.1 /usr/share/man/man1/bzcmp.1
@@ -120,18 +124,23 @@ multilib_src_install_all() {
 	dosym bzmore /usr/bin/bzless
 	dosym bzmore.1 /usr/share/man/man1/bzless.1
 
+	dosym bzip2-reference.1 /usr/share/man/man1/bzip2recover.1
 	local x
-	for x in bunzip2 bzcat bzip2recover ; do
-		dosym bzip2.1 /usr/share/man/man1/${x}.1
-	done
 	for x in bz{e,f}grep ; do
 		dosym bzgrep /usr/bin/${x}
 		dosym bzgrep.1 /usr/share/man/man1/${x}.1
 	done
 
 	einstalldocs
+}
 
-	# move "important" bzip2 binaries to /bin and use the shared libbz2.so
-	dosym bzip2 /bin/bzcat
-	dosym bzip2 /bin/bunzip2
+pkg_postinst() {
+	# ensure to preserve the symlinks before app-alternatives/bzip2
+	# is installed
+	local x
+	for x in bzip2 bunzip2 bzcat; do
+		if [[ ! -h ${EROOT}/bin/${x} ]]; then
+			ln -s bzip2-reference "${EROOT}/bin/${x}" || die
+		fi
+	done
 }
