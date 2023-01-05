@@ -65,7 +65,7 @@ DEPEND="
 	test? ( app-arch/xz-utils[extra-filters(+)] )
 "
 BDEPEND="
-	virtual/awk
+	app-alternatives/awk
 	virtual/pkgconfig
 	sys-devel/autoconf-archive
 	verify-sig? ( sec-keys/openpgp-keys-python )
