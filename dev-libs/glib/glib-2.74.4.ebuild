@@ -16,7 +16,7 @@ IUSE="dbus debug +elf gtk-doc +mime selinux static-libs sysprof systemtap test u
 RESTRICT="!test? ( test )"
 #REQUIRED_USE="gtk-doc? ( test )" # Bug #777636
 
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 # * elfutils (via libelf) does not build on Windows. gresources are not embedded
 # within ELF binaries on that platform anyway and inspecting ELF binaries from

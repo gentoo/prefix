@@ -13,7 +13,7 @@ WRAPPER_REV="${PV%%.*}.3.4"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 # We also RDEPEND on sys-apps/findutils which is in base @system
