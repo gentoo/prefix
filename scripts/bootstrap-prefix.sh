@@ -1000,7 +1000,11 @@ bootstrap_gnu() {
 PYTHONMAJMIN=3.10   # keep this number in line with PV below for stage1,2
 bootstrap_python() {
 	PV=3.10.4
-	A=Python-${PV}.tar.xz
+	if type -P xz > /dev/null ; then
+		A=Python-${PV}.tar.xz
+	else
+		A=Python-${PV}.tgz
+	fi
 	einfo "Bootstrapping ${A%.tar.*}"
 
 	efetch https://www.python.org/ftp/python/${PV}/${A}
@@ -1013,6 +1017,7 @@ bootstrap_python() {
 	case ${A} in
 		*bz2) bzip2 -dc "${DISTDIR}"/${A} | tar -xf - ;;
 		*xz)  xz -dc "${DISTDIR}"/${A} | tar -xf -    ;;
+		*tgz) gzip -dc "${DISTDIR}"/${A} | tar -xf -  ;;
 		*)    einfo "Don't know to unpack ${A}"       ;;
 	esac
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
