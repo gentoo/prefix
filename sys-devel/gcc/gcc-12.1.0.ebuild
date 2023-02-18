@@ -45,6 +45,10 @@ src_prepare() {
 
 	eapply_user
 
+	# fix build for macOS 13 Ventura
+	eapply "${FILESDIR}"/gcc-12.1.0-recognize-mmacosx-version-min-13.0-and-newer.patch
+	eapply "${FILESDIR}"/gcc-12.1.0-avoid-null-terminated-name-collision-with-macos-13-sdk.patch
+
 	# make sure 64-bits native targets don't screw up the linker paths
 	eapply "${FILESDIR}"/gcc-12-no-libs-for-startfile.patch
 	if use prefix; then
