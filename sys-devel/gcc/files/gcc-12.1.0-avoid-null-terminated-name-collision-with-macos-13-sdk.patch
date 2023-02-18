@@ -1,0 +1,85 @@
+https://bugs.gentoo.org/886491
+https://bugs.gentoo.org/895332
+https://gcc.gnu.org/git/?p=gcc.git;a=commit;h=d1201dbf55a11d391030914985ba6b443e59baa5
+
+From d1201dbf55a11d391030914985ba6b443e59baa5 Mon Sep 17 00:00:00 2001
+From: Mark Mentovai <mark@mentovai.com>
+Date: Mon, 13 Jun 2022 16:40:19 +0100
+Subject: [PATCH] libstdc++: Rename __null_terminated to avoid collision with
+ Apple SDK
+
+The macOS 13 SDK (and equivalent-version iOS and other Apple OS SDKs)
+contain this definition in <sys/cdefs.h>:
+
+863  #define __null_terminated
+
+This collides with the use of __null_terminated in libstdc++'s
+experimental fs_path.h.
+
+As libstdc++'s use of this token is entirely internal to fs_path.h, the
+simplest workaround, renaming it, is most appropriate. Here, it's
+renamed to __nul_terminated, referencing the NUL ('\0') value that is
+used to terminate the strings in the context in which this tag structure
+is used.
+
+libstdc++-v3/ChangeLog:
+
+	* include/experimental/bits/fs_path.h (__detail::__null_terminated):
+	Rename to __nul_terminated to avoid colliding with a macro in
+	Apple's SDK.
+
+Signed-off-by: Mark Mentovai <mark@mentovai.com>
+(cherry picked from commit 254e88b3d7e8abcc236be3451609834371cf4d5d)
+---
+ libstdc++-v3/include/experimental/bits/fs_path.h | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/libstdc++-v3/include/experimental/bits/fs_path.h b/libstdc++-v3/include/experimental/bits/fs_path.h
+index b0825ba76e80..19d246100cb5 100644
+--- a/libstdc++-v3/include/experimental/bits/fs_path.h
++++ b/libstdc++-v3/include/experimental/bits/fs_path.h
+@@ -140,10 +140,10 @@ namespace __detail
+     inline _Source
+     _S_range_begin(_Source __begin) { return __begin; }
+ 
+-  struct __null_terminated { };
++  struct __nul_terminated { };
+ 
+   template<typename _Source>
+-    inline __null_terminated
++    inline __nul_terminated
+     _S_range_end(_Source) { return {}; }
+ 
+   template<typename _CharT, typename _Traits, typename _Alloc>
+@@ -459,11 +459,11 @@ namespace __detail
+       struct _Cvt;
+ 
+     static string_type
+-    _S_convert(value_type* __src, __detail::__null_terminated)
++    _S_convert(value_type* __src, __detail::__nul_terminated)
+     { return string_type(__src); }
+ 
+     static string_type
+-    _S_convert(const value_type* __src, __detail::__null_terminated)
++    _S_convert(const value_type* __src, __detail::__nul_terminated)
+     { return string_type(__src); }
+ 
+     template<typename _Iter>
+@@ -477,7 +477,7 @@ namespace __detail
+ 
+     template<typename _InputIterator>
+       static string_type
+-      _S_convert(_InputIterator __src, __detail::__null_terminated)
++      _S_convert(_InputIterator __src, __detail::__nul_terminated)
+       {
+ 	auto __s = _S_string_from_iter(__src);
+ 	return _S_convert(__s.c_str(), __s.c_str() + __s.size());
+@@ -504,7 +504,7 @@ namespace __detail
+ 
+     template<typename _InputIterator>
+       static string_type
+-      _S_convert_loc(_InputIterator __src, __detail::__null_terminated,
++      _S_convert_loc(_InputIterator __src, __detail::__nul_terminated,
+ 		     const std::locale& __loc)
+       {
+ 	const std::string __s = _S_string_from_iter(__src);
