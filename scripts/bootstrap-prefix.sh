@@ -997,9 +997,18 @@ bootstrap_gnu() {
 	einfo "${A%.tar.*} successfully bootstrapped"
 }
 
+if [[ ${CHOST} == *-cygwin* ]] ; then
+PYTHONMAJMIN=3.9   # keep this number in line with PV below for stage1,2
+else
 PYTHONMAJMIN=3.10   # keep this number in line with PV below for stage1,2
+fi
+
 bootstrap_python() {
-	PV=3.10.4
+	if [[ ${CHOST} == *-cygwin* ]] ; then
+          PV=3.9.9
+        else
+	  PV=3.10.4
+        fi
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
 
