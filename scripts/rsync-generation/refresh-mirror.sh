@@ -41,7 +41,7 @@ else
 	}
 	# get a free filedescriptor in FD
 	exec {FD}>/tmp/rsync-master-busy
-	(((genandpush | tee -a "${LOGFILE}") {FD}>&1 1>&2 2>&${FD} \
+	( ( (genandpush | tee -a "${LOGFILE}") {FD}>&1 1>&2 2>&${FD} \
 	    | tee -a "${LOGFILE}") 2> /dev/null)
 	echo "generation done $(date)" >> ${LOGFILE}
 	exec {FD}>&-
