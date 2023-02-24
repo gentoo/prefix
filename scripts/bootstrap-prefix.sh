@@ -715,7 +715,7 @@ bootstrap_portage() {
 
 	local tmpportdir=${ROOT}/tmp/${PORTDIR#${ROOT}}
 	[[ -e "${tmpportdir}" ]] || ln -s "${PORTDIR}" "${tmpportdir}"
-	for d in "${ROOT}"/tmp/usr/lib/python${PYTHONMAJMIN}; do
+	for d in "${ROOT}"/tmp/usr/lib/python$(python_ver); do
 		[[ -e ${d}/portage ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/portage ${d}/portage
 		[[ -e ${d}/_emerge ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/_emerge ${d}/_emerge
 	done
@@ -997,11 +997,13 @@ bootstrap_gnu() {
 	einfo "${A%.tar.*} successfully bootstrapped"
 }
 
-if [[ ${CHOST} == *-cygwin* ]] ; then
-PYTHONMAJMIN=3.9   # keep this number in line with PV below for stage1,2
-else
-PYTHONMAJMIN=3.10   # keep this number in line with PV below for stage1,2
-fi
+python_ver() {
+	if [[ ${CHOST} == *-cygwin* ]] ; then
+	  echo 3.9   # keep this number in line with PV below for stage1,2
+	else
+	  echo 3.10   # keep this number in line with PV below for stage1,2
+	fi
+}
 
 bootstrap_python() {
 	if [[ ${CHOST} == *-cygwin* ]] ; then
@@ -1032,32 +1034,18 @@ bootstrap_python() {
 
 	case ${CHOST} in
 	(*-*-cygwin*)
-		local gitrev cygpyver pf pn patch_folder ffail
+		local cygpyver pf pn patch_folder
 
-		# try github first, if that fails, it means that cygwin has not
-		# archived that repo yet
 		# ideally the version of python used by bootstrap would be one
 		# that cygwin has packaged if we don't do exact matches on the
 		# version then some patches may not apply cleanly
 
-		ffail=0
-		gitrev="42494e325a050ba03638568d7318f8f0075e25fb"
-		efetch "https://github.com/cygwinports/python39/archive/${gitrev}.tar.gz" \
-			|| ffail=1
-		if [[ -z ${ffail} ]]; then
-			gzip -dc "${DISTDIR}"/"${gitrev}.tar.gz" | tar -xf -
-			[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
-			patch_folder="python39-${gitrev}"
-		else
-			cygpyver="3.9.9-1"
-			efetch "https://mirrors.kernel.org/sourceware/cygwin/x86_64/release/python39/python39-${cygpyver}-src.tar.xz" \
-				|| return 1
-			xz -dc "${DISTDIR}"/"python39-${cygpyver}-src.tar.xz" | tar -xf -
-			[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
-			patch_folder="python39-${cygpyver}.src"
-			ffail=0
-		fi
-		[[ ${ffail} == 0 ]] || return 1
+		cygpyver="3.9.9-1"
+		efetch "https://mirrors.kernel.org/sourceware/cygwin/x86_64/release/python39/python39-${cygpyver}-src.tar.xz" \
+			|| return 1
+		xz -dc "${DISTDIR}"/"python39-${cygpyver}-src.tar.xz" | tar -xf -
+		[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
+		patch_folder="python39-${cygpyver}.src"
 
 		for pf in $(
 			sed -ne '/PATCH_URI="/,/"/{s/.*="//;s/".*$//;p}' \
@@ -1916,7 +1904,7 @@ bootstrap_stage2() {
 		GCC_MAKE_TARGET=all \
 		OVERRIDE_CXXFLAGS="${CPPFLAGS} -O2 -pipe" \
 		TPREFIX="${ROOT}" \
-		PYTHON_COMPAT_OVERRIDE=python${PYTHONMAJMIN} \
+		PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
 		emerge_pkgs --nodeps ${pkg} || return 1
 
 		if [[ "${pkg}" == *sys-devel/llvm* || ${pkg} == *sys-devel/clang* ]] ;
@@ -1995,7 +1983,7 @@ bootstrap_stage3() {
 	for pef in python{,3} python{,3}-config ; do
 		rm -f "${ROOT}"/tmp/usr/bin/${pef}
 		[[ ${pef} == *-config ]] && ppf=-config || ppf=
-		( cd "${ROOT}"/tmp/usr/bin && ln -s python${PYTHONMAJMIN}${ppf} ${pef} )
+		( cd "${ROOT}"/tmp/usr/bin && ln -s python$(python_ver)${ppf} ${pef} )
 	done
 
 	get_libdir() {
@@ -2173,15 +2161,15 @@ bootstrap_stage3() {
 	# setup for a scenario where python doesn't live in the target
 	# prefix and no helpers are available
 	( cd "${ROOT}"/usr/bin && test ! -e python && \
-		ln -s "${ROOT}"/tmp/usr/bin/python${PYTHONMAJMIN} )
+		ln -s "${ROOT}"/tmp/usr/bin/python$(python_ver) )
 	# in addition, avoid collisions
-	rm -Rf "${ROOT}"/tmp/usr/lib/python${PYTHONMAJMIN}/site-packages/clang
+	rm -Rf "${ROOT}"/tmp/usr/lib/python$(python_ver)/site-packages/clang
 
 	# Try to get ourself out of the mud, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx '--disable-lto --disable-bootstrap')" \
 	GCC_MAKE_TARGET=$(rapx all) \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
-	PYTHON_COMPAT_OVERRIDE=python${PYTHONMAJMIN} \
+	PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
 	pre_emerge_pkgs --nodeps ${compiler} || return 1
 
 	# Undo libgcc_s.so path of stage2
@@ -2193,7 +2181,7 @@ bootstrap_stage3() {
 	# need special care, it depends on texinfo, #717786
 	pre_emerge_pkgs --nodeps sys-apps/gawk || return 1
 
-	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python${PYTHONMAJMIN} )
+	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python$(python_ver) )
 	# Use $ROOT tools where possible from now on.
 	if [[ $(readlink "${ROOT}"/bin/sh) == "${ROOT}/tmp/"* ]] ; then
 		rm -f "${ROOT}"/bin/sh
