@@ -2111,13 +2111,11 @@ bootstrap_stage3() {
 		)
 		# use the new dynamic linker in place of rpath from now on.
 		RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9] | sed s"!${ROOT}/$(get_libdir)/ld-lsb.*!!")
-		export LDFLAGS="-L${ROOT}/usr/$(get_libdir) -Wl,--dynamic-linker=${RAP_DLINKER}"
-		if [[ ${compiler_type} == gcc ]] ; then
-			# make sure these flags are used even in places that ignore/strip CPPFLAGS/LDFLAGS
-			export LDFLAGS="-B${ROOT}/usr/$(get_libdir) ${LDFLAGS}"
-			export CC="gcc ${CPPFLAGS} ${LDFLAGS}"
-			export CXX="g++ ${CPPFLAGS} ${LDFLAGS}"
-		fi
+		export CPPFLAGS="--sysroot=${ROOT}"
+		export LDFLAGS="-Wl,--dynamic-linker=${RAP_DLINKER}"
+		# make sure these flags are used even in places that ignore/strip CPPFLAGS/LDFLAGS
+		export CC="gcc ${CPPFLAGS} ${LDFLAGS}"
+		export CXX="g++ ${CPPFLAGS} ${LDFLAGS}"
 		BOOTSTRAP_RAP=yes \
 		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
