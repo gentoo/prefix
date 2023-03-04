@@ -2002,8 +2002,7 @@ bootstrap_stage3() {
 
 	emerge_pkgs() {
 		# stage3 tools should be used first.
-		# PORTAGE_TMPDIR, EMERGE_LOG_DIR, FEATURES=force-prefix are
-		# needed with host portage.
+		# PORTAGE_TMPDIR, EMERGE_LOG_DIR are needed with host portage.
 		#
 		# After the introduction of EAPI-7, eclasses now
 		# strictly distinguish between build dependencies that
@@ -2013,7 +2012,6 @@ bootstrap_stage3() {
 		# PORTAGE_OVERRIDE_EPREFIX as BROOT is needed.
 		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{12,11,10}/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
-		FEATURES="${FEATURES} force-prefix" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
 		STAGE=stage3 \
 		do_emerge_pkgs "$@"
