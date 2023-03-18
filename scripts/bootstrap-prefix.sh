@@ -1007,7 +1007,7 @@ python_ver() {
 
 bootstrap_python() {
 	if [[ ${CHOST} == *-cygwin* ]] ; then
-          PV=3.9.9
+          PV=3.9.10
         else
 	  PV=3.10.4
         fi
@@ -1040,7 +1040,7 @@ bootstrap_python() {
 		# that cygwin has packaged if we don't do exact matches on the
 		# version then some patches may not apply cleanly
 
-		cygpyver="3.9.9-1"
+		cygpyver="3.9.10-1"
 		efetch "https://mirrors.kernel.org/sourceware/cygwin/x86_64/release/python39/python39-${cygpyver}-src.tar.xz" \
 			|| return 1
 		xz -dc "${DISTDIR}"/"python39-${cygpyver}-src.tar.xz" | tar -xf -
