@@ -2245,7 +2245,8 @@ bootstrap_stage3() {
 	fi
 
 	# Avoid installing git or encryption just for fun while completing @system
-	export USE="-git -crypt"
+	# e.g. bug #901101
+	export USE="-git -crypt -http2"
 
 	# Portage should figure out itself what it needs to do, if anything.
 	einfo "running emerge -uDNv system"
