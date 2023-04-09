@@ -41,6 +41,12 @@ export PYTHONPATH PORTDIR PORTAGE_BASE_PATH PORTAGE_CONFIGROOT  \
 
 #### ---- git mtime helper ---- ####
 
+update_git_tree() {
+	git reset -q --hard HEAD
+	git clean -dfq
+	git pull -q
+}
+
 apply_git_mtimes() {
 	local from=$1
 	local to=$2
@@ -106,9 +112,7 @@ GLOBALSTART=${START}
 echo "($(date +"%F %R")) updating DTDs"
 pushd "$DTDDIR" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
-git checkout -q .
-git clean -dfq
-git pull -q
+update_git_tree
 tocommit=$(git log --pretty=format:'%H' -n1)
 apply_git_mtimes "${fromcommit}" "${tocommit}"
 popd || exit 1
@@ -121,9 +125,7 @@ echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/dtd/timestamp.ch
 echo "($(date +"%F %R")) updating GLSAs"
 pushd "$GLSADIR" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
-git checkout -q .
-git clean -dfq
-git pull -q
+update_git_tree
 tocommit=$(git log --pretty=format:'%H' -n1)
 apply_git_mtimes "${fromcommit}" "${tocommit}"
 popd || exit 1
@@ -136,9 +138,7 @@ echo "($(date +"%F %R")) set date to $(< "${RSYNCDIR}"/metadata/glsa/timestamp.c
 echo "($(date +"%F %R")) updating news"
 pushd "$NEWSDIR" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
-git checkout -q .
-git clean -dfq
-git pull -q
+update_git_tree
 tocommit=$(git log --pretty=format:'%H' -n1)
 apply_git_mtimes "${fromcommit}" "${tocommit}"
 popd || exit 1
@@ -165,9 +165,7 @@ START=$(date +%s)
 echo "($(date +"%F %R")) updating the gx86 tree"
 pushd "${GENTOOX86DIR}" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
-git checkout -q .
-git clean -dfq
-git pull -q
+update_git_tree
 tocommit=$(git log --pretty=format:'%H' -n1)
 gx86tscommit=$(git log --pretty=format:'%H %ct %cI' -n1 "${tocommit}")
 apply_git_mtimes "${fromcommit}" "${tocommit}"
@@ -193,9 +191,7 @@ START=$(date +%s)
 echo "($(date +"%F %R")) updating Prefix tree (Git image)"
 pushd "$PREFIXTREEDIR" || exit 1
 fromcommit=$(git log --pretty=format:'%H' -n1)
-git checkout -q .
-git clean -dfq
-git pull -q
+update_git_tree
 tocommit=$(git log --pretty=format:'%H' -n1)
 pfxtscommit=$(git log --pretty=format:'%H %ct %cI' -n1 "${tocommit}")
 apply_git_mtimes "${fromcommit}" "${tocommit}"
