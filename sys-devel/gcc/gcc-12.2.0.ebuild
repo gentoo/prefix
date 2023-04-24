@@ -15,7 +15,7 @@ inherit toolchain
 if ! tc_is_live && [[ -z ${TOOLCHAIN_USE_GIT_PATCHES} ]] ; then
 	# fails to compile on Solaris and macOS, need to check why
 	: KEYWORDS="~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-	KEYWORDS="~x64-solaris ~x86-solaris"
+	KEYWORDS="~arm64-macos ~x64-macos ~x64-solaris ~x86-solaris"
 fi
 
 # use alternate source for Apple M1 (also works for x86_64)
