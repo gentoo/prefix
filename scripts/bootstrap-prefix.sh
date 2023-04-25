@@ -2969,7 +2969,8 @@ EOF
 	done
 	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$EPREFIX/tmp/usr/local/bin:${PATH}"
 
-	cat << EOF
+	if [[ -z ${PARTIAL_BOOTSTRAP} ]]; then
+		cat << EOF
 
 OK!  I'm going to give it a try, this is what I have collected sofar:
   EPREFIX=${EPREFIX}
@@ -2983,14 +2984,15 @@ Prefix.  In short, I'm going to run stage1, stage2, stage3, followed by
 emerge -e system.  If any of these stages fail, both you and me are in
 deep trouble.  So let's hope that doesn't happen.
 EOF
-	echo
-	[[ ${TODO} == 'noninteractive' ]] && ans="" ||
-	read -p "Type here what you want to wish me [luck] " ans
-	if [[ -n ${ans} && ${ans} != "luck" ]] ; then
-		echo "Huh?  You're not serious, are you?"
-		sleep 3
-	fi
-	echo
+		echo
+		[[ ${TODO} == 'noninteractive' ]] && ans="" ||
+		read -p "Type here what you want to wish me [luck] " ans
+		if [[ -n ${ans} && ${ans} != "luck" ]] ; then
+			echo "Huh?  You're not serious, are you?"
+			sleep 3
+		fi
+		echo
+  fi
 
 	if [[ -d ${HOST_GENTOO_EROOT} ]]; then
 		if ! [[ -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage_host_gentoo ; then
@@ -3013,6 +3015,19 @@ EOF
 	# just harvested
 	ROOT="${EPREFIX}"
 	set_helper_vars
+
+	if [[ -n ${PARTIAL_BOOTSTRAP} ]]; then
+	cat << EOF
+
+OK! All necessary tools and ENV variables were installed:
+  EPREFIX=${EPREFIX}
+  CHOST=${CHOST}
+  PATH=${PATH}
+  MAKEOPTS=${MAKEOPTS}
+Now I'm going to  run an <action> you asked me to.
+EOF
+		return 0;
+	fi
 
 	if ! [[ -e ${EPREFIX}/.stage1-finished ]] && ! bootstrap_stage1_log ; then
 		# stage 1 fail
@@ -3391,6 +3406,17 @@ if [[ -n ${PKG_CONFIG_PATH} ]] ; then
 fi
 
 einfo "ready to bootstrap ${TODO}"
+
+# part of bootstrap_interactive should be executed before any bootstrap_${TODO}
+# to properly setup environment variables and guarantee that bootstrap_${TODO}
+# executes inside a prefix
+if [[ ${TODO} != "noninteractive" && $(type -t bootstrap_${TODO} == "function") ]]; then
+	PARTIAL_BOOTSTRAP=true
+	TODO='noninteractive' bootstrap_interactive || exit 1
+	bootstrap_${TODO} || exit 1
+	exit 0
+fi
+
 # bootstrap_interactive proceeds with guessed defaults when TODO=noninteractive
 bootstrap_${TODO#non} || exit 1
 
