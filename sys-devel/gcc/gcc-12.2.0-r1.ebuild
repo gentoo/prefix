@@ -43,7 +43,7 @@ src_unpack() {
 }
 
 src_prepare() {
-	if [[ ${CHOST} == arm64-apple-darwin* ]] ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		# https://bugs.gentoo.org/898610#c17
 		# kill no_pie patch, it breaks things here
 		rm "${WORKDIR}"/patch/09_all_nopie-all-flags.patch || die
