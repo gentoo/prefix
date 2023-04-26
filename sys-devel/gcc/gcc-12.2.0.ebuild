@@ -43,6 +43,20 @@ src_unpack() {
 }
 
 src_prepare() {
+	# Drop Gentoo patch "09_all_nopie-all-flags.patch". This
+	# outdated patch (from 2016, GCC 6.2.0) passed NO_PIE_CFLAGS
+	# unconditionally since GCC at that time didn't support
+	# building itself with PIE. But now PIE is the default on
+	# both Intel and Apple Silicon. Applying the patch on Intel
+	# would produce the error:
+	#
+	#     ld: -pie and -no_pie can't be used together
+	#
+	# Bug #898610
+	if use elibc_Darwin ; then
+		rm "${WORKDIR}"/patch/09_all_nopie-all-flags.patch || die
+	fi
+
 	toolchain_src_prepare
 
 	eapply_user
