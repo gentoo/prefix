@@ -1,0 +1,151 @@
+https://bugs.gentoo.org/905152
+https://github.com/iains/gcc-12-branch/issues/21
+
+Historically, Darwin included two C++ libraries, an outdated
+GCC and its libstdc++, and a new libc++ (from clang). The old
+library was the default. Thus, when building a modern C++
+program using clang, the flag "stdlib=libc++" must be supplied
+to clang. On the other hand, when an updated GCC is used, it
+links to an updated GCC libstdc++ by default, no flag is needed.
+In fact, since "stdlib=libc++" cannot be recognized by GCC,
+it should not be used.
+
+As a result, many build scripts and build systems on macOS check
+if the flag "stdlib=libc++" is supported. If it's the case, the
+flag is used. If it's not, no flag is added. Practically, it
+creates the de-facto behavior of: If the program is built with
+clang, it's linked to clang's libc++. If the program is built
+with GCC, it's linked to GCC's native libstdc++. So far so good.
+This is also the most reasonable behavior, as expected by most
+users.
+
+As time passes, it was realized that using GCC and clang on the
+same system may create tricky conflicts, it's useful to be able
+to link against clang's libc++ even if GCC is used (this is useful
+beyond Darwin, e.g. for FreeBSD). Therefore, GCC now supports
+"stdlib=libc++ as well.
+
+The first immediate (but trivial) problem is a path problem.
+GCC's Darwin fork (maintained by Ian) enables stdlib= support
+by default (unlike upstream GCC that only conditionally enables
+it when an include path "gcc_gxx_libcxx_include_dir" is passed
+to GCC during build time). However, the default include path
+is invalid. Building a program with "stdlib=libc++" would fail
+since GCC cannot find basic C++ headers, like <vector> or
+<algorithm>. For example:
+
+    main.cpp:1:10: fatal error: algorithm: No such file or directory
+        1 | #include <algorithm>
+          |          ^~~~~~~~
+    compilation terminated.
+
+In principle, setting the correct clang libc++ path on macOS would
+fix this problem, but it's far from our only trouble here.
+
+Unfortunately, this consequences of this change can be far-reaching
+and unexpected. In the past, if a program is compiled on clang, it's
+always linked to libc++, if a program is compiled with gcc, it's
+always linked to GCC's native libstdc++. But now this assumption has
+been broken when GCC starts supporting "stdlib=libc++". It means that
+now programs compiled by GCC will sometimes be linked to libc++, and
+sometimes be linked to libstdc++, depending on two factors:
+
+1. If a program's build system does not make any attempt to
+detect the existence of "stdlib=libc++" when it's built with
+GCC, it will be linked to GCC's native libstdc++. This situation
+happens if the program was not ported to macOS in the past, or
+if the program is designed for macOS 10.9.x and newer systems
+(in which libc++ became clang's default).
+
+2. If a program's build system attempts to detect the existence
+of "stdlib=libc++", it's now linked to clang's libc++ when it's
+built by GCC - when previously it would link to GCC's native
+libstdc++.
+
+Thus, when GCC is used, some programs would be linked to libstdc++,
+but others may suddenly be linked to clang's libc++. depending on
+the build system of the program. This would create surprising
+and somewhat unpredictable situations.
+
+The solution requires careful thought. There are four possibilities:
+
+1. Disable stdlib= support, so the existing behavior is maintained
+(more importantly, maintained without the need to patch the build
+system of countless programs). The disadvantage is that end-users
+would lose the ability to use stdlib=libc++ to build their own
+programs when they found it's necessary.
+
+2. Enable stdlib= support. This allows users to enjoy the
+interoperability benefits of "stdlib=libc++" should it be necessary.
+But now some programs would suddenly be linked to clang's libc++
+when GCC is used, while others would still use GCC. This is
+unexpected and would be surprising to end-users. And Since Gentoo
+Prefix currently assumes a consistent GCC environment, it may
+potentially create compatibility problems as well. To maintain the
+historical behavior (programs built by GCC always links to GCC's
+libstdc++), we need to patch the "stdlib=libc++" out of the build
+system of countless programs... On the other hand, perhaps it's still
+doable, since many programs are moving away from "stdlib=libc++" as
+modern macOS defaults to libc++.
+
+3. Enable stdlib= support, and pass stdlib=libstdc++ in the global
+CXXFLAGS of Portage.
+
+4. Enable stdlib= support, and pass stdlib=libc++ in the global
+CXXFLAGS of Portage.
+
+The last two options sound more reasonable, perhaps in the future,
+it can be Portage's responsibility to decide which libc++ is used,
+just like how it currently can decide when to use GCC or clang.
+Since in GCC, new compiler flags can override previous flag, we can
+force a "stdlib=" choice to allow well-defined, predictable selection
+of C++ libraries. Option 2 or 1 is also imaginable, depending on
+the circumstances. But we clearly need further considerations.
+
+For now, we choose the simplest solution, disable support for "stdlib="
+to maintain the existing behavior, at least as a stop-gap solution.
+This may change in the future.
+
+diff -upr gcc-12-branch-gcc-12.2-darwin-r0/gcc/configure gcc-12-branch-gcc-12.2-darwin-r0.patched/gcc/configure
+--- gcc-12-branch-gcc-12.2-darwin-r0/gcc/configure	2023-04-27 17:31:51.356395000 +0000
++++ gcc-12-branch-gcc-12.2-darwin-r0.patched/gcc/configure	2023-04-27 18:40:22.670655408 +0000
+@@ -3781,17 +3781,9 @@ if test x${gcc_gxx_libcxx_include_dir} !
+ $as_echo "#define ENABLE_STDLIB_OPTION 1" >>confdefs.h
+ 
+ else
+-  case $target in
+-    *-darwin1[1-9]* | *-darwin2*)
+-       # Default this on for Darwin versions which default to libcxx.
+-       $as_echo "#define ENABLE_STDLIB_OPTION 1" >>confdefs.h
+ 
+-       ;;
+-    *)
+-       $as_echo "#define ENABLE_STDLIB_OPTION 0" >>confdefs.h
+-
+-       ;;
+-  esac
++$as_echo "#define ENABLE_STDLIB_OPTION 0" >>confdefs.h
++  
+ fi
+ 
+ if test x${gcc_gxx_libcxx_include_dir} = x; then
+diff -upr gcc-12-branch-gcc-12.2-darwin-r0/gcc/configure.ac gcc-12-branch-gcc-12.2-darwin-r0.patched/gcc/configure.ac
+--- gcc-12-branch-gcc-12.2-darwin-r0/gcc/configure.ac	2023-04-27 17:31:47.337475138 +0000
++++ gcc-12-branch-gcc-12.2-darwin-r0.patched/gcc/configure.ac	2023-04-27 18:38:50.537799195 +0000
+@@ -249,15 +249,7 @@ if test x${gcc_gxx_libcxx_include_dir} !
+   AC_DEFINE(ENABLE_STDLIB_OPTION, 1,
+             [Define if the -stdlib= option should be enabled.])
+ else
+-  case $target in
+-    *-darwin1[[1-9]]* | *-darwin2*)
+-       # Default this on for Darwin versions which default to libcxx.
+-       AC_DEFINE(ENABLE_STDLIB_OPTION, 1)
+-       ;;
+-    *)
+-       AC_DEFINE(ENABLE_STDLIB_OPTION, 0)
+-       ;;
+-  esac
++  AC_DEFINE(ENABLE_STDLIB_OPTION, 0)
+ fi
+ 
+ if test x${gcc_gxx_libcxx_include_dir} = x; then
