@@ -76,6 +76,17 @@ src_prepare() {
 		# posix_madvise however, is
 		sed -i -e 's/madvise/posix_madvise/' gcc/cp/module.cc || die
 	fi
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# GCC' Darwin fork enables support for "-stdlib=libc++"
+		# unconditionally, and its default include path is invalid,
+		# causing package build failures due to missing header.
+		# But more importantly, it breaks the assumption of many build
+		# scripts and changes their CFLAGS and linking behaviors. The
+		# situation is tricky and needs careful considerations.
+		# For now, just disable support for "-stdlib=libc++".
+		eapply "${FILESDIR}"/gcc-12.2.0-disable-stdlib-option-on-darwin.patch
+	fi
 }
 
 src_configure() {
