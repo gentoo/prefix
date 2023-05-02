@@ -50,7 +50,7 @@ RDEPEND="
 	>=dev-libs/expat-2.1:=
 	dev-libs/libffi:=
 	dev-python/gentoo-common
-	sys-apps/util-linux:=
+	kernel_linux? ( sys-apps/util-linux:= )
 	>=sys-libs/zlib-1.1.3:=
 	virtual/libcrypt:=
 	virtual/libintl
@@ -127,6 +127,8 @@ src_prepare() {
 		"${WORKDIR}/${PATCHSET}"
 		# Prefix' round of patches
 		"${WORKDIR}"/${PREFIX_PATCHSET}
+
+		"${FILESDIR}"/${PN}-3.11.3-gcc-fallbacks-for-mkfifo-mknod-checks.patch
 	)
 
 	default
