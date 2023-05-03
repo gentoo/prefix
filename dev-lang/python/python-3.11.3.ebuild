@@ -50,7 +50,7 @@ RDEPEND="
 	>=dev-libs/expat-2.1:=
 	dev-libs/libffi:=
 	dev-python/gentoo-common
-	sys-apps/util-linux:=
+	kernel_linux? ( sys-apps/util-linux:= )
 	>=sys-libs/zlib-1.1.3:=
 	virtual/libcrypt:=
 	virtual/libintl
