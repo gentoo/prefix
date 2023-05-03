@@ -367,6 +367,7 @@ src_configure() {
 	use readline || disable_modules+=( READLINE )
 	use tk || disable_modules+=( _TKINTER )
 	use kernel_linux || disable_modules+=( OSSAUDIODEV )
+	[[ ${CHOST} == *-apple-darwin* ]] && disable_modules+=( _SCPROXY )
 
 	local mod
 	for mod in "${disable_modules[@]}"; do
