@@ -1408,13 +1408,15 @@ bootstrap_bash() {
 }
 
 bootstrap_bison() {
-	bootstrap_gnu bison 2.6.2 || bootstrap_gnu bison 2.6.1 || \
-	bootstrap_gnu bison 2.6 || bootstrap_gnu bison 2.5.1 || \
+	bootstrap_gnu bison 3.8.2 || \
+	bootstrap_gnu bison 2.6.2 || \
+	bootstrap_gnu bison 2.5.1 || \
 	bootstrap_gnu bison 2.4
 }
 
 bootstrap_m4() {
-	bootstrap_gnu m4 1.4.19 || bootstrap_gnu m4 1.4.18 # version is patched, so beware
+	bootstrap_gnu m4 1.4.19 || \
+	bootstrap_gnu m4 1.4.18 # version is patched, so beware
 }
 
 bootstrap_gzip() {
