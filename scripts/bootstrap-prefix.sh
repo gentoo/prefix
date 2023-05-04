@@ -291,11 +291,6 @@ configure_toolchain() {
 					compiler_stage1=${compiler_stage1/" dev-libs/mpfr "/" <dev-libs/mpfr-4 "}
 					;;
 			esac
-			local nmout=$(nm -B 2>&1)
-			case "${nmout}" in
-				*/dev/null*)  :                            ;;  # apparently GNU
-				*)            export NM="$(type -P nm) -p" ;;  # Solaris nm
-			esac
 			;;
 		*-linux*)
 			is-rap && einfo "Triggering Linux RAP bootstrap"
@@ -1001,7 +996,7 @@ python_ver() {
 	if [[ ${CHOST} == *-cygwin* ]] ; then
 	  echo 3.9   # keep this number in line with PV below for stage1,2
 	else
-	  echo 3.11   # keep this number in line with PV below for stage1,2
+	  echo 3.10   # keep this number in line with PV below for stage1,2
 	fi
 }
 
@@ -1009,7 +1004,7 @@ bootstrap_python() {
 	if [[ ${CHOST} == *-cygwin* ]] ; then
 		PV=$(python_ver).10
 	else
-		PV=$(python_ver).3
+		PV=$(python_ver).4
 	fi
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
