@@ -1001,16 +1001,16 @@ python_ver() {
 	if [[ ${CHOST} == *-cygwin* ]] ; then
 	  echo 3.9   # keep this number in line with PV below for stage1,2
 	else
-	  echo 3.10   # keep this number in line with PV below for stage1,2
+	  echo 3.11   # keep this number in line with PV below for stage1,2
 	fi
 }
 
 bootstrap_python() {
 	if [[ ${CHOST} == *-cygwin* ]] ; then
-          PV=3.9.10
-        else
-	  PV=3.10.4
-        fi
+		PV=$(python_ver).10
+	else
+		PV=$(python_ver).3
+	fi
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
 
@@ -3423,7 +3423,8 @@ fi
 bootstrap_${TODO#non} || exit 1
 
 # Local Variables:
-# sh-indentation: 8
-# sh-basic-offset: 8
+# sh-indentation: 4
+# sh-basic-offset: 4
 # indent-tabs-mode: t
 # End:
+# vim: set ts=4 sw=4 noexpandtab:
