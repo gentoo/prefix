@@ -993,10 +993,15 @@ bootstrap_gnu() {
 }
 
 python_ver() {
+	# keep this number in line with PV below for stage1,2
+	# also, note that this version must match the Python version in the
+	# snapshot for stage3, else packages will break with some python
+	# mismatch error due to Portage using a different version after it
+	# upgraded itself with a newer Python
 	if [[ ${CHOST} == *-cygwin* ]] ; then
 	  echo 3.9   # keep this number in line with PV below for stage1,2
 	else
-	  echo 3.10   # keep this number in line with PV below for stage1,2
+	  echo 3.11   # keep this number in line with PV below for stage1,2
 	fi
 }
 
@@ -1004,12 +1009,16 @@ bootstrap_python() {
 	if [[ ${CHOST} == *-cygwin* ]] ; then
 		PV=$(python_ver).10
 	else
-		PV=$(python_ver).4
+		PV=$(python_ver).3-gentoo-prefix-patched
 	fi
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
 
-	efetch https://www.python.org/ftp/python/${PV}/${A}
+	if [[ ${PV} == *-gentoo-prefix-patched ]] ; then
+		efetch https://dev.gentoo.org/~grobian/distfiles/${A}
+	else
+		efetch https://www.python.org/ftp/python/${PV}/${A}
+	fi
 
 	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
@@ -1022,7 +1031,7 @@ bootstrap_python() {
 		*)    einfo "Don't know to unpack ${A}"       ;;
 	esac
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
-	S="${S}"/Python-${PV}
+	S="${S}"/Python-${PV%%-*}
 	cd "${S}"
 	rm -rf Modules/_ctypes/libffi* || return 1
 	rm -rf Modules/zlib || return 1
@@ -1068,6 +1077,10 @@ bootstrap_python() {
 			-e '/^#define Py_HUGE_VAL/s/HUGE_VAL$/(__builtin_huge_val())/' \
 			-e '/defined HAVE_DECL_ISNAN/s/ISNAN/USE_FALLBACK/' \
 			Include/pymath.h
+		# OpenIndiana/Solaris 11 defines inet_aton no longer in
+		# libresolv, so use hstrerror to check if we need -lresolv
+		sed -i -e '/AC_CHECK_LIB/s/inet_aton/hstrerror/' \
+			configure || die
 		;;
 	(*-darwin9)
 		# Darwin 9's kqueue seems to act up (at least at this stage), so
@@ -1076,9 +1089,9 @@ bootstrap_python() {
 		sed -i \
 			-e 's/KQUEUE/KQUEUE_DISABLED/' \
 			configure
-		# fixup thread id detection
-		efetch "https://dev.gentoo.org/~sam/distfiles/dev-lang/python/python-3.9.6-darwin9_pthreadid.patch"
-		patch -p1 < "${DISTDIR}"/python-3.9.6-darwin9_pthreadid.patch
+		# fixup thread id detection (only needed on vanilla Python tar)
+		#efetch "https://dev.gentoo.org/~sam/distfiles/dev-lang/python/python-3.9.6-darwin9_pthreadid.patch"
+		#patch -p1 < "${DISTDIR}"/python-3.9.6-darwin9_pthreadid.patch
 		;;
 	(*-openbsd*)
 		# OpenBSD is not a multilib system
