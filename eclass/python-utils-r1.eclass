@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: python-utils-r1.eclass
@@ -7,7 +7,7 @@
 # @AUTHOR:
 # Author: Michał Górny <mgorny@gentoo.org>
 # Based on work of: Krzysztof Pawlik <nelchael@gentoo.org>
-# @SUPPORTED_EAPIS: 6 7 8
+# @SUPPORTED_EAPIS: 7 8
 # @BLURB: Utility functions for packages with Python parts.
 # @DESCRIPTION:
 # A utility eclass providing functions to query Python implementations,
@@ -22,19 +22,16 @@
 # NOTE: When dropping support for EAPIs here, we need to update
 # metadata/install-qa-check.d/60python-pyc
 # See bug #704286, bug #781878
-case "${EAPI:-0}" in
-	[0-5]) die "Unsupported EAPI=${EAPI:-0} (too old) for ${ECLASS}" ;;
-	[6-8]) ;;
-	*)     die "Unsupported EAPI=${EAPI} (unknown) for ${ECLASS}" ;;
+
+case ${EAPI} in
+	7|8) ;;
+	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
-if [[ ${_PYTHON_ECLASS_INHERITED} ]]; then
-	die 'python-r1 suite eclasses can not be used with python.eclass.'
-fi
+if [[ ! ${_PYTHON_UTILS_R1_ECLASS} ]]; then
+_PYTHON_UTILS_R1_ECLASS=1
 
-if [[ ! ${_PYTHON_UTILS_R1} ]]; then
-
-[[ ${EAPI} == [67] ]] && inherit eapi8-dosym
+[[ ${EAPI} == 7 ]] && inherit eapi8-dosym
 inherit multiprocessing toolchain-funcs
 
 # @ECLASS_VARIABLE: _PYTHON_ALL_IMPLS
@@ -43,7 +40,7 @@ inherit multiprocessing toolchain-funcs
 # All supported Python implementations, most preferred last.
 _PYTHON_ALL_IMPLS=(
 	pypy3
-	python3_{8..11}
+	python3_{10..11}
 )
 readonly _PYTHON_ALL_IMPLS
 
@@ -55,7 +52,7 @@ _PYTHON_HISTORICAL_IMPLS=(
 	jython2_7
 	pypy pypy1_{8,9} pypy2_0
 	python2_{5..7}
-	python3_{1..7}
+	python3_{1..9}
 )
 readonly _PYTHON_HISTORICAL_IMPLS
 
@@ -132,9 +129,9 @@ _python_set_impls() {
 			# please keep them in sync with _PYTHON_ALL_IMPLS
 			# and _PYTHON_HISTORICAL_IMPLS
 			case ${i} in
-				pypy3|python2_7|python3_[89]|python3_1[01])
+				pypy3|python3_9|python3_1[01])
 					;;
-				jython2_7|pypy|pypy1_[89]|pypy2_0|python2_[5-6]|python3_[1-7])
+				jython2_7|pypy|pypy1_[89]|pypy2_0|python2_[5-7]|python3_[1-9])
 					obsolete+=( "${i}" )
 					;;
 				*)
@@ -171,13 +168,7 @@ _python_set_impls() {
 	done
 
 	if [[ ! ${supp[@]} ]]; then
-		# special-case python2_7 for python-any-r1
-		if [[ ${_PYTHON_ALLOW_PY27} ]] && has python2_7 "${PYTHON_COMPAT[@]}"
-		then
-			supp+=( python2_7 )
-		else
-			die "No supported implementation in PYTHON_COMPAT."
-		fi
+		die "No supported implementation in PYTHON_COMPAT."
 	fi
 
 	if [[ ${_PYTHON_SUPPORTED_IMPLS[@]} ]]; then
@@ -223,7 +214,7 @@ _python_impl_matches() {
 	for pattern; do
 		case ${pattern} in
 			-2|python2*|pypy)
-				if [[ ${EAPI} != [67] ]]; then
+				if [[ ${EAPI} != 7 ]]; then
 					eerror
 					eerror "Python 2 is no longer supported in Gentoo, please remove Python 2"
 					eerror "${FUNCNAME[1]} calls."
@@ -232,7 +223,7 @@ _python_impl_matches() {
 				;;
 			-3)
 				# NB: "python3*" is fine, as "not pypy3"
-				if [[ ${EAPI} != [67] ]]; then
+				if [[ ${EAPI} != 7 ]]; then
 					eerror
 					eerror "Python 2 is no longer supported in Gentoo, please remove Python 2"
 					eerror "${FUNCNAME[1]} calls."
@@ -419,10 +410,6 @@ _python_export() {
 				local val
 
 				case "${impl}" in
-					python2*|python3.6|python3.7*)
-						# python* up to 3.7
-						val=$($(tc-getPKG_CONFIG) --libs ${impl/n/n-}) || die
-						;;
 					python*)
 						# python3.8+
 						val=$($(tc-getPKG_CONFIG) --libs ${impl/n/n-}-embed) || die
@@ -461,22 +448,12 @@ _python_export() {
 			PYTHON_PKG_DEP)
 				local d
 				case ${impl} in
-					python2.7)
-						PYTHON_PKG_DEP='>=dev-lang/python-2.7.5-r2:2.7';;
-					python3.8)
-						PYTHON_PKG_DEP=">=dev-lang/python-3.8.12_p1-r1:3.8";;
-					python3.9)
-						PYTHON_PKG_DEP=">=dev-lang/python-3.9.9-r1:3.9";;
 					python3.10)
-						PYTHON_PKG_DEP=">=dev-lang/python-3.10.0_p1-r1:3.10";;
+						PYTHON_PKG_DEP=">=dev-lang/python-3.10.9-r1:3.10";;
 					python3.11)
-						PYTHON_PKG_DEP=">=dev-lang/python-3.11.0_beta1-r1:3.11";;
-					python*)
-						PYTHON_PKG_DEP="dev-lang/python:${impl#python}";;
-					pypy)
-						PYTHON_PKG_DEP='>=dev-python/pypy-7.3.0:0=';;
+						PYTHON_PKG_DEP=">=dev-lang/python-3.11.1-r1:3.11";;
 					pypy3)
-						PYTHON_PKG_DEP='>=dev-python/pypy3-7.3.7-r1:0=';;
+						PYTHON_PKG_DEP='>=dev-python/pypy3-7.3.11-r1:0=';;
 					*)
 						die "Invalid implementation: ${impl}"
 				esac
@@ -658,21 +635,21 @@ python_optimize() {
 
 		einfo "Optimize Python modules for ${instpath}"
 		case "${EPYTHON}" in
-			python2.7|python3.[34])
-				"${PYTHON}" -m compileall -q -f -d "${instpath}" "${d}"
-				"${PYTHON}" -OO -m compileall -q -f -d "${instpath}" "${d}"
-				;;
-			python3.[5678]|pypy3)
+			python3.8)
 				# both levels of optimization are separate since 3.5
 				"${PYTHON}" -m compileall -j "${jobs}" -q -f -d "${instpath}" "${d}"
 				"${PYTHON}" -O -m compileall -j "${jobs}" -q -f -d "${instpath}" "${d}"
 				"${PYTHON}" -OO -m compileall -j "${jobs}" -q -f -d "${instpath}" "${d}"
 				;;
-			python*)
+			python*|pypy3)
+				# Python 3.9+
 				"${PYTHON}" -m compileall -j "${jobs}" -o 0 -o 1 -o 2 --hardlink-dupes -q -f -d "${instpath}" "${d}"
 				;;
-			*)
+			pypy|jython2.7)
 				"${PYTHON}" -m compileall -q -f -d "${instpath}" "${d}"
+				;;
+			*)
+				die "${FUNCNAME}: unexpected EPYTHON=${EPYTHON}"
 				;;
 		esac
 	done
@@ -755,7 +732,7 @@ python_newexe() {
 
 	# install the wrapper
 	local dosym=dosym
-	[[ ${EAPI} == [67] ]] && dosym=dosym8
+	[[ ${EAPI} == 7 ]] && dosym=dosym8
 	"${dosym}" -r /usr/lib/python-exec/python-exec2 "${wrapd}/${newfn}"
 
 	# don't use this at home, just call python_doscript() instead
@@ -970,15 +947,6 @@ _python_wrapper_setup() {
 		local EPYTHON PYTHON
 		_python_export "${impl}" EPYTHON PYTHON
 
-		local pyver pyother
-		if [[ ${EPYTHON} != python2* ]]; then
-			pyver=3
-			pyother=2
-		else
-			pyver=2
-			pyother=3
-		fi
-
 		# Python interpreter
 		# note: we don't use symlinks because python likes to do some
 		# symlink reading magic that breaks stuff
@@ -987,10 +955,10 @@ _python_wrapper_setup() {
 			#!/bin/sh
 			exec "${PYTHON}" "\${@}"
 		_EOF_
-		cp "${workdir}/bin/python" "${workdir}/bin/python${pyver}" || die
-		chmod +x "${workdir}/bin/python" "${workdir}/bin/python${pyver}" || die
+		cp "${workdir}/bin/python" "${workdir}/bin/python3" || die
+		chmod +x "${workdir}/bin/python" "${workdir}/bin/python3" || die
 
-		local nonsupp=( "python${pyother}" "python${pyother}-config" )
+		local nonsupp=( python2 python2-config )
 
 		# CPython-specific
 		if [[ ${EPYTHON} == python* ]]; then
@@ -999,24 +967,22 @@ _python_wrapper_setup() {
 				exec "${PYTHON}-config" "\${@}"
 			_EOF_
 			cp "${workdir}/bin/python-config" \
-				"${workdir}/bin/python${pyver}-config" || die
+				"${workdir}/bin/python3-config" || die
 			chmod +x "${workdir}/bin/python-config" \
-				"${workdir}/bin/python${pyver}-config" || die
+				"${workdir}/bin/python3-config" || die
 
 			# Python 2.6+.
 			ln -s "${PYTHON/python/2to3-}" "${workdir}"/bin/2to3 || die
 
 			# Python 2.7+.
 			ln -s "${EPREFIX}"/usr/$(get_libdir)/pkgconfig/${EPYTHON/n/n-}.pc \
-				"${workdir}"/pkgconfig/python${pyver}.pc || die
+				"${workdir}"/pkgconfig/python3.pc || die
 
 			# Python 3.8+.
-			if [[ ${EPYTHON} != python[23].[67] ]]; then
-				ln -s "${EPREFIX}"/usr/$(get_libdir)/pkgconfig/${EPYTHON/n/n-}-embed.pc \
-					"${workdir}"/pkgconfig/python${pyver}-embed.pc || die
-			fi
+			ln -s "${EPREFIX}"/usr/$(get_libdir)/pkgconfig/${EPYTHON/n/n-}-embed.pc \
+				"${workdir}"/pkgconfig/python3-embed.pc || die
 		else
-			nonsupp+=( 2to3 python-config "python${pyver}-config" )
+			nonsupp+=( 2to3 python-config python3-config )
 		fi
 
 		local x
@@ -1113,11 +1079,10 @@ python_fix_shebang() {
 					"${EPYTHON}")
 						match=1
 						;;
-					python|python[23])
+					python|python3)
 						match=1
-						[[ ${in_path##*/} == python2 ]] && error=1
 						;;
-					python[23].[0-9]|python3.[1-9][0-9]|pypy|pypy3|jython[23].[0-9])
+					python2|python[23].[0-9]|python3.[1-9][0-9]|pypy|pypy3|jython[23].[0-9])
 						# Explicit mismatch.
 						match=1
 						error=1
@@ -1346,6 +1311,16 @@ epytest() {
 		# sterilize pytest-markdown as it runs code snippets from all
 		# *.md files found without any warning
 		-p no:markdown
+		# pytest-sugar undoes everything that's good about pytest output
+		# and makes it hard to read logs
+		-p no:sugar
+		# pytest-xvfb automatically spawns Xvfb for every test suite,
+		# effectively forcing it even when we'd prefer the tests
+		# not to have DISPLAY at all, causing crashes sometimes
+		# and causing us to miss missing virtualx usage
+		-p no:xvfb
+		# tavern is intrusive and breaks test suites of various packages
+		-p no:tavern
 	)
 	local x
 	for x in "${EPYTEST_DESELECT[@]}"; do
@@ -1401,15 +1376,13 @@ _python_run_check_deps() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	local impl=${1}
-	local hasv_args=( -b )
-	[[ ${EAPI} == 6 ]] && hasv_args=( --host-root )
 
 	einfo "Checking whether ${impl} is suitable ..."
 
 	local PYTHON_PKG_DEP
 	_python_export "${impl}" PYTHON_PKG_DEP
 	ebegin "  ${PYTHON_PKG_DEP}"
-	has_version "${hasv_args[@]}" "${PYTHON_PKG_DEP}"
+	has_version -b "${PYTHON_PKG_DEP}"
 	eend ${?} || return 1
 	declare -f python_check_deps >/dev/null || return 0
 
@@ -1426,10 +1399,8 @@ _python_run_check_deps() {
 # A convenience wrapper for has_version() with verbose output and better
 # defaults for use in python_check_deps().
 #
-# The wrapper accepts EAPI 7+-style -b/-d/-r options to indicate
-# the root to perform the lookup on.  Unlike has_version, the default
-# is -b.  In EAPI 6, -b and -d are translated to --host-root
-# for compatibility.
+# The wrapper accepts -b/-d/-r options to indicate the root to perform
+# the lookup on.  Unlike has_version, the default is -b.
 #
 # The wrapper accepts multiple package specifications.  For the check
 # to succeed, *all* specified atoms must match.
@@ -1444,14 +1415,6 @@ python_has_version() {
 			;;
 	esac
 
-	if [[ ${EAPI} == 6 ]]; then
-		if [[ ${root_arg} == -r ]]; then
-			root_arg=()
-		else
-			root_arg=( --host-root )
-		fi
-	fi
-
 	local pkg
 	for pkg; do
 		ebegin "    ${pkg}"
@@ -1462,5 +1425,4 @@ python_has_version() {
 	return 0
 }
 
-_PYTHON_UTILS_R1=1
 fi
