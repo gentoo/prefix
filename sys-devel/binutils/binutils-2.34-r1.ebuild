@@ -42,7 +42,7 @@ case ${PV} in
 	*)
 		SRC_URI="mirror://gnu/binutils/binutils-${PV}.tar.xz"
 		SLOT=$(ver_cut 1-2)
-		KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~x64-solaris"
+		KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris"
 		;;
 esac
 

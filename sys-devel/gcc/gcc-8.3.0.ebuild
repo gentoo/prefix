@@ -8,7 +8,7 @@ CYGWINPORTS_GITREV="0de6b2ae6b6577eb0891a7ca8d551bdfa79bf5e8" # gcc-8.3.0-1
 
 inherit eutils toolchain flag-o-matic
 
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
