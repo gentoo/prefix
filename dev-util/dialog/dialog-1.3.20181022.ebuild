@@ -11,7 +11,7 @@ SRC_URI="https://dev.gentoo.org/~jer/${DIA_P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0/15"
-KEYWORDS="~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc64-solaris ~x64-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~x64-solaris"
 IUSE="examples minimal nls static-libs unicode"
 
 RDEPEND="

@@ -14,7 +14,7 @@ HOMEPAGE="https://wiki.gentoo.org/wiki/Project:Portage"
 SRC_URI="https://dev.gentoo.org/~grobian/distfiles/prefix-${P}.tar.bz2"
 
 LICENSE="GPL-2"
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc64-solaris ~x64-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~x64-solaris"
 SLOT="0"
 IUSE="apidoc build doc gentoo-dev +ipc +native-extensions rsync-verify selinux test xattr"
 RESTRICT="!test? ( test )"
