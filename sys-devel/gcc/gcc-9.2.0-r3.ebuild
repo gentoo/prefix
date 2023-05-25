@@ -7,7 +7,7 @@ PATCH_VER="4"
 
 inherit toolchain
 
-KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris"
+KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~sparc64-solaris ~x64-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}

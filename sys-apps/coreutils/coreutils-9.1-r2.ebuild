@@ -25,7 +25,7 @@ if [[ ${PV} == *_p* ]] ; then
 else
 	SRC_URI="mirror://gnu/${PN}/${P}.tar.xz
 		verify-sig? ( mirror://gnu/${PN}/${P}.tar.xz.sig )"
-	KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris"
+	KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc64-solaris ~x64-solaris"
 fi
 
 SRC_URI+=" !vanilla? ( https://dev.gentoo.org/~sam/distfiles/${CATEGORY}/${PN}/${MY_PATCH}.tar.xz )"

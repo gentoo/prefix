@@ -11,7 +11,7 @@ if [[ ${PV} == 9999 ]]; then
 else
 	SRC_URI="mirror://gentoo/${P}.tar.xz
 		https://dev.gentoo.org/~dilfridge/distfiles/${P}.tar.xz"
-	KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-winnt"
+	KEYWORDS="~x64-cygwin ~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~sparc64-solaris ~x64-solaris ~x86-winnt"
 fi
 
 DESCRIPTION="Utility to manage compilers"
