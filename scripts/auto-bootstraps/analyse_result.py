@@ -11,10 +11,15 @@ resultsdir='./results'
 
 deprecated_archs = (
         'x86_64-pc-cygwin',
+        'i386-pc-solaris2.11',
         'sparc-sun-solaris2.10',
         'sparcv9-sun-solaris2.10',
         'sparc-sun-solaris2.11',
-        'sparcv9-sun-solaris2.11'
+        'sparcv9-sun-solaris2.11',
+        'x86_64-apple-darwin19',
+        'x86_64-apple-darwin20',
+        'x86_64-apple-darwin21',
+        'arm64-apple-darwin21',
 )
 
 def find_last_stage(d):
