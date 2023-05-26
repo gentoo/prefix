@@ -133,7 +133,7 @@ do_prepare() {
 		echo $((endtime - starttime)) > elapsedtime
 
 		# massage CHOST on Linux systems
-		if [[ ${chost} == *-linux-gnu* ]] ; then
+		if [[ ${chost} == *-linux-* ]] ; then
 			# two choices here: x86_64_ubuntu16-linux-gnu
 			#                   x86_64-pc-linux-ubuntu16
 			# I choose the latter because it is compatible with most
@@ -148,7 +148,10 @@ do_prepare() {
 
 				# Gentoo's versioning isn't really relevant, since it is
 				# a rolling distro
-				[[ ${dist,,} == "gentoo" ]] && rel=
+				if [[ ${dist,,} == "gentoo" ]] ; then
+					rel=
+					[[ ${chost##*-} == "musl" ]] && rel="musl"
+				fi
 			fi
 			[[ -z ${dist} ]] && dist=linux
 			# leave rel unset/empty if we don't know about it
