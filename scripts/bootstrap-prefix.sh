@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2006-2022 Gentoo Authors
+# Copyright 2006-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 trap 'exit 1' TERM INT QUIT ABRT
@@ -72,9 +72,7 @@ efetch() {
 				FETCH_COMMAND="curl -f -L -O"
 			elif [[ x$(type -t fetch) == "xfile" ]] ; then
 				FETCH_COMMAND="fetch"
-			elif [[ x$(type -t ftp) == "xfile" ]] &&
-				 [[ ${CHOST} != *-cygwin* || \
-				 ! $(type -P ftp) -ef $(cygpath -S)/ftp ]] ; then
+			elif [[ x$(type -t ftp) == "xfile" ]] ; then
 				FETCH_COMMAND="ftp"
 			else
 				eerror "no suitable download manager found!"
@@ -122,9 +120,6 @@ configure_cflags() {
 		*-solaris*)
 			export LDFLAGS="-L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib"
 			;;
-		i586-pc-winnt* | *-pc-cygwin*)
-			export LDFLAGS="-L${ROOT}/tmp/usr/lib"
-			;;
 		*)
 			export LDFLAGS="-L${ROOT}/tmp/usr/lib -Wl,-rpath=${ROOT}/tmp/usr/lib"
 			;;
@@ -161,11 +156,6 @@ configure_toolchain() {
 	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
 	compiler_type="gcc"
 	case ${CHOST} in
-	*-cygwin*)
-	  # not supported in gcc-4.7 yet, easy enough to install g++
-	  # Cygwin patches come as .zip from github
-	  compiler_stage1+=" app-arch/unzip sys-devel/gcc"
-	  ;;
 	*-darwin*)
 	  # handled below
 	  ;;
@@ -448,23 +438,18 @@ bootstrap_profile() {
 		armv7l-pc-linux-gnu)
 			profile=${profile_linux/ARCH/arm}
 			;;
-		i386-pc-solaris2.11)
-			profile="prefix/sunos/solaris/5.11/x86"
-			;;
 		x86_64-pc-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/x64"
 			;;
-		sparc-sun-solaris2.11)
-			profile="prefix/sunos/solaris/5.11/sparc"
+		i386-pc-solaris2*|sparc-sun-solaris2*|sparcv9-sun-solaris2*)
+			eerror "REMOVED ARCH: this Solaris architecture was removed,"
+			eerror "bootstrapping is impossible"
+			exit 1
 			;;
-		sparcv9-sun-solaris2.11)
-			profile="prefix/sunos/solaris/5.11/sparc64"
-			;;
-		i586-pc-winnt*)
-			profile="prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
-			;;
-		x86_64-pc-cygwin*)
-			profile="prefix/windows/cygwin/x64"
+		i586-pc-winnt*|x86_64-pc-cygwin*)
+			eerror "REMOVED ARCH: this Windows architecture was removed,"
+			eerror "bootstrapping is impossible"
+			exit 1
 			;;
 		*)
 			eerror "UNKNOWN ARCH: You need to set up a make.profile symlink to a"
@@ -523,8 +508,7 @@ bootstrap_profile() {
 
 	# Strange enough, -cxx causes wrong libtool config on Cygwin,
 	# but we require a C++ compiler there anyway - so just use it.
-	[[ ${CHOST} == *-cygwin* ]] ||
-		cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
+	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
 	# gmp has cxx flag enabled by default. When dealing with a host
 	# compiler without cxx support this causes configure failure.
 	# In addition, The stage2 g++ is only for compiling stage3 compiler,
@@ -849,24 +833,6 @@ bootstrap_gnu() {
 		patch -p1 < ${DISTDIR}/${tar_patch_file} || return 1
 	fi
 
-	if [[ ${PN}-${PV} == "bash-4.3" && ${CHOST} == *-cygwin* ]] ; then
-		local p patchopts
-		for p in \
-			"-p0" \
-			"${DISTFILES_G_O}/distfiles/bash43-"{001..048} \
-			"-p2" \
-			"https://dev.gentoo.org/~haubi/distfiles/bash-4.3_p39-cygwin-r2.patch" \
-		; do
-			if [[ ${p} == -* ]] ; then
-				patchopts=${p}
-				continue
-			fi
-			efetch "${p}" || return 1
-			patch --forward --no-backup-if-mismatch ${patchopts} \
-				< "${DISTDIR}/${p##*/}" || return 1
-		done
-	fi
-
 	local myconf=""
 	if [[ ${PN} == "make" && ${PV} == "4.2.1" ]] ; then
 		if [[ ${CHOST} == *-linux-gnu* ]] ; then
@@ -998,19 +964,11 @@ python_ver() {
 	# snapshot for stage3, else packages will break with some python
 	# mismatch error due to Portage using a different version after it
 	# upgraded itself with a newer Python
-	if [[ ${CHOST} == *-cygwin* ]] ; then
-	  echo 3.9   # keep this number in line with PV below for stage1,2
-	else
-	  echo 3.11   # keep this number in line with PV below for stage1,2
-	fi
+	echo 3.11   # keep this number in line with PV below for stage1,2
 }
 
 bootstrap_python() {
-	if [[ ${CHOST} == *-cygwin* ]] ; then
-		PV=$(python_ver).10
-	else
-		PV=$(python_ver).3-gentoo-prefix-patched
-	fi
+	PV=$(python_ver).3-gentoo-prefix-patched
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
 
@@ -1037,39 +995,6 @@ bootstrap_python() {
 	rm -rf Modules/zlib || return 1
 
 	case ${CHOST} in
-	(*-*-cygwin*)
-		local cygpyver pf pn patch_folder
-
-		# ideally the version of python used by bootstrap would be one
-		# that cygwin has packaged if we don't do exact matches on the
-		# version then some patches may not apply cleanly
-
-		cygpyver="3.9.10-1"
-		efetch "https://mirrors.kernel.org/sourceware/cygwin/x86_64/release/python39/python39-${cygpyver}-src.tar.xz" \
-			|| return 1
-		xz -dc "${DISTDIR}"/"python39-${cygpyver}-src.tar.xz" | tar -xf -
-		[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
-		patch_folder="python39-${cygpyver}.src"
-
-		for pf in $(
-			sed -ne '/PATCH_URI="/,/"/{s/.*="//;s/".*$//;p}' \
-				< "${patch_folder}/python39.cygport" \
-				| grep -v rpm-wheels | grep -v revert-bpo
-		); do
-			pf="${patch_folder}/${pf}"
-			for pn in {1..2} fail; do
-				if [[ ${pn} == fail ]]; then
-					eerror "failed to apply ${pf}"
-					return 1
-				fi
-				patch -N -p${pn} -i "${pf}" --dry-run >/dev/null 2>&1 \
-					|| continue
-				echo "applying (-p${pn}) ${pf}"
-				patch -N -p${pn} -i "${pf}" || return 1
-				break
-			done
-		done
-		;;
 	(*-solaris*)
 		# Solaris' host compiler (if old -- 3.4.3) doesn't grok HUGE_VAL,
 		# and barfs on isnan() so patch it out
@@ -1124,12 +1049,6 @@ bootstrap_python() {
 	esac
 
 	case ${CHOST} in
-		*-*-cygwin*)
-			# --disable-shared would link modules against "python.exe"
-			# so renaming to "pythonX.Y.exe" will break them.
-			# And ctypes dynamically loads "libpythonX.Y.dll" anyway.
-			myconf="${myconf} --enable-shared"
-		;;
 		*-linux*)
 			# Bug 382263: make sure Python will know about the libdir in use for
 			# the current arch
@@ -1293,24 +1212,6 @@ bootstrap_zlib_core() {
 	local makeopts=( ${MAKEOPTS} )
 	# 1.2.5 suffers from a concurrency problem
 	[[ ${PV} == 1.2.5 ]] && makeopts=()
-
-	if [[ ${CHOST} == *-cygwin* ]] ; then
-		# gzopen_w is for real _WIN32 only
-		sed -i -e '/gzopen_w/d' win32/zlib.def
-		makeopts=(
-			-f win32/Makefile.gcc
-			SHARED_MODE=1
-			# avoid toolchain finding ./cygz.dll (esp. in parallel build)
-			SHAREDLIB=win32/cygz.dll
-			IMPLIB=libz.dll.a
-			BINARY_PATH="${ROOT}"/tmp/usr/bin
-			INCLUDE_PATH="${ROOT}"/tmp/usr/include
-			LIBRARY_PATH="${ROOT}"/tmp/usr/lib
-			"${makeopts[@]}"
-		)
-		# stage1 python searches for lib/libz.dll
-		ln -sf libz.dll.a "${ROOT}"/tmp/usr/lib/libz.dll
-	fi
 
 	einfo "Compiling ${A%.tar.*}"
 	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
@@ -1766,18 +1667,6 @@ do_emerge_pkgs() {
 			emerge --color n -v --oneshot --root-deps ${opts} "${pkg}"
 		)
 		[[ $? -eq 0 ]] || return 1
-
-		case ${pkg},${CHOST} in
-		app-shells/bash,*-cygwin*)
-			# Cygwin would resolve 'bin/bash' to 'bin/bash.exe', but
-			# merging bin/bash.exe does not replace the bin/bash symlink.
-			# When we can execute both bin/bash and bin/bash.exe, but
-			# they are different files, then we need to drop the symlink.
-			[[ -x ${EPREFIX}/bin/bash && -x ${EPREFIX}/bin/bash.exe &&
-			 !    ${EPREFIX}/bin/bash  -ef  ${EPREFIX}/bin/bash.exe ]] &&
-				rm -f "${EPREFIX}"/bin/bash
-			;;
-		esac
 	done
 }
 
@@ -1862,7 +1751,6 @@ bootstrap_stage2() {
 		sys-devel/gnuconfig
 		sys-apps/gentoo-functions
 		app-portage/elt-patches
-		$([[ ${CHOST} == *-cygwin* ]] && echo dev-libs/libiconv ) # bash dependency
 		sys-libs/ncurses
 		sys-libs/readline
 		app-shells/bash
@@ -2237,7 +2125,6 @@ bootstrap_stage3() {
 		sys-devel/make
 		sys-apps/file
 		app-admin/eselect
-		$( [[ ${CHOST} == *-cygwin* ]] && echo sys-libs/cygwin-crypt )
 	)
 
 	# For grep we need to do a little workaround as we might use llvm-3.4
@@ -2367,63 +2254,6 @@ EOF
 			;;
 	esac
 
-	if [[ ${CHOST} == *-cygwin* ]]; then
-		if [[ -r /var/run/cygfork/. ]]; then
-			cat << EOF
-
-Whoah there, I've found the /var/run/cygfork/ directory.  This makes
-me believe you have a working fork() in your Cygwin instance, which
-seems you really know what I can do for you when you help me out!
-EOF
-		else
-			echo
-			[[ ${TODO} == 'noninteractive' ]] && ans="yes" ||
-			read -p "Are you really, really sure what you want me to do for you? [no] " ans
-			case "${ans}" in
-			[Yy][Ee][Ss]) ;;
-			*)
-				cat << EOF
-
-Puh, I'm glad you agree with me here, thanks!
-EOF
-				exit 1
-				;;
-			esac
-
-			cat << EOF
-
-Well...
-EOF
-			[[ ${TODO} == 'noninteractive' ]] || sleep 1
-			cat << EOF
-
-Nope, seems you aren't: This is Windows after all,
-which I'm traditionally incompatible with!
-EOF
-			[[ ${TODO} == 'noninteractive' ]] || sleep 1
-			cat << EOF
-
-But wait, there might be help!
-EOF
-			[[ ${TODO} == 'noninteractive' ]] || sleep 1
-			cat << EOF
-
-Once upon a time there was a guy, probably as freaky as you, my master.
-And whether you believe or not, he has been able to do something useful
-to Windows, in that he completed a piece of code to support myself.
-
-Although you already use that piece of code - yes, it's called Cygwin,
-you seem to not use this freaky guy's completions yet.
-
-To help me out of the incompatibility hole, please read and follow
-https://wiki.gentoo.org/wiki/Prefix/Cygwin first.
-
-But remember that you won't get support from upstream Cygwin now.
-EOF
-		  exit 1
-		fi
-	fi
-
 	if [[ ${UID} == 0 ]] ; then
 		cat << EOF
 
@@ -2551,10 +2381,6 @@ EOF
 			# Apple ships a broken clang by default, fun!
 			[[ -e /Library/Developer/CommandLineTools/usr/bin/clang ]] \
 				&& PATH="/Library/Developer/CommandLineTools/usr/bin:${PATH}"
-			;;
-		*-cygwin*)
-			# Keep some Windows
-			PATH+=":$(cygpath -S):$(cygpath -W)"
 			;;
 	esac
 
@@ -2689,8 +2515,6 @@ EOF
 	echo
 	local ncpu=
 	case "${CHOST}" in
-		*-cygwin*)
-			ncpu=$(cmd /D /Q /C 'echo %NUMBER_OF_PROCESSORS%' | tr -d "\\r") ;;
 		*-darwin*)
 			ncpu=$(/usr/sbin/sysctl -n hw.ncpu) ;;
 		*-freebsd* | *-openbsd*)
