@@ -1005,7 +1005,10 @@ bootstrap_python() {
 		# OpenIndiana/Solaris 11 defines inet_aton no longer in
 		# libresolv, so use hstrerror to check if we need -lresolv
 		sed -i -e '/AC_CHECK_LIB/s/inet_aton/hstrerror/' \
-			configure || die
+			configure.ac || die
+		# we don't regenerate configure at this point, so just force the
+		# fix result
+		export LIBS="${LIBS} -lresolv"
 		;;
 	(*-darwin9)
 		# Darwin 9's kqueue seems to act up (at least at this stage), so
