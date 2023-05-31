@@ -38,6 +38,17 @@ do_prepare() {
 
 	local chost=$(${BASH} ${bootstrap} chost.guess x)
 	case ${chost} in
+		powerpc*-*darwin*)
+			# ppc64-darwin never really worked for unknown reasons
+			bitw=32
+			;;
+		*-solaris*|*-darwin*)
+			# force 64-bits for these targets, 32-bits is no longer
+			# supported
+			bitw=64
+			;;
+	esac
+	case ${chost} in
 		*86-*)
 			if [[ ${bitw} == 64 ]] ; then
 				chost=x86_64-${chost#*-}
