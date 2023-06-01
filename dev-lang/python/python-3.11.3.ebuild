@@ -70,6 +70,8 @@ RDEPEND="
 		dev-tcltk/tix
 	)
 	!!<sys-apps/sandbox-2.21
+	elibc_Darwin? ( sys-libs/native-uuid )
+	elibc_SunOS? ( sys-libs/libuuid )
 "
 # bluetooth requires headers from bluez
 DEPEND="
