@@ -2842,6 +2842,9 @@ but that failed :(  I have no clue, really.  Please find friendly folks
 in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
 or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 Sorry that I have failed you master.  I shall now return to my humble cave.
+
+  CHOST:     ${CHOST}
+  IDENT:     ${CHOST_IDENTIFY}
 EOF
 			exit 1
 		fi
@@ -2877,6 +2880,9 @@ in #gentoo-prefix on irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list,
 or file a bug at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 Sorry that I have failed you master.  I shall now return to my humble cave.
 You can find a log of what happened in ${EPREFIX}/stage1.log
+
+  CHOST:     ${CHOST}
+  IDENT:     ${CHOST_IDENTIFY}
 EOF
 		exit 1
 	fi
@@ -2928,6 +2934,9 @@ I have no clue, really.  Please find friendly folks in #gentoo-prefix on
 irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
 at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 Remember you might find some clues in ${EPREFIX}/stage2.log
+
+  CHOST:     ${CHOST}
+  IDENT:     ${CHOST_IDENTIFY}
 EOF
 		exit 1
 	fi
@@ -2968,6 +2977,9 @@ irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
 at bugs.gentoo.org under Gentoo/Alt, Prefix Support.  This is most
 inconvenient, and it crushed my ego.  Sorry, I give up.
 Should you want to give it a try, there is ${EPREFIX}/stage3.log
+
+  CHOST:     ${CHOST}
+  IDENT:     ${CHOST_IDENTIFY}
 EOF
 		exit 1
 	fi
@@ -3008,6 +3020,9 @@ irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
 at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
 You know, I got the feeling you just started to like me, but I guess
 that's all gone now.  I'll bother you no longer.
+
+  CHOST:     ${CHOST}
+  IDENT:     ${CHOST_IDENTIFY}
 EOF
 		exit 1
 	fi
@@ -3020,7 +3035,7 @@ Ok, let's be honest towards each other.  If
   $(type -P bash) ${BASH_SOURCE[0]} "${EPREFIX}" startscript
 fails, then who cheated on who?  Either you use an obscure shell, or
 your PATH isn't really sane afterall.  Despite, I can't really
-congratulate you here, you basically made it to the end.
+congratulate you here, but you basically made it to the end.
 Please find friendly folks in #gentoo-prefix on irc.gentoo.org,
 gentoo-alt@lists.gentoo.org mailing list, or file a bug at
 bugs.gentoo.org under Gentoo/Alt, Prefix Support.
@@ -3119,6 +3134,41 @@ if [[ -z ${CHOST} ]]; then
 	fi
 fi
 
+CHOST_IDENTIFY=${CHOST}
+# massage CHOST on Linux systems
+if [[ ${CHOST} == *-linux-* ]] ; then
+	# two choices here: x86_64_ubuntu16-linux-gnu
+	#                   x86_64-pc-linux-ubuntu16
+	# I choose the latter because it is compatible with most
+	# UNIX vendors and it allows to fit RAP into platform
+	dist=$(lsb_release -si)
+	rel=$(lsb_release -sr)
+	if [[ -z ${dist} ]] || [[ -z ${rel} ]] ; then
+		source /etc/os-release  # this may fail if the file isn't there
+		[[ -z ${dist} ]] && dist=${NAME}
+		[[ -z ${dist} ]] && dist=${ID}
+		[[ -z ${rel} ]] && rel=${VERSION_ID}
+
+	fi
+	[[ -z ${dist} ]] && dist=linux
+
+	# Gentoo's versioning isn't really relevant, since it is
+	# a rolling distro
+	if [[ ${dist,,} == "gentoo" ]] ; then
+		rel=
+		[[ ${chost##*-} == "musl" ]] && rel="musl"
+	fi
+
+	# leave rel unset/empty if we don't know about it
+	while [[ ${rel} == *.*.* ]] ; do
+		rel=${rel%.*}
+	done
+
+	platform=${CHOST#*-}; platform=${platform%%-*}
+	platform=$(rapx rap ${platform})
+	CHOST_IDENTIFY=${CHOST%%-*}-${platform}-linux-${dist,,}${rel}
+fi
+
 # Now based on the CHOST set some required variables.  Doing it here
 # allows for user set CHOST still to result in the appropriate variables
 # being set.
@@ -3206,7 +3256,15 @@ case $ROOT in
 	chost.guess)
 		# undocumented feature that sort of is our own config.guess, if
 		# CHOST was unset, it now contains the guessed CHOST
-		echo "$CHOST"
+		echo "${CHOST}"
+		exit 0
+	;;
+	chost.identify)
+		# another undocumented feature, produces a pseudo CHOST that
+		# identifies the system for bootstraps, currently only Linux is
+		# different from CHOST
+
+		echo "${CHOST_IDENTIFY}"
 		exit 0
 	;;
 	/*) ;;
@@ -3219,6 +3277,7 @@ esac
 
 einfo "Bootstrapping Gentoo prefixed portage installation using"
 einfo "host:   ${CHOST}"
+einfo "ident:  ${CHOST_IDENTIFY}"
 einfo "prefix: ${ROOT}"
 
 TODO=${2}

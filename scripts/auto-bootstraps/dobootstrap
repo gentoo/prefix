@@ -143,37 +143,8 @@ do_prepare() {
 	if [[ -n ${DOPUBLISH} ]] ; then
 		echo $((endtime - starttime)) > elapsedtime
 
-		# massage CHOST on Linux systems
-		if [[ ${chost} == *-linux-* ]] ; then
-			# two choices here: x86_64_ubuntu16-linux-gnu
-			#                   x86_64-pc-linux-ubuntu16
-			# I choose the latter because it is compatible with most
-			# UNIX vendors
-			local dist=$(lsb_release -si)
-			local rel=$(lsb_release -sr)
-			if [[ -z ${dist} ]] || [[ -z ${rel} ]] ; then
-				source /etc/os-release  # this may fail if the file isn't there
-				[[ -z ${dist} ]] && dist=${NAME}
-				[[ -z ${dist} ]] && dist=${ID}
-				[[ -z ${rel} ]] && rel=${VERSION_ID}
-
-				# Gentoo's versioning isn't really relevant, since it is
-				# a rolling distro
-				if [[ ${dist,,} == "gentoo" ]] ; then
-					rel=
-					[[ ${chost##*-} == "musl" ]] && rel="musl"
-				fi
-			fi
-			[[ -z ${dist} ]] && dist=linux
-			# leave rel unset/empty if we don't know about it
-			while [[ ${rel} == *.*.* ]] ; do
-				rel=${rel%.*}
-			done
-			local platform=pc
-			# this is the logic used in bootstrap-prefix.sh
-			[[ ${PREFIX_DISABLE_RAP} != "yes" ]] && platform=rap
-			chost=${chost%%-*}-${platform}-linux-${dist,,}${rel}
-		fi
+		# get identification of host that includes Linux distro, RAP, ...
+		chost=$(${BASH} ${bootstrap} chost.identify x)
 
 		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
 		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
