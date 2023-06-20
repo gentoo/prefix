@@ -21,6 +21,9 @@ deprecated_archs = (
         'x86_64-apple-darwin21',
         'arm64-apple-darwin21',
         'x86_64-pc-linux-centos8.3',
+        'x86_64-pc-linux-ubuntu16.04',
+        'x86_64-rap-linux-ubuntu16.04',
+        'x86_64-rap-linux-ubuntu18.04',
 )
 
 def find_last_stage(d):
