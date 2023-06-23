@@ -1490,15 +1490,27 @@ bootstrap_stage1() {
 				# If the version of our binutils an older one, they may not
 				# provide what the system gcc is configured to use.
 				# We need to direct the system gcc to find the system binutils.
+				EXEC="$(PATH="${ORIGINAL_PATH}" type -P gcc)"
+				if [[ -z ${EXEC} ]] ; then
+					eerror "could not find 'gcc' in your PATH!"
+					eerror "please install gcc or provide access via PATH or symlink"
+					return 1
+				fi
 				cat >> "${ROOT}"/tmp/usr/local/bin/gcc <<-EOF
 					#! /bin/sh
 					PATH="${ORIGINAL_PATH}" export PATH
-					exec "$(type -P gcc)" "\$@"
+					exec "${EXEC}" "\$@"
 				EOF
+				EXEC="$(PATH="${ORIGINAL_PATH}" type -P g++)"
+				if [[ -z ${EXEC} ]] ; then
+					eerror "could not find 'g++' in your PATH!"
+					eerror "please install g++ or provide access via PATH or symlink"
+					return 1
+				fi
 				cat >> "${ROOT}"/tmp/usr/local/bin/g++ <<-EOF
 					#! /bin/sh
 					PATH="${ORIGINAL_PATH}" export PATH
-					exec "$(type -P g++)" "\$@"
+					exec "${EXEC}" "\$@"
 				EOF
 				chmod 755 "${ROOT}"/tmp/usr/local/bin/g{cc,++}
 			fi
