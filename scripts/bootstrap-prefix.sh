@@ -872,14 +872,9 @@ bootstrap_gnu() {
 	# care about manpages at this stage
 	export ac_cv_path_POD2MAN=no
 
-	# Darwin9 in particular doesn't compile when using system readline,
-	# but we don't need any groovy input handling at all, so just disable it
-	[[ ${PN} == "bash" ]] && myconf="${myconf} --disable-readline"
-
 	# On e.g. musl systems bash will crash with a malloc error if we use
 	# bash' internal malloc, so disable it during it this stage
-	[[ ${PN} == "bash" ]] && \
-		myconf="${myconf} --without-bash-malloc"
+	[[ ${PN} == "bash" ]] && myconf="${myconf} --without-bash-malloc"
 
 	# Ensure we don't read system-wide shell initialisation, it may
 	# contain cruft, bug #650284
@@ -2187,7 +2182,7 @@ bootstrap_stage3() {
 	# Portage should figure out itself what it needs to do, if anything.
 	einfo "running emerge -uDNv system"
 	estatus "stage3: emerge -uDNv system"
-	unset CFLAGS CXXFLAGS CPPFLAGS
+	unset CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
 	emerge --color n -uDNv system || return 1
 
 	# Remove anything that we don't need (compilers most likely)
