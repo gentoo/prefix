@@ -959,11 +959,19 @@ python_ver() {
 	# snapshot for stage3, else packages will break with some python
 	# mismatch error due to Portage using a different version after it
 	# upgraded itself with a newer Python
-	echo 3.11   # keep this number in line with PV below for stage1,2
+	if [[ ${CHOST} == *-darwin9 ]] ; then
+		echo 3.10  # last known version to compile
+		export PYTHON_FULL_VERSION=3.10.4
+	else
+		echo 3.11
+		export PYTHON_FULL_VERSION="3.11.3-gentoo-prefix-patched"
+	fi
+	# keep this number in line with PV below for stage1,2
 }
 
 bootstrap_python() {
-	PV=$(python_ver).3-gentoo-prefix-patched
+	python_ver  # to get full version
+	PV=${PYTHON_FULL_VERSION}
 	A=Python-${PV}.tar.xz
 	einfo "Bootstrapping ${A%.tar.*}"
 
@@ -1013,8 +1021,8 @@ bootstrap_python() {
 			-e 's/KQUEUE/KQUEUE_DISABLED/' \
 			configure
 		# fixup thread id detection (only needed on vanilla Python tar)
-		#efetch "https://dev.gentoo.org/~sam/distfiles/dev-lang/python/python-3.9.6-darwin9_pthreadid.patch"
-		#patch -p1 < "${DISTDIR}"/python-3.9.6-darwin9_pthreadid.patch
+		efetch "https://dev.gentoo.org/~sam/distfiles/dev-lang/python/python-3.9.6-darwin9_pthreadid.patch"
+		patch -p1 < "${DISTDIR}"/python-3.9.6-darwin9_pthreadid.patch
 		;;
 	(*-openbsd*)
 		# OpenBSD is not a multilib system
