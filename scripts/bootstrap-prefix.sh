@@ -2190,7 +2190,7 @@ bootstrap_stage3() {
 	# Portage should figure out itself what it needs to do, if anything.
 	einfo "running emerge -uDNv system"
 	estatus "stage3: emerge -uDNv system"
-	unset CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
+	unset CFLAGS CXXFLAGS CPPFLAGS
 	emerge --color n -uDNv system || return 1
 
 	# Remove anything that we don't need (compilers most likely)
