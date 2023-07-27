@@ -1972,9 +1972,11 @@ bootstrap_stage3() {
 
 	# pre_emerge_pkgs relies on stage 2 portage.
 	pre_emerge_pkgs() {
-		is-rap \
-			&& without_stack_emerge_pkgs "$@" \
-			|| with_stack_emerge_pkgs "$@"
+		if is-rap; then
+			without_stack_emerge_pkgs "$@"
+		else
+			with_stack_emerge_pkgs "$@"
+		fi
 	}
 
 	# Some packages fail to properly depend on sys-apps/texinfo.
