@@ -1898,10 +1898,25 @@ bootstrap_stage2_log() {
 bootstrap_stage3() {
 	export PORTAGE_CONFIGROOT="${ROOT}"
 
+	# We need the stage2 in PATH for bootstrapping.  We rely on
+	# emerge running on some benign package before running anything
+	# that would rely on 98stage2 coming before 99host
+	mkdir -p "${ROOT}"/etc/env.d/
+	cat > "${ROOT}"/etc/env.d/98stage2 <<-EOF
+		PATH="$(unset PATH;
+			source "${ROOT}"/tmp/etc/profile.env;
+			echo "$PATH")"
+	EOF
+
 	if ! type -P emerge > /dev/null ; then
 		eerror "emerge not found, did you bootstrap stage1?"
 		return 1
 	fi
+
+	# At this point, we should have a proper GCC, and don't need to
+	# rely on the system wrappers.  Let's get rid of them, so that
+	# they stop mucking up builds.
+	rm -f "${ROOT}"/tmp/usr/local/bin/*
 
 	configure_toolchain || return 1
 
@@ -2203,6 +2218,10 @@ bootstrap_stage3() {
 	# "wipe" mtimedb such that the resume list is proper after this stage
 	# (--depclean may fail, which is ok)
 	sed -i -e 's/resume/cleared/' "${ROOT}"/var/cache/edb/mtimedb
+
+	# Remove the stage2 hack from above.  A future emerge run will
+	# get env-update to happen.
+	rm "${ROOT}"/etc/env.d/98stage2
 
 	estatus "stage3 finished"
 	einfo "stage3 successfully finished"
