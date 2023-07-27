@@ -2045,6 +2045,7 @@ bootstrap_stage3() {
 		fi
 
 		pkgs=(
+			sys-devel/gnuconfig
 			sys-apps/baselayout
 			sys-apps/gentoo-functions
 			app-portage/elt-patches
@@ -2085,6 +2086,7 @@ bootstrap_stage3() {
 		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	else
 		pkgs=(
+			sys-devel/gnuconfig
 			sys-apps/gentoo-functions
 			app-portage/elt-patches
 			app-arch/xz-utils
