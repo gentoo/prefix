@@ -271,8 +271,11 @@ START=$(date +%s)
 
 echo "($(date +"%F %R")) signing Manifest"
 
-# we will generate thick manifests, so ensure Portage knows that
-sed -i -e '/^thin-manifests/s/true/false/' "${RSYNCDIR}"/metadata/layout.conf
+# we will generate thick manifests, so ensure Portage knows that.
+# add a "gentoo" alias for compatibility, bug #911543.
+sed -e '/^thin-manifests/s/true/false/' \
+    -e '$arepo-name = gentoo_prefix\naliases = gentoo' \
+    -i "${RSYNCDIR}"/metadata/layout.conf
 
 # generate Thick Manifests
 # Signing is done with our snapshot signing key, and only on the top
