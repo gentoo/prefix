@@ -9,7 +9,7 @@ DESCRIPTION="Tools necessary to build programs"
 HOMEPAGE="https://sourceware.org/binutils/"
 
 LICENSE="GPL-3+"
-IUSE="cet doc gold gprofng multitarget +nls pgo +plugins static-libs test vanilla zstd"
+IUSE="cet debuginfod doc gold gprofng multitarget +nls pgo +plugins static-libs test vanilla zstd"
 
 # Variables that can be set here  (ignored for live ebuilds)
 # PATCH_VER          - the patchset version
@@ -19,7 +19,7 @@ IUSE="cet doc gold gprofng multitarget +nls pgo +plugins static-libs test vanill
 # PATCH_DEV          - Use download URI https://dev.gentoo.org/~{PATCH_DEV}/distfiles/...
 #                      for the patchsets
 
-PATCH_VER=2
+PATCH_VER=7
 PATCH_DEV=dilfridge
 
 if [[ ${PV} == 9999* ]]; then
@@ -52,6 +52,9 @@ is_cross() { [[ ${CHOST} != ${CTARGET} ]] ; }
 RDEPEND="
 	>=sys-devel/binutils-config-3
 	sys-libs/zlib
+	debuginfod? (
+		dev-libs/elfutils[debuginfod(-)]
+	)
 	zstd? ( app-arch/zstd:= )
 "
 DEPEND="${RDEPEND}"
@@ -253,6 +256,11 @@ src_configure() {
 		--libdir="${EPREFIX}"${LIBPATH}
 		--libexecdir="${EPREFIX}"${LIBPATH}
 		--includedir="${EPREFIX}"${INCPATH}
+		# portage's econf() does not detect presence of --d-d-t
+		# because it greps only top-level ./configure. But not
+		# libiberty's or bfd's configure.
+		--disable-dependency-tracking
+		--disable-silent-rules
 		--enable-obsolete
 		--enable-shared
 		--enable-threads
@@ -336,11 +344,11 @@ src_compile() {
 	cd "${MY_BUILDDIR}" || die
 
 	# see Note [tooldir hack for ldscripts]
-	emake V=1 tooldir="${EPREFIX}${TOOLPATH}" all
+	emake tooldir="${EPREFIX}${TOOLPATH}" all
 
 	# only build info pages if the user wants them
 	if use doc ; then
-		emake V=1 info
+		emake info
 	fi
 
 	# we nuke the manpages when we're left with junk
@@ -354,7 +362,7 @@ src_test() {
 	# bug #637066
 	filter-flags -Wall -Wreturn-type
 
-	emake -k V=1 check
+	emake -k check
 }
 
 src_install() {
@@ -363,7 +371,7 @@ src_install() {
 	cd "${MY_BUILDDIR}" || die
 
 	# see Note [tooldir hack for ldscripts]
-	emake V=1 DESTDIR="${D}" tooldir="${EPREFIX}${LIBPATH}" install
+	emake DESTDIR="${D}" tooldir="${EPREFIX}${LIBPATH}" install
 	rm -rf "${ED}"/${LIBPATH}/bin || die
 	use static-libs || find "${ED}" -name '*.la' -delete
 
