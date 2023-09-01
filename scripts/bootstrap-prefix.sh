@@ -546,11 +546,12 @@ do_tree() {
 		# latest tree cannot be fetched from mirrors, always have to
 		# respect the source to get the latest
 		if [[ -n ${LATEST_TREE_YES} ]] ; then
-			echo "$1"
 			( export GENTOO_MIRRORS= DISTFILES_G_O= DISTFILES_PFX= ;
 			  efetch "$1/$2" ) || return 1
 		else
-			efetch "$1/$2" || return 1
+			# use only Prefix mirror
+			( export GENTOO_MIRRORS= DISTFILES_G_O= ;
+			  efetch "$1/$2" ) || return 1
 		fi
 		einfo "Unpacking, this may take a while"
 		estatus "stage1: unpacking Portage tree"
