@@ -990,6 +990,7 @@ toolchain_src_configure() {
 			nvptx*)
 				# "LTO is not supported for this target"
 				confgcc+=( --disable-lto )
+				;;
 			# Prefix targets
 			*-apple-darwin*)
 				confgcc+=( --with-sysroot="${EPREFIX}${PREFIX}/${CTARGET}" )
