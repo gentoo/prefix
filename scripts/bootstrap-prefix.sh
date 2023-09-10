@@ -155,31 +155,13 @@ configure_toolchain() {
 	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
 	compiler_type="gcc"
-	case ${CHOST} in
-	*-darwin*)
-	  # handled below
-	  ;;
-	*-freebsd* | *-openbsd*)
-	  # comes with clang, handled below
-	  ;;
-	*)
-	  # The host may not have a functioning c++ toolchain, so use a
-	  # stage1 compiler that can build with C only.
-	  # But gcc-4.7 fails to build with gcc-5.4, so we check for
-	  # >gcc-4.7, as anything newer provides c++ anyway (#619542).
-	  # gcc-4.7 is the last version not to require a c++ compiler to
-	  # build
-	  eval $( (gcc -E - | grep compiler_stage1) <<-EOP
-		#if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ > 7))
-		  compiler_stage1+=" sys-devel/gcc"
-		#elif defined(__GNUC__) && __GNUC__ >= 4
-		  compiler_stage1+=" <sys-devel/gcc-4.8"
-		#else
-		  compiler_stage1+=" <sys-devel/gcc-4.7"
-		#endif
-		EOP
-	  )
-	esac
+
+	# The host may not have a functioning C++ toolchain, but all
+	# compilers available to us require C++ to build.  The last known
+	# version not to require C++ is gcc-4.7.
+	# We can bootstrap 4.7 in stage1 perhaps if we find envs that do
+	# not have a functioning C++ toolchain, but for now we assume this
+	# is not a problem.
 
 	CC=gcc
 	CXX=g++
@@ -1765,8 +1747,9 @@ bootstrap_stage2() {
 
 	# Disable RAP directory hacks of binutils and gcc.  If libc.so
 	# linker script provides no hint of ld-linux*.so*, ld should
-	# look into its default library path.  Prefix library pathes
+	# look into its default library path.  Prefix library paths
 	# are taken care of by LDFLAGS in configure_cflags().
+	# see profiles/features/prefix/standalone/profile.bashrc
 	export BOOTSTRAP_RAP_STAGE2=yes
 
 	# Build a basic compiler and portage dependencies in $ROOT/tmp.
@@ -1788,15 +1771,6 @@ bootstrap_stage2() {
 		sys-devel/patch
 		sys-devel/binutils-config
 	)
-
-	# Old versions of gcc has been masked.  We need gcc-4.7 to bootstrap
-	# on systems without a c++ compiler.
-	echo '<sys-devel/gcc-4.8' >> "${ROOT}"/tmp/etc/portage/package.unmask
-
-	# libffi-3.0_rc0 has broken Solaris ld support, which we still
-	# use at this stage (host compiler)
-	[[ ${CHOST} == *-solaris* ]] && echo "=dev-libs/libffi-3.3_rc0" \
-		>> "${ROOT}"/tmp/etc/portage/package.mask
 
 	# provide active SDK link on Darwin
 	if [[ ${CHOST} == *-darwin* ]] ; then
@@ -1952,6 +1926,10 @@ bootstrap_stage3() {
 		echo ${l}
 	}
 
+	# Remember: binutils-config and gcc were built in ROOT/tmp, so they
+	# are looking for includes and libraries under ROOT/tmp, *NOT* ROOT,
+	# therefore we need to export search paths for ROOT (the final
+	# destination Prefix) here until we've installed the toolchain
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	[[ ${compiler_type} == gcc ]] && \
 		export CPPFLAGS="-isystem ${ROOT}/usr/include"
@@ -1977,6 +1955,10 @@ bootstrap_stage3() {
 		do_emerge_pkgs "$@"
 	}
 
+	# retained in case we *do* need this, but using this will cause
+	# packages installed end up in ROOT/tmp, which means we keep using
+	# stage2 area and config which breaks things like binutils-config'
+	# path search, so don't use this
 	with_stack_emerge_pkgs() {
 		# keep FEATURES=stacked-prefix until we bump portage in stage1
 		FEATURES="${FEATURES} stacked-prefix" \
@@ -1985,18 +1967,11 @@ bootstrap_stage3() {
 		emerge_pkgs "$@"
 	}
 
-	without_stack_emerge_pkgs() {
+	# pre_emerge_pkgs relies on stage 2 portage, but installs into the
+	# final destination Prefix
+	pre_emerge_pkgs() {
 		PORTAGE_OVERRIDE_EPREFIX="${ROOT}" \
 		emerge_pkgs "$@"
-	}
-
-	# pre_emerge_pkgs relies on stage 2 portage.
-	pre_emerge_pkgs() {
-		if is-rap; then
-			without_stack_emerge_pkgs "$@"
-		else
-			with_stack_emerge_pkgs "$@"
-		fi
 	}
 
 	# Some packages fail to properly depend on sys-apps/texinfo.
@@ -2148,7 +2123,7 @@ bootstrap_stage3() {
 		ln -s bash "${ROOT}"/bin/sh
 	fi
 
-	# Start using apps from new target
+	# Start using apps from the final destination Prefix
 	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
 
 	# Get a sane bash, overwriting tmp symlinks
@@ -2214,7 +2189,6 @@ bootstrap_stage3() {
 	# Portage should figure out itself what it needs to do, if anything.
 	einfo "running emerge -uDNv system"
 	estatus "stage3: emerge -uDNv system"
-	unset CFLAGS CXXFLAGS CPPFLAGS
 	emerge --color n -uDNv system || return 1
 
 	# Remove anything that we don't need (compilers most likely)
