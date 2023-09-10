@@ -86,6 +86,10 @@ src_prepare() {
 		# situation is tricky and needs careful considerations.
 		# For now, just disable support for "-stdlib=libc++".
 		eapply "${FILESDIR}"/gcc-12.2.0-disable-stdlib-option-on-darwin.patch
+
+		# our ld64 is a slight bit different, so tweak expression to not
+		# get confused and break the build
+		sed -i -e 's/grep ld64/grep :ld64/' gcc/configure || die
 	fi
 }
 
