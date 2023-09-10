@@ -2163,7 +2163,7 @@ bootstrap_stage3() {
 		sys-apps/portage
 	)
 
-	without_stack_emerge_pkgs "" "${pkgs[@]}" || return 1
+	pre_emerge_pkgs "" "${pkgs[@]}" || return 1
 
 	# Switch to the proper portage.
 	hash -r
