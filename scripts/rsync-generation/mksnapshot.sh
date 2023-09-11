@@ -21,7 +21,9 @@ BOOTSTRAP_SNAPSHOT=$( \
 	grep -A1 MKSNAPSHOT-ANCHOR "${RSYNCTREE}"/scripts/bootstrap-prefix.sh | \
 	sed -n 's/^.*PV="\([0-9]\+\)"\s*$/portage-\1.tar.bz2/p' \
 )
-curl -s -L "https://distfiles.prefix.bitzolder.nl/prefix/distfiles/${BOOTSTRAP_SNAPSHOT}" > "${BOOTSTRAP_SNAPSHOT}"
+if [[ ! -s "${BOOTSTRAP_SNAPSHOT}" ]] ; then
+	curl -s -L "https://distfiles.prefix.bitzolder.nl/prefix/distfiles/${BOOTSTRAP_SNAPSHOT}" > "${BOOTSTRAP_SNAPSHOT}"
+fi
 
 rm -Rf ${TMPDIR}
 mkdir -p ${TMPDIR}
