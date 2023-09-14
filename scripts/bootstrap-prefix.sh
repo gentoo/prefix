@@ -162,6 +162,10 @@ configure_toolchain() {
 	# We can bootstrap 4.7 in stage1 perhaps if we find envs that do
 	# not have a functioning C++ toolchain, but for now we assume this
 	# is not a problem.
+	# On top of this since gcc-11, C++11 is necessary.  This was
+	# introduced in gcc-4.8, but apparently gcc-5 is still buildable
+	# with Apple's gcc-apple-4.0.1, so that's a good candidate
+	# The Prefix tree only contains gcc-12 as of this writing.
 
 	CC=gcc
 	CXX=g++
@@ -198,15 +202,11 @@ configure_toolchain() {
 					return 1
 					;;
 			esac
-			if [[ ${isgcc} == true ]] ; then
-				# current compiler (gcc-11) requires C++11, which is
-				# available since 4.8, so need to bootstrap with <11
-				compiler_stage1+=" <sys-devel/gcc-11"
-				compiler="${compiler%sys-devel/gcc} <sys-devel/gcc-11"
-			else
-				# assume LLVM/Clang has C++11 support
-				compiler_stage1+=" sys-devel/gcc"
-			fi
+			# current compiler (gcc-12) requires C++11, which is
+			# available since 4.8, but we don't have versions in the
+			# tree any more to bootstrap up to this -- so fail
+			# FIXME: should probably stage1 bootstrap GCC-5 or something
+			compiler_stage1+=" sys-devel/gcc"
 			;;
 		*-darwin*)
 			einfo "Triggering Darwin with LLVM/Clang toolchain"
@@ -248,24 +248,12 @@ configure_toolchain() {
 				sys-devel/llvm
 				sys-devel/clang"
 			;;
-		*-freebsd* | *-openbsd*)
-			CC=clang
-			CXX=clang++
-			# TODO: target clang toolchain someday?
-			;;
-		*-solaris*)
-			local ccvers="$(unset CHOST; gcc --version 2>/dev/null)"
-			case "${ccvers}" in
-				*"gcc (GCC) 3.4.3"*)
-					# host compiler doesn't cope with the asm introduced
-					# in mpfr-4, so force using an older one during
-					# bootstrap for this target
-					compiler_stage1=${compiler_stage1/" dev-libs/mpfr "/" <dev-libs/mpfr-4 "}
-					;;
-			esac
-			;;
 		*-linux*)
 			is-rap && einfo "Triggering Linux RAP bootstrap"
+			compiler_stage1+=" sys-devel/gcc"
+			;;
+		*)
+			compiler_stage1+=" sys-devel/gcc"
 			;;
 	esac
 
