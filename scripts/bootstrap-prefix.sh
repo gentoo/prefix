@@ -3138,8 +3138,8 @@ if [[ ${CHOST} == *-linux-* ]] ; then
 	rel=$(lsb_release -sr)
 	if [[ -z ${dist} ]] || [[ -z ${rel} ]] ; then
 		source /etc/os-release  # this may fail if the file isn't there
-		[[ -z ${dist} ]] && dist=${NAME}
 		[[ -z ${dist} ]] && dist=${ID}
+		[[ -z ${dist} ]] && dist=${NAME}
 		[[ -z ${rel} ]] && rel=${VERSION_ID}
 
 	fi
