@@ -2028,6 +2028,18 @@ bootstrap_stage3() {
 		grep -q 'esac' "${ROOT}"/usr/bin/rsync && \
 			rm "${ROOT}"/usr/bin/rsync
 
+		# sys-apps/baselayout will install a dummy openrc-run wrapper
+		# for any package that installs an init.d script, like rsync and
+		# python will need openrc-run to exist, else we'll die with a QA
+		# error, bug #858596.  However it only does this for
+		# prefix-guest, so NOT For RAP, which results in bug #913856.
+		if [[ ! -x "${ROOT}"/sbin/openrc-run ]]; then
+			[[ -e "${ROOT}"/sbin ]] || mkdir -p "${ROOT}"/sbin
+			echo "We need openrc-run at ${ROOT}/sbin to merge some packages." \
+				> "${ROOT}"/sbin/openrc-run
+			chmod +x "${ROOT}"/sbin/openrc-run
+		fi
+
 		pkgs=(
 			sys-devel/binutils-config
 			sys-libs/zlib
@@ -2138,12 +2150,6 @@ bootstrap_stage3() {
 	ac_cv_c_decl_report=warning \
 	TIME_T_32_BIT_OK=yes \
 	pre_emerge_pkgs "" "${pkgs[@]}" || return 1
-
-	if [[ ! -x "${ROOT}"/sbin/openrc-run ]]; then
-		echo "We need openrc-run at ${ROOT}/sbin to merge rsync." \
-			> "${ROOT}"/sbin/openrc-run
-		chmod +x "${ROOT}"/sbin/openrc-run
-	fi
 
 	pkgs=(
 		virtual/os-headers
@@ -3141,7 +3147,6 @@ if [[ ${CHOST} == *-linux-* ]] ; then
 		[[ -z ${dist} ]] && dist=${ID}
 		[[ -z ${dist} ]] && dist=${NAME}
 		[[ -z ${rel} ]] && rel=${VERSION_ID}
-
 	fi
 	[[ -z ${dist} ]] && dist=linux
 
