@@ -207,6 +207,7 @@ main(int argc, char *argv[])
 	char *ld = ldbuf;
 	char ctarget[128];
 	char *darwin_dt = getenv("MACOSX_DEPLOYMENT_TARGET");
+	int darwin_dt_ver = 0;
 	char is_cross = 0;
 	char is_darwin = 0;
 	char darwin_use_rpath = 1;
@@ -293,8 +294,12 @@ main(int argc, char *argv[])
 				newargc++;
 			if (argv[i][1] == 'v' || argv[i][1] == 'V')
 				verbose = 1;
-			if (strcmp(argv[i], "-macosx_version_min") == 0 && i < argc - 1)
+			if ((strcmp(argv[i], "-macosx_version_min") == 0 ||
+				 strcmp(argv[i], "-macos_version_min") == 0) && i < argc - 1)
 				darwin_dt = argv[i + 1];
+			if (strcmp(argv[i], "-platform_version") == 0 &&
+				i < argc - 3 && strcmp(argv[i + 1], "macos") == 0)
+				darwin_dt = argv[i + 2];
 			/* ld64 will refuse to accept -rpath if any of the
 			 * following options are given */
 			if (strcmp(argv[i], "-static") == 0 ||
@@ -304,6 +309,12 @@ main(int argc, char *argv[])
 					strcmp(argv[i], "-kext") == 0)
 				darwin_use_rpath = 0;
 		}
+	}
+
+	if (is_darwin && darwin_dt != NULL) {
+		darwin_dt_ver = (int)strtol(darwin_dt, &p, 10) * 100;
+		if (*p == '.')
+			darwin_dt_ver += (int)strtol(p + 1, &p, 10);
 	}
 
 	/* Note: Code below assumes that newargc is the count of -L arguments. */
@@ -325,10 +336,7 @@ main(int argc, char *argv[])
 				 * parsing at dots. darwin_dt != NULL isn't
 				 * just for safety: ld64 also refuses -rpath
 				 * when not given a deployment target at all */
-				darwin_use_rpath = darwin_dt != NULL &&
-					(atoi(darwin_dt) > 10 ||
-					 (strncmp(darwin_dt, "10.", 3) == 0 &&
-					  atoi(darwin_dt + 3) >= 5));
+				darwin_use_rpath = darwin_dt_ver >= 1005;
 			}
 
 			if (darwin_use_rpath) {
@@ -345,8 +353,8 @@ main(int argc, char *argv[])
 			newargc += 2 + 1;
 
 #ifdef DARWIN_LD_SYSLIBROOT
-			/* add -syslibroot <path> -sdk_version <ver> */
-			newargc += 4;
+			/* add -syslibroot <path> -platform_version macos <ver> 0.0 */
+			newargc += 6;
 #endif
 		} else {
 			/* add the 4 paths we want (-L + -R) */
@@ -393,8 +401,17 @@ main(int argc, char *argv[])
 		 * version here, for the sdk link can be versionless when set to
 		 * CommandLineTools */
 #ifdef DARWIN_LD_SYSLIBROOT
-		newargv[j++] = "-sdk_version";
-		newargv[j++] = darwin_dt;
+		/* bug #910277: transform into platform_version arg for newer
+		 * targets */
+		if (darwin_dt_ver >= 1200) {
+			newargv[j++] = "-platform_version";
+			newargv[j++] = "macos";
+			newargv[j++] = darwin_dt;
+			newargv[j++] = "0.0";
+		} else {
+			newargv[j++] = "-sdk_version";
+			newargv[j++] = darwin_dt;
+		}
 		newargv[j++] = "-syslibroot";
 		newargv[j++] = EPREFIX "/MacOSX.sdk";
 #endif
@@ -405,6 +422,26 @@ main(int argc, char *argv[])
 	/* position k right after the original arguments */
 	k = j - 1 + argc;
 	for (i = 1; i < argc; i++, j++) {
+#ifdef DARWIN_LD_SYSLIBROOT
+		if (is_darwin) {
+			/* skip platform version stuff, we already pushed it out */
+			if ((strcmp(argv[i], "-macosx_version_min") == 0 ||
+				 strcmp(argv[i], "-macos_version_min") == 0) && i < argc - 1)
+			{
+				i++;
+				j--;
+				continue;
+			}
+			if (strcmp(argv[i], "-platform_version") == 0 &&
+				i < argc - 3 && strcmp(argv[i + 1], "macos") == 0)
+			{
+				i += 3;
+				j--;
+				continue;
+			}
+		}
+#endif
+
 		newargv[j] = argv[i];
 
 		if (is_cross || (is_darwin && !darwin_use_rpath))
@@ -487,7 +524,10 @@ main(int argc, char *argv[])
 	if (verbose) {
 		fprintf(stderr, "%s: invoking %s with arguments:\n", wrapper, ld);
 		for (j = 0; newargv[j] != NULL; j++)
-			fprintf(stderr, "  %s\n", newargv[j]);
+			fprintf(stderr, "  %s%s",
+					newargv[j],
+					newargv[j + 1] != NULL && newargv[j + 1][0] != '-'
+					? "" : "\n");
 	}
 
 	/* finally, execute the real ld */
