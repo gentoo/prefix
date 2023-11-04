@@ -305,7 +305,7 @@ bootstrap_setup() {
 
 	if is-rap ; then
 		if [[ ! -f ${ROOT}/etc/passwd ]]; then
-			if grep -q $(id -un) /etc/passwd; then
+			if grep -q "^$(id -un):" /etc/passwd; then
 				ln -sf {,"${ROOT}"}/etc/passwd
 			else
 				getent passwd > "${ROOT}"/etc/passwd
@@ -314,7 +314,7 @@ bootstrap_setup() {
 			fi
 		fi
 		if [[ ! -f ${ROOT}/etc/group ]]; then
-			if grep -q $(id -gn) /etc/group; then
+			if grep -q "^$(id -gn):" /etc/group; then
 				ln -sf {,"${ROOT}"}/etc/group
 			else
 				getent group > "${ROOT}"/etc/group
