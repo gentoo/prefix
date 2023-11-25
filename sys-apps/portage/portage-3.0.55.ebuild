@@ -73,7 +73,7 @@ RDEPEND="
 	>=sys-apps/findutils-4.4
 	!build? (
 		>=app-admin/eselect-1.2
-		app-portage/getuto
+		!prefix? ( app-portage/getuto )
 		>=app-shells/bash-5.0:0
 		>=sec-keys/openpgp-keys-gentoo-release-20230329
 		>=sys-apps/sed-4.0.5
