@@ -70,7 +70,7 @@ RDEPEND="
 	>=app-misc/pax-utils-0.1.17
 	dev-lang/python-exec:2
 	>=sys-apps/baselayout-2.9
-	>=sys-apps/findutils-4.4
+	>=sys-apps/findutils-4.9
 	!build? (
 		>=app-admin/eselect-1.2
 		!prefix? ( app-portage/getuto )
@@ -83,7 +83,7 @@ RDEPEND="
 		)
 	)
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
-	elibc_musl? ( >=sys-apps/sandbox-2.2 )
+	elibc_musl? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
 	kernel_linux? ( sys-apps/util-linux )
 	selinux? ( >=sys-libs/libselinux-2.0.94[python,${PYTHON_USEDEP}] )
 	xattr? ( kernel_linux? (
@@ -126,7 +126,6 @@ src_prepare() {
 			-i cnf/repos.conf || die "sed failed"
 
 		# PREFIX LOCAL: only hack const_autotool
-		local extrapath="/usr/sbin:/usr/bin:/sbin:/bin"
 		# ok, we can't rely on PORTAGE_ROOT_USER being there yet, as people
 		# tend not to update that often, as long as we are a separate ebuild
 		# we can assume when unset, it's time for some older trick
@@ -141,36 +140,39 @@ src_prepare() {
 		[[ ! -x ${bash} ]] && bash=${BASH}
 
 		einfo "Adjusting sources for ${EPREFIX}"
-		find . -type f -exec \
 		sed -e "s|@PORTAGE_EPREFIX@|${EPREFIX}|" \
 			-e "s|@PORTAGE_MV@|$(type -P mv)|" \
 			-e "s|@PORTAGE_BASH@|${bash}|" \
-			-e "s|@PREFIX_PORTAGE_PYTHON@|$(type -P python)|" \
-			-e "s|@EXTRA_PATH@|${extrapath}|" \
 			-e "s|@portagegroup@|${PORTAGE_GROUP:-portage}|" \
 			-e "s|@portageuser@|${PORTAGE_USER:-portage}|" \
 			-e "s|@rootuser@|${PORTAGE_ROOT_USER:-root}|" \
 			-e "s|@rootuid@|$(id -u ${PORTAGE_ROOT_USER:-root})|" \
 			-e "s|@rootgid@|$(id -g ${PORTAGE_ROOT_USER:-root})|" \
 			-e "s|@sysconfdir@|${EPREFIX}/etc|" \
-			-e "1s|/usr/bin/env |${EPREFIX}/usr/bin/|" \
-			-i '{}' + || \
-			die "Failed to patch sources"
+			-i \
+			lib/portage/const_autotool.py cnf/make.globals \
+			|| die "Failed to patch sources"
+
+		sed -e "s|@PREFIX_PORTAGE_PYTHON@|$(type -P python)|" \
+			-i \
+			bin/ebuild-helpers/dohtml bin/ebuild-pyhelper \
+			bin/misc-functions.sh bin/phase-functions.sh \
+			|| die "Failed to patch sources"
 
 		# remove Makefiles, or else they will get installed
-		find . -name "Makefile.*" -delete
+		#find . -name "Makefile.*" -delete
 
-		einfo "Prefixing shebangs ..."
-		find . -type f ! -name etc-update | \
-		while read -r line; do
-			[[ -x ${line} || ${line} == *".py" ]] || continue;
-			local shebang=$(head -n1 "${line}")
-			if [[ ${shebang} == "#!"* && ! ${shebang} == "#!${EPREFIX}/"* ]] ;
-			then
-				sed -i -e "1s:.*:#!${EPREFIX}${shebang:2}:" "${line}" || \
-					die "sed failed"
-			fi
-		done
+#		einfo "Prefixing shebangs ..."
+#		find . -type f ! -name etc-update | \
+#		while read -r line; do
+#			[[ -x ${line} || ${line} == *".py" ]] || continue;
+#			local shebang=$(head -n1 "${line}")
+#			if [[ ${shebang} == "#!"* && ! ${shebang} == "#!${EPREFIX}/"* ]] ;
+#			then
+#				sed -i -e "1s:.*:#!${EPREFIX}${shebang:2}:" "${line}" || \
+#					die "sed failed"
+#			fi
+#		done
 
 		einfo "Setting gentoo_prefix as reponame for emerge-webrsync"
 		sed -i -e 's/repo_name=gentoo/repo_name=gentoo_prefix/' \
