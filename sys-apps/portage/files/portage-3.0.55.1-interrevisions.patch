@@ -1,11 +1,11 @@
-https://bugs.gentoo.org/832062
+https://bugs.gentoo.org/918717
 
-add (back) inter-revision support for Prefix Portage
+allow r0X.Y revision numbers in prefix
 
 --- a/lib/portage/versions.py
 +++ b/lib/portage/versions.py
 @@ -53,7 +53,9 @@
- }
+ _pkg = r"[\w+][\w+-]*?"
  
  _v = r"(\d+)((\.\d+)*)([a-z]?)((_(pre|p|beta|alpha|rc)\d*)*)"
 -_rev = r"\d+"
@@ -14,8 +14,8 @@ add (back) inter-revision support for Prefix Portage
 +# END_PREFIX_LOCAL
  _vr = _v + "(-r(" + _rev + "))?"
  
- _cp = {
-@@ -287,15 +289,47 @@
+ _cp = "(" + _cat + "/" + _pkg + "(-" + _vr + ")?)"
+@@ -252,15 +254,47 @@
              if rval:
                  return rval
  
