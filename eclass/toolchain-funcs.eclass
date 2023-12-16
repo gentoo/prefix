@@ -689,6 +689,7 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 	case ${host} in
 		powerpc-apple-darwin*)    echo ppc-macos;;
 		x86_64-apple-darwin*)     echo x64-macos;;
+		arm64-apple-darwin*)      echo arm64-macos;;
 		sparc-sun-solaris*)       echo sparc-solaris;;
 		sparcv9-sun-solaris*)     echo sparc64-solaris;;
 		i?86-pc-solaris*)         echo x86-solaris;;
