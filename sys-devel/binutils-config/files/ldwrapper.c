@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2021 Gentoo Authors
+ * Copyright 1999-2023 Gentoo Authors
  * Distributed under the terms of the GNU General Public License v2
  * Authors: Fabian Groffen <grobian@gentoo.org>
  *          Michael Haubenwallner <haubi@gentoo.org>
@@ -430,6 +430,7 @@ main(int argc, char *argv[])
 			{
 				i++;
 				j--;
+				k -= 2;
 				continue;
 			}
 			if (strcmp(argv[i], "-platform_version") == 0 &&
@@ -437,6 +438,7 @@ main(int argc, char *argv[])
 			{
 				i += 3;
 				j--;
+				k -= 4;
 				continue;
 			}
 		}
