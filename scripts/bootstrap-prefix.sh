@@ -359,8 +359,9 @@ bootstrap_profile() {
 			profile="prefix/darwin/macos/10.$((rev - 4))/ppc"
 			;;
 		i*86-apple-darwin1[578])
-			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
+			eerror "REMOVED ARCH: this 32-bit MacOS architecture was removed,"
+			eerror "bootstrapping is impossible"
+			exit 1
 			;;
 		x86_64-apple-darwin1[5789])
 			rev=${CHOST##*darwin}
