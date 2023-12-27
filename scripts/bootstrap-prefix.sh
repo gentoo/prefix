@@ -407,7 +407,8 @@ bootstrap_profile() {
 			profile=${profile_linux/ARCH/arm64}
 			;;
 		armv7*-pc-linux-gnu)
-			profile=${profile_linux/ARCH/arm7a}
+			profile=${profile_linux/ARCH/arm}
+			profile=${profile/17.0/17.0/armv7a}
 			;;
 		x86_64-pc-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/x64"
