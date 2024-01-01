@@ -1606,6 +1606,7 @@ do_emerge_pkgs() {
 			-gdbm
 			-git
 			-libcxx
+			-http2
 			-nls
 			-pcre
 			-python
