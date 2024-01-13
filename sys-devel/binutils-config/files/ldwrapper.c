@@ -208,6 +208,7 @@ main(int argc, char *argv[])
 	char ctarget[128];
 	char *darwin_dt = getenv("MACOSX_DEPLOYMENT_TARGET");
 	int darwin_dt_ver = 0;
+	int darwin_ld_trg_ver = 0;
 	char is_cross = 0;
 	char is_darwin = 0;
 	char darwin_use_rpath = 1;
@@ -222,6 +223,9 @@ main(int argc, char *argv[])
 #ifdef DARWIN_LD_DEFAULT_TARGET
 	if (darwin_dt == NULL)
 		darwin_dt = DARWIN_LD_DEFAULT_TARGET;
+	darwin_ld_trg_ver = (int)strtol(DARWIN_LD_DEFAULT_TARGET, &p, 10) * 100;
+	if (*p == '.')
+		darwin_ld_trg_ver += (int)strtol(p + 1, &p, 10);
 #endif
 
 	/* two ways to determine CTARGET from argv[0]:
@@ -403,7 +407,7 @@ main(int argc, char *argv[])
 #ifdef DARWIN_LD_SYSLIBROOT
 		/* bug #910277: transform into platform_version arg for newer
 		 * targets */
-		if (darwin_dt_ver >= 1200) {
+		if (darwin_ld_trg_ver >= 1200) {
 			newargv[j++] = "-platform_version";
 			newargv[j++] = "macos";
 			newargv[j++] = darwin_dt;
