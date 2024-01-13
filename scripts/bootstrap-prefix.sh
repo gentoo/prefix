@@ -406,7 +406,7 @@ bootstrap_profile() {
 		aarch64-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/arm64}
 			;;
-		armv7*-pc-linux-gnu)
+		armv7*-unknown-linux-gnueabi*)
 			profile=${profile_linux/ARCH/arm}
 			profile=${profile/17.0/17.0/armv7a}
 			;;
@@ -3068,20 +3068,28 @@ if [[ -z ${CHOST} ]]; then
 	if [[ x$(type -t uname) == "xfile" ]]; then
 		case `uname -s` in
 			Linux)
-				plt="gnu"
-                                for f in /lib/ld-musl-*.so.1; do
-				  [[ -e "$f" ]] && plt="musl"
-                                done
-				sfx="unknown-linux-${plt}"
-				case `uname -m` in
-					ppc*)
-						CHOST="`uname -m | sed -e 's/^ppc/powerpc/'`-${sfx}"
-						;;
-					powerpc*|aarch64*)
-						CHOST="`uname -m`-${sfx}"
-						;;
+				CHOST=$(uname -m)
+				CHOST=${CHOST/#ppc/powerpc}
+				case "${CHOST}" in
+					x86_64|i*86)
+						CHOST+=-pc ;;
 					*)
-						CHOST="`uname -m`-${sfx/unknown/pc}"
+						CHOST+=-unknown ;;
+				esac
+				plt=gnu
+				for f in /lib/ld-musl-*.so.1; do
+					[[ -e $f ]] && plt=musl
+				done
+				CHOST+=-linux-${plt}
+				case "${CHOST}" in
+					arm*)
+						CHOST+=eabi
+						for f in /lib/ld-*hf.so.*; do
+							if [[ -e $f ]]; then
+								CHOST+=hf
+								break
+							fi
+						done
 						;;
 				esac
 				;;
