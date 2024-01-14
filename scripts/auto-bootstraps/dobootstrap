@@ -31,7 +31,8 @@ do_prepare() {
 		bootstrap=${OVERRIDE_EPREFIX:-bootstrap${bitw}-${dte}}/bootstrap-prefix.sh
 	elif [[ -n ${DOLOCAL} ]] ; then
 		bootstrap=${BOOTSTRAP}
-	else
+	fi
+	if [[ ! -e ${bootstrap} ]] ; then
 		bootstrap=dobootstrap-do_prepare-$$
 		do_fetch ${BOOTURL} > ${bootstrap}
 	fi
@@ -144,7 +145,7 @@ do_prepare() {
 		echo $((endtime - starttime)) > elapsedtime
 
 		# get identification of host that includes Linux distro, RAP, ...
-		chost=$(${BASH} ${bootstrap} chost.identify x)
+		chost=$(${BASH} ./bootstrap-prefix.sh chost.identify x)
 
 		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
 		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
@@ -200,7 +201,7 @@ case $1 in
 		;;
 	*)
 		bitw=
-		if [[ ${0} == /net/* ]] ; then
+		if [[ ${0} == /net/* || ${0} == /System/* ]] ; then
 			echo "internal host, activating local and DOPUBLISH"
 			export DOLOCAL=1
 			export DOPUBLISH=1
