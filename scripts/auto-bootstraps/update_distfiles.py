@@ -19,7 +19,7 @@ for path in sys.argv[1:]:
             if not f.is_file() or f.name.startswith('.'):
                 continue
             # ensure this live snapshot never ends up in a mirror
-            if (f.name.startswith('portage-latest.tar.'):
+            if f.name.startswith('portage-latest.tar.'):
                 continue
             srcfile = os.path.join(path, f.name)
             h = hash_file(srcfile)
