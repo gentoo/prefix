@@ -1771,7 +1771,7 @@ bootstrap_stage2() {
 
 	# cmake has some external dependencies which require autoconf, etc.
 	# unless we only build the buildtool, bug #603012
-	echo "dev-util/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
+	echo "dev-build/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
@@ -2142,7 +2142,7 @@ bootstrap_stage3() {
 		app-arch/gzip
 		app-arch/tar
 		sys-apps/grep
-		sys-devel/make
+		dev-build/make
 		sys-apps/file
 		app-admin/eselect
 	)
