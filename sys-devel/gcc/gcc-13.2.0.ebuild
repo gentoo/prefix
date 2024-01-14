@@ -43,6 +43,9 @@ src_unpack() {
 }
 
 src_prepare() {
+	# make sure 64-bits native targets don't screw up the linker paths
+	eapply "${FILESDIR}"/gcc-12-no-libs-for-startfile.patch
+
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# https://bugs.gentoo.org/898610#c17
 		# kill no_pie patch, it breaks things here
