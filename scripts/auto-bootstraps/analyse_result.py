@@ -19,6 +19,7 @@ deprecated_archs = (
         'x86_64-apple-darwin19',
         'x86_64-apple-darwin20',
         'x86_64-apple-darwin21',
+        'x86_64-apple-darwin22',
         'arm64-apple-darwin21',
         'arm64-apple-darwin22',
         'x86_64-pc-linux-centos8.3',
