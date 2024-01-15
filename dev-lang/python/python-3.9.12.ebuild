@@ -67,7 +67,7 @@ DEPEND="
 BDEPEND="
 	app-alternatives/awk
 	virtual/pkgconfig
-	sys-devel/autoconf-archive
+	dev-build/autoconf-archive
 	verify-sig? ( sec-keys/openpgp-keys-python )
 	!sys-devel/gcc[libffi(-)]
 "
