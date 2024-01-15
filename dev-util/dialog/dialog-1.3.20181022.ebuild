@@ -19,7 +19,7 @@ RDEPEND="
 "
 DEPEND="
 	${RDEPEND}
-	nls? ( sys-devel/gettext )
+	nls? ( dev-build/gettext )
 	!minimal? ( sys-devel/libtool )
 	!<=sys-freebsd/freebsd-contrib-8.9999
 "
