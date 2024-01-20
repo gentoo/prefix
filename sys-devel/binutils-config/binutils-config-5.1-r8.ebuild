@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -39,12 +39,8 @@ src_configure() {
 src_compile() {
 	use prefix-guest || return
 	local extraargs=( )
-	if [[ ${CHOST} == *-darwin* && ${CHOST##*-darwin} -ge 20 ]] ; then
-		# macOS Big Sur has an empty /usr/lib, so the linker really has
-		# to look into the SDK, for which it needs to be told where it
-		# is (symlinked right into our EPREFIX root as MacOSX.sdk)
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		extraargs+=(
-			-DDARWIN_LD_SYSLIBROOT=1
 			-DDARWIN_LD_DEFAULT_TARGET='"'${MACOSX_DEPLOYMENT_TARGET}'"'
 		)
 	fi
@@ -52,6 +48,7 @@ src_compile() {
 		$(tc-getCC)
 		${CPPFLAGS}
 		${CFLAGS}
+		-Wall
 		-o ldwrapper ${PN}-ldwrapper-${WRAPPER_REV}.c
 		-DEPREFIX=\"${EPREFIX}\"
 		-DCHOST=\"${CHOST}\"

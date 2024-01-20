@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2023 Gentoo Authors
+ * Copyright 1999-2024 Gentoo Authors
  * Distributed under the terms of the GNU General Public License v2
  * Authors: Fabian Groffen <grobian@gentoo.org>
  *          Michael Haubenwallner <haubi@gentoo.org>
@@ -18,7 +18,7 @@
 
 /**
  * ldwrapper: Prefix helper to inject -L and -R flags to the invocation
- * of ld.
+ * of ld, and many more necessary linker flags/tweaks.
  *
  * On Darwin it adds -search_paths_first to make sure the given paths are
  * searched before the default search path, and sets -syslibroot
@@ -50,7 +50,6 @@ find_real_ld(char **ld, size_t ldlen, const char verbose, const char is_cross,
 	FILE *f = NULL;
 	char *ldoverride;
 	char *path;
-	char *ret;
 	struct stat lde;
 	char config[ESIZ];
 	size_t len;
@@ -203,12 +202,11 @@ main(int argc, char *argv[])
 	char *wrapperctarget = NULL;
 	char verbose = getenv("BINUTILS_CONFIG_VERBOSE") != NULL;
 	char *builddir = getenv("PORTAGE_BUILDDIR");
-	char ldbuf[ESIZ];
+	char ldbuf[ESIZ * 2];
 	char *ld = ldbuf;
 	char ctarget[128];
 	char *darwin_dt = getenv("MACOSX_DEPLOYMENT_TARGET");
 	int darwin_dt_ver = 0;
-	int darwin_ld_trg_ver = 0;
 	char is_cross = 0;
 	char is_darwin = 0;
 	char darwin_use_rpath = 1;
@@ -223,9 +221,6 @@ main(int argc, char *argv[])
 #ifdef DARWIN_LD_DEFAULT_TARGET
 	if (darwin_dt == NULL)
 		darwin_dt = DARWIN_LD_DEFAULT_TARGET;
-	darwin_ld_trg_ver = (int)strtol(DARWIN_LD_DEFAULT_TARGET, &p, 10) * 100;
-	if (*p == '.')
-		darwin_ld_trg_ver += (int)strtol(p + 1, &p, 10);
 #endif
 
 	/* two ways to determine CTARGET from argv[0]:
@@ -327,8 +322,6 @@ main(int argc, char *argv[])
 	 * non-cross-compilable on any platform, prefix or no prefix. So no
 	 * need to add PREFIX- or CTARGET-aware libdirs. */
 	if (!is_cross) {
-		struct stat st;
-
 		if (is_darwin) {
 			/* check deployment target if nothing prevents us from
 			 * using -rpath as of yet
@@ -356,10 +349,8 @@ main(int argc, char *argv[])
 			/* add the 2 prefix paths (-L) and -search_paths_first */
 			newargc += 2 + 1;
 
-#ifdef DARWIN_LD_SYSLIBROOT
 			/* add -syslibroot <path> -platform_version macos <ver> 0.0 */
 			newargc += 6;
-#endif
 		} else {
 			/* add the 4 paths we want (-L + -R) */
 			newargc += 8;
@@ -395,38 +386,81 @@ main(int argc, char *argv[])
 	newargv[j++] = ld;
 
 	if (!is_cross && is_darwin) {
-		char target[ESIZ];
-		ssize_t trglen;
+		char  target[(2 * ESIZ) + 16];
+		FILE *ld64out;
+		int   ld64ver = 0;
 
-		/* ld64 will try to infer sdk version when -syslibroot is used
-		 * from the path given, unfortunately this searches for the
-		 * first numbers it finds, which means anything random in
-		 * EPREFIX, causing errors.  Explicitly set the deployment
-		 * version here, for the sdk link can be versionless when set to
-		 * CommandLineTools */
-#ifdef DARWIN_LD_SYSLIBROOT
-		/* bug #910277: transform into platform_version arg for newer
-		 * targets */
-		if (darwin_ld_trg_ver >= 1200) {
+		/* call the linker to figure out what options we can use :(
+		 * some Developer Tools ld64 versions:
+		 * 12.0:   609      Big Sur, requirement for sdk_version
+		 * 13.0:   711
+		 * 13.3.1: 762
+		 * 14.0:   819.6
+		 * 14.2:   820.1
+		 * 14.3.1: 857.1
+		 * 15.0:   907      Sanoma, platform_version argument
+		 * all to be found from the PROJECT:ld64-650.9 bit from 1st line
+		 * NOTE: e.g. my Sanoma mac with CommandLineTools has 650.9
+		 *       which is not a version from any Developer Tools ?!?
+		 * Currently we need to distinguish XCode 15 according to
+		 * bug #910277, so we look for 907 and old targets before 12 */
+#define LD64_12_0  60900
+#define LD64_15_0  90700
+		snprintf(target, sizeof(target), "%s -v 2>&1", ld);
+		ld64out = popen(target, "r");
+		if (ld64out != NULL) {
+			char *proj;
+			long  comp;
+			if (fgets(target, sizeof(target), ld64out) != 0 &&
+				(proj = strstr(target, "PROJECT:ld64-")) != NULL)
+			{
+				proj += sizeof("PROJECT:ld64-") - 1;
+				comp  = strtol(proj, &proj, 10);
+				/* we currently have no need to parse fractions, the
+				 * major version is significant enough, so just stop */
+				ld64ver = (int)comp * 100;
+			}
+			pclose(ld64out);
+		}
+
+		/* macOS Big Sur (Darwin 20) has an empty /usr/lib, so the
+		 * linker really has to look into the SDK, for which it needs to
+		 * be told where it is (symlinked right into our EPREFIX root as
+		 * MacOSX.sdk) via the -syslibroot argument, older targets also
+		 * get this SDK path setup, old bootstraps would break, but that
+		 * would be easy to resolve -- there's unlikely to be many old
+		 * bootstraps out there that don't have the SDK path symlink */
+		newargv[j++] = "-syslibroot";
+		newargv[j++] = EPREFIX "/MacOSX.sdk";
+
+		/* ld64 will try to infer sdk version when -syslibroot is
+		 * used from the path given, unfortunately this searches for
+		 * the first numbers it finds, which means anything random
+		 * in EPREFIX, causing errors.  Explicitly set the
+		 * deployment version here, for the sdk link can be
+		 * versionless when set to CommandLineTools
+		 * macOS Sanoma however needs a new way to set this version,
+		 * so do the right thing */
+		if (ld64ver >= LD64_15_0) {
 			newargv[j++] = "-platform_version";
 			newargv[j++] = "macos";
 			newargv[j++] = darwin_dt;
 			newargv[j++] = "0.0";
-		} else {
+		} else if (ld64ver >= LD64_12_0) {
 			newargv[j++] = "-sdk_version";
 			newargv[j++] = darwin_dt;
+		} else {
+			newargv[j++] = "-macosx_version_min";
+			newargv[j++] = darwin_dt;
 		}
-		newargv[j++] = "-syslibroot";
-		newargv[j++] = EPREFIX "/MacOSX.sdk";
-#endif
-		/* inject this first to make the intention clear */
+
+		/* inject this before -L args to make the intention clear */
 		newargv[j++] = "-search_paths_first";
 	}
 
 	/* position k right after the original arguments */
 	k = j - 1 + argc;
 	for (i = 1; i < argc; i++, j++) {
-#ifdef DARWIN_LD_SYSLIBROOT
 		if (is_darwin) {
 			/* skip platform version stuff, we already pushed it out */
 			if ((strcmp(argv[i], "-macosx_version_min") == 0 ||
@@ -446,7 +480,6 @@ main(int argc, char *argv[])
 				continue;
 			}
 		}
-#endif
 
 		newargv[j] = argv[i];
 
