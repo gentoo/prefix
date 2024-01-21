@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: toolchain.eclass
@@ -258,8 +258,7 @@ if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ||
 	IUSE+=" ada"
 	IUSE+=" vtv"
 	IUSE+=" jit"
-	tc_version_is_between 5.0 9 && IUSE+=" mpx"
-	IUSE+=" +pie +ssp +pch"
+	IUSE+=" +pie +ssp pch"
 
 	IUSE+=" systemtap" TC_FEATURES+=( systemtap )
 
@@ -308,7 +307,7 @@ if tc_has_feature graphite ; then
 fi
 
 BDEPEND="
-	>=sys-devel/bison-1.875
+	app-alternatives/yacc
 	>=sys-devel/flex-2.5.4
 	nls? ( sys-devel/gettext )
 	test? (
@@ -334,7 +333,7 @@ fi
 
 if tc_has_feature systemtap ; then
 	# gcc needs sys/sdt.h headers on target
-	DEPEND+=" systemtap? ( dev-util/systemtap )"
+	DEPEND+=" systemtap? ( dev-debug/systemtap )"
 fi
 
 if tc_has_feature zstd ; then
@@ -343,7 +342,7 @@ if tc_has_feature zstd ; then
 fi
 
 if tc_has_feature valgrind ; then
-	BDEPEND+=" valgrind? ( dev-util/valgrind )"
+	BDEPEND+=" valgrind? ( dev-debug/valgrind )"
 fi
 
 # TODO: Add a pkg_setup & pkg_pretend check for whether the active compiler
@@ -779,6 +778,9 @@ setup_multilib_osdirnames() {
 #---->> src_configure <<----
 
 toolchain_src_configure() {
+	BUILD_CONFIG_TARGETS=()
+	is-flagq '-O3' && BUILD_CONFIG_TARGETS+=( bootstrap-O3 )
+
 	downgrade_arch_flags
 	gcc_do_filter_flags
 
@@ -797,8 +799,6 @@ toolchain_src_configure() {
 	export JAR=no
 
 	local confgcc=( --host=${CHOST} )
-
-	local build_config_targets=()
 
 	if is_crosscompile || tc-is-cross-compiler ; then
 		# Straight from the GCC install doc:
@@ -924,11 +924,11 @@ toolchain_src_configure() {
 
 	# Build compiler itself using LTO
 	if tc_version_is_at_least 9.1 && _tc_use_if_iuse lto ; then
-		build_config_targets+=( bootstrap-lto )
+		BUILD_CONFIG_TARGETS+=( bootstrap-lto )
 	fi
 
 	if tc_version_is_at_least 12 && _tc_use_if_iuse cet ; then
-		build_config_targets+=( bootstrap-cet )
+		BUILD_CONFIG_TARGETS+=( bootstrap-cet )
 	fi
 
 	# Support to disable PCH when building libstdcxx
@@ -1283,14 +1283,6 @@ toolchain_src_configure() {
 		confgcc+=( $(use_enable cet) )
 	fi
 
-	if in_iuse cilk ; then
-		confgcc+=( $(use_enable cilk libcilkrts) )
-	fi
-
-	if in_iuse mpx ; then
-		confgcc+=( $(use_enable mpx libmpx) )
-	fi
-
 	if in_iuse systemtap ; then
 		confgcc+=( $(use_enable systemtap) )
 	fi
@@ -1366,9 +1358,9 @@ toolchain_src_configure() {
 
 	confgcc+=( "$@" ${EXTRA_ECONF} )
 
-	if ! is_crosscompile && ! tc-is-cross-compiler && [[ -n ${build_config_targets} ]] ; then
+	if ! is_crosscompile && ! tc-is-cross-compiler && [[ -n ${BUILD_CONFIG_TARGETS} ]] ; then
 		# e.g. ./configure --with-build-config='bootstrap-lto bootstrap-cet'
-		confgcc+=( --with-build-config="${build_config_targets[*]}" )
+		confgcc+=( --with-build-config="${BUILD_CONFIG_TARGETS[*]}" )
 	fi
 
 	# Nothing wrong with a good dose of verbosity
@@ -1398,20 +1390,46 @@ toolchain_src_configure() {
 	if is_jit ; then
 		einfo "Configuring JIT gcc"
 
+		local confgcc_jit=(
+			"${confgcc[@]}"
+
+			--disable-analyzer
+			--disable-bootstrap
+			--disable-cet
+			--disable-default-pie
+			--disable-default-ssp
+			--disable-gcov
+			--disable-libada
+			--disable-libatomic
+			--disable-libgomp
+			--disable-libitm
+			--disable-libquadmath
+			--disable-libsanitizer
+			--disable-libssp
+			--disable-libstdcxx-pch
+			--disable-libvtv
+			--disable-lto
+			--disable-nls
+			--disable-objc-gc
+			--disable-systemtap
+			--enable-host-shared
+			--enable-languages=jit
+			# Might be used for the just-built GCC. Easier to just
+			# respect USE=graphite here in case the user passes some
+			# graphite flags rather than try strip them out.
+			$(use_with graphite isl)
+			--without-zstd
+			--with-system-zlib
+		)
+
+		if tc_version_is_at_least 13.1 ; then
+			confgcc_jit+=( --disable-fixincludes )
+		fi
+
 		mkdir -p "${WORKDIR}"/build-jit || die
 		pushd "${WORKDIR}"/build-jit > /dev/null || die
-		CONFIG_SHELL="${gcc_shell}" edo "${gcc_shell}" "${S}"/configure \
-				"${confgcc[@]}" \
-				--disable-libada \
-				--disable-libsanitizer \
-				--disable-libvtv \
-				--disable-libgomp \
-				--disable-libquadmath \
-				--disable-libatomic \
-				--disable-lto \
-				--disable-bootstrap \
-				--enable-host-shared \
-				--enable-languages=jit
+
+		CONFIG_SHELL="${gcc_shell}" edo "${gcc_shell}" "${S}"/configure "${confgcc_jit[@]}"
 		popd > /dev/null || die
 	fi
 
@@ -1546,7 +1564,29 @@ gcc_do_filter_flags() {
 
 		# Lock gcc at -O2; we want to be conservative here.
 		filter-flags '-O?'
-		append-flags -O2
+
+		# We allow -O3 given it's a supported option upstream.
+		# Only add -O2 if we're not doing -O3.
+		if [[ ${BUILD_CONFIG_TARGETS[@]} == *bootstrap-O3* ]] ; then
+			append-flags '-O3'
+		else
+			append-flags '-O2'
+		fi
+	fi
+
+
+	if ver_test -lt 13.6 ; then
+		# These aren't supported by the just-built compiler either.
+		filter-flags -fharden-compares -fharden-conditional-branches \
+			-fharden-control-flow-redundancy -fno-harden-control-flow-redundancy \
+			-fhardcfr-skip-leaf -fhardcfr-check-exceptions \
+			-fhardcfr-check-returning-calls '-fhardcfr-check-noreturn-calls=*'
+
+		# New in GCC 14.
+		filter-flags -Walloc-size
+	else
+		# Makes things painfully slow and no real benefit for the compiler.
+		append-flags $(test-flags-CC -fno-harden-control-flow-redundancy)
 	fi
 
 	# Please use USE=lto instead (bug #906007).
@@ -1692,46 +1732,65 @@ gcc_do_make() {
 		fi
 	fi
 
-	if [[ ${GCC_MAKE_TARGET} == "all" ]] ; then
-		STAGE1_CFLAGS=${STAGE1_CFLAGS-"${CFLAGS}"}
-	fi
+	local emakeargs=(
+		LDFLAGS="${LDFLAGS}"
+		LIBPATH="${LIBPATH}"
+	)
 
 	if is_crosscompile; then
 		# In 3.4, BOOT_CFLAGS is never used on a crosscompile...
 		# but I'll leave this in anyways as someone might have had
 		# some reason for putting it in here... --eradicator
 		BOOT_CFLAGS=${BOOT_CFLAGS-"-O2"}
+		emakeargs+=( BOOT_CFLAGS="${BOOT_CFLAGS}" )
 	else
-		# we only want to use the system's CFLAGS if not building a
+		# XXX: Hack for bug #914881, clean this up when fixed and go back
+		# to just calling get_abi_LDFLAGS as before.
+		local abi_ldflags="$(get_abi_LDFLAGS ${TARGET_DEFAULT_ABI})"
+		if [[ -n ${abi_ldflags} ]] ; then
+			printf -v abi_ldflags -- "-Wl,%s " ${abi_ldflags}
+		fi
+
+		# If the host compiler is too old, let's use -O0 per the upstream
+		# default to be safe (to avoid a bootstrap comparison failure later).
+		#
+		# The last known issues are with < GCC 4.9 or so, but it's easier
+		# to keep this bound somewhat fresh just to avoid problems. Ultimately,
+		# using not-O0 is just a build-time speed improvement anyway.
+		if tc-is-gcc && ver_test $(gcc-fullversion) -lt 10 ; then
+			STAGE1_CFLAGS="-O0"
+		fi
+
+		# We only want to use the system's CFLAGS if not building a
 		# cross-compiler.
+		STAGE1_CFLAGS=${STAGE1_CFLAGS-"$(get_abi_CFLAGS ${TARGET_DEFAULT_ABI}) ${CFLAGS}"}
+		STAGE1_LDFLAGS=${STAGE1_LDFLAGS-"${abi_ldflags} ${LDFLAGS}"}
 		BOOT_CFLAGS=${BOOT_CFLAGS-"$(get_abi_CFLAGS ${TARGET_DEFAULT_ABI}) ${CFLAGS}"}
+		BOOT_LDFLAGS=${BOOT_LDFLAGS-"${abi_ldflags} ${LDFLAGS}"}
+		LDFLAGS_FOR_TARGET="${LDFLAGS_FOR_TARGET:-${LDFLAGS}}"
+
+		emakeargs+=(
+			STAGE1_CFLAGS="${STAGE1_CFLAGS}"
+			STAGE1_LDFLAGS="${STAGE1_LDFLAGS}"
+			BOOT_CFLAGS="${BOOT_CFLAGS}"
+			BOOT_LDFLAGS="${BOOT_LDFLAGS}"
+			LDFLAGS_FOR_TARGET="${LDFLAGS_FOR_TARGET}"
+		)
 	fi
 
 	if is_jit ; then
 		# TODO: docs for jit?
-		pushd "${WORKDIR}"/build-jit > /dev/null || die
-
 		einfo "Building JIT"
-		emake \
-			LDFLAGS="${LDFLAGS}" \
-			STAGE1_CFLAGS="${STAGE1_CFLAGS}" \
-			LIBPATH="${LIBPATH}" \
-			BOOT_CFLAGS="${BOOT_CFLAGS}"
-		popd > /dev/null || die
+		emake -C "${WORKDIR}"/build-jit "${emakeargs[@]}"
 	fi
 
 	einfo "Compiling ${PN} (${GCC_MAKE_TARGET})..."
-
 	pushd "${WORKDIR}"/build >/dev/null || die
 
 	# we "undef" T because the GCC makefiles use this variable, and if it's set
 	# in the environment (like Portage does) the build fails, bug #286494
 	emake \
 		T= \
-		LDFLAGS="${LDFLAGS}" \
-		STAGE1_CFLAGS="${STAGE1_CFLAGS}" \
-		LIBPATH="${LIBPATH}" \
-		BOOT_CFLAGS="${BOOT_CFLAGS}" \
 		${GCC_MAKE_TARGET}
 
 	if is_ada; then
@@ -1984,8 +2043,6 @@ toolchain_src_install() {
 	# libgfortran.la: gfortran itself handles linkage correctly in the
 	# dynamic & static case (libgfortran.spec). bug #573302
 	# libgfortranbegin.la: Same as above, and it's an internal lib.
-	# libmpx.la: gcc itself handles linkage correctly (libmpx.spec).
-	# libmpxwrappers.la: See above.
 	# libitm.la: gcc itself handles linkage correctly (libitm.spec).
 	# libvtv.la: gcc itself handles linkage correctly.
 	# lib*san.la: Sanitizer linkage is handled internally by gcc, and they
@@ -2002,8 +2059,6 @@ toolchain_src_install() {
 			-name 'libgomp-plugin-*.la' -o \
 			-name libgfortran.la -o \
 			-name libgfortranbegin.la -o \
-			-name libmpx.la -o \
-			-name libmpxwrappers.la -o \
 			-name libitm.la -o \
 			-name libvtv.la -o \
 			-name 'lib*san.la' \
@@ -2305,7 +2360,9 @@ should_we_gcc_config() {
 
 	local curr_branch_ver=$(ver_cut 1-2 ${curr_config_ver})
 
-	if [[ ${curr_branch_ver} == ${GCC_BRANCH_VER} ]] ; then
+	if tc_use_major_version_only && [[ ${curr_config_ver} == ${GCCMAJOR} ]] ; then
+		return 0
+	elif ! tc_use_major_version_only && [[ ${curr_branch_ver} == ${GCC_BRANCH_VER} ]] ; then
 		return 0
 	else
 		# If we're installing a genuinely different compiler version,
