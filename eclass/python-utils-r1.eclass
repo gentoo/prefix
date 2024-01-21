@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: python-utils-r1.eclass
@@ -114,11 +114,18 @@ _python_verify_patterns() {
 _python_set_impls() {
 	local i
 
-	if ! declare -p PYTHON_COMPAT &>/dev/null; then
-		die 'PYTHON_COMPAT not declared.'
+	# TODO: drop BASH_VERSINFO check when we require EAPI 8
+	if [[ ${BASH_VERSINFO[0]} -ge 5 ]]; then
+		[[ ${PYTHON_COMPAT@a} == *a* ]]
+	else
+		[[ $(declare -p PYTHON_COMPAT) == "declare -a"* ]]
 	fi
-	if [[ $(declare -p PYTHON_COMPAT) != "declare -a"* ]]; then
-		die 'PYTHON_COMPAT must be an array.'
+	if [[ ${?} -ne 0 ]]; then
+		if ! declare -p PYTHON_COMPAT &>/dev/null; then
+			die 'PYTHON_COMPAT not declared.'
+		else
+			die 'PYTHON_COMPAT must be an array.'
+		fi
 	fi
 
 	local obsolete=()
@@ -144,17 +151,6 @@ _python_set_impls() {
 					fi
 			esac
 		done
-	fi
-
-	if [[ -n ${obsolete[@]} && ${EBUILD_PHASE} == setup ]]; then
-		# complain if people don't clean up old impls while touching
-		# the ebuilds recently.  use the copyright year to infer last
-		# modification
-		# NB: this check doesn't have to work reliably
-		if [[ $(head -n 1 "${EBUILD}" 2>/dev/null) == *2022* ]]; then
-			eqawarn "Please clean PYTHON_COMPAT of obsolete implementations:"
-			eqawarn "  ${obsolete[*]}"
-		fi
 	fi
 
 	local supp=() unsupp=()
@@ -231,12 +227,11 @@ _python_impl_matches() {
 				fi
 				return 0
 				;;
-			3.9)
-				# the only unmasked pypy3 version is pypy3.9 atm
+			3.10)
 				[[ ${impl} == python${pattern/./_} || ${impl} == pypy3 ]] &&
 					return 0
 				;;
-			3.8|3.1[0-2])
+			3.8|3.9|3.1[1-2])
 				[[ ${impl} == python${pattern/./_} ]] && return 0
 				;;
 			*)
@@ -332,7 +327,9 @@ _python_export() {
 				debug-print "${FUNCNAME}: EPYTHON = ${EPYTHON}"
 				;;
 			PYTHON)
-				export PYTHON=${EPREFIX}/usr/bin/${impl}
+				# Under EAPI 7+, this should just use ${BROOT}, but Portage
+				# <3.0.50 was buggy, and prefix users need this to update.
+				export PYTHON=${BROOT-${EPREFIX}}/usr/bin/${impl}
 				if [[ " python jython pypy pypy3 " != *" ${PN} "* ]] \
 				&& [[ ! -x ${EPREFIX}/usr/bin/${impl} ]] \
 				&& { has prefix-stack ${USE} || has stacked-prefix ${FEATURES} ;} ; then
@@ -346,9 +343,9 @@ _python_export() {
 			PYTHON_SITEDIR)
 				[[ -n ${PYTHON} ]] || die "PYTHON needs to be set for ${var} to be exported, or requested before it"
 				PYTHON_SITEDIR=$(
-					"${PYTHON}" - <<-EOF || die
-						import sysconfig
-						print(sysconfig.get_path("purelib"))
+					"${PYTHON}" - "${EPREFIX}/usr" <<-EOF || die
+						import sys, sysconfig
+						print(sysconfig.get_path("purelib", vars={"base": sys.argv[1]}))
 					EOF
 				)
 				export PYTHON_SITEDIR
@@ -357,9 +354,9 @@ _python_export() {
 			PYTHON_INCLUDEDIR)
 				[[ -n ${PYTHON} ]] || die "PYTHON needs to be set for ${var} to be exported, or requested before it"
 				PYTHON_INCLUDEDIR=$(
-					"${PYTHON}" - <<-EOF || die
-						import sysconfig
-						print(sysconfig.get_path("platinclude"))
+					"${PYTHON}" - "${ESYSROOT}/usr" <<-EOF || die
+						import sys, sysconfig
+						print(sysconfig.get_path("platinclude", vars={"installed_platbase": sys.argv[1]}))
 					EOF
 				)
 				export PYTHON_INCLUDEDIR
@@ -448,14 +445,12 @@ _python_export() {
 			PYTHON_PKG_DEP)
 				local d
 				case ${impl} in
-					python3.10)
-						PYTHON_PKG_DEP=">=dev-lang/python-3.10.9-r1:3.10";;
-					python3.11)
-						PYTHON_PKG_DEP=">=dev-lang/python-3.11.1-r1:3.11";;
-					python3.12)
-						PYTHON_PKG_DEP=">=dev-lang/python-3.12.0_beta1:3.12";;
+					python*)
+						PYTHON_PKG_DEP="dev-lang/python:${impl#python}"
+						;;
 					pypy3)
-						PYTHON_PKG_DEP='>=dev-python/pypy3-7.3.11-r1:0=';;
+						PYTHON_PKG_DEP="dev-python/${impl}:="
+						;;
 					*)
 						die "Invalid implementation: ${impl}"
 				esac
@@ -1035,8 +1030,6 @@ python_fix_shebang() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	[[ ${EPYTHON} ]] || die "${FUNCNAME}: EPYTHON unset (pkg_setup not called?)"
-	local PYTHON
-	_python_export "${EPYTHON}" PYTHON
 
 	local force quiet
 	while [[ ${@} ]]; do
@@ -1245,6 +1238,62 @@ _python_check_EPYTHON() {
 	fi
 }
 
+# @FUNCTION: _python_check_occluded_packages
+# @INTERNAL
+# @DESCRIPTION:
+# Check if the current directory does not contain any incomplete
+# package sources that would block installed packages from being used
+# (and effectively e.g. make it impossible to load compiled extensions).
+_python_check_occluded_packages() {
+	debug-print-function ${FUNCNAME} "${@}"
+
+	[[ -z ${BUILD_DIR} || ! -d ${BUILD_DIR}/install ]] && return
+
+	local sitedir="${BUILD_DIR}/install$(python_get_sitedir)"
+	# avoid unnecessarily checking if we are inside install dir
+	[[ ${sitedir} -ef . ]] && return
+
+	local f fn diff l
+	for f in "${sitedir}"/*/; do
+		f=${f%/}
+		fn=${f##*/}
+
+		# skip metadata directories
+		[[ ${fn} == *.dist-info || ${fn} == *.egg-info ]] && continue
+
+		if [[ -d ${fn} ]]; then
+			diff=$(
+				comm -1 -3 <(
+					find "${fn}" -type f -not -path '*/__pycache__/*' |
+						sort
+					assert
+				) <(
+					cd "${sitedir}" &&
+						find "${fn}" -type f -not -path '*/__pycache__/*' |
+						sort
+					assert
+				)
+			)
+
+			if [[ -n ${diff} ]]; then
+				eqawarn "The directory ${fn} occludes package installed for ${EPYTHON}."
+				eqawarn "The installed package includes additional files:"
+				eqawarn
+				while IFS= read -r l; do
+					eqawarn "    ${l}"
+				done <<<"${diff}"
+				eqawarn
+
+				if [[ ! ${_PYTHON_WARNED_OCCLUDED_PACKAGES} ]]; then
+					eqawarn "For more information on occluded packages, please see:"
+					eqawarn "https://projects.gentoo.org/python/guide/test.html#importerrors-for-c-extensions"
+					_PYTHON_WARNED_OCCLUDED_PACKAGES=1
+				fi
+			fi
+		fi
+	done
+}
+
 # @VARIABLE: EPYTEST_DESELECT
 # @DEFAULT_UNSET
 # @DESCRIPTION:
@@ -1263,6 +1312,31 @@ _python_check_EPYTHON() {
 # parameter, when calling epytest.  The listed files will be entirely
 # skipped from test collection.
 
+# @ECLASS_VARIABLE: EPYTEST_TIMEOUT
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# If set to a non-empty value, enables pytest-timeout plugin and sets
+# test timeout to the specified value.  This variable can be either set
+# in ebuilds that are known to hang, or by user to prevent hangs
+# in automated test environments.  If this variable is set prior
+# to calling distutils_enable_tests in distutils-r1, a test dependency
+# on dev-python/pytest-timeout is added automatically.
+
+# @ECLASS_VARIABLE: EPYTEST_XDIST
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# If set to a non-empty value, enables running tests in parallel
+# via pytest-xdist plugin.  If this variable is set prior to calling
+# distutils_enable_tests in distutils-r1, a test dependency
+# on dev-python/pytest-xdist is added automatically.
+
+# @ECLASS_VARIABLE: EPYTEST_JOBS
+# @USER_VARIABLE
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Specifies the number of jobs for parallel (pytest-xdist) test runs.
+# When unset, defaults to -j from MAKEOPTS, or the current nproc.
+
 # @FUNCTION: epytest
 # @USAGE: [<args>...]
 # @DESCRIPTION:
@@ -1275,16 +1349,10 @@ epytest() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	_python_check_EPYTHON
+	_python_check_occluded_packages
 
-	local color
-	case ${NOCOLOR} in
-		true|yes)
-			color=no
-			;;
-		*)
-			color=yes
-			;;
-	esac
+	local color=yes
+	[[ ${NO_COLOR} ]] && color=no
 
 	local args=(
 		# verbose progress reporting and tracebacks
@@ -1302,28 +1370,74 @@ epytest() {
 		# count is more precise when we're dealing with a large number
 		# of tests
 		-o console_output_style=count
-		# disable the undesirable-dependency plugins by default to
-		# trigger missing argument strips.  strip options that require
-		# them from config files.  enable them explicitly via "-p ..."
-		# if you *really* need them.
-		-p no:cov
-		-p no:flake8
-		-p no:flakes
-		-p no:pylint
-		# sterilize pytest-markdown as it runs code snippets from all
-		# *.md files found without any warning
-		-p no:markdown
-		# pytest-sugar undoes everything that's good about pytest output
-		# and makes it hard to read logs
-		-p no:sugar
-		# pytest-xvfb automatically spawns Xvfb for every test suite,
-		# effectively forcing it even when we'd prefer the tests
-		# not to have DISPLAY at all, causing crashes sometimes
-		# and causing us to miss missing virtualx usage
-		-p no:xvfb
-		# tavern is intrusive and breaks test suites of various packages
-		-p no:tavern
+		# minimize the temporary directory retention, the test suites
+		# of some packages can grow them pretty large and normally
+		# we don't need to preserve them
+		-o tmp_path_retention_count=0
+		-o tmp_path_retention_policy=failed
 	)
+
+	if [[ ! ${PYTEST_DISABLE_PLUGIN_AUTOLOAD} ]]; then
+		args+=(
+			# disable the undesirable-dependency plugins by default to
+			# trigger missing argument strips.  strip options that require
+			# them from config files.  enable them explicitly via "-p ..."
+			# if you *really* need them.
+			-p no:cov
+			-p no:flake8
+			-p no:flakes
+			-p no:pylint
+			# sterilize pytest-markdown as it runs code snippets from all
+			# *.md files found without any warning
+			-p no:markdown
+			# pytest-sugar undoes everything that's good about pytest output
+			# and makes it hard to read logs
+			-p no:sugar
+			# pytest-xvfb automatically spawns Xvfb for every test suite,
+			# effectively forcing it even when we'd prefer the tests
+			# not to have DISPLAY at all, causing crashes sometimes
+			# and causing us to miss missing virtualx usage
+			-p no:xvfb
+			# intrusive packages that break random test suites
+			-p no:pytest-describe
+			-p no:plus
+			-p no:tavern
+			# does something to logging
+			-p no:salt-factories
+		)
+	fi
+
+	if [[ -n ${EPYTEST_TIMEOUT} ]]; then
+		if [[ ${PYTEST_PLUGINS} != *pytest_timeout* ]]; then
+			args+=(
+				-p timeout
+			)
+		fi
+
+		args+=(
+			"--timeout=${EPYTEST_TIMEOUT}"
+		)
+	fi
+
+	if [[ ${EPYTEST_XDIST} ]]; then
+		local jobs=${EPYTEST_JOBS:-$(makeopts_jobs)}
+		if [[ ${jobs} -gt 1 ]]; then
+			if [[ ${PYTEST_PLUGINS} != *xdist.plugin* ]]; then
+				args+=(
+					# explicitly enable the plugin, in case the ebuild was
+					# using PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
+					-p xdist
+				)
+			fi
+			args+=(
+				-n "${jobs}"
+				# worksteal ensures that workers don't end up idle when heavy
+				# jobs are unevenly distributed
+				--dist=worksteal
+			)
+		fi
+	fi
+
 	local x
 	for x in "${EPYTEST_DESELECT[@]}"; do
 		args+=( --deselect "${x}" )
@@ -1359,6 +1473,7 @@ eunittest() {
 	debug-print-function ${FUNCNAME} "${@}"
 
 	_python_check_EPYTHON
+	_python_check_occluded_packages
 
 	# unittest fails with "no tests" correctly since Python 3.12
 	local runner=unittest
