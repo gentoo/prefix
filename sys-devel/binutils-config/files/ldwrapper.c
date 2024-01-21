@@ -392,18 +392,28 @@ main(int argc, char *argv[])
 
 		/* call the linker to figure out what options we can use :(
 		 * some Developer Tools ld64 versions:
-		 * 12.0:   609      Big Sur, requirement for sdk_version
+		 * Xcode   ld64   dyld
+		 * 3.1.1:  85.2.1        Leopard 10.5, sdk_version unknown,
+		 *                                     need macosx_version_min
+		 * 8.2.1:  274.2         xtools-2.2.4, sdk_version plus
+		 *                                     macosx_version_min
+		 * 10.0:   409.12        High Sierra 10.13 like above
+		 * 12.0:   609           Big Sur 11, sdk_version only
 		 * 13.0:   711
 		 * 13.3.1: 762
 		 * 14.0:   819.6
 		 * 14.2:   820.1
 		 * 14.3.1: 857.1
-		 * 15.0:   907      Sanoma, platform_version argument
-		 * all to be found from the PROJECT:ld64-650.9 bit from 1st line
+		 * 15.0:   907   1022.1  Sanoma 23, platform_version iso sdk_version
+		 * all to be found from the PROJECT:ld64-650.9 or
+		 * PROJECT:dyld-1022.1 bit from the first line
 		 * NOTE: e.g. my Sanoma mac with CommandLineTools has 650.9
 		 *       which is not a version from any Developer Tools ?!?
 		 * Currently we need to distinguish XCode 15 according to
 		 * bug #910277, so we look for 907 and old targets before 12 */
+#define LD64_3_1    8500
+#define LD64_8_2   27400
+#define LD64_10_0  40900
 #define LD64_12_0  60900
 #define LD64_15_0  90700
 		snprintf(target, sizeof(target), "%s -v 2>&1", ld);
@@ -412,8 +422,11 @@ main(int argc, char *argv[])
 			char *proj;
 			long  comp;
 			if (fgets(target, sizeof(target), ld64out) != 0 &&
-				(proj = strstr(target, "PROJECT:ld64-")) != NULL)
+				((proj = strstr(target, "PROJECT:ld64-")) != NULL ||
+				 (proj = strstr(target, "PROJECT:dyld-")) != NULL))
 			{
+				/* we don't distinguish between ld64 and dyld here, for
+				 * now it seems the numbers line up for our logic */
 				proj += sizeof("PROJECT:ld64-") - 1;
 				comp  = strtol(proj, &proj, 10);
 				/* we currently have no need to parse fractions, the
@@ -446,10 +459,12 @@ main(int argc, char *argv[])
 			newargv[j++] = "macos";
 			newargv[j++] = darwin_dt;
 			newargv[j++] = "0.0";
-		} else if (ld64ver >= LD64_12_0) {
+		} else if (ld64ver >= LD64_8_2) {
 			newargv[j++] = "-sdk_version";
 			newargv[j++] = darwin_dt;
-		} else {
+		}
+
+		if (ld64ver < LD64_12_0) {
 			newargv[j++] = "-macosx_version_min";
 			newargv[j++] = darwin_dt;
 		}
