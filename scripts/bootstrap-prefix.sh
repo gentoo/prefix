@@ -990,7 +990,7 @@ bootstrap_python() {
 		# make Python's selectors resort to poll() or select() for the
 		# time being
 		sed -i \
-			-e 's/KQUEUE/KQUEUE_DISABLED/' \
+			-e 's/kqueue/kqueue_DISABLED/' \
 			configure
 		# fixup thread id detection (only needed on vanilla Python tar)
 		efetch "https://dev.gentoo.org/~sam/distfiles/dev-lang/python/python-3.9.6-darwin9_pthreadid.patch"
