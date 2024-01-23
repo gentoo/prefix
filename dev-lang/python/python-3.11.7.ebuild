@@ -120,10 +120,6 @@ src_unpack() {
 }
 
 src_prepare() {
-	# Ensure that internal copies of expat and libffi are not used.
-	rm -r Modules/expat || die
-	rm -r Modules/_ctypes/libffi* || die
-
 	local PATCHES=(
 		"${WORKDIR}/${PATCHSET}"
 		# Prefix' round of patches
@@ -134,6 +130,18 @@ src_prepare() {
 
 	# https://bugs.gentoo.org/850151
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" setup.py || die
+
+	# enable this to create a pre-patched (prefix bootstrap) tree
+	if [[ -n ${GENTOO_PREFIX_CREATE_TAR} ]] ; then
+		eautoreconf
+		tarfile="${T}"/Python-${PV}-gentoo-prefix-patched.tar.xz
+		tar --numeric-owner -Jcf "${tarfile}" -C .. Python-${PV}
+		die "${tarfile}"
+	fi
+
+	# Ensure that internal copies of expat and libffi are not used.
+	rm -r Modules/expat || die
+	rm -r Modules/_ctypes/libffi* || die
 
 	# force the correct number of jobs
 	# https://bugs.gentoo.org/737660
