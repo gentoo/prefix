@@ -11,7 +11,7 @@ MY_PV=${PV/_rc/rc}
 MY_P="Python-${MY_PV%_p*}"
 PYVER=$(ver_cut 1-2)
 PATCHSET="python-gentoo-patches-${MY_PV}_p1"
-PREFIX_PATCHSET="python-prefix-gentoo-${MY_PV}-patches-r0"
+PREFIX_PATCHSET="python-prefix-gentoo-${MY_PV}-patches-r1"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="
@@ -150,24 +150,6 @@ src_prepare() {
 			-e '/^CFLAGS_ALIASING=/s/$/ -fno-tree-ter/' Makefile.pre.in || die
 	fi
 
-	# Darwin 9's kqueue seems to act up (at least at this stage), so
-	# make Python's selectors resort to poll() or select()
-	if [[ ${CHOST} == powerpc*-darwin9 ]] ; then
-		sed -i \
-			-e 's/KQUEUE/KQUEUE_DISABLED/' \
-			configure.ac configure || die
-	fi
-
-	if [[ ${CHOST} == *-darwin19 ]] ; then
-		# HAVE_DYLD_SHARED_CACHE_CONTAINS_PATH is set because
-		# _dyld_shared_cache_contains_path could be found, yet it cannot
-		# be resolved when dlopen()ing, so simply pretend it doesn't
-		# exist here
-		sed -i \
-			-e 's/_dyld_shared_cache_contains_path/disabled&/' \
-			configure.ac configure || die
-	fi
-
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		# OpenIndiana/Solaris 11 defines inet_aton no longer in
 		# libresolv, so use hstrerror to check if we need -lresolv
@@ -301,6 +283,10 @@ src_configure() {
 	# flock on 32-bits sparc Solaris is broken
 	[[ ${CHOST} == sparc-*-solaris* ]] && \
 		export ac_cv_flock_decl=no
+	# Darwin 9's kqueue seems to act up (at least at this stage), so
+	# make Python's selectors resort to poll() or select()
+	[[ ${CHOST} == powerpc*-darwin9 ]] && \
+		export ac_cv_func_kqueue=no
 
 	local myeconfargs=(
 		# glibc-2.30 removes it; since we can't cleanly force-rebuild
