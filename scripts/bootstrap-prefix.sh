@@ -215,7 +215,7 @@ configure_toolchain() {
 			compiler_stage1="sys-apps/darwin-miscutils"
 			compiler_type="clang"
 			local ccvers="$(unset CHOST; /usr/bin/gcc --version 2>/dev/null)"
-			local llvm_deps="dev-util/ninja"
+			local llvm_deps="dev-build/ninja"
 			case "${ccvers}" in
 				*"Apple clang version "*|*"Apple LLVM version "*)
 					# this is Clang, recent enough to compile recent clang
