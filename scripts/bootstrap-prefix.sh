@@ -433,12 +433,21 @@ bootstrap_profile() {
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# setup MacOSX.sdk symlink for GCC, this should probably be
 		# managed using an eselect module in the future
+		# FWIW, just use system (/) if it seems OK, for some reason
+		# early versions of TAPI-based SDKs did not include some symbols
+		# like fclose, which ld64 is able to resolve from the dylibs
+		# although they are unvisible using e.g. nm.
 		rm -f "${ROOT}"/MacOSX.sdk
-		local SDKPATH=$(xcrun --show-sdk-path --sdk macosx)
-		if [[ ! -e ${SDKPATH} ]] ; then
-			SDKPATH=$(xcodebuild -showsdks | sort -nr \
-				| grep -o "macosx.*" | head -n1)
-			SDKPATH=$(xcode-select -print-path)/SDKs/MacOSX${SDKPATH#macosx}.sdk
+		local SDKPATH
+		if [[ -e /usr/lib/libSystem.B.dylib && -d /usr/include ]] ; then
+			SDKPATH=/
+		else
+			SDKPATH=$(xcrun --show-sdk-path --sdk macosx)
+			if [[ ! -e ${SDKPATH} ]] ; then
+				SDKPATH=$(xcodebuild -showsdks | sort -nr \
+					| grep -o "macosx.*" | head -n1)
+				SDKPATH=$(xcode-select -print-path)/SDKs/MacOSX${SDKPATH#macosx}.sdk
+			fi
 		fi
 		( cd "${ROOT}" && ln -s "${SDKPATH}" MacOSX.sdk )
 		einfo "using system sources from ${SDKPATH}"
