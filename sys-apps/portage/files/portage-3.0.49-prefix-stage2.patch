@@ -1,0 +1,16 @@
+During first part of stage3, some programs are installed from EPREFIX/tmp to EPREFIX which break this qa check
+The check I'm adding is heavy-handed, but I don't know how to fix this better
+
+TODO: check whether portage-3.0.30-prefix-stack.patch fixes the same issue - I don't understand what that patch is doing
+
+--- a/bin/install-qa-check.d/05prefix
++++ b/bin/install-qa-check.d/05prefix
+@@ -95,6 +95,8 @@ install_qa_check_prefix() {
+ 				# reasons
+ 				sed -i -e '1s:^#! \?'"${line[0]}"':#!'"${EPREFIX}"${line[0]}':' "${rf}"
+ 				continue
++			elif [[ -n "${PORTAGE_OVERRIDE_EPREFIX}" ]] ; then
++				continue
+ 			else
+ 				# this is definitely wrong: script in ${PATH} and invalid shebang
+ 				echo "${fn#${D}}:${line[0]} (script ${fn##*/} installed in PATH but interpreter ${line[0]} not found)" \

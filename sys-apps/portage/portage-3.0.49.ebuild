@@ -92,6 +92,7 @@ python_prepare_all() {
 		# disabled in 3.0.24: does not apply, while useful, rarely used if ever
 		# "${FILESDIR}"/${PN}-3.0.30-ebuildshell.patch # 155161
 		"${FILESDIR}"/${PN}-3.0.55.1-interrevisions.patch # 832062
+		"${FILESDIR}"/${PN}-3.0.49-prefix-stage2.patch # 758167
 	)
 
 	distutils-r1_python_prepare_all

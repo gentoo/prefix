@@ -108,6 +108,7 @@ S="${WORKDIR}"/prefix-${P}
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.0.55.1-interrevisions.patch
+	"${FILESDIR}"/${PN}-3.0.49-prefix-stage2.patch
 )
 
 pkg_pretend() {
