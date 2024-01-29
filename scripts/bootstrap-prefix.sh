@@ -2501,7 +2501,7 @@ EOF
 	if type -P xcode-select > /dev/null ; then
 		if [[ -d /usr/include ]] ; then
 			# if we have /usr/include we're on an older system
-			if [[ ${CHOST} == powerpc* ]]; then
+			if [[ ${CHOST} == *-darwin[89] ]]; then
 				# ancient Xcode (3.0/3.1)
 				cat << EOF
 
@@ -2603,9 +2603,11 @@ EOF
 	local candomultilib=no
 	local t64 t32
 	case "${CHOST}" in
-		*86*-darwin9|*86*-darwin1[012345])
+		*86*-darwin1[012345])
 			# PPC/Darwin only works in 32-bits mode, so this is Intel
-			# only, and only starting from Leopard (10.5, darwin9)
+			# only, and officially starting from Leopard (10.5, darwin9)
+			# but this is broken, so stick to 32-bits there, and use it
+			# from Snow Lepard (10.6).
 			# with Big Sur (11.0, darwin20) we have x64 or arm64 only
 			candomultilib=yes
 			t64=x86_64-${CHOST#*-}
