@@ -443,6 +443,19 @@ bootstrap_profile() {
 			SDKPATH=/
 		else
 			SDKPATH=$(xcrun --show-sdk-path --sdk macosx)
+			if [[ -L ${SDKPATH} ]] ; then
+				# try and find a matching OS SDK
+				local fsdk=$(readlink -f "${SDKPATH}")
+				local osvers=$(sw_vers -productVersion)
+				if [[ ${osvers%%.*} -le 10 ]] ; then
+					osvers=$(echo ${osvers} | cut -d'.' -f1-2)
+				else
+					osvers=${osvers%%.*}
+				fi
+				fsdk=${fsdk%/MacOSX*.sdk}
+				fsdk=${fsdk}/MacOSX${osvers}.sdk
+				[[ -e ${fsdk} ]] && SDKPATH=${fsdk}
+			fi
 			if [[ ! -e ${SDKPATH} ]] ; then
 				SDKPATH=$(xcodebuild -showsdks | sort -nr \
 					| grep -o "macosx.*" | head -n1)
