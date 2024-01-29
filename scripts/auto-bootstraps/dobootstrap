@@ -39,7 +39,7 @@ do_prepare() {
 
 	local chost=$(${BASH} ${bootstrap} chost.guess x)
 	case ${chost} in
-		powerpc*-*darwin[89])
+		*-darwin[89])
 			# ppc64-darwin never really worked for unknown reasons
 			# darwin9 (Leopard) doesn't work on Intel either
 			bitw=32
