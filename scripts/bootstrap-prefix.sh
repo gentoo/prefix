@@ -174,7 +174,13 @@ configure_toolchain() {
 		*darwin*:1)
 			einfo "Triggering Darwin with GCC toolchain"
 			compiler_stage1+=" sys-apps/darwin-miscutils"
-			local ccvers="$(unset CHOST; /usr/bin/gcc --version 2>/dev/null)"
+			# check if we have gcc-4.2 available, else use plain gcc
+			# Darwin 9 comes with 4.2 but it isn't enabled by default
+			if [[ -e $(type -P gcc-4.2) ]] ; then
+				CC=gcc-4.2
+				CXX=g++-4.2
+			fi
+			local ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
 			local isgcc=
 			case "${ccvers}" in
 				*"(GCC) 4.2.1 "*)
@@ -214,7 +220,7 @@ configure_toolchain() {
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
 			compiler_stage1="sys-apps/darwin-miscutils"
 			compiler_type="clang"
-			local ccvers="$(unset CHOST; /usr/bin/gcc --version 2>/dev/null)"
+			local ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
 			local llvm_deps="dev-build/ninja"
 			case "${ccvers}" in
 				*"Apple clang version "*|*"Apple LLVM version "*)
@@ -1239,8 +1245,10 @@ bootstrap_zlib() {
 }
 
 bootstrap_libffi() {
+	# 3.0.8: last version to bootstrap on Darwin 9 x86
 	bootstrap_gnu libffi 3.3 || \
-	bootstrap_gnu libffi 3.2.1
+	bootstrap_gnu libffi 3.2.1 || \
+	bootstrap_gnu libffi 3.0.8
 }
 
 bootstrap_sed() {
