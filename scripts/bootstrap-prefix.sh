@@ -176,38 +176,36 @@ configure_toolchain() {
 		*darwin*:1)
 			einfo "Triggering Darwin with GCC toolchain"
 			compiler_stage1+=" sys-apps/darwin-miscutils"
+			compiler_stage1+=" sys-devel/gcc"
+			# recent binutils-apple are hard to build (C++11 features,
+			# and cmake build system) so avoid going there, the system
+			# ld on machines with compiler that supports C11 is good
+			# enough to bring us to stage3, after which the @system set
+			# will take care of the rest
+			linker="sys-devel/native-cctools"
+
 			local ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
-			local isgcc=
 			case "${ccvers}" in
 				*"(GCC) "[1-9]*|"gcc ("*") "[1-9]*)
 					local cvers="${ccvers#*)}"; cvers="${cvers%%.*}"
 					# GCC-5 has C11 see above
 					if [[ ${ccvers} -ge 5 ]] ; then
-						linker="=sys-devel/binutils-apple-3.2.6"
-						isgcc=true
+						: # ok!
 					else
+						# FIXME: should probably stage1 bootstrap GCC-5
+						# or something
 						eerror "compiler ${ccvers} is too old: ${cvers} < 5"
 						eerror "you need a C11/C++11 compiler to bootstrap"
 					fi
 					;;
 				*"Apple clang version "*|*"Apple LLVM version "*)
-					# recent binutils-apple are hard to build (C++11
-					# features, and cmake build system) so avoid going
-					# there, the system ld is good enough to bring us to
-					# stage3, after which the @system set will take care of
-					# the rest
-					linker=sys-devel/native-cctools
+					: # ok!
 					;;
 				*)
 					eerror "unknown compiler: ${ccvers}"
 					return 1
 					;;
 			esac
-			# current compiler (gcc-12) requires C++11, which is
-			# available since 4.8, but we don't have versions in the
-			# tree any more to bootstrap up to this -- so fail
-			# FIXME: should probably stage1 bootstrap GCC-5 or something
-			compiler_stage1+=" sys-devel/gcc"
 			;;
 		*-darwin*)
 			einfo "Triggering Darwin with LLVM/Clang toolchain"
