@@ -2565,12 +2565,9 @@ EOF
 	esac
 	# get rid of excess spaces (at least Solaris wc does)
 	ncpu=$((ncpu + 0))
-	# Suggest usage of 100% to 60% of the available CPUs in the range
-	# from 1 to 14.  We limit to no more than 8, since we easily flood
-	# the bus on those heavy-core systems and only slow down in that
-	# case anyway.
-	local tcpu=$((ncpu / 2 + 1))
-	[[ ${tcpu} -gt 8 ]] && tcpu=8
+	# Suggest usage of 50% to 75% of the available CPUs
+	[[ ${tcpu} -eq 0 ]] && tcpu=1
+	local tcpu=$((((ncpu * 3) + 1) / 4))
 	[[ -n ${USE_CPU_CORES} ]] && tcpu=${USE_CPU_CORES}
 	cat << EOF
 
