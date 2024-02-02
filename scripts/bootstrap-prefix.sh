@@ -166,6 +166,8 @@ configure_toolchain() {
 	# introduced in gcc-4.8, but apparently gcc-5 is still buildable
 	# with Apple's gcc-apple-4.0.1, so that's a good candidate
 	# The Prefix tree only contains gcc-12 as of this writing.
+	# The bootstrap Python 3.7 we have in use requires C11, so Apple's
+	# 4.x line is no longer enough for that.
 
 	CC=gcc
 	CXX=g++
@@ -174,26 +176,19 @@ configure_toolchain() {
 		*darwin*:1)
 			einfo "Triggering Darwin with GCC toolchain"
 			compiler_stage1+=" sys-apps/darwin-miscutils"
-			# check if we have gcc-4.2 available, else use plain gcc
-			# Darwin 9 comes with 4.2 but it isn't enabled by default
-			if [[ -e $(type -P gcc-4.2) ]] ; then
-				CC=gcc-4.2
-				CXX=g++-4.2
-			fi
 			local ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
 			local isgcc=
 			case "${ccvers}" in
-				*"(GCC) 4.2.1 "*)
-					linker="=sys-devel/binutils-apple-3.2.6"
-					isgcc=true
-					;;
-				*"(GCC) 4.0.1 "*)
-					linker="=sys-devel/binutils-apple-3.2.6"
-					# upgrade to 4.2.1 first
-					compiler_stage1+="
-						sys-devel/gcc-apple
-						=sys-devel/binutils-apple-3.2.6"
-					isgcc=true
+				*"(GCC) "[1-9]*|"gcc ("*") "[1-9]*)
+					local cvers="${ccvers#*)}"; cvers="${cvers%%.*}"
+					# GCC-5 has C11 see above
+					if [[ ${ccvers} -ge 5 ]] ; then
+						linker="=sys-devel/binutils-apple-3.2.6"
+						isgcc=true
+					else
+						eerror "compiler ${ccvers} is too old: ${cvers} < 5"
+						eerror "you need a C11/C++11 compiler to bootstrap"
+					fi
 					;;
 				*"Apple clang version "*|*"Apple LLVM version "*)
 					# recent binutils-apple are hard to build (C++11
