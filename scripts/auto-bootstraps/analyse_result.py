@@ -188,8 +188,8 @@ with os.scandir(resultsdir) as it:
                         if 'Fetching ' in x:
                             if 'portage-latest.tar.bz2' in x:
                                 snapshot = 'latest'
-                            elif 'prefix-overlay-' in x:
-                                snapshot = re.split('[-.]', x)[2]
+                            elif re.search(r'(prefix-overlay|portage)-\d{8}\.tar\.bz2', x) is not None:
+                                snapshot = x.split('.')[0].split('-')[-1]
                         elif 'total size is' in x:
                             snapshot = 'rsync'
                         elif 'Darwin with GCC toolchain' in x:
