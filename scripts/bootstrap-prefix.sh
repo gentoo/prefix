@@ -189,7 +189,7 @@ configure_toolchain() {
 				*"(GCC) "[1-9]*|"gcc ("*") "[1-9]*)
 					local cvers="${ccvers#*)}"; cvers="${cvers%%.*}"
 					# GCC-5 has C11 see above
-					if [[ ${ccvers} -ge 5 ]] ; then
+					if [[ ${cvers} -ge 5 ]] ; then
 						: # ok!
 					else
 						# FIXME: should probably stage1 bootstrap GCC-5
@@ -866,6 +866,27 @@ bootstrap_gnu() {
 		myconf="${myconf} --disable-perl-regexp"
 	fi
 
+	if [[ ${PN} == "mpfr" || ${PN} == "mpc" || ${PN} == "gcc" ]] ; then
+		[[ -e "${ROOT}"/tmp/usr/include/gmp.h ]] \
+			&& myconf="${myconf} --with-gmp=${ROOT}/tmp/usr"
+	fi
+	if [[ ${PN} == "mpc" || ${PN} == "gcc" ]] ; then
+		[[ -e "${ROOT}"/tmp/usr/include/mpfr.h ]] \
+			&& myconf="${myconf} --with-mpfr=${ROOT}/tmp/usr"
+	fi
+	if [[ ${PN} == "gcc" ]] ; then
+		[[ -e "${ROOT}"/tmp/usr/include/mpc.h ]] \
+			&& myconf="${myconf} --with-mpc=${ROOT}/tmp/usr"
+
+		myconf="${myconf} --enable-languages=c,c++"
+		myconf="${myconf} --disable-bootstrap"
+		myconf="${myconf} --disable-multilib"
+		myconf="${myconf} --disable-nls"
+
+		export CFLAGS="-O1 -pipe"
+		export CXXFLAGS="-O1 -pipe"
+	fi
+
 	# pod2man may be too old (not understanding --utf8) but we don't
 	# care about manpages at this stage
 	export ac_cv_path_POD2MAN=no
@@ -1244,6 +1265,23 @@ bootstrap_libffi() {
 	bootstrap_gnu libffi 3.0.8
 }
 
+bootstrap_gmp() {
+	bootstrap_gnu gmp 6.2.1
+}
+
+bootstrap_mpfr() {
+	bootstrap_gnu mpfr 4.1.0
+}
+
+bootstrap_mpc() {
+	bootstrap_gnu mpc 1.2.1
+}
+
+bootstrap_gcc5() {
+	# bootstraps with gcc-4.0.1 (Darwin 8), provides C11
+	bootstrap_gnu gcc 5.5.0
+}
+
 bootstrap_sed() {
 	bootstrap_gnu sed 4.5 || \
 	bootstrap_gnu sed 4.2.2 || bootstrap_gnu sed 4.2.1
@@ -1399,6 +1437,27 @@ bootstrap_stage1() {
 		[[ -e ${ROOT}/tmp/${x} ]] || ( cd "${ROOT}"/tmp && ln -s usr/${x} )
 	done
 
+	# we could check compiler version here, but we just know
+	# it's Darwin 8 and 9 being affected here, so handle them to
+	# get a GCC-5 which is sufficient to compile the current tree
+	# packages
+	# see also configure_toolchain
+	if [[ ${CHOST} == *-darwin[89] ]] ; then
+		# benefit from 4.2 if it's present
+		if [[ -e /usr/bin/gcc-4.2 ]] ; then
+			export CC=gcc-4.2
+			export CXX=g++-4.2
+		fi
+		[[ -e ${ROOT}/tmp/usr/include/gmp.h ]] \
+			|| (bootstrap_gmp) || return 1
+		[[ -e ${ROOT}/tmp/usr/include/mpfr.h ]] \
+			|| (bootstrap_mpfr) || return 1
+		[[ -e ${ROOT}/tmp/usr/include/mpc.h ]] \
+			|| (bootstrap_mpc) || return 1
+		[[ -x ${ROOT}/tmp/usr/bin/gcc ]] \
+			|| (bootstrap_gcc5) || return 1
+	fi
+
 	configure_toolchain
 	export CC CXX
 
@@ -1456,7 +1515,7 @@ bootstrap_stage1() {
 		|| (bootstrap_grep) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/gawk ]] \
 		|| [[ $(awk --version < /dev/null 2>&1) == *GNU" Awk "[456789]* ]] \
-		|| bootstrap_gawk || return 1
+		|| (bootstrap_gawk) || return 1
 	# always build our own bash, for we don't know what devilish thing
 	# we're working with now, bug #650284
 	[[ -x ${ROOT}/tmp/usr/bin/bash ]] \
@@ -1514,6 +1573,7 @@ bootstrap_stage1() {
 			fi
 			;;
 	esac
+
 	# Host compiler can output a variety of libdirs.  At stage1,
 	# they should be the same as lib.  Otherwise libffi may not be
 	# found by python.
