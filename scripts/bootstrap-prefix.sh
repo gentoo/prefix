@@ -299,6 +299,16 @@ bootstrap_setup() {
 				echo "USE=\"\${USE} ${MAKE_CONF_ADDITIONAL_USE}\""
 			[[ ${OFFLINE_MODE} ]] && \
 				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
+
+			if [[ ${CHOST} == i*86-apple-darwin9 ]] ; then
+				# There's no legitimate reason to use 10.5 with x86 (10.6 and
+				# 10.7 run on every device that ever ran 10.5 x86) but it's
+				# vastly easier to access and faster than ppc.  Don't want to
+				# burden the tree with this aid-arch, so just use the ppc
+				# keyword.
+				echo
+				echo 'ACCEPT_KEYWORDS="~ppc-macos"'
+			fi
 		} > "${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf"
 	fi
 
@@ -356,6 +366,10 @@ bootstrap_profile() {
 		powerpc-apple-darwin9)
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/ppc"
+			;;
+		i*86-apple-darwin9)
+			rev=${CHOST##*darwin}
+			profile="prefix/darwin/macos/10.$((rev - 4))/x32"
 			;;
 		i*86-apple-darwin1[578])
 			eerror "REMOVED ARCH: this 32-bit MacOS architecture was removed,"
