@@ -369,7 +369,7 @@ bootstrap_profile() {
 			;;
 		i*86-apple-darwin9)
 			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/10.$((rev - 4))/x32"
+			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
 			;;
 		i*86-apple-darwin1[578])
 			eerror "REMOVED ARCH: this 32-bit MacOS architecture was removed,"
