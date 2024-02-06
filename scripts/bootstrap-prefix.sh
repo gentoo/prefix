@@ -112,6 +112,9 @@ efetch() {
 
 configure_cflags() {
 	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
+	# keep it fairly reasonable (no -march or whatever)
+	export OVERRIDE_CFLAGS="-O2 -pipe"
+	export OVERRIDE_CXXFLAGS="-O2 -pipe"
 
 	case ${CHOST} in
 		*-darwin*)
@@ -151,7 +154,7 @@ configure_cflags() {
 
 configure_toolchain() {
 	linker="sys-devel/binutils"
-	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc"
+	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc dev-libs/libffi"
 	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
 	compiler_type="gcc"
@@ -190,7 +193,8 @@ configure_toolchain() {
 					local cvers="${ccvers#*)}"; cvers="${cvers%%.*}"
 					# GCC-5 has C11 see above
 					if [[ ${cvers} -ge 5 ]] ; then
-						: # ok!
+						: # ok! stage1 bootstrapped one, get us a linker too
+						linker="=sys-devel/binutils-apple-3.2.6*"
 					else
 						# FIXME: should probably stage1 bootstrap GCC-5
 						# or something
@@ -1846,7 +1850,6 @@ bootstrap_stage2() {
 		app-arch/xz-utils
 		sys-apps/sed
 		sys-apps/baselayout
-		dev-libs/libffi
 		sys-devel/m4
 		sys-devel/flex
 		sys-apps/diffutils # needed by bison-3 build system
@@ -1904,7 +1907,7 @@ bootstrap_stage2() {
 		EXTRA_ECONF="--disable-bootstrap $(rapx --with-linker-hash-style=both) --with-local-prefix=${ROOT} ${disable_darwin_rpath}" \
 		MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 		GCC_MAKE_TARGET=all \
-		OVERRIDE_CXXFLAGS="${CPPFLAGS} -O2 -pipe" \
+		OVERRIDE_CXXFLAGS="${CPPFLAGS} ${OVERRIDE_CXXFLAGS}" \
 		TPREFIX="${ROOT}" \
 		PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
 		emerge_pkgs --nodeps ${pkg} || return 1
