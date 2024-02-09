@@ -155,6 +155,7 @@ configure_cflags() {
 configure_toolchain() {
 	linker="sys-devel/binutils"
 	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc dev-libs/libffi"
+	local llvm_deps="dev-build/ninja"
 	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
 	compiler_type="gcc"
@@ -218,7 +219,6 @@ configure_toolchain() {
 			compiler_stage1="sys-apps/darwin-miscutils"
 			compiler_type="clang"
 			local ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
-			local llvm_deps="dev-build/ninja"
 			case "${ccvers}" in
 				*"Apple clang version "*|*"Apple LLVM version "*)
 					# this is Clang, recent enough to compile recent clang
@@ -250,6 +250,28 @@ configure_toolchain() {
 				sys-libs/libcxx
 				sys-devel/llvm
 				sys-devel/clang"
+			;;
+		*-openbsd*)
+			einfo "Triggering OpenBSD with LLVM/Clang toolchain"
+			linker="sys-devel/lld"
+			compiler="
+				dev-libs/libffi
+				${llvm_deps}
+				sys-libs/libcxxabi
+				sys-libs/libcxx
+				sys-devel/llvm
+				sys-devel/clang
+			"
+			compiler_stage1="
+				${llvm_deps}
+				sys-libs/libcxxabi
+				sys-libs/libcxx
+				sys-devel/llvm
+				sys-devel/clang
+			"
+			compiler_type="clang"
+			CC=clang
+			CXX=clang++
 			;;
 		*-linux*)
 			is-rap && einfo "Triggering Linux RAP bootstrap"
