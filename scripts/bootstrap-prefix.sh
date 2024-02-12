@@ -180,34 +180,20 @@ configure_toolchain() {
 			einfo "Triggering Darwin with GCC toolchain"
 			compiler_stage1+=" sys-apps/darwin-miscutils"
 			compiler_stage1+=" sys-devel/gcc"
-			# recent binutils-apple are hard to build (C++11 features,
-			# and cmake build system) so avoid going there, the system
-			# ld on machines with compiler that supports C11 is good
-			# enough to bring us to stage3, after which the @system set
-			# will take care of the rest
-			linker="sys-devel/native-cctools"
 
-			local ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
-			case "${ccvers}" in
-				*"(GCC) "[1-9]*|"gcc ("*") "[1-9]*)
-					local cvers="${ccvers#*)}"; cvers="${cvers%%.*}"
-					# GCC-5 has C11 see above
-					if [[ ${cvers} -ge 5 ]] ; then
-						: # ok! stage1 bootstrapped one, get us a linker too
-						linker="=sys-devel/binutils-apple-3.2.6*"
-					else
-						# FIXME: should probably stage1 bootstrap GCC-5
-						# or something
-						eerror "compiler ${ccvers} is too old: ${cvers} < 5"
-						eerror "you need a C11/C++11 compiler to bootstrap"
-					fi
-					;;
-				*"Apple clang version "*|*"Apple LLVM version "*)
-					: # ok!
+			# binutils-apple/xtools doesn't work (yet) on arm64.  The
+			# profiles will mask and keep using native-cctools for that,
+			# otherwise stage3 and @system will take care of switching
+			# to binutils-apple.
+			# one problem: when we have a really old linker, we need
+			# to use it sooner or else packages like libffi won't
+			# compile.
+			case ${CHOST} in
+				*-darwin[89])
+					linker="=sys-devel/binutils-apple-3.2.6*"
 					;;
 				*)
-					eerror "unknown compiler: ${ccvers}"
-					return 1
+					linker="sys-devel/native-cctools"
 					;;
 			esac
 			;;
