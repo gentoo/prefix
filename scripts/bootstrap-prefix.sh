@@ -385,7 +385,7 @@ bootstrap_profile() {
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
 			;;
-		riscv64-pc-linux-gnu)
+		riscv64-*-linux-gnu)
 			profile=${profile_linux/ARCH/riscv}
 			profile=${profile/17.0/20.0/rv64gc/lp64d}
 			;;
