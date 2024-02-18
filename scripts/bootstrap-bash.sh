@@ -18,7 +18,7 @@ cd "$1"
 mkdir bash-build
 cd bash-build
 
-GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org/distfiles"}
+GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.prefix.bitzolder.nl/distfiles"}
 
 command_exists() {
 	check_cmd="$1"
