@@ -1377,6 +1377,7 @@ bootstrap_gzip() {
 }
 
 bootstrap_xz() {
+	GNU_URL=http://tukaani.org/xz bootstrap_gnu xz 5.4.5 || \
 	GNU_URL=http://tukaani.org/xz bootstrap_gnu xz 5.2.4 || \
 	GNU_URL=http://tukaani.org/xz bootstrap_gnu xz 5.2.3
 }
