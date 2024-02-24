@@ -3,6 +3,16 @@
 UPLOADDIR="./uploads"
 RESULTSDIR="./results"
 
+if [[ -x ${BASH_SOURCE[0]%/*}/process_uploads_local.sh ]] ; then
+	source ${BASH_SOURCE[0]%/*}/process_uploads_local.sh
+fi
+
+if [[ $(type -t process_file) != function ]] ; then
+	process_file() {
+		return
+	}
+fi
+
 didsomething=
 for d in ${UPLOADDIR}/* ; do
 	if [[ ! -d "${d}" ]] ; then
@@ -30,17 +40,19 @@ for d in ${UPLOADDIR}/* ; do
 	# behind
 	mkdir "${RESULTSDIR}/${dir}"
 	for f in \
+		distfiles \
 		stage{1,2,3}.log \
 		.stage{1,2,3}-finished \
 		bootstrap-prefix.sh \
 		emerge.log \
 		startprefix \
 		elapsedtime \
-		make.conf \
-		distfiles ;
+		make.conf ;
 	do
-		[[ -e "${d}/${dir}/${f}" ]] && \
+		if [[ -e "${d}/${dir}/${f}" ]] ; then
 			mv "${d}/${dir}/${f}" "${RESULTSDIR}/${dir}"/
+			process_file "${RESULTSDIR}/${dir}/${f}"
+		fi
 	done
 	if [[ -e "${d}/${dir}/portage" ]] ; then
 		for pkg in "${d}/${dir}/portage"/*/* ; do
