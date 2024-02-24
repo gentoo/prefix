@@ -1644,6 +1644,12 @@ bootstrap_stage1() {
 }
 
 bootstrap_stage1_log() {
+	{
+		echo "===== stage 1 -- $(date -u +%Y-%m-%dT%H:%M:%SZ) ====="
+		echo "CHOST:     ${CHOST}"
+		echo "IDENT:     ${CHOST_IDENTIFY}"
+		echo "==========================================="
+	} >> ${ROOT}/stage1.log
 	bootstrap_stage1 "${@}" 2>&1 | tee -a ${ROOT}/stage1.log
 	local ret=${PIPESTATUS[0]}
 	[[ ${ret} == 0 ]] && touch ${ROOT}/.stage1-finished
@@ -1942,6 +1948,12 @@ bootstrap_stage2() {
 }
 
 bootstrap_stage2_log() {
+	{
+		echo "===== stage 2 -- $(date -u +%Y-%m-%dT%H:%M:%SZ) ====="
+		echo "CHOST:     ${CHOST}"
+		echo "IDENT:     ${CHOST_IDENTIFY}"
+		echo "==========================================="
+	} >> ${ROOT}/stage2.log
 	bootstrap_stage2 "${@}" 2>&1 | tee -a ${ROOT}/stage2.log
 	local ret=${PIPESTATUS[0]}
 	[[ ${ret} == 0 ]] && touch "${ROOT}/.stage2-finished"
@@ -2289,6 +2301,12 @@ bootstrap_stage3() {
 }
 
 bootstrap_stage3_log() {
+	{
+		echo "===== stage 3 -- $(date -u +%Y-%m-%dT%H:%M:%SZ) ====="
+		echo "CHOST:     ${CHOST}"
+		echo "IDENT:     ${CHOST_IDENTIFY}"
+		echo "==========================================="
+	} >> ${ROOT}/stage3.log
 	bootstrap_stage3 "${@}" 2>&1 | tee -a ${ROOT}/stage3.log
 	local ret=${PIPESTATUS[0]}
 	[[ ${ret} == 0 ]] && touch "${ROOT}/.stage3-finished"
