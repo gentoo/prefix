@@ -1734,8 +1734,8 @@ do_emerge_pkgs() {
 
 		# Disable the STALE warning because the snapshot frequently gets stale.
 		#
-		# Need need to spam the user about news until the emerge -e system
-		# because the tools aren't available to read the news item yet anyway.
+		# No need to spam the user about news until the final emerge @world
+		# because the tools aren't available to read the news items yet anyway.
 		#
 		# Avoid circular deps caused by the default profiles (and IUSE
 		# defaults).
@@ -2279,9 +2279,10 @@ bootstrap_stage3() {
 	export USE="-git -crypt -http2"
 
 	# Portage should figure out itself what it needs to do, if anything.
-	einfo "running emerge -uDNv system"
-	estatus "stage3: emerge -uDNv system"
-	emerge --color n -uDNv system || return 1
+	eflags="--deep --update --changed-use @system"
+	einfo "running emerge ${eflags}"
+	estatus "stage3: emerge ${eflags}"
+	emerge --color n -v ${eflags} || return 1
 
 	# Remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
@@ -2931,8 +2932,9 @@ OK!  I'm going to give it a try, this is what I have collected sofar:
 I'm now going to make an awful lot of noise going through a sequence of
 stages to make your box as groovy as I am myself, setting up your
 Prefix.  In short, I'm going to run stage1, stage2, stage3, followed by
-emerge -e system.  If any of these stages fail, both you and me are in
-deep trouble.  So let's hope that doesn't happen.
+an emerge to do a finel update to your system.  If any of these stages
+fail, both you and me are in deep trouble.  So let's hope that doesn't
+happen.
 EOF
 	echo
 	[[ ${TODO} == 'noninteractive' ]] && ans="" ||
@@ -3088,7 +3090,7 @@ EOF
 
 	[[ ${STOP_BOOTSTRAP_AFTER} == stage3 ]] && exit 0
 
-	local cmd="emerge -v -e system"
+	local cmd="emerge -v --deep --update --changed-use @world"
 	if [[ -e ${EPREFIX}/var/cache/edb/mtimedb ]] && \
 		grep -q resume "${EPREFIX}"/var/cache/edb/mtimedb ;
 	then
@@ -3096,7 +3098,7 @@ EOF
 	fi
 	einfo "running ${cmd}"
 	if ${cmd} ; then
-		# Now, after 'emerge -e system', we can get rid of the temporary tools.
+		# Now, we've got everything in $ROOT, we can get rid of /tmp
 		if [[ -d ${EPREFIX}/tmp/var/tmp ]] ; then
 			rm -Rf "${EPREFIX}"/tmp || return 1
 			mkdir -p "${EPREFIX}"/tmp || return 1
@@ -3104,7 +3106,7 @@ EOF
 
 		hash -r  # tmp/* stuff is removed in stage3
 	else
-		# emerge -e system fail
+		# emerge @world fail
 		cat << EOF
 
 Oh yeah, I thought I was almost there, and then this!  I did
