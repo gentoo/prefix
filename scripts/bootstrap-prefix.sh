@@ -2932,7 +2932,7 @@ OK!  I'm going to give it a try, this is what I have collected sofar:
 I'm now going to make an awful lot of noise going through a sequence of
 stages to make your box as groovy as I am myself, setting up your
 Prefix.  In short, I'm going to run stage1, stage2, stage3, followed by
-an emerge to do a finel update to your system.  If any of these stages
+an emerge to do a final update to your system.  If any of these stages
 fail, both you and me are in deep trouble.  So let's hope that doesn't
 happen.
 EOF
