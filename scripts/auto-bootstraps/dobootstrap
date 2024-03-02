@@ -146,7 +146,8 @@ do_prepare() {
 		echo $((endtime - starttime)) > elapsedtime
 
 		# get identification of host that includes Linux distro, RAP, ...
-		chost=$(${BASH} ./bootstrap-prefix.sh chost.identify x)
+		chost=$(env CHOST=${chost} \
+			${BASH} ./bootstrap-prefix.sh chost.identify x)
 
 		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
 		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/

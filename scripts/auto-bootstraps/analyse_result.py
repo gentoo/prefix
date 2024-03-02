@@ -10,6 +10,7 @@ from functools import cmp_to_key
 resultsdir='./results'
 
 deprecated_archs = (
+        'i386-apple-darwin9',
         'x86_64-pc-cygwin',
         'i386-pc-solaris2.11',
         'sparc-sun-solaris2.10',
