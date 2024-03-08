@@ -405,8 +405,9 @@ main(int argc, char *argv[])
 		 * 14.2:   820.1
 		 * 14.3.1: 857.1
 		 * 15.0:   907   1022.1  Sanoma 23, platform_version iso sdk_version
+		 * 15.3    1053.12       called ld
 		 * all to be found from the PROJECT:ld64-650.9 or
-		 * PROJECT:dyld-1022.1 bit from the first line
+		 * PROJECT:dyld-1022.1 or PROJECT:ld-1053.12 bit from the first line
 		 * NOTE: e.g. my Sanoma mac with CommandLineTools has 650.9
 		 *       which is not a version from any Developer Tools ?!?
 		 * Currently we need to distinguish XCode 15 according to
@@ -423,11 +424,13 @@ main(int argc, char *argv[])
 			long  comp;
 			if (fgets(target, sizeof(target), ld64out) != 0 &&
 				((proj = strstr(target, "PROJECT:ld64-")) != NULL ||
-				 (proj = strstr(target, "PROJECT:dyld-")) != NULL))
+				 (proj = strstr(target, "PROJECT:dyld-")) != NULL ||
+				 (proj = strstr(target, "PROJECT:ld-")) != NULL))
 			{
 				/* we don't distinguish between ld64 and dyld here, for
 				 * now it seems the numbers line up for our logic */
-				proj += sizeof("PROJECT:ld64-") - 1;
+				proj += sizeof("PROJECT:ld") - 1;
+				proj += *proj == '-' ? 1 : 3;
 				comp  = strtol(proj, &proj, 10);
 				/* we currently have no need to parse fractions, the
 				 * major version is significant enough, so just stop */
