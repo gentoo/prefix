@@ -1,0 +1,40 @@
+disable some code-sanity checks/hacks because while bootstapping we use
+a compiler and its c++ library that does not necessarily comply
+
+This is an issue since macOS Sonoma 14.4 and/or CLT 15.3.
+
+--- a/include/safe-ctype.h
++++ b/include/safe-ctype.h
+@@ -120,6 +120,7 @@
+    So we include ctype.h here and then immediately redefine its macros.  */
+ 
+ #include <ctype.h>
++#if 0
+ #undef isalpha
+ #define isalpha(c) do_not_use_isalpha_with_safe_ctype
+ #undef isalnum
+@@ -146,5 +147,6 @@
+ #define toupper(c) do_not_use_toupper_with_safe_ctype
+ #undef tolower
+ #define tolower(c) do_not_use_tolower_with_safe_ctype
++#endif
+ 
+ #endif /* SAFE_CTYPE_H */
+--- a/gcc/system.h
++++ b/gcc/system.h
+@@ -917,6 +917,7 @@
+ 
+ #if (GCC_VERSION >= 3000)
+ 
++#if 0
+ /* Note autoconf checks for prototype declarations and includes
+    system.h while doing so.  Only poison these tokens if actually
+    compiling gcc, so that the autoconf declaration tests for malloc
+@@ -933,6 +934,7 @@
+ #undef realloc
+  #pragma GCC poison malloc realloc
+ #endif
++#endif
+ 
+ /* The %m format should be used when GCC's main diagnostic functions
+    supporting %m are available, and xstrerror from libiberty

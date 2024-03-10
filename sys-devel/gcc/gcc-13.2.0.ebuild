@@ -21,6 +21,8 @@ IANSGCCVER="gcc-13.2-darwin-r0"
 SRC_URI+=" elibc_Darwin? (
 https://github.com/iains/gcc-13-branch/archive/refs/tags/${IANSGCCVER}.tar.gz )"
 
+IUSE+="bootstrap"
+
 # Technically only if USE=hardened *too* right now, but no point in complicating it further.
 # If GCC is enabling CET by default, we need glibc to be built with support for it.
 # bug #830454
@@ -76,6 +78,8 @@ src_prepare() {
 	fi
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
+		use bootstrap && eapply "${FILESDIR}"/${PN}-13-darwin14-bootstrap.patch
+
 		# our ld64 is a slight bit different, so tweak expression to not
 		# get confused and break the build
 		sed -i -e 's/grep ld64/grep :ld64/' gcc/configure || die
