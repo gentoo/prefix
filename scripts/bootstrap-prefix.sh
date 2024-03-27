@@ -1583,7 +1583,7 @@ bootstrap_stage1() {
 	# Portage) and binutils use it
 	# note that this actually breaks the concept of stage1, this will be
 	# compiled for the target prefix
-	for zlib in ${ROOT}/tmp/usr/lib/libz.* ; do
+	for zlib in ${ROOT}/tmp/usr/lib*/libz.* ; do
 		[[ -e ${zlib} ]] && break
 		zlib=
 	done
