@@ -2320,14 +2320,14 @@ set_helper_vars() {
 	export DISTDIR=${DISTDIR:-"${ROOT}/var/cache/distfiles"}
 	PORTAGE_TMPDIR=${PORTAGE_TMPDIR:-${ROOT}/var/tmp}
 	MAKE_CONF_DIR="${ROOT}/etc/portage/make.conf/"
-	DISTFILES_URL=${DISTFILES_URL:-"http://dev.gentoo.org/~grobian/distfiles"}
-	GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
-	DISTFILES_G_O="http://distfiles.prefix.bitzolder.nl"
-	DISTFILES_PFX="http://distfiles.prefix.bitzolder.nl/prefix"
-	GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
-	SNAPSHOT_HOST=$(rapx http://distfiles.gentoo.org http://rsync.prefix.bitzolder.nl)
+	DISTFILES_URL=${DISTFILES_URL:-"https://dev.gentoo.org/~grobian/distfiles"}
+	GNU_URL=${GNU_URL:="https://ftp.gnu.org/gnu"}
+	DISTFILES_G_O="https://distfiles.prefix.bitzolder.nl"
+	DISTFILES_PFX="https://distfiles.prefix.bitzolder.nl/prefix"
+	GENTOO_MIRRORS=${GENTOO_MIRRORS:="https://distfiles.gentoo.org"}
+	SNAPSHOT_HOST=$(rapx https://distfiles.gentoo.org https://rsync.prefix.bitzolder.nl)
 	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
-	GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
+	GCC_APPLE_URL="https://www.opensource.apple.com/darwinsource/tarballs/other"
 
 	export MAKE CONFIG_SHELL
 }
