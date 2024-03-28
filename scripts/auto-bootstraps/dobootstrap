@@ -5,14 +5,14 @@ BOOTURL="http://rsync.prefix.bitzolder.nl/scripts/bootstrap-prefix.sh"
 UPLOAD="rsync1.prefix.bitzolder.nl::gentoo-portage-bootstraps"
 
 do_fetch() {
-	local FETCHCOMMAND
+	local FETCH_COMMAND
 	# Try to find a download manager, we only deal with wget,
 	# curl, FreeBSD's fetch and ftp.
-	if [[ x$(type -t wget) == "xfile" ]] ; then
+	if [[ $(type -t wget) == "file" ]] ; then
 		FETCH_COMMAND="wget -O -"
 		[[ $(wget -h) == *"--no-check-certificate"* ]] && \
 			FETCH_COMMAND+=" --no-check-certificate"
-	elif [[ x$(type -t curl) == "xfile" ]] ; then
+	elif [[ $(type -t curl) == "file" ]] ; then
 		FETCH_COMMAND="curl -f -L"
 	else
 		echo "could not download ${1##*/}"
@@ -26,6 +26,8 @@ do_prepare() {
 	local bitw=$1
 	local dte=$2
 	local bootstrap
+	local chost
+	local bootstrapscript
 
 	if [[ -n ${RESUME} && -n ${bitw} && -n ${dte} ]] ; then
 		bootstrap=${OVERRIDE_EPREFIX:-bootstrap${bitw}-${dte}}/bootstrap-prefix.sh
@@ -37,7 +39,7 @@ do_prepare() {
 		do_fetch ${BOOTURL} > ${bootstrap}
 	fi
 
-	local chost=$(${BASH} ${bootstrap} chost.guess x)
+	chost=$("${BASH}" "${bootstrap}" chost.guess x)
 	case ${chost} in
 		*-darwin[89])
 			# ppc64-darwin never really worked for unknown reasons
@@ -86,7 +88,7 @@ do_prepare() {
 				chost=sparc-${chost#*-}
 			fi
 			;;
-		sparcv9-*|sparc64-*)
+		SParcv9-*|sparc64-*)
 			if [[ ${bitw} == 32 ]] ; then
 				chost=sparc-${chost#*-}
 			else
@@ -105,11 +107,11 @@ do_prepare() {
 	EPREFIX=${PWD}/bootstrap${bitw}-${dte}
 	[[ -n ${OVERRIDE_EPREFIX} ]] && EPREFIX=${OVERRIDE_EPREFIX}
 
-	local bootstrapscript=$(realpath ${BASH_SOURCE[0]} 2>/dev/null)
+	bootstrapscript=$(realpath "${BASH_SOURCE[0]}" 2>/dev/null)
 	if [[ -z ${bootstrapscript} ]] ; then
 		local b=${BASH_SOURCE[0]}
-		cd "${b%/*}"
-		bootstrapscript=$(pwd -P)/${b##*/}
+		cd "${b%/*}" || exit 1
+		bootstrapscript="$(pwd -P)/${b##*/}"
 	fi
 	echo "EPREFIX=${EPREFIX}"
 	mkdir -p "${EPREFIX}"
@@ -124,33 +126,33 @@ do_prepare() {
 	# USE-flags in make.conf prior to stage2 (first emerge usage)
 	starttime=${SECONDS}
 	env -i \
-		HOME=${EPREFIX} \
+		HOME="${EPREFIX}" \
 		SHELL=/bin/sh \
-		TERM=${TERM} \
-		USER=${USER} \
-		CHOST=${chost} \
-		EPREFIX=${EPREFIX} \
+		TERM="${TERM}" \
+		USER="${USER}" \
+		CHOST="${chost}" \
+		EPREFIX="${EPREFIX}" \
 		${GENTOO_MIRRORS+GENTOO_MIRRORS="${GENTOO_MIRRORS}"} \
 		${DOLOCAL+DOLOCAL=1} \
 		${RESUME+RESUME=1} \
 		${LATEST_TREE_YES+LATEST_TREE_YES=1} \
-		${TREE_FROM_SRC+TREE_FROM_SRC=}${TREE_FROM_SRC} \
-		${USE_CPU_CORES+USE_CPU_CORES=}${USE_CPU_CORES} \
-		${DARWIN_USE_GCC+DARWIN_USE_GCC=}${DARWIN_USE_GCC} \
-		${PREFIX_DISABLE_RAP+PREFIX_DISABLE_RAP=}${PREFIX_DISABLE_RAP} \
-		${BP_KEEPALIVE_ACTIVE+BP_KEEPALIVE_ACTIVE=}${BP_KEEPALIVE_ACTIVE} \
-		${BASH} ${bootstrapscript} bootstrap
+		${TREE_FROM_SRC+TREE_FROM_SRC=}"${TREE_FROM_SRC}" \
+		${USE_CPU_CORES+USE_CPU_CORES=}"${USE_CPU_CORES}" \
+		${DARWIN_USE_GCC+DARWIN_USE_GCC=}"${DARWIN_USE_GCC}" \
+		${PREFIX_DISABLE_RAP+PREFIX_DISABLE_RAP=}"${PREFIX_DISABLE_RAP}" \
+		${BP_KEEPALIVE_ACTIVE+BP_KEEPALIVE_ACTIVE=}"${BP_KEEPALIVE_ACTIVE}" \
+		"${BASH}" "${bootstrapscript}" bootstrap
 	endtime=${SECONDS}
 
 	if [[ -n ${DOPUBLISH} ]] ; then
 		echo $((endtime - starttime)) > elapsedtime
 
 		# get identification of host that includes Linux distro, RAP, ...
-		chost=$(env CHOST=${chost} \
-			${BASH} ./bootstrap-prefix.sh chost.identify x)
+		chost="$(env CHOST="${chost}" \
+			"${BASH}" ./bootstrap-prefix.sh chost.identify x)"
 
-		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/
-		rsync -q /dev/null ${UPLOAD}/${HOSTNAME}-$$/${chost}/
+		rsync -q /dev/null "${UPLOAD}/${HOSTNAME}-$$"/
+		rsync -q /dev/null "${UPLOAD}/${HOSTNAME}-$$/${chost}"/
 		rsync -rltv \
 			--exclude=work/ \
 			--exclude=homedir/ \
@@ -165,15 +167,15 @@ do_prepare() {
 			var/tmp/portage \
 			var/log/emerge.log \
 			etc/portage/make.conf \
-			${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/
+			"${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}"/
 		rsync -q /dev/null \
-			${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}/push-complete/
+			"${UPLOAD}/${HOSTNAME}-$$/${chost}/${dte}"/push-complete/
 	fi
 }
 
 do_bootstrap() {
 	chmod 755 bootstrap-prefix.sh || exit 1
-	${BASH} ./bootstrap-prefix.sh ${EPREFIX} noninteractive
+	"${BASH}" ./bootstrap-prefix.sh "${EPREFIX}" noninteractive
 }
 
 # re-exec under keepalive wrapper, such that the machine we're running
@@ -195,11 +197,11 @@ case $1 in
 		;;
 	local)
 		export DOLOCAL=1
-		do_prepare $2
+		do_prepare "$2"
 		;;
 	resume)
 		export RESUME=1
-		do_prepare "$2" ${3:-${BOOTSTRAP_DATE}}
+		do_prepare "$2" "${3:-${BOOTSTRAP_DATE}}"
 		;;
 	*)
 		bitw=
@@ -213,10 +215,10 @@ case $1 in
 			case "${arg}" in
 				latesttree)   export LATEST_TREE_YES=1      ;;
 				norap|no-rap) export PREFIX_DISABLE_RAP=yes ;;
-				32|64)        bitw=${arg}                   ;;
+				32|64)        bitw="${arg}"                 ;;
 			esac
 		done
-		do_prepare ${bitw}
+		do_prepare "${bitw}"
 		;;
 esac
 

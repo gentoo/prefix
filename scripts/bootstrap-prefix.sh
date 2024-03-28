@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Copyright 2006-2023 Gentoo Authors
+# Copyright 2006-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 trap 'exit 1' TERM INT QUIT ABRT
 
 # RAP (libc) mode is triggered on Linux kernel and glibc.
 is-rap() { [[ ${PREFIX_DISABLE_RAP} != "yes" && ${CHOST} = *linux-gnu* ]]; }
-rapx() { is-rap && echo $1 || echo $2; }
+rapx() { is-rap && echo "$1" || echo "$2"; }
 
 ## Functions Start Here
 
@@ -15,32 +15,34 @@ estatus() {
 	# disturbing -- if it works, it makes it easy to see where we are in
 	# the bootstrap from the terminal status line (usually the window
 	# name)
-	printf '\033]2;'"$*"'\007'
+	printf '\033]2;%s\007' "$*"
 }
 
-eerror() { estatus $*; echo "!!! $*" 1>&2; }
+eerror() { estatus "$*"; echo "!!! $*" 1>&2; }
 einfo() { echo "* $*"; }
 v() { echo "$@"; "$@"; }
 
 econf() {
 	estatus "stage1: configuring ${PWD##*/}"
-	v ${CONFIG_SHELL} ./configure \
-		--host=${CHOST} \
+	v "${CONFIG_SHELL}" ./configure \
+		--host="${CHOST}" \
 		--prefix="${ROOT}"/tmp/usr \
 		--mandir="${ROOT}"/tmp/usr/share/man \
 		--infodir="${ROOT}"/tmp/usr/share/info \
 		--datadir="${ROOT}"/tmp/usr/share \
 		--sysconfdir="${ROOT}"/tmp/etc \
 		--localstatedir="${ROOT}"/tmp/var/lib \
-		--build=${CHOST} \
+		--build="${CHOST}" \
 		"$@" || return 1
 }
 
 emake() {
-	[[ $* == *install* ]] \
-		&& estatus "stage1: installing ${PWD##*/}" \
-		|| estatus "stage1: building ${PWD##*/}"
-	v ${MAKE} ${MAKEOPTS} "$@" || return 1
+	if [[ $* == *install* ]] ; then
+		estatus "stage1: installing ${PWD##*/}"
+	else
+		estatus "stage1: building ${PWD##*/}"
+	fi
+	v "${MAKE}" ${MAKEOPTS} "$@" || return 1
 }
 
 efetch() {
