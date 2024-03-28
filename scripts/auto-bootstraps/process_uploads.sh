@@ -4,7 +4,7 @@ UPLOADDIR="./uploads"
 RESULTSDIR="./results"
 
 if [[ -x ${BASH_SOURCE[0]%/*}/process_uploads_local.sh ]] ; then
-	source ${BASH_SOURCE[0]%/*}/process_uploads_local.sh
+	source "${BASH_SOURCE[0]%/*}"/process_uploads_local.sh
 fi
 
 if [[ $(type -t process_file) != function ]] ; then
@@ -14,7 +14,7 @@ if [[ $(type -t process_file) != function ]] ; then
 fi
 
 didsomething=
-for d in ${UPLOADDIR}/* ; do
+for d in "${UPLOADDIR}"/* ; do
 	if [[ ! -d "${d}" ]] ; then
 		rm -f "${d}"
 		continue
@@ -28,7 +28,7 @@ for d in ${UPLOADDIR}/* ; do
 		continue
 	fi
 
-	dir=${1#${d}/}
+	dir=${1#"${d}"/}
 	# skip this thing from auto-processing if it is new platform
 	[[ -d ${RESULTSDIR}/${dir%/*} ]] || continue
 	# skip this thing if it already exists
@@ -57,7 +57,7 @@ for d in ${UPLOADDIR}/* ; do
 	if [[ -e "${d}/${dir}/portage" ]] ; then
 		for pkg in "${d}/${dir}/portage"/*/* ; do
 			[[ -e ${pkg} ]] || continue
-			w=${pkg#${d}/}
+			w=${pkg#"${d}"/}
 			mkdir -p "${RESULTSDIR}/${w}"
 			[[ -e "${pkg}"/build-info ]] && \
 				mv "${pkg}"/build-info "${RESULTSDIR}/${w}"/
