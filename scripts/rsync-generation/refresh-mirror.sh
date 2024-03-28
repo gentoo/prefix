@@ -1,4 +1,8 @@
 #!/bin/bash -l
+#shellcheck disable=SC2009,SC2030,SC2031
+#SC2009: consider using pgrep instead of grepping ps output
+#SC2030: modification of FD is local (to subshell)
+#SC2031: FD was modified in subshell
 
 # invocation script meant to be launched from cron
 
@@ -10,7 +14,7 @@ if [[ -f /tmp/rsync-master-busy ]] ; then
 	# allow one run to be skipped quietly
 	if [[ $((laststart + (40 * 60))) -lt ${now} ]] ; then
 		echo "another rsync-master generation process is still busy"
-		type pstree > /dev/null && pstree -A -l -p $(head -n1 ${LOGFILE})
+		type pstree > /dev/null && pstree -A -l -p "$(head -n1 ${LOGFILE})"
 		ps -ef | grep '[r]efresh-mirror'
 		tail ${LOGFILE}
 	else
@@ -22,16 +26,16 @@ if [[ -f /tmp/rsync-master-busy ]] ; then
 		pid=$(head -n1 ${LOGFILE})
 		if [[ ${pid} -gt 0 ]] ; then
 			echo "Killing stray/stuck processes"
-			pstree -A -l -c -p ${pid} | grep -o '[0-9]\+' | xargs kill
+			pstree -A -l -c -p "${pid}" | grep -o '[0-9]\+' | xargs kill
 			rm /tmp/rsync-master-busy
 		fi
 	fi
 else
-	mv ${LOGFILE} ${LOGFILE%.log}-prev.log
-	cd "$(readlink -f "${BASH_SOURCE[0]%/*}")"
+	mv "${LOGFILE}" "${LOGFILE%.log}"-prev.log
+	cd "$(readlink -f "${BASH_SOURCE[0]%/*}")" || exit 1
 	touch /tmp/rsync-master-busy
-	echo $$ > ${LOGFILE}
-	echo "starting generation $(date)" >> ${LOGFILE}
+	echo $$ > "${LOGFILE}"
+	echo "starting generation $(date)" >> "${LOGFILE}"
 	genandpush() {
 		./update-rsync-master.sh \
 			&& ./push-rsync1.sh
