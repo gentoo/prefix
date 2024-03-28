@@ -14,7 +14,7 @@ SNAME=${PWD}/portage-$(date +%Y%m%d -d @${YESTERDAY}).tar
 TMPDIR=${PWD}/tmp-prefix-snapshot
 
 # clean up
-find . -maxdepth 2 -daystart -ctime +4 -type f | xargs --no-run-if-empty rm
+find . -maxdepth 2 -daystart -ctime +4 -type f -exec rm '{}' +
 
 # pull in active snapshot
 BOOTSTRAP_SNAPSHOT=$( \
@@ -31,7 +31,7 @@ mkdir -p "${TMPDIR}"
 # quickly take a snapshot, such that we get a consistent image
 pushd "${RSYNCTREE}" > /dev/null || exit 1
 tar -cf "${SNAME}" --exclude=snapshots -- * || exit 1
-popd > /dev/null
+popd > /dev/null || exit 1
 
 # now revamp it such that it's in a directory "portage"
 rm -Rf "${TMPDIR}"
@@ -40,7 +40,7 @@ pushd "${TMPDIR}" > /dev/null || exit 1
 mkdir portage
 tar -xf "${SNAME}" -C portage/
 tar --numeric-owner --format=posix --hard-dereference -cf "${SNAME}" portage/
-popd > /dev/null
+popd > /dev/null || exit 1
 
 rm -Rf "${TMPDIR}"
 
