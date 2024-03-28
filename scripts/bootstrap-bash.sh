@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright 2006-2018 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 2006-2024 Gentoo Authors; Distributed under the GPL v2
 
 # bash installer
 #
@@ -14,15 +14,15 @@ if [ -z "$1" ] ; then
 fi
 
 mkdir -p "$1"
-cd "$1"
+cd "$1" || exit 1
 mkdir bash-build
-cd bash-build
+cd bash-build || exit 1
 
 GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.prefix.bitzolder.nl/distfiles"}
 
 command_exists() {
 	check_cmd="$1"
-	command -v $check_cmd >/dev/null 2>&1
+	command -v "${check_cmd}" >/dev/null 2>&1
 }
 
 same_file() {
@@ -40,7 +40,7 @@ if [ ! -e bash-4.2.tar.gz ] ; then
 	eerror() { echo "!!! $*" 1>&2; }
 	einfo() { echo "* $*"; }
 
-	if [ -z ${FETCH_COMMAND} ] ; then
+	if [ -z "${FETCH_COMMAND}" ] ; then
 		# Try to find a download manager, we only deal with wget,
 		# curl, FreeBSD's fetch and ftp.
 		if command_exists wget; then
@@ -65,7 +65,7 @@ if [ ! -e bash-4.2.tar.gz ] ; then
 					;;
 			esac
 		fi
-		if [ -z ${FETCH_COMMAND} ]; then
+		if [ -z "${FETCH_COMMAND}" ]; then
 			eerror "no suitable download manager found (need wget, curl, fetch or ftp)"
 			eerror "could not download ${1##*/}"
 			eerror "download the file manually, and put it in ${PWD}"
@@ -77,7 +77,7 @@ fi
 
 gzip -d bash-4.2.tar.gz
 tar -xf bash-4.2.tar
-cd bash-4.2
+cd bash-4.2 || exit 2
 
 ./configure --prefix="${1}"/usr --disable-nls
 make
