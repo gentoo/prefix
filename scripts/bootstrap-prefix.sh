@@ -58,7 +58,7 @@ efetch() {
 
 		if [[ ${OFFLINE_MODE} ]] ; then
 			echo "I need ${1##*/} from $1 in $DISTDIR, can you give it to me?"
-			read
+			read -r
 			[[ -e ${DISTDIR}/${1##*/} ]] && return 0
 			# Give fetch a try
 		fi
@@ -66,15 +66,15 @@ efetch() {
 		if [[ -z ${FETCH_COMMAND} ]] ; then
 			# Try to find a download manager, we only deal with wget,
 			# curl, FreeBSD's fetch and ftp.
-			if [[ x$(type -t wget) == "xfile" ]] ; then
+			if [[ $(type -t wget) == "file" ]] ; then
 				FETCH_COMMAND="wget"
 				[[ $(wget -h) == *"--no-check-certificate"* ]] \
 					&& FETCH_COMMAND+=" --no-check-certificate"
-			elif [[ x$(type -t curl) == "xfile" ]] ; then
+			elif [[ $(type -t curl) == "file" ]] ; then
 				FETCH_COMMAND="curl -f -L -O"
-			elif [[ x$(type -t fetch) == "xfile" ]] ; then
+			elif [[ $(type -t fetch) == "file" ]] ; then
 				FETCH_COMMAND="fetch"
-			elif [[ x$(type -t ftp) == "xfile" ]] ; then
+			elif [[ $(type -t ftp) == "file" ]] ; then
 				FETCH_COMMAND="ftp"
 			else
 				eerror "no suitable download manager found!"
@@ -86,7 +86,7 @@ efetch() {
 
 		einfo "Fetching ${1##*/}"
 		estatus "stage1: fetching ${1##*/}"
-		pushd "${DISTDIR}" > /dev/null
+		pushd "${DISTDIR}" > /dev/null || exit 1
 
 		# Try for mirrors first, fall back to distfiles, then try given location
 		local locs=( )
@@ -107,7 +107,7 @@ efetch() {
 			eerror "downloading ${1} failed!"
 			return 1
 		fi
-		popd > /dev/null
+		popd > /dev/null || exit 1
 	fi
 	return 0
 }
@@ -311,7 +311,7 @@ bootstrap_setup() {
 			else
 				getent passwd > "${ROOT}"/etc/passwd
 				# add user if it's not in /etc/passwd, bug #766417
-				getent passwd $(id -un) >> "${ROOT}"/etc/passwd
+				getent passwd "$(id -un)" >> "${ROOT}"/etc/passwd
 			fi
 		fi
 		if [[ ! -f ${ROOT}/etc/group ]]; then
@@ -320,7 +320,7 @@ bootstrap_setup() {
 			else
 				getent group > "${ROOT}"/etc/group
 				# add group if it's not in /etc/group, bug #766417
-				getent group $(id -gn) >> "${ROOT}"/etc/group
+				getent group "$(id -gn)" >> "${ROOT}"/etc/group
 			fi
 		fi
 		[[ -f ${ROOT}/etc/resolv.conf ]] || ln -s {,"${ROOT}"}/etc/resolv.conf
@@ -331,10 +331,11 @@ bootstrap_setup() {
 }
 
 bootstrap_profile() {
-	local profile=""
+	local profile
+	local profile_linux
 
 	# 2.6.32.1 -> 2*256^3 + 6*256^2 + 32 * 256 + 1 = 33955841
-	kver() { uname -r|cut -d\- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
+	kver() { uname -r|cut -d- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
 	# >=glibc-2.20 requires >=linux-2.6.32.
 	profile-kernel() {
 		if [[ $(kver) -ge 50462720 ]] ; then # 3.2
@@ -349,9 +350,9 @@ bootstrap_profile() {
 	}
 
 	if is-rap ; then
-		local profile_linux=default/linux/ARCH/17.0/prefix/$(profile-kernel)
+		profile_linux="default/linux/ARCH/17.0/prefix/$(profile-kernel)"
 	else
-		local profile_linux=prefix/linux/ARCH
+		profile_linux="prefix/linux/ARCH"
 	fi
 
 	case ${CHOST} in
@@ -449,9 +450,11 @@ bootstrap_profile() {
 		else
 			SDKPATH=$(xcrun --show-sdk-path --sdk macosx)
 			if [[ -L ${SDKPATH} ]] ; then
+				local fsdk
+				local osvers
 				# try and find a matching OS SDK
-				local fsdk=$(readlink -f "${SDKPATH}")
-				local osvers=$(sw_vers -productVersion)
+				fsdk="$(readlink -f "${SDKPATH}")"
+				osvers="$(sw_vers -productVersion)"
 				if [[ ${osvers%%.*} -le 10 ]] ; then
 					osvers=$(echo ${osvers} | cut -d'.' -f1-2)
 				else
@@ -545,18 +548,19 @@ do_tree() {
 		# latest tree cannot be fetched from mirrors, always have to
 		# respect the source to get the latest
 		if [[ -n ${LATEST_TREE_YES} ]] ; then
-			( export GENTOO_MIRRORS= DISTFILES_G_O= DISTFILES_PFX= ;
+			( export GENTOO_MIRRORS='' DISTFILES_G_O='' DISTFILES_PFX='' ;
 			  efetch "$1/$2" ) || return 1
 		else
 			# use only Prefix mirror
-			( export GENTOO_MIRRORS= DISTFILES_G_O= ;
+			( export GENTOO_MIRRORS='' DISTFILES_G_O='' ;
 			  efetch "$1/$2" ) || return 1
 		fi
 		einfo "Unpacking, this may take a while"
 		estatus "stage1: unpacking Portage tree"
-		bzip2 -dc ${DISTDIR}/$2 | tar -xf - -C ${PORTDIR} --strip-components=1
+		bzip2 -dc "${DISTDIR}/$2" \
+			| tar -xf - -C "${PORTDIR}" --strip-components=1
 		[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
-		touch ${PORTDIR}/.unpacked
+		touch "${PORTDIR}"/.unpacked
 	fi
 }
 
@@ -607,8 +611,10 @@ bootstrap_startscript() {
 	einfo "To start Gentoo Prefix, run the script ${ROOT}/startprefix"
 
 	# see if PATH is kept/respected
-	local minPATH="preamble:${BASH%/*}:postlude"
-	local theirPATH="$(echo 'echo "${PATH}"' | env LS_COLORS= PATH="${minPATH}" $SHELL -l 2>/dev/null | grep "preamble:.*:postlude")"
+	local minPATH
+	local theirPATH
+	minPATH="preamble:${BASH%/*}:postlude"
+	theirPATH="$(echo 'echo "${PATH}"' | env LS_COLORS= PATH="${minPATH}" $SHELL -l 2>/dev/null | grep "preamble:.*:postlude")"
 	if [[ ${theirPATH} != *"preamble:"*":postlude"* ]] ; then
 		einfo "WARNING: your shell initialisation (.cshrc, .bashrc, .profile)"
 		einfo "         seems to overwrite your PATH, this effectively kills"
@@ -647,11 +653,11 @@ bootstrap_portage() {
 	ptmp=${S}
 	rm -rf "${S}" >& /dev/null
 	mkdir -p "${S}" >& /dev/null
-	cd "${S}"
+	cd "${S}" || return 1
 	bzip2 -dc "${DISTDIR}/${A}" | tar -xf -
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}/prefix-portage-${PV}"
-	cd "${S}"
+	cd "${S}" || return 1
 
 	fix_config_sub
 
@@ -686,7 +692,7 @@ bootstrap_portage() {
 	einfo "Installing ${A%.tar.*}"
 	emake install || return 1
 
-	cd "${ROOT}"
+	cd "${ROOT}" || return 1
 	rm -Rf ${ptmp} >& /dev/null
 
 	# Some people will skip the tree() step and hence var/log is not created
@@ -696,7 +702,7 @@ bootstrap_portage() {
 	# in Prefix the sed wrapper is deadly, so kill it
 	rm -f "${ROOT}"/tmp/usr/lib/portage/bin/ebuild-helpers/sed
 
-	local tmpportdir=${ROOT}/tmp/${PORTDIR#${ROOT}}
+	local tmpportdir=${ROOT}/tmp/${PORTDIR#"${ROOT}"}
 	[[ -e "${tmpportdir}" ]] || ln -s "${PORTDIR}" "${tmpportdir}"
 	for d in "${ROOT}"/tmp/usr/lib/python$(python_ver); do
 		[[ -e ${d}/portage ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/portage ${d}/portage
@@ -718,6 +724,7 @@ fix_config_sub() {
 	# for various versions of autoconf
 	if [[ ${CHOST} == arm64-apple-darwin* ]] ; then
 		# Apple Silicon doesn't use aarch64, but arm64
+		# note: macOS /usr/bin/find knows no -print0 or -exec
 		find . -name "config.sub" | \
 			xargs sed -i -e 's/ arm\(-\*\)* / arm\1 | arm64\1 /'
 		find . -name "config.sub" | \
@@ -737,8 +744,8 @@ bootstrap_simple() {
 	einfo "Unpacking ${A%.tar.*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
 	rm -rf "${S}"
-	mkdir -p "${S}"
-	cd "${S}"
+	mkdir -p "${S}" || return 1
+	cd "${S}" || return 1
 	case $3 in
 		xz)    decomp=xz    ;;
 		bz2)   decomp=bzip2 ;;
@@ -747,7 +754,7 @@ bootstrap_simple() {
 	${decomp} -dc "${DISTDIR}"/${A} | tar -xf -
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/${PN}-${PV}
-	cd "${S}"
+	cd "${S}" || return 1
 
 	fix_config_sub
 
@@ -766,7 +773,7 @@ bootstrap_simple() {
 	einfo "Installing ${A%.tar.*}"
 	emake PREFIX="${ROOT}"/tmp/usr install || return 1
 
-	cd "${ROOT}"
+	cd "${ROOT}" || return 1
 	rm -Rf "${S}"
 	einfo "${A%.tar.*} successfully bootstrapped"
 }
@@ -798,8 +805,8 @@ bootstrap_gnu() {
 		einfo "Unpacking ${A%.tar.*}"
 		S="${PORTAGE_TMPDIR}/${PN}-${PV}"
 		rm -rf "${S}"
-		mkdir -p "${S}"
-		cd "${S}"
+		mkdir -p "${S}" || return 1
+		cd "${S}" || return 1
 		case ${t} in
 			tar.xz)  decomp=xz    ;;
 			tar.bz2) decomp=bzip2 ;;
@@ -1004,8 +1011,8 @@ bootstrap_python() {
 	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/python-${PV}"
 	rm -rf "${S}"
-	mkdir -p "${S}"
-	cd "${S}"
+	mkdir -p "${S}" || return 1
+	cd "${S}" || return 1
 	case ${A} in
 		*bz2) bzip2 -dc "${DISTDIR}"/${A} | tar -xf - ;;
 		*xz)  xz -dc "${DISTDIR}"/${A} | tar -xf -    ;;
@@ -1013,7 +1020,7 @@ bootstrap_python() {
 	esac
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/Python-${PV%%-*}
-	cd "${S}"
+	cd "${S}" || return 1
 	rm -rf Modules/_ctypes/libffi* || return 1
 	rm -rf Modules/zlib || return 1
 
@@ -1125,7 +1132,7 @@ bootstrap_python() {
 	#   configure to not find them using HAS_HG (TODO: obsolete?)
 	# - Do not find libffi via pkg-config using PKG_CONFIG
 	HAS_HG=no \
-	PKG_CONFIG= \
+	PKG_CONFIG='' \
 	econf \
 		--with-system-ffi \
 		--without-ensurepip \
@@ -1137,9 +1144,9 @@ bootstrap_python() {
 
 	einfo "Installing ${A%.tar.*}"
 	emake -k install || echo "??? Python failed to install *sigh* continuing anyway"
-	cd "${ROOT}"/tmp/usr/bin
+	cd "${ROOT}"/tmp/usr/bin || return 1
 	ln -sf python${PV%.*} python
-	cd "${ROOT}"/tmp/usr/lib
+	cd "${ROOT}"/tmp/usr/lib || return 1
 	# messes up python emerges, and shouldn't be necessary for anything
 	# http://forums.gentoo.org/viewtopic-p-6890526.html
 	rm -f libpython${PV%.*}.a
@@ -1159,12 +1166,12 @@ bootstrap_cmake_core() {
 	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/cmake-${PV}"
 	rm -rf "${S}"
-	mkdir -p "${S}"
-	cd "${S}"
+	mkdir -p "${S}" || return 1
+	cd "${S}" || return 1
 	gzip -dc "${DISTDIR}"/${A} | tar -xf -
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/cmake-${PV}
-	cd "${S}"
+	cd "${S}" || return 1
 
 	# don't set a POSIX standard, system headers don't like that, #757426
 	sed -i -e 's/^#if !defined(_WIN32) && !defined(__sun)/& \&\& !defined(__APPLE__)/' \
@@ -1211,8 +1218,8 @@ bootstrap_zlib_core() {
 	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
 	rm -rf "${S}"
-	mkdir -p "${S}"
-	cd "${S}"
+	mkdir -p "${S}" || return 1
+	cd "${S}" || return 1
 	case ${A} in
 		*.tar.gz) decomp=gzip  ;;
 		*)        decomp=bzip2 ;;
@@ -1220,7 +1227,7 @@ bootstrap_zlib_core() {
 	${decomp} -dc "${DISTDIR}"/${A} | tar -xf -
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/zlib-${PV}
-	cd "${S}"
+	cd "${S}" || return 1
 
 	if [[ ${CHOST} == x86_64-*-* || ${CHOST} == sparcv9-*-* ]] ; then
 		# 64-bits targets need zlib as library (not just to unpack),
