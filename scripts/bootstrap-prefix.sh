@@ -1591,8 +1591,10 @@ bootstrap_stage1() {
 
 	# Host compiler can output a variety of libdirs.  At stage1,
 	# they should be the same as lib.  Otherwise libffi may not be
-	# found by python.
-	if is-rap ; then
+	# found by python.  Don't do this when we're using a Gentoo host to
+	# speed up bootstrapping, it should be good, and we shouldn't be
+	# touching the host either.  Bug #927957
+	if is-rap && [[ ! -L "${ROOT}"/tmp ]] ; then
 		[[ -d ${ROOT}/tmp/usr/lib ]] || mkdir -p "${ROOT}"/tmp/usr/lib
 		local libdir
 		for libdir in lib64 lib32 libx32; do
