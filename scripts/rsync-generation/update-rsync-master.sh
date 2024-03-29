@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#shellcheck disable=SC2016,SC2086
+#SC2016: expressions don't expand in single quotes -> purposely in sed
+#SC2086: double quote to prevent word splitting -> exactly what we need w/ set
 
 SCRIPTSTARTTIME=$(date +%s)
 
