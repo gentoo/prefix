@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#shellcheck disable=SC2016,SC2030,SC2038,SC2185,SC2120
 # Copyright 2006-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -200,13 +201,15 @@ configure_toolchain() {
 			esac
 			;;
 		*-darwin*)
+			local ccvers
+			local llvm_deps
 			einfo "Triggering Darwin with LLVM/Clang toolchain"
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
 			compiler_stage1="sys-apps/darwin-miscutils"
 			compiler_type="clang"
-			local ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
-			local llvm_deps="dev-build/ninja"
+			ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
+			llvm_deps="dev-build/ninja"
 			case "${ccvers}" in
 				*"Apple clang version "*|*"Apple LLVM version "*)
 					# this is Clang, recent enough to compile recent clang
@@ -683,8 +686,8 @@ bootstrap_portage() {
 	einfo "Compiling ${A%.tar.*}"
 	econf \
 		--with-offset-prefix="${ROOT}"/tmp \
-		--with-portage-user="`id -un`" \
-		--with-portage-group="`id -gn`" \
+		--with-portage-user="$(id -un)" \
+		--with-portage-group="$(id -gn)" \
 		--with-extra-path="${PATH}" \
 		|| return 1
 	emake || return 1
@@ -980,7 +983,7 @@ bootstrap_gnu() {
 		emake install || return 1
 	fi
 
-	cd "${ROOT}"
+	cd "${ROOT}" || return 1
 	rm -Rf "${S}"
 	einfo "${A%.tar.*} successfully bootstrapped"
 }
@@ -1242,13 +1245,13 @@ bootstrap_zlib_core() {
 		# compiler to 32-bits code generation if requested here
 		export CC="${CC} -m32"
 	fi
-	local makeopts=( ${MAKEOPTS} )
+	local makeopts=()
 	# 1.2.5 suffers from a concurrency problem
-	[[ ${PV} == 1.2.5 ]] && makeopts=()
+	[[ ${PV} == 1.2.5 ]] || read -a makeopts <<< "${MAKEOPTS}"
 
 	einfo "Compiling ${A%.tar.*}"
 	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
-	MAKEOPTS=
+	MAKEOPTS=''
 	emake "${makeopts[@]}" || return 1
 
 	einfo "Installing ${A%.tar.*}"
@@ -1502,8 +1505,8 @@ bootstrap_stage1() {
 		|| [[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] \
 		|| (bootstrap_m4) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/bison ]] \
-		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "2.[3-7]* ]] \
-		|| [[ $(bison --version 2>&1) == *GNU" "Bison") "[3-9]* ]] \
+		|| [[ $(bison --version 2>&1) == *"GNU Bison) "2.[3-7]* ]] \
+		|| [[ $(bison --version 2>&1) == *"GNU Bison) "[3-9]* ]] \
 		|| (bootstrap_bison) || return 1
 	if [[ ! -x ${ROOT}/tmp/usr/bin/uniq ]]; then
 		# If the system has a uniq, let's use it to test whether
@@ -1612,12 +1615,12 @@ bootstrap_stage1() {
 	# Portage) and binutils use it
 	# note that this actually breaks the concept of stage1, this will be
 	# compiled for the target prefix
-	for zlib in ${ROOT}/tmp/usr/lib*/libz.* ; do
+	for zlib in "${ROOT}"/tmp/usr/lib*/libz.* ; do
 		[[ -e ${zlib} ]] && break
 		zlib=
 	done
 	[[ -n ${zlib} ]] || (bootstrap_zlib) || return 1
-	for libffi in ${ROOT}/tmp/usr/lib*/libffi.* ; do
+	for libffi in "${ROOT}"/tmp/usr/lib*/libffi.* ; do
 		[[ -e ${libffi} ]] && break
 		libffi=
 	done
@@ -1661,9 +1664,9 @@ bootstrap_stage1_log() {
 		echo "IDENT:     ${CHOST_IDENTIFY}"
 		echo "==========================================="
 	} >> ${ROOT}/stage1.log
-	bootstrap_stage1 "${@}" 2>&1 | tee -a ${ROOT}/stage1.log
+	bootstrap_stage1 "${@}" 2>&1 | tee -a "${ROOT}"/stage1.log
 	local ret=${PIPESTATUS[0]}
-	[[ ${ret} == 0 ]] && touch ${ROOT}/.stage1-finished
+	[[ ${ret} == 0 ]] && touch "${ROOT}"/.stage1-finished
 	return ${ret}
 }
 
@@ -1682,18 +1685,18 @@ do_emerge_pkgs() {
 		else
 			vdb=${vdb}-\*
 		fi
-		for pvdb in ${EPREFIX}/var/db/pkg/${vdb%-*}-* ; do
+		for pvdb in "${EPREFIX}/var/db/pkg/${vdb%-*}"-* ; do
 			if [[ -d ${pvdb} ]] ; then
 				evdb=${pvdb##*/}
 				if [[ ${pkg} == "="* ]] ; then
 					# exact match required (* should work here)
-					[[ ${evdb} == ${vdb##*/} ]] && break
+					[[ ${evdb} == "${vdb##*/}" ]] && break
 				else
 					vdb=${vdb%-*}
 					evdb=${evdb%-r*}
 					evdb=${evdb%_p*}
 					evdb=${evdb%-*}
-					[[ ${evdb} == ${vdb#*/} ]] && break
+					[[ ${evdb} == "${vdb#*/}" ]] && break
 				fi
 			fi
 			pvdb=
@@ -1718,7 +1721,7 @@ do_emerge_pkgs() {
 			clang
 			internal-glib
 		)
-		local override_make_conf_dir="${PORTAGE_OVERRIDE_EPREFIX}${MAKE_CONF_DIR#${ROOT}}"
+		local override_make_conf_dir="${PORTAGE_OVERRIDE_EPREFIX}${MAKE_CONF_DIR#"${ROOT}"}"
 
 		if [[ " ${USE} " == *" prefix-stack "* ]] &&
 		   [[ ${PORTAGE_OVERRIDE_EPREFIX} == */tmp ]] &&
@@ -1733,15 +1736,15 @@ do_emerge_pkgs() {
 			echo "USE=\"\${USE} ${myuse[*]}\" # by bootstrap-prefix.sh" \
 				>> "${override_make_conf_dir}/0101_bootstrap_prefix_stack.conf"
 		fi
-		myuse=" ${myuse[*]} "
+		local smyuse=" ${myuse[*]} "
 		local use
 		for use in ${USE} ; do
-			myuse=" ${myuse/ ${use} /} "
-			myuse=" ${myuse/ -${use} /} "
-			myuse=" ${myuse/ ${use#-} /} "
-			myuse+=" ${use} "
+			smyuse=" ${smyuse/ ${use} /} "
+			smyuse=" ${smyuse/ -${use} /} "
+			smyuse=" ${smyuse/ ${use#-} /} "
+			smyuse=" ${smyuse} ${use} "
 		done
-		myuse=( ${myuse} )
+		read -a myuse <<< "${smyuse}"
 
 		# Disable the STALE warning because the snapshot frequently gets stale.
 		#
@@ -1755,15 +1758,14 @@ do_emerge_pkgs() {
 			estatus "${STAGE}: emerge ${pkg}"
 			unset CFLAGS CXXFLAGS
 			[[ -n ${OVERRIDE_CFLAGS} ]] \
-				&& export CFLAGS=${OVERRIDE_CFLAGS}
+				&& export CFLAGS="${OVERRIDE_CFLAGS}"
 			[[ -n ${OVERRIDE_CXXFLAGS} ]] \
-				&& export CXXFLAGS=${OVERRIDE_CXXFLAGS}
+				&& export CXXFLAGS="${OVERRIDE_CXXFLAGS}"
 			PORTAGE_SYNC_STALE=0 \
 			FEATURES="-news ${FEATURES}" \
 			USE="${myuse[*]}" \
 			emerge --color n -v --oneshot --root-deps ${opts} "${pkg}"
-		)
-		[[ $? -eq 0 ]] || return 1
+		) || return 1
 	done
 }
 
@@ -1791,7 +1793,7 @@ bootstrap_stage2() {
 	# bison's configure checks for perl, but doesn't use it,
 	# except for tests.  Since we don't want to pull in perl at this
 	# stage, fake it
-	export PERL=$(which touch)
+	PERL="$(which touch)" ; export PERL
 	# GCC sometimes decides that it needs to run makeinfo to update some
 	# info pages from .texi files.  Obviously we don't care at this
 	# stage and rather have it continue instead of abort the build
@@ -1866,7 +1868,7 @@ bootstrap_stage2() {
 	# provide active SDK link on Darwin
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		rm -f "${ROOT}"/tmp/MacOSX.sdk
-		( cd "${ROOT}"/tmp && ln -s ../MacOSX.sdk )
+		( cd "${ROOT}"/tmp && ln -s ../MacOSX.sdk MacOSX.sdk )
 	fi
 
 	# cmake has some external dependencies which require autoconf, etc.
@@ -2014,13 +2016,15 @@ bootstrap_stage3() {
 	for pef in python{,3} python{,3}-config ; do
 		rm -f "${ROOT}"/tmp/usr/bin/${pef}
 		[[ ${pef} == *-config ]] && ppf=-config || ppf=
-		( cd "${ROOT}"/tmp/usr/bin && ln -s python$(python_ver)${ppf} ${pef} )
+		( cd "${ROOT}"/tmp/usr/bin && \
+			ln -s "python$(python_ver)${ppf}" "${pef}" )
 	done
 
 	get_libdir() {
-		local l=$(portageq envvar LIBDIR_$(portageq envvar ABI) 2>/dev/null)
+		local l
+		l="$(portageq envvar LIBDIR_$(portageq envvar ABI) 2>/dev/null)"
 		[[ -z ${l} ]] && l=lib
-		echo ${l}
+		echo "${l}"
 	}
 
 	# Remember: binutils-config and gcc were built in ROOT/tmp, so they
@@ -2030,7 +2034,7 @@ bootstrap_stage3() {
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	[[ ${compiler_type} == gcc ]] && \
 		export CPPFLAGS="-isystem ${ROOT}/usr/include"
-	export LDFLAGS="-L${ROOT}/usr/$(get_libdir)"
+	LDFLAGS="-L${ROOT}/usr/$(get_libdir)" ; export LDFLAGS
 	[[ ${CHOST} == *-darwin* ]] || \
 		LDFLAGS+=" -Wl,-rpath=${ROOT}/usr/$(get_libdir)"
 	unset CC CXX
@@ -2117,7 +2121,7 @@ bootstrap_stage3() {
 		# Tell dynamic loader the path of libgcc_s.so of stage2
 		if [[ ! -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf ]]; then
 			mkdir -p "${ROOT}"/etc/ld.so.conf.d
-			dirname $(gcc -print-libgcc-file-name) \
+			dirname "$(gcc -print-libgcc-file-name)" \
 				> "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 		fi
 
