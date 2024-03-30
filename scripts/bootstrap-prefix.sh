@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#shellcheck disable=SCSC1091,SC2016,SC2030,SC2031,SC2038,SC2185,SC2120
+#shellcheck disable=SC1091,SC2016,SC2030,SC2031,SC2038,SC2185,SC2120
 # Copyright 2006-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
