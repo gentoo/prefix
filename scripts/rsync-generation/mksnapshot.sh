@@ -54,7 +54,7 @@ COMPRS=(
 # produce compressed variants, use as much cpu as left on the system, do
 # all in parallel
 for compr in "${COMPRS[@]}" ; do
-	read -a args <<< "${compr#*:}"
+	read -r -a args <<< "${compr#*:}"
 	nice -n19 "${args[@]}" "${SNAME}" > "${SNAME}.${compr%%:*}" &
 done
 wait

@@ -43,7 +43,7 @@ emake() {
 	else
 		estatus "stage1: building ${PWD##*/}"
 	fi
-	read -a makeopts <<< "${MAKEOPTS}"
+	read -r -a makeopts <<< "${MAKEOPTS}"
 	v "${MAKE}" "${makeopts[@]}" "$@" || return 1
 }
 
@@ -101,7 +101,7 @@ efetch() {
 		done
 		locs=( "${locs[@]}" "$1" )
 
-		read -a fetchcmd <<< "${FETCH_COMMAND}"
+		read -r -a fetchcmd <<< "${FETCH_COMMAND}"
 		for loc in "${locs[@]}" ; do
 			v "${fetchcmd[@]}" "${loc}" < /dev/null
 			[[ -f ${1##*/} ]] && break
@@ -811,7 +811,7 @@ bootstrap_gnu() {
 		fi
 
 		URL=${GNU_URL}/${PN}/${A}
-		efetch ${URL} || continue
+		efetch "${URL}" || continue
 
 		einfo "Unpacking ${A%.tar.*}"
 		S="${PORTAGE_TMPDIR}/${PN}-${PV}"
@@ -850,12 +850,12 @@ bootstrap_gnu() {
 		# have a suffix. Remove suffix by copy, not move, to not
 		# trigger refetch on repeated invocations of this script.
 		if [[ -f "${DISTDIR}/${tar_patch_file}?${tar_patch_id}" ]]; then
-			cp ${DISTDIR}/${tar_patch_file}{?${tar_patch_id},} || return 1
+			cp "${DISTDIR}/${tar_patch_file}"{"?${tar_patch_id}",} || return 1
 		fi
-		patch -p1 < ${DISTDIR}/${tar_patch_file} || return 1
+		patch -p1 < "${DISTDIR}/${tar_patch_file}" || return 1
 	fi
 
-	local myconf=""
+	local -a myconf
 	if [[ ${PN} == "make" && ${PV} == "4.2.1" ]] ; then
 		if [[ ${CHOST} == *-linux-gnu* ]] ; then
 			# force this, macros aren't set correctly with newer glibc
@@ -887,25 +887,27 @@ bootstrap_gnu() {
 		# so just don't set it at all.
 		# Solaris 11 has a messed up prce installation.  We don't need
 		# it anyway, so just disable it
-		myconf="${myconf} --disable-perl-regexp"
+		myconf+=( "--disable-perl-regexp" )
 	fi
 
 	if [[ ${PN} == "mpfr" || ${PN} == "mpc" || ${PN} == "gcc" ]] ; then
 		[[ -e "${ROOT}"/tmp/usr/include/gmp.h ]] \
-			&& myconf="${myconf} --with-gmp=${ROOT}/tmp/usr"
+			&& myconf+=( "--with-gmp=${ROOT}/tmp/usr" )
 	fi
 	if [[ ${PN} == "mpc" || ${PN} == "gcc" ]] ; then
 		[[ -e "${ROOT}"/tmp/usr/include/mpfr.h ]] \
-			&& myconf="${myconf} --with-mpfr=${ROOT}/tmp/usr"
+			&& myconf+=( "--with-mpfr=${ROOT}/tmp/usr" )
 	fi
 	if [[ ${PN} == "gcc" ]] ; then
 		[[ -e "${ROOT}"/tmp/usr/include/mpc.h ]] \
-			&& myconf="${myconf} --with-mpc=${ROOT}/tmp/usr"
+			&& myconf+=( "--with-mpc=${ROOT}/tmp/usr" )
 
-		myconf="${myconf} --enable-languages=c,c++"
-		myconf="${myconf} --disable-bootstrap"
-		myconf="${myconf} --disable-multilib"
-		myconf="${myconf} --disable-nls"
+		myconf+=(
+			"--enable-languages=c,c++"
+			"--disable-bootstrap"
+			"--disable-multilib"
+			"--disable-nls"
+		)
 
 		export CFLAGS="-O1 -pipe"
 		export CXXFLAGS="-O1 -pipe"
@@ -917,7 +919,7 @@ bootstrap_gnu() {
 
 	# On e.g. musl systems bash will crash with a malloc error if we use
 	# bash' internal malloc, so disable it during it this stage
-	[[ ${PN} == "bash" ]] && myconf="${myconf} --without-bash-malloc"
+	[[ ${PN} == "bash" ]] && myconf+=( "--without-bash-malloc" )
 
 	# Ensure we don't read system-wide shell initialisation, it may
 	# contain cruft, bug #650284
@@ -934,30 +936,35 @@ bootstrap_gnu() {
 	# stdbuf is giving many problems, and we don't really care about it
 	# at this level, so disable it too
 	if [[ ${PN} == "coreutils" ]] ; then
-		myconf="${myconf} --disable-acl --without-gmp"
-		myconf="${myconf} --enable-no-install-program=stdbuf"
+		myconf+=(
+			"--disable-acl"
+			"--without-gmp"
+			"--enable-no-install-program=stdbuf"
+		)
 	fi
 
 	# Gentoo Bug 400831, fails on Ubuntu with libssl-dev installed
 	if [[ ${PN} == "wget" ]] ; then
 		if [[ -x ${ROOT}/tmp/usr/bin/openssl ]] ; then
-			myconf="${myconf} --with-ssl=openssl"
-			myconf="${myconf} --with-libssl-prefix=${ROOT}/tmp/usr"
+			myconf+=(
+				"-with-ssl=openssl"
+				"--with-libssl-prefix=${ROOT}/tmp/usr"
+			)
 			export CPPFLAGS="${CPPFLAGS} -I${ROOT}/tmp/usr/include"
 			export LDFLAGS="${LDFLAGS} -L${ROOT}/tmp/usr/lib"
 		else
-			myconf="${myconf} --without-ssl"
+			myconf+=( "--without-ssl" )
 		fi
 	fi
 
 	# SuSE 11.1 has GNU binutils-2.20, choking on crc32_x86
-	[[ ${PN} == "xz" ]] && myconf="${myconf} --disable-assembler"
+	[[ ${PN} == "xz" ]] && myconf+=( "--disable-assembler" )
 
 	if [[ ${PN} == "libffi" ]] ; then
 		# we do not have pkg-config to find lib/libffi-*/include/ffi.h
 		sed -i -e '/includesdir =/s/=.*/= $(includedir)/' include/Makefile.in
 		# force install into libdir
-		myconf="${myconf} --libdir=${ROOT}/tmp/usr/lib"
+		myconf+=( "--libdir=${ROOT}/tmp/usr/lib" )
 		sed -i -e '/toolexeclibdir =/s/=.*/= $(libdir)/' Makefile.in
 		# we have to build the libraries for correct bitwidth
 		case $CHOST in
@@ -975,7 +982,7 @@ bootstrap_gnu() {
 	fi
 
 	einfo "Compiling ${A%.tar.*}"
-	econf ${myconf} || return 1
+	econf "${myconf[@]}" || return 1
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
 		estatus "stage1: building ${A%.tar.*}"
 		v ./build.sh || return 1
@@ -1255,7 +1262,7 @@ bootstrap_zlib_core() {
 	fi
 	local makeopts=()
 	# 1.2.5 suffers from a concurrency problem
-	[[ ${PV} == 1.2.5 ]] || read -a makeopts <<< "${MAKEOPTS}"
+	[[ ${PV} == 1.2.5 ]] || read -r -a makeopts <<< "${MAKEOPTS}"
 
 	einfo "Compiling ${A%.tar.*}"
 	CHOST='' ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
@@ -1752,7 +1759,7 @@ do_emerge_pkgs() {
 			smyuse=" ${smyuse/ ${use#-} /} "
 			smyuse=" ${smyuse} ${use} "
 		done
-		read -a myuse <<< "${smyuse}"
+		read -r -a myuse <<< "${smyuse}"
 
 		# Disable the STALE warning because the snapshot frequently gets stale.
 		#
@@ -2100,7 +2107,7 @@ bootstrap_stage3() {
 		cp -a "${ROOT}"{/tmp,}/usr/share/portage
 	fi
 
-	read -a linker_pkgs <<< "${linker}"
+	read -r -a linker_pkgs <<< "${linker}"
 
 	if is-rap ; then
 		# We need ${ROOT}/usr/bin/perl to merge glibc.
