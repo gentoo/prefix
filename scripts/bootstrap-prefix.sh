@@ -25,7 +25,7 @@ v() { echo "$@"; "$@"; }
 
 econf() {
 	estatus "stage1: configuring ${PWD##*/}"
-	v "${CONFIG_SHELL}" ./configure \
+	v ${CONFIG_SHELL:+"${CONFIG_SHELL}"} ./configure \
 		--host="${CHOST}" \
 		--prefix="${ROOT}"/tmp/usr \
 		--mandir="${ROOT}"/tmp/usr/share/man \
