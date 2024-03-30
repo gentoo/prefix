@@ -1250,7 +1250,7 @@ bootstrap_zlib_core() {
 	[[ ${PV} == 1.2.5 ]] || read -a makeopts <<< "${MAKEOPTS}"
 
 	einfo "Compiling ${A%.tar.*}"
-	CHOST= ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
+	CHOST='' ${CONFIG_SHELL} ./configure --prefix="${ROOT}"/tmp/usr || return 1
 	MAKEOPTS=''
 	emake "${makeopts[@]}" || return 1
 
@@ -2022,7 +2022,7 @@ bootstrap_stage3() {
 
 	get_libdir() {
 		local l
-		l="$(portageq envvar LIBDIR_$(portageq envvar ABI) 2>/dev/null)"
+		l="$(portageq envvar "LIBDIR_$(portageq envvar ABI)" 2>/dev/null)"
 		[[ -z ${l} ]] && l=lib
 		echo "${l}"
 	}
@@ -2092,6 +2092,8 @@ bootstrap_stage3() {
 		cp -a "${ROOT}"{/tmp,}/usr/share/portage
 	fi
 
+	read -a linker_pkgs <<< "${linker}"
+
 	if is-rap ; then
 		# We need ${ROOT}/usr/bin/perl to merge glibc.
 		if [[ ! -x "${ROOT}"/usr/bin/perl ]]; then
@@ -2156,10 +2158,10 @@ bootstrap_stage3() {
 		pkgs=(
 			sys-devel/binutils-config
 			sys-libs/zlib
-			${linker}
+			"${linker_pkgs[@]}"
 		)
 		# use the new dynamic linker in place of rpath from now on.
-		RAP_DLINKER=$(echo "${ROOT}"/$(get_libdir)/ld*.so.[0-9] | sed s"!${ROOT}/$(get_libdir)/ld-lsb.*!!")
+		RAP_DLINKER=$(echo "${ROOT}/$(get_libdir)"/ld*.so.[0-9] | sed s"!${ROOT}/$(get_libdir)/ld-lsb.*!!")
 		export CPPFLAGS="--sysroot=${ROOT}"
 		export LDFLAGS="-Wl,--dynamic-linker=${RAP_DLINKER}"
 		# make sure these flags are used even in places that ignore/strip CPPFLAGS/LDFLAGS
@@ -2189,7 +2191,7 @@ bootstrap_stage3() {
 			sys-devel/flex
 			sys-devel/binutils-config
 			sys-libs/zlib
-			${linker}
+			"${linker_pkgs[@]}"
 		)
 
 		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
@@ -2209,9 +2211,9 @@ bootstrap_stage3() {
 	# setup for a scenario where python doesn't live in the target
 	# prefix and no helpers are available
 	( cd "${ROOT}"/usr/bin && test ! -e python && \
-		ln -s "${ROOT}"/tmp/usr/bin/python$(python_ver) )
+		ln -s "${ROOT}/tmp/usr/bin/python$(python_ver)" "python$(python_ver)" )
 	# in addition, avoid collisions
-	rm -Rf "${ROOT}"/tmp/usr/lib/python$(python_ver)/site-packages/clang
+	rm -Rf "${ROOT}/tmp/usr/lib/python$(python_ver)/site-packages/clang"
 
 	# Try to get ourself out of the mud, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx '--disable-lto --disable-bootstrap')" \
@@ -2229,7 +2231,7 @@ bootstrap_stage3() {
 	# need special care, it depends on texinfo, #717786
 	pre_emerge_pkgs --nodeps sys-apps/gawk || return 1
 
-	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f python$(python_ver) )
+	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f "python$(python_ver)" )
 	# Use $ROOT tools where possible from now on.
 	if [[ $(readlink "${ROOT}"/bin/sh) == "${ROOT}/tmp/"* ]] ; then
 		rm -f "${ROOT}"/bin/sh
@@ -2342,7 +2344,6 @@ set_helper_vars() {
 	GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 	SNAPSHOT_HOST=$(rapx http://distfiles.gentoo.org http://rsync.prefix.bitzolder.nl)
 	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
-	GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 
 	export MAKE CONFIG_SHELL
 }
@@ -2656,7 +2657,7 @@ EOF
 		*-solaris*)
 			ncpu=$(/usr/sbin/psrinfo | wc -l) ;;
 		*-linux-gnu*)
-			ncpu=$(cat /proc/cpuinfo | grep processor | wc -l) ;;
+			ncpu=$(grep -c processor /proc/cpuinfo) ;;
 		*)
 			ncpu=1 ;;
 	esac
@@ -2792,7 +2793,8 @@ EOF
 
 	# Figure out if we are bootstrapping from an existing Gentoo
 	# It can be forced by setting HOST_GENTOO_EROOT manually
-	local t_GENTOO_EROOT=$(env -u EPREFIX portageq envvar EROOT 2> /dev/null)
+	local t_GENTOO_EROOT
+	t_GENTOO_EROOT=$(env -u EPREFIX portageq envvar EROOT 2> /dev/null)
 	if [[ ! -d ${HOST_GENTOO_EROOT} && -d ${t_GENTOO_EROOT} ]]; then
 		cat <<EOF
 
@@ -2893,8 +2895,10 @@ EOF
 			continue
 		fi
 		#readlink -f would not work on darwin, so use bash builtins
-		local realEPREFIX="$(cd "$EPREFIX"; pwd -P)"
-		if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]]; then
+		local realEPREFIX
+		realEPREFIX=$(cd "${EPREFIX}" && pwd -P)
+		if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && \
+			${EPREFIX} != "${realEPREFIX}" ]]; then
 			echo
 			echo "$EPREFIX contains a symlink, which will make the merge of gcc"
 			echo "imposible, use '${realEPREFIX}' instead or"
@@ -3016,7 +3020,8 @@ EOF
 	# This happens at least on 32-bits Darwin, with i386 and i686.
 	# https://bugs.gentoo.org/show_bug.cgi?id=433948
 	unset CHOST
-	export CHOST=$(portageq envvar CHOST)
+	CHOST=$(portageq envvar CHOST)
+	export CHOST
 
 	# after stage1 and stage2 we should have a bash of our own, which
 	# is preferable over the host-provided one, because we know it can
@@ -3182,8 +3187,8 @@ unset TMP TMPDIR TEMP
 # Try to guess the CHOST if not set.  We currently only support guessing
 # on a very sloppy base.
 if [[ -z ${CHOST} ]]; then
-	if [[ x$(type -t uname) == "xfile" ]]; then
-		case `uname -s` in
+	if [[ $(type -t uname) == "file" ]]; then
+		case $(uname -s) in
 			Linux)
 				CHOST=$(uname -m)
 				CHOST=${CHOST/#ppc/powerpc}
@@ -3211,7 +3216,7 @@ if [[ -z ${CHOST} ]]; then
 				esac
 				;;
 			Darwin)
-				rev="`uname -r | cut -d'.' -f 1`"
+				rev=$(uname -r | cut -d'.' -f 1)
 				if [[ ${rev} -ge 11 && ${rev} -le 19 ]] ; then
 					# Lion and up are 64-bits default (and 64-bits CPUs)
 					CHOST="x86_64-apple-darwin$rev"
@@ -3219,40 +3224,40 @@ if [[ -z ${CHOST} ]]; then
 					# uname -p returns arm, -m returns arm64 on this
 					# release while on Darwin 9 -m returns something
 					# like "PowerPC Machine", hence the distinction
-					CHOST="`uname -m`-apple-darwin$rev"
+					CHOST="$(uname -m)-apple-darwin$rev"
 				else
-					CHOST="`uname -p`-apple-darwin$rev"
+					CHOST="$(uname -p)-apple-darwin$rev"
 				fi
 				;;
 			SunOS)
-				case `uname -p` in
+				case $(uname -p) in
 					i386)
-						CHOST="i386-pc-solaris`uname -r | sed 's|5|2|'`"
+						CHOST="i386-pc-solaris$(uname -r | sed 's|5|2|')"
 					;;
 					sparc)
-						CHOST="sparc-sun-solaris`uname -r | sed 's|5|2|'`"
+						CHOST="sparc-sun-solaris$(uname -r | sed 's|5|2|')"
 					;;
 				esac
 				;;
 			CYGWIN*)
-				CHOST="`uname -m`-pc-cygwin"
+				CHOST="$(uname -m)-pc-cygwin"
 				;;
 			FreeBSD)
-				case `uname -m` in
+				case $(uname -m) in
 					amd64)
-						CHOST="x86_64-pc-freebsd`uname -r | sed 's|-.*$||'`"
+						CHOST="x86_64-pc-freebsd$(uname -r | sed 's|-.*$||')"
 					;;
 				esac
 				;;
 			OpenBSD)
-				case `uname -m` in
+				case $(uname -m) in
 					amd64)
-						CHOST="x86_64-pc-openbsd`uname -r | sed 's|-.*$||'`"
+						CHOST="x86_64-pc-openbsd$(uname -r | sed 's|-.*$||')"
 					;;
 				esac
 				;;
 			*)
-				eerror "Nothing known about platform `uname -s`."
+				eerror "Nothing known about platform $(uname -s)."
 				eerror "Please set CHOST appropriately for your system"
 				eerror "and rerun $0"
 				exit 1
@@ -3282,7 +3287,7 @@ if [[ ${CHOST} == *-linux-* ]] ; then
 	# a rolling distro
 	if [[ ${dist,,} == "gentoo" ]] ; then
 		rel=
-		[[ ${chost##*-} == "musl" ]] && rel="musl"
+		[[ ${CHOST##*-} == "musl" ]] && rel="musl"
 	fi
 
 	# leave rel unset/empty if we don't know about it
@@ -3301,13 +3306,13 @@ fi
 case ${CHOST} in
 	*-*-solaris*)
 		if type -P gmake > /dev/null ; then
-			MAKE=gmake
+			MAKE="gmake"
 		else
-			MAKE=make
+			MAKE="make"
 		fi
 	;;
 	*)
-		MAKE=make
+		MAKE="make"
 	;;
 esac
 
