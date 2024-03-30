@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#shellcheck disable=SC2016,SC2030,SC2038,SC2185,SC2120
+#shellcheck disable=SC2016,SC2030,SC2031,SC2038,SC2185,SC2120
 # Copyright 2006-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -43,7 +43,8 @@ emake() {
 	else
 		estatus "stage1: building ${PWD##*/}"
 	fi
-	v "${MAKE}" ${MAKEOPTS} "$@" || return 1
+	read -a makeopts <<< "${MAKEOPTS}"
+	v "${MAKE}" "${makeopts[@]}" "$@" || return 1
 }
 
 efetch() {
@@ -100,8 +101,9 @@ efetch() {
 		done
 		locs=( "${locs[@]}" "$1" )
 
+		read -a fetchcmd <<< "${FETCH_COMMAND}"
 		for loc in "${locs[@]}" ; do
-			v ${FETCH_COMMAND} "${loc}" < /dev/null
+			v "${fetchcmd[@]}" "${loc}" < /dev/null
 			[[ -f ${1##*/} ]] && break
 		done
 		if [[ ! -f ${1##*/} ]] ; then
@@ -459,7 +461,7 @@ bootstrap_profile() {
 				fsdk="$(readlink -f "${SDKPATH}")"
 				osvers="$(sw_vers -productVersion)"
 				if [[ ${osvers%%.*} -le 10 ]] ; then
-					osvers=$(echo ${osvers} | cut -d'.' -f1-2)
+					osvers=$(echo "${osvers}" | cut -d'.' -f1-2)
 				else
 					osvers=${osvers%%.*}
 				fi
@@ -604,7 +606,7 @@ bootstrap_startscript() {
 	fi
 	einfo "Trying to emerge the shell you use, if necessary by running:"
 	einfo "emerge -u ${theshell}"
-	if ! emerge -u ${theshell} ; then
+	if ! emerge -u "${theshell}" ; then
 		eerror "Your shell is not available in portage, hence we cannot" > /dev/stderr
 		eerror "automate starting your prefix, set SHELL and rerun this script" > /dev/stderr
 		return 1
@@ -617,7 +619,7 @@ bootstrap_startscript() {
 	local minPATH
 	local theirPATH
 	minPATH="preamble:${BASH%/*}:postlude"
-	theirPATH="$(echo 'echo "${PATH}"' | env LS_COLORS= PATH="${minPATH}" $SHELL -l 2>/dev/null | grep "preamble:.*:postlude")"
+	theirPATH="$(echo 'echo "${PATH}"' | env LS_COLORS= PATH="${minPATH}" "${SHELL}" -l 2>/dev/null | grep "preamble:.*:postlude")"
 	if [[ ${theirPATH} != *"preamble:"*":postlude"* ]] ; then
 		einfo "WARNING: your shell initialisation (.cshrc, .bashrc, .profile)"
 		einfo "         seems to overwrite your PATH, this effectively kills"
@@ -649,7 +651,7 @@ bootstrap_portage() {
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%.tar.*}"
 
-	efetch ${DISTFILES_URL}/${A} || return 1
+	efetch "${DISTFILES_URL}/${A}" || return 1
 
 	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}"/portage-${PV}
@@ -696,7 +698,7 @@ bootstrap_portage() {
 	emake install || return 1
 
 	cd "${ROOT}" || return 1
-	rm -Rf ${ptmp} >& /dev/null
+	rm -Rf "${ptmp}" >& /dev/null
 
 	# Some people will skip the tree() step and hence var/log is not created
 	# As such, portage complains..
@@ -708,8 +710,8 @@ bootstrap_portage() {
 	local tmpportdir=${ROOT}/tmp/${PORTDIR#"${ROOT}"}
 	[[ -e "${tmpportdir}" ]] || ln -s "${PORTDIR}" "${tmpportdir}"
 	for d in "${ROOT}"/tmp/usr/lib/python$(python_ver); do
-		[[ -e ${d}/portage ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/portage ${d}/portage
-		[[ -e ${d}/_emerge ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/_emerge ${d}/_emerge
+		[[ -e ${d}/portage ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/portage "${d}"/portage
+		[[ -e ${d}/_emerge ]] || ln -s "${ROOT}"/tmp/usr/lib/portage/lib/_emerge "${d}"/_emerge
 	done
 
 	if [[ -s ${PORTDIR}/profiles/repo_name ]]; then
@@ -742,7 +744,7 @@ bootstrap_simple() {
 	A=${PN}-${PV}.tar.${3:-gz}
 	einfo "Bootstrapping ${A%.tar.*}"
 
-	efetch ${4:-${DISTFILES_G_O}/distfiles}/${A} || return 1
+	efetch "${4:-${DISTFILES_G_O}/distfiles}/${A}" || return 1
 
 	einfo "Unpacking ${A%.tar.*}"
 	S="${PORTAGE_TMPDIR}/${PN}-${PV}"
@@ -750,11 +752,12 @@ bootstrap_simple() {
 	mkdir -p "${S}" || return 1
 	cd "${S}" || return 1
 	case $3 in
+		zstd)  decomp=zstd  ;;
 		xz)    decomp=xz    ;;
 		bz2)   decomp=bzip2 ;;
 		gz|"") decomp=gzip  ;;
 	esac
-	${decomp} -dc "${DISTDIR}"/${A} | tar -xf -
+	${decomp} -dc "${DISTDIR}/${A}" | tar -xf -
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/${PN}-${PV}
 	cd "${S}" || return 1
@@ -764,12 +767,16 @@ bootstrap_simple() {
 	# for libressl, only provide static lib, such that wget (above)
 	# links it in and we don't have to bother about RPATH or something
 	if [[ ${PN} == "libressl" ]] ; then
-		myconf="${myconf} --enable-static --disable-shared"
+		myconf=(
+			"${myconf[@]}"
+			--enable-static
+			--disable-shared
+		)
 	fi
 
 	einfo "Compiling ${A%.tar.*}"
 	if [[ -x configure ]] ; then
-		econf ${myconf} || return 1
+		econf "${myconf[@]}" || return 1
 	fi
 	emake || return 1
 
@@ -788,6 +795,7 @@ bootstrap_gnu() {
 
 	einfo "Bootstrapping ${A%.tar.*}"
 
+	# GNU does not use zstd (yet?)
 	for t in tar.xz tar.bz2 tar.gz tar ; do
 		A=${PN}-${PV}.${t}
 
@@ -815,7 +823,7 @@ bootstrap_gnu() {
 			tar.bz2) decomp=bzip2 ;;
 			tar.gz)  decomp=gzip  ;;
 			tar)
-				tar -xf "${DISTDIR}"/${A} || continue
+				tar -xf "${DISTDIR}/${A}" || continue
 				break
 				;;
 			*)
@@ -823,7 +831,7 @@ bootstrap_gnu() {
 				return 1
 				;;
 		esac
-		${decomp} -dc "${DISTDIR}"/${URL##*/} | tar -xf -
+		${decomp} -dc "${DISTDIR}/${URL##*/}" | tar -xf -
 		[[ ${PIPESTATUS[*]} == '0 0' ]] || continue
 		break
 	done
