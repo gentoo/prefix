@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#shellcheck disable=SC1091,SC2016,SC2030,SC2031,SC2038,SC2185,SC2120
+#shellcheck disable=SC1091,SC2015,SC2016,SC2030,SC2031,SC2038,SC2185,SC2120
 # Copyright 2006-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -1902,8 +1902,10 @@ bootstrap_stage2() {
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 	# Debian multiarch supported by RAP needs ld to support sysroot.
-	EXTRA_ECONF=$(rapx --with-sysroot=/) \
-	emerge_pkgs --nodeps ${linker} || return 1
+	for pkg in ${linker} ; do
+		EXTRA_ECONF=$(rapx --with-sysroot=/) \
+		emerge_pkgs --nodeps "${pkg}" || return 1
+	done
 
 	# During Gentoo prefix bootstrap stage2, GCC is built with
 	# "--disable-bootstrap". For Darwin, it means that rather than letting
@@ -1941,7 +1943,7 @@ bootstrap_stage2() {
 		OVERRIDE_CXXFLAGS="${CPPFLAGS} ${OVERRIDE_CXXFLAGS}" \
 		TPREFIX="${ROOT}" \
 		PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
-		emerge_pkgs --nodeps ${pkg} || return 1
+		emerge_pkgs --nodeps "${pkg}" || return 1
 
 		if [[ "${pkg}" == *sys-devel/llvm* || ${pkg} == *sys-devel/clang* ]] ;
 		then
@@ -1972,7 +1974,9 @@ bootstrap_stage2() {
 		# multilib.eclass -- can't blame it at this point really)
 		# do it ourselves here to make the bootstrap continue
 		if [[ -x "${ROOT}"/tmp/usr/bin/${CHOST}-clang ]] ; then
-			( cd "${ROOT}"/tmp/usr/bin && ln -s clang ${CHOST}-clang && ln -s clang++ ${CHOST}-clang++ )
+			( cd "${ROOT}"/tmp/usr/bin && \
+				ln -s clang "${CHOST}-clang" && \
+				ln -s clang++ "${CHOST}-clang++" )
 		fi
 	elif ! is-rap ; then
 		# make sure the EPREFIX gcc shared libraries are there
@@ -1990,11 +1994,11 @@ bootstrap_stage2_log() {
 		echo "CHOST:     ${CHOST}"
 		echo "IDENT:     ${CHOST_IDENTIFY}"
 		echo "==========================================="
-	} >> ${ROOT}/stage2.log
-	bootstrap_stage2 "${@}" 2>&1 | tee -a ${ROOT}/stage2.log
+	} >> "${ROOT}"/stage2.log
+	bootstrap_stage2 "${@}" 2>&1 | tee -a "${ROOT}"/stage2.log
 	local ret=${PIPESTATUS[0]}
 	[[ ${ret} == 0 ]] && touch "${ROOT}/.stage2-finished"
-	return ${ret}
+	return "${ret}"
 }
 
 bootstrap_stage3() {
@@ -2038,7 +2042,7 @@ bootstrap_stage3() {
 	# tmp, we basically made the system unusable, so remove python-exec
 	# here so we can use the python in tmp
 	for pef in python{,3} python{,3}-config ; do
-		rm -f "${ROOT}"/tmp/usr/bin/${pef}
+		rm -f "${ROOT}/tmp/usr/bin/${pef}"
 		[[ ${pef} == *-config ]] && ppf=-config || ppf=
 		( cd "${ROOT}"/tmp/usr/bin && \
 			ln -s "python$(python_ver)${ppf}" "${pef}" )
@@ -2084,13 +2088,13 @@ bootstrap_stage3() {
 	# packages installed end up in ROOT/tmp, which means we keep using
 	# stage2 area and config which breaks things like binutils-config'
 	# path search, so don't use this
-	with_stack_emerge_pkgs() {
-		# keep FEATURES=stacked-prefix until we bump portage in stage1
-		FEATURES="${FEATURES} stacked-prefix" \
-		USE="${USE} prefix-stack" \
-		PORTAGE_OVERRIDE_EPREFIX="${ROOT}/tmp" \
-		emerge_pkgs "$@"
-	}
+	#with_stack_emerge_pkgs() {
+	#	# keep FEATURES=stacked-prefix until we bump portage in stage1
+	#	FEATURES="${FEATURES} stacked-prefix" \
+	#	USE="${USE} prefix-stack" \
+	#	PORTAGE_OVERRIDE_EPREFIX="${ROOT}/tmp" \
+	#	emerge_pkgs "$@"
+	#}
 
 	# pre_emerge_pkgs relies on stage 2 portage, but installs into the
 	# final destination Prefix
@@ -2116,7 +2120,9 @@ bootstrap_stage3() {
 		cp -a "${ROOT}"{/tmp,}/usr/share/portage
 	fi
 
+	local -a linker_pkgs compiler_pkgs
 	read -r -a linker_pkgs <<< "${linker}"
+	read -r -a compiler_pkgs <<< "${compiler}"
 
 	if is-rap ; then
 		# We need ${ROOT}/usr/bin/perl to merge glibc.
@@ -2222,7 +2228,7 @@ bootstrap_stage3() {
 	fi
 	# remove stage2 ld so that stage3 ld is used by stage2 gcc.
 	is-rap && [[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && \
-		mv ${ROOT}/tmp/usr/${CHOST}/bin/ld{,.stage2}
+		mv "${ROOT}/tmp/usr/${CHOST}/bin"/ld{,.stage2}
 
 	# On some hosts, gcc gets confused now when it uses the new linker,
 	# see for instance bug #575480.  While we would like to hide that
@@ -2241,10 +2247,10 @@ bootstrap_stage3() {
 
 	# Try to get ourself out of the mud, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx '--disable-lto --disable-bootstrap')" \
-	GCC_MAKE_TARGET=$(rapx all) \
+	GCC_MAKE_TARGET="$(rapx all)" \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
-	PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
-	pre_emerge_pkgs --nodeps ${compiler} || return 1
+	PYTHON_COMPAT_OVERRIDE="python$(python_ver)" \
+	pre_emerge_pkgs --nodeps "${compiler_pkgs[@]}" || return 1
 
 	# Undo libgcc_s.so path of stage2
 	# Now we have the compiler right there
@@ -2348,11 +2354,11 @@ bootstrap_stage3_log() {
 		echo "CHOST:     ${CHOST}"
 		echo "IDENT:     ${CHOST_IDENTIFY}"
 		echo "==========================================="
-	} >> ${ROOT}/stage3.log
-	bootstrap_stage3 "${@}" 2>&1 | tee -a ${ROOT}/stage3.log
+	} >> "${ROOT}"/stage3.log
+	bootstrap_stage3 "${@}" 2>&1 | tee -a "${ROOT}"/stage3.log
 	local ret=${PIPESTATUS[0]}
 	[[ ${ret} == 0 ]] && touch "${ROOT}/.stage3-finished"
-	return ${ret}
+	return "${ret}"
 }
 
 set_helper_vars() {
@@ -2403,7 +2409,7 @@ bootstrap_interactive() {
 
 EOF
 	[[ ${TODO} == 'noninteractive' ]] && ans=yes ||
-	read -p "Do you want me to start off now? [Yn] " ans
+	read -r -p "Do you want me to start off now? [Yn] " ans
 	case "${ans}" in
 		[Yy][Ee][Ss]|[Yy]|"")
 			: ;;
