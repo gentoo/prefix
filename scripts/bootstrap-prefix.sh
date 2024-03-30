@@ -1980,8 +1980,8 @@ bootstrap_stage2() {
 		fi
 	elif ! is-rap ; then
 		# make sure the EPREFIX gcc shared libraries are there
-		mkdir -p "${ROOT}"/usr/${CHOST}/lib/gcc
-		cp "${ROOT}"/tmp/usr/${CHOST}/lib/gcc/* "${ROOT}"/usr/${CHOST}/lib/gcc
+		mkdir -p "${ROOT}/usr/${CHOST}/lib/gcc"
+		cp "${ROOT}/tmp/usr/${CHOST}/lib/gcc"/* "${ROOT}/usr/${CHOST}/lib/gcc"
 	fi
 
 	estatus "stage2 finished"
@@ -2326,10 +2326,10 @@ bootstrap_stage3() {
 	export USE="-git -crypt -http2"
 
 	# Portage should figure out itself what it needs to do, if anything.
-	eflags="--deep --update --changed-use @system"
-	einfo "running emerge ${eflags}"
-	estatus "stage3: emerge ${eflags}"
-	emerge --color n -v ${eflags} || return 1
+	local eflags=( "--deep" "--update" "--changed-use" "@system" )
+	einfo "running emerge ${eflags[*]}"
+	estatus "stage3: emerge ${eflags[*]}"
+	emerge --color n -v "${eflags[@]}" || return 1
 
 	# Remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
@@ -2462,10 +2462,10 @@ EOF
 		# note that this code is so complex because it handles both
 		# C-shell as well as *sh
 		dvar="echo \"((${flag}=\${${flag}}))\""
-		dvar="$(echo "${dvar}" | env -i HOME=$HOME $SHELL -l 2>/dev/null)"
+		dvar="$(echo "${dvar}" | env -i HOME="${HOME}" "$SHELL" -l 2>/dev/null)"
 		if [[ ${dvar} == *"((${flag}="?*"))" ]] ; then
 			badflags="${badflags} ${flag}"
-			dvar=${dvar#*((${flag}=}
+			dvar=${dvar#*"((${flag}="}
 			dvar=${dvar%%))*}
 			echo "  uh oh, ${flag}=${dvar} :("
 		else
@@ -2616,7 +2616,7 @@ necessary to add to PATH for me to find a compiler.  I start off with
 PATH=${PATH} and will add anything you give me here.
 EOF
 				[[ ${TODO} == 'noninteractive' ]] && ans="${usergcc%/gcc}" ||
-				read -p "Where can I find your compiler? [] " ans
+				read -r -p "Where can I find your compiler? [] " ans
 				case "${ans}" in
 					"")
 						: ;;
@@ -2707,7 +2707,7 @@ clue what this means, you should go with my excellent default I've
 chosen below, really!
 EOF
 	[[ ${TODO} == 'noninteractive' ]] && ans="" ||
-	read -p "How many parallel make jobs do you want? [${tcpu}] " ans
+	read -r -p "How many parallel make jobs do you want? [${tcpu}] " ans
 	case "${ans}" in
 		"")
 			MAKEOPTS="-j${tcpu}"
@@ -2794,11 +2794,11 @@ EOF
 		case "${CHOST}" in
 			x86_64-*|sparcv9-*)  # others can't do multilib, so don't bother
 				# 64-bits native
-				read -p "How many bits do you want your Prefix to target? [64] " ans
+				read -r -p "How many bits do you want your Prefix to target? [64] " ans
 				;;
 			*)
 				# 32-bits native
-				read -p "How many bits do you want your Prefix to target? [32] " ans
+				read -r -p "How many bits do you want your Prefix to target? [32] " ans
 				;;
 		esac
 		case "${ans}" in
@@ -2833,7 +2833,7 @@ really a Gentoo lover, aren't you?  Me too!  By leveraging the existing
 portage, we can save a lot of time."
 EOF
 		[[ ${TODO} == 'noninteractive' ]] && ans=no ||
-		read -p "  Do you want me to take the shortcut? [yN] " ans
+		read -r -p "  Do you want me to take the shortcut? [yN] " ans
 		case "${ans}" in
 			[Yy][Ee][Ss]|[Yy])
 				echo "Good!"
@@ -2864,7 +2864,7 @@ by default.  Of course, you can still enable testing ~amd64 for
 the packages you want, when the need arises.
 EOF
 			[[ ${TODO} == 'noninteractive' ]] && ans=yes ||
-			read -p "  Do you want to use stable Prefix? [Yn] " ans
+			read -r -p "  Do you want to use stable Prefix? [Yn] " ans
 			case "${ans}" in
 				[Yy][Ee][Ss]|[Yy]|"")
 					echo "Okay, I'll disable ~amd64 by default."
@@ -2901,7 +2901,7 @@ EOF
 		fi
 		echo
 		[[ ${TODO} == 'noninteractive' ]] && ans= ||
-		read -p "What do you want EPREFIX to be? [$EPREFIX] " ans
+		read -r -p "What do you want EPREFIX to be? [$EPREFIX] " ans
 		case "${ans}" in
 			"")
 				: ;;
@@ -2987,7 +2987,7 @@ happen.
 EOF
 	echo
 	[[ ${TODO} == 'noninteractive' ]] && ans="" ||
-	read -p "Type here what you want to wish me [luck] " ans
+	read -r -p "Type here what you want to wish me [luck] " ans
 	if [[ -n ${ans} && ${ans} != "luck" ]] ; then
 		echo "Huh?  You're not serious, are you?"
 		sleep 3
@@ -3004,7 +3004,7 @@ EOF
 	[[ -n ${SETUP_ENV_ONLY} ]] && return 0
 
 	if [[ -d ${HOST_GENTOO_EROOT} ]]; then
-		if ! [[ -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage_host_gentoo ; then
+		if ! [[ -x ${EPREFIX}/tmp/usr/lib/portage/bin/emerge ]] && ! ${BASH} "${BASH_SOURCE[0]}" "${EPREFIX}" stage_host_gentoo ; then
 			# stage host gentoo fail
 			cat << EOF
 
@@ -3060,7 +3060,7 @@ EOF
 
 	local https_needed=no
 	if ! [[ -e ${EPREFIX}/.stage2-finished ]] \
-		&& ! ${BASH} ${BASH_SOURCE[0]} "${EPREFIX}" stage2_log ; then
+		&& ! ${BASH} "${BASH_SOURCE[0]}" "${EPREFIX}" stage2_log ; then
 		# stage 2 fail
 		cat << EOF
 
@@ -3101,7 +3101,7 @@ EOF
 	hash -r
 
 	if ! [[ -e ${EPREFIX}/.stage3-finished ]] \
-		&& ! bash ${BASH_SOURCE[0]} "${EPREFIX}" stage3_log ; then
+		&& ! bash "${BASH_SOURCE[0]}" "${EPREFIX}" stage3_log ; then
 		# stage 3 fail
 		hash -r  # previous cat (tmp/usr/bin/cat) may have been removed
 		cat << EOF
@@ -3181,7 +3181,7 @@ EOF
 		exit 1
 	fi
 
-	if ! bash ${BASH_SOURCE[0]} "${EPREFIX}" startscript ; then
+	if ! bash "${BASH_SOURCE[0]}" "${EPREFIX}" startscript ; then
 		# startscript fail?
 		cat << EOF
 
@@ -3326,7 +3326,7 @@ if [[ ${CHOST} == *-linux-* ]] ; then
 	done
 
 	platform=${CHOST#*-}; platform=${platform%%-*}
-	platform=$(rapx rap ${platform})
+	platform=$(rapx rap "${platform}")
 	CHOST_IDENTIFY=${CHOST%%-*}-${platform}-linux-${dist,,}${rel}
 fi
 
@@ -3442,7 +3442,7 @@ einfo "ident:  ${CHOST_IDENTIFY}"
 einfo "prefix: ${ROOT}"
 
 TODO=${2}
-if [[ ${TODO} != "noninteractive" && $(type -t bootstrap_${TODO}) != "function" ]];
+if [[ ${TODO} != "noninteractive" && $(type -t "bootstrap_${TODO}") != "function" ]];
 then
 	eerror "bootstrap target ${TODO} unknown"
 	exit 1
@@ -3477,7 +3477,7 @@ fi
 
 # call the appropriate function,
 # beware noninteractive is just a mode of interactive
-bootstrap_${TODO#non} || exit 1
+bootstrap_"${TODO#non}" || exit 1
 
 # Local Variables:
 # sh-indentation: 4
