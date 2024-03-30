@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#shellcheck disable=SC2016,SC2030,SC2031,SC2038,SC2185,SC2120
+#shellcheck disable=SCSC1091,SC2016,SC2030,SC2031,SC2038,SC2185,SC2120
 # Copyright 2006-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -1088,8 +1088,6 @@ bootstrap_python() {
 
 	fix_config_sub
 
-	local myconf=""
-
 	case ${CHOST} in
 	(x86_64-*-*|sparcv9-*-*)
 		export CFLAGS="-m64"
@@ -1103,7 +1101,9 @@ bootstrap_python() {
 		*-linux*)
 			# Bug 382263: make sure Python will know about the libdir in use for
 			# the current arch
-			libdir="-L/usr/lib/$(gcc ${CFLAGS} -print-multi-os-directory)"
+			local -a flgarg
+			read -r -a flgarg <<< "${CFLAGS}"
+			libdir="-L/usr/lib/$(gcc "${flgarg[@]}" -print-multi-os-directory)"
 		;;
 		x86_64-*-solaris*|sparcv9-*-solaris*)
 			# Like above, make Python know where GCC's 64-bits
@@ -1157,7 +1157,7 @@ bootstrap_python() {
 		--disable-ipv6 \
 		--disable-shared \
 		--libdir="${ROOT}"/tmp/usr/lib \
-		${myconf} || return 1
+		|| return 1
 	emake || return 1
 
 	einfo "Installing ${A%.tar.*}"
@@ -1178,7 +1178,7 @@ bootstrap_cmake_core() {
 
 	einfo "Bootstrapping ${A%.tar.*}"
 
-	efetch https://github.com/Kitware/CMake/releases/download/v${PV}/${A} \
+	efetch "https://github.com/Kitware/CMake/releases/download/v${PV}/${A}" \
 		|| return 1
 
 	einfo "Unpacking ${A%.tar.*}"
@@ -1186,7 +1186,7 @@ bootstrap_cmake_core() {
 	rm -rf "${S}"
 	mkdir -p "${S}" || return 1
 	cd "${S}" || return 1
-	gzip -dc "${DISTDIR}"/${A} | tar -xf -
+	gzip -dc "${DISTDIR}/${A}" | tar -xf -
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/cmake-${PV}
 	cd "${S}" || return 1
@@ -1212,10 +1212,10 @@ bootstrap_cmake_core() {
 	# later on, so kill it in the installed version
 	ver=${A%-*} ; ver=${ver%.*}
 	sed -i -e '/cmake_gnu_set_sysroot_flag/d' \
-		"${ROOT}"/tmp/usr/share/${ver}/Modules/Platform/Apple-GNU-*.cmake || die
+		"${ROOT}/tmp/usr/share/${ver}/Modules/Platform"/Apple-GNU-*.cmake || die
 	# disable isysroot usage with clang as well
 	sed -i -e '/_SYSROOT_FLAG/d' \
-		"${ROOT}"/tmp/usr/share/${ver}/Modules/Platform/Apple-Clang.cmake || die
+		"${ROOT}/tmp/usr/share/${ver}/Modules/Platform"/Apple-Clang.cmake || die
 
 	einfo "${A%.tar.*} bootstrapped"
 }
@@ -1231,7 +1231,7 @@ bootstrap_zlib_core() {
 
 	einfo "Bootstrapping ${A%.tar.*}"
 
-	efetch ${DISTFILES_G_O}/distfiles/${A} || return 1
+	efetch "${DISTFILES_G_O}/distfiles/${A}" || return 1
 
 	einfo "Unpacking ${A%.tar.*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
@@ -1242,7 +1242,7 @@ bootstrap_zlib_core() {
 		*.tar.gz) decomp=gzip  ;;
 		*)        decomp=bzip2 ;;
 	esac
-	${decomp} -dc "${DISTDIR}"/${A} | tar -xf -
+	${decomp} -dc "${DISTDIR}/${A}" | tar -xf -
 	[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 	S="${S}"/zlib-${PV}
 	cd "${S}" || return 1
@@ -1356,7 +1356,7 @@ bootstrap_make() {
 	bootstrap_gnu make 4.2.1 || return 1
 	if [[ ${MAKE} == gmake ]] ; then
 		# make make available as gmake
-		( cd ${ROOT}/tmp/usr/bin && ln -s make gmake )
+		( cd "${ROOT}"/tmp/usr/bin && ln -s make gmake )
 	fi
 }
 
@@ -1464,7 +1464,7 @@ bootstrap_stage1() {
 
 	# See comments in do_tree().
 	local portroot=${PORTDIR%/*}
-	mkdir -p "${ROOT}"/tmp/${portroot#${ROOT}/}
+	mkdir -p "${ROOT}/tmp/${portroot#"${ROOT}"/}"
 	for x in lib sbin bin; do
 		mkdir -p "${ROOT}"/tmp/usr/${x}
 		[[ -e ${ROOT}/tmp/${x} ]] || ( cd "${ROOT}"/tmp && ln -s usr/${x} )
@@ -1678,11 +1678,11 @@ bootstrap_stage1_log() {
 		echo "CHOST:     ${CHOST}"
 		echo "IDENT:     ${CHOST_IDENTIFY}"
 		echo "==========================================="
-	} >> ${ROOT}/stage1.log
+	} >> "${ROOT}"/stage1.log
 	bootstrap_stage1 "${@}" 2>&1 | tee -a "${ROOT}"/stage1.log
 	local ret=${PIPESTATUS[0]}
 	[[ ${ret} == 0 ]] && touch "${ROOT}"/.stage1-finished
-	return ${ret}
+	return "${ret}"
 }
 
 do_emerge_pkgs() {
@@ -1770,6 +1770,15 @@ do_emerge_pkgs() {
 		# defaults).
 		echo "USE=${myuse[*]} PKG=${pkg}"
 		(
+			local -a eopts
+			read -r -a eopts <<< "${opts}"
+			eopts=(
+				"--color" "n"
+				"-v"
+				"--oneshot"
+				"--root-deps"
+				"${eopts[@]}"
+			)
 			estatus "${STAGE}: emerge ${pkg}"
 			unset CFLAGS CXXFLAGS
 			[[ -n ${OVERRIDE_CFLAGS} ]] \
@@ -1779,7 +1788,7 @@ do_emerge_pkgs() {
 			PORTAGE_SYNC_STALE=0 \
 			FEATURES="-news ${FEATURES}" \
 			USE="${myuse[*]}" \
-			emerge --color n -v --oneshot --root-deps ${opts} "${pkg}"
+			emerge "${eopts[@]}" "${pkg}"
 		) || return 1
 	done
 }
