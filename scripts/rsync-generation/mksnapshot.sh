@@ -44,20 +44,29 @@ popd > /dev/null || exit 1
 
 rm -Rf "${TMPDIR}"
 
-# be nice
-nice -n19 bzip2 -c -9 "${SNAME}" > "${SNAME}".bz2 &
-nice -n19 xz    -c -9 "${SNAME}" > "${SNAME}".xz  &
-nice -n19 gzip  -c -9 "${SNAME}" > "${SNAME}".gz  &
+COMPRS=(
+	"gz:gzip -c -9"
+	"bz2:bzip2 -c -9"
+	"xz:xz -c -9"
+	"zstd:zstd -k -f -9"
+)
+
+# produce compressed variants, use as much cpu as left on the system, do
+# all in parallel
+for compr in "${COMPRS[@]}" ; do
+	read -a args <<< "${compr#*:}"
+	nice -n19 "${args[@]}" "${SNAME}" > "${SNAME}.${compr%%:*}" &
+done
 wait
 
 # generate accompanying meta files
-md5sum "${SNAME##*/}"      > "${SNAME}".xz.umd5sum
-md5sum "${SNAME##*/}".xz   > "${SNAME}".xz.md5sum
-md5sum "${SNAME##*/}"      > "${SNAME}".bz2.umd5sum
-md5sum "${SNAME##*/}".bz2  > "${SNAME}".bz2.md5sum
-md5sum "${SNAME##*/}"      > "${SNAME}".gz.umd5sum
-md5sum "${SNAME##*/}".bz2  > "${SNAME}".gz.md5sum
-# use passphrase-fd to pass password
+for compr in "${COMPRS[@]}" ; do
+	compr=${compr%%:*}
+	md5sum "${SNAME##*/}"          > "${SNAME}.${compr}.umd5sum"
+	md5sum "${SNAME##*/}.${compr}" > "${SNAME}.${compr}.md5sum"
+done
+
+# create GPG detached signature, use passphrase-fd to pass password
 gpgopts=(
 	"--quiet"
 	"--batch"
@@ -68,18 +77,20 @@ gpgopts=(
 	"--detach-sign"
 	"--armor"
 )
-gpg "${gpgopts[@]}" -o "${SNAME}".xz.gpgsig  "${SNAME}".xz  \
-	< "${SCRIPTLOC}"/autosigner.pwd
-gpg "${gpgopts[@]}" -o "${SNAME}".bz2.gpgsig "${SNAME}".bz2 \
-	< "${SCRIPTLOC}"/autosigner.pwd
-gpg "${gpgopts[@]}" -o "${SNAME}".gz.gpgsig  "${SNAME}".gz  \
-	< "${SCRIPTLOC}"/autosigner.pwd
+for compr in "${COMPRS[@]}" ; do
+	compr=${compr%%:*}
+	gpg "${gpgopts[@]}" -o "${SNAME}.${compr}.gpgsig" "${SNAME}.${compr}" \
+		< "${SCRIPTLOC}"/autosigner.pwd
+done
 
-# we no longer need the tar
+# we no longer need the (original/uncompressed) tar
 rm "${SNAME}"
 
 # make convenience symlinks
-for f in {xz,bz2,gz}{,.gpgsig,.md5sum,.umd5sum} ; do
-	rm "portage-latest.tar.$f"
-	ln -s "${SNAME##*/}.$f" "portage-latest.tar.$f"
+for compr in "${COMPRS[@]}" ; do
+	compr=${compr%%:*}
+	for f in "${compr}"{,.gpgsig,.md5sum,.umd5sum} ; do
+		rm "portage-latest.tar.${f}"
+		ln -s "${SNAME##*/}.${f}" "portage-latest.tar.${f}"
+	done
 done
