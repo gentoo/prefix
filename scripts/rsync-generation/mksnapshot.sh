@@ -44,10 +44,16 @@ popd > /dev/null || exit 1
 
 rm -Rf "${TMPDIR}"
 
+# The differences in size (57/52/47MB) for bz2,zstd,lz are not really that
+# big considering gzip's size (75MB) but the bootstrap-prefix script and
+# the logic above rely on .bz2 snapshot, so in reality no other format
+# than bzip2-compressed is necessary.  Since bzip2 is available
+# everywhere, or bootstrapped just fine for a long long time, stick with
+# it, for it is good enough for its purpose here
 COMPRS=(
 	"bz2:bzip2 -c -9"
-	"lz:lzip -c -9"
-	"zst:zstd -c -19"
+#	"lz:lzip -c -9"
+#	"zst:zstd -c -19"
 )
 
 # produce compressed variants, use as much cpu as left on the system, do
