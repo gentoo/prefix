@@ -49,7 +49,7 @@ COMPRS=(
 	"bz2:bzip2 -c -9"
 	"xz:xz -c -9"
 	"lz:lzip -c -9"
-	"zstd:zstd -k -f -9"
+	"zst:zstd -c -k -f -9"
 )
 
 # produce compressed variants, use as much cpu as left on the system, do
