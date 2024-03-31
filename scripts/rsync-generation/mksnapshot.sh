@@ -45,7 +45,6 @@ popd > /dev/null || exit 1
 rm -Rf "${TMPDIR}"
 
 COMPRS=(
-	"gz:gzip -c -9"
 	"bz2:bzip2 -c -9"
 	"xz:xz -c -9"
 	"lz:lzip -c -9"
