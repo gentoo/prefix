@@ -62,8 +62,10 @@ for d in "${UPLOADDIR}"/* ; do
 			mkdir -p "${RESULTSDIR}/${w}"
 			[[ -e "${pkg}"/build-info ]] && \
 				mv "${pkg}"/build-info "${RESULTSDIR}/${w}"/
-			[[ -e "${pkg}"/temp ]] && \
+			if [[ -e "${pkg}"/temp ]] ; then
 				mv "${pkg}"/temp "${RESULTSDIR}/${w}"/
+				process_file "${RESULTSDIR}/${w}"/temp
+			fi
 		done
 	fi
 	chmod -R o+rX,go-w "${RESULTSDIR}/${dir}"
