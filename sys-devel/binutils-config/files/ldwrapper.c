@@ -197,7 +197,10 @@ int
 main(int argc, char *argv[])
 {
 	int newargc = 0;
+	int rpathcnt = 0;
 	char **newargv = NULL;
+	char **rpaths = NULL;
+	char **lpaths = NULL;
 	char *wrapper = argv[0];
 	char *wrapperctarget = NULL;
 	char verbose = getenv("BINUTILS_CONFIG_VERBOSE") != NULL;
@@ -214,7 +217,6 @@ main(int argc, char *argv[])
 	size_t len;
 	int i;
 	int j;
-	int k;
 	DIR *dirp;
 	struct dirent *dp;
 
@@ -287,10 +289,12 @@ main(int argc, char *argv[])
 	/* walk over the arguments to see if there's anything interesting
 	 * for us and calculate the final number of arguments */
 	for (i = 1; i < argc; i++) {
-		/* -L: account space for the matching -R */
 		if (argv[i][0] == '-') {
+			/* -L: account space for the matching -R */
 			if (argv[i][1] == 'L')
 				newargc++;
+			if (argv[i][1] == 'R' || strcmp(argv[i], "-rpath") == 0)
+				rpathcnt++;
 			if (argv[i][1] == 'v' || argv[i][1] == 'V')
 				verbose = 1;
 			if ((strcmp(argv[i], "-macosx_version_min") == 0 ||
@@ -316,8 +320,6 @@ main(int argc, char *argv[])
 			darwin_dt_ver += (int)strtol(p + 1, &p, 10);
 	}
 
-	/* Note: Code below assumes that newargc is the count of -L arguments. */
-
 	/* If a package being cross-compiled injects standard directories, it's
 	 * non-cross-compilable on any platform, prefix or no prefix. So no
 	 * need to add PREFIX- or CTARGET-aware libdirs. */
@@ -341,13 +343,15 @@ main(int argc, char *argv[])
 				 * -rpath and the path itself */
 				newargc *= 2;
 
-				/* and we will be adding two for the each of
-				 * the two system paths as well */
-				newargc += 4;
+				/* PREFIX rpaths */
+				newargc += 2 * 2;
 			}
 
-			/* add the 2 prefix paths (-L) and -search_paths_first */
-			newargc += 2 + 1;
+			/* PREFIX paths */
+			newargc += 3;
+
+			/* add -search_paths_first */
+			newargc += 1;
 
 			/* add -syslibroot <path> -platform_version macos <ver> 0.0 */
 			newargc += 6;
@@ -355,6 +359,27 @@ main(int argc, char *argv[])
 			/* add the 4 paths we want (-L + -R) */
 			newargc += 8;
 		}
+	}
+
+	/* Note: Code below assumes that newargc is the count of -L arguments. */
+
+	/* allocate space for -L lookups/uniqueifying */
+	lpaths = malloc(sizeof(lpaths[0]) * (newargc + 1));
+	if (lpaths == NULL) {
+		fprintf(stderr, "%s: failed to allocate memory for new arguments\n",
+				wrapper);
+		exit(1);
+	}
+	lpaths[0] = NULL;
+
+	if (!is_darwin || darwin_use_rpath) {
+		rpaths = malloc(sizeof(rpaths[0]) * (rpathcnt + 1));
+		if (rpaths == NULL) {
+			fprintf(stderr, "%s: failed to allocate memory for new arguments\n",
+					wrapper);
+			exit(1);
+		}
+		rpaths[0] = NULL;
 	}
 
 	/* account the original arguments */
@@ -476,8 +501,6 @@ main(int argc, char *argv[])
 		newargv[j++] = "-search_paths_first";
 	}
 
-	/* position k right after the original arguments */
-	k = j - 1 + argc;
 	for (i = 1; i < argc; i++, j++) {
 		if (is_darwin) {
 			/* skip platform version stuff, we already pushed it out */
@@ -486,7 +509,6 @@ main(int argc, char *argv[])
 			{
 				i++;
 				j--;
-				k -= 2;
 				continue;
 			}
 			if (strcmp(argv[i], "-platform_version") == 0 &&
@@ -494,7 +516,6 @@ main(int argc, char *argv[])
 			{
 				i += 3;
 				j--;
-				k -= 4;
 				continue;
 			}
 		}
@@ -504,10 +525,12 @@ main(int argc, char *argv[])
 		if (is_cross || (is_darwin && !darwin_use_rpath))
 			continue;
 
-		/* on ELF targets we add runpaths for all found search paths */
-		if (argv[i][0] == '-' && argv[i][1] == 'L') {
+		/* on ELF/Mach-O targets we add runpaths for all found search paths */
+		if (argv[i][0] == '-' && (argv[i][1] == 'L' || argv[i][1] == 'R')) {
 			char *path;
-			size_t sze;
+			int pth;
+			char duplicate;
+			int before = j - 1;
 
 			/* arguments can be in many ways here:
 			 * -L<path>
@@ -533,50 +556,129 @@ main(int argc, char *argv[])
 			if (builddir != NULL && strncmp(builddir, path, len) == 0)
 				continue;
 
-			if (is_darwin) {
-				newargv[k] = "-rpath";
-				newargv[++k] = path;
-			} else {
-				sze = 2 + strlen(path) + 1;
-				newargv[k] = malloc(sizeof(char) * sze);
-				if (newargv[k] == NULL) {
-					fprintf(stderr, "%s: failed to allocate memory for "
-							"'%s' -R argument\n", wrapper, argv[i]);
-					exit(1);
+			/* loop-search for this path, if it was emitted already,
+			 * suppress it -- this is not just some fancy beautification!
+			 * CLT15.3 on macOS warns about duplicate paths, and
+			 * any project that triggers on these warnings causes
+			 * problems, such as Ruby claiming the linker is broken */
+			duplicate = 0;
+			if (argv[i][1] == 'L') {
+				for (pth = 0; lpaths[pth] != NULL; pth++) {
+					if (strcmp(lpaths[pth], path) == 0) {
+						duplicate = 1;
+						break;
+					}
 				}
-
-				snprintf(newargv[k], sze, "-R%s", path);
+				if (duplicate) {
+					j = before;
+					continue;
+				}
+				/* record path */
+				lpaths[pth++] = path;
+				lpaths[pth]   = NULL;
+			} else if (!is_darwin || darwin_use_rpath) {
+				for (pth = 0; rpaths[pth] != NULL; pth++) {
+					if (strcmp(rpaths[pth], path) == 0) {
+						duplicate = 1;
+						break;
+					}
+				}
+				if (duplicate) {
+					j = before;
+					continue;
+				}
+				/* record path */
+				rpaths[pth++] = path;
+				rpaths[pth]   = NULL;
 			}
+		} else if ((!is_darwin || darwin_use_rpath) &&
+				   strcmp(argv[i], "-rpath") == 0)
+		{
+			char *path;
+			int pth;
+			char duplicate;
 
-			k++;
+			path = argv[i + 1];
+			while (*path != '\0' && isspace(*path))
+				path++;
+			/* not absolute (or empty)?!? skip */
+			if (*path != '/')
+				continue;
+
+			/* does it refer to the build directory? skip */
+			if (builddir != NULL && strncmp(builddir, path, len) == 0)
+				continue;
+
+			duplicate = 0;
+			for (pth = 0; rpaths[pth] != NULL; pth++) {
+				if (strcmp(rpaths[pth], path) == 0) {
+					duplicate = 1;
+					break;
+				}
+			}
+			if (duplicate) {
+				j -= 2;
+				continue;
+			}
+			/* record path */
+			rpaths[pth++] = path;
+			rpaths[pth]   = NULL;
 		}
 	}
 	/* add the custom paths */
 	if (!is_cross) {
+		int pth;
+#define path_not_exists(W,P) \
+		for (pth = 0; W[pth] != NULL; pth++) { \
+			if (strcmp(W[pth], P) == 0) \
+				break; \
+		} \
+		if (W[pth] == NULL)
+#define add_path(P) \
+		path_not_exists(lpaths, P) newargv[j++] = "-L" P
+#define add_path_rpath(P) \
+		path_not_exists(lpaths, P) { \
+			lpaths[pth++] = P; \
+			lpaths[pth]   = NULL; \
+			newargv[j++] = "-L" P; \
+		}
+
 		if (is_darwin) {
 			/* FIXME: no support for cross-compiling *to* Darwin */
-			newargv[k++] = "-L" EPREFIX "/usr/" CHOST "/lib/gcc";
-			newargv[k++] = "-L" EPREFIX "/usr/lib";
-			newargv[k++] = "-L" EPREFIX "/lib";
-
-			if (darwin_use_rpath) {
-				newargv[k++] = "-rpath";
-				newargv[k++] = EPREFIX "/usr/lib";
-				newargv[k++] = "-rpath";
-				newargv[k++] = EPREFIX "/lib";
-			}
+			add_path(EPREFIX "/usr/" CHOST "/lib/gcc");
+			add_path_rpath(EPREFIX "/usr/lib");
+			add_path_rpath(EPREFIX "/lib");
 		} else {
-			newargv[k++] = "-L" EPREFIX "/usr/" CHOST "/lib/gcc";
-			newargv[k++] = "-R" EPREFIX "/usr/" CHOST "/lib/gcc";
-			newargv[k++] = "-L" EPREFIX "/usr/" CHOST "/lib";
-			newargv[k++] = "-R" EPREFIX "/usr/" CHOST "/lib";
-			newargv[k++] = "-L" EPREFIX "/usr/lib";
-			newargv[k++] = "-R" EPREFIX "/usr/lib";
-			newargv[k++] = "-L" EPREFIX "/lib";
-			newargv[k++] = "-R" EPREFIX "/lib";
+			add_path_rpath(EPREFIX "/usr/" CHOST "/lib/gcc");
+			add_path_rpath(EPREFIX "/usr/" CHOST "/lib");
+			add_path_rpath(EPREFIX "/usr/lib");
+			add_path_rpath(EPREFIX "/lib");
 		}
 	}
-	newargv[k] = NULL;
+	/* add rpaths for -L entries */
+	if (!is_darwin || darwin_use_rpath) {
+		for (i = 0; lpaths[i] != NULL; i++) {
+			int pth;
+			path_not_exists(rpaths, lpaths[i]) {
+				size_t sze;
+				if (is_darwin && darwin_use_rpath) {
+					newargv[j++] = "-rpath";
+					newargv[j++] = lpaths[i];
+				} else if (!is_darwin) {
+					sze = 2 + strlen(lpaths[i]) + 1;
+					newargv[j] = malloc(sizeof(char) * sze);
+					if (newargv[j] == NULL) {
+						fprintf(stderr, "%s: failed to allocate memory for "
+								"'%s' -R argument\n", wrapper, argv[i]);
+						exit(1);
+					}
+
+					snprintf(newargv[j++], sze, "-R%s", lpaths[i]);
+				}
+			}
+		}
+	}
+	newargv[j] = NULL;
 
 	if (verbose) {
 		fprintf(stderr, "%s: invoking %s with arguments:\n", wrapper, ld);
