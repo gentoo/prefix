@@ -530,7 +530,7 @@ main(int argc, char *argv[])
 			char *path;
 			int pth;
 			char duplicate;
-			int before = j - 1;
+			int nexti = i;
 
 			/* arguments can be in many ways here:
 			 * -L<path>
@@ -541,10 +541,11 @@ main(int argc, char *argv[])
 			while (*path != '\0' && isspace(*path))
 				path++;
 			if (*path == '\0') {
+				nexti++;
 				/* no more arguments?!? skip */
-				if (i + 1 >= argc)
+				if (nexti >= argc)
 					continue;
-				path = argv[i + 1];
+				path = argv[nexti];
 				while (*path != '\0' && isspace(*path))
 					path++;
 			}
@@ -570,7 +571,8 @@ main(int argc, char *argv[])
 					}
 				}
 				if (duplicate) {
-					j = before;
+					i = nexti;
+					j--;
 					continue;
 				}
 				/* record path */
@@ -584,7 +586,8 @@ main(int argc, char *argv[])
 					}
 				}
 				if (duplicate) {
-					j = before;
+					i = nexti;
+					j--;
 					continue;
 				}
 				/* record path */
@@ -597,8 +600,12 @@ main(int argc, char *argv[])
 			char *path;
 			int pth;
 			char duplicate;
+			int nexti = i + 1;
 
-			path = argv[i + 1];
+			/* no more arguments?!? skip */
+			if (nexti >= argc)
+				continue;
+			path = argv[nexti];
 			while (*path != '\0' && isspace(*path))
 				path++;
 			/* not absolute (or empty)?!? skip */
@@ -617,7 +624,8 @@ main(int argc, char *argv[])
 				}
 			}
 			if (duplicate) {
-				j -= 2;
+				j--;
+				i = nexti;
 				continue;
 			}
 			/* record path */
