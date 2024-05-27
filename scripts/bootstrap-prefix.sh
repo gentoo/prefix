@@ -1876,10 +1876,29 @@ bootstrap_stage2() {
 	# see profiles/features/prefix/standalone/profile.bashrc
 	export BOOTSTRAP_RAP_STAGE2=yes
 
+	# elt-patches needs gentoo-functions, but gentoo-functions these
+	# days needs meson to install, which requires a properly installed
+	# Python -- at this stage we don't have that
+	# so fake gentoo-functions with some dummies to make elt-patches
+	# and others install
+	if [[ ! -e "${ROOT}"/tmp/lib/gentoo/functions.sh ]] ; then
+		mkdir -p "${ROOT}"/tmp/lib/gentoo
+		cat > "${ROOT}"/tmp/lib/gentoo/functions.sh <<-EOF
+			#!${BASH}
+
+			ewarn() {
+			  echo $*
+			}
+
+			eerror() {
+			  echo "!!! $*"
+			}
+		EOF
+	fi
+
 	# Build a basic compiler and portage dependencies in $ROOT/tmp.
 	pkgs=(
 		sys-devel/gnuconfig
-		sys-apps/gentoo-functions
 		app-portage/elt-patches
 		sys-libs/ncurses
 		sys-libs/readline
@@ -2130,6 +2149,16 @@ bootstrap_stage3() {
 	read -r -a linker_pkgs <<< "${linker}"
 	read -r -a compiler_pkgs <<< "${compiler}"
 
+	# We need gentoo-functions but it meson is still a no-go, because we
+	# don't have a Python.  Why would such simple package with a silly
+	# script file need meson is beyond me.  So, we have no other way
+	# than to fake it here for the time being like in stage2.
+	if [[ ! -e "${ROOT}"/lib/gentoo/functions.sh ]] ; then
+		mkdir -p "${ROOT}"/lib/gentoo
+		cp "${ROOT}"/tmp/lib/gentoo/functions.sh \
+			"${ROOT}"/lib/gentoo/functions.sh
+	fi
+
 	if is-rap ; then
 		# We need ${ROOT}/usr/bin/perl to merge glibc.
 		if [[ ! -x "${ROOT}"/usr/bin/perl ]]; then
@@ -2166,7 +2195,6 @@ bootstrap_stage3() {
 		pkgs=(
 			sys-devel/gnuconfig
 			sys-apps/baselayout
-			sys-apps/gentoo-functions
 			app-portage/elt-patches
 			sys-kernel/linux-headers
 			sys-libs/glibc
@@ -2218,7 +2246,6 @@ bootstrap_stage3() {
 	else
 		pkgs=(
 			sys-devel/gnuconfig
-			sys-apps/gentoo-functions
 			app-portage/elt-patches
 			app-arch/xz-utils
 			sys-apps/sed
@@ -2283,7 +2310,7 @@ bootstrap_stage3() {
 	# now we have a shell right there
 	unset CONFIG_SHELL
 
-	# Build portage and dependencies.
+	# Build portage dependencies.
 	pkgs=(
 		sys-apps/coreutils
 		sys-apps/findutils
@@ -2306,6 +2333,7 @@ bootstrap_stage3() {
 		virtual/os-headers
 		sys-devel/gettext
 		sys-apps/portage
+		sys-apps/gentoo-functions
 	)
 
 	pre_emerge_pkgs "" "${pkgs[@]}" || return 1
