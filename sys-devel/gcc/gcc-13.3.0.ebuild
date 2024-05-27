@@ -97,7 +97,8 @@ src_prepare() {
 
 		# our ld64 is a slight bit different, so tweak expression to not
 		# get confused and break the build
-		sed -i -e 's/grep ld64/grep :ld64/' gcc/configure || die
+		sed -i -e "s/EGREP 'ld64|dyld'/& | head -n1/" \
+			gcc/configure{.ac,} || die
 
 		# rip out specific macos version min
 		sed -i -e 's/-mmacosx-version-min=11.0//' \
