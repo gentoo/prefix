@@ -1785,16 +1785,20 @@ do_emerge_pkgs() {
 				&& export CFLAGS="${OVERRIDE_CFLAGS}"
 			[[ -n ${OVERRIDE_CXXFLAGS} ]] \
 				&& export CXXFLAGS="${OVERRIDE_CXXFLAGS}"
-			# In the stage3 bootstrap we always prefer to use tools that have been built for
-			# stage3; to accomplish this we ensure that it is the first thing evaluated in PATH.
-			# Unfortunately, Portage, Python, and Python-exec are often pulled into the depgraph
-			# at some point before we're fully boostrapped. To ensure that we don't try and execute
-			# ${EPREFIX}/usr/bin/emerge before we're ready, always provide the full path to the
-			# bootstrap Python interpreter and emerge script.
+			# In the stage3 bootstrap we always prefer to use tools that
+			# have been built for stage3; to accomplish this we ensure
+			# that it is the first thing evaluated in PATH.
+			# Unfortunately, Portage, Python, and Python-exec are often
+			# pulled into the depgraph at some point before we're fully
+			# boostrapped. To ensure that we don't try and execute
+			# ${EPREFIX}/usr/bin/emerge before we're ready, always
+			# provide the full path to the bootstrap Python interpreter
+			# and emerge script.
 			PORTAGE_SYNC_STALE=0 \
 			FEATURES="-news ${FEATURES}" \
 			USE="${myuse[*]}" \
-			"${EPREFIX}"/tmp/bin/python "${EPREFIX}"/tmp/usr/bin/emerge "${eopts[@]}" "${pkg}"
+			"${ROOT}"/tmp/bin/python \
+			"${ROOT}"/tmp/usr/bin/emerge "${eopts[@]}" "${pkg}"
 		) || return 1
 	done
 }
