@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit eutils prefix
+inherit toolchain-funcs prefix
 
 DESCRIPTION="Utility to change the binutils version being used"
 HOMEPAGE="https://www.gentoo.org/"
@@ -26,7 +26,7 @@ src_prepare() {
 	cp "${FILESDIR}"/${PN}-${PV} ./${PN} || die
 	cp "${FILESDIR}"/ldwrapper.c ./${PN}-ldwrapper-${WRAPPER_REV}.c || die
 	if use prefix-guest; then
-		epatch "${FILESDIR}/${PN}-5-ldwrapper.patch"
+		eapply "${FILESDIR}/${PN}-5-ldwrapper.patch" || die
 	fi
 	eprefixify ${PN}
 	eapply_user
