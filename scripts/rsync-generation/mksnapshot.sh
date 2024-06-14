@@ -22,7 +22,7 @@ BOOTSTRAP_SNAPSHOT=$( \
 	sed -n 's/^.*PV="\([0-9]\+\)"\s*$/portage-\1.tar.bz2/p' \
 )
 if [[ ! -s "${BOOTSTRAP_SNAPSHOT}" ]] ; then
-	curl -s -L "https://distfiles.prefix.bitzolder.nl/prefix/distfiles/${BOOTSTRAP_SNAPSHOT}" > "${BOOTSTRAP_SNAPSHOT}"
+	curl -f -s -L "https://distfiles.prefix.bitzolder.nl/prefix/distfiles/${BOOTSTRAP_SNAPSHOT}" > "${BOOTSTRAP_SNAPSHOT}"
 fi
 
 rm -Rf "${TMPDIR}"
