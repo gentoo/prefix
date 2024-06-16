@@ -218,10 +218,10 @@ def archSort(l, r):
     Sort by os, vendor, cpu
     """
     lcpu, lvendor, los = l.split('-', 2)
-    losname = re.split('\d', los, 1)[0]
+    losname = re.split('[0-9]', los, 1)[0]
     losver = los.split(losname, 1)[1]
     rcpu, rvendor, ros = r.split('-', 2)
-    rosname = re.split('\d', ros, 1)[0]
+    rosname = re.split('[0-9]', ros, 1)[0]
     rosver = ros.split(rosname, 1)[1]
 
     if losname > rosname:

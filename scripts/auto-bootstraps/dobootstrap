@@ -88,7 +88,7 @@ do_prepare() {
 				chost=sparc-${chost#*-}
 			fi
 			;;
-		SParcv9-*|sparc64-*)
+		sparcv9-*|sparc64-*)
 			if [[ ${bitw} == 32 ]] ; then
 				chost=sparc-${chost#*-}
 			else
