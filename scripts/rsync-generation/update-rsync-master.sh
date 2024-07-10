@@ -20,7 +20,7 @@ RSYNCDIR="${BASE_PATH}/master-rsync-tree"
 #### ---- Portage setup (use local modified copy) ---- ####
 
 PORTAGE_BASE_PATH="${BASE_PATH}/prefix/usr/lib/portage/"
-PYTHONPATH="${PORTAGE_BASE_PATH}/pym"
+PYTHONPATH="${PORTAGE_BASE_PATH}/lib"
 PORTAGE_CONFIGROOT="${BASE_PATH}/misc/config_root"
 PORTAGE_DEPCACHEDIR="${BASE_PATH}/depcache"
 
