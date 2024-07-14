@@ -306,6 +306,15 @@ bootstrap_setup() {
 				echo
 				echo 'ACCEPT_KEYWORDS="~ppc-macos"'
 			fi
+
+			if is-rap ; then
+				# https://bugs.gentoo.org/933100
+				# mainline Portage doesn't set these like Prefix branch
+				# does, so hardwire the IDs here
+				echo
+				echo "PORTAGE_INST_UID=$(id --user)"
+				echo "PORTAGE_INST_GID=$(id --group)"
+			fi
 		} > "${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf"
 	fi
 
