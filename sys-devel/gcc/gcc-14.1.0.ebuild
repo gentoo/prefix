@@ -92,3 +92,50 @@ src_prepare() {
 	eapply "${FILESDIR}"/${PN}-13-fix-cross-fixincludes.patch
 	eapply_user
 }
+
+src_configure() {
+	local myconf=()
+	case ${CTARGET}:" ${USE} " in
+		powerpc*-darwin*)
+			# bug #381179
+			filter-flags "-mcpu=*" "-mtune=*"
+			# bug #657522
+			# A bug in configure checks whether -no-pie works, but the
+			# compiler doesn't pass -no-pie onto the linker if -fno-PIE
+			# isn't passed, so the configure check always finds -no-pie
+			# is accepted.  (Likewise, when -fno-PIE is passed, the
+			# compiler passes -no_pie onto the linker.)
+			# Since our linker doesn't grok this, avoid above checks to
+			# be run
+			# NOTE: later ld64 does grok -no_pie, not -no-pie (as checked)
+			export gcc_cv_c_no_fpie=no
+			export gcc_cv_no_pie=no
+		;;
+		*-darwin20)
+			# use sysroot with the linker, #756160
+			export gcc_cv_ld_sysroot=yes
+			;;
+		*-solaris*)
+			# todo: some magic for native vs. GNU linking?
+			myconf+=( --with-gnu-ld --with-gnu-as --enable-largefile )
+		;;
+		i[34567]86-*-linux*:*" prefix "*)
+			# to allow the linux-x86-on-amd64.patch become useful, we need
+			# to enable multilib, even if there is just one multilib option.
+			myconf+=( --enable-multilib )
+			if [[ ${CBUILD:-${CHOST}} == "${CHOST}" ]]; then
+				# we might be on x86_64-linux, but don't do cross-compile, so
+				# tell the host-compiler to really create 32bits (for stage1)
+				# (real x86-linux-gcc also accept -m32).
+				append-flags -m32
+			fi
+		;;
+	esac
+
+	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
+	# least on Solaris, and AIX /bin/sh is way too slow,
+	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
+	# in case that doesn't exist yet
+	export CONFIG_SHELL="${CONFIG_SHELL:-${BASH}}"
+	toolchain_src_configure "${myconf[@]}"
+}
