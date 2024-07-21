@@ -44,7 +44,10 @@ emake() {
 		estatus "stage1: building ${PWD##*/}"
 	fi
 	read -r -a makeopts <<< "${MAKEOPTS}"
-	v "${MAKE}" "${makeopts[@]}" "$@" || return 1
+	if ! v "${MAKE}" "${makeopts[@]}" "$@" ; then
+		estatus "stage1: retry with -j1 for clearer error message in ${PWD##*/}"
+		v "${MAKE}" "${makeopts[@]}" "$@" -j1 || return 1
+	fi
 }
 
 efetch() {
