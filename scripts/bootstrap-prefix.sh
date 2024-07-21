@@ -391,9 +391,10 @@ bootstrap_profile() {
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
 		*64-apple-darwin2[0123456789])
-			# Big Sur is 11.0
+			# Big Sur is  11.0
 			# Monterey is 12.0
-			# Ventura is 13.0
+			# Ventura is  13.0
+			# Sanoma is   14.0
 			rev=${CHOST##*darwin}
 			case ${CHOST%%-*} in
 				x86_64)  arch=x64    ;;
@@ -452,44 +453,6 @@ bootstrap_profile() {
 			exit 1
 			;;
 	esac
-
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		# setup MacOSX.sdk symlink for GCC, this should probably be
-		# managed using an eselect module in the future
-		# FWIW, just use system (/) if it seems OK, for some reason
-		# early versions of TAPI-based SDKs did not include some symbols
-		# like fclose, which ld64 is able to resolve from the dylibs
-		# although they are unvisible using e.g. nm.
-		rm -f "${ROOT}"/MacOSX.sdk
-		local SDKPATH
-		if [[ -e /usr/lib/libSystem.B.dylib && -d /usr/include ]] ; then
-			SDKPATH=/
-		else
-			SDKPATH=$(xcrun --show-sdk-path --sdk macosx)
-			if [[ -L ${SDKPATH} ]] ; then
-				local fsdk
-				local osvers
-				# try and find a matching OS SDK
-				fsdk="$(readlink -f "${SDKPATH}")"
-				osvers="$(sw_vers -productVersion)"
-				if [[ ${osvers%%.*} -le 10 ]] ; then
-					osvers=$(echo "${osvers}" | cut -d'.' -f1-2)
-				else
-					osvers=${osvers%%.*}
-				fi
-				fsdk=${fsdk%/MacOSX*.sdk}
-				fsdk=${fsdk}/MacOSX${osvers}.sdk
-				[[ -e ${fsdk} ]] && SDKPATH=${fsdk}
-			fi
-			if [[ ! -e ${SDKPATH} ]] ; then
-				SDKPATH=$(xcodebuild -showsdks | sort -nr \
-					| grep -o "macosx.*" | head -n1)
-				SDKPATH=$(xcode-select -print-path)/SDKs/MacOSX${SDKPATH#macosx}.sdk
-			fi
-		fi
-		( cd "${ROOT}" && ln -s "${SDKPATH}" MacOSX.sdk )
-		einfo "using system sources from ${SDKPATH}"
-	fi
 
 	if [[ ${DARWIN_USE_GCC} == 1 ]] ; then
 		# amend profile, to use gcc one
@@ -585,7 +548,7 @@ bootstrap_tree() {
 	#                      retain this comment and the line below to
 	#                      keep this snapshot around in the snapshots
 	# MKSNAPSHOT-ANCHOR -- directory of rsync slaves
-	local PV="20240622"
+	local PV="20240718"
 
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
@@ -919,7 +882,15 @@ bootstrap_gnu() {
 			"--disable-bootstrap"
 			"--disable-multilib"
 			"--disable-nls"
+			"--disable-libsanitizer"
 		)
+
+		if [[ ${CHOST} == *-darwin* ]] ; then
+			myconf+=(
+				"--with-native-system-header-dir=${ROOT}/MacOSX.sdk/usr/include"
+				"--with-ld=${ROOT}/tmp/usr/bin/ldwrapper"
+			)
+		fi
 
 		export CFLAGS="-O1 -pipe"
 		export CXXFLAGS="-O1 -pipe"
@@ -1320,6 +1291,33 @@ bootstrap_mpc() {
 	bootstrap_gnu mpc 1.2.1
 }
 
+bootstrap_ldwrapper() {
+	A=ldwrapper.c
+
+	einfo "Bootstrapping ${A%.c}"
+
+	efetch "https://rsync.prefix.bitzolder.nl/sys-devel/binutils-config/files/${A}" || return 1
+
+	export S="${PORTAGE_TMPDIR}/ldwrapper"
+	rm -rf "${S}"
+	mkdir -p "${S}" || return 1
+	cd "${S}" || return 1
+	cp "${DISTDIR}/${A}" . || return 1
+
+	einfo "Compiling ${A%.c}"
+	${CC:-gcc} \
+		-o ldwrapper \
+		-DCHOST="\"${CHOST}\"" \
+		-DEPREFIX="\"${ROOT}\"" \
+		ldwrapper.c || return 1
+
+	einfo "Installing ${A%.c}"
+	mkdir -p "${ROOT}"/tmp/usr/bin
+	cp -a ldwrapper "${ROOT}"/tmp/usr/bin/ || return 1
+
+	einfo "${A%.c} bootstrapped"
+}
+
 bootstrap_gcc5() {
 	# bootstraps with gcc-4.0.1 (Darwin 8), provides C11
 	bootstrap_gnu gcc 5.5.0
@@ -1482,12 +1480,51 @@ bootstrap_stage1() {
 		[[ -e ${ROOT}/tmp/${x} ]] || ( cd "${ROOT}"/tmp && ln -s usr/${x} )
 	done
 
-	# we could check compiler version here, but we just know
-	# it's Darwin 8 and 9 being affected here, so handle them to
-	# get a GCC-5 which is sufficient to compile the current tree
-	# packages
+	configure_toolchain
+	export CC CXX
+
+	# GCC 14 cannot be compiled by versions of Clang at least on
+	# Darwin17, so go the safe route and get GCC-5 which is sufficient
+	# and the last one we can compile without C11.  This also compiles
+	# on Darwin 8 and 9.
 	# see also configure_toolchain
-	if [[ ${CHOST} == *-darwin[89] ]] ; then
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# setup MacOSX.sdk symlink for GCC, this should probably be
+		# managed using an eselect module in the future
+		# FWIW, just use system (/) if it seems OK, for some reason
+		# early versions of TAPI-based SDKs did not include some symbols
+		# like fclose, which ld64 is able to resolve from the dylibs
+		# although they are unvisible using e.g. nm.
+		rm -f "${ROOT}"/MacOSX.sdk
+		local SDKPATH
+		if [[ -e /usr/lib/libSystem.B.dylib && -d /usr/include ]] ; then
+			SDKPATH=/
+		else
+			SDKPATH=$(xcrun --show-sdk-path --sdk macosx)
+			if [[ -L ${SDKPATH} ]] ; then
+				local fsdk
+				local osvers
+				# try and find a matching OS SDK
+				fsdk="$(readlink -f "${SDKPATH}")"
+				osvers="$(sw_vers -productVersion)"
+				if [[ ${osvers%%.*} -le 10 ]] ; then
+					osvers=$(echo "${osvers}" | cut -d'.' -f1-2)
+				else
+					osvers=${osvers%%.*}
+				fi
+				fsdk=${fsdk%/MacOSX*.sdk}
+				fsdk=${fsdk}/MacOSX${osvers}.sdk
+				[[ -e ${fsdk} ]] && SDKPATH=${fsdk}
+			fi
+			if [[ ! -e ${SDKPATH} ]] ; then
+				SDKPATH=$(xcodebuild -showsdks | sort -nr \
+					| grep -o "macosx.*" | head -n1)
+				SDKPATH=$(xcode-select -print-path)/SDKs/MacOSX${SDKPATH#macosx}.sdk
+			fi
+		fi
+		( cd "${ROOT}" && ln -s "${SDKPATH}" MacOSX.sdk )
+		einfo "using system sources from ${SDKPATH}"
+
 		# benefit from 4.2 if it's present
 		if [[ -e /usr/bin/gcc-4.2 ]] ; then
 			export CC=gcc-4.2
@@ -1499,12 +1536,47 @@ bootstrap_stage1() {
 			|| (bootstrap_mpfr) || return 1
 		[[ -e ${ROOT}/tmp/usr/include/mpc.h ]] \
 			|| (bootstrap_mpc) || return 1
+		[[ -x ${ROOT}/tmp/usr/bin/ldwrapper ]] \
+			|| (bootstrap_ldwrapper) || return 1
+		# get ldwrapper target in PATH
+		export BINUTILS_CONFIG_LD="$(type -P ld)"
+		# force deployment target in GCCs build, GCC-5 doesn't quite get
+		# the newer macOS versions (20+) and thus confuses ld when it
+		# passes on the deployment version.  Use High Sierra as it has
+		# everything we need
+		[[ ${CHOST##*darwin} -gt 10 ]] && export MACOSX_DEPLOYMENT_TARGET=10.13
 		[[ -x ${ROOT}/tmp/usr/bin/gcc ]] \
 			|| (bootstrap_gcc5) || return 1
-	fi
 
-	configure_toolchain
-	export CC CXX
+		if [[ ${CHOST##*darwin} -gt 10 ]] ; then
+			# install wrappers in tmp/usr/local/bin which comes before
+			# /tmp/usr/bin in PATH
+			mkdir -p "${ROOT}"/tmp/usr/local/bin
+			rm -f "${ROOT}"/tmp/usr/local/bin/{gcc,${CHOST}-gcc}
+			cat > "${ROOT}/tmp/usr/local/bin/${CHOST}-gcc" <<-EOS
+				#!/usr/bin/env sh
+				export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET}
+				export BINUTILS_CONFIG_LD="$(type -P ld)"
+				exec "${ROOT}"/tmp/usr/bin/${CHOST}-gcc "\$@"
+			EOS
+			chmod 755 "${ROOT}/tmp/usr/local/bin/${CHOST}-gcc"
+			ln -s ${CHOST}-gcc "${ROOT}"/tmp/usr/local/bin/gcc
+
+			rm -f "${ROOT}"/tmp/usr/local/bin/{g++,${CHOST}-g++}
+			cat > "${ROOT}"/tmp/usr/local/bin/${CHOST}-g++ <<-EOS
+				#!/usr/bin/env sh
+				export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET}
+				export BINUTILS_CONFIG_LD="$(type -P ld)"
+				exec "${ROOT}"/tmp/usr/bin/${CHOST}-g++ "\$@"
+			EOS
+			chmod 755 "${ROOT}"/tmp/usr/local/bin/${CHOST}-g++
+			ln -s ${CHOST}-g++ "${ROOT}"/tmp/usr/local/bin/g++
+		fi
+
+		# reset after gcc-4.2 usage
+		export CC=gcc
+		export CXX=g++
+	fi
 
 	# Run all bootstrap_* commands in a subshell since the targets
 	# frequently pollute the environment using exports which affect
@@ -3018,7 +3090,7 @@ EOF
 		# location seems ok
 		break
 	done
-	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:$EPREFIX/tmp/usr/local/bin:${PATH}"
+	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/local/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:${PATH}"
 
 	cat << EOF
 
