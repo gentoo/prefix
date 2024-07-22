@@ -391,10 +391,10 @@ bootstrap_profile() {
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
 		*64-apple-darwin2[0123456789])
-			# Big Sur is  11.0
-			# Monterey is 12.0
-			# Ventura is  13.0
-			# Sanoma is   14.0
+			# Big Sur is  11.0  darwin20
+			# Monterey is 12.0  darwin21
+			# Ventura is  13.0  darwin22
+			# Sanoma is   14.0  darwin23
 			rev=${CHOST##*darwin}
 			case ${CHOST%%-*} in
 				x86_64)  arch=x64    ;;
@@ -1483,11 +1483,9 @@ bootstrap_stage1() {
 	configure_toolchain
 	export CC CXX
 
-	# GCC 14 cannot be compiled by versions of Clang at least on
-	# Darwin17, so go the safe route and get GCC-5 which is sufficient
-	# and the last one we can compile without C11.  This also compiles
-	# on Darwin 8 and 9.
-	# see also configure_toolchain
+	# default: empty = NO
+	local USEGCC5=
+
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# setup MacOSX.sdk symlink for GCC, this should probably be
 		# managed using an eselect module in the future
@@ -1525,11 +1523,25 @@ bootstrap_stage1() {
 		( cd "${ROOT}" && ln -s "${SDKPATH}" MacOSX.sdk )
 		einfo "using system sources from ${SDKPATH}"
 
+		# GCC 14 cannot be compiled by versions of Clang at least on
+		# Darwin17, so go the safe route and get GCC-5 which is sufficient
+		# and the last one we can compile without C11.  This also compiles
+		# on Darwin 8 and 9.
+		# see also configure_toolchain
+		case ${CHOST} in
+			*-darwin[89])  USEGCC5=yes  ;;
+			*86*-darwin*)  USEGCC5=yes  ;;
+			# arm64/M1 isn't supported by old GCC-5!
+		esac
+	fi
+
+	if [[ -n ${USEGCC5} ]] ; then
 		# benefit from 4.2 if it's present
 		if [[ -e /usr/bin/gcc-4.2 ]] ; then
 			export CC=gcc-4.2
 			export CXX=g++-4.2
 		fi
+
 		[[ -e ${ROOT}/tmp/usr/include/gmp.h ]] \
 			|| (bootstrap_gmp) || return 1
 		[[ -e ${ROOT}/tmp/usr/include/mpfr.h ]] \
