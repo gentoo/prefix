@@ -548,7 +548,7 @@ bootstrap_tree() {
 	#                      retain this comment and the line below to
 	#                      keep this snapshot around in the snapshots
 	# MKSNAPSHOT-ANCHOR -- directory of rsync slaves
-	local PV="20240718"
+	local PV="20240721"
 
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
@@ -1503,7 +1503,14 @@ bootstrap_stage1() {
 				local fsdk
 				local osvers
 				# try and find a matching OS SDK
-				fsdk="$(readlink -f "${SDKPATH}")"
+				fsdk="$(readlink "${SDKPATH}")"
+				# note readlink -f is not supported on older versions of
+				# macOS so need to emulate it
+				if [[ ${fsdk} != /* ]] ; then
+					# this is not proper, but Apple does not use ../
+					# constructs here, as far as we know
+					fsdk="${SDKPATH%/*}/${fsdk}"
+				fi
 				osvers="$(sw_vers -productVersion)"
 				if [[ ${osvers%%.*} -le 10 ]] ; then
 					osvers=$(echo "${osvers}" | cut -d'.' -f1-2)
