@@ -1536,6 +1536,7 @@ bootstrap_stage1() {
 		# on Darwin 8 and 9.
 		# see also configure_toolchain
 		case ${CHOST} in
+			*-darwin2[23456789]) :      ;;  # host toolchain can compile gcc-14
 			*-darwin[89])  USEGCC5=yes  ;;
 			*86*-darwin*)  USEGCC5=yes  ;;
 			# arm64/M1 isn't supported by old GCC-5!
