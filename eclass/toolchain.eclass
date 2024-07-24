@@ -1320,10 +1320,15 @@ toolchain_src_configure() {
 	fi
 
 	if in_iuse pie ; then
+		# PREFIX_LOCAL
+		# configure check is flawed, --disable enables too, so omit when
+		# not set
+		if use pie ; then
 		confgcc+=( $(use_enable pie default-pie) )
 
 		if tc_version_is_at_least 14.0.0_pre20230612 ${PV} ; then
 			confgcc+=( --enable-host-pie )
+		fi
 		fi
 	fi
 
