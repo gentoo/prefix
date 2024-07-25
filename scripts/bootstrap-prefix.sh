@@ -3409,9 +3409,15 @@ if [[ -z ${CHOST} ]]; then
 				fi
 				;;
 			SunOS)
-				case $(uname -p) in
+				case $(isainfo -n) in
+					amd64)
+						CHOST="x86_64-pc-solaris$(uname -r | sed 's|5|2|')"
+					;;
 					i386)
 						CHOST="i386-pc-solaris$(uname -r | sed 's|5|2|')"
+					;;
+					sparcv9)
+						CHOST="sparcv9-sun-solaris$(uname -r | sed 's|5|2|')"
 					;;
 					sparc)
 						CHOST="sparc-sun-solaris$(uname -r | sed 's|5|2|')"
