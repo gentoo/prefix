@@ -2032,6 +2032,13 @@ bootstrap_stage2() {
 	# unless we only build the buildtool, bug #603012
 	echo "dev-build/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
 
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# avoid complexities with the host toolchain
+		sed -i -e '/^sys-devel\/gcc pie$/d' \
+			"${PORTDIR}"/profiles/base/package.use.force
+		echo "sys-devel/gcc -pie" >> "${ROOT}"/tmp/etc/portage/package.use
+	fi
+
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 	# Debian multiarch supported by RAP needs ld to support sysroot.
