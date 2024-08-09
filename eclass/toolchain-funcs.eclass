@@ -653,15 +653,7 @@ tc-ninja_magic_to_arch() {
 	[[ -z ${host} ]] && host=${CTARGET:-${CHOST}}
 
 	case ${host} in
-		powerpc-apple-darwin*)    echo ppc-macos;;
-		x86_64-apple-darwin*)     echo x64-macos;;
-		arm64-apple-darwin*)      echo arm64-macos;;
-		sparc-sun-solaris*)       echo sparc-solaris;;
-		sparcv9-sun-solaris*)     echo sparc64-solaris;;
-		i?86-pc-solaris*)         echo x86-solaris;;
-		x86_64-pc-solaris*)       echo x64-solaris;;
-		i?86-pc-winnt*)           echo x86-winnt;;
-
+		arm64*)		echo arm64;;
 		aarch64*)	echo arm64;;
 		alpha*)		echo alpha;;
 		arc*)		echo arc;;
@@ -709,6 +701,7 @@ tc-ninja_magic_to_arch() {
 		score*)		echo score;;
 		sh64*)		_tc_echo_kernel_alias sh64 sh;;
 		sh*)		echo sh;;
+		sparcv9*)	echo sparc64;;
 		sparc64*)	_tc_echo_kernel_alias sparc64 sparc;;
 		sparc*)		[[ ${PROFILE_ARCH} == "sparc64" ]] \
 						&& _tc_echo_kernel_alias sparc64 sparc \
