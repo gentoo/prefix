@@ -1921,10 +1921,7 @@ gcc_do_make() {
 	einfo "Compiling ${PN} (${GCC_MAKE_TARGET})..."
 	pushd "${WORKDIR}"/build >/dev/null || die
 
-	# PREFIX_LOCAL
-	# we "undef" T because the GCC makefiles use this variable, and if it's set
-	# in the environment (like Portage does) the build fails, bug #286494
-	emake T= "${emakeargs[@]}" ${GCC_MAKE_TARGET}
+	emake "${emakeargs[@]}" ${GCC_MAKE_TARGET}
 
 	if is_ada; then
 		# Without these links, it is not getting the good compiler
