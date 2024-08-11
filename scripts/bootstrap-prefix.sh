@@ -3289,6 +3289,47 @@ EOF
 
 	[[ ${STOP_BOOTSTRAP_AFTER} == stage3 ]] && exit 0
 
+	# do some sanity USE-flag enabling based on CPU, use cpuid2cpuflags
+	# if keyworded for this arg, else see if there's fallbacks to be
+	# made
+	mkdir -p "${EPREFIX}/etc/portage/package.use"
+	if emerge -1v cpuid2cpuflags ; then
+		hash -r
+		echo "*/* $(cpuid2cpuflags)" \
+			> "${EPREFIX}/etc/portage/package.use/00cpu-flags"
+	else
+		case "${CHOST}" in
+			arm64-*darwin*)
+				# https://github.com/RustCrypto/utils/issues/378
+				local flags=( "aes" "sha1" "sha2" )
+				local line
+				sysctl hw.optional | while read -r line ; do
+					line=${line#hw.optional.}
+					[[ ${line%%*: } == "1" ]] || continue
+					line=${line%: *}
+					case "${line}" in
+						"neon")
+							flags+=( "${line}" )
+							;;
+						"armv8_"*)
+							line=${line#armv8_}
+							case "${line}" in
+								"crc32")
+									flags+=( "${line}" )
+									;;
+								"2_sha"*)
+									flags+=( "${line#2_}" )
+									;;
+							esac
+							;;
+					esac
+				done
+				echo "*/* CPU_FLAGS_ARM: ${flags}" \
+					> "${EPREFIX}/etc/portage/package.use/00cpu-flags"
+				;;
+		esac
+	fi
+
 	local cmd="emerge -v --deep --update --changed-use @world"
 	if [[ -e ${EPREFIX}/var/cache/edb/mtimedb ]] && \
 		grep -q resume "${EPREFIX}"/var/cache/edb/mtimedb ;
