@@ -1823,19 +1823,7 @@ do_emerge_pkgs() {
 		[[ -n ${pvdb} ]] && continue
 
 		local myuse=(
-			-acl
-			-berkdb
-			-fortran
-			-gdbm
-			-git
-			-libcxx
-			-http2
-			-nls
-			-pcre
-			-python
-			-qmanifest -qtegrity
-			-readline
-			-sanitize
+			"${DISABLE_USE[@]}"
 			bootstrap
 			clang
 			internal-glib
@@ -2472,7 +2460,7 @@ bootstrap_stage3() {
 
 	# Avoid installing git or encryption just for fun while completing @system
 	# e.g. bug #901101
-	export USE="-git -crypt -http2"
+	export USE="${DISABLE_USE[*]}"
 
 	# Portage should figure out itself what it needs to do, if anything.
 	local eflags=( "--deep" "--update" "--changed-use" "@system" )
@@ -2523,6 +2511,30 @@ set_helper_vars() {
 	GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 	SNAPSHOT_HOST=$(rapx http://distfiles.gentoo.org http://rsync.prefix.bitzolder.nl)
 	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
+
+	# USE-flags to disable during bootstrap for they produce
+	# unnecessary, or worse: circular deps #901101, #936629
+	DISABLE_USE=(
+		"-acl"
+		"-berkdb"
+		"-crypt"
+		"-curl_quic_openssl"  # curl
+		"-fortran"            # gcc
+		"-gdbm"
+		"-git"
+		"-http2"              # curl
+		"-http3"              # curl
+		"-libcxx"
+		"-nls"
+		"-pcre"
+		"-python"
+		"-qmanifest"          # portage-utils
+		"-qtegrity"           # portage-utils
+		"-quic"               # curl
+		"-readline"           # bash
+		"-sanitize"
+	)
+
 
 	export MAKE CONFIG_SHELL
 }
