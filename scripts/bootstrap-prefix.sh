@@ -2468,6 +2468,11 @@ bootstrap_stage3() {
 	estatus "stage3: emerge ${eflags[*]}"
 	emerge --color n -v "${eflags[@]}" || return 1
 
+	# gcc no longer depends on sys-devel/binutils which means it is to
+	# be depcleaned at this point, quite strange, but to prevent this
+	# from happening, add to the worldfile #936629#c5
+	emerge --color n --noreplace sys-devel/binutils
+
 	# Remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
 	estatus "stage3: emerge --depclean"
