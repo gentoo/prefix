@@ -2027,6 +2027,10 @@ bootstrap_stage2() {
 		echo "sys-devel/gcc -pie" >> "${ROOT}"/tmp/etc/portage/package.use
 	fi
 
+	# don't use CET, we don't know if the host compiler supports it
+	echo "sys-devel/binutils -cet" >> \
+		"${ROOT}"/tmp/etc/portage/profile/package.use.force
+
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 	# Debian multiarch supported by RAP needs ld to support sysroot.
