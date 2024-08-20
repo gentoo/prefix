@@ -2451,7 +2451,7 @@ bootstrap_stage3() {
 	export USE="${DISABLE_USE[*]}"
 
 	# Portage should figure out itself what it needs to do, if anything.
-	local eflags=( "--deep" "--update" "--changed-use" "@system" )
+	local eflags=( "@system" )
 	einfo "running emerge ${eflags[*]}"
 	estatus "stage3: emerge ${eflags[*]}"
 	emerge --color n -v "${eflags[@]}" || return 1
@@ -2460,6 +2460,16 @@ bootstrap_stage3() {
 	# be depcleaned at this point, quite strange, but to prevent this
 	# from happening, add to the worldfile #936629#c5
 	emerge --color n --noreplace sys-devel/binutils
+
+	# now try and get things in the way they should be according to the
+	# default USE-flags
+	unset USE
+
+	# Portage should figure out itself what it needs to do, if anything.
+	eflags=( "--deep" "--update" "--changed-use" "@world" )
+	einfo "running emerge ${eflags[*]}"
+	estatus "stage3: emerge ${eflags[*]}"
+	emerge --color n -v "${eflags[@]}" || return 1
 
 	# Remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
