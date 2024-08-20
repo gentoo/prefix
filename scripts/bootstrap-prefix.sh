@@ -2020,10 +2020,11 @@ bootstrap_stage2() {
 	# unless we only build the buildtool, bug #603012
 	echo "dev-build/cmake -server" >> "${ROOT}"/tmp/etc/portage/package.use
 
+	mkdir -p "${ROOT}"/tmp/etc/portage/profile  # site-specific overrides
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		# avoid complexities with the host toolchain
-		sed -i -e '/^sys-devel\/gcc pie$/d' \
-			"${PORTDIR}"/profiles/base/package.use.force
+		echo "sys-devel/gcc -pie" >> \
+			"${ROOT}"/tmp/etc/portage/profile/package.use.force
 		echo "sys-devel/gcc -pie" >> "${ROOT}"/tmp/etc/portage/package.use
 	fi
 
