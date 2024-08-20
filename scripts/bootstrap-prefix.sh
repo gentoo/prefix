@@ -474,10 +474,6 @@ bootstrap_profile() {
 	# Disable bootstrapping libcxx* with libunwind
 	sys-libs/libcxxabi -libunwind
 	sys-libs/libcxx -libunwind
-	# Most binary Linux distributions seem to fancy toolchains that
-	# do not do c++ support (need to install a separate package).
-	sys-libs/ncurses -cxx
-	sys-devel/binutils -cxx
 	EOF
 
 	# On Darwin we might need this to bootstrap the compiler, since
@@ -486,19 +482,6 @@ bootstrap_profile() {
 	cat >> "${ROOT}"/etc/portage/make.profile/package.unmask <<-EOF
 	# For Darwin bootstraps
 	sys-devel/native-cctools
-	EOF
-
-	# Strange enough, -cxx causes wrong libtool config on Cygwin,
-	# but we require a C++ compiler there anyway - so just use it.
-	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
-	# gmp has cxx flag enabled by default. When dealing with a host
-	# compiler without cxx support this causes configure failure.
-	# In addition, The stage2 g++ is only for compiling stage3 compiler,
-	# because the host libstdc++.so runtime may be not compatible and
-	# stage2 libstdc++.so might conflict with that of stage3.  The
-	# trade-off is just not to use cxx.
-	dev-libs/gmp -cxx
-	sys-devel/binutils -gold
 	EOF
 }
 
