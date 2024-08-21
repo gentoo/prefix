@@ -1805,11 +1805,26 @@ do_emerge_pkgs() {
 		done
 		[[ -n ${pvdb} ]] && continue
 
+		# avoid many deps at this stage which aren't necessary, e.g.
+		# having a bash without readline is OK, we're not using the
+		# shell interactive
 		local myuse=(
 			"${DISABLE_USE[@]}"
-			bootstrap
-			clang
-			internal-glib
+			"-acl"
+			"-berkdb"
+			"-fortran"            # gcc
+			"-gdbm"
+			"-libcxx"
+			"-nls"
+			"-pcre"
+			"-python"
+			"-qmanifest"          # portage-utils
+			"-qtegrity"           # portage-utils
+			"-readline"           # bash
+			"-sanitize"
+			"bootstrap"
+			"clang"
+			"internal-glib"
 		)
 		local override_make_conf_dir="${PORTAGE_OVERRIDE_EPREFIX}${MAKE_CONF_DIR#"${ROOT}"}"
 
@@ -2450,8 +2465,7 @@ bootstrap_stage3() {
 	# e.g. bug #901101, this is a reduced (e.g. as minimal as possible)
 	# set of DISABLE_USE, to set the stage for solving circular
 	# dependencies, such as:
-	# - nghttp2 -> cmake -> curl -> nghttp2
-	export USE="-git -crypt -http2"
+	export USE="${DISABLE_USE[*]}"
 
 	# Portage should figure out itself what it needs to do, if anything.
 	local eflags=( "--deep" "--update" "--changed-use" "@system" )
@@ -2561,27 +2575,15 @@ set_helper_vars() {
 
 	# USE-flags to disable during bootstrap for they produce
 	# unnecessary, or worse: circular deps #901101, #936629
+	# - nghttp2 -> cmake -> curl -> nghttp2  (http2)
 	DISABLE_USE=(
-		"-acl"
-		"-berkdb"
 		"-crypt"
 		"-curl_quic_openssl"  # curl
-		"-fortran"            # gcc
-		"-gdbm"
 		"-git"
 		"-http2"              # curl
 		"-http3"              # curl
-		"-libcxx"
-		"-nls"
-		"-pcre"
-		"-python"
-		"-qmanifest"          # portage-utils
-		"-qtegrity"           # portage-utils
 		"-quic"               # curl
-		"-readline"           # bash
-		"-sanitize"
 	)
-
 
 	export MAKE CONFIG_SHELL
 }
