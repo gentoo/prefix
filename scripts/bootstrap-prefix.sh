@@ -2447,11 +2447,14 @@ bootstrap_stage3() {
 	fi
 
 	# Avoid installing git or encryption just for fun while completing @system
-	# e.g. bug #901101
-	export USE="${DISABLE_USE[*]}"
+	# e.g. bug #901101, this is a reduced (e.g. as minimal as possible)
+	# set of DISABLE_USE, to set the stage for solving circular
+	# dependencies, such as:
+	# - nghttp2 -> cmake -> curl -> nghttp2
+	export USE="-git -crypt -http2"
 
 	# Portage should figure out itself what it needs to do, if anything.
-	local eflags=( "@system" )
+	local eflags=( "--deep" "--update" "--changed-use" "@system" )
 	einfo "running emerge ${eflags[*]}"
 	estatus "stage3: emerge ${eflags[*]}"
 	emerge --color n -v "${eflags[@]}" || return 1
@@ -2461,12 +2464,57 @@ bootstrap_stage3() {
 	# from happening, add to the worldfile #936629#c5
 	emerge --color n --noreplace sys-devel/binutils
 
+	# Remove the stage2 hack from above.  A future emerge run will
+	# get env-update to happen.
+	rm "${ROOT}"/etc/env.d/98stage2
+
 	# now try and get things in the way they should be according to the
 	# default USE-flags
 	unset USE
 
-	# Portage should figure out itself what it needs to do, if anything.
-	eflags=( "--deep" "--update" "--changed-use" "@world" )
+	# do some sanity USE-flag enabling based on CPU, use cpuid2cpuflags
+	# if keyworded for this arg, else see if there's fallbacks to be
+	# made
+	mkdir -p "${ROOT}/etc/portage/package.use"
+	if emerge --color n --oneshot -v cpuid2cpuflags ; then
+		hash -r
+		echo "*/* $(cpuid2cpuflags)" \
+			> "${ROOT}/etc/portage/package.use/00cpu-flags"
+	else
+		case "${CHOST}" in
+			arm64-*darwin*)
+				# https://github.com/RustCrypto/utils/issues/378
+				local flags=( "aes" "sha1" "sha2" )
+				local line
+				sysctl hw.optional | while read -r line ; do
+					line=${line#hw.optional.}
+					[[ ${line%%*: } == "1" ]] || continue
+					line=${line%: *}
+					case "${line}" in
+						"neon")
+							flags+=( "${line}" )
+							;;
+						"armv8_"*)
+							line=${line#armv8_}
+							case "${line}" in
+								"crc32")
+									flags+=( "${line}" )
+									;;
+								"2_sha"*)
+									flags+=( "${line#2_}" )
+									;;
+							esac
+							;;
+					esac
+				done
+				echo "*/* CPU_FLAGS_ARM: ${flags}" \
+					> "${ROOT}/etc/portage/package.use/00cpu-flags"
+				;;
+		esac
+	fi
+
+	# re-emerge anything hopefully not running into circular deps
+	eflags=( "--deep" "--changed-use" "@world" )
 	einfo "running emerge ${eflags[*]}"
 	estatus "stage3: emerge ${eflags[*]}"
 	emerge --color n -v "${eflags[@]}" || return 1
@@ -2479,10 +2527,6 @@ bootstrap_stage3() {
 	# "wipe" mtimedb such that the resume list is proper after this stage
 	# (--depclean may fail, which is ok)
 	sed -i -e 's/resume/cleared/' "${ROOT}"/var/cache/edb/mtimedb
-
-	# Remove the stage2 hack from above.  A future emerge run will
-	# get env-update to happen.
-	rm "${ROOT}"/etc/env.d/98stage2
 
 	estatus "stage3 finished"
 	einfo "stage3 successfully finished"
@@ -3145,7 +3189,7 @@ OK!  I'm going to give it a try, this is what I have collected sofar:
 I'm now going to make an awful lot of noise going through a sequence of
 stages to make your box as groovy as I am myself, setting up your
 Prefix.  In short, I'm going to run stage1, stage2, stage3, followed by
-an emerge to do a final update to your system.  If any of these stages
+installing a package to enter your Prefix.  If any of these stages
 fail, both you and me are in deep trouble.  So let's hope that doesn't
 happen.
 EOF
@@ -3304,87 +3348,13 @@ EOF
 
 	[[ ${STOP_BOOTSTRAP_AFTER} == stage3 ]] && exit 0
 
-	# do some sanity USE-flag enabling based on CPU, use cpuid2cpuflags
-	# if keyworded for this arg, else see if there's fallbacks to be
-	# made
-	mkdir -p "${EPREFIX}/etc/portage/package.use"
-	if emerge -1v cpuid2cpuflags ; then
-		hash -r
-		echo "*/* $(cpuid2cpuflags)" \
-			> "${EPREFIX}/etc/portage/package.use/00cpu-flags"
-	else
-		case "${CHOST}" in
-			arm64-*darwin*)
-				# https://github.com/RustCrypto/utils/issues/378
-				local flags=( "aes" "sha1" "sha2" )
-				local line
-				sysctl hw.optional | while read -r line ; do
-					line=${line#hw.optional.}
-					[[ ${line%%*: } == "1" ]] || continue
-					line=${line%: *}
-					case "${line}" in
-						"neon")
-							flags+=( "${line}" )
-							;;
-						"armv8_"*)
-							line=${line#armv8_}
-							case "${line}" in
-								"crc32")
-									flags+=( "${line}" )
-									;;
-								"2_sha"*)
-									flags+=( "${line#2_}" )
-									;;
-							esac
-							;;
-					esac
-				done
-				echo "*/* CPU_FLAGS_ARM: ${flags}" \
-					> "${EPREFIX}/etc/portage/package.use/00cpu-flags"
-				;;
-		esac
+	# Now, we've got everything in $ROOT, we can get rid of /tmp
+	if [[ -d ${EPREFIX}/tmp/var/tmp ]] ; then
+		rm -Rf "${EPREFIX}"/tmp || return 1
+		mkdir -p "${EPREFIX}"/tmp || return 1
 	fi
 
-	local cmd="emerge -v --deep --update --changed-use @world"
-	if [[ -e ${EPREFIX}/var/cache/edb/mtimedb ]] && \
-		grep -q resume "${EPREFIX}"/var/cache/edb/mtimedb ;
-	then
-		cmd="emerge -v --resume"
-	fi
-	einfo "running ${cmd}"
-	if ${cmd} ; then
-		# Now, we've got everything in $ROOT, we can get rid of /tmp
-		if [[ -d ${EPREFIX}/tmp/var/tmp ]] ; then
-			rm -Rf "${EPREFIX}"/tmp || return 1
-			mkdir -p "${EPREFIX}"/tmp || return 1
-		fi
-
-		hash -r  # tmp/* stuff is removed in stage3
-	else
-		# emerge @world fail
-		cat << EOF
-
-Oh yeah, I thought I was almost there, and then this!  I did
-  ${cmd}
-and it failed at some point :(  Details might be found in the build log:
-EOF
-		for log in "${EPREFIX}"/var/tmp/portage/*/*/temp/build.log ; do
-			[[ -e ${log} ]] || continue
-			echo "  ${log}"
-		done
-		[[ -e ${log} ]] || echo "  (no build logs found?!?)"
-		cat << EOF
-I have no clue, really.  Please find friendly folks in #gentoo-prefix on
-irc.gentoo.org, gentoo-alt@lists.gentoo.org mailing list, or file a bug
-at bugs.gentoo.org under Gentoo/Alt, Prefix Support.
-You know, I got the feeling you just started to like me, but I guess
-that's all gone now.  I'll bother you no longer.
-
-  CHOST:     ${CHOST}
-  IDENT:     ${CHOST_IDENTIFY}
-EOF
-		exit 1
-	fi
+	hash -r  # tmp/* stuff is removed in stage3
 
 	if ! bash "${BASH_SOURCE[0]}" "${EPREFIX}" startscript ; then
 		# startscript fail?
