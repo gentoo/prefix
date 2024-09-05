@@ -2486,47 +2486,6 @@ bootstrap_stage3() {
 	# default USE-flags
 	unset USE
 
-	# do some sanity USE-flag enabling based on CPU, use cpuid2cpuflags
-	# if keyworded for this arg, else see if there's fallbacks to be
-	# made
-	mkdir -p "${ROOT}/etc/portage/package.use"
-	if emerge --color n --oneshot -v cpuid2cpuflags ; then
-		hash -r
-		echo "*/* $(cpuid2cpuflags)" \
-			> "${ROOT}/etc/portage/package.use/00cpu-flags"
-	else
-		case "${CHOST}" in
-			arm64-*darwin*)
-				# https://github.com/RustCrypto/utils/issues/378
-				local flags=( "aes" "sha1" "sha2" )
-				local line
-				sysctl hw.optional | while read -r line ; do
-					line=${line#hw.optional.}
-					[[ ${line%%*: } == "1" ]] || continue
-					line=${line%: *}
-					case "${line}" in
-						"neon")
-							flags+=( "${line}" )
-							;;
-						"armv8_"*)
-							line=${line#armv8_}
-							case "${line}" in
-								"crc32")
-									flags+=( "${line}" )
-									;;
-								"2_sha"*)
-									flags+=( "${line#2_}" )
-									;;
-							esac
-							;;
-					esac
-				done
-				echo "*/* CPU_FLAGS_ARM: ${flags}" \
-					> "${ROOT}/etc/portage/package.use/00cpu-flags"
-				;;
-		esac
-	fi
-
 	# re-emerge anything hopefully not running into circular deps
 	eflags=( "--deep" "--changed-use" "@world" )
 	einfo "running emerge ${eflags[*]}"
