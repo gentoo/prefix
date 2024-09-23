@@ -531,7 +531,7 @@ bootstrap_tree() {
 	#                      retain this comment and the line below to
 	#                      keep this snapshot around in the snapshots
 	# MKSNAPSHOT-ANCHOR -- directory of rsync slaves
-	local PV="20240729"
+	local PV="20240922"
 
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
