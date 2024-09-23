@@ -22,7 +22,9 @@ _TOOLCHAIN_ECLASS=1
 DESCRIPTION="The GNU Compiler Collection"
 HOMEPAGE="https://gcc.gnu.org/"
 
-inherit edo flag-o-matic gnuconfig libtool multilib pax-utils python-any-r1 toolchain-funcs prefix
+inherit edo flag-o-matic gnuconfig libtool multilib pax-utils toolchain-funcs prefix
+
+[[ -n ${TOOLCHAIN_HAS_TESTS} ]] && inherit python-any-r1
 
 tc_is_live() {
 	[[ ${PV} == *9999* ]]
@@ -59,9 +61,6 @@ fi
 is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
 }
-
-# The target prefix defaults to the host prefix, except for cross compilers, which targets the empty prefix by default.
-: ${TPREFIX:=$(is_crosscompile || echo "${EPREFIX}")}
 
 # @FUNCTION: tc_version_is_at_least
 # @USAGE: ver1 [ver2]
@@ -145,6 +144,12 @@ tc_version_is_between() {
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # Indicate the developer who hosts the patchset for an ebuild.
+
+# @ECLASS_VARIABLE: TOOLCHAIN_HAS_TESTS
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Controls whether python-any-r1 is inherited and validate_failures.py
+# is used.
 
 # @ECLASS_VARIABLE: GCC_PV
 # @INTERNAL
@@ -276,6 +281,7 @@ STDCXX_INCDIR=${TOOLCHAIN_STDCXX_INCDIR:-${LIBPATH}/include/g++-v${GCC_BRANCH_VE
 LICENSE="GPL-3+ LGPL-3+ || ( GPL-3+ libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.3+"
 IUSE="test vanilla +nls"
 RESTRICT="!test? ( test )"
+[[ -z ${TOOLCHAIN_HAS_TESTS} ]] && RESTRICT+=" test"
 
 TC_FEATURES=()
 
@@ -283,7 +289,7 @@ tc_has_feature() {
 	has "$1" "${TC_FEATURES[@]}"
 }
 
-# Prefix: allow gcc-apple post 4.2.1
+# PREFIX_LOCAL: allow gcc-apple post 4.2.1
 if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ||
 	[[ ${PN} == "gcc-apple" && $(tc_version_is_at_least 12.1) == 0 ]] ; then
 	IUSE+=" debug +cxx +nptl" TC_FEATURES+=( nptl )
@@ -358,6 +364,7 @@ fi
 
 BDEPEND="
 	app-alternatives/yacc
+	!elibc_Darwin? ( sys-devel/binutils:* )
 	>=sys-devel/flex-2.5.4
 	nls? ( sys-devel/gettext )
 	test? (
@@ -418,7 +425,7 @@ if tc_has_feature rust && tc_version_is_at_least 14.0.0_pre20230421 ; then
 fi
 
 # PREFIX LOCAL: we don't have 2.11 (yet)
-PDEPEND=">=sys-devel/gcc-config-2.3"
+PDEPEND=">=sys-devel/gcc-config-2.7"
 
 #---->> S + SRC_URI essentials <<----
 
@@ -542,7 +549,8 @@ get_gcc_src_uri() {
 	[[ -n ${MUSL_VER} ]] && \
 		GCC_SRC_URI+=" $(gentoo_urls gcc-${MUSL_GCC_VER}-musl-patches-${MUSL_VER}.tar.${TOOLCHAIN_PATCH_SUFFIX})"
 
-	GCC_SRC_URI+=" test? ( https://gitweb.gentoo.org/proj/gcc-patches.git/plain/scripts/testsuite-management/validate_failures.py?id=${GCC_VALIDATE_FAILURES_VERSION} -> gcc-validate-failures-${GCC_VALIDATE_FAILURES_VERSION}.py )"
+	[[ -n ${TOOLCHAIN_HAS_TESTS} ]] && \
+		GCC_SRC_URI+=" test? ( https://gitweb.gentoo.org/proj/gcc-patches.git/plain/scripts/testsuite-management/validate_failures.py?id=${GCC_VALIDATE_FAILURES_VERSION} -> gcc-validate-failures-${GCC_VALIDATE_FAILURES_VERSION}.py )"
 
 	echo "${GCC_SRC_URI}"
 }
@@ -574,7 +582,7 @@ toolchain_pkg_setup() {
 	# more legible.
 	MAKEOPTS="--output-sync=line ${MAKEOPTS}"
 
-	use test && python-any-r1_pkg_setup
+	[[ -n ${TOOLCHAIN_HAS_TESTS} ]] && use test && python-any-r1_pkg_setup
 }
 
 #---->> src_unpack <<----
@@ -598,16 +606,6 @@ toolchain_fetch_git_patches() {
 	if [[ -z ${MUSL_VER} || -d "${WORKDIR}"/musl ]] && [[ ${CTARGET} == *musl* ]] ; then
 		mkdir "${WORKDIR}"/musl || die
 		mv "${WORKDIR}"/patch.tmp/${PATCH_GCC_VER}/musl/* "${WORKDIR}"/musl || die
-	fi
-
-	# PREFIX_LOCAL
-	# yuck, but how else to do it portable?
-	local realEPREFIX=$(python -c 'import os; print(os.path.realpath("'"${EPREFIX}"'"))')
-	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]] ; then
-		ewarn "Your \${EPREFIX} contains one or more symlinks.  GCC has a"
-		ewarn "bug which prevents it from working properly when there are"
-		ewarn "symlinks in your \${EPREFIX}."
-		ewarn "See http://gcc.gnu.org/bugzilla/show_bug.cgi?id=29831"
 	fi
 }
 
@@ -661,7 +659,7 @@ toolchain_src_prepare() {
 	sed -i -e "/\"\/System\/Library\/Frameworks\"\,/i\ \   \"${EPREFIX}/MacOSX.sdk/System/Library/Frameworks\"\, \"${EPREFIX}/Frameworks\"\, " \
 		"${S}"/gcc/config/${darwindriver} || die "sed gcc/config/${darwindriver} failed"
 
-	if use test ; then
+	if [[ -n ${TOOLCHAIN_HAS_TESTS} ]] && use test ; then
 		cp "${DISTDIR}"/gcc-validate-failures-${GCC_VALIDATE_FAILURES_VERSION}.py "${T}"/validate_failures.py || die
 		chmod +x "${T}"/validate_failures.py || die
 	fi
@@ -1133,7 +1131,7 @@ toolchain_src_configure() {
 			# should be /usr, because it's the path to search includes
 			# for, which is unrelated to TOOLCHAIN_PREFIX, a.k.a.
 			# PREFIX
-			confgcc+=( --with-local-prefix="${TPREFIX}/usr" )
+			confgcc+=( --with-local-prefix="${EPREFIX}/usr" )
 
 			# enable the configured SDK, Apple no longer installs stuff
 			# into /usr
@@ -1349,7 +1347,9 @@ toolchain_src_configure() {
 	fi
 
 	if in_iuse cet ; then
-		[[ ${CTARGET} == x86_64-*-gnu* ]] && confgcc+=( $(use_enable cet) )
+		if [[ ${CTARGET} == i[[34567]]86-*-linux* || ${CTARGET} == x86_64-*-gnu* ]] ; then
+			confgcc+=( $(use_enable cet) )
+		fi
 		[[ ${CTARGET} == aarch64-*-gnu* ]] && confgcc+=( $(use_enable cet standard-branch-protection) )
 	fi
 
@@ -1920,7 +1920,6 @@ gcc_do_make() {
 
 	einfo "Compiling ${PN} (${GCC_MAKE_TARGET})..."
 	pushd "${WORKDIR}"/build >/dev/null || die
-
 	emake "${emakeargs[@]}" ${GCC_MAKE_TARGET}
 
 	if is_ada; then
@@ -1981,34 +1980,27 @@ toolchain_src_test() {
 	local -x LD_PRELOAD=
 
 	# Controls running expensive tests in e.g. the torture testsuite.
+	# Note that 'TEST', not 'TESTS', is correct here as it's a GCC
+	# testsuite variable, not ours.
 	local -x GCC_TEST_RUN_EXPENSIVE=1
 
 	# Use a subshell to allow meddling with flags just for the testsuite
 	(
-		# Unexpected warnings confuse the tests.
-		filter-flags -W*
-		# May break parsing.
-		filter-flags '-fdiagnostics-color=*' '-fdiagnostics-urls=*'
-		# Gentoo QA flags which don't belong in tests
-		filter-flags -frecord-gcc-switches
-		filter-flags '-Wl,--defsym=__gentoo_check_ldflags__=0'
-		# Go doesn't support this and causes noisy warnings
-		filter-flags -Wbuiltin-declaration-mismatch
-		# The ASAN tests at least need LD_PRELOAD and the contract
-		# tests.
-		filter-flags -fno-semantic-interposition
-
 		# Workaround our -Wformat-security default which breaks
 		# various tests as it adds unexpected warning output.
-		append-flags -Wno-format-security -Wno-format
+		GCC_TESTS_CFLAGS+=" -Wno-format-security -Wno-format"
+		GCC_TESTS_CXXFLAGS+=" -Wno-format-security -Wno-format"
+
 		# Workaround our -Wtrampolines default which breaks
 		# tests too.
-		append-flags -Wno-trampolines
+		GCC_TESTS_CFLAGS+=" -Wno-trampolines"
+		GCC_TESTS_CXXFLAGS+=" -Wno-trampolines"
 		# A handful of Ada (and objc++?) tests need an executable stack
-		append-ldflags -Wl,--no-warn-execstack
+		GCC_TESTS_LDFLAGS+=" -Wl,--no-warn-execstack"
 		# Avoid confusing tests like Fortran/C interop ones where
 		# CFLAGS are used.
-		append-flags -Wno-complain-wrong-lang
+		GCC_TESTS_CFLAGS+=" -Wno-complain-wrong-lang"
+		GCC_TESTS_CXXFLAGS+=" -Wno-complain-wrong-lang"
 
 		# Issues with Ada tests:
 		# gnat.dg/align_max.adb
@@ -2019,45 +2011,50 @@ toolchain_src_test() {
 		#
 		# TODO: This isn't ideal given it obv. affects codegen
 		# and we want to be sure it works.
-		append-flags -fno-stack-clash-protection
+		GCC_TESTS_CFLAGS+=" -fno-stack-clash-protection"
+		GCC_TESTS_CXXFLAGS+=" -fno-stack-clash-protection"
 
 		# configure defaults to '-O2 -g' and some tests expect it
 		# accordingly.
-		append-flags -g
+		GCC_TESTS_CFLAGS+=" -g"
 
 		# TODO: Does this handle s390 (-m31) correctly?
 		# TODO: What if there are multiple ABIs like x32 too?
-		is_multilib && GCC_TESTS_RUNTESTFLAGS+=" --target_board=unix{,-m32}"
+		# XXX: Disabled until validate_failures.py can handle 'variants'
+		# XXX: https://gcc.gnu.org/PR116260
+		#is_multilib && GCC_TESTS_RUNTESTFLAGS+=" --target_board=unix{,-m32}"
 
 		# nonfatal here as we die if the comparison below fails. Also, note that
 		# the exit code of targets other than 'check' may be unreliable.
 		#
 		# CFLAGS and so on are repeated here because of tests vs building test
 		# deps like libbacktrace.
+		#
+		# TODO: Should we try pass in the regular user flags for the non-RUNTESTFLAGS
+		# instances below for building e.g. libbacktrace?
 		nonfatal emake -C "${WORKDIR}"/build -k "${GCC_TESTS_CHECK_TARGET}" \
 			RUNTESTFLAGS=" \
 				${GCC_TESTS_RUNTESTFLAGS} \
-				CFLAGS_FOR_TARGET='${CFLAGS_FOR_TARGET:-${CFLAGS}}' \
-				CXXFLAGS_FOR_TARGET='${CXXFLAGS_FOR_TARGET:-${CXXFLAGS}}' \
-				LDFLAGS_FOR_TARGET='${LDFLAGS_FOR_TARGET:-${LDFLAGS}}' \
-				CFLAGS='${CFLAGS}' \
-				CXXFLAGS='${CXXFLAGS}' \
-				FCFLAGS='${FCFLAGS}' \
-				FFLAGS='${FFLAGS}' \
-				LDFLAGS='${LDFLAGS}' \
+				CFLAGS_FOR_TARGET='${GCC_TESTS_CFLAGS_FOR_TARGET:-${GCC_TESTS_CFLAGS}}' \
+				CXXFLAGS_FOR_TARGET='${GCC_TESTS_CXXFLAGS_FOR_TARGET:-${GCC_TESTS_CXXFLAGS}}' \
+				LDFLAGS_FOR_TARGET='${TEST_LDFLAGS_FOR_TARGET:-${GCC_TESTS_LDFLAGS}}' \
+				CFLAGS='${GCC_TESTS_CFLAGS}' \
+				CXXFLAGS='${GCC_TESTS_CXXFLAGS}' \
+				FCFLAGS='${GCC_TESTS_FCFLAGS}' \
+				FFLAGS='${GCC_TESTS_FFLAGS}' \
+				LDFLAGS='${GCC_TESTS_LDFLAGS}' \
 			" \
-			CFLAGS_FOR_TARGET="${CFLAGS_FOR_TARGET:-${CFLAGS}}" \
-			CXXFLAGS_FOR_TARGET="${CXXFLAGS_FOR_TARGET:-${CXXFLAGS}}" \
-			LDFLAGS_FOR_TARGET="${LDFLAGS_FOR_TARGET:-${LDFLAGS}}" \
-			CFLAGS="${CFLAGS}" \
-			CXXFLAGS="${CXXFLAGS}" \
-			FCFLAGS="${FCFLAGS}" \
-			FFLAGS="${FFLAGS}" \
-			LDFLAGS="${LDFLAGS}"
+			CFLAGS_FOR_TARGET="${GCC_TESTS_CFLAGS_FOR_TARGET:-${GCC_TESTS_CFLAGS}}" \
+			CXXFLAGS_FOR_TARGET="${GCC_TESTS_CXXFLAGS_FOR_TARGET:-${GCC_TESTS_CXXFLAGS}}" \
+			LDFLAGS_FOR_TARGET="${GCC_TESTS_LDFLAGS_FOR_TARGET:-${GCC_TESTS_LDFLAGS}}" \
+			CFLAGS="${GCC_TESTS_CFLAGS}" \
+			CXXFLAGS="${GCC_TESTS_CXXFLAGS}" \
+			FCFLAGS="${GCC_TESTS_FCFLAGS}" \
+			FFLAGS="${GCC_TESTS_FFLAGS}" \
+			LDFLAGS="${GCC_TESTS_LDFLAGS}"
 	)
 
 	# Produce an updated failure manifest.
-	# XXX: Manifests aren't ideal w/ multilib because of https://gcc.gnu.org/PR116260
 	einfo "Generating a new failure manifest ${T}/${CHOST}.xfail"
 	rm -f "${T}"/${CHOST}.xfail
 	edo "${T}"/validate_failures.py \
@@ -2109,7 +2106,7 @@ toolchain_src_test() {
 			eerror "GCC_TESTS_IGNORE_NO_BASELINE is set, ignoring test result and creating a new baseline..."
 		elif [[ -n ${GCC_TESTS_REGEN_BASELINE} ]] ; then
 			eerror "GCC_TESTS_REGEN_BASELINE is set, ignoring test result and creating using a new baseline..."
-		elif [[ ${ret} != 0 ]]; then
+		elif [[ ${ret} != 0 ]] ; then
 			eerror "(Set GCC_TESTS_IGNORE_NO_BASELINE=1 to make this non-fatal and generate a baseline.)"
 			die "Tests failed (failures occurred with no reference data)"
 		fi
@@ -2337,7 +2334,7 @@ toolchain_src_install() {
 	pax-mark -r "${ED}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1"
 	pax-mark -r "${ED}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1plus"
 
-	if use test ; then
+	if [[ -n ${TOOLCHAIN_HAS_TESTS} ]] && use test ; then
 		mkdir "${T}"/test-results || die
 		cd "${WORKDIR}"/build || die
 		find . -name \*.sum -exec cp --parents -v {} "${T}"/test-results \; || die
@@ -2510,7 +2507,7 @@ create_revdep_rebuild_entry() {
 #---->> pkg_pre* <<----
 
 toolchain_pkg_preinst() {
-	if [[ ${MERGE_TYPE} != binary ]] && use test ; then
+	if [[ -n ${TOOLCHAIN_HAS_TESTS} && ${MERGE_TYPE} != binary ]] && use test ; then
 		# Install as orphaned to allow comparison across more versions even
 		# after unmerged. Also useful for historical records and tracking
 		# down regressions a while after they first appeared, but were only
