@@ -1,0 +1,14 @@
+Since Sequoia with Clang 16, as needs - when used via pipe input
+
+--- a/gcc/config/darwin.h
++++ b/gcc/config/darwin.h
+@@ -977,6 +977,9 @@
+   { "weak_import", 0, 0, true, false, false, false,			     \
+     darwin_handle_weak_import_attribute, NULL }
+ 
++/* Since clang 16 called as 'as', it requires a dash to read pipe */
++#define AS_NEEDS_DASH_FOR_PIPED_INPUT
++
+ /* Make local constant labels linker-visible, so that if one follows a
+    weak_global constant, ld64 will be able to separate the atoms.  */
+ #undef ASM_GENERATE_INTERNAL_LABEL

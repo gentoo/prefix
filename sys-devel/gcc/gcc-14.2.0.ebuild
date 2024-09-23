@@ -46,6 +46,9 @@ src_prepare() {
 	# apply big arm64-darwin patch first thing
 	use elibc_Darwin && eapply "${DISTDIR}"/${P}-arm64-darwin.patch
 
+	# run as with - on pipe (for Clang 16)
+	eapply "${FILESDIR}"/${PN}-14.2.0-darwin-as-dash-pipe.patch
+
 	# make sure 64-bits native targets don't screw up the linker paths
 	eapply "${FILESDIR}"/gcc-12-no-libs-for-startfile.patch
 
@@ -57,7 +60,7 @@ src_prepare() {
 	done
 
 	toolchain_src_prepare
-	#
+
 	# make it have correct install_names on Darwin
 	eapply -p1 "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
 
