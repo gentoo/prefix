@@ -2039,28 +2039,6 @@ bootstrap_stage2() {
 		emerge_pkgs --nodeps "${pkg}" || return 1
 	done
 
-	# During Gentoo prefix bootstrap stage2, GCC is built with
-	# "--disable-bootstrap". For Darwin, it means that rather than letting
-	# GCC to eventually build itself using multiple passes, we're forcing
-	# it to build with the host LLVM/clang toolchain in a single pass.
-	# It's not officially supported, but practically it worked. However,
-	# since >=gcc-12.2.0, in order to support the new embedded rpath
-	# feature on Darwin, two incompatible options, "-nodefaultrpaths" and
-	# "-nodefaultexport" are introduced. This causes linking failures,
-	# since these options are only recognized by GCC and are unknown to
-	# LLVM/clang (hypothetically, using an older GCC possibly causes the
-	# same problem as well).
-	#
-	# Thus, embedded rpath should be disabled during prefix bootstrap stage2
-	# and passed into EXTRA_ECONF.
-	# https://bugs.gentoo.org/895334
-	if [[ ${CHOST} == *-darwin* ]] ;
-	then
-		local disable_darwin_rpath="--disable-darwin-at-rpath"
-	else
-		local disable_darwin_rpath=""
-	fi
-
 	for pkg in ${compiler_stage1} ; do
 		# <glibc-2.5 does not understand .gnu.hash, use
 		# --hash-style=both to produce also sysv hash.
