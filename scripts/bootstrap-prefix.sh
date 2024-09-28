@@ -1483,11 +1483,13 @@ bootstrap_stage1() {
 			SDKPATH=/
 		else
 			SDKPATH=$(xcrun --show-sdk-path --sdk macosx)
-			if [[ -L ${SDKPATH} ]] ; then
+			if [[ -e ${SDKPATH} ]] ; then
 				local fsdk
 				local osvers
-				# try and find a matching OS SDK
-				fsdk="$(readlink "${SDKPATH}")"
+				# try and find a matching OS SDK, xcrun seems to return
+				# the latest installed, so not necessarily the one
+				# matching the macOS version
+				[[ -L ${SDKPATH} ]] && fsdk="$(readlink "${SDKPATH}")"
 				# note readlink -f is not supported on older versions of
 				# macOS so need to emulate it
 				if [[ ${fsdk} != /* ]] ; then
