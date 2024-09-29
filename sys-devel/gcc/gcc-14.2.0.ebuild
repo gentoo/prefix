@@ -134,6 +134,15 @@ src_configure() {
 		;;
 	esac
 
+	case "${CTARGET}" in
+		arm64-apple-darwin*)
+			# math.h from SDKs don't have FLOAT16 support, so we need to
+			# wait until fix-included headers are there with using it
+			# this flag forces GCC not to use FLT16 via __FLT_EVAL_METHOD__
+			myconf+=( 'CFLAGS_FOR_TARGET="-fpermitted-flt-eval-methods=c11"' )
+			;;
+	esac
+
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is way too slow,
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
