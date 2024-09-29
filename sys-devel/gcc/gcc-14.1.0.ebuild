@@ -31,7 +31,7 @@ fi
 
 # use alternate source for Apple M1 (also works for x86_64)
 SRC_URI+=" elibc_Darwin? ( https://raw.githubusercontent.com/Homebrew/formula-patches/82b5c1cd38826ab67ac7fc498a8fe74376a40f4a/gcc/gcc-14.1.0.diff -> gcc-14.1.0-arm64-darwin.patch https://github.com/iains/gcc-14-branch/commit/75ff8c390327ac693f6a1c40510bc0d35d7a1e22.patch?full_index=1 -> gcc-14.1.0-macos-SDK-availability.patch )"
-IUSE+=" bootstrap"
+IUSE+=" system-bootstrap"
 
 if [[ ${CATEGORY} != cross-* ]] ; then
 	# Technically only if USE=hardened *too* right now, but no point in complicating it further.
@@ -75,7 +75,7 @@ src_prepare() {
 	fi
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
-		use bootstrap && eapply "${FILESDIR}"/${PN}-13-darwin14-bootstrap.patch
+		use system-bootstrap && eapply "${FILESDIR}"/${PN}-13-darwin14-bootstrap.patch
 
 		# our ld64 is a slight bit different, so tweak expression to not
 		# get confused and break the build
