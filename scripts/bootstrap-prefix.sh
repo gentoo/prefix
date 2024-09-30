@@ -1337,6 +1337,7 @@ bootstrap_coreutils() {
 	# 8.16 is the last version released as tar.gz
 	# 8.18 is necessary for macOS High Sierra (darwin17) and converted
 	#      to tar.gz for this case
+	bootstrap_gnu coreutils 9.5 || \
 	bootstrap_gnu coreutils 8.32 || bootstrap_gnu coreutils 8.30 || \
 	bootstrap_gnu coreutils 8.16 || bootstrap_gnu coreutils 8.17
 }
@@ -1825,7 +1826,7 @@ do_emerge_pkgs() {
 			"-qtegrity"           # portage-utils
 			"-readline"           # bash
 			"-sanitize"
-			"bootstrap"
+			"system-bootstrap"
 			"clang"
 			"internal-glib"
 		)
@@ -2041,19 +2042,33 @@ bootstrap_stage2() {
 		emerge_pkgs --nodeps "${pkg}" || return 1
 	done
 
+	# GCC doesn't respect CPPFLAGS because of its own meddling as well
+	# as toolchain.eclass, so provide a wrapper here to force just
+	# installed packages to be found
+	mkdir -p "${ROOT}"/tmp/usr/local/bin
+	rm -f "${ROOT}"/tmp/usr/local/bin/my{gcc,g++}
+	cat > "${ROOT}/tmp/usr/local/bin/mygcc" <<-EOS
+		#!/usr/bin/env sh
+		exec ${CC} "\$@" ${CPPFLAGS}
+	EOS
+	cat > "${ROOT}/tmp/usr/local/bin/myg++" <<-EOS
+		#!/usr/bin/env sh
+		exec ${CXX} "\$@" ${CPPFLAGS}
+	EOS
+	chmod 755 "${ROOT}/tmp/usr/local/bin/my"{gcc,g++}
+
 	for pkg in ${compiler_stage1} ; do
 		# <glibc-2.5 does not understand .gnu.hash, use
 		# --hash-style=both to produce also sysv hash.
 		# GCC apparently drops CPPFLAGS at some point, which makes it
 		# not find things like gmp which we just installed, so force it
 		# to find our prefix
-		# For >=gcc-12.2.0, rpath needs to be disabled in stage2 on
-		# Darwin, see above.
-		EXTRA_ECONF="--disable-bootstrap $(rapx --with-linker-hash-style=both) --with-local-prefix=${ROOT} ${disable_darwin_rpath}" \
+		EXTRA_ECONF="$(rapx --with-linker-hash-style=both) --with-local-prefix=${ROOT}" \
 		MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
 		GCC_MAKE_TARGET=all \
+		OVERRIDE_CFLAGS="${CPPFLAGS} ${OVERRIDE_CFLAGS}" \
 		OVERRIDE_CXXFLAGS="${CPPFLAGS} ${OVERRIDE_CXXFLAGS}" \
-		TPREFIX="${ROOT}" \
+		CC=mygcc CXX=myg++ \
 		PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
 		emerge_pkgs --nodeps "${pkg}" || return 1
 
@@ -2134,7 +2149,7 @@ bootstrap_stage3() {
 	# At this point, we should have a proper GCC, and don't need to
 	# rely on the system wrappers.  Let's get rid of them, so that
 	# they stop mucking up builds.
-	rm -f "${ROOT}"/tmp/usr/local/bin/*
+	rm -f "${ROOT}"/tmp/usr/local/bin/{,my,${CHOST}-}{gcc,g++}
 
 	configure_toolchain || return 1
 
