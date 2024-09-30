@@ -1445,6 +1445,11 @@ toolchain_src_configure() {
 				;;
 		esac
 
+		# PREFIX_LOCAL: host OS very likely needs tweaks, so install
+		# these in order to allow compiling GCC itself and packages
+		# afterwards
+		use prefix-guest && GCC_RUN_FIXINCLUDES=1
+
 		if [[ ${GCC_RUN_FIXINCLUDES} == 1 ]] ; then
 			confgcc+=( --enable-fixincludes )
 		else
