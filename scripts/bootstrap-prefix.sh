@@ -72,7 +72,7 @@ efetch() {
 			# Try to find a download manager, we only deal with wget,
 			# curl, FreeBSD's fetch and ftp.
 			if [[ $(type -t wget) == "file" ]] ; then
-				FETCH_COMMAND="wget"
+				FETCH_COMMAND="wget -t 3 -T 3"  # 3x3s wait
 				[[ $(wget -h) == *"--no-check-certificate"* ]] \
 					&& FETCH_COMMAND+=" --no-check-certificate"
 			elif [[ $(type -t curl) == "file" ]] ; then
@@ -531,7 +531,7 @@ bootstrap_tree() {
 	#                      retain this comment and the line below to
 	#                      keep this snapshot around in the snapshots
 	# MKSNAPSHOT-ANCHOR -- directory of rsync slaves
-	local PV="20240922"
+	local PV="20240930"
 
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
@@ -1308,7 +1308,7 @@ bootstrap_gcc5() {
 }
 
 bootstrap_sed() {
-	bootstrap_gnu sed 4.5 || \
+	bootstrap_gnu sed 4.9 || bootstrap_gnu sed 4.5 || \
 	bootstrap_gnu sed 4.2.2 || bootstrap_gnu sed 4.2.1
 }
 
