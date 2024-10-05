@@ -10,11 +10,15 @@ SRC_URI="https://${PN}.freedesktop.org/releases/${P}.tar.xz"
 
 LICENSE="BSD BSD-2 BSD-4 ISC"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux ~arm64-macos ~x64-macos"
 IUSE="static-libs"
 
 DEPEND="|| ( >=sys-kernel/linux-headers-3.17 virtual/os-headers )"
 RDEPEND=""
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-0.9.1-darwin.patch
+)
 
 pkg_setup() {
 	local f="${EROOT}/usr/$(get_libdir)/${PN}.a"
