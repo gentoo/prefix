@@ -1176,18 +1176,19 @@ bootstrap_cmake_core() {
 
 	# we need sysroot crap to build cmake itself, but it makes trouble
 	# later on, so kill it in the installed version
-	ver=${A%-*} ; ver=${ver%.*}
 	sed -i -e '/cmake_gnu_set_sysroot_flag/d' \
-		"${ROOT}/tmp/usr/share/${ver}/Modules/Platform"/Apple-GNU-*.cmake || die
+		"${ROOT}"/tmp/usr/share/cmake*/Modules/Platform/Apple-GNU-*.cmake || die
 	# disable isysroot usage with clang as well
 	sed -i -e '/_SYSROOT_FLAG/d' \
-		"${ROOT}/tmp/usr/share/${ver}/Modules/Platform"/Apple-Clang.cmake || die
+		"${ROOT}"/tmp/usr/share/cmake*/Modules/Platform/Apple-Clang.cmake || die
 
 	einfo "${A%.tar.*} bootstrapped"
 }
 
 bootstrap_cmake() {
-	bootstrap_cmake_core 3.16.5 || bootstrap_cmake_core 3.0.2
+	bootstrap_cmake_core 3.20.6 || \
+	bootstrap_cmake_core 3.16.5 || \
+	bootstrap_cmake_core 3.0.2
 }
 
 bootstrap_zlib_core() {
