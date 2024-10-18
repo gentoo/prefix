@@ -220,18 +220,17 @@ configure_toolchain() {
 					# this is Clang, recent enough to compile recent clang
 					compiler_stage1+="
 						${llvm_deps}
-						sys-libs/libcxxabi
-						sys-libs/libcxx
+						sys-libs/compiler-rt
 						sys-devel/llvm
+						sys-devel/lld
+						sys-devel/clang-common
 						sys-devel/clang
 					"
 					CC=clang
 					CXX=clang++
-					# avoid going through hoops and deps for
-					# binutils-apple, rely on the host-installed ld to
-					# build a compiler, we'll pull in binutils-apple
-					# from system set
-					linker=sys-devel/native-cctools
+					linker=
+					[[ "${BOOTSTRAP_STAGE}" == stage2 ]] && \
+						linker=sys-devel/lld
 					;;
 				*)
 					eerror "unknown/unsupported compiler"
@@ -240,12 +239,16 @@ configure_toolchain() {
 			esac
 
 			compiler="
-				dev-libs/libffi
 				${llvm_deps}
+				sys-libs/compiler-rt
 				sys-libs/libcxxabi
 				sys-libs/libcxx
 				sys-devel/llvm
-				sys-devel/clang"
+				sys-devel/lld
+				sys-libs/llvm-libunwind
+				sys-devel/clang-common
+				sys-devel/clang
+			"
 			;;
 		*-linux*)
 			is-rap && einfo "Triggering Linux RAP bootstrap"
@@ -457,6 +460,8 @@ bootstrap_profile() {
 	if [[ ${DARWIN_USE_GCC} == 1 ]] ; then
 		# amend profile, to use gcc one
 		profile="${profile}/gcc"
+	elif [[ ${CHOST} == *-darwin* ]] ; then
+		[[ "${BOOTSTRAP_STAGE}" != stage2 ]] && profile+="/clang"
 	fi
 
 	[[ -n ${PROFILE_BASE}${PROFILE_VARIANT} ]] &&
@@ -1466,7 +1471,7 @@ bootstrap_stage1() {
 		[[ -e ${ROOT}/tmp/${x} ]] || ( cd "${ROOT}"/tmp && ln -s usr/${x} )
 	done
 
-	configure_toolchain
+	BOOTSTRAP_STAGE="stage1" configure_toolchain || return 1
 	export CC CXX
 
 	# default: empty = NO
@@ -1752,9 +1757,16 @@ bootstrap_stage1() {
 	# setup a profile for stage2
 	mkdir -p "${ROOT}"/tmp/etc/. || return 1
 	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || \
-		(	"${CP}" -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc && \
+		(
+			"${CP}" -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc && \
 			rm -f "${ROOT}"/tmp/etc/portage/make.profile && \
-			(ROOT="${ROOT}"/tmp PREFIX_DISABLE_RAP=yes bootstrap_profile) ) || return 1
+			(
+				ROOT="${ROOT}"/tmp \
+				PREFIX_DISABLE_RAP="yes" \
+				BOOTSTRAP_STAGE="stage2" \
+				bootstrap_profile
+			)
+		) || return 1
 
 	# setup portage
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
@@ -1819,7 +1831,6 @@ do_emerge_pkgs() {
 			"-berkdb"
 			"-fortran"            # gcc
 			"-gdbm"
-			"-libcxx"
 			"-nls"
 			"-pcre"
 			"-python"
@@ -1831,7 +1842,24 @@ do_emerge_pkgs() {
 			"clang"
 			"internal-glib"
 		)
-		local override_make_conf_dir="${PORTAGE_OVERRIDE_EPREFIX}${MAKE_CONF_DIR#"${ROOT}"}"
+
+		local skip_llvm_pkg_setup=
+		if [[ ${CHOST}:${DARWIN_USE_GCC} == *-darwin*:0 ]] ; then
+			# Clang-based Darwin
+			myuse+=(
+				"-binutils-plugin"
+				"default-compiler-rt"
+				"default-libcxx"
+				"default-lld"
+			)
+			if [[ "${BOOTSTRAP_STAGE}" == stage2 ]] ; then
+				myuse+=( "bootstrap-prefix" )
+				skip_llvm_pkg_setup="yes"
+			fi
+		fi
+
+		local override_make_conf_dir="${PORTAGE_OVERRIDE_EPREFIX}"
+		override_make_conf_dir+="${MAKE_CONF_DIR#"${ROOT}"}"
 
 		if [[ " ${USE} " == *" prefix-stack "* ]] &&
 		   [[ ${PORTAGE_OVERRIDE_EPREFIX} == */tmp ]] &&
@@ -1892,6 +1920,7 @@ do_emerge_pkgs() {
 			PORTAGE_SYNC_STALE=0 \
 			FEATURES="-news ${FEATURES}" \
 			USE="${myuse[*]}" \
+			LLVM_ECLASS_SKIP_PKG_SETUP="${skip_llvm_pkg_setup}" \
 			"${ROOT}"/tmp/bin/python \
 			"${ROOT}"/tmp/usr/bin/emerge "${eopts[@]}" "${pkg}"
 		) || return 1
@@ -1908,7 +1937,7 @@ bootstrap_stage2() {
 
 	# Find out what toolchain packages we need, and configure LDFLAGS
 	# and friends.
-	configure_toolchain || return 1
+	BOOTSTRAP_STAGE="stage2" configure_toolchain || return 1
 	configure_cflags || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
 	export CC CXX
@@ -1995,6 +2024,24 @@ bootstrap_stage2() {
 		EOF
 	fi
 
+	# provide active SDK link on Darwin
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		rm -f "${ROOT}"/tmp/MacOSX.sdk
+		( cd "${ROOT}"/tmp && ln -s ../MacOSX.sdk MacOSX.sdk )
+		if [[ ${DARWIN_USE_GCC} == 0 ]] ; then
+			# Until proper clang is installed, just redirect calls to it
+			# to the system's one. Libtool is here because its path is
+			# passed to the compiler-rt and llvm's ebuilds.
+			for bin in libtool clang clang++ ; do
+				{
+					echo "#!${ROOT}/tmp/bin/sh"
+					echo "exec ${bin}"' "$@"'
+				} > "${ROOT}/tmp/usr/bin/${CHOST}-${bin}"
+				chmod +x "${ROOT}/tmp/usr/bin/${CHOST}-${bin}"
+			done
+		fi
+	fi
+
 	# Build a basic compiler and portage dependencies in $ROOT/tmp.
 	pkgs=(
 		sys-devel/gnuconfig
@@ -2012,12 +2059,6 @@ bootstrap_stage2() {
 		sys-devel/patch
 		sys-devel/binutils-config
 	)
-
-	# provide active SDK link on Darwin
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		rm -f "${ROOT}"/tmp/MacOSX.sdk
-		( cd "${ROOT}"/tmp && ln -s ../MacOSX.sdk MacOSX.sdk )
-	fi
 
 	# cmake has some external dependencies which require autoconf, etc.
 	# unless we only build the buildtool, bug #603012
@@ -2037,8 +2078,8 @@ bootstrap_stage2() {
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
-	# Debian multiarch supported by RAP needs ld to support sysroot.
 	for pkg in ${linker} ; do
+		# Debian multiarch supported by RAP needs ld to support sysroot.
 		EXTRA_ECONF=$(rapx --with-sysroot=/) \
 		emerge_pkgs --nodeps "${pkg}" || return 1
 	done
@@ -2083,12 +2124,22 @@ bootstrap_stage2() {
 	done
 
 	if [[ ${compiler_type} == clang ]] ; then
+		if [[ ${CHOST} == *-darwin* ]] ; then
+			# Stop using host's compilers, but still need 'libtool' in PATH.
+			rm "${ROOT}/tmp/usr/bin/${CHOST}"-{libtool,clang,clang++}
+			mkdir -p "${ROOT}"/usr/bin
+			ln -s "${ROOT}"/tmp/usr/lib/llvm/*/bin/llvm-libtool-darwin \
+				"${ROOT}"/usr/bin/libtool
+		fi
+
 		# We use Clang as our toolchain compiler, so we need to make
 		# sure we actually use it
 		mkdir -p -- "${MAKE_CONF_DIR}"
 		{
 			echo
 			echo "# System compiler on $(uname) Prefix is Clang, do not remove this"
+			echo "AS=\"${CHOST}-clang -c\""
+			echo "CPP=${CHOST}-clang-cpp"
 			echo "CC=${CHOST}-clang"
 			echo "CXX=${CHOST}-clang++"
 			echo "OBJC=${CHOST}-clang"
@@ -2152,7 +2203,7 @@ bootstrap_stage3() {
 	# they stop mucking up builds.
 	rm -f "${ROOT}"/tmp/usr/local/bin/{,my,${CHOST}-}{gcc,g++}
 
-	configure_toolchain || return 1
+	BOOTSTRAP_STAGE=stage3 configure_toolchain || return 1
 
 	if [[ ${compiler_type} == clang ]] ; then
 		if ! type -P clang > /dev/null ; then
@@ -2205,7 +2256,6 @@ bootstrap_stage3() {
 		# (CBUILD, BDEPEND) and with the system being built
 		# (CHOST, RDEPEND).  To correctly bootstrap stage3,
 		# PORTAGE_OVERRIDE_EPREFIX as BROOT is needed.
-		PREROOTPATH="${ROOT}"$(echo /{,tmp/}{usr/,}{,lib/llvm/{12,11,10}/}{s,}bin | sed "s, ,:${ROOT},g") \
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
 		STAGE=stage3 \
@@ -2388,6 +2438,31 @@ bootstrap_stage3() {
 	PYTHON_COMPAT_OVERRIDE="python$(python_ver)" \
 	pre_emerge_pkgs --nodeps "${compiler_pkgs[@]}" || return 1
 
+	if [[ ${CHOST}:${DARWIN_USE_GCC} == *-darwin*:0 ]] ; then
+		# At this point our libc++abi.dylib is dynamically linked to
+		# /usr/lib/libc++abi.dylib. That causes issues with perl later. Force
+		# rebuild of sys-libs/libcxxabi to break this link.
+		rm -Rf "${ROOT}/var/db/pkg/sys-libs/libcxxabi"*
+		PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
+			pre_emerge_pkgs --nodeps "sys-libs/libcxxabi" || return 1
+
+		# Make ${CHOST}-libtool (used by compiler-rt's and llvm's ebuild) to
+		# point at the correct libtool in stage3. Resolve it in runtime, to
+		# support llvm version upgrades.
+		rm -f ${ROOT}/usr/bin/${CHOST}-libtool
+		{
+			echo "#!${ROOT}/bin/sh"
+			echo 'exec llvm-libtool-darwin "$@"'
+		} > "${ROOT}"/usr/bin/${CHOST}-${bin}
+
+		# Now clang is ready, can use it instead of /usr/bin/gcc
+		# TODO: perhaps symlink the whole etc/portage instead?
+		ln -s -f "${ROOT}/etc/portage/make.profile" \
+			"${ROOT}/tmp/etc/portage/make.profile"
+		cp "${ROOT}/etc/portage/make.conf/0100_bootstrap_prefix_clang.conf" \
+			"${ROOT}/tmp/etc/portage/make.conf/"
+	fi
+
 	# Undo libgcc_s.so path of stage2
 	# Now we have the compiler right there
 	unset CC CXX CPPFLAGS LDFLAGS
@@ -2404,8 +2479,35 @@ bootstrap_stage3() {
 		ln -s bash "${ROOT}"/bin/sh
 	fi
 
+	if [[ "${compiler_type}" == clang ]] ; then
+		if [[ ! -e "${ROOT}"/tmp/etc/env.d/11stage3-llvm ]]; then
+			ln -s "${ROOT}"/etc/env.d/60llvm-* \
+				"${ROOT}"/tmp/etc/env.d/11stage3-llvm
+		fi
+		# Prevent usage of AppleClang aka gcc for bad packages which ignore $CC
+		if [[ ! -e "${ROOT}"/usr/bin/gcc ]]; then
+			echo "#!${ROOT}/bin/bash" > "${ROOT}"/usr/bin/gcc
+			echo "false ${CHOST}-clang \"\$@\"" >> "${ROOT}"/usr/bin/gcc
+		fi
+		if [[ ! -e "${ROOT}"/usr/bin/g++ ]]; then
+			echo "#!${ROOT}/bin/bash" > "${ROOT}"/usr/bin/g++
+			echo "false ${CHOST}-clang++ \"\$@\"" >> "${ROOT}"/usr/bin/g++
+		fi
+		chmod +x "${ROOT}"/usr/bin/{gcc,g++}
+		if [[ ${CHOST} == *-darwin* ]]; then
+			if [[ ! -e "${ROOT}"/usr/bin/ld ]]; then
+				echo "#!${ROOT}/bin/bash" > "${ROOT}"/usr/bin/ld
+				echo "false ld64.lld \"\$@\"" >> "${ROOT}"/usr/bin/ld
+			fi
+			chmod +x "${ROOT}"/usr/bin/ld
+		fi
+	fi
+	
 	# Start using apps from the final destination Prefix
-	export PREROOTPATH="${ROOT}/usr/bin:${ROOT}/bin"
+	cat > "${ROOT}"/tmp/etc/env.d/10stage3 <<-EOF
+		PATH="${ROOT}/usr/bin:${ROOT}/bin"
+	EOF
+	"${ROOT}"/tmp/usr/sbin/env-update
 
 	# Get a sane bash, overwriting tmp symlinks
 	pre_emerge_pkgs "" "app-shells/bash" || return 1
