@@ -818,8 +818,24 @@ bootstrap_gnu() {
 		patch -p1 < "${DISTDIR}/${tar_patch_file}" || return 1
 	fi
 
+	# gcc14 fails to build bash if host lacks /usr/include/termcap.h
+	# fixed upstream in devel branch
+	if [[ ${PN}-${PV} == "bash-5.2" ]] ; then
+		local bash_patch_file="tparam.c"
+		local bash_patch_id="id=5b239ebbd2b1251c03b8e5591fe797a791266799"
+		local bash_patch_url="https://git.savannah.gnu.org/cgit/bash.git/patch/lib/termcap/${bash_patch_file}?${bash_patch_id}"
+		efetch "${bash_patch_url}" || return 1
+		# If fetched from upstream url instead of mirror, filename will
+		# have a suffix. Remove suffix by copy, not move, to not
+		# trigger refetch on repeated invocations of this script.
+		if [[ -f "${DISTDIR}/${bash_patch_file}?${bash_patch_id}" ]]; then
+			cp "${DISTDIR}/${bash_patch_file}"{"?${bash_patch_id}",} || return 1
+		fi
+		patch -p1 < "${DISTDIR}/${bash_patch_file}" || return 1
+	fi
+
 	local -a myconf
-	if [[ ${PN} == "make" && ${PV} == "4.2.1" ]] ; then
+	if [[ ${PN}-${PV} == "make-4.2.1" ]] ; then
 		if [[ ${CHOST} == *-linux-gnu* ]] ; then
 			# force this, macros aren't set correctly with newer glibc
 			export CPPFLAGS="${CPPFLAGS} -D__alloca=alloca -D__stat=stat"
