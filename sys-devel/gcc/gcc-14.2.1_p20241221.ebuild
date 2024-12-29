@@ -50,6 +50,9 @@ src_prepare() {
 	# run as with - on pipe (for Clang 16)
 	eapply "${FILESDIR}"/${PN}-14.2.0-darwin-as-dash-pipe.patch
 
+	# fix build with libintl-0.23
+	eapply "${FILESDIR}"/${PN}-14.2.0-libintl-setlocale.patch
+
 	# make sure 64-bits native targets don't screw up the linker paths
 	eapply "${FILESDIR}"/gcc-12-no-libs-for-startfile.patch
 

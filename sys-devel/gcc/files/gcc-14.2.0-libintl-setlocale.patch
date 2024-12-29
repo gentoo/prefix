@@ -1,0 +1,25 @@
+libcpp/system.h: remove setlocale override
+
+This is non-upstreamable as is, it seems the configure check for
+HAVE_SETLOCALE is missing, but since it comes from libintl.h not sure
+how trivial this is (needs gettext macros).
+
+In Prefix setlocale is always present, either via the libc, or libintl.
+So we don't need to dummy it.  Doing so results in problems with
+libintl-0.23, which is included right after dummifying.
+
+Bug: https://bugs.gentoo.org/946500
+
+--- a/libcpp/system.h
++++ b/libcpp/system.h
+@@ -271,10 +271,6 @@
+ # include <langinfo.h>
+ #endif
+ 
+-#ifndef HAVE_SETLOCALE
+-# define setlocale(category, locale) (locale)
+-#endif
+-
+ #ifdef ENABLE_NLS
+ #include <libintl.h>
+ #else
