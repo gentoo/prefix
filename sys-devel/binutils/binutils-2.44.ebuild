@@ -84,6 +84,7 @@ RESTRICT="!test? ( test )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.22-solaris-anonymous-version-script-fix.patch
+	"${FILESDIR}"/${PN}-2.44-solaris-gas-write.patch
 )
 
 MY_BUILDDIR=${WORKDIR}/build
