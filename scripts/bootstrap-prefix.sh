@@ -1279,7 +1279,7 @@ bootstrap_zlib() {
 
 bootstrap_libffi() {
 	# 3.0.8: last version to bootstrap on Darwin 9 x86
-	bootstrap_gnu libffi 3.4.5 || \
+	bootstrap_gnu libffi 3.4.7 || \
 	bootstrap_gnu libffi 3.3 || \
 	bootstrap_gnu libffi 3.2.1 || \
 	bootstrap_gnu libffi 3.0.8
