@@ -511,7 +511,6 @@ do_tree() {
 		done
 	fi
 
-	mkdir -p "${PORTDIR}"
 	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
 		# latest tree cannot be fetched from mirrors, always have to
 		# respect the source to get the latest
@@ -525,8 +524,9 @@ do_tree() {
 		fi
 		einfo "Unpacking, this may take a while"
 		estatus "stage1: unpacking Portage tree"
+		mkdir -p "${PORTDIR}"
 		bzip2 -dc "${DISTDIR}/$2" \
-			| tar -xf - -C "${PORTDIR}" --strip-components=1
+			| tar --strip-components=1 -xf - -C "${PORTDIR}"
 		[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
 		touch "${PORTDIR}"/.unpacked
 	fi
@@ -1607,66 +1607,6 @@ bootstrap_stage1() {
 		export CXX=g++
 	fi
 
-	# Run all bootstrap_* commands in a subshell since the targets
-	# frequently pollute the environment using exports which affect
-	# packages following (e.g. zlib builds 64-bits)
-
-	local CP
-
-	# don't rely on $MAKE, if make == gmake packages that call 'make' fail
-	[[ -x ${ROOT}/tmp/usr/bin/make ]] \
-		|| [[ $(make --version 2>&1) == *GNU" Make "4* ]] \
-		|| (bootstrap_make) || return 1
-	[[ ${OFFLINE_MODE} ]] || [[ -x ${ROOT}/tmp/usr/bin/openssl ]] \
-		|| (bootstrap_libressl) # do not fail if this fails, we'll try without
-	[[ ${OFFLINE_MODE} ]] || type -P wget > /dev/null \
-		|| (bootstrap_wget) || return 1
-	[[ -x ${ROOT}/tmp/usr/bin/sed ]] \
-		|| [[ $(sed --version 2>&1) == *GNU* ]] \
-		|| (bootstrap_sed) || return 1
-	type -P xz > /dev/null || (bootstrap_xz) || return 1
-	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
-	[[ -x ${ROOT}/tmp/usr/bin/patch ]] \
-		|| [[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] \
-		|| (bootstrap_patch) || return 1
-	[[ -x ${ROOT}/tmp/usr/bin/m4 ]] \
-		|| [[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] \
-		|| (bootstrap_m4) || return 1
-	[[ -x ${ROOT}/tmp/usr/bin/bison ]] \
-		|| [[ $(bison --version 2>&1) == *"GNU Bison) "2.[3-7]* ]] \
-		|| [[ $(bison --version 2>&1) == *"GNU Bison) "[3-9]* ]] \
-		|| (bootstrap_bison) || return 1
-	if [[ ! -x ${ROOT}/tmp/usr/bin/uniq ]]; then
-		# If the system has a uniq, let's use it to test whether
-		# coreutils is new enough (and GNU).
-		if [[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]]; then
-			CP="cp"
-		else
-			(bootstrap_coreutils) || return 1
-		fi
-	fi
-
-	# But for e.g. BSD, it isn't going to be, so if our test failed,
-	# use bootstrapped coreutils.
-	[[ -z ${CP} ]] && CP="${ROOT}/tmp/bin/cp"
-
-	[[ -x ${ROOT}/tmp/usr/bin/find ]] \
-		|| [[ $(find --version 2>&1) == *GNU* ]] \
-		|| (bootstrap_findutils) || return 1
-	[[ -x ${ROOT}/tmp/usr/bin/tar ]] \
-		|| [[ $(tar --version 2>&1) == *GNU* ]] \
-		|| (bootstrap_tar) || return 1
-	[[ -x ${ROOT}/tmp/usr/bin/grep ]] \
-		|| [[ $(grep --version 2>&1) == *GNU* ]] \
-		|| (bootstrap_grep) || return 1
-	[[ -x ${ROOT}/tmp/usr/bin/gawk ]] \
-		|| [[ $(awk --version < /dev/null 2>&1) == *GNU" Awk "[456789]* ]] \
-		|| (bootstrap_gawk) || return 1
-	# always build our own bash, for we don't know what devilish thing
-	# we're working with now, bug #650284
-	[[ -x ${ROOT}/tmp/usr/bin/bash ]] \
-		|| (bootstrap_bash) || return 1
-
 	# Some host tools need to be wrapped to be useful for us.
 	# We put them in tmp/usr/local/bin, to not accidentally
 	# be identified as stage1-installed like in bug #615410.
@@ -1726,7 +1666,7 @@ bootstrap_stage1() {
 	# speed up bootstrapping, it should be good, and we shouldn't be
 	# touching the host either.  Bug #927957
 	if is-rap && [[ ! -L "${ROOT}"/tmp ]] ; then
-		[[ -d ${ROOT}/tmp/usr/lib ]] || mkdir -p "${ROOT}"/tmp/usr/lib
+		mkdir -p "${ROOT}"/tmp/usr/lib
 		local libdir
 		for libdir in lib64 lib32 libx32; do
 			if [[ ! -L ${ROOT}/tmp/usr/${libdir} ]] ; then
@@ -1739,10 +1679,68 @@ bootstrap_stage1() {
 		done
 	fi
 
-	# important to have our own (non-flawed one) since Python (from
-	# Portage) and binutils use it
-	# note that this actually breaks the concept of stage1, this will be
-	# compiled for the target prefix
+	# In order to run Portage, it requires GNU variants of the utilities
+	# ebuilds expect to use.  While it is tempting to use the host tools
+	# here (as they seem pretty usable in most cases) it often is the
+	# cause of subtle issues that are make simply installing the tools
+	# we need worth it in terms of debugging issues.
+
+	# Run all bootstrap_* commands in a subshell since the targets
+	# frequently pollute the environment using exports which affect
+	# packages following (e.g. zlib builds 64-bits)
+
+	# don't rely on $MAKE, if make == gmake packages that call 'make' fail
+	[[ -x ${ROOT}/tmp/usr/bin/make ]] \
+		|| [[ $(make --version 2>&1) == *GNU" Make "4* ]] \
+		|| (bootstrap_make) || return 1
+	[[ ${OFFLINE_MODE} ]] || [[ -x ${ROOT}/tmp/usr/bin/openssl ]] \
+		|| (bootstrap_libressl) # try without on failure
+	[[ ${OFFLINE_MODE} ]] || type -P wget > /dev/null \
+		|| (bootstrap_wget) || return 1
+	[[ -x ${ROOT}/tmp/usr/bin/sed ]] \
+		|| [[ $(sed --version 2>&1) == *GNU* ]] \
+		|| (bootstrap_sed) || return 1
+	type -P xz > /dev/null || (bootstrap_xz) || return 1
+	type -P bzip2 > /dev/null || (bootstrap_bzip2) || return 1
+	[[ -x ${ROOT}/tmp/usr/bin/patch ]] \
+		|| [[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] \
+		|| (bootstrap_patch) || return 1
+	[[ -x ${ROOT}/tmp/usr/bin/m4 ]] \
+		|| [[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] \
+		|| (bootstrap_m4) || return 1
+	[[ -x ${ROOT}/tmp/usr/bin/bison ]] \
+		|| [[ $(bison --version 2>&1) == *"GNU Bison) "2.[3-7]* ]] \
+		|| [[ $(bison --version 2>&1) == *"GNU Bison) "[3-9]* ]] \
+		|| (bootstrap_bison) || return 1
+	if [[ ! -x ${ROOT}/tmp/usr/bin/uniq ]]; then
+		# If the system has a uniq, let's use it to test whether
+		# coreutils is new enough (and GNU).
+		[[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]] \
+		|| (bootstrap_coreutils) || return 1
+	fi
+
+	[[ -x ${ROOT}/tmp/usr/bin/find ]] \
+		|| [[ $(find --version 2>&1) == *GNU* ]] \
+		|| (bootstrap_findutils) || return 1
+	[[ -x ${ROOT}/tmp/usr/bin/tar ]] \
+		|| [[ $(tar --version 2>&1) == *GNU* ]] \
+		|| (bootstrap_tar) || return 1
+	[[ -x ${ROOT}/tmp/usr/bin/grep ]] \
+		|| [[ $(grep --version 2>&1) == *GNU* ]] \
+		|| (bootstrap_grep) || return 1
+	[[ -x ${ROOT}/tmp/usr/bin/gawk ]] \
+		|| [[ $(awk --version < /dev/null 2>&1) == *GNU" Awk "[456789]* ]] \
+		|| (bootstrap_gawk) || return 1
+	# always build our own bash, for we don't know what devilish thing
+	# we're working with now, bug #650284
+	[[ -x ${ROOT}/tmp/usr/bin/bash ]] \
+		|| (bootstrap_bash) || return 1
+
+	# It is important to have our own (non-flawed) Python that also
+	# knows where to look for Portage's modules, so we need to build one
+	# ourselves.  Note that this requires libraries and as such actually
+	# breaks the concept of stage1, as these will be compiled for the
+	# target prefix.
 	for zlib in "${ROOT}"/tmp/usr/lib*/libz.* ; do
 		[[ -e ${zlib} ]] && break
 		zlib=
@@ -1753,16 +1751,15 @@ bootstrap_stage1() {
 		libffi=
 	done
 	[[ -n ${libffi} ]] || (bootstrap_libffi) || return 1
-	# too vital to rely on a host-provided one
 	[[ -x ${ROOT}/tmp/usr/bin/python ]] || (bootstrap_python) || return 1
 
-	# cmake for llvm/clang toolchain on macOS
+	# cmake for llvm/clang toolchain on macOS (needs Python)
 	[[ -e ${ROOT}/tmp/usr/bin/cmake ]] \
 		|| [[ ${CHOST} != *-darwin* ]] \
 		|| [[ ${DARWIN_USE_GCC} == 1 ]] \
 		|| (bootstrap_cmake) || return 1
 
-	# checks itself if things need to be done still
+	# get ebuilds and support files in place
 	(bootstrap_tree) || return 1
 
 	# setup a profile
@@ -1774,8 +1771,8 @@ bootstrap_stage1() {
 	mkdir -p "${ROOT}"/tmp/etc/. || return 1
 	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || \
 		(
-			"${CP}" -dpR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc && \
-			rm -f "${ROOT}"/tmp/etc/portage/make.profile && \
+			cp -pR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc && \
+			rm -Rf "${ROOT}"/tmp/etc/portage/make.profile && \
 			(
 				ROOT="${ROOT}"/tmp \
 				PREFIX_DISABLE_RAP="yes" \
