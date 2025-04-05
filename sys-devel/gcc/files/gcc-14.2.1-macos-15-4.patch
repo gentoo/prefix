@@ -1,0 +1,109 @@
+From efb88ebe0a6886f816c0d037df33df6556544ad6 Mon Sep 17 00:00:00 2001
+From: Iain Sandoe <iain@sandoe.co.uk>
+Date: Thu, 3 Apr 2025 15:53:05 +0100
+Subject: [PATCH] c-family: Support cross-language keywords as an extension.
+
+This allows us compatibility with clang extensions permitting
+C keywords in C++ and vice versa (initially implementing only
+two to deal with specific SDK issues).
+
+Addresses issue #142.
+
+gcc/c-family/ChangeLog:
+
+	* c-common.cc (flag_allow_extra_keywords): Mark
+	_Alignas and _Alignof as usable in C++ when allowed.
+	* c-common.h (D_EXT_C_IN_CXX, D_EXT_CXX_IN_C): New.
+	* c.opt (flag_allow_extra_keywords): New.
+
+gcc/ChangeLog:
+
+	* config/darwin.cc (darwin_override_options): If
+	flag_allow_extra_keywords is not explicitly set then
+	switch it on for Darwin.
+
+gcc/cp/ChangeLog:
+
+	* lex.cc (init_reswords): Handle D_EXT_C_IN_CXX.
+
+Signed-off-by: Iain Sandoe <iain@sandoe.co.uk>
+---
+ gcc/c-family/c-common.cc | 4 ++--
+ gcc/c-family/c-common.h  | 2 ++
+ gcc/c-family/c.opt       | 4 ++++
+ gcc/config/darwin.cc     | 4 ++++
+ gcc/cp/lex.cc            | 3 +++
+ 5 files changed, 15 insertions(+), 2 deletions(-)
+
+diff --git a/gcc/c-family/c-common.cc b/gcc/c-family/c-common.cc
+index 79dac5fccf30..a038651aa28b 100644
+--- a/gcc/c-family/c-common.cc
++++ b/gcc/c-family/c-common.cc
+@@ -388,8 +388,8 @@ static bool nonnull_check_p (tree, unsigned HOST_WIDE_INT);
+ */
+ const struct c_common_resword c_common_reswords[] =
+ {
+-  { "_Alignas",		RID_ALIGNAS,   D_CONLY },
+-  { "_Alignof",		RID_ALIGNOF,   D_CONLY },
++  { "_Alignas",		RID_ALIGNAS,   D_EXT_C_IN_CXX },
++  { "_Alignof",		RID_ALIGNOF,   D_EXT_C_IN_CXX },
+   { "_Atomic",		RID_ATOMIC,    D_CONLY },
+   { "_BitInt",		RID_BITINT,    D_CONLY },
+   { "_Bool",		RID_BOOL,      D_CONLY },
+diff --git a/gcc/c-family/c-common.h b/gcc/c-family/c-common.h
+index 78414d4519e9..5831c8b5af9a 100644
+--- a/gcc/c-family/c-common.h
++++ b/gcc/c-family/c-common.h
+@@ -445,6 +445,8 @@ extern machine_mode c_default_pointer_mode;
+ #define D_CXX20		0x8000  /* In C++, C++20 only.  */
+ #define D_CXX_COROUTINES 0x10000  /* In C++, only with coroutines.  */
+ #define D_CXX_MODULES	0x20000  /* In C++, only with modules.  */
++#define D_EXT_C_IN_CXX	0x40000  /* In C++, allow additional C keywords.  */
++#define D_EXT_CXX_IN_C	0x80000  /* In C, allow additional C++ keywords.  */
+ 
+ #define D_CXX_CONCEPTS_FLAGS D_CXXONLY | D_CXX_CONCEPTS
+ #define D_CXX_CHAR8_T_FLAGS D_CXXONLY | D_CXX_CHAR8_T
+diff --git a/gcc/c-family/c.opt b/gcc/c-family/c.opt
+index 418e87fa486b..7375dcf95efb 100644
+--- a/gcc/c-family/c.opt
++++ b/gcc/c-family/c.opt
+@@ -1712,6 +1712,10 @@ fallow-extended-attribute-placement
+ C ObjC C++ ObjC++ LTO Var(flag_allow_ext_attr_placement) Init(0)
+ Allow placement of attributes on function definitions.
+ 
++fallow-extra-keywords
++C ObjC C++ ObjC++ LTO Var(flag_allow_extra_keywords) Init(0)
++Allow additional C keywords in C++ and vice versa.
++
+ fcilkplus
+ C ObjC C++ ObjC++ LTO Undocumented Ignore
+ Removed in GCC 8.  This switch has no effect.
+diff --git a/gcc/config/darwin.cc b/gcc/config/darwin.cc
+index e6657753211f..233710ae566f 100644
+--- a/gcc/config/darwin.cc
++++ b/gcc/config/darwin.cc
+@@ -3957,6 +3957,10 @@ darwin_override_options (void)
+     /* Later systems can support aligned common.  */
+     emit_aligned_common = true;
+ 
++  /* We need to consume some C keywords in C++.  */
++  if (!OPTION_SET_P (flag_allow_extra_keywords))
++    flag_allow_extra_keywords = true;
++
+   /* The c_dialect...() macros are not available to us here.  */
+   darwin_running_cxx = (strstr (lang_hooks.name, "C++") != 0);
+ }
+diff --git a/gcc/cp/lex.cc b/gcc/cp/lex.cc
+index 1110db7f8d07..0c4f93a6787b 100644
+--- a/gcc/cp/lex.cc
++++ b/gcc/cp/lex.cc
+@@ -267,6 +267,9 @@ init_reswords (void)
+     {
+       if (c_common_reswords[i].disable & D_CONLY)
+ 	continue;
++      if (!flag_allow_extra_keywords
++	  && c_common_reswords[i].disable & D_EXT_C_IN_CXX)
++	continue;
+       id = get_identifier (c_common_reswords[i].word);
+       C_SET_RID_CODE (id, c_common_reswords[i].rid);
+       ridpointers [(int) c_common_reswords[i].rid] = id;

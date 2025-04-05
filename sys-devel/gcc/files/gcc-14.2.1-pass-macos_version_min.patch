@@ -1,0 +1,172 @@
+From 407e1099d055eaf39478cfdd933ed8aad273c1cc Mon Sep 17 00:00:00 2001
+From: Iain Sandoe <iain@sandoe.co.uk>
+Date: Sun, 9 Mar 2025 09:24:34 +0000
+Subject: [PATCH] Darwin: Pass -macos_version_min to the linker [PR119172].
+
+For binaries to be notarised, the SDK version must be available.
+Since we do not, at present, parse this information we have been
+passing "0.0" to ld64.  This now results in a warning and a fail
+to notarise.  As a quick-fix, we can fall back to letting ld64
+figure out the SDK version (which it does for -macos_version_min).
+
+TODO: Parse the SDKSetting.plist at some point.
+
+cherry-picked from 952e17223d3a9 and fc728cfd569e291a5
+
+	PR target/119172
+
+gcc/ChangeLog:
+
+	* config.in: Regenerate.
+	* config/darwin.h (DARWIN_PLATFORM_ID): Add the option to
+	use -macos_version_min where available.
+	* configure: Regenerate.
+	* configure.ac: Check for ld64 support of -macos_version_min.
+
+Co-authored-by: Andrew Pinski <quic_apinski@quicinc.com>
+
+Signed-off-by: Iain Sandoe <iain@sandoe.co.uk>
+Signed-off-by: Andrew Pinski <quic_apinski@quicinc.com>
+---
+ gcc/config.in       |  6 ++++++
+ gcc/config/darwin.h | 13 +++++++++----
+ gcc/configure       | 17 +++++++++++++++++
+ gcc/configure.ac    | 12 ++++++++++++
+ 4 files changed, 44 insertions(+), 4 deletions(-)
+
+diff --git a/gcc/config.in b/gcc/config.in
+index f3de4ba6776b..7db2dfdc192b 100644
+--- a/gcc/config.in
++++ b/gcc/config.in
+@@ -2289,6 +2289,12 @@
+ #endif
+ 
+ 
++/* Define to 1 if ld64 supports '-macos_version_min'. */
++#ifndef USED_FOR_TARGET
++#undef LD64_HAS_MACOS_VERSION_MIN
++#endif
++
++
+ /* Define to 1 if ld64 supports '-platform_version'. */
+ #ifndef USED_FOR_TARGET
+ #undef LD64_HAS_PLATFORM_VERSION
+diff --git a/gcc/config/darwin.h b/gcc/config/darwin.h
+index 5370511bec21..75050d2197a8 100644
+--- a/gcc/config/darwin.h
++++ b/gcc/config/darwin.h
+@@ -285,12 +285,17 @@ extern GTY(()) int darwin_ms_struct;
+ #define DARWIN_RDYNAMIC "%{rdynamic:%nrdynamic is not supported}"
+ #endif
+ 
+-#if LD64_HAS_PLATFORM_VERSION
+-#define DARWIN_PLATFORM_ID \
+-  "%{mmacosx-version-min=*: -platform_version macos %* 0.0} "
++#if LD64_HAS_MACOS_VERSION_MIN
++# define DARWIN_PLATFORM_ID \
++  "%{mmacosx-version-min=*:-macos_version_min %*} "
+ #else
+-#define DARWIN_PLATFORM_ID \
++# if LD64_HAS_PLATFORM_VERSION
++#  define DARWIN_PLATFORM_ID \
++  "%{mmacosx-version-min=*: -platform_version macos %* 0.0} "
++# else
++#  define DARWIN_PLATFORM_ID \
+   "%{mmacosx-version-min=*:-macosx_version_min %*} "
++# endif
+ #endif
+ 
+ /* Code built with mdynamic-no-pic does not support PIE/PIC, so  we disallow
+diff --git a/gcc/configure b/gcc/configure
+index 4f3a50627368..d19d262eedb8 100755
+--- a/gcc/configure
++++ b/gcc/configure
+@@ -32718,6 +32718,7 @@ if test x"$ld64_flag" = x"yes"; then
+   # Set defaults for possibly untestable items.
+   gcc_cv_ld64_export_dynamic=0
+   gcc_cv_ld64_platform_version=0
++  gcc_cv_ld64_macos_version_min=0
+   gcc_cv_ld64_demangle=0
+ 
+   if test "$build" = "$host"; then
+@@ -32750,6 +32751,7 @@ $as_echo "$gcc_cv_ld64_major" >&6; }
+     fi
+     if test "$gcc_cv_ld64_major" -ge 512; then
+       gcc_cv_ld64_platform_version=1
++      gcc_cv_ld64_macos_version_min=1
+     fi
+   elif test -x "$gcc_cv_ld" -a "$darwin_try_test" -eq 1; then
+     # If the version was not specified, try to find it.
+@@ -32788,6 +32790,15 @@ $as_echo_n "checking linker for -platform_version support... " >&6; }
+     fi
+     { $as_echo "$as_me:${as_lineno-$LINENO}: result: $gcc_cv_ld64_platform_version" >&5
+ $as_echo "$gcc_cv_ld64_platform_version" >&6; }
++
++    { $as_echo "$as_me:${as_lineno-$LINENO}: checking linker for -macos_version_min" >&5
++$as_echo_n "checking linker for -macos_version_min... " >&6; }
++    gcc_cv_ld64_macos_version_min=1
++    if $gcc_cv_ld -macos_version_min 10.5 < /dev/null 2>&1 | grep 'unknown option' > /dev/null; then
++      gcc_cv_ld64_macos_version_min=0
++    fi
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: $gcc_cv_ld64_macos_version_min" >&5
++$as_echo "$gcc_cv_ld64_macos_version_min" >&6; }
+   fi
+ 
+   if test x"${gcc_cv_ld64_version}" != x; then
+@@ -32815,6 +32826,12 @@ cat >>confdefs.h <<_ACEOF
+ #define LD64_HAS_PLATFORM_VERSION $gcc_cv_ld64_platform_version
+ _ACEOF
+ 
++
++
++cat >>confdefs.h <<_ACEOF
++#define LD64_HAS_MACOS_VERSION_MIN $gcc_cv_ld64_macos_version_min
++_ACEOF
++
+ fi
+ 
+ if test x"$dsymutil_flag" = x"yes"; then
+diff --git a/gcc/configure.ac b/gcc/configure.ac
+index e12a237ea118..60309421cd1a 100644
+--- a/gcc/configure.ac
++++ b/gcc/configure.ac
+@@ -6426,6 +6426,7 @@ if test x"$ld64_flag" = x"yes"; then
+   # Set defaults for possibly untestable items.
+   gcc_cv_ld64_export_dynamic=0
+   gcc_cv_ld64_platform_version=0
++  gcc_cv_ld64_macos_version_min=0
+   gcc_cv_ld64_demangle=0
+ 
+   if test "$build" = "$host"; then
+@@ -6456,6 +6457,7 @@ if test x"$ld64_flag" = x"yes"; then
+     fi
+     if test "$gcc_cv_ld64_major" -ge 512; then
+       gcc_cv_ld64_platform_version=1
++      gcc_cv_ld64_macos_version_min=1
+     fi
+   elif test -x "$gcc_cv_ld" -a "$darwin_try_test" -eq 1; then
+     # If the version was not specified, try to find it.
+@@ -6486,6 +6488,13 @@ if test x"$ld64_flag" = x"yes"; then
+       gcc_cv_ld64_platform_version=0
+     fi
+     AC_MSG_RESULT($gcc_cv_ld64_platform_version)
++
++    AC_MSG_CHECKING(linker for -macos_version_min)
++    gcc_cv_ld64_macos_version_min=1
++    if $gcc_cv_ld -macos_version_min 10.5 < /dev/null 2>&1 | grep 'unknown option' > /dev/null; then
++      gcc_cv_ld64_macos_version_min=0
++    fi
++    AC_MSG_RESULT($gcc_cv_ld64_macos_version_min)
+   fi
+ 
+   if test x"${gcc_cv_ld64_version}" != x; then
+@@ -6501,6 +6510,9 @@ if test x"$ld64_flag" = x"yes"; then
+ 
+   AC_DEFINE_UNQUOTED(LD64_HAS_PLATFORM_VERSION, $gcc_cv_ld64_platform_version,
+   [Define to 1 if ld64 supports '-platform_version'.])
++
++  AC_DEFINE_UNQUOTED(LD64_HAS_MACOS_VERSION_MIN, $gcc_cv_ld64_macos_version_min,
++  [Define to 1 if ld64 supports '-macos_version_min'.])
+ fi
+ 
+ if test x"$dsymutil_flag" = x"yes"; then

@@ -1,0 +1,38 @@
+From 50f92929f337c81aaf330bb04ac0675dba340e25 Mon Sep 17 00:00:00 2001
+From: Iain Sandoe <iainsandoe@mini-05-seq.local>
+Date: Sun, 29 Dec 2024 23:06:54 +0000
+Subject: [PATCH] includes, Darwin: Handle modular use for macOS SDKs.
+
+gcc/ChangeLog:
+
+	* ginclude/stddef.h (defined):
+	(__PTRDIFF_T):
+	(__SIZE_T):
+
+Signed-off-by: Iain Sandoe <iainsandoe@mini-05-seq.local>
+---
+ gcc/ginclude/stddef.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/gcc/ginclude/stddef.h b/gcc/ginclude/stddef.h
+index be884e96336..16ac9bb0742 100644
+--- a/gcc/ginclude/stddef.h
++++ b/gcc/ginclude/stddef.h
+@@ -89,6 +89,17 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+ #undef _PTRDIFF_T_
+ #endif
+ 
++#if defined (__APPLE__)
++# if defined(__has_feature) && __has_feature(modules)
++#  if defined (__need_ptrdiff_t)
++#   undef __PTRDIFF_T
++#  endif
++#  if defined (__need_size_t)
++#   undef __SIZE_T
++#  endif
++# endif
++#endif
++
+ /* On VxWorks, <type/vxTypesBase.h> may have defined macros like
+    _TYPE_size_t which will typedef size_t.  fixincludes patched the
+    vxTypesBase.h so that this macro is only defined if _GCC_SIZE_T is

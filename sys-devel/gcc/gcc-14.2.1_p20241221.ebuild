@@ -47,6 +47,13 @@ src_prepare() {
 	# apply big arm64-darwin patch first thing
 	use elibc_Darwin && eapply "${DISTDIR}"/${PN}-14.2.1-arm64-darwin.patch
 
+	# fixes for macOS from upstream
+	if use elibc_Darwin ; then
+		eapply "${FILESDIR}"/${PN}-14.2.1-modular-macos-sdk.patch
+		eapply "${FILESDIR}"/${PN}-14.2.1-pass-macos_version_min.patch
+		eapply "${FILESDIR}"/${PN}-14.2.1-macos-15-4.patch
+	fi
+
 	# run as with - on pipe (for Clang 16)
 	eapply "${FILESDIR}"/${PN}-14.2.0-darwin-as-dash-pipe.patch
 
