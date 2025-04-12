@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2024 Gentoo Authors
+ * Copyright 1999-2025 Gentoo Authors
  * Distributed under the terms of the GNU General Public License v2
  * Authors: Fabian Groffen <grobian@gentoo.org>
  *          Michael Haubenwallner <haubi@gentoo.org>
@@ -212,6 +212,7 @@ main(int argc, char *argv[])
 	int darwin_dt_ver = 0;
 	char is_cross = 0;
 	char is_darwin = 0;
+	char is_solaris = 0;
 	char darwin_use_rpath = 1;
 	char *p;
 	size_t len;
@@ -275,6 +276,7 @@ main(int argc, char *argv[])
 		snprintf(ctarget, sizeof(ctarget), "%s", CHOST);
 
 	is_darwin = strstr(ctarget, "-darwin") != NULL;
+	is_solaris = !is_darwin && strstr(ctarget, "-solaris") != NULL;
 
 	/* cannonicanise wrapper step2: strip CTARGET from wrapper */
 	len = strlen(ctarget);
@@ -520,6 +522,19 @@ main(int argc, char *argv[])
 			}
 		}
 
+		if (is_solaris) {
+			/* skip over -lpthread, as it causes problems
+			 * https://sourceware.org/bugzilla/show_bug.cgi?id=6431#c13
+			 * in short, libc contains these symbols, but libpthread.so
+			 * exists too, and it contains aliases which are confusing
+			 * versioning checks */
+			if (strcmp(argv[i], "-lpthread") == 0)
+			{
+				j--;
+				continue;
+			}
+		}
+
 		newargv[j] = argv[i];
 
 		if (is_cross || (is_darwin && !darwin_use_rpath))
@@ -689,12 +704,25 @@ main(int argc, char *argv[])
 	newargv[j] = NULL;
 
 	if (verbose) {
-		fprintf(stderr, "%s: invoking %s with arguments:\n", wrapper, ld);
+		char nl;
+		fprintf(stderr, "%s: invoking %s with arguments:\n ", wrapper, ld);
 		for (j = 0; newargv[j] != NULL; j++)
-			fprintf(stderr, "  %s%s",
-					newargv[j],
-					newargv[j + 1] != NULL && newargv[j + 1][0] != '-'
-					? "" : "\n");
+		{
+			nl = 0;
+			if (j > 0)
+			{
+				if (newargv[j][0] == '-')
+					nl = 1;
+				else if (newargv[j - 1][0] == '-' &&
+						 (newargv[j - 1][1] == 'R' ||
+						  newargv[j - 1][1] == 'L'))
+					nl = 1;
+			}
+			fprintf(stderr, "%s %s",
+					nl ? "\n " : "",
+					newargv[j]);
+		}
+		fprintf(stderr, "\n");
 	}
 
 	/* finally, execute the real ld */
