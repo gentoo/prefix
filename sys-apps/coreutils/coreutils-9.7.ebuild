@@ -1,30 +1,42 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
+
+# PREFIX LOCAL changes:
+# - Darwin libstdbuf cruft to fix during bootstrap, and use a correct
+#   install_name
 
 # Try to keep an eye on Fedora's packaging: https://src.fedoraproject.org/rpms/coreutils
 # The upstream coreutils maintainers also maintain the package in Fedora and may
 # backport fixes which we want to pick up.
+#
+# Also recommend subscribing to the coreutils and bug-coreutils MLs.
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{10..13} )
 VERIFY_SIG_OPENPGP_KEY_PATH=/usr/share/openpgp-keys/coreutils.asc
 inherit flag-o-matic python-any-r1 toolchain-funcs verify-sig
+inherit multilib
 
-MY_PATCH="${PN}-9.0_p20220409-patches-01"
+MY_PATCH="${PN}-9.6-patches"
 DESCRIPTION="Standard GNU utilities (chmod, cp, dd, ls, sort, tr, head, wc, who,...)"
 HOMEPAGE="https://www.gnu.org/software/coreutils/"
 
-if [[ ${PV} == *_p* ]] ; then
+if [[ ${PV} == 9999 ]] ; then
+	EGIT_REPO_URI="https://git.savannah.gnu.org/git/coreutils.git"
+	inherit git-r3
+elif [[ ${PV} == *_p* ]] ; then
 	# Note: could put this in devspace, but if it's gone, we don't want
 	# it in tree anyway. It's just for testing.
-	MY_SNAPSHOT="$(ver_cut 1-2).193-54bec"
+	MY_SNAPSHOT="$(ver_cut 1-2).53-14af8"
 	SRC_URI="https://www.pixelbeat.org/cu/coreutils-${MY_SNAPSHOT}.tar.xz -> ${P}.tar.xz"
 	SRC_URI+=" verify-sig? ( https://www.pixelbeat.org/cu/coreutils-${MY_SNAPSHOT}.tar.xz.sig -> ${P}.tar.xz.sig )"
 	S="${WORKDIR}"/${PN}-${MY_SNAPSHOT}
 else
-	SRC_URI="mirror://gnu/${PN}/${P}.tar.xz
-		verify-sig? ( mirror://gnu/${PN}/${P}.tar.xz.sig )"
+	SRC_URI="
+		mirror://gnu/${PN}/${P}.tar.xz
+		verify-sig? ( mirror://gnu/${PN}/${P}.tar.xz.sig )
+	"
 
 	KEYWORDS="~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~x64-solaris"
 fi
@@ -36,14 +48,18 @@ SLOT="0"
 IUSE="acl caps gmp hostname kill multicall nls +openssl selinux +split-usr static test vanilla xattr"
 RESTRICT="!test? ( test )"
 
-LIB_DEPEND="acl? ( sys-apps/acl[static-libs] )
+LIB_DEPEND="
+	acl? ( sys-apps/acl[static-libs] )
 	caps? ( sys-libs/libcap )
 	gmp? ( dev-libs/gmp:=[static-libs] )
 	openssl? ( dev-libs/openssl:=[static-libs] )
-	xattr? ( sys-apps/attr[static-libs] )"
-RDEPEND="!static? ( ${LIB_DEPEND//\[static-libs]} )
+	xattr? ( sys-apps/attr[static-libs] )
+"
+RDEPEND="
+	!static? ( ${LIB_DEPEND//\[static-libs]} )
 	selinux? ( sys-libs/libselinux )
-	nls? ( virtual/libintl )"
+	nls? ( virtual/libintl )
+"
 DEPEND="
 	${RDEPEND}
 	static? ( ${LIB_DEPEND} )
@@ -52,9 +68,9 @@ BDEPEND="
 	app-arch/xz-utils
 	dev-lang/perl
 	test? (
+		dev-debug/strace
 		dev-lang/perl
 		dev-perl/Expect
-		dev-util/strace
 		${PYTHON_DEPS}
 	)
 	verify-sig? ( sec-keys/openpgp-keys-coreutils )
@@ -65,14 +81,21 @@ RDEPEND+="
 		!sys-apps/util-linux[kill]
 		!sys-process/procps[kill]
 	)
-	!app-misc/realpath
 	!<sys-apps/util-linux-2.13
 	!<sys-apps/sandbox-2.10-r4
 	!sys-apps/stat
 	!net-mail/base64
 	!sys-apps/mktemp
 	!<app-forensics/tct-1.18-r1
-	!<net-fs/netatalk-2.0.3-r4"
+	!<net-fs/netatalk-2.0.3-r4
+"
+
+QA_CONFIG_IMPL_DECL_SKIP=(
+	# gnulib FPs (bug #898370)
+	unreachable MIN alignof static_assert
+	# ... and on musl
+	_exit fpurge statvfs64 re_set_syntax re_compile_pattern re_search re_match
+)
 
 pkg_setup() {
 	if use test ; then
@@ -81,7 +104,14 @@ pkg_setup() {
 }
 
 src_unpack() {
-	if use verify-sig ; then
+	if [[ ${PV} == 9999 ]] ; then
+		git-r3_src_unpack
+
+		cd "${S}" || die
+		./bootstrap || die
+
+		sed -i -e "s:submodule-checks ?= no-submodule-changes public-submodule-commit:submodule-checks ?= no-submodule-changes:" gnulib/top/maint.mk || die
+	elif use verify-sig ; then
 		# Needed for downloaded patch (which is unsigned, which is fine)
 		verify-sig_verify_detached "${DISTDIR}"/${P}.tar.xz{,.sig}
 	fi
@@ -90,13 +120,13 @@ src_unpack() {
 }
 
 src_prepare() {
+	# TODO: past 2025, we may need to add our own hack for bug #907474.
 	local PATCHES=(
 		# Upstream patches
-		"${FILESDIR}"/${P}-fix-rename-simple-backups.patch
 	)
 
-	if ! use vanilla ; then
-		PATCHES+=( "${WORKDIR}"/patch )
+	if ! use vanilla && [[ -d "${WORKDIR}"/${MY_PATCH} ]] ; then
+		PATCHES+=( "${WORKDIR}"/${MY_PATCH} )
 	fi
 
 	default
@@ -114,7 +144,7 @@ src_prepare() {
 		export MAKEOPTS+=" -j1"
 		# set a proper install_name
 		sed -i \
-			-e "/src_libstdbuf_so_LDFLAGS = -shared/s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/libexec/coreutils/libstdbuf.dylib:" \
+			-e "/src_libstdbuf_so_LDFLAGS = -shared/s:-shared:-dynamiclib -install_name ${EPREFIX}/usr/libexec/coreutils/libstdbuf$(get_libname):" \
 			Makefile.in \
 			|| die
 
@@ -143,6 +173,9 @@ src_prepare() {
 }
 
 src_configure() {
+	# TODO: in future (>9.4?), we may want to wire up USE=systemd:
+	# still experimental at the moment, but:
+	# https://git.savannah.gnu.org/cgit/coreutils.git/commit/?id=85edb4afbd119fb69a0d53e1beb71f46c9525dd0
 	local myconf=(
 		--with-packager="Gentoo"
 		--with-packager-version="${PVR} (p${PATCH_VER:-0})"
@@ -152,8 +185,7 @@ src_configure() {
 		# hostname    - net-tools
 		--enable-install-program="arch,$(usev hostname),$(usev kill)"
 		--enable-no-install-program="groups,$(usev !hostname),$(usev !kill),su,uptime"
-		--enable-largefile
-		$(usex caps '' --disable-libcap)
+		$(usev !caps --disable-libcap)
 		$(use_enable nls)
 		$(use_enable acl)
 		$(use_enable multicall single-binary)
@@ -191,15 +223,6 @@ src_configure() {
 }
 
 src_test() {
-	# Known to fail with FEATURES=usersandbox (bug #439574):
-	#   -  tests/du/long-from-unreadable.sh} (bug #413621)
-	#   -  tests/rm/deep-2.sh (bug #413621)
-	#   -  tests/dd/no-allocate.sh (bug #629660)
-	if has usersandbox ${FEATURES} ; then
-		ewarn "You are emerging ${P} with 'usersandbox' enabled." \
-			"Expect some test failures or emerge with 'FEATURES=-usersandbox'!"
-	fi
-
 	# Non-root tests will fail if the full path isn't
 	# accessible to non-root users
 	chmod -R go-w "${WORKDIR}" || die
@@ -224,9 +247,44 @@ src_test() {
 	mkwrap mount umount
 
 	addwrite /dev/full
-	#export RUN_EXPENSIVE_TESTS="yes"
-	#export FETISH_GROUPS="portage wheel"
-	env PATH="${T}/mount-wrappers:${PATH}" emake -k check VERBOSE=yes
+
+	#local -x RUN_EXPENSIVE_TESTS="yes"
+	#local -x COREUTILS_GROUPS="portage wheel"
+	local -x PATH="${T}/mount-wrappers:${PATH}"
+	local -x gl_public_submodule_commit=
+
+	local xfail_tests=()
+
+	if [[ -n ${SANDBOX_ACTIVE} ]]; then
+		xfail_tests+=(
+			# bug #629660
+			# Commented out again in 9.6 as it XPASSes on linux-6.12.10
+			# with sandbox-2.43 on tmpfs. Let's see if it lasts..
+			#tests/dd/no-allocate.sh
+
+			# bug #675802
+			tests/env/env-S
+			tests/env/env-S.pl
+
+			# We have a patch which fixes this (bug #259876)
+			#tests/touch/not-owner
+			#tests/touch/not-owner.sh
+		)
+	fi
+
+	# This test is flaky (bug #910640).
+	cat > tests/tty/tty-eof.pl <<-EOF || die
+	#!/usr/bin/perl
+	exit 77;
+	EOF
+
+	# We set DISABLE_HARD_ERRORS because some of the tests hard error-out
+	# because of sandbox. They're skipped above but DISABLE_HARD_ERRORS is needed
+	# to downgrade them to FAIL.
+	emake -k check \
+		VERBOSE=yes \
+		DISABLE_HARD_ERRORS=yes \
+		XFAIL_TESTS="${xfail_tests[*]}"
 }
 
 src_install() {
