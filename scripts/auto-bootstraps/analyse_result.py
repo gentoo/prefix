@@ -11,6 +11,7 @@ resultsdir='./results'
 
 deprecated_archs = (
         'i386-apple-darwin9',
+        'powerpc-apple-darwin9',
         'x86_64-pc-cygwin',
         'i386-pc-solaris2.11',
         'sparc-sun-solaris2.10',
@@ -20,7 +21,7 @@ deprecated_archs = (
         'x86_64-apple-darwin19',
         'x86_64-apple-darwin20',
         'x86_64-apple-darwin21',
-        'x86_64-apple-darwin22',
+        'x86_64-apple-darwin23',
         'arm64-apple-darwin21',
         'arm64-apple-darwin22',
         'x86_64-pc-linux-centos8.3',
