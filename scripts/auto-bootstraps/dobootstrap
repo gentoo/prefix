@@ -184,10 +184,13 @@ if [[ -z ${BP_KEEPALIVE_ACTIVE} ]] ; then
 	# optional program to keep the machine from sleeping
 	# macOS/BSD: caffeinate
 	keepalive=$(type -P caffeinate)
-	[[ -x ${keepalive} ]] && keepalive+=" -i -m -s" || keepalive=
+	[[ -e ${keepalive} ]] && keepalive+=" -i -m -s" || keepalive=
 	if [[ -n ${keepalive} ]] ; then
 		export BP_KEEPALIVE_ACTIVE=1
-		exec ${keepalive} "${BASH_SOURCE[0]}" "${@}"
+		# starting from Sequoia letting caffeinate spawn the script
+		# doesn't seem to work any more, so keep a co-buddy to watch
+		# this script
+		${keepalive} -w $$ &
 	fi
 fi
 
@@ -202,6 +205,11 @@ case $1 in
 	resume)
 		export RESUME=1
 		do_prepare "$2" "${3:-${BOOTSTRAP_DATE}}"
+		;;
+	check)
+		echo "Just checking."
+		ps ax | grep caffeinate
+		exit
 		;;
 	*)
 		bitw=
