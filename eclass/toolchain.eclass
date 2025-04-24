@@ -1459,6 +1459,7 @@ toolchain_src_configure() {
 						--disable-sjlj-exceptions
 					)
 				fi
+				;;
 			# PREFIX_LOCAL
 			# Prefix targets
 			*-apple-darwin*)
