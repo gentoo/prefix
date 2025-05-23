@@ -1,7 +1,10 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
+
+# Maintenance notes and explanations of GCC handling are on the wiki:
+# https://wiki.gentoo.org/wiki/Project:Toolchain/sys-devel/gcc
 
 TOOLCHAIN_PATCH_DEV="sam"
 TOOLCHAIN_HAS_TESTS=1
@@ -9,7 +12,7 @@ PATCH_GCC_VER="14.2.0"
 PATCH_VER="8"
 MUSL_VER="1"
 MUSL_GCC_VER="14.1.0"
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..14} )
 
 if [[ -n ${TOOLCHAIN_GCC_RC} ]] ; then
 	# Cheesy hack for RCs
@@ -52,6 +55,14 @@ src_prepare() {
 		eapply "${FILESDIR}"/${PN}-14.2.1-modular-macos-sdk.patch
 		eapply "${FILESDIR}"/${PN}-14.2.1-pass-macos_version_min.patch
 		eapply "${FILESDIR}"/${PN}-14.2.1-macos-15-4.patch
+
+		if [[ ${CHOST##*-darwin} -ge 23 ]] ; then
+			# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=116809
+			# workaround for as long as we don't have the final fix in
+			# somewhere
+			sed -i -e '/^BUILD_LIBGCCS1 = YES/s/^/# /' \
+				libgcc/config/i386/t-darwin || die
+		fi
 	fi
 
 	# run as with - on pipe (for Clang 16)
