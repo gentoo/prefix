@@ -2409,7 +2409,15 @@ bootstrap_stage3() {
 		BOOTSTRAP_RAP=yes \
 		USE="${USE} -pam" \
 		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
+
+		# remove stage2 ld so that stage3 ld is used by stage2 gcc.
+		[[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && \
+			mv "${ROOT}/tmp/usr/${CHOST}/bin"/ld{,.stage2}
 	else
+		# make libgcc_s.so.1 from stage2 available while we build the
+		# new toolchain
+		export LD_LIBRARY_PATH=$(dirname "$(gcc -print-libgcc-file-name)")
+
 		pkgs=(
 			sys-devel/gnuconfig
 			app-portage/elt-patches
@@ -2425,16 +2433,6 @@ bootstrap_stage3() {
 
 		pre_emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 	fi
-	# remove stage2 ld so that stage3 ld is used by stage2 gcc.
-	is-rap && [[ -f ${ROOT}/tmp/usr/${CHOST}/bin/ld ]] && \
-		mv "${ROOT}/tmp/usr/${CHOST}/bin"/ld{,.stage2}
-
-	# On some hosts, gcc gets confused now when it uses the new linker,
-	# see for instance bug #575480.  While we would like to hide that
-	# linker, we can't since we want the compiler to pick it up.
-	# Therefore, inject some kludgy workaround, for deps like gmp that
-	# use c++
-	[[ ${CHOST} != *-darwin* ]] && ! is-rap && export CXX="${CHOST}-g++ -lgcc_s"
 
 	# Clang unconditionally requires python, the eclasses are really not
 	# setup for a scenario where python doesn't live in the target
@@ -2478,7 +2476,7 @@ bootstrap_stage3() {
 
 	# Undo libgcc_s.so path of stage2
 	# Now we have the compiler right there
-	unset CC CXX CPPFLAGS LDFLAGS
+	unset LD_LIBRARY_PATH CC CXX CPPFLAGS LDFLAGS
 
 	rm -f "${ROOT}"/etc/ld.so.conf.d/stage2.conf
 
