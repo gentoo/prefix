@@ -1319,7 +1319,7 @@ bootstrap_ldwrapper() {
 
 	einfo "Installing ${A%.c}"
 	mkdir -p "${ROOT}"/tmp/usr/bin
-	cp -a ldwrapper "${ROOT}"/tmp/usr/bin/ || return 1
+	cp -p ldwrapper "${ROOT}"/tmp/usr/bin/ || return 1
 
 	einfo "${A%.c} bootstrapped"
 }
@@ -2308,7 +2308,7 @@ bootstrap_stage3() {
 	# to finally overwrite it.
 	if [[ ! -d "${ROOT}"/usr/share/portage ]]; then
 		mkdir -p "${ROOT}"/usr/share
-		cp -a "${ROOT}"{/tmp,}/usr/share/portage
+		cp -RpP "${ROOT}"{/tmp,}/usr/share/portage
 	fi
 
 	local -a linker_pkgs compiler_pkgs
@@ -2513,7 +2513,7 @@ bootstrap_stage3() {
 			chmod +x "${ROOT}"/usr/bin/ld
 		fi
 	fi
-	
+
 	# Start using apps from the final destination Prefix
 	cat > "${ROOT}"/tmp/etc/env.d/10stage3 <<-EOF
 		PATH="${ROOT}/usr/bin:${ROOT}/bin"
