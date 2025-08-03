@@ -2086,11 +2086,17 @@ bootstrap_stage2() {
 		echo "sys-devel/gcc -pie" >> "${ROOT}"/tmp/etc/portage/package.use
 	fi
 
-	# don't use CET/ZSTD, we don't know if the host (and compiler) supports it
-	echo "sys-devel/binutils -cet -zstd" >> \
-		"${ROOT}"/tmp/etc/portage/profile/package.use.force
-	echo "sys-devel/binutils-cet zstd" >> \
-		"${ROOT}"/tmp/etc/portage/profile/package.use.mask
+	# don't use zstd at this point, the host may not have it installed
+	# don't use CET with binutils, we don't know if the host compiler
+	# supports it
+	{
+		echo "sys-devel/binutils -cet -zstd"
+		echo "sys-devel/gcc -zstd"
+	} >> "${ROOT}"/tmp/etc/portage/profile/package.use.force
+	{
+		echo "sys-devel/binutils cet zstd"
+		echo "sys-devel/gcc zstd"
+	} >> "${ROOT}"/tmp/etc/portage/profile/package.use.mask
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
