@@ -1569,7 +1569,8 @@ bootstrap_stage1() {
 		[[ -x ${ROOT}/tmp/usr/bin/ldwrapper ]] \
 			|| (bootstrap_ldwrapper) || return 1
 		# get ldwrapper target in PATH
-		export BINUTILS_CONFIG_LD="$(type -P ld)"
+		BINUTILS_CONFIG_LD="$(type -P ld)"
+		export BINUTILS_CONFIG_LD
 		# force deployment target in GCCs build, GCC-5 doesn't quite get
 		# the newer macOS versions (20+) and thus confuses ld when it
 		# passes on the deployment version.  Use High Sierra as it has
@@ -1582,7 +1583,7 @@ bootstrap_stage1() {
 			# install wrappers in tmp/usr/local/bin which comes before
 			# /tmp/usr/bin in PATH
 			mkdir -p "${ROOT}"/tmp/usr/local/bin
-			rm -f "${ROOT}"/tmp/usr/local/bin/{gcc,${CHOST}-gcc}
+			rm -f "${ROOT}"/tmp/usr/local/bin/{gcc,"${CHOST}"-gcc}
 			cat > "${ROOT}/tmp/usr/local/bin/${CHOST}-gcc" <<-EOS
 				#!/usr/bin/env sh
 				export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET}
@@ -1590,17 +1591,17 @@ bootstrap_stage1() {
 				exec "${ROOT}"/tmp/usr/bin/${CHOST}-gcc "\$@"
 			EOS
 			chmod 755 "${ROOT}/tmp/usr/local/bin/${CHOST}-gcc"
-			ln -s ${CHOST}-gcc "${ROOT}"/tmp/usr/local/bin/gcc
+			ln -s "${CHOST}"-gcc "${ROOT}"/tmp/usr/local/bin/gcc
 
-			rm -f "${ROOT}"/tmp/usr/local/bin/{g++,${CHOST}-g++}
-			cat > "${ROOT}"/tmp/usr/local/bin/${CHOST}-g++ <<-EOS
+			rm -f "${ROOT}"/tmp/usr/local/bin/{g++,"${CHOST}"-g++}
+			cat > "${ROOT}"/tmp/usr/local/bin/"${CHOST}"-g++ <<-EOS
 				#!/usr/bin/env sh
 				export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET}
 				export BINUTILS_CONFIG_LD="$(type -P ld)"
 				exec "${ROOT}"/tmp/usr/bin/${CHOST}-g++ "\$@"
 			EOS
-			chmod 755 "${ROOT}"/tmp/usr/local/bin/${CHOST}-g++
-			ln -s ${CHOST}-g++ "${ROOT}"/tmp/usr/local/bin/g++
+			chmod 755 "${ROOT}"/tmp/usr/local/bin/"${CHOST}"-g++
+			ln -s "${CHOST}"-g++ "${ROOT}"/tmp/usr/local/bin/g++
 		fi
 
 		# reset after gcc-4.2 usage
@@ -2223,7 +2224,7 @@ bootstrap_stage3() {
 	# At this point, we should have a proper GCC, and don't need to
 	# rely on the system wrappers.  Let's get rid of them, so that
 	# they stop mucking up builds.
-	rm -f "${ROOT}"/tmp/usr/local/bin/{,my,${CHOST}-}{gcc,g++}
+	rm -f "${ROOT}"/tmp/usr/local/bin/{,my,"${CHOST}"-}{gcc,g++}
 
 	BOOTSTRAP_STAGE=stage3 configure_toolchain || return 1
 
@@ -2425,7 +2426,8 @@ bootstrap_stage3() {
 	else
 		# make libgcc_s.so.1 from stage2 available while we build the
 		# new toolchain
-		export LD_LIBRARY_PATH=$(dirname "$(gcc -print-libgcc-file-name)")
+		LD_LIBRARY_PATH="$(dirname "$(gcc -print-libgcc-file-name)")"
+		export LD_LIBRARY_PATH
 
 		pkgs=(
 			sys-devel/gnuconfig
@@ -2469,11 +2471,11 @@ bootstrap_stage3() {
 		# Make ${CHOST}-libtool (used by compiler-rt's and llvm's ebuild) to
 		# point at the correct libtool in stage3. Resolve it in runtime, to
 		# support llvm version upgrades.
-		rm -f ${ROOT}/usr/bin/${CHOST}-libtool
+		rm -f "${ROOT}/usr/bin/${CHOST}-libtool"
 		{
 			echo "#!${ROOT}/bin/sh"
 			echo 'exec llvm-libtool-darwin "$@"'
-		} > "${ROOT}"/usr/bin/${CHOST}-${bin}
+		} > "${ROOT}/usr/bin/${CHOST}-${bin}"
 
 		# Now clang is ready, can use it instead of /usr/bin/gcc
 		# TODO: perhaps symlink the whole etc/portage instead?
