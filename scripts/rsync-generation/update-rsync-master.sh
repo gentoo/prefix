@@ -27,6 +27,9 @@ PORTAGE_DEPCACHEDIR="${BASE_PATH}/depcache"
 # for .cvsps and gnupg cache mainly
 HOME="${BASE_PATH}/misc"
 
+# squelch warning about TERM being unset
+TERM="dumb"
+
 echo "(init) BASE_PATH=$BASE_PATH"
 echo "(init) PORTAGE_BASE_PATH=$PORTAGE_BASE_PATH"
 echo "(init) PYTHONPATH=$PYTHONPATH"
