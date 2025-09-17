@@ -393,11 +393,12 @@ bootstrap_profile() {
 			rev=${CHOST##*darwin}
 			profile="prefix/darwin/macos/10.$((rev - 4))/x64"
 			;;
-		*64-apple-darwin2[0123456789])
+		*64-apple-darwin2[01234])
 			# Big Sur is  11.0  darwin20
 			# Monterey is 12.0  darwin21
 			# Ventura is  13.0  darwin22
 			# Sanoma is   14.0  darwin23
+			# Sequoia is  15.0  darwin24
 			rev=${CHOST##*darwin}
 			case ${CHOST%%-*} in
 				x86_64)  arch=x64    ;;
@@ -405,6 +406,16 @@ bootstrap_profile() {
 				*)       arch=error  ;;
 			esac
 			profile="prefix/darwin/macos/$((rev - 9)).0/${arch}"
+			;;
+		*64-apple-darwin2[56789])
+			# Tahoe is    26.0  darwin25
+			rev=${CHOST##*darwin}
+			case ${CHOST%%-*} in
+				x86_64)  arch=x64    ;;
+				arm64)   arch=arm64  ;;
+				*)       arch=error  ;;
+			esac
+			profile="prefix/darwin/macos/$((rev + 1)).0/${arch}"
 			;;
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
