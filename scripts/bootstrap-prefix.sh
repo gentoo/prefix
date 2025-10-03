@@ -1283,7 +1283,7 @@ bootstrap_zlib_core() {
 }
 
 bootstrap_zlib() {
-	bootstrap_zlib_core 1.2.11 || \
+	bootstrap_zlib_core 1.3.1 || bootstrap_zlib_core 1.2.11 || \
 	bootstrap_zlib_core 1.2.8 || bootstrap_zlib_core 1.2.7 || \
 	bootstrap_zlib_core 1.2.6 || bootstrap_zlib_core 1.2.5
 }
