@@ -1424,6 +1424,7 @@ bootstrap_bison() {
 }
 
 bootstrap_m4() {
+	bootstrap_gnu m4 1.4.20 || \
 	bootstrap_gnu m4 1.4.19 || \
 	bootstrap_gnu m4 1.4.18 # version is patched, so beware
 }
