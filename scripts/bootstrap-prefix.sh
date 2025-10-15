@@ -1297,14 +1297,17 @@ bootstrap_libffi() {
 }
 
 bootstrap_gmp() {
+	bootstrap_gnu gmp 6.3.0 || \
 	bootstrap_gnu gmp 6.2.1
 }
 
 bootstrap_mpfr() {
+	bootstrap_gnu mpfr 4.2.1 || \
 	bootstrap_gnu mpfr 4.1.0
 }
 
 bootstrap_mpc() {
+	bootstrap_gnu mpc 1.3.1 || \
 	bootstrap_gnu mpc 1.2.1
 }
 
@@ -1346,6 +1349,7 @@ bootstrap_sed() {
 }
 
 bootstrap_findutils() {
+	bootstrap_gnu findutils 4.10.0 ||
 	bootstrap_gnu findutils 4.9.0 ||
 	bootstrap_gnu findutils 4.7.0 ||
 	bootstrap_gnu findutils 4.5.10 ||
@@ -1353,6 +1357,7 @@ bootstrap_findutils() {
 }
 
 bootstrap_wget() {
+	bootstrap_gnu wget 1.25.0 || \
 	bootstrap_gnu wget 1.20.1 || \
 	bootstrap_gnu wget 1.17.1 || bootstrap_gnu wget 1.13.4
 }
@@ -1361,7 +1366,7 @@ bootstrap_grep() {
 	# don't use 2.13, it contains a bug that bites, bug #425668
 	# 2.9 is the last version provided as tar.gz (platforms without xz)
 	# 2.7 is necessary for Solaris/OpenIndiana (2.8, 2.9 fail to configure)
-	bootstrap_gnu grep 3.3 || \
+	bootstrap_gnu grep 3.12 || bootstrap_gnu grep 3.3 || \
 	bootstrap_gnu grep 2.9 || bootstrap_gnu grep 2.7 || \
 	bootstrap_gnu grep 2.14 || bootstrap_gnu grep 2.12
 }
@@ -1370,13 +1375,13 @@ bootstrap_coreutils() {
 	# 8.16 is the last version released as tar.gz
 	# 8.18 is necessary for macOS High Sierra (darwin17) and converted
 	#      to tar.gz for this case
-	bootstrap_gnu coreutils 9.5 || \
+	bootstrap_gnu coreutils 9.8 || bootstrap_gnu coreutils 9.5 || \
 	bootstrap_gnu coreutils 8.32 || bootstrap_gnu coreutils 8.30 || \
 	bootstrap_gnu coreutils 8.16 || bootstrap_gnu coreutils 8.17
 }
 
 bootstrap_tar() {
-	bootstrap_gnu tar 1.32 || bootstrap_gnu tar 1.26
+	bootstrap_gnu tar 1.35 || bootstrap_gnu tar 1.32 || bootstrap_gnu tar 1.26
 }
 
 bootstrap_make() {
@@ -1390,6 +1395,7 @@ bootstrap_make() {
 
 bootstrap_patch() {
 	# 2.5.9 needed for OSX 10.6.x still?
+	bootstrap_gnu patch 2.8 ||
 	bootstrap_gnu patch 2.7.5 ||
 	bootstrap_gnu patch 2.7.4 ||
 	bootstrap_gnu patch 2.7.3 ||
@@ -1397,8 +1403,10 @@ bootstrap_patch() {
 }
 
 bootstrap_gawk() {
-	bootstrap_gnu gawk 5.0.1 || bootstrap_gnu gawk 4.0.1 || \
-		bootstrap_gnu gawk 3.1.8
+	bootstrap_gnu gawk 5.3.2 ||
+	bootstrap_gnu gawk 5.0.1 ||
+	bootstrap_gnu gawk 4.0.1 ||
+	bootstrap_gnu gawk 3.1.8
 }
 
 bootstrap_binutils() {
@@ -1430,10 +1438,12 @@ bootstrap_m4() {
 }
 
 bootstrap_gzip() {
+	bootstrap_gnu gzip 1.14 ||
 	bootstrap_gnu gzip 1.4
 }
 
 bootstrap_xz() {
+
 	GNU_URL=http://tukaani.org/xz bootstrap_gnu xz 5.4.5 || \
 	GNU_URL=http://tukaani.org/xz bootstrap_gnu xz 5.2.4 || \
 	GNU_URL=http://tukaani.org/xz bootstrap_gnu xz 5.2.3
