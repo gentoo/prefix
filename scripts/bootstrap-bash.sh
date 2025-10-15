@@ -36,7 +36,7 @@ same_file() {
 	fi
 }
 
-if [ ! -e bash-4.2.tar.gz ] ; then
+if [ ! -e bash-5.2.tar.gz ] ; then
 	eerror() { echo "!!! $*" 1>&2; }
 	einfo() { echo "* $*"; }
 
@@ -72,12 +72,12 @@ if [ ! -e bash-4.2.tar.gz ] ; then
 			exit 1
 		fi
 	fi
-	${FETCH_COMMAND} "${GENTOO_MIRRORS}/bash-4.2.tar.gz" < /dev/null
+	${FETCH_COMMAND} "${GENTOO_MIRRORS}/bash-5.2.tar.gz" < /dev/null
 fi
 
-gzip -d bash-4.2.tar.gz
-tar -xf bash-4.2.tar
-cd bash-4.2 || exit 2
+gzip -d bash-5.2.tar.gz
+tar -xf bash-5.2.tar
+cd bash-5.2 || exit 2
 
 ./configure --prefix="${1}"/usr --disable-nls
 make
