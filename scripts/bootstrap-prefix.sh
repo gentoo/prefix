@@ -1720,7 +1720,7 @@ bootstrap_stage1() {
 		|| [[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] \
 		|| (bootstrap_patch) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/m4 ]] \
-		|| [[ $(m4 --version 2>&1) == *GNU*1.4.1?* ]] \
+		|| [[ $(m4 --version 2>&1) == *GNU*1.4.@(2|1)?* ]] \
 		|| (bootstrap_m4) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/bison ]] \
 		|| [[ $(bison --version 2>&1) == *"GNU Bison) "2.[3-7]* ]] \
