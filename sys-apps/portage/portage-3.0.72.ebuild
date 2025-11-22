@@ -126,12 +126,17 @@ src_prepare() {
 			-i cnf/repos.conf || die "sed failed"
 
 		# PREFIX LOCAL: only hack const_autotool
-		# ok, we can't rely on PORTAGE_ROOT_USER being there yet, as people
-		# tend not to update that often, as long as we are a separate ebuild
-		# we can assume when unset, it's time for some older trick
-		if [[ -z ${PORTAGE_ROOT_USER} ]] ; then
-			PORTAGE_ROOT_USER=$(python -c 'from portage.const import rootuser; print rootuser')
-		fi
+		PORTAGE_GROUP=${PORTAGE_GRPNAME}
+		PORTAGE_USER=${PORTAGE_USERNAME}
+		PORTAGE_ROOT_USER=$(python -c 'from portage.const import rootuser; print(rootuser)')
+		[[ -z ${PORTAGE_GROUP} ]] && \
+			PORTAGE_GROUP=$(python -c 'from portage.const import portagegroup; print(portagegroup)')
+		[[ -z ${PORTAGE_USER} ]] && \
+			PORTAGE_USER=$(python -c 'from portage.const import portageuser; print(portageuser)')
+		[[ -z ${PORTAGE_ROOT_USER} ]] && PORTAGE_ROOT_USER=root
+		[[ -z ${PORTAGE_GROUP}     ]] && PORTAGE_GROUP=portage
+		[[ -z ${PORTAGE_USER}      ]] && PORTAGE_USER=portage
+
 		# We need to probe for bash in the Prefix, because it may not
 		# exist, in which case we fall back to the currently in use
 		# bash.  This logic is necessary in particular during bootstrap,
@@ -143,12 +148,14 @@ src_prepare() {
 		sed -e "s|@PORTAGE_EPREFIX@|${EPREFIX}|" \
 			-e "s|@PORTAGE_MV@|$(type -P mv)|" \
 			-e "s|@PORTAGE_BASH@|${bash}|" \
-			-e "s|@portagegroup@|${PORTAGE_GROUP:-portage}|" \
-			-e "s|@portageuser@|${PORTAGE_USER:-portage}|" \
-			-e "s|@rootuser@|${PORTAGE_ROOT_USER:-root}|" \
-			-e "s|@rootuid@|$(id -u ${PORTAGE_ROOT_USER:-root})|" \
-			-e "s|@rootgid@|$(id -g ${PORTAGE_ROOT_USER:-root})|" \
+			-e "s|@portagegroup@|${PORTAGE_GROUP}|" \
+			-e "s|@portageuser@|${PORTAGE_USER}|" \
+			-e "s|@rootuser@|${PORTAGE_ROOT_USER}|" \
+			-e "s|@rootuid@|$(id -u ${PORTAGE_ROOT_USER})|" \
+			-e "s|@rootgid@|$(id -g ${PORTAGE_ROOT_USER})|" \
 			-e "s|@sysconfdir@|${EPREFIX}/etc|" \
+			-e "s|@portageuser@|${PORTAGE_USER}|" \
+			-e "s|@portagegroup@|${PORTAGE_GROUP}|" \
 			-i \
 			lib/portage/const_autotool.py cnf/make.globals \
 			|| die "Failed to patch sources"
