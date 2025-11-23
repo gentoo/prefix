@@ -547,7 +547,7 @@ bootstrap_tree() {
 	#                      retain this comment and the line below to
 	#                      keep this snapshot around in the snapshots
 	# MKSNAPSHOT-ANCHOR -- directory of rsync slaves
-	local PV="20250525"
+	local PV="20251122"
 
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
@@ -1007,8 +1007,8 @@ python_ver() {
 	# snapshot for stage3, else packages will break with some python
 	# mismatch error due to Portage using a different version after it
 	# upgraded itself with a newer Python
-	echo 3.11
-	export PYTHON_FULL_VERSION="3.11.7-gentoo-prefix-patched"
+	echo 3.13
+	export PYTHON_FULL_VERSION="3.13.3-gentoo-prefix-patched"
 	# keep this number in line with PV below for stage1,2
 }
 
