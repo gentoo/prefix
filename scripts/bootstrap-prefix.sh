@@ -353,6 +353,7 @@ bootstrap_setup() {
 bootstrap_profile() {
 	local profile
 	local profile_linux
+	local profile_ver
 
 	# 2.6.32.1 -> 2*256^3 + 6*256^2 + 32 * 256 + 1 = 33955841
 	kver() { uname -r|cut -d- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
@@ -370,7 +371,8 @@ bootstrap_profile() {
 	}
 
 	if is-rap ; then
-		profile_linux="default/linux/ARCH/17.0/prefix/$(profile-kernel)"
+		profile_linux="default/linux/ARCH/VER/prefix/$(profile-kernel)"
+		profile_ver=17.0
 	else
 		profile_linux="prefix/linux/ARCH"
 	fi
@@ -419,34 +421,39 @@ bootstrap_profile() {
 			;;
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
+			profile=${profile/VER/${profile_ver}}
 			;;
 		riscv64-*-linux-gnu)
 			profile=${profile_linux/ARCH/riscv}
-			profile=${profile/17.0/20.0/rv64gc/lp64d}
+			profile=${profile/VER/20.0/rv64gc/lp64d}
 			;;
 		x86_64-pc-linux-gnu)
 			profile=${profile_linux/ARCH/amd64}
-			profile=${profile/17.0/17.1/no-multilib}
+			profile=${profile/VER/17.1/no-multilib}
 			;;
 		powerpc-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/ppc}
+			profile=${profile/VER/${profile_ver}}
 			;;
 		powerpc64-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/ppc64}
+			profile=${profile/VER/${profile_ver}}
 			;;
 		powerpc64le-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/ppc64le}
+			profile=${profile/VER/${profile_ver}}
 			;;
 		riscv-pc-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/riscv}
-			profile=${profile/17.0/20.0/rv64gc/lp64d}
+			profile=${profile/VER/20.0/rv64gc/lp64d}
 			;;
 		aarch64-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/arm64}
+			profile=${profile/VER/${profile_ver}}
 			;;
 		armv7*-unknown-linux-gnueabi*)
 			profile=${profile_linux/ARCH/arm}
-			profile=${profile/17.0/17.0/armv7a}
+			profile=${profile/VER/${profile_ver}/armv7a}
 			;;
 		x86_64-pc-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/x64"
