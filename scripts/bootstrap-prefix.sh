@@ -2781,6 +2781,7 @@ EOF
 		CPATH \
 		LIBRARY_PATH \
 	; do
+		[[ -n ${SETUP_ENV_ONLY} ]] && continue  # we already checked this
 		# starting on purpose a shell here iso ${!flag} because I want
 		# to know if the shell initialisation files trigger this
 		# note that this code is so complex because it handles both
@@ -3034,7 +3035,9 @@ EOF
 	read -r -p "How many parallel make jobs do you want? [${tcpu}] " ans
 	case "${ans}" in
 		"")
-			MAKEOPTS="-j${tcpu}"
+			# bug 966647: retain MAKEOPTS for phase runs
+			[[ -z ${SETUP_ENV_ONLY} || -z ${MAKEOPTS} ]] && \
+				MAKEOPTS="-j${tcpu}"
 			;;
 		*)
 			if [[ ${ans} -le 0 ]] ; then
