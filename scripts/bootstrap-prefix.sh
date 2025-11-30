@@ -453,7 +453,9 @@ bootstrap_profile() {
 			;;
 		armv7*-unknown-linux-gnueabi*)
 			profile=${profile_linux/ARCH/arm}
-			profile=${profile/VER/${profile_ver}/armv7a_sf}
+			[[ ${CHOST} == *gnueabihf ]] \
+				&& profile=${profile/VER/${profile_ver}/armv7a_hf} \
+				|| profile=${profile/VER/${profile_ver}/armv7a_sf}
 			;;
 		x86_64-pc-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/x64"
