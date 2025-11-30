@@ -2690,9 +2690,11 @@ set_helper_vars() {
 	# USE-flags to disable during bootstrap for they produce
 	# unnecessary, or worse: circular deps #901101, #936629
 	# - nghttp2 -> cmake -> curl -> nghttp2  (http2)
+	# - ensurepip -> python -> ensurepip     (ensurepip)
 	DISABLE_USE=(
 		"-crypt"
 		"-curl_quic_openssl"  # curl
+		"-ensurepip"          # python-3.13
 		"-git"
 		"-http2"              # curl
 		"-http3"              # curl
