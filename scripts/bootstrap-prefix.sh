@@ -372,7 +372,7 @@ bootstrap_profile() {
 
 	if is-rap ; then
 		profile_linux="default/linux/ARCH/VER/prefix/$(profile-kernel)"
-		profile_ver=17.0
+		profile_ver=23.0
 	else
 		profile_linux="prefix/linux/ARCH"
 	fi
@@ -421,21 +421,19 @@ bootstrap_profile() {
 			;;
 		i*86-pc-linux-gnu)
 			profile=${profile_linux/ARCH/x86}
-			profile=${profile/VER/${profile_ver}}
-			;;
-		riscv64-*-linux-gnu)
-			profile=${profile_linux/ARCH/riscv}
-			profile=${profile/VER/20.0/rv64gc/lp64d}
+			profile=${profile/VER/${profile_ver}/i686}
 			;;
 		x86_64-pc-linux-gnu)
 			profile=${profile_linux/ARCH/amd64}
-			profile=${profile/VER/17.1/no-multilib}
+			profile=${profile/VER/${profile_ver}/no-multilib}
 			;;
 		powerpc-unknown-linux-gnu)
+			# no RAP support
 			profile=${profile_linux/ARCH/ppc}
 			profile=${profile/VER/${profile_ver}}
 			;;
 		powerpc64-unknown-linux-gnu)
+			# no RAP support
 			profile=${profile_linux/ARCH/ppc64}
 			profile=${profile/VER/${profile_ver}}
 			;;
@@ -443,9 +441,10 @@ bootstrap_profile() {
 			profile=${profile_linux/ARCH/ppc64le}
 			profile=${profile/VER/${profile_ver}}
 			;;
+		riscv64-*-linux-gnu|\
 		riscv-pc-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/riscv}
-			profile=${profile/VER/20.0/rv64gc/lp64d}
+			profile=${profile/VER/${profile_ver}/rv64/lp64d}
 			;;
 		aarch64-unknown-linux-gnu)
 			profile=${profile_linux/ARCH/arm64}
@@ -453,7 +452,7 @@ bootstrap_profile() {
 			;;
 		armv7*-unknown-linux-gnueabi*)
 			profile=${profile_linux/ARCH/arm}
-			profile=${profile/VER/${profile_ver}/armv7a}
+			profile=${profile/VER/${profile_ver}/armv7a_sf}
 			;;
 		x86_64-pc-solaris2.11)
 			profile="prefix/sunos/solaris/5.11/x64"
