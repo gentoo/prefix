@@ -34,6 +34,7 @@ econf() {
 		--sysconfdir="${ROOT}"/tmp/etc \
 		--localstatedir="${ROOT}"/tmp/var/lib \
 		--build="${CHOST}" \
+		--disable-dependency-tracking \
 		"$@" || return 1
 }
 
