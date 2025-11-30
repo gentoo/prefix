@@ -1002,14 +1002,19 @@ bootstrap_gnu() {
 }
 
 python_ver() {
-	# keep this number in line with PV below for stage1,2
-	# also, note that this version must match the Python version in the
-	# snapshot for stage3, else packages will break with some python
-	# mismatch error due to Portage using a different version after it
-	# upgraded itself with a newer Python
-	echo 3.13
-	export PYTHON_FULL_VERSION="3.13.3-gentoo-prefix-patched"
-	# keep this number in line with PV below for stage1,2
+	# stage1 and 2 should call python_ver if they need the version, such
+	# that we can change it in a single place (here)
+	local PYVER=3.11
+	echo ${PYVER}
+	export PYTHON_FULL_VERSION="${PYVER}.7-gentoo-prefix-patched"
+
+	# note on upgrading Python versions
+	# At least Python 3.13 requires pkg-config and a lot of external
+	# dependencies which makes bootstrapping more complicated.  For that
+	# reason, the Python version is now locked to 3.11, bug #966544
+	# This ultimately means that the bootstrap Python here, and the
+	# Portage snapshot we use should work together, and that we must
+	# update Python versions from Portage.
 }
 
 bootstrap_python() {
