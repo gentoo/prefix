@@ -652,9 +652,10 @@ bootstrap_portage() {
 		-i lib/_emerge/AbstractEbuildProcess.py || \
 		return 1
 
-	# host-provided wget may lack certificates, stage1 wget is without ssl
+	# host may lack (sufficient) certificates
 	[[ $(wget -h) == *"--no-check-certificate"* ]] &&
-	sed -e '/wget/s/ --passive-ftp /&--no-check-certificate /' -i cnf/make.globals
+		sed -e '/wget/s/ --passive-ftp /&--no-check-certificate /' \
+			-i cnf/make.globals
 
 	# Portage checks for valid shebangs. These may (xz-utils) originate
 	# in CONFIG_SHELL (AIX), which originates in PORTAGE_BASH then.
@@ -1731,8 +1732,9 @@ bootstrap_stage1() {
 		|| (bootstrap_make) || return 1
 	[[ ${OFFLINE_MODE} ]] || [[ -x ${ROOT}/tmp/usr/bin/openssl ]] \
 		|| (bootstrap_libressl) # try without on failure
-	[[ ${OFFLINE_MODE} ]] || type -P wget > /dev/null \
-		|| (bootstrap_wget) || return 1
+	[[ ${OFFLINE_MODE} ]] \
+		|| [[ $(wget --version 2>&1) == *GNU" Wget "1.* ]] \
+		|| (bootstrap_wget) || return 1  # need wget-1, bug #953843
 	[[ -x ${ROOT}/tmp/usr/bin/sed ]] \
 		|| [[ $(sed --version 2>&1) == *GNU* ]] \
 		|| (bootstrap_sed) || return 1
