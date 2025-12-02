@@ -688,8 +688,12 @@ bootstrap_portage() {
 	# As such, portage complains..
 	mkdir -p "${ROOT}"/tmp/var/log
 
-	# in Prefix the sed wrapper is deadly, so kill it
-	rm -f "${ROOT}"/tmp/usr/lib/portage/bin/ebuild-helpers/sed
+	# phase-helpers.sh now uses gtar instead of tar, so ensure we have
+	# it available
+	if [[ -x "${ROOT}"/tmp/bin/tar ]] ; then
+		rm -f "${ROOT}"/tmp/bin/gtar
+		( cd "${ROOT}"/tmp/bin ; ln -s tar gtar )
+	fi
 
 	local tmpportdir=${ROOT}/tmp/${PORTDIR#"${ROOT}"}
 	[[ -e "${tmpportdir}" ]] || ln -s "${PORTDIR}" "${tmpportdir}"
