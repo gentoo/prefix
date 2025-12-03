@@ -970,6 +970,11 @@ bootstrap_gnu() {
 		fi
 	fi
 
+	if [[ ${PN} == "tar" ]] ; then
+		# really, not now, by the time we get there, we'll have it fixed
+		myconf+=( --disable-year2038 )
+	fi
+
 	# SuSE 11.1 has GNU binutils-2.20, choking on crc32_x86
 	[[ ${PN} == "xz" ]] && myconf+=( "--disable-assembler" )
 
@@ -1401,7 +1406,9 @@ bootstrap_coreutils() {
 }
 
 bootstrap_tar() {
-	bootstrap_gnu tar 1.35 || bootstrap_gnu tar 1.32 || bootstrap_gnu tar 1.26
+	bootstrap_gnu tar 1.35 || bootstrap_gnu tar 1.32
+	# tar <=1.26 handles -I "bzip2 -c" wrongly, which is used by Portage
+	# nowadays
 }
 
 bootstrap_make() {
@@ -1768,7 +1775,7 @@ bootstrap_stage1() {
 		|| [[ $(find --version 2>&1) == *GNU* ]] \
 		|| (bootstrap_findutils) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/tar ]] \
-		|| [[ $(tar --version 2>&1) == *GNU* ]] \
+		|| [[ $(tar --version 2>&1) == *"GNU 1."[3456789]* ]] \
 		|| (bootstrap_tar) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/grep ]] \
 		|| [[ $(grep --version 2>&1) == *GNU* ]] \
