@@ -319,6 +319,8 @@ bootstrap_setup() {
 				# mainline Portage doesn't set these like Prefix branch
 				# does, so hardwire the IDs here
 				echo
+				echo "PORTAGE_USERNAME=$(id --name --user)"
+				echo "PORTAGE_GRPNAME=$(id --name --group)"
 				echo "PORTAGE_INST_UID=$(id --user)"
 				echo "PORTAGE_INST_GID=$(id --group)"
 			fi
