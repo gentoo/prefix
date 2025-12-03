@@ -618,7 +618,8 @@ bootstrap_startscript() {
 
 prepare_portage() {
 	# see bootstrap_portage for explanations.
-	mkdir -p "${ROOT}"/bin/. "${ROOT}"/var/log
+	mkdir -p "${ROOT}"/usr/bin/. "${ROOT}"/var/log
+	ln -sf usr/bin "${ROOT}"/bin
 	[[ -x ${ROOT}/bin/bash ]] || ln -s "${ROOT}"{/tmp,}/bin/bash || return 1
 	[[ -x ${ROOT}/bin/sh ]] || ln -s bash "${ROOT}"/bin/sh || return 1
 }
@@ -2372,7 +2373,8 @@ bootstrap_stage3() {
 	# script file need meson is beyond me.  So, we have no other way
 	# than to fake it here for the time being like in stage2.
 	if [[ ! -e "${ROOT}"/lib/gentoo/functions.sh ]] ; then
-		mkdir -p "${ROOT}"/lib/gentoo
+		mkdir -p "${ROOT}"/usr/lib/gentoo
+		ln -sf usr/lib "${ROOT}"/lib
 		cp "${ROOT}"/tmp/lib/gentoo/functions.sh \
 			"${ROOT}"/lib/gentoo/functions.sh
 	fi
