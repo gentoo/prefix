@@ -2442,6 +2442,8 @@ bootstrap_stage3() {
 		pkgs=(
 			sys-devel/binutils-config
 			sys-libs/zlib
+			app-arch/xz-utils
+			app-arch/zstd
 			"${linker_pkgs[@]}"
 		)
 		# use the new dynamic linker in place of rpath from now on.
