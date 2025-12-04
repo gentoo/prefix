@@ -126,16 +126,16 @@ src_prepare() {
 			-i cnf/repos.conf || die "sed failed"
 
 		# PREFIX LOCAL: do the work of configure with expansions here
-		PORTAGE_GROUP=${PORTAGE_GRPNAME}
-		PORTAGE_USER=${PORTAGE_USERNAME}
-		[[ -z ${PORTAGE_GROUP} ]] && \
-			PORTAGE_GROUP=$(python -c 'from portage.const import portagegroup; print(portagegroup)')
-		[[ -z ${PORTAGE_USER} ]] && \
-			PORTAGE_USER=$(python -c 'from portage.const import portageuser; print(portageuser)')
-		[[ -z ${PORTAGE_GROUP}     ]] && PORTAGE_GROUP=portage
-		[[ -z ${PORTAGE_USER}      ]] && PORTAGE_USER=portage
-		PORTAGE_GID=$(python -c "import grp; print(grp.getgrnam('${PORTAGE_GROUP}').gr_gid)")
-		PORTAGE_UID=$(id -u ${PORTAGE_USER})
+		P_GROUP=${PORTAGE_GRPNAME}
+		P_USER=${PORTAGE_USERNAME}
+		[[ -z ${P_GROUP} ]] && \
+			P_GROUP=$(python -c 'from portage.const import portagegroup; print(portagegroup)')
+		[[ -z ${P_USER} ]] && \
+			P_USER=$(python -c 'from portage.const import portageuser; print(portageuser)')
+		[[ -z ${P_GROUP}     ]] && P_GROUP=portage
+		[[ -z ${P_USER}      ]] && P_USER=portage
+		P_GID=$(python -c "import grp; print(grp.getgrnam('${P_GROUP}').gr_gid)")
+		P_UID=$(id -u ${P_USER})
 
 		# We need to probe for bash in the Prefix, because it may not
 		# exist, in which case we fall back to the currently in use
@@ -148,10 +148,10 @@ src_prepare() {
 		sed -e "s|@PORTAGE_EPREFIX@|${EPREFIX}|" \
 			-e "s|@PORTAGE_MV@|$(type -P mv)|" \
 			-e "s|@PORTAGE_BASH@|${bash}|" \
-			-e "s|@portagegroup@|${PORTAGE_GROUP}|" \
-			-e "s|@portageuser@|${PORTAGE_USER}|" \
-			-e "s|@rootuid@|${PORTAGE_UID}|" \
-			-e "s|@rootgid@|${PORTAGE_GID}|" \
+			-e "s|@portagegroup@|${P_GROUP}|" \
+			-e "s|@portageuser@|${P_USER}|" \
+			-e "s|@rootuid@|${P_UID}|" \
+			-e "s|@rootgid@|${P_GID}|" \
 			-e "s|@sysconfdir@|${EPREFIX}/etc|" \
 			-i \
 			lib/portage/const_autotool.py cnf/make.globals \
