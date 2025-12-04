@@ -305,4 +305,52 @@ pkg_postinst() {
 		eerror "Please remove this from ${bashrc} to avoid problems."
 		eerror "See bug 867010 for more details."
 	fi
+
+	# migrate to setup where user/group are in the users' config
+	if use prefix-guest; then
+		python_setup
+
+		local P_USER=$(
+			env -u PORTAGE_USERNAME \
+				"${PYTHON}" -c 'from portage.data import _portage_username; print(_portage_username)')
+		if [[ ${P_USER} != ${PORTAGE_USERNAME} ]] ; then
+			elog "Your Portage configuration is incomplete."
+			elog "Due to a change in how Prefix Portage handles user and group"
+			elog "administration, you must add the following in your"
+			elog "  ${EROOT}/etc/portage/make.conf"
+			elog "PORTAGE_USERNAME=${PORTAGE_USERNAME}"
+			elog "PORTAGE_GRPNAME=${PORTAGE_GRPNAME}"
+			elog "PORTAGE_INST_UID=${PORTAGE_INST_UID}"
+			elog "PORTAGE_INST_GID=${PORTAGE_INST_GID}"
+			eerror "your installation will break without these settings"
+
+			local conffile="${EROOT}/etc/portage/make.conf"
+			if [[ -d ${conffile} ]] ; then
+				local f
+				for f in ${conffile}/* ; do
+					if [[ -w ${f} ]] ; then
+						conffile=${f}
+						break;
+					fi
+				done
+			fi
+			if [[ ! -w ${conffile} ]] ; then
+				eerror "could not find a file in your make.conf to write to"
+				eerror "you must add the variables yourself!"
+			else
+				{
+					echo ""
+					echo "# added by ${P} at $(date)"
+					echo "# this was done as part of a migration of these"
+					echo "# values from make.globals to user configuration"
+					echo "PORTAGE_USERNAME=${PORTAGE_USERNAME}"
+					echo "PORTAGE_GRPNAME=${PORTAGE_GRPNAME}"
+					echo "PORTAGE_INST_UID=${PORTAGE_INST_UID}"
+					echo "PORTAGE_INST_GID=${PORTAGE_INST_GID}"
+				} >> "${conffile}"
+				elog "user configuration variables were automatically added"
+				elog "to your ${conffile}, please review"
+			fi
+		fi
+	fi
 }
