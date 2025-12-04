@@ -677,7 +677,6 @@ bootstrap_portage() {
 		--with-offset-prefix="${ROOT}"/tmp \
 		--with-portage-user="$(id -un)" \
 		--with-portage-group="$(id -gn)" \
-		--with-extra-path="${PATH}" \
 		|| return 1
 	emake || return 1
 
