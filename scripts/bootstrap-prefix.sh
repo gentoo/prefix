@@ -862,6 +862,10 @@ bootstrap_gnu() {
 	fi
 
 	local -a myconf
+
+	# no point in doing NLS at this stage
+	myconf+=( --disable-nls )
+
 	if [[ ${PN}-${PV} == "make-4.2.1" ]] ; then
 		if [[ ${CHOST} == *-linux-gnu* ]] ; then
 			# force this, macros aren't set correctly with newer glibc
@@ -889,8 +893,6 @@ bootstrap_gnu() {
 	fix_config_sub
 
 	if [[ ${PN} == "grep" ]] ; then
-		# Solaris and OSX don't like it when --disable-nls is set,
-		# so just don't set it at all.
 		# Solaris 11 has a messed up prce installation.  We don't need
 		# it anyway, so just disable it
 		myconf+=( "--disable-perl-regexp" )
@@ -912,7 +914,6 @@ bootstrap_gnu() {
 			"--enable-languages=c,c++"
 			"--disable-bootstrap"
 			"--disable-multilib"
-			"--disable-nls"
 			"--disable-libsanitizer"
 		)
 
@@ -974,6 +975,9 @@ bootstrap_gnu() {
 	if [[ ${PN} == "tar" ]] ; then
 		# really, not now, by the time we get there, we'll have it fixed
 		myconf+=( --disable-year2038 )
+		# tar really insists on doing iconv stuff, even when it doesn't
+		# work (like on macOS), so force it off
+		sed -i -e '/HAVE_ICONV/d' config.h.in || die
 	fi
 
 	# SuSE 11.1 has GNU binutils-2.20, choking on crc32_x86
