@@ -320,10 +320,10 @@ bootstrap_setup() {
 			# here, as it makes more sense, while we figure out a way to
 			# migrate Prefix to not pushing this in make.globals.
 			echo
-			echo "PORTAGE_USERNAME=$(id --name --user)"
-			echo "PORTAGE_GRPNAME=$(id --name --group)"
-			echo "PORTAGE_INST_UID=$(id --user)"
-			echo "PORTAGE_INST_GID=$(id --group)"
+			echo "PORTAGE_USERNAME=\"$(id --name --user)\""
+			echo "PORTAGE_GRPNAME=\"$(id --name --group)\""
+			echo "PORTAGE_INST_UID=\"$(id --user)\""
+			echo "PORTAGE_INST_GID=\"$(id --group)\""
 		} > "${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf"
 	fi
 
