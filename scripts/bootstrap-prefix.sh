@@ -1379,11 +1379,9 @@ bootstrap_sed() {
 }
 
 bootstrap_findutils() {
+	# portage 3.0.72 requires --files-from0, which is in 4.9 and up
 	bootstrap_gnu findutils 4.10.0 ||
-	bootstrap_gnu findutils 4.9.0 ||
-	bootstrap_gnu findutils 4.7.0 ||
-	bootstrap_gnu findutils 4.5.10 ||
-	bootstrap_gnu findutils 4.2.33
+	bootstrap_gnu findutils 4.9.0
 }
 
 bootstrap_wget() {
@@ -1413,7 +1411,7 @@ bootstrap_coreutils() {
 bootstrap_tar() {
 	bootstrap_gnu tar 1.35 || bootstrap_gnu tar 1.32
 	# tar <=1.26 handles -I "bzip2 -c" wrongly, which is used by Portage
-	# nowadays
+	# nowadays (3.0.72)
 }
 
 bootstrap_make() {
@@ -1777,7 +1775,8 @@ bootstrap_stage1() {
 	fi
 
 	[[ -x ${ROOT}/tmp/usr/bin/find ]] \
-		|| [[ $(find --version 2>&1) == *GNU* ]] \
+		|| [[ $(find --version 2>&1) == *GNU 4.9* ]] || \
+		|| [[ $(find --version 2>&1) == *GNU 4.[12][012346789]* ]] || \
 		|| (bootstrap_findutils) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/tar ]] \
 		|| [[ $(tar --version 2>&1) == *"GNU 1."[3456789]* ]] \
