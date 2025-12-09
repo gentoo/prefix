@@ -1775,8 +1775,8 @@ bootstrap_stage1() {
 	fi
 
 	[[ -x ${ROOT}/tmp/usr/bin/find ]] \
-		|| [[ $(find --version 2>&1) == *GNU 4.9* ]] || \
-		|| [[ $(find --version 2>&1) == *GNU 4.[12][012346789]* ]] || \
+		|| [[ $(find --version 2>&1) == *"GNU 4.9"* ]] || \
+		|| [[ $(find --version 2>&1) == *"GNU 4."[12][012346789]* ]] || \
 		|| (bootstrap_findutils) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/tar ]] \
 		|| [[ $(tar --version 2>&1) == *"GNU 1."[3456789]* ]] \
