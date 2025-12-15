@@ -171,14 +171,14 @@ configure_toolchain() {
 	# The host may not have a functioning C++ toolchain, but all
 	# compilers available to us require C++ to build.  The last known
 	# version not to require C++ is gcc-4.7.
-	# We can bootstrap 4.7 in stage1 perhaps if we find envs that do
-	# not have a functioning C++ toolchain, but for now we assume this
-	# is not a problem.
-	# On top of this since gcc-11, C++11 is necessary.  This was
-	# introduced in gcc-4.8, but apparently gcc-5 is still buildable
-	# with Apple's gcc-apple-4.0.1, so that's a good candidate
-	# The Prefix tree only contains gcc-12 as of this writing.
-	# The bootstrap Python 3.7 we have in use requires C11, so Apple's
+	# We can bootstrap 4.7 in stage1 perhaps if we find envs that do not
+	# have a functioning C++ toolchain, but for now we assume this is
+	# not a problem.
+	# On top of this since gcc-11, C++11 is necessary.  gcc-15 requires
+	# C++14.  C++11 support was introduced in gcc-4.8, but apparently
+	# gcc-5 is still buildable with Apple's gcc-apple-4.0.1, so that's a
+	# good candidate.  See https://gcc.gnu.org/projects/cxx-status.html
+	# The bootstrap Python 3.11 we have in use requires C11, so Apple's
 	# 4.x line is no longer enough for that.
 
 	CC=gcc
@@ -1761,7 +1761,7 @@ bootstrap_stage1() {
 		|| [[ $(patch --version 2>&1) == *"patch 2."[6-9]*GNU* ]] \
 		|| (bootstrap_patch) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/m4 ]] \
-		|| [[ $(m4 --version 2>&1) == *GNU*1.4.@(2|1)?* ]] \
+		|| [[ $(m4 --version 2>&1) == *"GNU M4) "1.4.[1234]* ]] \
 		|| (bootstrap_m4) || return 1
 	[[ -x ${ROOT}/tmp/usr/bin/bison ]] \
 		|| [[ $(bison --version 2>&1) == *"GNU Bison) "2.[3-7]* ]] \
