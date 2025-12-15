@@ -2143,7 +2143,7 @@ bootstrap_stage2() {
 
 	# don't use zstd at this point, the host may not have it installed
 	# don't use CET with binutils, we don't know if the host compiler
-	# supports it
+	# supports it #936629
 	{
 		echo "sys-devel/binutils -cet -zstd"
 		echo "sys-devel/gcc -zstd"
@@ -2454,7 +2454,6 @@ bootstrap_stage3() {
 			sys-devel/binutils-config
 			sys-libs/zlib
 			app-arch/xz-utils
-			app-arch/zstd
 			"${linker_pkgs[@]}"
 		)
 		# use the new dynamic linker in place of rpath from now on.
@@ -2711,9 +2710,10 @@ set_helper_vars() {
 	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
 
 	# USE-flags to disable during bootstrap for they produce
-	# unnecessary, or worse: circular deps #901101, #936629
-	# - nghttp2 -> cmake -> curl -> nghttp2  (http2)
+	# unnecessary, or worse: circular deps
+	# - nghttp2 -> cmake -> curl -> nghttp2  (http2)      #901101
 	# - ensurepip -> python -> ensurepip     (ensurepip)
+	# - binutils -> zstd -> meson -> python  (zstd)       #967234
 	DISABLE_USE=(
 		"-crypt"
 		"-curl_quic_openssl"  # curl
@@ -2722,6 +2722,7 @@ set_helper_vars() {
 		"-http2"              # curl
 		"-http3"              # curl
 		"-quic"               # curl
+		"-zstd"               # binutils/gcc
 	)
 
 	export MAKE CONFIG_SHELL
