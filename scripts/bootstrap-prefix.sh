@@ -187,7 +187,6 @@ configure_toolchain() {
 	case ${CHOST}:${DARWIN_USE_GCC} in
 		*darwin*:1)
 			einfo "Triggering Darwin with GCC toolchain"
-			compiler_stage1+=" sys-apps/darwin-miscutils"
 			compiler_stage1+=" sys-devel/gcc"
 
 			# binutils-apple/xtools doesn't work (yet) on arm64.  The
@@ -212,7 +211,6 @@ configure_toolchain() {
 			einfo "Triggering Darwin with LLVM/Clang toolchain"
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
-			compiler_stage1="sys-apps/darwin-miscutils"
 			compiler_type="clang"
 			ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
 			llvm_deps="dev-build/ninja"
