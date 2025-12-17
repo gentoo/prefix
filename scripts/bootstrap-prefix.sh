@@ -165,7 +165,7 @@ configure_toolchain() {
 	linker="sys-devel/binutils"
 	local gcc_deps="dev-libs/gmp dev-libs/mpfr dev-libs/mpc dev-libs/libffi"
 	compiler="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
-	compiler_stage1="${gcc_deps} sys-devel/gcc-config"
+	compiler_stage1="${gcc_deps} sys-devel/gcc-config sys-devel/gcc"
 	compiler_type="gcc"
 
 	# The host may not have a functioning C++ toolchain, but all
@@ -187,7 +187,6 @@ configure_toolchain() {
 	case ${CHOST}:${DARWIN_USE_GCC} in
 		*darwin*:1)
 			einfo "Triggering Darwin with GCC toolchain"
-			compiler_stage1+=" sys-devel/gcc"
 
 			# binutils-apple/xtools doesn't work (yet) on arm64.  The
 			# profiles will mask and keep using native-cctools for that,
@@ -211,25 +210,10 @@ configure_toolchain() {
 			einfo "Triggering Darwin with LLVM/Clang toolchain"
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
-			compiler_type="clang"
 			ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
-			llvm_deps="dev-build/ninja"
 			case "${ccvers}" in
 				*"Apple clang version "*|*"Apple LLVM version "*)
-					# this is Clang, recent enough to compile recent clang
-					compiler_stage1+="
-						${llvm_deps}
-						sys-libs/compiler-rt
-						sys-devel/llvm
-						sys-devel/lld
-						sys-devel/clang-common
-						sys-devel/clang
-					"
-					CC=clang
-					CXX=clang++
-					linker=
-					[[ "${BOOTSTRAP_STAGE}" == stage2 ]] && \
-						linker=sys-devel/lld
+					: # this is Clang, recent enough to compile recent clang
 					;;
 				*)
 					eerror "unknown/unsupported compiler"
@@ -237,6 +221,20 @@ configure_toolchain() {
 					;;
 			esac
 
+			llvm_deps="dev-build/ninja"
+			compiler_stage1="
+				${llvm_deps}
+				sys-libs/compiler-rt
+				sys-devel/llvm
+				sys-devel/lld
+				sys-devel/clang-common
+				sys-devel/clang
+			"
+			CC=clang
+			CXX=clang++
+			linker=
+			[[ "${BOOTSTRAP_STAGE}" == stage2 ]] && \
+				linker=sys-devel/lld
 			compiler="
 				${llvm_deps}
 				sys-libs/compiler-rt
@@ -249,12 +247,8 @@ configure_toolchain() {
 				sys-devel/clang
 			"
 			;;
-		*-linux*)
-			is-rap && einfo "Triggering Linux RAP bootstrap"
-			compiler_stage1+=" sys-devel/gcc"
-			;;
 		*)
-			compiler_stage1+=" sys-devel/gcc"
+			is-rap && einfo "Triggering Linux RAP bootstrap"
 			;;
 	esac
 
