@@ -857,6 +857,9 @@ bootstrap_gnu() {
 
 	# no point in doing NLS at this stage
 	myconf+=( --disable-nls )
+	# if year 2038 is a problem, don't error out on it, we're not there
+	# yet, and this is only temporary, just for now
+	myconf+=( --disable-year2038 )
 
 	if [[ ${PN}-${PV} == "make-4.2.1" ]] ; then
 		if [[ ${CHOST} == *-linux-gnu* ]] ; then
@@ -965,8 +968,6 @@ bootstrap_gnu() {
 	fi
 
 	if [[ ${PN} == "tar" ]] ; then
-		# really, not now, by the time we get there, we'll have it fixed
-		myconf+=( --disable-year2038 )
 		# tar really insists on doing iconv stuff, even when it doesn't
 		# work (like on macOS), so force it off
 		sed -i -e '/HAVE_ICONV/d' config.h.in || die
