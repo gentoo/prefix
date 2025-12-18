@@ -2463,6 +2463,8 @@ bootstrap_stage3() {
 		pkgs=(
 			sys-apps/attr
 			sys-libs/libcap
+			sys-libs/zlib
+			app-arch/bzip2
 			sys-libs/libxcrypt
 		)
 		BOOTSTRAP_RAP=yes \
