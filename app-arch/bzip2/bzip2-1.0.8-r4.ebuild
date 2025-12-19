@@ -16,7 +16,7 @@ SRC_URI+=" verify-sig? ( https://sourceware.org/pub/${PN}/${P}.tar.gz.sig )"
 
 LICENSE="BZIP2"
 SLOT="0/1" # subslot = SONAME
-KEYWORDS="~amd64-linux ~x86-linux ~arm64-macos ~ppc-macos ~x64-macos ~x64-solaris"
+KEYWORDS="~arm64-macos ~ppc-macos ~x64-macos ~x64-solaris"
 IUSE="static static-libs"
 
 BDEPEND="
