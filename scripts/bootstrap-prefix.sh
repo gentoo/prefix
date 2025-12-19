@@ -1894,6 +1894,7 @@ do_emerge_pkgs() {
 			"-fortran"            # gcc
 			"-gdbm"
 			"-nls"
+			"-openssl"            # coreutils
 			"-pcre"
 			"-python"
 			"-qmanifest"          # portage-utils
@@ -2465,6 +2466,7 @@ bootstrap_stage3() {
 			sys-libs/libcap
 			sys-libs/zlib
 			app-arch/bzip2
+			dev-lang/perl
 			sys-libs/libxcrypt
 		)
 		BOOTSTRAP_RAP=yes \
