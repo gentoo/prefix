@@ -144,11 +144,6 @@ configure_cflags() {
 			export CXX="${CXX-g++} -m64"
 			export HOSTCC="${CC}"
 			;;
-		i*86-apple-darwin1*)
-			export CC="${CC-gcc} -m32"
-			export CXX="${CXX-g++} -m32"
-			export HOSTCC="${CC}"
-			;;
 		i*86-pc-linux-gnu)
 			if [[ $(${CC} -dumpspecs | grep -A1 multilib_default) != *m32 ]]; then
 				export CC="${CC-gcc} -m32"
@@ -188,21 +183,13 @@ configure_toolchain() {
 		*darwin*:1)
 			einfo "Triggering Darwin with GCC toolchain"
 
-			# binutils-apple/xtools doesn't work (yet) on arm64.  The
-			# profiles will mask and keep using native-cctools for that,
-			# otherwise stage3 and @system will take care of switching
-			# to binutils-apple.
-			# one problem: when we have a really old linker, we need
-			# to use it sooner or else packages like libffi won't
-			# compile.
-			case ${CHOST} in
-				*-darwin[89])
-					linker="=sys-devel/binutils-apple-3.2.6*"
-					;;
-				*)
-					linker="sys-devel/native-cctools"
-					;;
-			esac
+			# In the past we have used binutils-apple/xtools, but that
+			# doesn't work on arm64 and it isn't updated either.
+			# Historically (mostly on PPC) we really needed our own
+			# linker, but that support was dropped.  Things like mold or
+			# sold don't work, so our only option is native-cctools, use
+			# the linker as provided by the host (Xcode tools).
+			linker="sys-devel/native-cctools"
 			;;
 		*-darwin*)
 			local ccvers
@@ -296,16 +283,6 @@ bootstrap_setup() {
 			[[ ${OFFLINE_MODE} ]] && \
 				echo 'FETCHCOMMAND="bash -c \"echo I need \${FILE} from \${URI} in \${DISTDIR}; read\""'
 
-			if [[ ${CHOST} == i*86-apple-darwin9 ]] ; then
-				# There's no legitimate reason to use 10.5 with x86 (10.6 and
-				# 10.7 run on every device that ever ran 10.5 x86) but it's
-				# vastly easier to access and faster than ppc.  Don't want to
-				# burden the tree with this aid-arch, so just use the ppc
-				# keyword.
-				echo
-				echo 'ACCEPT_KEYWORDS="~ppc-macos"'
-			fi
-
 			# https://bugs.gentoo.org/933100
 			# Prefix Portage branch sets this in make.globals, mainline
 			# does not, which breaks RAP.  Unconditionally set the vars
@@ -373,15 +350,7 @@ bootstrap_profile() {
 	fi
 
 	case ${CHOST} in
-		powerpc-apple-darwin9)
-			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/10.$((rev - 4))/ppc"
-			;;
-		i*86-apple-darwin9)
-			rev=${CHOST##*darwin}
-			profile="prefix/darwin/macos/10.$((rev - 4))/x86"
-			;;
-		i*86-apple-darwin1[578])
+		i*86-apple-darwin*|powerpc-apple-darwin*)
 			eerror "REMOVED ARCH: this 32-bit MacOS architecture was removed,"
 			eerror "bootstrapping is impossible"
 			exit 1
@@ -1079,17 +1048,6 @@ bootstrap_python() {
 		# fix result
 		export LIBS="${LIBS} -lresolv"
 		;;
-	(*-darwin9)
-		# Darwin 9's kqueue seems to act up (at least at this stage), so
-		# make Python's selectors resort to poll() or select() for the
-		# time being
-		sed -i \
-			-e 's/kqueue/kqueue_DISABLED/' \
-			configure
-		# fixup thread id detection (only needed on vanilla Python tar)
-		efetch "https://dev.gentoo.org/~sam/distfiles/dev-lang/python/python-3.9.6-darwin9_pthreadid.patch"
-		patch -p1 < "${DISTDIR}"/python-3.9.6-darwin9_pthreadid.patch
-		;;
 	(*-openbsd*)
 		# OpenBSD is not a multilib system
 		sed -i \
@@ -1587,12 +1545,10 @@ bootstrap_stage1() {
 
 		# GCC 14 cannot be compiled by versions of Clang at least on
 		# Darwin17, so go the safe route and get GCC-5 which is sufficient
-		# and the last one we can compile without C11.  This also compiles
-		# on Darwin 8 and 9.
+		# and the last one we can compile without C11.
 		# see also configure_toolchain
 		case ${CHOST} in
 			*-darwin2[23456789]) :      ;;  # host toolchain can compile gcc-14
-			*-darwin[89])  USEGCC5=yes  ;;
 			*86*-darwin*)  USEGCC5=yes  ;;
 			# arm64/M1 isn't supported by old GCC-5!
 		esac
@@ -2997,17 +2953,7 @@ EOF
 				# ancient Xcode (3.0/3.1)
 				cat << EOF
 
-Ok, this is an old system, let's just try and see what happens.
-EOF
-			elif [[ $(xcode-select -p) != */CommandLineTools ]] ; then
-				# to an extent, bug #564814 and bug #562800
-				cat << EOF
-
-Your xcode-select is not set to CommandLineTools.  This prevents builds
-from succeeding.  Switch to command line tools for the bootstrap to
-continue.  Please execute:
-  xcode-select -s /Library/Developer/CommandLineTools
-and try running me again.
+Ok, this is an old system, we don't support it any more unfortunately :(
 EOF
 				exit 1
 			fi
@@ -3094,16 +3040,6 @@ EOF
 	local candomultilib=no
 	local t64 t32
 	case "${CHOST}" in
-		*86*-darwin1[012345])
-			# PPC/Darwin only works in 32-bits mode, so this is Intel
-			# only, and officially starting from Leopard (10.5, darwin9)
-			# but this is broken, so stick to 32-bits there, and use it
-			# from Snow Lepard (10.6).
-			# with Big Sur (11.0, darwin20) we have x64 or arm64 only
-			candomultilib=yes
-			t64=x86_64-${CHOST#*-}
-			t32=i686-${CHOST#*-}
-			;;
 		*-solaris*)
 			# Solaris is a true multilib system from as long as it does
 			# 64-bits, we only need to know if the CPU we use is capable
