@@ -38,7 +38,7 @@ if tc_is_live ; then
 	EGIT_BRANCH=releases/gcc-$(ver_cut 1)
 elif [[ -z ${TOOLCHAIN_USE_GIT_PATCHES} ]] ; then
 	# Don't keyword live ebuilds
-	KEYWORDS="~arm64-macos ~ppc-macos ~x64-macos ~x64-solaris"
+	KEYWORDS="~arm64-macos ~x64-macos ~x64-solaris"
 fi
 
 # use alternate source for Apple M1 (also works for x86_64)

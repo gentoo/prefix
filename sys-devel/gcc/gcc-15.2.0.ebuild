@@ -30,7 +30,7 @@ if tc_is_live ; then
 	EGIT_BRANCH=master
 elif [[ -z ${TOOLCHAIN_USE_GIT_PATCHES} ]] ; then
 	# Don't keyword live ebuilds
-	KEYWORDS="~arm64-macos ~ppc-macos ~x64-macos ~x64-solaris"
+	KEYWORDS="~arm64-macos ~x64-macos ~x64-solaris"
 	:;
 fi
 

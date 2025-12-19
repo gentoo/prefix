@@ -41,7 +41,7 @@ else
 		verify-sig? ( mirror://gnu/${PN}/${P}.tar.xz.sig )
 	"
 
-	KEYWORDS="~arm64-macos ~ppc-macos ~x64-macos ~x64-solaris"
+	KEYWORDS="~arm64-macos ~x64-macos ~x64-solaris"
 fi
 
 SRC_URI+=" !vanilla? ( https://dev.gentoo.org/~sam/distfiles/${CATEGORY}/${PN}/${MY_PATCH}.tar.xz )"
