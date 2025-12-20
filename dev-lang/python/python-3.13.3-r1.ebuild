@@ -35,7 +35,7 @@ S="${WORKDIR}/${MY_P}"
 
 LICENSE="PSF-2"
 SLOT="${PYVER}"
-KEYWORDS="~arm64-macos ~x64-macos ~x64-solaris"
+KEYWORDS="~amd64 ~x86 ~arm64-macos ~x64-macos ~x64-solaris"
 IUSE="
 	bluetooth build debug +ensurepip examples gdbm jit
 	libedit +ncurses pgo +readline +sqlite +ssl test tk valgrind

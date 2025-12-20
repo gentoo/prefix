@@ -27,7 +27,7 @@ if tc_is_live ; then
 	EGIT_BRANCH=releases/gcc-$(ver_cut 1)
 elif [[ -z ${TOOLCHAIN_USE_GIT_PATCHES} ]] ; then
 	# m68k doesnt build (ICE, bug 932733)
-	KEYWORDS="~arm64-macos ~x64-macos ~x64-solaris"
+	KEYWORDS="~amd64 ~x86 ~arm64-macos ~x64-macos ~x64-solaris"
 	:;
 fi
 

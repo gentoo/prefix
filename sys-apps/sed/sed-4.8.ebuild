@@ -11,7 +11,7 @@ SRC_URI="mirror://gnu/sed/${P}.tar.xz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~arm64-macos ~x64-macos ~x64-solaris"
+KEYWORDS="~amd64 ~x86 ~arm64-macos ~x64-macos ~x64-solaris"
 IUSE="acl forced-sandbox nls selinux static"
 
 RDEPEND="
