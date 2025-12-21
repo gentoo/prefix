@@ -1964,6 +1964,7 @@ bootstrap_stage2() {
 	BOOTSTRAP_STAGE="stage2" configure_toolchain || return 1
 	configure_cflags || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
+	export BINUTILS_CONFIG_LD="$(type -P ld)"  # in case of bootstrapped GCC
 	export CC CXX
 
 	emerge_pkgs() {
