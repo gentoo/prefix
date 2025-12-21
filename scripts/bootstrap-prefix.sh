@@ -1580,39 +1580,6 @@ bootstrap_stage1() {
 			cp "${ROOT}"/tmp/usr/local/bin/java{,c}
 			chmod 755 "${ROOT}"/tmp/usr/local/bin/java{,c}
 			;;
-		*-linux*)
-			if [[ ! -x "${ROOT}"/tmp/usr/bin/gcc ]] \
-			&& [[ $(gcc -print-prog-name=as),$(gcc -print-prog-name=ld) != /*,/* ]]
-			then
-				# RHEL's system gcc is set up to use binutils via PATH search.
-				# If the version of our binutils an older one, they may not
-				# provide what the system gcc is configured to use.
-				# We need to direct the system gcc to find the system binutils.
-				EXEC="$(PATH="${ORIGINAL_PATH}" type -P gcc)"
-				if [[ -z ${EXEC} ]] ; then
-					eerror "could not find 'gcc' in your PATH!"
-					eerror "please install gcc or provide access via PATH or symlink"
-					return 1
-				fi
-				cat >> "${ROOT}"/tmp/usr/local/bin/gcc <<-EOF
-					#! /bin/sh
-					PATH="${ORIGINAL_PATH}" export PATH
-					exec "${EXEC}" "\$@"
-				EOF
-				EXEC="$(PATH="${ORIGINAL_PATH}" type -P g++)"
-				if [[ -z ${EXEC} ]] ; then
-					eerror "could not find 'g++' in your PATH!"
-					eerror "please install gcc-c++ or provide access via PATH or symlink"
-					return 1
-				fi
-				cat >> "${ROOT}"/tmp/usr/local/bin/g++ <<-EOF
-					#! /bin/sh
-					PATH="${ORIGINAL_PATH}" export PATH
-					exec "${EXEC}" "\$@"
-				EOF
-				chmod 755 "${ROOT}"/tmp/usr/local/bin/g{cc,++}
-			fi
-			;;
 	esac
 
 	# Host compiler can output a variety of libdirs.  At stage1,
@@ -2178,14 +2145,6 @@ bootstrap_stage2() {
 		CC=mygcc CXX=myg++ \
 		PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
 		emerge_pkgs --nodeps "${pkg}" || return 1
-
-		if [[ "${pkg}" == *sys-devel/llvm* || ${pkg} == *sys-devel/clang* ]] ;
-		then
-			# we need llvm/clang ASAP for libcxx* doesn't build
-			# without C++11
-			[[ -x ${ROOT}/tmp/usr/bin/clang   ]] && CC=clang
-			[[ -x ${ROOT}/tmp/usr/bin/clang++ ]] && CXX=clang++
-		fi
 	done
 
 	if [[ ${compiler_type} == clang ]] ; then
