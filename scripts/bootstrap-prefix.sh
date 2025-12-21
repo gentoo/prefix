@@ -862,32 +862,25 @@ bootstrap_gnu() {
 		myconf+=( "--disable-perl-regexp" )
 	fi
 
-	if [[ ${PN} == "mpfr" || ${PN} == "mpc" || ${PN} == "gcc" ]] ; then
-		[[ -e "${ROOT}"/tmp/usr/include/gmp.h ]] \
-			&& myconf+=( "--with-gmp=${ROOT}/tmp/usr" )
-	fi
-	if [[ ${PN} == "mpc" || ${PN} == "gcc" ]] ; then
-		[[ -e "${ROOT}"/tmp/usr/include/mpfr.h ]] \
-			&& myconf+=( "--with-mpfr=${ROOT}/tmp/usr" )
-	fi
 	if [[ ${PN} == "gcc" ]] ; then
-		[[ -e "${ROOT}"/tmp/usr/include/mpc.h ]] \
-			&& myconf+=( "--with-mpc=${ROOT}/tmp/usr" )
-
 		myconf+=(
 			"--enable-languages=c,c++"
 			"--disable-bootstrap"
 			"--disable-multilib"
 			"--disable-libsanitizer"
+			"--with-local-prefix=${ROOT}/tmp/usr"
+			"--with-ld=${ROOT}/tmp/usr/bin/ldwrapper"
+			# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=55930
+			"--enable-dependency-tracking"
 		)
 
 		if [[ ${CHOST} == *-darwin* ]] ; then
 			myconf+=(
 				"--with-native-system-header-dir=${ROOT}/MacOSX.sdk/usr/include"
-				"--with-ld=${ROOT}/tmp/usr/bin/ldwrapper"
 			)
 		fi
 
+		# keep this mild soas not to trigger any odd bugs/problems
 		export CFLAGS="-O1 -pipe"
 		export CXXFLAGS="-O1 -pipe"
 	fi
@@ -927,10 +920,7 @@ bootstrap_gnu() {
 		if [[ -x ${ROOT}/tmp/usr/bin/openssl ]] ; then
 			myconf+=(
 				"-with-ssl=openssl"
-				"--with-libssl-prefix=${ROOT}/tmp/usr"
 			)
-			export CPPFLAGS="${CPPFLAGS} -I${ROOT}/tmp/usr/include"
-			export LDFLAGS="${LDFLAGS} -L${ROOT}/tmp/usr/lib"
 		else
 			myconf+=( "--without-ssl" )
 		fi
@@ -1091,28 +1081,6 @@ bootstrap_python() {
 		;;
 		*-solaris*) # 32bit
 			libdir="-L/usr/sfw/lib"
-		;;
-	esac
-
-	# python refuses to find the zlib headers that are built in the offset,
-	# same for libffi, which installs into compiler's multilib-osdir
-	export CPPFLAGS="-I${ROOT}/tmp/usr/include"
-	export LDFLAGS="${CFLAGS} -L${ROOT}/tmp/usr/lib"
-	# set correct flags for runtime for ELF platforms
-	case ${CHOST} in
-		*-linux*)
-			# GNU ld
-			LDFLAGS="${LDFLAGS} -Wl,-rpath,${ROOT}/tmp/usr/lib ${libdir}"
-			LDFLAGS="${LDFLAGS} -Wl,-rpath,${libdir#-L}"
-		;;
-		*-openbsd*)
-			# LLD
-			LDFLAGS="${LDFLAGS} -Wl,-rpath,${ROOT}/tmp/usr/lib"
-		;;
-		*-solaris*)
-			# Sun ld
-			LDFLAGS="${LDFLAGS} -R${ROOT}/tmp/usr/lib ${libdir}"
-			LDFLAGS="${LDFLAGS} -R${libdir#-L}"
 		;;
 	esac
 
@@ -1306,10 +1274,10 @@ bootstrap_ldwrapper() {
 	cp "${DISTDIR}/${A}" . || return 1
 
 	einfo "Compiling ${A%.c}"
-	${CC:-gcc} \
+	v ${CC:-gcc} \
 		-o ldwrapper \
 		-DCHOST="\"${CHOST}\"" \
-		-DEPREFIX="\"${ROOT}\"" \
+		-DEPREFIX="\"${ROOT}/tmp\"" \
 		ldwrapper.c || return 1
 
 	einfo "Installing ${A%.c}"
@@ -1320,8 +1288,28 @@ bootstrap_ldwrapper() {
 }
 
 bootstrap_gcc5() {
+	# GCC doesn't respect CPPFLAGS because of its own meddling/cleansing
+	# so provide a wrapper here to force mpfr, mpc
+	# installed packages to be found
+	mkdir -p "${ROOT}"/tmp/usr/local/bin
+	rm -f "${ROOT}"/tmp/usr/local/bin/my{gcc,g++}
+	cat > "${ROOT}/tmp/usr/local/bin/mygcc" <<-EOS
+		#!/usr/bin/env sh
+		exec ${CC} "\$@" ${CPPFLAGS}
+	EOS
+	cat > "${ROOT}/tmp/usr/local/bin/myg++" <<-EOS
+		#!/usr/bin/env sh
+		exec ${CXX} "\$@" ${CPPFLAGS}
+	EOS
+	chmod 755 "${ROOT}/tmp/usr/local/bin/my"{gcc,g++}
+	export CC="${ROOT}"/tmp/usr/local/bin/mygcc
+	export CXX="${ROOT}"/tmp/usr/local/bin/myg++
+
 	# bootstraps with gcc-4.0.1 (Darwin 8), provides C11
 	bootstrap_gnu gcc 5.5.0
+
+	# ensure the wrappers referring to the host provided compiler are gone
+	rm -f "${ROOT}"/tmp/usr/local/bin/my{gcc,g++}
 }
 
 bootstrap_sed() {
@@ -1492,6 +1480,7 @@ bootstrap_stage1() {
 	done
 
 	BOOTSTRAP_STAGE="stage1" configure_toolchain || return 1
+	configure_cflags || return 1
 	export CC CXX
 
 	# default: empty = NO
@@ -1543,7 +1532,14 @@ bootstrap_stage1() {
 		( cd "${ROOT}" && ln -s "${SDKPATH}" MacOSX.sdk )
 		einfo "using system sources from ${SDKPATH}"
 
-		# GCC 14 cannot be compiled by versions of Clang at least on
+		# benefit from 4.2 if it's present (it only will be if the
+		# default is 4.0.1)
+		if [[ -e /usr/bin/gcc-4.2 ]] ; then
+			export CC=gcc-4.2
+			export CXX=g++-4.2
+		fi
+
+		# GCC >=14 cannot be compiled by versions of Clang at least on
 		# Darwin17, so go the safe route and get GCC-5 which is sufficient
 		# and the last one we can compile without C11.
 		# see also configure_toolchain
@@ -1554,60 +1550,16 @@ bootstrap_stage1() {
 		esac
 	fi
 
-	if [[ -n ${USEGCC5} ]] ; then
-		# benefit from 4.2 if it's present
-		if [[ -e /usr/bin/gcc-4.2 ]] ; then
-			export CC=gcc-4.2
-			export CXX=g++-4.2
-		fi
-
-		[[ -e ${ROOT}/tmp/usr/include/gmp.h ]] \
-			|| (bootstrap_gmp) || return 1
-		[[ -e ${ROOT}/tmp/usr/include/mpfr.h ]] \
-			|| (bootstrap_mpfr) || return 1
-		[[ -e ${ROOT}/tmp/usr/include/mpc.h ]] \
-			|| (bootstrap_mpc) || return 1
-		[[ -x ${ROOT}/tmp/usr/bin/ldwrapper ]] \
-			|| (bootstrap_ldwrapper) || return 1
-		# get ldwrapper target in PATH
-		BINUTILS_CONFIG_LD="$(type -P ld)"
-		export BINUTILS_CONFIG_LD
-		# force deployment target in GCCs build, GCC-5 doesn't quite get
-		# the newer macOS versions (20+) and thus confuses ld when it
-		# passes on the deployment version.  Use High Sierra as it has
-		# everything we need
-		[[ ${CHOST##*darwin} -gt 10 ]] && export MACOSX_DEPLOYMENT_TARGET=10.13
-		[[ -x ${ROOT}/tmp/usr/bin/gcc ]] \
-			|| (bootstrap_gcc5) || return 1
-
-		if [[ ${CHOST##*darwin} -gt 10 ]] ; then
-			# install wrappers in tmp/usr/local/bin which comes before
-			# /tmp/usr/bin in PATH
-			mkdir -p "${ROOT}"/tmp/usr/local/bin
-			rm -f "${ROOT}"/tmp/usr/local/bin/{gcc,"${CHOST}"-gcc}
-			cat > "${ROOT}/tmp/usr/local/bin/${CHOST}-gcc" <<-EOS
-				#!/usr/bin/env sh
-				export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET}
-				export BINUTILS_CONFIG_LD="$(type -P ld)"
-				exec "${ROOT}"/tmp/usr/bin/${CHOST}-gcc "\$@"
-			EOS
-			chmod 755 "${ROOT}/tmp/usr/local/bin/${CHOST}-gcc"
-			ln -s "${CHOST}"-gcc "${ROOT}"/tmp/usr/local/bin/gcc
-
-			rm -f "${ROOT}"/tmp/usr/local/bin/{g++,"${CHOST}"-g++}
-			cat > "${ROOT}"/tmp/usr/local/bin/"${CHOST}"-g++ <<-EOS
-				#!/usr/bin/env sh
-				export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET}
-				export BINUTILS_CONFIG_LD="$(type -P ld)"
-				exec "${ROOT}"/tmp/usr/bin/${CHOST}-g++ "\$@"
-			EOS
-			chmod 755 "${ROOT}"/tmp/usr/local/bin/"${CHOST}"-g++
-			ln -s "${CHOST}"-g++ "${ROOT}"/tmp/usr/local/bin/g++
-		fi
-
-		# reset after gcc-4.2 usage
-		export CC=gcc
-		export CXX=g++
+	# For GCC-14 and above which are in the snapshots at this time, we
+	# need C++14 and C11, which GCC-5 provides
+	if [[ ${USEGCC5} != yes ]] ; then
+		# both GCC and Clang accept -dumpversion, so if it doesn't work,
+		# we can assume this isn't sufficient
+		ccver=$(${CC} -dumpversion 2>/dev/null)
+		# we assume getting something like 4.8.3 or 17, since we need
+		# just the major version, it's simple processing here
+		ccver=${ccver%%.*}
+		[[ ${ccver:-0} -lt 5 ]] && USEGCC5=yes
 	fi
 
 	# Some host tools need to be wrapped to be useful for us.
@@ -1650,7 +1602,7 @@ bootstrap_stage1() {
 				EXEC="$(PATH="${ORIGINAL_PATH}" type -P g++)"
 				if [[ -z ${EXEC} ]] ; then
 					eerror "could not find 'g++' in your PATH!"
-					eerror "please install g++ or provide access via PATH or symlink"
+					eerror "please install gcc-c++ or provide access via PATH or symlink"
 					return 1
 				fi
 				cat >> "${ROOT}"/tmp/usr/local/bin/g++ <<-EOF
@@ -1722,7 +1674,6 @@ bootstrap_stage1() {
 		[[ $(uniq --version 2>&1) == *"(GNU coreutils) "[6789]* ]] \
 		|| (bootstrap_coreutils) || return 1
 	fi
-
 	[[ -x ${ROOT}/tmp/usr/bin/find ]] \
 		|| [[ $(find --version 2>&1) == *"GNU 4.9"* ]] \
 		|| [[ $(find --version 2>&1) == *"GNU 4."[12][012346789]* ]] \
@@ -1763,6 +1714,93 @@ bootstrap_stage1() {
 		|| [[ ${CHOST} != *-darwin* ]] \
 		|| [[ ${DARWIN_USE_GCC} == 1 ]] \
 		|| (bootstrap_cmake) || return 1
+
+	# get a sufficient compiler if we have to
+	if [[ -n ${USEGCC5} ]] ; then
+		[[ -e ${ROOT}/tmp/usr/include/gmp.h ]] \
+			|| (bootstrap_gmp) || return 1
+		[[ -e ${ROOT}/tmp/usr/include/mpfr.h ]] \
+			|| (bootstrap_mpfr) || return 1
+		[[ -e ${ROOT}/tmp/usr/include/mpc.h ]] \
+			|| (bootstrap_mpc) || return 1
+		[[ -x ${ROOT}/tmp/usr/bin/ldwrapper ]] \
+			|| (bootstrap_ldwrapper) || return 1
+		# get ldwrapper target in PATH
+		BINUTILS_CONFIG_LD="$(type -P ld)"
+		export BINUTILS_CONFIG_LD
+		# force deployment target in GCCs build, GCC-5 doesn't quite get
+		# the newer macOS versions (20+) and thus confuses ld when it
+		# passes on the deployment version.  Use High Sierra as it has
+		# everything we need
+		[[ ${CHOST##*darwin} -gt 10 ]] && export MACOSX_DEPLOYMENT_TARGET=10.13
+		[[ -x ${ROOT}/tmp/usr/bin/gcc ]] \
+			|| (bootstrap_gcc5) || return 1
+
+		if [[ ${CHOST##*darwin} -gt 10 ]] ; then
+			# install wrappers in tmp/usr/local/bin which comes before
+			# /tmp/usr/bin in PATH
+			mkdir -p "${ROOT}"/tmp/usr/local/bin
+			rm -f "${ROOT}"/tmp/usr/local/bin/{gcc,"${CHOST}"-gcc}
+			cat > "${ROOT}/tmp/usr/local/bin/${CHOST}-gcc" <<-EOS
+				#!/usr/bin/env sh
+				export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET}
+				export BINUTILS_CONFIG_LD="$(type -P ld)"
+				exec "${ROOT}"/tmp/usr/bin/${CHOST}-gcc "\$@"
+			EOS
+			chmod 755 "${ROOT}/tmp/usr/local/bin/${CHOST}-gcc"
+			ln -s "${CHOST}"-gcc "${ROOT}"/tmp/usr/local/bin/gcc
+
+			rm -f "${ROOT}"/tmp/usr/local/bin/{g++,"${CHOST}"-g++}
+			cat > "${ROOT}"/tmp/usr/local/bin/"${CHOST}"-g++ <<-EOS
+				#!/usr/bin/env sh
+				export MACOSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET}
+				export BINUTILS_CONFIG_LD="$(type -P ld)"
+				exec "${ROOT}"/tmp/usr/bin/${CHOST}-g++ "\$@"
+			EOS
+			chmod 755 "${ROOT}"/tmp/usr/local/bin/"${CHOST}"-g++
+			ln -s "${CHOST}"-g++ "${ROOT}"/tmp/usr/local/bin/g++
+		fi
+
+		# make sure we use the now bootstrapped compiler
+		export CC=gcc
+		export CXX=g++
+	fi
+
+	case ${CHOST} in
+		*-linux*)
+			if [[ ! -x "${ROOT}"/tmp/usr/bin/gcc ]] \
+			&& [[ $(gcc -print-prog-name=as),$(gcc -print-prog-name=ld) != /*,/* ]]
+			then
+				# RHEL's system gcc is set up to use binutils via PATH search.
+				# If the version of our binutils an older one, they may not
+				# provide what the system gcc is configured to use.
+				# We need to direct the system gcc to find the system binutils.
+				EXEC="$(PATH="${ORIGINAL_PATH}" type -P gcc)"
+				if [[ -z ${EXEC} ]] ; then
+					eerror "could not find 'gcc' in your PATH!"
+					eerror "please install gcc or provide access via PATH or symlink"
+					return 1
+				fi
+				cat >> "${ROOT}"/tmp/usr/local/bin/gcc <<-EOF
+					#! /bin/sh
+					PATH="${ORIGINAL_PATH}" export PATH
+					exec "${EXEC}" "\$@"
+				EOF
+				EXEC="$(PATH="${ORIGINAL_PATH}" type -P g++)"
+				if [[ -z ${EXEC} ]] ; then
+					eerror "could not find 'g++' in your PATH!"
+					eerror "please install gcc-c++ or provide access via PATH or symlink"
+					return 1
+				fi
+				cat >> "${ROOT}"/tmp/usr/local/bin/g++ <<-EOF
+					#! /bin/sh
+					PATH="${ORIGINAL_PATH}" export PATH
+					exec "${EXEC}" "\$@"
+				EOF
+				chmod 755 "${ROOT}"/tmp/usr/local/bin/g{cc,++}
+			fi
+			;;
+	esac
 
 	# get ebuilds and support files in place
 	(bootstrap_tree) || return 1
@@ -2987,9 +3025,12 @@ EOF
 	esac
 	# get rid of excess spaces (at least Solaris wc does)
 	ncpu=$((ncpu + 0))
-	# Suggest usage of 50% to 75% of the available CPUs
-	[[ ${tcpu} -eq 0 ]] && tcpu=1
+	# Suggest usage of 50% to 75% of the available CPUs when there is
+	# at least 4 cores, anything below, just use all (typically VMs to
+	# test stuff), this gives 1->1, 2->2, 3->3, 4->3, ...
+	[[ ${ncpu} -eq 0 ]] && ncpu=1
 	local tcpu=$((((ncpu * 3) + 1) / 4))
+	[[ ${ncpu} -lt 4 ]] && tcpu=${ncpu}
 	[[ -n ${USE_CPU_CORES} ]] && tcpu=${USE_CPU_CORES}
 	cat << EOF
 
