@@ -3008,9 +3008,7 @@ EOF
 	read -r -p "How many parallel make jobs do you want? [${tcpu}] " ans
 	case "${ans}" in
 		"")
-			# bug 966647: retain MAKEOPTS for phase runs
-			[[ -z ${SETUP_ENV_ONLY} || -z ${MAKEOPTS} ]] && \
-				MAKEOPTS="-j${tcpu}"
+			ans="${tcpu}"
 			;;
 		*)
 			if [[ ${ans} -le 0 ]] ; then
@@ -3035,10 +3033,18 @@ EOF
 					echo "(are you?)"
 				fi
 			fi
-			MAKEOPTS="-j${ans}"
 			;;
 	esac
-	export MAKEOPTS
+	# bug 966647: retain MAKEOPTS for phase runs
+	if [[ -z ${SETUP_ENV_ONLY} ]] ; then
+		MAKEOPTS="-j${ans}"
+		# technically could consider using --jobs ${ans} --load-average ${ans}.5
+		# but there are some bugs in dependencies that way; just use a
+		# single job to make the output quieter, on error Portage shows
+		# the full buildlog
+		EMERGE_DEFAULT_OPTS="--jobs 1"
+		export MAKEOPTS EMERGE_DEFAULT_OPTS
+	fi
 
 	#32/64 bits, multilib
 	local candomultilib=no
@@ -3566,10 +3572,10 @@ if [[ ${CHOST} == *-linux-* ]] ; then
 	#                   x86_64-pc-linux-ubuntu16
 	# I choose the latter because it is compatible with most
 	# UNIX vendors and it allows to fit RAP into platform
-	dist=$(lsb_release -si)
-	rel=$(lsb_release -sr)
+	dist=$(lsb_release -si 2>/dev/null)
+	rel=$(lsb_release -sr 2>/dev/null)
 	if [[ -z ${dist} ]] || [[ -z ${rel} ]] ; then
-		source /etc/os-release  # this may fail if the file isn't there
+		source /etc/os-release 2>/dev/null  # accept when file isn't there
 		[[ -z ${dist} ]] && dist=${ID}
 		[[ -z ${dist} ]] && dist=${NAME}
 		[[ -z ${rel} ]] && rel=${VERSION_ID}
