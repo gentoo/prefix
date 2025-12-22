@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #shellcheck disable=SC1091,SC2015,SC2016,SC2030,SC2031,SC2038,SC2185,SC2120
-# Copyright 2006-2024 Gentoo Authors
+# Copyright 2006-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 trap 'exit 1' TERM INT QUIT ABRT
@@ -921,6 +921,9 @@ bootstrap_gnu() {
 			myconf+=(
 				"-with-ssl=openssl"
 			)
+			# avoid pkg-config call
+			export OPENSSL_CFLAGS="-I${ROOT}/tmp"
+			export OPENSSL_LIBS="-lssl -lcrypto"
 		else
 			myconf+=( "--without-ssl" )
 		fi
