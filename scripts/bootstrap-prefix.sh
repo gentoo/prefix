@@ -2120,6 +2120,9 @@ bootstrap_stage2() {
 		emerge_pkgs --nodeps "${pkg}" || return 1
 	done
 
+	# we got a linker now
+	unset BINUTILS_CONFIG_LD
+
 	# GCC doesn't respect CPPFLAGS because of its own meddling as well
 	# as toolchain.eclass, so provide a wrapper here to force just
 	# installed packages to be found
