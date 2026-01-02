@@ -16,7 +16,7 @@ MY_PV=${PV}
 MY_P="Python-${MY_PV%_p*}"
 PYVER=$(ver_cut 1-2)
 PATCHSET="python-gentoo-patches-${MY_PV}"
-PREFIX_PATCHSET="python-prefix-gentoo-${MY_PV%_p*}-patches-r1"
+PREFIX_PATCHSET="python-prefix-gentoo-${MY_PV%_p*}-patches-r2"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="
@@ -202,6 +202,8 @@ src_prepare() {
 		# libresolv, so use hstrerror to check if we need -lresolv
 		sed -i -e '/AC_CHECK_LIB/s/inet_aton/hstrerror/' \
 			configure.ac configure || die
+		# enable at least XPG2/UNIX95 for things like sendmsg
+		append-flags -D_XOPEN_SOURCE=500 -D__EXTENSIONS__=1
 	fi
 
 	eautoreconf
