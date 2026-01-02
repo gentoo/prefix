@@ -1,7 +1,7 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 PYTHON_COMPAT=( pypy3 python3_{10..13} )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
@@ -74,7 +74,7 @@ RDEPEND="
 	!build? (
 		>=app-admin/eselect-1.2
 		!prefix? ( app-portage/getuto )
-		>=app-shells/bash-5.0:0
+		>=app-shells/bash-5.3:0
 		>=sec-keys/openpgp-keys-gentoo-release-20230329
 		>=sys-apps/sed-4.0.5
 		rsync-verify? (
@@ -125,54 +125,14 @@ src_prepare() {
 			-e "s|^\(sync-uri = \).*|\\1rsync://rsync.prefix.bitzolder.nl/gentoo-portage-prefix|" \
 			-i cnf/repos.conf || die "sed failed"
 
-		# PREFIX LOCAL: only hack const_autotool
-		# ok, we can't rely on PORTAGE_ROOT_USER being there yet, as people
-		# tend not to update that often, as long as we are a separate ebuild
-		# we can assume when unset, it's time for some older trick
-		if [[ -z ${PORTAGE_ROOT_USER} ]] ; then
-			PORTAGE_ROOT_USER=$(python -c 'from portage.const import rootuser; print rootuser')
-		fi
-		# We need to probe for bash in the Prefix, because it may not
-		# exist, in which case we fall back to the currently in use
-		# bash.  This logic is necessary in particular during bootstrap,
-		# where we pull ourselves out of a temporary place with tools
-		local bash="${EPREFIX}/bin/bash"
-		[[ ! -x ${bash} ]] && bash=${BASH}
-
-		einfo "Adjusting sources for ${EPREFIX}"
-		sed -e "s|@PORTAGE_EPREFIX@|${EPREFIX}|" \
-			-e "s|@PORTAGE_MV@|$(type -P mv)|" \
-			-e "s|@PORTAGE_BASH@|${bash}|" \
-			-e "s|@portagegroup@|${PORTAGE_GROUP:-portage}|" \
-			-e "s|@portageuser@|${PORTAGE_USER:-portage}|" \
-			-e "s|@rootuser@|${PORTAGE_ROOT_USER:-root}|" \
-			-e "s|@rootuid@|$(id -u ${PORTAGE_ROOT_USER:-root})|" \
-			-e "s|@rootgid@|$(id -g ${PORTAGE_ROOT_USER:-root})|" \
-			-e "s|@sysconfdir@|${EPREFIX}/etc|" \
-			-i \
-			lib/portage/const_autotool.py cnf/make.globals \
-			|| die "Failed to patch sources"
-
+		# PREFIX LOCAL: do the work of configure with expansions here
 		sed -e "s|@PREFIX_PORTAGE_PYTHON@|$(type -P python)|" \
 			-i \
-			bin/ebuild-helpers/dohtml bin/ebuild-pyhelper \
-			bin/misc-functions.sh bin/phase-functions.sh \
+			bin/ebuild-helpers/dohtml \
+			bin/ebuild-pyhelper \
+			bin/misc-functions.sh \
+			bin/phase-functions.sh \
 			|| die "Failed to patch sources"
-
-		# remove Makefiles, or else they will get installed
-		#find . -name "Makefile.*" -delete
-
-#		einfo "Prefixing shebangs ..."
-#		find . -type f ! -name etc-update | \
-#		while read -r line; do
-#			[[ -x ${line} || ${line} == *".py" ]] || continue;
-#			local shebang=$(head -n1 "${line}")
-#			if [[ ${shebang} == "#!"* && ! ${shebang} == "#!${EPREFIX}/"* ]] ;
-#			then
-#				sed -i -e "1s:.*:#!${EPREFIX}${shebang:2}:" "${line}" || \
-#					die "sed failed"
-#			fi
-#		done
 
 		einfo "Setting gentoo_prefix as reponame for emerge-webrsync"
 		sed -i -e 's/repo_name=gentoo/repo_name=gentoo_prefix/' \
@@ -298,5 +258,53 @@ pkg_postinst() {
 		eerror "Obsolete 'enotice' script detected!"
 		eerror "Please remove this from ${bashrc} to avoid problems."
 		eerror "See bug 867010 for more details."
+	fi
+
+	# migrate to setup where user/group are in the users' config
+	if use prefix-guest; then
+		python_setup
+
+		local P_USER=$(
+			env -u PORTAGE_USERNAME \
+				"${PYTHON}" -c 'from portage.data import _portage_username; print(_portage_username)')
+		if [[ ${P_USER} != ${PORTAGE_USERNAME} ]] ; then
+			elog "Your Portage configuration is incomplete."
+			elog "Due to a change in how Prefix Portage handles user and group"
+			elog "administration, you must add the following in your"
+			elog "  ${EROOT}/etc/portage/make.conf"
+			elog "PORTAGE_USERNAME=\"${PORTAGE_USERNAME}\""
+			elog "PORTAGE_GRPNAME=\"${PORTAGE_GRPNAME}\""
+			elog "PORTAGE_INST_UID=\"${PORTAGE_INST_UID}\""
+			elog "PORTAGE_INST_GID=\"${PORTAGE_INST_GID}\""
+			eerror "your installation will break without these settings"
+
+			local conffile="${EROOT}/etc/portage/make.conf"
+			if [[ -d ${conffile} ]] ; then
+				local f
+				for f in ${conffile}/* ; do
+					if [[ -w ${f} ]] ; then
+						conffile=${f}
+						break;
+					fi
+				done
+			fi
+			if [[ ! -w ${conffile} ]] ; then
+				eerror "could not find a file in your make.conf to write to"
+				eerror "you must add the variables yourself!"
+			else
+				{
+					echo ""
+					echo "# added by ${P} at $(date)"
+					echo "# this was done as part of a migration of these"
+					echo "# values from make.globals to user configuration"
+					echo "PORTAGE_USERNAME=\"${PORTAGE_USERNAME}\""
+					echo "PORTAGE_GRPNAME=\"${PORTAGE_GRPNAME}\""
+					echo "PORTAGE_INST_UID=\"${PORTAGE_INST_UID}\""
+					echo "PORTAGE_INST_GID=\"${PORTAGE_INST_GID}\""
+				} >> "${conffile}"
+				elog "user configuration variables were automatically added"
+				elog "to your ${conffile}, please review"
+			fi
+		fi
 	fi
 }
