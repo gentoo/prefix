@@ -2590,9 +2590,9 @@ bootstrap_stage3() {
 	if [[ ${OFFLINE_MODE} ]]; then
 		# --keep used ${DISTDIR}, which make it easier to download a
 		# snapshot beforehand
-		emerge-webrsync --keep || return 1
+		emerge-webrsync --keep --no-pgp-verify || return 1
 	else
-		emerge --color n --sync || emerge-webrsync || return 1
+		emerge --color n --sync || emerge-webrsync --no-pgp-verify || return 1
 	fi
 
 	# Avoid installing git or encryption just for fun while completing @system
