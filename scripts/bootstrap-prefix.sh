@@ -2680,6 +2680,7 @@ set_helper_vars() {
 		"-http3"              # curl
 		"-quic"               # curl
 		"-zstd"               # binutils/gcc
+		"-debuginfod"         # binutils
 	)
 
 	export MAKE CONFIG_SHELL
