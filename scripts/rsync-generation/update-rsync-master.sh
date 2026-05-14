@@ -5,9 +5,6 @@
 
 SCRIPTSTARTTIME=$(date +%s)
 
-# get keys for ssh and signing
-eval "$(env SHELL=/bin/bash keychain -q --noask --eval)"
-
 BASE_PATH="$(readlink -f "${BASH_SOURCE[0]%/*}")"
 
 PREFIXTREEDIR="${BASE_PATH}/repos/prefix-tree"
