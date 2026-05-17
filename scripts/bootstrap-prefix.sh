@@ -1316,6 +1316,7 @@ bootstrap_gcc5() {
 }
 
 bootstrap_sed() {
+	bootstrap_gnu sed 4.10 || \
 	bootstrap_gnu sed 4.9 || bootstrap_gnu sed 4.5 || \
 	bootstrap_gnu sed 4.2.2 || bootstrap_gnu sed 4.2.1
 }
