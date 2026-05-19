@@ -822,6 +822,18 @@ bootstrap_gnu() {
 		patch -p1 < "${DISTDIR}/${bash_patch_file}" || return 1
 	fi
 
+	# recent illumnos supports XPG8 and requires a gnulib update, but
+	# findutils doesn't have an update for years now
+	if [[ ${PN}-${PV} == "findutils-4.10.0" ]] ; then
+		case $CHOST in
+		(*-solaris2*)
+			# pretend XPG8 provided getlocalename_l doesn't exist to avoid a
+			# definition clash, #975237
+			sed -i -e 's/HAVE_GETLOCALENAME_L/DISABLED/' configure || die
+			;;
+		esac
+	fi
+
 	local -a myconf
 
 	# no point in doing NLS at this stage
