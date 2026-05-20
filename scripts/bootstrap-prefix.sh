@@ -901,9 +901,17 @@ bootstrap_gnu() {
 	# care about manpages at this stage
 	export ac_cv_path_POD2MAN=no
 
-	# On e.g. musl systems bash will crash with a malloc error if we use
-	# bash' internal malloc, so disable it during it this stage
-	[[ ${PN} == "bash" ]] && myconf+=( "--without-bash-malloc" )
+	[[ ${PN} == "bash" ]] && myconf+=(
+		# On e.g. musl systems bash will crash with a malloc error if we
+		# use bash' internal malloc, so disable it during it this stage
+		"--without-bash-malloc"
+		# Recent illumnos comes with a readline that isn't
+		# compatible, and since we haven't bootstrapped our own, just
+		# disable it, for we don't need interactive support at this
+		# stage anyway
+		"--disable-readline"
+		"--disable-history"
+	)
 
 	# Ensure we don't read system-wide shell initialisation, it may
 	# contain cruft, bug #650284
