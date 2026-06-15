@@ -2591,6 +2591,11 @@ bootstrap_stage3() {
 	TIME_T_32_BIT_OK=yes \
 	pre_emerge_pkgs "" "${pkgs[@]}" || return 1
 
+	# For python3.14+, which introduce zstd in stdlib, and also breaks the
+	# bootstrap here with circular deps. With USE=build we can skip that dep
+	USE=build \
+	pre_emerge_pkgs "" "dev-lang/python" || return 1
+
 	pkgs=(
 		virtual/os-headers
 		sys-devel/gettext
