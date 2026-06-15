@@ -41,7 +41,7 @@ if [[ ${PV} != *_rc* ]]; then
 fi
 IUSE="
 	bluetooth debug +ensurepip examples gdbm jit libedit +ncurses pgo
-	+readline +sqlite +ssl tail-call-interp test tk valgrind
+	+readline +sqlite +ssl tail-call-interp test tk valgrind build
 "
 REQUIRED_USE="jit? ( ${LLVM_REQUIRED_USE} )"
 RESTRICT="!test? ( test )"
@@ -54,7 +54,7 @@ RESTRICT="!test? ( test )"
 RDEPEND="
 	app-arch/bzip2:=
 	app-arch/xz-utils:=
-	app-arch/zstd:=
+	!build? ( app-arch/zstd:= )
 	app-misc/mime-types
 	>=dev-libs/expat-2.1:=
 	dev-libs/libffi:=
@@ -473,6 +473,7 @@ src_configure() {
 		$(usev !ncurses '_curses _curses_panel')
 		$(usev !readline 'readline')
 		$(usev !tk '_tkinter')
+		$(usev build '_zstd')
 		$([[ ${CHOST} == *-apple-darwin* ]] && echo '_scproxy')
 		$([[ ${CHOST} != *-linux-* ]] && echo 'ossaudiodev')
 	EOF
