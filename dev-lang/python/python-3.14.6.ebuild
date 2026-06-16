@@ -210,8 +210,12 @@ src_prepare() {
 		sed -i -e '/AC_CHECK_LIB/s/inet_aton/hstrerror/' \
 			configure.ac configure || die
 		# enable at least XPG2/UNIX95 for things like sendmsg
-		append-flags -D_XOPEN_SOURCE=500 -D__EXTENSIONS__=1
+		append-cppflags -D_XOPEN_SOURCE=500 -D__EXTENSIONS__=1
 	fi
+
+	# macOS' os-log.h doesn't work with our toolchain, so disable its
+	# usage
+	sed -i -e 's/__APPLE__/__NO_APPLE__/' Python/pylifecycle.c || die
 
 	eautoreconf
 }
