@@ -2693,6 +2693,7 @@ set_helper_vars() {
 	# - nghttp2 -> cmake -> curl -> nghttp2  (http2)      #901101
 	# - ensurepip -> python -> ensurepip     (ensurepip)
 	# - binutils -> zstd -> meson -> python  (zstd)       #967234
+	# - >=python-3.14 -> zstd -> ... python  (build)
 	DISABLE_USE=(
 		"-crypt"
 		"-curl_quic_openssl"  # curl
@@ -2703,6 +2704,7 @@ set_helper_vars() {
 		"-quic"               # curl
 		"-zstd"               # binutils/gcc
 		"-debuginfod"         # binutils
+		"build"               # python-3.14
 	)
 
 	export MAKE CONFIG_SHELL
