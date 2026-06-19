@@ -473,46 +473,33 @@ bootstrap_profile() {
 	EOF
 }
 
-do_tree() {
+setup_base_dirs() {
 	local x
-	for x in etc{,/portage} usr/{{,s}bin,$(rapx "" lib)} var/tmp var/lib/portage var/log/portage var/db;
-	do
-		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
-	done
-	# Make symlinks as USE=split-usr is masked in prefix/rpath. This is
-	# necessary for Cygwin, as there is no such thing like an
-	# embedded runpath. Instead we put all the dlls next to the
-	# exes, to get them working even without the PATH environment
-	# variable being set up.
-	#
-	# In prefix/standalone, however, no symlink is desired.
-	# Because we keep USE=split-usr enabled to align with the
-	# default of Gentoo vanilla.
-	if ! is-rap; then
-		for x in lib sbin bin; do
-			[[ -e ${ROOT}/${x} ]] || ( cd "${ROOT}" && ln -s usr/${x} )
-		done
-	fi
+	local trgroot="${1%/}"
+	local portroot="${PORTDIR%/*}"
+	local ensure_dirs=(
+		etc{,/portage}
+		usr/{{,s}bin,$(rapx "" lib)}
+		var/tmp
+		var/lib/portage
+		var/log/portage
+		var/db
+		"${portroot#"${ROOT}"/}"
+	)
 
-	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
-		# latest tree cannot be fetched from mirrors, always have to
-		# respect the source to get the latest
-		if [[ -n ${LATEST_TREE_YES} ]] ; then
-			( export GENTOO_MIRRORS='' DISTFILES_G_O='' DISTFILES_PFX='' ;
-			  efetch "$1/$2" ) || return 1
-		else
-			# use only Prefix mirror
-			( export GENTOO_MIRRORS='' DISTFILES_G_O='' ;
-			  efetch "$1/$2" ) || return 1
-		fi
-		einfo "Unpacking, this may take a while"
-		estatus "stage1: unpacking Portage tree"
-		mkdir -p "${PORTDIR}"
-		bzip2 -dc "${DISTDIR}/$2" \
-			| tar --strip-components=1 -xf - -C "${PORTDIR}"
-		[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
-		touch "${PORTDIR}"/.unpacked
-	fi
+	# create standard dirs
+	for x in "${ensure_dirs[@]}" ; do
+		# check existence to prevent problems when trg is a symlink
+		# (Solaris mkdir chokes on existing symlink-to-dir)
+		[[ -e "${trgroot}/${x}" ]] || mkdir -p "${trgroot}/${x}"
+	done
+
+	# USE=split-usr is disabled in Prefix everywhere (like on vanilla
+	# Gentoo), but provide symlinks for convenience and because Portage
+	# (const.py) hard-references e.g. EPREFIX/bin/bash
+	for x in lib sbin bin; do
+		[[ -e ${trgroot}/${x} ]] || ( cd "${trgroot}" && ln -s usr/${x} )
+	done
 }
 
 bootstrap_tree() {
@@ -526,7 +513,27 @@ bootstrap_tree() {
 
 	[[ -n ${LATEST_TREE_YES} ]] && PV=latest
 
-	do_tree "${SNAPSHOT_URL}" portage-${PV}.tar.bz2
+	setup_base_dirs "${ROOT}"
+
+	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
+		# latest tree cannot be fetched from mirrors, always have to
+		# respect the source to get the latest
+		if [[ -n ${LATEST_TREE_YES} ]] ; then
+			( export GENTOO_MIRRORS='' DISTFILES_G_O='' DISTFILES_PFX='' ;
+			  efetch "${SNAPSHOT_URL}/portage-${PV}.tar.bz2" ) || return 1
+		else
+			# use only Prefix mirror
+			( export GENTOO_MIRRORS='' DISTFILES_G_O='' ;
+			  efetch "${SNAPSHOT_URL}/portage-${PV}.tar.bz2" ) || return 1
+		fi
+		einfo "Unpacking, this may take a while"
+		estatus "stage1: unpacking Portage tree"
+		mkdir -p "${PORTDIR}"
+		bzip2 -dc "${DISTDIR}/portage-${PV}.tar.bz2" \
+			| tar --strip-components=1 -xf - -C "${PORTDIR}"
+		[[ ${PIPESTATUS[*]} == '0 0' ]] || return 1
+		touch "${PORTDIR}"/.unpacked
+	fi
 
 	local ret=$?
 	if [[ -n ${TREE_FROM_SRC} ]]; then
@@ -579,12 +586,24 @@ bootstrap_startscript() {
 	fi
 }
 
-prepare_portage() {
-	# see bootstrap_portage for explanations.
-	mkdir -p "${ROOT}"/usr/bin/. "${ROOT}"/var/log
-	[[ -x ${ROOT}/bin ]] || ln -s usr/bin "${ROOT}"/bin
-	[[ -x ${ROOT}/bin/bash ]] || ln -s "${ROOT}"{/tmp,}/bin/bash || return 1
-	[[ -x ${ROOT}/bin/sh ]] || ln -s bash "${ROOT}"/bin/sh || return 1
+setup_portage_bash() {
+	# Portage checks for valid shebangs. These may (xz-utils) originate
+	# in CONFIG_SHELL (AIX), which originates in PORTAGE_BASH then.
+	# So we need to ensure portage's bash is valid as shebang too.
+	# ensure existence of bash and sh in ROOT/tmp
+
+	setup_base_dirs "${ROOT}"/tmp
+	[[ -x ${ROOT}/tmp/usr/bin/bash ]] || \
+		ln -s "${BASH}" "${ROOT}"/tmp/usr/bin/bash || return 1
+	[[ -x ${ROOT}/tmp/usr/bin/sh ]] || \
+		ln -s bash "${ROOT}"/tmp/usr/bin/sh || return 1
+
+	# if we don't have them in our target, provide them from ROOT/tmp
+	setup_base_dirs "${ROOT}"
+	[[ -x ${ROOT}/usr/bin/bash ]] || \
+		ln -s "${ROOT}"{/tmp,}/usr/bin/bash || return 1
+	[[ -x ${ROOT}/usr/bin/sh ]] || \
+		ln -s bash "${ROOT}"/usr/bin/sh || return 1
 }
 
 bootstrap_portage() {
@@ -623,15 +642,8 @@ bootstrap_portage() {
 		sed -e '/wget/s/ --passive-ftp /&--no-check-certificate /' \
 			-i cnf/make.globals
 
-	# Portage checks for valid shebangs. These may (xz-utils) originate
-	# in CONFIG_SHELL (AIX), which originates in PORTAGE_BASH then.
-	# So we need to ensure portage's bash is valid as shebang too.
-	# Solaris mkdir chokes on existing symlink-to-dir, trailing /. helps.
-	mkdir -p "${ROOT}"/tmp/bin/. || return 1
-	[[ -x ${ROOT}/tmp/bin/bash ]] || [[ ! -x ${ROOT}/tmp/usr/bin/bash ]] || ln -s ../usr/bin/bash "${ROOT}"/tmp/bin/bash || return 1
-	[[ -x ${ROOT}/tmp/bin/bash ]] || ln -s "${BASH}" "${ROOT}"/tmp/bin/bash || return 1
-	[[ -x ${ROOT}/tmp/bin/sh ]] || ln -s bash "${ROOT}"/tmp/bin/sh || return 1
-	export PORTAGE_BASH="${ROOT}"/tmp/bin/bash
+	setup_portage_bash
+	export PORTAGE_BASH="${ROOT}"/tmp/usr/bin/bash
 
 	einfo "Compiling ${A%.tar.*}"
 	econf \
@@ -1481,7 +1493,7 @@ bootstrap_stage_host_gentoo() {
 		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
 		|| (bootstrap_setup) || return 1
 
-	prepare_portage
+	setup_portage_bash
 }
 
 bootstrap_stage1() {
@@ -1496,13 +1508,7 @@ bootstrap_stage1() {
 	# whatever the native toolchain is here, is what in general works
 	# best.
 
-	# See comments in do_tree().
-	local portroot=${PORTDIR%/*}
-	mkdir -p "${ROOT}/tmp/${portroot#"${ROOT}"/}"
-	for x in lib sbin bin; do
-		mkdir -p "${ROOT}"/tmp/usr/${x}
-		[[ -e ${ROOT}/tmp/${x} ]] || ( cd "${ROOT}"/tmp && ln -s usr/${x} )
-	done
+	setup_base_dirs "${ROOT}/tmp"
 
 	BOOTSTRAP_STAGE="stage1" configure_toolchain || return 1
 	configure_cflags || return 1
@@ -1818,7 +1824,7 @@ bootstrap_stage1() {
 
 	# setup portage
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
-	prepare_portage
+	setup_portage_bash
 
 	estatus "stage1 finished"
 	einfo "stage1 successfully finished"
@@ -1970,7 +1976,7 @@ do_emerge_pkgs() {
 			FEATURES="-news ${FEATURES}" \
 			USE="${myuse[*]}" \
 			LLVM_ECLASS_SKIP_PKG_SETUP="${skip_llvm_pkg_setup}" \
-			"${ROOT}"/tmp/bin/python \
+			"${ROOT}"/tmp/usr/bin/python \
 			"${ROOT}"/tmp/usr/bin/emerge "${eopts[@]}" "${pkg}"
 		) || return 1
 	done
@@ -1988,7 +1994,7 @@ bootstrap_stage2() {
 	# and friends.
 	BOOTSTRAP_STAGE="stage2" configure_toolchain || return 1
 	configure_cflags || return 1
-	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
+	export CONFIG_SHELL="${ROOT}"/tmp/usr/bin/bash
 	export BINUTILS_CONFIG_LD="$(type -P ld)"  # in case of bootstrapped GCC
 	export CC CXX
 
@@ -2008,7 +2014,7 @@ bootstrap_stage2() {
 	if [[ ! -x "${ROOT}"/tmp/usr/bin/makeinfo ]]
 	then
 		cat > "${ROOT}"/tmp/usr/bin/makeinfo <<-EOF
-		#!${ROOT}/bin/bash
+		#!${ROOT}/usr/bin/bash
 		### bootstrap-prefix.sh will act on this line ###
 		echo "makeinfo GNU texinfo 4.13"
 		f=
@@ -2059,9 +2065,9 @@ bootstrap_stage2() {
 	# Python -- at this stage we don't have that
 	# so fake gentoo-functions with some dummies to make elt-patches
 	# and others install
-	if [[ ! -e "${ROOT}"/tmp/lib/gentoo/functions.sh ]] ; then
-		mkdir -p "${ROOT}"/tmp/lib/gentoo
-		cat > "${ROOT}"/tmp/lib/gentoo/functions.sh <<-EOF
+	if [[ ! -e "${ROOT}"/tmp/usr/lib/gentoo/functions.sh ]] ; then
+		mkdir -p "${ROOT}"/tmp/usr/lib/gentoo
+		cat > "${ROOT}"/tmp/usr/lib/gentoo/functions.sh <<-EOF
 			#!${BASH}
 
 			ewarn() {
@@ -2084,7 +2090,7 @@ bootstrap_stage2() {
 			# passed to the compiler-rt and llvm's ebuilds.
 			for bin in libtool clang clang++ ; do
 				{
-					echo "#!${ROOT}/tmp/bin/sh"
+					echo "#!${ROOT}/tmp/usr/bin/sh"
 					echo "exec ${bin}"' "$@"'
 				} > "${ROOT}/tmp/usr/bin/${CHOST}-${bin}"
 				chmod +x "${ROOT}/tmp/usr/bin/${CHOST}-${bin}"
@@ -2291,7 +2297,7 @@ bootstrap_stage3() {
 	# are looking for includes and libraries under ROOT/tmp, *NOT* ROOT,
 	# therefore we need to export search paths for ROOT (the final
 	# destination Prefix) here until we've installed the toolchain
-	export CONFIG_SHELL="${ROOT}"/tmp/bin/bash
+	export CONFIG_SHELL="${ROOT}"/tmp/usr/bin/bash
 	[[ ${compiler_type} == gcc ]] && \
 		export CPPFLAGS="-isystem ${ROOT}/usr/include"
 	LDFLAGS="-L${ROOT}/usr/$(get_libdir)" ; export LDFLAGS
@@ -2370,7 +2376,7 @@ bootstrap_stage3() {
 		# We need ${ROOT}/usr/bin/perl to merge glibc.
 		if [[ ! -x "${ROOT}"/usr/bin/perl ]]; then
 			# trick "perl -V:apiversion" check of glibc-2.19.
-			echo -e "#!${ROOT}/bin/sh\necho 'apiversion=9999'" \
+			echo -e "#!${ROOT}/usr/bin/sh\necho 'apiversion=9999'" \
 				> "${ROOT}"/usr/bin/perl
 			chmod +x "${ROOT}"/usr/bin/perl
 		fi
@@ -2378,7 +2384,7 @@ bootstrap_stage3() {
 		# Need rsync to for linux-headers installation
 		if [[ ! -x "${ROOT}"/usr/bin/rsync ]]; then
 			cat > "${ROOT}"/usr/bin/rsync <<-EOF
-		#!${ROOT}/bin/bash
+		#!${ROOT}/usr/bin/bash
 		while (( \$# > 0 )); do
 		case \$1 in
 		-*) shift; continue ;;
@@ -2508,7 +2514,7 @@ bootstrap_stage3() {
 		# support llvm version upgrades.
 		rm -f "${ROOT}/usr/bin/${CHOST}-libtool"
 		{
-			echo "#!${ROOT}/bin/sh"
+			echo "#!${ROOT}/usr/bin/sh"
 			echo 'exec llvm-libtool-darwin "$@"'
 		} > "${ROOT}/usr/bin/${CHOST}-${bin}"
 
@@ -2531,9 +2537,9 @@ bootstrap_stage3() {
 
 	( cd "${ROOT}"/usr/bin && test ! -e python && rm -f "python$(python_ver)" )
 	# Use $ROOT tools where possible from now on.
-	if [[ $(readlink "${ROOT}"/bin/sh) == "${ROOT}/tmp/"* ]] ; then
-		rm -f "${ROOT}"/bin/sh
-		ln -s bash "${ROOT}"/bin/sh
+	if [[ $(readlink "${ROOT}"/usr/bin/sh) == "${ROOT}/tmp/"* ]] ; then
+		rm -f "${ROOT}"/usr/bin/sh
+		ln -s bash "${ROOT}"/usr/bin/sh
 	fi
 
 	if [[ "${compiler_type}" == clang ]] ; then
@@ -2543,17 +2549,17 @@ bootstrap_stage3() {
 		fi
 		# Prevent usage of AppleClang aka gcc for bad packages which ignore $CC
 		if [[ ! -e "${ROOT}"/usr/bin/gcc ]]; then
-			echo "#!${ROOT}/bin/bash" > "${ROOT}"/usr/bin/gcc
+			echo "#!${ROOT}/usr/bin/bash" > "${ROOT}"/usr/bin/gcc
 			echo "false ${CHOST}-clang \"\$@\"" >> "${ROOT}"/usr/bin/gcc
 		fi
 		if [[ ! -e "${ROOT}"/usr/bin/g++ ]]; then
-			echo "#!${ROOT}/bin/bash" > "${ROOT}"/usr/bin/g++
+			echo "#!${ROOT}/usr/bin/bash" > "${ROOT}"/usr/bin/g++
 			echo "false ${CHOST}-clang++ \"\$@\"" >> "${ROOT}"/usr/bin/g++
 		fi
 		chmod +x "${ROOT}"/usr/bin/{gcc,g++}
 		if [[ ${CHOST} == *-darwin* ]]; then
 			if [[ ! -e "${ROOT}"/usr/bin/ld ]]; then
-				echo "#!${ROOT}/bin/bash" > "${ROOT}"/usr/bin/ld
+				echo "#!${ROOT}/usr/bin/bash" > "${ROOT}"/usr/bin/ld
 				echo "false ld64.lld \"\$@\"" >> "${ROOT}"/usr/bin/ld
 			fi
 			chmod +x "${ROOT}"/usr/bin/ld
@@ -2562,7 +2568,7 @@ bootstrap_stage3() {
 
 	# Start using apps from the final destination Prefix
 	cat > "${ROOT}"/tmp/etc/env.d/10stage3 <<-EOF
-		PATH="${ROOT}/usr/bin:${ROOT}/bin"
+		PATH="${ROOT}/usr/bin"
 	EOF
 	"${ROOT}"/tmp/usr/sbin/env-update
 
@@ -3292,7 +3298,7 @@ EOF
 		# location seems ok
 		break
 	done
-	export PATH="$EPREFIX/usr/bin:$EPREFIX/bin:$EPREFIX/tmp/usr/local/bin:$EPREFIX/tmp/usr/bin:$EPREFIX/tmp/bin:${PATH}"
+	export PATH="${EPREFIX}/usr/bin:${EPREFIX}/tmp/usr/local/bin:${EPREFIX}/tmp/usr/bin:${PATH}"
 
 	cat << EOF
 
