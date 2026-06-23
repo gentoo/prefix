@@ -1,9 +1,9 @@
-# Copyright 1999-2023 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( pypy3 python3_{10..13} )
+PYTHON_COMPAT=( pypy3 python3_{10..14} )
 PYTHON_REQ_USE='bzip2(+),threads(+)'
 TMPFILES_OPTIONAL=1
 
@@ -74,7 +74,7 @@ RDEPEND="
 	!build? (
 		>=app-admin/eselect-1.2
 		!prefix? ( app-portage/getuto )
-		>=app-shells/bash-5.0:0
+		>=app-shells/bash-5.3:0
 		>=sec-keys/openpgp-keys-gentoo-release-20230329
 		>=sys-apps/sed-4.0.5
 		rsync-verify? (
@@ -126,37 +126,6 @@ src_prepare() {
 			-i cnf/repos.conf || die "sed failed"
 
 		# PREFIX LOCAL: do the work of configure with expansions here
-		P_GROUP=${PORTAGE_GRPNAME}
-		P_USER=${PORTAGE_USERNAME}
-		[[ -z ${P_GROUP} ]] && \
-			P_GROUP=$(python -c 'from portage.const import portagegroup; print(portagegroup)')
-		[[ -z ${P_USER} ]] && \
-			P_USER=$(python -c 'from portage.const import portageuser; print(portageuser)')
-		[[ -z ${P_GROUP}     ]] && P_GROUP=portage
-		[[ -z ${P_USER}      ]] && P_USER=portage
-		P_GID=$(python -c "import grp; print(grp.getgrnam('${P_GROUP}').gr_gid)")
-		P_UID=$(id -u ${P_USER})
-
-		# We need to probe for bash in the Prefix, because it may not
-		# exist, in which case we fall back to the currently in use
-		# bash.  This logic is necessary in particular during bootstrap,
-		# where we pull ourselves out of a temporary place with tools
-		local bash="${EPREFIX}/bin/bash"
-		[[ ! -x ${bash} ]] && bash=${BASH}
-
-		einfo "Adjusting sources for ${EPREFIX}"
-		sed -e "s|@PORTAGE_EPREFIX@|${EPREFIX}|" \
-			-e "s|@PORTAGE_MV@|$(type -P mv)|" \
-			-e "s|@PORTAGE_BASH@|${bash}|" \
-			-e "s|@portagegroup@|${P_GROUP}|" \
-			-e "s|@portageuser@|${P_USER}|" \
-			-e "s|@rootuid@|${P_UID}|" \
-			-e "s|@rootgid@|${P_GID}|" \
-			-e "s|@sysconfdir@|${EPREFIX}/etc|" \
-			-i \
-			lib/portage/const_autotool.py cnf/make.globals \
-			|| die "Failed to patch sources"
-
 		sed -e "s|@PREFIX_PORTAGE_PYTHON@|$(type -P python)|" \
 			-i \
 			bin/ebuild-helpers/dohtml \
@@ -164,21 +133,6 @@ src_prepare() {
 			bin/misc-functions.sh \
 			bin/phase-functions.sh \
 			|| die "Failed to patch sources"
-
-		# remove Makefiles, or else they will get installed
-		#find . -name "Makefile.*" -delete
-
-#		einfo "Prefixing shebangs ..."
-#		find . -type f ! -name etc-update | \
-#		while read -r line; do
-#			[[ -x ${line} || ${line} == *".py" ]] || continue;
-#			local shebang=$(head -n1 "${line}")
-#			if [[ ${shebang} == "#!"* && ! ${shebang} == "#!${EPREFIX}/"* ]] ;
-#			then
-#				sed -i -e "1s:.*:#!${EPREFIX}${shebang:2}:" "${line}" || \
-#					die "sed failed"
-#			fi
-#		done
 
 		einfo "Setting gentoo_prefix as reponame for emerge-webrsync"
 		sed -i -e 's/repo_name=gentoo/repo_name=gentoo_prefix/' \
