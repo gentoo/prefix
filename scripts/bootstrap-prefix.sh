@@ -211,27 +211,27 @@ configure_toolchain() {
 			llvm_deps="dev-build/ninja"
 			compiler_stage1="
 				${llvm_deps}
-				sys-libs/compiler-rt
-				sys-devel/llvm
-				sys-devel/lld
-				sys-devel/clang-common
-				sys-devel/clang
+				llvm-core/compiler-rt
+				llvm-core/llvm
+				llvm-core/lld
+				llvm-core/clang-common
+				llvm-core/clang
 			"
 			CC=clang
 			CXX=clang++
 			linker=
 			[[ "${BOOTSTRAP_STAGE}" == stage2 ]] && \
-				linker=sys-devel/lld
+				linker=llvm-core/lld
 			compiler="
 				${llvm_deps}
-				sys-libs/compiler-rt
-				sys-libs/libcxxabi
-				sys-libs/libcxx
-				sys-devel/llvm
-				sys-devel/lld
-				sys-libs/llvm-libunwind
-				sys-devel/clang-common
-				sys-devel/clang
+				llvm-core/compiler-rt
+				llvm-core/libcxxabi
+				llvm-core/libcxx
+				llvm-core/llvm
+				llvm-core/lld
+				llvm-core/llvm-libunwind
+				llvm-core/clang-common
+				llvm-core/clang
 			"
 			;;
 		*)
