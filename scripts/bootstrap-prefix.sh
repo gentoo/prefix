@@ -1896,6 +1896,24 @@ do_emerge_pkgs() {
 			"system-bootstrap"
 			"clang"
 			"internal-glib"
+			# USE-flags to disable during bootstrap for they produce
+			# unnecessary, or worse: circular deps
+			# - nghttp2 -> cmake -> curl -> nghttp2  (http2)      #901101
+			#   (not any more since nghttp2 uses autotools again since March 2025,
+			#    but a cmake user could return in the future)
+			# - ensurepip -> python -> ensurepip     (ensurepip)
+			# - binutils -> zstd -> meson -> python  (zstd)       #967234
+			# - >=python-3.14 -> zstd -> ... python  (build)
+			"-crypt"
+			"-curl_quic_openssl"  # curl
+			"-ensurepip"          # python-3.13
+			"-git"
+			"-http2"              # curl
+			"-http3"              # curl
+			"-quic"               # curl
+			"-zstd"               # binutils/gcc
+			"-debuginfod"         # binutils
+			"build"               # python-3.14
 		)
 
 		local skip_llvm_pkg_setup=
@@ -2623,12 +2641,6 @@ bootstrap_stage3() {
 		emerge --color n --sync || emerge-webrsync --no-pgp-verify || return 1
 	fi
 
-	# Avoid installing git or encryption just for fun while completing @system
-	# e.g. bug #901101, this is a reduced (e.g. as minimal as possible)
-	# set of DISABLE_USE, to set the stage for solving circular
-	# dependencies, such as:
-	export USE="${DISABLE_USE[*]}"
-
 	# Portage should figure out itself what it needs to do, if anything.
 	local eflags=( "--deep" "--update" "--changed-use" "@system" )
 	einfo "running emerge ${eflags[*]}"
@@ -2643,10 +2655,6 @@ bootstrap_stage3() {
 	# Remove the stage2 hack from above.  A future emerge run will
 	# get env-update to happen.
 	rm "${ROOT}"/etc/env.d/98stage2
-
-	# now try and get things in the way they should be according to the
-	# default USE-flags
-	unset USE
 
 	# re-emerge anything hopefully not running into circular deps
 	eflags=( "--deep" "--changed-use" "@world" )
@@ -2693,25 +2701,6 @@ set_helper_vars() {
 	GENTOO_MIRRORS=${GENTOO_MIRRORS:="http://distfiles.gentoo.org"}
 	SNAPSHOT_HOST=$(rapx http://distfiles.gentoo.org http://rsync.prefix.bitzolder.nl)
 	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
-
-	# USE-flags to disable during bootstrap for they produce
-	# unnecessary, or worse: circular deps
-	# - nghttp2 -> cmake -> curl -> nghttp2  (http2)      #901101
-	# - ensurepip -> python -> ensurepip     (ensurepip)
-	# - binutils -> zstd -> meson -> python  (zstd)       #967234
-	# - >=python-3.14 -> zstd -> ... python  (build)
-	DISABLE_USE=(
-		"-crypt"
-		"-curl_quic_openssl"  # curl
-		"-ensurepip"          # python-3.13
-		"-git"
-		"-http2"              # curl
-		"-http3"              # curl
-		"-quic"               # curl
-		"-zstd"               # binutils/gcc
-		"-debuginfod"         # binutils
-		"build"               # python-3.14
-	)
 
 	export MAKE CONFIG_SHELL
 }
@@ -2794,6 +2783,7 @@ EOF
 		ROOT \
 		CPATH \
 		LIBRARY_PATH \
+		USE \
 	; do
 		[[ -n ${SETUP_ENV_ONLY} ]] && continue  # we already checked this
 		# starting on purpose a shell here iso ${!flag} because I want
