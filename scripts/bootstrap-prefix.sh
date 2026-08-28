@@ -195,8 +195,11 @@ configure_toolchain() {
 			local ccvers
 			local llvm_deps
 			einfo "Triggering Darwin with LLVM/Clang toolchain"
+
 			# for compilers choice, see bug:
 			# https://bugs.gentoo.org/show_bug.cgi?id=538366
+			CC=clang
+			CXX=clang++
 			ccvers="$(unset CHOST; ${CC} --version 2>/dev/null)"
 			case "${ccvers}" in
 				*"Apple clang version "*|*"Apple LLVM version "*)
@@ -211,28 +214,38 @@ configure_toolchain() {
 			llvm_deps="dev-build/ninja"
 			compiler_stage1="
 				${llvm_deps}
-				llvm-core/compiler-rt
+
+				llvm-core/clang-linker-config
+				llvm-runtimes/clang-runtime
+				llvm-core/clang-common
+
 				llvm-core/llvm
 				llvm-core/lld
-				llvm-core/clang-common
+				llvm-runtimes/compiler-rt
 				llvm-core/clang
 			"
-			CC=clang
-			CXX=clang++
 			linker=
-			[[ "${BOOTSTRAP_STAGE}" == stage2 ]] && \
-				linker=llvm-core/lld
 			compiler="
+				llvm-runtimes/clang-unwindlib-config
+				llvm-runtimes/clang-stdlib-config
+				llvm-core/clang-linker-config
+				llvm-runtimes/clang-rtlib-config
+				llvm-runtimes/clang-runtime
+				llvm-core/clang-common
+
+				llvm-runtimes/libunwind
+				llvm-runtimes/libcxxabi
+				llvm-runtimes/libcxx
+
 				${llvm_deps}
-				llvm-core/compiler-rt
-				llvm-core/libcxxabi
-				llvm-core/libcxx
+
 				llvm-core/llvm
 				llvm-core/lld
-				llvm-core/llvm-libunwind
-				llvm-core/clang-common
+				llvm-runtimes/compiler-rt
 				llvm-core/clang
 			"
+			compiler="${compiler//$'\n'/}"
+			compiler_type="clang"
 			;;
 		*)
 			is-rap && einfo "Triggering Linux RAP bootstrap"
@@ -455,14 +468,6 @@ bootstrap_profile() {
 		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${fullprofile}."
 	fi
-
-	# Use package.use to disable in the portage tree to be shared between
-	# stage2 and stage3. The hack will be undone during tree sync in stage3.
-	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
-	# Disable bootstrapping libcxx* with libunwind
-	sys-libs/libcxxabi -libunwind
-	sys-libs/libcxx -libunwind
-	EOF
 
 	# On Darwin we might need this to bootstrap the compiler, since
 	# bootstrapping the linker (binutils-apple) requires a c++11
@@ -1867,8 +1872,8 @@ do_emerge_pkgs() {
 					[[ ${evdb} == "${vdb##*/}" ]] && break
 				else
 					vdb=${vdb%-*}
-					evdb=${evdb%-r*}
-					evdb=${evdb%_p*}
+					evdb=${evdb%-r[[:digit:]]*}
+					evdb=${evdb%_p[[:digit:]]*}
 					evdb=${evdb%-*}
 					[[ ${evdb} == "${vdb#*/}" ]] && break
 				fi
@@ -2208,7 +2213,16 @@ bootstrap_stage2() {
 			rm "${ROOT}/tmp/usr/bin/${CHOST}"-{libtool,clang,clang++}
 			mkdir -p "${ROOT}"/usr/bin
 			ln -s "${ROOT}"/tmp/usr/lib/llvm/*/bin/llvm-libtool-darwin \
-				"${ROOT}"/usr/bin/libtool
+				"${ROOT}/usr/bin/${CHOST}-libtool"
+
+			# In stage2 we require a minimized llvm-core/clang-common to
+			# make the new compiler works with (overrided) system's stuff.
+			for bin in clang clang++ clang-cpp ; do
+				{
+					echo "@../${CHOST}-${bin}.cfg"
+					echo "--unwindlib=platform"
+				} > "${ROOT}/tmp/etc/clang/"*"/${CHOST}-${bin}.cfg"
+			done
 		fi
 
 		# We use Clang as our toolchain compiler, so we need to make
@@ -2525,10 +2539,12 @@ bootstrap_stage3() {
 	if [[ ${CHOST}:${DARWIN_USE_GCC} == *-darwin*:0 ]] ; then
 		# At this point our libc++abi.dylib is dynamically linked to
 		# /usr/lib/libc++abi.dylib. That causes issues with perl later. Force
-		# rebuild of sys-libs/libcxxabi to break this link.
-		rm -Rf "${ROOT}/var/db/pkg/sys-libs/libcxxabi"*
-		PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
-			pre_emerge_pkgs --nodeps "sys-libs/libcxxabi" || return 1
+		# rebuild of llvm-runtimes/libcxxabi to break this link.
+		if otool -L "${ROOT}/usr/lib/libc++abi.dylib" | grep -q "/usr/lib/libc++abi.dylib[^:]"; then
+			rm -Rf "${ROOT}/var/db/pkg/llvm-runtimes/libcxxabi"*
+			PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
+				pre_emerge_pkgs --nodeps "llvm-runtimes/libcxxabi" || return 1
+		fi
 
 		# Make ${CHOST}-libtool (used by compiler-rt's and llvm's ebuild) to
 		# point at the correct libtool in stage3. Resolve it in runtime, to
@@ -2537,7 +2553,8 @@ bootstrap_stage3() {
 		{
 			echo "#!${ROOT}/usr/bin/sh"
 			echo 'exec llvm-libtool-darwin "$@"'
-		} > "${ROOT}/usr/bin/${CHOST}-${bin}"
+		} > "${ROOT}/usr/bin/${CHOST}-libtool"
+		chmod +x "${ROOT}/usr/bin/${CHOST}-libtool"
 
 		# Now clang is ready, can use it instead of /usr/bin/gcc
 		# TODO: perhaps symlink the whole etc/portage instead?
@@ -3708,6 +3725,13 @@ fi
 
 ROOT="$1"
 set_helper_vars
+
+if [[ "${BASH_VERSINFO[0]}" -lt 4 ]]; then
+	eerror "You're using a really old bash ${BASH_VERSION}!"
+	eerror "The script will likely break your prefix, in an undefined way :("
+	eerror "Please follow bootstrap-bash.sh for a usable one."
+	exit 1
+fi
 
 case $ROOT in
 	chost.guess)
