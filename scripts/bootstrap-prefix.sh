@@ -16,7 +16,7 @@ estatus() {
 	# disturbing -- if it works, it makes it easy to see where we are in
 	# the bootstrap from the terminal status line (usually the window
 	# name)
-	printf '\033]2;%s\007' "$*"
+	printf '\033]2;%s\007' "${BOOTSTRAP_STAGE}: $*"
 }
 
 eerror() { estatus "$*"; echo "!!! $*" 1>&2; }
@@ -24,7 +24,7 @@ einfo() { echo "* $*"; }
 v() { echo "$@"; "$@"; }
 
 econf() {
-	estatus "stage1: configuring ${PWD##*/}"
+	estatus "configuring ${PWD##*/}"
 	v ${CONFIG_SHELL:+"${CONFIG_SHELL}"} ./configure \
 		--host="${CHOST}" \
 		--prefix="${ROOT}"/tmp/usr \
@@ -40,13 +40,13 @@ econf() {
 
 emake() {
 	if [[ $* == *install* ]] ; then
-		estatus "stage1: installing ${PWD##*/}"
+		estatus "installing ${PWD##*/}"
 	else
-		estatus "stage1: building ${PWD##*/}"
+		estatus "building ${PWD##*/}"
 	fi
 	read -r -a makeopts <<< "${MAKEOPTS}"
 	if ! v "${MAKE}" "${makeopts[@]}" "$@" ; then
-		estatus "stage1: retry with -j1 for clearer error message in ${PWD##*/}"
+		estatus "retry with -j1 for clearer error message in ${PWD##*/}"
 		v "${MAKE}" "${makeopts[@]}" "$@" -j1 || return 1
 	fi
 }
@@ -91,7 +91,7 @@ efetch() {
 		fi
 
 		einfo "Fetching ${1##*/}"
-		estatus "stage1: fetching ${1##*/}"
+		estatus "fetching ${1##*/}"
 		pushd "${DISTDIR}" > /dev/null || exit 1
 
 		# Try for mirrors first, fall back to distfiles, then try given location
@@ -444,7 +444,7 @@ bootstrap_profile() {
 		# amend profile, to use gcc one
 		profile="${profile}/gcc"
 	elif [[ ${CHOST} == *-darwin* ]] ; then
-		[[ "${BOOTSTRAP_STAGE}" != stage2 ]] && profile+="/clang"
+		[[ "${BOOTSTRAP_STAGE}" != stage1 ]] && profile+="/clang"
 	fi
 
 	[[ -n ${PROFILE_BASE}${PROFILE_VARIANT} ]] &&
@@ -527,7 +527,7 @@ bootstrap_tree() {
 			  efetch "${SNAPSHOT_URL}/portage-${PV}.tar.bz2" ) || return 1
 		fi
 		einfo "Unpacking, this may take a while"
-		estatus "stage1: unpacking Portage tree"
+		estatus "unpacking Portage tree"
 		mkdir -p "${PORTDIR}"
 		bzip2 -dc "${DISTDIR}/portage-${PV}.tar.bz2" \
 			| tar --strip-components=1 -xf - -C "${PORTDIR}"
@@ -537,7 +537,7 @@ bootstrap_tree() {
 
 	local ret=$?
 	if [[ -n ${TREE_FROM_SRC} ]]; then
-		estatus "stage1: rsyncing Portage tree"
+		estatus "rsyncing Portage tree"
 		rsync -av --delete \
 			--exclude=.unpacked \
 			--exclude=distfiles \
@@ -994,7 +994,7 @@ bootstrap_gnu() {
 	einfo "Compiling ${A%.tar.*}"
 	econf "${myconf[@]}" || return 1
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
-		estatus "stage1: building ${A%.tar.*}"
+		estatus "building ${A%.tar.*}"
 		v ./build.sh || return 1
 	else
 		emake || return 1
@@ -1002,7 +1002,7 @@ bootstrap_gnu() {
 
 	einfo "Installing ${A%.tar.*}"
 	if [[ ${PN} == "make" && $(type -t $MAKE) != "file" ]]; then
-		estatus "stage1: installing ${A%.tar.*}"
+		estatus "installing ${A%.tar.*}"
 		v ./make install MAKE="${S}/make" || return 1
 	else
 		emake install || return 1
@@ -1181,7 +1181,7 @@ bootstrap_cmake_core() {
 		Source/cmTimestamp.cxx
 
 	einfo "Bootstrapping ${A%.tar.*}"
-	estatus "stage1: configuring ${A%.tar.*}"
+	estatus "configuring ${A%.tar.*}"
 	./bootstrap --prefix="${ROOT}"/tmp/usr || return 1
 
 	einfo "Compiling ${A%.tar.*}"
@@ -1497,6 +1497,8 @@ bootstrap_stage_host_gentoo() {
 }
 
 bootstrap_stage1() {
+	export BOOTSTRAP_STAGE="stage1"
+
 	# NOTE: stage1 compiles all tools (no libraries) in the native
 	# bits-size of the compiler, which needs not to match what we're
 	# bootstrapping for.  This is no problem since they're just tools,
@@ -1510,7 +1512,7 @@ bootstrap_stage1() {
 
 	setup_base_dirs "${ROOT}/tmp"
 
-	BOOTSTRAP_STAGE="stage1" configure_toolchain || return 1
+	configure_toolchain || return 1
 	configure_cflags || return 1
 	export CC CXX
 
@@ -1817,7 +1819,6 @@ bootstrap_stage1() {
 			(
 				ROOT="${ROOT}"/tmp \
 				PREFIX_DISABLE_RAP="yes" \
-				BOOTSTRAP_STAGE="stage2" \
 				bootstrap_profile
 			)
 		) || return 1
@@ -1826,7 +1827,7 @@ bootstrap_stage1() {
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
 	setup_portage_bash
 
-	estatus "stage1 finished"
+	estatus "finished"
 	einfo "stage1 successfully finished"
 }
 
@@ -1975,7 +1976,7 @@ do_emerge_pkgs() {
 				"--root-deps"
 				"${eopts[@]}"
 			)
-			estatus "${STAGE}: emerge ${pkg}"
+			estatus "emerge ${pkg}"
 			unset CFLAGS CXXFLAGS
 			[[ -n ${OVERRIDE_CFLAGS} ]] \
 				&& export CFLAGS="${OVERRIDE_CFLAGS}"
@@ -2001,6 +2002,8 @@ do_emerge_pkgs() {
 }
 
 bootstrap_stage2() {
+	export BOOTSTRAP_STAGE="stage2"
+
 	export PORTAGE_CONFIGROOT="${ROOT}"/tmp
 
 	if ! type -P emerge > /dev/null ; then
@@ -2010,7 +2013,7 @@ bootstrap_stage2() {
 
 	# Find out what toolchain packages we need, and configure LDFLAGS
 	# and friends.
-	BOOTSTRAP_STAGE="stage2" configure_toolchain || return 1
+	configure_toolchain || return 1
 	configure_cflags || return 1
 	export CONFIG_SHELL="${ROOT}"/tmp/usr/bin/bash
 	export BINUTILS_CONFIG_LD="$(type -P ld)"  # in case of bootstrapped GCC
@@ -2018,7 +2021,6 @@ bootstrap_stage2() {
 
 	emerge_pkgs() {
 		EPREFIX="${ROOT}"/tmp \
-		STAGE=stage2 \
 		do_emerge_pkgs "$@"
 	}
 
@@ -2240,7 +2242,7 @@ bootstrap_stage2() {
 		cp "${ROOT}/tmp/usr/${CHOST}/lib/gcc"/* "${ROOT}/usr/${CHOST}/lib/gcc"
 	fi
 
-	estatus "stage2 finished"
+	estatus "finished"
 	einfo "stage2 successfully finished"
 }
 
@@ -2258,6 +2260,8 @@ bootstrap_stage2_log() {
 }
 
 bootstrap_stage3() {
+	export BOOTSTRAP_STAGE=stage3
+
 	export PORTAGE_CONFIGROOT="${ROOT}"
 
 	# We need the stage2 in PATH for bootstrapping.  We rely on
@@ -2280,7 +2284,7 @@ bootstrap_stage3() {
 	# they stop mucking up builds.
 	rm -f "${ROOT}"/tmp/usr/local/bin/{,my,"${CHOST}"-}{gcc,g++}
 
-	BOOTSTRAP_STAGE=stage3 configure_toolchain || return 1
+	configure_toolchain || return 1
 
 	if [[ ${compiler_type} == clang ]] ; then
 		if ! type -P clang > /dev/null ; then
@@ -2335,7 +2339,6 @@ bootstrap_stage3() {
 		# PORTAGE_OVERRIDE_EPREFIX as BROOT is needed.
 		EPREFIX="${ROOT}" PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		EMERGE_LOG_DIR="${ROOT}"/var/log \
-		STAGE=stage3 \
 		do_emerge_pkgs "$@"
 	}
 
@@ -2628,7 +2631,7 @@ bootstrap_stage3() {
 	hash -r
 
 	# Update the portage tree.
-	estatus "stage3: updating Portage tree"
+	estatus "updating Portage tree"
 	treedate=$(date -f "${PORTDIR}"/metadata/timestamp +%s)
 	nowdate=$(date +%s)
 	[[ ( ! -e ${PORTDIR}/.unpacked ) && \
@@ -2644,7 +2647,7 @@ bootstrap_stage3() {
 	# Portage should figure out itself what it needs to do, if anything.
 	local eflags=( "--deep" "--update" "--changed-use" "@system" )
 	einfo "running emerge ${eflags[*]}"
-	estatus "stage3: emerge ${eflags[*]}"
+	estatus "emerge ${eflags[*]}"
 	emerge --color n -v "${eflags[@]}" || return 1
 
 	# gcc no longer depends on sys-devel/binutils which means it is to
@@ -2659,19 +2662,19 @@ bootstrap_stage3() {
 	# re-emerge anything hopefully not running into circular deps
 	eflags=( "--deep" "--changed-use" "@world" )
 	einfo "running emerge ${eflags[*]}"
-	estatus "stage3: emerge ${eflags[*]}"
+	estatus "emerge ${eflags[*]}"
 	emerge --color n -v "${eflags[@]}" || return 1
 
 	# Remove anything that we don't need (compilers most likely)
 	einfo "running emerge --depclean"
-	estatus "stage3: emerge --depclean"
+	estatus "emerge --depclean"
 	emerge --color n --depclean
 
 	# "wipe" mtimedb such that the resume list is proper after this stage
 	# (--depclean may fail, which is ok)
 	sed -i -e 's/resume/cleared/' "${ROOT}"/var/cache/edb/mtimedb
 
-	estatus "stage3 finished"
+	estatus "finished"
 	einfo "stage3 successfully finished"
 }
 
