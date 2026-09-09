@@ -211,38 +211,41 @@ configure_toolchain() {
 					;;
 			esac
 
+			# Pin a specific version to avoid building doc (sphinx),
+			# see LLVM_MANPAGE_DIST
+			llvm_major=22
 			llvm_deps="dev-build/ninja"
 			compiler_stage1="
 				${llvm_deps}
 
-				llvm-core/clang-linker-config
-				llvm-runtimes/clang-runtime
-				llvm-core/clang-common
+				=llvm-core/clang-linker-config-${llvm_major}
+				=llvm-runtimes/clang-runtime-${llvm_major}
+				=llvm-core/clang-common-${llvm_major}*
 
-				llvm-core/llvm
-				llvm-core/lld
-				llvm-runtimes/compiler-rt
-				llvm-core/clang
+				=llvm-core/llvm-${llvm_major}*
+				=llvm-core/lld-${llvm_major}*
+				=llvm-runtimes/compiler-rt-${llvm_major}*
+				=llvm-core/clang-${llvm_major}*
 			"
 			linker=
 			compiler="
-				llvm-runtimes/clang-unwindlib-config
-				llvm-runtimes/clang-stdlib-config
-				llvm-core/clang-linker-config
-				llvm-runtimes/clang-rtlib-config
-				llvm-runtimes/clang-runtime
-				llvm-core/clang-common
+				=llvm-runtimes/clang-unwindlib-config-${llvm_major}
+				=llvm-runtimes/clang-stdlib-config-${llvm_major}
+				=llvm-core/clang-linker-config-${llvm_major}
+				=llvm-runtimes/clang-rtlib-config-${llvm_major}
+				=llvm-runtimes/clang-runtime-${llvm_major}
+				=llvm-core/clang-common-${llvm_major}*
 
-				llvm-runtimes/libunwind
-				llvm-runtimes/libcxxabi
-				llvm-runtimes/libcxx
+				=llvm-runtimes/libunwind-${llvm_major}*
+				=llvm-runtimes/libcxxabi-${llvm_major}*
+				=llvm-runtimes/libcxx-${llvm_major}*
 
 				${llvm_deps}
 
-				llvm-core/llvm
-				llvm-core/lld
-				llvm-runtimes/compiler-rt
-				llvm-core/clang
+				=llvm-core/llvm-${llvm_major}*
+				=llvm-core/lld-${llvm_major}*
+				=llvm-runtimes/compiler-rt-${llvm_major}*
+				=llvm-core/clang-${llvm_major}*
 			"
 			compiler="${compiler//$'\n'/}"
 			compiler_type="clang"
@@ -1869,7 +1872,8 @@ do_emerge_pkgs() {
 				evdb=${pvdb##*/}
 				if [[ ${pkg} == "="* ]] ; then
 					# exact match required (* should work here)
-					[[ ${evdb} == "${vdb##*/}" ]] && break
+					# shellcheck disable=SC2053
+					[[ ${evdb} == ${vdb##*/} ]] && break
 				else
 					vdb=${vdb%-*}
 					evdb=${evdb%-r[[:digit:]]*}
@@ -2543,7 +2547,7 @@ bootstrap_stage3() {
 		if otool -L "${ROOT}/usr/lib/libc++abi.dylib" | grep -q "/usr/lib/libc++abi.dylib[^:]"; then
 			rm -Rf "${ROOT}/var/db/pkg/llvm-runtimes/libcxxabi"*
 			PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
-				pre_emerge_pkgs --nodeps "llvm-runtimes/libcxxabi" || return 1
+				pre_emerge_pkgs --nodeps "=llvm-runtimes/libcxxabi-${llvm_major}*" || return 1
 		fi
 
 		# Make ${CHOST}-libtool (used by compiler-rt's and llvm's ebuild) to
