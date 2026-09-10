@@ -1818,19 +1818,6 @@ bootstrap_stage1() {
 		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
 		|| (bootstrap_setup) || return 1
 
-	# setup a profile for stage2
-	mkdir -p "${ROOT}"/tmp/etc/. || return 1
-	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || \
-		(
-			cp -pR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc && \
-			rm -Rf "${ROOT}"/tmp/etc/portage/make.profile && \
-			(
-				ROOT="${ROOT}"/tmp \
-				PREFIX_DISABLE_RAP="yes" \
-				bootstrap_profile
-			)
-		) || return 1
-
 	# setup portage
 	[[ -e ${ROOT}/tmp/usr/bin/emerge ]] || (bootstrap_portage) || return 1
 	setup_portage_bash
@@ -2019,6 +2006,19 @@ bootstrap_stage2() {
 		eerror "emerge not found, did you bootstrap stage1?"
 		return 1
 	fi
+
+	# setup a profile for stage2
+	mkdir -p "${ROOT}"/tmp/etc/. || return 1
+	[[ -e ${ROOT}/tmp/etc/portage/make.profile ]] || \
+		(
+			cp -pR "${ROOT}"/etc/portage "${ROOT}"/tmp/etc && \
+			rm -Rf "${ROOT}"/tmp/etc/portage/make.profile && \
+			(
+				ROOT="${ROOT}"/tmp \
+				PREFIX_DISABLE_RAP="yes" \
+				bootstrap_profile
+			)
+		) || return 1
 
 	# Find out what toolchain packages we need, and configure LDFLAGS
 	# and friends.
