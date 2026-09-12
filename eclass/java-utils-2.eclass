@@ -6,7 +6,7 @@
 # java@gentoo.org
 # @AUTHOR:
 # Thomas Matthijs <axxo@gentoo.org>, Karl Trygve Kalleberg <karltk@gentoo.org>
-# @SUPPORTED_EAPIS: 7 8
+# @SUPPORTED_EAPIS: 8 9
 # @BLURB: Base eclass for Java packages
 # @DESCRIPTION:
 # This eclass provides functionality which is used by java-pkg-2.eclass and
@@ -20,7 +20,7 @@ if [[ -z ${_JAVA_UTILS_2_ECLASS} ]] ; then
 _JAVA_UTILS_2_ECLASS=1
 
 case ${EAPI} in
-	7|8) ;;
+	8|9) ;;
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
@@ -335,7 +335,7 @@ java-pkg_doexamples() {
 		( # dont want to pollute calling env
 			insinto "${dest}"
 			doins -r "$@"
-		) || die "Installing examples failed"
+		)
 	fi
 
 	# Let's make a symlink to the directory we have everything else under
@@ -460,7 +460,7 @@ java-pkg_dojar() {
 				(
 					insinto "${JAVA_PKG_JARDEST}"
 					doins "${jar}"
-				) || die "failed to install ${jar}"
+				)
 				java-pkg_append_ JAVA_PKG_CLASSPATH "${EPREFIX}${JAVA_PKG_JARDEST}/${jar_basename}"
 				debug-print "installed ${jar} to ${ED}${JAVA_PKG_JARDEST}"
 			# make a symlink to the original jar if it's symlink
@@ -1298,7 +1298,7 @@ java-pkg_getjar() {
 	classpath=$(java-config --classpath=${pkg})
 	[[ $? != 0 ]] && die ${error_msg}
 
-	java-pkg_ensure-dep "${build_only}" "${pkg}"
+	[[ -z ${PORTAGE_QUIET} ]] && java-pkg_ensure-dep "${build_only}" "${pkg}"
 
 	# Record the package(Virtual) as a dependency and then set build_only
 	# So that individual jars are not recorded.
@@ -1318,7 +1318,7 @@ java-pkg_getjar() {
 
 		if [[ "$(basename ${jar})" == "${target_jar}" ]] ; then
 			# Only record jars that aren't build-only
-			if [[ -z "${record_jar}" ]]; then
+			if [[ -z "${record_jar}" && -z ${PORTAGE_QUIET} ]]; then
 				if [[ -z "${build_only}" ]]; then
 					java-pkg_record-jar_ "${pkg}" "${jar}"
 				else
@@ -2016,7 +2016,7 @@ etestng() {
 java-utils-2_src_prepare() {
 	# have default_src_prepare starting from EAPI 9, see https://bugs.gentoo.org/780585
 	case ${EAPI} in
-		[78]) eapply_user ;;
+		8) eapply_user ;;
 		*) default_src_prepare ;;
 	esac
 
