@@ -506,12 +506,7 @@ bootstrap_tree() {
 	#                      retain this comment and the line below to
 	#                      keep this snapshot around in the snapshots
 	# MKSNAPSHOT-ANCHOR -- directory of rsync slaves
-	local PV="20260616"  # READ ME NOW vvvvv
-	                     # if you update the snapshot here, remove this
-	                     # readme stuff, and remove the setting of
-	                     # STAGE=${BOOTSTRAP_STAGE} in bootstrap_stage2
-	                     # function flagged with a TODO
-	                     # END READ ME ^^^^^
+	local PV="20261030"
 
 	# RAP uses the latest gentoo main repo snapshot to bootstrap.
 	is-rap && LATEST_TREE_YES=1
@@ -2177,8 +2172,6 @@ bootstrap_stage2() {
 		echo "sys-devel/gcc zstd"
 	} >> "${STAGE2_ROOT}"/etc/portage/profile/package.use.mask
 
-	# TODO: REMOVE STAGE HERE ONCE WE USE A NEW BOOTSTRAP SNAPSHOT
-	STAGE=${BOOTSTRAP_STAGE} \
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
 	for pkg in ${linker} ; do
@@ -2625,10 +2618,10 @@ bootstrap_stage3() {
 	pre_emerge_pkgs "" "app-shells/bash" || return 1
 
 	# Start using apps from the final destination Prefix
-	cat > "${STAGE2_ROOT}"/etc/env.d/10stage3 <<-EOF
+	cat > "${STAGE1_ROOT}"/etc/env.d/10stage3 <<-EOF
 		PATH="${STAGE3_ROOT}/usr/bin"
 	EOF
-	"${STAGE2_ROOT}"/usr/sbin/env-update
+	"${STAGE1_ROOT}"/usr/lib/portage/bin/env-update
 
 	# Build portage dependencies.
 	pkgs=(
@@ -2750,7 +2743,7 @@ set_helper_vars() {
 	# with this one can build in a static location, so e.g. provide
 	# stage1/2 via a tarball
 	# STAGE1_ROOT=/var/tmp/gprefix-stage12_root-"${CHOST_IDENTIFY}"
-	STAGE1_ROOT=${STAGE1_ROOT:-"${ROOT}"/tmp-"${CHOST_IDENTIFY}"}
+	STAGE1_ROOT=${STAGE1_ROOT:-"${ROOT}"/stage1-"${CHOST_IDENTIFY}"}
 	STAGE2_ROOT=${STAGE1_ROOT}
 	STAGE3_ROOT=${ROOT}
 
