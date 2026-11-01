@@ -1424,10 +1424,10 @@ bootstrap_texinfo() {
 }
 
 bootstrap_bash() {
-	bootstrap_gnu bash 5.3 ||
-	bootstrap_gnu bash 5.2 ||
-	bootstrap_gnu bash 5.1 ||
-	bootstrap_gnu bash 5.0
+	# newer Portage (>31-10-2026) require bash >=5.3, so older versions
+	# don't really help when bootstrapping here when they have to be
+	# used
+	bootstrap_gnu bash 5.3
 }
 
 bootstrap_bison() {
