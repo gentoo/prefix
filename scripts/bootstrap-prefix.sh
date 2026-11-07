@@ -133,7 +133,7 @@ configure_cflags() {
 			export LDFLAGS="-L${STAGE2_ROOT}/usr/lib -R${STAGE2_ROOT}/usr/lib -L${STAGE1_ROOT}/usr/lib -R${STAGE1_ROOT}/usr/lib"
 			;;
 		*)
-			export LDFLAGS="-L${STAGE2_ROOT}/usr/lib -Wl,-rpath=${STAGE2_ROOT}/usr/lib -L${STAGE1_ROOT}/usr/lib -Wl,-rpath=${STAGE1_ROOT}/ usr/lib"
+			export LDFLAGS="-L${STAGE2_ROOT}/usr/lib -Wl,-rpath=${STAGE2_ROOT}/usr/lib -L${STAGE1_ROOT}/usr/lib -Wl,-rpath=${STAGE1_ROOT}/usr/lib"
 			;;
 	esac
 
