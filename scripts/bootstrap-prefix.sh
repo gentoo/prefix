@@ -246,9 +246,9 @@ bootstrap_setup() {
 	einfo "Setting up some guessed defaults"
 
 	local FS_INSENSITIVE=0
-	touch "${ROOT}"/FOO.$$
-	[[ -e ${ROOT}/foo.$$ ]] && FS_INSENSITIVE=1
-	rm "${ROOT}"/FOO.$$
+	touch "${STAGE3_ROOT}"/FOO.$$
+	[[ -e ${STAGE3_ROOT}/foo.$$ ]] && FS_INSENSITIVE=1
+	rm "${STAGE3_ROOT}"/FOO.$$
 
 	[[ ! -e "${MAKE_CONF_DIR}" ]] && mkdir -p -- "${MAKE_CONF_DIR}"
 	if [[ ! -f ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] ; then
@@ -258,8 +258,8 @@ bootstrap_setup() {
 			echo 'CFLAGS="${CFLAGS} -O2 -pipe"'
 			echo 'CXXFLAGS="${CFLAGS}"'
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
-			echo "CONFIG_SHELL=\"${ROOT}/bin/bash\""
-			echo "DISTDIR=\"${DISTDIR:-${ROOT}/var/cache/distfiles}\""
+			echo "CONFIG_SHELL=\"${STAGE3_ROOT}/bin/bash\""
+			echo "DISTDIR=\"${DISTDIR:-${STAGE3_ROOT}/var/cache/distfiles}\""
 			if is-rap ; then
 				echo "# sandbox does not work well on Prefix, bug #490246"
 				echo 'FEATURES="${FEATURES} -usersandbox -sandbox"'
@@ -297,26 +297,28 @@ bootstrap_setup() {
 	fi
 
 	if is-rap ; then
-		if [[ ! -f ${ROOT}/etc/passwd ]]; then
+		if [[ ! -f ${STAGE3_ROOT}/etc/passwd ]]; then
 			if grep -q "^$(id -un):" /etc/passwd; then
-				ln -sf {,"${ROOT}"}/etc/passwd
+				ln -sf {,"${STAGE3_ROOT}"}/etc/passwd
 			else
-				getent passwd > "${ROOT}"/etc/passwd
+				getent passwd > "${STAGE3_ROOT}"/etc/passwd
 				# add user if it's not in /etc/passwd, bug #766417
-				getent passwd "$(id -un)" >> "${ROOT}"/etc/passwd
+				getent passwd "$(id -un)" >> "${STAGE3_ROOT}"/etc/passwd
 			fi
 		fi
-		if [[ ! -f ${ROOT}/etc/group ]]; then
+		if [[ ! -f ${STAGE3_ROOT}/etc/group ]]; then
 			if grep -q "^$(id -gn):" /etc/group; then
-				ln -sf {,"${ROOT}"}/etc/group
+				ln -sf {,"${STAGE3_ROOT}"}/etc/group
 			else
-				getent group > "${ROOT}"/etc/group
+				getent group > "${STAGE3_ROOT}"/etc/group
 				# add group if it's not in /etc/group, bug #766417
-				getent group "$(id -gn)" >> "${ROOT}"/etc/group
+				getent group "$(id -gn)" >> "${STAGE3_ROOT}"/etc/group
 			fi
 		fi
-		[[ -f ${ROOT}/etc/resolv.conf ]] || ln -s {,"${ROOT}"}/etc/resolv.conf
-		[[ -f ${ROOT}/etc/hosts ]] || cp {,"${ROOT}"}/etc/hosts
+		[[ -f ${STAGE3_ROOT}/etc/resolv.conf ]] || \
+			ln -s {,"${STAGE3_ROOT}"}/etc/resolv.conf
+		[[ -f ${STAGE3_ROOT}/etc/hosts ]] || \
+			cp {,"${STAGE3_ROOT}"}/etc/hosts
 	fi
 
 	bootstrap_profile
@@ -599,11 +601,11 @@ setup_portage_bash() {
 		ln -s bash "${STAGE1_ROOT}"/usr/bin/sh || return 1
 
 	# if we don't have them in our target, provide them from stage1
-	setup_base_dirs "${ROOT}"
-	[[ -x ${ROOT}/usr/bin/bash ]] || \
-		ln -s "${STAGE1_ROOT}"/usr/bin/bash "${ROOT}"/usr/bin/bash || return 1
-	[[ -x ${ROOT}/usr/bin/sh ]] || \
-		ln -s bash "${ROOT}"/usr/bin/sh || return 1
+	setup_base_dirs "$1"
+	[[ -x ${1}/usr/bin/bash ]] || \
+		ln -s "${STAGE1_ROOT}"/usr/bin/bash "${1}"/usr/bin/bash || return 1
+	[[ -x ${1}/usr/bin/sh ]] || \
+		ln -s bash "${1}"/usr/bin/sh || return 1
 }
 
 bootstrap_portage() {
@@ -642,7 +644,7 @@ bootstrap_portage() {
 		sed -e '/wget/s/ --passive-ftp /&--no-check-certificate /' \
 			-i cnf/make.globals
 
-	setup_portage_bash
+	setup_portage_bash "${STAGE1_ROOT}"
 	export PORTAGE_BASH="${STAGE1_ROOT}"/usr/bin/bash
 
 	einfo "Compiling ${A%.tar.*}"
@@ -1495,7 +1497,7 @@ bootstrap_stage_host_gentoo() {
 		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
 		|| (bootstrap_setup) || return 1
 
-	setup_portage_bash
+	setup_portage_bash "${STAGE1_HOST}"
 }
 
 bootstrap_stage1() {
@@ -1827,24 +1829,26 @@ bootstrap_stage1() {
 
 	# setup portage
 	[[ -e ${STAGE1_ROOT}/usr/bin/emerge ]] || (bootstrap_portage) || return 1
-	setup_portage_bash
+
+	mkdir -p "${STAGE1_ROOT}"/etc/env.d
+	cat > "${STAGE1_ROOT}"/etc/env.d/99bootstrap-prefix.sh <<-EOF
+		PATH="${PATH}"
+	EOF
 
 	estatus "finished"
 	einfo "stage1 successfully finished"
 }
 
 bootstrap_stage1_log() {
-	{
-		echo "===== stage 1 -- $(date -u +%Y-%m-%dT%H:%M:%SZ) ====="
-		echo "CHOST:     ${CHOST}"
-		echo "IDENT:     ${CHOST_IDENTIFY}"
-		echo "EPREFIX:   ${EPREFIX}"
-		echo "==========================================="
-		echo "STAGE1_ROOT: ${STAGE1_ROOT}"
-		echo "STAGE2_ROOT: ${STAGE2_ROOT}"
-		echo "STAGE3_ROOT: ${STAGE3_ROOT}"
-		echo "==========================================="
-	} >> "${STAGE3_ROOT}"/stage1.log
+	cat <<-EOF >> "${STAGE3_ROOT}"/stage1.log
+======================= stage 1 -- $(date -u +%Y-%m-%dT%H:%M:%SZ) =======================
+CHOST:       ${CHOST}
+IDENT:       ${CHOST_IDENTIFY}
+EPREFIX:     ${EPREFIX}
+===============================================================================
+STAGE1_ROOT: ${STAGE1_ROOT}
+===============================================================================
+	EOF
 	bootstrap_stage1 "${@}" 2>&1 | tee -a "${STAGE3_ROOT}"/stage1.log
 	local ret=${PIPESTATUS[0]}
 	[[ ${ret} == 0 ]] && touch "${STAGE3_ROOT}"/.stage1-finished
@@ -2020,16 +2024,28 @@ bootstrap_stage2() {
 
 	setup_base_dirs "${STAGE2_ROOT}"
 
+	# Portage needs /usr/bin/bash and /usr/bin/sh for its shebang
+	# checks, so ensure we have a symlink to stage1's version if we
+	# don't have one here (normally the case, but may exist on re-start)
+	setup_portage_bash "${STAGE2_ROOT}"
+	# For above, because emerge_pkgs uses EPREFIX="${STAGE2_ROOT}", we
+	# must ensure the stage2 binaries are in PATH first
+	cat > "${STAGE1_ROOT}"/etc/env.d/15stage2 <<-EOF
+		PATH="${STAGE2_ROOT}/usr/bin"
+	EOF
+	EPREFIX="${STAGE1_ROOT}" \
+	"${STAGE1_ROOT}"/usr/lib/portage/bin/env-update
+
 	# Find out what toolchain packages we need, and configure LDFLAGS
 	# and friends.
 	configure_toolchain || return 1
 	configure_cflags || return 1
-	export CONFIG_SHELL="${STAGE1_ROOT}"/usr/bin/bash
+	export CONFIG_SHELL="${STAGE2_ROOT}"/usr/bin/bash
 	export BINUTILS_CONFIG_LD="$(type -P ld)"  # in case of bootstrapped GCC
 	export CC CXX
 
 	emerge_pkgs() {
-		EPREFIX="${STAGE2_ROOT}"
+		EPREFIX="${STAGE2_ROOT}" \
 		FEATURES="${FEATURES} buildpkg" \
 		CFLAGS="${CFLAGS} -march=generic" \
 		CXXFLAGS="${CXXFLAGS} -march=generic" \
@@ -2074,15 +2090,19 @@ bootstrap_stage2() {
 	if [[ ${CHOST} == x86_64-*-solaris* || ${CHOST} == sparcv9-*-solaris* ]] ;
 	then
 		local libgccs64=/usr/sfw/lib/64/libgcc_s.so.1
-		[[ -e ${STAGE2_ROOT}/usr/bin/gcc ]] || \
-			cp "${libgccs64}" "${STAGE2_ROOT}"/usr/lib/
-		# save another copy for after gcc-config gets run and removes
-		# usr/lib/libgcc_s.* because new links should use the compiler
-		# specific libgcc_s, but existing objs need to find this
-		# libgcc_s for as long as they are around (bash->libreadline)
-		LDFLAGS="${LDFLAGS} -R${STAGE2_ROOT}/tmp"
-		mkdir -p "${STAGE2_ROOT}"/tmp/
-		cp "${libgccs64}" "${STAGE2_ROOT}"/tmp/
+		if [[ -e ${libgccs64} && \
+			! -e "${STAGE2_ROOT}"/usr/lib/${libgccs64##*/} ]]
+		then
+			[[ -e ${STAGE2_ROOT}/usr/bin/gcc ]] || \
+				cp "${libgccs64}" "${STAGE2_ROOT}"/usr/lib/
+			# save another copy for after gcc-config gets run and removes
+			# usr/lib/libgcc_s.* because new links should use the compiler
+			# specific libgcc_s, but existing objs need to find this
+			# libgcc_s for as long as they are around (bash->libreadline)
+			LDFLAGS="${LDFLAGS} -R${STAGE2_ROOT}/tmp"
+			mkdir -p "${STAGE2_ROOT}"/tmp/
+			cp "${libgccs64}" "${STAGE2_ROOT}"/tmp/
+		fi
 	fi
 
 	# Disable RAP directory hacks of binutils and gcc.  If libc.so
@@ -2109,6 +2129,14 @@ bootstrap_stage2() {
 			eerror() {
 			  echo "!!! $*"
 			}
+
+			ebegin() {
+			  printf " * %s" $*
+			}
+
+			eend() {
+			  echo " [ $1 ]"
+			}
 		EOF
 	fi
 
@@ -2122,7 +2150,7 @@ bootstrap_stage2() {
 			# passed to the compiler-rt and llvm's ebuilds.
 			for bin in libtool clang clang++ ; do
 				{
-					echo "#!${STAGE2_ROOT}//usr/bin/sh"
+					echo "#!${STAGE2_ROOT}/usr/bin/sh"
 					echo "exec ${bin}"' "$@"'
 				} > "${STAGE2_ROOT}/usr/bin/${CHOST}-${bin}"
 				chmod +x "${STAGE2_ROOT}/usr/bin/${CHOST}-${bin}"
@@ -2150,14 +2178,14 @@ bootstrap_stage2() {
 
 	# cmake has some external dependencies which require autoconf, etc.
 	# unless we only build the buildtool, bug #603012
-	echo "dev-build/cmake -server" >> "${STAGE2_ROOT}"/etc/portage/package.use
+	echo "dev-build/cmake -server" >> "${STAGE1_ROOT}"/etc/portage/package.use
 
-	mkdir -p "${STAGE2_ROOT}"/etc/portage/profile  # site-specific overrides
+	mkdir -p "${STAGE1_ROOT}"/etc/portage/profile  # site-specific overrides
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		# avoid complexities with the host toolchain
 		echo "sys-devel/gcc -pie" >> \
-			"${STAGE2_ROOT}"/etc/portage/profile/package.use.force
-		echo "sys-devel/gcc -pie" >> "${STAGE2_ROOT}"/etc/portage/package.use
+			"${STAGE1_ROOT}"/etc/portage/profile/package.use.force
+		echo "sys-devel/gcc -pie" >> "${STAGE1_ROOT}"/etc/portage/package.use
 	fi
 
 	# don't use zstd at this point, the host may not have it installed
@@ -2166,11 +2194,11 @@ bootstrap_stage2() {
 	{
 		echo "sys-devel/binutils -cet -zstd"
 		echo "sys-devel/gcc -zstd"
-	} >> "${STAGE2_ROOT}"/etc/portage/profile/package.use.force
+	} >> "${STAGE1_ROOT}"/etc/portage/profile/package.use.force
 	{
 		echo "sys-devel/binutils cet zstd"
 		echo "sys-devel/gcc zstd"
-	} >> "${STAGE2_ROOT}"/etc/portage/profile/package.use.mask
+	} >> "${STAGE1_ROOT}"/etc/portage/profile/package.use.mask
 
 	emerge_pkgs --nodeps "${pkgs[@]}" || return 1
 
@@ -2259,17 +2287,16 @@ bootstrap_stage2() {
 }
 
 bootstrap_stage2_log() {
-	{
-		echo "===== stage 2 -- $(date -u +%Y-%m-%dT%H:%M:%SZ) ====="
-		echo "CHOST:     ${CHOST}"
-		echo "IDENT:     ${CHOST_IDENTIFY}"
-		echo "EPREFIX:   ${EPREFIX}"
-		echo "==========================================="
-		echo "STAGE1_ROOT: ${STAGE1_ROOT}"
-		echo "STAGE2_ROOT: ${STAGE2_ROOT}"
-		echo "STAGE3_ROOT: ${STAGE3_ROOT}"
-		echo "==========================================="
-	} >> "${STAGE3_ROOT}"/stage2.log
+	cat <<-EOF >> "${STAGE3_ROOT}"/stage2.log
+======================= stage 2 -- $(date -u +%Y-%m-%dT%H:%M:%SZ) =======================
+CHOST:       ${CHOST}
+IDENT:       ${CHOST_IDENTIFY}
+EPREFIX:     ${EPREFIX}
+===============================================================================
+STAGE1_ROOT: ${STAGE1_ROOT}
+STAGE2_ROOT: ${STAGE2_ROOT}
+===============================================================================
+	EOF
 	bootstrap_stage2 "${@}" 2>&1 | tee -a "${STAGE3_ROOT}"/stage2.log
 	local ret=${PIPESTATUS[0]}
 	[[ ${ret} == 0 ]] && touch "${STAGE3_ROOT}/.stage2-finished"
@@ -2281,13 +2308,15 @@ bootstrap_stage3() {
 
 	export PORTAGE_CONFIGROOT="${STAGE3_ROOT}"
 
+	local pyver=$(python_ver)
+
 	# We need the stage2 in PATH for bootstrapping.  We rely on
 	# emerge running on some benign package before running anything
 	# that would rely on 98stage2 coming before 99host
 	mkdir -p "${STAGE3_ROOT}"/etc/env.d/
 	cat > "${STAGE3_ROOT}"/etc/env.d/98stage2 <<-EOF
 		PATH="$(unset PATH;
-			source "${STAGE2_ROOT}"/etc/profile.env;
+			source "${STAGE1_ROOT}"/etc/profile.env;
 			echo "$PATH")"
 	EOF
 
@@ -2295,6 +2324,11 @@ bootstrap_stage3() {
 		eerror "emerge not found, did you bootstrap stage1?"
 		return 1
 	fi
+
+	# Portage needs /usr/bin/bash and /usr/bin/sh for its shebang
+	# checks, so ensure we have a symlink to stage1's version if we
+	# don't have one here (normally the case, but may exist on re-start)
+	setup_portage_bash "${STAGE3_ROOT}"
 
 	# At this point, we should have a proper GCC, and don't need to
 	# rely on the system wrappers.  Let's get rid of them, so that
@@ -2318,11 +2352,11 @@ bootstrap_stage3() {
 	# If we resume this stage and python-exec was installed already in
 	# stage3, we basically made the system unusable, so remove python-exec
 	# here so we can use the python in stage2
-	for pef in python{,3} python{,3}-config ; do
+	for pef in python{,${pyver%%.*}} python{,${pyver%%.*}}-config ; do
 		rm -f "${STAGE2_ROOT}/usr/bin/${pef}"
 		[[ ${pef} == *-config ]] && ppf=-config || ppf=
 		( cd "${STAGE2_ROOT}"/usr/bin && \
-			ln -s "python$(python_ver)${ppf}" "${pef}" )
+			ln -s "python${pyver}${ppf}" "${pef}" )
 	done
 
 	get_libdir() {
@@ -2535,15 +2569,15 @@ bootstrap_stage3() {
 	# setup for a scenario where python doesn't live in the target
 	# prefix and no helpers are available
 	( cd "${STAGE3_ROOT}"/usr/bin && test ! -e python && \
-		ln -s "${STAGE1_ROOT}/usr/bin/python$(python_ver)" "python$(python_ver)" )
+		ln -s "${STAGE1_ROOT}/usr/bin/python${pyver}" "python${pyver}" )
 	# in addition, avoid collisions
-	rm -Rf "${STAGE1_ROOT}/usr/lib/python$(python_ver)/site-packages/clang"
+	rm -Rf "${STAGE1_ROOT}/usr/lib/python${pyver}/site-packages/clang"
 
 	# Try to get ourself out of the mud, bug #575324
 	EXTRA_ECONF="--disable-compiler-version-checks $(rapx '--disable-lto --disable-bootstrap')" \
 	GCC_MAKE_TARGET="$(rapx all)" \
 	MYCMAKEARGS="-DCMAKE_USE_SYSTEM_LIBRARY_LIBUV=OFF" \
-	PYTHON_COMPAT_OVERRIDE="python$(python_ver)" \
+	PYTHON_COMPAT_OVERRIDE="python${pyver}" \
 	pre_emerge_pkgs --nodeps "${compiler_pkgs[@]}" || return 1
 
 	if [[ ${CHOST}:${DARWIN_USE_GCC} == *-darwin*:0 ]] ; then
@@ -2551,7 +2585,7 @@ bootstrap_stage3() {
 		# /usr/lib/libc++abi.dylib. That causes issues with perl later. Force
 		# rebuild of sys-libs/libcxxabi to break this link.
 		rm -Rf "${STAGE3_ROOT}/var/db/pkg/sys-libs/libcxxabi"*
-		PYTHON_COMPAT_OVERRIDE=python$(python_ver) \
+		PYTHON_COMPAT_OVERRIDE=python${pyver} \
 			pre_emerge_pkgs --nodeps "sys-libs/libcxxabi" || return 1
 
 		# Make ${CHOST}-libtool (used by compiler-rt's and llvm's ebuild) to
@@ -2581,7 +2615,7 @@ bootstrap_stage3() {
 	pre_emerge_pkgs --nodeps sys-apps/gawk || return 1
 
 	( cd "${STAGE3_ROOT}"/usr/bin && \
-		test ! -e python && rm -f "python$(python_ver)" )
+		test ! -e python && rm -f "python${pyver}" )
 	# Use $STAGE3_ROOT tools where possible from now on.
 	if [[ $(readlink "${STAGE3_ROOT}"/usr/bin/sh) == "${STAGE1_ROOT}/"* ||
 		$(readlink "${STAGE3_ROOT}"/usr/bin/sh) == "${STAGE2_ROOT}/"* ]]
@@ -2621,6 +2655,7 @@ bootstrap_stage3() {
 	cat > "${STAGE1_ROOT}"/etc/env.d/10stage3 <<-EOF
 		PATH="${STAGE3_ROOT}/usr/bin"
 	EOF
+	EPREFIX="${STAGE1_ROOT}" \
 	"${STAGE1_ROOT}"/usr/lib/portage/bin/env-update
 
 	# Build portage dependencies.
@@ -2703,17 +2738,17 @@ bootstrap_stage3() {
 }
 
 bootstrap_stage3_log() {
-	{
-		echo "===== stage 3 -- $(date -u +%Y-%m-%dT%H:%M:%SZ) ====="
-		echo "CHOST:     ${CHOST}"
-		echo "IDENT:     ${CHOST_IDENTIFY}"
-		echo "EPREFIX:   ${EPREFIX}"
-		echo "==========================================="
-		echo "STAGE1_ROOT: ${STAGE1_ROOT}"
-		echo "STAGE2_ROOT: ${STAGE2_ROOT}"
-		echo "STAGE3_ROOT: ${STAGE3_ROOT}"
-		echo "==========================================="
-	} >> "${STAGE3_ROOT}"/stage3.log
+	cat <<-EOF >> "${STAGE3_ROOT}"/stage3.log
+======================= stage 2 -- $(date -u +%Y-%m-%dT%H:%M:%SZ) =======================
+CHOST:       ${CHOST}
+IDENT:       ${CHOST_IDENTIFY}
+EPREFIX:     ${EPREFIX}
+===============================================================================
+STAGE1_ROOT: ${STAGE1_ROOT}
+STAGE2_ROOT: ${STAGE2_ROOT}
+STAGE3_ROOT: ${STAGE3_ROOT}
+===============================================================================
+	EOF
 	bootstrap_stage3 "${@}" 2>&1 | tee -a "${STAGE3_ROOT}"/stage3.log
 	local ret=${PIPESTATUS[0]}
 	[[ ${ret} == 0 ]] && touch "${STAGE3_ROOT}/.stage3-finished"
@@ -2734,17 +2769,15 @@ set_helper_vars() {
 	SNAPSHOT_HOST=$(rapx http://distfiles.gentoo.org http://rsync.prefix.bitzolder.nl)
 	SNAPSHOT_URL=${SNAPSHOT_URL:-"${SNAPSHOT_HOST}/snapshots"}
 
-	# These three are mostly symbolic, but we try to keep them around to
-	# make it easier should we have to change things (again) in the
-	# future.  At this time, it is NOT supported to have a different
-	# location for stage1 and stage2, Portage has a bug in its
-	# cross-prefix support for fixing shebangs, so we do not allow
-	# stage2 to be set.
-	# with this one can build in a static location, so e.g. provide
-	# stage1/2 via a tarball
-	# STAGE1_ROOT=/var/tmp/gprefix-stage12_root-"${CHOST_IDENTIFY}"
+	# Each stage builds in its own separate location.  This keeps things
+	# clear and separated, making it easier to cleanup as well.  Aside
+	# from that, with this, one could provide an alternative location
+	# with alternative means to provide stage 1 and/or 2.  Think of
+	# something like a static location somewhere in /var/tmp provided
+	# via an unpac With this one can build in a static location, so e.g.
+	# provide stage1/2 via a tarball.
 	STAGE1_ROOT=${STAGE1_ROOT:-"${ROOT}"/stage1-"${CHOST_IDENTIFY}"}
-	STAGE2_ROOT=${STAGE1_ROOT}
+	STAGE2_ROOT=${STAGE2_ROOT:-"${ROOT}"/stage2-"${CHOST_IDENTIFY}"}
 	STAGE3_ROOT=${ROOT}
 
 	export MAKE CONFIG_SHELL
