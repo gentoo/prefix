@@ -259,7 +259,7 @@ bootstrap_setup() {
 			echo 'CXXFLAGS="${CFLAGS}"'
 			echo "MAKEOPTS=\"${MAKEOPTS}\""
 			echo "CONFIG_SHELL=\"${STAGE3_ROOT}/bin/bash\""
-			echo "DISTDIR=\"${DISTDIR:-${STAGE3_ROOT}/var/cache/distfiles}\""
+			echo "DISTDIR=\"${DISTDIR}\""
 			if is-rap ; then
 				echo "# sandbox does not work well on Prefix, bug #490246"
 				echo 'FEATURES="${FEATURES} -usersandbox -sandbox"'
@@ -276,8 +276,6 @@ bootstrap_setup() {
 				echo "# Avoid problems due to case-insensitivity, bug #524236"
 				echo 'FEATURES="${FEATURES} case-insensitive-fs"'
 			fi
-			[[ -n ${PORTDIR_OVERLAY} ]] && \
-				echo "PORTDIR_OVERLAY=\"\${PORTDIR_OVERLAY} ${PORTDIR_OVERLAY}\""
 			[[ -n ${MAKE_CONF_ADDITIONAL_USE} ]] &&
 				echo "USE=\"\${USE} ${MAKE_CONF_ADDITIONAL_USE}\""
 			[[ ${OFFLINE_MODE} ]] && \
@@ -320,14 +318,15 @@ bootstrap_setup() {
 		[[ -f ${STAGE3_ROOT}/etc/hosts ]] || \
 			cp {,"${STAGE3_ROOT}"}/etc/hosts
 	fi
-
-	bootstrap_profile
 }
 
 bootstrap_profile() {
 	local profile
 	local profile_linux
 	local profile_ver
+
+	# this function uses ROOT, so it can be overridden in case bootstrap
+	# from stage3 is done via cross-Prefix into stage4
 
 	# 2.6.32.1 -> 2*256^3 + 6*256^2 + 32 * 256 + 1 = 33955841
 	kver() { uname -r|cut -d- -f1|awk -F. '{for (i=1; i<=NF; i++){s+=lshift($i,(4-i)*8)};print s}'; }
@@ -457,21 +456,26 @@ bootstrap_profile() {
 		ln -s "${fullprofile}" "${ROOT}"/etc/portage/make.profile
 		einfo "Your profile is set to ${fullprofile}."
 	fi
+}
 
-	# Use package.use to disable in the portage tree to be shared between
-	# stage2 and stage3. The hack will be undone during tree sync in stage3.
-	cat >> "${ROOT}"/etc/portage/make.profile/package.use <<-EOF
-	# Disable bootstrapping libcxx* with libunwind
-	sys-libs/libcxxabi -libunwind
-	sys-libs/libcxx -libunwind
+bootstrap_profile_stage1() {
+	ROOT="${STAGE1_ROOT}" bootstrap_profile
+
+	# Use package.use to disable libunwind in the portage tree to be
+	# shared between stage2 and stage3. The hack will be undone during
+	# tree sync in stage3.
+	cat >> "${STAGE3_ROOT}"/etc/portage/make.profile/package.use <<-EOF
+		# Disable bootstrapping libcxx* with libunwind
+		sys-libs/libcxxabi -libunwind
+		sys-libs/libcxx -libunwind
 	EOF
 
 	# On Darwin we might need this to bootstrap the compiler, since
 	# bootstrapping the linker (binutils-apple) requires a c++11
 	# compiler amongst other things
-	cat >> "${ROOT}"/etc/portage/make.profile/package.unmask <<-EOF
-	# For Darwin bootstraps
-	sys-devel/native-cctools
+	cat >> "${STAGE3_ROOT}"/etc/portage/make.profile/package.unmask <<-EOF
+		# For Darwin bootstraps
+		sys-devel/native-cctools
 	EOF
 }
 
@@ -1493,8 +1497,11 @@ bootstrap_stage_host_gentoo() {
 	(bootstrap_tree) || return 1
 
 	# setup a profile
-	[[ -e ${STAGE3_ROOT}/etc/portage/make.profile && \
-		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
+	[[ -e ${STAGE1_ROOT}/etc/portage/make.profile ]] \
+		|| (bootstrap_profile_stage1) || return 1
+
+	# setup Portage config
+	[[ -e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
 		|| (bootstrap_setup) || return 1
 
 	setup_portage_bash "${STAGE1_HOST}"
@@ -1810,22 +1817,12 @@ bootstrap_stage1() {
 	(bootstrap_tree) || return 1
 
 	# setup a profile
-	[[ -e ${STAGE3_ROOT}/etc/portage/make.profile && \
-		-e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
-		|| (bootstrap_setup) || return 1
+	[[ -e ${STAGE1_ROOT}/etc/portage/make.profile ]] \
+		|| (bootstrap_profile_stage1) || return 1
 
-	# setup a profile for stage2
-	mkdir -p "${STAGE2_ROOT}"/etc/. || return 1
-	[[ -e ${STAGE2_ROOT}/etc/portage/make.profile ]] || \
-		(
-			cp -pR "${STAGE3_ROOT}"/etc/portage "${STAGE2_ROOT}"/etc && \
-			rm -Rf "${STAGE2_ROOT}"/etc/portage/make.profile && \
-			(
-				ROOT="${STAGE1_ROOT}" \
-				PREFIX_DISABLE_RAP="yes" \
-				bootstrap_profile
-			)
-		) || return 1
+	# setup Portage config
+	[[ -e ${MAKE_CONF_DIR}/0100_bootstrap_prefix_make.conf ]] \
+		|| (bootstrap_setup) || return 1
 
 	# setup portage
 	[[ -e ${STAGE1_ROOT}/usr/bin/emerge ]] || (bootstrap_portage) || return 1
@@ -2046,9 +2043,6 @@ bootstrap_stage2() {
 
 	emerge_pkgs() {
 		EPREFIX="${STAGE2_ROOT}" \
-		FEATURES="${FEATURES} buildpkg" \
-		CFLAGS="${CFLAGS} -march=generic" \
-		CXXFLAGS="${CXXFLAGS} -march=generic" \
 		do_emerge_pkgs "$@"
 	}
 
@@ -2330,6 +2324,10 @@ bootstrap_stage3() {
 	# don't have one here (normally the case, but may exist on re-start)
 	setup_portage_bash "${STAGE3_ROOT}"
 
+	# setup a profile
+	[[ -e ${STAGE3_ROOT}/etc/portage/make.profile ]] \
+		|| (ROOT="${STAGE3_ROOT}" bootstrap_profile) || return 1
+
 	# At this point, we should have a proper GCC, and don't need to
 	# rely on the system wrappers.  Let's get rid of them, so that
 	# they stop mucking up builds.
@@ -2391,6 +2389,9 @@ bootstrap_stage3() {
 		# scripts, make sure we use a CONFIG_SHELL which lives in the
 		# target EPREFIX of the cross-prefix setup
 		EPREFIX="${STAGE3_ROOT}" \
+		FEATURES="${FEATURES} buildpkg" \
+		CFLAGS="${CFLAGS} -march=generic" \
+		CXXFLAGS="${CXXFLAGS} -march=generic" \
 		PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		EMERGE_LOG_DIR="${STAGE3_ROOT}"/var/log \
 		CONFIG_SHELL="${STAGE3_ROOT}"/usr/bin/bash \
@@ -2409,7 +2410,7 @@ bootstrap_stage3() {
 	#	emerge_pkgs "$@"
 	#}
 
-	# pre_emerge_pkgs relies on stage 2 portage, but installs into the
+	# pre_emerge_pkgs relies on stage 1 portage, but installs into the
 	# final destination Prefix
 	pre_emerge_pkgs() {
 		PORTAGE_OVERRIDE_EPREFIX="${STAGE3_ROOT}" \
