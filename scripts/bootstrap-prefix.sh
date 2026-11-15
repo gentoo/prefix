@@ -464,7 +464,7 @@ bootstrap_profile_stage1() {
 	# Use package.use to disable libunwind in the portage tree to be
 	# shared between stage2 and stage3. The hack will be undone during
 	# tree sync in stage3.
-	cat >> "${STAGE3_ROOT}"/etc/portage/make.profile/package.use <<-EOF
+	cat >> "${STAGE1_ROOT}"/etc/portage/make.profile/package.use <<-EOF
 		# Disable bootstrapping libcxx* with libunwind
 		sys-libs/libcxxabi -libunwind
 		sys-libs/libcxx -libunwind
@@ -473,7 +473,7 @@ bootstrap_profile_stage1() {
 	# On Darwin we might need this to bootstrap the compiler, since
 	# bootstrapping the linker (binutils-apple) requires a c++11
 	# compiler amongst other things
-	cat >> "${STAGE3_ROOT}"/etc/portage/make.profile/package.unmask <<-EOF
+	cat >> "${STAGE1_ROOT}"/etc/portage/make.profile/package.unmask <<-EOF
 		# For Darwin bootstraps
 		sys-devel/native-cctools
 	EOF
@@ -2160,6 +2160,8 @@ bootstrap_stage2() {
 		sys-libs/readline
 		app-shells/bash
 		app-arch/xz-utils
+		app-arch/bzip2 # also default PORTAGE_COMPRESS
+		app-arch/gzip
 		sys-apps/sed
 		sys-apps/baselayout
 		sys-devel/m4
@@ -2304,20 +2306,20 @@ bootstrap_stage3() {
 
 	local pyver=$(python_ver)
 
-	# We need the stage2 in PATH for bootstrapping.  We rely on
-	# emerge running on some benign package before running anything
-	# that would rely on 98stage2 coming before 99host
-	mkdir -p "${STAGE3_ROOT}"/etc/env.d/
-	cat > "${STAGE3_ROOT}"/etc/env.d/98stage2 <<-EOF
-		PATH="$(unset PATH;
-			source "${STAGE1_ROOT}"/etc/profile.env;
-			echo "$PATH")"
-	EOF
-
 	if ! type -P emerge > /dev/null ; then
 		eerror "emerge not found, did you bootstrap stage1?"
 		return 1
 	fi
+
+	# We need the stage2+1 in PATH for bootstrapping.  We rely on
+	# emerge running on some benign package before running anything
+	# that would rely on 98stage2 coming before 99host
+	mkdir -p "${STAGE3_ROOT}"/etc/env.d/
+	cat > "${STAGE3_ROOT}"/etc/env.d/98stage2 <<-EOF
+		PATH="${STAGE2_ROOT}/usr/bin:${STAGE1_ROOT}/usr/bin"
+	EOF
+	EPREFIX="${STAGE3_ROOT}" \
+	"${STAGE1_ROOT}"/usr/lib/portage/bin/env-update
 
 	# Portage needs /usr/bin/bash and /usr/bin/sh for its shebang
 	# checks, so ensure we have a symlink to stage1's version if we
@@ -2347,6 +2349,16 @@ bootstrap_stage3() {
 		fi
 	fi
 
+	# build binpkgs for generic cpu if this is our final stop
+	if [[ ${STOP_BOOTSTRAP_AFTER} == stage3 ]] ; then
+		export FEATURES="${FEATURES} buildpkg"
+		# this only works on x86_64
+		if [[ ${CHOST} == x86_64-* ]] ; then
+			export CFLAGS="-O2 -pipe -march=x86-64 -mtune=generic"
+			export CXXFLAGS="${CFLAGS}"
+		fi
+	fi
+
 	# If we resume this stage and python-exec was installed already in
 	# stage3, we basically made the system unusable, so remove python-exec
 	# here so we can use the python in stage2
@@ -2370,7 +2382,7 @@ bootstrap_stage3() {
 	# destination Prefix) here until we've installed the toolchain
 	[[ ${compiler_type} == gcc ]] && \
 		export CPPFLAGS="-isystem ${STAGE3_ROOT}/usr/include"
-	LDFLAGS="-L${STAGE3_ROOT}/usr/$(get_libdir)" ; export LDFLAGS
+	export LDFLAGS="-L${STAGE3_ROOT}/usr/$(get_libdir)"
 	[[ ${CHOST} == *-darwin* ]] || \
 		LDFLAGS+=" -Wl,-rpath=${STAGE3_ROOT}/usr/$(get_libdir)"
 	unset CC CXX
@@ -2389,26 +2401,11 @@ bootstrap_stage3() {
 		# scripts, make sure we use a CONFIG_SHELL which lives in the
 		# target EPREFIX of the cross-prefix setup
 		EPREFIX="${STAGE3_ROOT}" \
-		FEATURES="${FEATURES} buildpkg" \
-		CFLAGS="${CFLAGS} -march=generic" \
-		CXXFLAGS="${CXXFLAGS} -march=generic" \
 		PORTAGE_TMPDIR="${PORTAGE_TMPDIR}" \
 		EMERGE_LOG_DIR="${STAGE3_ROOT}"/var/log \
 		CONFIG_SHELL="${STAGE3_ROOT}"/usr/bin/bash \
 		do_emerge_pkgs "$@"
 	}
-
-	# retained in case we *do* need this, but using this will cause
-	# packages installed end up in stage2, which means we keep using
-	# stage2 area and config which breaks things like binutils-config'
-	# path search, so don't use this
-	#with_stack_emerge_pkgs() {
-	#	# keep FEATURES=stacked-prefix until we bump portage in stage1
-	#	FEATURES="${FEATURES} stacked-prefix" \
-	#	USE="${USE} prefix-stack" \
-	#	PORTAGE_OVERRIDE_EPREFIX="${STAGE3_ROOT}" \
-	#	emerge_pkgs "$@"
-	#}
 
 	# pre_emerge_pkgs relies on stage 1 portage, but installs into the
 	# final destination Prefix
@@ -2420,8 +2417,7 @@ bootstrap_stage3() {
 	# Some packages fail to properly depend on sys-apps/texinfo.
 	# We don't really need that package, so we fake it instead,
 	# explicitly emerging it later on will overwrite the fakes.
-	if [[ ! -x "${STAGE3_ROOT}"/usr/bin/makeinfo ]]
-	then
+	if [[ ! -x "${STAGE3_ROOT}"/usr/bin/makeinfo ]] ; then
 		cp -p "${STAGE2_ROOT}"/usr/bin/{makeinfo,install-info} \
 			"${STAGE3_ROOT}"/usr/bin
 	fi
@@ -2450,6 +2446,10 @@ bootstrap_stage3() {
 		cp "${STAGE2_ROOT}"/lib/gentoo/functions.sh \
 			"${STAGE3_ROOT}"/lib/gentoo/functions.sh
 	fi
+
+	# coreutils comes in later, but need env for shebangs using it
+	[[ -x "${STAGE3_ROOT}"/usr/bin/env ]] || \
+		ln -s "${STAGE1_ROOT}"/usr/bin/env "${STAGE3_ROOT}"/usr/bin/env
 
 	if is-rap ; then
 		# We need ${STAGE3_ROOT}/usr/bin/perl to merge glibc.
@@ -2653,32 +2653,22 @@ bootstrap_stage3() {
 	pre_emerge_pkgs "" "app-shells/bash" || return 1
 
 	# Start using apps from the final destination Prefix
-	cat > "${STAGE1_ROOT}"/etc/env.d/10stage3 <<-EOF
+	cat > "${STAGE3_ROOT}"/etc/env.d/10stage3 <<-EOF
 		PATH="${STAGE3_ROOT}/usr/bin"
 	EOF
-	EPREFIX="${STAGE1_ROOT}" \
+	EPREFIX="${STAGE3_ROOT}" \
 	"${STAGE1_ROOT}"/usr/lib/portage/bin/env-update
-
-	# Build portage dependencies.
-	pkgs=(
-		sys-apps/coreutils
-		sys-apps/findutils
-		app-arch/gzip
-		app-arch/tar
-		sys-apps/grep
-		dev-build/make
-		sys-apps/file
-		app-admin/eselect
-	)
 
 	# For grep we need to do a little workaround as we might use llvm-3.4
 	# here, which doesn't necessarily grok the system headers on newer
 	# OSX, confusing the buildsystem
 	ac_cv_c_decl_report=warning \
 	TIME_T_32_BIT_OK=yes \
-	pre_emerge_pkgs "" "${pkgs[@]}" || return 1
+	pre_emerge_pkgs "" "sys-apps/grep" || return 1
 
 	pkgs=(
+		sys-apps/coreutils
+		sys-apps/file
 		virtual/os-headers
 		sys-devel/gettext
 		sys-apps/portage
@@ -2689,6 +2679,11 @@ bootstrap_stage3() {
 
 	# Switch to the proper portage.
 	hash -r
+
+	# remove stage2+1 from PATH */
+	rm -f "${STAGE3_ROOT}"/etc/env.d/{10stage3,98stage2}
+	EPREFIX="${STAGE3_ROOT}" \
+	"${STAGE1_ROOT}"/usr/lib/portage/bin/env-update
 
 	# Update the portage tree.
 	estatus "updating Portage tree"
@@ -2714,10 +2709,6 @@ bootstrap_stage3() {
 	# be depcleaned at this point, quite strange, but to prevent this
 	# from happening, add to the worldfile #936629#c5
 	emerge --color n --noreplace sys-devel/binutils
-
-	# Remove the stage2 hack from above.  A future emerge run will
-	# get env-update to happen.
-	rm "${STAGE3_ROOT}"/etc/env.d/98stage2
 
 	# re-emerge anything hopefully not running into circular deps
 	eflags=( "--deep" "--changed-use" "@world" )
